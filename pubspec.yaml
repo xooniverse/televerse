@@ -1,5 +1,5 @@
 name: televerse
-description: A starting point for Dart libraries or applications.
+description: Televerse is a Telegram Bot API Framework written completely in Dart.
 version: 0.0.1
 homepage: https://github.com/HeySreelal/televerse
 
