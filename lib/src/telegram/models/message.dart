@@ -8,11 +8,13 @@ import 'document.dart';
 import 'forum_topic_closed.dart';
 import 'forum_topic_created.dart';
 import 'forum_topic_reopened.dart';
+import 'inline_keyboard_markup.dart';
 import 'location.dart';
 import 'message_auto_delete_timer_changed.dart';
 import 'message_entity.dart';
 import 'photo_size.dart';
 import 'poll.dart';
+import 'proximity_alert_triggered.dart';
 import 'user.dart';
 import 'venue.dart';
 import 'video.dart';
@@ -458,6 +460,77 @@ class Message {
       threadId: json['thread_id'] as int?,
       messageThreadId: json['message_thread_id'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'message_id': messageId,
+      'from': from?.toJson(),
+      'sender_chat': senderChat?.toJson(),
+      'date': date,
+      'chat': chat.toJson(),
+      'forward_from': forwardFrom?.toJson(),
+      'forward_from_chat': forwardFromChat?.toJson(),
+      'forward_from_message_id': forwardFromMessageId,
+      'forward_signature': forwardSignature,
+      'forward_sender_name': forwardSenderName,
+      'forward_date': forwardDate,
+      'reply_to_message': replyToMessage?.toJson(),
+      'via_bot': viaBot?.toJson(),
+      'edit_date': editDate,
+      'media_group_id': mediaGroupId,
+      'author_signature': authorSignature,
+      'text': text,
+      'entities': entities?.map((e) => e.toJson()).toList(),
+      'animation': animation?.toJson(),
+      'audio': audio?.toJson(),
+      'document': document?.toJson(),
+      'photo': photo?.map((e) => e.toJson()).toList(),
+      'sticker': sticker?.toJson(),
+      'video': video?.toJson(),
+      'video_note': videoNote?.toJson(),
+      'voice': voice?.toJson(),
+      'caption': caption,
+      'caption_entities': captionEntities?.map((e) => e.toJson()).toList(),
+      'contact': contact?.toJson(),
+      'dice': dice?.toJson(),
+      'game': game?.toJson(),
+      'poll': poll?.toJson(),
+      'venue': venue?.toJson(),
+      'location': location?.toJson(),
+      'new_chat_members': newChatMembers?.map((e) => e.toJson()).toList(),
+      'left_chat_member': leftChatMember?.toJson(),
+      'new_chat_title': newChatTitle,
+      'new_chat_photo': newChatPhoto?.map((e) => e.toJson()).toList(),
+      'delete_chat_photo': deleteChatPhoto,
+      'group_chat_created': groupChatCreated,
+      'supergroup_chat_created': supergroupChatCreated,
+      'channel_chat_created': channelChatCreated,
+      'message_auto_delete_timer_changed':
+          messageAutoDeleteTimerChanged?.toJson(),
+      'migrate_to_chat_id': migrateToChatId,
+      'migrate_from_chat_id': migrateFromChatId,
+      'pinned_message': pinnedMessage?.toJson(),
+      'invoice': invoice?.toJson(),
+      'successful_payment': successfulPayment?.toJson(),
+      'connected_website': connectedWebsite,
+      'passport_data': passportData?.toJson(),
+      'proximity_alert_triggered': proximityAlertTriggered?.toJson(),
+      'reply_markup': replyMarkup?.toJson(),
+      'is_automatic_forward': isAutomaticForward,
+      'web_app_data': webAppData?.toJson(),
+      'video_chat_ended': videoChatEnded?.toJson(),
+      'video_chat_started': videoChatStarted?.toJson(),
+      'video_chat_participants_invited': videoChatParticipantsInvited?.toJson(),
+      'video_chat_scheduled': videoChatScheduled?.toJson(),
+      'forum_topic_closed': forumTopicClosed?.toJson(),
+      'forum_topic_created': forumTopicCreated?.toJson(),
+      'forum_topic_reopened': forumTopicReopened?.toJson(),
+      'has_protected_content': hasProtectedContent,
+      'is_topic_message': isTopicMessage,
+      'thread_id': threadId,
+      'message_thread_id': messageThreadId,
+    };
   }
 
   DateTime get dateTime => DateTime.fromMillisecondsSinceEpoch(date * 1000);

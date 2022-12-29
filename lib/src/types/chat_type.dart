@@ -22,4 +22,6 @@ enum ChatType {
   factory ChatType.fromJson(String type) {
     return ChatType.values.firstWhere((e) => e.value == type);
   }
+
+  String toJson() => value;
 }

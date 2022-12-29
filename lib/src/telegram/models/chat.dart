@@ -1,5 +1,7 @@
 import 'package:televerse/src/types/chat_type.dart';
 
+import 'chat_photo.dart';
+
 /// This object represents a chat.
 class Chat {
   /// Unique identifier for this chat. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
@@ -150,5 +152,37 @@ class Chat {
           ? null
           : ChatLocation.fromJson(json['location'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'type': type.toJson(),
+      'title': title,
+      'username': username,
+      'first_name': firstName,
+      'last_name': lastName,
+      'is_forum': isForum,
+      'photo': photo?.toJson(),
+      'active_usernames': activeUsernames,
+      'emoji_status_custom_emoji_id': emojiStatusSustomEmojiId,
+      'bio': bio,
+      'has_private_forwards': hasPrivateForwards,
+      'has_restricted_voice_and_video_messages':
+          hasRestrictedVoiceAndVideoMessages,
+      'join_to_send_messages': joinToSendMessages,
+      'join_by_request': joinByRequest,
+      'description': description,
+      'invite_link': inviteLink,
+      'pinned_message': pinnedMessage?.toJson(),
+      'permissions': permissions?.toJson(),
+      'slow_mode_delay': slowModeDelay,
+      'message_auto_delete_time': messageAutoDeleteTime,
+      'has_protected_content': hasProtectedContent,
+      'sticker_set_name': stickerSetName,
+      'can_set_sticker_set': canSetStickerSet,
+      'linked_chat_id': linkedChatId,
+      'location': location?.toJson(),
+    };
   }
 }

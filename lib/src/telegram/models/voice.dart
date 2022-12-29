@@ -34,6 +34,16 @@ class Voice {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'file_id': fileId,
+      'file_unique_id': fileUniqueId,
+      'duration': duration,
+      'mime_type': mimeType,
+      'file_size': fileSize,
+    };
+  }
+
   /// Duration of the video as [Duration] object.
   Duration get durationTime => Duration(seconds: duration);
 }

@@ -44,4 +44,16 @@ class Venue {
       googlePlaceType: json['google_place_type'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'location': location.toJson(),
+      'title': title,
+      'address': address,
+      'foursquare_id': foursquareId,
+      'foursquare_type': foursquareType,
+      'google_place_id': googlePlaceId,
+      'google_place_type': googlePlaceType,
+    };
+  }
 }
