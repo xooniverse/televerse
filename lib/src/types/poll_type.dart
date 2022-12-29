@@ -11,4 +11,6 @@ enum PollType {
   factory PollType.fromJson(String type) {
     return PollType.values.firstWhere((e) => e.type == type);
   }
+
+  String toJson() => type;
 }

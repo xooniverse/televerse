@@ -1,6 +1,28 @@
 import 'package:televerse/src/telegram/models/chat.dart';
 
+import 'animation.dart';
+import 'audio.dart';
+import 'contact.dart';
+import 'dice.dart';
+import 'document.dart';
+import 'forum_topic_closed.dart';
+import 'forum_topic_created.dart';
+import 'forum_topic_reopened.dart';
+import 'location.dart';
+import 'message_auto_delete_timer_changed.dart';
+import 'message_entity.dart';
+import 'photo_size.dart';
+import 'poll.dart';
 import 'user.dart';
+import 'venue.dart';
+import 'video.dart';
+import 'video_chat_ended.dart';
+import 'video_chat_participants_invited.dart';
+import 'video_chat_scheduled.dart';
+import 'video_chat_started.dart';
+import 'video_note.dart';
+import 'voice.dart';
+import 'web_app_data.dart';
 
 /// This object represents a message.
 class Message {

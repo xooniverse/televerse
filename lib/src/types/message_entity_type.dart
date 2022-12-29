@@ -1,4 +1,4 @@
-///Type of the entity. Currently, can be:
+/// Type of the entity. Currently, can be:
 /// - mention - (@username)
 /// - hashtag - (#hashtag),
 /// - cashtag - ($USD),
