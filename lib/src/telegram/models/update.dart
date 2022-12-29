@@ -1,3 +1,10 @@
+import 'callback_query.dart';
+import 'chat_join_request.dart';
+import 'chat_member_updated.dart';
+import 'message.dart';
+import 'poll.dart';
+import 'poll_answer.dart';
+
 /// This object represents an incoming update.
 ///
 /// At most one of the optional parameters can be present in any given update.

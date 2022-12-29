@@ -1,6 +1,9 @@
 import 'package:televerse/src/types/chat_type.dart';
 
+import 'chat_location.dart';
+import 'chat_permissions.dart';
 import 'chat_photo.dart';
+import 'message.dart';
 
 /// This object represents a chat.
 class Chat {
