@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:televerse/televerse.dart';
 
 void main() {
-  Televerse t = Televerse("1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+  final String token = Platform.environment["BOT_TOKEN"]!;
+  Televerse t = Televerse(token);
   t.start();
 }

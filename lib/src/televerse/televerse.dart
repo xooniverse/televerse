@@ -20,19 +20,13 @@ class Televerse {
   }
 
   ///
-  void _onUpdate(Update update) {
-    print("i'm actually getting updates");
-    print('🎉 Ouch! I got an update!');
-    print(update);
-  }
+  void _onUpdate(Update update) {}
 
   /// Start polling for updates.
   Future<void> start() async {
-    await fetcher.start();
+    fetcher.start();
     fetcher.onUpdate().listen((update) {
-      if (update.message != null) {
-        _onUpdate(update);
-      }
+      _onUpdate(update);
     });
   }
 
@@ -57,13 +51,10 @@ class Televerse {
     }
 
     Uri uri = _buildUri("getUpdates", params);
-    print(uri);
 
     final response = await HttpClient.get(uri);
-    print(response);
 
     if (response is! List) {
-      print('i am a list');
       throw LongPollingException("Got an invalid response. $response");
     }
 

@@ -48,7 +48,6 @@ class LongPolling extends Fetcher {
   }
 
   Future<void> _poll() async {
-    print("Polling...");
     if (!_isPolling) return;
     try {
       final updates = await televerse.getUpdates(
@@ -62,10 +61,8 @@ class LongPolling extends Fetcher {
         addUpdate(update);
         offset = update.updateId + 1;
       }
-      print("Offset: $offset");
 
       await Future.delayed(Duration(seconds: _retryDelay.inSeconds));
-      print("Delay: ${_retryDelay.inSeconds} seconds");
       _resetRetryDelay();
     } catch (err) {
       if (err is HttpException && err.isClientException) {
