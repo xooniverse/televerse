@@ -1,8 +1,4 @@
-import 'file.dart';
-import 'package:televerse/src/types/sticker_type.dart';
-
-import 'mask_position.dart';
-import 'photo_size.dart';
+part of models;
 
 /// This object represents a sticker.
 class Sticker {
