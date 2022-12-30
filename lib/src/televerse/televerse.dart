@@ -30,6 +30,17 @@ class Televerse {
     });
   }
 
+  /// Stream of [Update] objects.
+  ///
+  /// ! **IMPORTANT NOTE** !
+  ///
+  /// **This stream is used internally by the library to receive updates.**
+  /// So, if you are using [start] method to start polling, you should not use this stream.
+  /// If you do a [LongPollingException.alreadyPolling] will be thrown.
+  Stream<Update> get updatesStream {
+    return fetcher.onUpdate();
+  }
+
   /// Use this method to receive incoming updates using long polling.
   /// An Array of Update objects is returned.
   ///
