@@ -2,6 +2,7 @@ import 'package:televerse/src/types/inline_query_result_type.dart';
 import 'package:televerse/src/types/parse_mode.dart';
 
 import 'abstracts/inline_query_result.dart';
+import 'abstracts/input_message_content.dart';
 import 'inline_keyboard_markup.dart';
 import 'message_entity.dart';
 
