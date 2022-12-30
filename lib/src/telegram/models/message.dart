@@ -1,4 +1,6 @@
+import 'package:televerse/src/telegram/games.dart';
 import 'package:televerse/src/telegram/models/chat.dart';
+import 'package:televerse/src/telegram/passport.dart';
 import 'package:televerse/src/telegram/payments.dart';
 
 import 'animation.dart';

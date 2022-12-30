@@ -1,3 +1,4 @@
+import 'package:televerse/src/telegram/games.dart';
 import 'package:televerse/src/telegram/models/web_app_info.dart';
 
 import 'login_url.dart';
