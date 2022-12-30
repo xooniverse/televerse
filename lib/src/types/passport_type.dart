@@ -46,4 +46,6 @@ enum PassportType {
   static PassportType fromJson(String value) {
     return PassportType.values.firstWhere((e) => e.value == value);
   }
+
+  String toJson() => value;
 }
