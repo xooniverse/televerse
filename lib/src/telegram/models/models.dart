@@ -1,36 +1,131 @@
-import 'dart:io';
+library models;
 
-void main(List<String> args) {
-  /// list all file in this directory
-  final files = Directory.current.listSync(recursive: true).toList();
+import 'dart:convert';
 
-  /// read their content
-  // if starts with part of then leave it, otherwise add a new line at the beginning
-  // "part of models;"
+import 'package:televerse/src/televerse/televerse.dart';
+import 'package:televerse/src/types/bot_command_scope_type.dart';
+import 'package:televerse/src/types/chat_member_status.dart';
+import 'package:televerse/src/types/chat_type.dart';
+import 'package:televerse/src/types/dice_emoji.dart';
+import 'package:televerse/src/types/inline_query_result_type.dart';
+import 'package:televerse/src/types/input_media_type.dart';
+import 'package:televerse/src/types/mask_position_point.dart';
+import 'package:televerse/src/types/menu_button_type.dart';
+import 'package:televerse/src/types/message_entity_type.dart';
+import 'package:televerse/src/types/parse_mode.dart';
+import 'package:televerse/src/types/poll_type.dart';
+import 'package:televerse/src/types/sticker_type.dart';
 
-  for (var file in files) {
-    if (file is File) {
-      final content = file.readAsStringSync();
-      if (content.startsWith("part of")) {
-        continue;
-      } else {
-        file.writeAsStringSync("part of models;\n$content");
-      }
-    }
-  }
+import 'games.dart';
+import 'passport.dart';
+import 'payments.dart';
 
-  // now create a new file called "modelsx.dart" and add all filenames to it as "part 'filename.dart';"
-  final modelx = File("modelsx.dart");
-  modelx.writeAsStringSync("library models;\n");
-  for (var file in files) {
-    if (file is File) {
-      var name = file.path.split("/").last;
-      if (file.path.contains("abstracts")) {
-        name = "abstracts/$name";
-      }
-      modelx.writeAsStringSync("part '$name';\n", mode: FileMode.append);
-    }
-  }
-
-  // that's it
-}
+part 'input_location_message_content.dart';
+part 'forum_topic_reopened.dart';
+part 'update.dart';
+part 'inline_query_result_mpeg4_gif.dart';
+part 'menu_button_default.dart';
+part 'contact.dart';
+part 'venue.dart';
+part 'inline_query_result_cached_audio.dart';
+part 'web_app_info.dart';
+part 'sticker_set.dart';
+part 'audio.dart';
+part 'sticker.dart';
+part 'forum_topic.dart';
+part 'message_id.dart';
+part 'chat_member_member.dart';
+part 'response_parameters.dart';
+part 'chat_photo.dart';
+part 'video_note.dart';
+part 'message.dart';
+part 'chat_administrator_rights.dart';
+part 'inline_query_result_cached_photo.dart';
+part 'video_chat_started.dart';
+part 'input_text_message_content.dart';
+part 'web_app_data.dart';
+part 'poll.dart';
+part 'inline_query_result_cached_voice.dart';
+part 'input_invoice_message_content.dart';
+part 'video_chat_scheduled.dart';
+part 'inline_keyboard_button.dart';
+part 'mask_position.dart';
+part 'chat_permissions.dart';
+part 'reply_keyboard_markup.dart';
+part 'bot_command_scope_chat_member.dart';
+part 'voice.dart';
+part 'sent_web_app_message.dart';
+part 'input_contact_message_content.dart';
+part 'inline_query_result_audio.dart';
+part 'inline_query_result_cached_gif.dart';
+part 'keyboard_button.dart';
+part 'document.dart';
+part 'user.dart';
+part 'inline_query_result_venue.dart';
+part 'bot_command_scope_default.dart';
+part 'dice.dart';
+part 'inline_query_result_location.dart';
+part 'input_venue_message_content.dart';
+part 'inline_query_result_cached_video.dart';
+part 'menu_button_commands.dart';
+part 'inline_query_result_voice.dart';
+part 'inline_query.dart';
+part 'video.dart';
+part 'message_auto_delete_timer_changed.dart';
+part 'callback_query.dart';
+part 'inline_query_result_gif.dart';
+part 'bot_command_scope_chat_administrators.dart';
+part 'chat_member_owner.dart';
+part 'chat_member_left.dart';
+part 'inline_query_result_cached_mpeg4_gif.dart';
+part 'inline_query_result_photo.dart';
+part 'inline_query_result_article.dart';
+part 'chat_member_updated.dart';
+part 'video_chat_ended.dart';
+part 'chosen_inline_result.dart';
+part 'force_reply.dart';
+part 'bot_command_scope_all_chat_administrators.dart';
+part 'inline_query_result_document.dart';
+part 'file.dart';
+part 'input_media_document.dart';
+part 'abstracts/inline_query_result.dart';
+part 'abstracts/chat_member.dart';
+part 'abstracts/bot_command_scope.dart';
+part 'abstracts/input_message_content.dart';
+part 'abstracts/reply_markup.dart';
+part 'abstracts/input_media.dart';
+part 'abstracts/menu_button.dart';
+part 'chat_location.dart';
+part 'location.dart';
+part 'keyboard_button_poll_type.dart';
+part 'input_media_audio.dart';
+part 'chat_member_restricted.dart';
+part 'proximity_alert_triggered.dart';
+part 'webhook_info.dart';
+part 'inline_query_result_cached_document.dart';
+part 'input_media_photo.dart';
+part 'message_entity.dart';
+part 'animation.dart';
+part 'menu_button_web_app.dart';
+part 'chat_member_administrator.dart';
+part 'poll_answer.dart';
+part 'forum_topic_closed.dart';
+part 'forum_topic_created.dart';
+part 'inline_query_result_cached_sticker.dart';
+part 'bot_command_scope_all_group_chats.dart';
+part 'inline_keyboard_markup.dart';
+part 'chat_member_banned.dart';
+part 'photo_size.dart';
+part 'chat.dart';
+part 'inline_query_result_game.dart';
+part 'user_profile_photos.dart';
+part 'chat_join_request.dart';
+part 'chat_invite_link.dart';
+part 'bot_command_scope_chat.dart';
+part 'input_media_video.dart';
+part 'inline_query_result_contact.dart';
+part 'poll_option.dart';
+part 'input_media_animation.dart';
+part 'reply_keyboard_remove.dart';
+part 'login_url.dart';
+part 'video_chat_participants_invited.dart';

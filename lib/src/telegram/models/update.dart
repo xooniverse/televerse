@@ -66,4 +66,71 @@ class Update {
     this.chatMember,
     this.chatJoinRequest,
   });
+
+  static Update fromJson(Map<String, dynamic> json) {
+    return Update(
+      updateId: json['update_id']!,
+      message:
+          json['message'] != null ? Message.fromJson(json['message']!) : null,
+      editedMessage: json['edited_message'] != null
+          ? Message.fromJson(json['edited_message']!)
+          : null,
+      channelPost: json['channel_post'] != null
+          ? Message.fromJson(json['channel_post']!)
+          : null,
+      editedChannelPost: json['edited_channel_post'] != null
+          ? Message.fromJson(json['edited_channel_post']!)
+          : null,
+      inlineQuery: json['inline_query'] != null
+          ? InlineQuery.fromJson(json['inline_query']!)
+          : null,
+      chosenInlineResult: json['chosen_inline_result'] != null
+          ? ChosenInlineResult.fromJson(json['chosen_inline_result']!)
+          : null,
+      callbackQuery: json['callback_query'] != null
+          ? CallbackQuery.fromJson(json['callback_query']!)
+          : null,
+      shippingQuery: json['shipping_query'] != null
+          ? ShippingQuery.fromJson(json['shipping_query']!)
+          : null,
+      preCheckoutQuery: json['pre_checkout_query'] != null
+          ? PreCheckoutQuery.fromJson(json['pre_checkout_query']!)
+          : null,
+      poll: json['poll'] != null ? Poll.fromJson(json['poll']!) : null,
+      pollAnswer: json['poll_answer'] != null
+          ? PollAnswer.fromJson(json['poll_answer']!)
+          : null,
+      myChatMember: json['my_chat_member'] != null
+          ? ChatMemberUpdated.fromJson(json['my_chat_member']!)
+          : null,
+      chatMember: json['chat_member'] != null
+          ? ChatMemberUpdated.fromJson(json['chat_member']!)
+          : null,
+      chatJoinRequest: json['chat_join_request'] != null
+          ? ChatJoinRequest.fromJson(json['chat_join_request']!)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'update_id': updateId,
+      'message': message?.toJson(),
+      'edited_message': editedMessage?.toJson(),
+      'channel_post': channelPost?.toJson(),
+      'edited_channel_post': editedChannelPost?.toJson(),
+      'inline_query': inlineQuery?.toJson(),
+      'chosen_inline_result': chosenInlineResult?.toJson(),
+      'callback_query': callbackQuery?.toJson(),
+      'shipping_query': shippingQuery?.toJson(),
+      'pre_checkout_query': preCheckoutQuery?.toJson(),
+      'poll': poll?.toJson(),
+      'poll_answer': pollAnswer?.toJson(),
+      'my_chat_member': myChatMember?.toJson(),
+      'chat_member': chatMember?.toJson(),
+      'chat_join_request': chatJoinRequest?.toJson(),
+    };
+  }
+
+  String toRawJson() => json.encode(toJson());
 }
