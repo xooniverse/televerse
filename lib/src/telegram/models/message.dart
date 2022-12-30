@@ -1,4 +1,5 @@
 import 'package:televerse/src/telegram/models/chat.dart';
+import 'package:televerse/src/telegram/payments.dart';
 
 import 'animation.dart';
 import 'audio.dart';

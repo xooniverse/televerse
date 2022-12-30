@@ -1,3 +1,5 @@
+import 'package:televerse/src/telegram/payments.dart';
+
 import 'callback_query.dart';
 import 'chat_join_request.dart';
 import 'chat_member_updated.dart';
