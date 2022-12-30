@@ -40,11 +40,11 @@
 /// and @gamee bots.
 library games;
 
-import 'models/animation.dart';
-import 'models/message_entity.dart';
-import 'models/photo_size.dart';
-import 'models/user.dart';
+import 'animation.dart';
+import 'message_entity.dart';
+import 'photo_size.dart';
+import 'user.dart';
 
-part 'models/game.dart';
-part 'models/callback_game.dart';
-part 'models/game_high_score.dart';
+part 'game.dart';
+part 'callback_game.dart';
+part 'game_high_score.dart';

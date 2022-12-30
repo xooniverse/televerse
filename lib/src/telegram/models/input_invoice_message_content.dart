@@ -1,5 +1,5 @@
 import 'package:televerse/src/telegram/models/abstracts/input_message_content.dart';
-import 'package:televerse/src/telegram/payments.dart';
+import 'package:televerse/src/telegram/models/payments.dart';
 
 /// Represents the content of an invoice message to be sent as the result of an inline query.
 class InputInvoiceMessageContent extends InputMessageContent {

@@ -1,7 +1,7 @@
-import 'package:televerse/src/telegram/games.dart';
+import 'package:televerse/src/telegram/models/games.dart';
 import 'package:televerse/src/telegram/models/chat.dart';
-import 'package:televerse/src/telegram/passport.dart';
-import 'package:televerse/src/telegram/payments.dart';
+import 'package:televerse/src/telegram/models/passport.dart';
+import 'package:televerse/src/telegram/models/payments.dart';
 
 import 'animation.dart';
 import 'audio.dart';

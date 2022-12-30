@@ -1,4 +1,4 @@
-import 'package:televerse/src/telegram/payments.dart';
+import 'package:televerse/src/telegram/models/payments.dart';
 
 import 'callback_query.dart';
 import 'chat_join_request.dart';
