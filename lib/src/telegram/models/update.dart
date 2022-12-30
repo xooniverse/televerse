@@ -1,6 +1,8 @@
 import 'callback_query.dart';
 import 'chat_join_request.dart';
 import 'chat_member_updated.dart';
+import 'chosen_inline_result.dart';
+import 'inline_query.dart';
 import 'message.dart';
 import 'poll.dart';
 import 'poll_answer.dart';
