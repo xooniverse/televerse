@@ -15,6 +15,7 @@ import 'message_entity.dart';
 import 'photo_size.dart';
 import 'poll.dart';
 import 'proximity_alert_triggered.dart';
+import 'sticker.dart';
 import 'user.dart';
 import 'venue.dart';
 import 'video.dart';
