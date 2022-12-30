@@ -1,5 +1,4 @@
-import 'abstracts/reply_markup.dart';
-import 'inline_keyboard_button.dart';
+part of models;
 
 /// This object represents an inline keyboard that appears right next to the message it belongs to.
 class InlineKeyboardMarkup extends ReplyMarkup {

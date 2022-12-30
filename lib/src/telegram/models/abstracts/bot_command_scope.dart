@@ -1,4 +1,4 @@
-import 'package:televerse/src/types/bot_command_scope_type.dart';
+part of models;
 
 abstract class BotCommandScope {
   BotCommandScopeType get type;

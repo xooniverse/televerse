@@ -1,3 +1,4 @@
+part of models;
 /// This object represents a point on the map.
 class Location {
   /// Longitude as defined by sender

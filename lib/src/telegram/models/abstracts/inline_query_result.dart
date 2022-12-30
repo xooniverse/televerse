@@ -1,4 +1,4 @@
-import 'package:televerse/src/types/inline_query_result_type.dart';
+part of models;
 
 /// This object represents one result of an inline query. Telegram clients currently support results of the following 20 types:
 abstract class InlineQueryResult {

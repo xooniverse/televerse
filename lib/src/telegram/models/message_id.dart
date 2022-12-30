@@ -1,3 +1,4 @@
+part of models;
 /// This object represents a unique message identifier.
 class MessageId {
   int messageId;

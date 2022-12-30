@@ -1,5 +1,4 @@
-import 'package:televerse/src/telegram/models/abstracts/bot_command_scope.dart';
-import 'package:televerse/src/types/bot_command_scope_type.dart';
+part of models;
 
 /// Represents the scope of bot commands, covering all group and supergroup chats.
 class BotCommandScopeAllGroupChats extends BotCommandScope {

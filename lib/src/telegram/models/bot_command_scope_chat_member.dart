@@ -1,7 +1,4 @@
-import 'package:televerse/src/televerse/televerse.dart';
-import 'package:televerse/src/types/bot_command_scope_type.dart';
-
-import 'abstracts/bot_command_scope.dart';
+part of models;
 
 /// Represents the scope of bot commands, covering a specific member of a group or supergroup chat.
 class BotCommandScopeChatMember implements BotCommandScope {

@@ -1,3 +1,4 @@
+part of models;
 /// Describes actions that a non-administrator user is allowed to take in a chat.
 class ChatPermissions {
   /// Optional. True, if the user is allowed to send text messages, contacts, locations and venues

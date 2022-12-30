@@ -1,5 +1,4 @@
-import 'abstracts/reply_markup.dart';
-import 'keyboard_button.dart';
+part of models;
 
 /// This object represents a custom keyboard with reply options (see Introduction to bots for details and examples).
 class ReplyKeyboardMarkup extends ReplyMarkup {

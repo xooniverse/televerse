@@ -1,4 +1,4 @@
-import 'user.dart';
+part of models;
 
 /// Represents an invite link for a chat.
 class ChatInviteLink {

@@ -1,7 +1,4 @@
-import 'package:televerse/src/telegram/models/abstracts/input_message_content.dart';
-import 'package:televerse/src/types/parse_mode.dart';
-
-import 'message_entity.dart';
+part of models;
 
 /// Represents the content of a text message to be sent as the result of an inline query.
 class InputTextMessageContent extends InputMessageContent {

@@ -40,10 +40,7 @@
 /// and @gamee bots.
 library games;
 
-import 'animation.dart';
-import 'message_entity.dart';
-import 'photo_size.dart';
-import 'user.dart';
+import 'package:televerse/src/telegram/models/modelsx.dart';
 
 part 'game.dart';
 part 'callback_game.dart';

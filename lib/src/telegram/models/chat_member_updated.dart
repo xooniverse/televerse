@@ -1,7 +1,4 @@
-import 'abstracts/chat_member.dart';
-import 'chat.dart';
-import 'chat_invite_link.dart';
-import 'user.dart';
+part of models;
 
 /// This object represents changes in the status of a chat member.
 class ChatMemberUpdated {

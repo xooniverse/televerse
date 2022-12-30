@@ -1,7 +1,4 @@
-import 'package:televerse/src/telegram/models/message_entity.dart';
-import 'package:televerse/src/types/poll_type.dart';
-
-import 'poll_option.dart';
+part of models;
 
 /// This object contains information about a poll.
 class Poll {

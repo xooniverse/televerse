@@ -1,7 +1,4 @@
-import 'package:televerse/src/telegram/models/menu_button_commands.dart';
-import 'package:televerse/src/telegram/models/menu_button_default.dart';
-import 'package:televerse/src/telegram/models/menu_button_web_app.dart';
-import 'package:televerse/src/types/menu_button_type.dart';
+part of models;
 
 abstract class MenuButton {
   MenuButtonType get type;

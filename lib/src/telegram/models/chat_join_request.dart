@@ -1,6 +1,4 @@
-import 'chat.dart';
-import 'chat_invite_link.dart';
-import 'user.dart';
+part of models;
 
 /// Represents a join request sent to a chat.
 class ChatJoinRequest {

@@ -1,6 +1,4 @@
-import 'package:televerse/src/types/bot_command_scope_type.dart';
-
-import 'abstracts/bot_command_scope.dart';
+part of models;
 
 /// Represents the scope of bot commands, covering all group and supergroup chat administrators.
 class BotCommandScopeAllChatAdministrators implements BotCommandScope {

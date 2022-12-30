@@ -1,12 +1,4 @@
-import 'package:televerse/src/telegram/models/chat_member_owner.dart';
-import 'package:televerse/src/types/chat_member_status.dart';
-
-import '../chat_member_administrator.dart';
-import '../chat_member_banned.dart';
-import '../chat_member_left.dart';
-import '../chat_member_member.dart';
-import '../chat_member_restricted.dart';
-import '../user.dart';
+part of models;
 
 abstract class ChatMember {
   /// The member's status

@@ -1,34 +1,4 @@
-import 'package:televerse/src/telegram/models/games.dart';
-import 'package:televerse/src/telegram/models/chat.dart';
-import 'package:televerse/src/telegram/models/passport.dart';
-import 'package:televerse/src/telegram/models/payments.dart';
-
-import 'animation.dart';
-import 'audio.dart';
-import 'contact.dart';
-import 'dice.dart';
-import 'document.dart';
-import 'forum_topic_closed.dart';
-import 'forum_topic_created.dart';
-import 'forum_topic_reopened.dart';
-import 'inline_keyboard_markup.dart';
-import 'location.dart';
-import 'message_auto_delete_timer_changed.dart';
-import 'message_entity.dart';
-import 'photo_size.dart';
-import 'poll.dart';
-import 'proximity_alert_triggered.dart';
-import 'sticker.dart';
-import 'user.dart';
-import 'venue.dart';
-import 'video.dart';
-import 'video_chat_ended.dart';
-import 'video_chat_participants_invited.dart';
-import 'video_chat_scheduled.dart';
-import 'video_chat_started.dart';
-import 'video_note.dart';
-import 'voice.dart';
-import 'web_app_data.dart';
+part of models;
 
 /// This object represents a message.
 class Message {

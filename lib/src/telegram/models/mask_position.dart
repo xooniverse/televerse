@@ -1,4 +1,4 @@
-import 'package:televerse/src/types/mask_position_point.dart';
+part of models;
 
 /// This object describes the position on faces where a mask should be placed by default.
 class MaskPosition {

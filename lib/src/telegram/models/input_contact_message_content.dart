@@ -1,4 +1,4 @@
-import 'package:televerse/src/telegram/models/abstracts/input_message_content.dart';
+part of models;
 
 /// Represents the content of a contact message to be sent as the result of an inline query.
 class InputContactMessageContent extends InputMessageContent {

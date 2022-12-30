@@ -1,10 +1,4 @@
-import 'package:televerse/src/types/inline_query_result_type.dart';
-import 'package:televerse/src/types/parse_mode.dart';
-
-import 'abstracts/inline_query_result.dart';
-import 'abstracts/input_message_content.dart';
-import 'inline_keyboard_markup.dart';
-import 'message_entity.dart';
+part of models;
 
 /// Represents a link to an animated GIF file stored on the Telegram servers. By default, this animated GIF file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with specified content instead of the animation.
 class InlineQueryResultCachedGif extends InlineQueryResult {

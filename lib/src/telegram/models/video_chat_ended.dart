@@ -1,3 +1,4 @@
+part of models;
 /// This object represents a service message about a video chat ended in the chat.
 class VideoChatEnded {
   /// Video chat duration in seconds

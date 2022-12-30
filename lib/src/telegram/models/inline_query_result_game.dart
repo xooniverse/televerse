@@ -1,7 +1,4 @@
-import 'package:televerse/src/telegram/models/abstracts/inline_query_result.dart';
-import 'package:televerse/src/types/inline_query_result_type.dart';
-
-import 'inline_keyboard_markup.dart';
+part of models;
 
 /// Represents a Game.
 class InlineQueryResultGame extends InlineQueryResult {

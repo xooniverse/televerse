@@ -1,4 +1,4 @@
-import 'location.dart';
+part of models;
 
 /// Represents a location to which a chat is connected.
 class ChatLocation {

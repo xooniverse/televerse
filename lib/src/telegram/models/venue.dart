@@ -1,4 +1,4 @@
-import 'location.dart';
+part of models;
 
 /// This object represents a venue.
 class Venue {

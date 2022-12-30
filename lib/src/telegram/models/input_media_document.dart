@@ -1,9 +1,4 @@
-import 'package:televerse/src/telegram/models/abstracts/input_media.dart';
-import 'package:televerse/src/televerse/televerse.dart';
-import 'package:televerse/src/types/input_media_type.dart';
-import 'package:televerse/src/types/parse_mode.dart';
-
-import 'message_entity.dart';
+part of models;
 
 /// Represents a general file to be sent.
 class InputMediaDocument extends InputMedia {

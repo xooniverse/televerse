@@ -1,3 +1,4 @@
+part of models;
 /// This object represents one size of a photo or a file / sticker thumbnail.
 class PhotoSize {
   /// Identifier for this file, which can be used to download or reuse the file

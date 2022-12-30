@@ -1,4 +1,4 @@
-import 'photo_size.dart';
+part of models;
 
 /// This object represent a user's profile pictures.
 class UserProfilePhotos {

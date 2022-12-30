@@ -1,9 +1,4 @@
-import 'package:televerse/src/televerse/televerse.dart';
-import 'package:televerse/src/types/input_media_type.dart';
-import 'package:televerse/src/types/parse_mode.dart';
-
-import 'abstracts/input_media.dart';
-import 'message_entity.dart';
+part of models;
 
 class InputMediaAnimation extends InputMedia {
   /// Type of the result, must be video

@@ -1,4 +1,4 @@
-import 'package:televerse/src/types/input_media_type.dart';
+part of models;
 
 /// This object represents the content of a media message to be sent. It should be one of
 /// - InputMediaAnimation

@@ -1,7 +1,4 @@
-import 'package:televerse/src/types/chat_member_status.dart';
-
-import 'abstracts/chat_member.dart';
-import 'user.dart';
+part of models;
 
 /// Represents a chat member that owns the chat and has all administrator privileges.
 class ChatMemberAdministrator implements ChatMember {

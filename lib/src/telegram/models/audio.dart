@@ -1,4 +1,4 @@
-import 'photo_size.dart';
+part of models;
 
 class Audio {
   /// Identifier for this file, which can be used to download or reuse the file

@@ -1,7 +1,4 @@
-import 'package:televerse/src/telegram/models/web_app_info.dart';
-import 'package:televerse/src/types/menu_button_type.dart';
-
-import 'abstracts/menu_button.dart';
+part of models;
 
 /// Represents a menu button, which launches a Web App.
 class MenuButtonWebApp extends MenuButton {

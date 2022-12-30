@@ -1,6 +1,4 @@
-import 'package:televerse/src/types/message_entity_type.dart';
-
-import 'user.dart';
+part of models;
 
 /// This object represents one special entity in a text message. For example, hashtags, usernames, URLs, etc.
 class MessageEntity {

@@ -1,7 +1,4 @@
-import 'package:televerse/src/telegram/models/abstracts/chat_member.dart';
-import 'package:televerse/src/types/chat_member_status.dart';
-
-import 'user.dart';
+part of models;
 
 class ChatMemberMember implements ChatMember {
   /// The member's status in the chat, always “creator”

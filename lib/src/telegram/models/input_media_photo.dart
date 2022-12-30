@@ -1,8 +1,4 @@
-import 'package:televerse/src/types/input_media_type.dart';
-import 'package:televerse/src/types/parse_mode.dart';
-
-import 'abstracts/input_media.dart';
-import 'message_entity.dart';
+part of models;
 
 /// Represents a photo to be sent.
 class InputMediaPhoto extends InputMedia {

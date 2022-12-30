@@ -1,7 +1,4 @@
-import 'package:televerse/src/types/sticker_type.dart';
-
-import 'photo_size.dart';
-import 'sticker.dart';
+part of models;
 
 /// This object represents a sticker set.
 class StickerSet {

@@ -1,8 +1,4 @@
-import 'package:televerse/src/telegram/models/input_contact_message_content.dart';
-import 'package:televerse/src/telegram/models/input_invoice_message_content.dart';
-import 'package:televerse/src/telegram/models/input_location_message_content.dart';
-import 'package:televerse/src/telegram/models/input_text_message_content.dart';
-import 'package:televerse/src/telegram/models/input_venue_message_content.dart';
+part of models;
 
 /// This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following 5 types:
 ///

@@ -1,6 +1,4 @@
-import 'package:televerse/src/types/menu_button_type.dart';
-
-import 'abstracts/menu_button.dart';
+part of models;
 
 /// Describes that no specific value for the menu button was set.
 class MenuButtonDefault extends MenuButton {

@@ -1,8 +1,4 @@
-import 'package:televerse/src/telegram/models/abstracts/inline_query_result.dart';
-import 'package:televerse/src/types/inline_query_result_type.dart';
-
-import 'abstracts/input_message_content.dart';
-import 'inline_keyboard_markup.dart';
+part of models;
 
 /// Represents a contact with a phone number. By default, this contact will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the contact.
 ///

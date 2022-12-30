@@ -1,4 +1,4 @@
-import 'user.dart';
+part of models;
 
 /// This object represents a service message about new members invited to a video chat.
 class VideoChatParticipantsInvited {

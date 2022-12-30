@@ -1,4 +1,4 @@
-import 'photo_size.dart';
+part of models;
 
 /// This object represents a video file.
 class Video {

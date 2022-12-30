@@ -1,4 +1,4 @@
-import 'user.dart';
+part of models;
 
 /// This object represents an answer of a user in a non-anonymous poll.
 class PollAnswer {

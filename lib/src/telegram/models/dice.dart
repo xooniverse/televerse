@@ -1,4 +1,4 @@
-import 'package:televerse/src/types/dice_emoji.dart';
+part of models;
 
 /// This object represents an animated emoji that displays a random value.
 class Dice {

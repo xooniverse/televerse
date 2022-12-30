@@ -1,4 +1,4 @@
-import 'photo_size.dart';
+part of models;
 
 /// This object represents a general file (as opposed to photos, voice messages and audio files).
 class Document {

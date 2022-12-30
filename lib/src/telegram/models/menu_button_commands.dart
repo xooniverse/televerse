@@ -1,6 +1,4 @@
-import 'package:televerse/src/types/menu_button_type.dart';
-
-import 'abstracts/menu_button.dart';
+part of models;
 
 /// Represents a menu button, which opens the bot's list of commands.
 class MenuButtonCommands extends MenuButton {

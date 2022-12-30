@@ -1,6 +1,4 @@
-import 'package:televerse/src/telegram/models/abstracts/chat_member.dart';
-import 'package:televerse/src/types/chat_member_status.dart';
-import 'package:televerse/src/telegram/models/user.dart';
+part of models;
 
 class ChatMemberBanned implements ChatMember {
   @override

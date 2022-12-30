@@ -1,7 +1,4 @@
-import 'package:televerse/src/telegram/models/games.dart';
-import 'package:televerse/src/telegram/models/web_app_info.dart';
-
-import 'login_url.dart';
+part of models;
 
 /// This object represents one button of an inline keyboard. You must use exactly one of the optional fields.
 class InlineKeyboardButton {
