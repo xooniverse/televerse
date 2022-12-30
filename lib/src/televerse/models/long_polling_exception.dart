@@ -1,4 +1,4 @@
-import 'package:televerse/src/televerse/fetch/long_polling.dart';
+part of televerse.models;
 
 class LongPollingException implements Exception {
   final String message;

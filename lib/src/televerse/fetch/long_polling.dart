@@ -1,10 +1,7 @@
-import 'package:televerse/src/telegram/telegram.dart';
-import 'package:televerse/src/televerse/fetch/fetch.dart';
-import 'package:televerse/src/televerse/models/http_exception.dart';
-import 'package:televerse/src/televerse/models/long_polling_exception.dart';
+part of televerse;
 
 class LongPolling extends Fetcher {
-  final Telegram telegram;
+  final Televerse televerse;
   int offset;
   final int timeout;
   final int limit;
@@ -15,8 +12,8 @@ class LongPolling extends Fetcher {
   bool _isPolling = false;
   bool get isPolling => _isPolling;
 
-  LongPolling({
-    required this.telegram,
+  LongPolling(
+    this.televerse, {
     this.offset = 0,
     this.timeout = 30,
     this.limit = 100,
@@ -51,7 +48,7 @@ class LongPolling extends Fetcher {
   Future<void> _poll() async {
     if (!_isPolling) return;
     try {
-      final updates = await telegram.getUpdates(
+      final updates = await televerse.getUpdates(
         offset: offset,
         limit: limit,
         timeout: timeout,

@@ -1,6 +1,4 @@
-import 'dart:async';
-
-import 'package:televerse/src/telegram/telegram.dart';
+part of televerse;
 
 abstract class Fetcher {
   final StreamController<Update> _updateStreamController;

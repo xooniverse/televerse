@@ -2,7 +2,6 @@ library models;
 
 import 'dart:convert';
 
-import 'package:televerse/src/televerse/televerse.dart';
 import 'package:televerse/src/types/bot_command_scope_type.dart';
 import 'package:televerse/src/types/chat_member_status.dart';
 import 'package:televerse/src/types/chat_type.dart';
@@ -15,6 +14,7 @@ import 'package:televerse/src/types/message_entity_type.dart';
 import 'package:televerse/src/types/parse_mode.dart';
 import 'package:televerse/src/types/poll_type.dart';
 import 'package:televerse/src/types/sticker_type.dart';
+import 'package:televerse/televerse.dart';
 
 import 'games.dart';
 import 'passport.dart';

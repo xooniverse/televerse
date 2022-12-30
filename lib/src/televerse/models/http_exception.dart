@@ -1,3 +1,5 @@
+part of televerse.models;
+
 class HttpException implements Exception {
   final int code;
   final String message;

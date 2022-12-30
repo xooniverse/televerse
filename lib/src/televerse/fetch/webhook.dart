@@ -1,13 +1,7 @@
-import 'dart:convert';
-
-import 'package:televerse/src/telegram/telegram.dart';
-import 'package:televerse/src/televerse/fetch/fetch.dart';
-import 'dart:io' as io;
-
-import 'package:televerse/src/televerse/models/webhook_exception.dart';
+part of televerse;
 
 class Webhook extends Fetcher {
-  final Telegram telegram;
+  final Televerse televerse;
 
   final io.HttpServer _server;
 
@@ -28,7 +22,7 @@ class Webhook extends Fetcher {
 
   Webhook(
     this._server, {
-    required this.telegram,
+    required this.televerse,
     required this.url,
     this.ipAddress,
     this.secretPath = '',
@@ -54,7 +48,7 @@ class Webhook extends Fetcher {
   }
 
   Future<bool> setWebhook() async {
-    return telegram.setWebhook(
+    return televerse.setWebhook(
       url: "$url:$port$secretPath",
       certificate: certificate,
       ipAddress: ipAddress,
@@ -88,7 +82,7 @@ class Webhook extends Fetcher {
 
   @override
   Future<void> stop({bool dropPendingUpdates = false}) async {
-    await telegram.deleteWebhook(dropPendingUpdates: dropPendingUpdates);
+    await televerse.deleteWebhook(dropPendingUpdates: dropPendingUpdates);
     return _server.close(force: true);
   }
 }

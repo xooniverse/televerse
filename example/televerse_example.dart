@@ -1,4 +1,5 @@
+import 'package:televerse/televerse.dart';
+
 void main() {
-  print('Hello, World!');
-  print('We are under development. Please check back later.');
+  Televerse t = Televerse("5314539669:AAHIF0XjuQE4cnekziRrEUj9sOf-Ih5Widk");
 }

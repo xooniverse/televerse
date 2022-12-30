@@ -1,3 +1,5 @@
+part of televerse.models;
+
 class WebhookException implements Exception {
   final String message;
 

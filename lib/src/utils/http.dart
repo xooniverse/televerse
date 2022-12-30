@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:televerse/src/televerse/models/http_exception.dart';
+import 'package:televerse/televerse.dart';
 
 class HttpClient {
   /// Send GET request to the given [uri] and return the response body.
