@@ -23,7 +23,7 @@ class LongPolling extends Fetcher {
     if (limit > 100) throw LongPollingException.invalidLimit;
   }
 
-  Duration _retryDelay = Duration(minutes: 1);
+  Duration _retryDelay = Duration(seconds: 1);
   void _doubleRetryDelay() {
     _retryDelay *= 2;
   }
@@ -34,8 +34,10 @@ class LongPolling extends Fetcher {
 
   @override
   Future<void> start() async {
+    if (_isPolling) throw LongPollingException.alreadyPolling;
+    _isPolling = true;
     while (_isPolling) {
-      _poll();
+      await _poll();
     }
   }
 
@@ -46,6 +48,7 @@ class LongPolling extends Fetcher {
   }
 
   Future<void> _poll() async {
+    print("Polling...");
     if (!_isPolling) return;
     try {
       final updates = await televerse.getUpdates(
@@ -59,13 +62,15 @@ class LongPolling extends Fetcher {
         addUpdate(update);
         offset = update.updateId + 1;
       }
-      await Future.delayed(Duration(seconds: 1));
-      _poll();
+      print("Offset: $offset");
+
+      await Future.delayed(Duration(seconds: _retryDelay.inSeconds));
+      print("Delay: ${_retryDelay.inSeconds} seconds");
       _resetRetryDelay();
     } catch (err) {
       if (err is HttpException && err.isClientException) {
         _isPolling = false;
-        throw LongPollingException("$err");
+        throw LongPollingException("Long polling stopped: ${err.message}");
       }
 
       await Future.delayed(_retryDelay);

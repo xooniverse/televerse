@@ -133,4 +133,38 @@ class Update {
   }
 
   String toRawJson() => json.encode(toJson());
+
+  UpdateType get type {
+    if (message != null) {
+      return UpdateType.message;
+    } else if (editedMessage != null) {
+      return UpdateType.editedMessage;
+    } else if (channelPost != null) {
+      return UpdateType.channelPost;
+    } else if (editedChannelPost != null) {
+      return UpdateType.editedChannelPost;
+    } else if (inlineQuery != null) {
+      return UpdateType.inlineQuery;
+    } else if (chosenInlineResult != null) {
+      return UpdateType.chosenInlineResult;
+    } else if (callbackQuery != null) {
+      return UpdateType.callbackQuery;
+    } else if (shippingQuery != null) {
+      return UpdateType.shippingQuery;
+    } else if (preCheckoutQuery != null) {
+      return UpdateType.preCheckoutQuery;
+    } else if (poll != null) {
+      return UpdateType.poll;
+    } else if (pollAnswer != null) {
+      return UpdateType.pollAnswer;
+    } else if (myChatMember != null) {
+      return UpdateType.myChatMember;
+    } else if (chatMember != null) {
+      return UpdateType.chatMember;
+    } else if (chatJoinRequest != null) {
+      return UpdateType.chatJoinRequest;
+    } else {
+      return UpdateType.unknown;
+    }
+  }
 }

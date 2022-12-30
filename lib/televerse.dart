@@ -16,3 +16,4 @@ part 'src/televerse/televerse.dart';
 part 'src/televerse/fetch/fetch.dart';
 part 'src/televerse/fetch/long_polling.dart';
 part 'src/televerse/fetch/webhook.dart';
+part 'src/televerse/event/event.dart';

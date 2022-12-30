@@ -7,17 +7,17 @@ class HttpClient {
   /// Send GET request to the given [uri] and return the response body.
   static Future<dynamic> get(Uri uri) async {
     try {
-      Map<String, dynamic> params = uri.queryParameters;
-      params.removeWhere(_nullFilter);
-      uri = uri.replace(queryParameters: params);
       final response = await http.get(uri);
       final body = json.decode(response.body);
+
       if (body["ok"] == true) {
         return body["result"];
       } else {
-        throw HttpException(response.statusCode, body["description"]);
+        final ex = HttpException(response.statusCode, body["description"]);
+        _handleException(ex.code, ex.message);
       }
     } catch (err) {
+      print(err);
       return Future.error(err);
     }
   }
@@ -63,6 +63,16 @@ class HttpClient {
       }
     } catch (err) {
       return Future.error(err);
+    }
+  }
+
+  static void _handleException(int code, String message) {
+    if (code == 401) {
+      throw UnauthorizedException(message);
+    } else if (code == 400) {
+      throw BadRequestException(message);
+    } else {
+      throw HttpException(code, message);
     }
   }
 

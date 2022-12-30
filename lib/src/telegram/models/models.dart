@@ -14,6 +14,7 @@ import 'package:televerse/src/types/message_entity_type.dart';
 import 'package:televerse/src/types/parse_mode.dart';
 import 'package:televerse/src/types/poll_type.dart';
 import 'package:televerse/src/types/sticker_type.dart';
+import 'package:televerse/src/types/update_type.dart';
 import 'package:televerse/televerse.dart';
 
 import 'games.dart';

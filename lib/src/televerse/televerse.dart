@@ -12,20 +12,26 @@ class Televerse {
     this.fetcher = fetcher ?? LongPolling(this);
   }
 
-  final String _baseUrl = "https://api.telegram.org/bot";
+  final String _baseUrl = "api.telegram.org";
   Uri _buildUri(String method, [Map<String, dynamic>? params]) {
-    return Uri.https(_baseUrl, "$token/$method", params);
+    params = params?.map((key, value) => MapEntry(key, value.toString()));
+    Uri uri = Uri.https(_baseUrl, "/bot$token/$method", params);
+    return uri;
   }
 
   ///
-  void onUpdate(Update update) {}
+  void _onUpdate(Update update) {
+    print("i'm actually getting updates");
+    print('🎉 Ouch! I got an update!');
+    print(update);
+  }
 
   /// Start polling for updates.
   Future<void> start() async {
     await fetcher.start();
     fetcher.onUpdate().listen((update) {
       if (update.message != null) {
-        onUpdate(update);
+        _onUpdate(update);
       }
     });
   }
@@ -44,11 +50,23 @@ class Televerse {
       "offset": offset,
       "limit": limit,
       "timeout": timeout,
-      "allowed_updates": jsonEncode(allowedUpdates),
     };
-    Uri uri = _buildUri("getUpdates", params);
 
-    List response = await HttpClient.get(uri);
+    if (allowedUpdates != null && allowedUpdates.isNotEmpty) {
+      params["allowed_updates"] = jsonEncode(allowedUpdates);
+    }
+
+    Uri uri = _buildUri("getUpdates", params);
+    print(uri);
+
+    final response = await HttpClient.get(uri);
+    print(response);
+
+    if (response is! List) {
+      print('i am a list');
+      throw LongPollingException("Got an invalid response. $response");
+    }
+
     return (response)
         .map((e) => Update.fromJson(e as Map<String, dynamic>))
         .toList();
