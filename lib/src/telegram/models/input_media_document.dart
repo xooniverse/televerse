@@ -1,4 +1,5 @@
 import 'package:televerse/src/telegram/models/abstracts/input_media.dart';
+import 'package:televerse/src/televerse/televerse.dart';
 import 'package:televerse/src/types/input_media_type.dart';
 import 'package:televerse/src/types/parse_mode.dart';
 
@@ -50,9 +51,6 @@ class InputMediaDocument extends InputMedia {
   factory InputMediaDocument.fromJson(Map<String, dynamic> json) {
     return InputMediaDocument(
       media: json['media'],
-      thumb: json['thumb'] == null
-          ? null
-          : InputFile.fromJson(json['thumb'] as Map<String, dynamic>),
       caption: json['caption'] as String?,
       parseMode: json['parse_mode'] == null
           ? null

@@ -1,3 +1,4 @@
+import 'package:televerse/src/televerse/televerse.dart';
 import 'package:televerse/src/types/input_media_type.dart';
 import 'package:televerse/src/types/parse_mode.dart';
 
@@ -59,7 +60,6 @@ class InputMediaAnimation extends InputMedia {
   factory InputMediaAnimation.fromJson(Map<String, dynamic> json) {
     return InputMediaAnimation(
       media: json['media'],
-      thumb: json['thumb'] != null ? InputFile.fromJson(json['thumb']) : null,
       caption: json['caption'],
       parseMode: json['parse_mode'] != null
           ? ParseMode.fromJson(json['parse_mode'])
