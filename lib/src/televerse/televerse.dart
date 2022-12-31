@@ -389,7 +389,6 @@ class Televerse extends Event {
       "duration": duration,
       "performer": performer,
       "title": title,
-      "thumb": thumb?.fileId ?? thumb?.url,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
@@ -431,6 +430,7 @@ class Televerse extends Event {
       );
     } else {
       params["audio"] = audio.fileId ?? audio.url;
+      params["thumb"] = thumb?.fileId ?? thumb?.url;
       response = await HttpClient.get(_buildUri("sendAudio", params));
     }
     return MessageContext(this, Message.fromJson(response));
@@ -455,7 +455,6 @@ class Televerse extends Event {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
-      "thumb": thumb?.fileId ?? thumb?.url,
       "caption": caption,
       "parse_mode": parseMode?.value,
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
@@ -502,8 +501,369 @@ class Televerse extends Event {
       );
     } else {
       params["document"] = document.fileId ?? document.url;
+      params["thumb"] = thumb?.fileId ?? thumb?.url;
       response = await HttpClient.get(_buildUri("sendDocument", params));
     }
     return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
+  Future<MessageContext> sendVideo(
+    ID chatId,
+    InputFile video, {
+    int? messageThreadId,
+    int? duration,
+    int? width,
+    int? height,
+    InputFile? thumb,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? hasSpoiler,
+    bool? supportsStreaming,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "duration": duration,
+      "width": width,
+      "height": height,
+      "caption": caption,
+      "parse_mode": parseMode?.value,
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "has_spoiler": hasSpoiler,
+      "supports_streaming": supportsStreaming,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response;
+    List<MultipartFile> files = [];
+    if (video.type == InputFileType.file || thumb?.type == InputFileType.file) {
+      if (video.type == InputFileType.file) {
+        if (!video.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(video.file!.path);
+        }
+        files.add(
+          MultipartFile.fromBytes(
+            "video",
+            video.file!.readAsBytesSync(),
+            filename: video.file!.path.split("/").last,
+          ),
+        );
+      }
+      if (thumb?.type == InputFileType.file) {
+        if (!thumb!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+        }
+        files.add(
+          MultipartFile.fromBytes(
+            "thumb",
+            thumb.file!.readAsBytesSync(),
+            filename: thumb.file!.path.split("/").last,
+          ),
+        );
+      }
+      params.removeWhere((key, value) => value == null);
+      response = await HttpClient.multipartPost(
+        _buildUri("sendVideo"),
+        files,
+        params,
+      );
+    } else {
+      params["video"] = video.fileId ?? video.url;
+      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      response = await HttpClient.get(_buildUri("sendVideo", params));
+    }
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
+  Future<MessageContext> sendAnimation(
+    ID chatId,
+    InputFile animation, {
+    int? messageThreadId,
+    int? duration,
+    int? width,
+    int? height,
+    InputFile? thumb,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? hasSpoiler,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "duration": duration,
+      "width": width,
+      "height": height,
+      "caption": caption,
+      "parse_mode": parseMode?.value,
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "has_spoiler": hasSpoiler,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response;
+    List<MultipartFile> files = [];
+    if (animation.type == InputFileType.file ||
+        thumb?.type == InputFileType.file) {
+      if (animation.type == InputFileType.file) {
+        if (!animation.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(animation.file!.path);
+        }
+        files.add(
+          MultipartFile.fromBytes(
+            "animation",
+            animation.file!.readAsBytesSync(),
+            filename: animation.file!.path.split("/").last,
+          ),
+        );
+      }
+      if (thumb?.type == InputFileType.file) {
+        if (!thumb!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+        }
+        files.add(
+          MultipartFile.fromBytes(
+            "thumb",
+            thumb.file!.readAsBytesSync(),
+            filename: thumb.file!.path.split("/").last,
+          ),
+        );
+      }
+      params.removeWhere((key, value) => value == null);
+      response = await HttpClient.multipartPost(
+        _buildUri("sendAnimation"),
+        files,
+        params,
+      );
+    } else {
+      params["animation"] = animation.fileId ?? animation.url;
+      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      response = await HttpClient.get(_buildUri("sendAnimation", params));
+    }
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
+  Future<MessageContext> sendVoice(
+    ID chatId,
+    InputFile voice, {
+    int? messageThreadId,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    int? duration,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "caption": caption,
+      "parse_mode": parseMode?.value,
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "duration": duration,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response;
+    List<MultipartFile> files = [];
+    if (voice.type == InputFileType.file) {
+      if (!voice.file!.existsSync()) {
+        throw TeleverseException.fileDoesNotExist(voice.file!.path);
+      }
+      files.add(
+        MultipartFile.fromBytes(
+          "voice",
+          voice.file!.readAsBytesSync(),
+          filename: voice.file!.path.split("/").last,
+        ),
+      );
+      params.removeWhere((key, value) => value == null);
+      response = await HttpClient.multipartPost(
+        _buildUri("sendVoice"),
+        files,
+        params,
+      );
+    } else {
+      params["voice"] = voice.fileId ?? voice.url;
+      response = await HttpClient.get(_buildUri("sendVoice", params));
+    }
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
+  Future<MessageContext> sendVideoNote(
+    ID chatId,
+    InputFile videoNote, {
+    int? messageThreadId,
+    int? duration,
+    int? length,
+    InputFile? thumb,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "duration": duration,
+      "length": length,
+      "thumb": thumb?.fileId ?? thumb?.url,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response;
+    List<MultipartFile> files = [];
+    if (videoNote.type == InputFileType.file ||
+        thumb?.type == InputFileType.file) {
+      if (videoNote.type == InputFileType.file) {
+        if (!videoNote.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(videoNote.file!.path);
+        }
+        files.add(
+          MultipartFile.fromBytes(
+            "video_note",
+            videoNote.file!.readAsBytesSync(),
+            filename: videoNote.file!.path.split("/").last,
+          ),
+        );
+      }
+      if (thumb?.type == InputFileType.file) {
+        if (!thumb!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+        }
+        files.add(
+          MultipartFile.fromBytes(
+            "thumb",
+            thumb.file!.readAsBytesSync(),
+            filename: thumb.file!.path.split("/").last,
+          ),
+        );
+      }
+      params.removeWhere((key, value) => value == null);
+      response = await HttpClient.multipartPost(
+        _buildUri("sendVideoNote"),
+        files,
+        params,
+      );
+    } else {
+      params["video_note"] = videoNote.fileId ?? videoNote.url;
+      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      response = await HttpClient.get(_buildUri("sendVideoNote", params));
+    }
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
+  Future<List<MessageContext>> sendMediaGroup(
+    ID chatId,
+    List<InputMedia> media, {
+    int? messageThreadId,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+  }) async {
+    if (media.length > 10) {
+      throw TeleverseException(
+        "Invalid Parameter in [sendMediaGroup]",
+        "The maximum number of items in a media group is 10.",
+      );
+    }
+    if (media.length < 2) {
+      throw TeleverseException(
+        "Invalid Parameter in [sendMediaGroup]",
+        "The minimum number of items in a media group is 2.",
+      );
+    }
+    bool containsInvalidType = media.any((m) {
+      return m.type == InputMediaType.animation ||
+          m.type == InputMediaType.audio;
+    });
+    if (containsInvalidType) {
+      throw TeleverseException(
+        "Invalid Parameter in [sendMediaGroup]",
+        "Audio and Animation files can't be sent in a media group.",
+      );
+    }
+
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+    };
+
+    List<MultipartFile> files = [];
+    List<Map<String, dynamic>> mediaList = [];
+
+    if (media.any((m) => m.media.type == InputFileType.file)) {
+      for (InputMedia m in media) {
+        if (m.media.type == InputFileType.file) {
+          if (!m.media.file!.existsSync()) {
+            throw TeleverseException.fileDoesNotExist(m.media.file!.path);
+          }
+          files.add(
+            MultipartFile.fromBytes(
+              m.type == InputMediaType.photo ? "photo" : "video",
+              m.media.file!.readAsBytesSync(),
+              filename: m.media.file!.path.split("/").last,
+            ),
+          );
+        } else {
+          mediaList.add(m.toJson());
+        }
+      }
+      params["media"] = jsonEncode(mediaList);
+      List<dynamic> response = await HttpClient.multipartPost(
+        _buildUri("sendMediaGroup"),
+        files,
+        params,
+      );
+      return (response)
+          .map((e) => MessageContext(this, Message.fromJson(e)))
+          .toList();
+    }
+
+    params["media"] = jsonEncode(media.map((m) => m.toJson()).toList());
+
+    List<dynamic> response = await HttpClient.get(
+      _buildUri("sendMediaGroup", params),
+    );
+    return (response)
+        .map((e) => MessageContext(this, Message.fromJson(e)))
+        .toList();
   }
 }

@@ -15,7 +15,7 @@ abstract class InputMedia {
   /// to upload a new one using multipart/form-data under <file_attach_name> name.
   ///
   /// [More info on Sending Files »](https://core.telegram.org/bots/api#sending-files).
-  final String media;
+  final InputFile media;
 
   const InputMedia({
     required this.media,
