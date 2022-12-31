@@ -1,3 +1,5 @@
+part of types;
+
 enum BotCommandScopeType {
   defaultScope("default"),
   allPrivateChats("all_private_chats"),

@@ -1,3 +1,5 @@
+part of types;
+
 enum MaskPositionPoint {
   forehead("forehead"),
   eyes("eyes"),

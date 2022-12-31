@@ -1,3 +1,5 @@
+part of types;
+
 enum ChatType {
   /// For a private chat with a user
   private("private"),

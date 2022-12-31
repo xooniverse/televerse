@@ -1,3 +1,5 @@
+part of types;
+
 enum ParseMode {
   markdown._('Markdown'),
   html._('HTML'),

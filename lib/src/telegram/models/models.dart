@@ -2,24 +2,15 @@ library models;
 
 import 'dart:convert';
 
-import 'package:televerse/src/types/bot_command_scope_type.dart';
-import 'package:televerse/src/types/chat_member_status.dart';
-import 'package:televerse/src/types/chat_type.dart';
-import 'package:televerse/src/types/dice_emoji.dart';
-import 'package:televerse/src/types/inline_query_result_type.dart';
-import 'package:televerse/src/types/input_media_type.dart';
-import 'package:televerse/src/types/mask_position_point.dart';
-import 'package:televerse/src/types/menu_button_type.dart';
-import 'package:televerse/src/types/message_entity_type.dart';
-import 'package:televerse/src/types/parse_mode.dart';
-import 'package:televerse/src/types/poll_type.dart';
-import 'package:televerse/src/types/sticker_type.dart';
-import 'package:televerse/src/types/update_type.dart';
 import 'package:televerse/televerse.dart';
 
 import 'games.dart';
 import 'passport.dart';
 import 'payments.dart';
+
+export 'games.dart';
+export 'passport.dart';
+export 'payments.dart';
 
 part 'input_location_message_content.dart';
 part 'forum_topic_reopened.dart';

@@ -1,3 +1,5 @@
+part of types;
+
 enum ChatMemberStatus {
   /// Creator of the chat
   creator("creator"),

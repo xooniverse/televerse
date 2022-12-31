@@ -1,3 +1,5 @@
+part of types;
+
 enum InputFileType {
   fileId("file_id"),
   file("file"),

@@ -1,3 +1,5 @@
+part of types;
+
 /// Type of the entity. Currently, can be:
 /// - mention - (@username)
 /// - hashtag - (#hashtag),

@@ -1,3 +1,5 @@
+part of types;
+
 enum InlineQueryResultType {
   /// Represents a link to an article or web page.
   article("article"),

@@ -11,6 +11,7 @@ import 'package:televerse/televerse.dart';
 export 'src/televerse_base.dart';
 export 'src/televerse/context/context.dart';
 export 'src/televerse/models/models.dart';
+export 'src/types/types.dart';
 
 part 'src/televerse/televerse.dart';
 part 'src/televerse/fetch/fetch.dart';

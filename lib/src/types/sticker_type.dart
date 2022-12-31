@@ -1,3 +1,5 @@
+part of types;
+
 enum StickerType {
   /// A regular sticker.
   regular("regular"),

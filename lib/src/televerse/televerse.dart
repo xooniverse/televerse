@@ -1,6 +1,6 @@
 part of televerse;
 
-class Televerse {
+class Televerse extends Event {
   final String token;
 
   late Fetcher fetcher;
@@ -14,13 +14,16 @@ class Televerse {
 
   final String _baseUrl = "api.telegram.org";
   Uri _buildUri(String method, [Map<String, dynamic>? params]) {
+    params?.removeWhere((key, value) => value == null);
     params = params?.map((key, value) => MapEntry(key, value.toString()));
     Uri uri = Uri.https(_baseUrl, "/bot$token/$method", params);
     return uri;
   }
 
   ///
-  void _onUpdate(Update update) {}
+  void _onUpdate(Update update) {
+    emitUpdate(update, this);
+  }
 
   /// Start polling for updates.
   Future<void> start() async {
@@ -194,10 +197,10 @@ class Televerse {
   /// ```
   ///
   /// On success, the sent [MessageContext] is which can be used to reply to the message.
-  Future<MessageContext> sendMessage({
-    required ID chatId,
-    required String text,
-    String? parseMode,
+  Future<MessageContext> sendMessage(
+    ID chatId,
+    String text, {
+    ParseMode? parseMode,
     bool? disableWebPagePreview,
     bool? disableNotification,
     int? replyToMessageId,

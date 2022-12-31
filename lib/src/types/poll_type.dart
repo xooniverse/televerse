@@ -1,3 +1,5 @@
+part of types;
+
 enum PollType {
   /// Regular poll
   regular("regular"),

@@ -1,3 +1,5 @@
+part of types;
+
 enum MenuButtonType {
   commands("commands"),
   webApp("web_app"),

@@ -1,3 +1,5 @@
+part of types;
+
 enum UpdateType {
   /// Message update
   message("message"),
