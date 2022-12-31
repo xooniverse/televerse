@@ -17,7 +17,6 @@ class HttpClient {
         _handleException(ex.code, ex.message);
       }
     } catch (err) {
-      print(err);
       return Future.error(err);
     }
   }
@@ -27,7 +26,6 @@ class HttpClient {
     Uri uri,
     Map<String, dynamic> body,
   ) async {
-    body.removeWhere(_nullFilter);
     try {
       final response = await http.post(uri, body: body);
       final resBody = json.decode(response.body);
@@ -47,7 +45,6 @@ class HttpClient {
     List<http.MultipartFile> files,
     Map<String, dynamic> body,
   ) async {
-    body.removeWhere(_nullFilter);
     try {
       final request = http.MultipartRequest("POST", uri)
         ..headers.addAll({"Content-Type": "multipart/form-data"})
@@ -59,7 +56,7 @@ class HttpClient {
       if (res["ok"] == true) {
         return res["result"];
       } else {
-        throw HttpException(response.statusCode, body["description"]);
+        throw HttpException(response.statusCode, res["description"]);
       }
     } catch (err) {
       return Future.error(err);
@@ -75,6 +72,4 @@ class HttpClient {
       throw HttpException(code, message);
     }
   }
-
-  static bool _nullFilter(_, v) => v != null;
 }

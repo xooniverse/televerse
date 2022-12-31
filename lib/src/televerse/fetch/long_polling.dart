@@ -26,10 +26,13 @@ class LongPolling extends Fetcher {
   Duration _retryDelay = Duration(seconds: 1);
   void _doubleRetryDelay() {
     _retryDelay *= 2;
+    print(
+      "We are doubling the retry delay to ${_retryDelay.inSeconds} seconds",
+    );
   }
 
   void _resetRetryDelay() {
-    _retryDelay = Duration(minutes: 1);
+    _retryDelay = Duration(seconds: 1);
   }
 
   @override
@@ -72,7 +75,6 @@ class LongPolling extends Fetcher {
 
       await Future.delayed(_retryDelay);
       _doubleRetryDelay();
-      _poll();
     }
   }
 }

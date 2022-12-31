@@ -200,26 +200,167 @@ class Televerse extends Event {
   Future<MessageContext> sendMessage(
     ID chatId,
     String text, {
+    int? messageThreadId,
     ParseMode? parseMode,
+    List<MessageEntity>? entities,
     bool? disableWebPagePreview,
     bool? disableNotification,
+    bool? protectContent,
     int? replyToMessageId,
     bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
   }) async {
     Map<String, dynamic> params = {
-      "chat_id": chatId,
+      "chat_id": chatId.id,
       "text": text,
-      "parse_mode": parseMode,
+      "message_thread_id": messageThreadId,
+      "parse_mode": parseMode?.value,
+      "entities": entities?.map((e) => e.toJson()).toList(),
       "disable_web_page_preview": disableWebPagePreview,
       "disable_notification": disableNotification,
+      "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
     };
     Uri uri = _buildUri("sendMessage", params);
 
     Map<String, dynamic> response = await HttpClient.get(uri);
     return MessageContext(this, Message.fromJson(response));
   }
+
+  /// Use this method to forward messages of any kind. Service messages can't be forwarded. On success, the sent [MessageContext] is returned.
+  ///
+  /// Required parameters:
+  /// - [chatId] - Chat ID can either be [ChatID] or [ChannelID] or [SupergroupID]
+  /// - [fromChatId] - Chat ID can either be [ChatID] or [ChannelID] or [SupergroupID]
+  /// - [messageId] - Message identifier in the chat specified in [fromChatId]
+  ///
+  /// You can optionally pass the more parameters as described in the official documentation.
+  ///
+  /// - [disableNotification] - Sends the message silently. Users will receive a notification with no sound.
+  /// - [messageThreadId] - Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+  /// - [protectContent] - Protects the contents of the forwarded message from forwarding and saving
+  ///
+  /// **Example:**
+  /// ```dart
+  /// /// If you're using [ChatID] specify the chat id as an integer
+  /// bot.forwardMessage(ChatID(123456789), ChatID(987654321), 123456789);
+  ///
+  /// /// If you're using [ChannelID] or [SupergroupID] specify the chat id as a string
+  /// /// Both [ChannelID] and [SupergroupID] are treated the same way
+  /// bot.forwardMessage(ChannelID("@myChannel"), ChannelID("@myChannel"), 123456789);
+  /// ```
+  ///
+  /// See more at https://core.telegram.org/bots/api#forwardmessage
+  Future<MessageContext> forwardMessage(
+    ID chatId,
+    ID fromChatId,
+    int messageId, {
+    bool? disableNotification,
+    int? messageThreadId,
+    bool? protectContent,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "from_chat_id": fromChatId.id,
+      "message_id": messageId,
+      "disable_notification": disableNotification,
+      "message_thread_id": messageThreadId,
+      "protect_content": protectContent,
+    };
+    Uri uri = _buildUri("forwardMessage", params);
+
+    Map<String, dynamic> response = await HttpClient.get(uri);
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to copy messages of any kind. Service messages and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
+  Future<MessageId> copyMessage(
+    ID chatId,
+    ID fromChatId,
+    int messageId, {
+    int? messageThreadId,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "from_chat_id": fromChatId.id,
+      "message_id": messageId,
+      "message_thread_id": messageThreadId,
+      "caption": caption,
+      "parse_mode": parseMode?.value,
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+    };
+    Uri uri = _buildUri("copyMessage", params);
+
+    Map<String, dynamic> response = await HttpClient.get(uri);
+    return MessageId.fromJson(response);
+  }
+
+  /// Use this method to send photos. On success, the sent Message is returned.
+  Future<MessageContext> sendPhoto(
+    ID chatId,
+    InputFile photo, {
+    int? messageThreadId,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "caption": caption,
+      "parse_mode": parseMode?.value,
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "disable_notification": disableNotification,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response;
+    if (photo.type == InputFileType.file) {
+      if (!photo.file!.existsSync()) {
+        throw TeleverseException.fileDoesNotExist(photo.file!.path);
+      }
+      List<MultipartFile> files = [
+        MultipartFile.fromBytes(
+          "photo",
+          photo.file!.readAsBytesSync(),
+          filename: photo.file!.path.split("/").last,
+        )
+      ];
+      params.removeWhere((key, value) => value == null);
+      response = await HttpClient.multipartPost(
+        _buildUri("sendPhoto"),
+        files,
+        params,
+      );
+    } else {
+      params["photo"] = photo.fileId ?? photo.url;
+      response = await HttpClient.get(_buildUri("sendPhoto", params));
+    }
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
+  ///
+  /// For sending voice messages, use the [sendVoice] method instead.
 }
