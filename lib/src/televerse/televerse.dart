@@ -363,4 +363,147 @@ class Televerse extends Event {
   /// Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
   ///
   /// For sending voice messages, use the [sendVoice] method instead.
+  Future<MessageContext> sendAudio(
+    ID chatId,
+    InputFile audio, {
+    int? messageThreadId,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    int? duration,
+    String? performer,
+    String? title,
+    InputFile? thumb,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "caption": caption,
+      "parse_mode": parseMode?.value,
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "duration": duration,
+      "performer": performer,
+      "title": title,
+      "thumb": thumb?.fileId ?? thumb?.url,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response;
+    List<MultipartFile> files = [];
+    if (audio.type == InputFileType.file || thumb?.type == InputFileType.file) {
+      if (audio.type == InputFileType.file) {
+        if (!audio.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(audio.file!.path);
+        }
+        files.add(
+          MultipartFile.fromBytes(
+            "audio",
+            audio.file!.readAsBytesSync(),
+            filename: audio.file!.path.split("/").last,
+          ),
+        );
+      }
+      if (thumb?.type == InputFileType.file) {
+        if (!thumb!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+        }
+        files.add(
+          MultipartFile.fromBytes(
+            "thumb",
+            thumb.file!.readAsBytesSync(),
+            filename: thumb.file!.path.split("/").last,
+          ),
+        );
+      }
+      params.removeWhere((key, value) => value == null);
+      response = await HttpClient.multipartPost(
+        _buildUri("sendAudio"),
+        files,
+        params,
+      );
+    } else {
+      params["audio"] = audio.fileId ?? audio.url;
+      response = await HttpClient.get(_buildUri("sendAudio", params));
+    }
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
+  Future<MessageContext> sendDocument(
+    ID chatId,
+    InputFile document, {
+    int? messageThreadId,
+    InputFile? thumb,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? disableContentTypeDetection,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "thumb": thumb?.fileId ?? thumb?.url,
+      "caption": caption,
+      "parse_mode": parseMode?.value,
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "disable_content_type_detection": disableContentTypeDetection,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response;
+    List<MultipartFile> files = [];
+    if (document.type == InputFileType.file ||
+        thumb?.type == InputFileType.file) {
+      if (document.type == InputFileType.file) {
+        if (!document.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(document.file!.path);
+        }
+        files.add(
+          MultipartFile.fromBytes(
+            "document",
+            document.file!.readAsBytesSync(),
+            filename: document.file!.path.split("/").last,
+          ),
+        );
+      }
+      if (thumb?.type == InputFileType.file) {
+        if (!thumb!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+        }
+        files.add(
+          MultipartFile.fromBytes(
+            "thumb",
+            thumb.file!.readAsBytesSync(),
+            filename: thumb.file!.path.split("/").last,
+          ),
+        );
+      }
+      params.removeWhere((key, value) => value == null);
+      response = await HttpClient.multipartPost(
+        _buildUri("sendDocument"),
+        files,
+        params,
+      );
+    } else {
+      params["document"] = document.fileId ?? document.url;
+      response = await HttpClient.get(_buildUri("sendDocument", params));
+    }
+    return MessageContext(this, Message.fromJson(response));
+  }
 }
