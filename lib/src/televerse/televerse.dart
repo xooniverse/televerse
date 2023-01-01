@@ -1000,4 +1000,132 @@ class Televerse extends Event {
     );
     return MessageContext(this, Message.fromJson(response));
   }
+
+  /// Use this method to send phone contacts. On success, the sent Message is returned.
+  Future<MessageContext> sendContact(
+    ID chatId,
+    String phoneNumber,
+    String firstName, {
+    int? messageThreadId,
+    String? lastName,
+    String? vcard,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "phone_number": phoneNumber,
+      "first_name": firstName,
+      "last_name": lastName,
+      "vcard": vcard,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response = await HttpClient.get(
+      _buildUri("sendContact", params),
+    );
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to send a native poll. On success, the sent Message is returned.
+  Future<MessageContext> sendPoll(
+    ID chatId,
+    String question,
+    List<String> options, {
+    int? messageThreadId,
+    bool? isAnonymous,
+    PollType type = PollType.regular,
+    bool? allowsMultipleAnswers,
+    int? correctOptionId,
+    String? explanation,
+    ParseMode? explanationParseMode,
+    List<MessageEntity>? explanationEntities,
+    int? openPeriod,
+    DateTime? closeDate,
+    bool? isClosed,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    if (options.length < 2 || options.length > 10) {
+      throw TeleverseException(
+        "The number of options must be between 2 and 10",
+        "You provided ${options.length} options. Please provide between 2 and 10 options.",
+      );
+    }
+    if (closeDate != null && openPeriod != null) {
+      throw TeleverseException(
+        "You can't provide both a close date and an open period",
+        "You provided both a close date and an open period. Please provide only one of them.",
+      );
+    }
+
+    if (closeDate?.isBefore(DateTime.now()) ?? false) {
+      throw TeleverseException(
+        "The close date must be in the future",
+        "The close date you provided is in the past. Please provide a date in the future.",
+      );
+    }
+
+    if (openPeriod != null && openPeriod < 5) {
+      throw TeleverseException(
+        "The open period must be at least 5 seconds",
+        "The open period you provided is less than 5 seconds. Please provide a period of at least 5 seconds.",
+      );
+    }
+
+    if (openPeriod != null && openPeriod > 600) {
+      throw TeleverseException(
+        "The open period must be at most 600 seconds",
+        "The open period you provided is more than 600 seconds. Please provide a period of at most 600 seconds.",
+      );
+    }
+
+    if (type == PollType.quiz && correctOptionId == null) {
+      throw TeleverseException(
+        "You must provide a correct option ID for a quiz",
+        "You provided a quiz poll type but did not provide a correct option ID. Please provide a correct option ID.",
+      );
+    }
+
+    int? _unixCloseDate = closeDate?.millisecondsSinceEpoch == null
+        ? null
+        : closeDate!.millisecondsSinceEpoch ~/ 1000;
+
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "question": question,
+      "options": options,
+      "is_anonymous": isAnonymous,
+      "type": type.type,
+      "allows_multiple_answers": allowsMultipleAnswers,
+      "correct_option_id": correctOptionId,
+      "explanation": explanation,
+      "explanation_parse_mode": explanationParseMode?.value,
+      "explanation_entities":
+          explanationEntities?.map((e) => e.toJson()).toList(),
+      "open_period": openPeriod,
+      "close_date": _unixCloseDate,
+      "is_closed": isClosed,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response = await HttpClient.get(
+      _buildUri("sendPoll", params),
+    );
+    return MessageContext(this, Message.fromJson(response));
+  }
 }
