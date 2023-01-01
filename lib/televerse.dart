@@ -2,7 +2,6 @@ library televerse;
 
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io' as io;
 import 'package:http/http.dart';
 import 'package:televerse/telegram.dart';
@@ -20,3 +19,4 @@ part 'src/televerse/fetch/webhook.dart';
 part 'src/televerse/event/event.dart';
 part 'src/utils/date.dart';
 part 'src/utils/http.dart';
+part 'src/utils/utils.dart';
