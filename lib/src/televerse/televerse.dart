@@ -1782,7 +1782,7 @@ class Televerse extends Event {
   /// - [name] - Name of the topic, 1-128 characters
   /// - [iconColor] - Color of the topic icon in RGB format. Currently, must be one of 7322096 (0x6FB9F0), 16766590 (0xFFD67E), 13338331 (0xCB86DB), 9367192 (0x8EEE98), 16749490 (0xFF93B2), or 16478047 (0xFB6F5F)
   /// - [iconCustomEmojiId] - Unique identifier of the custom emoji shown as the topic icon. Use [getForumTopicIconStickers] to get all allowed custom emoji identifiers.
-  Future<ForumTopic> createNewStickerSet(
+  Future<ForumTopic> createForumTopic(
     ID chatId,
     String name, {
     int? iconColor,
@@ -2378,6 +2378,347 @@ class Televerse extends Event {
     bool response = await HttpClient.getURI(
       _buildUri("deleteMessage", params),
     );
+    return response;
+  }
+
+  /// Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
+  Future<MessageContext> sendSticker(
+    ID chatId,
+    InputFile sticker, {
+    String? messageThreadId,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+
+    Map<String, dynamic> response;
+    if (sticker.type == InputFileType.file) {
+      params["sticker"] = sticker.toJson();
+      List<MultipartFile> files = [
+        MultipartFile.fromBytes(
+          "sticker",
+          sticker.file!.readAsBytesSync(),
+          filename: sticker.file!.filename,
+        ),
+      ];
+      response = await HttpClient.multipartPost(
+        _buildUri(
+          "sendSticker",
+        ),
+        files,
+        params,
+      );
+    } else {
+      params["sticker"] = sticker.toJson();
+      response = await HttpClient.getURI(
+        _buildUri("sendSticker", params),
+      );
+    }
+
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to get a sticker set. On success, a StickerSet object is returned.
+  Future<StickerSet> getStickerSet(
+    String name,
+  ) async {
+    Map<String, dynamic> params = {
+      "name": name,
+    };
+    Map<String, dynamic> response = await HttpClient.getURI(
+      _buildUri("getStickerSet", params),
+    );
+    return StickerSet.fromJson(response);
+  }
+
+  /// Use this method to upload a .PNG file with a sticker for later use in [createNewStickerSet] and addStickerToSet methods (can be used multiple times). Returns the uploaded File on success.
+  Future<File> uploadStickerFile(
+    int userId,
+    InputFile pngSticker,
+  ) async {
+    Map<String, dynamic> params = {
+      "user_id": userId,
+    };
+
+    Map<String, dynamic> response;
+    if (pngSticker.type == InputFileType.file) {
+      params["png_sticker"] = pngSticker.toJson();
+      List<MultipartFile> files = [
+        MultipartFile.fromBytes(
+          "png_sticker",
+          pngSticker.file!.readAsBytesSync(),
+          filename: pngSticker.file!.filename,
+        ),
+      ];
+      response = await HttpClient.multipartPost(
+        _buildUri(
+          "uploadStickerFile",
+        ),
+        files,
+        params,
+      );
+    } else {
+      throw TeleverseException(
+        "Upload PNG Sticker",
+        "Only upload PNG file. Use [InputFile.fromFile] to upload file.",
+      );
+    }
+
+    return File.fromJson(response);
+  }
+
+  /// Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Returns True on success.
+  Future<bool> createNewStickerSet(
+    int userId,
+    String name,
+    String title,
+    InputFile pngSticker, {
+    InputFile? tgsSticker,
+    InputFile? webmSticker,
+    StickerType? stickerType = StickerType.regular,
+    required String emojis,
+    bool? containsMasks,
+    MaskPosition? maskPosition,
+  }) async {
+    Map<String, dynamic> params = {
+      "user_id": userId,
+      "name": name,
+      "title": title,
+      "emojis": emojis,
+      "contains_masks": containsMasks,
+      "mask_position": maskPosition?.toJson(),
+      "sticker_type": stickerType?.toJson(),
+    };
+
+    bool response;
+    List<MultipartFile> files = [];
+    if (pngSticker.type == InputFileType.file) {
+      params["png_sticker"] = pngSticker.toJson();
+      files.add(
+        MultipartFile.fromBytes(
+          "png_sticker",
+          pngSticker.file!.readAsBytesSync(),
+          filename: pngSticker.file!.filename,
+        ),
+      );
+    } else {
+      params["png_sticker"] = pngSticker.toJson();
+    }
+
+    if (tgsSticker != null) {
+      if (tgsSticker.type == InputFileType.file) {
+        params["tgs_sticker"] = tgsSticker.toJson();
+        files.add(
+          MultipartFile.fromBytes(
+            "tgs_sticker",
+            tgsSticker.file!.readAsBytesSync(),
+            filename: tgsSticker.file!.filename,
+          ),
+        );
+      } else {
+        throw TeleverseException(
+          "Invalid Parameter [tgsSticker]",
+          "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
+        );
+      }
+    }
+
+    if (webmSticker != null) {
+      if (webmSticker.type == InputFileType.file) {
+        params["webm_sticker"] = webmSticker.toJson();
+        files.add(
+          MultipartFile.fromBytes(
+            "webm_sticker",
+            webmSticker.file!.readAsBytesSync(),
+            filename: webmSticker.file!.filename,
+          ),
+        );
+      } else {
+        throw TeleverseException(
+          "Invalid Parameter [webmSticker]",
+          "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
+        );
+      }
+    }
+
+    if (files.isEmpty) {
+      response = await HttpClient.getURI(
+        _buildUri("createNewStickerSet", params),
+      );
+    } else {
+      response = await HttpClient.multipartPost(
+        _buildUri("createNewStickerSet"),
+        files,
+        params,
+      );
+    }
+
+    return response;
+  }
+
+  /// Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.
+  Future<bool> addStickerToSet(
+    int userId,
+    String name, {
+    InputFile? pngSticker,
+    InputFile? tgsSticker,
+    InputFile? webmSticker,
+    required String emojis,
+    MaskPosition? maskPosition,
+  }) async {
+    Map<String, dynamic> params = {
+      "user_id": userId,
+      "name": name,
+      "emojis": emojis,
+      "mask_position": maskPosition?.toJson(),
+    };
+
+    bool response;
+    List<MultipartFile> files = [];
+    if (pngSticker != null) {
+      if (pngSticker.type == InputFileType.file) {
+        params["png_sticker"] = pngSticker.toJson();
+        files.add(
+          MultipartFile.fromBytes(
+            "png_sticker",
+            pngSticker.file!.readAsBytesSync(),
+            filename: pngSticker.file!.filename,
+          ),
+        );
+      } else {
+        params["png_sticker"] = pngSticker.toJson();
+      }
+    }
+
+    if (tgsSticker != null) {
+      if (tgsSticker.type == InputFileType.file) {
+        params["tgs_sticker"] = tgsSticker.toJson();
+        files.add(
+          MultipartFile.fromBytes(
+            "tgs_sticker",
+            tgsSticker.file!.readAsBytesSync(),
+            filename: tgsSticker.file!.filename,
+          ),
+        );
+      } else {
+        throw TeleverseException(
+          "Invalid Parameter [tgsSticker]",
+          "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
+        );
+      }
+    }
+
+    if (webmSticker != null) {
+      if (webmSticker.type == InputFileType.file) {
+        params["webm_sticker"] = webmSticker.toJson();
+        files.add(
+          MultipartFile.fromBytes(
+            "webm_sticker",
+            webmSticker.file!.readAsBytesSync(),
+            filename: webmSticker.file!.filename,
+          ),
+        );
+      } else {
+        throw TeleverseException(
+          "Invalid Parameter [webmSticker]",
+          "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
+        );
+      }
+    }
+
+    if (files.isEmpty) {
+      response = await HttpClient.getURI(
+        _buildUri("addStickerToSet", params),
+      );
+    } else {
+      response = await HttpClient.multipartPost(
+        _buildUri("addStickerToSet"),
+        files,
+        params,
+      );
+    }
+
+    return response;
+  }
+
+  /// Use this method to move a sticker in a set created by the bot to a specific position. Returns True on success.
+  Future<bool> setStickerPositionInSet(String sticker, int position) async {
+    Map<String, dynamic> params = {
+      "sticker": sticker,
+      "position": position,
+    };
+
+    bool response = await HttpClient.getURI(
+      _buildUri("setStickerPositionInSet", params),
+    );
+
+    return response;
+  }
+
+  /// Use this method to delete a sticker from a set created by the bot. Returns True on success.
+  Future<bool> deleteStickerFromSet(String sticker) async {
+    Map<String, dynamic> params = {
+      "sticker": sticker,
+    };
+
+    bool response = await HttpClient.getURI(
+      _buildUri("deleteStickerFromSet", params),
+    );
+
+    return response;
+  }
+
+  /// Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Video thumbnails can be set only for video sticker sets only. Returns True on success.
+  Future<bool> setStickerSetThumb(
+    String name,
+    int userId, {
+    InputFile? thumb,
+  }) async {
+    Map<String, dynamic> params = {
+      "name": name,
+      "user_id": userId,
+    };
+
+    bool response;
+    List<MultipartFile> files = [];
+    if (thumb != null) {
+      if (thumb.type == InputFileType.file) {
+        params["thumb"] = thumb.toJson();
+        files.add(
+          MultipartFile.fromBytes(
+            "thumb",
+            thumb.file!.readAsBytesSync(),
+            filename: thumb.file!.filename,
+          ),
+        );
+      } else {
+        params["thumb"] = thumb.toJson();
+      }
+    }
+
+    if (files.isEmpty) {
+      response = await HttpClient.getURI(
+        _buildUri("setStickerSetThumb", params),
+      );
+    } else {
+      response = await HttpClient.multipartPost(
+        _buildUri("setStickerSetThumb"),
+        files,
+        params,
+      );
+    }
+
     return response;
   }
 }
