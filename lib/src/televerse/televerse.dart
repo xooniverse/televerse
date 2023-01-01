@@ -2721,4 +2721,49 @@ class Televerse extends Event {
 
     return response;
   }
+
+  /// Use this method to send answers to an inline query. On success, True is returned.
+  /// No more than 50 results per query are allowed.
+  Future<bool> answerInlineQuery(
+    String inlineQueryId,
+    List<InlineQueryResult> results, {
+    int? cacheTime = 300,
+    bool? isPersonal,
+    String? nextOffset,
+    String? switchPmText,
+    String? switchPmParameter,
+  }) async {
+    Map<String, dynamic> params = {
+      "inline_query_id": inlineQueryId,
+      "results": results.map((e) => e.toJson()).toList(),
+      "cache_time": cacheTime,
+      "is_personal": isPersonal,
+      "next_offset": nextOffset,
+      "switch_pm_text": switchPmText,
+      "switch_pm_parameter": switchPmParameter,
+    };
+
+    bool response = await HttpClient.getURI(
+      _buildUri("answerInlineQuery", params),
+    );
+
+    return response;
+  }
+
+  /// Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a SentWebAppMessage object is returned.
+  Future<SentWebAppMessage> answerWebAppQuery(
+    String webAppQueryId,
+    InlineQueryResult result,
+  ) async {
+    Map<String, dynamic> params = {
+      "web_app_query_id": webAppQueryId,
+      "result": result.toJson(),
+    };
+
+    Map<String, dynamic> response = await HttpClient.getURI(
+      _buildUri("answerWebAppQuery", params),
+    );
+
+    return SentWebAppMessage.fromJson(response);
+  }
 }
