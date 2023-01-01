@@ -2983,4 +2983,127 @@ class Televerse extends Event {
 
     return response;
   }
+
+  /// Use this method to send a game. On success, the sent [MessageContext] is returned.
+  Future<MessageContext> sendGame(
+    ID chatId,
+    String gameShortName, {
+    int? messageThreadId,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "game_short_name": gameShortName,
+      "message_thread_id": messageThreadId,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+
+    Map<String, dynamic> response = await HttpClient.postURI(
+      _buildUri("sendGame"),
+      params,
+    );
+
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to set the score of the specified user in a game message.
+  /// On success the [MessageContext] is returned.
+  ///
+  /// Returns an error, if the new score is not greater than the user's current score in the chat and [force] is False.
+  ///
+  /// If you're looking to update a inline message, you can use [setInlineGameScore] instead.
+  Future<MessageContext> setGameScore(
+    int userId,
+    int score,
+    ID chatId,
+    int messageId, {
+    bool? force,
+    bool? disableEditMessage,
+  }) async {
+    Map<String, dynamic> params = {
+      "user_id": userId,
+      "score": score,
+      "force": force,
+      "disable_edit_message": disableEditMessage,
+      "chat_id": chatId.id,
+      "message_id": messageId,
+    };
+
+    Map<String, dynamic> response = await HttpClient.postURI(
+      _buildUri("setGameScore"),
+      params,
+    );
+
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to set the score of the specified user in a game message.
+  ///
+  /// IMPORTANT: This method will not work if the message is not an inline message.
+  ///
+  /// On success the [bool] is returned.
+  ///
+  /// Returns an error, if the new score is not greater than the user's current score in the chat and [force] is False.
+  Future<bool> setInlineGameScore(
+    int userId,
+    int score,
+    String inlineMessageId, {
+    bool? force,
+    bool? disableEditMessage,
+  }) async {
+    Map<String, dynamic> params = {
+      "user_id": userId,
+      "score": score,
+      "force": force,
+      "disable_edit_message": disableEditMessage,
+      "inline_message_id": inlineMessageId,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setInlineGameScore"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game.
+  /// Returns an Array of GameHighScore objects.
+  ///
+  ///
+  Future<List<GameHighScore>> getGameHighScores(
+    int userId, {
+    ID? chatId,
+    int? messageId,
+    String? inlineMessageId,
+  }) async {
+    if (chatId == null && messageId == null && inlineMessageId == null) {
+      throw TeleverseException(
+        "Invalid Parameter",
+        "chatId, messageId, and inlineMessageId cannot all be null",
+      );
+    }
+
+    Map<String, dynamic> params = {
+      "user_id": userId,
+      "chat_id": chatId?.id,
+      "message_id": messageId,
+      "inline_message_id": inlineMessageId,
+    };
+
+    List<Map<String, dynamic>> response = await HttpClient.postURI(
+      _buildUri("getGameHighScores"),
+      params,
+    );
+
+    return response.map((e) => GameHighScore.fromJson(e)).toList();
+  }
 }
