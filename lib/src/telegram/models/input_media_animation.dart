@@ -41,7 +41,7 @@ class InputMediaAnimation extends InputMedia {
   Map<String, dynamic> toJson() {
     return {
       'type': type.value,
-      'media': media,
+      'media': media.toJson(),
       'thumb': thumb?.toJson(),
       'caption': caption,
       'parse_mode': parseMode?.value,

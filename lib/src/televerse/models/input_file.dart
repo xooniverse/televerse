@@ -40,11 +40,14 @@ class InputFile {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'file_id': fileId,
-      'file': file?.path,
-      'url': url?.toString(),
-    };
+  String toJson() {
+    switch (type) {
+      case InputFileType.fileId:
+        return fileId!;
+      case InputFileType.file:
+        return file!.path;
+      case InputFileType.url:
+        return url!.toString();
+    }
   }
 }

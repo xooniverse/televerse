@@ -26,7 +26,7 @@ class InputMediaPhoto extends InputMedia {
   Map<String, dynamic> toJson() {
     return {
       'type': type.value,
-      'media': media,
+      'media': media.toJson(),
       'caption': caption,
       'parse_mode': parseMode?.value,
       'caption_entities': captionEntities,

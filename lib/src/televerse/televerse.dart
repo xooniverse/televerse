@@ -2084,4 +2084,300 @@ class Televerse extends Event {
     );
     return ChatAdministratorRights.fromJson(response);
   }
+
+  /// Use this method to edit text and game messages.
+  ///
+  /// IMPORTANT:
+  /// * This method is only for editing messages. This won't work for inline messages.
+  ///
+  /// If you're looking for a way to edit inline messages, use [editInlineMessageText].
+  Future<MessageContext> editMessageText(
+    ID chatId,
+    int messageId,
+    String text, {
+    ParseMode? parseMode,
+    List<MessageEntity>? entities,
+    bool disableWebPagePreview = false,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_id": messageId,
+      "text": text,
+      "parse_mode": parseMode?.value,
+      "entities": entities?.map((e) => e.toJson()).toList(),
+      "disable_web_page_preview": disableWebPagePreview,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response = await HttpClient.getURI(
+      _buildUri("editMessageText", params),
+    );
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to edit inline text messages.
+  ///
+  /// IMPORTANT:
+  /// * This method is only for editing inline messages.
+  ///
+  /// If you're looking for a way to edit messages, use [editMessageText].
+  ///
+  /// On success, [bool] is returned.
+  Future<bool> editInlineMessageText(
+    String inlineMessageId,
+    String text, {
+    ParseMode? parseMode,
+    List<MessageEntity>? entities,
+    bool disableWebPagePreview = false,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "inline_message_id": inlineMessageId,
+      "text": text,
+      "parse_mode": parseMode?.value,
+      "entities": entities?.map((e) => e.toJson()).toList(),
+      "disable_web_page_preview": disableWebPagePreview,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("editInlineMessageText", params),
+    );
+    return response;
+  }
+
+  /// Use this method to edit captions of messages.
+  ///
+  /// IMPORTANT:
+  /// * This method is only for editing messages. This won't work for inline messages.
+  ///
+  /// If you're looking for a way to edit inline messages, use [editInlineMessageCaption].
+  ///
+  /// On success, [MessageContext] is returned.
+  Future<MessageContext> editMessageCaption(
+    ID chatId,
+    int messageId, {
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_id": messageId,
+      "caption": caption,
+      "parse_mode": parseMode?.value,
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response = await HttpClient.getURI(
+      _buildUri("editMessageCaption", params),
+    );
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to edit inline captions of messages.
+  ///
+  /// IMPORTANT:
+  /// * This method is only for editing inline messages.
+  ///
+  /// If you're looking for a way to edit messages, use [editMessageCaption].
+  ///
+  /// On success, [bool] is returned.
+  Future<bool> editInlineMessageCaption(
+    String inlineMessageId,
+    String caption, {
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "inline_message_id": inlineMessageId,
+      "caption": caption,
+      "parse_mode": parseMode?.value,
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("editInlineMessageCaption", params),
+    );
+    return response;
+  }
+
+  /// Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+  ///
+  /// IMPORTANT:
+  /// * This method is only for editing messages. This won't work for inline messages.
+  /// * If you're looking for a way to edit inline messages, use [editInlineMessageMedia].
+  ///
+  /// On success, [MessageContext] is returned.
+  Future<MessageContext> editMessageMedia(
+    ID chatId,
+    int messageId,
+    InputMedia media, {
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_id": messageId,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+
+    Map<String, dynamic> response;
+    if (media.media.type == InputFileType.file) {
+      params["media"] = media.toJson();
+      List<MultipartFile> files = [
+        MultipartFile.fromBytes(
+          "media",
+          media.media.file!.readAsBytesSync(),
+          filename: media.media.file!.filename,
+        ),
+      ];
+      response = await HttpClient.multipartPost(
+        _buildUri(
+          "editMessageMedia",
+        ),
+        files,
+        params,
+      );
+    } else {
+      params["media"] = media.toJson();
+      response = await HttpClient.getURI(
+        _buildUri("editMessageMedia", params),
+      );
+    }
+
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to edit inline media of messages.
+  ///
+  /// IMPORTANT:
+  /// * This method is only for editing inline messages.
+  /// * If you're looking for a way to edit messages, use [editMessageMedia].
+  ///
+  /// On success, [bool] is returned.
+  Future<bool> editInlineMessageMedia(
+    String inlineMessageId,
+    InputMedia media, {
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "inline_message_id": inlineMessageId,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+
+    bool response;
+    if (media.media.type == InputFileType.file) {
+      params["media"] = media.toJson();
+      List<MultipartFile> files = [
+        MultipartFile.fromBytes(
+          "media",
+          media.media.file!.readAsBytesSync(),
+          filename: media.media.file!.filename,
+        ),
+      ];
+      response = await HttpClient.multipartPost(
+        _buildUri(
+          "editInlineMessageMedia",
+        ),
+        files,
+        params,
+      );
+    } else {
+      params["media"] = media.toJson();
+      response = await HttpClient.getURI(
+        _buildUri("editInlineMessageMedia", params),
+      );
+    }
+
+    return response;
+  }
+
+  /// Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+  ///
+  /// IMPORTANT:
+  /// * This method is only for editing messages. This won't work for inline messages.
+  /// * If you're looking for a way to edit inline messages, use [editInlineMessageReplyMarkup].
+  /// * Use [replyMarkup] parameter to pass new reply markup.
+  ///
+  /// On success, [MessageContext] is returned.
+  Future<MessageContext> editMessageReplyMarkup(
+    ID chatId,
+    int messageId, {
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_id": messageId,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response = await HttpClient.getURI(
+      _buildUri("editMessageReplyMarkup", params),
+    );
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to edit only the reply markup of inline messages.
+  ///
+  /// IMPORTANT:
+  /// * This method is only for editing inline messages.
+  /// * If you're looking for a way to edit messages, use [editMessageReplyMarkup].
+  /// * Use [replyMarkup] parameter to pass new reply markup.
+  ///
+  /// On success, [bool] is returned.
+  Future<bool> editInlineMessageReplyMarkup(
+    String inlineMessageId, {
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "inline_message_id": inlineMessageId,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("editInlineMessageReplyMarkup", params),
+    );
+    return response;
+  }
+
+  /// Use this method to stop a poll which was sent by the bot. On success, the stopped [Poll] is returned.
+  Future<Poll> stopPoll(
+    ID chatId,
+    int messageId, {
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_id": messageId,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response = await HttpClient.getURI(
+      _buildUri("stopPoll", params),
+    );
+    return Poll.fromJson(response);
+  }
+
+  /// Use this method to delete a message, including service messages, with the following limitations:
+  /// - A message can only be deleted if it was sent less than 48 hours ago.
+  /// - Service messages about a supergroup, channel, or forum topic creation can't be deleted.
+  /// - A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.
+  /// - Bots can delete outgoing messages in private chats, groups, and supergroups.
+  /// - Bots can delete incoming messages in private chats.
+  /// - Bots granted can_post_messages permissions can delete outgoing messages in channels.
+  /// - If the bot is an administrator of a group, it can delete any message there.
+  /// - If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.
+  ///
+  /// Returns [bool] on success.
+  Future<bool> deleteMessage(
+    ID chatId,
+    int messageId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_id": messageId,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("deleteMessage", params),
+    );
+    return response;
+  }
 }
