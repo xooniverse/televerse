@@ -1683,4 +1683,282 @@ class Televerse extends Event {
     );
     return response;
   }
+
+  /// Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of ChatMember objects.
+  Future<List<ChatMember>> getChatAdministrators(
+    ID chatId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+    };
+    List<ChatMember> response = [];
+    List<dynamic> data = await HttpClient.getURI(
+      _buildUri("getChatAdministrators", params),
+    );
+    for (var i = 0; i < data.length; i++) {
+      response.add(ChatMember.fromJson(data[i]));
+    }
+    return response;
+  }
+
+  /// Use this method to get the number of members in a chat. Returns Int on success.
+  Future<int> getChatMembersCount(
+    ID chatId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+    };
+    int response = await HttpClient.getURI(
+      _buildUri("getChatMembersCount", params),
+    );
+    return response;
+  }
+
+  /// Use this method to get information about a member of a chat. The method is guaranteed to work only if the bot is an administrator in the chat. Returns a ChatMember object on success.
+  Future<ChatMember> getChatMember(
+    ID chatId,
+    int userId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "user_id": userId,
+    };
+    ChatMember response = ChatMember.fromJson(
+      await HttpClient.getURI(
+        _buildUri("getChatMember", params),
+      ),
+    );
+    return response;
+  }
+
+  /// Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.
+  Future<bool> setChatStickerSet(
+    ID chatId,
+    String stickerSetName,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "sticker_set_name": stickerSetName,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("setChatStickerSet", params),
+    );
+    return response;
+  }
+
+  /// Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.
+  Future<bool> deleteChatStickerSet(
+    ID chatId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("deleteChatStickerSet", params),
+    );
+    return response;
+  }
+
+  /// Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of Sticker objects.
+  Future<List<Sticker>> getForumTopicIconStickers(
+    String name,
+  ) async {
+    Map<String, dynamic> params = {
+      "name": name,
+    };
+    List<Sticker> response = [];
+    List<dynamic> data = await HttpClient.getURI(
+      _buildUri("getStickerSet", params),
+    );
+    for (var i = 0; i < data.length; i++) {
+      response.add(Sticker.fromJson(data[i]));
+    }
+    return response;
+  }
+
+  /// Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns information about the created topic as a ForumTopic object.
+  ///
+  /// - [userId] - Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+  /// - [name] - Name of the topic, 1-128 characters
+  /// - [iconColor] - Color of the topic icon in RGB format. Currently, must be one of 7322096 (0x6FB9F0), 16766590 (0xFFD67E), 13338331 (0xCB86DB), 9367192 (0x8EEE98), 16749490 (0xFF93B2), or 16478047 (0xFB6F5F)
+  /// - [iconCustomEmojiId] - Unique identifier of the custom emoji shown as the topic icon. Use [getForumTopicIconStickers] to get all allowed custom emoji identifiers.
+  Future<ForumTopic> createNewStickerSet(
+    ID chatId,
+    String name, {
+    int? iconColor,
+    String? iconCustomEmojiId,
+  }) async {
+    if (name.isEmpty || name.length > 128) {
+      throw Exception("Name length must be between 1 and 64");
+    }
+
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "name": name,
+      "icon_color": iconColor,
+      "icon_custom_emoji_id": iconCustomEmojiId,
+    };
+    ForumTopic response = ForumTopic.fromJson(
+      await HttpClient.getURI(
+        _buildUri("createNewStickerSet", params),
+      ),
+    );
+    return response;
+  }
+
+  /// Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
+  Future<ForumTopic> editForumTopic(
+    ID chatId,
+    String name, {
+    int? iconColor,
+    String? iconCustomEmojiId,
+  }) async {
+    if (name.isEmpty || name.length > 128) {
+      throw Exception("Name length must be between 1 and 64");
+    }
+
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "name": name,
+      "icon_color": iconColor,
+      "icon_custom_emoji_id": iconCustomEmojiId,
+    };
+    ForumTopic response = ForumTopic.fromJson(
+      await HttpClient.getURI(
+        _buildUri("editForumTopic", params),
+      ),
+    );
+    return response;
+  }
+
+  /// Use this method to close an open topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
+  Future<bool> closeForumTopic(
+    ID chatId,
+    int messageThreadId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("closeForumTopic", params),
+    );
+    return response;
+  }
+
+  /// Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
+  Future<bool> reopenForumTopic(
+    ID chatId,
+    int messageThreadId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("reopenForumTopic", params),
+    );
+    return response;
+  }
+
+  /// Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_delete_messages administrator rights. Returns True on success.
+  Future<bool> deleteForumTopic(
+    ID chatId,
+    int messageThreadId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("deleteForumTopic", params),
+    );
+    return response;
+  }
+
+  /// Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
+  Future<bool> unpinAllForumTopicMessages(
+    ID chatId,
+    int messageThreadId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("unpinAllForumTopicMessages", params),
+    );
+    return response;
+  }
+
+  /// Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights. Returns True on success.
+  Future<bool> editGeneralForumTopic(
+    ID chatId,
+    String title,
+  ) async {
+    if (title.isEmpty || title.length > 128) {
+      throw Exception("Title length must be between 1 and 64");
+    }
+
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "title": title,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("editGeneralForumTopic", params),
+    );
+    return response;
+  }
+
+  /// Use this method to close an open 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
+  Future<bool> closeGeneralForumTopic(
+    ID chatId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("closeGeneralForumTopic", params),
+    );
+    return response;
+  }
+
+  /// Use this method to reopen a closed 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically unhidden if it was hidden. Returns True on success.
+  Future<bool> reopenGeneralForumTopic(
+    ID chatId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("reopenGeneralForumTopic", params),
+    );
+    return response;
+  }
+
+  /// Use this method to hide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. The topic will be automatically closed if it was open. Returns True on success.
+  Future<bool> hideGeneralForumTopic(
+    ID chatId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("hideGeneralForumTopic", params),
+    );
+    return response;
+  }
+
+  /// Use this method to unhide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
+  Future<bool> unhideGeneralForumTopic(
+    ID chatId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("unhideGeneralForumTopic", params),
+    );
+    return response;
+  }
 }
