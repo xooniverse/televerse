@@ -23,8 +23,10 @@ class HttpClient {
     Uri uri,
     Map<String, dynamic> body,
   ) async {
+    body.removeWhere((key, value) => value == null);
+    Map<String, String> bodyContent = body.map((k, v) => MapEntry(k, "$v"));
     try {
-      final response = await post(uri, body: body);
+      final response = await post(uri, body: bodyContent);
       final resBody = json.decode(response.body);
       if (resBody["ok"] == true) {
         return resBody["result"];

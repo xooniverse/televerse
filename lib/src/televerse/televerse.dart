@@ -224,9 +224,9 @@ class Televerse extends Event {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": replyMarkup?.toJson(),
     };
-    Uri uri = _buildUri("sendMessage", params);
+    Uri uri = _buildUri("sendMessage");
 
-    Map<String, dynamic> response = await HttpClient.getURI(uri);
+    Map<String, dynamic> response = await HttpClient.postURI(uri, params);
     return MessageContext(this, Message.fromJson(response));
   }
 
@@ -2765,5 +2765,203 @@ class Televerse extends Event {
     );
 
     return SentWebAppMessage.fromJson(response);
+  }
+
+  /// Use this method to send invoices. On success, the sent Message is returned.
+  Future<MessageContext> sendInvoice(
+    ID chatId,
+    String title,
+    String description,
+    String payload,
+    String providerToken,
+    String currency,
+    List<LabeledPrice> prices, {
+    String? messageThreadId,
+    int? maxTipAmount = 0,
+    List<int>? suggestedTipAmounts,
+    String? startParameter,
+    String? providerData,
+    String? photoUrl,
+    int? photoSize,
+    int? photoWidth,
+    int? photoHeight,
+    bool? needName,
+    bool? needPhoneNumber,
+    bool? needEmail,
+    bool? needShippingAddress,
+    bool? sendPhoneNumberToProvider,
+    bool? sendEmailToProvider,
+    bool? isFlexible,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId,
+      "title": title,
+      "description": description,
+      "payload": payload,
+      "provider_token": providerToken,
+      "currency": currency,
+      "prices": prices.map((e) => e.toJson()).toList(),
+      "message_thread_id": messageThreadId,
+      "max_tip_amount": maxTipAmount,
+      "suggested_tip_amounts": suggestedTipAmounts,
+      "start_parameter": startParameter,
+      "provider_data": providerData,
+      "photo_url": photoUrl,
+      "photo_size": photoSize,
+      "photo_width": photoWidth,
+      "photo_height": photoHeight,
+      "need_name": needName,
+      "need_phone_number": needPhoneNumber,
+      "need_email": needEmail,
+      "need_shipping_address": needShippingAddress,
+      "send_phone_number_to_provider": sendPhoneNumberToProvider,
+      "send_email_to_provider": sendEmailToProvider,
+      "is_flexible": isFlexible,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+
+    Map<String, dynamic> response = await HttpClient.postURI(
+      _buildUri("sendInvoice"),
+      params,
+    );
+
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method to create a link for an invoice. Returns the created invoice link as String on success.
+  Future<String> createInvoiceLink(
+    String title,
+    String description,
+    String payload,
+    String providerToken,
+    String currency,
+    List<LabeledPrice> prices, {
+    int? maxTipAmount = 0,
+    List<int>? suggestedTipAmounts,
+    String? providerData,
+    String? photoUrl,
+    int? photoSize,
+    int? photoWidth,
+    int? photoHeight,
+    bool? needName,
+    bool? needPhoneNumber,
+    bool? needEmail,
+    bool? needShippingAddress,
+    bool? sendPhoneNumberToProvider,
+    bool? sendEmailToProvider,
+    bool? isFlexible,
+  }) async {
+    Map<String, dynamic> params = {
+      "title": title,
+      "description": description,
+      "payload": payload,
+      "provider_token": providerToken,
+      "currency": currency,
+      "prices": prices.map((e) => e.toJson()).toList(),
+      "max_tip_amount": maxTipAmount,
+      "suggested_tip_amounts": suggestedTipAmounts,
+      "provider_data": providerData,
+      "photo_url": photoUrl,
+      "photo_size": photoSize,
+      "photo_width": photoWidth,
+      "photo_height": photoHeight,
+      "need_name": needName,
+      "need_phone_number": needPhoneNumber,
+      "need_email": needEmail,
+      "need_shipping_address": needShippingAddress,
+      "send_phone_number_to_provider": sendPhoneNumberToProvider,
+      "send_email_to_provider": sendEmailToProvider,
+      "is_flexible": isFlexible,
+    };
+
+    String response = await HttpClient.postURI(
+      _buildUri("createInvoiceLink"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// If you sent an invoice requesting a shipping address and the parameter is_flexible was specified, the Bot API will send an Update with a shipping_query field to the bot. Use this method to reply to shipping queries. On success, True is returned.
+  ///
+  /// Parameters:
+  /// - [shippingQueryId] Unique identifier for the query to be answered
+  /// - [ok] Pass True if delivery to the specified address is possible and False if there are any problems (for example, if delivery to the specified address is not possible)
+  /// - [shippingOptions] Required if ok is True. A JSON-serialized array of available shipping options.
+  /// - [errorMessage] Required if ok is False. Error message in human readable form that explains why it is impossible to complete the order (e.g. "Sorry, delivery to your desired address is unavailable'). Telegram will display this message to the user.
+  Future<bool> answerShippingQuery(
+    String shippingQueryId,
+    bool ok, {
+    List<ShippingOption>? shippingOptions,
+    String? errorMessage,
+  }) async {
+    if (ok && shippingOptions == null) {
+      throw TeleverseException(
+        "Invalid Parameter [shippingOptions]",
+        "shippingOptions is required if ok is True",
+      );
+    }
+
+    if (!ok && errorMessage == null) {
+      throw TeleverseException(
+        "Invalid Parameter [errorMessage]",
+        "errorMessage is required if ok is False",
+      );
+    }
+
+    Map<String, dynamic> params = {
+      "shipping_query_id": shippingQueryId,
+      "ok": ok,
+      "shipping_options": shippingOptions?.map((e) => e.toJson()).toList(),
+      "error_message": errorMessage,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("answerShippingQuery"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an Update with the field pre_checkout_query. Use this method to respond to such pre-checkout queries. On success, True is returned. Note: The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
+  ///
+  /// Parameters:
+  /// - [preCheckoutQueryId] Unique identifier for the query to be answered
+  /// - [ok] Specify True if everything is alright (goods are available, etc.) and the bot is ready to proceed with the order. Use False if there are any problems.
+  /// - [errorMessage] Required if ok is False. Error message in human readable form that explains the reason for failure to proceed with the checkout (e.g. "Sorry, somebody just bought the last of our amazing black T-shirts while you were busy filling out your payment details. Please choose a different color or garment!"). Telegram will display this message to the user.
+  Future<bool> answerPreCheckoutQuery(
+    String preCheckoutQueryId,
+    bool ok, {
+    String? errorMessage,
+  }) async {
+    if (!ok && errorMessage == null) {
+      throw TeleverseException(
+        "Invalid Parameter [errorMessage]",
+        "errorMessage is required if ok is False",
+      );
+    }
+
+    Map<String, dynamic> params = {
+      "pre_checkout_query_id": preCheckoutQueryId,
+      "ok": ok,
+      "error_message": errorMessage,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("answerPreCheckoutQuery"),
+      params,
+    );
+
+    return response;
   }
 }
