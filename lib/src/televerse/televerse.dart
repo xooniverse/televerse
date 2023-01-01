@@ -37,6 +37,8 @@ class Televerse extends Event {
   ///
   /// ! **IMPORTANT NOTE** !
   ///
+  /// DO NOT USE THIS STREAM IF YOU ARE USING [start] METHOD.
+  ///
   /// **This stream is used internally by the library to receive updates.**
   /// So, if you are using [start] method to start polling, you should not use this stream.
   /// If you do a [LongPollingException.alreadyPolling] will be thrown.
@@ -65,8 +67,7 @@ class Televerse extends Event {
     }
 
     Uri uri = _buildUri("getUpdates", params);
-
-    final response = await HttpClient.get(uri);
+    final response = await HttpClient.getURI(uri);
 
     if (response is! List) {
       throw LongPollingException("Got an invalid response. $response");
@@ -115,7 +116,7 @@ class Televerse extends Event {
       return await HttpClient.multipartPost(uri, files, params);
     } else {
       Uri uri = _buildUri("setWebhook");
-      return await HttpClient.post(uri, params);
+      return await HttpClient.postURI(uri, params);
     }
   }
 
@@ -129,7 +130,7 @@ class Televerse extends Event {
     };
     Uri uri = _buildUri("deleteWebhook", params);
 
-    bool response = await HttpClient.get(uri);
+    bool response = await HttpClient.getURI(uri);
     return response;
   }
 
@@ -140,7 +141,7 @@ class Televerse extends Event {
   Future<WebhookInfo> getWebhookInfo() async {
     Uri uri = _buildUri("getWebhookInfo");
 
-    Map<String, dynamic> response = await HttpClient.get(uri);
+    Map<String, dynamic> response = await HttpClient.getURI(uri);
     return WebhookInfo.fromJson(response);
   }
 
@@ -151,7 +152,7 @@ class Televerse extends Event {
   Future<User> getMe() async {
     Uri uri = _buildUri("getMe");
 
-    Map<String, dynamic> response = await HttpClient.get(uri);
+    Map<String, dynamic> response = await HttpClient.getURI(uri);
     return User.fromJson(response);
   }
 
@@ -162,7 +163,7 @@ class Televerse extends Event {
   Future<bool> logOut() async {
     Uri uri = _buildUri("logOut");
 
-    bool response = await HttpClient.get(uri);
+    bool response = await HttpClient.getURI(uri);
     return response;
   }
 
@@ -172,7 +173,7 @@ class Televerse extends Event {
   Future<bool> close() async {
     Uri uri = _buildUri("close");
 
-    bool response = await HttpClient.get(uri);
+    bool response = await HttpClient.getURI(uri);
     return response;
   }
 
@@ -225,7 +226,7 @@ class Televerse extends Event {
     };
     Uri uri = _buildUri("sendMessage", params);
 
-    Map<String, dynamic> response = await HttpClient.get(uri);
+    Map<String, dynamic> response = await HttpClient.getURI(uri);
     return MessageContext(this, Message.fromJson(response));
   }
 
@@ -271,7 +272,7 @@ class Televerse extends Event {
     };
     Uri uri = _buildUri("forwardMessage", params);
 
-    Map<String, dynamic> response = await HttpClient.get(uri);
+    Map<String, dynamic> response = await HttpClient.getURI(uri);
     return MessageContext(this, Message.fromJson(response));
   }
 
@@ -306,7 +307,7 @@ class Televerse extends Event {
     };
     Uri uri = _buildUri("copyMessage", params);
 
-    Map<String, dynamic> response = await HttpClient.get(uri);
+    Map<String, dynamic> response = await HttpClient.getURI(uri);
     return MessageId.fromJson(response);
   }
 
@@ -355,7 +356,7 @@ class Televerse extends Event {
       );
     } else {
       params["photo"] = photo.fileId ?? photo.url;
-      response = await HttpClient.get(_buildUri("sendPhoto", params));
+      response = await HttpClient.getURI(_buildUri("sendPhoto", params));
     }
     return MessageContext(this, Message.fromJson(response));
   }
@@ -431,7 +432,7 @@ class Televerse extends Event {
     } else {
       params["audio"] = audio.fileId ?? audio.url;
       params["thumb"] = thumb?.fileId ?? thumb?.url;
-      response = await HttpClient.get(_buildUri("sendAudio", params));
+      response = await HttpClient.getURI(_buildUri("sendAudio", params));
     }
     return MessageContext(this, Message.fromJson(response));
   }
@@ -502,7 +503,7 @@ class Televerse extends Event {
     } else {
       params["document"] = document.fileId ?? document.url;
       params["thumb"] = thumb?.fileId ?? thumb?.url;
-      response = await HttpClient.get(_buildUri("sendDocument", params));
+      response = await HttpClient.getURI(_buildUri("sendDocument", params));
     }
     return MessageContext(this, Message.fromJson(response));
   }
@@ -580,7 +581,7 @@ class Televerse extends Event {
     } else {
       params["video"] = video.fileId ?? video.url;
       params["thumb"] = thumb?.fileId ?? thumb?.url;
-      response = await HttpClient.get(_buildUri("sendVideo", params));
+      response = await HttpClient.getURI(_buildUri("sendVideo", params));
     }
     return MessageContext(this, Message.fromJson(response));
   }
@@ -657,7 +658,7 @@ class Televerse extends Event {
     } else {
       params["animation"] = animation.fileId ?? animation.url;
       params["thumb"] = thumb?.fileId ?? thumb?.url;
-      response = await HttpClient.get(_buildUri("sendAnimation", params));
+      response = await HttpClient.getURI(_buildUri("sendAnimation", params));
     }
     return MessageContext(this, Message.fromJson(response));
   }
@@ -711,7 +712,7 @@ class Televerse extends Event {
       );
     } else {
       params["voice"] = voice.fileId ?? voice.url;
-      response = await HttpClient.get(_buildUri("sendVoice", params));
+      response = await HttpClient.getURI(_buildUri("sendVoice", params));
     }
     return MessageContext(this, Message.fromJson(response));
   }
@@ -779,7 +780,7 @@ class Televerse extends Event {
     } else {
       params["video_note"] = videoNote.fileId ?? videoNote.url;
       params["thumb"] = thumb?.fileId ?? thumb?.url;
-      response = await HttpClient.get(_buildUri("sendVideoNote", params));
+      response = await HttpClient.getURI(_buildUri("sendVideoNote", params));
     }
     return MessageContext(this, Message.fromJson(response));
   }
@@ -859,7 +860,7 @@ class Televerse extends Event {
 
     params["media"] = jsonEncode(media.map((m) => m.toJson()).toList());
 
-    List<dynamic> response = await HttpClient.get(
+    List<dynamic> response = await HttpClient.getURI(
       _buildUri("sendMediaGroup", params),
     );
     return (response)
@@ -898,7 +899,7 @@ class Televerse extends Event {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": replyMarkup?.toJson(),
     };
-    Map<String, dynamic> response = await HttpClient.get(
+    Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendLocation", params),
     );
     return MessageContext(this, Message.fromJson(response));
@@ -927,7 +928,7 @@ class Televerse extends Event {
       "proximity_alert_radius": proximityAlertRadius,
       "reply_markup": replyMarkup?.toJson(),
     };
-    Map<String, dynamic>? response = await HttpClient.get(
+    Map<String, dynamic>? response = await HttpClient.getURI(
       _buildUri("editMessageLiveLocation", params),
     );
     if (response == null) {
@@ -954,7 +955,7 @@ class Televerse extends Event {
       "inline_message_id": inlineMessageId,
       "reply_markup": replyMarkup?.toJson(),
     };
-    dynamic response = await HttpClient.get(
+    dynamic response = await HttpClient.getURI(
       _buildUri("stopMessageLiveLocation", params),
     );
     return MessageContextOrBoolean.fromJson(response, this);
@@ -995,7 +996,7 @@ class Televerse extends Event {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": replyMarkup?.toJson(),
     };
-    Map<String, dynamic> response = await HttpClient.get(
+    Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendVenue", params),
     );
     return MessageContext(this, Message.fromJson(response));
@@ -1028,7 +1029,7 @@ class Televerse extends Event {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": replyMarkup?.toJson(),
     };
-    Map<String, dynamic> response = await HttpClient.get(
+    Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendContact", params),
     );
     return MessageContext(this, Message.fromJson(response));
@@ -1097,10 +1098,6 @@ class Televerse extends Event {
       );
     }
 
-    int? _unixCloseDate = closeDate?.millisecondsSinceEpoch == null
-        ? null
-        : closeDate!.millisecondsSinceEpoch ~/ 1000;
-
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
@@ -1115,7 +1112,7 @@ class Televerse extends Event {
       "explanation_entities":
           explanationEntities?.map((e) => e.toJson()).toList(),
       "open_period": openPeriod,
-      "close_date": _unixCloseDate,
+      "close_date": closeDate?.unixTime,
       "is_closed": isClosed,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
@@ -1123,7 +1120,7 @@ class Televerse extends Event {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": replyMarkup?.toJson(),
     };
-    Map<String, dynamic> response = await HttpClient.get(
+    Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendPoll", params),
     );
     return MessageContext(this, Message.fromJson(response));
@@ -1159,7 +1156,7 @@ class Televerse extends Event {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": replyMarkup?.toJson(),
     };
-    Map<String, dynamic> response = await HttpClient.get(
+    Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendDice", params),
     );
     return MessageContext(this, Message.fromJson(response));
@@ -1187,7 +1184,7 @@ class Televerse extends Event {
       "action": action.value,
       "message_thread_id": messageThreadId,
     };
-    Map<String, dynamic> response = await HttpClient.get(
+    Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendChatAction", params),
     );
     return response["ok"];
@@ -1204,7 +1201,7 @@ class Televerse extends Event {
       "offset": offset,
       "limit": limit,
     };
-    Map<String, dynamic> response = await HttpClient.get(
+    Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("getUserProfilePhotos", params),
     );
     return UserProfilePhotos.fromJson(response);
@@ -1217,9 +1214,65 @@ class Televerse extends Event {
     Map<String, dynamic> params = {
       "file_id": fileId,
     };
-    Map<String, dynamic> response = await HttpClient.get(
+    Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("getFile", params),
     );
     return File.fromJson(response);
+  }
+
+  /// Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless unbanned first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
+  Future<bool> banChatMember(
+    ID chatId,
+    int userId, {
+    DateTime? untilDate,
+    bool? revokeMessages,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "user_id": userId,
+      "until_date": untilDate?.unixTime,
+      "revoke_messages": revokeMessages,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("banChatMember", params),
+    );
+    print(response);
+    return response;
+  }
+
+  /// Use this method to unban a previously banned user in a supergroup or channel. The user will not return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be removed from the chat. If you don't want this, use the parameter only_if_banned. Returns True on success.
+  Future<bool> unbanChatMember(
+    ID chatId,
+    int userId, {
+    bool? onlyIfBanned,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "user_id": userId,
+      "only_if_banned": onlyIfBanned,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("unbanChatMember", params),
+    );
+    return response;
+  }
+
+  /// Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass True for all permissions to lift restrictions from a user. Returns True on success.
+  Future<bool> restrictChatMember(
+    ID chatId,
+    int userId,
+    ChatPermissions permissions, {
+    DateTime? untilDate,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "user_id": userId,
+      "permissions": permissions.toJson(),
+      "until_date": untilDate?.unixTime,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("restrictChatMember", params),
+    );
+    return response;
   }
 }

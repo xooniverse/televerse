@@ -45,9 +45,8 @@ class LongPolling extends Fetcher {
   }
 
   @override
-  Future<void> stop() {
+  Future<void> stop() async {
     _isPolling = false;
-    return Future.value();
   }
 
   Future<void> _poll() async {
@@ -59,7 +58,6 @@ class LongPolling extends Fetcher {
         timeout: timeout,
         allowedUpdates: allowedUpdates,
       );
-      if (updates.isEmpty) return;
       for (var update in updates) {
         addUpdate(update);
         offset = update.updateId + 1;
@@ -67,7 +65,7 @@ class LongPolling extends Fetcher {
 
       await Future.delayed(Duration(seconds: _retryDelay.inSeconds));
       _resetRetryDelay();
-    } catch (err) {
+    } catch (err, _) {
       if (err is HttpException && err.isClientException) {
         _isPolling = false;
         throw LongPollingException("Long polling stopped: ${err.message}");

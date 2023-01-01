@@ -1,13 +1,10 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
-import 'package:televerse/televerse.dart';
+part of televerse;
 
 class HttpClient {
   /// Send GET request to the given [uri] and return the response body.
-  static Future<dynamic> get(Uri uri) async {
+  static Future<dynamic> getURI(Uri uri) async {
     try {
-      final response = await http.get(uri);
+      final response = await get(uri);
       final body = json.decode(response.body);
 
       if (body["ok"] == true) {
@@ -22,12 +19,12 @@ class HttpClient {
   }
 
   /// Send POST request to the given [uri] and return the response body.
-  static Future<dynamic> post(
+  static Future<dynamic> postURI(
     Uri uri,
     Map<String, dynamic> body,
   ) async {
     try {
-      final response = await http.post(uri, body: body);
+      final response = await post(uri, body: body);
       final resBody = json.decode(response.body);
       if (resBody["ok"] == true) {
         return resBody["result"];
@@ -42,11 +39,11 @@ class HttpClient {
   /// Send Multipart POST request to the given [uri] and return the response body.
   static Future<dynamic> multipartPost(
     Uri uri,
-    List<http.MultipartFile> files,
+    List<MultipartFile> files,
     Map<String, dynamic> body,
   ) async {
     try {
-      final request = http.MultipartRequest("POST", uri)
+      final request = MultipartRequest("POST", uri)
         ..headers.addAll({"Content-Type": "multipart/form-data"})
         ..fields.addAll(body.map((k, v) => MapEntry(k, "$v")))
         ..files.addAll(files);
