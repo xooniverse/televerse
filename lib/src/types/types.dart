@@ -14,3 +14,4 @@ part 'sticker_type.dart';
 part 'update_type.dart';
 part 'message_entity_type.dart';
 part 'parse_mode.dart';
+part 'chat_action.dart';

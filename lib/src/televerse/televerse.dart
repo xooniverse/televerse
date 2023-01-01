@@ -1128,4 +1128,98 @@ class Televerse extends Event {
     );
     return MessageContext(this, Message.fromJson(response));
   }
+
+  /// Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
+  ///
+  /// [emoji] The emoji on which the dice throw animation is based. Currently, must be one of dice, darts, basketball, football, or slot_machine. Dice can have values 1-6 for “dice”, “darts” and “basketball”, values 1-5 for “football”, and values 1-64 for “slot_machine”. Defaults to dice.
+  ///
+  /// Example:
+  /// ```dart
+  /// await bot.sendDice(chatId, emoji: DiceEmoji.dice);
+  ///
+  /// await bot.sendDice(chatId, emoji: DiceEmoji.dart); // 🎯
+  /// ```
+  Future<MessageContext> sendDice(
+    ID chatId, {
+    DiceEmoji emoji = DiceEmoji.dice,
+    int? messageThreadId,
+    bool? disableNotification,
+    bool? protectContent,
+    int? replyToMessageId,
+    bool? allowSendingWithoutReply,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "emoji": emoji.emoji,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_to_message_id": replyToMessageId,
+      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_markup": replyMarkup?.toJson(),
+    };
+    Map<String, dynamic> response = await HttpClient.get(
+      _buildUri("sendDice", params),
+    );
+    return MessageContext(this, Message.fromJson(response));
+  }
+
+  /// Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.
+  ///
+  /// Example: The ImageBot needs some time to process a request and upload the image. Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use sendChatAction with action = upload_photo. The user will see a “sending photo” status for the bot.
+  ///
+  /// [action] Type of action to broadcast. We have a dedicated list of actions for bots, see [ChatAction].
+  ///
+  /// Example:
+  /// ```dart
+  /// await bot.sendChatAction(chatId, ChatAction.typing);
+  /// ```
+  /// This will send a typing action to the chat.
+  ///
+  Future<bool> sendChatAction(
+    ID chatId,
+    ChatAction action, {
+    int? messageThreadId,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "action": action.value,
+      "message_thread_id": messageThreadId,
+    };
+    Map<String, dynamic> response = await HttpClient.get(
+      _buildUri("sendChatAction", params),
+    );
+    return response["ok"];
+  }
+
+  /// Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
+  Future<UserProfilePhotos> getUserProfilePhotos(
+    int userId, {
+    int? offset,
+    int? limit,
+  }) async {
+    Map<String, dynamic> params = {
+      "user_id": userId,
+      "offset": offset,
+      "limit": limit,
+    };
+    Map<String, dynamic> response = await HttpClient.get(
+      _buildUri("getUserProfilePhotos", params),
+    );
+    return UserProfilePhotos.fromJson(response);
+  }
+
+  /// Use this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a File object is returned. The file can then be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>, where <file_path> is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile again.
+  ///
+  /// Note: This function may not preserve the original file name and MIME type. You should save the file's MIME type and name (if available) when the File object is received.
+  Future<File> getFile(String fileId) async {
+    Map<String, dynamic> params = {
+      "file_id": fileId,
+    };
+    Map<String, dynamic> response = await HttpClient.get(
+      _buildUri("getFile", params),
+    );
+    return File.fromJson(response);
+  }
 }
