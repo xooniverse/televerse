@@ -1961,4 +1961,127 @@ class Televerse extends Event {
     );
     return response;
   }
+
+  /// Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, True is returned.
+  Future<bool> answerCallbackQuery(
+    String callbackQueryId, {
+    String? text,
+    bool showAlert = false,
+    String? url,
+    int cacheTime = 0,
+  }) async {
+    Map<String, dynamic> params = {
+      "callback_query_id": callbackQueryId,
+      "text": text,
+      "show_alert": showAlert,
+      "url": url,
+      "cache_time": cacheTime,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("answerCallbackQuery", params),
+    );
+    return response;
+  }
+
+  /// Use this method to change the list of the bot's commands. See this manual for more details about bot commands. Returns True on success.
+  Future<bool> setMyCommands(
+    List<BotCommand> commands, {
+    BotCommandScope? scope,
+    String? languageCode,
+  }) async {
+    Map<String, dynamic> params = {
+      "commands": commands.map((e) => e.toJson()).toList(),
+      "scope": scope?.toJson(),
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("setMyCommands", params),
+    );
+    return response;
+  }
+
+  /// Use this method to delete the list of the bot's commands for the given scope and user language. After deletion, higher level commands will be shown to affected users. Returns True on success.
+  Future<bool> deleteMyCommands({
+    BotCommandScope scope = const BotCommandScopeDefault(),
+    String? languageCode,
+  }) async {
+    Map<String, dynamic> params = {
+      "scope": scope.toJson(),
+      "language_code": languageCode,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("deleteMyCommands", params),
+    );
+    return response;
+  }
+
+  /// Use this method to get the current list of the bot's commands for the given scope and user language. Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned.
+  Future<List<BotCommand>> getMyCommands({
+    BotCommandScope scope = const BotCommandScopeDefault(),
+    String? languageCode,
+  }) async {
+    Map<String, dynamic> params = {
+      "scope": scope.toJson(),
+      "language_code": languageCode,
+    };
+    List<dynamic> response = await HttpClient.getURI(
+      _buildUri("getMyCommands", params),
+    );
+    return response.map((e) => BotCommand.fromJson(e)).toList();
+  }
+
+  /// Use this method to change the bot's menu button in a private chat, or the default menu button. Returns True on success.
+  Future<bool> setChatMenuButton(
+    ID chatId,
+    MenuButton menuButton,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "menu_button": menuButton.toJson(),
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("setChatMenuButton", params),
+    );
+    return response;
+  }
+
+  /// Use this method to get the current value of the bot's menu button in a private chat, or the default menu button. Returns MenuButton on success.
+  Future<MenuButton> getChatMenuButton(
+    ID chatId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+    };
+    Map<String, dynamic> response = await HttpClient.getURI(
+      _buildUri("getChatMenuButton", params),
+    );
+    return MenuButton.create(response);
+  }
+
+  /// Use this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels. These rights will be suggested to users, but they are are free to modify the list before adding the bot. Returns True on success.
+  Future<bool> setMyDefaultAdministratorRights({
+    ChatAdministratorRights? rights,
+    bool? forChannels,
+  }) async {
+    Map<String, dynamic> params = {
+      "rights": rights?.toJson(),
+      "for_channels": forChannels,
+    };
+    bool response = await HttpClient.getURI(
+      _buildUri("setMyDefaultAdministratorRights", params),
+    );
+    return response;
+  }
+
+  /// Use this method to get the current default administrator rights of the bot. Returns ChatAdministratorRights on success.
+  Future<ChatAdministratorRights> getMyDefaultAdministratorRights({
+    bool? forChannels,
+  }) async {
+    Map<String, dynamic> params = {
+      "for_channels": forChannels,
+    };
+    Map<String, dynamic> response = await HttpClient.getURI(
+      _buildUri("getMyDefaultAdministratorRights", params),
+    );
+    return ChatAdministratorRights.fromJson(response);
+  }
 }

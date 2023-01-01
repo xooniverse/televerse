@@ -121,3 +121,4 @@ part 'input_media_animation.dart';
 part 'reply_keyboard_remove.dart';
 part 'login_url.dart';
 part 'video_chat_participants_invited.dart';
+part 'bot_command.dart';

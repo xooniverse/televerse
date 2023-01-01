@@ -5,7 +5,7 @@ class BotCommandScopeDefault implements BotCommandScope {
   @override
   BotCommandScopeType get type => BotCommandScopeType.defaultScope;
 
-  BotCommandScopeDefault();
+  const BotCommandScopeDefault();
 
   factory BotCommandScopeDefault.fromJson(Map<String, dynamic> json) {
     return BotCommandScopeDefault();
