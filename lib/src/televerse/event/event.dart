@@ -148,7 +148,10 @@ class Event {
   /// ```
   ///
   /// This will reply "Hello!" to any message that starts with `/start`.
-  void command(String command, Function(MessageContext ctx) callback) {
+  void command(
+    String command,
+    FutureOr<void> Function(MessageContext ctx) callback,
+  ) {
     onMessage.listen((MessageContext context) {
       if (context.message.text!.startsWith('/$command')) {
         callback(context);
@@ -169,7 +172,10 @@ class Event {
   /// ```
   ///
   /// This will answer "Hello!" to any callback query that has the data "start".
-  void callbackQuery(String data, Function(CallbackQueryContext ctx) callback) {
+  void callbackQuery(
+    String data,
+    FutureOr<void> Function(CallbackQueryContext ctx) callback,
+  ) {
     onCallbackQuery.listen((CallbackQueryContext context) {
       if (context.query.data == data) {
         callback(context);
@@ -192,9 +198,66 @@ class Event {
   ///
   /// This will reply "Hello in private chat!" to any message that is from a
   /// private chat.
-  void chatType(ChatType type, Function(MessageContext ctx) callback) {
+  ///
+  /// If you want to register a callback for multiple chat types, you can use
+  /// the [chatTypes] method.
+  void chatType(
+    ChatType type,
+    FutureOr<void> Function(MessageContext ctx) callback,
+  ) {
     onMessage.listen((MessageContext context) {
       if (context.message.chat.type == type) {
+        callback(context);
+      }
+    });
+  }
+
+  /// Registers a callback for multiple chat types.
+  /// The callback will be called when a message is received that is from one of
+  /// the specified chat types.
+  ///
+  /// You can specify chat types by passing a list of [ChatType]s to the [types]
+  /// parameter.
+  ///
+  /// Example:
+  /// ```dart
+  /// bot.chatTypes([ChatType.private, ChatType.group], (ctx) {
+  /// ctx.reply('Hello in private chat or group!');
+  /// });
+  /// ```
+  ///
+  /// This will reply "Hello in private chat or group!" to any message that is
+  /// from a private chat or a group.
+  void chatTypes(
+    List<ChatType> types,
+    FutureOr<void> Function(MessageContext ctx) callback,
+  ) {
+    onMessage.listen((MessageContext context) {
+      if (types.contains(context.message.chat.type)) {
+        callback(context);
+      }
+    });
+  }
+
+  /// Filter
+  /// Registers a callback for a message that matches the specified filter.
+  ///
+  /// The callback will be called when a message is received that matches the
+  /// specified filter.
+  ///
+  /// This method accepts a predicate function that takes a [MessageContext] as
+  /// a parameter and returns a boolean. If the function returns true, the
+  /// callback will be called.
+  ///
+  /// Example:
+  /// ```dart
+  /// ```
+  void filter(
+    bool Function(MessageContext ctx) predicate,
+    FutureOr<void> Function(MessageContext ctx) callback,
+  ) {
+    onMessage.listen((MessageContext context) {
+      if (predicate(context)) {
         callback(context);
       }
     });

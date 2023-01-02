@@ -28,5 +28,9 @@ void main() {
   bot.command("start", (ctx) => ctx.reply("Hello!"));
   bot.command("bye", (ctx) => ctx.reply("Bye!"));
 
+  bot.filter((ctx) => false, (ctx) {
+    ctx.reply("This message will never be sent");
+  });
+
   bot.start();
 }
