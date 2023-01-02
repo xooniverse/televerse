@@ -283,4 +283,33 @@ class Event {
       }
     });
   }
+
+  /// Registers a callback for a message that contains a text that matches the
+  /// specified regular expression.
+  /// The callback will be called when a message is received that contains a
+  /// text that matches the specified regular expression.
+  ///
+  /// The regular expression must be a valid Dart regular expression.
+  ///
+  /// Example:
+  /// ```dart
+  /// bot.hears(r'Hello, (.*)!', (ctx) {
+  ///   ctx.reply('Hello, ${ctx.matches![1]}!');
+  /// });
+  /// ```
+  ///
+  /// This will reply "Hello, <name>!" to any message that contains a text that
+  /// matches the regular expression `Hello, (.*)!`.
+  void hears(
+    String pattern,
+    FutureOr<void> Function(MessageContext ctx) callback,
+  ) {
+    onMessage.listen((MessageContext context) {
+      final matches = RegExp(pattern).allMatches(context.message.text ?? '');
+      context.matches = matches.toList();
+      if (matches.isNotEmpty) {
+        callback(context);
+      }
+    });
+  }
 }
