@@ -11,6 +11,7 @@ void main() {
   //     or use the [onCommand] getter to listen to commands
   bot.onMessage.listen((MessageContext ctx) async {
     // Collect the ChatID from the context
+    // This one is actually from v1.0.0, starting from v1.1.0 you can use the [ctx.id] getter
     final chatId = ChatID(ctx.chat.id);
 
     // Send a message to the chat
@@ -22,7 +23,7 @@ void main() {
     // Looking for a way to send a photo?
     // You can use the [sendPhoto] method
     final photo = InputFile.fromUrl("https://i.imgur.com/1Z1Z1Z1.jpg");
-    await ctx.api.sendPhoto(chatId, photo);
+    await ctx.api.sendPhoto(ctx.id, photo);
   });
 
   // Listen to commands
@@ -36,7 +37,7 @@ void main() {
 
   // Or you can do this:
   bool myAdvancedFilter(MessageContext ctx) {
-    return (ctx.message.photo?.first.fileSize ?? 0) > 1000000;
+    return (ctx.message.photo?.last.fileSize ?? 0) > 1000000;
   }
 
   bot.filter(myAdvancedFilter, (ctx) {
