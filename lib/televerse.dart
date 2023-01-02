@@ -20,3 +20,8 @@ part 'src/televerse/event/event.dart';
 part 'src/utils/date.dart';
 part 'src/utils/http.dart';
 part 'src/utils/utils.dart';
+
+/// The main class of the library.
+///
+/// This class is used to create a new bot instance.
+typedef Bot = Televerse;
