@@ -17,4 +17,20 @@ class CallbackQueryContext extends Context {
 
   /// The user of the query.
   User? get from => message?.from;
+
+  /// Answer the callback query.
+  Future<void> answer(
+    String? text, {
+    bool showAlert = false,
+    String? url,
+    int cacheTime = 0,
+  }) async {
+    await _televerse.answerCallbackQuery(
+      query.id,
+      text: text,
+      showAlert: showAlert,
+      url: url,
+      cacheTime: cacheTime,
+    );
+  }
 }

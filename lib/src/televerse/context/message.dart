@@ -36,4 +36,11 @@ class MessageContext extends Context {
       replyMarkup: replyMarkup,
     );
   }
+
+  /// **Regular expression matches**
+  ///
+  /// Contains the matches of the regular expression.
+  ///
+  /// This will be automatically set when you use the [Televerse.hears] method.
+  List<RegExpMatch>? matches;
 }
