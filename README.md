@@ -10,7 +10,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  televerse: ^1.0.1
+  televerse: ^1.1.0
 ```
 
 ## 📖 Usage
