@@ -143,14 +143,35 @@ class Event {
   /// Example:
   /// ```dart
   /// bot.onCommand('start', (ctx) {
-  ///  ctx.reply('Hello!');
+  ///   ctx.reply('Hello!');
   /// });
   /// ```
   ///
   /// This will reply "Hello!" to any message that starts with `/start`.
-  command(String command, Function(MessageContext ctx) callback) {
+  void command(String command, Function(MessageContext ctx) callback) {
     onMessage.listen((MessageContext context) {
       if (context.message.text!.startsWith('/$command')) {
+        callback(context);
+      }
+    });
+  }
+
+  /// Registers a callback for a callback query.
+  ///
+  /// The callback will be called when a callback query is received that has
+  /// the specified data.
+  ///
+  /// Example:
+  /// ```dart
+  /// bot.callbackQuery('start', (ctx) {
+  ///   ctx.answer('Hello!');
+  /// });
+  /// ```
+  ///
+  /// This will answer "Hello!" to any callback query that has the data "start".
+  void callbackQuery(String data, Function(CallbackQueryContext ctx) callback) {
+    onCallbackQuery.listen((CallbackQueryContext context) {
+      if (context.query.data == data) {
         callback(context);
       }
     });
