@@ -130,4 +130,29 @@ class Event {
       _chatJoinRequestController.add(update.chatJoinRequest!);
     }
   }
+
+  /// Registers a callback for a command.
+  /// The command must be without the leading slash.
+  ///
+  /// For example, to register a callback for the `/start` command, you would
+  /// call `onCommand('start', callback)`.
+  ///
+  /// The callback will be called when a message is received that starts with
+  /// the command.
+  ///
+  /// Example:
+  /// ```dart
+  /// bot.onCommand('start', (ctx) {
+  ///  ctx.reply('Hello!');
+  /// });
+  /// ```
+  ///
+  /// This will reply "Hello!" to any message that starts with `/start`.
+  command(String command, Function(MessageContext ctx) callback) {
+    onMessage.listen((MessageContext context) {
+      if (context.message.text!.startsWith('/$command')) {
+        callback(context);
+      }
+    });
+  }
 }
