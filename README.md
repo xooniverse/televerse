@@ -26,8 +26,8 @@ Bot bot = Bot('YOUR_BOT_TOKEN');
 Now with the bot instance you can start listening for updates:
 
 ```dart
-bot.onMessage.listen((MessageContext ctx) {
-   ctx.reply('Hello World!');
+bot.command('start', (ctx) {
+  ctx.reply('Hello, World!');
 });
 
 ```
@@ -47,9 +47,35 @@ bot.sendMessage(ChatID(123456), "Hello, World!");
 ctx.api.sendMessage(ChatID(123456), "Hello, World!");
 ```
 
+## 👽 Advanced Usage
+
+We also provide a set of custom methods to make your life easier. Some of them are:
+
+- `bot.command` to listen for commands
+- `bot.chatType` and `bot.chatTypes` to listen for specific chat types
+- `bot.text` to listen for text messages that contains a specific text
+
+And even advanced methods like
+- `bot.filter` to create your own filters and listen for messages that match them
+- `bot.hear` to listen for messages that match a RegExp
+
+Filter and hear methods are very powerful and can be used to create your own custom filters.
+
+For example, if you want to listen for messages that contains a photo which has more than 1MB of size, you can do it like this:
+
+```dart
+bot.filter((ctx) {
+  return (ctx.message.photo?.last.fileSize ?? 0) > 1000000;
+}, (ctx) {
+  ctx.reply('Wow, that\'s a big photo!');
+});
+```
+
+Note: we're still working on improving the documentation, so you can check the [example](./example/televerse_example.dart) file for more information.
+
 ## 🔐 Example
 
-You can find a simple example in the [example](./example/) folder.
+You can find a simple example in the [example](./example/televerse_example.dart) file.
 
 ## 📝 Note
 

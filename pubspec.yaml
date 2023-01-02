@@ -1,6 +1,6 @@
 name: televerse
-description: Televerse is a Telegram Bot API Framework written completely in Dart.
-version: 1.0.1
+description: Televerse is a Telegram Bot API Framework written completely in Dart. You can use this framework to create your own Telegram Bots, efficiently and easily.
+version: 1.1.0
 homepage: https://github.com/HeySreelal/televerse
 
 environment:

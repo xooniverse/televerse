@@ -301,11 +301,11 @@ class Event {
   /// This will reply "Hello, <name>!" to any message that contains a text that
   /// matches the regular expression `Hello, (.*)!`.
   void hears(
-    String pattern,
+    RegExp exp,
     FutureOr<void> Function(MessageContext ctx) callback,
   ) {
     onMessage.listen((MessageContext context) {
-      final matches = RegExp(pattern).allMatches(context.message.text ?? '');
+      final matches = exp.allMatches(context.message.text ?? '');
       context.matches = matches.toList();
       if (matches.isNotEmpty) {
         callback(context);
