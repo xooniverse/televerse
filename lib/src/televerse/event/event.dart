@@ -176,4 +176,27 @@ class Event {
       }
     });
   }
+
+  /// Registers a callback for particular chat types.
+  /// The callback will be called when a message is received that is from a
+  /// chat of the specified type.
+  ///
+  /// You can specify chat type by passing a [ChatType] to the [type] parameter.
+  ///
+  /// Example:
+  /// ```dart
+  /// bot.chatType(ChatType.private, (ctx) {
+  ///  ctx.reply('Hello in private chat!');
+  /// });
+  /// ```
+  ///
+  /// This will reply "Hello in private chat!" to any message that is from a
+  /// private chat.
+  void chatType(ChatType type, Function(MessageContext ctx) callback) {
+    onMessage.listen((MessageContext context) {
+      if (context.message.chat.type == type) {
+        callback(context);
+      }
+    });
+  }
 }
