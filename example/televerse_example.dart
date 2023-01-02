@@ -34,9 +34,20 @@ void main() {
     ctx.reply("This message will never be sent");
   });
 
+  // Or you can do this:
+  bool myAdvancedFilter(MessageContext ctx) {
+    return (ctx.message.photo?.first.fileSize ?? 0) > 1000000;
+  }
+
+  bot.filter(myAdvancedFilter, (ctx) {
+    // This will only be executed if the filter returns true
+    // That is if the photo is bigger than 1MB
+    ctx.reply("Oh wow, this is a big photo!");
+  });
+
   // The [bot.hears] method allows you to listen to messages that match a regular expression.
   // You can use the `MessageContext.matches` getter to access the matches of the regular expression.
-  bot.hears(r'Hello, (.*)!', (ctx) {
+  bot.hears(RegExp(r'Hello, (.*)!'), (ctx) {
     ctx.reply('Hello, ${ctx.matches![1]}!');
   });
 
