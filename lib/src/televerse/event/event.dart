@@ -262,4 +262,25 @@ class Event {
       }
     });
   }
+
+  /// Registers a callback for a message that contains a text.
+  /// The callback will be called when a message is received that contains a
+  /// particular text.
+  ///
+  /// Example:
+  /// ```dart
+  /// bot.text('I love Televerse', (ctx) {
+  ///  ctx.reply('I love you too!');
+  /// });
+  /// ```
+  void text(
+    String text,
+    FutureOr<void> Function(MessageContext ctx) callback,
+  ) {
+    onMessage.listen((MessageContext context) {
+      if (context.message.text?.contains(text) ?? false) {
+        callback(context);
+      }
+    });
+  }
 }
