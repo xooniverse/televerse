@@ -33,4 +33,6 @@ class CallbackQueryContext extends Context {
       cacheTime: cacheTime,
     );
   }
+
+  List<RegExpMatch>? matches;
 }

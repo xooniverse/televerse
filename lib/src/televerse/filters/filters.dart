@@ -6,17 +6,17 @@ part of televerse;
 /// [Event.on] method to listen to only specific messages.
 ///
 /// For example, if you want to listen to only messages which have text, you can use
-/// [Filter.text] filter.
+/// [TeleverseEvent.text] filter.
 ///
 /// ```dart
 /// // This will only listen to messages which have text.
-/// bot.on(Filter.text, (ctx) {
+/// bot.on(TeleverseEvent.text, (ctx) {
 ///   // Do something with the message.
 ///   ctx.reply('Hello!');
 /// });
 /// ```
 ///
-enum Filter {
+enum TeleverseEvent {
   /// Filters messages to allow only those which have text.
   text;
 }

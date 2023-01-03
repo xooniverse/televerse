@@ -184,10 +184,17 @@ class Event {
   /// This will answer "Hello!" to any callback query that has the data "start".
   void callbackQuery(
     String data,
-    FutureOr<void> Function(CallbackQueryContext ctx) callback,
-  ) {
+    FutureOr<void> Function(CallbackQueryContext ctx) callback, {
+    RegExp? regex,
+  }) {
     onCallbackQuery.listen((CallbackQueryContext context) {
-      if (context.query.data == data) {
+      if (context.data == null) return;
+      if (regex != null && regex.hasMatch(context.data!)) {
+        context.matches = regex.allMatches(context.data!).toList();
+        callback(context);
+        return;
+      }
+      if (context.data == data) {
         callback(context);
       }
     });
@@ -327,11 +334,13 @@ class Event {
   ///
   /// The call back will be only be executed on specific update types. You can
   /// use the [Filter] object to specify which update you want to listen to.
-  on(Filter type, FutureOr<void> Function(Context ctx) callback) {
+  void on(TeleverseEvent type, FutureOr<void> Function(Context ctx) callback) {
     onUpdate.listen((update) {
-      if (update.type == UpdateType.message && update.message?.text != null) {
-        if (televerse == null) return;
-        callback(MessageContext(televerse!, update.message!));
+      if (type == TeleverseEvent.text) {
+        if (update.type == UpdateType.message && update.message?.text != null) {
+          if (televerse == null) return;
+          callback(MessageContext(televerse!, update.message!));
+        }
       }
     });
   }
