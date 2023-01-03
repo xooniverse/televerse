@@ -2,6 +2,7 @@ part of televerse;
 
 class Event {
   bool sync;
+  Televerse? televerse;
 
   Event({this.sync = false})
       : _messageController = StreamController<MessageContext>.broadcast(
@@ -50,6 +51,9 @@ class Event {
         _chatJoinRequestController =
             StreamController<ChatJoinRequest>.broadcast(
           sync: sync,
+        ),
+        _updateStreamController = StreamController<Update>.broadcast(
+          sync: sync,
         );
 
   final StreamController<MessageContext> _messageController;
@@ -66,6 +70,7 @@ class Event {
   final StreamController<ChatMemberUpdated> _myChatMemberController;
   final StreamController<ChatMemberUpdated> _chatMemberController;
   final StreamController<ChatJoinRequest> _chatJoinRequestController;
+  final StreamController<Update> _updateStreamController;
 
   Stream<MessageContext> get onMessage => _messageController.stream;
   Stream<MessageContext> get onEditedMessage => _editedMessageController.stream;
@@ -87,14 +92,19 @@ class Event {
   Stream<ChatMemberUpdated> get onChatMember => _chatMemberController.stream;
   Stream<ChatJoinRequest> get onChatJoinRequest =>
       _chatJoinRequestController.stream;
+  Stream<Update> get onUpdate => _updateStreamController.stream;
 
   void onUpdates(List<Update> updates, Televerse televerse) {
     for (Update update in updates) {
       emitUpdate(update, televerse);
+      if (this.televerse == null) {
+        this.televerse = televerse;
+      }
     }
   }
 
   void emitUpdate(Update update, Televerse televerse) {
+    _updateStreamController.add(update);
     if (update.type == UpdateType.message) {
       _messageController.add(MessageContext(televerse, update.message!));
     } else if (update.type == UpdateType.editedMessage) {
@@ -309,6 +319,19 @@ class Event {
       context.matches = matches.toList();
       if (matches.isNotEmpty) {
         callback(context);
+      }
+    });
+  }
+
+  /// Registers a callback for particular filter types.
+  ///
+  /// The call back will be only be executed on specific update types. You can
+  /// use the [Filter] object to specify which update you want to listen to.
+  on(Filter type, FutureOr<void> Function(Context ctx) callback) {
+    onUpdate.listen((update) {
+      if (update.type == UpdateType.message && update.message?.text != null) {
+        if (televerse == null) return;
+        callback(MessageContext(televerse!, update.message!));
       }
     });
   }

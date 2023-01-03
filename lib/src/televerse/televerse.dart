@@ -35,13 +35,7 @@ class Televerse extends Event {
 
   /// Stream of [Update] objects.
   ///
-  /// ! **IMPORTANT NOTE** !
-  ///
-  /// DO NOT USE THIS STREAM IF YOU ARE USING [start] METHOD.
-  ///
-  /// **This stream is used internally by the library to receive updates.**
-  /// So, if you are using [start] method to start polling, you should not use this stream.
-  /// If you do a [LongPollingException.alreadyPolling] will be thrown.
+  /// This getter returns a stream of [Update] objects. You can use this to listen to incoming updates from Telegram servers.
   Stream<Update> get updatesStream {
     return fetcher.onUpdate();
   }

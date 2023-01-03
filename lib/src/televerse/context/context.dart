@@ -11,5 +11,7 @@ class Context {
   Televerse get api => _televerse;
   final Televerse _televerse;
 
-  Context(this._televerse);
+  Context(
+    this._televerse,
+  );
 }
