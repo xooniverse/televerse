@@ -20,6 +20,42 @@ enum TeleverseEvent {
   /// Filters messages to allow only those which have text.
   text,
 
-  /// Filters messages to allow only those which have audio.
+  /// Filter for messages or channel posts which have audio.
   audio,
+
+  /// Filter for messages which have audio.
+  audioMessage,
+
+  /// Edited messages or channel posts.
+  edited,
+
+  /// Edited messages.
+  /// This filter will only allow messages which have been edited.
+  editedMessage,
+
+  /// Edited channel posts.
+  /// This filter will only allow channel posts which have been edited.
+  editedChannelPost,
+
+  /// Filter for messages or channel posts which have document.
+  document,
+
+  /// Filter for messages which have document.
+  /// This filter will only allow messages which have document.
+  documentMessage,
+
+  /// Filter for channel posts which have document.
+  /// This filter will only allow channel posts which have document.
+  documentChannelPost,
+
+  /// Filter for messages or channel posts which have photo.
+  photo,
+
+  /// Filter for messages which have photo.
+  /// This filter will only allow messages which have photo.
+  photoMessage,
+
+  /// Filter for channel posts which have photo.
+  /// This filter will only allow channel posts which have photo.
+  photoChannelPost,
 }
