@@ -20,6 +20,7 @@ part 'src/televerse/event/event.dart';
 part 'src/utils/date.dart';
 part 'src/utils/http.dart';
 part 'src/utils/utils.dart';
+part 'src/televerse/filters/filters.dart';
 
 /// The main class of the library.
 ///

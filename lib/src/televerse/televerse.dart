@@ -35,13 +35,7 @@ class Televerse extends Event {
 
   /// Stream of [Update] objects.
   ///
-  /// ! **IMPORTANT NOTE** !
-  ///
-  /// DO NOT USE THIS STREAM IF YOU ARE USING [start] METHOD.
-  ///
-  /// **This stream is used internally by the library to receive updates.**
-  /// So, if you are using [start] method to start polling, you should not use this stream.
-  /// If you do a [LongPollingException.alreadyPolling] will be thrown.
+  /// This getter returns a stream of [Update] objects. You can use this to listen to incoming updates from Telegram servers.
   Stream<Update> get updatesStream {
     return fetcher.onUpdate();
   }
@@ -198,7 +192,7 @@ class Televerse extends Event {
   /// ```
   ///
   /// On success, the sent [MessageContext] is which can be used to reply to the message.
-  Future<MessageContext> sendMessage(
+  Future<Message> sendMessage(
     ID chatId,
     String text, {
     int? messageThreadId,
@@ -227,7 +221,7 @@ class Televerse extends Event {
     Uri uri = _buildUri("sendMessage");
 
     Map<String, dynamic> response = await HttpClient.postURI(uri, params);
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to forward messages of any kind. Service messages can't be forwarded. On success, the sent [MessageContext] is returned.
@@ -254,7 +248,7 @@ class Televerse extends Event {
   /// ```
   ///
   /// See more at https://core.telegram.org/bots/api#forwardmessage
-  Future<MessageContext> forwardMessage(
+  Future<Message> forwardMessage(
     ID chatId,
     ID fromChatId,
     int messageId, {
@@ -273,7 +267,7 @@ class Televerse extends Event {
     Uri uri = _buildUri("forwardMessage", params);
 
     Map<String, dynamic> response = await HttpClient.getURI(uri);
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to copy messages of any kind. Service messages and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
@@ -312,7 +306,7 @@ class Televerse extends Event {
   }
 
   /// Use this method to send photos. On success, the sent Message is returned.
-  Future<MessageContext> sendPhoto(
+  Future<Message> sendPhoto(
     ID chatId,
     InputFile photo, {
     int? messageThreadId,
@@ -358,13 +352,13 @@ class Televerse extends Event {
       params["photo"] = photo.fileId ?? photo.url;
       response = await HttpClient.getURI(_buildUri("sendPhoto", params));
     }
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
   ///
   /// For sending voice messages, use the [sendVoice] method instead.
-  Future<MessageContext> sendAudio(
+  Future<Message> sendAudio(
     ID chatId,
     InputFile audio, {
     int? messageThreadId,
@@ -434,11 +428,11 @@ class Televerse extends Event {
       params["thumb"] = thumb?.fileId ?? thumb?.url;
       response = await HttpClient.getURI(_buildUri("sendAudio", params));
     }
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-  Future<MessageContext> sendDocument(
+  Future<Message> sendDocument(
     ID chatId,
     InputFile document, {
     int? messageThreadId,
@@ -505,11 +499,11 @@ class Televerse extends Event {
       params["thumb"] = thumb?.fileId ?? thumb?.url;
       response = await HttpClient.getURI(_buildUri("sendDocument", params));
     }
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
-  Future<MessageContext> sendVideo(
+  Future<Message> sendVideo(
     ID chatId,
     InputFile video, {
     int? messageThreadId,
@@ -583,11 +577,11 @@ class Televerse extends Event {
       params["thumb"] = thumb?.fileId ?? thumb?.url;
       response = await HttpClient.getURI(_buildUri("sendVideo", params));
     }
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
-  Future<MessageContext> sendAnimation(
+  Future<Message> sendAnimation(
     ID chatId,
     InputFile animation, {
     int? messageThreadId,
@@ -660,11 +654,11 @@ class Televerse extends Event {
       params["thumb"] = thumb?.fileId ?? thumb?.url;
       response = await HttpClient.getURI(_buildUri("sendAnimation", params));
     }
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
-  Future<MessageContext> sendVoice(
+  Future<Message> sendVoice(
     ID chatId,
     InputFile voice, {
     int? messageThreadId,
@@ -714,11 +708,11 @@ class Televerse extends Event {
       params["voice"] = voice.fileId ?? voice.url;
       response = await HttpClient.getURI(_buildUri("sendVoice", params));
     }
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
-  Future<MessageContext> sendVideoNote(
+  Future<Message> sendVideoNote(
     ID chatId,
     InputFile videoNote, {
     int? messageThreadId,
@@ -782,7 +776,7 @@ class Televerse extends Event {
       params["thumb"] = thumb?.fileId ?? thumb?.url;
       response = await HttpClient.getURI(_buildUri("sendVideoNote", params));
     }
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
@@ -869,7 +863,7 @@ class Televerse extends Event {
   }
 
   /// Use this method to send point on the map. On success, the sent Message is returned.
-  Future<MessageContext> sendLocation(
+  Future<Message> sendLocation(
     ID chatId,
     double latitude,
     double longitude, {
@@ -902,11 +896,14 @@ class Televerse extends Event {
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendLocation", params),
     );
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
-  /// Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to [stopMessageLiveLocation]. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
-  Future<MessageContext?> editMessageLiveLocation(
+  /// Use this method to edit live location messages. A location can be edited
+  /// until its live_period expires or editing is explicitly disabled
+  /// by a call to [stopMessageLiveLocation]. On success, if the edited message
+  /// is not an inline message, the edited Message is returned, otherwise True is returned.
+  Future<MessageOrBoolean> editMessageLiveLocation(
     ID chatId,
     int messageId, {
     String? inlineMessageId,
@@ -928,13 +925,11 @@ class Televerse extends Event {
       "proximity_alert_radius": proximityAlertRadius,
       "reply_markup": replyMarkup?.toJson(),
     };
-    Map<String, dynamic>? response = await HttpClient.getURI(
+    dynamic response = await HttpClient.getURI(
       _buildUri("editMessageLiveLocation", params),
     );
-    if (response == null) {
-      return null;
-    }
-    return MessageContext(this, Message.fromJson(response));
+
+    return MessageOrBoolean.fromJson(response, this);
   }
 
   /// Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.
@@ -942,8 +937,8 @@ class Televerse extends Event {
   /// This one is a bit weird, because it can return either a MessageContext or a boolean.
   /// If the message is an inline message, it returns a boolean, otherwise it returns a MessageContext.
   ///
-  /// You can use [CtxOrBool] type inside the [MessageContextOrBoolean] class to get the correct type.
-  Future<MessageContextOrBoolean> stopMessageLiveLocation(
+  /// You can use [MsgOrBool] type inside the [MessageOrBoolean] class to get the correct type.
+  Future<MessageOrBoolean> stopMessageLiveLocation(
     ID chatId,
     int messageId, {
     String? inlineMessageId,
@@ -958,11 +953,11 @@ class Televerse extends Event {
     dynamic response = await HttpClient.getURI(
       _buildUri("stopMessageLiveLocation", params),
     );
-    return MessageContextOrBoolean.fromJson(response, this);
+    return MessageOrBoolean.fromJson(response, this);
   }
 
   /// Use this method to send information about a venue. On success, the sent Message is returned.
-  Future<MessageContext> sendVenue(
+  Future<Message> sendVenue(
     ID chatId,
     double latitude,
     double longitude,
@@ -999,11 +994,11 @@ class Televerse extends Event {
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendVenue", params),
     );
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to send phone contacts. On success, the sent Message is returned.
-  Future<MessageContext> sendContact(
+  Future<Message> sendContact(
     ID chatId,
     String phoneNumber,
     String firstName, {
@@ -1032,11 +1027,11 @@ class Televerse extends Event {
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendContact", params),
     );
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to send a native poll. On success, the sent Message is returned.
-  Future<MessageContext> sendPoll(
+  Future<Message> sendPoll(
     ID chatId,
     String question,
     List<String> options, {
@@ -1123,7 +1118,7 @@ class Televerse extends Event {
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendPoll", params),
     );
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
@@ -1136,7 +1131,7 @@ class Televerse extends Event {
   ///
   /// await bot.sendDice(chatId, emoji: DiceEmoji.dart); // 🎯
   /// ```
-  Future<MessageContext> sendDice(
+  Future<Message> sendDice(
     ID chatId, {
     DiceEmoji emoji = DiceEmoji.dice,
     int? messageThreadId,
@@ -1159,7 +1154,7 @@ class Televerse extends Event {
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendDice", params),
     );
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.
@@ -2091,7 +2086,7 @@ class Televerse extends Event {
   /// * This method is only for editing messages. This won't work for inline messages.
   ///
   /// If you're looking for a way to edit inline messages, use [editInlineMessageText].
-  Future<MessageContext> editMessageText(
+  Future<Message> editMessageText(
     ID chatId,
     int messageId,
     String text, {
@@ -2112,7 +2107,7 @@ class Televerse extends Event {
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("editMessageText", params),
     );
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to edit inline text messages.
@@ -2153,7 +2148,7 @@ class Televerse extends Event {
   /// If you're looking for a way to edit inline messages, use [editInlineMessageCaption].
   ///
   /// On success, [MessageContext] is returned.
-  Future<MessageContext> editMessageCaption(
+  Future<Message> editMessageCaption(
     ID chatId,
     int messageId, {
     String? caption,
@@ -2172,7 +2167,7 @@ class Televerse extends Event {
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("editMessageCaption", params),
     );
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to edit inline captions of messages.
@@ -2210,7 +2205,7 @@ class Televerse extends Event {
   /// * If you're looking for a way to edit inline messages, use [editInlineMessageMedia].
   ///
   /// On success, [MessageContext] is returned.
-  Future<MessageContext> editMessageMedia(
+  Future<Message> editMessageMedia(
     ID chatId,
     int messageId,
     InputMedia media, {
@@ -2246,7 +2241,7 @@ class Televerse extends Event {
       );
     }
 
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to edit inline media of messages.
@@ -2301,7 +2296,7 @@ class Televerse extends Event {
   /// * Use [replyMarkup] parameter to pass new reply markup.
   ///
   /// On success, [MessageContext] is returned.
-  Future<MessageContext> editMessageReplyMarkup(
+  Future<Message> editMessageReplyMarkup(
     ID chatId,
     int messageId, {
     InlineKeyboardMarkup? replyMarkup,
@@ -2314,7 +2309,7 @@ class Televerse extends Event {
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("editMessageReplyMarkup", params),
     );
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to edit only the reply markup of inline messages.
@@ -2382,7 +2377,7 @@ class Televerse extends Event {
   }
 
   /// Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
-  Future<MessageContext> sendSticker(
+  Future<Message> sendSticker(
     ID chatId,
     InputFile sticker, {
     String? messageThreadId,
@@ -2426,7 +2421,7 @@ class Televerse extends Event {
       );
     }
 
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to get a sticker set. On success, a StickerSet object is returned.
@@ -2768,7 +2763,7 @@ class Televerse extends Event {
   }
 
   /// Use this method to send invoices. On success, the sent Message is returned.
-  Future<MessageContext> sendInvoice(
+  Future<Message> sendInvoice(
     ID chatId,
     String title,
     String description,
@@ -2834,7 +2829,7 @@ class Televerse extends Event {
       params,
     );
 
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to create a link for an invoice. Returns the created invoice link as String on success.
@@ -2985,7 +2980,7 @@ class Televerse extends Event {
   }
 
   /// Use this method to send a game. On success, the sent [MessageContext] is returned.
-  Future<MessageContext> sendGame(
+  Future<Message> sendGame(
     ID chatId,
     String gameShortName, {
     int? messageThreadId,
@@ -3011,7 +3006,7 @@ class Televerse extends Event {
       params,
     );
 
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to set the score of the specified user in a game message.
@@ -3020,7 +3015,7 @@ class Televerse extends Event {
   /// Returns an error, if the new score is not greater than the user's current score in the chat and [force] is False.
   ///
   /// If you're looking to update a inline message, you can use [setInlineGameScore] instead.
-  Future<MessageContext> setGameScore(
+  Future<Message> setGameScore(
     int userId,
     int score,
     ID chatId,
@@ -3042,7 +3037,7 @@ class Televerse extends Event {
       params,
     );
 
-    return MessageContext(this, Message.fromJson(response));
+    return Message.fromJson(response);
   }
 
   /// Use this method to set the score of the specified user in a game message.

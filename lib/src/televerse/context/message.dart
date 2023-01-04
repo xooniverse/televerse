@@ -4,13 +4,17 @@ class MessageContext extends Context {
   /// The incoming message.
   Message message;
 
-  MessageContext(Televerse t, this.message) : super(t);
+  MessageContext(
+    Televerse t,
+    this.message, {
+    Update? update,
+  }) : super(t, update: update);
 
   /// Chat of the message.
   Chat get chat => message.chat;
 
   /// Reply a Text Message to the user.
-  Future<MessageContext> reply(
+  Future<Message> reply(
     String text, {
     int? messageThreadId,
     ParseMode? parseMode,

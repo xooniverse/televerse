@@ -2,6 +2,7 @@ part of televerse;
 
 class Event {
   bool sync;
+  Televerse? televerse;
 
   Event({this.sync = false})
       : _messageController = StreamController<MessageContext>.broadcast(
@@ -50,6 +51,9 @@ class Event {
         _chatJoinRequestController =
             StreamController<ChatJoinRequest>.broadcast(
           sync: sync,
+        ),
+        _updateStreamController = StreamController<Update>.broadcast(
+          sync: sync,
         );
 
   final StreamController<MessageContext> _messageController;
@@ -66,6 +70,7 @@ class Event {
   final StreamController<ChatMemberUpdated> _myChatMemberController;
   final StreamController<ChatMemberUpdated> _chatMemberController;
   final StreamController<ChatJoinRequest> _chatJoinRequestController;
+  final StreamController<Update> _updateStreamController;
 
   Stream<MessageContext> get onMessage => _messageController.stream;
   Stream<MessageContext> get onEditedMessage => _editedMessageController.stream;
@@ -87,33 +92,57 @@ class Event {
   Stream<ChatMemberUpdated> get onChatMember => _chatMemberController.stream;
   Stream<ChatJoinRequest> get onChatJoinRequest =>
       _chatJoinRequestController.stream;
+  Stream<Update> get onUpdate => _updateStreamController.stream;
 
   void onUpdates(List<Update> updates, Televerse televerse) {
     for (Update update in updates) {
       emitUpdate(update, televerse);
+      if (this.televerse == null) {
+        this.televerse = televerse;
+      }
     }
   }
 
   void emitUpdate(Update update, Televerse televerse) {
+    _updateStreamController.add(update);
     if (update.type == UpdateType.message) {
-      _messageController.add(MessageContext(televerse, update.message!));
+      _messageController.add(MessageContext(
+        televerse,
+        update.message!,
+        update: update,
+      ));
     } else if (update.type == UpdateType.editedMessage) {
-      _editedMessageController
-          .add(MessageContext(televerse, update.editedMessage!));
+      _editedMessageController.add(MessageContext(
+        televerse,
+        update.editedMessage!,
+        update: update,
+      ));
     } else if (update.type == UpdateType.channelPost) {
-      _channelPostController
-          .add(MessageContext(televerse, update.channelPost!));
+      _channelPostController.add(MessageContext(
+        televerse,
+        update.channelPost!,
+        update: update,
+      ));
     } else if (update.type == UpdateType.editedChannelPost) {
-      _editedChannelPostController
-          .add(MessageContext(televerse, update.editedChannelPost!));
+      _editedChannelPostController.add(MessageContext(
+        televerse,
+        update.editedChannelPost!,
+        update: update,
+      ));
     } else if (update.type == UpdateType.inlineQuery) {
-      _inlineQueryController
-          .add(InlineQueryContext(televerse, update.inlineQuery!));
+      _inlineQueryController.add(InlineQueryContext(
+        televerse,
+        update.inlineQuery!,
+        update: update,
+      ));
     } else if (update.type == UpdateType.chosenInlineResult) {
       _chosenInlineResultController.add(update.chosenInlineResult!);
     } else if (update.type == UpdateType.callbackQuery) {
-      _callbackQueryController
-          .add(CallbackQueryContext(televerse, update.callbackQuery!));
+      _callbackQueryController.add(CallbackQueryContext(
+        televerse,
+        update.callbackQuery!,
+        update: update,
+      ));
     } else if (update.type == UpdateType.shippingQuery) {
       _shippingQueryController.add(update.shippingQuery!);
     } else if (update.type == UpdateType.preCheckoutQuery) {
@@ -174,10 +203,17 @@ class Event {
   /// This will answer "Hello!" to any callback query that has the data "start".
   void callbackQuery(
     String data,
-    FutureOr<void> Function(CallbackQueryContext ctx) callback,
-  ) {
+    FutureOr<void> Function(CallbackQueryContext ctx) callback, {
+    RegExp? regex,
+  }) {
     onCallbackQuery.listen((CallbackQueryContext context) {
-      if (context.query.data == data) {
+      if (context.data == null) return;
+      if (regex != null && regex.hasMatch(context.data!)) {
+        context.matches = regex.allMatches(context.data!).toList();
+        callback(context);
+        return;
+      }
+      if (context.data == data) {
         callback(context);
       }
     });
@@ -309,6 +345,167 @@ class Event {
       context.matches = matches.toList();
       if (matches.isNotEmpty) {
         callback(context);
+      }
+    });
+  }
+
+  /// Registers a callback for particular filter types.
+  ///
+  /// The call back will be only be executed on specific update types. You can
+  /// use the [Filter] object to specify which update you want to listen to.
+  void on(TeleverseEvent type, FutureOr<void> Function(Context ctx) callback) {
+    onUpdate.listen((update) {
+      bool isTextMessage =
+          update.message?.text != null || update.channelPost?.text != null;
+      bool isChannelPost = update.type == UpdateType.channelPost;
+      bool isMessage = update.type == UpdateType.message;
+      bool isEditedMessage = update.type == UpdateType.editedMessage;
+      bool isEditedChannelPost = update.type == UpdateType.editedChannelPost;
+      bool isAudioMessage = update.message?.audio != null;
+      bool isAudioChannelPost = update.channelPost?.audio != null;
+      bool hasAudio = isAudioMessage || isAudioChannelPost;
+
+      bool isMessageOrChannelPost = isMessage || isChannelPost;
+      bool isEdited = isEditedMessage || isEditedChannelPost;
+
+      bool isDocumentMessage = update.message?.document != null;
+      bool isDocumentChannelPost = update.channelPost?.document != null;
+      bool hasDocument = isDocumentMessage || isDocumentChannelPost;
+
+      bool isPhotoMessage = update.message?.photo != null;
+      bool isPhotoChannelPost = update.channelPost?.photo != null;
+      bool hasPhoto = isPhotoMessage || isPhotoChannelPost;
+
+      if (type == TeleverseEvent.text) {
+        if (isMessageOrChannelPost && isTextMessage) {
+          if (televerse == null) return;
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
+        }
+      }
+
+      if (type == TeleverseEvent.audio) {
+        if (isMessageOrChannelPost && hasAudio) {
+          if (televerse == null) return;
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
+        }
+      }
+
+      if (type == TeleverseEvent.audioMessage) {
+        if (isMessage && isAudioMessage) {
+          if (televerse == null) return;
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
+        }
+      }
+
+      if (type == TeleverseEvent.edited) {
+        if (isEdited) {
+          if (televerse == null) return;
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
+        }
+      }
+
+      if (type == TeleverseEvent.editedMessage) {
+        if (isEditedMessage) {
+          if (televerse == null) return;
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
+        }
+      }
+
+      if (type == TeleverseEvent.editedChannelPost) {
+        if (isEditedChannelPost) {
+          if (televerse == null) return;
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
+        }
+      }
+
+      if (type == TeleverseEvent.document) {
+        if (isMessageOrChannelPost && hasDocument) {
+          if (televerse == null) return;
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
+        }
+      }
+
+      if (type == TeleverseEvent.documentMessage) {
+        if (isMessage && isDocumentMessage) {
+          if (televerse == null) return;
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
+        }
+      }
+
+      if (type == TeleverseEvent.documentChannelPost) {
+        if (isChannelPost && isDocumentChannelPost) {
+          if (televerse == null) return;
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
+        }
+      }
+
+      if (type == TeleverseEvent.photo) {
+        if (isMessageOrChannelPost && hasPhoto) {
+          if (televerse == null) return;
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
+        }
+      }
+
+      if (type == TeleverseEvent.photoMessage) {
+        if (isMessage && isPhotoMessage) {
+          if (televerse == null) return;
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
+        }
+      }
+
+      if (type == TeleverseEvent.photoChannelPost) {
+        if (isChannelPost && isPhotoChannelPost) {
+          if (televerse == null) return;
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
+        }
       }
     });
   }

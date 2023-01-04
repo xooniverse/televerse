@@ -3,7 +3,7 @@ part of televerse;
 abstract class Fetcher {
   final StreamController<Update> _updateStreamController;
 
-  Fetcher() : _updateStreamController = StreamController();
+  Fetcher() : _updateStreamController = StreamController.broadcast();
 
   /// Emit new update into the stream.
   void addUpdate(Update update) => _updateStreamController.add(update);

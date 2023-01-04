@@ -10,6 +10,10 @@ class Context {
   /// The televerse instance.
   Televerse get api => _televerse;
   final Televerse _televerse;
+  final Update? update;
 
-  Context(this._televerse);
+  Context(
+    this._televerse, {
+    this.update,
+  });
 }

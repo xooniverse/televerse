@@ -4,7 +4,14 @@ class CallbackQueryContext extends Context {
   /// The incoming callback query.
   CallbackQuery query;
 
-  CallbackQueryContext(Televerse t, this.query) : super(t);
+  CallbackQueryContext(
+    Televerse t,
+    this.query, {
+    Update? update,
+  }) : super(
+          t,
+          update: update,
+        );
 
   /// The query string.
   String? get data => query.data;
@@ -33,4 +40,6 @@ class CallbackQueryContext extends Context {
       cacheTime: cacheTime,
     );
   }
+
+  List<RegExpMatch>? matches;
 }
