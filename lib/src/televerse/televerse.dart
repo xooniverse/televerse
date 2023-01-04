@@ -903,7 +903,7 @@ class Televerse extends Event {
   /// until its live_period expires or editing is explicitly disabled
   /// by a call to [stopMessageLiveLocation]. On success, if the edited message
   /// is not an inline message, the edited Message is returned, otherwise True is returned.
-  Future<MessageContextOrBoolean> editMessageLiveLocation(
+  Future<MessageOrBoolean> editMessageLiveLocation(
     ID chatId,
     int messageId, {
     String? inlineMessageId,
@@ -929,7 +929,7 @@ class Televerse extends Event {
       _buildUri("editMessageLiveLocation", params),
     );
 
-    return MessageContextOrBoolean.fromJson(response, this);
+    return MessageOrBoolean.fromJson(response, this);
   }
 
   /// Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.
@@ -937,8 +937,8 @@ class Televerse extends Event {
   /// This one is a bit weird, because it can return either a MessageContext or a boolean.
   /// If the message is an inline message, it returns a boolean, otherwise it returns a MessageContext.
   ///
-  /// You can use [CtxOrBool] type inside the [MessageContextOrBoolean] class to get the correct type.
-  Future<MessageContextOrBoolean> stopMessageLiveLocation(
+  /// You can use [MsgOrBool] type inside the [MessageOrBoolean] class to get the correct type.
+  Future<MessageOrBoolean> stopMessageLiveLocation(
     ID chatId,
     int messageId, {
     String? inlineMessageId,
@@ -953,7 +953,7 @@ class Televerse extends Event {
     dynamic response = await HttpClient.getURI(
       _buildUri("stopMessageLiveLocation", params),
     );
-    return MessageContextOrBoolean.fromJson(response, this);
+    return MessageOrBoolean.fromJson(response, this);
   }
 
   /// Use this method to send information about a venue. On success, the sent Message is returned.

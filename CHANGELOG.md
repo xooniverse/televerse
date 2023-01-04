@@ -2,6 +2,9 @@
 - Added `TeleverseEvent` enum to make it easy to listen for particular events.
 - 🔥 Added `on` method accessible on `Televerse` class. This method can be used to listen for particular events as listed in `TeleverseEvent` enum.
 - Edited method `Televerse.callbackQuery` to accept `RegExp? regex` as an optional parameter. This can be used to listen for callback queries that match the passed regex.
+- Updated RAW API to return `Message` instead of `MessageContext`.
+- Updated `Context` class to have the associated `Update` object with it.
+- Update `MessageContextOrBoolean` class to be `MessageOrBoolean` in places a method sending either `Message` or `bool`, such as `editMessageLiveLocation` etc.
 ## 1.1.0
 - Added a lot new methods to `Televerse` class:
   - `command` - Can be used to listen for Messages that contain the passed command
