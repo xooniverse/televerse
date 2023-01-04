@@ -342,6 +342,14 @@ class Event {
           callback(MessageContext(televerse!, update.message!));
         }
       }
+
+      if (type == TeleverseEvent.audio) {
+        if (update.type == UpdateType.message &&
+            update.message?.audio != null) {
+          if (televerse == null) return;
+          callback(MessageContext(televerse!, update.message!));
+        }
+      }
     });
   }
 }

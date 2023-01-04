@@ -18,5 +18,8 @@ part of televerse;
 ///
 enum TeleverseEvent {
   /// Filters messages to allow only those which have text.
-  text;
+  text,
+
+  /// Filters messages to allow only those which have audio.
+  audio,
 }
