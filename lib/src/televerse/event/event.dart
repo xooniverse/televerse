@@ -106,24 +106,43 @@ class Event {
   void emitUpdate(Update update, Televerse televerse) {
     _updateStreamController.add(update);
     if (update.type == UpdateType.message) {
-      _messageController.add(MessageContext(televerse, update.message!));
+      _messageController.add(MessageContext(
+        televerse,
+        update.message!,
+        update: update,
+      ));
     } else if (update.type == UpdateType.editedMessage) {
-      _editedMessageController
-          .add(MessageContext(televerse, update.editedMessage!));
+      _editedMessageController.add(MessageContext(
+        televerse,
+        update.editedMessage!,
+        update: update,
+      ));
     } else if (update.type == UpdateType.channelPost) {
-      _channelPostController
-          .add(MessageContext(televerse, update.channelPost!));
+      _channelPostController.add(MessageContext(
+        televerse,
+        update.channelPost!,
+        update: update,
+      ));
     } else if (update.type == UpdateType.editedChannelPost) {
-      _editedChannelPostController
-          .add(MessageContext(televerse, update.editedChannelPost!));
+      _editedChannelPostController.add(MessageContext(
+        televerse,
+        update.editedChannelPost!,
+        update: update,
+      ));
     } else if (update.type == UpdateType.inlineQuery) {
-      _inlineQueryController
-          .add(InlineQueryContext(televerse, update.inlineQuery!));
+      _inlineQueryController.add(InlineQueryContext(
+        televerse,
+        update.inlineQuery!,
+        update: update,
+      ));
     } else if (update.type == UpdateType.chosenInlineResult) {
       _chosenInlineResultController.add(update.chosenInlineResult!);
     } else if (update.type == UpdateType.callbackQuery) {
-      _callbackQueryController
-          .add(CallbackQueryContext(televerse, update.callbackQuery!));
+      _callbackQueryController.add(CallbackQueryContext(
+        televerse,
+        update.callbackQuery!,
+        update: update,
+      ));
     } else if (update.type == UpdateType.shippingQuery) {
       _shippingQueryController.add(update.shippingQuery!);
     } else if (update.type == UpdateType.preCheckoutQuery) {
@@ -339,7 +358,11 @@ class Event {
       if (type == TeleverseEvent.text) {
         if (update.type == UpdateType.message && update.message?.text != null) {
           if (televerse == null) return;
-          callback(MessageContext(televerse!, update.message!));
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
         }
       }
 
@@ -347,7 +370,11 @@ class Event {
         if (update.type == UpdateType.message &&
             update.message?.audio != null) {
           if (televerse == null) return;
-          callback(MessageContext(televerse!, update.message!));
+          callback(MessageContext(
+            televerse!,
+            update.message!,
+            update: update,
+          ));
         }
       }
     });

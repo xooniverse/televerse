@@ -52,5 +52,13 @@ void main() {
     ctx.reply('Hello, ${ctx.matches![1]}!');
   });
 
+  // With the [Bot.on] method you can listen for particular updates and you can
+  // execute a callback function with the [Context] object as parameter.
+  bot.on(TeleverseEvent.text, (ctx) {
+    // ctx will be of type [MessageContext]
+    ctx as MessageContext;
+    ctx.reply("This will only be executed if the message has text");
+  });
+
   bot.start();
 }
