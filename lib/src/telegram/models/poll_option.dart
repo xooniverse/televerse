@@ -1,4 +1,5 @@
 part of models;
+
 /// This object contains information about one answer option in a poll.
 class PollOption {
   /// Option text, 1-100 characters

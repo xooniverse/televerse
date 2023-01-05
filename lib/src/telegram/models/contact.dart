@@ -1,4 +1,5 @@
 part of models;
+
 /// This object represents a phone contact.
 class Contact {
   /// Contact's phone number

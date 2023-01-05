@@ -1,3 +1,6 @@
+## 1.2.1
+- Fixed an issue with the `on` method that it's not getting called on any filters.
+- Made official [Televerse Wiki available at the GitHub repo.](https://github.com/HeySreelal/televerse/wiki)
 ## 1.2.0
 - Added `TeleverseEvent` enum to make it easy to listen for particular events.
 - 🔥 Added `on` method accessible on `Televerse` class. This method can be used to listen for particular events as listed in `TeleverseEvent` enum.

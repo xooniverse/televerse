@@ -97,13 +97,13 @@ class Event {
   void onUpdates(List<Update> updates, Televerse televerse) {
     for (Update update in updates) {
       emitUpdate(update, televerse);
-      if (this.televerse == null) {
-        this.televerse = televerse;
-      }
     }
   }
 
   void emitUpdate(Update update, Televerse televerse) {
+    if (this.televerse == null) {
+      this.televerse = televerse;
+    }
     _updateStreamController.add(update);
     if (update.type == UpdateType.message) {
       _messageController.add(MessageContext(
@@ -378,7 +378,10 @@ class Event {
 
       if (type == TeleverseEvent.text) {
         if (isMessageOrChannelPost && isTextMessage) {
-          if (televerse == null) return;
+          if (televerse == null) {
+            print('so here we fall');
+            return;
+          }
           callback(MessageContext(
             televerse!,
             update.message!,
