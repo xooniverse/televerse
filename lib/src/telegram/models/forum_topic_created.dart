@@ -1,4 +1,5 @@
 part of models;
+
 /// This object represents a service message about a new forum topic created in the chat.
 class ForumTopicCreated {
   /// Name of the topic

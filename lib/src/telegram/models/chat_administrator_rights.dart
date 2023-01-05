@@ -1,4 +1,5 @@
 part of models;
+
 /// Represents the rights of an administrator in a chat.
 class ChatAdministratorRights {
   /// True, if the user's presence in the chat is hidden

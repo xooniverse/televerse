@@ -1,4 +1,5 @@
 part of models;
+
 /// This object represents a forum topic.
 class ForumTopic {
   /// Unique identifier of the forum topic

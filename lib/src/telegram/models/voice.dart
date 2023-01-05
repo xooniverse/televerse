@@ -1,4 +1,5 @@
 part of models;
+
 class Voice {
   /// Identifier for this file, which can be used to download or reuse the file
   String fileId;

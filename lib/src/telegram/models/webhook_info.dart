@@ -1,4 +1,5 @@
 part of models;
+
 /// Describes the current status of a webhook.
 class WebhookInfo {
   /// Webhook URL, may be empty if webhook is not set up
