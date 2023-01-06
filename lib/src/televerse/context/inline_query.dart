@@ -7,7 +7,7 @@ class InlineQueryContext extends Context {
   InlineQueryContext(
     Televerse t,
     this.query, {
-    Update? update,
+    required Update update,
   }) : super(t, update: update);
 
   User get from => query.from;

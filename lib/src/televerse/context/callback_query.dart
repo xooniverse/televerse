@@ -7,7 +7,7 @@ class CallbackQueryContext extends Context {
   CallbackQueryContext(
     Televerse t,
     this.query, {
-    Update? update,
+    required Update update,
   }) : super(
           t,
           update: update,

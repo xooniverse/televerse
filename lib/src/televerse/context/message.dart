@@ -1,45 +1,17 @@
 part of televerse.context;
 
-class MessageContext extends Context {
+class MessageContext extends Context with MessageMixin {
   /// The incoming message.
   Message message;
 
   MessageContext(
     Televerse t,
     this.message, {
-    Update? update,
+    required Update update,
   }) : super(t, update: update);
 
   /// Chat of the message.
   Chat get chat => message.chat;
-
-  /// Reply a Text Message to the user.
-  Future<Message> reply(
-    String text, {
-    int? messageThreadId,
-    ParseMode? parseMode,
-    List<MessageEntity>? entities,
-    bool? disableWebPagePreview,
-    bool? disableNotification,
-    bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
-    ReplyMarkup? replyMarkup,
-  }) async {
-    return await _televerse.sendMessage(
-      ChatID(chat.id),
-      text,
-      messageThreadId: messageThreadId,
-      parseMode: parseMode,
-      entities: entities,
-      disableWebPagePreview: disableWebPagePreview,
-      disableNotification: disableNotification,
-      protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
-      replyMarkup: replyMarkup,
-    );
-  }
 
   /// **Regular expression matches**
   ///
@@ -65,5 +37,6 @@ class MessageContext extends Context {
   /// ```
   ///
   /// Easy right? :)
+  @override
   ID get id => ChatID(message.chat.id);
 }

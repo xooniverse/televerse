@@ -780,7 +780,7 @@ class Televerse extends Event {
   }
 
   /// Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
-  Future<List<MessageContext>> sendMediaGroup(
+  Future<List<Message>> sendMediaGroup(
     ID chatId,
     List<InputMedia> media, {
     int? messageThreadId,
@@ -847,9 +847,7 @@ class Televerse extends Event {
         files,
         params,
       );
-      return (response)
-          .map((e) => MessageContext(this, Message.fromJson(e)))
-          .toList();
+      return (response).map((e) => Message.fromJson(e)).toList();
     }
 
     params["media"] = jsonEncode(media.map((m) => m.toJson()).toList());
@@ -857,9 +855,7 @@ class Televerse extends Event {
     List<dynamic> response = await HttpClient.getURI(
       _buildUri("sendMediaGroup", params),
     );
-    return (response)
-        .map((e) => MessageContext(this, Message.fromJson(e)))
-        .toList();
+    return (response).map((e) => Message.fromJson(e)).toList();
   }
 
   /// Use this method to send point on the map. On success, the sent Message is returned.
