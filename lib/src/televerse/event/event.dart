@@ -1,5 +1,9 @@
 part of televerse;
 
+/// **Event**
+/// This class is used to handle events. The [Event] class is extended to [Televerse] class and is used to handle events. The [Event] class contains all the event streams and methods to handle events.
+///
+/// You probably won't need to use this class directly, but you can use it to handle events.
 class Event {
   bool sync;
   Televerse? televerse;

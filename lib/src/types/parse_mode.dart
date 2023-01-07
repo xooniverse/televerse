@@ -1,5 +1,6 @@
 part of types;
 
+/// This object represents the [parse_mode] of a message. See the [Telegram API docs](https://core.telegram.org/bots/api#formatting-options) for more information.
 enum ParseMode {
   markdown._('Markdown'),
   html._('HTML'),

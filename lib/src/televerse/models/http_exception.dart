@@ -1,5 +1,6 @@
 part of televerse.models;
 
+/// HttpException is thrown when the HTTP request fails.
 class HttpException implements Exception {
   final int code;
   final String message;
@@ -15,10 +16,12 @@ class HttpException implements Exception {
   bool get isServerExeption => code >= 500 && code < 600;
 }
 
+/// Bad Request Exception is thrown when the request is invalid.
 class BadRequestException extends HttpException {
   BadRequestException(String message) : super(400, message);
 }
 
+/// This exception is thrown when the bot token is invalid.
 class UnauthorizedException extends HttpException {
   UnauthorizedException(String message)
       : super(

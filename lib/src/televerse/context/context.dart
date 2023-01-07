@@ -6,6 +6,15 @@ part 'message.dart';
 part 'inline_query.dart';
 part 'callback_query.dart';
 
+/// **Context**
+/// This class is used to represent the context of an update. It contains the update and the Televerse instance.
+///
+/// Whenever an update is received, a context is created and passed to the handler. Currently we have 3 types of contexts:
+/// - [MessageContext] - This context is used when a message is received.
+/// - [InlineQueryContext] - This context is used when an inline query is received.
+/// - [CallbackQueryContext] - This context is used when a callback query is received.
+///
+/// Contexts are subclasses of this class. You can use this class to access the update and the Televerse instance.
 class Context {
   /// The televerse instance.
   Televerse get api => _televerse;
