@@ -6,6 +6,7 @@ import 'dart:io' as io;
 import 'package:http/http.dart';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
+import 'package:televerse/src/utils/http.dart';
 
 export 'src/televerse_base.dart';
 export 'src/televerse/context/context.dart';
@@ -18,7 +19,7 @@ part 'src/televerse/fetch/long_polling.dart';
 part 'src/televerse/fetch/webhook.dart';
 part 'src/televerse/event/event.dart';
 part 'src/utils/date.dart';
-part 'src/utils/http.dart';
+
 part 'src/utils/utils.dart';
 part 'src/televerse/filters/filters.dart';
 part 'src/televerse/context/mixins/message_mixin.dart';

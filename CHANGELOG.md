@@ -1,3 +1,5 @@
+## 1.2.3
+- Added documentation for all most all classes and Televerse things.
 ## 1.2.2
 - Added `MessageMixin` to support `MessageContext`.
 - Added `replyWithPhoto`, `replyWithVideo`, `replyWithAudio`, `replyWithDocument`, `replyWithVideoNote`, `replyWithVoice`, `replyWithVenue`, `replyWithContact`, `replyWithPoll`, `replyWithDice`, `replyWithChatAction`, `replyWithGame`, `replyWithAnimation`, `replyWithSticker`, `editMessageText`, and `deleteMessage` methods to `MessageContext`.

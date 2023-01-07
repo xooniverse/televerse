@@ -1,5 +1,6 @@
 part of televerse.models;
 
+/// TeleverseException is thrown when an error occurs in the library.
 class TeleverseException implements Exception {
   final String message;
   final String? description;

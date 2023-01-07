@@ -1,5 +1,6 @@
 part of types;
 
+/// This object represents the status of a member in a chat.
 enum ChatMemberStatus {
   /// Creator of the chat
   creator("creator"),

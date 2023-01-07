@@ -1,4 +1,7 @@
-part of televerse;
+import 'dart:convert';
+
+import 'package:http/http.dart';
+import 'package:televerse/televerse.dart';
 
 class HttpClient {
   /// Send GET request to the given [uri] and return the response body.

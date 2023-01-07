@@ -1,5 +1,6 @@
 part of types;
 
+/// This object represents the position on faces where a mask should be placed by default.
 enum MaskPositionPoint {
   forehead("forehead"),
   eyes("eyes"),

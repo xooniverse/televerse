@@ -1,5 +1,6 @@
 part of televerse.models;
 
+/// WebhookException is thrown when an error occurs while setting up a webhook.
 class WebhookException implements Exception {
   final String message;
 

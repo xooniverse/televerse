@@ -1,6 +1,6 @@
 part of types;
 
-/// Type of the entity. Currently, can be:
+/// Type of the entity. Currently, can be: one of [mention, hashtag, cashtag, botCommand, url, email, phoneNumber, bold, italic, underline, strikethrough, spoiler, code, pre, textLink, textMention, customEmoji]
 /// - mention - (@username)
 /// - hashtag - (#hashtag),
 /// - cashtag - ($USD),

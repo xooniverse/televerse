@@ -1,5 +1,26 @@
 part of televerse.models;
 
+/// **InputFile**
+/// This class is used to represent a file to be sent.
+///
+/// Currently we have three ways to send a file:
+/// 1. Use the file id.
+/// 2. Use the file path.
+/// 3. Use the file url.
+///
+/// The [InputFile] class has three separate constructors for each of these methods.
+/// - [InputFile.fromFileId]
+/// - [InputFile.fromFile]
+/// - [InputFile.fromUrl]
+///
+/// For example, if you want to send a file using the file id, you can use the [InputFile.fromFileId] constructor.
+/// ```dart
+/// // Simply create an InputFile using the file id.
+/// var photo = InputFile.fromFileId('file_id');
+///
+/// // Then pass the InputFile to the method that requires a file.
+/// bot.sendPhoto(chatId, photo);
+/// ```
 class InputFile {
   /// Unique identifier for this file
   final String? fileId;

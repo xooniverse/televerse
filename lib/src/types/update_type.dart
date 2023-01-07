@@ -1,5 +1,6 @@
 part of types;
 
+/// This object represents type of an incoming update.
 enum UpdateType {
   /// Message update
   message("message"),

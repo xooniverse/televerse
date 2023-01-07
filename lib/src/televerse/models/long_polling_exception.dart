@@ -1,5 +1,6 @@
 part of televerse.models;
 
+/// HttpException is thrown when the long polling fails. This exception is thrown when the limit is invalid or the timeout is invalid.
 class LongPollingException implements Exception {
   final String message;
 

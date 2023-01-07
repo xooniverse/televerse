@@ -1,5 +1,6 @@
 part of types;
 
+/// This object represents the type of a result of an inline query.
 enum InlineQueryResultType {
   /// Represents a link to an article or web page.
   article("article"),

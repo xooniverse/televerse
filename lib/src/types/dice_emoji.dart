@@ -1,5 +1,6 @@
 part of types;
 
+/// This object represents dice emoji.
 enum DiceEmoji {
   /// 🎲
   dice("🎲"),

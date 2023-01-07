@@ -1,5 +1,21 @@
 part of televerse;
 
+/// Televerse
+/// This class is used to create a new bot instance. The bot instance is used to send and receive messages.
+///
+/// You can use the [token] to create a new bot instance. You can also pass a [fetcher] to the constructor. The fetcher is used to fetch updates from the Telegram servers. By default, the bot uses long polling to fetch updates. You can also use webhooks to fetch updates.
+///
+/// Create a new bot instance:
+/// ```dart
+/// import 'package:televerse/televerse.dart';
+///
+/// void main() {
+///  var bot = Televerse("YOUR_BOT_TOKEN");
+///  bot.start();
+/// }
+/// ```
+///
+/// The [Televerse] class extends [Event] class. The [Event] class is used to emit events and additionally provides a bunch of useful methods.
 class Televerse extends Event {
   final String token;
 

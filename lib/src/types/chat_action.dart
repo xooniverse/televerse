@@ -1,5 +1,6 @@
 part of types;
 
+/// This object represents a chat action.
 enum ChatAction {
   typing._('typing'),
   uploadPhoto._('upload_photo'),
