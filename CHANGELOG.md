@@ -1,3 +1,6 @@
+## 1.2.2
+- Added `MessageMixin` to support `MessageContext`.
+- Added `replyWithPhoto`, `replyWithVideo`, `replyWithAudio`, `replyWithDocument`, `replyWithVideoNote`, `replyWithVoice` methods to `MessageContext`.
 ## 1.2.1
 - Fixed an issue with the `on` method that it's not getting called on any filters.
 - Made official [Televerse Wiki available at the GitHub repo.](https://github.com/HeySreelal/televerse/wiki)
