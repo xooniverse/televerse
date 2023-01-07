@@ -1,6 +1,6 @@
 part of televerse.context;
 
-class InlineQueryContext extends Context {
+class InlineQueryContext extends Context with InlineQueryMixin {
   /// The incoming inline query.
   InlineQuery query;
 

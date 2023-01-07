@@ -65,6 +65,25 @@ mixin CallbackQueryMixin on Context {
     );
   }
 
+  /// Edit the message of the callback query.
+  Future<Message> editMessage(
+    String text, {
+    ParseMode? parseMode,
+    List<MessageEntity>? entities,
+    bool disableWebPagePreview = false,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    return await api.editMessageText(
+      ChatID(callbackQuery.message!.chat.id),
+      callbackQuery.message!.messageId,
+      text,
+      parseMode: parseMode,
+      entities: entities,
+      disableWebPagePreview: disableWebPagePreview,
+      replyMarkup: replyMarkup,
+    );
+  }
+
   /// The callback query.
   CallbackQuery get callbackQuery => update.callbackQuery!;
 }
