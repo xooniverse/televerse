@@ -542,4 +542,35 @@ mixin MessageMixin on Context {
       replyMarkup: replyMarkup,
     );
   }
+
+  /// Edit the text of a message.
+  ///
+  /// This method can be used to edit text of messages sent by the bot.
+  Future<Message> editMessageText(
+    String text, {
+    ParseMode? parseMode,
+    List<MessageEntity>? entities,
+    bool disableWebPagePreview = false,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    return await api.editMessageText(
+      id,
+      update.message!.messageId,
+      text,
+      parseMode: parseMode,
+      entities: entities,
+      disableWebPagePreview: disableWebPagePreview,
+      replyMarkup: replyMarkup,
+    );
+  }
+
+  /// Delete the message.
+  ///
+  /// Use this method to delete the message received by the bot.
+  Future<bool> deleteMessage() async {
+    return await api.deleteMessage(
+      id,
+      update.message!.messageId,
+    );
+  }
 }
