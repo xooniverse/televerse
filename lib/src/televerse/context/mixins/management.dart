@@ -1,5 +1,10 @@
 part of televerse;
 
+/// Mixin that contains methods for managing the chat.
+///
+/// This includes methods like [banAuthor], [banSenderChat], [deleteChatPhoto],
+/// [promoteAuthor], [restrictAuthor], [setChatDescription], [setChatPermissions],
+/// [setChatPhoto], [setChatTitle], [unbanAuthor], [unbanSenderChat].
 mixin ManagementMixin on Context {
   /// **Ban the user**
   ///
@@ -149,5 +154,57 @@ mixin ManagementMixin on Context {
   /// This method will leave the chat in the current context.
   Future<bool> leaveChat() async {
     return await api.leaveChat(id);
+  }
+
+  /// Set Chat Description
+  ///
+  /// This method will set the chat description in the current context.
+  Future<bool> setChatDescription(String description) async {
+    return await api.setChatDescription(id, description);
+  }
+
+  /// Set Chat Permissions
+  ///
+  /// This method will set the chat permissions in the current context.
+  Future<bool> setChatPermissions(ChatPermissions permissions) async {
+    return await api.setChatPermissions(id, permissions);
+  }
+
+  /// Set Chat Photo
+  ///
+  /// This method will set the chat photo in the current context.
+  Future<bool> setChatPhoto(InputFile photo) async {
+    return await api.setChatPhoto(id, photo);
+  }
+
+  /// Set Chat Title
+  ///
+  /// This method will set the chat title in the current context.
+  Future<bool> setChatTitle(String title) async {
+    return await api.setChatTitle(id, title);
+  }
+
+  /// Unban Chat Member
+  ///
+  /// This method will unban the chat member in the current context.
+  Future<bool> unbanAuthor(
+    int userId, {
+    bool? onlyIfBanned,
+  }) async {
+    return await api.unbanChatMember(
+      id,
+      userId,
+      onlyIfBanned: onlyIfBanned,
+    );
+  }
+
+  /// Unban Sender Chat
+  ///
+  /// This method will unban the sender chat in the current context.
+  Future<bool> unbanSenderChat(int senderChatId) async {
+    return await api.unbanChatSenderChat(
+      id,
+      senderChatId,
+    );
   }
 }

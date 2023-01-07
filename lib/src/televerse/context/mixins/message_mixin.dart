@@ -1,5 +1,13 @@
 part of televerse;
 
+/// Mixin for sending messages.
+///
+/// This mixin contains methods for sending messages to the user.
+/// That includes methods like [reply], [replyWithPhoto], [replyWithAudio],
+/// [replyWithDocument], [replyWithVideo], [replyWithAnimation], [replyWithVoice],
+/// [replyWithVideoNote], [replyWithMediaGroup], [replyWithLocation], [replyWithVenue],
+/// [replyWithContact], [replyWithDice], [replyWithPoll], [replyWithChatAction],
+/// [replyWithGame], [replyWithSticker],
 mixin MessageMixin on Context {
   /// Reply a Text Message to the user.
   Future<Message> reply(
