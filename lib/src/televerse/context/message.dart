@@ -1,6 +1,6 @@
 part of televerse.context;
 
-class MessageContext extends Context with MessageMixin {
+class MessageContext extends Context with MessageMixin, ManagementMixin {
   /// The incoming message.
   Message message;
 

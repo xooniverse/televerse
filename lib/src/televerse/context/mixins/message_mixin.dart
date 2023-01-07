@@ -573,4 +573,74 @@ mixin MessageMixin on Context {
       update.message!.messageId,
     );
   }
+
+  /// Edit the caption of a message.
+  ///
+  /// This method can be used to edit captions of the message in the current context.
+  Future<Message> editMessageCaption(
+    String caption, {
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    return await api.editMessageCaption(
+      id,
+      update.message!.messageId,
+      caption: caption,
+      parseMode: parseMode,
+      captionEntities: captionEntities,
+      replyMarkup: replyMarkup,
+    );
+  }
+
+  /// Edit message live location
+  ///
+  /// This method will edit the message live location in the current context.
+  Future<MessageOrBoolean> editMessageLiveLocation({
+    String? inlineMessageId,
+    double? latitude,
+    double? longitude,
+    double? horizontalAccuracy,
+    int? heading,
+    int? proximityAlertRadius,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    return await api.editMessageLiveLocation(
+      id,
+      update.message!.messageId,
+      inlineMessageId: inlineMessageId,
+      latitude: latitude,
+      longitude: longitude,
+      horizontalAccuracy: horizontalAccuracy,
+      heading: heading,
+      proximityAlertRadius: proximityAlertRadius,
+      replyMarkup: replyMarkup,
+    );
+  }
+
+  /// Forward the message.
+  ///
+  /// This method will forward the message in the current context.
+  Future<Message> forwardMessage(
+    ID chatId, {
+    bool? disableNotification,
+    int? messageThreadId,
+    bool? protectContent,
+  }) async {
+    return await api.forwardMessage(
+      chatId,
+      id,
+      update.message!.messageId,
+      messageThreadId: messageThreadId,
+      disableNotification: disableNotification,
+      protectContent: protectContent,
+    );
+  }
+
+  /// Get Author
+  ///
+  /// This method will get the chat member in the current context.
+  Future<ChatMember> getAuthor(int userId) async {
+    return await api.getChatMember(id, update.message!.from!.id);
+  }
 }
