@@ -780,7 +780,7 @@ class Televerse extends Event {
   }
 
   /// Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
-  Future<List<MessageContext>> sendMediaGroup(
+  Future<List<Message>> sendMediaGroup(
     ID chatId,
     List<InputMedia> media, {
     int? messageThreadId,
@@ -847,9 +847,7 @@ class Televerse extends Event {
         files,
         params,
       );
-      return (response)
-          .map((e) => MessageContext(this, Message.fromJson(e)))
-          .toList();
+      return (response).map((e) => Message.fromJson(e)).toList();
     }
 
     params["media"] = jsonEncode(media.map((m) => m.toJson()).toList());
@@ -857,9 +855,7 @@ class Televerse extends Event {
     List<dynamic> response = await HttpClient.getURI(
       _buildUri("sendMediaGroup", params),
     );
-    return (response)
-        .map((e) => MessageContext(this, Message.fromJson(e)))
-        .toList();
+    return (response).map((e) => Message.fromJson(e)).toList();
   }
 
   /// Use this method to send point on the map. On success, the sent Message is returned.
@@ -1609,9 +1605,9 @@ class Televerse extends Event {
   /// Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
   Future<bool> pinChatMessage(
     ID chatId,
-    int messageId,
+    int messageId, {
     bool? disableNotification,
-  ) async {
+  }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,

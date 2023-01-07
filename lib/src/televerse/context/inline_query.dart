@@ -1,13 +1,13 @@
 part of televerse.context;
 
-class InlineQueryContext extends Context {
+class InlineQueryContext extends Context with InlineQueryMixin {
   /// The incoming inline query.
   InlineQuery query;
 
   InlineQueryContext(
     Televerse t,
     this.query, {
-    Update? update,
+    required Update update,
   }) : super(t, update: update);
 
   User get from => query.from;

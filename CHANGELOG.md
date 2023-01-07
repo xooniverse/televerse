@@ -1,3 +1,13 @@
+## 1.2.2
+- Added `MessageMixin` to support `MessageContext`.
+- Added `replyWithPhoto`, `replyWithVideo`, `replyWithAudio`, `replyWithDocument`, `replyWithVideoNote`, `replyWithVoice`, `replyWithVenue`, `replyWithContact`, `replyWithPoll`, `replyWithDice`, `replyWithChatAction`, `replyWithGame`, `replyWithAnimation`, `replyWithSticker`, `editMessageText`, and `deleteMessage` methods to `MessageContext`.
+- Added `ManagementMixin` to support `MessageContext`.
+- Added `banAuthor`, `banSenderChat`, `deleteChatPhoto`, `promoteAuthor`, `restrictAuthor`, `exportChatInviteLink`, `revokeChatInviteLink`, `pinChatMessage`, `unpinChatMessage`, `getChat`, `getChatAdministrators`, `getChatMember`, and `leaveChat` on `ManagementMixin`.
+- Both `MessageMixin` and `ManagementMixin` are now available on `MessageContext`.
+- Added `CallbackQueryMixin` to support `CallbackQueryContext`.
+- `CallbackQueryContext` now has `answer` and `editMessage` methods available.
+- Added `InlineQueryMixin` to support `InlineQueryContext`.
+- `InlineQueryContext` now has `answer`, and `answerWithArticles` methods available.
 ## 1.2.1
 - Fixed an issue with the `on` method that it's not getting called on any filters.
 - Made official [Televerse Wiki available at the GitHub repo.](https://github.com/HeySreelal/televerse/wiki)
