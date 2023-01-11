@@ -8,10 +8,10 @@ class KeyboardButton {
   /// Optional. If True, the user's phone number will be sent as a contact when the button is pressed. Available in private chats only
   ///
   /// Note: request_contact and request_location options will only work in Telegram versions released after 9 April, 2016. Older clients will display unsupported message.
-  bool requestContact;
+  bool? requestContact;
 
   /// Optional. If True, the user's current location will be sent when the button is pressed. Available in private chats only.
-  bool requestLocation;
+  bool? requestLocation;
 
   /// Optional. If specified, the user will be asked to create a poll and send it to the bot when the button is pressed. Available in private chats only.
   ///
@@ -25,8 +25,8 @@ class KeyboardButton {
 
   KeyboardButton({
     required this.text,
-    required this.requestContact,
-    required this.requestLocation,
+    this.requestContact,
+    this.requestLocation,
     this.requestPoll,
     this.webApp,
   });
