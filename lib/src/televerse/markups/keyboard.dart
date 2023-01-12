@@ -2,10 +2,7 @@ part of televerse;
 
 /// The [Keyboard] class can be used to represent a [ReplyKeyboardMarkup]. This is an easy method to show a keyboard to the user.
 class Keyboard extends ReplyKeyboardMarkup {
-  Keyboard()
-      : super(
-          keyboard: [[]],
-        );
+  Keyboard() : super(keyboard: [[]]);
 
   /// Adds a Row of [KeyboardButton] to the keyboard.
   Keyboard addRow(List<KeyboardButton> row) {

@@ -234,6 +234,10 @@ class Televerse extends Event {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": replyMarkup?.toJson(),
     };
+
+    /// check occurence of null in anywhere in the params map
+    /// remove the null key and value
+
     Uri uri = _buildUri("sendMessage");
 
     Map<String, dynamic> response = await HttpClient.postURI(uri, params);

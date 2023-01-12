@@ -28,6 +28,7 @@ part 'src/televerse/context/mixins/callback_mixin.dart';
 part 'src/televerse/context/mixins/inline_mixin.dart';
 
 part 'src/televerse/markups/keyboard.dart';
+part 'src/televerse/markups/inline_keyboard.dart';
 
 /// The main class of the library.
 ///
