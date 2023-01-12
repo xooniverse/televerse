@@ -234,9 +234,7 @@ class Televerse extends Event {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": replyMarkup?.toJson(),
     };
-
-    /// check occurence of null in anywhere in the params map
-    /// remove the null key and value
+    params.removeWhere((key, value) => value == null);
 
     Uri uri = _buildUri("sendMessage");
 
