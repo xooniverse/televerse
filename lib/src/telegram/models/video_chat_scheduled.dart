@@ -20,7 +20,7 @@ class VideoChatScheduled {
   Map<String, dynamic> toJson() {
     return {
       'start_date': startDate,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   /// [DateTime] object getter for [startDate]

@@ -74,7 +74,7 @@ class InlineQueryResultGif extends InlineQueryResult {
       'caption_entities': captionEntities,
       'reply_markup': replyMarkup,
       'input_message_content': inputMessageContent,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InlineQueryResultGif.fromJson(Map<String, dynamic> json) {

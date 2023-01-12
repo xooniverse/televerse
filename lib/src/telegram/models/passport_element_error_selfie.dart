@@ -25,7 +25,7 @@ class PassportElementErrorSelfie extends PassportElementError {
       'type': type,
       'message': message,
       'file_hash': fileHash,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory PassportElementErrorSelfie.fromJson(Map<String, dynamic> json) {

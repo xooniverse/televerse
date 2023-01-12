@@ -28,7 +28,7 @@ class InputContactMessageContent extends InputMessageContent {
       'first_name': firstName,
       'last_name': lastName,
       'vcard': vcard,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InputContactMessageContent.fromJson(Map<String, dynamic> json) {

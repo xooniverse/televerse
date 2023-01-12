@@ -16,6 +16,6 @@ class VideoChatParticipantsInvited {
   Map<String, dynamic> toJson() {
     return {
       'users': List<dynamic>.from(users.map((x) => x.toJson())),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

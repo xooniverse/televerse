@@ -22,7 +22,14 @@ class UserProfilePhotos {
     return {
       'total_count': totalCount,
       'photos': List<dynamic>.from(
-          photos.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
-    };
+        photos.map(
+          (x) => List<dynamic>.from(
+            x.map(
+              (x) => x.toJson(),
+            ),
+          ),
+        ),
+      ),
+    }..removeWhere((key, value) => value == null);
   }
 }

@@ -66,6 +66,6 @@ class ChatPermissions {
       'can_invite_users': canInviteUsers,
       'can_pin_messages': canPinMessages,
       'can_manage_topics': canManageTopics,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

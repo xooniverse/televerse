@@ -55,7 +55,7 @@ class InputMediaVideo extends InputMedia {
       'height': height,
       'duration': duration,
       'supports_streaming': supportsStreaming,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InputMediaVideo.fromJson(Map<String, dynamic> json) {

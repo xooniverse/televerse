@@ -26,6 +26,6 @@ class InlineKeyboardMarkup extends ReplyMarkup {
           return button.toJson();
         }).toList();
       }).toList(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

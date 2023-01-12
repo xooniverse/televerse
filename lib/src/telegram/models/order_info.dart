@@ -25,7 +25,7 @@ class OrderInfo {
       'phone_number': phoneNumber,
       'email': email,
       'shipping_address': shippingAddress.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory OrderInfo.fromJson(Map<String, dynamic> json) {

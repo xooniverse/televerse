@@ -84,6 +84,6 @@ class ChatAdministratorRights {
       'can_edit_messages': canEditMessages,
       'can_pin_messages': canPinMessages,
       'can_manage_forum': canManageForum,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

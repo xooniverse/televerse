@@ -24,7 +24,7 @@ class InlineQueryResultGame extends InlineQueryResult {
       'id': id,
       'game_short_name': gameShortName,
       'reply_markup': replyMarkup?.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InlineQueryResultGame.fromJson(Map<String, dynamic> json) {

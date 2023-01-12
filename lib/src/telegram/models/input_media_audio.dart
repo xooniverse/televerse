@@ -49,7 +49,7 @@ class InputMediaAudio extends InputMedia {
       'duration': duration,
       'performer': performer,
       'title': title,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InputMediaAudio.fromJson(Map<String, dynamic> json) {

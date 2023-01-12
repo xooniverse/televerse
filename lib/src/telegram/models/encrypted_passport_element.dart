@@ -57,7 +57,7 @@ class EncryptedPassportElement {
       'selfie': selfie?.toJson(),
       'translation': translation?.map((e) => e.toJson()).toList(),
       'hash': hash,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory EncryptedPassportElement.fromJson(Map<String, dynamic> json) {

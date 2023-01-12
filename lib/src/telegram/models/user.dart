@@ -78,6 +78,6 @@ class User {
       'can_join_groups': canJoinGroups,
       'can_read_all_group_messages': canReadAllGroupMessages,
       'supports_inline_queries': supportsInlineQueries,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

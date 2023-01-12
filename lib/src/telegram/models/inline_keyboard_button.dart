@@ -80,6 +80,6 @@ class InlineKeyboardButton {
       'callback_game': callbackGame?.toJson(),
       'pay': pay,
       'web_app_info': webAppInfo?.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

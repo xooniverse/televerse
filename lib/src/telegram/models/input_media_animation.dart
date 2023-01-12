@@ -49,7 +49,7 @@ class InputMediaAnimation extends InputMedia {
       'width': width,
       'height': height,
       'duration': duration,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InputMediaAnimation.fromJson(Map<String, dynamic> json) {

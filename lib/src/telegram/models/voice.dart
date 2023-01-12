@@ -43,7 +43,7 @@ class Voice {
       'duration': duration,
       'mime_type': mimeType,
       'file_size': fileSize,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   /// Duration of the video as [Duration] object.

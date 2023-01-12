@@ -31,11 +31,12 @@ class ChatPhoto {
   }
 
   Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
+    Map<String, dynamic> data = <String, dynamic>{};
     data['small_file_id'] = smallFileId;
     data['small_file_unique_id'] = smallFileUniqueId;
     data['big_file_id'] = bigFileId;
     data['big_file_unique_id'] = bigFileUniqueId;
+    data.removeWhere((key, value) => value == null);
     return data;
   }
 }

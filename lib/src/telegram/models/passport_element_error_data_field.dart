@@ -30,7 +30,7 @@ class PassportElementErrorDataField extends PassportElementError {
       'message': message,
       'field_name': fieldName,
       'data_hash': dataHash,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory PassportElementErrorDataField.fromJson(Map<String, dynamic> json) {

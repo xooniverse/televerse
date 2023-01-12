@@ -6,6 +6,6 @@ abstract class BotCommandScope {
   Map<String, dynamic> toJson() {
     return {
       'type': type.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

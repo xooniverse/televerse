@@ -25,7 +25,7 @@ class PassportElementErrorFrontSide extends PassportElementError {
       'type': type,
       'message': message,
       'file_hash': fileHash,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory PassportElementErrorFrontSide.fromJson(Map<String, dynamic> json) {

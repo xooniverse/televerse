@@ -25,7 +25,7 @@ class ShippingQuery {
       'from': from.toJson(),
       'invoice_payload': invoicePayload,
       'shipping_address': shippingAddress.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory ShippingQuery.fromJson(Map<String, dynamic> json) {

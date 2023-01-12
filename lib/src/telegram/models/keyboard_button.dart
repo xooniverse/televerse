@@ -51,6 +51,6 @@ class KeyboardButton {
       'request_location': requestLocation,
       'request_poll': requestPoll?.toJson(),
       'web_app': webApp?.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

@@ -28,7 +28,7 @@ class InputTextMessageContent extends InputMessageContent {
       'parse_mode': parseMode?.value,
       'entities': entities?.map((e) => e.toJson()).toList(),
       'disable_web_page_preview': disableWebPagePreview,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InputTextMessageContent.fromJson(Map<String, dynamic> json) {

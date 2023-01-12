@@ -12,7 +12,7 @@ class SentWebAppMessage {
   Map<String, dynamic> toJson() {
     return {
       'inline_message_id': inlineMessageId,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory SentWebAppMessage.fromJson(Map<String, dynamic> json) {

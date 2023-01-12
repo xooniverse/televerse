@@ -90,7 +90,7 @@ class ChatMemberAdministrator implements ChatMember {
       'can_pin_messages': canPinMessages,
       'can_manage_topics': canManageTopics,
       'custom_title': customTitle
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory ChatMemberAdministrator.fromJson(Map<String, dynamic> json) {

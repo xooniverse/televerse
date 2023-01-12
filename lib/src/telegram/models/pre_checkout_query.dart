@@ -42,7 +42,7 @@ class PreCheckoutQuery {
       'invoice_payload': invoicePayload,
       'shipping_option_id': shippingOptionId,
       'order_info': orderInfo?.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory PreCheckoutQuery.fromJson(Map<String, dynamic> json) {

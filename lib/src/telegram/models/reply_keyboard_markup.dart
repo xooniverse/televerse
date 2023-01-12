@@ -58,6 +58,6 @@ class ReplyKeyboardMarkup extends ReplyMarkup {
       'input_field_placeholder': inputFieldPlaceholder,
       'selective': selective,
       'is_persistent': isPersistent,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

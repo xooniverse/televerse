@@ -16,6 +16,6 @@ abstract class PassportElementError {
     return {
       'source': source,
       'type': type,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

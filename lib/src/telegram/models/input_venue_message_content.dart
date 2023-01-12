@@ -48,7 +48,7 @@ class InputVenueMessageContent extends InputMessageContent {
       'foursquare_type': foursquareType,
       'google_place_id': googlePlaceId,
       'google_place_type': googlePlaceType,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InputVenueMessageContent.fromJson(Map<String, dynamic> json) {

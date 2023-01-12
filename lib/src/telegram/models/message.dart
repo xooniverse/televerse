@@ -504,7 +504,7 @@ class Message {
       'is_topic_message': isTopicMessage,
       'thread_id': threadId,
       'message_thread_id': messageThreadId,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   DateTime get dateTime => DateTime.fromMillisecondsSinceEpoch(date * 1000);

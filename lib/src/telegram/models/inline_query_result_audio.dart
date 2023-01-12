@@ -61,7 +61,7 @@ class InlineQueryResultAudio extends InlineQueryResult {
       'reply_markup': replyMarkup?.toJson(),
       'input_message_content': inputMessageContent?.toJson(),
       'id': id,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InlineQueryResultAudio.fromJson(Map<String, dynamic> json) {

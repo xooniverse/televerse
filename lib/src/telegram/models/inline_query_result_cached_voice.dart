@@ -50,7 +50,7 @@ class InlineQueryResultCachedVoice extends InlineQueryResult {
       'caption_entities': captionEntities?.map((e) => e.toJson()).toList(),
       'reply_markup': replyMarkup?.toJson(),
       'input_message_content': inputMessageContent?.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InlineQueryResultCachedVoice.fromJson(Map<String, dynamic> json) {
