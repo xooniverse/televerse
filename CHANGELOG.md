@@ -1,6 +1,8 @@
 ## 1.2.4
+- New `InlineKeyboard` class is added. This can be very useful in creating `InlineKeyboardMarkup`.
 - New `Keyboard` class to help with creating `ReplyKeyboardMarkup` easily and quickly. 
 - Updated `ReplyKeyboardMarkup` and `KeyboardButton` as per the API Documentation (some of the optional parameters were required in the previous version).
+- Fixed an issue that was causing `sendMessage` to not work when used with any reply markup.
 ## 1.2.3
 - Added documentation for all most all classes and Televerse things.
 ## 1.2.2
