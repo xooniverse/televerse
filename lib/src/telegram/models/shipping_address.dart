@@ -37,7 +37,7 @@ class ShippingAddress {
       'street_line1': streetLine1,
       'street_line2': streetLine2,
       'post_code': postCode,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory ShippingAddress.fromJson(Map<String, dynamic> json) {

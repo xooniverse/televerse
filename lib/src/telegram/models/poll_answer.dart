@@ -30,6 +30,6 @@ class PollAnswer {
       'poll_id': pollId,
       'user': user.toJson(),
       'option_ids': optionIds,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

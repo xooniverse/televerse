@@ -48,6 +48,6 @@ class Document {
       'file_name': fileName,
       'mime_type': mimeType,
       'file_size': fileSize,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

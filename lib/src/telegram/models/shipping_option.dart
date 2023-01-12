@@ -22,7 +22,7 @@ class ShippingOption {
       'id': id,
       'title': title,
       'prices': prices.map((e) => e.toJson()).toList(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory ShippingOption.fromJson(Map<String, dynamic> json) {

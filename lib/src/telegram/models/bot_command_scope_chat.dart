@@ -23,6 +23,6 @@ class BotCommandScopeChat implements BotCommandScope {
     return {
       'type': type.toJson(),
       'chat_id': chatId.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

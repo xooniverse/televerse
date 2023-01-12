@@ -67,7 +67,7 @@ class Audio {
       'mime_type': mimeType,
       'file_size': fileSize,
       'thumb': thumb?.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   /// Duration of the video as [Duration] object.

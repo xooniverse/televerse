@@ -38,7 +38,7 @@ class PassportFile {
       'file_unique_id': fileUniqueId,
       'file_size': fileSize,
       'file_date': fileDate,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   /// [DateTime] object of [fileDate].

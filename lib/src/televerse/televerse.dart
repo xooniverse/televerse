@@ -30,7 +30,7 @@ class Televerse extends Event {
 
   final String _baseUrl = "api.telegram.org";
   Uri _buildUri(String method, [Map<String, dynamic>? params]) {
-    params?.removeWhere((key, value) => value == null);
+    params?.removeWhere((key, value) => value == null || value == "null");
     params = params?.map((key, value) => MapEntry(key, value.toString()));
     Uri uri = Uri.https(_baseUrl, "/bot$token/$method", params);
     return uri;
@@ -232,8 +232,9 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
+
     Uri uri = _buildUri("sendMessage");
 
     Map<String, dynamic> response = await HttpClient.postURI(uri, params);
@@ -313,7 +314,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": jsonEncode(jsonEncode(replyMarkup?.toJson())),
     };
     Uri uri = _buildUri("copyMessage", params);
 
@@ -344,7 +345,7 @@ class Televerse extends Event {
       "disable_notification": disableNotification,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response;
     if (photo.type == InputFileType.file) {
@@ -404,7 +405,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
@@ -474,7 +475,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
@@ -553,7 +554,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
@@ -629,7 +630,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
@@ -699,7 +700,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
@@ -751,7 +752,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
@@ -903,7 +904,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendLocation", params),
@@ -935,7 +936,7 @@ class Televerse extends Event {
       "horizontal_accuracy": horizontalAccuracy,
       "heading": heading,
       "proximity_alert_radius": proximityAlertRadius,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     dynamic response = await HttpClient.getURI(
       _buildUri("editMessageLiveLocation", params),
@@ -960,7 +961,7 @@ class Televerse extends Event {
       "chat_id": chatId.id,
       "message_id": messageId,
       "inline_message_id": inlineMessageId,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     dynamic response = await HttpClient.getURI(
       _buildUri("stopMessageLiveLocation", params),
@@ -1001,7 +1002,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendVenue", params),
@@ -1034,7 +1035,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendContact", params),
@@ -1125,7 +1126,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendPoll", params),
@@ -1161,7 +1162,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("sendDice", params),
@@ -1998,7 +1999,7 @@ class Televerse extends Event {
   }) async {
     Map<String, dynamic> params = {
       "commands": commands.map((e) => e.toJson()).toList(),
-      "scope": scope?.toJson(),
+      "scope": jsonEncode(scope?.toJson()),
     };
     bool response = await HttpClient.getURI(
       _buildUri("setMyCommands", params),
@@ -2070,7 +2071,7 @@ class Televerse extends Event {
     bool? forChannels,
   }) async {
     Map<String, dynamic> params = {
-      "rights": rights?.toJson(),
+      "rights": jsonEncode(rights?.toJson()),
       "for_channels": forChannels,
     };
     bool response = await HttpClient.getURI(
@@ -2114,7 +2115,7 @@ class Televerse extends Event {
       "parse_mode": parseMode?.value,
       "entities": entities?.map((e) => e.toJson()).toList(),
       "disable_web_page_preview": disableWebPagePreview,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("editMessageText", params),
@@ -2144,7 +2145,7 @@ class Televerse extends Event {
       "parse_mode": parseMode?.value,
       "entities": entities?.map((e) => e.toJson()).toList(),
       "disable_web_page_preview": disableWebPagePreview,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     bool response = await HttpClient.getURI(
       _buildUri("editInlineMessageText", params),
@@ -2174,7 +2175,7 @@ class Televerse extends Event {
       "caption": caption,
       "parse_mode": parseMode?.value,
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("editMessageCaption", params),
@@ -2202,7 +2203,7 @@ class Televerse extends Event {
       "caption": caption,
       "parse_mode": parseMode?.value,
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     bool response = await HttpClient.getURI(
       _buildUri("editInlineMessageCaption", params),
@@ -2226,7 +2227,7 @@ class Televerse extends Event {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
 
     Map<String, dynamic> response;
@@ -2270,7 +2271,7 @@ class Televerse extends Event {
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
 
     bool response;
@@ -2316,7 +2317,7 @@ class Televerse extends Event {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("editMessageReplyMarkup", params),
@@ -2338,7 +2339,7 @@ class Televerse extends Event {
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     bool response = await HttpClient.getURI(
       _buildUri("editInlineMessageReplyMarkup", params),
@@ -2355,7 +2356,7 @@ class Televerse extends Event {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await HttpClient.getURI(
       _buildUri("stopPoll", params),
@@ -2406,7 +2407,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
 
     Map<String, dynamic> response;
@@ -2504,8 +2505,8 @@ class Televerse extends Event {
       "title": title,
       "emojis": emojis,
       "contains_masks": containsMasks,
-      "mask_position": maskPosition?.toJson(),
-      "sticker_type": stickerType?.toJson(),
+      "mask_position": jsonEncode(maskPosition?.toJson()),
+      "sticker_type": jsonEncode(stickerType?.toJson()),
     };
 
     bool response;
@@ -2588,7 +2589,7 @@ class Televerse extends Event {
       "user_id": userId,
       "name": name,
       "emojis": emojis,
-      "mask_position": maskPosition?.toJson(),
+      "mask_position": jsonEncode(maskPosition?.toJson()),
     };
 
     bool response;
@@ -2833,7 +2834,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
 
     Map<String, dynamic> response = await HttpClient.postURI(
@@ -3010,7 +3011,7 @@ class Televerse extends Event {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": replyMarkup?.toJson(),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
 
     Map<String, dynamic> response = await HttpClient.postURI(

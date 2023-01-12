@@ -186,6 +186,7 @@ class Event {
     FutureOr<void> Function(MessageContext ctx) callback,
   ) {
     onMessage.listen((MessageContext context) {
+      if (context.message.text == null) return;
       if (context.message.text!.startsWith('/$command')) {
         callback(context);
       }

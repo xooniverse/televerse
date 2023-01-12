@@ -25,7 +25,7 @@ class PassportElementErrorFiles extends PassportElementError {
       'type': type,
       'message': message,
       'file_hashes': fileHashes,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory PassportElementErrorFiles.fromJson(Map<String, dynamic> json) {

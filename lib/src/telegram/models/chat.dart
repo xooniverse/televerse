@@ -181,6 +181,6 @@ class Chat {
       'can_set_sticker_set': canSetStickerSet,
       'linked_chat_id': linkedChatId,
       'location': location?.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

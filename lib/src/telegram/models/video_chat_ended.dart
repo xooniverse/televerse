@@ -18,7 +18,7 @@ class VideoChatEnded {
   Map<String, dynamic> toJson() {
     return {
       'duration': duration,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   /// [Duration] object of [duration] field

@@ -52,6 +52,6 @@ class InlineQuery {
       'offset': offset,
       'chat_type': chatType?.index,
       'location': location?.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

@@ -32,7 +32,7 @@ class ChosenInlineResult {
       'location': location?.toJson(),
       'inline_message_id': inlineMessageId,
       'query': query,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory ChosenInlineResult.fromJson(Map<String, dynamic> json) {

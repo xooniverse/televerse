@@ -24,6 +24,6 @@ class ResponseParameters {
     return {
       'migrate_to_chat_id': migrateToChatId,
       'retry_after': retryAfter,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

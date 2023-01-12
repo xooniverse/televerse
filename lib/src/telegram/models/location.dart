@@ -48,6 +48,6 @@ class Location {
       'live_period': livePeriod,
       'heading': heading,
       'proximity_alert_radius': proximityAlertRadius,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

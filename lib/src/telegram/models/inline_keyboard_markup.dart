@@ -21,8 +21,11 @@ class InlineKeyboardMarkup extends ReplyMarkup {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'inline_keyboard':
-          inlineKeyboard.map((e) => e.map((e) => e.toJson()).toList()).toList(),
-    };
+      'inline_keyboard': inlineKeyboard.map((row) {
+        return row.map((button) {
+          return button.toJson();
+        }).toList();
+      }).toList(),
+    }..removeWhere((key, value) => value == null);
   }
 }

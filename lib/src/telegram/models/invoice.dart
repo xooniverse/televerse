@@ -32,7 +32,7 @@ class Invoice {
       'start_parameter': startParameter,
       'currency': currency,
       'total_amount': totalAmount,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory Invoice.fromJson(Map<String, dynamic> json) {

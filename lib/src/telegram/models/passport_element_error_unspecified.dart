@@ -25,7 +25,7 @@ class PassportElementErrorUnspecified extends PassportElementError {
       'type': type,
       'message': message,
       'element_hash': elementHash,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory PassportElementErrorUnspecified.fromJson(Map<String, dynamic> json) {

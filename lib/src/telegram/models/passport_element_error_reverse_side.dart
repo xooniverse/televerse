@@ -25,7 +25,7 @@ class PassportElementErrorReverseSide extends PassportElementError {
       'type': type,
       'message': message,
       'file_hash': fileHash,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory PassportElementErrorReverseSide.fromJson(Map<String, dynamic> json) {

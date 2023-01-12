@@ -563,7 +563,7 @@ mixin MessageMixin on Context {
   }) async {
     return await api.editMessageText(
       id,
-      update.message!.messageId,
+      _msg.messageId,
       text,
       parseMode: parseMode,
       entities: entities,
@@ -578,7 +578,7 @@ mixin MessageMixin on Context {
   Future<bool> deleteMessage() async {
     return await api.deleteMessage(
       id,
-      update.message!.messageId,
+      _msg.messageId,
     );
   }
 
@@ -593,7 +593,7 @@ mixin MessageMixin on Context {
   }) async {
     return await api.editMessageCaption(
       id,
-      update.message!.messageId,
+      _msg.messageId,
       caption: caption,
       parseMode: parseMode,
       captionEntities: captionEntities,
@@ -615,7 +615,7 @@ mixin MessageMixin on Context {
   }) async {
     return await api.editMessageLiveLocation(
       id,
-      update.message!.messageId,
+      _msg.messageId,
       inlineMessageId: inlineMessageId,
       latitude: latitude,
       longitude: longitude,
@@ -638,7 +638,7 @@ mixin MessageMixin on Context {
     return await api.forwardMessage(
       chatId,
       id,
-      update.message!.messageId,
+      _msg.messageId,
       messageThreadId: messageThreadId,
       disableNotification: disableNotification,
       protectContent: protectContent,
@@ -649,6 +649,41 @@ mixin MessageMixin on Context {
   ///
   /// This method will get the chat member in the current context.
   Future<ChatMember> getAuthor(int userId) async {
-    return await api.getChatMember(id, update.message!.from!.id);
+    return await api.getChatMember(id, _msg.from!.id);
   }
+
+  /// hasText checks if the message has the given text.
+  ///
+  /// **Parameters:**
+  /// - [text] - The text to check for.
+  ///
+  /// Pass this if you want exact match for the text.
+  ///
+  /// - [texts] - List of Strings to check for.
+  ///
+  /// Returns true if the message text is in the list.
+  ///
+  /// - [pattern] - The pattern to check for.
+  ///
+  /// Returns true if the message text matches the pattern.
+  ///
+  /// - [patterns] - List of [RegExp] patterns to check for.
+  ///
+  /// Returns true if the message text matches any of the patterns.
+  bool hasText({
+    String? text,
+    List<String>? texts,
+    RegExp? pattern,
+    List<RegExp>? patterns,
+  }) {
+    if (_msg.text == null) return false;
+    if (text != null) return _msg.text == text;
+    if (texts != null) return texts.contains(_msg.text);
+    if (pattern != null) return pattern.hasMatch(_msg.text!);
+    if (patterns != null) return patterns.any((p) => p.hasMatch(_msg.text!));
+    return true;
+  }
+
+  /// The [Message] recieved in the current context
+  Message get _msg => update.message!;
 }

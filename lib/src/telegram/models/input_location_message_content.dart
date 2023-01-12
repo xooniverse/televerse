@@ -38,7 +38,7 @@ class InputLocationMessageContent extends InputMessageContent {
       'horizontal_accuracy': horizontalAccuracy,
       'heading': heading,
       'proximity_alert_radius': proximityAlertRadius,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InputLocationMessageContent.fromJson(Map<String, dynamic> json) {

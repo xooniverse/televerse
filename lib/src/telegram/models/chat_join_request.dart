@@ -47,7 +47,7 @@ class ChatJoinRequest {
       'date': date,
       'bio': bio,
       'invite_link': inviteLink?.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   /// Returns a [DateTime] object representing the [date] field

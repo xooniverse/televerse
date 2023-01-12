@@ -42,6 +42,6 @@ class Contact {
       'last_name': lastName,
       'user_id': userId,
       'vcard': vcard,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

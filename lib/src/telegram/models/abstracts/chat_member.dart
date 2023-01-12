@@ -35,6 +35,6 @@ abstract class ChatMember {
     return {
       'status': status.value,
       'user': user.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

@@ -59,7 +59,7 @@ class InlineQueryResultArticle extends InlineQueryResult {
       'thumb_url': thumbUrl,
       'thumb_width': thumbWidth,
       'thumb_height': thumbHeight,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InlineQueryResultArticle.fromJson(Map<String, dynamic> json) {

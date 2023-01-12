@@ -27,7 +27,11 @@ part 'src/televerse/context/mixins/management.dart';
 part 'src/televerse/context/mixins/callback_mixin.dart';
 part 'src/televerse/context/mixins/inline_mixin.dart';
 
+part 'src/televerse/markups/keyboard.dart';
+part 'src/televerse/markups/inline_keyboard.dart';
+
 /// The main class of the library.
 ///
-/// This class is used to create a new bot instance.
+/// This class is used to create a new bot instance. This is just a
+/// type alias for [Televerse] class.
 typedef Bot = Televerse;

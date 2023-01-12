@@ -31,7 +31,7 @@ class InlineQueryResultCachedSticker extends InlineQueryResult {
       'sticker_file_id': stickerFileId,
       'reply_markup': replyMarkup?.toJson(),
       'input_message_content': inputMessageContent?.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory InlineQueryResultCachedSticker.fromJson(Map<String, dynamic> json) {

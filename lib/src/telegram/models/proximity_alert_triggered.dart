@@ -30,6 +30,6 @@ class ProximityAlertTriggered {
       'traveler': traveler.toJson(),
       'watcher': watcher.toJson(),
       'distance': distance,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

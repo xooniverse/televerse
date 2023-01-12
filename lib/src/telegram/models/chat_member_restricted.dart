@@ -89,7 +89,7 @@ class ChatMemberRestricted implements ChatMember {
       'can_send_other_messages': canSendOtherMessages,
       'can_add_web_page_previews': canAddWebPagePreviews,
       'until_date': untilDate,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory ChatMemberRestricted.fromJson(Map<String, dynamic> json) {

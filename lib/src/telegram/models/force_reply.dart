@@ -27,10 +27,11 @@ class ForceReply extends ReplyMarkup {
 
   @override
   Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
+    Map<String, dynamic> data = <String, dynamic>{};
     data['force_reply'] = forceReply;
     data['selective'] = selective;
     data['input_field_placeholder'] = inputFieldPlaceholder;
+    data.removeWhere((key, value) => value == null);
     return data;
   }
 }

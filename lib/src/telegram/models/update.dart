@@ -129,7 +129,7 @@ class Update {
       'my_chat_member': myChatMember?.toJson(),
       'chat_member': chatMember?.toJson(),
       'chat_join_request': chatJoinRequest?.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   String toRawJson() => json.encode(toJson());

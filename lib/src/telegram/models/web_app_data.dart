@@ -24,6 +24,6 @@ class WebAppData {
     return {
       'data': data,
       'button_text': buttonText,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

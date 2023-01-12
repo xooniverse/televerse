@@ -55,7 +55,7 @@ class ChatMemberUpdated {
       'old_chat_member': oldChatMember.toJson(),
       'new_chat_member': newChatMember.toJson(),
       'invite_link': inviteLink?.toJson(),
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   /// Returns a [DateTime] object representing the [date] field

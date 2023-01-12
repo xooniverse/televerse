@@ -100,7 +100,7 @@ class Poll {
           : explanationEntities!.map((x) => x.toJson()).toList(),
       'open_period': openPeriod,
       'close_date': closeDate,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   /// The [Duration] object for [openPeriod]

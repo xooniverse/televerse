@@ -16,6 +16,6 @@ class WebAppInfo {
   Map<String, dynamic> toJson() {
     return {
       'url': url,
-    };
+    }..removeWhere((key, value) => value == null);
   }
 }

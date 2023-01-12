@@ -30,7 +30,7 @@ class ChatMemberOwner implements ChatMember {
       'user': user.toJson(),
       'is_anonymous': isAnonymous,
       'custom_title': customTitle
-    };
+    }..removeWhere((key, value) => value == null);
   }
 
   factory ChatMemberOwner.fromJson(Map<String, dynamic> json) {
