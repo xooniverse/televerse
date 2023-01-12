@@ -26,7 +26,7 @@ class HttpClient {
     Uri uri,
     Map<String, dynamic> body,
   ) async {
-    body.removeWhere((key, value) => value == null);
+    body.removeWhere((key, value) => value == null || value == "null");
     Map<String, String> bodyContent = body.map((k, v) => MapEntry(k, "$v"));
     try {
       final response = await post(uri, body: bodyContent);

@@ -8,10 +8,10 @@ void main(List<String> args) {
 
   bot.command("test", (ctx) {
     ctx.reply(
-      "Here's the web app you've requested",
-      replyMarkup: InlineKeyboard()
-          .add("Open This", "hello world")
-          .addUrl("Open Google", "https://google.com"),
+      "Hello <b>world</b>",
+      parseMode: ParseMode.html,
     );
   });
+
+  bot.start();
 }
