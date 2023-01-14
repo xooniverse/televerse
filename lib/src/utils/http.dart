@@ -27,8 +27,14 @@ class HttpClient {
     Map<String, dynamic> body,
   ) async {
     body.removeWhere((key, value) => value == null || value == "null");
-    Map<String, String> bodyContent = body.map((k, v) => MapEntry(k, "$v"));
+    Map<String, String> bodyContent = body.map((k, v) {
+      if (v is List) {
+        return MapEntry(k, jsonEncode(v));
+      }
+      return MapEntry(k, "$v");
+    });
     try {
+      print(jsonEncode(bodyContent));
       final response = await post(uri, body: bodyContent);
       final resBody = json.decode(response.body);
       if (resBody["ok"] == true) {

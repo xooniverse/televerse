@@ -2777,13 +2777,13 @@ class Televerse extends Event {
 
   /// Use this method to send invoices. On success, the sent Message is returned.
   Future<Message> sendInvoice(
-    ID chatId,
-    String title,
-    String description,
-    String payload,
-    String providerToken,
-    String currency,
-    List<LabeledPrice> prices, {
+    ID chatId, {
+    required String title,
+    required String description,
+    required String payload,
+    required String providerToken,
+    required String currency,
+    required List<LabeledPrice> prices,
     String? messageThreadId,
     int? maxTipAmount = 0,
     List<int>? suggestedTipAmounts,
@@ -2807,7 +2807,7 @@ class Televerse extends Event {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     Map<String, dynamic> params = {
-      "chat_id": chatId,
+      "chat_id": chatId.id,
       "title": title,
       "description": description,
       "payload": payload,
@@ -2846,13 +2846,13 @@ class Televerse extends Event {
   }
 
   /// Use this method to create a link for an invoice. Returns the created invoice link as String on success.
-  Future<String> createInvoiceLink(
-    String title,
-    String description,
-    String payload,
-    String providerToken,
-    String currency,
-    List<LabeledPrice> prices, {
+  Future<String> createInvoiceLink({
+    required String title,
+    required String description,
+    required String payload,
+    required String providerToken,
+    required String currency,
+    required List<LabeledPrice> prices,
     int? maxTipAmount = 0,
     List<int>? suggestedTipAmounts,
     String? providerData,
