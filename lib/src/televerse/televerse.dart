@@ -2217,7 +2217,7 @@ class Televerse extends Event {
   /// * This method is only for editing messages. This won't work for inline messages.
   /// * If you're looking for a way to edit inline messages, use [editInlineMessageMedia].
   ///
-  /// On success, [MessageContext] is returned.
+  /// On success, [Message] is returned.
   Future<Message> editMessageMedia(
     ID chatId,
     int messageId,
@@ -2308,7 +2308,7 @@ class Televerse extends Event {
   /// * If you're looking for a way to edit inline messages, use [editInlineMessageReplyMarkup].
   /// * Use [replyMarkup] parameter to pass new reply markup.
   ///
-  /// On success, [MessageContext] is returned.
+  /// On success, [Message] is returned.
   Future<Message> editMessageReplyMarkup(
     ID chatId,
     int messageId, {

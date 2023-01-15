@@ -7,7 +7,12 @@ import 'package:test/test.dart';
 void main() {
   Bot bot = Bot(Platform.environment['BOT_TOKEN']!);
   int chatId = int.parse(Platform.environment['CHAT_ID']!);
+  int gID = int.parse(Platform.environment['CHANNEL_ID']!);
   ChatID id = ChatID(chatId);
+  ChatID groupID = ChatID(gID);
+
+  String stickerFileID =
+      "CAACAgUAAxkBAAELxJhjw5m8ZywifRtXVhjG9HkygYQ-7gAC6AcAAqY4CVS1s3ikdwGZby0E";
 
   bot.start();
 
@@ -161,5 +166,48 @@ void main() {
       reason: "Video is null",
     );
     expect(message.caption, "Test Video");
+  });
+
+  test("Send Sticker", () async {
+    Message message = await bot.sendSticker(
+      id,
+      InputFile.fromFileId(stickerFileID),
+    );
+    expect(message.sticker != null, true, reason: "Sticker is null");
+    expect(message.sticker?.runtimeType, Sticker, reason: "Sticker is null");
+  });
+
+  test("Delete Message", () async {
+    Message message = await bot.sendMessage(id, "Hello World");
+    expect(message.text, "Hello World");
+    bool deleted = await bot.deleteMessage(id, message.messageId);
+    expect(deleted, true, reason: "Message is not deleted");
+  });
+
+  test("Edit Message Text", () async {
+    Message message = await bot.sendMessage(id, "Hello World");
+    expect(message.text, "Hello World");
+    Message editedMessage = await bot.editMessageText(
+      id,
+      message.messageId,
+      "Hello World Edited",
+    );
+    expect(editedMessage.text, "Hello World Edited");
+  });
+
+  test("Get Chat", () async {
+    Chat chat = await bot.getChat(id);
+    expect(chat.id, id.id);
+  });
+
+  test("Get Chat Administrators", () async {
+    List<ChatMember> chatMembers = await bot.getChatAdministrators(groupID);
+    expect(chatMembers.isNotEmpty, true, reason: "Chat members is empty");
+  });
+
+  test("Get Chat Menu Button", () async {
+    MenuButton button = await bot.getChatMenuButton(id);
+    print(button.type);
+    expect(MenuButtonType.values.contains(button.type), true);
   });
 }
