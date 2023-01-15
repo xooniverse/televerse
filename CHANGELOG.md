@@ -1,3 +1,7 @@
+## 1.2.6
+- Added `Televerse.instance` getter to get the last instance of `Bot` created.
+- Added `ChatID.chat` getter to get the `Chat` object from the `ChatID` object.
+- Added optional `RegExp? regex` parameter to `Televerse.command` method.
 ## 1.2.5
 - Added `startParameter` getter to `MessageContext` class. This will be automatically set when the bot is started by a user clicking on a deep link such as `t.me/MyBot?start=12345`.
 - Added more tests.
