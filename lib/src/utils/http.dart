@@ -34,7 +34,6 @@ class HttpClient {
       return MapEntry(k, "$v");
     });
     try {
-      print(jsonEncode(bodyContent));
       final response = await post(uri, body: bodyContent);
       final resBody = json.decode(response.body);
       if (resBody["ok"] == true) {
