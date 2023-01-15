@@ -1,4 +1,4 @@
-part of televerse;
+part of televerse.context;
 
 /// Mixin that contains methods for managing the chat.
 ///

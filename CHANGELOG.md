@@ -1,3 +1,6 @@
+## 1.2.5
+- Added more tests.
+- Whole lot of refactoring.
 ## 1.2.4
 - New `InlineKeyboard` class is added. This can be very useful in creating `InlineKeyboardMarkup`.
 - New `Keyboard` class to help with creating `ReplyKeyboardMarkup` easily and quickly. 

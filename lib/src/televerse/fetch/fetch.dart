@@ -1,4 +1,13 @@
-part of televerse;
+library televerse.fetch;
+
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io' as io;
+import 'package:televerse/telegram.dart';
+import 'package:televerse/televerse.dart';
+
+part 'long_polling.dart';
+part 'webhook.dart';
 
 /// **Fetcher**
 /// This is the base class for all fetchers. It is used to fetch updates from the Telegram API.

@@ -1,4 +1,10 @@
-part of televerse;
+library televerse.event;
+
+import 'dart:async';
+import 'package:televerse/telegram.dart';
+import 'package:televerse/televerse.dart';
+
+part 'on.dart';
 
 /// **Event**
 /// This class is used to handle events. The [Event] class is extended to [Televerse] class and is used to handle events. The [Event] class contains all the event streams and methods to handle events.
@@ -219,6 +225,11 @@ class Event {
     onMessage.listen((MessageContext context) {
       if (context.message.text == null) return;
       if (context.message.text!.startsWith('/$command')) {
+        if (command == 'start' && context.message.text!.split(' ').length > 1) {
+          context.startParameter =
+              context.message.text!.split(' ').sublist(1).join(' ');
+        }
+
         callback(context);
       }
     });

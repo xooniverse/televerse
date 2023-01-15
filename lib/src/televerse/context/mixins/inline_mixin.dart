@@ -1,4 +1,4 @@
-part of televerse;
+part of televerse.context;
 
 /// Mixin for managing inline queries.
 ///

@@ -1,4 +1,4 @@
-part of televerse;
+part of televerse.event;
 
 /// A mixin that adds the [on] method to the [Event] class.
 ///
