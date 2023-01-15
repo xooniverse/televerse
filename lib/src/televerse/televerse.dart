@@ -31,7 +31,12 @@ class Televerse extends Event {
   final String _baseUrl = "api.telegram.org";
   Uri _buildUri(String method, [Map<String, dynamic>? params]) {
     params?.removeWhere((key, value) => value == null || value == "null");
-    params = params?.map((key, value) => MapEntry(key, value.toString()));
+    params = params?.map((key, value) {
+      if (value is List) {
+        return MapEntry(key, jsonEncode(value));
+      }
+      return MapEntry(key, "$value");
+    });
     Uri uri = Uri.https(_baseUrl, "/bot$token/$method", params);
     return uri;
   }
@@ -2217,7 +2222,7 @@ class Televerse extends Event {
   /// * This method is only for editing messages. This won't work for inline messages.
   /// * If you're looking for a way to edit inline messages, use [editInlineMessageMedia].
   ///
-  /// On success, [MessageContext] is returned.
+  /// On success, [Message] is returned.
   Future<Message> editMessageMedia(
     ID chatId,
     int messageId,
@@ -2308,7 +2313,7 @@ class Televerse extends Event {
   /// * If you're looking for a way to edit inline messages, use [editInlineMessageReplyMarkup].
   /// * Use [replyMarkup] parameter to pass new reply markup.
   ///
-  /// On success, [MessageContext] is returned.
+  /// On success, [Message] is returned.
   Future<Message> editMessageReplyMarkup(
     ID chatId,
     int messageId, {
@@ -2777,13 +2782,13 @@ class Televerse extends Event {
 
   /// Use this method to send invoices. On success, the sent Message is returned.
   Future<Message> sendInvoice(
-    ID chatId,
-    String title,
-    String description,
-    String payload,
-    String providerToken,
-    String currency,
-    List<LabeledPrice> prices, {
+    ID chatId, {
+    required String title,
+    required String description,
+    required String payload,
+    required String providerToken,
+    required String currency,
+    required List<LabeledPrice> prices,
     String? messageThreadId,
     int? maxTipAmount = 0,
     List<int>? suggestedTipAmounts,
@@ -2807,7 +2812,7 @@ class Televerse extends Event {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     Map<String, dynamic> params = {
-      "chat_id": chatId,
+      "chat_id": chatId.id,
       "title": title,
       "description": description,
       "payload": payload,
@@ -2846,13 +2851,13 @@ class Televerse extends Event {
   }
 
   /// Use this method to create a link for an invoice. Returns the created invoice link as String on success.
-  Future<String> createInvoiceLink(
-    String title,
-    String description,
-    String payload,
-    String providerToken,
-    String currency,
-    List<LabeledPrice> prices, {
+  Future<String> createInvoiceLink({
+    required String title,
+    required String description,
+    required String payload,
+    required String providerToken,
+    required String currency,
+    required List<LabeledPrice> prices,
     int? maxTipAmount = 0,
     List<int>? suggestedTipAmounts,
     String? providerData,
