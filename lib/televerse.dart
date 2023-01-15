@@ -8,25 +8,17 @@ import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 import 'package:televerse/src/utils/http.dart';
 
-export 'src/televerse_base.dart';
-export 'src/televerse/context/context.dart';
+export 'src/televerse/context/context.dart'
+    hide MessageMixin, CallbackQueryMixin, ManagementMixin;
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
+export 'src/televerse/event/event.dart';
+export 'src/televerse/filters/filters.dart';
+export 'src/televerse/fetch/fetch.dart';
 
 part 'src/televerse/televerse.dart';
-part 'src/televerse/fetch/fetch.dart';
-part 'src/televerse/fetch/long_polling.dart';
-part 'src/televerse/fetch/webhook.dart';
-part 'src/televerse/event/event.dart';
 part 'src/utils/date.dart';
-
 part 'src/utils/utils.dart';
-part 'src/televerse/filters/filters.dart';
-part 'src/televerse/context/mixins/message_mixin.dart';
-part 'src/televerse/context/mixins/management.dart';
-part 'src/televerse/context/mixins/callback_mixin.dart';
-part 'src/televerse/context/mixins/inline_mixin.dart';
-
 part 'src/televerse/markups/keyboard.dart';
 part 'src/televerse/markups/inline_keyboard.dart';
 

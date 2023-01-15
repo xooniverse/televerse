@@ -34,7 +34,12 @@ bot.command('start', (ctx) {
 
 ## 📚 Documentation
 
-At the same time you can access the whole Telegram Bot API methods with the `bot` instance. Or if you're inside a `MessageContext` you can access the same with `ctx.api`
+### 📖 Televerse Wiki
+We a dedicated documentation on GitHub Wiki on this repo. Check it our here: [Televerse Wiki](https://github.com/HeySreelal/televerse/wiki).
+
+### In simple words
+
+You can access the whole Telegram Bot API methods with the `bot` instance. Or if you're inside a `MessageContext` you can access the same with `ctx.api`
 
 
 For example, if you want to send a message to a specific chat you can do it like this:

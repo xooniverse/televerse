@@ -20,6 +20,12 @@ class MessageContext extends Context with MessageMixin, ManagementMixin {
   /// This will be automatically set when you use the [Televerse.hears] method.
   List<RegExpMatch>? matches;
 
+  /// Start Parameter - Used for deep linking.
+  /// This will be set when your bot is started with a deep link.
+  /// Example: `https://t.me/MyBot?start=12345` will set `startParameter` to `12345`.
+  /// This will be `null` if the bot is not started with a deep link.
+  String? startParameter;
+
   /// **Chat ID**
   ///
   /// This is a shortcut for `ChatID(message.chat.id)`. So you can simply use `ctx.id` instead of repeating `ChatID(message.chat.id)`.

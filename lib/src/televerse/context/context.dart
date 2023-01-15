@@ -2,6 +2,11 @@ library televerse.context;
 
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
+
+part 'mixins/inline_mixin.dart';
+part 'mixins/callback_mixin.dart';
+part 'mixins/message_mixin.dart';
+part 'mixins/management.dart';
 part 'message.dart';
 part 'inline_query.dart';
 part 'callback_query.dart';

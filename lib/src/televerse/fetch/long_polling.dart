@@ -1,4 +1,4 @@
-part of televerse;
+part of televerse.fetch;
 
 /// A class that handles long polling.
 /// This class is used to fetch updates from the Telegram API. It uses the long polling method.
