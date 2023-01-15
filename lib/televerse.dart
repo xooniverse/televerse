@@ -26,6 +26,7 @@ part 'src/televerse/context/mixins/message_mixin.dart';
 part 'src/televerse/context/mixins/management.dart';
 part 'src/televerse/context/mixins/callback_mixin.dart';
 part 'src/televerse/context/mixins/inline_mixin.dart';
+part 'src/televerse/event/on.dart';
 
 part 'src/televerse/markups/keyboard.dart';
 part 'src/televerse/markups/inline_keyboard.dart';

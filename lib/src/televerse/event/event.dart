@@ -76,34 +76,65 @@ class Event {
   final StreamController<ChatJoinRequest> _chatJoinRequestController;
   final StreamController<Update> _updateStreamController;
 
+  /// **onMessage** is a stream of [MessageContext] which is emitted when a message of any type is is received.
   Stream<MessageContext> get onMessage => _messageController.stream;
+
+  /// **onEditedMessage** is a stream of [MessageContext] which is emitted when a message is edited.
   Stream<MessageContext> get onEditedMessage => _editedMessageController.stream;
+
+  /// **onChannelPost** is a stream of [MessageContext] which is emitted when a message is sent to a channel.
   Stream<MessageContext> get onChannelPost => _channelPostController.stream;
+
+  /// **onEditedChannelPost** is a stream of [MessageContext] which is emitted when a message is edited in a channel.
   Stream<MessageContext> get onEditedChannelPost =>
       _editedChannelPostController.stream;
+
+  /// **onInlineQuery** is a stream of [InlineQueryContext] which is emitted when an inline query is received.
   Stream<InlineQueryContext> get onInlineQuery => _inlineQueryController.stream;
+
+  /// **onChosenInlineResult** is a stream of [ChosenInlineResult] which is emitted when a user chooses an inline result.
   Stream<ChosenInlineResult> get onChosenInlineResult =>
       _chosenInlineResultController.stream;
+
+  /// **onCallbackQuery** is a stream of [CallbackQueryContext] which is emitted when a callback query is received.
   Stream<CallbackQueryContext> get onCallbackQuery =>
       _callbackQueryController.stream;
+
+  /// **onShippingQuery** is a stream of [ShippingQuery] which is emitted when a shipping query is received.
   Stream<ShippingQuery> get onShippingQuery => _shippingQueryController.stream;
+
+  /// **onPreCheckoutQuery** is a stream of [PreCheckoutQuery] which is emitted when a pre-checkout query is received.
   Stream<PreCheckoutQuery> get onPreCheckoutQuery =>
       _preCheckoutQueryController.stream;
+
+  /// **onPoll** is a stream of [Poll] which is emitted when a poll is received.
   Stream<Poll> get onPoll => _pollController.stream;
+
+  /// **onPollAnswer** is a stream of [PollAnswer] which is emitted when a poll answer is received.
   Stream<PollAnswer> get onPollAnswer => _pollAnswerController.stream;
+
+  /// **onMyChatMember** is a stream of [ChatMemberUpdated] which is emitted when the bot's chat member status is updated.
   Stream<ChatMemberUpdated> get onMyChatMember =>
       _myChatMemberController.stream;
+
+  /// **onChatMember** is a stream of [ChatMemberUpdated] which is emitted when a chat member's status is updated.
   Stream<ChatMemberUpdated> get onChatMember => _chatMemberController.stream;
+
+  /// **onChatJoinRequest** is a stream of [ChatJoinRequest] which is emitted when a user requests to join a chat.
   Stream<ChatJoinRequest> get onChatJoinRequest =>
       _chatJoinRequestController.stream;
+
+  /// **onUpdate** is a stream of [Update] which is emitted when any update is received.
   Stream<Update> get onUpdate => _updateStreamController.stream;
 
+  /// Use this method to emit updates to the streams.
   void onUpdates(List<Update> updates, Televerse televerse) {
     for (Update update in updates) {
       emitUpdate(update, televerse);
     }
   }
 
+  /// Use this method to emit an update to the streams.
   void emitUpdate(Update update, Televerse televerse) {
     if (this.televerse == null) {
       this.televerse = televerse;
@@ -350,170 +381,6 @@ class Event {
       context.matches = matches.toList();
       if (matches.isNotEmpty) {
         callback(context);
-      }
-    });
-  }
-
-  /// Registers a callback for particular filter types.
-  ///
-  /// The call back will be only be executed on specific update types. You can
-  /// use the [Filter] object to specify which update you want to listen to.
-  void on(TeleverseEvent type, FutureOr<void> Function(Context ctx) callback) {
-    onUpdate.listen((update) {
-      bool isTextMessage =
-          update.message?.text != null || update.channelPost?.text != null;
-      bool isChannelPost = update.type == UpdateType.channelPost;
-      bool isMessage = update.type == UpdateType.message;
-      bool isEditedMessage = update.type == UpdateType.editedMessage;
-      bool isEditedChannelPost = update.type == UpdateType.editedChannelPost;
-      bool isAudioMessage = update.message?.audio != null;
-      bool isAudioChannelPost = update.channelPost?.audio != null;
-      bool hasAudio = isAudioMessage || isAudioChannelPost;
-
-      bool isMessageOrChannelPost = isMessage || isChannelPost;
-      bool isEdited = isEditedMessage || isEditedChannelPost;
-
-      bool isDocumentMessage = update.message?.document != null;
-      bool isDocumentChannelPost = update.channelPost?.document != null;
-      bool hasDocument = isDocumentMessage || isDocumentChannelPost;
-
-      bool isPhotoMessage = update.message?.photo != null;
-      bool isPhotoChannelPost = update.channelPost?.photo != null;
-      bool hasPhoto = isPhotoMessage || isPhotoChannelPost;
-
-      if (type == TeleverseEvent.text) {
-        if (isMessageOrChannelPost && isTextMessage) {
-          if (televerse == null) {
-            print('so here we fall');
-            return;
-          }
-          callback(MessageContext(
-            televerse!,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.audio) {
-        if (isMessageOrChannelPost && hasAudio) {
-          if (televerse == null) return;
-          callback(MessageContext(
-            televerse!,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.audioMessage) {
-        if (isMessage && isAudioMessage) {
-          if (televerse == null) return;
-          callback(MessageContext(
-            televerse!,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.edited) {
-        if (isEdited) {
-          if (televerse == null) return;
-          callback(MessageContext(
-            televerse!,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.editedMessage) {
-        if (isEditedMessage) {
-          if (televerse == null) return;
-          callback(MessageContext(
-            televerse!,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.editedChannelPost) {
-        if (isEditedChannelPost) {
-          if (televerse == null) return;
-          callback(MessageContext(
-            televerse!,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.document) {
-        if (isMessageOrChannelPost && hasDocument) {
-          if (televerse == null) return;
-          callback(MessageContext(
-            televerse!,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.documentMessage) {
-        if (isMessage && isDocumentMessage) {
-          if (televerse == null) return;
-          callback(MessageContext(
-            televerse!,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.documentChannelPost) {
-        if (isChannelPost && isDocumentChannelPost) {
-          if (televerse == null) return;
-          callback(MessageContext(
-            televerse!,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.photo) {
-        if (isMessageOrChannelPost && hasPhoto) {
-          if (televerse == null) return;
-          callback(MessageContext(
-            televerse!,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.photoMessage) {
-        if (isMessage && isPhotoMessage) {
-          if (televerse == null) return;
-          callback(MessageContext(
-            televerse!,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.photoChannelPost) {
-        if (isChannelPost && isPhotoChannelPost) {
-          if (televerse == null) return;
-          callback(MessageContext(
-            televerse!,
-            update.message!,
-            update: update,
-          ));
-        }
       }
     });
   }

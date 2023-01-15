@@ -16,7 +16,7 @@ part of televerse;
 /// ```
 ///
 /// The [Televerse] class extends [Event] class. The [Event] class is used to emit events and additionally provides a bunch of useful methods.
-class Televerse extends Event {
+class Televerse extends Event with OnEvent {
   final String token;
 
   late Fetcher fetcher;
