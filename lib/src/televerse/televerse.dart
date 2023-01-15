@@ -17,6 +17,27 @@ part of televerse;
 ///
 /// The [Televerse] class extends [Event] class. The [Event] class is used to emit events and additionally provides a bunch of useful methods.
 class Televerse extends Event with OnEvent {
+  static late String _botToken;
+
+  /// Get the bot instance.
+  ///
+  /// This getter returns the bot instance. You can use this to access the bot instance from anywhere in your code.
+  ///
+  /// Notes:
+  ///   - If you try to access this getter before creating a bot instance, it will throw an error.
+  ///   - The instance will be the last created bot instance.
+  ///   - DO NOT use this getter to create a bot instance. Use the [Televerse] constructor instead. This getter is only used to access the bot instance.
+  static Televerse get instance {
+    try {
+      return Televerse(_botToken);
+    } catch (err) {
+      throw TeleverseException(
+        "Bot instance not found. ",
+        "Create a Bot instance with a token first.",
+      );
+    }
+  }
+
   final String token;
 
   late Fetcher fetcher;
@@ -26,6 +47,7 @@ class Televerse extends Event with OnEvent {
     Fetcher? fetcher,
   }) {
     this.fetcher = fetcher ?? LongPolling(this);
+    _botToken = token;
   }
 
   final String _baseUrl = "api.telegram.org";

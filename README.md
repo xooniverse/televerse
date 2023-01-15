@@ -35,9 +35,9 @@ bot.command('start', (ctx) {
 ## 📚 Documentation
 
 ### 📖 Televerse Wiki
-We a dedicated documentation on GitHub Wiki on this repo. Check it our here: [Televerse Wiki](https://github.com/HeySreelal/televerse/wiki).
+We have a dedicated documentation on GitHub Wiki on this repo. Check it our here: [Televerse Wiki](https://github.com/HeySreelal/televerse/wiki).
 
-### In simple words
+### ✨ In simple words
 
 You can access the whole Telegram Bot API methods with the `bot` instance. Or if you're inside a `MessageContext` you can access the same with `ctx.api`
 

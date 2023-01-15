@@ -218,16 +218,22 @@ class Event {
   /// ```
   ///
   /// This will reply "Hello!" to any message that starts with `/start`.
+  ///
+  /// Optionally, you can specify a [pattern] to match the command with. If the command matches the pattern, the [MessageContext.matches] will be set to the matches.
   void command(
     String command,
-    FutureOr<void> Function(MessageContext ctx) callback,
-  ) {
+    FutureOr<void> Function(MessageContext ctx) callback, {
+    RegExp? pattern,
+  }) {
     onMessage.listen((MessageContext context) {
       if (context.message.text == null) return;
       if (context.message.text!.startsWith('/$command')) {
         if (command == 'start' && context.message.text!.split(' ').length > 1) {
           context.startParameter =
               context.message.text!.split(' ').sublist(1).join(' ');
+        }
+        if (pattern != null) {
+          context.matches = pattern.allMatches(context.message.text!).toList();
         }
 
         callback(context);
@@ -394,5 +400,14 @@ class Event {
         callback(context);
       }
     });
+  }
+
+  /// Registers a callback for inline queries.
+  ///
+  /// The callback will be called when an inline query with the specified query is received.
+  void inlineQuery(
+    FutureOr<void> Function(InlineQueryContext ctx) callback,
+  ) {
+    onInlineQuery.listen(callback);
   }
 }

@@ -35,6 +35,8 @@ class ChatID extends ID {
   factory ChatID.create(int id) {
     return ChatID(id);
   }
+
+  Future<Chat> get chat => Televerse.instance.getChat(this);
 }
 
 /// **ChannelID**
