@@ -80,7 +80,13 @@ Note: we're still working on improving the documentation, so you can check the [
 
 ## 🔐 Example
 
-You can find a simple example in the [example](./example/televerse_example.dart) file.
+You can find a simple example of a bot that uses Televerse in the [example](./example/televerse_example.dart) file.
+
+### 👽 Examples Repo 
+
+But, where's the fun in that? So we've created an entire repository with examples of bots built with Televerse. [Check it out here: Televerse Examples](https://github.com/xooniverse/TeleverseExamples).
+
+This repository includes examples of bots such as **simple letter counting bot** to **referral bot**, and many more on the way. Moreover, we've detailed the code and explained how it works, so you can learn how to build your own bots with Televerse.
 
 ## 📝 Note
 
