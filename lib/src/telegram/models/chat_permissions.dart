@@ -5,9 +5,6 @@ class ChatPermissions {
   /// Optional. True, if the user is allowed to send text messages, contacts, locations and venues
   final bool? canSendMessages;
 
-  /// Optional. True, if the user is allowed to send audios, documents, photos, videos, video notes and voice notes, implies can_send_messages
-  final bool? canSendMediaMessages;
-
   /// Optional. True, if the user is allowed to send polls, implies can_send_messages
   final bool? canSendPolls;
 
@@ -29,9 +26,28 @@ class ChatPermissions {
   /// Optional. True, if the user is allowed to create forum topics. If omitted defaults to the value of can_pin_messages
   final bool? canManageTopics;
 
+  /// Since Bot API 6.5
+
+  /// True, if the user is allowed to send audios
+  final bool? canSendAudios;
+
+  /// True, if the user is allowed to send documents
+  final bool? canSendDocuments;
+
+  /// True, if the user is allowed to send photos
+  final bool? canSendPhotos;
+
+  /// True, if the user is allowed to send videos
+  final bool? canSendVideos;
+
+  /// True, if the user is allowed to send video notes
+  final bool? canSendVideoNotes;
+
+  /// True, if the user is allowed to send voice notes
+  final bool? canSendVoiceNotes;
+
   const ChatPermissions({
     this.canSendMessages,
-    this.canSendMediaMessages,
     this.canSendPolls,
     this.canSendOtherMessages,
     this.canAddWebPagePreviews,
@@ -39,12 +55,17 @@ class ChatPermissions {
     this.canInviteUsers,
     this.canPinMessages,
     this.canManageTopics,
+    this.canSendAudios,
+    this.canSendDocuments,
+    this.canSendPhotos,
+    this.canSendVideos,
+    this.canSendVideoNotes,
+    this.canSendVoiceNotes,
   });
 
   factory ChatPermissions.fromJson(Map<String, dynamic> json) {
     return ChatPermissions(
       canSendMessages: json['can_send_messages'],
-      canSendMediaMessages: json['can_send_media_messages'],
       canSendPolls: json['can_send_polls'],
       canSendOtherMessages: json['can_send_other_messages'],
       canAddWebPagePreviews: json['can_add_web_page_previews'],
@@ -52,13 +73,18 @@ class ChatPermissions {
       canInviteUsers: json['can_invite_users'],
       canPinMessages: json['can_pin_messages'],
       canManageTopics: json['can_manage_topics'],
+      canSendAudios: json['can_send_audios'],
+      canSendDocuments: json['can_send_documents'],
+      canSendPhotos: json['can_send_photos'],
+      canSendVideos: json['can_send_videos'],
+      canSendVideoNotes: json['can_send_video_notes'],
+      canSendVoiceNotes: json['can_send_voice_notes'],
     );
   }
 
   Map toJson() {
     return {
       'can_send_messages': canSendMessages,
-      'can_send_media_messages': canSendMediaMessages,
       'can_send_polls': canSendPolls,
       'can_send_other_messages': canSendOtherMessages,
       'can_add_web_page_previews': canAddWebPagePreviews,
@@ -66,6 +92,12 @@ class ChatPermissions {
       'can_invite_users': canInviteUsers,
       'can_pin_messages': canPinMessages,
       'can_manage_topics': canManageTopics,
+      'can_send_audios': canSendAudios,
+      'can_send_documents': canSendDocuments,
+      'can_send_photos': canSendPhotos,
+      'can_send_videos': canSendVideos,
+      'can_send_video_notes': canSendVideoNotes,
+      'can_send_voice_notes': canSendVoiceNotes,
     }..removeWhere((key, value) => value == null);
   }
 }
