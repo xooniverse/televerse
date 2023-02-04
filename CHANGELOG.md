@@ -1,3 +1,7 @@
+## 1.3.0
+- Telegram Bot API 6.5 (February 3, 2023)
+- This includes addition of classes like `KeyboardButtonRequestUser`, `KeyboardButtonRequestChat`, `UserShared` and `ChatShared`.
+- Added some missing implementations for Bot API 6.4
 ## 1.2.6
 - Added `Televerse.instance` getter to get the last instance of `Bot` created.
 - Added `ChatID.chat` getter to get the `Chat` object from the `ChatID` object.
