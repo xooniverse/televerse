@@ -28,9 +28,6 @@ class ChatMemberRestricted implements ChatMember {
   /// True, if the user is allowed to send text messages, contacts, locations and venues
   final bool canSendMessages;
 
-  /// True, if the user is allowed to send audios, documents, photos, videos, video notes and voice notes, implies can_send_messages
-  final bool canSendMediaMessages;
-
   /// True, if the user is allowed to send polls, implies can_send_messages
   final bool canSendPolls;
 
@@ -45,6 +42,26 @@ class ChatMemberRestricted implements ChatMember {
   /// You can also use [untilDateTime] to get the date as a [DateTime] object
   final int untilDate;
 
+  /// Since Bot API 6.5
+
+  /// True, if the user is allowed to send audios
+  final bool canSendAudios;
+
+  /// True, if the user is allowed to send documents
+  final bool canSendDocuments;
+
+  /// True, if the user is allowed to send photos
+  final bool canSendPhotos;
+
+  /// True, if the user is allowed to send videos
+  final bool canSendVideos;
+
+  /// True, if the user is allowed to send video notes
+  final bool canSendVideoNotes;
+
+  /// True, if the user is allowed to send voice notes
+  final bool canSendVoiceNotes;
+
   const ChatMemberRestricted({
     required this.user,
     required this.isMember,
@@ -52,12 +69,17 @@ class ChatMemberRestricted implements ChatMember {
     required this.canInviteUsers,
     required this.canPinMessages,
     required this.canSendMessages,
-    required this.canSendMediaMessages,
     required this.canSendPolls,
     required this.canSendOtherMessages,
     required this.canAddWebPagePreviews,
     required this.untilDate,
     required this.canManageTopics,
+    required this.canSendAudios,
+    required this.canSendDocuments,
+    required this.canSendPhotos,
+    required this.canSendVideos,
+    required this.canSendVideoNotes,
+    required this.canSendVoiceNotes,
   });
 
   /// Date when restrictions will be lifted for this user; unix time. If 0, then the user is restricted forever
@@ -84,28 +106,38 @@ class ChatMemberRestricted implements ChatMember {
       'can_pin_messages': canPinMessages,
       'can_manage_topics': canManageTopics,
       'can_send_messages': canSendMessages,
-      'can_send_media_messages': canSendMediaMessages,
       'can_send_polls': canSendPolls,
       'can_send_other_messages': canSendOtherMessages,
       'can_add_web_page_previews': canAddWebPagePreviews,
       'until_date': untilDate,
+      'can_send_audios': canSendAudios,
+      'can_send_documents': canSendDocuments,
+      'can_send_photos': canSendPhotos,
+      'can_send_videos': canSendVideos,
+      'can_send_video_notes': canSendVideoNotes,
+      'can_send_voice_notes': canSendVoiceNotes,
     }..removeWhere((key, value) => value == null);
   }
 
   factory ChatMemberRestricted.fromJson(Map<String, dynamic> json) {
     return ChatMemberRestricted(
-      user: User.fromJson(json['user'] as Map<String, dynamic>),
-      isMember: json['is_member'] as bool,
-      canChangeInfo: json['can_change_info'] as bool,
-      canInviteUsers: json['can_invite_users'] as bool,
-      canPinMessages: json['can_pin_messages'] as bool,
-      canManageTopics: json['can_manage_topics'] as bool,
-      canSendMessages: json['can_send_messages'] as bool,
-      canSendMediaMessages: json['can_send_media_messages'] as bool,
-      canSendPolls: json['can_send_polls'] as bool,
-      canSendOtherMessages: json['can_send_other_messages'] as bool,
-      canAddWebPagePreviews: json['can_add_web_page_previews'] as bool,
-      untilDate: json['until_date'] as int,
+      user: User.fromJson(json['user']),
+      isMember: json['is_member'],
+      canChangeInfo: json['can_change_info'],
+      canInviteUsers: json['can_invite_users'],
+      canPinMessages: json['can_pin_messages'],
+      canManageTopics: json['can_manage_topics'],
+      canSendMessages: json['can_send_messages'],
+      canSendPolls: json['can_send_polls'],
+      canSendOtherMessages: json['can_send_other_messages'],
+      canAddWebPagePreviews: json['can_add_web_page_previews'],
+      untilDate: json['until_date'],
+      canSendAudios: json['can_send_audios'],
+      canSendDocuments: json['can_send_documents'],
+      canSendPhotos: json['can_send_photos'],
+      canSendVideos: json['can_send_videos'],
+      canSendVideoNotes: json['can_send_video_notes'],
+      canSendVoiceNotes: json['can_send_voice_notes'],
     );
   }
 }

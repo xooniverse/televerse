@@ -80,6 +80,12 @@ class Chat {
   /// Optional. For supergroups, the location to which the supergroup is connected. Returned only in getChat.
   ChatLocation? location;
 
+  /// Optional. True, if non-administrators can only get the list of bots and administrators in the chat. Returned only in getChat.
+  bool? hasHiddenMembers;
+
+  /// Optional. True, if aggressive anti-spam checks are enabled in the supergroup. The field is only available to chat administrators. Returned only in getChat.
+  bool? hasAggressiveAntiSpamEnabled;
+
   Chat({
     required this.id,
     required this.type,
@@ -107,48 +113,49 @@ class Chat {
     this.canSetStickerSet,
     this.linkedChatId,
     this.location,
+    this.hasHiddenMembers,
+    this.hasAggressiveAntiSpamEnabled,
   });
 
   factory Chat.fromJson(Map<String, dynamic> json) {
     return Chat(
       id: json['id'] as int,
       type: ChatType.fromJson(json['type'] as String),
-      title: json['title'] as String?,
-      username: json['username'] as String?,
-      firstName: json['first_name'] as String?,
-      lastName: json['last_name'] as String?,
-      isForum: json['is_forum'] as bool?,
-      photo: json['photo'] == null
-          ? null
-          : ChatPhoto.fromJson(json['photo'] as Map<String, dynamic>),
+      title: json['title'],
+      username: json['username'],
+      firstName: json['first_name'],
+      lastName: json['last_name'],
+      isForum: json['is_forum'],
+      photo: json['photo'] == null ? null : ChatPhoto.fromJson(json['photo']),
       activeUsernames: (json['active_usernames'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      emojiStatusSustomEmojiId: json['emoji_status_custom_emoji_id'] as String?,
-      bio: json['bio'] as String?,
-      hasPrivateForwards: json['has_private_forwards'] as bool?,
+      emojiStatusSustomEmojiId: json['emoji_status_custom_emoji_id'],
+      bio: json['bio'],
+      hasPrivateForwards: json['has_private_forwards'],
       hasRestrictedVoiceAndVideoMessages:
-          json['has_restricted_voice_and_video_messages'] as bool?,
-      joinToSendMessages: json['join_to_send_messages'] as bool?,
-      joinByRequest: json['join_by_request'] as bool?,
-      description: json['description'] as String?,
-      inviteLink: json['invite_link'] as String?,
+          json['has_restricted_voice_and_video_messages'],
+      joinToSendMessages: json['join_to_send_messages'],
+      joinByRequest: json['join_by_request'],
+      description: json['description'],
+      inviteLink: json['invite_link'],
       pinnedMessage: json['pinned_message'] == null
           ? null
-          : Message.fromJson(json['pinned_message'] as Map<String, dynamic>),
+          : Message.fromJson(json['pinned_message']),
       permissions: json['permissions'] == null
           ? null
-          : ChatPermissions.fromJson(
-              json['permissions'] as Map<String, dynamic>),
-      slowModeDelay: json['slow_mode_delay'] as int?,
-      messageAutoDeleteTime: json['message_auto_delete_time'] as int?,
-      hasProtectedContent: json['has_protected_content'] as bool?,
-      stickerSetName: json['sticker_set_name'] as String?,
-      canSetStickerSet: json['can_set_sticker_set'] as bool?,
-      linkedChatId: json['linked_chat_id'] as int?,
+          : ChatPermissions.fromJson(json['permissions']),
+      slowModeDelay: json['slow_mode_delay'],
+      messageAutoDeleteTime: json['message_auto_delete_time'],
+      hasProtectedContent: json['has_protected_content'],
+      stickerSetName: json['sticker_set_name'],
+      canSetStickerSet: json['can_set_sticker_set'],
+      linkedChatId: json['linked_chat_id'],
       location: json['location'] == null
           ? null
-          : ChatLocation.fromJson(json['location'] as Map<String, dynamic>),
+          : ChatLocation.fromJson(json['location']),
+      hasHiddenMembers: json['has_hidden_members'],
+      hasAggressiveAntiSpamEnabled: json['has_aggressive_anti_spam_enabled'],
     );
   }
 
@@ -181,6 +188,8 @@ class Chat {
       'can_set_sticker_set': canSetStickerSet,
       'linked_chat_id': linkedChatId,
       'location': location?.toJson(),
+      'has_hidden_members': hasHiddenMembers,
+      'has_aggressive_anti_spam_enabled': hasAggressiveAntiSpamEnabled,
     }..removeWhere((key, value) => value == null);
   }
 }

@@ -28,7 +28,10 @@ class InputMediaVideo extends InputMedia {
   final int? duration;
 
   /// Optional. Pass True if the uploaded video is suitable for streaming
-  bool? supportsStreaming;
+  final bool? supportsStreaming;
+
+  /// Optional. Pass True if the video needs to be covered with a spoiler animation
+  final bool? hasSpoiler;
 
   InputMediaVideo({
     required super.media,
@@ -40,6 +43,7 @@ class InputMediaVideo extends InputMedia {
     this.height,
     this.duration,
     this.supportsStreaming,
+    this.hasSpoiler,
   });
 
   @override
@@ -55,6 +59,7 @@ class InputMediaVideo extends InputMedia {
       'height': height,
       'duration': duration,
       'supports_streaming': supportsStreaming,
+      'has_spoiler': hasSpoiler,
     }..removeWhere((key, value) => value == null);
   }
 
@@ -74,6 +79,7 @@ class InputMediaVideo extends InputMedia {
       height: json['height'],
       duration: json['duration'],
       supportsStreaming: json['supports_streaming'],
+      hasSpoiler: json['has_spoiler'],
     );
   }
 }

@@ -23,12 +23,24 @@ class KeyboardButton {
   /// Note: web_app option will only work in Telegram versions released after 16 April, 2022. Older clients will display unsupported message.
   WebAppInfo? webApp;
 
+  /// Optional. If specified, pressing the button will open a list of suitable users. Tapping on any user will send their identifier to the bot in a “user_shared” service message. Available in private chats only.
+  ///
+  /// Since: Bot API 6.5
+  KeyboardButtonRequestUser? requestUser;
+
+  /// Optional. If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a “chat_shared” service message. Available in private chats only.
+  ///
+  /// Since: Bot API 6.5
+  KeyboardButtonRequestChat? requestChat;
+
   KeyboardButton({
     required this.text,
     this.requestContact,
     this.requestLocation,
     this.requestPoll,
     this.webApp,
+    this.requestUser,
+    this.requestChat,
   });
 
   factory KeyboardButton.fromJson(Map<String, dynamic> json) {
@@ -41,6 +53,12 @@ class KeyboardButton {
           : null,
       webApp:
           json['web_app'] != null ? WebAppInfo.fromJson(json['web_app']) : null,
+      requestUser: json['request_user'] != null
+          ? KeyboardButtonRequestUser.fromJson(json['request_user'])
+          : null,
+      requestChat: json['request_chat'] != null
+          ? KeyboardButtonRequestChat.fromJson(json['request_chat'])
+          : null,
     );
   }
 
@@ -51,6 +69,8 @@ class KeyboardButton {
       'request_location': requestLocation,
       'request_poll': requestPoll?.toJson(),
       'web_app': webApp?.toJson(),
+      'request_user': requestUser?.toJson(),
+      'request_chat': requestChat?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 }
