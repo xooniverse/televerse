@@ -203,6 +203,12 @@ class Message {
   /// Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons.
   InlineKeyboardMarkup? replyMarkup;
 
+  /// Optional. Service message: a user was shared with the bot
+  UserShared? userShared;
+
+  /// Optional. Service message: a chat was shared with the bot
+  ChatShared? chatShared;
+
   Message({
     required this.messageId,
     this.from,
@@ -269,6 +275,8 @@ class Message {
     this.isTopicMessage,
     this.messageThreadId,
     this.threadId,
+    this.userShared,
+    this.chatShared,
   });
 
   factory Message.fromJson(Map<String, dynamic> json) {
@@ -433,6 +441,12 @@ class Message {
       isTopicMessage: json['is_topic_message'] as bool?,
       threadId: json['thread_id'] as int?,
       messageThreadId: json['message_thread_id'] as int?,
+      userShared: json['user_shared'] == null
+          ? null
+          : UserShared.fromJson(json['user_shared'] as Map<String, dynamic>),
+      chatShared: json['chat_shared'] == null
+          ? null
+          : ChatShared.fromJson(json['chat_shared'] as Map<String, dynamic>),
     );
   }
 
