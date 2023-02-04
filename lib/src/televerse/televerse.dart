@@ -1293,17 +1293,22 @@ class Televerse extends Event with OnEvent {
   }
 
   /// Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass True for all permissions to lift restrictions from a user. Returns True on success.
+  ///
+  /// New Parameters: (Since Bot API 6.5)
+  /// -  `useIndependentChatPermissions` - Pass True if chat permissions are set independently. Otherwise, the `can_send_other_messages` and `can_add_web_page_previews` permissions will imply the `can_send_messages`, `can_send_audios`, `can_send_documents`, `can_send_photos`, `can_send_videos`, `can_send_video_notes`, and `can_send_voice_notes` permissions; the `can_send_polls` permission will imply the `can_send_messages` permission.
   Future<bool> restrictChatMember(
     ID chatId,
     int userId,
     ChatPermissions permissions, {
     DateTime? untilDate,
+    bool? useIndependentChatPermissions,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "user_id": userId,
       "permissions": permissions.toJson(),
       "until_date": untilDate?.unixTime,
+      "use_independent_chat_permissions": useIndependentChatPermissions,
     };
     bool response = await HttpClient.getURI(
       _buildUri("restrictChatMember", params),
@@ -1398,13 +1403,18 @@ class Televerse extends Event with OnEvent {
   }
 
   /// Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members administrator rights. Returns True on success.
+  ///
+  /// New Parameters: (Since Bot API 6.5)
+  /// -  `useIndependentChatPermissions` - Pass True if chat permissions are set independently. Otherwise, the `can_send_other_messages` and `can_add_web_page_previews` permissions will imply the `can_send_messages`, `can_send_audios`, `can_send_documents`, `can_send_photos`, `can_send_videos`, `can_send_video_notes`, and `can_send_voice_notes` permissions; the `can_send_polls` permission will imply the `can_send_messages` permission.
   Future<bool> setChatPermissions(
     ID chatId,
-    ChatPermissions permissions,
-  ) async {
+    ChatPermissions permissions, {
+    bool? useIndependentChatPermissions,
+  }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "permissions": permissions.toJson(),
+      "use_independent_chat_permissions": useIndependentChatPermissions,
     };
     bool response = await HttpClient.getURI(
       _buildUri("setChatPermissions", params),
