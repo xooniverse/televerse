@@ -26,6 +26,9 @@ class InputMediaAnimation extends InputMedia {
   /// Optional. Animation duration in seconds
   final int? duration;
 
+  /// Optional. Pass True if the animation needs to be covered with a spoiler animation
+  final bool? hasSpoiler;
+
   InputMediaAnimation({
     required super.media,
     this.thumb,
@@ -35,6 +38,7 @@ class InputMediaAnimation extends InputMedia {
     this.width,
     this.height,
     this.duration,
+    this.hasSpoiler,
   });
 
   @override
@@ -49,6 +53,7 @@ class InputMediaAnimation extends InputMedia {
       'width': width,
       'height': height,
       'duration': duration,
+      'has_spoiler': hasSpoiler,
     }..removeWhere((key, value) => value == null);
   }
 
@@ -67,6 +72,7 @@ class InputMediaAnimation extends InputMedia {
       width: json['width'],
       height: json['height'],
       duration: json['duration'],
+      hasSpoiler: json['has_spoiler'],
     );
   }
 }

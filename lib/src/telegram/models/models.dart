@@ -123,6 +123,12 @@ part 'login_url.dart';
 part 'video_chat_participants_invited.dart';
 part 'bot_command.dart';
 
+// Bot API 6.4
+part 'forum_topic_edited.dart';
+part 'general_forum_topic_hidden.dart';
+part 'general_forum_topic_unhidden.dart';
+part 'write_access_allowed.dart';
+
 // Bot API 6.5
 part 'keyboard_button_request_user.dart';
 part 'keyboard_button_request_chat.dart';

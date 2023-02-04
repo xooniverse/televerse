@@ -362,6 +362,7 @@ class Televerse extends Event with OnEvent {
     int? replyToMessageId,
     bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    bool? hasSpoiler,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -373,6 +374,7 @@ class Televerse extends Event with OnEvent {
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "has_spoiler": hasSpoiler,
     };
     Map<String, dynamic> response;
     if (photo.type == InputFileType.file) {

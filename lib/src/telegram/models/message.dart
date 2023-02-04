@@ -209,6 +209,21 @@ class Message {
   /// Optional. Service message: a chat was shared with the bot
   ChatShared? chatShared;
 
+  /// Optional. True, if the message media is covered by a spoiler animation
+  bool? hasMediaSpoiler;
+
+  /// Optional. Service message: forum topic edited
+  ForumTopicEdited? forumTopicEdited;
+
+  /// Optional. Service message: the 'General' forum topic hidden
+  GeneralForumTopicHidden? generalForumTopicHidden;
+
+  /// Optional. Service message: the 'General' forum topic unhidden
+  GeneralForumTopicUnhidden? generalForumTopicUnhidden;
+
+  /// Optional. Service message: the user allowed the bot added to the attachment menu to write messages
+  WriteAccessAllowed? writeAccessAllowed;
+
   Message({
     required this.messageId,
     this.from,
@@ -277,176 +292,157 @@ class Message {
     this.threadId,
     this.userShared,
     this.chatShared,
+    this.hasMediaSpoiler,
+    this.forumTopicEdited,
+    this.generalForumTopicHidden,
+    this.generalForumTopicUnhidden,
+    this.writeAccessAllowed,
   });
 
   factory Message.fromJson(Map<String, dynamic> json) {
     return Message(
-      messageId: json['message_id'] as int,
-      from: json['from'] == null
-          ? null
-          : User.fromJson(json['from'] as Map<String, dynamic>),
+      messageId: json['message_id'],
+      from: json['from'] == null ? null : User.fromJson(json['from']),
       senderChat: json['sender_chat'] == null
           ? null
-          : Chat.fromJson(json['sender_chat'] as Map<String, dynamic>),
-      date: json['date'] as int,
-      chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
+          : Chat.fromJson(json['sender_chat']),
+      date: json['date'],
+      chat: Chat.fromJson(json['chat']),
       forwardFrom: json['forward_from'] == null
           ? null
-          : User.fromJson(json['forward_from'] as Map<String, dynamic>),
+          : User.fromJson(json['forward_from']),
       forwardFromChat: json['forward_from_chat'] == null
           ? null
-          : Chat.fromJson(json['forward_from_chat'] as Map<String, dynamic>),
-      forwardFromMessageId: json['forward_from_message_id'] as int?,
-      forwardSignature: json['forward_signature'] as String?,
-      forwardSenderName: json['forward_sender_name'] as String?,
-      forwardDate: json['forward_date'] as int?,
+          : Chat.fromJson(json['forward_from_chat']),
+      forwardFromMessageId: json['forward_from_message_id'],
+      forwardSignature: json['forward_signature'],
+      forwardSenderName: json['forward_sender_name'],
+      forwardDate: json['forward_date'],
       replyToMessage: json['reply_to_message'] == null
           ? null
-          : Message.fromJson(json['reply_to_message'] as Map<String, dynamic>),
-      viaBot: json['via_bot'] == null
-          ? null
-          : User.fromJson(json['via_bot'] as Map<String, dynamic>),
-      editDate: json['edit_date'] as int?,
-      mediaGroupId: json['media_group_id'] as String?,
-      authorSignature: json['author_signature'] as String?,
-      text: json['text'] as String?,
-      entities: (json['entities'] as List<dynamic>?)
-          ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
-          .toList(),
+          : Message.fromJson(json['reply_to_message']),
+      viaBot: json['via_bot'] == null ? null : User.fromJson(json['via_bot']),
+      editDate: json['edit_date'],
+      mediaGroupId: json['media_group_id'],
+      authorSignature: json['author_signature'],
+      text: json['text'],
+      entities:
+          (json['entities'])?.map((e) => MessageEntity.fromJson(e)).toList(),
       animation: json['animation'] == null
           ? null
-          : Animation.fromJson(json['animation'] as Map<String, dynamic>),
-      audio: json['audio'] == null
-          ? null
-          : Audio.fromJson(json['audio'] as Map<String, dynamic>),
-      document: json['document'] == null
-          ? null
-          : Document.fromJson(json['document'] as Map<String, dynamic>),
-      photo: (json['photo'] as List<dynamic>?)
-          ?.map((e) => PhotoSize.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      sticker: json['sticker'] == null
-          ? null
-          : Sticker.fromJson(json['sticker'] as Map<String, dynamic>),
-      video: json['video'] == null
-          ? null
-          : Video.fromJson(json['video'] as Map<String, dynamic>),
+          : Animation.fromJson(json['animation']),
+      audio: json['audio'] == null ? null : Audio.fromJson(json['audio']),
+      document:
+          json['document'] == null ? null : Document.fromJson(json['document']),
+      photo: (json['photo'])?.map((e) => PhotoSize.fromJson(e)).toList(),
+      sticker:
+          json['sticker'] == null ? null : Sticker.fromJson(json['sticker']),
+      video: json['video'] == null ? null : Video.fromJson(json['video']),
       videoNote: json['video_note'] == null
           ? null
-          : VideoNote.fromJson(json['video_note'] as Map<String, dynamic>),
-      voice: json['voice'] == null
-          ? null
-          : Voice.fromJson(json['voice'] as Map<String, dynamic>),
-      caption: json['caption'] as String?,
-      captionEntities: (json['caption_entities'] as List<dynamic>?)
-          ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
+          : VideoNote.fromJson(json['video_note']),
+      voice: json['voice'] == null ? null : Voice.fromJson(json['voice']),
+      caption: json['caption'],
+      captionEntities: (json['caption_entities'])
+          ?.map((e) => MessageEntity.fromJson(e))
           .toList(),
-      contact: json['contact'] == null
-          ? null
-          : Contact.fromJson(json['contact'] as Map<String, dynamic>),
-      dice: json['dice'] == null
-          ? null
-          : Dice.fromJson(json['dice'] as Map<String, dynamic>),
-      game: json['game'] == null
-          ? null
-          : Game.fromJson(json['game'] as Map<String, dynamic>),
-      poll: json['poll'] == null
-          ? null
-          : Poll.fromJson(json['poll'] as Map<String, dynamic>),
-      venue: json['venue'] == null
-          ? null
-          : Venue.fromJson(json['venue'] as Map<String, dynamic>),
-      location: json['location'] == null
-          ? null
-          : Location.fromJson(json['location'] as Map<String, dynamic>),
-      newChatMembers: (json['new_chat_members'] as List<dynamic>?)
-          ?.map((e) => User.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      contact:
+          json['contact'] == null ? null : Contact.fromJson(json['contact']),
+      dice: json['dice'] == null ? null : Dice.fromJson(json['dice']),
+      game: json['game'] == null ? null : Game.fromJson(json['game']),
+      poll: json['poll'] == null ? null : Poll.fromJson(json['poll']),
+      venue: json['venue'] == null ? null : Venue.fromJson(json['venue']),
+      location:
+          json['location'] == null ? null : Location.fromJson(json['location']),
+      newChatMembers:
+          (json['new_chat_members'])?.map((e) => User.fromJson(e)).toList(),
       leftChatMember: json['left_chat_member'] == null
           ? null
-          : User.fromJson(json['left_chat_member'] as Map<String, dynamic>),
-      newChatTitle: json['new_chat_title'] as String?,
-      newChatPhoto: (json['new_chat_photo'] as List<dynamic>?)
-          ?.map((e) => PhotoSize.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      deleteChatPhoto: json['delete_chat_photo'] as bool?,
-      groupChatCreated: json['group_chat_created'] as bool?,
-      supergroupChatCreated: json['supergroup_chat_created'] as bool?,
-      channelChatCreated: json['channel_chat_created'] as bool?,
+          : User.fromJson(json['left_chat_member']),
+      newChatTitle: json['new_chat_title'],
+      newChatPhoto:
+          (json['new_chat_photo'])?.map((e) => PhotoSize.fromJson(e)).toList(),
+      deleteChatPhoto: json['delete_chat_photo'],
+      groupChatCreated: json['group_chat_created'],
+      supergroupChatCreated: json['supergroup_chat_created'],
+      channelChatCreated: json['channel_chat_created'],
       messageAutoDeleteTimerChanged:
           json['message_auto_delete_timer_changed'] == null
               ? null
               : MessageAutoDeleteTimerChanged.fromJson(
-                  json['message_auto_delete_timer_changed']
-                      as Map<String, dynamic>),
-      migrateToChatId: json['migrate_to_chat_id'] as int?,
-      migrateFromChatId: json['migrate_from_chat_id'] as int?,
+                  json['message_auto_delete_timer_changed']),
+      migrateToChatId: json['migrate_to_chat_id'],
+      migrateFromChatId: json['migrate_from_chat_id'],
       pinnedMessage: json['pinned_message'] == null
           ? null
-          : Message.fromJson(json['pinned_message'] as Map<String, dynamic>),
-      invoice: json['invoice'] == null
-          ? null
-          : Invoice.fromJson(json['invoice'] as Map<String, dynamic>),
+          : Message.fromJson(json['pinned_message']),
+      invoice:
+          json['invoice'] == null ? null : Invoice.fromJson(json['invoice']),
       successfulPayment: json['successful_payment'] == null
           ? null
-          : SuccessfulPayment.fromJson(
-              json['successful_payment'] as Map<String, dynamic>),
-      connectedWebsite: json['connected_website'] as String?,
+          : SuccessfulPayment.fromJson(json['successful_payment']),
+      connectedWebsite: json['connected_website'],
       passportData: json['passport_data'] == null
           ? null
-          : PassportData.fromJson(
-              json['passport_data'] as Map<String, dynamic>),
+          : PassportData.fromJson(json['passport_data']),
       proximityAlertTriggered: json['proximity_alert_triggered'] == null
           ? null
-          : ProximityAlertTriggered.fromJson(
-              json['proximity_alert_triggered'] as Map<String, dynamic>),
+          : ProximityAlertTriggered.fromJson(json['proximity_alert_triggered']),
       replyMarkup: json['reply_markup'] == null
           ? null
-          : InlineKeyboardMarkup.fromJson(
-              json['reply_markup'] as Map<String, dynamic>),
-      isAutomaticForward: json['is_automatic_forward'] as bool?,
+          : InlineKeyboardMarkup.fromJson(json['reply_markup']),
+      isAutomaticForward: json['is_automatic_forward'],
       webAppData: json['web_app_data'] == null
           ? null
-          : WebAppData.fromJson(json['web_app_data'] as Map<String, dynamic>),
+          : WebAppData.fromJson(json['web_app_data']),
       videoChatEnded: json['video_chat_ended'] == null
           ? null
-          : VideoChatEnded.fromJson(
-              json['video_chat_ended'] as Map<String, dynamic>),
+          : VideoChatEnded.fromJson(json['video_chat_ended']),
       videoChatStarted: json['video_chat_started'] == null
           ? null
-          : VideoChatStarted.fromJson(
-              json['video_chat_started'] as Map<String, dynamic>),
-      videoChatParticipantsInvited: json['video_chat_participants_invited'] ==
-              null
-          ? null
-          : VideoChatParticipantsInvited.fromJson(
-              json['video_chat_participants_invited'] as Map<String, dynamic>),
+          : VideoChatStarted.fromJson(json['video_chat_started']),
+      videoChatParticipantsInvited:
+          json['video_chat_participants_invited'] == null
+              ? null
+              : VideoChatParticipantsInvited.fromJson(
+                  json['video_chat_participants_invited']),
       videoChatScheduled: json['video_chat_scheduled'] == null
           ? null
-          : VideoChatScheduled.fromJson(
-              json['video_chat_scheduled'] as Map<String, dynamic>),
+          : VideoChatScheduled.fromJson(json['video_chat_scheduled']),
       forumTopicClosed: json['forum_topic_closed'] == null
           ? null
-          : ForumTopicClosed.fromJson(
-              json['forum_topic_closed'] as Map<String, dynamic>),
+          : ForumTopicClosed.fromJson(json['forum_topic_closed']),
       forumTopicCreated: json['forum_topic_created'] == null
           ? null
-          : ForumTopicCreated.fromJson(
-              json['forum_topic_created'] as Map<String, dynamic>),
+          : ForumTopicCreated.fromJson(json['forum_topic_created']),
       forumTopicReopened: json['forum_topic_reopened'] == null
           ? null
-          : ForumTopicReopened.fromJson(
-              json['forum_topic_reopened'] as Map<String, dynamic>),
-      hasProtectedContent: json['has_protected_content'] as bool?,
-      isTopicMessage: json['is_topic_message'] as bool?,
-      threadId: json['thread_id'] as int?,
-      messageThreadId: json['message_thread_id'] as int?,
+          : ForumTopicReopened.fromJson(json['forum_topic_reopened']),
+      hasProtectedContent: json['has_protected_content'],
+      isTopicMessage: json['is_topic_message'],
+      threadId: json['thread_id'],
+      messageThreadId: json['message_thread_id'],
       userShared: json['user_shared'] == null
           ? null
-          : UserShared.fromJson(json['user_shared'] as Map<String, dynamic>),
+          : UserShared.fromJson(json['user_shared']),
       chatShared: json['chat_shared'] == null
           ? null
-          : ChatShared.fromJson(json['chat_shared'] as Map<String, dynamic>),
+          : ChatShared.fromJson(json['chat_shared']),
+      hasMediaSpoiler: json['has_media_spoiler'],
+      forumTopicEdited: json['forum_topic_edited'] == null
+          ? null
+          : ForumTopicEdited.fromJson(json['forum_topic_edited']),
+      generalForumTopicHidden: json['general_forum_topic_hidden'] == null
+          ? null
+          : GeneralForumTopicHidden.fromJson(
+              json['general_forum_topic_hidden']),
+      generalForumTopicUnhidden: json['general_forum_topic_unhidden'] == null
+          ? null
+          : GeneralForumTopicUnhidden.fromJson(
+              json['general_forum_topic_unhidden']),
+      writeAccessAllowed: json['write_access_allowed'] == null
+          ? null
+          : WriteAccessAllowed.fromJson(json['write_access_allowed']),
     );
   }
 
@@ -518,6 +514,13 @@ class Message {
       'is_topic_message': isTopicMessage,
       'thread_id': threadId,
       'message_thread_id': messageThreadId,
+      'user_shared': userShared?.toJson(),
+      'chat_shared': chatShared?.toJson(),
+      'has_media_spoiler': hasMediaSpoiler,
+      'forum_topic_edited': forumTopicEdited?.toJson(),
+      'general_forum_topic_hidden': generalForumTopicHidden?.toJson(),
+      'general_forum_topic_unhidden': generalForumTopicUnhidden?.toJson(),
+      'write_access_allowed': writeAccessAllowed?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 
