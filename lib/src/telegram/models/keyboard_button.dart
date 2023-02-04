@@ -28,6 +28,11 @@ class KeyboardButton {
   /// Since: Bot API 6.5
   KeyboardButtonRequestUser? requestUser;
 
+  /// Optional. If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a “chat_shared” service message. Available in private chats only.
+  ///
+  /// Since: Bot API 6.5
+  KeyboardButtonRequestChat? requestChat;
+
   KeyboardButton({
     required this.text,
     this.requestContact,
@@ -35,6 +40,7 @@ class KeyboardButton {
     this.requestPoll,
     this.webApp,
     this.requestUser,
+    this.requestChat,
   });
 
   factory KeyboardButton.fromJson(Map<String, dynamic> json) {
@@ -50,6 +56,9 @@ class KeyboardButton {
       requestUser: json['request_user'] != null
           ? KeyboardButtonRequestUser.fromJson(json['request_user'])
           : null,
+      requestChat: json['request_chat'] != null
+          ? KeyboardButtonRequestChat.fromJson(json['request_chat'])
+          : null,
     );
   }
 
@@ -60,6 +69,8 @@ class KeyboardButton {
       'request_location': requestLocation,
       'request_poll': requestPoll?.toJson(),
       'web_app': webApp?.toJson(),
+      'request_user': requestUser?.toJson(),
+      'request_chat': requestChat?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 }

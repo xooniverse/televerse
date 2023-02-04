@@ -125,3 +125,4 @@ part 'bot_command.dart';
 
 // Bot API 6.5
 part 'keyboard_button_request_user.dart';
+part 'keyboard_button_request_chat.dart';
