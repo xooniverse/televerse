@@ -1,8 +1,10 @@
 # Televerse 
 
-Televerse is simple & efficient way to create Telegram bots with Dart. 
+Televerse is simple & efficient way to create Telegram bots with Dart.
 
-`Bot API version: Bot API 6.4`
+![](https://shields.io/badge/Latest-Bot%20API%206.5-blue)
+
+🤖 `Bot API version: Bot API 6.5`
 
 ## 👨🏻‍💻 Installation
 
