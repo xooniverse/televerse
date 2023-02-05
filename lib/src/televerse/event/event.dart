@@ -222,7 +222,7 @@ class Event {
   /// Optionally, you can specify a [pattern] to match the command with. If the command matches the pattern, the [MessageContext.matches] will be set to the matches.
   void command(
     String command,
-    FutureOr<void> Function(MessageContext ctx) callback, {
+    MessageHandler callback, {
     RegExp? pattern,
   }) {
     onMessage.listen((MessageContext context) {
@@ -256,7 +256,7 @@ class Event {
   /// This will answer "Hello!" to any callback query that has the data "start".
   void callbackQuery(
     String data,
-    FutureOr<void> Function(CallbackQueryContext ctx) callback, {
+    CallbackQueryHandler callback, {
     RegExp? regex,
   }) {
     onCallbackQuery.listen((CallbackQueryContext context) {
@@ -292,7 +292,7 @@ class Event {
   /// the [chatTypes] method.
   void chatType(
     ChatType type,
-    FutureOr<void> Function(MessageContext ctx) callback,
+    MessageHandler callback,
   ) {
     onMessage.listen((MessageContext context) {
       if (context.message.chat.type == type) {
@@ -319,7 +319,7 @@ class Event {
   /// from a private chat or a group.
   void chatTypes(
     List<ChatType> types,
-    FutureOr<void> Function(MessageContext ctx) callback,
+    MessageHandler callback,
   ) {
     onMessage.listen((MessageContext context) {
       if (types.contains(context.message.chat.type)) {
@@ -343,7 +343,7 @@ class Event {
   /// ```
   void filter(
     bool Function(MessageContext ctx) predicate,
-    FutureOr<void> Function(MessageContext ctx) callback,
+    MessageHandler callback,
   ) {
     onMessage.listen((MessageContext context) {
       if (predicate(context)) {
@@ -364,7 +364,7 @@ class Event {
   /// ```
   void text(
     String text,
-    FutureOr<void> Function(MessageContext ctx) callback,
+    MessageHandler callback,
   ) {
     onMessage.listen((MessageContext context) {
       if (context.message.text?.contains(text) ?? false) {
@@ -391,7 +391,7 @@ class Event {
   /// matches the regular expression `Hello, (.*)!`.
   void hears(
     RegExp exp,
-    FutureOr<void> Function(MessageContext ctx) callback,
+    MessageHandler callback,
   ) {
     onMessage.listen((MessageContext context) {
       final matches = exp.allMatches(context.message.text ?? '');
@@ -406,8 +406,18 @@ class Event {
   ///
   /// The callback will be called when an inline query with the specified query is received.
   void inlineQuery(
-    FutureOr<void> Function(InlineQueryContext ctx) callback,
+    InlineQueryHandler Function(InlineQueryContext ctx) callback,
   ) {
     onInlineQuery.listen(callback);
+  }
+
+  /// Registers a callback for the `/settings` command.
+  void settings(MessageHandler handler) async {
+    command("settings", handler);
+  }
+
+  /// Registers a callback for the `/help` command.
+  void help(MessageHandler handler) async {
+    command("help", handler);
   }
 }
