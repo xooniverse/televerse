@@ -27,7 +27,6 @@ void main() {
   });
 
   // Listen to commands
-  bot.command("start", (ctx) => ctx.reply("Hello!"));
   bot.command("bye", (ctx) => ctx.reply("Bye!"));
 
   // Add advanced filters to particularly listen to messages
@@ -60,5 +59,9 @@ void main() {
     ctx.reply("This will only be executed if the message has text");
   });
 
-  bot.start();
+  // Since v1.3.1 you can listen for `/start`, `/help` and `/settings` commands
+  // in an easier way.
+  bot.start((ctx) => ctx.reply("Hello!"));
+  bot.settings((ctx) => ctx.reply("Settings"));
+  bot.help((ctx) => ctx.reply("Help"));
 }
