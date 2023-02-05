@@ -69,11 +69,16 @@ class Televerse extends Event with OnEvent {
   }
 
   /// Start polling for updates.
-  Future<void> start() async {
+  Future<void> start([FutureOr<void> Function(MessageContext)? handler]) async {
     fetcher.start();
     fetcher.onUpdate().listen((update) {
       _onUpdate(update);
     });
+
+    // Registers a handler to listen for /start command
+    if (handler != null) {
+      command("start", handler);
+    }
   }
 
   /// Stream of [Update] objects.

@@ -25,13 +25,34 @@ import 'package:televerse/televerse.dart';
 Bot bot = Bot('YOUR_BOT_TOKEN');
 
 ```
-Now with the bot instance you can start listening for updates:
+Now with the bot instance you can start listening for updates such as messages, commands, etc.
+
+To start polling updates from Telegram servers, you need to call:
+
+```dart
+bot.start()
+````
+
+
+
+From, Televerse 1.3.1, you can use `bot.start` method to start listening for updates and also, setup a command listener for the `/start` command.
+
+That is you can shrink this code:
 
 ```dart
 bot.command('start', (ctx) {
   ctx.reply('Hello, World!');
 });
 
+bot.start();
+```
+
+To this:
+
+```dart
+bot.start((ctx) {
+  ctx.reply('Hello, World!');
+});
 ```
 
 ## 📚 Documentation

@@ -1,3 +1,8 @@
+## 1.3.1 
+- Added shorthand methods to setup listners for `/start`, `/help`, `/settings` commands.
+- You can now use `Televerse.start`, `Televerse.help`, and `Televerse.settings` to listen for these commands.
+- All these methods accepts a `MessageHandler` as a parameter which is a type alias for `FutureOr<void> Function(MessageContext)`.
+- Added `MessageHandler`, `CallbackQueryHandler`, and `InlineQueryHandler` type aliases.
 ## 1.3.0
 - Telegram Bot API 6.5 (February 3, 2023)
 - This includes addition of classes like `KeyboardButtonRequestUser`, `KeyboardButtonRequestChat`, `UserShared` and `ChatShared`.

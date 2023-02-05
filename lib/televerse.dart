@@ -22,6 +22,9 @@ part 'src/utils/utils.dart';
 part 'src/televerse/markups/keyboard.dart';
 part 'src/televerse/markups/inline_keyboard.dart';
 
+/// Type aliases for the library.
+part 'src/types/aliases.dart';
+
 /// The main class of the library.
 ///
 /// This class is used to create a new bot instance. This is just a
