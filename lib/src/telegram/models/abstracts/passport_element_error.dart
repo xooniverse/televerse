@@ -1,5 +1,6 @@
 part of passport;
 
+/// This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user.
 abstract class PassportElementError {
   /// Error source
   final String source;

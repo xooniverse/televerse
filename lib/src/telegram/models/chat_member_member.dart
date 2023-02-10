@@ -1,5 +1,6 @@
 part of models;
 
+/// Represents a chat member that has no additional privileges or restrictions.
 class ChatMemberMember implements ChatMember {
   /// The member's status in the chat, always “creator”
 

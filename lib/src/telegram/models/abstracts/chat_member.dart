@@ -1,5 +1,6 @@
 part of models;
 
+/// This object contains information about one member of a chat.
 abstract class ChatMember {
   /// The member's status
   final ChatMemberStatus status;

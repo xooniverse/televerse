@@ -1,5 +1,43 @@
 part of televerse;
 
+/// Represents an inline keyboard that appears right next to the message it belongs to. This is a shortcut for [InlineKeyboardMarkup].
+///
+/// With `InlineKeyboard` you can create a keyboard with buttons that can be pressed inline. This is useful for things like inline menus.
+/// For example, you can create a button that will open a URL when pressed or a button that will send a callback query to your bot.
+///
+/// ```dart
+/// // Create a new inline keyboard.
+/// var keyboard = InlineKeyboard();
+///
+/// // Add a button with the text "Open Google" and the URL "https://google.com".
+/// keyboard.addUrl("Open Google", "https://google.com");
+///
+/// // Add a button with the text "Send a callback query" and the data "callback_query".
+/// keyboard.add("Send a callback query", "callback_query");
+///
+/// // Send the keyboard with the message "Hello World!".
+/// ctx.api.sendMessage(ctx.id, "Hello World!", replyMarkup: keyboard);
+/// ```
+///
+/// You can also add multiple rows to the keyboard. This is useful if you want to create a menu with multiple pages. Simply use the [InlineKeyboard.row] method to add a new row.
+/// ```dart
+/// // Create a new inline keyboard.
+/// var keyboard = InlineKeyboard();
+///
+/// // Add a button with the text "Open Google" and the URL "https://google.com".
+/// keyboard.addUrl("Open Google", "https://google.com");
+///
+/// // Add a new row.
+/// keyboard.row();
+///
+/// // Add a button with the text "Send a callback query" and the data "callback_query".
+/// keyboard.add("Send a callback query", "callback_query");
+///
+/// // Send the keyboard with the message "Hello World!".
+/// ctx.api.sendMessage(ctx.id, "Hello World!", replyMarkup: keyboard);
+/// ```
+///
+/// Additionally, you can also add - web apps by using the [InlineKeyboard.addWebApp] method,
 class InlineKeyboard extends InlineKeyboardMarkup {
   InlineKeyboard() : super(inlineKeyboard: [[]]);
 

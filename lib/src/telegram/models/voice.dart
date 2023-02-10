@@ -1,5 +1,6 @@
 part of models;
 
+/// This object represents a voice note.
 class Voice {
   /// Identifier for this file, which can be used to download or reuse the file
   String fileId;

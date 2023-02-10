@@ -1,5 +1,6 @@
 part of models;
 
+/// Represents a chat member that is under certain restrictions in the chat. Supergroups only.
 class ChatMemberRestricted implements ChatMember {
   /// The member's status in the chat, always “creator”
 
