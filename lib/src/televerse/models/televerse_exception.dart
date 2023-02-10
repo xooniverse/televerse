@@ -4,7 +4,12 @@ part of televerse.models;
 class TeleverseException implements Exception {
   final String message;
   final String? description;
-  TeleverseException(this.message, [this.description]);
+  final StackTrace? stackTrace;
+  TeleverseException(
+    this.message, {
+    this.description,
+    this.stackTrace,
+  });
 
   @override
   String toString() {
@@ -14,7 +19,8 @@ class TeleverseException implements Exception {
   static TeleverseException fileDoesNotExist(String path) {
     return TeleverseException(
       "File does not exist",
-      "The file $path does not exist. Please check the path and try again.",
+      description:
+          "The file $path does not exist. Please check the path and try again.",
     );
   }
 }
