@@ -9,8 +9,7 @@ import 'package:televerse/televerse.dart';
 part 'long_polling.dart';
 part 'webhook.dart';
 
-/// **Fetcher**
-/// This is the base class for all fetchers. It is used to fetch updates from the Telegram API.
+/// **Fetcher** - This is the base class for all fetchers. It is used to fetch updates from the Telegram API.
 /// You can use this class to create your own fetcher. Currently, there are two fetchers: [LongPolling] and [Webhook].
 abstract class Fetcher {
   final StreamController<Update> _updateStreamController;

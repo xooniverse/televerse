@@ -33,7 +33,7 @@ class Televerse extends Event with OnEvent {
     } catch (err) {
       throw TeleverseException(
         "Bot instance not found. ",
-        "Create a Bot instance with a token first.",
+        description: "Create a Bot instance with a token first.",
       );
     }
   }
@@ -843,13 +843,13 @@ class Televerse extends Event with OnEvent {
     if (media.length > 10) {
       throw TeleverseException(
         "Invalid Parameter in [sendMediaGroup]",
-        "The maximum number of items in a media group is 10.",
+        description: "The maximum number of items in a media group is 10.",
       );
     }
     if (media.length < 2) {
       throw TeleverseException(
         "Invalid Parameter in [sendMediaGroup]",
-        "The minimum number of items in a media group is 2.",
+        description: "The minimum number of items in a media group is 2.",
       );
     }
     bool containsInvalidType = media.any((m) {
@@ -859,7 +859,8 @@ class Televerse extends Event with OnEvent {
     if (containsInvalidType) {
       throw TeleverseException(
         "Invalid Parameter in [sendMediaGroup]",
-        "Audio and Animation files can't be sent in a media group.",
+        description:
+            "Audio and Animation files can't be sent in a media group.",
       );
     }
 
@@ -1102,41 +1103,47 @@ class Televerse extends Event with OnEvent {
     if (options.length < 2 || options.length > 10) {
       throw TeleverseException(
         "The number of options must be between 2 and 10",
-        "You provided ${options.length} options. Please provide between 2 and 10 options.",
+        description:
+            "You provided ${options.length} options. Please provide between 2 and 10 options.",
       );
     }
     if (closeDate != null && openPeriod != null) {
       throw TeleverseException(
         "You can't provide both a close date and an open period",
-        "You provided both a close date and an open period. Please provide only one of them.",
+        description:
+            "You provided both a close date and an open period. Please provide only one of them.",
       );
     }
 
     if (closeDate?.isBefore(DateTime.now()) ?? false) {
       throw TeleverseException(
         "The close date must be in the future",
-        "The close date you provided is in the past. Please provide a date in the future.",
+        description:
+            "The close date you provided is in the past. Please provide a date in the future.",
       );
     }
 
     if (openPeriod != null && openPeriod < 5) {
       throw TeleverseException(
         "The open period must be at least 5 seconds",
-        "The open period you provided is less than 5 seconds. Please provide a period of at least 5 seconds.",
+        description:
+            "The open period you provided is less than 5 seconds. Please provide a period of at least 5 seconds.",
       );
     }
 
     if (openPeriod != null && openPeriod > 600) {
       throw TeleverseException(
         "The open period must be at most 600 seconds",
-        "The open period you provided is more than 600 seconds. Please provide a period of at most 600 seconds.",
+        description:
+            "The open period you provided is more than 600 seconds. Please provide a period of at most 600 seconds.",
       );
     }
 
     if (type == PollType.quiz && correctOptionId == null) {
       throw TeleverseException(
         "You must provide a correct option ID for a quiz",
-        "You provided a quiz poll type but did not provide a correct option ID. Please provide a correct option ID.",
+        description:
+            "You provided a quiz poll type but did not provide a correct option ID. Please provide a correct option ID.",
       );
     }
 
@@ -1455,21 +1462,23 @@ class Televerse extends Event with OnEvent {
     if (expireDate != null && expireDate.isBefore(DateTime.now())) {
       throw TeleverseException(
         "Invalid Argument [expireDate]",
-        "Expire date must be in the future",
+        description: "Expire date must be in the future",
       );
     }
 
     if (createsJoinRequest == true && memberLimit != null) {
       throw TeleverseException(
         "Invalid Arguments",
-        "You can't set a member limit and allow join requests at the same time",
+        description:
+            "You can't set a member limit and allow join requests at the same time",
       );
     }
 
     if (memberLimit != null && (memberLimit < 1 || memberLimit > 99999)) {
       throw TeleverseException(
         "Invalid Argument [memberLimit]",
-        "The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999",
+        description:
+            "The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999",
       );
     }
 
@@ -1498,21 +1507,23 @@ class Televerse extends Event with OnEvent {
     if (expireDate != null && expireDate.isBefore(DateTime.now())) {
       throw TeleverseException(
         "Invalid Argument [expireDate]",
-        "Expire date must be in the future",
+        description: "Expire date must be in the future",
       );
     }
 
     if (createsJoinRequest == true && memberLimit != null) {
       throw TeleverseException(
         "Invalid Arguments",
-        "You can't set a member limit and allow join requests at the same time",
+        description:
+            "You can't set a member limit and allow join requests at the same time",
       );
     }
 
     if (memberLimit != null && (memberLimit < 1 || memberLimit > 99999)) {
       throw TeleverseException(
         "Invalid Argument [memberLimit]",
-        "The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999",
+        description:
+            "The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999",
       );
     }
 
@@ -1627,7 +1638,7 @@ class Televerse extends Event with OnEvent {
     if (title.length > 128) {
       throw TeleverseException(
         "Invalid Argument [title]",
-        "Chat title can't be longer than 128 characters",
+        description: "Chat title can't be longer than 128 characters",
       );
     }
 
@@ -1649,7 +1660,7 @@ class Televerse extends Event with OnEvent {
     if (description != null && description.length > 255) {
       throw TeleverseException(
         "Invalid Argument [description]",
-        "Chat description can't be longer than 255 characters",
+        description: "Chat description can't be longer than 255 characters",
       );
     }
 
@@ -2523,7 +2534,8 @@ class Televerse extends Event with OnEvent {
     } else {
       throw TeleverseException(
         "Upload PNG Sticker",
-        "Only upload PNG file. Use [InputFile.fromFile] to upload file.",
+        description:
+            "Only upload PNG file. Use [InputFile.fromFile] to upload file.",
       );
     }
 
@@ -2581,7 +2593,8 @@ class Televerse extends Event with OnEvent {
       } else {
         throw TeleverseException(
           "Invalid Parameter [tgsSticker]",
-          "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
+          description:
+              "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
         );
       }
     }
@@ -2599,7 +2612,8 @@ class Televerse extends Event with OnEvent {
       } else {
         throw TeleverseException(
           "Invalid Parameter [webmSticker]",
-          "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
+          description:
+              "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
         );
       }
     }
@@ -2666,7 +2680,8 @@ class Televerse extends Event with OnEvent {
       } else {
         throw TeleverseException(
           "Invalid Parameter [tgsSticker]",
-          "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
+          description:
+              "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
         );
       }
     }
@@ -2684,7 +2699,8 @@ class Televerse extends Event with OnEvent {
       } else {
         throw TeleverseException(
           "Invalid Parameter [webmSticker]",
-          "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
+          description:
+              "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
         );
       }
     }
@@ -2959,14 +2975,14 @@ class Televerse extends Event with OnEvent {
     if (ok && shippingOptions == null) {
       throw TeleverseException(
         "Invalid Parameter [shippingOptions]",
-        "shippingOptions is required if ok is True",
+        description: "shippingOptions is required if ok is True",
       );
     }
 
     if (!ok && errorMessage == null) {
       throw TeleverseException(
         "Invalid Parameter [errorMessage]",
-        "errorMessage is required if ok is False",
+        description: "errorMessage is required if ok is False",
       );
     }
 
@@ -2999,7 +3015,7 @@ class Televerse extends Event with OnEvent {
     if (!ok && errorMessage == null) {
       throw TeleverseException(
         "Invalid Parameter [errorMessage]",
-        "errorMessage is required if ok is False",
+        description: "errorMessage is required if ok is False",
       );
     }
 
@@ -3140,7 +3156,8 @@ class Televerse extends Event with OnEvent {
     if (chatId == null && messageId == null && inlineMessageId == null) {
       throw TeleverseException(
         "Invalid Parameter",
-        "chatId, messageId, and inlineMessageId cannot all be null",
+        description:
+            "chatId, messageId, and inlineMessageId cannot all be null",
       );
     }
 

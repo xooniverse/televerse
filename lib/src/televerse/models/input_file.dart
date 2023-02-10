@@ -1,6 +1,5 @@
 part of televerse.models;
 
-/// **InputFile**
 /// This class is used to represent a file to be sent.
 ///
 /// Currently we have three ways to send a file:

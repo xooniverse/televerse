@@ -1,6 +1,5 @@
 part of televerse.models;
 
-/// **Message or Boolean**
 /// This class is used to represent a message or a boolean.
 /// There are some methods in the Telegram API that can return either a message or a boolean. To represent this, we use this class.
 /// For example [Televerse.editMessageLiveLocation], [Televerse.stopMessageLiveLocation] are methods that can return either a message or a boolean depending on the parameters you pass.

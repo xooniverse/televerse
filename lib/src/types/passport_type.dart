@@ -1,5 +1,6 @@
 part of passport;
 
+/// This object represents a Telegram Passport element containing the user's personal details.
 enum PassportType {
   /// Passport of the user
   passport("passport"),

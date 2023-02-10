@@ -1,5 +1,6 @@
 part of models;
 
+/// This object represents the scope to which bot commands are applied.
 abstract class BotCommandScope {
   BotCommandScopeType get type;
 

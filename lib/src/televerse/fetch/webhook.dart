@@ -1,6 +1,5 @@
 part of televerse.fetch;
 
-/// **Webhook**
 /// This class is used to create a webhook fetcher. It is a subclass of [Fetcher].
 class Webhook extends Fetcher {
   final Televerse televerse;

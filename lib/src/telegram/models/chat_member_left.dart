@@ -1,5 +1,6 @@
 part of models;
 
+/// Represents a chat member that isn't currently a member of the chat, but may join it themselves.
 class ChatMemberLeft implements ChatMember {
   /// The member's status in the chat, always “left”
   @override
