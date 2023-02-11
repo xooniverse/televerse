@@ -7,7 +7,7 @@ class CallbackQueryContext extends Context with CallbackQueryMixin {
   CallbackQuery query;
 
   CallbackQueryContext(
-    Televerse t,
+    RawAPI t,
     this.query, {
     required Update update,
   }) : super(

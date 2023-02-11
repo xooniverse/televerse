@@ -8,7 +8,7 @@ class MessageContext extends Context with MessageMixin, ManagementMixin {
   Message message;
 
   MessageContext(
-    Televerse t,
+    RawAPI t,
     this.message, {
     required Update update,
   }) : super(t, update: update);

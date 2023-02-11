@@ -326,15 +326,18 @@ class Message {
       mediaGroupId: json['media_group_id'],
       authorSignature: json['author_signature'],
       text: json['text'],
-      entities:
-          (json['entities'])?.map((e) => MessageEntity.fromJson(e)).toList(),
+      entities: (json['entities'] as List<dynamic>?)
+          ?.map((e) => MessageEntity.fromJson(e))
+          .toList(),
       animation: json['animation'] == null
           ? null
           : Animation.fromJson(json['animation']),
       audio: json['audio'] == null ? null : Audio.fromJson(json['audio']),
       document:
           json['document'] == null ? null : Document.fromJson(json['document']),
-      photo: (json['photo'])?.map((e) => PhotoSize.fromJson(e)).toList(),
+      photo: (json['photo'] as List<dynamic>?)
+          ?.map((e) => PhotoSize.fromJson(e))
+          .toList(),
       sticker:
           json['sticker'] == null ? null : Sticker.fromJson(json['sticker']),
       video: json['video'] == null ? null : Video.fromJson(json['video']),
@@ -343,7 +346,7 @@ class Message {
           : VideoNote.fromJson(json['video_note']),
       voice: json['voice'] == null ? null : Voice.fromJson(json['voice']),
       caption: json['caption'],
-      captionEntities: (json['caption_entities'])
+      captionEntities: (json['caption_entities'] as List<dynamic>?)
           ?.map((e) => MessageEntity.fromJson(e))
           .toList(),
       contact:

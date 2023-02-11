@@ -33,12 +33,9 @@ mixin OnEvent on Event {
 
       if (type == TeleverseEvent.text) {
         if (isMessageOrChannelPost && isTextMessage) {
-          if (televerse == null) {
-            print('so here we fall');
-            return;
-          }
+          if (_televerse == null) return;
           callback(MessageContext(
-            televerse!,
+            _televerse!.api,
             update.message!,
             update: update,
           ));
@@ -47,9 +44,9 @@ mixin OnEvent on Event {
 
       if (type == TeleverseEvent.audio) {
         if (isMessageOrChannelPost && hasAudio) {
-          if (televerse == null) return;
+          if (_televerse == null) return;
           callback(MessageContext(
-            televerse!,
+            _televerse!.api,
             update.message!,
             update: update,
           ));
@@ -58,9 +55,9 @@ mixin OnEvent on Event {
 
       if (type == TeleverseEvent.audioMessage) {
         if (isMessage && isAudioMessage) {
-          if (televerse == null) return;
+          if (_televerse == null) return;
           callback(MessageContext(
-            televerse!,
+            _televerse!.api,
             update.message!,
             update: update,
           ));
@@ -69,9 +66,9 @@ mixin OnEvent on Event {
 
       if (type == TeleverseEvent.edited) {
         if (isEdited) {
-          if (televerse == null) return;
+          if (_televerse == null) return;
           callback(MessageContext(
-            televerse!,
+            _televerse!.api,
             update.message!,
             update: update,
           ));
@@ -80,9 +77,9 @@ mixin OnEvent on Event {
 
       if (type == TeleverseEvent.editedMessage) {
         if (isEditedMessage) {
-          if (televerse == null) return;
+          if (_televerse == null) return;
           callback(MessageContext(
-            televerse!,
+            _televerse!.api,
             update.message!,
             update: update,
           ));
@@ -91,9 +88,9 @@ mixin OnEvent on Event {
 
       if (type == TeleverseEvent.editedChannelPost) {
         if (isEditedChannelPost) {
-          if (televerse == null) return;
+          if (_televerse == null) return;
           callback(MessageContext(
-            televerse!,
+            _televerse!.api,
             update.message!,
             update: update,
           ));
@@ -102,9 +99,9 @@ mixin OnEvent on Event {
 
       if (type == TeleverseEvent.document) {
         if (isMessageOrChannelPost && hasDocument) {
-          if (televerse == null) return;
+          if (_televerse == null) return;
           callback(MessageContext(
-            televerse!,
+            _televerse!.api,
             update.message!,
             update: update,
           ));
@@ -113,9 +110,9 @@ mixin OnEvent on Event {
 
       if (type == TeleverseEvent.documentMessage) {
         if (isMessage && isDocumentMessage) {
-          if (televerse == null) return;
+          if (_televerse == null) return;
           callback(MessageContext(
-            televerse!,
+            _televerse!.api,
             update.message!,
             update: update,
           ));
@@ -124,9 +121,9 @@ mixin OnEvent on Event {
 
       if (type == TeleverseEvent.documentChannelPost) {
         if (isChannelPost && isDocumentChannelPost) {
-          if (televerse == null) return;
+          if (_televerse == null) return;
           callback(MessageContext(
-            televerse!,
+            _televerse!.api,
             update.message!,
             update: update,
           ));
@@ -135,9 +132,9 @@ mixin OnEvent on Event {
 
       if (type == TeleverseEvent.photo) {
         if (isMessageOrChannelPost && hasPhoto) {
-          if (televerse == null) return;
+          if (_televerse == null) return;
           callback(MessageContext(
-            televerse!,
+            _televerse!.api,
             update.message!,
             update: update,
           ));
@@ -146,9 +143,9 @@ mixin OnEvent on Event {
 
       if (type == TeleverseEvent.photoMessage) {
         if (isMessage && isPhotoMessage) {
-          if (televerse == null) return;
+          if (_televerse == null) return;
           callback(MessageContext(
-            televerse!,
+            _televerse!.api,
             update.message!,
             update: update,
           ));
@@ -157,9 +154,9 @@ mixin OnEvent on Event {
 
       if (type == TeleverseEvent.photoChannelPost) {
         if (isChannelPost && isPhotoChannelPost) {
-          if (televerse == null) return;
+          if (_televerse == null) return;
           callback(MessageContext(
-            televerse!,
+            _televerse!.api,
             update.message!,
             update: update,
           ));

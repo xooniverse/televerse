@@ -62,13 +62,15 @@ We have a dedicated documentation on GitHub Wiki on this repo. Check it our here
 
 ### ✨ In simple words
 
-You can access the whole Telegram Bot API methods with the `bot` instance. Or if you're inside a `MessageContext` you can access the same with `ctx.api`
+Starting from version 1.4.0, Televerse has a new API that is much simpler and easier to use. You can now use the `bot` instance to access the powerful Televerse methods and properties, and if you want to access the Telegram Bot API methods, you can use the `bot.api` getter. Simple, and clean.
+
+Now, when you're inside a callback function, you can access the `bot` instance using the `MessageContext` parameter which also provides you with the `api` property.
 
 
 For example, if you want to send a message to a specific chat you can do it like this:
 
 ```dart
-bot.sendMessage(ChatID(123456), "Hello, World!");
+bot.api.sendMessage(ChatID(123456), "Hello, World!");
 
 // or with the context
 

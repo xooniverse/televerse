@@ -34,7 +34,7 @@ class ChatID extends ID {
     return ChatID(id);
   }
 
-  Future<Chat> get chat => Televerse.instance.getChat(this);
+  Future<Chat> get chat => Televerse.instance.api.getChat(this);
 }
 
 /// This class is used to represent a channel id. It is a subclass of [ID].

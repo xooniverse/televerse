@@ -11,8 +11,7 @@ part 'message.dart';
 part 'inline_query.dart';
 part 'callback_query.dart';
 
-/// **Context**
-/// This class is used to represent the context of an update. It contains the update and the Televerse instance.
+/// This class is used to represent the context of an update. It contains the update and the [RawAPI] instance.
 ///
 /// Whenever an update is received, a context is created and passed to the handler. Currently we have 3 types of contexts:
 /// - [MessageContext] - This context is used when a message is received.
@@ -21,9 +20,11 @@ part 'callback_query.dart';
 ///
 /// Contexts are subclasses of this class. You can use this class to access the update and the Televerse instance.
 class Context {
-  /// The televerse instance.
-  Televerse get api => _televerse;
-  final Televerse _televerse;
+  /// The RawAPI getter.
+  RawAPI get api => _api;
+
+  /// The RawAPI instance.
+  final RawAPI _api;
 
   /// The [Update] instance.
   ///
@@ -34,7 +35,7 @@ class Context {
   ///
   /// This represents the ID of the chat from which the update was sent.
   ///
-  /// Note: On `poll`, and `unknown` updates, this will be `ChatID(0)`.
+  /// Note: On `poll`, and `unknown` updates, this will throw a [TeleverseException].
   /// This is because these updates do not have a chat.
   ID get id {
     if (update.type == UpdateType.chatJoinRequest) {
@@ -65,13 +66,16 @@ class Context {
       return ChatID(update.pollAnswer!.user.id);
     }
     if (update.type == UpdateType.poll || update.type == UpdateType.unknown) {
-      return ChatID(0);
+      throw TeleverseException(
+        "The update type is ${update.type}, which does not have a chat.",
+      );
     }
     return ChatID(update.message!.chat.id);
   }
 
+  /// Creates a new context.
   Context(
-    this._televerse, {
+    this._api, {
     required this.update,
   });
 }
