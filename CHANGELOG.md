@@ -1,3 +1,9 @@
+## 1.4.0
+- 🔥 This is breaking change.
+- Added the `RawAPI` class to access the raw Telegram Bot API methods.
+- Added a `api` getter to `Televerse` class to access the `RawAPI` class.
+- Now it's even easier to access and differentiate between the Telegram Bot API methods and Televerse methods.
+- Added dartdoc comments to all the classes.
 ## 1.3.1 
 - Added shorthand methods to setup listners for `/start`, `/help`, `/settings` commands.
 - You can now use `Televerse.start`, `Televerse.help`, and `Televerse.settings` to listen for these commands.
