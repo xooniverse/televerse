@@ -1,6 +1,5 @@
 part of models;
 
-
 /// Represents a [ChatMember] that was banned in the chat and can't return to the chat or view chat messages.
 class ChatMemberBanned implements ChatMember {
   @override

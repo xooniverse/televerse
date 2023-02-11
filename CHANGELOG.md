@@ -1,3 +1,5 @@
+## 1.4.1
+- Minor formatting changes.
 ## 1.4.0
 - 🔥 This is breaking change.
 - Added the `RawAPI` class to access the raw Telegram Bot API methods.
