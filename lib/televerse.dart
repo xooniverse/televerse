@@ -21,6 +21,7 @@ part 'src/utils/date.dart';
 part 'src/utils/utils.dart';
 part 'src/televerse/markups/keyboard.dart';
 part 'src/televerse/markups/inline_keyboard.dart';
+part 'src/televerse/raw_api.dart';
 
 /// Type aliases for the library.
 part 'src/types/aliases.dart';

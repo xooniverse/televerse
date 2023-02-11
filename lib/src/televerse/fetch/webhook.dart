@@ -49,7 +49,7 @@ class Webhook extends Fetcher {
   }
 
   Future<bool> setWebhook() async {
-    return televerse.setWebhook(
+    return televerse.api.setWebhook(
       url: "$url:$port$secretPath",
       certificate: certificate,
       ipAddress: ipAddress,
@@ -83,7 +83,7 @@ class Webhook extends Fetcher {
 
   @override
   Future<void> stop({bool dropPendingUpdates = false}) async {
-    await televerse.deleteWebhook(dropPendingUpdates: dropPendingUpdates);
+    await televerse.api.deleteWebhook(dropPendingUpdates: dropPendingUpdates);
     return _server.close(force: true);
   }
 }

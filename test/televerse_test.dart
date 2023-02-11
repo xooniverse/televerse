@@ -17,13 +17,13 @@ void main() {
   bot.start();
 
   test("Get Me", () async {
-    final me = await bot.getMe();
+    final me = await bot.api.getMe();
     expect(me.username != null, true);
     log("Bot ID: ${me.id}");
   });
 
   test("Receive Message", () async {
-    log("Send a message to the bot");
+    print("Send a message to the bot");
     MessageContext? ctx;
     try {
       ctx = await bot.onMessage.first;
@@ -37,10 +37,10 @@ void main() {
   });
 
   test("Send Message", () async {
-    Message message = await bot.sendMessage(id, "Hello World");
+    Message message = await bot.api.sendMessage(id, "Hello World");
     expect(message.text, "Hello World");
 
-    Message specialMessage = await bot.sendMessage(
+    Message specialMessage = await bot.api.sendMessage(
       id,
       "<b>Hello World</b>\n\nYou can use <a href=\"https://core.telegram.org/bots/api\">Telegram Bot API</a> here.",
       parseMode: ParseMode.html,
@@ -62,7 +62,7 @@ void main() {
   });
 
   test("Send Photo", () async {
-    Message message = await bot.sendPhoto(
+    Message message = await bot.api.sendPhoto(
       id,
       InputFile.fromUrl("https://i.imgur.com/CUG0Aof.jpeg"),
       caption: "<b>Not So Secret Recipe</b>",
@@ -74,7 +74,7 @@ void main() {
   });
 
   test("Send Contact", () async {
-    Message message = await bot.sendContact(
+    Message message = await bot.api.sendContact(
       id,
       "+628123456789",
       "John",
@@ -88,7 +88,7 @@ void main() {
   });
 
   test("Send Location", () async {
-    Message message = await bot.sendLocation(
+    Message message = await bot.api.sendLocation(
       id,
       37.4220,
       -122.0841,
@@ -106,7 +106,7 @@ void main() {
   });
 
   test("Send Venue", () async {
-    Message message = await bot.sendVenue(
+    Message message = await bot.api.sendVenue(
       id,
       37.4220,
       -122.0841,
@@ -130,28 +130,31 @@ void main() {
     );
   });
 
-  test("Send Invoice", () async {
-    Message message = await bot.sendInvoice(
-      id,
-      title: "Test Invoice",
-      description: "Test Invoice Description",
-      payload: "test_invoice_payload",
-      providerToken: "test_provider_token",
-      currency: "USD",
-      prices: [
-        LabeledPrice(label: "Test Label", amount: 1000),
-      ],
-      disableNotification: true,
-    );
-    expect(message.invoice != null, true, reason: "Invoice is null");
-    expect(message.invoice!.title, "Test Invoice");
-    expect(message.invoice!.description, "Test Invoice Description");
-    expect(message.invoice!.startParameter, "test_start_parameter");
-    expect(message.invoice!.currency, "USD");
-  });
+  // Send Invoice currently won't work because we don't provide a valid provider token
+  /*
+    test("Send Invoice", () async {
+      Message message = await bot.api.sendInvoice(
+        id,
+        title: "Test Invoice",
+        description: "Test Invoice Description",
+        payload: "test_invoice_payload",
+        providerToken: "test_provider_token",
+        currency: "USD",
+        prices: [
+          LabeledPrice(label: "Test Label", amount: 1000),
+        ],
+        disableNotification: true,
+      );
+      expect(message.invoice != null, true, reason: "Invoice is null");
+      expect(message.invoice!.title, "Test Invoice");
+      expect(message.invoice!.description, "Test Invoice Description");
+      expect(message.invoice!.startParameter, "test_start_parameter");
+      expect(message.invoice!.currency, "USD");
+    });
+  */
 
   test("Send Video", () async {
-    Message message = await bot.sendVideo(
+    Message message = await bot.api.sendVideo(
       id,
       InputFile.fromUrl(
         "https://telegram.org/file/464001154/11e69/9FLiJnH4fF4.2869553.mp4/18ca1dba8837d3db6f",
@@ -169,7 +172,7 @@ void main() {
   });
 
   test("Send Sticker", () async {
-    Message message = await bot.sendSticker(
+    Message message = await bot.api.sendSticker(
       id,
       InputFile.fromFileId(stickerFileID),
     );
@@ -178,16 +181,16 @@ void main() {
   });
 
   test("Delete Message", () async {
-    Message message = await bot.sendMessage(id, "Hello World");
+    Message message = await bot.api.sendMessage(id, "Hello World");
     expect(message.text, "Hello World");
-    bool deleted = await bot.deleteMessage(id, message.messageId);
+    bool deleted = await bot.api.deleteMessage(id, message.messageId);
     expect(deleted, true, reason: "Message is not deleted");
   });
 
   test("Edit Message Text", () async {
-    Message message = await bot.sendMessage(id, "Hello World");
+    Message message = await bot.api.sendMessage(id, "Hello World");
     expect(message.text, "Hello World");
-    Message editedMessage = await bot.editMessageText(
+    Message editedMessage = await bot.api.editMessageText(
       id,
       message.messageId,
       "Hello World Edited",
@@ -196,17 +199,17 @@ void main() {
   });
 
   test("Get Chat", () async {
-    Chat chat = await bot.getChat(id);
+    Chat chat = await bot.api.getChat(id);
     expect(chat.id, id.id);
   });
 
   test("Get Chat Administrators", () async {
-    List<ChatMember> chatMembers = await bot.getChatAdministrators(groupID);
+    List<ChatMember> chatMembers = await bot.api.getChatAdministrators(groupID);
     expect(chatMembers.isNotEmpty, true, reason: "Chat members is empty");
   });
 
   test("Get Chat Menu Button", () async {
-    MenuButton button = await bot.getChatMenuButton(id);
+    MenuButton button = await bot.api.getChatMenuButton(id);
     print(button.type);
     expect(MenuButtonType.values.contains(button.type), true);
   });

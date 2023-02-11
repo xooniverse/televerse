@@ -8,7 +8,7 @@ class InlineQueryContext extends Context with InlineQueryMixin {
   InlineQuery query;
 
   InlineQueryContext(
-    Televerse t,
+    RawAPI t,
     this.query, {
     required Update update,
   }) : super(t, update: update);

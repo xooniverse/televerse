@@ -11,10 +11,7 @@ class MessageOrBoolean {
 
   MessageOrBoolean(this.message, this.boolean);
 
-  MessageOrBoolean.fromJson(
-    dynamic json,
-    Televerse televerse,
-  ) {
+  MessageOrBoolean.fromJson(dynamic json) {
     if (json.runtimeType == bool) {
       boolean = json;
     } else {

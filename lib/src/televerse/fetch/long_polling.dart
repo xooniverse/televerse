@@ -54,7 +54,7 @@ class LongPolling extends Fetcher {
   Future<void> _poll() async {
     if (!_isPolling) return;
     try {
-      final updates = await televerse.getUpdates(
+      final updates = await televerse.api.getUpdates(
         offset: offset,
         limit: limit,
         timeout: timeout,

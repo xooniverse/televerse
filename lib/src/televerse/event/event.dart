@@ -6,14 +6,20 @@ import 'package:televerse/televerse.dart';
 
 part 'on.dart';
 
-/// **Event**
 /// This class is used to handle events. The [Event] class is extended to [Televerse] class and is used to handle events. The [Event] class contains all the event streams and methods to handle events.
 ///
 /// You probably won't need to use this class directly, but you can use it to handle events.
 class Event {
-  bool sync;
-  Televerse? televerse;
+  final bool sync;
+  Televerse? _televerse;
 
+  /// Create a new Event instance.
+  ///
+  /// You can pass a [sync] parameter to the constructor. If [sync] is true, the event streams will be synchronous. If [sync] is false, the event streams will be asynchronous.
+  ///
+  /// If [sync] is true, events may be fired directly by the stream's subscriptions during an [StreamController.add], [StreamController.addError] or [StreamController.close] call. The returned stream controller is a [SynchronousStreamController], and must be used with the care and attention necessary to not break the [Stream] contract. See [Completer.sync] for some explanations on when a synchronous dispatching can be used. If in doubt, keep the controller non-sync.
+  ///
+  /// If [sync] is false, the event will always be fired at a later time, after the code adding the event has completed. In that case, no guarantees are given with regard to when multiple listeners get the events, except that each listener will get all events in the correct order. Each subscription handles the events individually. If two events are sent on an async controller with two listeners, one of the listeners may get both events before the other listener gets any. A listener must be subscribed both when the event is initiated (that is, when [add] is called) and when the event is later delivered, in order to receive the event.
   Event({this.sync = false})
       : _messageController = StreamController<MessageContext>.broadcast(
           sync: sync,
@@ -66,20 +72,49 @@ class Event {
           sync: sync,
         );
 
+  /// Stream Controller to handle incoming messages.
   final StreamController<MessageContext> _messageController;
+
+  /// Stream Controller to handle edited messages.
   final StreamController<MessageContext> _editedMessageController;
+
+  /// Stream Controller to handle channel posts.
   final StreamController<MessageContext> _channelPostController;
+
+  /// Stream Controller to handle edited channel posts.
   final StreamController<MessageContext> _editedChannelPostController;
+
+  /// Stream Controller to handle inline queries.
   final StreamController<InlineQueryContext> _inlineQueryController;
+
+  /// Stream Controller to handle chosen inline results.
   final StreamController<ChosenInlineResult> _chosenInlineResultController;
+
+  /// Stream Controller to handle callback queries.
   final StreamController<CallbackQueryContext> _callbackQueryController;
+
+  /// Stream Controller to handle shipping queries.
   final StreamController<ShippingQuery> _shippingQueryController;
+
+  /// Stream Controller to handle pre-checkout queries.
   final StreamController<PreCheckoutQuery> _preCheckoutQueryController;
+
+  /// Stream Controller to handle polls.
   final StreamController<Poll> _pollController;
+
+  /// Stream Controller to handle poll answers.
   final StreamController<PollAnswer> _pollAnswerController;
+
+  /// Stream Controller to handle my chat member updates.
   final StreamController<ChatMemberUpdated> _myChatMemberController;
+
+  /// Stream Controller to handle chat member updates.
   final StreamController<ChatMemberUpdated> _chatMemberController;
+
+  /// Stream Controller to handle chat join requests.
   final StreamController<ChatJoinRequest> _chatJoinRequestController;
+
+  /// Stream Controller to handle updates.
   final StreamController<Update> _updateStreamController;
 
   /// **onMessage** is a stream of [MessageContext] which is emitted when a message of any type is is received.
@@ -133,46 +168,37 @@ class Event {
   /// **onUpdate** is a stream of [Update] which is emitted when any update is received.
   Stream<Update> get onUpdate => _updateStreamController.stream;
 
-  /// Use this method to emit updates to the streams.
-  void onUpdates(List<Update> updates, Televerse televerse) {
-    for (Update update in updates) {
-      emitUpdate(update, televerse);
-    }
-  }
-
   /// Use this method to emit an update to the streams.
   void emitUpdate(Update update, Televerse televerse) {
-    if (this.televerse == null) {
-      this.televerse = televerse;
-    }
+    _televerse ??= televerse;
     _updateStreamController.add(update);
     if (update.type == UpdateType.message) {
       _messageController.add(MessageContext(
-        televerse,
+        televerse.api,
         update.message!,
         update: update,
       ));
     } else if (update.type == UpdateType.editedMessage) {
       _editedMessageController.add(MessageContext(
-        televerse,
+        televerse.api,
         update.editedMessage!,
         update: update,
       ));
     } else if (update.type == UpdateType.channelPost) {
       _channelPostController.add(MessageContext(
-        televerse,
+        televerse.api,
         update.channelPost!,
         update: update,
       ));
     } else if (update.type == UpdateType.editedChannelPost) {
       _editedChannelPostController.add(MessageContext(
-        televerse,
+        televerse.api,
         update.editedChannelPost!,
         update: update,
       ));
     } else if (update.type == UpdateType.inlineQuery) {
       _inlineQueryController.add(InlineQueryContext(
-        televerse,
+        televerse.api,
         update.inlineQuery!,
         update: update,
       ));
@@ -180,7 +206,7 @@ class Event {
       _chosenInlineResultController.add(update.chosenInlineResult!);
     } else if (update.type == UpdateType.callbackQuery) {
       _callbackQueryController.add(CallbackQueryContext(
-        televerse,
+        televerse.api,
         update.callbackQuery!,
         update: update,
       ));
@@ -199,225 +225,5 @@ class Event {
     } else if (update.type == UpdateType.chatJoinRequest) {
       _chatJoinRequestController.add(update.chatJoinRequest!);
     }
-  }
-
-  /// Registers a callback for a command.
-  /// The command must be without the leading slash.
-  ///
-  /// For example, to register a callback for the `/start` command, you would
-  /// call `onCommand('start', callback)`.
-  ///
-  /// The callback will be called when a message is received that starts with
-  /// the command.
-  ///
-  /// Example:
-  /// ```dart
-  /// bot.onCommand('start', (ctx) {
-  ///   ctx.reply('Hello!');
-  /// });
-  /// ```
-  ///
-  /// This will reply "Hello!" to any message that starts with `/start`.
-  ///
-  /// Optionally, you can specify a [pattern] to match the command with. If the command matches the pattern, the [MessageContext.matches] will be set to the matches.
-  void command(
-    String command,
-    MessageHandler callback, {
-    RegExp? pattern,
-  }) {
-    onMessage.listen((MessageContext context) {
-      if (context.message.text == null) return;
-      if (context.message.text!.startsWith('/$command')) {
-        if (command == 'start' && context.message.text!.split(' ').length > 1) {
-          context.startParameter =
-              context.message.text!.split(' ').sublist(1).join(' ');
-        }
-        if (pattern != null) {
-          context.matches = pattern.allMatches(context.message.text!).toList();
-        }
-
-        callback(context);
-      }
-    });
-  }
-
-  /// Registers a callback for a callback query.
-  ///
-  /// The callback will be called when a callback query is received that has
-  /// the specified data.
-  ///
-  /// Example:
-  /// ```dart
-  /// bot.callbackQuery('start', (ctx) {
-  ///   ctx.answer('Hello!');
-  /// });
-  /// ```
-  ///
-  /// This will answer "Hello!" to any callback query that has the data "start".
-  void callbackQuery(
-    String data,
-    CallbackQueryHandler callback, {
-    RegExp? regex,
-  }) {
-    onCallbackQuery.listen((CallbackQueryContext context) {
-      if (context.data == null) return;
-      if (regex != null && regex.hasMatch(context.data!)) {
-        context.matches = regex.allMatches(context.data!).toList();
-        callback(context);
-        return;
-      }
-      if (context.data == data) {
-        callback(context);
-      }
-    });
-  }
-
-  /// Registers a callback for particular chat types.
-  /// The callback will be called when a message is received that is from a
-  /// chat of the specified type.
-  ///
-  /// You can specify chat type by passing a [ChatType] to the [type] parameter.
-  ///
-  /// Example:
-  /// ```dart
-  /// bot.chatType(ChatType.private, (ctx) {
-  ///  ctx.reply('Hello in private chat!');
-  /// });
-  /// ```
-  ///
-  /// This will reply "Hello in private chat!" to any message that is from a
-  /// private chat.
-  ///
-  /// If you want to register a callback for multiple chat types, you can use
-  /// the [chatTypes] method.
-  void chatType(
-    ChatType type,
-    MessageHandler callback,
-  ) {
-    onMessage.listen((MessageContext context) {
-      if (context.message.chat.type == type) {
-        callback(context);
-      }
-    });
-  }
-
-  /// Registers a callback for multiple chat types.
-  /// The callback will be called when a message is received that is from one of
-  /// the specified chat types.
-  ///
-  /// You can specify chat types by passing a list of [ChatType]s to the [types]
-  /// parameter.
-  ///
-  /// Example:
-  /// ```dart
-  /// bot.chatTypes([ChatType.private, ChatType.group], (ctx) {
-  /// ctx.reply('Hello in private chat or group!');
-  /// });
-  /// ```
-  ///
-  /// This will reply "Hello in private chat or group!" to any message that is
-  /// from a private chat or a group.
-  void chatTypes(
-    List<ChatType> types,
-    MessageHandler callback,
-  ) {
-    onMessage.listen((MessageContext context) {
-      if (types.contains(context.message.chat.type)) {
-        callback(context);
-      }
-    });
-  }
-
-  /// Filter
-  /// Registers a callback for a message that matches the specified filter.
-  ///
-  /// The callback will be called when a message is received that matches the
-  /// specified filter.
-  ///
-  /// This method accepts a predicate function that takes a [MessageContext] as
-  /// a parameter and returns a boolean. If the function returns true, the
-  /// callback will be called.
-  ///
-  /// Example:
-  /// ```dart
-  /// ```
-  void filter(
-    bool Function(MessageContext ctx) predicate,
-    MessageHandler callback,
-  ) {
-    onMessage.listen((MessageContext context) {
-      if (predicate(context)) {
-        callback(context);
-      }
-    });
-  }
-
-  /// Registers a callback for a message that contains a text.
-  /// The callback will be called when a message is received that contains a
-  /// particular text.
-  ///
-  /// Example:
-  /// ```dart
-  /// bot.text('I love Televerse', (ctx) {
-  ///  ctx.reply('I love you too!');
-  /// });
-  /// ```
-  void text(
-    String text,
-    MessageHandler callback,
-  ) {
-    onMessage.listen((MessageContext context) {
-      if (context.message.text?.contains(text) ?? false) {
-        callback(context);
-      }
-    });
-  }
-
-  /// Registers a callback for a message that contains a text that matches the
-  /// specified regular expression.
-  /// The callback will be called when a message is received that contains a
-  /// text that matches the specified regular expression.
-  ///
-  /// The regular expression must be a valid Dart regular expression.
-  ///
-  /// Example:
-  /// ```dart
-  /// bot.hears(r'Hello, (.*)!', (ctx) {
-  ///   ctx.reply('Hello, ${ctx.matches![1]}!');
-  /// });
-  /// ```
-  ///
-  /// This will reply "Hello, <name>!" to any message that contains a text that
-  /// matches the regular expression `Hello, (.*)!`.
-  void hears(
-    RegExp exp,
-    MessageHandler callback,
-  ) {
-    onMessage.listen((MessageContext context) {
-      final matches = exp.allMatches(context.message.text ?? '');
-      context.matches = matches.toList();
-      if (matches.isNotEmpty) {
-        callback(context);
-      }
-    });
-  }
-
-  /// Registers a callback for inline queries.
-  ///
-  /// The callback will be called when an inline query with the specified query is received.
-  void inlineQuery(
-    InlineQueryHandler Function(InlineQueryContext ctx) callback,
-  ) {
-    onInlineQuery.listen(callback);
-  }
-
-  /// Registers a callback for the `/settings` command.
-  void settings(MessageHandler handler) async {
-    command("settings", handler);
-  }
-
-  /// Registers a callback for the `/help` command.
-  void help(MessageHandler handler) async {
-    command("help", handler);
   }
 }
