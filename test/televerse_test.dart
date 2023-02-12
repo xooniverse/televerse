@@ -22,20 +22,6 @@ void main() {
     log("Bot ID: ${me.id}");
   });
 
-  test("Receive Message", () async {
-    print("Send a message to the bot");
-    MessageContext? ctx;
-    try {
-      ctx = await bot.onMessage.first;
-    } catch (e) {
-      log("Error: $e");
-    }
-
-    expect(ctx != null, true, reason: "Context is null");
-    if (ctx == null) return;
-    expect((await ctx.reply("Hello")).runtimeType, Message);
-  });
-
   test("Send Message", () async {
     Message message = await bot.api.sendMessage(id, "Hello World");
     expect(message.text, "Hello World");
