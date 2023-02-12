@@ -33,8 +33,6 @@ abstract class Fetcher {
   /// Raw API instance.
   late final RawAPI api;
 
-  void setApi(RawAPI api) {
-    this.api = api;
-    print('Fetcher: API set!');
-  }
+  /// Sets the Raw API instance.
+  void setApi(RawAPI api) => this.api = api;
 }
