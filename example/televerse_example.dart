@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:televerse/televerse.dart';
 
-void main() {
+void main() async {
   final String token = Platform.environment["BOT_TOKEN"]!;
 
-  Bot bot = Bot(token);
+  Bot bot = Bot(token, fetcher: LongPolling());
 
   // Note: You can use the [onMessage] getter to listen to all messages
   //     or use the [onCommand] getter to listen to commands

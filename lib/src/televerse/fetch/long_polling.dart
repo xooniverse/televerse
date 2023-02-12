@@ -3,7 +3,6 @@ part of televerse.fetch;
 /// A class that handles long polling.
 /// This class is used to fetch updates from the Telegram API. It uses the long polling method.
 class LongPolling extends Fetcher {
-  final Televerse televerse;
   int offset;
   final int timeout;
   final int limit;
@@ -14,8 +13,7 @@ class LongPolling extends Fetcher {
   bool _isPolling = false;
   bool get isPolling => _isPolling;
 
-  LongPolling(
-    this.televerse, {
+  LongPolling({
     this.offset = 0,
     this.timeout = 30,
     this.limit = 100,
@@ -54,7 +52,7 @@ class LongPolling extends Fetcher {
   Future<void> _poll() async {
     if (!_isPolling) return;
     try {
-      final updates = await televerse.api.getUpdates(
+      final updates = await api.getUpdates(
         offset: offset,
         limit: limit,
         timeout: timeout,
