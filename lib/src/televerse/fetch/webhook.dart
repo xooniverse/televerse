@@ -2,28 +2,71 @@ part of televerse.fetch;
 
 /// This class is used to create a webhook fetcher. It is a subclass of [Fetcher].
 class Webhook extends Fetcher {
-  final Televerse televerse;
+  /// Raw API instance.
+  final RawAPI api;
 
+  /// Http server instance.
   final io.HttpServer _server;
 
+  /// Webhook url.
   String url;
+
+  /// Webhook ip address.
   String? ipAddress;
+
+  /// Webhook secret path.
   String secretPath;
+
+  /// Webhook port.
   int port;
+
+  /// Server port.
   int? serverPort;
+
+  /// Maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery.
   int maxConnections;
+
+  /// List the types of updates you want your bot to receive.
   List<String>? allowedUpdates;
+
+  /// Pass True to drop all pending updates.
   bool? dropPendingUpdates;
 
+  /// Public key certificate.
   io.File? certificate;
+
+  /// Private key certificate.
   io.File? privateKey;
+
+  /// Whether to upload the certificate.
   bool uploadCertificate;
 
+  /// Allowed ports.
   final List<int> _allowedPorts = [443, 80, 88, 8443];
 
+  /// Creates a Webhook fetcher.
+  ///
+  /// - [_server] is the http server instance. (required)
+  /// - [api] is the raw api instance. (required)
+  /// - [url] is the webhook url. (required)
+  /// - [ipAddress] is the webhook ip address.
+  /// - [secretPath] is the webhook secret path.
+  /// - [port] is the webhook port.
+  /// - [serverPort] is the server port.
+  /// - [maxConnections] is the maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery.
+  /// - [allowedUpdates] is the list the types of updates you want your bot to receive.
+  /// - [dropPendingUpdates] is the pass True to drop all pending updates.
+  /// - [certificate] is the public key certificate.
+  /// - [privateKey] is the private key certificate.
+  /// - [uploadCertificate] is the whether to upload the certificate.
+  ///
+  ///
+  /// Throws `WebhookException.invalidPort` if the port is not in the allowed ports.
+  /// Throws `WebhookException.invalidMaxConnections` if the max connections is less than 1 or greater than 100.
+  /// Throws `WebhookException.failedToSetWebhook` if the webhook failed to set.
   Webhook(
     this._server, {
-    required this.televerse,
+    required this.api,
     required this.url,
     this.ipAddress,
     this.secretPath = '',
@@ -48,8 +91,9 @@ class Webhook extends Fetcher {
     }
   }
 
+  /// Sets the webhook.
   Future<bool> setWebhook() async {
-    return televerse.api.setWebhook(
+    return api.setWebhook(
       url: "$url:$port$secretPath",
       certificate: certificate,
       ipAddress: ipAddress,
@@ -59,6 +103,9 @@ class Webhook extends Fetcher {
     );
   }
 
+  /// Starts the webhook fetcher.
+  ///
+  /// It will set the webhook and listen to the server.
   @override
   Future<void> start() async {
     if (await setWebhook()) {
@@ -81,9 +128,10 @@ class Webhook extends Fetcher {
     }
   }
 
+  /// Stops the webhook fetcher.
   @override
   Future<void> stop({bool dropPendingUpdates = false}) async {
-    await televerse.api.deleteWebhook(dropPendingUpdates: dropPendingUpdates);
+    await api.deleteWebhook(dropPendingUpdates: dropPendingUpdates);
     return _server.close(force: true);
   }
 }
