@@ -1,5 +1,6 @@
 ## 1.4.2
 - Fixed an issue with the webhook configuration.
+- Made it easier to set a custom fetcher. You don't have to pass the `RawAPI` instance to the `Fetcher` constructor anymore.
 ## 1.4.1
 - Minor formatting changes.
 ## 1.4.0
