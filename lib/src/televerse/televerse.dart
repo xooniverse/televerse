@@ -70,7 +70,8 @@ class Televerse extends Event with OnEvent {
     Fetcher? fetcher,
     super.sync,
   }) {
-    this.fetcher = fetcher ?? LongPolling(this);
+    this.fetcher = fetcher ?? LongPolling();
+    this.fetcher.setApi(api);
     _botToken = token;
   }
 

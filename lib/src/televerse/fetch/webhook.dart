@@ -2,9 +2,6 @@ part of televerse.fetch;
 
 /// This class is used to create a webhook fetcher. It is a subclass of [Fetcher].
 class Webhook extends Fetcher {
-  /// Raw API instance.
-  final RawAPI api;
-
   /// Http server instance.
   final io.HttpServer _server;
 
@@ -66,7 +63,6 @@ class Webhook extends Fetcher {
   /// Throws `WebhookException.failedToSetWebhook` if the webhook failed to set.
   Webhook(
     this._server, {
-    required this.api,
     required this.url,
     this.ipAddress,
     this.secretPath = '',
