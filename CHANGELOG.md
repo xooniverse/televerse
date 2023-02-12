@@ -1,3 +1,5 @@
+## 1.4.2
+- Fixed an issue with the webhook configuration.
 ## 1.4.1
 - Minor formatting changes.
 ## 1.4.0
