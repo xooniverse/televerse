@@ -1,3 +1,11 @@
+## 1.4.3
+- Added helper methods on `File` class to get the file download URL, download URI, file bytes, and finally to download the file.
+- Added `File.download` method to download the file.
+- Added `File.getDownloadUrl` method to get the file download URL as `String`.
+- Added `File.getDownloadURI` method to get the `Uri` object of the file download URL.
+- Added `File.getBytes` method to get the file bytes this returns a `Future<Uint8List>`.
+- Added `File.download` method to download the file. This returns a `Future<io.File>` object.
+- The working example is available at [examples/file_download.dart](./example/file_download.dart)
 ## 1.4.2
 - Fixed an issue with the webhook configuration.
 - Made it easier to set a custom fetcher. You don't have to pass the `RawAPI` instance to the `Fetcher` constructor anymore.
