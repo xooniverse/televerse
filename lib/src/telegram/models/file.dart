@@ -107,5 +107,6 @@ class File {
     return await file.writeAsBytes(bytes);
   }
 
+  /// Returns the file name of the file.
   String get fileName => filePath.split("/").last;
 }
