@@ -8,34 +8,28 @@ mixin OnEvent on Event {
   ///
   /// The call back will be only be executed on specific update types. You can
   /// use the [TeleverseEvent] object to specify which update you want to listen to.
-  void on(TeleverseEvent type, FutureOr<void> Function(Context ctx) callback) {
+  void on(TeleverseEvent type, void Function(Context ctx) callback) {
     onUpdate.listen((update) {
-      bool isTextMessage =
-          update.message?.text != null || update.channelPost?.text != null;
-      bool isChannelPost = update.type == UpdateType.channelPost;
-      bool isMessage = update.type == UpdateType.message;
-      bool isEditedMessage = update.type == UpdateType.editedMessage;
-      bool isEditedChannelPost = update.type == UpdateType.editedChannelPost;
-      bool isAudioMessage = update.message?.audio != null;
-      bool isAudioChannelPost = update.channelPost?.audio != null;
-      bool hasAudio = isAudioMessage || isAudioChannelPost;
+      if (_televerse == null) return;
+      RawAPI api = _televerse!.api;
 
-      bool isMessageOrChannelPost = isMessage || isChannelPost;
-      bool isEdited = isEditedMessage || isEditedChannelPost;
+      bool isMessage = update.message != null;
+      bool isChannelPost = update.channelPost != null;
+      bool isEditedMessage = update.editedMessage != null;
+      bool isEditedChannelPost = update.editedChannelPost != null;
 
-      bool isDocumentMessage = update.message?.document != null;
-      bool isDocumentChannelPost = update.channelPost?.document != null;
-      bool hasDocument = isDocumentMessage || isDocumentChannelPost;
-
-      bool isPhotoMessage = update.message?.photo != null;
-      bool isPhotoChannelPost = update.channelPost?.photo != null;
-      bool hasPhoto = isPhotoMessage || isPhotoChannelPost;
+      bool isMessageEvent = isMessage || isEditedMessage;
+      bool isChannelPostEvent = isChannelPost || isEditedChannelPost;
 
       Message? message;
       if (isMessage) {
         message = update.message;
       } else if (isChannelPost) {
         message = update.channelPost;
+      } else if (isEditedMessage) {
+        message = update.editedMessage;
+      } else if (isEditedChannelPost) {
+        message = update.editedChannelPost;
       }
 
       bool isCommand = message?.entities?.any(
@@ -45,145 +39,75 @@ mixin OnEvent on Event {
           ) ??
           false;
 
-      if (type == TeleverseEvent.text) {
-        if (isMessageOrChannelPost && isTextMessage) {
-          if (_televerse == null) return;
-          callback(MessageContext(
-            _televerse!.api,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
+      bool isTextMessage = message?.text != null &&
+          (message?.entities?.every(
+                  (entity) => entity.type != MessageEntityType.botCommand) ??
+              false);
+      bool isAudio = message?.audio != null;
+      bool isAudioMessage =
+          update.message?.audio != null || update.editedMessage?.audio != null;
 
-      if (type == TeleverseEvent.audio) {
-        if (isMessageOrChannelPost && hasAudio) {
-          if (_televerse == null) return;
-          callback(MessageContext(
-            _televerse!.api,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
+      bool isEdited = isEditedMessage || isEditedChannelPost;
 
-      if (type == TeleverseEvent.audioMessage) {
-        if (isMessage && isAudioMessage) {
-          if (_televerse == null) return;
-          callback(MessageContext(
-            _televerse!.api,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.edited) {
-        if (isEdited) {
-          if (_televerse == null) return;
-          callback(MessageContext(
-            _televerse!.api,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.editedMessage) {
-        if (isEditedMessage) {
-          if (_televerse == null) return;
-          callback(MessageContext(
-            _televerse!.api,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.editedChannelPost) {
-        if (isEditedChannelPost) {
-          if (_televerse == null) return;
-          callback(MessageContext(
-            _televerse!.api,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.document) {
-        if (isMessageOrChannelPost && hasDocument) {
-          if (_televerse == null) return;
-          callback(MessageContext(
-            _televerse!.api,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.documentMessage) {
-        if (isMessage && isDocumentMessage) {
-          if (_televerse == null) return;
-          callback(MessageContext(
-            _televerse!.api,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.documentChannelPost) {
-        if (isChannelPost && isDocumentChannelPost) {
-          if (_televerse == null) return;
-          callback(MessageContext(
-            _televerse!.api,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.photo) {
-        if (isMessageOrChannelPost && hasPhoto) {
-          if (_televerse == null) return;
-          callback(MessageContext(
-            _televerse!.api,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.photoMessage) {
-        if (isMessage && isPhotoMessage) {
-          if (_televerse == null) return;
-          callback(MessageContext(
-            _televerse!.api,
-            update.message!,
-            update: update,
-          ));
-        }
-      }
-
-      if (type == TeleverseEvent.photoChannelPost) {
-        if (isChannelPost && isPhotoChannelPost) {
-          if (_televerse == null) return;
-          callback(MessageContext(
-            _televerse!.api,
-            update.channelPost!,
-            update: update,
-          ));
-        }
-      }
+      bool hasDocument = message?.document != null;
+      bool hasPhoto = message?.photo != null;
 
       if (type == TeleverseEvent.command && isCommand) {
-        if (_televerse == null) return;
-        callback(MessageContext(
-          _televerse!.api,
-          message!,
-          update: update,
-        ));
+        callback(MessageContext(api, message!, update: update));
+      }
+
+      if (type == TeleverseEvent.text && isTextMessage) {
+        callback(MessageContext(api, message!, update: update));
+      }
+
+      if (type == TeleverseEvent.audio && isAudio) {
+        callback(MessageContext(api, message!, update: update));
+      }
+
+      if (type == TeleverseEvent.audio && isAudioMessage) {
+        callback(MessageContext(api, message!, update: update));
+      }
+
+      if (type == TeleverseEvent.edited && isEdited) {
+        callback(MessageContext(api, message!, update: update));
+      }
+
+      if (type == TeleverseEvent.editedMessage && isEditedMessage) {
+        callback(MessageContext(api, message!, update: update));
+      }
+
+      if (type == TeleverseEvent.editedChannelPost && isEditedChannelPost) {
+        callback(MessageContext(api, message!, update: update));
+      }
+
+      if (type == TeleverseEvent.document && hasDocument) {
+        callback(MessageContext(api, message!, update: update));
+      }
+
+      if (type == TeleverseEvent.documentMessage &&
+          isMessageEvent &&
+          hasDocument) {
+        callback(MessageContext(api, message!, update: update));
+      }
+
+      if (type == TeleverseEvent.documentChannelPost &&
+          isChannelPostEvent &&
+          hasDocument) {
+        callback(MessageContext(api, message!, update: update));
+      }
+
+      if (type == TeleverseEvent.photo && hasPhoto) {
+        callback(MessageContext(api, message!, update: update));
+      }
+
+      if (type == TeleverseEvent.photoMessage && isMessageEvent && hasPhoto) {
+        callback(MessageContext(api, message!, update: update));
+      }
+
+      if (type == TeleverseEvent.photoChannelPost &&
+          isChannelPostEvent &&
+          hasPhoto) {
+        callback(MessageContext(api, message!, update: update));
       }
     });
   }
