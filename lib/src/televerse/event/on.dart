@@ -38,8 +38,11 @@ mixin OnEvent on Event {
         message = update.channelPost;
       }
 
-      bool isCommand = message?.entities
-              ?.any((entity) => entity.type == MessageEntityType.botCommand) ??
+      bool isCommand = message?.entities?.any(
+            (entity) =>
+                entity.type == MessageEntityType.botCommand &&
+                entity.offset == 0,
+          ) ??
           false;
 
       if (type == TeleverseEvent.text) {
