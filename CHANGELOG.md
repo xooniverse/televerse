@@ -1,3 +1,5 @@
+## 1.4.4
+- Added `TeleverseEvent.command` to listen to all commands.
 ## 1.4.3
 - Added helper methods on `File` class to get the file download URL, download URI, file bytes, and finally to download the file.
 - Added `File.download` method to download the file.

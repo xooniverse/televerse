@@ -53,4 +53,7 @@ enum TeleverseEvent {
   /// Filter for channel posts which have photo.
   /// This filter will only allow channel posts which have photo.
   photoChannelPost,
+
+  /// Filters all messages or channel posts which is a command.
+  command,
 }

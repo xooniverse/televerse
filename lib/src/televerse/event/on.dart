@@ -31,6 +31,20 @@ mixin OnEvent on Event {
       bool isPhotoChannelPost = update.channelPost?.photo != null;
       bool hasPhoto = isPhotoMessage || isPhotoChannelPost;
 
+      Message? message;
+      if (isMessage) {
+        message = update.message;
+      } else if (isChannelPost) {
+        message = update.channelPost;
+      }
+
+      bool isCommand = message?.entities?.any(
+            (entity) =>
+                entity.type == MessageEntityType.botCommand &&
+                entity.offset == 0,
+          ) ??
+          false;
+
       if (type == TeleverseEvent.text) {
         if (isMessageOrChannelPost && isTextMessage) {
           if (_televerse == null) return;
@@ -157,10 +171,19 @@ mixin OnEvent on Event {
           if (_televerse == null) return;
           callback(MessageContext(
             _televerse!.api,
-            update.message!,
+            update.channelPost!,
             update: update,
           ));
         }
+      }
+
+      if (type == TeleverseEvent.command && isCommand) {
+        if (_televerse == null) return;
+        callback(MessageContext(
+          _televerse!.api,
+          message!,
+          update: update,
+        ));
       }
     });
   }
