@@ -8,7 +8,7 @@ mixin OnEvent on Event {
   ///
   /// The call back will be only be executed on specific update types. You can
   /// use the [TeleverseEvent] object to specify which update you want to listen to.
-  void on(TeleverseEvent type, FutureOr<void> Function(Context ctx) callback) {
+  void on(TeleverseEvent type, void Function(Context ctx) callback) {
     onUpdate.listen((update) {
       if (_televerse == null) return;
       RawAPI api = _televerse!.api;
@@ -39,7 +39,10 @@ mixin OnEvent on Event {
           ) ??
           false;
 
-      bool isTextMessage = message?.text != null;
+      bool isTextMessage = message?.text != null &&
+          (message?.entities?.every(
+                  (entity) => entity.type != MessageEntityType.botCommand) ??
+              false);
       bool isAudio = message?.audio != null;
       bool isAudioMessage =
           update.message?.audio != null || update.editedMessage?.audio != null;
@@ -48,6 +51,10 @@ mixin OnEvent on Event {
 
       bool hasDocument = message?.document != null;
       bool hasPhoto = message?.photo != null;
+
+      if (type == TeleverseEvent.command && isCommand) {
+        callback(MessageContext(api, message!, update: update));
+      }
 
       if (type == TeleverseEvent.text && isTextMessage) {
         callback(MessageContext(api, message!, update: update));
@@ -100,10 +107,6 @@ mixin OnEvent on Event {
       if (type == TeleverseEvent.photoChannelPost &&
           isChannelPostEvent &&
           hasPhoto) {
-        callback(MessageContext(api, message!, update: update));
-      }
-
-      if (type == TeleverseEvent.command && isCommand) {
         callback(MessageContext(api, message!, update: update));
       }
     });

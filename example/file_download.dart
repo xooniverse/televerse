@@ -26,4 +26,9 @@ void main() {
 
     ctx.reply("Got a command: ${ctx.message.text}");
   });
+
+  bot.on(TeleverseEvent.text, (ctx) {
+    ctx as MessageContext;
+    ctx.reply("I got a text that says: ${ctx.message.text}");
+  });
 }
