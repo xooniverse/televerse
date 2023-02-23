@@ -1,3 +1,5 @@
+## 1.4.5
+- A bunch of refactors on the `on` method.
 ## 1.4.4
 - Added `TeleverseEvent.command` to listen to all commands.
 ## 1.4.3
