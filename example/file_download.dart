@@ -20,4 +20,10 @@ void main() {
   bot.start((ctx) {
     ctx.reply("Send me an audio file");
   });
+
+  bot.on(TeleverseEvent.command, (ctx) {
+    ctx as MessageContext;
+
+    ctx.reply("Got a command: ${ctx.message.text}");
+  });
 }
