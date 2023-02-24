@@ -61,7 +61,7 @@ void main() async {
 
   // Since v1.3.1 you can listen for `/start`, `/help` and `/settings` commands
   // in an easier way.
-  bot.start(handler: (ctx) => ctx.reply("Hello!"));
+  bot.start((ctx) => ctx.reply("Hello!"));
   bot.settings((ctx) => ctx.reply("Settings"));
   bot.help((ctx) => ctx.reply("Help"));
 }
