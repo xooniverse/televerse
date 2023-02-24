@@ -17,7 +17,11 @@ part of televerse;
 ///
 /// The [Televerse] class extends [Event] class. The [Event] class is used to emit events and additionally provides a bunch of useful methods.
 class Televerse extends Event with OnEvent {
+  /// Bot token.
   static late String _botToken;
+
+  /// Handler for unexpected errors.
+  FutureOr<void> Function(Object, StackTrace)? _onError;
 
   /// Get the bot instance.
   ///
@@ -82,7 +86,13 @@ class Televerse extends Event with OnEvent {
 
   /// Start polling for updates.
   Future<void> start([FutureOr<void> Function(MessageContext)? handler]) async {
-    fetcher.start();
+    fetcher.start().catchError((err, st) {
+      if (_onError != null) {
+        _onError!(err, st);
+      } else {
+        throw err;
+      }
+    });
     fetcher.onUpdate().listen((update) {
       _onUpdate(update);
     });
@@ -318,5 +328,12 @@ class Televerse extends Event with OnEvent {
   /// Registers a callback for the `/help` command.
   void help(MessageHandler handler) async {
     command("help", handler);
+  }
+
+  /// Registers a callback for on any unexpected error.
+  void onError(
+    void Function(Object err, StackTrace stackTrace) handler,
+  ) {
+    _onError = handler;
   }
 }
