@@ -17,7 +17,7 @@ void main() {
     ctx.reply("Done downloading file ${file.fileName}");
   });
 
-  bot.start(handler: (ctx) {
+  bot.start((ctx) {
     ctx.reply("Send me an audio file");
   });
 
