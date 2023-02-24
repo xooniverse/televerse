@@ -224,6 +224,7 @@ class Message {
   /// Optional. Service message: the user allowed the bot added to the attachment menu to write messages
   WriteAccessAllowed? writeAccessAllowed;
 
+  /// Creates a Message object.
   Message({
     required this.messageId,
     this.from,
@@ -449,6 +450,7 @@ class Message {
     );
   }
 
+  /// Returns the JSON representation of the Message object.
   Map<String, dynamic> toJson() {
     return {
       'message_id': messageId,
@@ -527,13 +529,19 @@ class Message {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Getter for the [DateTime] object that represents the message sent date
   DateTime get dateTime => DateTime.fromMillisecondsSinceEpoch(date * 1000);
 
+  /// Getter for the [DateTime] object that represents the message edit date
   DateTime? get editDateTime => editDate == null
       ? null
       : DateTime.fromMillisecondsSinceEpoch(editDate! * 1000);
 
+  /// Getter for the [DateTime] object that represents the message forward date
   DateTime? get forwardDateTime => forwardDate == null
       ? null
       : DateTime.fromMillisecondsSinceEpoch(forwardDate! * 1000);
+
+  /// Returns [true] if the message is a command
+  bool get isCommand => text != null && text!.startsWith('/');
 }
