@@ -1,3 +1,6 @@
+## 1.4.6
+- Added `Message.isCommand` getter to check if the message is a command.
+- Added `Televerse.onError` method to listen to unexpected exceptions.
 ## 1.4.5
 - A bunch of refactors on the `on` method.
 ## 1.4.4
