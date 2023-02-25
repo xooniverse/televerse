@@ -1221,7 +1221,6 @@ class RawAPI {
     bool response = await HttpClient.getURI(
       _buildUri("banChatMember", params),
     );
-    print(response);
     return response;
   }
 

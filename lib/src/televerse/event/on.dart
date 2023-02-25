@@ -9,10 +9,8 @@ mixin OnEvent on Event {
   /// The call back will be only be executed on specific update types. You can
   /// use the [TeleverseEvent] object to specify which update you want to listen to.
   void on(TeleverseEvent type, void Function(Context ctx) callback) {
-    onUpdate.listen((update) {
-      if (_televerse == null) return;
-      RawAPI api = _televerse!.api;
-
+    RawAPI api = Televerse.instance.api;
+    onUpdate().listen((update) {
       bool isMessage = update.message != null;
       bool isChannelPost = update.channelPost != null;
       bool isEditedMessage = update.editedMessage != null;
@@ -39,10 +37,7 @@ mixin OnEvent on Event {
           ) ??
           false;
 
-      bool isTextMessage = message?.text != null &&
-          (message?.entities?.every(
-                  (entity) => entity.type != MessageEntityType.botCommand) ??
-              false);
+      bool isTextMessage = message?.text != null && !isCommand;
       bool isAudio = message?.audio != null;
       bool isAudioMessage =
           update.message?.audio != null || update.editedMessage?.audio != null;

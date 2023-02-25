@@ -5,6 +5,7 @@ import 'package:televerse/televerse.dart';
 void main() async {
   final String token = Platform.environment["BOT_TOKEN"]!;
 
+  // Create a new bot instance
   Bot bot = Bot(token, fetcher: LongPolling());
 
   // Listen to commands
@@ -55,14 +56,20 @@ void main() async {
     // ctx will be of type [MessageContext]
     ctx as MessageContext;
     ctx.reply("This will be executed for every command");
+    ctx.reply(
+      "That really includes /start, /help and /settings and all other commands you define.",
+    );
 
     // Do your logic here
-    if (ctx.message.text == "televerse") {
+    if (ctx.message.text == "/televerse") {
       ctx.reply("Much love from Televerse! ❤️");
     }
   });
 
+  // You can also listen for particular message entities.
   bot.entity(MessageEntityType.mention, (ctx) {
-    ctx.reply("This will be executed for every mention");
+    ctx.reply(
+      "${ctx.message.getEntityText(MessageEntityType.mention)} was mentioned!",
+    );
   });
 }

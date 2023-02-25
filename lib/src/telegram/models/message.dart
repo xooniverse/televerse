@@ -547,4 +547,47 @@ class Message {
       ? entities!.first.type == MessageEntityType.botCommand &&
           entities!.first.offset == 0
       : false;
+
+  String? getEntityText(MessageEntityType type) {
+    if (entities == null || entities!.isEmpty) return null;
+    if ((text ?? caption) == null) return null;
+    if (entities?.any((element) => element.type == type) != true) return null;
+    final entity = (entities ?? captionEntities)
+        ?.firstWhere((element) => element.type == type);
+    if (entity == null) return null;
+    String entxt =
+        text!.substring(entity.offset, entity.offset + entity.length);
+
+    switch (type) {
+      case MessageEntityType.mention:
+      case MessageEntityType.hashtag:
+      case MessageEntityType.cashtag:
+        entxt = entxt.substring(1);
+        break;
+      case MessageEntityType.botCommand:
+        if (entxt.contains('@')) {
+          entxt = entxt.substring(0, entxt.indexOf('@'));
+        } else {
+          entxt = entxt.substring(1);
+        }
+        break;
+      case MessageEntityType.textMention:
+      case MessageEntityType.url:
+      case MessageEntityType.email:
+      case MessageEntityType.phoneNumber:
+      case MessageEntityType.bold:
+      case MessageEntityType.italic:
+      case MessageEntityType.underline:
+      case MessageEntityType.strikethrough:
+      case MessageEntityType.spoiler:
+      case MessageEntityType.code:
+      case MessageEntityType.pre:
+      case MessageEntityType.textLink:
+        break;
+      case MessageEntityType.customEmoji:
+        entxt = entity.customEmojiId!;
+        break;
+    }
+    return entxt;
+  }
 }
