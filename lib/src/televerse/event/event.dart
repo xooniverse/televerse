@@ -32,64 +32,64 @@ class Event {
 
   /// **onMessage** is a stream of [MessageContext] which is emitted when a message of any type is is received.
   Stream<MessageContext> get onMessage =>
-      onUpdate(UpdateType.message).map(mapper<MessageContext>);
+      onUpdate(UpdateType.message).map(_mapper<MessageContext>);
 
   /// **onEditedMessage** is a stream of [MessageContext] which is emitted when a message is edited.
   Stream<MessageContext> get onEditedMessage =>
-      onUpdate(UpdateType.editedMessage).map(mapper<MessageContext>);
+      onUpdate(UpdateType.editedMessage).map(_mapper<MessageContext>);
 
   /// **onChannelPost** is a stream of [MessageContext] which is emitted when a message is sent to a channel.
   Stream<MessageContext> get onChannelPost =>
-      onUpdate(UpdateType.channelPost).map(mapper<MessageContext>);
+      onUpdate(UpdateType.channelPost).map(_mapper<MessageContext>);
 
   /// **onEditedChannelPost** is a stream of [MessageContext] which is emitted when a message is edited in a channel.
   Stream<MessageContext> get onEditedChannelPost =>
-      onUpdate(UpdateType.editedChannelPost).map(mapper<MessageContext>);
+      onUpdate(UpdateType.editedChannelPost).map(_mapper<MessageContext>);
 
   /// **onInlineQuery** is a stream of [InlineQueryContext] which is emitted when an inline query is received.
   Stream<InlineQueryContext> get onInlineQuery =>
-      onUpdate(UpdateType.inlineQuery).map(mapper<InlineQueryContext>);
+      onUpdate(UpdateType.inlineQuery).map(_mapper<InlineQueryContext>);
 
   /// **onChosenInlineResult** is a stream of [ChosenInlineResult] which is emitted when a user chooses an inline result.
   Stream<ChosenInlineResult> get onChosenInlineResult => onUpdate(
         UpdateType.chosenInlineResult,
-      ).map(mapper<ChosenInlineResult>);
+      ).map(_mapper<ChosenInlineResult>);
 
   /// **onCallbackQuery** is a stream of [CallbackQueryContext] which is emitted when a callback query is received.
   Stream<CallbackQueryContext> get onCallbackQuery => onUpdate(
         UpdateType.callbackQuery,
-      ).map(mapper<CallbackQueryContext>);
+      ).map(_mapper<CallbackQueryContext>);
 
   /// **onShippingQuery** is a stream of [ShippingQuery] which is emitted when a shipping query is received.
   Stream<ShippingQuery> get onShippingQuery => onUpdate(
         UpdateType.shippingQuery,
-      ).map(mapper<ShippingQuery>);
+      ).map(_mapper<ShippingQuery>);
 
   /// **onPreCheckoutQuery** is a stream of [PreCheckoutQuery] which is emitted when a pre-checkout query is received.
   Stream<PreCheckoutQuery> get onPreCheckoutQuery =>
-      onUpdate(UpdateType.preCheckoutQuery).map(mapper<PreCheckoutQuery>);
+      onUpdate(UpdateType.preCheckoutQuery).map(_mapper<PreCheckoutQuery>);
 
   /// **onPoll** is a stream of [Poll] which is emitted when a poll is received.
-  Stream<Poll> get onPoll => onUpdate(UpdateType.poll).map(mapper<Poll>);
+  Stream<Poll> get onPoll => onUpdate(UpdateType.poll).map(_mapper<Poll>);
 
   /// **onPollAnswer** is a stream of [PollAnswer] which is emitted when a poll answer is received.
   Stream<PollAnswer> get onPollAnswer => onUpdate(
         UpdateType.pollAnswer,
-      ).map(mapper<PollAnswer>);
+      ).map(_mapper<PollAnswer>);
 
   /// **onMyChatMember** is a stream of [ChatMemberUpdated] which is emitted when the bot's chat member status is updated.
   Stream<ChatMemberUpdated> get onMyChatMember =>
-      onUpdate(UpdateType.myChatMember).map(mapper<ChatMemberUpdated>);
+      onUpdate(UpdateType.myChatMember).map(_mapper<ChatMemberUpdated>);
 
   /// **onChatMember** is a stream of [ChatMemberUpdated] which is emitted when a chat member's status is updated.
   Stream<ChatMemberUpdated> get onChatMember => onUpdate(
         UpdateType.chatMember,
-      ).map(mapper<ChatMemberUpdated>);
+      ).map(_mapper<ChatMemberUpdated>);
 
   /// **onChatJoinRequest** is a stream of [ChatJoinRequest] which is emitted when a user requests to join a chat.
   Stream<ChatJoinRequest> get onChatJoinRequest =>
       onUpdate(UpdateType.chatJoinRequest)
-          .map<ChatJoinRequest>(mapper<ChatJoinRequest>);
+          .map<ChatJoinRequest>(_mapper<ChatJoinRequest>);
 
   /// **onUpdate** is a stream of [Update] which is emitted when any update is received.
   Stream<Update> onUpdate([UpdateType? type]) {
@@ -102,7 +102,7 @@ class Event {
     }
   }
 
-  T mapper<T>(Update update) {
+  T _mapper<T>(Update update) {
     if (T == MessageContext && update.type == UpdateType.message) {
       return MessageContext(
         Televerse.instance.api,
