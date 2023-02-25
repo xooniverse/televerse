@@ -1,3 +1,10 @@
+## 1.4.7
+- Added `Televerse.entity` method to listen to entities in messages.
+- Improved code quality.
+- Removed all the different StreamController classes and replaced them with a single `StreamController<Update>` instance.
+- All the event streams are now based on the `onUpdate` stream.
+- Added `Message.getEntityText` method to get the text of the entity.
+- Updated the [televerse_example](./example/televerse_example.dart) file to reflect the changes.
 ## 1.4.6
 - Added `Message.isCommand` getter to check if the message is a command.
 - Added `Televerse.onError` method to listen to unexpected exceptions.

@@ -336,4 +336,58 @@ class Televerse extends Event with OnEvent {
   ) {
     _onError = handler;
   }
+
+  /// Registers a callback for messages that contains the specified entity type.
+  ///
+  /// Pass the `shouldMatchCaptionEntities` parameter to match entities in the
+  /// caption of a message. Such as a photo or video message.
+  ///
+  /// By default, this method will ONLY match entities in the message text.
+  void entity(
+    MessageEntityType type,
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    onMessage.listen((MessageContext context) {
+      List<MessageEntity>? entities = context.message.entities;
+      if (shouldMatchCaptionEntities) {
+        entities = entities ?? context.message.captionEntities;
+      }
+      if (entities == null) return;
+      bool hasMatch = entities.any((element) => element.type == type);
+      if (hasMatch) {
+        callback(context);
+      }
+    });
+  }
+
+  /// Registers a callback for messages that contains the specified entity types.
+  /// The callback will be called when a message is received that contains the
+  /// specified entity types.
+  ///
+  /// Pass the `shouldMatchCaptionEntities` parameter to match entities in the
+  /// caption of a message. Such as a photo or video message.
+  ///
+  /// By default, this method will ONLY match entities in the message text.
+  void entities(
+    List<MessageEntityType> types,
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    onMessage.listen((MessageContext context) {
+      List<MessageEntity>? entities = context.message.entities;
+      if (shouldMatchCaptionEntities) {
+        entities = entities ?? context.message.captionEntities;
+      }
+      if (entities == null) return;
+
+      bool hasMatch = types.every((element) => entities!.any(
+            (e) => e.type == element,
+          ));
+
+      if (hasMatch) {
+        callback(context);
+      }
+    });
+  }
 }

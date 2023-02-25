@@ -5,50 +5,51 @@ part of models;
 /// At most one of the optional parameters can be present in any given update.
 class Update {
   /// The update's unique identifier. Update identifiers start from a certain positive number and increase sequentially. This ID becomes especially handy if you're using webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order. If there are no new updates for at least a week, then identifier of the next update will be chosen randomly instead of sequentially.
-  int updateId;
+  final int updateId;
 
   /// Optional. New incoming message of any kind — text, photo, sticker, etc.
-  Message? message;
+  final Message? message;
 
   /// Optional. New version of a message that is known to the bot and was edited
-  Message? editedMessage;
+  final Message? editedMessage;
 
   /// Optional. New incoming channel post of any kind - text, photo, sticker, etc.
-  Message? channelPost;
+  final Message? channelPost;
 
   /// Optional. New version of a channel post that is known to the bot and was edited
-  Message? editedChannelPost;
+  final Message? editedChannelPost;
 
   /// Optional. New incoming inline query
-  InlineQuery? inlineQuery;
+  final InlineQuery? inlineQuery;
 
   /// Optional. The result of an inline query that was chosen by a user and sent to their chat partner. Please see our documentation on the feedback collecting for details on how to enable these updates for your bot.
-  ChosenInlineResult? chosenInlineResult;
+  final ChosenInlineResult? chosenInlineResult;
 
   /// Optional. New incoming callback query
-  CallbackQuery? callbackQuery;
+  final CallbackQuery? callbackQuery;
 
   /// Optional. New incoming shipping query. Only for invoices with flexible price
-  ShippingQuery? shippingQuery;
+  final ShippingQuery? shippingQuery;
 
   /// Optional. New incoming pre-checkout query. Contains full information about checkout
-  PreCheckoutQuery? preCheckoutQuery;
+  final PreCheckoutQuery? preCheckoutQuery;
 
   /// Optional. New poll state. Bots receive only updates about stopped polls and polls, which are sent by the bot
-  Poll? poll;
+  final Poll? poll;
 
   /// Optional. A user changed their answer in a non-anonymous poll. Bots receive new votes only in polls that were sent by the bot itself.
-  PollAnswer? pollAnswer;
+  final PollAnswer? pollAnswer;
 
   /// Optional. New incoming my_chat_member update.
-  ChatMemberUpdated? myChatMember;
+  final ChatMemberUpdated? myChatMember;
 
   /// Optional. A chat member's status was updated in a chat. The bot must be an administrator in the chat and must explicitly specify “chat_member” in the list of allowed_updates to receive these updates.
-  ChatMemberUpdated? chatMember;
+  final ChatMemberUpdated? chatMember;
 
   /// Optional. A request to join the chat has been sent. The bot must have the can_invite_users administrator right in the chat to receive these updates.
-  ChatJoinRequest? chatJoinRequest;
+  final ChatJoinRequest? chatJoinRequest;
 
+  /// Update Constructor
   Update({
     required this.updateId,
     this.message,
@@ -67,6 +68,7 @@ class Update {
     this.chatJoinRequest,
   });
 
+  /// Creates a [Update] from a json [Map].
   static Update fromJson(Map<String, dynamic> json) {
     return Update(
       updateId: json['update_id']!,
@@ -112,6 +114,7 @@ class Update {
     );
   }
 
+  /// Converts a [Update] to a [Map] which can be serialized to JSON.
   Map<String, dynamic> toJson() {
     return {
       'update_id': updateId,
@@ -132,8 +135,10 @@ class Update {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Converts a [Update] object to a JSON string.
   String toRawJson() => json.encode(toJson());
 
+  /// Returns the type of the update.
   UpdateType get type {
     if (message != null) {
       return UpdateType.message;
