@@ -3,229 +3,229 @@ part of models;
 /// This object represents a message.
 class Message {
   /// Unique message identifier inside this chat
-  int messageId;
+  final int messageId;
 
   /// Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
-  int? threadId;
+  final int? threadId;
 
   /// Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
-  int? messageThreadId;
+  final int? messageThreadId;
 
   /// Optional. Sender of the message; empty for messages sent to channels. For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
-  User? from;
+  final User? from;
 
   /// Optional. Sender of the message, sent on behalf of a chat. For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
-  Chat? senderChat;
+  final Chat? senderChat;
 
   /// Date the message was sent in Unix time
   ///
   /// Note: Handy [DateTime] object is available in [dateTime] getter.
-  int date;
+  final int date;
 
   /// Conversation the message belongs to
-  Chat chat;
+  final Chat chat;
 
   /// Optional. For forwarded messages, sender of the original message
-  User? forwardFrom;
+  final User? forwardFrom;
 
   /// Optional. For messages forwarded from channels or from anonymous administrators, information about the original sender chat
-  Chat? forwardFromChat;
+  final Chat? forwardFromChat;
 
   /// Optional. For messages forwarded from channels, identifier of the original message in the channel
-  int? forwardFromMessageId;
+  final int? forwardFromMessageId;
 
   /// Optional. For forwarded messages that were originally sent in channels or by an anonymous chat administrator, signature of the message sender if present
-  String? forwardSignature;
+  final String? forwardSignature;
 
   /// Optional. Sender's name for messages forwarded from users who disallow adding a link to their account in forwarded messages
-  String? forwardSenderName;
+  final String? forwardSenderName;
 
   /// Optional. For forwarded messages, date the original message was sent in Unix time
   ///
   /// Note: Handy [DateTime] object is available in [forwardDateTime] getter.
-  int? forwardDate;
+  final int? forwardDate;
 
   /// Optional. True, if the message is sent to a forum topic
-  bool? isTopicMessage;
+  final bool? isTopicMessage;
 
   /// Optional. True, if the message is a channel post that was automatically forwarded to the connected discussion group
-  bool? isAutomaticForward;
+  final bool? isAutomaticForward;
 
   /// Optional. For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
-  Message? replyToMessage;
+  final Message? replyToMessage;
 
   /// Optional. Bot through which the message was sent
-  User? viaBot;
+  final User? viaBot;
 
   /// Optional. Date the message was last edited in Unix time
   ///
   /// Note: Handy [DateTime] object is available in [editDateTime] getter.
-  int? editDate;
+  final int? editDate;
 
   /// Optional. True, if the message can't be forwarded
-  bool? hasProtectedContent;
+  final bool? hasProtectedContent;
 
   /// Optional. The unique identifier of a media message group this message belongs to
-  String? mediaGroupId;
+  final String? mediaGroupId;
 
   /// Optional. Signature of the post author for messages in channels, or the custom title of an anonymous group administrator
-  String? authorSignature;
+  final String? authorSignature;
 
   /// Optional. For text messages, the actual UTF-8 text of the message
-  String? text;
+  final String? text;
 
   /// Optional. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text
-  List<MessageEntity>? entities;
+  final List<MessageEntity>? entities;
 
   /// Optional. Message is an animation, information about the animation. For backward compatibility, when this field is set, the document field will also be set
-  Animation? animation;
+  final Animation? animation;
 
   /// Optional. Message is an audio file, information about the file
-  Audio? audio;
+  final Audio? audio;
 
   /// Optional. Message is a general file, information about the file
-  Document? document;
+  final Document? document;
 
   /// Optional. Message is a photo, available sizes of the photo
-  List<PhotoSize>? photo;
+  final List<PhotoSize>? photo;
 
   /// Optional. Message is a sticker, information about the sticker
-  Sticker? sticker;
+  final Sticker? sticker;
 
   /// Optional. Message is a video, information about the video
-  Video? video;
+  final Video? video;
 
   /// Optional. Message is a video note, information about the video message
-  VideoNote? videoNote;
+  final VideoNote? videoNote;
 
   /// Optional. Message is a voice message, information about the file
-  Voice? voice;
+  final Voice? voice;
 
   /// Optional. Caption for the animation, audio, document, photo, video or voice
-  String? caption;
+  final String? caption;
 
   /// Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
-  List<MessageEntity>? captionEntities;
+  final List<MessageEntity>? captionEntities;
 
   /// Optional. Message is a shared contact, information about the contact
-  Contact? contact;
+  final Contact? contact;
 
   /// Optional. Message is a dice with random value
-  Dice? dice;
+  final Dice? dice;
 
   /// Optional. Message is a game, information about the game. More about games »
-  Game? game;
+  final Game? game;
 
   /// Optional. Message is a native poll, information about the poll
-  Poll? poll;
+  final Poll? poll;
 
   /// Optional. Message is a venue, information about the venue. For backward compatibility, when this field is set, the location field will also be set
-  Venue? venue;
+  final Venue? venue;
 
   /// Optional. Message is a shared location, information about the location
-  Location? location;
+  final Location? location;
 
   /// Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
-  List<User>? newChatMembers;
+  final List<User>? newChatMembers;
 
   /// Optional. A member was removed from the group, information about them (this member may be the bot itself)
-  User? leftChatMember;
+  final User? leftChatMember;
 
   /// Optional. A chat title was changed to this value
-  String? newChatTitle;
+  final String? newChatTitle;
 
   /// Optional. A chat photo was change to this value
-  List<PhotoSize>? newChatPhoto;
+  final List<PhotoSize>? newChatPhoto;
 
   /// Optional. Service message: the chat photo was deleted
-  bool? deleteChatPhoto;
+  final bool? deleteChatPhoto;
 
   /// Optional. Service message: the group has been created
-  bool? groupChatCreated;
+  final bool? groupChatCreated;
 
   /// Optional. Service message: the supergroup has been created. This field can't be received in a message coming through updates, because bot can't be a member of a supergroup when it is created. It can only be found in reply_to_message if someone replies to a very first message in a directly created supergroup.
-  bool? supergroupChatCreated;
+  final bool? supergroupChatCreated;
 
   /// Optional. Service message: the channel has been created. This field can't be received in a message coming through updates, because bot can't be a member of a channel when it is created. It can only be found in reply_to_message if someone replies to a very first message in a channel.
-  bool? channelChatCreated;
+  final bool? channelChatCreated;
 
   /// Optional. Service message: auto-delete timer settings changed in the chat
-  MessageAutoDeleteTimerChanged? messageAutoDeleteTimerChanged;
+  final MessageAutoDeleteTimerChanged? messageAutoDeleteTimerChanged;
 
   /// Optional. The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
-  int? migrateToChatId;
+  final int? migrateToChatId;
 
   /// Optional. The supergroup has been migrated from a group with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
-  int? migrateFromChatId;
+  final int? migrateFromChatId;
 
   /// Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
-  Message? pinnedMessage;
+  final Message? pinnedMessage;
 
   /// Optional. Message is an invoice for a payment, information about the invoice. [More about payments »](https://core.telegram.org/bots/api#payments)
-  Invoice? invoice;
+  final Invoice? invoice;
 
   /// Optional. Message is a service message about a successful payment, information about the payment. [More about payments »](https://core.telegram.org/bots/api#payments)
-  SuccessfulPayment? successfulPayment;
+  final SuccessfulPayment? successfulPayment;
 
   /// Optional. The domain name of the website on which the user has logged in. [More about Telegram Login »](https://core.telegram.org/widgets/login)
-  String? connectedWebsite;
+  final String? connectedWebsite;
 
   /// Optional. Telegram Passport data
-  PassportData? passportData;
+  final PassportData? passportData;
 
   /// Optional. Service message. A user in the chat triggered another user's proximity alert while sharing Live Location.
-  ProximityAlertTriggered? proximityAlertTriggered;
+  final ProximityAlertTriggered? proximityAlertTriggered;
 
   /// Optional. Service message: forum topic created
-  ForumTopicCreated? forumTopicCreated;
+  final ForumTopicCreated? forumTopicCreated;
 
   /// Optional. Service message: forum topic closed
-  ForumTopicClosed? forumTopicClosed;
+  final ForumTopicClosed? forumTopicClosed;
 
   /// Optional. Service message: forum topic reopened
-  ForumTopicReopened? forumTopicReopened;
+  final ForumTopicReopened? forumTopicReopened;
 
   /// Optional. Service message: video chat scheduled
-  VideoChatScheduled? videoChatScheduled;
+  final VideoChatScheduled? videoChatScheduled;
 
   /// Optional. Service message: video chat started
-  VideoChatStarted? videoChatStarted;
+  final VideoChatStarted? videoChatStarted;
 
   /// Optional. Service message: video chat ended
-  VideoChatEnded? videoChatEnded;
+  final VideoChatEnded? videoChatEnded;
 
   /// Optional. Service message: new participants invited to a video chat
-  VideoChatParticipantsInvited? videoChatParticipantsInvited;
+  final VideoChatParticipantsInvited? videoChatParticipantsInvited;
 
   /// Optional. Service message: data sent by a Web App
-  WebAppData? webAppData;
+  final WebAppData? webAppData;
 
   /// Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons.
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Service message: a user was shared with the bot
-  UserShared? userShared;
+  final UserShared? userShared;
 
   /// Optional. Service message: a chat was shared with the bot
-  ChatShared? chatShared;
+  final ChatShared? chatShared;
 
   /// Optional. True, if the message media is covered by a spoiler animation
-  bool? hasMediaSpoiler;
+  final bool? hasMediaSpoiler;
 
   /// Optional. Service message: forum topic edited
-  ForumTopicEdited? forumTopicEdited;
+  final ForumTopicEdited? forumTopicEdited;
 
   /// Optional. Service message: the 'General' forum topic hidden
-  GeneralForumTopicHidden? generalForumTopicHidden;
+  final GeneralForumTopicHidden? generalForumTopicHidden;
 
   /// Optional. Service message: the 'General' forum topic unhidden
-  GeneralForumTopicUnhidden? generalForumTopicUnhidden;
+  final GeneralForumTopicUnhidden? generalForumTopicUnhidden;
 
   /// Optional. Service message: the user allowed the bot added to the attachment menu to write messages
-  WriteAccessAllowed? writeAccessAllowed;
+  final WriteAccessAllowed? writeAccessAllowed;
 
   /// Creates a Message object.
-  Message({
+  const Message({
     required this.messageId,
     this.from,
     this.senderChat,
