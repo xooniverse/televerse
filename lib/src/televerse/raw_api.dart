@@ -3210,4 +3210,26 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to set the title of a created sticker set. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [name] - Sticker set name
+  /// - [title] - New sticker set title; 1-64 characters
+  Future<bool> setStickerSetTitle(
+    String name,
+    String title,
+  ) async {
+    Map<String, dynamic> params = {
+      "name": name,
+      "title": title,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setStickerSetTitle"),
+      params,
+    );
+
+    return response;
+  }
 }
