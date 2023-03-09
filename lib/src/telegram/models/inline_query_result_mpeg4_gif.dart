@@ -18,10 +18,10 @@ class InlineQueryResultMpeg4Gif extends InlineQueryResult {
   int? mpeg4Duration;
 
   /// URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
-  String thumbUrl;
+  String thumbnailUrl;
 
   /// Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”
-  String? thumbMimeType;
+  String? thumbnailMimeType;
 
   /// Optional. Title for the result
   String? title;
@@ -43,12 +43,12 @@ class InlineQueryResultMpeg4Gif extends InlineQueryResult {
 
   InlineQueryResultMpeg4Gif({
     required this.mpeg4Url,
-    required this.thumbUrl,
+    required this.thumbnailUrl,
     required String id,
     this.mpeg4Width,
     this.mpeg4Height,
     this.mpeg4Duration,
-    this.thumbMimeType,
+    this.thumbnailMimeType,
     this.title,
     this.caption,
     this.parseMode,
@@ -62,12 +62,12 @@ class InlineQueryResultMpeg4Gif extends InlineQueryResult {
     return {
       'type': type.value,
       'mpeg4_url': mpeg4Url,
-      'thumb_url': thumbUrl,
+      'thumbnail_url': thumbnailUrl,
       'id': id,
       'mpeg4_width': mpeg4Width,
       'mpeg4_height': mpeg4Height,
       'mpeg4_duration': mpeg4Duration,
-      'thumb_mime_type': thumbMimeType,
+      'thumbnail_mime_type': thumbnailMimeType,
       'title': title,
       'caption': caption,
       'parse_mode': parseMode?.value,
@@ -80,12 +80,12 @@ class InlineQueryResultMpeg4Gif extends InlineQueryResult {
   factory InlineQueryResultMpeg4Gif.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultMpeg4Gif(
       mpeg4Url: json['mpeg4_url'] as String,
-      thumbUrl: json['thumb_url'] as String,
+      thumbnailUrl: json['thumbnail_url'] as String,
       id: json['id'] as String,
       mpeg4Width: json['mpeg4_width'] as int?,
       mpeg4Height: json['mpeg4_height'] as int?,
       mpeg4Duration: json['mpeg4_duration'] as int?,
-      thumbMimeType: json['thumb_mime_type'] as String?,
+      thumbnailMimeType: json['thumbnail_mime_type'] as String?,
       title: json['title'] as String?,
       caption: json['caption'] as String?,
       parseMode: json['parse_mode'] == null

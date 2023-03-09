@@ -125,6 +125,7 @@ part 'reply_keyboard_remove.dart';
 part 'login_url.dart';
 part 'video_chat_participants_invited.dart';
 part 'bot_command.dart';
+part 'inline_query_result_video.dart';
 
 // Bot API 6.4
 part 'forum_topic_edited.dart';
