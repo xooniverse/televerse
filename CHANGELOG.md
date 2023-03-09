@@ -1,3 +1,6 @@
+## 1.5.0
+- 🤖 Bot API 6.6 (March 9, 2021) 🎉
+- A bunch of changes as per the [Bot API 6.6](https://core.telegram.org/bots/api-changelog#march-9-2023)
 ## 1.4.7
 - Added `Televerse.entity` method to listen to entities in messages.
 - Improved code quality.
