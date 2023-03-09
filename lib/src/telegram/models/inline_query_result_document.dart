@@ -35,13 +35,13 @@ class InlineQueryResultDocument extends InlineQueryResult {
   InputMessageContent? inputMessageContent;
 
   /// Optional. URL of the thumbnail (JPEG only) for the file
-  String? thumbUrl;
+  String? thumbnailUrl;
 
   /// Optional. Thumbnail width
-  int? thumbWidth;
+  int? thumbnailWidth;
 
   /// Optional. Thumbnail height
-  int? thumbHeight;
+  int? thumbnailHeight;
 
   InlineQueryResultDocument({
     required this.title,
@@ -54,9 +54,9 @@ class InlineQueryResultDocument extends InlineQueryResult {
     this.description,
     this.replyMarkup,
     this.inputMessageContent,
-    this.thumbUrl,
-    this.thumbWidth,
-    this.thumbHeight,
+    this.thumbnailUrl,
+    this.thumbnailWidth,
+    this.thumbnailHeight,
   }) : super(id: id);
 
   @override
@@ -72,9 +72,9 @@ class InlineQueryResultDocument extends InlineQueryResult {
       'description': description,
       'reply_markup': replyMarkup?.toJson(),
       'input_message_content': inputMessageContent?.toJson(),
-      'thumb_url': thumbUrl,
-      'thumb_width': thumbWidth,
-      'thumb_height': thumbHeight,
+      'thumbnail_url': thumbnailUrl,
+      'thumbnail_width': thumbnailWidth,
+      'thumbnail_height': thumbnailHeight,
     }..removeWhere((key, value) => value == null);
   }
 
@@ -102,9 +102,9 @@ class InlineQueryResultDocument extends InlineQueryResult {
           ? null
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>),
-      thumbUrl: json['thumb_url'] as String?,
-      thumbWidth: json['thumb_width'] as int?,
-      thumbHeight: json['thumb_height'] as int?,
+      thumbnailUrl: json['thumbnail_url'] as String?,
+      thumbnailWidth: json['thumbnail_width'] as int?,
+      thumbnailHeight: json['thumbnail_height'] as int?,
     );
   }
 }

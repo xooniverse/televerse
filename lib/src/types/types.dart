@@ -1,5 +1,6 @@
 library types;
 
+import '../../televerse.dart';
 part 'chat_type.dart';
 part 'bot_command_scope_type.dart';
 part 'menu_button_type.dart';
@@ -15,3 +16,4 @@ part 'update_type.dart';
 part 'message_entity_type.dart';
 part 'parse_mode.dart';
 part 'chat_action.dart';
+part 'sticker_format.dart';

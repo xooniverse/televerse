@@ -29,7 +29,7 @@ class Audio {
   int? fileSize;
 
   /// Optional. Thumbnail of the album cover to which the music file belongs
-  PhotoSize? thumb;
+  PhotoSize? thumbnail;
 
   Audio({
     required this.fileId,
@@ -40,7 +40,7 @@ class Audio {
     this.fileName,
     this.mimeType,
     this.fileSize,
-    this.thumb,
+    this.thumbnail,
   });
 
   factory Audio.fromJson(Map<String, dynamic> json) {
@@ -53,7 +53,8 @@ class Audio {
       fileName: json['file_name'],
       mimeType: json['mime_type'],
       fileSize: json['file_size'],
-      thumb: json['thumb'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
+      thumbnail:
+          json['thumbnail'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
     );
   }
 
@@ -67,7 +68,7 @@ class Audio {
       'file_name': fileName,
       'mime_type': mimeType,
       'file_size': fileSize,
-      'thumb': thumb?.toJson(),
+      'thumbnail': thumbnail?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 

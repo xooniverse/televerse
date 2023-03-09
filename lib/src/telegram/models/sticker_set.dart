@@ -21,7 +21,7 @@ class StickerSet {
   List<Sticker> stickers;
 
   /// Optional. Sticker set thumbnail in the .WEBP or .TGS format
-  PhotoSize? thumb;
+  PhotoSize? thumbnail;
 
   StickerSet({
     required this.name,
@@ -30,7 +30,7 @@ class StickerSet {
     required this.isAnimated,
     required this.isVideo,
     required this.stickers,
-    this.thumb,
+    this.thumbnail,
   });
 
   factory StickerSet.fromJson(Map<String, dynamic> json) {
@@ -43,9 +43,9 @@ class StickerSet {
       stickers: (json['stickers'] as List<dynamic>)
           .map((e) => Sticker.fromJson(e as Map<String, dynamic>))
           .toList(),
-      thumb: json['thumb'] == null
+      thumbnail: json['thumbnail'] == null
           ? null
-          : PhotoSize.fromJson(json['thumb'] as Map<String, dynamic>),
+          : PhotoSize.fromJson(json['thumbnail'] as Map<String, dynamic>),
     );
   }
 }

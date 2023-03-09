@@ -9,7 +9,7 @@ class Document {
   String fileUniqueId;
 
   /// Optional. Thumbnail of the album cover to which the music file belongs
-  PhotoSize? thumb;
+  PhotoSize? thumbnail;
 
   /// Optional. Original filename as defined by sender
   String? fileName;
@@ -23,7 +23,7 @@ class Document {
   Document({
     required this.fileId,
     required this.fileUniqueId,
-    this.thumb,
+    this.thumbnail,
     this.fileName,
     this.mimeType,
     this.fileSize,
@@ -33,7 +33,8 @@ class Document {
     return Document(
       fileId: json['file_id']!,
       fileUniqueId: json['file_unique_id']!,
-      thumb: json['thumb'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
+      thumbnail:
+          json['thumbnail'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
       fileName: json['file_name'],
       mimeType: json['mime_type'],
       fileSize: json['file_size'],
@@ -44,7 +45,7 @@ class Document {
     return {
       'file_id': fileId,
       'file_unique_id': fileUniqueId,
-      'thumb': thumb?.toJson(),
+      'thumbnail': thumbnail?.toJson(),
       'file_name': fileName,
       'mime_type': mimeType,
       'file_size': fileSize,

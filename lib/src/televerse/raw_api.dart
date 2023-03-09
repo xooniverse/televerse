@@ -355,7 +355,7 @@ class RawAPI {
     int? duration,
     String? performer,
     String? title,
-    InputFile? thumb,
+    InputFile? thumbnail,
     bool? disableNotification,
     bool? protectContent,
     int? replyToMessageId,
@@ -379,7 +379,8 @@ class RawAPI {
     };
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
-    if (audio.type == InputFileType.file || thumb?.type == InputFileType.file) {
+    if (audio.type == InputFileType.file ||
+        thumbnail?.type == InputFileType.file) {
       if (audio.type == InputFileType.file) {
         if (!audio.file!.existsSync()) {
           throw TeleverseException.fileDoesNotExist(audio.file!.path);
@@ -392,15 +393,15 @@ class RawAPI {
           ),
         );
       }
-      if (thumb?.type == InputFileType.file) {
-        if (!thumb!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+      if (thumbnail?.type == InputFileType.file) {
+        if (!thumbnail!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
         }
         files.add(
           MultipartFile.fromBytes(
-            "thumb",
-            thumb.file!.readAsBytesSync(),
-            filename: thumb.file!.path.split("/").last,
+            "thumbnail",
+            thumbnail.file!.readAsBytesSync(),
+            filename: thumbnail.file!.path.split("/").last,
           ),
         );
       }
@@ -412,7 +413,7 @@ class RawAPI {
       );
     } else {
       params["audio"] = audio.fileId ?? audio.url;
-      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendAudio", params));
     }
     return Message.fromJson(response);
@@ -423,7 +424,7 @@ class RawAPI {
     ID chatId,
     InputFile document, {
     int? messageThreadId,
-    InputFile? thumb,
+    InputFile? thumbnail,
     String? caption,
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
@@ -450,7 +451,7 @@ class RawAPI {
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
     if (document.type == InputFileType.file ||
-        thumb?.type == InputFileType.file) {
+        thumbnail?.type == InputFileType.file) {
       if (document.type == InputFileType.file) {
         if (!document.file!.existsSync()) {
           throw TeleverseException.fileDoesNotExist(document.file!.path);
@@ -463,15 +464,15 @@ class RawAPI {
           ),
         );
       }
-      if (thumb?.type == InputFileType.file) {
-        if (!thumb!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+      if (thumbnail?.type == InputFileType.file) {
+        if (!thumbnail!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
         }
         files.add(
           MultipartFile.fromBytes(
-            "thumb",
-            thumb.file!.readAsBytesSync(),
-            filename: thumb.file!.path.split("/").last,
+            "thumbnail",
+            thumbnail.file!.readAsBytesSync(),
+            filename: thumbnail.file!.path.split("/").last,
           ),
         );
       }
@@ -483,7 +484,7 @@ class RawAPI {
       );
     } else {
       params["document"] = document.fileId ?? document.url;
-      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendDocument", params));
     }
     return Message.fromJson(response);
@@ -497,7 +498,7 @@ class RawAPI {
     int? duration,
     int? width,
     int? height,
-    InputFile? thumb,
+    InputFile? thumbnail,
     String? caption,
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
@@ -528,7 +529,8 @@ class RawAPI {
     };
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
-    if (video.type == InputFileType.file || thumb?.type == InputFileType.file) {
+    if (video.type == InputFileType.file ||
+        thumbnail?.type == InputFileType.file) {
       if (video.type == InputFileType.file) {
         if (!video.file!.existsSync()) {
           throw TeleverseException.fileDoesNotExist(video.file!.path);
@@ -541,15 +543,15 @@ class RawAPI {
           ),
         );
       }
-      if (thumb?.type == InputFileType.file) {
-        if (!thumb!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+      if (thumbnail?.type == InputFileType.file) {
+        if (!thumbnail!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
         }
         files.add(
           MultipartFile.fromBytes(
-            "thumb",
-            thumb.file!.readAsBytesSync(),
-            filename: thumb.file!.path.split("/").last,
+            "thumbnail",
+            thumbnail.file!.readAsBytesSync(),
+            filename: thumbnail.file!.path.split("/").last,
           ),
         );
       }
@@ -561,7 +563,7 @@ class RawAPI {
       );
     } else {
       params["video"] = video.fileId ?? video.url;
-      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendVideo", params));
     }
     return Message.fromJson(response);
@@ -575,7 +577,7 @@ class RawAPI {
     int? duration,
     int? width,
     int? height,
-    InputFile? thumb,
+    InputFile? thumbnail,
     String? caption,
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
@@ -605,7 +607,7 @@ class RawAPI {
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
     if (animation.type == InputFileType.file ||
-        thumb?.type == InputFileType.file) {
+        thumbnail?.type == InputFileType.file) {
       if (animation.type == InputFileType.file) {
         if (!animation.file!.existsSync()) {
           throw TeleverseException.fileDoesNotExist(animation.file!.path);
@@ -618,15 +620,15 @@ class RawAPI {
           ),
         );
       }
-      if (thumb?.type == InputFileType.file) {
-        if (!thumb!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+      if (thumbnail?.type == InputFileType.file) {
+        if (!thumbnail!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
         }
         files.add(
           MultipartFile.fromBytes(
-            "thumb",
-            thumb.file!.readAsBytesSync(),
-            filename: thumb.file!.path.split("/").last,
+            "thumbnail",
+            thumbnail.file!.readAsBytesSync(),
+            filename: thumbnail.file!.path.split("/").last,
           ),
         );
       }
@@ -638,7 +640,7 @@ class RawAPI {
       );
     } else {
       params["animation"] = animation.fileId ?? animation.url;
-      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendAnimation", params));
     }
     return Message.fromJson(response);
@@ -705,7 +707,7 @@ class RawAPI {
     int? messageThreadId,
     int? duration,
     int? length,
-    InputFile? thumb,
+    InputFile? thumbnail,
     bool? disableNotification,
     bool? protectContent,
     int? replyToMessageId,
@@ -717,7 +719,7 @@ class RawAPI {
       "message_thread_id": messageThreadId,
       "duration": duration,
       "length": length,
-      "thumb": thumb?.fileId ?? thumb?.url,
+      "thumbnail": thumbnail?.fileId ?? thumbnail?.url,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
@@ -727,7 +729,7 @@ class RawAPI {
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
     if (videoNote.type == InputFileType.file ||
-        thumb?.type == InputFileType.file) {
+        thumbnail?.type == InputFileType.file) {
       if (videoNote.type == InputFileType.file) {
         if (!videoNote.file!.existsSync()) {
           throw TeleverseException.fileDoesNotExist(videoNote.file!.path);
@@ -740,15 +742,15 @@ class RawAPI {
           ),
         );
       }
-      if (thumb?.type == InputFileType.file) {
-        if (!thumb!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+      if (thumbnail?.type == InputFileType.file) {
+        if (!thumbnail!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
         }
         files.add(
           MultipartFile.fromBytes(
-            "thumb",
-            thumb.file!.readAsBytesSync(),
-            filename: thumb.file!.path.split("/").last,
+            "thumbnail",
+            thumbnail.file!.readAsBytesSync(),
+            filename: thumbnail.file!.path.split("/").last,
           ),
         );
       }
@@ -760,7 +762,7 @@ class RawAPI {
       );
     } else {
       params["video_note"] = videoNote.fileId ?? videoNote.url;
-      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendVideoNote", params));
     }
     return Message.fromJson(response);
@@ -1798,7 +1800,7 @@ class RawAPI {
     };
     ForumTopic response = ForumTopic.fromJson(
       await HttpClient.getURI(
-        _buildUri("createNewStickerSet", params),
+        _buildUri("createForumTopic", params),
       ),
     );
     return response;
@@ -2380,6 +2382,9 @@ class RawAPI {
   }
 
   /// Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
+  ///
+  /// Parameters:
+  /// - [emoji] - Emoji associated with the sticker; only for just uploaded stickers
   Future<Message> sendSticker(
     ID chatId,
     InputFile sticker, {
@@ -2389,6 +2394,7 @@ class RawAPI {
     int? replyToMessageId,
     bool? allowSendingWithoutReply,
     InlineKeyboardMarkup? replyMarkup,
+    String? emoji,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2398,6 +2404,7 @@ class RawAPI {
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "emoji": emoji,
     };
 
     Map<String, dynamic> response;
@@ -2440,23 +2447,24 @@ class RawAPI {
     return StickerSet.fromJson(response);
   }
 
-  /// Use this method to upload a .PNG file with a sticker for later use in [createNewStickerSet] and addStickerToSet methods (can be used multiple times). Returns the uploaded File on success.
+  /// Use this method to upload a file with a sticker for later use in the [createNewStickerSet] and [addStickerToSet] methods (the file can be used multiple times). Returns the uploaded File on success.
   Future<File> uploadStickerFile(
     int userId,
-    InputFile pngSticker,
+    InputFile sticker,
+    StickerFormat stickerFormat,
   ) async {
     Map<String, dynamic> params = {
       "user_id": userId,
     };
 
     Map<String, dynamic> response;
-    if (pngSticker.type == InputFileType.file) {
-      params["png_sticker"] = pngSticker.toJson();
+    if (sticker.type == InputFileType.file) {
+      params["sticker"] = sticker.toJson();
       List<MultipartFile> files = [
         MultipartFile.fromBytes(
-          "png_sticker",
-          pngSticker.file!.readAsBytesSync(),
-          filename: pngSticker.file!.filename,
+          "sticker",
+          sticker.file!.readAsBytesSync(),
+          filename: sticker.file!.filename,
         ),
       ];
       response = await HttpClient.multipartPost(
@@ -2468,176 +2476,129 @@ class RawAPI {
       );
     } else {
       throw TeleverseException(
-        "Upload PNG Sticker",
+        "uploadStickerFile",
         description:
-            "Only upload PNG file. Use [InputFile.fromFile] to upload file.",
+            "Only upload file. Use [InputFile.fromFile] to upload file.",
       );
     }
 
     return File.fromJson(response);
   }
 
-  /// Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Returns True on success.
-  Future<bool> createNewStickerSet(
-    int userId,
-    String name,
-    String title,
-    InputFile pngSticker, {
-    InputFile? tgsSticker,
-    InputFile? webmSticker,
-    StickerType? stickerType = StickerType.regular,
-    required String emojis,
-    bool? containsMasks,
-    MaskPosition? maskPosition,
-  }) async {
-    Map<String, dynamic> params = {
-      "user_id": userId,
-      "name": name,
-      "title": title,
-      "emojis": emojis,
-      "contains_masks": containsMasks,
-      "mask_position": jsonEncode(maskPosition?.toJson()),
-      "sticker_type": jsonEncode(stickerType?.toJson()),
-    };
+  // /// Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Returns True on success.
+  // Future<bool> createNewStickerSet(
+  //   int userId,
+  //   String name,
+  //   String title,
+  //   InputFile pngSticker, {
+  //   InputFile? tgsSticker,
+  //   InputFile? webmSticker,
+  //   StickerType? stickerType = StickerType.regular,
+  //   required String emojis,
+  //   bool? containsMasks,
+  //   MaskPosition? maskPosition,
+  // }) async {
+  //   Map<String, dynamic> params = {
+  //     "user_id": userId,
+  //     "name": name,
+  //     "title": title,
+  //     "emojis": emojis,
+  //     "contains_masks": containsMasks,
+  //     "mask_position": jsonEncode(maskPosition?.toJson()),
+  //     "sticker_type": jsonEncode(stickerType?.toJson()),
+  //   };
 
-    bool response;
-    List<MultipartFile> files = [];
-    if (pngSticker.type == InputFileType.file) {
-      params["png_sticker"] = pngSticker.toJson();
-      files.add(
-        MultipartFile.fromBytes(
-          "png_sticker",
-          pngSticker.file!.readAsBytesSync(),
-          filename: pngSticker.file!.filename,
-        ),
-      );
-    } else {
-      params["png_sticker"] = pngSticker.toJson();
-    }
+  //   bool response;
+  //   List<MultipartFile> files = [];
+  //   if (pngSticker.type == InputFileType.file) {
+  //     params["png_sticker"] = pngSticker.toJson();
+  //     files.add(
+  //       MultipartFile.fromBytes(
+  //         "png_sticker",
+  //         pngSticker.file!.readAsBytesSync(),
+  //         filename: pngSticker.file!.filename,
+  //       ),
+  //     );
+  //   } else {
+  //     params["png_sticker"] = pngSticker.toJson();
+  //   }
 
-    if (tgsSticker != null) {
-      if (tgsSticker.type == InputFileType.file) {
-        params["tgs_sticker"] = tgsSticker.toJson();
-        files.add(
-          MultipartFile.fromBytes(
-            "tgs_sticker",
-            tgsSticker.file!.readAsBytesSync(),
-            filename: tgsSticker.file!.filename,
-          ),
-        );
-      } else {
-        throw TeleverseException(
-          "Invalid Parameter [tgsSticker]",
-          description:
-              "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
-        );
-      }
-    }
+  //   if (tgsSticker != null) {
+  //     if (tgsSticker.type == InputFileType.file) {
+  //       params["tgs_sticker"] = tgsSticker.toJson();
+  //       files.add(
+  //         MultipartFile.fromBytes(
+  //           "tgs_sticker",
+  //           tgsSticker.file!.readAsBytesSync(),
+  //           filename: tgsSticker.file!.filename,
+  //         ),
+  //       );
+  //     } else {
+  //       throw TeleverseException(
+  //         "Invalid Parameter [tgsSticker]",
+  //         description:
+  //             "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
+  //       );
+  //     }
+  //   }
 
-    if (webmSticker != null) {
-      if (webmSticker.type == InputFileType.file) {
-        params["webm_sticker"] = webmSticker.toJson();
-        files.add(
-          MultipartFile.fromBytes(
-            "webm_sticker",
-            webmSticker.file!.readAsBytesSync(),
-            filename: webmSticker.file!.filename,
-          ),
-        );
-      } else {
-        throw TeleverseException(
-          "Invalid Parameter [webmSticker]",
-          description:
-              "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
-        );
-      }
-    }
+  //   if (webmSticker != null) {
+  //     if (webmSticker.type == InputFileType.file) {
+  //       params["webm_sticker"] = webmSticker.toJson();
+  //       files.add(
+  //         MultipartFile.fromBytes(
+  //           "webm_sticker",
+  //           webmSticker.file!.readAsBytesSync(),
+  //           filename: webmSticker.file!.filename,
+  //         ),
+  //       );
+  //     } else {
+  //       throw TeleverseException(
+  //         "Invalid Parameter [webmSticker]",
+  //         description:
+  //             "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
+  //       );
+  //     }
+  //   }
 
-    if (files.isEmpty) {
-      response = await HttpClient.getURI(
-        _buildUri("createNewStickerSet", params),
-      );
-    } else {
-      response = await HttpClient.multipartPost(
-        _buildUri("createNewStickerSet"),
-        files,
-        params,
-      );
-    }
+  //   if (files.isEmpty) {
+  //     response = await HttpClient.getURI(
+  //       _buildUri("createNewStickerSet", params),
+  //     );
+  //   } else {
+  //     response = await HttpClient.multipartPost(
+  //       _buildUri("createNewStickerSet"),
+  //       files,
+  //       params,
+  //     );
+  //   }
 
-    return response;
-  }
+  //   return response;
+  // }
 
   /// Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.
   Future<bool> addStickerToSet(
     int userId,
     String name, {
-    InputFile? pngSticker,
-    InputFile? tgsSticker,
-    InputFile? webmSticker,
-    required String emojis,
-    MaskPosition? maskPosition,
+    required InputSticker sticker,
   }) async {
     Map<String, dynamic> params = {
       "user_id": userId,
       "name": name,
-      "emojis": emojis,
-      "mask_position": jsonEncode(maskPosition?.toJson()),
     };
 
     bool response;
     List<MultipartFile> files = [];
-    if (pngSticker != null) {
-      if (pngSticker.type == InputFileType.file) {
-        params["png_sticker"] = pngSticker.toJson();
-        files.add(
-          MultipartFile.fromBytes(
-            "png_sticker",
-            pngSticker.file!.readAsBytesSync(),
-            filename: pngSticker.file!.filename,
-          ),
-        );
-      } else {
-        params["png_sticker"] = pngSticker.toJson();
-      }
-    }
-
-    if (tgsSticker != null) {
-      if (tgsSticker.type == InputFileType.file) {
-        params["tgs_sticker"] = tgsSticker.toJson();
-        files.add(
-          MultipartFile.fromBytes(
-            "tgs_sticker",
-            tgsSticker.file!.readAsBytesSync(),
-            filename: tgsSticker.file!.filename,
-          ),
-        );
-      } else {
-        throw TeleverseException(
-          "Invalid Parameter [tgsSticker]",
-          description:
-              "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
-        );
-      }
-    }
-
-    if (webmSticker != null) {
-      if (webmSticker.type == InputFileType.file) {
-        params["webm_sticker"] = webmSticker.toJson();
-        files.add(
-          MultipartFile.fromBytes(
-            "webm_sticker",
-            webmSticker.file!.readAsBytesSync(),
-            filename: webmSticker.file!.filename,
-          ),
-        );
-      } else {
-        throw TeleverseException(
-          "Invalid Parameter [webmSticker]",
-          description:
-              "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
-        );
-      }
+    if (sticker.sticker.type == InputFileType.file) {
+      files.add(
+        MultipartFile.fromBytes(
+          "sticker.sticker",
+          sticker.sticker.file!.readAsBytesSync(),
+          filename: sticker.sticker.file!.filename,
+        ),
+      );
+    } else {
+      params["sticker"] = sticker.toJson();
     }
 
     if (files.isEmpty) {
@@ -2683,10 +2644,10 @@ class RawAPI {
   }
 
   /// Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Video thumbnails can be set only for video sticker sets only. Returns True on success.
-  Future<bool> setStickerSetThumb(
+  Future<bool> setStickerSetThumbnail(
     String name,
     int userId, {
-    InputFile? thumb,
+    InputFile? thumbnail,
   }) async {
     Map<String, dynamic> params = {
       "name": name,
@@ -2695,18 +2656,18 @@ class RawAPI {
 
     bool response;
     List<MultipartFile> files = [];
-    if (thumb != null) {
-      if (thumb.type == InputFileType.file) {
-        params["thumb"] = thumb.toJson();
+    if (thumbnail != null) {
+      if (thumbnail.type == InputFileType.file) {
+        params["thumbnail"] = thumbnail.toJson();
         files.add(
           MultipartFile.fromBytes(
-            "thumb",
-            thumb.file!.readAsBytesSync(),
-            filename: thumb.file!.filename,
+            "thumbnail",
+            thumbnail.file!.readAsBytesSync(),
+            filename: thumbnail.file!.filename,
           ),
         );
       } else {
-        params["thumb"] = thumb.toJson();
+        params["thumb"] = thumbnail.toJson();
       }
     }
 
@@ -3107,5 +3068,255 @@ class RawAPI {
     );
 
     return response.map((e) => GameHighScore.fromJson(e)).toList();
+  }
+
+  /// Use this method to change the bot's description,  which is shown in the chat with the bot if the chat is empty.  Returns True on success.
+  ///
+  /// Params:
+  /// - [description] - New bot description; 0-512 characters. Pass an empty string to remove the dedicated description for the given language.
+  /// - [languageCode] - A two-letter ISO 639-1 language code. If empty, the description will be applied to all users for whose language there is no dedicated description.
+  Future<bool> setMyDescription({
+    String? description,
+    String? languageCode,
+  }) async {
+    Map<String, dynamic> params = {
+      "description": description,
+      "language_code": languageCode,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setMyDescription"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to get the current bot description for the given user language. Returns [BotDescription] on success.
+  Future<BotDescription> getMyDescription({
+    String? languageCode,
+  }) async {
+    Map<String, dynamic> params = {
+      "language_code": languageCode,
+    };
+
+    Map<String, dynamic> response = await HttpClient.postURI(
+      _buildUri("getMyDescription"),
+      params,
+    );
+
+    return BotDescription.fromJson(response);
+  }
+
+  /// Use this method to change the bot's short description, which is shown on the bot's profile page and is sent together with the link when users share the bot. Returns True on success.
+  Future<bool> setMyShortDescription({
+    String? shortDescription,
+    String? languageCode,
+  }) async {
+    Map<String, dynamic> params = {
+      "short_description": shortDescription,
+      "language_code": languageCode,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setMyShortDescription"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to get the current bot short description for the given user language. Returns [BotShortDescription] on success.
+  Future<BotShortDescription> getMyShortDescription({
+    String? languageCode,
+  }) async {
+    Map<String, dynamic> params = {
+      "language_code": languageCode,
+    };
+
+    Map<String, dynamic> response = await HttpClient.postURI(
+      _buildUri("getMyShortDescription"),
+      params,
+    );
+
+    return BotShortDescription.fromJson(response);
+  }
+
+  /// Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [userId] - User identifier of created sticker set owner
+  /// - [name] - Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
+  /// - [title] - Sticker set title, 1-64 characters
+  /// - [stickers] - List of stickers to be added to the set
+  /// - [stickerFormat] - Sticker format
+  /// - [stickerType] - Sticker type
+  /// - [needsRepainting] - Pass True if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only
+  Future<bool> createNewStickerSet({
+    required int userId,
+    required String name,
+    required String title,
+    required List<InputSticker> stickers,
+    required StickerFormat stickerFormat,
+    StickerType stickerType = StickerType.regular,
+    bool needsRepainting = false,
+  }) async {
+    Map<String, dynamic> params = {
+      "user_id": userId,
+      "name": name,
+      "title": title,
+      "stickers": jsonEncode(stickers.map((e) => e.toJson()).toList()),
+      "sticker_format": stickerFormat.value,
+      "sticker_type": stickerType.type,
+      "needs_repainting": needsRepainting,
+    };
+    bool response;
+    List<MultipartFile> files = [];
+    for (var sticker in stickers) {
+      if (sticker.sticker.type == InputFileType.file) {
+        files.add(MultipartFile.fromBytes(
+          "stickers.sticker",
+          sticker.sticker.file!.readAsBytesSync(),
+          filename: sticker.sticker.file!.path.split("/").last,
+        ));
+      }
+    }
+
+    response = await HttpClient.multipartPost(
+      _buildUri("createNewStickerSet"),
+      files,
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to set the thumbnail of a custom emoji sticker set. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [name] - Sticker set name
+  /// - [customEmojiId] - Custom emoji identifier of a sticker from the sticker set; pass an empty string to drop the thumbnail and use the first sticker as the thumbnail.
+  Future<bool> setCustomEmojiStickerSetThumbnail(
+    String name,
+    String? customEmojiId,
+  ) async {
+    Map<String, dynamic> params = {
+      "name": name,
+      "custom_emoji_id": customEmojiId,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setCustomEmojiStickerSetThumbnail"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to set the title of a created sticker set. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [name] - Sticker set name
+  /// - [title] - New sticker set title; 1-64 characters
+  Future<bool> setStickerSetTitle(
+    String name,
+    String title,
+  ) async {
+    Map<String, dynamic> params = {
+      "name": name,
+      "title": title,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setStickerSetTitle"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to delete a sticker set that was created by the bot. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [name] - Sticker set name
+  Future<bool> deleteStickerSet(
+    String name,
+  ) async {
+    Map<String, dynamic> params = {
+      "name": name,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("deleteStickerSet"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to change the list of emoji assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [sticker] - File identifier of the sticker
+  /// - [emojiList] - A JSON-serialized list of 1-20 emoji associated with the sticker
+  Future<bool> setStickerEmojiList(
+    String sticker,
+    List<String> emojiList,
+  ) async {
+    Map<String, dynamic> params = {
+      "sticker": sticker,
+      "emoji_list": jsonEncode(emojiList),
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setStickerEmojiList"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to change search keywords assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [sticker] - File identifier of the sticker
+  /// - [keywords] - A JSON-serialized list of 0-20 search keywords for the sticker with total length of up to 64 characters
+  Future<bool> setStickerKeywords(
+    String sticker,
+    List<String> keywords,
+  ) async {
+    Map<String, dynamic> params = {
+      "sticker": sticker,
+      "keywords": jsonEncode(keywords),
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setStickerKeywords"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to change the mask position of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [sticker] - File identifier of the sticker
+  /// - [maskPosition] - New mask position
+  Future<bool> setStickerMaskPosition(
+    String sticker,
+    MaskPosition maskPosition,
+  ) async {
+    Map<String, dynamic> params = {
+      "sticker": sticker,
+      "mask_position": jsonEncode(maskPosition.toJson()),
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setStickerMaskPosition"),
+      params,
+    );
+
+    return response;
   }
 }

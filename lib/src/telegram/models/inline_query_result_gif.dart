@@ -18,10 +18,10 @@ class InlineQueryResultGif extends InlineQueryResult {
   int? gifDuration;
 
   /// URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
-  String thumbUrl;
+  String thumbnailUrl;
 
   /// Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”
-  String? thumbMimeType;
+  String? thumbnailMimeType;
 
   /// Optional. Title for the result
   String? title;
@@ -43,12 +43,12 @@ class InlineQueryResultGif extends InlineQueryResult {
 
   InlineQueryResultGif({
     required this.gifUrl,
-    required this.thumbUrl,
+    required this.thumbnailUrl,
     required String id,
     this.gifWidth,
     this.gifHeight,
     this.gifDuration,
-    this.thumbMimeType,
+    this.thumbnailMimeType,
     this.title,
     this.caption,
     this.parseMode,
@@ -66,8 +66,8 @@ class InlineQueryResultGif extends InlineQueryResult {
       'gif_width': gifWidth,
       'gif_height': gifHeight,
       'gif_duration': gifDuration,
-      'thumb_url': thumbUrl,
-      'thumb_mime_type': thumbMimeType,
+      'thumbnail_url': thumbnailUrl,
+      'thumbnail_mime_type': thumbnailMimeType,
       'title': title,
       'caption': caption,
       'parse_mode': parseMode,
@@ -80,12 +80,12 @@ class InlineQueryResultGif extends InlineQueryResult {
   factory InlineQueryResultGif.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultGif(
       gifUrl: json['gif_url'],
-      thumbUrl: json['thumb_url'],
+      thumbnailUrl: json['thumbnail_url'],
       id: json['id'],
       gifWidth: json['gif_width'],
       gifHeight: json['gif_height'],
       gifDuration: json['gif_duration'],
-      thumbMimeType: json['thumb_mime_type'],
+      thumbnailMimeType: json['thumbnail_mime_type'],
       title: json['title'],
       caption: json['caption'],
       parseMode: json['parse_mode'] != null

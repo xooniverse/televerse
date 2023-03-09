@@ -9,7 +9,7 @@ class InlineQueryResultPhoto extends InlineQueryResult {
   String photoUrl;
 
   /// URL of the thumbnail for the photo
-  String thumbUrl;
+  String thumbnailUrl;
 
   /// Optional. Width of the photo
   int? photoWidth;
@@ -40,7 +40,7 @@ class InlineQueryResultPhoto extends InlineQueryResult {
 
   InlineQueryResultPhoto({
     required this.photoUrl,
-    required this.thumbUrl,
+    required this.thumbnailUrl,
     required String id,
     this.photoWidth,
     this.photoHeight,
@@ -58,7 +58,7 @@ class InlineQueryResultPhoto extends InlineQueryResult {
     return {
       'type': type.value,
       'photo_url': photoUrl,
-      'thumb_url': thumbUrl,
+      'thumbnail_url': thumbnailUrl,
       'photo_width': photoWidth,
       'photo_height': photoHeight,
       'title': title,
@@ -74,7 +74,7 @@ class InlineQueryResultPhoto extends InlineQueryResult {
   factory InlineQueryResultPhoto.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultPhoto(
       photoUrl: json['photo_url'] as String,
-      thumbUrl: json['thumb_url'] as String,
+      thumbnailUrl: json['thumbnail_url'] as String,
       id: json['id'] as String,
       photoWidth: json['photo_width'] as int?,
       photoHeight: json['photo_height'] as int?,
