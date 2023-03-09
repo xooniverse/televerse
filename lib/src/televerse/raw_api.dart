@@ -2445,7 +2445,7 @@ class RawAPI {
     return StickerSet.fromJson(response);
   }
 
-  /// Use this method to upload a .PNG file with a sticker for later use in [createNewStickerSet] and addStickerToSet methods (can be used multiple times). Returns the uploaded File on success.
+  /// Use this method to upload a .PNG file with a sticker for later use in [createNewStickerSet] and [addStickerToSet] methods (can be used multiple times). Returns the uploaded File on success.
   Future<File> uploadStickerFile(
     int userId,
     InputFile pngSticker,
@@ -2577,72 +2577,25 @@ class RawAPI {
   Future<bool> addStickerToSet(
     int userId,
     String name, {
-    InputFile? pngSticker,
-    InputFile? tgsSticker,
-    InputFile? webmSticker,
-    required String emojis,
-    MaskPosition? maskPosition,
+    required InputSticker sticker,
   }) async {
     Map<String, dynamic> params = {
       "user_id": userId,
       "name": name,
-      "emojis": emojis,
-      "mask_position": jsonEncode(maskPosition?.toJson()),
     };
 
     bool response;
     List<MultipartFile> files = [];
-    if (pngSticker != null) {
-      if (pngSticker.type == InputFileType.file) {
-        params["png_sticker"] = pngSticker.toJson();
-        files.add(
-          MultipartFile.fromBytes(
-            "png_sticker",
-            pngSticker.file!.readAsBytesSync(),
-            filename: pngSticker.file!.filename,
-          ),
-        );
-      } else {
-        params["png_sticker"] = pngSticker.toJson();
-      }
-    }
-
-    if (tgsSticker != null) {
-      if (tgsSticker.type == InputFileType.file) {
-        params["tgs_sticker"] = tgsSticker.toJson();
-        files.add(
-          MultipartFile.fromBytes(
-            "tgs_sticker",
-            tgsSticker.file!.readAsBytesSync(),
-            filename: tgsSticker.file!.filename,
-          ),
-        );
-      } else {
-        throw TeleverseException(
-          "Invalid Parameter [tgsSticker]",
-          description:
-              "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
-        );
-      }
-    }
-
-    if (webmSticker != null) {
-      if (webmSticker.type == InputFileType.file) {
-        params["webm_sticker"] = webmSticker.toJson();
-        files.add(
-          MultipartFile.fromBytes(
-            "webm_sticker",
-            webmSticker.file!.readAsBytesSync(),
-            filename: webmSticker.file!.filename,
-          ),
-        );
-      } else {
-        throw TeleverseException(
-          "Invalid Parameter [webmSticker]",
-          description:
-              "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
-        );
-      }
+    if (sticker.sticker.type == InputFileType.file) {
+      files.add(
+        MultipartFile.fromBytes(
+          "sticker.sticker",
+          sticker.sticker.file!.readAsBytesSync(),
+          filename: sticker.sticker.file!.filename,
+        ),
+      );
+    } else {
+      params["sticker"] = sticker.toJson();
     }
 
     if (files.isEmpty) {
