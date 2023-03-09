@@ -137,3 +137,8 @@ part 'keyboard_button_request_user.dart';
 part 'keyboard_button_request_chat.dart';
 part 'user_shared.dart';
 part 'chat_shared.dart';
+
+// Bot API 6.6
+part 'bot_description.dart';
+part 'bot_short_description.dart';
+part 'input_sticker.dart';

@@ -60,12 +60,12 @@ class InputFile {
     }
   }
 
-  String toJson() {
+  String? toJson() {
     switch (type) {
       case InputFileType.fileId:
         return fileId!;
       case InputFileType.file:
-        return file!.path;
+        return null;
       case InputFileType.url:
         return url!.toString();
     }

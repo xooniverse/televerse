@@ -1798,7 +1798,7 @@ class RawAPI {
     };
     ForumTopic response = ForumTopic.fromJson(
       await HttpClient.getURI(
-        _buildUri("createNewStickerSet", params),
+        _buildUri("createForumTopic", params),
       ),
     );
     return response;
@@ -2380,6 +2380,9 @@ class RawAPI {
   }
 
   /// Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On success, the sent Message is returned.
+  ///
+  /// Parameters:
+  /// - [emoji] - Emoji associated with the sticker; only for just uploaded stickers
   Future<Message> sendSticker(
     ID chatId,
     InputFile sticker, {
@@ -2389,6 +2392,7 @@ class RawAPI {
     int? replyToMessageId,
     bool? allowSendingWithoutReply,
     InlineKeyboardMarkup? replyMarkup,
+    String? emoji,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2398,6 +2402,7 @@ class RawAPI {
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "emoji": emoji,
     };
 
     Map<String, dynamic> response;
@@ -2477,96 +2482,96 @@ class RawAPI {
     return File.fromJson(response);
   }
 
-  /// Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Returns True on success.
-  Future<bool> createNewStickerSet(
-    int userId,
-    String name,
-    String title,
-    InputFile pngSticker, {
-    InputFile? tgsSticker,
-    InputFile? webmSticker,
-    StickerType? stickerType = StickerType.regular,
-    required String emojis,
-    bool? containsMasks,
-    MaskPosition? maskPosition,
-  }) async {
-    Map<String, dynamic> params = {
-      "user_id": userId,
-      "name": name,
-      "title": title,
-      "emojis": emojis,
-      "contains_masks": containsMasks,
-      "mask_position": jsonEncode(maskPosition?.toJson()),
-      "sticker_type": jsonEncode(stickerType?.toJson()),
-    };
+  // /// Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Returns True on success.
+  // Future<bool> createNewStickerSet(
+  //   int userId,
+  //   String name,
+  //   String title,
+  //   InputFile pngSticker, {
+  //   InputFile? tgsSticker,
+  //   InputFile? webmSticker,
+  //   StickerType? stickerType = StickerType.regular,
+  //   required String emojis,
+  //   bool? containsMasks,
+  //   MaskPosition? maskPosition,
+  // }) async {
+  //   Map<String, dynamic> params = {
+  //     "user_id": userId,
+  //     "name": name,
+  //     "title": title,
+  //     "emojis": emojis,
+  //     "contains_masks": containsMasks,
+  //     "mask_position": jsonEncode(maskPosition?.toJson()),
+  //     "sticker_type": jsonEncode(stickerType?.toJson()),
+  //   };
 
-    bool response;
-    List<MultipartFile> files = [];
-    if (pngSticker.type == InputFileType.file) {
-      params["png_sticker"] = pngSticker.toJson();
-      files.add(
-        MultipartFile.fromBytes(
-          "png_sticker",
-          pngSticker.file!.readAsBytesSync(),
-          filename: pngSticker.file!.filename,
-        ),
-      );
-    } else {
-      params["png_sticker"] = pngSticker.toJson();
-    }
+  //   bool response;
+  //   List<MultipartFile> files = [];
+  //   if (pngSticker.type == InputFileType.file) {
+  //     params["png_sticker"] = pngSticker.toJson();
+  //     files.add(
+  //       MultipartFile.fromBytes(
+  //         "png_sticker",
+  //         pngSticker.file!.readAsBytesSync(),
+  //         filename: pngSticker.file!.filename,
+  //       ),
+  //     );
+  //   } else {
+  //     params["png_sticker"] = pngSticker.toJson();
+  //   }
 
-    if (tgsSticker != null) {
-      if (tgsSticker.type == InputFileType.file) {
-        params["tgs_sticker"] = tgsSticker.toJson();
-        files.add(
-          MultipartFile.fromBytes(
-            "tgs_sticker",
-            tgsSticker.file!.readAsBytesSync(),
-            filename: tgsSticker.file!.filename,
-          ),
-        );
-      } else {
-        throw TeleverseException(
-          "Invalid Parameter [tgsSticker]",
-          description:
-              "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
-        );
-      }
-    }
+  //   if (tgsSticker != null) {
+  //     if (tgsSticker.type == InputFileType.file) {
+  //       params["tgs_sticker"] = tgsSticker.toJson();
+  //       files.add(
+  //         MultipartFile.fromBytes(
+  //           "tgs_sticker",
+  //           tgsSticker.file!.readAsBytesSync(),
+  //           filename: tgsSticker.file!.filename,
+  //         ),
+  //       );
+  //     } else {
+  //       throw TeleverseException(
+  //         "Invalid Parameter [tgsSticker]",
+  //         description:
+  //             "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
+  //       );
+  //     }
+  //   }
 
-    if (webmSticker != null) {
-      if (webmSticker.type == InputFileType.file) {
-        params["webm_sticker"] = webmSticker.toJson();
-        files.add(
-          MultipartFile.fromBytes(
-            "webm_sticker",
-            webmSticker.file!.readAsBytesSync(),
-            filename: webmSticker.file!.filename,
-          ),
-        );
-      } else {
-        throw TeleverseException(
-          "Invalid Parameter [webmSticker]",
-          description:
-              "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
-        );
-      }
-    }
+  //   if (webmSticker != null) {
+  //     if (webmSticker.type == InputFileType.file) {
+  //       params["webm_sticker"] = webmSticker.toJson();
+  //       files.add(
+  //         MultipartFile.fromBytes(
+  //           "webm_sticker",
+  //           webmSticker.file!.readAsBytesSync(),
+  //           filename: webmSticker.file!.filename,
+  //         ),
+  //       );
+  //     } else {
+  //       throw TeleverseException(
+  //         "Invalid Parameter [webmSticker]",
+  //         description:
+  //             "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
+  //       );
+  //     }
+  //   }
 
-    if (files.isEmpty) {
-      response = await HttpClient.getURI(
-        _buildUri("createNewStickerSet", params),
-      );
-    } else {
-      response = await HttpClient.multipartPost(
-        _buildUri("createNewStickerSet"),
-        files,
-        params,
-      );
-    }
+  //   if (files.isEmpty) {
+  //     response = await HttpClient.getURI(
+  //       _buildUri("createNewStickerSet", params),
+  //     );
+  //   } else {
+  //     response = await HttpClient.multipartPost(
+  //       _buildUri("createNewStickerSet"),
+  //       files,
+  //       params,
+  //     );
+  //   }
 
-    return response;
-  }
+  //   return response;
+  // }
 
   /// Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.
   Future<bool> addStickerToSet(
@@ -3107,5 +3112,126 @@ class RawAPI {
     );
 
     return response.map((e) => GameHighScore.fromJson(e)).toList();
+  }
+
+  /// Use this method to change the bot's description,  which is shown in the chat with the bot if the chat is empty.  Returns True on success.
+  ///
+  /// Params:
+  /// - [description] - New bot description; 0-512 characters. Pass an empty string to remove the dedicated description for the given language.
+  /// - [languageCode] - A two-letter ISO 639-1 language code. If empty, the description will be applied to all users for whose language there is no dedicated description.
+  Future<bool> setMyDescription({
+    String? description,
+    String? languageCode,
+  }) async {
+    Map<String, dynamic> params = {
+      "description": description,
+      "language_code": languageCode,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setMyDescription"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to get the current bot description for the given user language. Returns [BotDescription] on success.
+  Future<BotDescription> getMyDescription({
+    String? languageCode,
+  }) async {
+    Map<String, dynamic> params = {
+      "language_code": languageCode,
+    };
+
+    Map<String, dynamic> response = await HttpClient.postURI(
+      _buildUri("getMyDescription"),
+      params,
+    );
+
+    return BotDescription.fromJson(response);
+  }
+
+  /// Use this method to change the bot's short description, which is shown on the bot's profile page and is sent together with the link when users share the bot. Returns True on success.
+  Future<bool> setMyShortDescription({
+    String? shortDescription,
+    String? languageCode,
+  }) async {
+    Map<String, dynamic> params = {
+      "short_description": shortDescription,
+      "language_code": languageCode,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setMyShortDescription"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to get the current bot short description for the given user language. Returns [BotShortDescription] on success.
+  Future<BotShortDescription> getMyShortDescription({
+    String? languageCode,
+  }) async {
+    Map<String, dynamic> params = {
+      "language_code": languageCode,
+    };
+
+    Map<String, dynamic> response = await HttpClient.postURI(
+      _buildUri("getMyShortDescription"),
+      params,
+    );
+
+    return BotShortDescription.fromJson(response);
+  }
+
+  /// Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [userId] - User identifier of created sticker set owner
+  /// - [name] - Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
+  /// - [title] - Sticker set title, 1-64 characters
+  /// - [stickers] - List of stickers to be added to the set
+  /// - [stickerFormat] - Sticker format
+  /// - [stickerType] - Sticker type
+  /// - [needsRepainting] - Pass True if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only
+  Future<bool> createNewStickerSet({
+    required int userId,
+    required String name,
+    required String title,
+    required List<InputSticker> stickers,
+    required StickerFormat stickerFormat,
+    StickerType stickerType = StickerType.regular,
+    bool needsRepainting = false,
+  }) async {
+    Map<String, dynamic> params = {
+      "user_id": userId,
+      "name": name,
+      "title": title,
+      "stickers": jsonEncode(stickers.map((e) => e.toJson()).toList()),
+      "sticker_format": stickerFormat.value,
+      "sticker_type": stickerType.type,
+      "needs_repainting": needsRepainting,
+    };
+    bool response;
+    List<MultipartFile> files = [];
+    for (var sticker in stickers) {
+      if (sticker.sticker.type == InputFileType.file) {
+        files.add(MultipartFile.fromBytes(
+          "stickers.sticker",
+          sticker.sticker.file!.readAsBytesSync(),
+          filename: sticker.sticker.file!.path.split("/").last,
+        ));
+      }
+    }
+
+    response = await HttpClient.multipartPost(
+      _buildUri("createNewStickerSet"),
+      files,
+      params,
+    );
+
+    return response;
   }
 }
