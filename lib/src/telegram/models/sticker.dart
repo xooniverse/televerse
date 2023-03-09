@@ -3,48 +3,51 @@ part of models;
 /// This object represents a sticker.
 class Sticker {
   /// Identifier for this file, which can be used to download or reuse the file
-  String fileId;
+  final String fileId;
 
   /// Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-  String fileUniqueId;
+  final String fileUniqueId;
 
   /// Type of the sticker, currently one of “regular”, “mask”, “custom_emoji”. The type of the sticker is independent from its format, which is determined by the fields is_animated and is_video.
-  StickerType type;
+  final StickerType type;
 
   /// Sticker width
-  int width;
+  final int width;
 
   /// Sticker height
-  int height;
+  final int height;
 
   /// True, if the sticker is animated
-  bool isAnimated;
+  final bool isAnimated;
 
   /// True, if the sticker is a video sticker
-  bool isVideo;
+  final bool isVideo;
 
   /// Optional. Sticker thumbnail in the .WEBP or .JPG format
-  PhotoSize? thumb;
+  final PhotoSize? thumb;
 
   /// Optional. Emoji associated with the sticker
-  String? emoji;
+  final String? emoji;
 
   /// Optional. Name of the sticker set to which the sticker belongs
-  String? setName;
+  final String? setName;
 
   /// Optional. For premium regular stickers, premium animation for the sticker
-  File? premiumAnimation;
+  final File? premiumAnimation;
 
   /// Optional. For mask stickers, the position where the mask should be placed
-  MaskPosition? maskPosition;
+  final MaskPosition? maskPosition;
 
   /// Optional. For custom emoji stickers, unique identifier of the custom emoji
-  String? customEmojiId;
+  final String? customEmojiId;
 
   /// Optional. File size in bytes
-  int? fileSize;
+  final int? fileSize;
 
-  Sticker({
+  /// Optional. True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places
+  final bool? needsRepainting;
+
+  const Sticker({
     required this.fileId,
     required this.fileUniqueId,
     required this.type,
@@ -59,6 +62,7 @@ class Sticker {
     this.maskPosition,
     this.customEmojiId,
     this.fileSize,
+    this.needsRepainting,
   });
 
   factory Sticker.fromJson(Map<String, dynamic> json) {
@@ -84,6 +88,7 @@ class Sticker {
               json['mask_position'] as Map<String, dynamic>),
       customEmojiId: json['custom_emoji_id'] as String?,
       fileSize: json['file_size'] as int?,
+      needsRepainting: json['needs_repainting'] as bool?,
     );
   }
 
