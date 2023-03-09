@@ -3251,4 +3251,26 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to change the list of emoji assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [sticker] - File identifier of the sticker
+  /// - [emojiList] - A JSON-serialized list of 1-20 emoji associated with the sticker
+  Future<bool> setStickerEmojiList(
+    String sticker,
+    List<String> emojiList,
+  ) async {
+    Map<String, dynamic> params = {
+      "sticker": sticker,
+      "emoji_list": jsonEncode(emojiList),
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setStickerEmojiList"),
+      params,
+    );
+
+    return response;
+  }
 }
