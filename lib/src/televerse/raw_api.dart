@@ -3273,4 +3273,26 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to change search keywords assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [sticker] - File identifier of the sticker
+  /// - [keywords] - A JSON-serialized list of 0-20 search keywords for the sticker with total length of up to 64 characters
+  Future<bool> setStickerKeywords(
+    String sticker,
+    List<String> keywords,
+  ) async {
+    Map<String, dynamic> params = {
+      "sticker": sticker,
+      "keywords": jsonEncode(keywords),
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setStickerKeywords"),
+      params,
+    );
+
+    return response;
+  }
 }
