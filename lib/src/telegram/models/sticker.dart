@@ -24,7 +24,7 @@ class Sticker {
   final bool isVideo;
 
   /// Optional. Sticker thumbnail in the .WEBP or .JPG format
-  final PhotoSize? thumb;
+  final PhotoSize? thumbnail;
 
   /// Optional. Emoji associated with the sticker
   final String? emoji;
@@ -55,7 +55,7 @@ class Sticker {
     required this.height,
     required this.isAnimated,
     required this.isVideo,
-    this.thumb,
+    this.thumbnail,
     this.emoji,
     this.setName,
     this.premiumAnimation,
@@ -74,7 +74,7 @@ class Sticker {
       height: json['height'] as int,
       isAnimated: json['is_animated'] as bool,
       isVideo: json['is_video'] as bool,
-      thumb: json['thumb'] == null
+      thumbnail: json['thumb'] == null
           ? null
           : PhotoSize.fromJson(json['thumb'] as Map<String, dynamic>),
       emoji: json['emoji'] as String?,
@@ -101,7 +101,7 @@ class Sticker {
       'height': height,
       'is_animated': isAnimated,
       'is_video': isVideo,
-      'thumb': thumb?.toJson(),
+      'thumb': thumbnail?.toJson(),
       'emoji': emoji,
       'set_name': setName,
       'premium_animation': premiumAnimation?.toJson(),

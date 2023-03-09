@@ -17,7 +17,7 @@ class VideoNote {
   int duration;
 
   /// Optional. Animation thumbnail as defined by sender
-  PhotoSize? thumb;
+  PhotoSize? thumbnail;
 
   /// Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
   int? fileSize;
@@ -27,7 +27,7 @@ class VideoNote {
     required this.fileUniqueId,
     required this.length,
     required this.duration,
-    this.thumb,
+    this.thumbnail,
     this.fileSize,
   });
 
@@ -37,7 +37,8 @@ class VideoNote {
       fileUniqueId: json['file_unique_id']!,
       length: json['length']!,
       duration: json['duration']!,
-      thumb: json['thumb'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
+      thumbnail:
+          json['thumb'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
       fileSize: json['file_size'],
     );
   }
@@ -48,7 +49,7 @@ class VideoNote {
       'file_unique_id': fileUniqueId,
       'length': length,
       'duration': duration,
-      'thumb': thumb?.toJson(),
+      'thumb': thumbnail?.toJson(),
       'file_size': fileSize,
     }..removeWhere((key, value) => value == null);
   }
