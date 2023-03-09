@@ -74,7 +74,7 @@ class Sticker {
       height: json['height'] as int,
       isAnimated: json['is_animated'] as bool,
       isVideo: json['is_video'] as bool,
-      thumbnail: json['thumb'] == null
+      thumbnail: json['thumbnail'] == null
           ? null
           : PhotoSize.fromJson(json['thumb'] as Map<String, dynamic>),
       emoji: json['emoji'] as String?,
@@ -101,7 +101,7 @@ class Sticker {
       'height': height,
       'is_animated': isAnimated,
       'is_video': isVideo,
-      'thumb': thumbnail?.toJson(),
+      'thumbnail': thumbnail?.toJson(),
       'emoji': emoji,
       'set_name': setName,
       'premium_animation': premiumAnimation?.toJson(),

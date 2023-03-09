@@ -399,7 +399,7 @@ class RawAPI {
         }
         files.add(
           MultipartFile.fromBytes(
-            "thumb",
+            "thumbnail",
             thumbnail.file!.readAsBytesSync(),
             filename: thumbnail.file!.path.split("/").last,
           ),
@@ -413,7 +413,7 @@ class RawAPI {
       );
     } else {
       params["audio"] = audio.fileId ?? audio.url;
-      params["thumb"] = thumbnail?.fileId ?? thumbnail?.url;
+      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendAudio", params));
     }
     return Message.fromJson(response);
@@ -470,7 +470,7 @@ class RawAPI {
         }
         files.add(
           MultipartFile.fromBytes(
-            "thumb",
+            "thumbnail",
             thumbnail.file!.readAsBytesSync(),
             filename: thumbnail.file!.path.split("/").last,
           ),
@@ -484,7 +484,7 @@ class RawAPI {
       );
     } else {
       params["document"] = document.fileId ?? document.url;
-      params["thumb"] = thumbnail?.fileId ?? thumbnail?.url;
+      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendDocument", params));
     }
     return Message.fromJson(response);
@@ -549,7 +549,7 @@ class RawAPI {
         }
         files.add(
           MultipartFile.fromBytes(
-            "thumb",
+            "thumbnail",
             thumbnail.file!.readAsBytesSync(),
             filename: thumbnail.file!.path.split("/").last,
           ),
@@ -563,7 +563,7 @@ class RawAPI {
       );
     } else {
       params["video"] = video.fileId ?? video.url;
-      params["thumb"] = thumbnail?.fileId ?? thumbnail?.url;
+      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendVideo", params));
     }
     return Message.fromJson(response);
@@ -626,7 +626,7 @@ class RawAPI {
         }
         files.add(
           MultipartFile.fromBytes(
-            "thumb",
+            "thumbnail",
             thumbnail.file!.readAsBytesSync(),
             filename: thumbnail.file!.path.split("/").last,
           ),
@@ -640,7 +640,7 @@ class RawAPI {
       );
     } else {
       params["animation"] = animation.fileId ?? animation.url;
-      params["thumb"] = thumbnail?.fileId ?? thumbnail?.url;
+      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendAnimation", params));
     }
     return Message.fromJson(response);
@@ -719,7 +719,7 @@ class RawAPI {
       "message_thread_id": messageThreadId,
       "duration": duration,
       "length": length,
-      "thumb": thumbnail?.fileId ?? thumbnail?.url,
+      "thumbnail": thumbnail?.fileId ?? thumbnail?.url,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
@@ -748,7 +748,7 @@ class RawAPI {
         }
         files.add(
           MultipartFile.fromBytes(
-            "thumb",
+            "thumbnail",
             thumbnail.file!.readAsBytesSync(),
             filename: thumbnail.file!.path.split("/").last,
           ),
@@ -762,7 +762,7 @@ class RawAPI {
       );
     } else {
       params["video_note"] = videoNote.fileId ?? videoNote.url;
-      params["thumb"] = thumbnail?.fileId ?? thumbnail?.url;
+      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendVideoNote", params));
     }
     return Message.fromJson(response);
@@ -2658,10 +2658,10 @@ class RawAPI {
     List<MultipartFile> files = [];
     if (thumbnail != null) {
       if (thumbnail.type == InputFileType.file) {
-        params["thumb"] = thumbnail.toJson();
+        params["thumbnail"] = thumbnail.toJson();
         files.add(
           MultipartFile.fromBytes(
-            "thumb",
+            "thumbnail",
             thumbnail.file!.readAsBytesSync(),
             filename: thumbnail.file!.filename,
           ),

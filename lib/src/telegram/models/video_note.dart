@@ -38,7 +38,7 @@ class VideoNote {
       length: json['length']!,
       duration: json['duration']!,
       thumbnail:
-          json['thumb'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
+          json['thumbnail'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
       fileSize: json['file_size'],
     );
   }
@@ -49,7 +49,7 @@ class VideoNote {
       'file_unique_id': fileUniqueId,
       'length': length,
       'duration': duration,
-      'thumb': thumbnail?.toJson(),
+      'thumbnail': thumbnail?.toJson(),
       'file_size': fileSize,
     }..removeWhere((key, value) => value == null);
   }

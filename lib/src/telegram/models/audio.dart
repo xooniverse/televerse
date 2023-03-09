@@ -54,7 +54,7 @@ class Audio {
       mimeType: json['mime_type'],
       fileSize: json['file_size'],
       thumbnail:
-          json['thumb'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
+          json['thumbnail'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
     );
   }
 
@@ -68,7 +68,7 @@ class Audio {
       'file_name': fileName,
       'mime_type': mimeType,
       'file_size': fileSize,
-      'thumb': thumbnail?.toJson(),
+      'thumbnail': thumbnail?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 

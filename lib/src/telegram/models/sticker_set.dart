@@ -43,9 +43,9 @@ class StickerSet {
       stickers: (json['stickers'] as List<dynamic>)
           .map((e) => Sticker.fromJson(e as Map<String, dynamic>))
           .toList(),
-      thumbnail: json['thumb'] == null
+      thumbnail: json['thumbnail'] == null
           ? null
-          : PhotoSize.fromJson(json['thumb'] as Map<String, dynamic>),
+          : PhotoSize.fromJson(json['thumbnail'] as Map<String, dynamic>),
     );
   }
 }

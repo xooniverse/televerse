@@ -46,7 +46,7 @@ class InputMediaAnimation extends InputMedia {
     return {
       'type': type.value,
       'media': media.toJson(),
-      'thumb': thumbnail?.toJson(),
+      'thumbnail': thumbnail?.toJson(),
       'caption': caption,
       'parse_mode': parseMode?.value,
       'caption_entities': captionEntities,
