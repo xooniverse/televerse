@@ -3232,4 +3232,23 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to delete a sticker set that was created by the bot. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [name] - Sticker set name
+  Future<bool> deleteStickerSet(
+    String name,
+  ) async {
+    Map<String, dynamic> params = {
+      "name": name,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("deleteStickerSet"),
+      params,
+    );
+
+    return response;
+  }
 }
