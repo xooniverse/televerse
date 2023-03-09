@@ -2644,10 +2644,10 @@ class RawAPI {
   }
 
   /// Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Video thumbnails can be set only for video sticker sets only. Returns True on success.
-  Future<bool> setStickerSetThumb(
+  Future<bool> setStickerSetThumbnail(
     String name,
     int userId, {
-    InputFile? thumb,
+    InputFile? thumbnail,
   }) async {
     Map<String, dynamic> params = {
       "name": name,
@@ -2656,18 +2656,18 @@ class RawAPI {
 
     bool response;
     List<MultipartFile> files = [];
-    if (thumb != null) {
-      if (thumb.type == InputFileType.file) {
-        params["thumb"] = thumb.toJson();
+    if (thumbnail != null) {
+      if (thumbnail.type == InputFileType.file) {
+        params["thumb"] = thumbnail.toJson();
         files.add(
           MultipartFile.fromBytes(
             "thumb",
-            thumb.file!.readAsBytesSync(),
-            filename: thumb.file!.filename,
+            thumbnail.file!.readAsBytesSync(),
+            filename: thumbnail.file!.filename,
           ),
         );
       } else {
-        params["thumb"] = thumb.toJson();
+        params["thumb"] = thumbnail.toJson();
       }
     }
 
