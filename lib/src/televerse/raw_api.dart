@@ -3188,4 +3188,26 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to set the thumbnail of a custom emoji sticker set. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [name] - Sticker set name
+  /// - [customEmojiId] - Custom emoji identifier of a sticker from the sticker set; pass an empty string to drop the thumbnail and use the first sticker as the thumbnail.
+  Future<bool> setCustomEmojiStickerSetThumbnail(
+    String name,
+    String? customEmojiId,
+  ) async {
+    Map<String, dynamic> params = {
+      "name": name,
+      "custom_emoji_id": customEmojiId,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setCustomEmojiStickerSetThumbnail"),
+      params,
+    );
+
+    return response;
+  }
 }
