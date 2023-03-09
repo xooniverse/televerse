@@ -355,7 +355,7 @@ class RawAPI {
     int? duration,
     String? performer,
     String? title,
-    InputFile? thumb,
+    InputFile? thumbnail,
     bool? disableNotification,
     bool? protectContent,
     int? replyToMessageId,
@@ -379,7 +379,8 @@ class RawAPI {
     };
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
-    if (audio.type == InputFileType.file || thumb?.type == InputFileType.file) {
+    if (audio.type == InputFileType.file ||
+        thumbnail?.type == InputFileType.file) {
       if (audio.type == InputFileType.file) {
         if (!audio.file!.existsSync()) {
           throw TeleverseException.fileDoesNotExist(audio.file!.path);
@@ -392,15 +393,15 @@ class RawAPI {
           ),
         );
       }
-      if (thumb?.type == InputFileType.file) {
-        if (!thumb!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+      if (thumbnail?.type == InputFileType.file) {
+        if (!thumbnail!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
         }
         files.add(
           MultipartFile.fromBytes(
             "thumb",
-            thumb.file!.readAsBytesSync(),
-            filename: thumb.file!.path.split("/").last,
+            thumbnail.file!.readAsBytesSync(),
+            filename: thumbnail.file!.path.split("/").last,
           ),
         );
       }
@@ -412,7 +413,7 @@ class RawAPI {
       );
     } else {
       params["audio"] = audio.fileId ?? audio.url;
-      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      params["thumb"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendAudio", params));
     }
     return Message.fromJson(response);
@@ -423,7 +424,7 @@ class RawAPI {
     ID chatId,
     InputFile document, {
     int? messageThreadId,
-    InputFile? thumb,
+    InputFile? thumbnail,
     String? caption,
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
@@ -450,7 +451,7 @@ class RawAPI {
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
     if (document.type == InputFileType.file ||
-        thumb?.type == InputFileType.file) {
+        thumbnail?.type == InputFileType.file) {
       if (document.type == InputFileType.file) {
         if (!document.file!.existsSync()) {
           throw TeleverseException.fileDoesNotExist(document.file!.path);
@@ -463,15 +464,15 @@ class RawAPI {
           ),
         );
       }
-      if (thumb?.type == InputFileType.file) {
-        if (!thumb!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+      if (thumbnail?.type == InputFileType.file) {
+        if (!thumbnail!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
         }
         files.add(
           MultipartFile.fromBytes(
             "thumb",
-            thumb.file!.readAsBytesSync(),
-            filename: thumb.file!.path.split("/").last,
+            thumbnail.file!.readAsBytesSync(),
+            filename: thumbnail.file!.path.split("/").last,
           ),
         );
       }
@@ -483,7 +484,7 @@ class RawAPI {
       );
     } else {
       params["document"] = document.fileId ?? document.url;
-      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      params["thumb"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendDocument", params));
     }
     return Message.fromJson(response);
@@ -497,7 +498,7 @@ class RawAPI {
     int? duration,
     int? width,
     int? height,
-    InputFile? thumb,
+    InputFile? thumbnail,
     String? caption,
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
@@ -528,7 +529,8 @@ class RawAPI {
     };
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
-    if (video.type == InputFileType.file || thumb?.type == InputFileType.file) {
+    if (video.type == InputFileType.file ||
+        thumbnail?.type == InputFileType.file) {
       if (video.type == InputFileType.file) {
         if (!video.file!.existsSync()) {
           throw TeleverseException.fileDoesNotExist(video.file!.path);
@@ -541,15 +543,15 @@ class RawAPI {
           ),
         );
       }
-      if (thumb?.type == InputFileType.file) {
-        if (!thumb!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+      if (thumbnail?.type == InputFileType.file) {
+        if (!thumbnail!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
         }
         files.add(
           MultipartFile.fromBytes(
             "thumb",
-            thumb.file!.readAsBytesSync(),
-            filename: thumb.file!.path.split("/").last,
+            thumbnail.file!.readAsBytesSync(),
+            filename: thumbnail.file!.path.split("/").last,
           ),
         );
       }
@@ -561,7 +563,7 @@ class RawAPI {
       );
     } else {
       params["video"] = video.fileId ?? video.url;
-      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      params["thumb"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendVideo", params));
     }
     return Message.fromJson(response);
@@ -575,7 +577,7 @@ class RawAPI {
     int? duration,
     int? width,
     int? height,
-    InputFile? thumb,
+    InputFile? thumbnail,
     String? caption,
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
@@ -605,7 +607,7 @@ class RawAPI {
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
     if (animation.type == InputFileType.file ||
-        thumb?.type == InputFileType.file) {
+        thumbnail?.type == InputFileType.file) {
       if (animation.type == InputFileType.file) {
         if (!animation.file!.existsSync()) {
           throw TeleverseException.fileDoesNotExist(animation.file!.path);
@@ -618,15 +620,15 @@ class RawAPI {
           ),
         );
       }
-      if (thumb?.type == InputFileType.file) {
-        if (!thumb!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+      if (thumbnail?.type == InputFileType.file) {
+        if (!thumbnail!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
         }
         files.add(
           MultipartFile.fromBytes(
             "thumb",
-            thumb.file!.readAsBytesSync(),
-            filename: thumb.file!.path.split("/").last,
+            thumbnail.file!.readAsBytesSync(),
+            filename: thumbnail.file!.path.split("/").last,
           ),
         );
       }
@@ -638,7 +640,7 @@ class RawAPI {
       );
     } else {
       params["animation"] = animation.fileId ?? animation.url;
-      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      params["thumb"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendAnimation", params));
     }
     return Message.fromJson(response);
@@ -705,7 +707,7 @@ class RawAPI {
     int? messageThreadId,
     int? duration,
     int? length,
-    InputFile? thumb,
+    InputFile? thumbnail,
     bool? disableNotification,
     bool? protectContent,
     int? replyToMessageId,
@@ -717,7 +719,7 @@ class RawAPI {
       "message_thread_id": messageThreadId,
       "duration": duration,
       "length": length,
-      "thumb": thumb?.fileId ?? thumb?.url,
+      "thumb": thumbnail?.fileId ?? thumbnail?.url,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
@@ -727,7 +729,7 @@ class RawAPI {
     Map<String, dynamic> response;
     List<MultipartFile> files = [];
     if (videoNote.type == InputFileType.file ||
-        thumb?.type == InputFileType.file) {
+        thumbnail?.type == InputFileType.file) {
       if (videoNote.type == InputFileType.file) {
         if (!videoNote.file!.existsSync()) {
           throw TeleverseException.fileDoesNotExist(videoNote.file!.path);
@@ -740,15 +742,15 @@ class RawAPI {
           ),
         );
       }
-      if (thumb?.type == InputFileType.file) {
-        if (!thumb!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumb.file!.path);
+      if (thumbnail?.type == InputFileType.file) {
+        if (!thumbnail!.file!.existsSync()) {
+          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
         }
         files.add(
           MultipartFile.fromBytes(
             "thumb",
-            thumb.file!.readAsBytesSync(),
-            filename: thumb.file!.path.split("/").last,
+            thumbnail.file!.readAsBytesSync(),
+            filename: thumbnail.file!.path.split("/").last,
           ),
         );
       }
@@ -760,7 +762,7 @@ class RawAPI {
       );
     } else {
       params["video_note"] = videoNote.fileId ?? videoNote.url;
-      params["thumb"] = thumb?.fileId ?? thumb?.url;
+      params["thumb"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.getURI(_buildUri("sendVideoNote", params));
     }
     return Message.fromJson(response);
