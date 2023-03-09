@@ -3295,4 +3295,26 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to change the mask position of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [sticker] - File identifier of the sticker
+  /// - [maskPosition] - New mask position
+  Future<bool> setStickerMaskPosition(
+    String sticker,
+    MaskPosition maskPosition,
+  ) async {
+    Map<String, dynamic> params = {
+      "sticker": sticker,
+      "mask_position": jsonEncode(maskPosition.toJson()),
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setStickerMaskPosition"),
+      params,
+    );
+
+    return response;
+  }
 }
