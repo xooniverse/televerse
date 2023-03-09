@@ -2445,23 +2445,24 @@ class RawAPI {
     return StickerSet.fromJson(response);
   }
 
-  /// Use this method to upload a .PNG file with a sticker for later use in [createNewStickerSet] and [addStickerToSet] methods (can be used multiple times). Returns the uploaded File on success.
+  /// Use this method to upload a file with a sticker for later use in the [createNewStickerSet] and [addStickerToSet] methods (the file can be used multiple times). Returns the uploaded File on success.
   Future<File> uploadStickerFile(
     int userId,
-    InputFile pngSticker,
+    InputFile sticker,
+    StickerFormat stickerFormat,
   ) async {
     Map<String, dynamic> params = {
       "user_id": userId,
     };
 
     Map<String, dynamic> response;
-    if (pngSticker.type == InputFileType.file) {
-      params["png_sticker"] = pngSticker.toJson();
+    if (sticker.type == InputFileType.file) {
+      params["sticker"] = sticker.toJson();
       List<MultipartFile> files = [
         MultipartFile.fromBytes(
-          "png_sticker",
-          pngSticker.file!.readAsBytesSync(),
-          filename: pngSticker.file!.filename,
+          "sticker",
+          sticker.file!.readAsBytesSync(),
+          filename: sticker.file!.filename,
         ),
       ];
       response = await HttpClient.multipartPost(
@@ -2473,9 +2474,9 @@ class RawAPI {
       );
     } else {
       throw TeleverseException(
-        "Upload PNG Sticker",
+        "uploadStickerFile",
         description:
-            "Only upload PNG file. Use [InputFile.fromFile] to upload file.",
+            "Only upload file. Use [InputFile.fromFile] to upload file.",
       );
     }
 
