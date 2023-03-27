@@ -1,3 +1,6 @@
+## 1.5.1
+- Fixed an issue with the `RawAPI.sendChatAction` method. 
+- More fixes around the RawAPI class.
 ## 1.5.0
 - 🤖 Bot API 6.6 (March 9, 2021) 🎉
 - A bunch of changes as per the [Bot API 6.6](https://core.telegram.org/bots/api-changelog#march-9-2023)
