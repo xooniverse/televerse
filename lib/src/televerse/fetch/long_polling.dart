@@ -63,7 +63,7 @@ class LongPolling extends Fetcher {
         offset = update.updateId + 1;
       }
 
-      await Future.delayed(Duration(seconds: _retryDelay.inSeconds));
+      await Future.delayed(Duration(milliseconds: 200));
       _resetRetryDelay();
     } catch (err, stackTrace) {
       if (err is HttpException && err.isClientException) {
