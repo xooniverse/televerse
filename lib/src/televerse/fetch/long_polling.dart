@@ -65,11 +65,13 @@ class LongPolling extends Fetcher {
 
       await Future.delayed(Duration(seconds: _retryDelay.inSeconds));
       _resetRetryDelay();
-    } catch (err, _) {
+    } catch (err, stackTrace) {
       if (err is HttpException && err.isClientException) {
         _isPolling = false;
         throw LongPollingException("Long polling stopped: ${err.message}");
       }
+      print("Long polling failed: $err");
+      print(stackTrace);
 
       await Future.delayed(_retryDelay);
       _doubleRetryDelay();

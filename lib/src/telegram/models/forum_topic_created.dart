@@ -19,8 +19,8 @@ class ForumTopicCreated {
 
   factory ForumTopicCreated.fromJson(Map<String, dynamic> json) {
     return ForumTopicCreated(
-      name: json['name']!,
-      color: json['color']!,
+      name: json['name'],
+      color: json['icon_color'],
       iconCustomEmojiId: json['icon_custom_emoji_id'],
     );
   }

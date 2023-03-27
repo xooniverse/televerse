@@ -1759,15 +1759,10 @@ class RawAPI {
   }
 
   /// Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of Sticker objects.
-  Future<List<Sticker>> getForumTopicIconStickers(
-    String name,
-  ) async {
-    Map<String, dynamic> params = {
-      "name": name,
-    };
+  Future<List<Sticker>> getForumTopicIconStickers() async {
     List<Sticker> response = [];
     List<dynamic> data = await HttpClient.getURI(
-      _buildUri("getStickerSet", params),
+      _buildUri("getForumTopicIconStickers"),
     );
     for (var i = 0; i < data.length; i++) {
       response.add(Sticker.fromJson(data[i]));
@@ -1776,8 +1771,7 @@ class RawAPI {
   }
 
   /// Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns information about the created topic as a ForumTopic object.
-  ///
-  /// - [userId] - Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+  /// - [chatId] - Unique identifier for the target chat or username of the target channel (in the format @channelusername)
   /// - [name] - Name of the topic, 1-128 characters
   /// - [iconColor] - Color of the topic icon in RGB format. Currently, must be one of 7322096 (0x6FB9F0), 16766590 (0xFFD67E), 13338331 (0xCB86DB), 9367192 (0x8EEE98), 16749490 (0xFF93B2), or 16478047 (0xFB6F5F)
   /// - [iconCustomEmojiId] - Unique identifier of the custom emoji shown as the topic icon. Use [getForumTopicIconStickers] to get all allowed custom emoji identifiers.
@@ -1893,15 +1887,15 @@ class RawAPI {
   /// Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights. Returns True on success.
   Future<bool> editGeneralForumTopic(
     ID chatId,
-    String title,
+    String name,
   ) async {
-    if (title.isEmpty || title.length > 128) {
-      throw Exception("Title length must be between 1 and 64");
+    if (name.isEmpty || name.length > 128) {
+      throw Exception("name length must be between 1 and 64");
     }
 
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
-      "title": title,
+      "name": name,
     };
     bool response = await HttpClient.getURI(
       _buildUri("editGeneralForumTopic", params),
@@ -1991,6 +1985,7 @@ class RawAPI {
     Map<String, dynamic> params = {
       "commands": commands.map((e) => e.toJson()).toList(),
       "scope": jsonEncode(scope?.toJson()),
+      "language_code": languageCode,
     };
     bool response = await HttpClient.getURI(
       _buildUri("setMyCommands", params),
@@ -2446,6 +2441,19 @@ class RawAPI {
     return StickerSet.fromJson(response);
   }
 
+  /// Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of Sticker objects.
+  Future<List<Sticker>> getCustomEmojiStickers(
+    List<String> customEmojiIds,
+  ) async {
+    Map<String, dynamic> params = {
+      "custom_emoji_ids": jsonEncode(customEmojiIds),
+    };
+    List<dynamic> response = await HttpClient.getURI(
+      _buildUri("getCustomEmojiStickers", params),
+    );
+    return response.map((e) => Sticker.fromJson(e)).toList();
+  }
+
   /// Use this method to upload a file with a sticker for later use in the [createNewStickerSet] and [addStickerToSet] methods (the file can be used multiple times). Returns the uploaded File on success.
   Future<File> uploadStickerFile(
     int userId,
@@ -2454,6 +2462,7 @@ class RawAPI {
   ) async {
     Map<String, dynamic> params = {
       "user_id": userId,
+      "sticker_format": stickerFormat.value,
     };
 
     Map<String, dynamic> response;
@@ -2616,6 +2625,9 @@ class RawAPI {
   }
 
   /// Use this method to move a sticker in a set created by the bot to a specific position. Returns True on success.
+  ///
+  /// [sticker] File identifier of the sticker.
+  /// [position] New sticker position in the set, zero-based.
   Future<bool> setStickerPositionInSet(String sticker, int position) async {
     Map<String, dynamic> params = {
       "sticker": sticker,
@@ -2657,7 +2669,6 @@ class RawAPI {
     List<MultipartFile> files = [];
     if (thumbnail != null) {
       if (thumbnail.type == InputFileType.file) {
-        params["thumbnail"] = thumbnail.toJson();
         files.add(
           MultipartFile.fromBytes(
             "thumbnail",
@@ -2666,7 +2677,7 @@ class RawAPI {
           ),
         );
       } else {
-        params["thumb"] = thumbnail.toJson();
+        params["thumbnail"] = thumbnail.toJson();
       }
     }
 
