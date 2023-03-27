@@ -1160,7 +1160,6 @@ class RawAPI {
   /// await bot.sendChatAction(chatId, ChatAction.typing);
   /// ```
   /// This will send a typing action to the chat.
-  ///
   Future<bool> sendChatAction(
     ID chatId,
     ChatAction action, {
@@ -1171,10 +1170,10 @@ class RawAPI {
       "action": action.value,
       "message_thread_id": messageThreadId,
     };
-    Map<String, dynamic> response = await HttpClient.getURI(
+    bool response = await HttpClient.getURI(
       _buildUri("sendChatAction", params),
     );
-    return response["ok"];
+    return response;
   }
 
   /// Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
@@ -1807,26 +1806,26 @@ class RawAPI {
   }
 
   /// Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
-  Future<ForumTopic> editForumTopic(
+  Future<bool> editForumTopic(
     ID chatId,
-    String name, {
-    int? iconColor,
+    int messageThreadId, {
+    String? name,
     String? iconCustomEmojiId,
   }) async {
-    if (name.isEmpty || name.length > 128) {
-      throw Exception("Name length must be between 1 and 64");
+    if (name != null && (name.isEmpty || name.length > 128)) {
+      throw Exception(
+        "Name length must be between 1 and 128",
+      );
     }
 
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
       "name": name,
-      "icon_color": iconColor,
       "icon_custom_emoji_id": iconCustomEmojiId,
     };
-    ForumTopic response = ForumTopic.fromJson(
-      await HttpClient.getURI(
-        _buildUri("editForumTopic", params),
-      ),
+    bool response = await HttpClient.getURI(
+      _buildUri("editForumTopic", params),
     );
     return response;
   }
