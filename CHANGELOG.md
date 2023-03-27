@@ -1,3 +1,6 @@
+## 1.5.2
+- More fixes around the `RawAPI` class.
+- Added missing implementations for `RawAPI.getCustomEmojiStickers` method.
 ## 1.5.1
 - Fixed an issue with the `RawAPI.sendChatAction` method. 
 - More fixes around the RawAPI class.
