@@ -358,8 +358,9 @@ class Message {
       venue: json['venue'] == null ? null : Venue.fromJson(json['venue']),
       location:
           json['location'] == null ? null : Location.fromJson(json['location']),
-      newChatMembers:
-          (json['new_chat_members'])?.map((e) => User.fromJson(e)).toList(),
+      newChatMembers: (json['new_chat_members'] as List<dynamic>?)
+          ?.map((e) => User.fromJson(e))
+          .toList(),
       leftChatMember: json['left_chat_member'] == null
           ? null
           : User.fromJson(json['left_chat_member']),
