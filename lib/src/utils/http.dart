@@ -9,7 +9,6 @@ class HttpClient {
     try {
       final response = await get(uri);
       final body = json.decode(response.body);
-
       if (body["ok"] == true) {
         return body["result"];
       } else {
@@ -53,6 +52,7 @@ class HttpClient {
     Map<String, dynamic> body,
   ) async {
     try {
+      body.removeWhere((key, value) => value == null || value == "null");
       final request = MultipartRequest("POST", uri)
         ..headers.addAll({"Content-Type": "multipart/form-data"})
         ..fields.addAll(body.map((k, v) => MapEntry(k, "$v")))

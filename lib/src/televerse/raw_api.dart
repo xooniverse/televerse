@@ -13,13 +13,13 @@ class RawAPI {
 
   /// Build the URI for the Telegram API.
   Uri _buildUri(String method, [Map<String, dynamic>? params]) {
-    params?.removeWhere((key, value) => value == null || value == "null");
     params = params?.map((key, value) {
       if (value is List) {
         return MapEntry(key, jsonEncode(value));
       }
       return MapEntry(key, "$value");
     });
+    params?.removeWhere((key, value) => value == null || value == "null");
     Uri uri = Uri.https(_baseUrl, "/bot$token/$method", params);
     return uri;
   }
@@ -405,7 +405,6 @@ class RawAPI {
           ),
         );
       }
-      params.removeWhere((key, value) => value == null);
       response = await HttpClient.multipartPost(
         _buildUri("sendAudio"),
         files,
