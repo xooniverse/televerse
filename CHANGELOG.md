@@ -1,3 +1,6 @@
+## 1.5.3
+- Fixed an issue with `RawAPI.sendAudio` method.
+- Added new test files in example folder.
 ## 1.5.2
 - More fixes around the `RawAPI` class.
 - Added missing implementations for `RawAPI.getCustomEmojiStickers` method.
