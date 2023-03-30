@@ -199,4 +199,18 @@ void main() {
     print(button.type);
     expect(MenuButtonType.values.contains(button.type), true);
   });
+
+  test("Send photo with caption entity", () async {
+    final msg = await bot.api.sendPhoto(
+      id,
+      InputFile.fromUrl("https://i.imgur.com/CUG0Aof.jpeg"),
+      caption: "Hello World",
+      disableNotification: true,
+      captionEntities: [
+        MessageEntity(type: MessageEntityType.bold, offset: 1, length: 5),
+      ],
+    );
+
+    expect(msg.captionEntities?.isNotEmpty, true);
+  });
 }
