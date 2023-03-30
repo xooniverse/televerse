@@ -37,8 +37,9 @@ class VideoNote {
       fileUniqueId: json['file_unique_id']!,
       length: json['length']!,
       duration: json['duration']!,
-      thumbnail:
-          json['thumbnail'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
+      thumbnail: json['thumbnail'] != null
+          ? PhotoSize.fromJson(json['thumbnail']!)
+          : null,
       fileSize: json['file_size'],
     );
   }

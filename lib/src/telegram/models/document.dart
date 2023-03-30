@@ -33,8 +33,9 @@ class Document {
     return Document(
       fileId: json['file_id']!,
       fileUniqueId: json['file_unique_id']!,
-      thumbnail:
-          json['thumbnail'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
+      thumbnail: json['thumbnail'] != null
+          ? PhotoSize.fromJson(json['thumbnail']!)
+          : null,
       fileName: json['file_name'],
       mimeType: json['mime_type'],
       fileSize: json['file_size'],

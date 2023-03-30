@@ -50,8 +50,9 @@ class Animation {
       width: json['width']!,
       height: json['height']!,
       duration: json['duration']!,
-      thumbnail:
-          json['thumb'] != null ? PhotoSize.fromJson(json['thumbnail']!) : null,
+      thumbnail: json['thumbnail'] != null
+          ? PhotoSize.fromJson(json['thumbnail']!)
+          : null,
       fileName: json['file_name'],
       mimeType: json['mime_type'],
       fileSize: json['file_size'],
