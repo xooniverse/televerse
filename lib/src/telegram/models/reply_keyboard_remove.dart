@@ -11,8 +11,8 @@ class ReplyKeyboardRemove extends ReplyMarkup {
   bool selective;
 
   ReplyKeyboardRemove({
-    required this.removeKeyboard,
-    required this.selective,
+    this.removeKeyboard = true,
+    this.selective = false,
   });
 
   factory ReplyKeyboardRemove.fromJson(Map<String, dynamic> json) {

@@ -244,4 +244,17 @@ void main() {
     final roundTwo = await bot.api.sendMediaGroup(id, group);
     expect(roundTwo, isNotEmpty);
   });
+
+  test("Send Poll", () async {
+    final msg = await bot.api.sendPoll(
+      id,
+      "What is your favorite color?",
+      ["Red", "Green", "Blue"],
+      isAnonymous: false,
+      type: PollType.regular,
+      replyMarkup: ReplyKeyboardRemove(),
+    );
+
+    expect(msg.poll, isNotNull);
+  });
 }
