@@ -2646,17 +2646,19 @@ class RawAPI {
 
     bool response;
     List<MultipartFile> files = [];
+
     if (sticker.sticker.type == InputFileType.file) {
+      String fileName = sticker.sticker.file!.filename;
       files.add(
         MultipartFile.fromBytes(
-          "sticker.sticker",
+          fileName,
           sticker.sticker.file!.readAsBytesSync(),
-          filename: sticker.sticker.file!.filename,
+          filename: fileName,
         ),
       );
-    } else {
-      params["sticker"] = sticker.toJson();
     }
+
+    params["sticker"] = sticker.toJson();
 
     if (files.isEmpty) {
       response = await HttpClient.getURI(
