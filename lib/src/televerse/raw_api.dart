@@ -2713,7 +2713,8 @@ class RawAPI {
     Map<String, dynamic> params = {
       "name": name,
       "user_id": userId,
-    };
+      "thumbnail": thumbnail?.toJson()
+    }..removeWhere((key, value) => value == null);
 
     bool response;
     List<MultipartFile> files = [];
@@ -2721,13 +2722,10 @@ class RawAPI {
       if (thumbnail.type == InputFileType.file) {
         files.add(
           MultipartFile.fromBytes(
-            "thumbnail",
+            thumbnail.file!.filename,
             thumbnail.file!.readAsBytesSync(),
-            filename: thumbnail.file!.filename,
           ),
         );
-      } else {
-        params["thumbnail"] = thumbnail.toJson();
       }
     }
 

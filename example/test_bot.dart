@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:televerse/telegram.dart' hide File;
 import 'package:televerse/televerse.dart';
 
 void main() async {
@@ -8,12 +7,11 @@ void main() async {
   final int chatId = int.parse(Platform.environment["CHAT_ID"]!);
 
   String packName = "somerandomshit_by_xclairebot";
-  bool success = await bot.api.addStickerToSet(
-    chatId,
+  bool success = await bot.api.setStickerSetThumbnail(
     packName,
-    sticker: InputSticker(
-      sticker: InputFile.fromFile(File("./example/sticker2.png")),
-      emojiList: ["👍", "👌"],
+    chatId,
+    thumbnail: InputFile.fromFile(
+      File("./example/thumb.png"),
     ),
   );
 
