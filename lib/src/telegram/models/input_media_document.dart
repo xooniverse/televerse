@@ -42,19 +42,4 @@ class InputMediaDocument extends InputMedia {
       'disable_content_type_detection': disableContentTypeDetection,
     }..removeWhere((key, value) => value == null);
   }
-
-  factory InputMediaDocument.fromJson(Map<String, dynamic> json) {
-    return InputMediaDocument(
-      media: json['media'],
-      caption: json['caption'] as String?,
-      parseMode: json['parse_mode'] == null
-          ? null
-          : ParseMode.fromJson(json['parse_mode'] as String),
-      captionEntities: (json['caption_entities'] as List<dynamic>?)
-          ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      disableContentTypeDetection:
-          json['disable_content_type_detection'] as bool?,
-    );
-  }
 }

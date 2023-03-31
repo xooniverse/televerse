@@ -37,24 +37,4 @@ class InputMediaPhoto extends InputMedia {
       'has_spoiler': hasSpoiler,
     }..removeWhere((key, value) => value == null);
   }
-
-  factory InputMediaPhoto.fromJson(Map<String, dynamic> json) {
-    return InputMediaPhoto(
-      media: json['media'],
-      caption: json['caption'],
-      parseMode: json['parse_mode'] != null
-          ? ParseMode.values.firstWhere(
-              (e) => e.value == json['parse_mode'],
-            )
-          : null,
-      captionEntities: json['caption_entities'] != null
-          ? List<MessageEntity>.from(
-              json['caption_entities'].map(
-                (x) => MessageEntity.fromJson(x),
-              ),
-            )
-          : null,
-      hasSpoiler: json['has_spoiler'],
-    );
-  }
 }

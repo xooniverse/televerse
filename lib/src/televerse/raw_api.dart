@@ -819,16 +819,16 @@ class RawAPI {
           if (!m.media.file!.existsSync()) {
             throw TeleverseException.fileDoesNotExist(m.media.file!.path);
           }
+          String filename = m.media.file!.path.split("/").last;
           files.add(
             MultipartFile.fromBytes(
-              m.type == InputMediaType.photo ? "photo" : "video",
+              filename,
               m.media.file!.readAsBytesSync(),
-              filename: m.media.file!.path.split("/").last,
+              filename: filename,
             ),
           );
-        } else {
-          mediaList.add(m.toJson());
         }
+        mediaList.add(m.toJson());
       }
       params["media"] = jsonEncode(mediaList);
       List<dynamic> response = await HttpClient.multipartPost(

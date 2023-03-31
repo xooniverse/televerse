@@ -65,7 +65,7 @@ class InputFile {
       case InputFileType.fileId:
         return fileId!;
       case InputFileType.file:
-        return null;
+        return "attach://${file!.filename}";
       case InputFileType.url:
         return url!.toString();
     }

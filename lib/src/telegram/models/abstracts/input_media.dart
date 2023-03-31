@@ -1,11 +1,11 @@
 part of models;
 
 /// This object represents the content of a media message to be sent. It should be one of
-/// - InputMediaAnimation
-/// - InputMediaDocument
-/// - InputMediaAudio
-/// - InputMediaPhoto
-/// - InputMediaVideo.
+/// - [InputMediaAnimation]
+/// - [InputMediaDocument]
+/// - [InputMediaAudio]
+/// - [InputMediaPhoto]
+/// - [InputMediaVideo].
 abstract class InputMedia {
   /// Type of the result.
   InputMediaType get type;
