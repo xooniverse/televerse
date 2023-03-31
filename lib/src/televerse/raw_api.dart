@@ -884,14 +884,15 @@ class RawAPI {
     return Message.fromJson(response);
   }
 
-  /// Use this method to edit live location messages. A location can be edited
-  /// until its live_period expires or editing is explicitly disabled
-  /// by a call to [stopMessageLiveLocation]. On success, if the edited message
-  /// is not an inline message, the edited Message is returned, otherwise True is returned.
-  Future<MessageOrBoolean> editMessageLiveLocation(
+  /// Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to [stopMessageLiveLocation].
+  ///
+  /// On success, the edited [Message] is returned.
+  /// **IMPORTANT NOTE**
+  ///
+  /// This only works for Messages but not INLINE MESSAGES. If you're looking for a way to edit inline live location messages, check out [editInlineMessageLiveLocation].
+  Future<Message> editMessageLiveLocation(
     ID chatId,
     int messageId, {
-    String? inlineMessageId,
     double? latitude,
     double? longitude,
     double? horizontalAccuracy,
@@ -902,6 +903,37 @@ class RawAPI {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
+      "latitude": latitude,
+      "longitude": longitude,
+      "horizontal_accuracy": horizontalAccuracy,
+      "heading": heading,
+      "proximity_alert_radius": proximityAlertRadius,
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+    };
+    Map<String, dynamic> response = await HttpClient.getURI(
+      _buildUri("editMessageLiveLocation", params),
+    );
+
+    return Message.fromJson(response);
+  }
+
+  /// Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to [stopMessageLiveLocation].
+  ///
+  /// On success, true is returned.
+  ///
+  /// **IMPORTANT NOTE**
+  ///
+  /// This only works for INLINE MESSAGES. If you're looking for a way to edit live location messages, check out [editMessageLiveLocation].
+  Future<bool> editInlineMessageLiveLocation(
+    String inlineMessageId, {
+    double? latitude,
+    double? longitude,
+    double? horizontalAccuracy,
+    int? heading,
+    int? proximityAlertRadius,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
       "latitude": latitude,
       "longitude": longitude,
@@ -910,35 +942,53 @@ class RawAPI {
       "proximity_alert_radius": proximityAlertRadius,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
-    dynamic response = await HttpClient.getURI(
+    bool response = await HttpClient.getURI(
       _buildUri("editMessageLiveLocation", params),
     );
 
-    return MessageOrBoolean.fromJson(response);
+    return response;
   }
 
   /// Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.
   ///
-  /// This one is a bit weird, because it can return either a MessageContext or a boolean.
-  /// If the message is an inline message, it returns a boolean, otherwise it returns a MessageContext.
+  /// **IMPORTANT NOTE**
   ///
-  /// You can use [MsgOrBool] type inside the [MessageOrBoolean] class to get the correct type.
-  Future<MessageOrBoolean> stopMessageLiveLocation(
+  /// This only works for Messages but not INLINE MESSAGES. If you're looking for a way to stop updating inline live location messages, check out [stopInlineMessageLiveLocation].
+  Future<Message> stopMessageLiveLocation(
     ID chatId,
     int messageId, {
-    String? inlineMessageId,
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+    };
+    Map<String, dynamic> response = await HttpClient.getURI(
+      _buildUri("stopMessageLiveLocation", params),
+    );
+    return Message.fromJson(response);
+  }
+
+  /// Use this method to stop updating a live location message before live_period expires.
+  ///
+  /// **IMPORTANT NOTE**
+  ///
+  /// This only works for INLINE MESSAGES. If you're looking for a way to stop updating live location messages, check out [stopMessageLiveLocation].
+  ///
+  /// On success, true is returned.
+  Future<bool> stopInlineMessageLiveLocation(
+    String? inlineMessageId, {
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
-    dynamic response = await HttpClient.getURI(
+    bool response = await HttpClient.getURI(
       _buildUri("stopMessageLiveLocation", params),
     );
-    return MessageOrBoolean.fromJson(response);
+    return response;
   }
 
   /// Use this method to send information about a venue. On success, the sent Message is returned.

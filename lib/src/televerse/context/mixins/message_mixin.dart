@@ -604,7 +604,7 @@ mixin MessageMixin on Context {
   /// Edit message live location
   ///
   /// This method will edit the message live location in the current context.
-  Future<MessageOrBoolean> editMessageLiveLocation({
+  Future<Message> editMessageLiveLocation({
     String? inlineMessageId,
     double? latitude,
     double? longitude,
@@ -616,7 +616,6 @@ mixin MessageMixin on Context {
     return await api.editMessageLiveLocation(
       id,
       _msg.messageId,
-      inlineMessageId: inlineMessageId,
       latitude: latitude,
       longitude: longitude,
       horizontalAccuracy: horizontalAccuracy,
