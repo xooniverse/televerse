@@ -187,6 +187,8 @@ void main() {
 
   test("Get Chat", () async {
     Chat chat = await bot.api.getChat(id);
+    Chat groupChat = await bot.api.getChat(groupID);
+    print(groupChat.type);
     expect(chat.id, id.id);
   });
 
@@ -256,5 +258,23 @@ void main() {
     );
 
     expect(msg.poll, isNotNull);
+  });
+
+  test("Send dice", () async {
+    final msg = await bot.api.sendDice(id, emoji: DiceEmoji.bowling);
+    expect(msg.dice, isNotNull);
+    expect(msg.dice?.value, greaterThanOrEqualTo(1));
+    expect(msg.dice?.value, lessThanOrEqualTo(6));
+  });
+
+  test("Set My Commands", () async {
+    final commands = [
+      BotCommand(command: "start", description: "Start the bot"),
+      BotCommand(command: "help", description: "Get help"),
+      BotCommand(command: "ban", description: "Ban a user")
+    ];
+    final scope = BotCommandScopeChatAdministrators(chatId: groupID);
+    final res = await bot.api.setMyCommands(commands, scope: scope);
+    expect(res, true);
   });
 }
