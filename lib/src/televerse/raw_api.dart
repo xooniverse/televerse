@@ -2642,6 +2642,7 @@ class RawAPI {
     Map<String, dynamic> params = {
       "user_id": userId,
       "name": name,
+      "sticker": jsonEncode(sticker.toJson()),
     };
 
     bool response;
@@ -2657,8 +2658,6 @@ class RawAPI {
         ),
       );
     }
-
-    params["sticker"] = sticker.toJson();
 
     if (files.isEmpty) {
       response = await HttpClient.getURI(
@@ -3233,10 +3232,8 @@ class RawAPI {
     };
     bool response;
     List<MultipartFile> files = [];
-    List<Map<String, dynamic>> _stickers = [];
 
     for (var sticker in stickers) {
-      _stickers.add(sticker.toJson());
       if (sticker.sticker.type == InputFileType.file) {
         String fileName = sticker.sticker.file!.path.split("/").last;
         files.add(MultipartFile.fromBytes(
