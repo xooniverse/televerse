@@ -56,23 +56,4 @@ class InputMediaAnimation extends InputMedia {
       'has_spoiler': hasSpoiler,
     }..removeWhere((key, value) => value == null);
   }
-
-  factory InputMediaAnimation.fromJson(Map<String, dynamic> json) {
-    return InputMediaAnimation(
-      media: json['media'],
-      caption: json['caption'],
-      parseMode: json['parse_mode'] != null
-          ? ParseMode.fromJson(json['parse_mode'])
-          : null,
-      captionEntities: json['caption_entities'] != null
-          ? (json['caption_entities'] as List)
-              .map((e) => MessageEntity.fromJson(e))
-              .toList()
-          : null,
-      width: json['width'],
-      height: json['height'],
-      duration: json['duration'],
-      hasSpoiler: json['has_spoiler'],
-    );
-  }
 }

@@ -1,3 +1,13 @@
+## 1.5.4
+- Added new test cases in the `/test` folder.
+- There were some `thumb` parameters even though they were changed to `thumbnail` in the API documentation. Fixed that.
+- Fixed an issue with sending media group using local files. More info on [#56](https://github.com/HeySreelal/televerse/issues/56)
+- Completely removed the class `MessageOrBoolean` as it was not needed. All methods that return either a `Message` or a `bool` now split into two methods. One for `Message` and one for `bool`.
+- Updated the `ReplyKeyboardRemove` class to reflect auto set the `remove_keyboard` parameter to `true` when the `ReplyKeyboardRemove` class is created.
+- Similarly, updated the `ForceReply` class to reflect auto set the `force_reply` parameter to `true` when the `ForceReply` class is created.
+- Fixed an issue with `addStickerToSet` method which caused it to fail. More info on [#57](https://github.com/HeySreelal/televerse/issues/57).
+- Tested all methods related to Stickers.
+- Fixed an issue with `createNewStickerSet` method which caused it to fail. More info on [#58](https://github.com/HeySreelal/televerse/issues/58).
 ## 1.5.3
 - Fixed an issue with `RawAPI.sendAudio` method.
 - Added new test files in example folder.

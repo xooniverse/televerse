@@ -6,7 +6,7 @@ class InputSticker {
   InputFile sticker;
 
   /// List of 1-20 emoji associated with the sticker
-  List<String> emojis;
+  List<String> emojiList;
 
   /// Optional. Position where the mask should be placed on faces. For “mask” stickers only.
   MaskPosition? maskPosition;
@@ -17,7 +17,7 @@ class InputSticker {
   /// Creates the Input Sticker object.
   InputSticker({
     required this.sticker,
-    required this.emojis,
+    required this.emojiList,
     this.maskPosition,
     this.keywords,
   });
@@ -26,7 +26,7 @@ class InputSticker {
   Map<String, dynamic> toJson() {
     return {
       'sticker': sticker.toJson(),
-      'emojis': emojis,
+      'emoji_list': emojiList,
       'mask_position': maskPosition,
       'keywords': keywords,
     }..removeWhere((_, v) => v == null);

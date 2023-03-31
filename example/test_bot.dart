@@ -2,15 +2,22 @@ import 'dart:io';
 
 import 'package:televerse/televerse.dart';
 
-void main() {
+void main() async {
   final Bot bot = Bot(Platform.environment["BOT_TOKEN"]!);
-  bot.command('audio', (ctx) async {
-    print('here');
-    await ctx.replyWithAudio(
-      InputFile.fromFile(
-        File("./example/example_audio.mp3"),
-      ),
-    );
-  });
-  bot.start();
+  final int chatId = int.parse(Platform.environment["CHAT_ID"]!);
+
+  String packName = "somerandomshit_by_xclairebot";
+  bool success = await bot.api.setStickerSetThumbnail(
+    packName,
+    chatId,
+    thumbnail: InputFile.fromFile(
+      File("./example/thumb.png"),
+    ),
+  );
+
+  if (success) {
+    print("Sticker added to set");
+  } else {
+    print("Sticker not added to set");
+  }
 }

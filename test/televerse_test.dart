@@ -1,5 +1,6 @@
 import 'dart:developer';
-import 'dart:io';
+import 'dart:io' show Platform;
+import 'dart:io' as io;
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 import 'package:test/test.dart';
@@ -186,6 +187,8 @@ void main() {
 
   test("Get Chat", () async {
     Chat chat = await bot.api.getChat(id);
+    Chat groupChat = await bot.api.getChat(groupID);
+    print(groupChat.type);
     expect(chat.id, id.id);
   });
 
@@ -198,5 +201,80 @@ void main() {
     MenuButton button = await bot.api.getChatMenuButton(id);
     print(button.type);
     expect(MenuButtonType.values.contains(button.type), true);
+  });
+
+  test("Send photo with caption entity", () async {
+    final msg = await bot.api.sendPhoto(
+      id,
+      InputFile.fromUrl("https://i.imgur.com/CUG0Aof.jpeg"),
+      caption: "Hello World",
+      disableNotification: true,
+      captionEntities: [
+        MessageEntity(type: MessageEntityType.bold, offset: 1, length: 5),
+      ],
+    );
+
+    expect(msg.captionEntities?.isNotEmpty, true);
+  });
+
+  test("Send Group Media", () async {
+    final medias = [
+      InputMediaPhoto(
+        media: InputFile.fromUrl("https://i.imgur.com/CUG0Aof.jpeg"),
+        caption: "Not So Secret Recipe",
+      ),
+      InputMediaPhoto(
+        media: InputFile.fromUrl("https://i.imgur.com/BjA1g9f.jpeg"),
+      ),
+    ];
+    final msgs = await bot.api.sendMediaGroup(id, medias);
+
+    expect(msgs, isNotEmpty);
+
+    final group = [
+      InputMediaPhoto(
+        media: InputFile.fromFile(
+          io.File("./example/photo.jpeg"),
+        ),
+      ),
+      InputMediaPhoto(
+        media: InputFile.fromFile(
+          io.File("./example/galaxy.jpeg"),
+        ),
+      ),
+    ];
+    final roundTwo = await bot.api.sendMediaGroup(id, group);
+    expect(roundTwo, isNotEmpty);
+  });
+
+  test("Send Poll", () async {
+    final msg = await bot.api.sendPoll(
+      id,
+      "What is your favorite color?",
+      ["Red", "Green", "Blue"],
+      isAnonymous: false,
+      type: PollType.regular,
+      replyMarkup: ReplyKeyboardRemove(),
+    );
+
+    expect(msg.poll, isNotNull);
+  });
+
+  test("Send dice", () async {
+    final msg = await bot.api.sendDice(id, emoji: DiceEmoji.bowling);
+    expect(msg.dice, isNotNull);
+    expect(msg.dice?.value, greaterThanOrEqualTo(1));
+    expect(msg.dice?.value, lessThanOrEqualTo(6));
+  });
+
+  test("Set My Commands", () async {
+    final commands = [
+      BotCommand(command: "start", description: "Start the bot"),
+      BotCommand(command: "help", description: "Get help"),
+      BotCommand(command: "ban", description: "Ban a user")
+    ];
+    final scope = BotCommandScopeChatAdministrators(chatId: groupID);
+    final res = await bot.api.setMyCommands(commands, scope: scope);
+    expect(res, true);
   });
 }

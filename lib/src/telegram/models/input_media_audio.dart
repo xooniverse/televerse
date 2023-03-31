@@ -51,22 +51,4 @@ class InputMediaAudio extends InputMedia {
       'title': title,
     }..removeWhere((key, value) => value == null);
   }
-
-  factory InputMediaAudio.fromJson(Map<String, dynamic> json) {
-    return InputMediaAudio(
-      media: json['media'],
-      caption: json['caption'],
-      parseMode: json['parse_mode'] != null
-          ? ParseMode.fromJson(json['parse_mode'])
-          : null,
-      captionEntities: json['caption_entities'] != null
-          ? (json['caption_entities'] as List)
-              .map((i) => MessageEntity.fromJson(i))
-              .toList()
-          : null,
-      duration: json['duration'],
-      performer: json['performer'],
-      title: json['title'],
-    );
-  }
 }

@@ -50,8 +50,9 @@ class Video {
       width: json['width']!,
       height: json['height']!,
       duration: json['duration']!,
-      thumbnail:
-          json['thumbnail'] != null ? PhotoSize.fromJson(json['thumb']!) : null,
+      thumbnail: json['thumbnail'] != null
+          ? PhotoSize.fromJson(json['thumbnail']!)
+          : null,
       fileName: json['file_name'],
       mimeType: json['mime_type'],
       fileSize: json['file_size'],
