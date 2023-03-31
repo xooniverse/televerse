@@ -12,7 +12,7 @@ class ForceReply extends ReplyMarkup {
   bool? selective;
 
   ForceReply({
-    required this.forceReply,
+    this.forceReply = true,
     this.selective,
     this.inputFieldPlaceholder,
   });
