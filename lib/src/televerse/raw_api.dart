@@ -2519,7 +2519,7 @@ class RawAPI {
       params["sticker"] = sticker.toJson();
       List<MultipartFile> files = [
         MultipartFile.fromBytes(
-          "sticker",
+          sticker.file!.filename,
           sticker.file!.readAsBytesSync(),
           filename: sticker.file!.filename,
         ),
@@ -3231,12 +3231,16 @@ class RawAPI {
     };
     bool response;
     List<MultipartFile> files = [];
+    List<Map<String, dynamic>> _stickers = [];
+
     for (var sticker in stickers) {
+      _stickers.add(sticker.toJson());
       if (sticker.sticker.type == InputFileType.file) {
+        String fileName = sticker.sticker.file!.path.split("/").last;
         files.add(MultipartFile.fromBytes(
-          "stickers.sticker",
+          fileName,
           sticker.sticker.file!.readAsBytesSync(),
-          filename: sticker.sticker.file!.path.split("/").last,
+          filename: fileName,
         ));
       }
     }

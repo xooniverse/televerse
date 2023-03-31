@@ -9,10 +9,10 @@ class File {
   final String fileUniqueId;
 
   /// File size, if known
-  final int fileSize;
+  final int? fileSize;
 
   /// File path. Use https://api.telegram.org/file/bot<token>/<file_path> to get the file.
-  final String filePath;
+  final String? filePath;
 
   /// Constructs the File object.
   const File({
@@ -89,8 +89,8 @@ class File {
     path ??= io.Directory.current.path;
 
     String fpath;
-    final name = filePath.split("/").last;
-    final ext = name.split(".").last;
+    final name = filePath?.split("/").last;
+    final ext = name?.split(".").last;
 
     final bytes = await getBytes(token);
     if (bytes == null) return null;
@@ -108,5 +108,5 @@ class File {
   }
 
   /// Returns the file name of the file.
-  String get fileName => filePath.split("/").last;
+  String? get fileName => filePath?.split("/").last;
 }

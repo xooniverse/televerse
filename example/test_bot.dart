@@ -5,36 +5,29 @@ import 'package:televerse/televerse.dart';
 
 void main() async {
   final Bot bot = Bot(Platform.environment["BOT_TOKEN"]!);
-  int gID = int.parse(Platform.environment['CHANNEL_ID']!);
-  ChatID groupID = ChatID(gID);
-  bot.command('audio', (ctx) async {
-    print('here');
-    await ctx.replyWithAudio(
-      InputFile.fromFile(
-        File("./example/example_audio.mp3"),
-      ),
-    );
-  });
+  final int chatId = int.parse(Platform.environment["CHAT_ID"]!);
 
-  await bot.api.sendMessage(groupID, "Hello World");
+  final me = await bot.api.getMe();
 
-  final userCommands = [
-    BotCommand(command: "start", description: "Start the bot"),
-    BotCommand(command: "help", description: "Get help"),
-    BotCommand(command: 'unknown', description: 'Unknown command'),
-  ];
+  await bot.api.sendMessage(ChatID(chatId), "Send a sticker pack name:");
+  final ctx = await bot.onMessage.first;
 
-  final res = await bot.api.setMyCommands(userCommands);
+  bool success = await bot.api.createNewStickerSet(
+    userId: ctx.message.from!.id,
+    name: '${ctx.message.text}_by_${me.username}',
+    title: 'Awesome Pack',
+    stickerFormat: StickerFormat.static,
+    stickers: [
+      InputSticker(
+        sticker: InputFile.fromFile(File("./example/sticker.png")),
+        emojiList: ["🍅", "🍑"],
+      )
+    ],
+  );
 
-  final adminCommands = [
-    BotCommand(command: "start", description: "Start the bot"),
-    BotCommand(command: "help", description: "Get help"),
-    BotCommand(command: "ban", description: "Ban a user"),
-  ];
-  final scope = BotCommandScopeChatAdministrators(chatId: groupID);
-  final adminRes = await bot.api.setMyCommands(adminCommands, scope: scope);
-
-  await bot.api.sendMessage(groupID, "Set commands: $res and $adminRes");
-
-  bot.start();
+  if (success) {
+    print("Sticker set created successfully!");
+  } else {
+    print("Failed to create sticker set.");
+  }
 }
