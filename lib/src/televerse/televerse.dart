@@ -163,20 +163,23 @@ class Televerse extends Event with OnEvent {
   /// ```
   ///
   /// This will answer "Hello!" to any callback query that has the data "start".
+  ///
+  ///
   void callbackQuery(
-    String data,
+    Pattern data,
     CallbackQueryHandler callback, {
-    RegExp? regex,
+    @Deprecated("Use the 'data' parameter instead.") RegExp? regex,
   }) {
     onCallbackQuery.listen((CallbackQueryContext context) {
       if (context.data == null) return;
-      if (regex != null && regex.hasMatch(context.data!)) {
-        context.matches = regex.allMatches(context.data!).toList();
-        callback(context);
-        return;
-      }
-      if (context.data == data) {
-        callback(context);
+      if (data is RegExp) {
+        if (data.hasMatch(context.data!)) {
+          callback(context);
+        }
+      } else if (data is String) {
+        if (context.data == data) {
+          callback(context);
+        }
       }
     });
   }
