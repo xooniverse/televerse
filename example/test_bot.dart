@@ -1,23 +1,30 @@
 import 'dart:io';
-
 import 'package:televerse/televerse.dart';
 
 void main() async {
   final Bot bot = Bot(Platform.environment["BOT_TOKEN"]!);
-  final int chatId = int.parse(Platform.environment["CHAT_ID"]!);
 
-  String packName = "somerandomshit_by_xclairebot";
-  bool success = await bot.api.setStickerSetThumbnail(
-    packName,
-    chatId,
-    thumbnail: InputFile.fromFile(
-      File("./example/thumb.png"),
-    ),
-  );
+  bot.start((ctx) {
+    final keyboard = InlineKeyboard()
+        .row()
+        .add("Noob", "exp-noob")
+        .add("Pro", "exp-pro")
+        .row()
+        .add("Expert", "exp-expert")
+        .add("Master", "exp-master")
+        .row()
+        .add("God", "exp-god");
 
-  if (success) {
-    print("Sticker added to set");
-  } else {
-    print("Sticker not added to set");
-  }
+    ctx.reply(
+      "Choose your experience level",
+      replyMarkup: keyboard,
+    );
+  });
+
+  bot.callbackQuery(RegExp(r"^exp"), (ctx) {
+    final value = ctx.data!.split("-").last;
+    ctx.answer(
+      text: "You are $value at Dart",
+    );
+  });
 }

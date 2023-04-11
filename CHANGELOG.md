@@ -1,3 +1,7 @@
+## 1.5.5 
+- Changed the `data` parameter to accept both `String` and `RegExp` using `Pattern` type on `Televerse.callbackQuery` method.
+- This can simplify the code when you want to listen to a callback query with a specific data.
+- The test_bot.dart file in the example folder has been updated to reflect this change.
 ## 1.5.4
 - Added new test cases in the `/test` folder.
 - There were some `thumb` parameters even though they were changed to `thumbnail` in the API documentation. Fixed that.
