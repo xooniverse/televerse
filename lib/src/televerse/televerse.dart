@@ -93,9 +93,7 @@ class Televerse extends Event with OnEvent {
         throw err;
       }
     });
-    fetcher.onUpdate().listen((update) {
-      _onUpdate(update);
-    });
+    fetcher.onUpdate().listen(_onUpdate);
 
     // Registers a handler to listen for /start command
     if (handler != null) {
@@ -129,23 +127,24 @@ class Televerse extends Event with OnEvent {
   /// This will reply "Hello!" to any message that starts with `/start`.
   ///
   /// Optionally, you can specify a [pattern] to match the command with. If the command matches the pattern, the [MessageContext.matches] will be set to the matches.
-  void command(
-    String command,
-    MessageHandler callback, {
-    RegExp? pattern,
-  }) {
+  void command(Pattern command, MessageHandler callback) {
     onMessage.listen((MessageContext context) {
       if (context.message.text == null) return;
-      if (context.message.text!.startsWith('/$command')) {
-        if (command == 'start' && context.message.text!.split(' ').length > 1) {
-          context.startParameter =
-              context.message.text!.split(' ').sublist(1).join(' ');
+      if (command is RegExp) {
+        if (command.hasMatch(context.message.text!)) {
+          context.matches = command.allMatches(context.message.text!).toList();
+          callback(context);
         }
-        if (pattern != null) {
-          context.matches = pattern.allMatches(context.message.text!).toList();
-        }
+      } else if (command is String) {
+        if (context.message.text!.startsWith('/$command')) {
+          if (command == 'start' &&
+              context.message.text!.split(' ').length > 1) {
+            context.startParameter =
+                context.message.text!.split(' ').sublist(1).join(' ');
+          }
 
-        callback(context);
+          callback(context);
+        }
       }
     });
   }
