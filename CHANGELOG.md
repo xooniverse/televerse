@@ -1,3 +1,7 @@
+## 1.5.6
+- Fixed an issue with `RawAPI.copyMessage` method.
+- Updated the `Televerse.command` method to accept a `String` or `RegExp` as the `command` parameter.
+
 ## 1.5.5 
 - Changed the `data` parameter to accept both `String` and `RegExp` using `Pattern` type on `Televerse.callbackQuery` method.
 - This can simplify the code when you want to listen to a callback query with a specific data.
