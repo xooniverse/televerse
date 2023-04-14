@@ -77,6 +77,34 @@ class Televerse extends Event with OnEvent {
     this.fetcher = fetcher ?? LongPolling();
     this.fetcher.setApi(api);
     _botToken = token;
+
+    api.getMe().then((value) {
+      _me = value;
+    }).catchError((err, st) {
+      if (_onError != null) {
+        _onError!(err, st);
+      } else {
+        throw err;
+      }
+    });
+  }
+
+  /// Information about the bot.
+  late User _me;
+
+  /// Get information about the bot.
+  ///
+  /// This getter returns the bot information. You can use this to access the bot information from anywhere in your code. This getter will be automatically set when the bot starts.
+  /// If you try to access this getter before creating a bot instance, it will throw an error.
+  User get me {
+    try {
+      return _me;
+    } catch (err) {
+      throw TeleverseException(
+        "Bot information not found. ",
+        description: "Couldn't fetch bot information.",
+      );
+    }
   }
 
   /// Emit new update into the stream.
