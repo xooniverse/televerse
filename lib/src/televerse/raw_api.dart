@@ -282,7 +282,7 @@ class RawAPI {
       "protect_content": protectContent,
       "reply_to_message_id": replyToMessageId,
       "allow_sending_without_reply": allowSendingWithoutReply,
-      "reply_markup": jsonEncode(jsonEncode(replyMarkup?.toJson())),
+      "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Uri uri = _buildUri("copyMessage", params);
 

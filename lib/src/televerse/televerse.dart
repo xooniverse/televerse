@@ -93,9 +93,7 @@ class Televerse extends Event with OnEvent {
         throw err;
       }
     });
-    fetcher.onUpdate().listen((update) {
-      _onUpdate(update);
-    });
+    fetcher.onUpdate().listen(_onUpdate);
 
     // Registers a handler to listen for /start command
     if (handler != null) {
