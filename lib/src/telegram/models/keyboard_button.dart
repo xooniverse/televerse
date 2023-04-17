@@ -33,6 +33,19 @@ class KeyboardButton {
   /// Since: Bot API 6.5
   KeyboardButtonRequestChat? requestChat;
 
+  /// Creates a new [KeyboardButton] with the specified [text].
+  ///
+  /// [requestContact] - If True, the user's phone number will be sent as a contact when the button is pressed. Available in private chats only
+  ///
+  /// [requestLocation] - If True, the user's current location will be sent when the button is pressed. Available in private chats only.
+  ///
+  /// [requestPoll] - If specified, the user will be asked to create a poll and send it to the bot when the button is pressed. Available in private chats only.
+  ///
+  /// [webApp] - If specified, the described Web App will be launched when the button is pressed. The Web App will be able to send a “web_app_data” service message. Available in private chats only.
+  ///
+  /// [requestUser] - If specified, pressing the button will open a list of suitable users. Tapping on any user will send their identifier to the bot in a “user_shared” service message. Available in private chats only.
+  ///
+  /// [requestChat] - If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a “chat_shared” service message. Available in private chats only.
   KeyboardButton({
     required this.text,
     this.requestContact,
@@ -43,6 +56,7 @@ class KeyboardButton {
     this.requestChat,
   });
 
+  /// Creates a new [KeyboardButton] from a JSON object.
   factory KeyboardButton.fromJson(Map<String, dynamic> json) {
     return KeyboardButton(
       text: json['text'],
@@ -62,6 +76,7 @@ class KeyboardButton {
     );
   }
 
+  /// Generates a JSON object from this object.
   Map<String, dynamic> toJson() {
     return {
       'text': text,
