@@ -543,7 +543,7 @@ class Message {
       ? null
       : DateTime.fromMillisecondsSinceEpoch(forwardDate! * 1000);
 
-  /// Returns [true] if the message is a command
+  /// Returns true if the message is a command
   bool get isCommand => entities != null && entities!.isNotEmpty
       ? entities!.first.type == MessageEntityType.botCommand &&
           entities!.first.offset == 0

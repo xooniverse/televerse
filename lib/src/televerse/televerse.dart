@@ -153,8 +153,6 @@ class Televerse extends Event with OnEvent {
   /// ```
   ///
   /// This will reply "Hello!" to any message that starts with `/start`.
-  ///
-  /// Optionally, you can specify a [pattern] to match the command with. If the command matches the pattern, the [MessageContext.matches] will be set to the matches.
   void command(Pattern command, MessageHandler callback) {
     onMessage.listen((MessageContext context) {
       if (context.message.text == null) return;
