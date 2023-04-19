@@ -2,6 +2,18 @@ part of televerse;
 
 /// The [Keyboard] class can be used to represent a [ReplyKeyboardMarkup]. This is an easy method to show a keyboard to the user.
 class Keyboard extends ReplyKeyboardMarkup {
+  /// Creates a `Keyboard` object with no buttons. You can add buttons using the [add] method.
+  ///
+  /// ```dart
+  /// // Create a new keyboard.
+  /// var keyboard = Keyboard();
+  ///
+  /// // Add a button with the text "Hello World!".
+  /// keyboard.addText("Hello World!");
+  ///
+  /// // Send the keyboard with the message "Hello World!".
+  /// ctx.api.sendMessage(ctx.id, "Hello World!", replyMarkup: keyboard);
+  /// ```
   Keyboard() : super(keyboard: [[]]);
 
   /// Adds a Row of [KeyboardButton] to the keyboard.
