@@ -1,3 +1,6 @@
+/// This file contains all the types used in the library.
+///
+/// The types are split into multiple files, each file containing a single type.
 library types;
 
 import '../../televerse.dart';

@@ -7,6 +7,7 @@ class MessageContext extends Context with MessageMixin, ManagementMixin {
   /// The incoming message.
   Message message;
 
+  /// Constructs a new [MessageContext].
   MessageContext(
     RawAPI api,
     this.message, {

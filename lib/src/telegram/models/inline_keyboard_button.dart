@@ -37,6 +37,9 @@ class InlineKeyboardButton {
   /// Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Available only in private chats between a user and the bot.
   WebAppInfo? webAppInfo;
 
+  /// This object represents one button of an inline keyboard.
+  ///
+  /// The inline keyboard consists of a row of buttons, each represented by an [InlineKeyboardButton] object. You can use the various fields to specify the behavior of the button.
   InlineKeyboardButton({
     required this.text,
     this.url,
@@ -49,6 +52,7 @@ class InlineKeyboardButton {
     this.webAppInfo,
   });
 
+  /// Creates an [InlineKeyboardButton] from JSON object
   factory InlineKeyboardButton.fromJson(Map<String, dynamic> json) {
     return InlineKeyboardButton(
       text: json['text'],
@@ -69,6 +73,7 @@ class InlineKeyboardButton {
     );
   }
 
+  /// Converts an [InlineKeyboardButton] to JSON object
   Map<String, dynamic> toJson() {
     return {
       'text': text,

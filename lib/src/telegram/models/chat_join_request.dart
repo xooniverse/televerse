@@ -22,9 +22,10 @@ class ChatJoinRequest {
   /// Since Bot API 6.5
   ///
   /// Identifier of a private chat with the user who sent the join request. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot can use this identifier for 24 hours to send messages until the join request is processed, assuming no other administrator contacted the user.
-  int userChatId;
+  final int userChatId;
 
-  ChatJoinRequest({
+  /// Creates a new [ChatJoinRequest] object.
+  const ChatJoinRequest({
     required this.chat,
     required this.user,
     required this.date,
@@ -33,6 +34,7 @@ class ChatJoinRequest {
     required this.userChatId,
   });
 
+  /// Creates a new [ChatJoinRequest] object from json.
   factory ChatJoinRequest.fromJson(Map<String, dynamic> json) {
     return ChatJoinRequest(
       chat: Chat.fromJson(json['chat']),
@@ -46,6 +48,7 @@ class ChatJoinRequest {
     );
   }
 
+  /// Converts a [ChatJoinRequest] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson() {
     return {
       'chat': chat.toJson(),

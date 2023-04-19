@@ -4,6 +4,7 @@ part of models;
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016 for static stickers and after 06 July, 2019 for animated stickers. Older clients will ignore them.
 class InlineQueryResultCachedSticker extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.sticker]
   @override
   InlineQueryResultType get type => InlineQueryResultType.sticker;
 
@@ -16,6 +17,7 @@ class InlineQueryResultCachedSticker extends InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the sticker
   InputMessageContent? inputMessageContent;
 
+  /// Constructs an [InlineQueryResultCachedSticker] object
   InlineQueryResultCachedSticker({
     required this.stickerFileId,
     required String id,
@@ -23,6 +25,7 @@ class InlineQueryResultCachedSticker extends InlineQueryResult {
     this.inputMessageContent,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultCachedSticker] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -34,6 +37,7 @@ class InlineQueryResultCachedSticker extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultCachedSticker] object from a JSON map
   factory InlineQueryResultCachedSticker.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultCachedSticker(
       stickerFileId: json['sticker_file_id'] as String,

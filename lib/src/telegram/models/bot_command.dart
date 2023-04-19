@@ -8,11 +8,13 @@ class BotCommand {
   /// Description of the command, 3-256 characters.
   final String description;
 
+  /// Creates a new [BotCommand] object.
   BotCommand({
     required this.command,
     required this.description,
   });
 
+  /// Creates a new [BotCommand] object from json.
   static BotCommand fromJson(Map<String, dynamic> json) {
     return BotCommand(
       command: json['command']!,
@@ -20,6 +22,7 @@ class BotCommand {
     );
   }
 
+  /// Converts a [BotCommand] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson() {
     return {
       'command': command,

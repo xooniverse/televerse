@@ -3,7 +3,6 @@ part of models;
 /// Represents a chat member that owns the chat and has all administrator privileges.
 class ChatMemberAdministrator implements ChatMember {
   /// The member's status in the chat, always “creator”
-
   @override
   ChatMemberStatus status = ChatMemberStatus.administrator;
 
@@ -53,6 +52,7 @@ class ChatMemberAdministrator implements ChatMember {
   /// Custom title for this user
   String? customTitle;
 
+  /// Creates a new [ChatMemberAdministrator] object.
   ChatMemberAdministrator({
     required this.user,
     required this.canBeEdited,
@@ -71,6 +71,7 @@ class ChatMemberAdministrator implements ChatMember {
     this.customTitle,
   });
 
+  /// Converts this object to json.
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -93,6 +94,7 @@ class ChatMemberAdministrator implements ChatMember {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a new [ChatMemberAdministrator] object from json.
   factory ChatMemberAdministrator.fromJson(Map<String, dynamic> json) {
     return ChatMemberAdministrator(
       user: User.fromJson(json['user']),

@@ -25,6 +25,7 @@ class InlineQueryResultCachedAudio extends InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the voice message
   InputMessageContent? inputMessageContent;
 
+  /// Constructs an [InlineQueryResultCachedAudio] objectA
   InlineQueryResultCachedAudio({
     required this.audioFileId,
     required String id,
@@ -35,6 +36,7 @@ class InlineQueryResultCachedAudio extends InlineQueryResult {
     this.inputMessageContent,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultCachedAudio] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -49,6 +51,7 @@ class InlineQueryResultCachedAudio extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultCachedAudio] object from a JSON map
   factory InlineQueryResultCachedAudio.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultCachedAudio(
       audioFileId: json['audio_file_id'] as String,

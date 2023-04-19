@@ -62,6 +62,7 @@ class InputInvoiceMessageContent extends InputMessageContent {
   /// Optional. Pass True if the final price depends on the shipping method
   bool? isFlexible;
 
+  /// Constructs an [InputInvoiceMessageContent] object
   InputInvoiceMessageContent({
     required this.title,
     required this.description,
@@ -85,6 +86,7 @@ class InputInvoiceMessageContent extends InputMessageContent {
     this.isFlexible,
   });
 
+  /// Converts an [InputInvoiceMessageContent] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -111,6 +113,7 @@ class InputInvoiceMessageContent extends InputMessageContent {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InputInvoiceMessageContent] object from a JSON map
   factory InputInvoiceMessageContent.fromJson(Map<String, dynamic> json) {
     return InputInvoiceMessageContent(
       title: json['title'] as String,

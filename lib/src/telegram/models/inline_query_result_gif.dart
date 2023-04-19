@@ -41,6 +41,7 @@ class InlineQueryResultGif extends InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the GIF animation
   InputMessageContent? inputMessageContent;
 
+  /// Constructs an [InlineQueryResultGif] object
   InlineQueryResultGif({
     required this.gifUrl,
     required this.thumbnailUrl,
@@ -57,6 +58,7 @@ class InlineQueryResultGif extends InlineQueryResult {
     this.inputMessageContent,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultGif] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -77,6 +79,7 @@ class InlineQueryResultGif extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultGif] object from a JSON map
   factory InlineQueryResultGif.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultGif(
       gifUrl: json['gif_url'],

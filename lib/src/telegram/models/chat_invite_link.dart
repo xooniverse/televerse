@@ -31,6 +31,7 @@ class ChatInviteLink {
   /// Optional. Number of pending join requests created using this link
   int? pendingMemberCount;
 
+  /// Creates a new [ChatInviteLink] object.
   ChatInviteLink({
     required this.inviteLink,
     this.creator,
@@ -43,6 +44,7 @@ class ChatInviteLink {
     this.pendingMemberCount,
   });
 
+  /// Creates a new [ChatInviteLink] object from json.
   factory ChatInviteLink.fromJson(Map<String, dynamic> json) {
     return ChatInviteLink(
       inviteLink: json['invite_link'],
@@ -57,6 +59,7 @@ class ChatInviteLink {
     );
   }
 
+  /// Creates a new [ChatInviteLink] object from json.
   Map<String, dynamic> toJson() {
     return {
       'invite_link': inviteLink,

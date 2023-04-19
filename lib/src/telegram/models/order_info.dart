@@ -19,6 +19,8 @@ class OrderInfo {
     required this.email,
     required this.shippingAddress,
   });
+
+  /// Converts a [OrderInfo] object to a JSON object
   Map<String, dynamic> toJson() {
     return {
       'name': name,
@@ -28,6 +30,7 @@ class OrderInfo {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a [OrderInfo] object from a JSON object
   factory OrderInfo.fromJson(Map<String, dynamic> json) {
     return OrderInfo(
       name: json['name']!,

@@ -3,21 +3,22 @@ part of models;
 /// This object represents a phone contact.
 class Contact {
   /// Contact's phone number
-  String phoneNumber;
+  final String phoneNumber;
 
   /// Contact's first name
-  String firstName;
+  final String firstName;
 
   /// Optional. Contact's last name
-  String? lastName;
+  final String? lastName;
 
   /// Optional. Contact's user identifier in Telegram
-  int? userId;
+  final int? userId;
 
   /// Optional. Additional data about the contact in the form of a [vCard](https://en.wikipedia.org/wiki/VCard)
-  String? vcard;
+  final String? vcard;
 
-  Contact({
+  /// Constructs a [Contact] object.
+  const Contact({
     required this.phoneNumber,
     required this.firstName,
     this.lastName,
@@ -25,6 +26,7 @@ class Contact {
     this.vcard,
   });
 
+  /// Creates a [Contact] object from json.
   factory Contact.fromJson(Map<String, dynamic> json) {
     return Contact(
       phoneNumber: json['phone_number']!,
@@ -35,6 +37,7 @@ class Contact {
     );
   }
 
+  /// Converts a [Contact] object to json.
   Map<String, dynamic> toJson() {
     return {
       'phone_number': phoneNumber,

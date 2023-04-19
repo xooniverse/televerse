@@ -2,6 +2,7 @@ part of models;
 
 /// Represents a link to a video animation (H.264/MPEG-4 AVC video without sound). By default, this animated MPEG-4 file will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation.
 class InlineQueryResultMpeg4Gif extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.mpeg4Gif]
   @override
   InlineQueryResultType get type => InlineQueryResultType.mpeg4Gif;
 
@@ -41,6 +42,7 @@ class InlineQueryResultMpeg4Gif extends InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the video animation
   InputMessageContent? inputMessageContent;
 
+  /// Constructs an [InlineQueryResultMpeg4Gif] object
   InlineQueryResultMpeg4Gif({
     required this.mpeg4Url,
     required this.thumbnailUrl,
@@ -57,6 +59,7 @@ class InlineQueryResultMpeg4Gif extends InlineQueryResult {
     this.inputMessageContent,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultMpeg4Gif] object to a JSON object
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -77,6 +80,7 @@ class InlineQueryResultMpeg4Gif extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultMpeg4Gif] object from a JSON object
   factory InlineQueryResultMpeg4Gif.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultMpeg4Gif(
       mpeg4Url: json['mpeg4_url'] as String,

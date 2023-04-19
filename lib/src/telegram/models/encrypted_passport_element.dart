@@ -32,6 +32,7 @@ class EncryptedPassportElement {
   /// Base64-encoded element hash for using in PassportElementErrorUnspecified
   String hash;
 
+  /// Creates a new [EncryptedPassportElement] object.
   EncryptedPassportElement({
     required this.type,
     this.data,
@@ -45,6 +46,7 @@ class EncryptedPassportElement {
     required this.hash,
   });
 
+  /// Creates a new [EncryptedPassportElement] object from json.
   Map<String, dynamic> toJson() {
     return {
       'type': type.toJson(),
@@ -60,6 +62,7 @@ class EncryptedPassportElement {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a new [EncryptedPassportElement] object from json.
   factory EncryptedPassportElement.fromJson(Map<String, dynamic> json) {
     return EncryptedPassportElement(
       type: PassportType.fromJson(json['type']!),

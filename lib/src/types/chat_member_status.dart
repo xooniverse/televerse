@@ -20,13 +20,18 @@ enum ChatMemberStatus {
   /// Member who was kicked from the chat
   kicked("kicked");
 
+  /// The value of this enum.
   final String value;
+
+  /// Constructs a new [ChatMemberStatus].
   const ChatMemberStatus(this.value);
 
+  /// Constructs a new [ChatMemberStatus] from a [String].
   factory ChatMemberStatus.fromJson(String value) {
     return ChatMemberStatus.values.firstWhere((e) => e.value == value);
   }
 
+  /// Converts this [ChatMemberStatus] to a [String].
   Map<String, dynamic> toJson() {
     return {
       'value': value,

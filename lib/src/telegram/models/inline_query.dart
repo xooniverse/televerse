@@ -20,6 +20,7 @@ class InlineQuery {
   /// Optional. Sender location, only for bots that request user location
   Location? location;
 
+  /// Constructs an [InlineQuery] object
   InlineQuery({
     required this.id,
     required this.from,
@@ -29,6 +30,7 @@ class InlineQuery {
     this.location,
   });
 
+  /// Creates an [InlineQuery] object from JSON object
   factory InlineQuery.fromJson(Map<String, dynamic> json) {
     return InlineQuery(
       id: json['id'] as String,
@@ -44,6 +46,7 @@ class InlineQuery {
     );
   }
 
+  /// Converts an [InlineQuery] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'id': id,

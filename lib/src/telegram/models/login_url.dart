@@ -20,6 +20,7 @@ class LoginURL {
   /// Optional. Pass True to request the permission for your bot to send messages to the user.
   bool? requestWriteAccess;
 
+  /// Constructs a [LoginURL] object
   LoginURL({
     required this.url,
     this.forwardText,
@@ -27,6 +28,7 @@ class LoginURL {
     this.requestWriteAccess,
   });
 
+  /// Creates a [LoginURL] object from JSON object
   factory LoginURL.fromJson(Map<String, dynamic> json) {
     return LoginURL(
       url: json['url'],
@@ -36,6 +38,7 @@ class LoginURL {
     );
   }
 
+  /// Converts a [LoginURL] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'url': url,

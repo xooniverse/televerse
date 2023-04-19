@@ -45,6 +45,7 @@ class Poll {
   /// A handy [DateTime] object is available as [closeDateTime] getter
   int? closeDate;
 
+  /// Constructs a [Poll] object
   Poll({
     required this.id,
     required this.question,
@@ -61,6 +62,7 @@ class Poll {
     this.closeDate,
   });
 
+  /// Creates a [Poll] object from JSON object
   factory Poll.fromJson(Map<String, dynamic> json) {
     return Poll(
       id: json['id']!,
@@ -83,6 +85,7 @@ class Poll {
     );
   }
 
+  /// Converts a [Poll] object to a JSON object
   Map<String, dynamic> toJson() {
     return {
       'id': id,

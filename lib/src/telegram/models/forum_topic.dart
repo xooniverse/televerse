@@ -14,6 +14,7 @@ class ForumTopic {
   /// Optional. Unique identifier of the custom emoji shown as the topic icon
   final String? iconCustomEmojiId;
 
+  /// Creates a new [ForumTopic] object.
   ForumTopic({
     required this.messageThreadId,
     required this.name,
@@ -21,6 +22,7 @@ class ForumTopic {
     this.iconCustomEmojiId,
   });
 
+  /// Creates a new [ForumTopic] object from json.
   factory ForumTopic.fromJson(Map<String, dynamic> json) {
     return ForumTopic(
       messageThreadId: json['message_thread_id'] as String,
@@ -30,6 +32,7 @@ class ForumTopic {
     );
   }
 
+  /// Converts a [ForumTopic] object to json.
   Map<String, dynamic> toJson() {
     return {
       'message_thread_id': messageThreadId,

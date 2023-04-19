@@ -5,14 +5,17 @@ class VideoChatParticipantsInvited {
   /// New members that were invited to the video chat
   List<User> users;
 
+  /// Constructs a [VideoChatParticipantsInvited] object
   VideoChatParticipantsInvited({required this.users});
 
+  /// Creates a [VideoChatParticipantsInvited] object from JSON object
   factory VideoChatParticipantsInvited.fromJson(Map<String, dynamic> json) {
     return VideoChatParticipantsInvited(
       users: List<User>.from(json['users'].map((x) => User.fromJson(x))),
     );
   }
 
+  /// Converts a [VideoChatParticipantsInvited] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'users': List<dynamic>.from(users.map((x) => x.toJson())),

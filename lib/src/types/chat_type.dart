@@ -24,12 +24,17 @@ enum ChatType {
   /// Note: Only For Inline Query
   sender("sender");
 
+  /// The value of this enum.
   final String value;
+
+  /// Constructs a new [ChatType].
   const ChatType(this.value);
 
+  /// Constructs a new [ChatType] from a [String].
   factory ChatType.fromJson(String type) {
     return ChatType.values.firstWhere((e) => e.value == type);
   }
 
+  /// Converts this [ChatType] to a [String].
   String toJson() => value;
 }

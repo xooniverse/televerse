@@ -2,6 +2,7 @@ part of models;
 
 /// Represents a link to a photo stored on the Telegram servers. By default, this photo will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo.
 class InlineQueryResultCachedPhoto extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.photo]
   @override
   InlineQueryResultType get type => InlineQueryResultType.photo;
 
@@ -29,6 +30,7 @@ class InlineQueryResultCachedPhoto extends InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the photo
   InputMessageContent? inputMessageContent;
 
+  /// Constructs an [InlineQueryResultCachedPhoto] object
   InlineQueryResultCachedPhoto({
     required this.photoFileId,
     required String id,
@@ -41,6 +43,7 @@ class InlineQueryResultCachedPhoto extends InlineQueryResult {
     this.inputMessageContent,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultCachedPhoto] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -56,6 +59,7 @@ class InlineQueryResultCachedPhoto extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultCachedPhoto] object from a JSON map
   factory InlineQueryResultCachedPhoto.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultCachedPhoto(
       id: json['id'] as String,

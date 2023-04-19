@@ -2,6 +2,7 @@ part of models;
 
 /// Represents a Game.
 class InlineQueryResultGame extends InlineQueryResult {
+  /// Type of the result, must be [InlineQueryResultType.game]
   @override
   InlineQueryResultType get type => InlineQueryResultType.game;
 
@@ -11,12 +12,14 @@ class InlineQueryResultGame extends InlineQueryResult {
   /// Optional. Inline keyboard attached to the message
   InlineKeyboardMarkup? replyMarkup;
 
+  /// Constructs an [InlineQueryResultGame] object
   InlineQueryResultGame({
     required this.gameShortName,
     required String id,
     this.replyMarkup,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultGame] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -27,6 +30,7 @@ class InlineQueryResultGame extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultGame] object from a JSON map
   factory InlineQueryResultGame.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultGame(
       gameShortName: json['game_short_name'] as String,

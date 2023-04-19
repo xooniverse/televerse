@@ -8,11 +8,13 @@ class PassportData {
   /// Encrypted credentials required to decrypt the data
   EncryptedCredentials credentials;
 
+  /// Constructs a [PassportData] object
   PassportData({
     required this.data,
     required this.credentials,
   });
 
+  /// Converts a [PassportData] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'data': data.map((e) => e.toJson()).toList(),
@@ -20,6 +22,7 @@ class PassportData {
     };
   }
 
+  /// Creates a [PassportData] object from JSON object
   factory PassportData.fromJson(Map<String, dynamic> json) {
     return PassportData(
       data: (json['data'] as List)

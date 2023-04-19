@@ -7,6 +7,7 @@ class InlineQueryContext extends Context with InlineQueryMixin {
   /// The incoming inline query.
   InlineQuery query;
 
+  /// Constructs a new [InlineQueryContext].
   InlineQueryContext(
     RawAPI t,
     this.query, {

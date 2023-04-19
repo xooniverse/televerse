@@ -41,12 +41,17 @@ enum PassportType {
   /// Personal Details of the user
   personalDetails("personal_details");
 
+  /// The value of this enum.
   final String value;
+
+  /// Constructs a new [PassportType].
   const PassportType(this.value);
 
+  /// Constructs a new [PassportType] from a [String].
   static PassportType fromJson(String value) {
     return PassportType.values.firstWhere((e) => e.value == value);
   }
 
+  /// Converts this [PassportType] to a [String].
   String toJson() => value;
 }

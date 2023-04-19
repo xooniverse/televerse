@@ -4,6 +4,7 @@ part of models;
 ///
 /// If an InlineQueryResultVideo message contains an embedded video (e.g., YouTube), you must replace its content using input_message_content.
 class InlineQueryResultVideo extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.video]
   @override
   InlineQueryResultType get type => InlineQueryResultType.video;
 
@@ -46,6 +47,7 @@ class InlineQueryResultVideo extends InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the video. This field is required if InlineQueryResultVideo is used to send an HTML-page as a result (e.g., a YouTube video).
   InputMessageContent? inputMessageContent;
 
+  /// Converts [InlineQueryResultVideo] object to a JSON object
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -66,6 +68,7 @@ class InlineQueryResultVideo extends InlineQueryResult {
     }..removeWhere((_, v) => v == null);
   }
 
+  /// Constructs an [InlineQueryResultVideo] object
   InlineQueryResultVideo({
     required this.videoUrl,
     required this.mimeType,
@@ -82,4 +85,29 @@ class InlineQueryResultVideo extends InlineQueryResult {
     this.replyMarkup,
     this.inputMessageContent,
   }) : super(id: id);
+
+  /// Constructs an [InlineQueryResultVideo] from JSON object
+  factory InlineQueryResultVideo.fromJson(Map<String, dynamic> json) {
+    return InlineQueryResultVideo(
+      videoUrl: json['video_url']!,
+      mimeType: json['mime_type']!,
+      thumbnailUrl: json['thumbnail_url']!,
+      title: json['title']!,
+      id: json['id']!,
+      caption: json['caption'],
+      parseMode: ParseMode.fromJson(json['parse_mode']),
+      captionEntities: List<MessageEntity>.from(
+        json['caption_entities']?.map(
+          (e) => MessageEntity.fromJson(e),
+        ),
+      ),
+      videoWidth: json['video_width'],
+      videoHeight: json['video_height'],
+      videoDuration: json['video_duration'],
+      description: json['description'],
+      replyMarkup: InlineKeyboardMarkup.fromJson(json['reply_markup']),
+      inputMessageContent:
+          InputMessageContent.fromJson(json['input_message_content']),
+    );
+  }
 }

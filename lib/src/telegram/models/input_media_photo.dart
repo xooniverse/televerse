@@ -18,6 +18,7 @@ class InputMediaPhoto extends InputMedia {
   /// Optional. Pass True if the photo needs to be covered with a spoiler animation
   final bool? hasSpoiler;
 
+  /// Constructs an [InputMediaPhoto] object
   InputMediaPhoto({
     required super.media,
     this.caption,
@@ -26,6 +27,7 @@ class InputMediaPhoto extends InputMedia {
     this.hasSpoiler,
   });
 
+  /// Converts an [InputMediaPhoto] object to a JSON object
   @override
   Map<String, dynamic> toJson() {
     return {

@@ -20,6 +20,7 @@ class Document {
   /// Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
   int? fileSize;
 
+  /// Creates a new [Document] object.
   Document({
     required this.fileId,
     required this.fileUniqueId,
@@ -29,6 +30,7 @@ class Document {
     this.fileSize,
   });
 
+  /// Creates a new [Document] object from json.
   factory Document.fromJson(Map<String, dynamic> json) {
     return Document(
       fileId: json['file_id']!,
@@ -42,6 +44,7 @@ class Document {
     );
   }
 
+  /// Converts a [Document] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson() {
     return {
       'file_id': fileId,

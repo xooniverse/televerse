@@ -4,6 +4,7 @@ part of models;
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
 class InlineQueryResultContact extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.contact]
   @override
   InlineQueryResultType get type => InlineQueryResultType.contact;
 
@@ -34,6 +35,7 @@ class InlineQueryResultContact extends InlineQueryResult {
   /// Optional. Thumbnail height
   int? thumbnailHeight;
 
+  /// Constructs an [InlineQueryResultContact] object
   InlineQueryResultContact({
     required this.phoneNumber,
     required this.firstName,
@@ -47,6 +49,7 @@ class InlineQueryResultContact extends InlineQueryResult {
     this.thumbnailHeight,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultContact] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -63,6 +66,7 @@ class InlineQueryResultContact extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultContact] object from a JSON map
   factory InlineQueryResultContact.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultContact(
       phoneNumber: json['phone_number'] as String,

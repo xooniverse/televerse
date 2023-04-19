@@ -42,7 +42,7 @@ class WebhookInfo {
     this.allowedUpdates,
   });
 
-  /// Creates a WebhookInfo object from a json [String].
+  /// Creates a WebhookInfo object from json [String].
   factory WebhookInfo.fromJson(Map<String, dynamic> json) {
     return WebhookInfo(
       url: json['url'] as String,
