@@ -2,6 +2,7 @@ part of models;
 
 /// Represents a link to an animated GIF file stored on the Telegram servers. By default, this animated GIF file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with specified content instead of the animation.
 class InlineQueryResultCachedGif extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.gif]
   @override
   InlineQueryResultType get type => InlineQueryResultType.gif;
 
@@ -26,6 +27,7 @@ class InlineQueryResultCachedGif extends InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the GIF animation
   InputMessageContent? inputMessageContent;
 
+  /// Constructs an [InlineQueryResultCachedGif] object
   InlineQueryResultCachedGif({
     required this.gifFileId,
     required String id,
@@ -37,6 +39,7 @@ class InlineQueryResultCachedGif extends InlineQueryResult {
     this.inputMessageContent,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultCachedGif] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -52,6 +55,7 @@ class InlineQueryResultCachedGif extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultCachedGif] object from a JSON map
   factory InlineQueryResultCachedGif.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultCachedGif(
       gifFileId: json['gif_file_id'] as String,

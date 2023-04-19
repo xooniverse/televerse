@@ -23,6 +23,7 @@ class StickerSet {
   /// Optional. Sticker set thumbnail in the .WEBP or .TGS format
   PhotoSize? thumbnail;
 
+  /// Constructs a [StickerSet] object
   StickerSet({
     required this.name,
     required this.title,
@@ -33,6 +34,7 @@ class StickerSet {
     this.thumbnail,
   });
 
+  /// Creates a [StickerSet] object from JSON object
   factory StickerSet.fromJson(Map<String, dynamic> json) {
     return StickerSet(
       name: json['name'] as String,

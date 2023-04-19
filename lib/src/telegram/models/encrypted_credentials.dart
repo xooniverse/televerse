@@ -11,12 +11,14 @@ class EncryptedCredentials {
   /// Base64-encoded secret, encrypted with the bot's public RSA key, required for data decryption
   String secret;
 
+  /// Creates a new [EncryptedCredentials] object.
   EncryptedCredentials({
     required this.data,
     required this.hash,
     required this.secret,
   });
 
+  /// Creates a new [EncryptedCredentials] object from json.
   Map<String, dynamic> toJson() {
     return {
       'data': data,
@@ -25,6 +27,7 @@ class EncryptedCredentials {
     };
   }
 
+  /// Creates a new [EncryptedCredentials] object from json.
   factory EncryptedCredentials.fromJson(Map<String, dynamic> json) {
     return EncryptedCredentials(
       data: json['data']!,

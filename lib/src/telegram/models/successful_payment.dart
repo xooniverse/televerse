@@ -23,6 +23,7 @@ class SuccessfulPayment {
   /// Provider payment identifier
   String providerPaymentChargeId;
 
+  /// Constructs a [SuccessfulPayment] object
   SuccessfulPayment({
     required this.currency,
     required this.totalAmount,
@@ -33,6 +34,7 @@ class SuccessfulPayment {
     required this.providerPaymentChargeId,
   });
 
+  /// Converts a [SuccessfulPayment] object to a JSON object
   Map<String, dynamic> toJson() {
     return {
       'currency': currency,
@@ -45,6 +47,7 @@ class SuccessfulPayment {
     }..removeWhere((_, v) => v == null);
   }
 
+  /// Creates a [SuccessfulPayment] object from a JSON object
   factory SuccessfulPayment.fromJson(Map<String, dynamic> json) {
     return SuccessfulPayment(
       currency: json['currency']!,

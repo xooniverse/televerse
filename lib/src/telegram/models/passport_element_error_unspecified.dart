@@ -8,6 +8,7 @@ class PassportElementErrorUnspecified extends PassportElementError {
   /// Base64-encoded element hash
   final String elementHash;
 
+  /// Constructs a [PassportElementErrorUnspecified] object
   const PassportElementErrorUnspecified({
     required String source,
     required PassportType type,
@@ -18,6 +19,7 @@ class PassportElementErrorUnspecified extends PassportElementError {
           type: type,
         );
 
+  /// Converts a [PassportElementErrorUnspecified] object to JSON object
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -28,6 +30,7 @@ class PassportElementErrorUnspecified extends PassportElementError {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a [PassportElementErrorUnspecified] object from JSON object
   factory PassportElementErrorUnspecified.fromJson(Map<String, dynamic> json) {
     return PassportElementErrorUnspecified(
       source: json['source']!,

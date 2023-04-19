@@ -46,6 +46,7 @@ class ChatPermissions {
   /// True, if the user is allowed to send voice notes
   final bool? canSendVoiceNotes;
 
+  /// Creates a new [ChatPermissions] object.
   const ChatPermissions({
     this.canSendMessages,
     this.canSendPolls,
@@ -63,6 +64,7 @@ class ChatPermissions {
     this.canSendVoiceNotes,
   });
 
+  /// Creates a new [ChatPermissions] object from json [String].
   factory ChatPermissions.fromJson(Map<String, dynamic> json) {
     return ChatPermissions(
       canSendMessages: json['can_send_messages'],
@@ -82,7 +84,8 @@ class ChatPermissions {
     );
   }
 
-  Map toJson() {
+  /// Converts a [ChatPermissions] to a [Map] for JSON encoding.
+  Map<String, dynamic> toJson() {
     return {
       'can_send_messages': canSendMessages,
       'can_send_polls': canSendPolls,

@@ -17,6 +17,7 @@ class KeyboardButtonRequestUser {
     this.userIsPremium,
   });
 
+  /// Creates a new [KeyboardButtonRequestUser] from a JSON object.
   factory KeyboardButtonRequestUser.fromJson(Map<String, dynamic> json) {
     return KeyboardButtonRequestUser(
       requestId: json['request_id']!,
@@ -25,6 +26,7 @@ class KeyboardButtonRequestUser {
     );
   }
 
+  /// Generates a JSON object from this object.
   Map<String, dynamic> toJson() {
     return {
       'request_id': requestId,

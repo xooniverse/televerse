@@ -277,4 +277,10 @@ void main() {
     final res = await bot.api.setMyCommands(commands, scope: scope);
     expect(res, true);
   });
+
+  test("ID Equality", () {
+    final id1 = ChatID(123);
+    final id2 = ChatID(123);
+    expect(id1 == id2, true);
+  });
 }

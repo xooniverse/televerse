@@ -20,6 +20,7 @@ class Game {
   /// Optional. Animation that will be displayed in the game message in chats. Upload via [BotFather](https://t.me/botfather).
   Animation? animation;
 
+  /// Constructs a [Game] object
   Game({
     required this.title,
     required this.description,
@@ -29,6 +30,7 @@ class Game {
     this.animation,
   });
 
+  /// De-serializes a [Game] object from a JSON map
   factory Game.fromJson(Map<String, dynamic> json) {
     return Game(
       title: json['title'] as String,
@@ -46,6 +48,7 @@ class Game {
     );
   }
 
+  /// Serializes a [Game] object to a JSON map
   Map<String, dynamic> toJson() {
     return {
       'title': title,

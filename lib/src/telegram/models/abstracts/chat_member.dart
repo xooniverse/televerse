@@ -8,11 +8,18 @@ abstract class ChatMember {
   /// Information about the user
   final User user;
 
+  /// Creates a new [ChatMember] object.
+  ///
+  /// [status] is the member's status.
+  ///
+  /// [user] is information about the user.
   const ChatMember({
     required this.status,
     required this.user,
   });
 
+  /// Creates a new [ChatMember] object from a JSON object.
+  /// This method decides which [ChatMember] subclass to use based on the [status] field.
   static ChatMember fromJson(Map<String, dynamic> json) {
     switch (json['status'] as String) {
       case 'creator':
@@ -32,6 +39,7 @@ abstract class ChatMember {
     }
   }
 
+  /// Converts a [ChatMember] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson() {
     return {
       'status': status.value,

@@ -6,6 +6,7 @@ class CallbackQueryContext extends Context with CallbackQueryMixin {
   /// The incoming callback query.
   CallbackQuery query;
 
+  /// Constructs a new [CallbackQueryContext].
   CallbackQueryContext(
     RawAPI t,
     this.query, {
@@ -27,5 +28,6 @@ class CallbackQueryContext extends Context with CallbackQueryMixin {
   /// The user of the query.
   User? get from => message?.from;
 
+  /// The list of regex matches.
   List<RegExpMatch>? matches;
 }

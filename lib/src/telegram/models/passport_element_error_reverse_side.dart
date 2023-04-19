@@ -8,6 +8,7 @@ class PassportElementErrorReverseSide extends PassportElementError {
   /// Base64-encoded hash of the file with the reverse side of the document
   final String fileHash;
 
+  /// Constructs a [PassportElementErrorReverseSide] object
   const PassportElementErrorReverseSide({
     required String source,
     required PassportType type,
@@ -18,6 +19,7 @@ class PassportElementErrorReverseSide extends PassportElementError {
           type: type,
         );
 
+  /// Converts a [PassportElementErrorReverseSide] object to JSON object
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -28,6 +30,7 @@ class PassportElementErrorReverseSide extends PassportElementError {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a [PassportElementErrorReverseSide] object from JSON object
   factory PassportElementErrorReverseSide.fromJson(Map<String, dynamic> json) {
     return PassportElementErrorReverseSide(
       source: json['source']!,

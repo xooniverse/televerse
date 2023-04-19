@@ -25,6 +25,7 @@ class CallbackQuery {
   /// Optional. Short name of a Game to be returned, serves as the unique identifier for the game
   String? gameShortName;
 
+  /// Creates a new CallbackQuery object.
   CallbackQuery({
     required this.id,
     required this.user,
@@ -35,6 +36,7 @@ class CallbackQuery {
     this.gameShortName,
   });
 
+  /// Creates a new CallbackQuery object from a JSON [Map].
   factory CallbackQuery.fromJson(Map<String, dynamic> json) {
     return CallbackQuery(
       id: json['id'],
@@ -48,6 +50,7 @@ class CallbackQuery {
     );
   }
 
+  /// Creates a list of CallbackQuery objects from a JSON encoded List.
   Map<String, dynamic> toJson() {
     return {
       'id': id,

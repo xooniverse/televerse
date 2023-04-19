@@ -11,12 +11,14 @@ class ForceReply extends ReplyMarkup {
   /// Optional. Use this parameter if you want to force reply from specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message.
   bool? selective;
 
+  /// Constructs a [ForceReply] object.
   ForceReply({
     this.forceReply = true,
     this.selective,
     this.inputFieldPlaceholder,
   });
 
+  /// Creates a [ForceReply] object from json.
   factory ForceReply.fromJson(Map<String, dynamic> json) {
     return ForceReply(
       forceReply: json['force_reply'],
@@ -25,6 +27,7 @@ class ForceReply extends ReplyMarkup {
     );
   }
 
+  /// Converts a [ForceReply] object to json.
   @override
   Map<String, dynamic> toJson() {
     Map<String, dynamic> data = <String, dynamic>{};

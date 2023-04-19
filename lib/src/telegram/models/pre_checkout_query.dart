@@ -23,6 +23,7 @@ class PreCheckoutQuery {
   ///  Optional. Order info provided by the user
   OrderInfo? orderInfo;
 
+  /// Constructs a [PreCheckoutQuery] object
   PreCheckoutQuery({
     required this.id,
     required this.from,
@@ -33,6 +34,7 @@ class PreCheckoutQuery {
     this.orderInfo,
   });
 
+  /// Converts a [PreCheckoutQuery] object to a JSON object
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -45,6 +47,7 @@ class PreCheckoutQuery {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a [PreCheckoutQuery] object from a JSON object
   factory PreCheckoutQuery.fromJson(Map<String, dynamic> json) {
     return PreCheckoutQuery(
       id: json['id']!,

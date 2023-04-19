@@ -256,7 +256,7 @@ mixin MessageMixin on Context {
 
   /// Reply with a Media Group to the user.
   ///
-  /// Provide a list of [InputMedia] as [media]. Use the [InputMedia.fromFile] or [InputMedia.fromUrl] or [InputMedia.fromFileId]
+  /// Provide a list of [InputMedia] as [media].
   /// constructors to create an [InputMedia] from a file or a URL or a file ID.
   Future<List<Message>> replyWithMediaGroup(
     List<InputMedia> media, {

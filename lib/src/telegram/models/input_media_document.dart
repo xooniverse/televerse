@@ -2,7 +2,7 @@ part of models;
 
 /// Represents a general file to be sent.
 class InputMediaDocument extends InputMedia {
-  /// Type of the result, must be document
+  /// Type of the result, must be [InputMediaType.document]
   @override
   final InputMediaType type = InputMediaType.document;
 
@@ -21,6 +21,7 @@ class InputMediaDocument extends InputMedia {
   /// Optional. Disables automatic server-side content type detection for files uploaded using multipart/form-data. Always True, if the document is sent as part of an album.
   final bool? disableContentTypeDetection;
 
+  /// Constructs an [InputMediaDocument] object
   const InputMediaDocument({
     required super.media,
     this.thumbnail,
@@ -30,6 +31,7 @@ class InputMediaDocument extends InputMedia {
     this.disableContentTypeDetection,
   });
 
+  /// Converts an [InputMediaDocument] object to a JSON object
   @override
   Map<String, dynamic> toJson() {
     return {

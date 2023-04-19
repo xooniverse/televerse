@@ -18,5 +18,9 @@ void main(List<String> args) {
     ctx.reply("Your message has $letterCount letters.");
   });
 
+  bot.command('who', (ctx) {
+    ctx.reply("I'm ${bot.me.firstName}");
+  });
+
   bot.start();
 }

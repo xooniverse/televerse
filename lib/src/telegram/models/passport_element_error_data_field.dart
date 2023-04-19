@@ -11,6 +11,7 @@ class PassportElementErrorDataField extends PassportElementError {
   /// Base64-encoded data hash
   final String dataHash;
 
+  /// Constructs a [PassportElementErrorDataField] object
   const PassportElementErrorDataField({
     required String source,
     required PassportType type,
@@ -22,6 +23,7 @@ class PassportElementErrorDataField extends PassportElementError {
           type: type,
         );
 
+  /// Creates a [PassportElementErrorDataField] object from JSON object
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -33,6 +35,7 @@ class PassportElementErrorDataField extends PassportElementError {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a [PassportElementErrorDataField] object from JSON object
   factory PassportElementErrorDataField.fromJson(Map<String, dynamic> json) {
     return PassportElementErrorDataField(
       source: json['source']!,

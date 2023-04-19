@@ -8,11 +8,13 @@ class ResponseParameters {
   /// Optional. In case of exceeding flood control, the number of seconds left to wait before the request can be repeated
   final int? retryAfter;
 
+  /// Constructs a [ResponseParameters] object
   const ResponseParameters({
     this.migrateToChatId,
     this.retryAfter,
   });
 
+  /// Creates a [ResponseParameters] object from JSON object
   factory ResponseParameters.fromJson(Map<String, dynamic> json) {
     return ResponseParameters(
       migrateToChatId: json['migrate_to_chat_id'] as int?,
@@ -20,6 +22,7 @@ class ResponseParameters {
     );
   }
 
+  /// Converts a [ResponseParameters] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'migrate_to_chat_id': migrateToChatId,

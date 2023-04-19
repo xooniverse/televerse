@@ -26,6 +26,7 @@ class InputVenueMessageContent extends InputMessageContent {
   /// Optional. Google Places type of the venue. ([See supported types](https://developers.google.com/places/web-service/supported_types))
   String? googlePlaceType;
 
+  /// Constructs an [InputVenueMessageContent] object
   InputVenueMessageContent({
     required this.latitude,
     required this.longitude,
@@ -37,6 +38,7 @@ class InputVenueMessageContent extends InputMessageContent {
     this.googlePlaceType,
   });
 
+  /// Converts an [InputVenueMessageContent] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -51,6 +53,7 @@ class InputVenueMessageContent extends InputMessageContent {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Converts a JSON map to an [InputVenueMessageContent] object
   factory InputVenueMessageContent.fromJson(Map<String, dynamic> json) {
     return InputVenueMessageContent(
       latitude: json['latitude'] as double,

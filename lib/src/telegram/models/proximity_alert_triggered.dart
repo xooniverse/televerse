@@ -11,12 +11,14 @@ class ProximityAlertTriggered {
   /// The distance between the users
   int distance;
 
+  /// Constructs a [ProximityAlertTriggered] object
   ProximityAlertTriggered({
     required this.traveler,
     required this.watcher,
     required this.distance,
   });
 
+  /// Creates a [ProximityAlertTriggered] object from JSON object
   factory ProximityAlertTriggered.fromJson(Map<String, dynamic> json) {
     return ProximityAlertTriggered(
       traveler: User.fromJson(json['traveler']!),
@@ -25,6 +27,7 @@ class ProximityAlertTriggered {
     );
   }
 
+  /// Converts a [ProximityAlertTriggered] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'traveler': traveler.toJson(),

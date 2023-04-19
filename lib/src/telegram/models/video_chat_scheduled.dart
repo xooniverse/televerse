@@ -7,16 +7,19 @@ class VideoChatScheduled {
   /// Note: You can also use the [DateTime] object getter as [startDateTime]
   int startDate;
 
+  /// Constructs a [VideoChatScheduled] object
   VideoChatScheduled({
     required this.startDate,
   });
 
+  /// Creates a [VideoChatScheduled] object from JSON object
   factory VideoChatScheduled.fromJson(Map<String, dynamic> json) {
     return VideoChatScheduled(
       startDate: json['start_date']!,
     );
   }
 
+  /// Converts a [VideoChatScheduled] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'start_date': startDate,

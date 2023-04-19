@@ -47,7 +47,10 @@ enum UpdateType {
   /// Unknow update type
   unknown("unknown");
 
+  /// The value of this enum.
   final String type;
+
+  /// Constructs a new [UpdateType].
   const UpdateType(this.type);
 
   /// Check if the update is a message update
@@ -92,6 +95,7 @@ enum UpdateType {
   /// Check if the update is a chat join request update
   bool get isChatJoinRequest => this == UpdateType.chatJoinRequest;
 
+  /// Constructs a new [UpdateType] from a [String].
   factory UpdateType.fromJson(String type) {
     return UpdateType.values.firstWhere((e) => e.type == type);
   }

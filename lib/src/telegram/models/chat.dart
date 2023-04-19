@@ -86,6 +86,7 @@ class Chat {
   /// Optional. True, if aggressive anti-spam checks are enabled in the supergroup. The field is only available to chat administrators. Returned only in getChat.
   bool? hasAggressiveAntiSpamEnabled;
 
+  /// Constructs a [Chat] object.
   Chat({
     required this.id,
     required this.type,
@@ -117,6 +118,7 @@ class Chat {
     this.hasAggressiveAntiSpamEnabled,
   });
 
+  /// Creates a [Chat] object from json.
   factory Chat.fromJson(Map<String, dynamic> json) {
     return Chat(
       id: json['id'] as int,
@@ -159,6 +161,7 @@ class Chat {
     );
   }
 
+  /// Converts a [Chat] object to json.
   Map<String, dynamic> toJson() {
     return {
       'id': id,

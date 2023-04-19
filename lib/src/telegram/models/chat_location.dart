@@ -8,11 +8,13 @@ class ChatLocation {
   /// Location address; 1-64 characters, as defined by the chat owner
   final String address;
 
-  ChatLocation({
+  /// Creates a new [ChatLocation] object.
+  const ChatLocation({
     required this.location,
     required this.address,
   });
 
+  /// Creates a new [ChatLocation] object from json.
   factory ChatLocation.fromJson(Map<String, dynamic> json) {
     return ChatLocation(
       location: Location.fromJson(json['location'] as Map<String, dynamic>),
@@ -20,6 +22,7 @@ class ChatLocation {
     );
   }
 
+  /// Converts a [ChatLocation] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson() {
     return {
       'location': location.toJson(),

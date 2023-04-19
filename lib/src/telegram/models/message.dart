@@ -300,6 +300,7 @@ class Message {
     this.writeAccessAllowed,
   });
 
+  /// Creates a [Message] object from json map.
   factory Message.fromJson(Map<String, dynamic> json) {
     return Message(
       messageId: json['message_id'],
@@ -543,12 +544,13 @@ class Message {
       ? null
       : DateTime.fromMillisecondsSinceEpoch(forwardDate! * 1000);
 
-  /// Returns [true] if the message is a command
+  /// Returns true if the message is a command
   bool get isCommand => entities != null && entities!.isNotEmpty
       ? entities!.first.type == MessageEntityType.botCommand &&
           entities!.first.offset == 0
       : false;
 
+  /// Returns the text where the given [MessageEntityType] is found
   String? getEntityText(MessageEntityType type) {
     if (entities == null || entities!.isEmpty) return null;
     if ((text ?? caption) == null) return null;

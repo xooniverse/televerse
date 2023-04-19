@@ -20,6 +20,7 @@ class ShippingAddress {
   /// Address post code
   String postCode;
 
+  /// Constructs a [ShippingAddress] object
   ShippingAddress({
     required this.countryCode,
     required this.state,
@@ -29,6 +30,7 @@ class ShippingAddress {
     required this.postCode,
   });
 
+  /// Converts a [ShippingAddress] object to a JSON object
   Map<String, dynamic> toJson() {
     return {
       'country_code': countryCode,
@@ -40,6 +42,7 @@ class ShippingAddress {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a [ShippingAddress] object from JSON object
   factory ShippingAddress.fromJson(Map<String, dynamic> json) {
     return ShippingAddress(
       countryCode: json['country_code']!,

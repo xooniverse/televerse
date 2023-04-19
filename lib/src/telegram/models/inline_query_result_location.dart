@@ -4,6 +4,7 @@ part of models;
 ///
 ///
 class InlineQueryResultLocation extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.location]
   @override
   InlineQueryResultType get type => InlineQueryResultType.location;
 
@@ -43,6 +44,7 @@ class InlineQueryResultLocation extends InlineQueryResult {
   /// Optional. Thumbnail height
   int? thumbnailHeight;
 
+  /// Constructs an [InlineQueryResultLocation] object
   InlineQueryResultLocation({
     required this.latitude,
     required this.longitude,
@@ -59,6 +61,7 @@ class InlineQueryResultLocation extends InlineQueryResult {
     this.thumbnailHeight,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultLocation] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -78,6 +81,7 @@ class InlineQueryResultLocation extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultLocation] object from a JSON map
   factory InlineQueryResultLocation.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultLocation(
       latitude: json['latitude'] as double,

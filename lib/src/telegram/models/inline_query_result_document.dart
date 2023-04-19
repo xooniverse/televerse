@@ -4,6 +4,7 @@ part of models;
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
 class InlineQueryResultDocument extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.document]
   @override
   InlineQueryResultType get type => InlineQueryResultType.document;
 
@@ -43,6 +44,7 @@ class InlineQueryResultDocument extends InlineQueryResult {
   /// Optional. Thumbnail height
   int? thumbnailHeight;
 
+  /// Constructs an [InlineQueryResultDocument] object
   InlineQueryResultDocument({
     required this.title,
     required this.documentUrl,
@@ -59,6 +61,7 @@ class InlineQueryResultDocument extends InlineQueryResult {
     this.thumbnailHeight,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultDocument] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -78,6 +81,7 @@ class InlineQueryResultDocument extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultDocument] object from a JSON map
   factory InlineQueryResultDocument.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultDocument(
       title: json['title'] as String,

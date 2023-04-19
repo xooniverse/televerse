@@ -16,13 +16,15 @@ class PassportFile {
   /// You can get the [DateTime] object as [fileDateTime] getter.
   final int fileDate;
 
-  PassportFile({
+  /// Constructs a [PassportFile] object
+  const PassportFile({
     required this.fileId,
     required this.fileUniqueId,
     required this.fileSize,
     required this.fileDate,
   });
 
+  /// Creates a [PassportFile] object from JSON object
   factory PassportFile.fromJson(Map<String, dynamic> json) {
     return PassportFile(
       fileId: json['file_id']!,
@@ -32,6 +34,7 @@ class PassportFile {
     );
   }
 
+  /// Converts a [PassportFile] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'file_id': fileId,
@@ -41,6 +44,7 @@ class PassportFile {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Returns the [DateTime] object of [fileDate].
   /// [DateTime] object of [fileDate].
   DateTime get fileDateTime =>
       DateTime.fromMillisecondsSinceEpoch(fileDate * 1000);

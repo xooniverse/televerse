@@ -2,6 +2,7 @@ part of models;
 
 /// Represents a link to a video file stored on the Telegram servers. By default, this video file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the video.
 class InlineQueryResultCachedVideo extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.video]
   @override
   InlineQueryResultType get type => InlineQueryResultType.video;
 
@@ -29,6 +30,7 @@ class InlineQueryResultCachedVideo extends InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the video
   InputMessageContent? inputMessageContent;
 
+  /// Constructs an [InlineQueryResultCachedVideo] object
   InlineQueryResultCachedVideo({
     required this.videoFileId,
     required this.title,
@@ -41,6 +43,7 @@ class InlineQueryResultCachedVideo extends InlineQueryResult {
     this.inputMessageContent,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultCachedVideo] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -56,6 +59,7 @@ class InlineQueryResultCachedVideo extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultCachedVideo] object from a JSON map
   factory InlineQueryResultCachedVideo.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultCachedVideo(
       videoFileId: json['video_file_id'] as String,

@@ -8,8 +8,10 @@ class UserProfilePhotos {
   /// Requested profile pictures (in up to 4 sizes each)
   List<List<PhotoSize>> photos;
 
+  /// Constructs a [UserProfilePhotos] object
   UserProfilePhotos({required this.totalCount, required this.photos});
 
+  /// Creates a [UserProfilePhotos] object from JSON object
   factory UserProfilePhotos.fromJson(Map<String, dynamic> json) {
     return UserProfilePhotos(
       totalCount: json['total_count'],
@@ -18,6 +20,7 @@ class UserProfilePhotos {
     );
   }
 
+  /// Converts a [UserProfilePhotos] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'total_count': totalCount,

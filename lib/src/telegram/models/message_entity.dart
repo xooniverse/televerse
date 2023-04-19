@@ -40,6 +40,7 @@ class MessageEntity {
   /// Optional. For “custom_emoji” only, unique identifier of the custom emoji. Use getCustomEmojiStickers to get full information about the sticker
   String? customEmojiId;
 
+  /// Constructs a [MessageEntity] object
   MessageEntity({
     required this.type,
     required this.offset,
@@ -50,6 +51,7 @@ class MessageEntity {
     this.customEmojiId,
   });
 
+  /// Converts a [MessageEntity] object to a JSON object
   factory MessageEntity.fromJson(Map<String, dynamic> json) {
     return MessageEntity(
       type: MessageEntityType.fromJson(json['type']),
@@ -62,6 +64,7 @@ class MessageEntity {
     );
   }
 
+  /// Converts a [MessageEntity] object to a JSON object
   Map<String, dynamic> toJson() {
     return {
       'type': type.type,

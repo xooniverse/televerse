@@ -2,6 +2,18 @@ part of televerse;
 
 /// The [Keyboard] class can be used to represent a [ReplyKeyboardMarkup]. This is an easy method to show a keyboard to the user.
 class Keyboard extends ReplyKeyboardMarkup {
+  /// Creates a `Keyboard` object with no buttons. You can add buttons using the [add] method.
+  ///
+  /// ```dart
+  /// // Create a new keyboard.
+  /// var keyboard = Keyboard();
+  ///
+  /// // Add a button with the text "Hello World!".
+  /// keyboard.addText("Hello World!");
+  ///
+  /// // Send the keyboard with the message "Hello World!".
+  /// ctx.api.sendMessage(ctx.id, "Hello World!", replyMarkup: keyboard);
+  /// ```
   Keyboard() : super(keyboard: [[]]);
 
   /// Adds a Row of [KeyboardButton] to the keyboard.
@@ -69,5 +81,77 @@ class Keyboard extends ReplyKeyboardMarkup {
   Keyboard row() {
     keyboard.add([]);
     return this;
+  }
+
+  /// Requests the user to select a user from the list.
+  ///
+  /// [text] is the text to show on the button.
+  ///
+  /// [requestId] is the signed 32-bit identifier of the request.
+  ///
+  /// [userIsBot] is an optional parameter. Pass True to request a bot, pass False to request a regular user. If not specified, no additional restrictions are applied.
+  ///
+  /// [userIsPremium] is an optional parameter. Pass True to request a premium user, pass False to request a non-premium user. If not specified, no additional restrictions are applied.
+  Keyboard requestUser({
+    required String text,
+    required int requestId,
+    bool? userIsBot,
+    bool? userIsPremium,
+  }) {
+    return add(
+      KeyboardButton(
+        text: text,
+        requestUser: KeyboardButtonRequestUser(
+          requestId: requestId,
+          userIsBot: userIsBot,
+          userIsPremium: userIsPremium,
+        ),
+      ),
+    );
+  }
+
+  /// Requests the user to select a chat from the list.
+  ///
+  /// [text] is the text to show on the button.
+  ///
+  /// [requestId] is the signed 32-bit identifier of the request.
+  ///
+  /// [chatIsChannel] Pass True to request a channel chat, pass False to request a group or a supergroup chat.
+  ///
+  /// [chatHasUsername] Optional. Pass True to request a supergroup or a channel with a username, pass False to request a chat without a username. If not specified, no additional restrictions are applied.
+  ///
+  /// [chatIsCreated] Optional. Pass True to request a chat owned by the user. Otherwise, no additional restrictions are applied.
+  ///
+  /// [userAdministratorRights] Optional. A JSON-serialized object listing the required administrator rights of the user in the chat. If not specified, no additional restrictions are applied.
+  ///
+  /// [botAdministratorRights] Optional. A JSON-serialized object listing the required administrator rights of the bot in the chat. The rights must be a subset of user_administrator_rights. If not specified, no additional restrictions are applied.
+  ///
+  /// [botIsMember] Optional. Pass True to request a chat with the bot as a member. Otherwise, no additional restrictions are applied.
+  Keyboard requestChat({
+    required String text,
+    required int requestId,
+    bool chatIsChannel = false,
+    bool? chatIsForum,
+    bool? chatHasUsername,
+    bool? chatIsCreated,
+    ChatAdministratorRights? userAdministratorRights,
+    ChatAdministratorRights? botAdministratorRights,
+    bool? botIsMember,
+  }) {
+    return add(
+      KeyboardButton(
+        text: text,
+        requestChat: KeyboardButtonRequestChat(
+          requestId: requestId,
+          chatIsChannel: chatIsChannel,
+          chatIsForum: chatIsForum,
+          chatHasUsername: chatHasUsername,
+          chatIsCreated: chatIsCreated,
+          userAdministratorRights: userAdministratorRights,
+          botAdministratorRights: botAdministratorRights,
+          botIsMember: botIsMember,
+        ),
+      ),
+    );
   }
 }

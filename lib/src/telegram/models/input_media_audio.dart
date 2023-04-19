@@ -2,6 +2,7 @@ part of models;
 
 /// Represents an audio file to be treated as music to be sent.
 class InputMediaAudio extends InputMedia {
+  /// Type of the result, must be [InputMediaType.audio]
   @override
   InputMediaType get type => InputMediaType.audio;
 
@@ -26,6 +27,7 @@ class InputMediaAudio extends InputMedia {
   /// Optional. Title of the audio
   final String? title;
 
+  /// Constructs an [InputMediaAudio] object
   InputMediaAudio({
     required super.media,
     this.thumbnail,
@@ -37,6 +39,7 @@ class InputMediaAudio extends InputMedia {
     this.title,
   });
 
+  /// Converts an [InputMediaAudio] object to a JSON object
   @override
   Map<String, dynamic> toJson() {
     return {

@@ -1,23 +1,23 @@
 part of types;
 
-/// Type of the entity. Currently, can be: one of [mention, hashtag, cashtag, botCommand, url, email, phoneNumber, bold, italic, underline, strikethrough, spoiler, code, pre, textLink, textMention, customEmoji]
-/// - mention - (@username)
-/// - hashtag - (#hashtag),
-/// - cashtag - ($USD),
-/// - botC  ommand - (/start@jobs_bot),
-/// - url - (https://telegram.org),
-/// - email - (do-not-reply@telegram.org),
-/// - phoneNumber - (+1-212-555-0123),
-/// - bold - (bold text),
-/// - italic - (italic text),
-/// - underline - (underlined text),
-/// - strikethrough - (strikethrough text),
-/// - spoiler - (spoiler message),
-/// - code - (monowidth string),
-/// - pre - (monowidth block),
-/// - textLink - (for clickable text URLs),
-/// - textMention - (for users without usernames),
-/// - customEmoji - (for inline custom emoji stickers)
+/// Type of the entity. Currently, can be: one of
+/// - [mention] - (@username)
+/// - [hashtag] - (#hashtag),
+/// - [cashtag] - ($USD),
+/// - [botCommand] - (/start@jobs_bot),
+/// - [url] - (https://telegram.org),
+/// - [email] - (do-not-reply@telegram.org),
+/// - [phoneNumber] - (+1-212-555-0123),
+/// - [bold] - (bold text),
+/// - [italic] - (italic text),
+/// - [underline] - (underlined text),
+/// - [strikethrough] - (strikethrough text),
+/// - [spoiler] - (spoiler message),
+/// - [code] - (monowidth string),
+/// - [pre] - (monowidth block),
+/// - [textLink] - (for clickable text URLs),
+/// - [textMention] - (for users without usernames),
+/// - [customEmoji] - (for inline custom emoji stickers)
 enum MessageEntityType {
   /// Mention - (@username)
   mention("mention"),
@@ -71,9 +71,13 @@ enum MessageEntityType {
   customEmoji("custom_emoji"),
   ;
 
+  /// The value of this enum.
   final String type;
+
+  /// Constructs a new [MessageEntityType].
   const MessageEntityType(this.type);
 
+  /// Constructs a [MessageEntityType] from a [type].
   factory MessageEntityType.fromJson(String type) {
     return MessageEntityType.values.firstWhere((e) => e.type == type);
   }
