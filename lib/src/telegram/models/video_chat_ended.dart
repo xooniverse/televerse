@@ -7,14 +7,17 @@ class VideoChatEnded {
   /// [Duration] object is available as [durationTime] getter
   int duration;
 
+  /// Constructs a [VideoChatEnded] object
   VideoChatEnded({required this.duration});
 
+  /// Creates a [VideoChatEnded] object from JSON object
   factory VideoChatEnded.fromJson(Map<String, dynamic> json) {
     return VideoChatEnded(
       duration: json['duration'],
     );
   }
 
+  /// Converts a [VideoChatEnded] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'duration': duration,

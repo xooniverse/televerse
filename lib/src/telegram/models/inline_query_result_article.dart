@@ -2,6 +2,7 @@ part of models;
 
 /// Represents a link to an article or web page.
 class InlineQueryResultArticle extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.article]
   @override
   InlineQueryResultType get type => InlineQueryResultType.article;
 
@@ -32,6 +33,7 @@ class InlineQueryResultArticle extends InlineQueryResult {
   /// Optional. Thumbnail height
   int? thumbnailHeight;
 
+  /// This object represents a link to an article or web page.A
   InlineQueryResultArticle({
     required this.title,
     required this.inputMessageContent,
@@ -45,6 +47,7 @@ class InlineQueryResultArticle extends InlineQueryResult {
     this.thumbnailHeight,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultArticle] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -62,6 +65,7 @@ class InlineQueryResultArticle extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// De-serializes a [InlineQueryResultArticle] object from a JSON map
   factory InlineQueryResultArticle.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultArticle(
       title: json['title'] as String,

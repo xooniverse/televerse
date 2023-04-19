@@ -17,6 +17,7 @@ class ChosenInlineResult {
   /// The query that was used to obtain the result
   String query;
 
+  /// Creates a new [ChosenInlineResult] object.
   ChosenInlineResult({
     required this.resultId,
     required this.from,
@@ -25,6 +26,7 @@ class ChosenInlineResult {
     required this.query,
   });
 
+  /// Converts a [ChosenInlineResult] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson() {
     return {
       'result_id': resultId,
@@ -35,6 +37,7 @@ class ChosenInlineResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a new [ChosenInlineResult] object from json.
   factory ChosenInlineResult.fromJson(Map<String, dynamic> json) {
     return ChosenInlineResult(
       resultId: json['result_id'] as String,

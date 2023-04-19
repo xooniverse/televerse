@@ -14,6 +14,7 @@ class InputContactMessageContent extends InputMessageContent {
   /// Optional. Additional data about the contact in the form of a [vCard](https://en.wikipedia.org/wiki/VCard), 0-2048 bytes
   String? vcard;
 
+  /// Constructs an [InputContactMessageContent] object
   InputContactMessageContent({
     required this.phoneNumber,
     required this.firstName,
@@ -21,6 +22,7 @@ class InputContactMessageContent extends InputMessageContent {
     this.vcard,
   });
 
+  /// Converts an [InputContactMessageContent] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -31,6 +33,7 @@ class InputContactMessageContent extends InputMessageContent {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InputContactMessageContent] object from a JSON map
   factory InputContactMessageContent.fromJson(Map<String, dynamic> json) {
     return InputContactMessageContent(
       phoneNumber: json['phone_number'] as String,

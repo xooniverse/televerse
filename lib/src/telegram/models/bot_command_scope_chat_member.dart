@@ -2,6 +2,7 @@ part of models;
 
 /// Represents the scope of bot commands, covering a specific member of a group or supergroup chat.
 class BotCommandScopeChatMember implements BotCommandScope {
+  /// Scope type, always be [BotCommandScopeType.chatMember]
   @override
   BotCommandScopeType get type => BotCommandScopeType.chatMember;
 
@@ -11,11 +12,13 @@ class BotCommandScopeChatMember implements BotCommandScope {
   /// Unique identifier of the target user
   int userId;
 
+  /// Creates a new [BotCommandScopeChatMember] object.
   BotCommandScopeChatMember({
     required this.chatId,
     required this.userId,
   });
 
+  /// Creates a new [BotCommandScopeChatMember] object from json.
   factory BotCommandScopeChatMember.fromJson(Map<String, dynamic> json) {
     return BotCommandScopeChatMember(
       chatId: ID.create(json['chat_id']),
@@ -23,6 +26,7 @@ class BotCommandScopeChatMember implements BotCommandScope {
     );
   }
 
+  /// Converts a [BotCommandScopeChatMember] to a [Map] for JSON encoding.
   @override
   Map<String, dynamic> toJson() {
     return {

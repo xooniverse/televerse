@@ -22,6 +22,7 @@ class ChatMemberUpdated {
   /// Optional. Chat invite link, which was used by the user to join the chat; for joining by invite link events only.
   final ChatInviteLink? inviteLink;
 
+  /// Creates a new [ChatMemberUpdated] object.
   const ChatMemberUpdated({
     required this.chat,
     required this.from,
@@ -31,6 +32,7 @@ class ChatMemberUpdated {
     this.inviteLink,
   });
 
+  /// Creates a new [ChatMemberUpdated] object from json.
   factory ChatMemberUpdated.fromJson(Map<String, dynamic> json) {
     return ChatMemberUpdated(
       chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
@@ -47,6 +49,7 @@ class ChatMemberUpdated {
     );
   }
 
+  /// Converts a [ChatMemberUpdated] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson() {
     return {
       'chat': chat.toJson(),

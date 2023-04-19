@@ -33,6 +33,7 @@ class InputMediaVideo extends InputMedia {
   /// Optional. Pass True if the video needs to be covered with a spoiler animation
   final bool? hasSpoiler;
 
+  /// Constructs an [InputMediaVideo] object
   InputMediaVideo({
     required super.media,
     this.thumbnail,
@@ -46,6 +47,7 @@ class InputMediaVideo extends InputMedia {
     this.hasSpoiler,
   });
 
+  /// Converts an [InputMediaVideo] object to a JSON object
   @override
   Map<String, dynamic> toJson() {
     return {

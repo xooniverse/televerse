@@ -8,9 +8,11 @@ abstract class InlineQueryResult {
   /// Unique identifier for this result, 1-64 Bytes
   String id;
 
+  /// Creates a new [InlineQueryResult] object.
   InlineQueryResult({
     required this.id,
   });
 
+  /// Converts a [InlineQueryResult] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson();
 }

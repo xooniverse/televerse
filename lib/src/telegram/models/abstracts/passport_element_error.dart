@@ -8,11 +8,13 @@ abstract class PassportElementError {
   /// The section of the user's Telegram Passport which has the error
   final PassportType type;
 
+  /// Creates a new [PassportElementError] object.
   const PassportElementError({
     required this.source,
     required this.type,
   });
 
+  /// Converts a [PassportElementError] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson() {
     return {
       'source': source,

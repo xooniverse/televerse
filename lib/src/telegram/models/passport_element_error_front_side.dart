@@ -8,6 +8,7 @@ class PassportElementErrorFrontSide extends PassportElementError {
   /// Base64-encoded hash of the file with the front side of the document
   final String fileHash;
 
+  /// Constructs a [PassportElementErrorFrontSide] object
   const PassportElementErrorFrontSide({
     required String source,
     required PassportType type,
@@ -18,6 +19,7 @@ class PassportElementErrorFrontSide extends PassportElementError {
           type: type,
         );
 
+  /// Converts a [PassportElementErrorFrontSide] object to JSON object
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -28,6 +30,7 @@ class PassportElementErrorFrontSide extends PassportElementError {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a [PassportElementErrorFrontSide] object from JSON object
   factory PassportElementErrorFrontSide.fromJson(Map<String, dynamic> json) {
     return PassportElementErrorFrontSide(
       source: json['source']!,

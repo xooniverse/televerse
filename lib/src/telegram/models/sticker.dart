@@ -47,6 +47,7 @@ class Sticker {
   /// Optional. True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places
   final bool? needsRepainting;
 
+  /// Constructs a [Sticker] object
   const Sticker({
     required this.fileId,
     required this.fileUniqueId,
@@ -65,6 +66,7 @@ class Sticker {
     this.needsRepainting,
   });
 
+  /// Creates a [Sticker] object from JSON object
   factory Sticker.fromJson(Map<String, dynamic> json) {
     return Sticker(
       fileId: json['file_id'] as String,
@@ -92,6 +94,7 @@ class Sticker {
     );
   }
 
+  /// Converts a [Sticker] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'file_id': fileId,

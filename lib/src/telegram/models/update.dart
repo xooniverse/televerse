@@ -68,7 +68,7 @@ class Update {
     this.chatJoinRequest,
   });
 
-  /// Creates a [Update] from a json [Map].
+  /// Creates a [Update] from json [Map].
   static Update fromJson(Map<String, dynamic> json) {
     return Update(
       updateId: json['update_id']!,

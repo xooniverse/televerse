@@ -300,6 +300,7 @@ class Message {
     this.writeAccessAllowed,
   });
 
+  /// Creates a [Message] object from json map.
   factory Message.fromJson(Map<String, dynamic> json) {
     return Message(
       messageId: json['message_id'],
@@ -549,6 +550,7 @@ class Message {
           entities!.first.offset == 0
       : false;
 
+  /// Returns the text where the given [MessageEntityType] is found
   String? getEntityText(MessageEntityType type) {
     if (entities == null || entities!.isEmpty) return null;
     if ((text ?? caption) == null) return null;

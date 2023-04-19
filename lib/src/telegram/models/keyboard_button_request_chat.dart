@@ -41,7 +41,7 @@ class KeyboardButtonRequestChat {
     this.botIsMember,
   });
 
-  /// Creates a [KeyboardButtonRequestChat] from a json
+  /// Creates a [KeyboardButtonRequestChat] from JSON object
   factory KeyboardButtonRequestChat.fromJson(Map<String, dynamic> json) {
     return KeyboardButtonRequestChat(
       requestId: json['request_id']!,
@@ -59,7 +59,7 @@ class KeyboardButtonRequestChat {
     );
   }
 
-  /// Converts a [KeyboardButtonRequestChat] to a json
+  /// Converts a [KeyboardButtonRequestChat] to JSON object
   Map<String, dynamic> toJson() {
     return {
       'request_id': requestId,

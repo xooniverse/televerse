@@ -20,6 +20,7 @@ class InputLocationMessageContent extends InputMessageContent {
   /// Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
   int? proximityAlertRadius;
 
+  /// Constructs an [InputLocationMessageContent] object
   InputLocationMessageContent({
     required this.latitude,
     required this.longitude,
@@ -29,6 +30,7 @@ class InputLocationMessageContent extends InputMessageContent {
     this.proximityAlertRadius,
   });
 
+  /// Converts an [InputLocationMessageContent] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -41,6 +43,7 @@ class InputLocationMessageContent extends InputMessageContent {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InputLocationMessageContent] object from a JSON map
   factory InputLocationMessageContent.fromJson(Map<String, dynamic> json) {
     return InputLocationMessageContent(
       latitude: json['latitude'] as double,

@@ -7,16 +7,19 @@ class MessageAutoDeleteTimerChanged {
   /// Note: you can also use the getter [timeInDuration] to get the time in [Duration] object
   int messageAutoDeleteTime;
 
+  /// Constructs a [MessageAutoDeleteTimerChanged] object
   MessageAutoDeleteTimerChanged({
     required this.messageAutoDeleteTime,
   });
 
+  /// Creates a [MessageAutoDeleteTimerChanged] object from JSON object
   factory MessageAutoDeleteTimerChanged.fromJson(Map<String, dynamic> json) {
     return MessageAutoDeleteTimerChanged(
       messageAutoDeleteTime: json['message_auto_delete_time']!,
     );
   }
 
+  /// Converts a [MessageAutoDeleteTimerChanged] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'message_auto_delete_time': messageAutoDeleteTime,

@@ -23,6 +23,7 @@ class Venue {
   /// Optional. Google Places type of the venue. (See supported types.)
   String? googlePlaceType;
 
+  /// Constructs a [Venue] object
   Venue({
     required this.location,
     required this.title,
@@ -33,6 +34,7 @@ class Venue {
     this.googlePlaceType,
   });
 
+  /// Creates a [Venue] object from JSON object
   factory Venue.fromJson(Map<String, dynamic> json) {
     return Venue(
       location: Location.fromJson(json['location']!),
@@ -45,6 +47,7 @@ class Venue {
     );
   }
 
+  /// Converts a [Venue] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'location': location.toJson(),

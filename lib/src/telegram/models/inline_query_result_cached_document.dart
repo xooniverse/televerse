@@ -4,6 +4,7 @@ part of models;
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
 class InlineQueryResultCachedDocument extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.document]
   @override
   InlineQueryResultType get type => InlineQueryResultType.document;
 
@@ -31,6 +32,7 @@ class InlineQueryResultCachedDocument extends InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the file
   InputMessageContent? inputMessageContent;
 
+  /// Constructs an [InlineQueryResultCachedDocument] object
   InlineQueryResultCachedDocument({
     required this.documentFileId,
     required this.title,
@@ -43,6 +45,7 @@ class InlineQueryResultCachedDocument extends InlineQueryResult {
     this.inputMessageContent,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultCachedDocument] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -59,6 +62,7 @@ class InlineQueryResultCachedDocument extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultCachedDocument] object from a JSON map
   factory InlineQueryResultCachedDocument.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultCachedDocument(
       documentFileId: json['document_file_id'] as String,

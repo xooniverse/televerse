@@ -1,4 +1,4 @@
-/// ** GAMES **
+/// ## GAMES
 ///
 /// Your bot can offer users HTML5 games to play solo or to compete against each
 /// other in groups and one-on-one chats. Create games via @BotFather using the

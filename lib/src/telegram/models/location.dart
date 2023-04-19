@@ -20,6 +20,7 @@ class Location {
   /// Optional. The maximum distance for proximity alerts about approaching another chat member, in meters. For sent live locations only.
   int? proximityAlertRadius;
 
+  /// Constructs a [Location] object
   Location({
     required this.longitude,
     required this.latitude,
@@ -29,6 +30,7 @@ class Location {
     this.proximityAlertRadius,
   });
 
+  /// Constructs a [Location] object from a JSON map
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
       longitude: json['longitude']!,
@@ -40,6 +42,7 @@ class Location {
     );
   }
 
+  /// Converts a [Location] object to a JSON map
   Map<String, dynamic> toJson() {
     return {
       'longitude': longitude,

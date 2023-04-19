@@ -1,4 +1,4 @@
-/// **Telegram Passport**
+/// ## Telegram Passport
 ///
 /// Telegram Passport is a unified authorization method for services that require
 /// personal identification. Users can upload their documents once, then instantly

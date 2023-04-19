@@ -10,16 +10,19 @@ class ChatMemberLeft implements ChatMember {
   @override
   final User user;
 
+  /// Creates a new [ChatMemberLeft] object.
   const ChatMemberLeft({
     required this.user,
   });
 
+  /// Creates a new [ChatMemberLeft] object from json.
   factory ChatMemberLeft.fromJson(Map<String, dynamic> json) {
     return ChatMemberLeft(
       user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
   }
 
+  /// Converts a [ChatMemberLeft] to a [Map] for JSON encoding.
   @override
   Map<String, dynamic> toJson() {
     return {

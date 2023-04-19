@@ -5,7 +5,7 @@ part of models;
 /// - [InputMediaDocument]
 /// - [InputMediaAudio]
 /// - [InputMediaPhoto]
-/// - [InputMediaVideo].
+/// - [InputMediaVideo]
 abstract class InputMedia {
   /// Type of the result.
   InputMediaType get type;
@@ -17,9 +17,11 @@ abstract class InputMedia {
   /// [More info on Sending Files »](https://core.telegram.org/bots/api#sending-files).
   final InputFile media;
 
+  /// Creates a new [InputMedia] object.
   const InputMedia({
     required this.media,
   });
 
+  /// Converts a [InputMedia] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson();
 }

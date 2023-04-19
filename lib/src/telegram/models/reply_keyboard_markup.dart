@@ -23,6 +23,7 @@ class ReplyKeyboardMarkup extends ReplyMarkup {
   /// Optional. Requests clients to always show the keyboard when the regular keyboard is hidden. Defaults to false, in which case the custom keyboard can be hidden and opened with a keyboard icon.
   bool? isPersistent;
 
+  /// Constructs a [ReplyKeyboardMarkup] object
   ReplyKeyboardMarkup({
     required this.keyboard,
     this.resizeKeyboard,
@@ -32,6 +33,7 @@ class ReplyKeyboardMarkup extends ReplyMarkup {
     this.isPersistent,
   });
 
+  /// Constructs a [ReplyKeyboardMarkup] object from a json [String]
   factory ReplyKeyboardMarkup.fromJson(Map<String, dynamic> json) {
     return ReplyKeyboardMarkup(
       keyboard: List<List<KeyboardButton>>.from(json['keyboard'].map((x) =>
@@ -44,6 +46,7 @@ class ReplyKeyboardMarkup extends ReplyMarkup {
     );
   }
 
+  /// Converts a [ReplyKeyboardMarkup] object to a json [String]
   @override
   Map<String, dynamic> toJson() {
     return {

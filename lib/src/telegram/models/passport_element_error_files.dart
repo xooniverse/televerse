@@ -8,6 +8,7 @@ class PassportElementErrorFiles extends PassportElementError {
   /// List of base64-encoded file hashes
   final List<String> fileHashes;
 
+  /// Constructs a [PassportElementErrorFiles] object
   const PassportElementErrorFiles({
     required String source,
     required PassportType type,
@@ -18,6 +19,7 @@ class PassportElementErrorFiles extends PassportElementError {
           type: type,
         );
 
+  /// Converts a [PassportElementErrorFiles] object to JSON object
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -28,6 +30,7 @@ class PassportElementErrorFiles extends PassportElementError {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a [PassportElementErrorFiles] object from JSON object
   factory PassportElementErrorFiles.fromJson(Map<String, dynamic> json) {
     return PassportElementErrorFiles(
       source: json['source']!,

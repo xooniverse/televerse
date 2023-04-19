@@ -31,6 +31,7 @@ class Audio {
   /// Optional. Thumbnail of the album cover to which the music file belongs
   PhotoSize? thumbnail;
 
+  /// Creates a new [Audio] object.
   Audio({
     required this.fileId,
     required this.fileUniqueId,
@@ -43,6 +44,7 @@ class Audio {
     this.thumbnail,
   });
 
+  /// Creates a new [Audio] object from a JSON [Map].
   factory Audio.fromJson(Map<String, dynamic> json) {
     return Audio(
       fileId: json['file_id']!,
@@ -59,6 +61,7 @@ class Audio {
     );
   }
 
+  /// Converts a [Audio] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson() {
     return {
       'file_id': fileId,

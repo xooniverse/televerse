@@ -17,6 +17,7 @@ class PhotoSize {
   /// Optional. File size in bytes
   int? fileSize;
 
+  /// Constructs a [PhotoSize] object
   PhotoSize({
     required this.fileId,
     required this.fileUniqueId,
@@ -25,6 +26,7 @@ class PhotoSize {
     this.fileSize,
   });
 
+  /// Creates a [PhotoSize] object from JSON object
   factory PhotoSize.fromJson(Map<String, dynamic> json) {
     return PhotoSize(
       fileId: json['file_id'],
@@ -35,6 +37,7 @@ class PhotoSize {
     );
   }
 
+  /// Converts a [PhotoSize] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'file_id': fileId,

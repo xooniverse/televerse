@@ -3,7 +3,6 @@ part of models;
 /// Represents a chat member that is under certain restrictions in the chat. Supergroups only.
 class ChatMemberRestricted implements ChatMember {
   /// The member's status in the chat, always “creator”
-
   @override
   final ChatMemberStatus status = ChatMemberStatus.restricted;
 
@@ -43,9 +42,9 @@ class ChatMemberRestricted implements ChatMember {
   /// You can also use [untilDateTime] to get the date as a [DateTime] object
   final int untilDate;
 
-  /// Since Bot API 6.5
-
   /// True, if the user is allowed to send audios
+  ///
+  /// Since Bot API 6.5
   final bool canSendAudios;
 
   /// True, if the user is allowed to send documents
@@ -63,6 +62,7 @@ class ChatMemberRestricted implements ChatMember {
   /// True, if the user is allowed to send voice notes
   final bool canSendVoiceNotes;
 
+  /// Creates a new [ChatMemberRestricted] object.
   const ChatMemberRestricted({
     required this.user,
     required this.isMember,
@@ -96,6 +96,7 @@ class ChatMemberRestricted implements ChatMember {
   /// True if the restriction is forever
   bool get isForever => untilDate == 0;
 
+  /// Converts a [ChatMemberRestricted] to a [Map] for JSON encoding.
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -120,6 +121,7 @@ class ChatMemberRestricted implements ChatMember {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a [ChatMemberRestricted] object from a [Map] of JSON data.
   factory ChatMemberRestricted.fromJson(Map<String, dynamic> json) {
     return ChatMemberRestricted(
       user: User.fromJson(json['user']),

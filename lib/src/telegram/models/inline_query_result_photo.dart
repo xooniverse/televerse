@@ -2,6 +2,7 @@ part of models;
 
 /// Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo.
 class InlineQueryResultPhoto extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.photo]
   @override
   InlineQueryResultType get type => InlineQueryResultType.photo;
 
@@ -38,6 +39,7 @@ class InlineQueryResultPhoto extends InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the photo
   InputMessageContent? inputMessageContent;
 
+  /// Constructs an [InlineQueryResultPhoto] object
   InlineQueryResultPhoto({
     required this.photoUrl,
     required this.thumbnailUrl,
@@ -53,6 +55,7 @@ class InlineQueryResultPhoto extends InlineQueryResult {
     this.inputMessageContent,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultPhoto] object to a JSON object
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -71,6 +74,7 @@ class InlineQueryResultPhoto extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultPhoto] object from a JSON object
   factory InlineQueryResultPhoto.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultPhoto(
       photoUrl: json['photo_url'] as String,

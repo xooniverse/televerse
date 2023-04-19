@@ -35,6 +35,7 @@ class User {
   /// Optional. True, if the bot supports inline queries. Returned only in getMe.
   bool? supportsInlineQueries;
 
+  /// Constructs a [User] object
   User({
     required this.id,
     required this.isBot,
@@ -49,6 +50,7 @@ class User {
     this.supportsInlineQueries,
   });
 
+  /// Creates a [User] object from JSON object
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: json['id'],
@@ -65,6 +67,7 @@ class User {
     );
   }
 
+  /// Converts a [User] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'id': id,

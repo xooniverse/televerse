@@ -4,6 +4,7 @@ part of models;
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
 class InlineQueryResultCachedVoice extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.voice]
   @override
   InlineQueryResultType get type => InlineQueryResultType.voice;
 
@@ -28,6 +29,7 @@ class InlineQueryResultCachedVoice extends InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the voice message
   InputMessageContent? inputMessageContent;
 
+  /// Constructs an [InlineQueryResultCachedVoice] object
   InlineQueryResultCachedVoice({
     required this.voiceFileId,
     required this.title,
@@ -39,6 +41,7 @@ class InlineQueryResultCachedVoice extends InlineQueryResult {
     this.inputMessageContent,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultCachedVoice] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -53,6 +56,7 @@ class InlineQueryResultCachedVoice extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultCachedVoice] object from a JSON map
   factory InlineQueryResultCachedVoice.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultCachedVoice(
       voiceFileId: json['voice_file_id'] as String,

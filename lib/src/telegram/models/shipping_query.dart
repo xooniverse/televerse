@@ -13,12 +13,16 @@ class ShippingQuery {
 
   /// User specified shipping address
   ShippingAddress shippingAddress;
+
+  /// Constructs a [ShippingQuery] object
   ShippingQuery({
     required this.id,
     required this.from,
     required this.invoicePayload,
     required this.shippingAddress,
   });
+
+  /// Converts a [ShippingQuery] object to a JSON object
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -28,6 +32,7 @@ class ShippingQuery {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a [ShippingQuery] object from a JSON object
   factory ShippingQuery.fromJson(Map<String, dynamic> json) {
     return ShippingQuery(
       id: json['id']!,

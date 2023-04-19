@@ -31,6 +31,7 @@ class Video {
   /// Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
   int? fileSize;
 
+  /// Constructs a [Video] object
   Video({
     required this.fileId,
     required this.fileUniqueId,
@@ -43,6 +44,7 @@ class Video {
     this.fileSize,
   });
 
+  /// Creates a [Video] object from JSON object
   factory Video.fromJson(Map<String, dynamic> json) {
     return Video(
       fileId: json['file_id']!,
@@ -59,6 +61,7 @@ class Video {
     );
   }
 
+  /// Converts a [Video] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'file_id': fileId,

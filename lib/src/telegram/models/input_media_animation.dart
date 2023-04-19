@@ -1,7 +1,7 @@
 part of models;
 
 class InputMediaAnimation extends InputMedia {
-  /// Type of the result, must be video
+  /// Type of the result, must be [InputMediaType.animation]
   @override
   InputMediaType get type => InputMediaType.animation;
 
@@ -29,6 +29,7 @@ class InputMediaAnimation extends InputMedia {
   /// Optional. Pass True if the animation needs to be covered with a spoiler animation
   final bool? hasSpoiler;
 
+  /// Constructs an [InputMediaAnimation] object
   InputMediaAnimation({
     required super.media,
     this.thumbnail,
@@ -41,6 +42,7 @@ class InputMediaAnimation extends InputMedia {
     this.hasSpoiler,
   });
 
+  /// Converts an [InputMediaAnimation] object to a JSON object
   @override
   Map<String, dynamic> toJson() {
     return {

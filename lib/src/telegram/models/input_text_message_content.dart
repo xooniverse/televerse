@@ -14,6 +14,7 @@ class InputTextMessageContent extends InputMessageContent {
   /// Optional. Disables link previews for links in the sent message
   bool? disableWebPagePreview;
 
+  /// Constructs an [InputTextMessageContent] object
   InputTextMessageContent({
     required this.messageText,
     this.parseMode,
@@ -21,6 +22,7 @@ class InputTextMessageContent extends InputMessageContent {
     this.disableWebPagePreview,
   });
 
+  /// Converts an [InputTextMessageContent] object to a JSON object
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -31,6 +33,7 @@ class InputTextMessageContent extends InputMessageContent {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InputTextMessageContent] object from a JSON object
   factory InputTextMessageContent.fromJson(Map<String, dynamic> json) {
     return InputTextMessageContent(
       messageText: json['message_text'] as String,

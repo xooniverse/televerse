@@ -38,6 +38,7 @@ class ChatAdministratorRights {
   /// Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; supergroups only
   bool? canManageForum;
 
+  /// Creates a new [ChatAdministratorRights] object.
   ChatAdministratorRights({
     required this.isAnonymous,
     required this.canManageChat,
@@ -53,6 +54,7 @@ class ChatAdministratorRights {
     this.canManageForum,
   });
 
+  /// Creates a new [ChatAdministratorRights] object from json.
   factory ChatAdministratorRights.fromJson(Map<String, dynamic> json) {
     return ChatAdministratorRights(
       isAnonymous: json['is_anonymous'] ?? false,
@@ -70,6 +72,7 @@ class ChatAdministratorRights {
     );
   }
 
+  /// Converts a [ChatAdministratorRights] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson() {
     return {
       'is_anonymous': isAnonymous,

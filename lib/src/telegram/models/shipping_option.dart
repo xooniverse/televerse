@@ -11,12 +11,14 @@ class ShippingOption {
   /// List of price portions
   List<LabeledPrice> prices;
 
+  /// Constructs a [ShippingOption] object
   ShippingOption({
     required this.id,
     required this.title,
     required this.prices,
   });
 
+  /// Creates a [ShippingOption] object from JSON object
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -25,6 +27,7 @@ class ShippingOption {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Converts a [ShippingOption] object to JSON object
   factory ShippingOption.fromJson(Map<String, dynamic> json) {
     return ShippingOption(
       id: json['id']!,

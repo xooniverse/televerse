@@ -4,6 +4,7 @@ part of models;
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
 class InlineQueryResultVenue extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.venue]
   @override
   InlineQueryResultType get type => InlineQueryResultType.venue;
 
@@ -46,6 +47,7 @@ class InlineQueryResultVenue extends InlineQueryResult {
   /// Optional. Thumbnail height
   int? thumbnailHeight;
 
+  /// Constructs an [InlineQueryResultVenue] object
   InlineQueryResultVenue({
     required this.latitude,
     required this.longitude,
@@ -63,6 +65,7 @@ class InlineQueryResultVenue extends InlineQueryResult {
     this.thumbnailHeight,
   }) : super(id: id);
 
+  /// Converts an [InlineQueryResultVenue] object to a JSON map
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -83,6 +86,7 @@ class InlineQueryResultVenue extends InlineQueryResult {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Constructs an [InlineQueryResultVenue] object from a JSON map
   factory InlineQueryResultVenue.fromJson(Map<String, dynamic> json) {
     return InlineQueryResultVenue(
       latitude: json['latitude'] as double,

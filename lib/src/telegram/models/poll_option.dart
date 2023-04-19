@@ -8,11 +8,13 @@ class PollOption {
   /// Number of users that voted for this option
   int voterCount;
 
+  /// Constructs a [PollOption] object
   PollOption({
     required this.text,
     required this.voterCount,
   });
 
+  /// Creates a [PollOption] object from JSON object
   factory PollOption.fromJson(Map<String, dynamic> json) {
     return PollOption(
       text: json['text']!,
@@ -20,6 +22,7 @@ class PollOption {
     );
   }
 
+  /// Converts a [PollOption] object to a JSON object
   Map<String, dynamic> toJson() {
     return {
       'text': text,

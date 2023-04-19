@@ -11,12 +11,14 @@ class PollAnswer {
   /// 0-based identifiers of answer options, chosen by the user. May be empty if the user retracted their vote.
   List<int> optionIds;
 
+  /// Constructs a [PollAnswer] object
   PollAnswer({
     required this.pollId,
     required this.user,
     required this.optionIds,
   });
 
+  /// Creates a [PollAnswer] object from JSON object
   factory PollAnswer.fromJson(Map<String, dynamic> json) {
     return PollAnswer(
       pollId: json['poll_id']!,
@@ -25,6 +27,7 @@ class PollAnswer {
     );
   }
 
+  /// Converts a [PollAnswer] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'poll_id': pollId,

@@ -8,6 +8,7 @@ class PassportElementErrorSelfie extends PassportElementError {
   /// Base64-encoded hash of the file with the selfie
   final String fileHash;
 
+  /// Constructs a [PassportElementErrorSelfie] object
   const PassportElementErrorSelfie({
     required String source,
     required PassportType type,
@@ -18,6 +19,7 @@ class PassportElementErrorSelfie extends PassportElementError {
           type: type,
         );
 
+  /// Converts a [PassportElementErrorSelfie] object to JSON object
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -28,6 +30,7 @@ class PassportElementErrorSelfie extends PassportElementError {
     }..removeWhere((key, value) => value == null);
   }
 
+  /// Creates a [PassportElementErrorSelfie] object from JSON object
   factory PassportElementErrorSelfie.fromJson(Map<String, dynamic> json) {
     return PassportElementErrorSelfie(
       source: json['source']!,
