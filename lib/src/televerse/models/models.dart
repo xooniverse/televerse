@@ -1,3 +1,6 @@
+/// ## Televerse Models
+///
+/// This library contains all the models used by Televerse.
 library televerse.models;
 
 import 'dart:io' as io;

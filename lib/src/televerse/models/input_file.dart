@@ -30,6 +30,7 @@ class InputFile {
   /// URL of the file to be sent. Use either this field or fileId to specify a file.
   final Uri? url;
 
+  /// Creates a new [InputFile].
   InputFile({
     this.fileId,
     this.file,
@@ -42,12 +43,16 @@ class InputFile {
     }
   }
 
+  /// Creates a new [InputFile] using a local file.
   factory InputFile.fromFile(io.File file) => InputFile(file: file);
 
+  /// Creates a new [InputFile] using the file url.
   factory InputFile.fromUrl(String url) => InputFile(url: Uri.parse(url));
 
+  /// Creates a new [InputFile] using the File ID on the Telegram Servers.
   factory InputFile.fromFileId(String fileId) => InputFile(fileId: fileId);
 
+  /// Returns the type of the [InputFile].
   InputFileType get type {
     if (fileId != null) {
       return InputFileType.fileId;
@@ -60,7 +65,8 @@ class InputFile {
     }
   }
 
-  String? toJson() {
+  /// Returns the file name of the [InputFile].
+  String toJson() {
     switch (type) {
       case InputFileType.fileId:
         return fileId!;

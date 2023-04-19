@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:televerse/televerse.dart';
 
+/// HttpClient is used to send HTTP requests to the Telegram Bot API.
 class HttpClient {
   /// Send GET request to the given [uri] and return the response body.
   static Future<dynamic> getURI(Uri uri) async {
@@ -70,6 +71,7 @@ class HttpClient {
     }
   }
 
+  /// Handle the given [code] and [message].
   static void _handleException(int code, String message) {
     if (code == 401) {
       throw UnauthorizedException(message);

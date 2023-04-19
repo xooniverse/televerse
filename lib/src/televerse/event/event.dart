@@ -102,6 +102,7 @@ class Event {
     }
   }
 
+  /// Maps the update to the corresponding context.
   T _mapper<T>(Update update) {
     if (T == MessageContext && update.type == UpdateType.message) {
       return MessageContext(

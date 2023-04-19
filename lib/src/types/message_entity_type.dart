@@ -71,9 +71,13 @@ enum MessageEntityType {
   customEmoji("custom_emoji"),
   ;
 
+  /// The value of this enum.
   final String type;
+
+  /// Constructs a new [MessageEntityType].
   const MessageEntityType(this.type);
 
+  /// Constructs a [MessageEntityType] from a [type].
   factory MessageEntityType.fromJson(String type) {
     return MessageEntityType.values.firstWhere((e) => e.type == type);
   }
