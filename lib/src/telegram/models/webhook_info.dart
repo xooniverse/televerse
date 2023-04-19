@@ -29,6 +29,7 @@ class WebhookInfo {
   /// Optional. A list of update types the bot is subscribed to. Defaults to all update types except chat_member
   List<String>? allowedUpdates;
 
+  /// Constructs a WebhookInfo object.
   WebhookInfo({
     required this.url,
     required this.hasCustomCertificate,
@@ -41,6 +42,7 @@ class WebhookInfo {
     this.allowedUpdates,
   });
 
+  /// Creates a WebhookInfo object from a json [String].
   factory WebhookInfo.fromJson(Map<String, dynamic> json) {
     return WebhookInfo(
       url: json['url'] as String,
@@ -56,4 +58,22 @@ class WebhookInfo {
           .toList(),
     );
   }
+
+  /// Get the json representation of this object.
+  Map<String, dynamic> toJson() {
+    return {
+      'url': url,
+      'has_custom_certificate': hasCustomCertificate,
+      'pending_update_count': pendingUpdateCount,
+      'ip_address': ipAddress,
+      'last_error_date': lastErrorDate,
+      'last_error_message': lastErrorMessage,
+      'last_error_network_date': lastErrorNetworkDate,
+      'max_connections': maxConnections,
+      'allowed_updates': allowedUpdates,
+    }..removeWhere((_, v) => v == null);
+  }
+
+  /// Get JSON string of this object.
+  String jsonString() => jsonEncode(this);
 }
