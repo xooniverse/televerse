@@ -1,3 +1,10 @@
+## 1.6.0
+- ⚗️ **BREAKING** - The `allowedUpdates` parameter in the `LongPolling` object now accepts the list of `UpdateType` instead of `String`
+- Added methods `requestChat` and `requestUser` in `Keyboard`
+- Added equality operator (`==`) on `ID`.
+- Added a test to check equality of two Chat IDs.
+- Added missing implementation for `WebhookInfo.toJson` method
+- Added dartdoc comments for almost every bit of the library.
 ## 1.5.6
 - Fixed an issue with `RawAPI.copyMessage` method.
 - Updated the `Televerse.command` method to accept a `String` or `RegExp` as the `command` parameter.
