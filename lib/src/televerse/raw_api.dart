@@ -3379,4 +3379,37 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to change the bot's name. Returns True on success.
+  ///
+  /// Since Bot API 6.7
+  Future<bool> setMyName(String? name, String? languageCode) async {
+    Map<String, dynamic> params = {
+      "name": name,
+      "language_code": languageCode,
+    };
+
+    bool response = await HttpClient.postURI(
+      _buildUri("setMyName"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to get the current bot name for the given user language. Returns [BotName] on success.
+  Future<BotName> getMyName(String? languageCode) async {
+    Map<String, dynamic> params = {
+      "language_code": languageCode,
+    };
+
+    BotName response = BotName.fromJson(
+      await HttpClient.postURI(
+        _buildUri("getMyName"),
+        params,
+      ),
+    );
+
+    return response;
+  }
 }
