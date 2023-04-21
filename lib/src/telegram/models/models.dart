@@ -149,3 +149,4 @@ part 'input_sticker.dart';
 
 // Bot API 6.7
 part 'inline_query_results_button.dart';
+part 'switch_inline_query_chosen_chat.dart';
