@@ -146,3 +146,6 @@ part 'chat_shared.dart';
 part 'bot_description.dart';
 part 'bot_short_description.dart';
 part 'input_sticker.dart';
+
+// Bot API 6.7
+part 'inline_query_results_button.dart';

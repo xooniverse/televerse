@@ -2746,14 +2746,15 @@ class RawAPI {
 
   /// Use this method to send answers to an inline query. On success, True is returned.
   /// No more than 50 results per query are allowed.
+  ///
+  /// [button] - A JSON-serialized object describing a button to be shown above inline query results
   Future<bool> answerInlineQuery(
     String inlineQueryId,
     List<InlineQueryResult> results, {
     int? cacheTime = 300,
     bool? isPersonal,
     String? nextOffset,
-    String? switchPmText,
-    String? switchPmParameter,
+    InlineQueryResultsButton? button,
   }) async {
     Map<String, dynamic> params = {
       "inline_query_id": inlineQueryId,
@@ -2761,8 +2762,7 @@ class RawAPI {
       "cache_time": cacheTime,
       "is_personal": isPersonal,
       "next_offset": nextOffset,
-      "switch_pm_text": switchPmText,
-      "switch_pm_parameter": switchPmParameter,
+      "button": button?.toJson(),
     };
 
     bool response = await HttpClient.getURI(
