@@ -14,6 +14,7 @@ mixin InlineQueryMixin on Context {
     String? nextOffset,
     String? switchPmText,
     String? switchPmParameter,
+    InlineQueryResultsButton? button,
   }) async {
     await api.answerInlineQuery(
       inlineQuery.id,
@@ -21,8 +22,7 @@ mixin InlineQueryMixin on Context {
       cacheTime: cacheTime,
       isPersonal: isPersonal,
       nextOffset: nextOffset,
-      switchPmText: switchPmText,
-      switchPmParameter: switchPmParameter,
+      button: button,
     );
   }
 
@@ -32,8 +32,7 @@ mixin InlineQueryMixin on Context {
     int? cacheTime,
     bool? isPersonal,
     String? nextOffset,
-    String? switchPmText,
-    String? switchPmParameter,
+    InlineQueryResultsButton? button,
   }) async {
     await api.answerInlineQuery(
       inlineQuery.id,
@@ -41,8 +40,7 @@ mixin InlineQueryMixin on Context {
       cacheTime: cacheTime,
       isPersonal: isPersonal,
       nextOffset: nextOffset,
-      switchPmText: switchPmText,
-      switchPmParameter: switchPmParameter,
+      button: button,
     );
   }
 }
