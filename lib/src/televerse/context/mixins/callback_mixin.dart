@@ -38,7 +38,7 @@ mixin CallbackQueryMixin on Context {
   /// Answer the callback query with a URL.
   Future<void> answerWithUrl({
     String? text,
-    String url = '',
+    required String url,
     int cacheTime = 0,
   }) async {
     await api.answerCallbackQuery(
@@ -53,7 +53,7 @@ mixin CallbackQueryMixin on Context {
   /// Answer the callback query with a URL and an alert.
   Future<void> answerWithUrlAndAlert({
     String? text,
-    String url = '',
+    required String url,
     int cacheTime = 0,
   }) async {
     await api.answerCallbackQuery(

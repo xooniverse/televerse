@@ -3,7 +3,6 @@ part of models;
 /// This object defines the criteria used to request a suitable chat. The identifier of the selected chat will be shared with the bot when the corresponding button is pressed.
 ///
 /// https://core.telegram.org/bots/api#keyboardbuttonrequestchat
-
 class KeyboardButtonRequestChat {
   /// Signed 32-bit identifier of the request
   int requestId;

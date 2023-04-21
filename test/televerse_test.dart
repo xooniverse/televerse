@@ -234,12 +234,12 @@ void main() {
     final group = [
       InputMediaPhoto(
         media: InputFile.fromFile(
-          io.File("./example/photo.jpeg"),
+          io.File("./example/assets/photo.jpeg"),
         ),
       ),
       InputMediaPhoto(
         media: InputFile.fromFile(
-          io.File("./example/galaxy.jpeg"),
+          io.File("./example/assets/galaxy.jpeg"),
         ),
       ),
     ];

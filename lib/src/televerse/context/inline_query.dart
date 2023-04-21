@@ -14,6 +14,7 @@ class InlineQueryContext extends Context with InlineQueryMixin {
     required Update update,
   }) : super(t, update: update);
 
+  /// The user who sent the query.
   User get from => query.from;
 
   /// The query string.

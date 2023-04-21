@@ -3257,9 +3257,9 @@ class RawAPI {
   /// - [name] - Sticker set name
   /// - [customEmojiId] - Custom emoji identifier of a sticker from the sticker set; pass an empty string to drop the thumbnail and use the first sticker as the thumbnail.
   Future<bool> setCustomEmojiStickerSetThumbnail(
-    String name,
+    String name, {
     String? customEmojiId,
-  ) async {
+  }) async {
     Map<String, dynamic> params = {
       "name": name,
       "custom_emoji_id": customEmojiId,
@@ -3383,7 +3383,10 @@ class RawAPI {
   /// Use this method to change the bot's name. Returns True on success.
   ///
   /// Since Bot API 6.7
-  Future<bool> setMyName(String? name, String? languageCode) async {
+  Future<bool> setMyName({
+    String? name,
+    String? languageCode,
+  }) async {
     Map<String, dynamic> params = {
       "name": name,
       "language_code": languageCode,
@@ -3398,7 +3401,9 @@ class RawAPI {
   }
 
   /// Use this method to get the current bot name for the given user language. Returns [BotName] on success.
-  Future<BotName> getMyName(String? languageCode) async {
+  Future<BotName> getMyName({
+    String? languageCode,
+  }) async {
     Map<String, dynamic> params = {
       "language_code": languageCode,
     };
