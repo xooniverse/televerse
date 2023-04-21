@@ -17,6 +17,7 @@ class SwitchInlineQueryChosenChat {
   /// Optional. True, if channel chats can be chosen
   final bool? allowChannelChats;
 
+  /// Constructs a [SwitchInlineQueryChosenChat]
   const SwitchInlineQueryChosenChat({
     this.query,
     this.allowUserChats,
