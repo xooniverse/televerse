@@ -31,4 +31,8 @@ void main() async {
       text: "You are $value at Dart",
     );
   });
+
+  bot.command('name', (ctx) {
+    ctx.api.setMyName(name: 'Claire ✨');
+  });
 }
