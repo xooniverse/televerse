@@ -13,6 +13,8 @@ class OrderInfo {
 
   /// User shipping address
   ShippingAddress shippingAddress;
+
+  /// Creates a new [OrderInfo] object.
   OrderInfo({
     required this.name,
     required this.phoneNumber,

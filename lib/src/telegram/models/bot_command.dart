@@ -30,6 +30,7 @@ class BotCommand {
     };
   }
 
+  /// Converts a [BotCommand] instance to a [String].
   @override
   String toString() => json.encode(this);
 }

@@ -4,6 +4,7 @@ part of televerse.context;
 ///
 /// This includes methods like `answer`, `answerWithArticles`.
 mixin InlineQueryMixin on Context {
+  /// The inline query.
   InlineQuery get inlineQuery => update.inlineQuery!;
 
   /// Answer the inline query.
@@ -12,8 +13,6 @@ mixin InlineQueryMixin on Context {
     int? cacheTime,
     bool? isPersonal,
     String? nextOffset,
-    String? switchPmText,
-    String? switchPmParameter,
     InlineQueryResultsButton? button,
   }) async {
     await api.answerInlineQuery(
