@@ -1,3 +1,6 @@
+## 1.7.1
+- [BREAKING] ⚠️ - The parameters `name` and `languageCode` are made positional in the `setMyName` method and the `getMyName` method.
+- Improved documentation.
 ## 1.7.0
 - 🤖 Bot API 6.7 is added! 
 - [Read more here](https://github.com/HeySreelal/televerse/issues/65).
