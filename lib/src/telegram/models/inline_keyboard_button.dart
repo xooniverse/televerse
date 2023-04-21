@@ -37,6 +37,11 @@ class InlineKeyboardButton {
   /// Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Available only in private chats between a user and the bot.
   WebAppInfo? webAppInfo;
 
+  /// Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field
+  ///
+  /// Since Bot API 6.7
+  SwitchInlineQueryChosenChat? switchInlineQueryChosenChat;
+
   /// This object represents one button of an inline keyboard.
   ///
   /// The inline keyboard consists of a row of buttons, each represented by an [InlineKeyboardButton] object. You can use the various fields to specify the behavior of the button.
@@ -50,6 +55,7 @@ class InlineKeyboardButton {
     this.callbackGame,
     this.pay,
     this.webAppInfo,
+    this.switchInlineQueryChosenChat,
   });
 
   /// Creates an [InlineKeyboardButton] from JSON object
@@ -70,6 +76,11 @@ class InlineKeyboardButton {
       webAppInfo: json['web_app_info'] != null
           ? WebAppInfo.fromJson(json['web_app_info'])
           : null,
+      switchInlineQueryChosenChat:
+          json['switch_inline_query_chosen_chat'] != null
+              ? SwitchInlineQueryChosenChat.fromJson(
+                  json['switch_inline_query_chosen_chat'])
+              : null,
     );
   }
 
@@ -85,6 +96,7 @@ class InlineKeyboardButton {
       'callback_game': callbackGame?.toJson(),
       'pay': pay,
       'web_app_info': webAppInfo?.toJson(),
+      'switch_inline_query_chosen_chat': switchInlineQueryChosenChat?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 }

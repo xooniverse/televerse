@@ -1,3 +1,8 @@
+## 1.7.0
+- 🤖 Bot API 6.7 is added! 
+- [Read more here](https://github.com/HeySreelal/televerse/issues/65).
+- [BREAKING] 👨🏻‍🔧 - The `answerInlineQuery` will no longer accept `switchPmParameter` or `switchPmText` parameters.
+- The example files are updated with dartdoc comments.
 ## 1.6.0
 - ⚗️ **BREAKING** - The `allowedUpdates` parameter in the `LongPolling` object now accepts the list of `UpdateType` instead of `String`
 - Added methods `requestChat` and `requestUser` in `Keyboard`

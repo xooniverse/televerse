@@ -22,6 +22,11 @@ class ChatMemberUpdated {
   /// Optional. Chat invite link, which was used by the user to join the chat; for joining by invite link events only.
   final ChatInviteLink? inviteLink;
 
+  /// Optional. True, if the user joined the chat via a chat folder invite link
+  ///
+  /// Since Bot API 6.7
+  final bool? viaChatFolderInviteLink;
+
   /// Creates a new [ChatMemberUpdated] object.
   const ChatMemberUpdated({
     required this.chat,
@@ -30,6 +35,7 @@ class ChatMemberUpdated {
     required this.oldChatMember,
     required this.newChatMember,
     this.inviteLink,
+    this.viaChatFolderInviteLink,
   });
 
   /// Creates a new [ChatMemberUpdated] object from json.
@@ -46,6 +52,7 @@ class ChatMemberUpdated {
           ? null
           : ChatInviteLink.fromJson(
               json['invite_link'] as Map<String, dynamic>),
+      viaChatFolderInviteLink: json['via_chat_folder_invite_link'] as bool?,
     );
   }
 
@@ -58,6 +65,7 @@ class ChatMemberUpdated {
       'old_chat_member': oldChatMember.toJson(),
       'new_chat_member': newChatMember.toJson(),
       'invite_link': inviteLink?.toJson(),
+      'via_chat_folder_invite_link': viaChatFolderInviteLink,
     }..removeWhere((key, value) => value == null);
   }
 
