@@ -366,8 +366,12 @@ class Message {
           ? null
           : User.fromJson(json['left_chat_member']),
       newChatTitle: json['new_chat_title'],
-      newChatPhoto:
-          (json['new_chat_photo'])?.map((e) => PhotoSize.fromJson(e)).toList(),
+      newChatPhoto: json['new_chat_photo'] == null ||
+              (json['new_chat_photo'])?.any((e) => e.runtimeType != PhotoSize)
+          ? null
+          : (json['new_chat_photo'])
+              ?.map((e) => PhotoSize.fromJson(e))
+              .toList(),
       deleteChatPhoto: json['delete_chat_photo'],
       groupChatCreated: json['group_chat_created'],
       supergroupChatCreated: json['supergroup_chat_created'],
