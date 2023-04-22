@@ -4,6 +4,7 @@ part of televerse.models;
 ///
 /// When you want to send a message to a chat, you need to specify the chat id. You can use this class to represent the chat id.
 abstract class ID {
+  /// The id of the chat. It can be an integer or a string.
   dynamic id;
 
   /// Creates a new [ID] object with the passed [id].
@@ -48,6 +49,9 @@ abstract class ID {
   /// Returns the hash code of the [id].
   @override
   int get hashCode => id.hashCode;
+
+  /// Returns the [Chat] object of the chat.
+  Future<Chat> get() => Televerse.instance.api.getChat(this);
 }
 
 /// This class is used to represent a chat id. It is a subclass of [ID].
@@ -77,9 +81,6 @@ class ChatID extends ID {
   factory ChatID.create(int id) {
     return ChatID(id);
   }
-
-  /// Returns the [Chat] object of the chat.
-  Future<Chat> get chat => Televerse.instance.api.getChat(this);
 }
 
 /// This class is used to represent a channel id. It is a subclass of [ID].

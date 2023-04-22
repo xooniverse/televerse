@@ -1,3 +1,48 @@
+/// The Televerse Context library.
+///
+/// Televerse provides a context for each update. This context contains the update and the [RawAPI] instance.
+/// For example, when a message is received, a [MessageContext] is created and passed to the handler. Each context is a subclass of [Context].
+///
+/// Contexts are extremely useful for managing updates. You probably want to send a message to the user who sent the update.
+/// Generally, you would have to get the chat ID from the update and then send the message. However, with a context, you can simply call
+/// [MessageContext.reply] and the message will be sent to the user who sent the update. The methods like [MessageContext.reply] are called
+/// context-aware methods. They are methods that are specific to a context. For example, [MessageContext.reply] is a context-aware method
+/// of [MessageContext]. It is not a method of [Context].
+///
+/// Here's an example:
+/// ```dart
+/// import 'package:televerse/televerse.dart';
+///
+/// Bot bot = Bot("YOUR_BOT_TOKEN");
+///
+/// void main() {
+///  bot.start((ctx) {
+///   ctx.reply("Hello World!");
+///  });
+/// }
+/// ```
+///
+/// This is pretty much equivalent to:
+///
+/// ```dart
+/// import 'package:televerse/televerse.dart';
+///
+/// Bot bot = Bot("YOUR_BOT_TOKEN");
+///
+/// void main() {
+///  bot.start((ctx) {
+///   bot.api.sendMessage(ctx.update.message!.chat.id, "Hello World!");
+///  });
+/// }
+/// ```
+///
+/// ## Different Contexts
+/// Televerse currently supports 3 types of contexts:
+/// - [MessageContext] - This context is used when a message is received.
+/// - [InlineQueryContext] - This context is used when an inline query is received.
+/// - [CallbackQueryContext] - This context is used when a callback query is received.
+///
+/// More context types will be added in the future.
 library televerse.context;
 
 import 'package:televerse/telegram.dart';

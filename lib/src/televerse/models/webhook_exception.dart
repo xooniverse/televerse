@@ -8,6 +8,7 @@ class WebhookException implements Exception {
   /// Creates a WebhookException.
   const WebhookException(this.message);
 
+  /// Returns a string representation of the exception.
   @override
   String toString() => message;
 

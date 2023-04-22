@@ -2,7 +2,7 @@ part of models;
 
 /// Represents a chat member that owns the chat and has all administrator privileges.
 class ChatMemberAdministrator implements ChatMember {
-  /// The member's status in the chat, always “creator”
+  /// The member's status in the chat, always [ChatMemberStatus.administrator]
   @override
   ChatMemberStatus status = ChatMemberStatus.administrator;
 

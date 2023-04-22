@@ -1,3 +1,7 @@
+/// Televerse Event
+///
+/// This library contains the event handling system of Televerse. It contains the [Event] class which is used to handle events.
+/// The [Event] class is extended to [Televerse] class and is used to handle events. The [Event] class contains all the event streams and methods to handle events.
 library televerse.event;
 
 import 'dart:async';
