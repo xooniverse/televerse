@@ -32,7 +32,7 @@ class ShippingOption {
     return ShippingOption(
       id: json['id']!,
       title: json['title']!,
-      prices: (json['prices'] as List)
+      prices: (json['prices'] as List<dynamic>)
           .map((e) => LabeledPrice.fromJson(e as Map<String, dynamic>))
           .toList(),
     );

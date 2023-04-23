@@ -25,7 +25,7 @@ class PassportData {
   /// Creates a [PassportData] object from JSON object
   factory PassportData.fromJson(Map<String, dynamic> json) {
     return PassportData(
-      data: (json['data'] as List)
+      data: (json['data'] as List<dynamic>)
           .map((e) => EncryptedPassportElement.fromJson(e))
           .toList(),
       credentials: EncryptedCredentials.fromJson(json['credentials']!),

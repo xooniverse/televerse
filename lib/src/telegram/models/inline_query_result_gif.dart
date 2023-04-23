@@ -95,11 +95,9 @@ class InlineQueryResultGif extends InlineQueryResult {
       parseMode: json['parse_mode'] != null
           ? ParseMode.fromJson(json['parse_mode'])
           : null,
-      captionEntities: json['caption_entities'] != null
-          ? (json['caption_entities'] as List)
-              .map((e) => MessageEntity.fromJson(e))
-              .toList()
-          : null,
+      captionEntities: (json['caption_entities'] as List<dynamic>?)
+          ?.map((e) => MessageEntity.fromJson(e))
+          .toList(),
       replyMarkup: json['reply_markup'] != null
           ? InlineKeyboardMarkup.fromJson(json['reply_markup'])
           : null,

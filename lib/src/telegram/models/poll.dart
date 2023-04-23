@@ -67,8 +67,9 @@ class Poll {
     return Poll(
       id: json['id']!,
       question: json['question']!,
-      options: List<PollOption>.from(
-          json['options']!.map((x) => PollOption.fromJson(x))),
+      options: (json['options'] as List<dynamic>)
+          .map((x) => PollOption.fromJson(x as Map<String, dynamic>))
+          .toList(),
       totalVoterCount: json['total_voter_count']!,
       isClosed: json['is_closed']!,
       isAnonymous: json['is_anonymous']!,
@@ -76,10 +77,9 @@ class Poll {
       allowsMultipleAnswers: json['allows_multiple_answers']!,
       correctOptionId: json['correct_option_id'],
       explanation: json['explanation'],
-      explanationEntities: json['explanation_entities'] == null
-          ? null
-          : List<MessageEntity>.from(json['explanation_entities']!
-              .map((x) => MessageEntity.fromJson(x))),
+      explanationEntities: (json['explanation_entities'] as List<dynamic>?)
+          ?.map((x) => MessageEntity.fromJson(x as Map<String, dynamic>))
+          .toList(),
       openPeriod: json['open_period'],
       closeDate: json['close_date'],
     );

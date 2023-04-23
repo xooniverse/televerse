@@ -367,8 +367,8 @@ class Message {
           : User.fromJson(json['left_chat_member']),
       newChatTitle: json['new_chat_title'],
       newChatPhoto: (json['new_chat_photo'] as List<dynamic>?)
-              ?.map((e) => PhotoSize.fromJson(e))
-              .toList(),
+          ?.map((e) => PhotoSize.fromJson(e))
+          .toList(),
       deleteChatPhoto: json['delete_chat_photo'],
       groupChatCreated: json['group_chat_created'],
       supergroupChatCreated: json['supergroup_chat_created'],

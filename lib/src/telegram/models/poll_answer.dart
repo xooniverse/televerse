@@ -23,7 +23,7 @@ class PollAnswer {
     return PollAnswer(
       pollId: json['poll_id']!,
       user: User.fromJson(json['user']!),
-      optionIds: List<int>.from(json['option_ids']!),
+      optionIds: List<int>.from(json['option_ids']! as List<dynamic>),
     );
   }
 

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 
 /// This is a general bot that tests different features of the library.
@@ -34,5 +35,33 @@ void main() async {
 
   bot.command('name', (ctx) {
     ctx.api.setMyName(name: 'Claire ✨');
+  });
+
+  bot.filter((ctx) {
+    return ctx.message.videoChatParticipantsInvited != null;
+  }, (ctx) {
+    ctx.reply('Quick! Join the video chat!');
+  });
+
+  bot.filter((ctx) {
+    return ctx.message.videoChatStarted != null;
+  }, (ctx) {
+    ctx.reply('Video chat started!');
+  });
+
+  bot.filter((ctx) {
+    return ctx.message.poll != null;
+  }, (ctx) async {
+    Poll poll = ctx.message.poll!;
+
+    if (poll.type == PollType.quiz) {
+      await ctx.reply('Quiz started!');
+    } else {
+      await ctx.reply('Poll started!');
+    }
+
+    await ctx.reply(
+      "Select one of ${poll.options.map((e) => e.text).join(', ')} to vote.",
+    );
   });
 }

@@ -2,6 +2,9 @@
 - [BREAKING] ⚠️ - The `chat` getter on the `ChatID` class is now replaced to be a method of the `ID` class, and renamed to `get()`.
 - This is to avoid confusion with the `chat` parameter in the `ChatID` class. 
 - Also, now the `get()` method is available on all the `ID` classes - `ChatID`, `SuperGroupID` and `ChannelID`.
+- Fixed an issue that caused the Long Polling to fail.
+- The issue was with the `Message.fromJson` method which was not able to parse the `Message` object when a `newChatPhoto` was present.
+- Thanks to [@deargosep](https://github.com/deargosep) for reporting and fixing this issue.
 ## 1.7.1
 - [BREAKING] ⚠️ - The parameters `name` and `languageCode` are made positional in the `setMyName` method and the `getMyName` method.
 - Improved documentation.
