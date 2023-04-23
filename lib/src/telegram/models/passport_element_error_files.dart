@@ -36,7 +36,7 @@ class PassportElementErrorFiles extends PassportElementError {
       source: json['source']!,
       type: PassportType.fromJson(json['type']!),
       message: json['message']!,
-      fileHashes: List<String>.from(json['file_hashes']!),
+      fileHashes: List<String>.from(json['file_hashes']! as List<dynamic>),
     );
   }
 }

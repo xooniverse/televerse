@@ -11,7 +11,11 @@ class VideoChatParticipantsInvited {
   /// Creates a [VideoChatParticipantsInvited] object from JSON object
   factory VideoChatParticipantsInvited.fromJson(Map<String, dynamic> json) {
     return VideoChatParticipantsInvited(
-      users: List<User>.from(json['users'].map((x) => User.fromJson(x))),
+      users: List<User>.from(
+        (json['users'] as List<dynamic>).map(
+          (x) => User.fromJson(x),
+        ),
+      ),
     );
   }
 

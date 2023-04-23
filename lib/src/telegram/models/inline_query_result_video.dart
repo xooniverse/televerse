@@ -96,11 +96,9 @@ class InlineQueryResultVideo extends InlineQueryResult {
       id: json['id']!,
       caption: json['caption'],
       parseMode: ParseMode.fromJson(json['parse_mode']),
-      captionEntities: List<MessageEntity>.from(
-        json['caption_entities']?.map(
-          (e) => MessageEntity.fromJson(e),
-        ),
-      ),
+      captionEntities: (json['caption_entities'] as List<dynamic>?)
+          ?.map((e) => MessageEntity.fromJson(e))
+          .toList(),
       videoWidth: json['video_width'],
       videoHeight: json['video_height'],
       videoDuration: json['video_duration'],

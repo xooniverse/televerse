@@ -50,7 +50,7 @@ class CallbackQuery {
     );
   }
 
-  /// Creates a list of CallbackQuery objects from a JSON encoded List.
+  /// Converts a CallbackQuery object to JSON.
   Map<String, dynamic> toJson() {
     return {
       'id': id,

@@ -92,11 +92,9 @@ class InlineQueryResultDocument extends InlineQueryResult {
       parseMode: json['parse_mode'] == null
           ? null
           : ParseMode.fromJson(json['parse_mode'] as String),
-      captionEntities: json['caption_entities'] == null
-          ? null
-          : (json['caption_entities'] as List<dynamic>)
-              .map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      captionEntities: (json['caption_entities'] as List<dynamic>?)
+          ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
       description: json['description'] as String?,
       replyMarkup: json['reply_markup'] == null
           ? null

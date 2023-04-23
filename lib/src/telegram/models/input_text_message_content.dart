@@ -40,11 +40,9 @@ class InputTextMessageContent extends InputMessageContent {
       parseMode: json['parse_mode'] == null
           ? null
           : ParseMode.fromJson(json['parse_mode'] as String),
-      entities: json['entities'] == null
-          ? null
-          : (json['entities'] as List)
-              .map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      entities: (json['entities'] as List<dynamic>?)
+          ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
       disableWebPagePreview: json['disable_web_page_preview'] as bool?,
     );
   }

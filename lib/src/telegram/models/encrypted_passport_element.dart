@@ -69,7 +69,7 @@ class EncryptedPassportElement {
       data: json['data'],
       phoneNumber: json['phone_number'],
       email: json['email'],
-      files: (json['files'] as List?)
+      files: (json['files'] as List<dynamic>?)
           ?.map((e) => PassportFile.fromJson(e))
           .toList(),
       frontSide: json['front_side'] != null
@@ -81,7 +81,7 @@ class EncryptedPassportElement {
       selfie: json['selfie'] != null
           ? PassportFile.fromJson(json['selfie']!)
           : null,
-      translation: (json['translation'] as List?)
+      translation: (json['translation'] as List<dynamic>?)
           ?.map((e) => PassportFile.fromJson(e))
           .toList(),
       hash: json['hash']!,

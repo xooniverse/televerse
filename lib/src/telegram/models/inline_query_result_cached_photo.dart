@@ -72,8 +72,8 @@ class InlineQueryResultCachedPhoto extends InlineQueryResult {
           : ParseMode.fromJson(json['parse_mode'] as String),
       captionEntities: json['caption_entities'] == null
           ? null
-          : (json['caption_entities'] as List<dynamic>)
-              .map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
+          : (json['caption_entities'] as List<dynamic>?)
+              ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
               .toList(),
       replyMarkup: json['reply_markup'] == null
           ? null
