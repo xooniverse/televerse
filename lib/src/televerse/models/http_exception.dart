@@ -29,11 +29,13 @@ class HttpException implements Exception {
 
 /// Bad Request Exception is thrown when the request is invalid.
 class BadRequestException extends HttpException {
+  /// Constructs a new [BadRequestException]. The [message] is the error message.
   BadRequestException(String message) : super(400, message);
 }
 
 /// This exception is thrown when the bot token is invalid.
 class UnauthorizedException extends HttpException {
+  /// Constructs a new [UnauthorizedException]. The [message] is the error message.
   UnauthorizedException(String message)
       : super(
           401,

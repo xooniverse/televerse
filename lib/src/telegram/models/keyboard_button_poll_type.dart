@@ -15,6 +15,7 @@ class KeyboardButtonPollType {
     );
   }
 
+  /// Converts a [KeyboardButtonPollType] object to JSON object
   Map<String, dynamic> toJson() {
     return {
       'type': type?.type,

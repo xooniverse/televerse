@@ -4,6 +4,7 @@ part of models;
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
 class InlineQueryResultCachedAudio extends InlineQueryResult {
+  /// Type of the result, always [InlineQueryResultType.audio]
   @override
   InlineQueryResultType get type => InlineQueryResultType.audio;
 

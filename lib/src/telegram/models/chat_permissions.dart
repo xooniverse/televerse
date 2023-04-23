@@ -26,9 +26,8 @@ class ChatPermissions {
   /// Optional. True, if the user is allowed to create forum topics. If omitted defaults to the value of can_pin_messages
   final bool? canManageTopics;
 
-  /// Since Bot API 6.5
-
   /// True, if the user is allowed to send audios
+  /// Since Bot API 6.5
   final bool? canSendAudios;
 
   /// True, if the user is allowed to send documents
