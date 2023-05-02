@@ -1,5 +1,11 @@
 part of types;
 
+/// A class that represents the type of a sticker.
+///
+/// Currently, there are three types of stickers:
+/// - Regular stickers
+/// - Mask stickers
+/// - Custom emoji stickers
 enum StickerType {
   /// A regular sticker.
   regular("regular"),

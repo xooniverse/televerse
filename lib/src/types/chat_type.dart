@@ -1,11 +1,11 @@
 part of types;
 
 /// This object represents type of a chat. Currently, the following 5 types are supported:
-/// - [ChatType.private]: For a private chat with a user
-/// - [ChatType.group]: For a group chat
-/// - [ChatType.supergroup]: For a supergroup chat
-/// - [ChatType.channel]: For a channel chat
-/// - [ChatType.sender]: For a private chat with the inline query sender
+/// - [ChatType.private] : For a private chat with a user
+/// - [ChatType.group] : For a group chat
+/// - [ChatType.supergroup] : For a supergroup chat
+/// - [ChatType.channel] : For a channel chat
+/// - [ChatType.sender] : For a private chat with the inline query sender
 enum ChatType {
   /// For a private chat with a user
   private("private"),

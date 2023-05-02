@@ -2,14 +2,40 @@ part of televerse;
 
 /// Raw API for the Telegram Bot API.
 class RawAPI {
+  /// API Scheme
+  final APIScheme _scheme;
+
+  /// Default base URL for the Telegram API.
+  static const String defaultBase = "api.telegram.org";
+
+  /// Status of the RawAPI, true if it is local, false otherwise.
+  final bool _isLocal;
+
   /// The Bot Token.
   final String token;
 
   /// The Raw API.
-  const RawAPI(this.token);
+  const RawAPI(
+    this.token, {
+    String? baseUrl,
+    APIScheme? scheme,
+  })  : _baseUrl = baseUrl ?? defaultBase,
+        _isLocal = baseUrl != defaultBase,
+        _scheme = scheme ?? APIScheme.https;
+
+  /// Creates a new RawAPI instance with the given [token] and [baseUrl].
+  ///
+  /// When using `RawAPI.local`, the [baseUrl] is set to `localhost:8081` by default.
+  factory RawAPI.local(
+    String token, {
+    String baseUrl = "localhost:8081",
+    APIScheme scheme = APIScheme.http,
+  }) {
+    return RawAPI(token, baseUrl: baseUrl, scheme: scheme);
+  }
 
   /// Base URL for the Telegram API.
-  final String _baseUrl = "api.telegram.org";
+  final String _baseUrl;
 
   /// Build the URI for the Telegram API.
   Uri _buildUri(String method, [Map<String, dynamic>? params]) {
@@ -20,7 +46,21 @@ class RawAPI {
       return MapEntry(key, "$value");
     });
     params?.removeWhere((key, value) => value == null || value == "null");
-    Uri uri = Uri.https(_baseUrl, "/bot$token/$method", params);
+    Uri uri;
+    if (_isLocal) {
+      RegExp https = RegExp(r'^(https?://)');
+      if (https.hasMatch(_baseUrl)) {
+        final authority = _baseUrl.replaceFirst(https, "");
+        uri = Uri.http(authority, "/bot$token/$method", params);
+      } else {
+        uri = Uri.http(_baseUrl, "/bot$token/$method", params);
+      }
+      if (_scheme == APIScheme.https) {
+        uri = uri.replace(scheme: "https");
+      }
+    } else {
+      uri = Uri.https(_baseUrl, "/bot$token/$method", params);
+    }
     return uri;
   }
 

@@ -17,8 +17,17 @@ part of televerse;
 ///
 /// The [Televerse] class extends [Event] class. The [Event] class is used to emit events and additionally provides a bunch of useful methods.
 class Televerse extends Event with OnEvent {
-  /// Bot token.
-  static late String _botToken;
+  /// API Scheme
+  final APIScheme _scheme;
+
+  /// The current bot instance.
+  static late Televerse _instance;
+
+  /// Base URL of the Telegram Bot API.
+  final String _baseURL;
+
+  /// A flag that indicates whether the Bot API is running locally or not.
+  final bool isLocal;
 
   /// Handler for unexpected errors.
   FutureOr<void> Function(Object, StackTrace)? _onError;
@@ -33,7 +42,7 @@ class Televerse extends Event with OnEvent {
   ///   - DO NOT use this getter to create a bot instance. Use the [Televerse] constructor instead. This getter is only used to access the bot instance.
   static Televerse get instance {
     try {
-      return Televerse(_botToken);
+      return _instance;
     } catch (err) {
       throw TeleverseException(
         "Bot instance not found. ",
@@ -52,7 +61,10 @@ class Televerse extends Event with OnEvent {
   /// ```
   ///
   RawAPI get api {
-    return RawAPI(token);
+    if (isLocal) {
+      return RawAPI.local(token, baseUrl: _baseURL, scheme: _scheme);
+    }
+    return RawAPI(token, baseUrl: _baseURL, scheme: APIScheme.https);
   }
 
   /// The fetcher - used to fetch updates from the Telegram servers.
@@ -69,14 +81,24 @@ class Televerse extends Event with OnEvent {
   /// If [sync] is true, events may be fired directly by the stream's subscriptions during an [StreamController.add], [StreamController.addError] or [StreamController.close] call. The returned stream controller is a [SynchronousStreamController], and must be used with the care and attention necessary to not break the [Stream] contract. See [Completer.sync] for some explanations on when a synchronous dispatching can be used. If in doubt, keep the controller non-sync.
   ///
   /// If [sync] is false, the event will always be fired at a later time, after the code adding the event has completed. In that case, no guarantees are given with regard to when multiple listeners get the events, except that each listener will get all events in the correct order. Each subscription handles the events individually. If two events are sent on an async controller with two listeners, one of the listeners may get both events before the other listener gets any. A listener must be subscribed both when the event is initiated (that is, when [add] is called) and when the event is later delivered, in order to receive the event.
+  ///
+  /// ## Using Local Bot API Server
+  /// You can use the [Televerse] class to create a bot instance that listens to a local Bot API server. Use the [Televerse.local] constructor to create a bot instance that listens to a local Bot API server.
+  ///
+  /// You can pass the [baseURL] parameter to the constructor to specify the base URL of the Telegram Bot API. By default, the base URL is `api.telegram.org`. This parameter will be used to create the [RawAPI] instance that points to your local Bot API server.
+  /// If you're running the Bot API server locally, you should pass the [baseURL] and the [scheme] parameters to the constructor.
   Televerse(
     this.token, {
     Fetcher? fetcher,
     super.sync,
-  }) {
+    String baseURL = RawAPI.defaultBase,
+    APIScheme scheme = APIScheme.https,
+  })  : _baseURL = baseURL,
+        isLocal = baseURL != RawAPI.defaultBase,
+        _scheme = scheme {
     this.fetcher = fetcher ?? LongPolling();
     this.fetcher.setApi(api);
-    _botToken = token;
+    _instance = this;
 
     api.getMe().then((value) {
       _me = value;
@@ -87,6 +109,47 @@ class Televerse extends Event with OnEvent {
         throw err;
       }
     });
+  }
+
+  /// Televerse local constructor. This constructor is used to create a bot instance that listens to a local Bot API server.
+  ///
+  /// [token] - Bot token.
+  ///
+  /// [baseURL] - Base URL of the Telegram Bot API. By default, the base URL is `localhost:8081`. This parameter will be used to create the [RawAPI] instance that points to your local Bot API server.
+  ///
+  /// [fetcher] - The fetcher - used to fetch updates from the Telegram servers. By default, the bot uses long polling to fetch updates. You can also use webhooks to fetch updates.
+  ///
+  /// [scheme] - The scheme of the Telegram Bot API. By default, the scheme is `APIScheme.http`.
+  ///
+  /// ## Note
+  /// The Bot API server source code is available at [telegram-bot-api](https://github.com/tdlib/telegram-bot-api). You can run it locally and send the requests to your own server instead of ```https://api.telegram.org```.
+  ///
+  /// If you switch to a local Bot API server, your bot will be able to:
+  /// - Download files without a size limit.
+  /// - Upload files up to 2000 MB.
+  /// - Upload files using their local path and the file URI scheme.
+  /// - Use an HTTP URL for the webhook.
+  /// - Use any local IP address for the webhook.
+  /// - Use any port for the webhook.
+  /// - Set max_webhook_connections up to 100000.
+  /// - Receive the absolute local path as a value of the file_path field without the need to download the file after a getFile request.
+  ///
+  /// Learn to setup Local Bot API Server here: https://github.com/tdlib/telegram-bot-api
+  factory Televerse.local(
+    String token, {
+    Fetcher? fetcher,
+    bool sync = false,
+    String baseURL = "localhost:8081",
+    APIScheme scheme = APIScheme.http,
+  }) {
+    print('Using local Bot API server at $baseURL');
+    return Televerse(
+      token,
+      fetcher: fetcher,
+      baseURL: baseURL,
+      sync: sync,
+      scheme: scheme,
+    );
   }
 
   /// Information about the bot.
