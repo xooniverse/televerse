@@ -5,7 +5,10 @@ import 'package:televerse/televerse.dart';
 /// This is a general bot that tests different features of the library.
 void main() async {
   /// Creates the bot instance
-  final Bot bot = Bot(Platform.environment["BOT_TOKEN"]!);
+  final Bot bot = Bot(
+    Platform.environment["BOT_TOKEN"]!,
+    fetcher: LongPolling.allUpdates(),
+  );
 
   /// Starts the bot and sets up the /start command listener
   bot.start((ctx) {
@@ -62,6 +65,16 @@ void main() async {
 
     await ctx.reply(
       "Select one of ${poll.options.map((e) => e.text).join(', ')} to vote.",
+    );
+  });
+
+  bot.onUpdate(UpdateType.chatMember).listen((update) {
+    ChatMemberUpdated member = update.chatMember!;
+    ChatMember newMember = member.newChatMember;
+
+    bot.api.sendMessage(
+      ChatID(member.chat.id),
+      "Member Updated: ${newMember.user.firstName}: ${newMember.status}",
     );
   });
 }

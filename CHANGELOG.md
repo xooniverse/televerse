@@ -1,3 +1,9 @@
+## 1.8.0
+- 🎖️ Televerse now supports listening to Local Bot API Server.
+- Added `Televerse.local` method to create a bot instance that listens to a local Bot API Server.
+- Added `RawAPI.local` method that can be used to create `RawAPI` instance that targets a local Bot API Server.
+- Added `LongPolling.allUpdates` method to listen to all updates. This is to simplify listening to all updates including the `chat_member` updates.
+- Updated `/example/test_bot.dart` file to reflect the changes.
 ## 1.7.2
 - [BREAKING] ⚠️ - The `chat` getter on the `ChatID` class is now replaced to be a method of the `ID` class, and renamed to `get()`.
 - This is to avoid confusion with the `chat` parameter in the `ChatID` class. 

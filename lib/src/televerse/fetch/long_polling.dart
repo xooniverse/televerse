@@ -98,4 +98,23 @@ class LongPolling extends Fetcher {
       _doubleRetryDelay();
     }
   }
+
+  /// [LongPolling] with all updates allowed.
+  static LongPolling allUpdates({
+    int offset = 0,
+    int timeout = 30,
+    int limit = 100,
+  }) {
+    List<UpdateType> allowedUpdates = [
+      for (var type in UpdateType.values)
+        if (type != UpdateType.unknown) type
+    ];
+    print(allowedUpdates);
+    return LongPolling(
+      allowedUpdates: allowedUpdates,
+      offset: offset,
+      timeout: timeout,
+      limit: limit,
+    );
+  }
 }
