@@ -55,6 +55,7 @@ part 'mixins/management.dart';
 part 'message.dart';
 part 'inline_query.dart';
 part 'callback_query.dart';
+part 'chat_member.dart';
 
 /// This class is used to represent the context of an update. It contains the update and the [RawAPI] instance.
 ///
