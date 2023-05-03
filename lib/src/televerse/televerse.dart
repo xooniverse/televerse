@@ -482,4 +482,74 @@ class Televerse extends Event with OnEvent {
       }
     });
   }
+
+  /// Registers callback for the [ChatMemberUpdated] events
+  void _internalChatMemberUpdatedHandling({
+    required Stream<ChatMemberUpdatedContext> stream,
+    required ChatMemberUpdatedHandler callback,
+    ChatMemberStatus? oldStatus,
+    ChatMemberStatus? newStatus,
+  }) {
+    stream.listen((ChatMemberUpdatedContext context) {
+      if (oldStatus == null && newStatus == null) {
+        callback(context);
+        return;
+      }
+      if (oldStatus != null && newStatus != null) {
+        if (context.oldStatus == oldStatus && context.status == newStatus) {
+          callback(context);
+        }
+        return;
+      }
+      if (oldStatus != null) {
+        if (context.oldStatus == oldStatus) {
+          callback(context);
+        }
+        return;
+      }
+      if (newStatus != null) {
+        if (context.status == newStatus) {
+          callback(context);
+        }
+        return;
+      }
+    });
+  }
+
+  /// Registers a callback for the [Update.chatMember] events.
+  ///
+  /// If you want to receive the Chat Member updates, you must explicitly specify
+  /// the `UpdateType.chatMember` in the [LongPolling.allowedUpdates] property.
+  ///
+  /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
+  /// filter to only receive updates for a specific status.
+  void chatMember({
+    required ChatMemberUpdatedHandler callback,
+    ChatMemberStatus? oldStatus,
+    ChatMemberStatus? newStatus,
+  }) {
+    return _internalChatMemberUpdatedHandling(
+      stream: onChatMember,
+      callback: callback,
+      oldStatus: oldStatus,
+      newStatus: newStatus,
+    );
+  }
+
+  /// Registers a callback for the [Update.myChatMember] events.
+  ///
+  /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
+  /// filter to only receive updates for a specific status.
+  void myChatMember({
+    required ChatMemberUpdatedHandler callback,
+    ChatMemberStatus? oldStatus,
+    ChatMemberStatus? newStatus,
+  }) {
+    return _internalChatMemberUpdatedHandling(
+      stream: onMyChatMember,
+      callback: callback,
+      oldStatus: oldStatus,
+      newStatus: newStatus,
+    );
+  }
 }

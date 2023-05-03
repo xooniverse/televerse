@@ -15,3 +15,9 @@ typedef CallbackQueryHandler = FutureOr<void> Function(
 ///
 /// This is used to define a callback function for almost all the methods that listen to inline queries.
 typedef InlineQueryHandler = FutureOr<void> Function(InlineQueryContext ctx);
+
+/// [ChatMemberUpdatedHandler] is a type alias for a function that takes a [ChatMemberUpdatedContext] as parameter and returns a [FutureOr] of void.
+///
+/// This is used to define a callback function for almost all the methods that listen to chat member updates.
+typedef ChatMemberUpdatedHandler = FutureOr<void> Function(
+    ChatMemberUpdatedContext ctx);
