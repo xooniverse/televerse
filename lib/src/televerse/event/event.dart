@@ -14,6 +14,12 @@ part 'on.dart';
 ///
 /// You probably won't need to use this class directly, but you can use it to handle events.
 class Event {
+  /// The [RawAPI] instance.
+  late final RawAPI _api;
+
+  /// Set the [RawAPI] instance.
+  set api(RawAPI api) => _api = api;
+
   /// If [sync] is true, events may be fired directly by the stream's subscriptions during an [StreamController.add], [StreamController.addError] or [StreamController.close] call. The returned stream controller is a [SynchronousStreamController], and must be used with the care and attention necessary to not break the [Stream] contract. See [Completer.sync] for some explanations on when a synchronous dispatching can be used. If in doubt, keep the controller non-sync.
   ///
   /// If [sync] is false, the event will always be fired at a later time, after the code adding the event has completed. In that case, no guarantees are given with regard to when multiple listeners get the events, except that each listener will get all events in the correct order. Each subscription handles the events individually. If two events are sent on an async controller with two listeners, one of the listeners may get both events before the other listener gets any. A listener must be subscribed both when the event is initiated (that is, when [add] is called) and when the event is later delivered, in order to receive the event.
@@ -82,13 +88,13 @@ class Event {
       ).map(_mapper<PollAnswer>);
 
   /// **onMyChatMember** is a stream of [ChatMemberUpdated] which is emitted when the bot's chat member status is updated.
-  Stream<ChatMemberUpdated> get onMyChatMember =>
-      onUpdate(UpdateType.myChatMember).map(_mapper<ChatMemberUpdated>);
+  Stream<ChatMemberUpdatedContext> get onMyChatMember =>
+      onUpdate(UpdateType.myChatMember).map(_mapper<ChatMemberUpdatedContext>);
 
   /// **onChatMember** is a stream of [ChatMemberUpdated] which is emitted when a chat member's status is updated.
-  Stream<ChatMemberUpdated> get onChatMember => onUpdate(
+  Stream<ChatMemberUpdatedContext> get onChatMember => onUpdate(
         UpdateType.chatMember,
-      ).map(_mapper<ChatMemberUpdated>);
+      ).map(_mapper<ChatMemberUpdatedContext>);
 
   /// **onChatJoinRequest** is a stream of [ChatJoinRequest] which is emitted when a user requests to join a chat.
   Stream<ChatJoinRequest> get onChatJoinRequest =>
@@ -110,7 +116,7 @@ class Event {
   T _mapper<T>(Update update) {
     if (T == MessageContext && update.type == UpdateType.message) {
       return MessageContext(
-        Televerse.instance.api,
+        _api,
         update.message!,
         update: update,
       ) as T;
@@ -118,7 +124,7 @@ class Event {
 
     if (T == MessageContext && update.type == UpdateType.editedMessage) {
       return MessageContext(
-        Televerse.instance.api,
+        _api,
         update.editedMessage!,
         update: update,
       ) as T;
@@ -126,7 +132,7 @@ class Event {
 
     if (T == MessageContext && update.type == UpdateType.channelPost) {
       return MessageContext(
-        Televerse.instance.api,
+        _api,
         update.channelPost!,
         update: update,
       ) as T;
@@ -134,7 +140,7 @@ class Event {
 
     if (T == MessageContext && update.type == UpdateType.editedChannelPost) {
       return MessageContext(
-        Televerse.instance.api,
+        _api,
         update.editedChannelPost!,
         update: update,
       ) as T;
@@ -142,7 +148,7 @@ class Event {
 
     if (T == InlineQueryContext) {
       return InlineQueryContext(
-        Televerse.instance.api,
+        _api,
         update.inlineQuery!,
         update: update,
       ) as T;
@@ -150,7 +156,7 @@ class Event {
 
     if (T == CallbackQueryContext) {
       return CallbackQueryContext(
-        Televerse.instance.api,
+        _api,
         update.callbackQuery!,
         update: update,
       ) as T;
@@ -176,12 +182,19 @@ class Event {
       return update.pollAnswer! as T;
     }
 
-    if (T == ChatMemberUpdated && update.type == UpdateType.myChatMember) {
-      return update.myChatMember! as T;
+    if (T == ChatMemberUpdatedContext &&
+        update.type == UpdateType.myChatMember) {
+      return ChatMemberUpdatedContext(
+        _api,
+        update: update,
+      ) as T;
     }
 
-    if (T == ChatMemberUpdated && update.type == UpdateType.chatMember) {
-      return update.chatMember! as T;
+    if (T == ChatMemberUpdatedContext && update.type == UpdateType.chatMember) {
+      return ChatMemberUpdatedContext(
+        _api,
+        update: update,
+      ) as T;
     }
 
     if (T == ChatJoinRequest) {
