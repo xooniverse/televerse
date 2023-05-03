@@ -1,3 +1,6 @@
+## 1.8.1
+- Added `ChatMemberUpdatedContext` class to represent the context of a `chat_member` and `my_chat_member` updates.
+- Hot fix: Fixed an issue with the `Event` class that caused unexpected exceptions.
 ## 1.8.0
 - 🎖️ Televerse now supports listening to Local Bot API Server.
 - Added `Televerse.local` method to create a bot instance that listens to a local Bot API Server.

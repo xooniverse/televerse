@@ -99,6 +99,7 @@ class Televerse extends Event with OnEvent {
     this.fetcher = fetcher ?? LongPolling();
     this.fetcher.setApi(api);
     _instance = this;
+    super.api = api;
 
     api.getMe().then((value) {
       _me = value;
