@@ -1,6 +1,9 @@
 ## 1.8.2
-- Added `PollContext` class to represent the context of a `poll` update.
+- Added `PollContext`, `PollAnswerContext` classes to represent the context of a `poll` and `poll_answer` updates.
 - Added `Televerse.poll` method to listen to `poll` updates.
+- Added `Televerse.pollAnswer` method to listen to `poll_answer` updates.
+- Now most of the Televerse methods return a `StreamSubscription` instead of `void`.
+- This is to make it easier to cancel the subscription and increase the performance.
 ## 1.8.1
 - Added `ChatMemberUpdatedContext` class to represent the context of a `chat_member` and `my_chat_member` updates.
 - Added `Televerse.chatMember` and `Televerse.myChatMember` methods to listen to `chat_member` and `my_chat_member` updates.

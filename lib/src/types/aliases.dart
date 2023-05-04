@@ -26,3 +26,8 @@ typedef ChatMemberUpdatedHandler = FutureOr<void> Function(
 ///
 /// This is used to define a callback function for almost all the methods that listen to polls.
 typedef PollHandler = FutureOr<void> Function(PollContext ctx);
+
+/// [PollAnswerHandler] is a type alias for a function that takes a [PollAnswerContext] as parameter and returns a [FutureOr] of void.
+///
+/// This is used to define a callback function for almost all the methods that listen to poll answers.
+typedef PollAnswerHandler = FutureOr<void> Function(PollAnswerContext ctx);

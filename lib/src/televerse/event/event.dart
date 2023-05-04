@@ -84,9 +84,9 @@ class Event {
       onUpdate(UpdateType.poll).map(_mapper<PollContext>);
 
   /// **onPollAnswer** is a stream of [PollAnswer] which is emitted when a poll answer is received.
-  Stream<PollAnswer> get onPollAnswer => onUpdate(
+  Stream<PollAnswerContext> get onPollAnswer => onUpdate(
         UpdateType.pollAnswer,
-      ).map(_mapper<PollAnswer>);
+      ).map(_mapper<PollAnswerContext>);
 
   /// **onMyChatMember** is a stream of [ChatMemberUpdated] which is emitted when the bot's chat member status is updated.
   Stream<ChatMemberUpdatedContext> get onMyChatMember =>
@@ -182,8 +182,11 @@ class Event {
       ) as T;
     }
 
-    if (T == PollAnswer) {
-      return update.pollAnswer! as T;
+    if (T == PollAnswerContext) {
+      return PollAnswerContext(
+        _api,
+        update: update,
+      ) as T;
     }
 
     if (T == ChatMemberUpdatedContext &&
