@@ -109,7 +109,6 @@ class LongPolling extends Fetcher {
       for (var type in UpdateType.values)
         if (type != UpdateType.unknown) type
     ];
-    print(allowedUpdates);
     return LongPolling(
       allowedUpdates: allowedUpdates,
       offset: offset,

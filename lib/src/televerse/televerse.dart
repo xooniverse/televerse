@@ -68,7 +68,7 @@ class Televerse extends Event with OnEvent {
   }
 
   /// The fetcher - used to fetch updates from the Telegram servers.
-  late Fetcher fetcher;
+  late final Fetcher fetcher;
 
   /// The bot token.
   final String token;
@@ -522,8 +522,8 @@ class Televerse extends Event with OnEvent {
   ///
   /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
   /// filter to only receive updates for a specific status.
-  StreamSubscription<ChatMemberUpdatedContext> chatMember({
-    required ChatMemberUpdatedHandler callback,
+  StreamSubscription<ChatMemberUpdatedContext> chatMember(
+    ChatMemberUpdatedHandler callback, {
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
   }) {
@@ -560,8 +560,8 @@ class Televerse extends Event with OnEvent {
   /// Registers a callback for the [Update.pollAnswer] events.
   ///
   /// Optionally pass the [pollId] parameter to only receive updates for a specific poll.
-  StreamSubscription<PollAnswerContext> pollAnswer({
-    required PollAnswerHandler callback,
+  StreamSubscription<PollAnswerContext> pollAnswer(
+    PollAnswerHandler callback, {
     String? pollId,
   }) {
     return onPollAnswer

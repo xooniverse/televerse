@@ -68,13 +68,18 @@ void main() async {
     );
   });
 
-  bot.onUpdate(UpdateType.chatMember).listen((update) {
-    ChatMemberUpdated member = update.chatMember!;
+  bot.chatMember((ctx) {
+    ChatMemberUpdated member = ctx.chatMemberUpdated;
     ChatMember newMember = member.newChatMember;
 
     bot.api.sendMessage(
       ChatID(member.chat.id),
       "Member Updated: ${newMember.user.firstName}: ${newMember.status}",
     );
+  });
+
+  bot.pollAnswer((ctx) {
+    PollAnswer pollAnswer = ctx.pollAnswer;
+    ctx.reply('Poll Answered: ${pollAnswer.optionIds}');
   });
 }
