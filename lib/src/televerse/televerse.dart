@@ -552,4 +552,9 @@ class Televerse extends Event with OnEvent {
       newStatus: newStatus,
     );
   }
+
+  /// Registers a callback for the [Update.poll] events.
+  void poll(PollHandler callback) {
+    onPoll.listen(callback);
+  }
 }

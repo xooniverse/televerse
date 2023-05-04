@@ -80,7 +80,8 @@ class Event {
       onUpdate(UpdateType.preCheckoutQuery).map(_mapper<PreCheckoutQuery>);
 
   /// **onPoll** is a stream of [Poll] which is emitted when a poll is received.
-  Stream<Poll> get onPoll => onUpdate(UpdateType.poll).map(_mapper<Poll>);
+  Stream<PollContext> get onPoll =>
+      onUpdate(UpdateType.poll).map(_mapper<PollContext>);
 
   /// **onPollAnswer** is a stream of [PollAnswer] which is emitted when a poll answer is received.
   Stream<PollAnswer> get onPollAnswer => onUpdate(
@@ -174,8 +175,11 @@ class Event {
       return update.preCheckoutQuery! as T;
     }
 
-    if (T == Poll) {
-      return update.poll! as T;
+    if (T == PollContext) {
+      return PollContext(
+        _api,
+        update: update,
+      ) as T;
     }
 
     if (T == PollAnswer) {

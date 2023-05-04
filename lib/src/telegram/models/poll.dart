@@ -107,9 +107,11 @@ class Poll {
   }
 
   /// The [Duration] object for [openPeriod]
-  Duration get openPeriodDuration => Duration(seconds: openPeriod!);
+  Duration? get openPeriodDuration =>
+      openPeriod == null ? null : Duration(seconds: openPeriod!);
 
   /// The [DateTime] object for [closeDate]
-  DateTime get closeDateTime =>
-      DateTime.fromMillisecondsSinceEpoch(closeDate! * 1000);
+  DateTime? get closeDateTime => closeDate == null
+      ? null
+      : DateTime.fromMillisecondsSinceEpoch(closeDate! * 1000);
 }

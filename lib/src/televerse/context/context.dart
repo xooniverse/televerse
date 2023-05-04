@@ -56,13 +56,17 @@ part 'message.dart';
 part 'inline_query.dart';
 part 'callback_query.dart';
 part 'chat_member.dart';
+part 'poll.dart';
 
 /// This class is used to represent the context of an update. It contains the update and the [RawAPI] instance.
 ///
-/// Whenever an update is received, a context is created and passed to the handler. Currently we have 3 types of contexts:
+/// Whenever an update is received, a context is created and passed to the handler.
+/// Currently Televerse support the following types of contexts:
 /// - [MessageContext] - This context is used when a message is received.
 /// - [InlineQueryContext] - This context is used when an inline query is received.
 /// - [CallbackQueryContext] - This context is used when a callback query is received.
+/// - [ChatMemberUpdatedContext] - Represents the context when a [UpdateType.chatMember] or [UpdateType.myChatMember] event occurs.
+/// - [PollContext] - Represents the context when a [UpdateType.poll] event occurs.
 ///
 /// Contexts are subclasses of this class. You can use this class to access the update and the Televerse instance.
 class Context {

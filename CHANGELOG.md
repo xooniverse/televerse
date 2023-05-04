@@ -1,3 +1,6 @@
+## 1.8.2
+- Added `PollContext` class to represent the context of a `poll` update.
+- Added `Televerse.poll` method to listen to `poll` updates.
 ## 1.8.1
 - Added `ChatMemberUpdatedContext` class to represent the context of a `chat_member` and `my_chat_member` updates.
 - Added `Televerse.chatMember` and `Televerse.myChatMember` methods to listen to `chat_member` and `my_chat_member` updates.
