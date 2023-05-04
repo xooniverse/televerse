@@ -568,4 +568,12 @@ class Televerse extends Event with OnEvent {
         .where((event) => pollId == null || event.pollId == pollId)
         .listen(callback);
   }
+
+  /// Registers a callback for the [Update.chosenInlineResult] events.
+  /// The callback will be called when a chosen inline result is received.
+  StreamSubscription<ChosenInlineResultContext> chosenInlineResult(
+    ChosenInlineResultHandler callback,
+  ) {
+    return onChosenInlineResult.listen(callback);
+  }
 }

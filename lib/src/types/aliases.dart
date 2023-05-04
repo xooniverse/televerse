@@ -31,3 +31,9 @@ typedef PollHandler = FutureOr<void> Function(PollContext ctx);
 ///
 /// This is used to define a callback function for almost all the methods that listen to poll answers.
 typedef PollAnswerHandler = FutureOr<void> Function(PollAnswerContext ctx);
+
+/// [ChosenInlineResultHandler] is a type alias for a function that takes a [ChosenInlineResultContext] as parameter and returns a [FutureOr] of void.
+///
+/// This is used to define a callback function for almost all the methods that listen to chosen inline results.
+typedef ChosenInlineResultHandler = FutureOr<void> Function(
+    ChosenInlineResultContext ctx);

@@ -61,9 +61,9 @@ class Event {
       onUpdate(UpdateType.inlineQuery).map(_mapper<InlineQueryContext>);
 
   /// **onChosenInlineResult** is a stream of [ChosenInlineResult] which is emitted when a user chooses an inline result.
-  Stream<ChosenInlineResult> get onChosenInlineResult => onUpdate(
+  Stream<ChosenInlineResultContext> get onChosenInlineResult => onUpdate(
         UpdateType.chosenInlineResult,
-      ).map(_mapper<ChosenInlineResult>);
+      ).map(_mapper<ChosenInlineResultContext>);
 
   /// **onCallbackQuery** is a stream of [CallbackQueryContext] which is emitted when a callback query is received.
   Stream<CallbackQueryContext> get onCallbackQuery => onUpdate(
@@ -163,8 +163,11 @@ class Event {
       ) as T;
     }
 
-    if (T == ChosenInlineResult) {
-      return update.chosenInlineResult! as T;
+    if (T == ChosenInlineResultContext) {
+      return ChosenInlineResultContext(
+        _api,
+        update: update,
+      ) as T;
     }
 
     if (T == ShippingQuery) {
