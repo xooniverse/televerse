@@ -61,9 +61,9 @@ class Event {
       onUpdate(UpdateType.inlineQuery).map(_mapper<InlineQueryContext>);
 
   /// **onChosenInlineResult** is a stream of [ChosenInlineResult] which is emitted when a user chooses an inline result.
-  Stream<ChosenInlineResult> get onChosenInlineResult => onUpdate(
+  Stream<ChosenInlineResultContext> get onChosenInlineResult => onUpdate(
         UpdateType.chosenInlineResult,
-      ).map(_mapper<ChosenInlineResult>);
+      ).map(_mapper<ChosenInlineResultContext>);
 
   /// **onCallbackQuery** is a stream of [CallbackQueryContext] which is emitted when a callback query is received.
   Stream<CallbackQueryContext> get onCallbackQuery => onUpdate(
@@ -71,21 +71,23 @@ class Event {
       ).map(_mapper<CallbackQueryContext>);
 
   /// **onShippingQuery** is a stream of [ShippingQuery] which is emitted when a shipping query is received.
-  Stream<ShippingQuery> get onShippingQuery => onUpdate(
+  Stream<ShippingQueryContext> get onShippingQuery => onUpdate(
         UpdateType.shippingQuery,
-      ).map(_mapper<ShippingQuery>);
+      ).map(_mapper<ShippingQueryContext>);
 
   /// **onPreCheckoutQuery** is a stream of [PreCheckoutQuery] which is emitted when a pre-checkout query is received.
-  Stream<PreCheckoutQuery> get onPreCheckoutQuery =>
-      onUpdate(UpdateType.preCheckoutQuery).map(_mapper<PreCheckoutQuery>);
+  Stream<PreCheckoutQueryContext> get onPreCheckoutQuery =>
+      onUpdate(UpdateType.preCheckoutQuery)
+          .map(_mapper<PreCheckoutQueryContext>);
 
   /// **onPoll** is a stream of [Poll] which is emitted when a poll is received.
-  Stream<Poll> get onPoll => onUpdate(UpdateType.poll).map(_mapper<Poll>);
+  Stream<PollContext> get onPoll =>
+      onUpdate(UpdateType.poll).map(_mapper<PollContext>);
 
   /// **onPollAnswer** is a stream of [PollAnswer] which is emitted when a poll answer is received.
-  Stream<PollAnswer> get onPollAnswer => onUpdate(
+  Stream<PollAnswerContext> get onPollAnswer => onUpdate(
         UpdateType.pollAnswer,
-      ).map(_mapper<PollAnswer>);
+      ).map(_mapper<PollAnswerContext>);
 
   /// **onMyChatMember** is a stream of [ChatMemberUpdated] which is emitted when the bot's chat member status is updated.
   Stream<ChatMemberUpdatedContext> get onMyChatMember =>
@@ -97,9 +99,8 @@ class Event {
       ).map(_mapper<ChatMemberUpdatedContext>);
 
   /// **onChatJoinRequest** is a stream of [ChatJoinRequest] which is emitted when a user requests to join a chat.
-  Stream<ChatJoinRequest> get onChatJoinRequest =>
-      onUpdate(UpdateType.chatJoinRequest)
-          .map<ChatJoinRequest>(_mapper<ChatJoinRequest>);
+  Stream<ChatJoinRequestContext> get onChatJoinRequest =>
+      onUpdate(UpdateType.chatJoinRequest).map(_mapper<ChatJoinRequestContext>);
 
   /// **onUpdate** is a stream of [Update] which is emitted when any update is received.
   Stream<Update> onUpdate([UpdateType? type]) {
@@ -149,7 +150,6 @@ class Event {
     if (T == InlineQueryContext) {
       return InlineQueryContext(
         _api,
-        update.inlineQuery!,
         update: update,
       ) as T;
     }
@@ -157,13 +157,15 @@ class Event {
     if (T == CallbackQueryContext) {
       return CallbackQueryContext(
         _api,
-        update.callbackQuery!,
         update: update,
       ) as T;
     }
 
-    if (T == ChosenInlineResult) {
-      return update.chosenInlineResult! as T;
+    if (T == ChosenInlineResultContext) {
+      return ChosenInlineResultContext(
+        _api,
+        update: update,
+      ) as T;
     }
 
     if (T == ShippingQuery) {
@@ -174,12 +176,18 @@ class Event {
       return update.preCheckoutQuery! as T;
     }
 
-    if (T == Poll) {
-      return update.poll! as T;
+    if (T == PollContext) {
+      return PollContext(
+        _api,
+        update: update,
+      ) as T;
     }
 
-    if (T == PollAnswer) {
-      return update.pollAnswer! as T;
+    if (T == PollAnswerContext) {
+      return PollAnswerContext(
+        _api,
+        update: update,
+      ) as T;
     }
 
     if (T == ChatMemberUpdatedContext &&
@@ -197,8 +205,11 @@ class Event {
       ) as T;
     }
 
-    if (T == ChatJoinRequest) {
-      return update.chatJoinRequest! as T;
+    if (T == ChatJoinRequestContext) {
+      return ChatJoinRequestContext(
+        _api,
+        update: update,
+      ) as T;
     }
 
     return update as T;

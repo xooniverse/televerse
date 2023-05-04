@@ -3,8 +3,7 @@ part of televerse.context;
 /// This context is created when a chat member is updated. This can be used to handle chat member updates.
 ///
 /// This is used to handle the `chatMemberUpdated` and `myChatMemberUpdated` updates.
-class ChatMemberUpdatedContext extends Context
-    with ManagementMixin, MessageMixin {
+class ChatMemberUpdatedContext extends Context with MessageMixin {
   /// Creates a new [ChatMemberUpdatedContext] instance.
   ChatMemberUpdatedContext(
     super.api, {

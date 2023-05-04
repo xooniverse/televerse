@@ -68,7 +68,7 @@ class Televerse extends Event with OnEvent {
   }
 
   /// The fetcher - used to fetch updates from the Telegram servers.
-  late Fetcher fetcher;
+  late final Fetcher fetcher;
 
   /// The bot token.
   final String token;
@@ -217,8 +217,11 @@ class Televerse extends Event with OnEvent {
   /// ```
   ///
   /// This will reply "Hello!" to any message that starts with `/start`.
-  void command(Pattern command, MessageHandler callback) {
-    onMessage.listen((MessageContext context) {
+  StreamSubscription<MessageContext> command(
+    Pattern command,
+    MessageHandler callback,
+  ) {
+    return onMessage.listen((MessageContext context) {
       if (context.message.text == null) return;
       if (command is RegExp) {
         if (command.hasMatch(context.message.text!)) {
@@ -254,12 +257,12 @@ class Televerse extends Event with OnEvent {
   /// This will answer "Hello!" to any callback query that has the data "start".
   ///
   ///
-  void callbackQuery(
+  StreamSubscription<CallbackQueryContext> callbackQuery(
     Pattern data,
     CallbackQueryHandler callback, {
     @Deprecated("Use the 'data' parameter instead.") RegExp? regex,
   }) {
-    onCallbackQuery.listen((CallbackQueryContext context) {
+    return onCallbackQuery.listen((CallbackQueryContext context) {
       if (context.data == null) return;
       if (data is RegExp) {
         if (data.hasMatch(context.data!)) {
@@ -291,11 +294,11 @@ class Televerse extends Event with OnEvent {
   ///
   /// If you want to register a callback for multiple chat types, you can use
   /// the [chatTypes] method.
-  void chatType(
+  StreamSubscription<MessageContext> chatType(
     ChatType type,
     MessageHandler callback,
   ) {
-    onMessage.listen((MessageContext context) {
+    return onMessage.listen((MessageContext context) {
       if (context.message.chat.type == type) {
         callback(context);
       }
@@ -318,11 +321,11 @@ class Televerse extends Event with OnEvent {
   ///
   /// This will reply "Hello in private chat or group!" to any message that is
   /// from a private chat or a group.
-  void chatTypes(
+  StreamSubscription<MessageContext> chatTypes(
     List<ChatType> types,
     MessageHandler callback,
   ) {
-    onMessage.listen((MessageContext context) {
+    return onMessage.listen((MessageContext context) {
       if (types.contains(context.message.chat.type)) {
         callback(context);
       }
@@ -342,11 +345,11 @@ class Televerse extends Event with OnEvent {
   /// Example:
   /// ```dart
   /// ```
-  void filter(
+  StreamSubscription<MessageContext> filter(
     bool Function(MessageContext ctx) predicate,
     MessageHandler callback,
   ) {
-    onMessage.listen((MessageContext context) {
+    return onMessage.listen((MessageContext context) {
       if (predicate(context)) {
         callback(context);
       }
@@ -363,11 +366,11 @@ class Televerse extends Event with OnEvent {
   ///  ctx.reply('I love you too!');
   /// });
   /// ```
-  void text(
+  StreamSubscription<MessageContext> text(
     String text,
     MessageHandler callback,
   ) {
-    onMessage.listen((MessageContext context) {
+    return onMessage.listen((MessageContext context) {
       if (context.message.text?.contains(text) ?? false) {
         callback(context);
       }
@@ -390,11 +393,11 @@ class Televerse extends Event with OnEvent {
   ///
   /// This will reply "Hello, <name>!" to any message that contains a text that
   /// matches the regular expression `Hello, (.*)!`.
-  void hears(
+  StreamSubscription<MessageContext> hears(
     RegExp exp,
     MessageHandler callback,
   ) {
-    onMessage.listen((MessageContext context) {
+    return onMessage.listen((MessageContext context) {
       final matches = exp.allMatches(context.message.text ?? '');
       context.matches = matches.toList();
       if (matches.isNotEmpty) {
@@ -406,20 +409,20 @@ class Televerse extends Event with OnEvent {
   /// Registers a callback for inline queries.
   ///
   /// The callback will be called when an inline query with the specified query is received.
-  void inlineQuery(
+  StreamSubscription<InlineQueryContext> inlineQuery(
     InlineQueryHandler Function(InlineQueryContext ctx) callback,
   ) {
-    onInlineQuery.listen(callback);
+    return onInlineQuery.listen(callback);
   }
 
   /// Registers a callback for the `/settings` command.
-  void settings(MessageHandler handler) async {
-    command("settings", handler);
+  StreamSubscription<MessageContext> settings(MessageHandler handler) {
+    return command("settings", handler);
   }
 
   /// Registers a callback for the `/help` command.
-  void help(MessageHandler handler) async {
-    command("help", handler);
+  StreamSubscription<MessageContext> help(MessageHandler handler) {
+    return command("help", handler);
   }
 
   /// Registers a callback for on any unexpected error.
@@ -435,22 +438,23 @@ class Televerse extends Event with OnEvent {
   /// caption of a message. Such as a photo or video message.
   ///
   /// By default, this method will ONLY match entities in the message text.
-  void entity(
+  StreamSubscription<MessageContext> entity(
     MessageEntityType type,
     MessageHandler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
-    onMessage.listen((MessageContext context) {
+    return onMessage.where((context) {
       List<MessageEntity>? entities = context.message.entities;
       if (shouldMatchCaptionEntities) {
         entities = entities ?? context.message.captionEntities;
       }
-      if (entities == null) return;
+      if (entities == null) return false;
       bool hasMatch = entities.any((element) => element.type == type);
       if (hasMatch) {
-        callback(context);
+        return true;
       }
-    });
+      return false;
+    }).listen(callback);
   }
 
   /// Registers a callback for messages that contains the specified entity types.
@@ -461,59 +465,54 @@ class Televerse extends Event with OnEvent {
   /// caption of a message. Such as a photo or video message.
   ///
   /// By default, this method will ONLY match entities in the message text.
-  void entities(
+  StreamSubscription<MessageContext> entities(
     List<MessageEntityType> types,
     MessageHandler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
-    onMessage.listen((MessageContext context) {
+    return onMessage.where((context) {
       List<MessageEntity>? entities = context.message.entities;
       if (shouldMatchCaptionEntities) {
         entities = entities ?? context.message.captionEntities;
       }
-      if (entities == null) return;
+      if (entities == null) return false;
 
       bool hasMatch = types.every((element) => entities!.any(
             (e) => e.type == element,
           ));
 
       if (hasMatch) {
-        callback(context);
+        return true;
       }
-    });
+      return false;
+    }).listen(callback);
   }
 
   /// Registers callback for the [ChatMemberUpdated] events
-  void _internalChatMemberUpdatedHandling({
+  StreamSubscription<ChatMemberUpdatedContext>
+      _internalChatMemberUpdatedHandling({
     required Stream<ChatMemberUpdatedContext> stream,
     required ChatMemberUpdatedHandler callback,
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
   }) {
-    stream.listen((ChatMemberUpdatedContext context) {
+    return stream.where((context) {
       if (oldStatus == null && newStatus == null) {
-        callback(context);
-        return;
+        return true;
       }
       if (oldStatus != null && newStatus != null) {
         if (context.oldStatus == oldStatus && context.status == newStatus) {
-          callback(context);
+          return true;
         }
-        return;
       }
-      if (oldStatus != null) {
-        if (context.oldStatus == oldStatus) {
-          callback(context);
-        }
-        return;
+      if (oldStatus != null && context.oldStatus == oldStatus) {
+        return true;
       }
-      if (newStatus != null) {
-        if (context.status == newStatus) {
-          callback(context);
-        }
-        return;
+      if (newStatus != null && context.status == newStatus) {
+        return true;
       }
-    });
+      return false;
+    }).listen(callback);
   }
 
   /// Registers a callback for the [Update.chatMember] events.
@@ -523,8 +522,8 @@ class Televerse extends Event with OnEvent {
   ///
   /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
   /// filter to only receive updates for a specific status.
-  void chatMember({
-    required ChatMemberUpdatedHandler callback,
+  StreamSubscription<ChatMemberUpdatedContext> chatMember(
+    ChatMemberUpdatedHandler callback, {
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
   }) {
@@ -540,7 +539,7 @@ class Televerse extends Event with OnEvent {
   ///
   /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
   /// filter to only receive updates for a specific status.
-  void myChatMember({
+  StreamSubscription<ChatMemberUpdatedContext> myChatMember({
     required ChatMemberUpdatedHandler callback,
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
@@ -551,5 +550,53 @@ class Televerse extends Event with OnEvent {
       oldStatus: oldStatus,
       newStatus: newStatus,
     );
+  }
+
+  /// Registers a callback for the [Update.poll] events.
+  StreamSubscription<PollContext> poll(PollHandler callback) {
+    return onPoll.listen(callback);
+  }
+
+  /// Registers a callback for the [Update.pollAnswer] events.
+  ///
+  /// Optionally pass the [pollId] parameter to only receive updates for a specific poll.
+  StreamSubscription<PollAnswerContext> pollAnswer(
+    PollAnswerHandler callback, {
+    String? pollId,
+  }) {
+    return onPollAnswer
+        .where((event) => pollId == null || event.pollId == pollId)
+        .listen(callback);
+  }
+
+  /// Registers a callback for the [Update.chosenInlineResult] events.
+  /// The callback will be called when a chosen inline result is received.
+  StreamSubscription<ChosenInlineResultContext> chosenInlineResult(
+    ChosenInlineResultHandler callback,
+  ) {
+    return onChosenInlineResult.listen(callback);
+  }
+
+  /// Registers a callback for the [Update.chatJoinRequest] events.
+  ///
+  /// The callback will be called when a chat join request is received.
+  StreamSubscription<ChatJoinRequestContext> chatJoinRequest(
+    ChatJoinRequestHandler callback,
+  ) {
+    return onChatJoinRequest.listen(callback);
+  }
+
+  /// Registers a callback for Shipping Query events.
+  StreamSubscription<ShippingQueryContext> shippingQuery(
+    ShippingQueryHandler callback,
+  ) {
+    return onShippingQuery.listen(callback);
+  }
+
+  /// Registers a callback for Pre Checkout Query events.
+  StreamSubscription<PreCheckoutQueryContext> preCheckoutQuery(
+    PreCheckoutQueryHandler callback,
+  ) {
+    return onPreCheckoutQuery.listen(callback);
   }
 }

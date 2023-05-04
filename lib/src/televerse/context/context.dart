@@ -37,10 +37,17 @@
 /// ```
 ///
 /// ## Different Contexts
-/// Televerse currently supports 3 types of contexts:
+/// Televerse currently supports following contexts:
 /// - [MessageContext] - This context is used when a message is received.
 /// - [InlineQueryContext] - This context is used when an inline query is received.
 /// - [CallbackQueryContext] - This context is used when a callback query is received.
+/// - [ChatMemberUpdatedContext] - Represents the context when a [UpdateType.chatMember] or [UpdateType.myChatMember] event occurs.
+/// - [PollContext] - Represents the context when a [UpdateType.poll] event occurs.
+/// - [PollAnswerContext] - Represents the context when a [UpdateType.pollAnswer] event occurs.
+/// - [ChosenInlineResultContext] - Represents the context when a [UpdateType.chosenInlineResult] event occurs.
+/// - [ChatJoinRequestContext] - Represents the context when a [UpdateType.chatJoinRequest] event occurs.
+/// - [ShippingQueryContext] - Represents the context when a [UpdateType.shippingQuery] event occurs.
+/// - [PreCheckoutQueryContext] - Represents the context when a [UpdateType.preCheckoutQuery] event occurs.
 ///
 /// More context types will be added in the future.
 library televerse.context;
@@ -56,13 +63,24 @@ part 'message.dart';
 part 'inline_query.dart';
 part 'callback_query.dart';
 part 'chat_member.dart';
+part 'poll.dart';
+part 'poll_answer.dart';
+part 'chosen_inline_result.dart';
+part 'chat_join_request.dart';
+part 'shipping_query.dart';
+part 'pre_checkout_query.dart';
 
 /// This class is used to represent the context of an update. It contains the update and the [RawAPI] instance.
 ///
-/// Whenever an update is received, a context is created and passed to the handler. Currently we have 3 types of contexts:
+/// Whenever an update is received, a context is created and passed to the handler.
+/// Currently Televerse support the following types of contexts:
 /// - [MessageContext] - This context is used when a message is received.
 /// - [InlineQueryContext] - This context is used when an inline query is received.
 /// - [CallbackQueryContext] - This context is used when a callback query is received.
+/// - [ChatMemberUpdatedContext] - Represents the context when a [UpdateType.chatMember] or [UpdateType.myChatMember] event occurs.
+/// - [PollContext] - Represents the context when a [UpdateType.poll] event occurs.
+/// - [PollAnswerContext] - Represents the context when a [UpdateType.pollAnswer] event occurs.
+/// - [ChosenInlineResultContext] - Represents the context when a [UpdateType.chosenInlineResult] event occurs.
 ///
 /// Contexts are subclasses of this class. You can use this class to access the update and the Televerse instance.
 class Context {
