@@ -98,9 +98,8 @@ class Event {
       ).map(_mapper<ChatMemberUpdatedContext>);
 
   /// **onChatJoinRequest** is a stream of [ChatJoinRequest] which is emitted when a user requests to join a chat.
-  Stream<ChatJoinRequest> get onChatJoinRequest =>
-      onUpdate(UpdateType.chatJoinRequest)
-          .map<ChatJoinRequest>(_mapper<ChatJoinRequest>);
+  Stream<ChatJoinRequestContext> get onChatJoinRequest =>
+      onUpdate(UpdateType.chatJoinRequest).map(_mapper<ChatJoinRequestContext>);
 
   /// **onUpdate** is a stream of [Update] which is emitted when any update is received.
   Stream<Update> onUpdate([UpdateType? type]) {
@@ -207,8 +206,11 @@ class Event {
       ) as T;
     }
 
-    if (T == ChatJoinRequest) {
-      return update.chatJoinRequest! as T;
+    if (T == ChatJoinRequestContext) {
+      return ChatJoinRequestContext(
+        _api,
+        update: update,
+      ) as T;
     }
 
     return update as T;

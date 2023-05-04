@@ -576,4 +576,13 @@ class Televerse extends Event with OnEvent {
   ) {
     return onChosenInlineResult.listen(callback);
   }
+
+  /// Registers a callback for the [Update.chatJoinRequest] events.
+  ///
+  /// The callback will be called when a chat join request is received.
+  StreamSubscription<ChatJoinRequestContext> chatJoinRequest(
+    ChatJoinRequestHandler callback,
+  ) {
+    return onChatJoinRequest.listen(callback);
+  }
 }
