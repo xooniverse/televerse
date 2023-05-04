@@ -11,6 +11,7 @@ enum APIScheme {
   /// Returns the value of the scheme as [String].
   String get value => toString().split('.').last;
 
+  /// Checks equality of the scheme with [other].
   bool isEqual(dynamic other) {
     if (other is APIScheme) {
       return other.value == value;
