@@ -45,6 +45,10 @@
 /// - [PollContext] - Represents the context when a [UpdateType.poll] event occurs.
 /// - [PollAnswerContext] - Represents the context when a [UpdateType.pollAnswer] event occurs.
 /// - [ChosenInlineResultContext] - Represents the context when a [UpdateType.chosenInlineResult] event occurs.
+/// - [ChatJoinRequestContext] - Represents the context when a [UpdateType.chatJoinRequest] event occurs.
+/// - [ShippingQueryContext] - Represents the context when a [UpdateType.shippingQuery] event occurs.
+/// - [PreCheckoutQueryContext] - Represents the context when a [UpdateType.preCheckoutQuery] event occurs.
+///
 /// More context types will be added in the future.
 library televerse.context;
 

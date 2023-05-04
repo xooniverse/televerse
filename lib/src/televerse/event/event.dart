@@ -150,7 +150,6 @@ class Event {
     if (T == InlineQueryContext) {
       return InlineQueryContext(
         _api,
-        update.inlineQuery!,
         update: update,
       ) as T;
     }
@@ -158,7 +157,6 @@ class Event {
     if (T == CallbackQueryContext) {
       return CallbackQueryContext(
         _api,
-        update.callbackQuery!,
         update: update,
       ) as T;
     }
