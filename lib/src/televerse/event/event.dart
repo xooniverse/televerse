@@ -76,8 +76,9 @@ class Event {
       ).map(_mapper<ShippingQueryContext>);
 
   /// **onPreCheckoutQuery** is a stream of [PreCheckoutQuery] which is emitted when a pre-checkout query is received.
-  Stream<PreCheckoutQuery> get onPreCheckoutQuery =>
-      onUpdate(UpdateType.preCheckoutQuery).map(_mapper<PreCheckoutQuery>);
+  Stream<PreCheckoutQueryContext> get onPreCheckoutQuery =>
+      onUpdate(UpdateType.preCheckoutQuery)
+          .map(_mapper<PreCheckoutQueryContext>);
 
   /// **onPoll** is a stream of [Poll] which is emitted when a poll is received.
   Stream<PollContext> get onPoll =>

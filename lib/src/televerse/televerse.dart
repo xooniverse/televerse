@@ -592,4 +592,11 @@ class Televerse extends Event with OnEvent {
   ) {
     return onShippingQuery.listen(callback);
   }
+
+  /// Registers a callback for Pre Checkout Query events.
+  StreamSubscription<PreCheckoutQueryContext> preCheckoutQuery(
+    PreCheckoutQueryHandler callback,
+  ) {
+    return onPreCheckoutQuery.listen(callback);
+  }
 }

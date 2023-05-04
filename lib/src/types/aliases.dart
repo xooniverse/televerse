@@ -49,3 +49,9 @@ typedef ChatJoinRequestHandler = FutureOr<void> Function(
 /// This is used to define a callback function for almost all the methods that listen to shipping queries.
 typedef ShippingQueryHandler = FutureOr<void> Function(
     ShippingQueryContext ctx);
+
+/// [PreCheckoutQueryHandler] is a type alias for a function that takes a [PreCheckoutQueryContext] as parameter and returns a [FutureOr] of void.
+///
+/// This is used to define a callback function for almost all the methods that listen to pre checkout queries.
+typedef PreCheckoutQueryHandler = FutureOr<void> Function(
+    PreCheckoutQueryContext ctx);

@@ -64,6 +64,7 @@ part 'poll_answer.dart';
 part 'chosen_inline_result.dart';
 part 'chat_join_request.dart';
 part 'shipping_query.dart';
+part 'pre_checkout_query.dart';
 
 /// This class is used to represent the context of an update. It contains the update and the [RawAPI] instance.
 ///
