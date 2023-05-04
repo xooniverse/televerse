@@ -585,4 +585,11 @@ class Televerse extends Event with OnEvent {
   ) {
     return onChatJoinRequest.listen(callback);
   }
+
+  /// Registers a callback for Shipping Query events.
+  StreamSubscription<ShippingQueryContext> shippingQuery(
+    ShippingQueryHandler callback,
+  ) {
+    return onShippingQuery.listen(callback);
+  }
 }

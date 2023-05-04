@@ -6,6 +6,7 @@
 - This is to make it easier to cancel the subscription and increase the performance.
 - Added `ChosenInlineResultContext` class to represent the context of a `chosen_inline_result` update and `Televerse.chosenInlineResult` method to listen to `chosen_inline_result` updates.
 - Added `ChatJoinRequestContext` class to represent the context of a `chat_join_request` update and `Televerse.chatJoinRequest` method to listen to `chat_join_request` updates.
+- Added `ShippingQueryContext` class to represent the context of a `shipping_query` update and `Televerse.shippingQuery` method to listen to `shipping_query` updates.
 ## 1.8.1
 - Added `ChatMemberUpdatedContext` class to represent the context of a `chat_member` and `my_chat_member` updates.
 - Added `Televerse.chatMember` and `Televerse.myChatMember` methods to listen to `chat_member` and `my_chat_member` updates.

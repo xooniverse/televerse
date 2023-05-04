@@ -71,9 +71,9 @@ class Event {
       ).map(_mapper<CallbackQueryContext>);
 
   /// **onShippingQuery** is a stream of [ShippingQuery] which is emitted when a shipping query is received.
-  Stream<ShippingQuery> get onShippingQuery => onUpdate(
+  Stream<ShippingQueryContext> get onShippingQuery => onUpdate(
         UpdateType.shippingQuery,
-      ).map(_mapper<ShippingQuery>);
+      ).map(_mapper<ShippingQueryContext>);
 
   /// **onPreCheckoutQuery** is a stream of [PreCheckoutQuery] which is emitted when a pre-checkout query is received.
   Stream<PreCheckoutQuery> get onPreCheckoutQuery =>

@@ -43,3 +43,9 @@ typedef ChosenInlineResultHandler = FutureOr<void> Function(
 /// This is used to define a callback function for almost all the methods that listen to chat join requests.
 typedef ChatJoinRequestHandler = FutureOr<void> Function(
     ChatJoinRequestContext ctx);
+
+/// [ShippingQueryHandler] is a type alias for a function that takes a [ShippingQueryContext] as parameter and returns a [FutureOr] of void.
+///
+/// This is used to define a callback function for almost all the methods that listen to shipping queries.
+typedef ShippingQueryHandler = FutureOr<void> Function(
+    ShippingQueryContext ctx);
