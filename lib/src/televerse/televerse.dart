@@ -755,4 +755,28 @@ class Televerse extends Event with OnEvent {
       return hasMatch;
     }).listen(callback);
   }
+
+  /// This method sets up a callback when the bot is mentioned.
+  ///
+  /// This method possibly returns a [Future] if the bot information is not available
+  /// when the method is called. If the bot information is not available, the method
+  /// will fetch the bot information using the [RawAPI.getMe] method and then setup the callback.
+  ///
+  ///
+  Future<StreamSubscription<MessageContext>> whenMentioned(
+    MessageHandler callback,
+  ) async {
+    try {
+      return onMention(
+        callback,
+        username: me.username,
+      );
+    } on TeleverseException catch (_) {
+      _me = await api.getMe();
+      return onMention(
+        callback,
+        username: me.username,
+      );
+    }
+  }
 }

@@ -82,4 +82,8 @@ void main() async {
     PollAnswer pollAnswer = ctx.pollAnswer;
     ctx.reply('Poll Answered: ${pollAnswer.optionIds}');
   });
+
+  bot.whenMentioned((ctx) {
+    ctx.reply('Duh, ah! Cheese burger, please! 🍔');
+  });
 }

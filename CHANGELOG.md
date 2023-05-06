@@ -6,6 +6,7 @@
 - Added `Televerse.onEmail` method to listen to messages that contain email addresses.
 - Added `Televerse.onPhoneNumber` method to listen to messages that contain phone numbers.
 - Improved the overall code quality.
+- Added `Televerse.whenMentioned` method to listen to messages that contain mentions of the bot.
 ## 1.8.2
 - Added `PollContext`, `PollAnswerContext` classes to represent the context of a `poll` and `poll_answer` updates.
 - Added `Televerse.poll` method to listen to `poll` updates.
