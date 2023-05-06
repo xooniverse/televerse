@@ -432,6 +432,51 @@ class Televerse extends Event with OnEvent {
     _onError = handler;
   }
 
+  /// A filter that matches messages that contains the specified entity type.
+  /// Optionally, you can pass the [content] parameter to match messages that
+  /// contains the specified entity type and the specified content.
+  ///
+  /// This acts as a shortcut for the [entity] method and [onHashtag] methods.
+  bool _internalEntityMatcher({
+    required MessageContext context,
+    required MessageEntityType type,
+    String? content,
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    List<MessageEntity>? entities = context.message.entities;
+    if (shouldMatchCaptionEntities) {
+      entities = entities ?? context.message.captionEntities;
+    }
+    if (entities == null) return false;
+    bool hasMatch = entities.any((element) => element.type == type);
+
+    if (content != null) {
+      hasMatch = entities.any((element) {
+        if (element.type == type) {
+          if (!shouldMatchCaptionEntities) {
+            return context.message.text!.substring(
+                  element.offset,
+                  element.offset + element.length,
+                ) ==
+                content;
+          } else {
+            return context.message.caption!.substring(
+                  element.offset,
+                  element.offset + element.length,
+                ) ==
+                content;
+          }
+        }
+        return false;
+      });
+    }
+
+    if (hasMatch) {
+      return true;
+    }
+    return false;
+  }
+
   /// Registers a callback for messages that contains the specified entity type.
   ///
   /// Pass the `shouldMatchCaptionEntities` parameter to match entities in the
@@ -444,16 +489,11 @@ class Televerse extends Event with OnEvent {
     bool shouldMatchCaptionEntities = false,
   }) {
     return onMessage.where((context) {
-      List<MessageEntity>? entities = context.message.entities;
-      if (shouldMatchCaptionEntities) {
-        entities = entities ?? context.message.captionEntities;
-      }
-      if (entities == null) return false;
-      bool hasMatch = entities.any((element) => element.type == type);
-      if (hasMatch) {
-        return true;
-      }
-      return false;
+      return _internalEntityMatcher(
+        context: context,
+        type: type,
+        shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+      );
     }).listen(callback);
   }
 
@@ -598,5 +638,65 @@ class Televerse extends Event with OnEvent {
     PreCheckoutQueryHandler callback,
   ) {
     return onPreCheckoutQuery.listen(callback);
+  }
+
+  /// Sets up a callback for when a message with URL is received.
+  StreamSubscription<MessageContext> onURL(
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    return entity(
+      MessageEntityType.url,
+      callback,
+      shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+    );
+  }
+
+  /// Sets up a callback for when a message with email is received.
+  StreamSubscription<MessageContext> onEmail(
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    return entity(
+      MessageEntityType.email,
+      callback,
+      shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+    );
+  }
+
+  /// Sets up a callback for when a message with phone number is received.
+  StreamSubscription<MessageContext> onPhoneNumber(
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    return entity(
+      MessageEntityType.phoneNumber,
+      callback,
+      shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+    );
+  }
+
+  /// Sets up a callback for when a message with hashtag is received.
+  StreamSubscription<MessageContext> onHashtag(
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+    String? hashtag,
+  }) {
+    if (hashtag == null) {
+      return entity(
+        MessageEntityType.hashtag,
+        callback,
+        shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+      );
+    }
+
+    return onMessage.where((ctx) {
+      return _internalEntityMatcher(
+        context: ctx,
+        type: MessageEntityType.hashtag,
+        content: hashtag,
+        shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+      );
+    }).listen(callback);
   }
 }
