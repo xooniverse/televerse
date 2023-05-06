@@ -451,6 +451,17 @@ class Televerse extends Event with OnEvent {
     bool hasMatch = entities.any((element) => element.type == type);
 
     if (content != null) {
+      String value;
+      switch (type) {
+        case MessageEntityType.hashtag:
+          value = "#$content";
+          break;
+        case MessageEntityType.mention:
+          value = "@$content";
+          break;
+        default:
+          value = content;
+      }
       hasMatch = entities.any((element) {
         if (element.type == type) {
           if (!shouldMatchCaptionEntities) {
@@ -458,23 +469,20 @@ class Televerse extends Event with OnEvent {
                   element.offset,
                   element.offset + element.length,
                 ) ==
-                content;
+                value;
           } else {
             return context.message.caption!.substring(
                   element.offset,
                   element.offset + element.length,
                 ) ==
-                content;
+                value;
           }
         }
         return false;
       });
     }
 
-    if (hasMatch) {
-      return true;
-    }
-    return false;
+    return hasMatch;
   }
 
   /// Registers a callback for messages that contains the specified entity type.
@@ -521,10 +529,7 @@ class Televerse extends Event with OnEvent {
             (e) => e.type == element,
           ));
 
-      if (hasMatch) {
-        return true;
-      }
-      return false;
+      return hasMatch;
     }).listen(callback);
   }
 
@@ -697,6 +702,57 @@ class Televerse extends Event with OnEvent {
         content: hashtag,
         shouldMatchCaptionEntities: shouldMatchCaptionEntities,
       );
+    }).listen(callback);
+  }
+
+  /// Sets up a callback for when a mention is occurred.
+  /// Optionally, you can pass the [username] parameter or [userId] parameter to
+  /// only receive updates for a specific user.
+  ///
+  /// [username] - The username of the user. Don't pass the leading '@' character.
+  ///
+  /// [userId] - The ID of the user.
+  ///
+  /// When the [username] parameter is passed, the callback will be called when a
+  /// [MessageEntityType.mention] entity is occurred with the specified username.
+  ///
+  /// When the [userId] parameter is passed, the callback will be called when a
+  /// [MessageEntityType.textMention] entity is occurred with the specified user ID.
+  ///
+  /// That is you don't have to setup a different callback for [MessageEntityType.mention]
+  /// and [MessageEntityType.textMention] entities. (Well, you can if you want to.)
+  StreamSubscription<MessageContext> onMention(
+    MessageHandler callback, {
+    String? username,
+    int? userId,
+  }) {
+    if (username == null && userId == null) {
+      return entity(
+        MessageEntityType.mention,
+        callback,
+      );
+    }
+    if (username != null) {
+      return onMessage.where((ctx) {
+        return _internalEntityMatcher(
+          context: ctx,
+          type: MessageEntityType.mention,
+          content: username,
+        );
+      }).listen(callback);
+    }
+
+    return onMessage.where((ctx) {
+      List<MessageEntity>? entities = ctx.message.entities;
+      if (entities == null) return false;
+      bool hasMatch = entities.any((element) {
+        if (element.type == MessageEntityType.textMention) {
+          return element.user?.id == userId;
+        }
+        return false;
+      });
+
+      return hasMatch;
     }).listen(callback);
   }
 }

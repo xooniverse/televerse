@@ -1,3 +1,11 @@
+## 1.8.3
+- Added more helper methods on `Televerse` class to listen to updates.
+- Added `Televerse.onURL` method to listen to messages that contain URLs.
+- Added `Televerse.onHashtag` method to listen to messages that contain hashtags.
+- Added `Televerse.onMention` method to listen to messages that contain mentions.
+- Added `Televerse.onEmail` method to listen to messages that contain email addresses.
+- Added `Televerse.onPhoneNumber` method to listen to messages that contain phone numbers.
+- Improved the overall code quality.
 ## 1.8.2
 - Added `PollContext`, `PollAnswerContext` classes to represent the context of a `poll` and `poll_answer` updates.
 - Added `Televerse.poll` method to listen to `poll` updates.
