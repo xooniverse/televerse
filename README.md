@@ -1,10 +1,17 @@
-# Televerse 
+# Televerse
 
-Televerse is simple & efficient way to create Telegram bots with Dart.
+[![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
+![GitHub](https://img.shields.io/github/license/HeySreelal/televerse?color=green)
 
 ![](https://shields.io/badge/Latest-Bot%20API%206.7-blue)
 
 🤖 `Bot API version: Bot API 6.7 (April 21, 2023)`
+
+Televerse is a powerful, easy-to-use, and highly customizable Telegram bot framework built with Dart programming language. It provides a complete and well-structured API that enables developers to create and deploy complex Telegram bots with ease. Televerse provides a total of 0 dynamic types on its public interface, making it easy for developers to write strictly typed code.
+
+## 💻 Getting Started
+
+Creating a bot with Televerse is very easy! First, you need to import the Televerse package:
 
 ## 👨🏻‍💻 Installation
 
@@ -15,39 +22,35 @@ dependencies:
   televerse: <latest>
 ```
 
-## 📖 Usage
-
-With Televerse you can create a simple bot in just a few lines of code:
+Now in your Dart code, you can import the Televerse package:
 
 ```dart
 import 'package:televerse/televerse.dart';
-
-Bot bot = Bot('YOUR_BOT_TOKEN');
-
 ```
-Now with the bot instance you can start listening for updates such as messages, commands, etc.
 
-To start polling updates from Telegram servers, you need to call:
+After importing the package, you can create a new bot instance by providing your bot token:
 
 ```dart
-bot.start()
-````
+Bot bot = Bot('YOUR_BOT_TOKEN');
+```
 
+Now, you can start listening for updates such as messages, commands, etc. To start polling updates from Telegram servers, simply call:
 
+```dart
+bot.start();
+```
 
-From, Televerse 1.3.1, you can use `bot.start` method to start listening for updates and also, setup a command listener for the `/start` command.
+That's it! Your bot is now ready to receive updates from Telegram. 
 
-That is you can shrink this code:
+If you want to handle a specific command, such as the `/start` command, you can use the `bot.command` method. For example:
 
 ```dart
 bot.command('start', (ctx) {
   ctx.reply('Hello, World!');
 });
-
-bot.start();
 ```
 
-To this:
+Starting from Televerse 1.3.1, you can use the `bot.start` method to start listening for updates and also set up a command listener for the `/start` command. That means you can simplify the code above like this:
 
 ```dart
 bot.start((ctx) {
@@ -55,16 +58,13 @@ bot.start((ctx) {
 });
 ```
 
-## 📚 Documentation
+And that's all you need to get started with Televerse!
 
-### 📖 Televerse Wiki
-We have a dedicated documentation on GitHub Wiki on this repo. Check it our here: [Televerse Wiki](https://github.com/HeySreelal/televerse/wiki).
+## 📚 Documentation 
 
-### ✨ In simple words
+Televerse has a new API that is much simpler and easier to use. You can now use the `bot` instance to access the powerful Televerse methods and properties, and if you want to access the Telegram Bot API methods, you can use the `bot.api` getter. Simple, and clean.
 
-Starting from version 1.4.0, Televerse has a new API that is much simpler and easier to use. You can now use the `bot` instance to access the powerful Televerse methods and properties, and if you want to access the Telegram Bot API methods, you can use the `bot.api` getter. Simple, and clean.
-
-Now, when you're inside a callback function, you can access the `bot` instance using the `MessageContext` parameter which also provides you with the `api` property.
+Now, when you're inside a callback function, you can access the `bot` instance using the `Context` parameter which also provides you with the `api` property.
 
 
 For example, if you want to send a message to a specific chat you can do it like this:
@@ -77,21 +77,21 @@ bot.api.sendMessage(ChatID(123456), "Hello, World!");
 ctx.api.sendMessage(ChatID(123456), "Hello, World!");
 ```
 
-## 👽 Advanced Usage
+## 🔊 Listening for Updates
 
-We also provide a set of custom methods to make your life easier. Some of them are:
+Televerse also offers a set of custom methods to simplify your development process. Some of these methods include:
 
 - `bot.command` to listen for commands
 - `bot.chatType` and `bot.chatTypes` to listen for specific chat types
-- `bot.text` to listen for text messages that contains a specific text
+- `bot.text` to listen for text messages that contain specific text
 
-And even advanced methods like
+There are also more advanced methods such as:
 - `bot.filter` to create your own filters and listen for messages that match them
 - `bot.hear` to listen for messages that match a RegExp
 
-Filter and hear methods are very powerful and can be used to create your own custom filters.
+These methods are very powerful and can be used to create your own custom filters.
 
-For example, if you want to listen for messages that contains a photo which has more than 1MB of size, you can do it like this:
+For example, if you want to listen for messages that contain a photo with a size greater than 1MB, you can do it like this:
 
 ```dart
 bot.filter((ctx) {
@@ -101,28 +101,60 @@ bot.filter((ctx) {
 });
 ```
 
-Note: we're still working on improving the documentation, so you can check the [example](./example/televerse_example.dart) file for more information.
+Please note that we are still working on improving the documentation. In the meantime, you can refer to the [example](./example/televerse_example.dart) file for more information.
 
-## 🔐 Example
+## 🦄 Even more
 
-You can find a simple example of a bot that uses Televerse in the [example](./example/televerse_example.dart) file.
+Televerse provides a number of helper methods to make it easy to listen for specific types of updates. For example, you can use the `onURL`, `onHashtag`, `onMention`, `onEmail`, and `onPhoneNumber` methods to listen for messages that contain specific types of content:
 
-### 👽 Examples Repo 
+```dart
+bot.onURL((ctx) {
+  print('Received message with URL: ${message.text}');
+});
 
-But, where's the fun in that? So we've created an entire repository with examples of bots built with Televerse. [Check it out here: Televerse Examples](https://github.com/xooniverse/TeleverseExamples).
+bot.onMention((ctx) {
+  print('Received message with mention: ${message.text}');
+});
 
-This repository includes examples of bots such as **simple letter counting bot** to **referral bot**, and many more on the way. Moreover, we've detailed the code and explained how it works, so you can learn how to build your own bots with Televerse.
 
-## 📝 Note
+// And so on...
+```
 
-We're still at the early stages of the project, so we're working on improving the documentation and adding more features.
+You can also use the `whenMentioned` method to listen for messages that mention your bot:
 
-## 👫 Contributing
+```dart
+bot.whenMentioned((ctx) {
+  print('Oh hey, I was sleeping! What did I miss?');
+});
+```
 
-If you want to contribute to the project, you can do it by opening a pull request or by opening an issue.
+## 🎖️ Local Bot API Server Support
+Televerse supports listening to a local Bot API Server. To use this feature, you can create a new bot instance using the `local` method:
 
-Jump into our Telegram Group to discuss about the project.
+```dart
+/// Creates the bot instance, optionally passing the base URL of the local Bot API Server.
+final Bot bot = Bot.local(
+  "YOUR_BOT_TOKEN",
+  baseURL: "mybotapi.com",
+);
+```
 
-[GitHub Repo](https://github.com/HeySreelal/televerse) | [Telegram Group](https://t.me/televersedart)
+This will create a bot instance that listens to updates from your local Bot API Server. You can then use the same helper methods to listen for updates, messages, and events.
 
-## Thanks ❤️
+
+## 🌟 Shoot a Star
+If you find Televerse helpful, please consider shooting a star on our [Github repository](https://github.com/HeySreelal/televerse). This helps us to know that our work is appreciated and motivates us to continue improving Televerse.
+
+## 🤝 Join the Discussion
+We have an active Telegram group where you can discuss Televerse and get help from other users and developers. 
+
+<a href="https://t.me/TeleverseDart">
+  <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> 
+</a> <a href="https://github.com/HeySreelal/televerse/discussions">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
+</a>
+
+<br>
+
+# Thank you ❤️
+Televerse is a powerful and easy-to-use library for building Telegram bots in TypeScript. With its fully typed interface and helpful helper methods, you can write clean, maintainable code that responds to messages and updates on Telegram. So, what are you waiting for? Start building your Telegram bot with Televerse today!

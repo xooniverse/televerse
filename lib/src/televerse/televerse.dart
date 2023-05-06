@@ -80,7 +80,7 @@ class Televerse extends Event with OnEvent {
   /// Also, you can pass a [sync] parameter to the constructor.
   /// If [sync] is true, events may be fired directly by the stream's subscriptions during an [StreamController.add], [StreamController.addError] or [StreamController.close] call. The returned stream controller is a [SynchronousStreamController], and must be used with the care and attention necessary to not break the [Stream] contract. See [Completer.sync] for some explanations on when a synchronous dispatching can be used. If in doubt, keep the controller non-sync.
   ///
-  /// If [sync] is false, the event will always be fired at a later time, after the code adding the event has completed. In that case, no guarantees are given with regard to when multiple listeners get the events, except that each listener will get all events in the correct order. Each subscription handles the events individually. If two events are sent on an async controller with two listeners, one of the listeners may get both events before the other listener gets any. A listener must be subscribed both when the event is initiated (that is, when [add] is called) and when the event is later delivered, in order to receive the event.
+  /// If [sync] is false, the event will always be fired at a later time, after the code adding the event has completed. In that case, no guarantees are given with regard to when multiple listeners get the events, except that each listener will get all events in the correct order. Each subscription handles the events individually. If two events are sent on an async controller with two listeners, one of the listeners may get both events before the other listener gets any. A listener must be subscribed both when the event is initiated (that is, when `add` is called) and when the event is later delivered, in order to receive the event.
   ///
   /// ## Using Local Bot API Server
   /// You can use the [Televerse] class to create a bot instance that listens to a local Bot API server. Use the [Televerse.local] constructor to create a bot instance that listens to a local Bot API server.
@@ -432,6 +432,59 @@ class Televerse extends Event with OnEvent {
     _onError = handler;
   }
 
+  /// A filter that matches messages that contains the specified entity type.
+  /// Optionally, you can pass the [content] parameter to match messages that
+  /// contains the specified entity type and the specified content.
+  ///
+  /// This acts as a shortcut for the [entity] method and [onHashtag] methods.
+  bool _internalEntityMatcher({
+    required MessageContext context,
+    required MessageEntityType type,
+    String? content,
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    List<MessageEntity>? entities = context.message.entities;
+    if (shouldMatchCaptionEntities) {
+      entities = entities ?? context.message.captionEntities;
+    }
+    if (entities == null) return false;
+    bool hasMatch = entities.any((element) => element.type == type);
+
+    if (content != null) {
+      String value;
+      switch (type) {
+        case MessageEntityType.hashtag:
+          value = "#$content";
+          break;
+        case MessageEntityType.mention:
+          value = "@$content";
+          break;
+        default:
+          value = content;
+      }
+      hasMatch = entities.any((element) {
+        if (element.type == type) {
+          if (!shouldMatchCaptionEntities) {
+            return context.message.text!.substring(
+                  element.offset,
+                  element.offset + element.length,
+                ) ==
+                value;
+          } else {
+            return context.message.caption!.substring(
+                  element.offset,
+                  element.offset + element.length,
+                ) ==
+                value;
+          }
+        }
+        return false;
+      });
+    }
+
+    return hasMatch;
+  }
+
   /// Registers a callback for messages that contains the specified entity type.
   ///
   /// Pass the `shouldMatchCaptionEntities` parameter to match entities in the
@@ -444,16 +497,11 @@ class Televerse extends Event with OnEvent {
     bool shouldMatchCaptionEntities = false,
   }) {
     return onMessage.where((context) {
-      List<MessageEntity>? entities = context.message.entities;
-      if (shouldMatchCaptionEntities) {
-        entities = entities ?? context.message.captionEntities;
-      }
-      if (entities == null) return false;
-      bool hasMatch = entities.any((element) => element.type == type);
-      if (hasMatch) {
-        return true;
-      }
-      return false;
+      return _internalEntityMatcher(
+        context: context,
+        type: type,
+        shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+      );
     }).listen(callback);
   }
 
@@ -481,10 +529,7 @@ class Televerse extends Event with OnEvent {
             (e) => e.type == element,
           ));
 
-      if (hasMatch) {
-        return true;
-      }
-      return false;
+      return hasMatch;
     }).listen(callback);
   }
 
@@ -598,5 +643,140 @@ class Televerse extends Event with OnEvent {
     PreCheckoutQueryHandler callback,
   ) {
     return onPreCheckoutQuery.listen(callback);
+  }
+
+  /// Sets up a callback for when a message with URL is received.
+  StreamSubscription<MessageContext> onURL(
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    return entity(
+      MessageEntityType.url,
+      callback,
+      shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+    );
+  }
+
+  /// Sets up a callback for when a message with email is received.
+  StreamSubscription<MessageContext> onEmail(
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    return entity(
+      MessageEntityType.email,
+      callback,
+      shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+    );
+  }
+
+  /// Sets up a callback for when a message with phone number is received.
+  StreamSubscription<MessageContext> onPhoneNumber(
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    return entity(
+      MessageEntityType.phoneNumber,
+      callback,
+      shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+    );
+  }
+
+  /// Sets up a callback for when a message with hashtag is received.
+  StreamSubscription<MessageContext> onHashtag(
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+    String? hashtag,
+  }) {
+    if (hashtag == null) {
+      return entity(
+        MessageEntityType.hashtag,
+        callback,
+        shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+      );
+    }
+
+    return onMessage.where((ctx) {
+      return _internalEntityMatcher(
+        context: ctx,
+        type: MessageEntityType.hashtag,
+        content: hashtag,
+        shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+      );
+    }).listen(callback);
+  }
+
+  /// Sets up a callback for when a mention is occurred.
+  /// Optionally, you can pass the [username] parameter or [userId] parameter to
+  /// only receive updates for a specific user.
+  ///
+  /// [username] - The username of the user. Don't pass the leading '@' character.
+  ///
+  /// [userId] - The ID of the user.
+  ///
+  /// When the [username] parameter is passed, the callback will be called when a
+  /// [MessageEntityType.mention] entity is occurred with the specified username.
+  ///
+  /// When the [userId] parameter is passed, the callback will be called when a
+  /// [MessageEntityType.textMention] entity is occurred with the specified user ID.
+  ///
+  /// That is you don't have to setup a different callback for [MessageEntityType.mention]
+  /// and [MessageEntityType.textMention] entities. (Well, you can if you want to.)
+  StreamSubscription<MessageContext> onMention(
+    MessageHandler callback, {
+    String? username,
+    int? userId,
+  }) {
+    if (username == null && userId == null) {
+      return entity(
+        MessageEntityType.mention,
+        callback,
+      );
+    }
+    if (username != null) {
+      return onMessage.where((ctx) {
+        return _internalEntityMatcher(
+          context: ctx,
+          type: MessageEntityType.mention,
+          content: username,
+        );
+      }).listen(callback);
+    }
+
+    return onMessage.where((ctx) {
+      List<MessageEntity>? entities = ctx.message.entities;
+      if (entities == null) return false;
+      bool hasMatch = entities.any((element) {
+        if (element.type == MessageEntityType.textMention) {
+          return element.user?.id == userId;
+        }
+        return false;
+      });
+
+      return hasMatch;
+    }).listen(callback);
+  }
+
+  /// This method sets up a callback when the bot is mentioned.
+  ///
+  /// This method possibly returns a [Future] if the bot information is not available
+  /// when the method is called. If the bot information is not available, the method
+  /// will fetch the bot information using the [RawAPI.getMe] method and then setup the callback.
+  ///
+  ///
+  Future<StreamSubscription<MessageContext>> whenMentioned(
+    MessageHandler callback,
+  ) async {
+    try {
+      return onMention(
+        callback,
+        username: me.username,
+      );
+    } on TeleverseException catch (_) {
+      _me = await api.getMe();
+      return onMention(
+        callback,
+        username: me.username,
+      );
+    }
   }
 }
