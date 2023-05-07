@@ -12,6 +12,9 @@ void main() async {
 
   /// Starts the bot and sets up the /start command listener
   bot.start((ctx) {
+    UserMention mention = ctx.message.from!.mention;
+    ctx.reply("Hello $mention!");
+
     final keyboard = InlineKeyboard()
         .row()
         .add("Noob", "exp-noob")
