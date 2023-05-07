@@ -13,3 +13,5 @@ part 'webhook_exception.dart';
 part 'http_exception.dart';
 part 'long_polling_exception.dart';
 part 'televerse_exception.dart';
+part 'mention.dart';
+part 'custom_emoji.dart';

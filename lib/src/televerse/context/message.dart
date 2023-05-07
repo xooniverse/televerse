@@ -49,4 +49,8 @@ class MessageContext extends Context with MessageMixin, ManagementMixin {
   /// Easy right? :)
   @override
   ID get id => ChatID(message.chat.id);
+
+  /// User who sent the message.
+  /// This will be `null` if the message is sent if the message is sent on a channel or an anonymous admin.
+  User? get from => message.from;
 }
