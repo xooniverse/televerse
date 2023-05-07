@@ -13,7 +13,12 @@ void main() async {
   /// Starts the bot and sets up the /start command listener
   bot.start((ctx) {
     UserMention mention = ctx.message.from!.mention;
-    ctx.reply("Hello $mention!");
+
+    // Custom emoji
+    // This will only work if the bots that purchased additional usernames on Fragment
+    CustomEmoji emoji = CustomEmoji("👍", 5368324170671202286);
+
+    ctx.reply("Hello $mention! $emoji");
 
     final keyboard = InlineKeyboard()
         .row()

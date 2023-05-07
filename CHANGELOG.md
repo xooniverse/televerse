@@ -3,6 +3,7 @@
 - Added the new `UserMention` class to represent a user mention.
 - Added an extension to `User` class to convert it to a `UserMention` object.
 - Added `MessageContext.from` alias to `Message.from` property.
+- Added `CustomEmoji` class to represent a Telegram custom emoji.
 ## 1.8.3
 - Added more helper methods on `Televerse` class to listen to updates.
 - Added `Televerse.onURL` method to listen to messages that contain URLs.
