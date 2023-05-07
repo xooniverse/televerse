@@ -109,11 +109,11 @@ Televerse provides a number of helper methods to make it easy to listen for spec
 
 ```dart
 bot.onURL((ctx) {
-  print('Received message with URL: ${message.text}');
+  ctx.reply('I guess you want me to crawl this? 🕷️');
 });
 
 bot.onMention((ctx) {
-  print('Received message with mention: ${message.text}');
+  ctx.reply("Someone mentioned someone! 🤭");
 });
 
 
