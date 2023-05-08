@@ -1,3 +1,6 @@
+## 1.8.5 
+- Added the `Deeplink` class to represent a Telegram deeplink.
+- Made it easy to use Telegram deeplinks by adding `BotLink`, `GroupBotLink`, `ChannelBotLink`, `GameLink`, `SettingsLinks` and `ShareLink` classes.
 ## 1.8.4
 - ✨ Simplified mentions.
 - Added the new `UserMention` class to represent a user mention.
