@@ -18,17 +18,19 @@ void main() async {
     // This will only work if the bots that purchased additional usernames on Fragment
     CustomEmoji emoji = CustomEmoji("👍", 5368324170671202286);
 
-    ctx.reply("Hello $mention! $emoji");
+    ctx.reply("Hello $mention! $emoji", parseMode: ParseMode.html);
+
+    ShareLink link = ShareLink("https://google.com", text: "Google");
+    GroupBotLink groupLink = GroupBotLink("xclairebot");
 
     final keyboard = InlineKeyboard()
         .row()
         .add("Noob", "exp-noob")
         .add("Pro", "exp-pro")
         .row()
-        .add("Expert", "exp-expert")
-        .add("Master", "exp-master")
+        .addUrl("Add me to a group", "$groupLink")
         .row()
-        .add("God", "exp-god");
+        .addUrl("Share", "$link");
 
     ctx.reply(
       "Choose your experience level",
