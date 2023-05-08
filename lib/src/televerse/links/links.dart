@@ -3,7 +3,7 @@
 /// Telegram supports different types of deeplinks. This includes opening a chat with a user, opening a group with a specific message,
 /// adding a bot to a group / channel, to name a few.
 ///
-/// Televerse provides a convenient way to create these deeplinks. Simply use the [TelegramDeeplink] class to create a deeplink.
+/// Televerse provides a convenient way to create these deeplinks.
 library links;
 
 part 'bot.dart';
