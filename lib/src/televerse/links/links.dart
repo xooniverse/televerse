@@ -11,6 +11,9 @@ part 'bot_admin_rights.dart';
 part 'game.dart';
 part 'settings.dart';
 part 'share.dart';
+part 'username.dart';
+part 'phone_number.dart';
+part 'proxy.dart';
 
 /// This class represents a Telegram deeplink.
 abstract class Deeplink {

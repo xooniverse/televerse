@@ -2,6 +2,9 @@ part of links;
 
 /// Represents Telegram settings deeplinks.
 class SettingsLinks {
+  /// Private constructor to prevent instantiation.
+  SettingsLinks._();
+
   /// Prefix
   static const _prefix = 'tg://settings';
 
