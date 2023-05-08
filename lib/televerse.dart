@@ -36,6 +36,7 @@ export 'src/televerse/event/event.dart';
 export 'src/televerse/filters/filters.dart';
 export 'src/televerse/fetch/fetch.dart';
 export 'src/televerse/extensions/extensions.dart';
+export 'src/televerse/links/links.dart';
 
 part 'src/televerse/televerse.dart';
 part 'src/utils/date.dart';
