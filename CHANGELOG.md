@@ -1,3 +1,8 @@
+## 1.8.6
+
+- Added `UserLink` class to represent a Telegram user link.
+- Added `LinkText` class. This can be used to send a link with a custom text on chats.
+
 ## 1.8.5
 
 - Added the `Deeplink` class to represent a Telegram deeplink.
