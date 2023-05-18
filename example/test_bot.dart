@@ -96,4 +96,12 @@ void main() async {
   bot.whenMentioned((ctx) {
     ctx.reply('Duh, ah! Cheese burger, please! 🍔');
   });
+
+  bot.command('test', (ctx) {
+    ctx.reply('Test passed!');
+  });
+
+  bot.command('testing', (ctx) {
+    ctx.reply('Testing passed!');
+  });
 }

@@ -2,6 +2,9 @@
 
 - Added `UserLink` class to represent a Telegram user link.
 - Added `LinkText` class. This can be used to send a link with a custom text on chats.
+- Fixed an issue with the `Televerse.command` that caused to match unexpected commands.
+  - This was because the `Televerse.command` method used `String.startsWith` to match the command.
+  - Thanks to [GiuseppeFn](https://github.com/GiuseppeFn) for raising the [Issue #85](https://github.com/HeySreelal/televerse/issues/85)
 
 ## 1.8.5
 

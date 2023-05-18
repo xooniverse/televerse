@@ -177,6 +177,10 @@ class Televerse extends Event with OnEvent {
   }
 
   /// Start polling for updates.
+  ///
+  /// This method starts polling for updates. It will automatically start the fetcher.
+  ///
+  /// You can pass a [handler] to the method. The handler will be called when a message is received that starts with the `/start` command.
   Future<void> start([FutureOr<void> Function(MessageContext)? handler]) async {
     fetcher.start().catchError((err, st) {
       if (_onError != null) {
@@ -229,7 +233,8 @@ class Televerse extends Event with OnEvent {
           callback(context);
         }
       } else if (command is String) {
-        if (context.message.text!.startsWith('/$command')) {
+        String firstElement = context.message.text!.split(' ').first;
+        if (firstElement == '/$command') {
           if (command == 'start' &&
               context.message.text!.split(' ').length > 1) {
             context.startParameter =
