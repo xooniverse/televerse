@@ -182,18 +182,21 @@ class Televerse extends Event with OnEvent {
   ///
   /// You can pass a [handler] to the method. The handler will be called when a message is received that starts with the `/start` command.
   Future<void> start([FutureOr<void> Function(MessageContext)? handler]) async {
-    fetcher.start().catchError((err, st) {
-      if (_onError != null) {
-        _onError!(err, st);
-      } else {
-        throw err;
-      }
-    });
-    fetcher.onUpdate().listen(_onUpdate);
-
     // Registers a handler to listen for /start command
     if (handler != null) {
       command("start", handler);
+    }
+    fetcher.onUpdate().listen(_onUpdate);
+    try {
+      return await fetcher.start();
+    } catch (err, stack) {
+      if (_onError != null) {
+        fetcher.stop();
+        await _onError!(err, stack);
+        return fetcher.start();
+      } else {
+        rethrow;
+      }
     }
   }
 
