@@ -10,24 +10,6 @@ void main() async {
     fetcher: LongPolling.allUpdates(),
   );
 
-  for (var i = 0; i < 300; i++) {
-    bot.api
-        .sendMessage(
-          ChatID(int.parse(Platform.environment['CHAT_ID']!)),
-          "Hello World",
-        )
-        .then((value) => null)
-        .catchError((err) {
-      if (err is TelegramException) {
-        print(err.code);
-        print(err.description);
-        print(err.parameters);
-      } else {
-        print(err);
-      }
-    });
-  }
-
   /// Starts the bot and sets up the /start command listener
   bot.start((ctx) {
     UserMention mention = ctx.message.from!.mention;
