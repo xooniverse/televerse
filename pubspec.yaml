@@ -4,7 +4,7 @@ version: 1.8.6
 homepage: https://github.com/HeySreelal/televerse
 
 environment:
-  sdk: ">=2.18.2 <3.0.0"
+  sdk: ">=2.18.2 <4.0.0"
 
 dependencies:
   http: ^0.13.5
