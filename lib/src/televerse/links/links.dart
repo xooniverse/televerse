@@ -6,6 +6,8 @@
 /// Televerse provides a convenient way to create these deeplinks.
 library links;
 
+import 'package:televerse/televerse.dart';
+
 part 'bot.dart';
 part 'bot_admin_rights.dart';
 part 'game.dart';
@@ -14,6 +16,8 @@ part 'share.dart';
 part 'username.dart';
 part 'phone_number.dart';
 part 'proxy.dart';
+part 'user.dart';
+part 'text.dart';
 
 /// This class represents a Telegram deeplink.
 abstract class Deeplink {

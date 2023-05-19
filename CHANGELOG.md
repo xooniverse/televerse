@@ -1,3 +1,14 @@
+## 1.8.6
+
+- Added `UserLink` class to represent a Telegram user link.
+- Added `LinkText` class. This can be used to send a link with a custom text on chats.
+- Fixed an issue with the `Televerse.command` that caused to match unexpected commands.
+  - This was because the `Televerse.command` method used `String.startsWith` to match the command.
+  - Thanks to [GiuseppeFn](https://github.com/GiuseppeFn) for raising the [Issue #85](https://github.com/HeySreelal/televerse/issues/85)
+- The `HttpException` class is now renamed to `TelegramException`.
+- This is to include the `ResponseParameters` object in the exception hence to make it easier to handle and retry if needed.
+- When an exception happens in the long polling, if the error handler is set using `Televerse.onError` method this will now pauses the long polling till the `onError` handler completes its execution.
+
 ## 1.8.5
 
 - Added the `Deeplink` class to represent a Telegram deeplink.

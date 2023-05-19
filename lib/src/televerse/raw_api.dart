@@ -84,8 +84,8 @@ class RawAPI {
       params["allowed_updates"] = jsonEncode(allowedUpdates);
     }
 
-    Uri uri = _buildUri("getUpdates", params);
-    final response = await HttpClient.getURI(uri);
+    Uri uri = _buildUri("getUpdates");
+    final response = await HttpClient.postURI(uri, params);
 
     if (response is! List) {
       throw LongPollingException("Got an invalid response. $response");

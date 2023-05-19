@@ -87,15 +87,23 @@ class LongPolling extends Fetcher {
       await Future.delayed(Duration(milliseconds: 200));
       _resetRetryDelay();
     } catch (err, stackTrace) {
-      if (err is HttpException && err.isClientException) {
-        _isPolling = false;
-        throw LongPollingException("Long polling stopped: ${err.message}");
-      }
+      _isPolling = false;
       print("Long polling failed: $err");
       print(stackTrace);
-
-      await Future.delayed(_retryDelay);
-      _doubleRetryDelay();
+      if (err is TelegramException) {
+        if (err.parameters?.retryAfter != null) {
+          print(
+            'Polling will be resumed after ${err.parameters!.retryAfter!} seconds',
+          );
+          _retryDelay = Duration(seconds: err.parameters!.retryAfter!);
+          await Future.delayed(_retryDelay);
+          _isPolling = true;
+        } else {
+          _doubleRetryDelay();
+        }
+      } else {
+        rethrow;
+      }
     }
   }
 
