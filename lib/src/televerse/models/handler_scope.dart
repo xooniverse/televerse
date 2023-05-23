@@ -11,6 +11,9 @@ class HandlerScope<T extends Function> {
   /// If it's a RegExp handler, we'll set the `MessageContext.matches` to the matches of the RegExp.
   final bool isRegExp;
 
+  /// The RegExp pattern.
+  final RegExp? pattern;
+
   /// Handler
   final T handler;
 
@@ -27,6 +30,7 @@ class HandlerScope<T extends Function> {
     required this.type,
     this.isCommand = false,
     this.isRegExp = false,
+    this.pattern,
   }) : special = isCommand || isRegExp;
 
   /// Creates a new Context object for the specified update.

@@ -175,11 +175,30 @@ class Televerse {
       return scope.type == update.type;
     });
     for (HandlerScope scope in sub) {
-      Context convertedContext = scope.context(api, update);
-
-      if (scope.predicate(convertedContext)) {
+      Context context = scope.context(api, update);
+      if (scope.special) {
+        if (scope.isCommand) {
+          context as MessageContext;
+          String? text = context.message.text;
+          if (text != null) {
+            List<String> split = text.split(' ');
+            bool hasParam = split.length > 1;
+            if (hasParam && split.first == '/start') {
+              context.startParameter = split.sublist(1).join(' ');
+            }
+          }
+        }
+        if (scope.isRegExp) {
+          context as MessageContext;
+          String? text = context.message.text;
+          if (text != null && scope.pattern != null) {
+            context.matches = scope.pattern!.allMatches(text).toList();
+          }
+        }
+      }
+      if (scope.predicate(context)) {
         if (_checkSync(scope.handler)) {
-          ((scope.handler(convertedContext)) as Future).catchError((err) {
+          ((scope.handler(context)) as Future).catchError((err) {
             if (_onError != null) {
               _onError!(err, StackTrace.current);
             } else {
@@ -188,7 +207,7 @@ class Televerse {
           });
         } else {
           try {
-            scope.handler(convertedContext);
+            scope.handler(context);
           } catch (err, stack) {
             if (_onError != null) {
               _onError!(err, stack);
@@ -455,6 +474,8 @@ class Televerse {
     MessageHandler callback,
   ) {
     HandlerScope scope = HandlerScope<MessageHandler>(
+      pattern: exp,
+      isRegExp: true,
       handler: callback,
       type: UpdateType.message,
       predicate: (ctx) {
