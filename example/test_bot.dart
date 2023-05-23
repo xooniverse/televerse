@@ -101,7 +101,19 @@ void main() async {
     ctx.reply('Test passed!');
   });
 
-  bot.command('testing', (ctx) {
-    ctx.reply('Testing passed!');
+  bot.command('testing', (ctx) async {
+    ctx.reply('Testing...');
+
+    await Future.delayed(Duration(seconds: 5));
+
+    throw Exception('Test failed!');
+  });
+
+  bot.onError((err, stackTrace) {
+    print('I catch everything :)');
+  });
+
+  bot.onMessage((ctx) {
+    ctx.reply('I got a message!');
   });
 }

@@ -55,3 +55,6 @@ typedef ShippingQueryHandler = FutureOr<void> Function(
 /// This is used to define a callback function for almost all the methods that listen to pre checkout queries.
 typedef PreCheckoutQueryHandler = FutureOr<void> Function(
     PreCheckoutQueryContext ctx);
+
+/// Base handler
+typedef Handler = FutureOr<void> Function(Context ctx);

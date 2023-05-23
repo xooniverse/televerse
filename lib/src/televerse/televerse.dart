@@ -15,8 +15,7 @@ part of televerse;
 /// }
 /// ```
 ///
-/// The [Televerse] class extends [Event] class. The [Event] class is used to emit events and additionally provides a bunch of useful methods.
-class Televerse extends Event with OnEvent {
+class Televerse {
   /// API Scheme
   final APIScheme _scheme;
 
@@ -77,11 +76,6 @@ class Televerse extends Event with OnEvent {
   ///
   /// To create a new bot instance, you need to pass the bot token. You can also pass a [fetcher] to the constructor. The fetcher is used to fetch updates from the Telegram servers. By default, the bot uses long polling to fetch updates. You can also use webhooks to fetch updates.
   ///
-  /// Also, you can pass a [sync] parameter to the constructor.
-  /// If [sync] is true, events may be fired directly by the stream's subscriptions during an [StreamController.add], [StreamController.addError] or [StreamController.close] call. The returned stream controller is a [SynchronousStreamController], and must be used with the care and attention necessary to not break the [Stream] contract. See [Completer.sync] for some explanations on when a synchronous dispatching can be used. If in doubt, keep the controller non-sync.
-  ///
-  /// If [sync] is false, the event will always be fired at a later time, after the code adding the event has completed. In that case, no guarantees are given with regard to when multiple listeners get the events, except that each listener will get all events in the correct order. Each subscription handles the events individually. If two events are sent on an async controller with two listeners, one of the listeners may get both events before the other listener gets any. A listener must be subscribed both when the event is initiated (that is, when `add` is called) and when the event is later delivered, in order to receive the event.
-  ///
   /// ## Using Local Bot API Server
   /// You can use the [Televerse] class to create a bot instance that listens to a local Bot API server. Use the [Televerse.local] constructor to create a bot instance that listens to a local Bot API server.
   ///
@@ -90,7 +84,6 @@ class Televerse extends Event with OnEvent {
   Televerse(
     this.token, {
     Fetcher? fetcher,
-    super.sync,
     String baseURL = RawAPI.defaultBase,
     APIScheme scheme = APIScheme.https,
   })  : _baseURL = baseURL,
@@ -99,7 +92,6 @@ class Televerse extends Event with OnEvent {
     this.fetcher = fetcher ?? LongPolling();
     this.fetcher.setApi(api);
     _instance = this;
-    super.api = api;
 
     api.getMe().then((value) {
       _me = value;
@@ -148,7 +140,6 @@ class Televerse extends Event with OnEvent {
       token,
       fetcher: fetcher,
       baseURL: baseURL,
-      sync: sync,
       scheme: scheme,
     );
   }
@@ -171,10 +162,48 @@ class Televerse extends Event with OnEvent {
     }
   }
 
-  /// Emit new update into the stream.
-  void _onUpdate(Update update) {
-    emitUpdate(update, this);
+  /// Whether the function is async or not.
+  /// Thanks to StackOverflow answer: https://stackoverflow.com/a/63109983/10006183
+  bool _checkSync(Function fn) {
+    if (fn is Future Function(Never)) return true;
+    return false;
   }
+
+  /// Emit new update into the stream.
+  void _onUpdate(Update update) async {
+    final sub = _handlerScopes.where((scope) {
+      return scope.type == update.type;
+    });
+    for (HandlerScope scope in sub) {
+      Context convertedContext = scope.context(api, update);
+
+      if (scope.predicate(convertedContext)) {
+        if (_checkSync(scope.handler)) {
+          ((scope.handler(convertedContext)) as Future).catchError((err) {
+            if (_onError != null) {
+              _onError!(err, StackTrace.current);
+            } else {
+              throw err;
+            }
+          });
+        } else {
+          try {
+            scope.handler(convertedContext);
+          } catch (err, stack) {
+            if (_onError != null) {
+              _onError!(err, stack);
+            } else {
+              rethrow;
+            }
+          }
+        }
+        break;
+      }
+    }
+  }
+
+  /// List of Handler Scopes
+  final List<HandlerScope> _handlerScopes = [];
 
   /// Start polling for updates.
   ///
@@ -224,30 +253,26 @@ class Televerse extends Event with OnEvent {
   /// ```
   ///
   /// This will reply "Hello!" to any message that starts with `/start`.
-  StreamSubscription<MessageContext> command(
+  void command(
     Pattern command,
     MessageHandler callback,
   ) {
-    return onMessage.listen((MessageContext context) {
-      if (context.message.text == null) return;
-      if (command is RegExp) {
-        if (command.hasMatch(context.message.text!)) {
-          context.matches = command.allMatches(context.message.text!).toList();
-          callback(context);
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      isCommand: true,
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) {
+        ctx as MessageContext;
+        if (ctx.message.text == null) return false;
+        if (command is RegExp) {
+          return command.hasMatch(ctx.message.text!);
+        } else if (command is String) {
+          return ctx.message.text!.split(' ').first == '/$command';
         }
-      } else if (command is String) {
-        String firstElement = context.message.text!.split(' ').first;
-        if (firstElement == '/$command') {
-          if (command == 'start' &&
-              context.message.text!.split(' ').length > 1) {
-            context.startParameter =
-                context.message.text!.split(' ').sublist(1).join(' ');
-          }
-
-          callback(context);
-        }
-      }
-    });
+        return false;
+      },
+    );
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for a callback query.
@@ -265,23 +290,27 @@ class Televerse extends Event with OnEvent {
   /// This will answer "Hello!" to any callback query that has the data "start".
   ///
   ///
-  StreamSubscription<CallbackQueryContext> callbackQuery(
+  void callbackQuery(
     Pattern data,
     CallbackQueryHandler callback, {
     @Deprecated("Use the 'data' parameter instead.") RegExp? regex,
   }) {
-    return onCallbackQuery.listen((CallbackQueryContext context) {
-      if (context.data == null) return;
-      if (data is RegExp) {
-        if (data.hasMatch(context.data!)) {
-          callback(context);
+    HandlerScope scope = HandlerScope<CallbackQueryHandler>(
+      handler: callback,
+      type: UpdateType.callbackQuery,
+      predicate: (ctx) {
+        ctx as CallbackQueryContext;
+        if (ctx.data == null) return false;
+        if (data is RegExp) {
+          return data.hasMatch(ctx.data!);
+        } else if (data is String) {
+          return ctx.data == data;
         }
-      } else if (data is String) {
-        if (context.data == data) {
-          callback(context);
-        }
-      }
-    });
+        return false;
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for particular chat types.
@@ -302,15 +331,20 @@ class Televerse extends Event with OnEvent {
   ///
   /// If you want to register a callback for multiple chat types, you can use
   /// the [chatTypes] method.
-  StreamSubscription<MessageContext> chatType(
+  void chatType(
     ChatType type,
     MessageHandler callback,
   ) {
-    return onMessage.listen((MessageContext context) {
-      if (context.message.chat.type == type) {
-        callback(context);
-      }
-    });
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return ctx.message.chat.type == type;
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for multiple chat types.
@@ -329,15 +363,20 @@ class Televerse extends Event with OnEvent {
   ///
   /// This will reply "Hello in private chat or group!" to any message that is
   /// from a private chat or a group.
-  StreamSubscription<MessageContext> chatTypes(
+  void chatTypes(
     List<ChatType> types,
     MessageHandler callback,
   ) {
-    return onMessage.listen((MessageContext context) {
-      if (types.contains(context.message.chat.type)) {
-        callback(context);
-      }
-    });
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return types.contains(ctx.message.chat.type);
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Filter
@@ -353,15 +392,20 @@ class Televerse extends Event with OnEvent {
   /// Example:
   /// ```dart
   /// ```
-  StreamSubscription<MessageContext> filter(
+  void filter(
     bool Function(MessageContext ctx) predicate,
     MessageHandler callback,
   ) {
-    return onMessage.listen((MessageContext context) {
-      if (predicate(context)) {
-        callback(context);
-      }
-    });
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return predicate(ctx);
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for a message that contains a text.
@@ -374,15 +418,20 @@ class Televerse extends Event with OnEvent {
   ///  ctx.reply('I love you too!');
   /// });
   /// ```
-  StreamSubscription<MessageContext> text(
+  void text(
     String text,
     MessageHandler callback,
   ) {
-    return onMessage.listen((MessageContext context) {
-      if (context.message.text?.contains(text) ?? false) {
-        callback(context);
-      }
-    });
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return ctx.message.text == text;
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for a message that contains a text that matches the
@@ -401,35 +450,46 @@ class Televerse extends Event with OnEvent {
   ///
   /// This will reply "Hello, <name>!" to any message that contains a text that
   /// matches the regular expression `Hello, (.*)!`.
-  StreamSubscription<MessageContext> hears(
+  void hears(
     RegExp exp,
     MessageHandler callback,
   ) {
-    return onMessage.listen((MessageContext context) {
-      final matches = exp.allMatches(context.message.text ?? '');
-      context.matches = matches.toList();
-      if (matches.isNotEmpty) {
-        callback(context);
-      }
-    });
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return exp.hasMatch(ctx.message.text ?? '');
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for inline queries.
   ///
   /// The callback will be called when an inline query with the specified query is received.
-  StreamSubscription<InlineQueryContext> inlineQuery(
+  void inlineQuery(
     InlineQueryHandler Function(InlineQueryContext ctx) callback,
   ) {
-    return onInlineQuery.listen(callback);
+    HandlerScope scope = HandlerScope<InlineQueryHandler>(
+      handler: callback,
+      type: UpdateType.inlineQuery,
+      predicate: (ctx) {
+        return true;
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for the `/settings` command.
-  StreamSubscription<MessageContext> settings(MessageHandler handler) {
+  void settings(MessageHandler handler) {
     return command("settings", handler);
   }
 
   /// Registers a callback for the `/help` command.
-  StreamSubscription<MessageContext> help(MessageHandler handler) {
+  void help(MessageHandler handler) {
     return command("help", handler);
   }
 
@@ -499,18 +559,25 @@ class Televerse extends Event with OnEvent {
   /// caption of a message. Such as a photo or video message.
   ///
   /// By default, this method will ONLY match entities in the message text.
-  StreamSubscription<MessageContext> entity(
+  void entity(
     MessageEntityType type,
     MessageHandler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
-    return onMessage.where((context) {
-      return _internalEntityMatcher(
-        context: context,
-        type: type,
-        shouldMatchCaptionEntities: shouldMatchCaptionEntities,
-      );
-    }).listen(callback);
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return _internalEntityMatcher(
+          context: ctx,
+          type: type,
+          shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+        );
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for messages that contains the specified entity types.
@@ -521,51 +588,63 @@ class Televerse extends Event with OnEvent {
   /// caption of a message. Such as a photo or video message.
   ///
   /// By default, this method will ONLY match entities in the message text.
-  StreamSubscription<MessageContext> entities(
+  void entities(
     List<MessageEntityType> types,
     MessageHandler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
-    return onMessage.where((context) {
-      List<MessageEntity>? entities = context.message.entities;
-      if (shouldMatchCaptionEntities) {
-        entities = entities ?? context.message.captionEntities;
-      }
-      if (entities == null) return false;
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) {
+        ctx as MessageContext;
+        List<MessageEntity>? entities = ctx.message.entities;
+        if (shouldMatchCaptionEntities) {
+          entities = entities ?? ctx.message.captionEntities;
+        }
+        if (entities == null) return false;
 
-      bool hasMatch = types.every((element) => entities!.any(
-            (e) => e.type == element,
-          ));
+        bool hasMatch = types.every((element) => entities!.any(
+              (e) => e.type == element,
+            ));
 
-      return hasMatch;
-    }).listen(callback);
+        return hasMatch;
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers callback for the [ChatMemberUpdated] events
-  StreamSubscription<ChatMemberUpdatedContext>
-      _internalChatMemberUpdatedHandling({
-    required Stream<ChatMemberUpdatedContext> stream,
+  void _internalChatMemberUpdatedHandling({
     required ChatMemberUpdatedHandler callback,
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
   }) {
-    return stream.where((context) {
-      if (oldStatus == null && newStatus == null) {
-        return true;
-      }
-      if (oldStatus != null && newStatus != null) {
-        if (context.oldStatus == oldStatus && context.status == newStatus) {
+    HandlerScope scope = HandlerScope<ChatMemberUpdatedHandler>(
+      handler: callback,
+      type: UpdateType.chatMember,
+      predicate: (ctx) {
+        ctx as ChatMemberUpdatedContext;
+        if (oldStatus == null && newStatus == null) {
           return true;
         }
-      }
-      if (oldStatus != null && context.oldStatus == oldStatus) {
-        return true;
-      }
-      if (newStatus != null && context.status == newStatus) {
-        return true;
-      }
-      return false;
-    }).listen(callback);
+        if (oldStatus != null && newStatus != null) {
+          if (ctx.oldStatus == oldStatus && ctx.status == newStatus) {
+            return true;
+          }
+        }
+        if (oldStatus != null && ctx.oldStatus == oldStatus) {
+          return true;
+        }
+        if (newStatus != null && ctx.status == newStatus) {
+          return true;
+        }
+        return false;
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for the [Update.chatMember] events.
@@ -575,13 +654,12 @@ class Televerse extends Event with OnEvent {
   ///
   /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
   /// filter to only receive updates for a specific status.
-  StreamSubscription<ChatMemberUpdatedContext> chatMember(
+  void chatMember(
     ChatMemberUpdatedHandler callback, {
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
   }) {
     return _internalChatMemberUpdatedHandling(
-      stream: onChatMember,
       callback: callback,
       oldStatus: oldStatus,
       newStatus: newStatus,
@@ -592,13 +670,12 @@ class Televerse extends Event with OnEvent {
   ///
   /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
   /// filter to only receive updates for a specific status.
-  StreamSubscription<ChatMemberUpdatedContext> myChatMember({
+  void myChatMember({
     required ChatMemberUpdatedHandler callback,
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
   }) {
     return _internalChatMemberUpdatedHandling(
-      stream: onMyChatMember,
       callback: callback,
       oldStatus: oldStatus,
       newStatus: newStatus,
@@ -606,55 +683,91 @@ class Televerse extends Event with OnEvent {
   }
 
   /// Registers a callback for the [Update.poll] events.
-  StreamSubscription<PollContext> poll(PollHandler callback) {
-    return onPoll.listen(callback);
+  void poll(PollHandler callback) {
+    HandlerScope scope = HandlerScope<PollHandler>(
+      handler: callback,
+      type: UpdateType.poll,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for the [Update.pollAnswer] events.
   ///
   /// Optionally pass the [pollId] parameter to only receive updates for a specific poll.
-  StreamSubscription<PollAnswerContext> pollAnswer(
+  void pollAnswer(
     PollAnswerHandler callback, {
     String? pollId,
   }) {
-    return onPollAnswer
-        .where((event) => pollId == null || event.pollId == pollId)
-        .listen(callback);
+    HandlerScope scope = HandlerScope<PollAnswerHandler>(
+      handler: callback,
+      type: UpdateType.pollAnswer,
+      predicate: (ctx) {
+        ctx as PollAnswerContext;
+        if (pollId == null) return true;
+        return ctx.pollId == pollId;
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for the [Update.chosenInlineResult] events.
   /// The callback will be called when a chosen inline result is received.
-  StreamSubscription<ChosenInlineResultContext> chosenInlineResult(
+  void chosenInlineResult(
     ChosenInlineResultHandler callback,
   ) {
-    return onChosenInlineResult.listen(callback);
+    HandlerScope scope = HandlerScope<ChosenInlineResultHandler>(
+      handler: callback,
+      type: UpdateType.chosenInlineResult,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for the [Update.chatJoinRequest] events.
   ///
   /// The callback will be called when a chat join request is received.
-  StreamSubscription<ChatJoinRequestContext> chatJoinRequest(
-    ChatJoinRequestHandler callback,
-  ) {
-    return onChatJoinRequest.listen(callback);
+  void chatJoinRequest(ChatJoinRequestHandler callback) {
+    HandlerScope scope = HandlerScope<ChatJoinRequestHandler>(
+      handler: callback,
+      type: UpdateType.chatJoinRequest,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for Shipping Query events.
-  StreamSubscription<ShippingQueryContext> shippingQuery(
+  void shippingQuery(
     ShippingQueryHandler callback,
   ) {
-    return onShippingQuery.listen(callback);
+    HandlerScope scope = HandlerScope<ShippingQueryHandler>(
+      handler: callback,
+      type: UpdateType.shippingQuery,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for Pre Checkout Query events.
-  StreamSubscription<PreCheckoutQueryContext> preCheckoutQuery(
+  void preCheckoutQuery(
     PreCheckoutQueryHandler callback,
   ) {
-    return onPreCheckoutQuery.listen(callback);
+    HandlerScope scope = HandlerScope<PreCheckoutQueryHandler>(
+      handler: callback,
+      type: UpdateType.preCheckoutQuery,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Sets up a callback for when a message with URL is received.
-  StreamSubscription<MessageContext> onURL(
+  void onURL(
     MessageHandler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
@@ -666,7 +779,7 @@ class Televerse extends Event with OnEvent {
   }
 
   /// Sets up a callback for when a message with email is received.
-  StreamSubscription<MessageContext> onEmail(
+  void onEmail(
     MessageHandler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
@@ -678,7 +791,7 @@ class Televerse extends Event with OnEvent {
   }
 
   /// Sets up a callback for when a message with phone number is received.
-  StreamSubscription<MessageContext> onPhoneNumber(
+  void onPhoneNumber(
     MessageHandler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
@@ -690,7 +803,7 @@ class Televerse extends Event with OnEvent {
   }
 
   /// Sets up a callback for when a message with hashtag is received.
-  StreamSubscription<MessageContext> onHashtag(
+  void onHashtag(
     MessageHandler callback, {
     bool shouldMatchCaptionEntities = false,
     String? hashtag,
@@ -703,14 +816,21 @@ class Televerse extends Event with OnEvent {
       );
     }
 
-    return onMessage.where((ctx) {
-      return _internalEntityMatcher(
-        context: ctx,
-        type: MessageEntityType.hashtag,
-        content: hashtag,
-        shouldMatchCaptionEntities: shouldMatchCaptionEntities,
-      );
-    }).listen(callback);
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return _internalEntityMatcher(
+          context: ctx,
+          type: MessageEntityType.hashtag,
+          content: hashtag,
+          shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+        );
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Sets up a callback for when a mention is occurred.
@@ -729,7 +849,7 @@ class Televerse extends Event with OnEvent {
   ///
   /// That is you don't have to setup a different callback for [MessageEntityType.mention]
   /// and [MessageEntityType.textMention] entities. (Well, you can if you want to.)
-  StreamSubscription<MessageContext> onMention(
+  void onMention(
     MessageHandler callback, {
     String? username,
     int? userId,
@@ -741,27 +861,40 @@ class Televerse extends Event with OnEvent {
       );
     }
     if (username != null) {
-      return onMessage.where((ctx) {
-        return _internalEntityMatcher(
-          context: ctx,
-          type: MessageEntityType.mention,
-          content: username,
-        );
-      }).listen(callback);
+      HandlerScope scope = HandlerScope<MessageHandler>(
+        handler: callback,
+        type: UpdateType.message,
+        predicate: (ctx) {
+          ctx as MessageContext;
+          return _internalEntityMatcher(
+            context: ctx,
+            type: MessageEntityType.mention,
+            content: username,
+          );
+        },
+      );
+      return _handlerScopes.add(scope);
     }
 
-    return onMessage.where((ctx) {
-      List<MessageEntity>? entities = ctx.message.entities;
-      if (entities == null) return false;
-      bool hasMatch = entities.any((element) {
-        if (element.type == MessageEntityType.textMention) {
-          return element.user?.id == userId;
-        }
-        return false;
-      });
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) {
+        ctx as MessageContext;
+        List<MessageEntity>? entities = ctx.message.entities;
+        if (entities == null) return false;
+        bool hasMatch = entities.any((element) {
+          if (element.type == MessageEntityType.textMention) {
+            return element.user?.id == userId;
+          }
+          return false;
+        });
 
-      return hasMatch;
-    }).listen(callback);
+        return hasMatch;
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// This method sets up a callback when the bot is mentioned.
@@ -771,7 +904,7 @@ class Televerse extends Event with OnEvent {
   /// will fetch the bot information using the [RawAPI.getMe] method and then setup the callback.
   ///
   ///
-  Future<StreamSubscription<MessageContext>> whenMentioned(
+  Future<void> whenMentioned(
     MessageHandler callback,
   ) async {
     try {
@@ -786,5 +919,165 @@ class Televerse extends Event with OnEvent {
         username: me.username,
       );
     }
+  }
+
+  /// Registers a callback for particular filter types.
+  ///
+  /// The call back will be only be executed on specific update types. You can
+  /// use the [TeleverseEvent] object to specify which update you want to listen to.
+  void on(TeleverseEvent type, void Function(Context ctx) callback) {}
+
+  /// Registers a callback for all Message updates
+  void onMessage(MessageHandler callback) {
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Edited Message updates
+  void onEditedMessage(MessageHandler callback) {
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Channel Post updates
+  void onChannelPost(MessageHandler callback) {
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Edited Channel Post updates
+  void onEditedChannelPost(MessageHandler callback) {
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      type: UpdateType.message,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Inline Query updates
+  void onInlineQuery(InlineQueryHandler callback) {
+    HandlerScope scope = HandlerScope<InlineQueryHandler>(
+      handler: callback,
+      type: UpdateType.inlineQuery,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Chosen Inline Result updates
+  void onChosenInlineResult(ChosenInlineResultHandler callback) {
+    HandlerScope scope = HandlerScope<ChosenInlineResultHandler>(
+      handler: callback,
+      type: UpdateType.chosenInlineResult,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Callback Query updates
+  void onCallbackQuery(CallbackQueryHandler callback) {
+    HandlerScope scope = HandlerScope<CallbackQueryHandler>(
+      handler: callback,
+      type: UpdateType.callbackQuery,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Shipping Query updates
+  void onShippingQuery(ShippingQueryHandler callback) {
+    HandlerScope scope = HandlerScope<ShippingQueryHandler>(
+      handler: callback,
+      type: UpdateType.shippingQuery,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Pre Checkout Query updates
+  void onPreCheckoutQuery(PreCheckoutQueryHandler callback) {
+    HandlerScope scope = HandlerScope<PreCheckoutQueryHandler>(
+      handler: callback,
+      type: UpdateType.preCheckoutQuery,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Poll updates
+  void onPoll(PollHandler callback) {
+    HandlerScope scope = HandlerScope<PollHandler>(
+      handler: callback,
+      type: UpdateType.poll,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Poll Answer updates
+  void onPollAnswer(PollAnswerHandler callback) {
+    HandlerScope scope = HandlerScope<PollAnswerHandler>(
+      handler: callback,
+      type: UpdateType.pollAnswer,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all My Chat Member updates
+  void onMyChatMember(ChatMemberUpdatedHandler callback) {
+    HandlerScope scope = HandlerScope<ChatMemberUpdatedHandler>(
+      handler: callback,
+      type: UpdateType.chatMember,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Chat Member updates
+  void onChatMember(ChatMemberUpdatedHandler callback) {
+    HandlerScope scope = HandlerScope<ChatMemberUpdatedHandler>(
+      handler: callback,
+      type: UpdateType.chatMember,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Chat Join Request updates
+  void onChatJoinRequest(ChatJoinRequestHandler callback) {
+    HandlerScope scope = HandlerScope<ChatJoinRequestHandler>(
+      handler: callback,
+      type: UpdateType.chatJoinRequest,
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
   }
 }

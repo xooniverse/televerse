@@ -32,7 +32,6 @@ export 'src/televerse/context/context.dart'
     hide MessageMixin, CallbackQueryMixin, ManagementMixin;
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
-export 'src/televerse/event/event.dart';
 export 'src/televerse/filters/filters.dart';
 export 'src/televerse/fetch/fetch.dart';
 export 'src/televerse/extensions/extensions.dart';
