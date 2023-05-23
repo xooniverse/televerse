@@ -8,8 +8,9 @@ void main() {
   final Bot bot = Bot(Platform.environment["BOT_TOKEN"]!);
 
   /// Adds a listener for audio files
-  bot.on(TeleverseEvent.audio, (ctx) async {
-    ctx as MessageContext;
+  bot.filter((ctx) {
+    return ctx.message.audio != null;
+  }, (ctx) async {
     final aud = ctx.message.audio;
     final file = await ctx.api.getFile(aud!.fileId);
     // you can now get file bytes using
@@ -26,15 +27,7 @@ void main() {
   });
 
   /// Adds a listener for every command (also excuted for /start)
-  bot.on(TeleverseEvent.command, (ctx) {
-    ctx as MessageContext;
-
+  bot.entity(MessageEntityType.botCommand, (ctx) {
     ctx.reply("Got a command: ${ctx.message.text}");
-  });
-
-  /// Adds a listener for every text message
-  bot.on(TeleverseEvent.text, (ctx) {
-    ctx as MessageContext;
-    ctx.reply("I got a text that says: ${ctx.message.text}");
   });
 }

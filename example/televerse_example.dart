@@ -41,9 +41,10 @@ void main() async {
 
   /// With the [Bot.on] method you can listen for particular updates and you can
   /// execute a callback function with the [Context] object as parameter.
-  bot.on(TeleverseEvent.text, (ctx) {
+  bot.filter((ctx) {
+    return ctx.message.text != null;
+  }, (ctx) {
     // ctx will be of type [MessageContext]
-    ctx as MessageContext;
     ctx.reply("This will only be executed if the message has text");
   });
 
@@ -59,9 +60,8 @@ void main() async {
 
   /// So with the [Bot.on] method you can listen for particular updates. Yeah, that indeed means
   /// that you can listen for all commands simply by listening for the [TeleverseEvent.command] event.
-  bot.on(TeleverseEvent.command, (ctx) {
+  bot.entity(MessageEntityType.botCommand, (ctx) {
     // ctx will be of type [MessageContext]
-    ctx as MessageContext;
     ctx.reply("This will be executed for every command");
     ctx.reply(
       "That really includes /start, /help and /settings and all other commands you define.",
