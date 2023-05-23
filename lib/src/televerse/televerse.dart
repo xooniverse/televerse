@@ -248,6 +248,11 @@ class Televerse {
     }
   }
 
+  /// Stop listening for updates.
+  Future<void> stop() {
+    return fetcher.stop();
+  }
+
   /// Stream of [Update] objects.
   ///
   /// This getter returns a stream of [Update] objects. You can use this to listen to incoming updates from Telegram servers.
