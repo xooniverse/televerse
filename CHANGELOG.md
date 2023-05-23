@@ -7,6 +7,8 @@
 - Completely removed the `Event` class and related methods and getters.
 - The `on` method is now Deprecated. Use the other methods in the library to listen for updates.
 - All the getters in the `Event` class is now added to the `Televerse` class as methods.
+- Televerse now relies only on the `onUpdate` stream to listen for updates.
+- And all the errors can now be handled using the `onError` method.
 
 ## 1.8.6
 
