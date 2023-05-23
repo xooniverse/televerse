@@ -18,7 +18,7 @@ class HandlerScope<T extends Function> {
   final T handler;
 
   /// The update type
-  final UpdateType type;
+  final List<UpdateType> types;
 
   /// Predicate to filter updates
   final bool Function(Context ctx) predicate;
@@ -27,7 +27,7 @@ class HandlerScope<T extends Function> {
   const HandlerScope({
     required this.handler,
     required this.predicate,
-    required this.type,
+    required this.types,
     this.isCommand = false,
     this.isRegExp = false,
     this.pattern,

@@ -172,7 +172,7 @@ class Televerse {
   /// Emit new update into the stream.
   void _onUpdate(Update update) async {
     final sub = _handlerScopes.where((scope) {
-      return scope.type == update.type;
+      return scope.types.contains(update.type);
     });
     for (HandlerScope scope in sub) {
       Context context = scope.context(api, update);
@@ -284,7 +284,7 @@ class Televerse {
     HandlerScope scope = HandlerScope<MessageHandler>(
       isCommand: true,
       handler: callback,
-      type: UpdateType.message,
+      types: [UpdateType.message],
       predicate: (ctx) {
         ctx as MessageContext;
         if (ctx.message.text == null) return false;
@@ -321,7 +321,7 @@ class Televerse {
   }) {
     HandlerScope scope = HandlerScope<CallbackQueryHandler>(
       handler: callback,
-      type: UpdateType.callbackQuery,
+      types: [UpdateType.callbackQuery],
       predicate: (ctx) {
         ctx as CallbackQueryContext;
         if (ctx.data == null) return false;
@@ -361,7 +361,9 @@ class Televerse {
   ) {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) {
         ctx as MessageContext;
         return ctx.message.chat.type == type;
@@ -393,7 +395,9 @@ class Televerse {
   ) {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) {
         ctx as MessageContext;
         return types.contains(ctx.message.chat.type);
@@ -422,7 +426,9 @@ class Televerse {
   ) {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) {
         ctx as MessageContext;
         return predicate(ctx);
@@ -448,7 +454,9 @@ class Televerse {
   ) {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) {
         ctx as MessageContext;
         return ctx.message.text == text;
@@ -482,7 +490,9 @@ class Televerse {
       pattern: exp,
       isRegExp: true,
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) {
         ctx as MessageContext;
         return exp.hasMatch(ctx.message.text ?? '');
@@ -500,7 +510,9 @@ class Televerse {
   ) {
     HandlerScope scope = HandlerScope<InlineQueryHandler>(
       handler: callback,
-      type: UpdateType.inlineQuery,
+      types: [
+        UpdateType.inlineQuery,
+      ],
       predicate: (ctx) {
         return true;
       },
@@ -592,7 +604,9 @@ class Televerse {
   }) {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) {
         ctx as MessageContext;
         return _internalEntityMatcher(
@@ -621,7 +635,9 @@ class Televerse {
   }) {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) {
         ctx as MessageContext;
         List<MessageEntity>? entities = ctx.message.entities;
@@ -649,7 +665,9 @@ class Televerse {
   }) {
     HandlerScope scope = HandlerScope<ChatMemberUpdatedHandler>(
       handler: callback,
-      type: UpdateType.chatMember,
+      types: [
+        UpdateType.chatMember,
+      ],
       predicate: (ctx) {
         ctx as ChatMemberUpdatedContext;
         if (oldStatus == null && newStatus == null) {
@@ -712,7 +730,9 @@ class Televerse {
   void poll(PollHandler callback) {
     HandlerScope scope = HandlerScope<PollHandler>(
       handler: callback,
-      type: UpdateType.poll,
+      types: [
+        UpdateType.poll,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -728,7 +748,9 @@ class Televerse {
   }) {
     HandlerScope scope = HandlerScope<PollAnswerHandler>(
       handler: callback,
-      type: UpdateType.pollAnswer,
+      types: [
+        UpdateType.pollAnswer,
+      ],
       predicate: (ctx) {
         ctx as PollAnswerContext;
         if (pollId == null) return true;
@@ -746,7 +768,9 @@ class Televerse {
   ) {
     HandlerScope scope = HandlerScope<ChosenInlineResultHandler>(
       handler: callback,
-      type: UpdateType.chosenInlineResult,
+      types: [
+        UpdateType.chosenInlineResult,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -759,7 +783,9 @@ class Televerse {
   void chatJoinRequest(ChatJoinRequestHandler callback) {
     HandlerScope scope = HandlerScope<ChatJoinRequestHandler>(
       handler: callback,
-      type: UpdateType.chatJoinRequest,
+      types: [
+        UpdateType.chatJoinRequest,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -772,7 +798,9 @@ class Televerse {
   ) {
     HandlerScope scope = HandlerScope<ShippingQueryHandler>(
       handler: callback,
-      type: UpdateType.shippingQuery,
+      types: [
+        UpdateType.shippingQuery,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -785,7 +813,9 @@ class Televerse {
   ) {
     HandlerScope scope = HandlerScope<PreCheckoutQueryHandler>(
       handler: callback,
-      type: UpdateType.preCheckoutQuery,
+      types: [
+        UpdateType.preCheckoutQuery,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -844,7 +874,9 @@ class Televerse {
 
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) {
         ctx as MessageContext;
         return _internalEntityMatcher(
@@ -889,7 +921,9 @@ class Televerse {
     if (username != null) {
       HandlerScope scope = HandlerScope<MessageHandler>(
         handler: callback,
-        type: UpdateType.message,
+        types: [
+          UpdateType.message,
+        ],
         predicate: (ctx) {
           ctx as MessageContext;
           return _internalEntityMatcher(
@@ -904,7 +938,9 @@ class Televerse {
 
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) {
         ctx as MessageContext;
         List<MessageEntity>? entities = ctx.message.entities;
@@ -951,16 +987,118 @@ class Televerse {
   ///
   /// The call back will be only be executed on specific update types. You can
   /// use the [TeleverseEvent] object to specify which update you want to listen to.
-  @Deprecated(
-    "The [on] method will not work on the latest versions of Televerse.\nPlease use the related handler methods instead. The [on] method might be removed in the future.",
-  )
-  void on(TeleverseEvent type, void Function(Context ctx) callback) {}
+  void on(TeleverseEvent type, void Function(Context ctx) callback) {
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: type.types,
+      predicate: (ctx) {
+        bool isMessage = ctx.update.message != null;
+        bool isChannelPost = ctx.update.channelPost != null;
+        bool isEditedMessage = ctx.update.editedMessage != null;
+        bool isEditedChannelPost = ctx.update.editedChannelPost != null;
+
+        bool isMessageEvent = isMessage || isEditedMessage;
+        bool isChannelPostEvent = isChannelPost || isEditedChannelPost;
+
+        Message? message;
+        if (isMessage) {
+          message = ctx.update.message;
+        } else if (isChannelPost) {
+          message = ctx.update.channelPost;
+        } else if (isEditedMessage) {
+          message = ctx.update.editedMessage;
+        } else if (isEditedChannelPost) {
+          message = ctx.update.editedChannelPost;
+        }
+
+        bool isCommand = message?.entities?.any(
+              (entity) =>
+                  entity.type == MessageEntityType.botCommand &&
+                  entity.offset == 0,
+            ) ??
+            false;
+
+        bool isTextMessage = message?.text != null && !isCommand;
+        bool isAudio = message?.audio != null;
+        bool isAudioMessage = ctx.update.message?.audio != null ||
+            ctx.update.editedMessage?.audio != null;
+
+        bool isEdited = isEditedMessage || isEditedChannelPost;
+
+        bool hasDocument = message?.document != null;
+        bool hasPhoto = message?.photo != null;
+
+        if (type == TeleverseEvent.command && isCommand) {
+          return true;
+        }
+
+        if (type == TeleverseEvent.text && isTextMessage) {
+          return true;
+        }
+
+        if (type == TeleverseEvent.audio && isAudio) {
+          return true;
+        }
+
+        if (type == TeleverseEvent.audio && isAudioMessage) {
+          return true;
+        }
+
+        if (type == TeleverseEvent.edited && isEdited) {
+          return true;
+        }
+
+        if (type == TeleverseEvent.editedMessage && isEditedMessage) {
+          return true;
+        }
+
+        if (type == TeleverseEvent.editedChannelPost && isEditedChannelPost) {
+          return true;
+        }
+
+        if (type == TeleverseEvent.document && hasDocument) {
+          return true;
+        }
+
+        if (type == TeleverseEvent.documentMessage &&
+            isMessageEvent &&
+            hasDocument) {
+          return true;
+        }
+
+        if (type == TeleverseEvent.documentChannelPost &&
+            isChannelPostEvent &&
+            hasDocument) {
+          return true;
+        }
+
+        if (type == TeleverseEvent.photo && hasPhoto) {
+          return true;
+        }
+
+        if (type == TeleverseEvent.photoMessage && isMessageEvent && hasPhoto) {
+          return true;
+        }
+
+        if (type == TeleverseEvent.photoChannelPost &&
+            isChannelPostEvent &&
+            hasPhoto) {
+          return true;
+        }
+        return false;
+      },
+    );
+
+    _handlerScopes.add(scope);
+  }
 
   /// Registers a callback for all Message updates
   void onMessage(MessageHandler callback) {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -971,7 +1109,9 @@ class Televerse {
   void onEditedMessage(MessageHandler callback) {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -982,7 +1122,9 @@ class Televerse {
   void onChannelPost(MessageHandler callback) {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -993,7 +1135,9 @@ class Televerse {
   void onEditedChannelPost(MessageHandler callback) {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
-      type: UpdateType.message,
+      types: [
+        UpdateType.message,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -1004,7 +1148,9 @@ class Televerse {
   void onInlineQuery(InlineQueryHandler callback) {
     HandlerScope scope = HandlerScope<InlineQueryHandler>(
       handler: callback,
-      type: UpdateType.inlineQuery,
+      types: [
+        UpdateType.inlineQuery,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -1015,7 +1161,9 @@ class Televerse {
   void onChosenInlineResult(ChosenInlineResultHandler callback) {
     HandlerScope scope = HandlerScope<ChosenInlineResultHandler>(
       handler: callback,
-      type: UpdateType.chosenInlineResult,
+      types: [
+        UpdateType.chosenInlineResult,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -1026,7 +1174,9 @@ class Televerse {
   void onCallbackQuery(CallbackQueryHandler callback) {
     HandlerScope scope = HandlerScope<CallbackQueryHandler>(
       handler: callback,
-      type: UpdateType.callbackQuery,
+      types: [
+        UpdateType.callbackQuery,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -1037,7 +1187,9 @@ class Televerse {
   void onShippingQuery(ShippingQueryHandler callback) {
     HandlerScope scope = HandlerScope<ShippingQueryHandler>(
       handler: callback,
-      type: UpdateType.shippingQuery,
+      types: [
+        UpdateType.shippingQuery,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -1048,7 +1200,9 @@ class Televerse {
   void onPreCheckoutQuery(PreCheckoutQueryHandler callback) {
     HandlerScope scope = HandlerScope<PreCheckoutQueryHandler>(
       handler: callback,
-      type: UpdateType.preCheckoutQuery,
+      types: [
+        UpdateType.preCheckoutQuery,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -1059,7 +1213,9 @@ class Televerse {
   void onPoll(PollHandler callback) {
     HandlerScope scope = HandlerScope<PollHandler>(
       handler: callback,
-      type: UpdateType.poll,
+      types: [
+        UpdateType.poll,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -1070,7 +1226,9 @@ class Televerse {
   void onPollAnswer(PollAnswerHandler callback) {
     HandlerScope scope = HandlerScope<PollAnswerHandler>(
       handler: callback,
-      type: UpdateType.pollAnswer,
+      types: [
+        UpdateType.pollAnswer,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -1081,7 +1239,9 @@ class Televerse {
   void onMyChatMember(ChatMemberUpdatedHandler callback) {
     HandlerScope scope = HandlerScope<ChatMemberUpdatedHandler>(
       handler: callback,
-      type: UpdateType.chatMember,
+      types: [
+        UpdateType.chatMember,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -1092,7 +1252,9 @@ class Televerse {
   void onChatMember(ChatMemberUpdatedHandler callback) {
     HandlerScope scope = HandlerScope<ChatMemberUpdatedHandler>(
       handler: callback,
-      type: UpdateType.chatMember,
+      types: [
+        UpdateType.chatMember,
+      ],
       predicate: (ctx) => true,
     );
 
@@ -1103,7 +1265,9 @@ class Televerse {
   void onChatJoinRequest(ChatJoinRequestHandler callback) {
     HandlerScope scope = HandlerScope<ChatJoinRequestHandler>(
       handler: callback,
-      type: UpdateType.chatJoinRequest,
+      types: [
+        UpdateType.chatJoinRequest,
+      ],
       predicate: (ctx) => true,
     );
 

@@ -8,9 +8,8 @@ void main() {
   final Bot bot = Bot(Platform.environment["BOT_TOKEN"]!);
 
   /// Adds a listener for audio files
-  bot.filter((ctx) {
-    return ctx.message.audio != null;
-  }, (ctx) async {
+  bot.on(TeleverseEvent.audio, (ctx) async {
+    ctx as MessageContext;
     final aud = ctx.message.audio;
     final file = await ctx.api.getFile(aud!.fileId);
     // you can now get file bytes using

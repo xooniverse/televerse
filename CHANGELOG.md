@@ -1,3 +1,8 @@
+## 1.9.1
+
+- Added the `Televerse.on` method! 🎉
+- Removed the deprecation warning from the `Televerse.on` method.
+
 ## 1.9.0
 
 - BREAKING CHANGES! ⚠️

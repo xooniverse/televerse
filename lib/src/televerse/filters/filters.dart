@@ -1,3 +1,5 @@
+import 'package:televerse/televerse.dart';
+
 /// Filter lets you filter messages by their content. This is useful when used along with `Televerse.on` method to listen to only specific messages.
 ///
 /// For example, if you want to listen to only messages which have text, you can use
@@ -13,47 +15,54 @@
 ///
 enum TeleverseEvent {
   /// Filters messages to allow only those which have text.
-  text,
+  text([UpdateType.message, UpdateType.channelPost]),
 
   /// Filter for messages or channel posts which have audio.
-  audio,
+  audio([UpdateType.message, UpdateType.channelPost]),
 
   /// Filter for messages which have audio.
-  audioMessage,
+  audioMessage([UpdateType.message]),
 
   /// Edited messages or channel posts.
-  edited,
+  edited([UpdateType.editedMessage, UpdateType.editedChannelPost]),
 
   /// Edited messages.
   /// This filter will only allow messages which have been edited.
-  editedMessage,
+  editedMessage([UpdateType.editedMessage]),
 
   /// Edited channel posts.
   /// This filter will only allow channel posts which have been edited.
-  editedChannelPost,
+  editedChannelPost([UpdateType.editedChannelPost]),
 
   /// Filter for messages or channel posts which have document.
-  document,
+  document([UpdateType.message, UpdateType.channelPost]),
 
   /// Filter for messages which have document.
   /// This filter will only allow messages which have document.
-  documentMessage,
+  documentMessage([UpdateType.message]),
 
   /// Filter for channel posts which have document.
   /// This filter will only allow channel posts which have document.
-  documentChannelPost,
+  documentChannelPost([UpdateType.channelPost]),
 
   /// Filter for messages or channel posts which have photo.
-  photo,
+  photo([UpdateType.message, UpdateType.channelPost]),
 
   /// Filter for messages which have photo.
   /// This filter will only allow messages which have photo.
-  photoMessage,
+  photoMessage([UpdateType.message]),
 
   /// Filter for channel posts which have photo.
   /// This filter will only allow channel posts which have photo.
-  photoChannelPost,
+  photoChannelPost([UpdateType.channelPost]),
 
   /// Filters all messages or channel posts which is a command.
-  command;
+  command([UpdateType.message, UpdateType.channelPost]),
+  ;
+
+  /// List of update types which this filter allows.
+  final List<UpdateType> types;
+
+  /// Creates a new filter.
+  const TeleverseEvent(this.types);
 }
