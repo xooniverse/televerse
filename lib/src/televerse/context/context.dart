@@ -137,6 +137,46 @@ class Context {
     return ChatID(update.message!.chat.id);
   }
 
+  /// Get the type of Context based on the update type.
+  Type get typeOfContext {
+    if (update.type == UpdateType.chatJoinRequest) {
+      return ChatJoinRequestContext;
+    }
+    if (update.type == UpdateType.chatMember) {
+      return ChatMemberUpdatedContext;
+    }
+    if (update.type == UpdateType.myChatMember) {
+      return ChatMemberUpdatedContext;
+    }
+    if (update.type == UpdateType.preCheckoutQuery) {
+      return PreCheckoutQueryContext;
+    }
+    if (update.type == UpdateType.shippingQuery) {
+      return ShippingQueryContext;
+    }
+    if (update.type == UpdateType.callbackQuery) {
+      return CallbackQueryContext;
+    }
+    if (update.type == UpdateType.inlineQuery) {
+      return InlineQueryContext;
+    }
+    if (update.type == UpdateType.chosenInlineResult) {
+      return ChosenInlineResultContext;
+    }
+    if (update.type == UpdateType.pollAnswer) {
+      return PollAnswerContext;
+    }
+    if (update.type == UpdateType.poll) {
+      return PollContext;
+    }
+    if (update.type == UpdateType.unknown) {
+      throw TeleverseException(
+        "The update type is ${update.type}, which does not have a context.",
+      );
+    }
+    return MessageContext;
+  }
+
   /// Creates a new context.
   Context(
     this._api, {

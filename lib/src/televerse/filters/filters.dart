@@ -1,6 +1,4 @@
-import 'package:televerse/televerse.dart' show Televerse;
-
-/// Filter lets you filter messages by their content. This is useful when used along with [Televerse.on] method to listen to only specific messages.
+/// Filter lets you filter messages by their content. This is useful when used along with `Televerse.on` method to listen to only specific messages.
 ///
 /// For example, if you want to listen to only messages which have text, you can use
 /// [TeleverseEvent.text] filter.
@@ -57,5 +55,5 @@ enum TeleverseEvent {
   photoChannelPost,
 
   /// Filters all messages or channel posts which is a command.
-  command,
+  command;
 }

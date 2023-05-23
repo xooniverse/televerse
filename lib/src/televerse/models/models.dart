@@ -3,6 +3,7 @@
 /// This library contains all the models used by Televerse.
 library televerse.models;
 
+import 'dart:async';
 import 'dart:io' as io;
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
@@ -15,3 +16,4 @@ part 'long_polling_exception.dart';
 part 'televerse_exception.dart';
 part 'mention.dart';
 part 'custom_emoji.dart';
+part 'handler_scope.dart';

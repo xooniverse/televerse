@@ -1,3 +1,15 @@
+## 1.9.0
+
+- BREAKING CHANGES! ⚠️
+- Whole new `HandlerScope` class is added to make it efficient handle updates.
+- All the methods in the `Televerse` class now uses the `HandlerScope` class to register handlers.
+- This is to fix the issue [#84](https://github.com/HeySreelal/televerse/issues/84) and to make it efficient to handle updates.
+- Completely removed the `Event` class and related methods and getters.
+- The `on` method is now Deprecated. Use the other methods in the library to listen for updates.
+- All the getters in the `Event` class is now added to the `Televerse` class as methods.
+- Televerse now relies only on the `onUpdate` stream to listen for updates.
+- And all the errors can now be handled using the `onError` method.
+
 ## 1.8.6
 
 - Added `UserLink` class to represent a Telegram user link.

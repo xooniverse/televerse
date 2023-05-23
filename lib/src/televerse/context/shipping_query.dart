@@ -3,11 +3,13 @@ part of televerse.context;
 /// [ShippingQueryContext] is the context for a shipping query.
 class ShippingQueryContext extends Context with MessageMixin {
   /// The [ShippingQuery] instance.
-  final ShippingQuery shippingQuery;
+  ShippingQuery get shippingQuery => update.shippingQuery!;
 
   /// The [ShippingQueryContext] constructor.
-  ShippingQueryContext(RawAPI api, Update update, this.shippingQuery)
-      : super(api, update: update);
+  ShippingQueryContext(
+    RawAPI api, {
+    required Update update,
+  }) : super(api, update: update);
 
   /// Invoice Payload.
   String get invoicePayload => shippingQuery.invoicePayload;
