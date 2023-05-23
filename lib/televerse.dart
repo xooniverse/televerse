@@ -29,7 +29,7 @@ import 'package:televerse/televerse.dart';
 import 'package:televerse/src/utils/http.dart';
 
 export 'src/televerse/context/context.dart'
-    hide MessageMixin, CallbackQueryMixin, ManagementMixin;
+    hide MessageMixin, CallbackQueryMixin, ManagementMixin, InlineQueryMixin;
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
 export 'src/televerse/filters/filters.dart';
