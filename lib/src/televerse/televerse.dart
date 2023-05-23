@@ -951,6 +951,9 @@ class Televerse {
   ///
   /// The call back will be only be executed on specific update types. You can
   /// use the [TeleverseEvent] object to specify which update you want to listen to.
+  @Deprecated(
+    "The [on] method won't work for now. We are working on it.\nPlease use the related handler methods instead.",
+  )
   void on(TeleverseEvent type, void Function(Context ctx) callback) {}
 
   /// Registers a callback for all Message updates
