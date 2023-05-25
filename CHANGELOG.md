@@ -1,3 +1,11 @@
+## 1.9.2
+
+- Introducing the `Televerse Session`! 🎉
+- Televerse sessions are used to store data for chats.
+- This can be used to store data for chats and to make the bot more interactive.
+- Added an example to demonstrate the usage of Televerse sessions in `/example/session_bot.dart`.
+- You should use the `Televerse.initSession` method to initialize the session.
+
 ## 1.9.1
 
 - Added the `Televerse.on` method! 🎉
