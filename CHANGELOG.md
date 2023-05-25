@@ -1,3 +1,7 @@
+## 1.9.3
+
+- Fixed an issue with sessions that caused crash when not initialized.
+
 ## 1.9.2
 
 - Introducing the `Televerse Session`! 🎉
