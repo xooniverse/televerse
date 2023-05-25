@@ -62,6 +62,9 @@ abstract class Session {
 
 /// Manages the sessions for Televerse.
 class SessionsManager<T extends Session> {
+  /// Constant enabled
+  bool enabled = true;
+
   /// Initialization function for the sessions.
   final T Function() _init;
 

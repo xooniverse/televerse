@@ -32,4 +32,11 @@ class TeleverseException implements Exception {
           "The file $path does not exist. Please check the path and try again.",
     );
   }
+
+  /// Exception thrown when the sessions are used without enabling them.
+  static TeleverseException sessionsNotEnabled = TeleverseException(
+    "Sessions aren't enabled for the bot ",
+    description:
+        "To use sessions, enable them using `Televerse.initSessions()` method.",
+  );
 }
