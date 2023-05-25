@@ -8,9 +8,9 @@ class CallbackQueryContext extends Context with CallbackQueryMixin {
 
   /// Constructs a new [CallbackQueryContext].
   CallbackQueryContext(
-    RawAPI t, {
+    super.t, {
     required Update update,
-  }) : super(t, update: update);
+  }) : super(update: update);
 
   /// The query string.
   String? get data => query.data;

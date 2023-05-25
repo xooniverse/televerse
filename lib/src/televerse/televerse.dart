@@ -15,7 +15,7 @@ part of televerse;
 /// }
 /// ```
 ///
-class Televerse {
+class Televerse<TeleverseSession extends Session> {
   /// API Scheme
   final APIScheme _scheme;
 
@@ -175,7 +175,7 @@ class Televerse {
       return scope.types.contains(update.type);
     });
     for (HandlerScope scope in sub) {
-      Context context = scope.context(api, update);
+      Context context = scope.context(this, update);
       if (scope.special) {
         if (scope.isCommand) {
           context as MessageContext;
@@ -198,7 +198,7 @@ class Televerse {
       }
       if (scope.predicate(context)) {
         if (_checkSync(scope.handler)) {
-          ((scope.handler(context)) as Future).catchError((err) {
+          ((scope.handler(context)) as Future).then((_) {}).catchError((err) {
             if (_onError != null) {
               _onError!(err, StackTrace.current);
             } else {
@@ -258,6 +258,28 @@ class Televerse {
   /// This getter returns a stream of [Update] objects. You can use this to listen to incoming updates from Telegram servers.
   Stream<Update> get updatesStream {
     return fetcher.onUpdate();
+  }
+
+  late final SessionsManager<TeleverseSession> _sessionsManager;
+
+  /// The sessions manager.
+  SessionsManager<TeleverseSession> get sessions {
+    try {
+      return _sessionsManager;
+    } catch (err) {
+      throw TeleverseException(
+        "Sessions aren't enabled for the bot ",
+        description:
+            "To use sessions, enable them using `initSessions()` method.",
+      );
+    }
+  }
+
+  /// Session init method.
+  void initSession(
+    TeleverseSession Function() fn,
+  ) {
+    _sessionsManager = SessionsManager<TeleverseSession>._(fn);
   }
 
   /// Registers a callback for a command.

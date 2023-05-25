@@ -7,9 +7,9 @@ class ShippingQueryContext extends Context with MessageMixin {
 
   /// The [ShippingQueryContext] constructor.
   ShippingQueryContext(
-    RawAPI api, {
+    super._bot, {
     required Update update,
-  }) : super(api, update: update);
+  }) : super(update: update);
 
   /// Invoice Payload.
   String get invoicePayload => shippingQuery.invoicePayload;

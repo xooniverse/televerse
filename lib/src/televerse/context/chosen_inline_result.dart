@@ -10,8 +10,8 @@ class ChosenInlineResultContext extends Context with MessageMixin {
   ChosenInlineResult get chosenInlineResult => update.chosenInlineResult!;
 
   /// Creates a new [ChosenInlineResultContext] instance.
-  ChosenInlineResultContext(RawAPI api, {required Update update})
-      : super(api, update: update);
+  ChosenInlineResultContext(super._bot, {required Update update})
+      : super(update: update);
 
   /// The user who chose the inline query.
   User get user => chosenInlineResult.from;

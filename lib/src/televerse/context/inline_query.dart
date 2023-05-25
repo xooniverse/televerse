@@ -8,9 +8,9 @@ class InlineQueryContext extends Context with InlineQueryMixin {
 
   /// Constructs a new [InlineQueryContext].
   InlineQueryContext(
-    RawAPI t, {
+    super._bot, {
     required Update update,
-  }) : super(t, update: update);
+  }) : super(update: update);
 
   /// The user who sent the query.
   User get from => query.from;

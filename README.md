@@ -9,6 +9,12 @@
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot framework built with Dart programming language. It provides a complete and well-structured API that enables developers to create and deploy complex Telegram bots with ease. Televerse provides a total of 0 dynamic types on its public interface, making it easy for developers to write strictly typed code.
 
+## 🔥 Latest Update: Sessions!
+
+We've just added support for Sessions! You can now use the `bot.initSession` method to initialize a session for your bot. This will allow you to store data for each chat. Once you initialize a session, you can use the `ctx.session` property to access the session data.
+
+Please check out the [example](./example/session_bot.dart) file for session usage examples.
+
 ## 💻 Getting Started
 
 Creating a bot with Televerse is very easy! First, you need to import the Televerse package:
@@ -40,7 +46,7 @@ Now, you can start listening for updates such as messages, commands, etc. To sta
 bot.start();
 ```
 
-That's it! Your bot is now ready to receive updates from Telegram. 
+That's it! Your bot is now ready to receive updates from Telegram.
 
 If you want to handle a specific command, such as the `/start` command, you can use the `bot.command` method. For example:
 
@@ -60,12 +66,11 @@ bot.start((ctx) {
 
 And that's all you need to get started with Televerse!
 
-## 📚 Documentation 
+## 📚 Documentation
 
 Televerse has a new API that is much simpler and easier to use. You can now use the `bot` instance to access the powerful Televerse methods and properties, and if you want to access the Telegram Bot API methods, you can use the `bot.api` getter. Simple, and clean.
 
 Now, when you're inside a callback function, you can access the `bot` instance using the `Context` parameter which also provides you with the `api` property.
-
 
 For example, if you want to send a message to a specific chat you can do it like this:
 
@@ -86,8 +91,10 @@ Televerse also offers a set of custom methods to simplify your development proce
 - `bot.text` to listen for text messages that contain specific text
 
 There are also more advanced methods such as:
+
 - `bot.filter` to create your own filters and listen for messages that match them
 - `bot.hear` to listen for messages that match a RegExp
+- `bot.on` to listen for specific events
 
 These methods are very powerful and can be used to create your own custom filters.
 
@@ -129,6 +136,7 @@ bot.whenMentioned((ctx) {
 ```
 
 ## 🎖️ Local Bot API Server Support
+
 Televerse supports listening to a local Bot API Server. To use this feature, you can create a new bot instance using the `local` method:
 
 ```dart
@@ -141,12 +149,13 @@ final Bot bot = Bot.local(
 
 This will create a bot instance that listens to updates from your local Bot API Server. You can then use the same helper methods to listen for updates, messages, and events.
 
-
 ## 🌟 Shoot a Star
+
 If you find Televerse helpful, please consider shooting a star on our [Github repository](https://github.com/HeySreelal/televerse). This helps us to know that our work is appreciated and motivates us to continue improving Televerse.
 
 ## 🤝 Join the Discussion
-We have an active Telegram group where you can discuss Televerse and get help from other users and developers. 
+
+We have an active Telegram group where you can discuss Televerse and get help from other users and developers.
 
 <a href="https://t.me/TeleverseDart">
   <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> 
@@ -157,4 +166,5 @@ We have an active Telegram group where you can discuss Televerse and get help fr
 <br>
 
 # Thank you ❤️
+
 Televerse is a powerful and easy-to-use library for building Telegram bots in TypeScript. With its fully typed interface and helpful helper methods, you can write clean, maintainable code that responds to messages and updates on Telegram. So, what are you waiting for? Start building your Telegram bot with Televerse today!

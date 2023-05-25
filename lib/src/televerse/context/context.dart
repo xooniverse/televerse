@@ -85,15 +85,28 @@ part 'pre_checkout_query.dart';
 /// Contexts are subclasses of this class. You can use this class to access the update and the Televerse instance.
 class Context {
   /// The RawAPI getter.
-  RawAPI get api => _api;
+  RawAPI get api => _bot.api;
 
   /// The RawAPI instance.
-  final RawAPI _api;
+  final Televerse _bot;
 
   /// The [Update] instance.
   ///
   /// This represents the update for which the context is created.
   final Update update;
+
+  /// The Session
+  late Session _session;
+
+  /// The Session getter.
+  Session get session => _session;
+
+  /// The Session setter.
+  set session(Session session) {
+    _bot.sessions.addSession(id.id, _session);
+
+    print(_bot.sessions.toJson());
+  }
 
   /// The [ChatID] instance.
   ///
@@ -179,7 +192,9 @@ class Context {
 
   /// Creates a new context.
   Context(
-    this._api, {
+    this._bot, {
     required this.update,
-  });
+  }) {
+    _session = _bot.sessions.getSession(id.id);
+  }
 }

@@ -34,50 +34,50 @@ class HandlerScope<T extends Function> {
   }) : special = isCommand || isRegExp;
 
   /// Creates a new Context object for the specified update.
-  Context context(RawAPI api, Update update) {
+  Context context(Televerse t, Update update) {
     switch (update.type) {
       case UpdateType.message:
-        return MessageContext(api, update.message!, update: update);
+        return MessageContext(t, update.message!, update: update);
       case UpdateType.editedMessage:
-        return MessageContext(api, update.editedMessage!, update: update);
+        return MessageContext(t, update.editedMessage!, update: update);
       case UpdateType.channelPost:
-        return MessageContext(api, update.channelPost!, update: update);
+        return MessageContext(t, update.channelPost!, update: update);
 
       case UpdateType.editedChannelPost:
-        return MessageContext(api, update.editedChannelPost!, update: update);
+        return MessageContext(t, update.editedChannelPost!, update: update);
 
       case UpdateType.inlineQuery:
-        return InlineQueryContext(api, update: update);
+        return InlineQueryContext(t, update: update);
 
       case UpdateType.chosenInlineResult:
-        return ChosenInlineResultContext(api, update: update);
+        return ChosenInlineResultContext(t, update: update);
 
       case UpdateType.callbackQuery:
-        return CallbackQueryContext(api, update: update);
+        return CallbackQueryContext(t, update: update);
 
       case UpdateType.shippingQuery:
-        return ShippingQueryContext(api, update: update);
+        return ShippingQueryContext(t, update: update);
 
       case UpdateType.preCheckoutQuery:
-        return PreCheckoutQueryContext(api, update: update);
+        return PreCheckoutQueryContext(t, update: update);
 
       case UpdateType.poll:
-        return PollContext(api, update: update);
+        return PollContext(t, update: update);
 
       case UpdateType.pollAnswer:
-        return PollAnswerContext(api, update: update);
+        return PollAnswerContext(t, update: update);
 
       case UpdateType.myChatMember:
-        return ChatMemberUpdatedContext(api, update: update);
+        return ChatMemberUpdatedContext(t, update: update);
 
       case UpdateType.chatMember:
-        return ChatMemberUpdatedContext(api, update: update);
+        return ChatMemberUpdatedContext(t, update: update);
 
       case UpdateType.chatJoinRequest:
-        return ChatMemberUpdatedContext(api, update: update);
+        return ChatJoinRequestContext(t, update: update);
 
       case UpdateType.unknown:
-        return Context(api, update: update);
+        return Context(t, update: update);
     }
   }
 }

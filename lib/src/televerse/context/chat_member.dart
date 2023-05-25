@@ -6,7 +6,7 @@ part of televerse.context;
 class ChatMemberUpdatedContext extends Context with MessageMixin {
   /// Creates a new [ChatMemberUpdatedContext] instance.
   ChatMemberUpdatedContext(
-    super.api, {
+    super._bot, {
     required super.update,
   });
 
