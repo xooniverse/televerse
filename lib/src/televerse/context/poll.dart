@@ -8,8 +8,7 @@ class PollContext extends Context {
   Poll get poll => update.poll!;
 
   /// Creates a new [PollContext] instance.
-  PollContext(RawAPI api, {required Update update})
-      : super(api, update: update);
+  PollContext(super._bot, {required Update update}) : super(update: update);
 
   /// (DO NOT USE) - The Chat ID getter.
   @Deprecated("Poll Updates does not have a chat.")

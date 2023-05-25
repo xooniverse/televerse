@@ -8,8 +8,8 @@ class PollAnswerContext extends Context with MessageMixin {
   PollAnswer get pollAnswer => update.pollAnswer!;
 
   /// Creates a new [PollAnswerContext] instance.
-  PollAnswerContext(RawAPI api, {required Update update})
-      : super(api, update: update);
+  PollAnswerContext(super._bot, {required Update update})
+      : super(update: update);
 
   /// The poll ID
   String get pollId => pollAnswer.pollId;

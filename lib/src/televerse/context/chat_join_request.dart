@@ -8,8 +8,8 @@ class ChatJoinRequestContext extends Context with MessageMixin {
   ChatJoinRequest get chatJoinRequest => update.chatJoinRequest!;
 
   /// Creates a new [ChatJoinRequestContext] instance.
-  ChatJoinRequestContext(RawAPI api, {required Update update})
-      : super(api, update: update);
+  ChatJoinRequestContext(super._bot, {required Update update})
+      : super(update: update);
 
   /// The user who requested to join the chat
   User get user => chatJoinRequest.user;

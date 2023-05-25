@@ -9,10 +9,10 @@ class MessageContext extends Context with MessageMixin, ManagementMixin {
 
   /// Constructs a new [MessageContext].
   MessageContext(
-    RawAPI api,
+    super._bot,
     this.message, {
     required Update update,
-  }) : super(api, update: update);
+  }) : super(update: update);
 
   /// Chat of the message.
   Chat get chat => message.chat;

@@ -43,6 +43,7 @@ part 'src/utils/utils.dart';
 part 'src/televerse/markups/keyboard.dart';
 part 'src/televerse/markups/inline_keyboard.dart';
 part 'src/televerse/raw_api.dart';
+part 'src/televerse/sessions/sessions.dart';
 
 /// Type aliases for the library.
 part 'src/types/aliases.dart';
@@ -51,4 +52,4 @@ part 'src/types/aliases.dart';
 ///
 /// This class is used to create a new bot instance. This is just a
 /// type alias for [Televerse] class.
-typedef Bot = Televerse;
+typedef Bot<T extends Session> = Televerse;

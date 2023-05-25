@@ -34,9 +34,9 @@ class PreCheckoutQueryContext extends Context with MessageMixin {
 
   /// Creates a new pre-checkout query context.
   PreCheckoutQueryContext(
-    RawAPI api, {
+    super._bot, {
     required Update update,
-  }) : super(api, update: update);
+  }) : super(update: update);
 
   /// Sends an answer to the pre-checkout query.
   ///
@@ -47,7 +47,7 @@ class PreCheckoutQueryContext extends Context with MessageMixin {
     required bool ok,
     String? errorMessage,
   }) async {
-    await _api.answerPreCheckoutQuery(
+    await api.answerPreCheckoutQuery(
       queryId,
       ok,
       errorMessage: errorMessage,
