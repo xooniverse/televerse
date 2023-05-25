@@ -99,7 +99,13 @@ class Context {
   late Session _session;
 
   /// The Session getter.
-  Session get session => _session;
+  Session get session {
+    try {
+      return _session;
+    } catch (e) {
+      throw TeleverseException.sessionsNotEnabled;
+    }
+  }
 
   /// The Session setter.
   set session(Session session) {
@@ -195,6 +201,8 @@ class Context {
     this._bot, {
     required this.update,
   }) {
-    _session = _bot.sessions.getSession(id.id);
+    if (_bot.sessionsEnabled) {
+      _session = _bot.sessions.getSession(id.id);
+    }
   }
 }

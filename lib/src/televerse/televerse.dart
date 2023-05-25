@@ -260,18 +260,24 @@ class Televerse<TeleverseSession extends Session> {
     return fetcher.onUpdate();
   }
 
+  /// The sessions manager (private)
   late final SessionsManager<TeleverseSession> _sessionsManager;
+
+  /// A flag that indicates whether sessions are enabled or not.
+  bool get sessionsEnabled {
+    try {
+      return _sessionsManager.enabled;
+    } catch (err) {
+      return false;
+    }
+  }
 
   /// The sessions manager.
   SessionsManager<TeleverseSession> get sessions {
     try {
       return _sessionsManager;
     } catch (err) {
-      throw TeleverseException(
-        "Sessions aren't enabled for the bot ",
-        description:
-            "To use sessions, enable them using `initSessions()` method.",
-      );
+      throw TeleverseException.sessionsNotEnabled;
     }
   }
 
