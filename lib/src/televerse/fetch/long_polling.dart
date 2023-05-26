@@ -3,6 +3,9 @@ part of televerse.fetch;
 /// A class that handles long polling.
 /// This class is used to fetch updates from the Telegram API. It uses the long polling method.
 class LongPolling extends Fetcher {
+  /// Delay time between each long polling request.
+  final Duration delayDuration;
+
   /// The offset of the next update to fetch.
   int offset;
 
@@ -32,6 +35,7 @@ class LongPolling extends Fetcher {
     this.timeout = 30,
     this.limit = 100,
     this.allowedUpdates = const [],
+    this.delayDuration = const Duration(milliseconds: 200),
   }) {
     if (timeout > maxTimeout) throw LongPollingException.invalidTimeout;
     if (limit > 100) throw LongPollingException.invalidLimit;
@@ -67,6 +71,7 @@ class LongPolling extends Fetcher {
   @override
   Future<void> stop() async {
     _isPolling = false;
+    _updateStreamController.close();
   }
 
   /// Polls the Telegram API for updates.
@@ -80,11 +85,14 @@ class LongPolling extends Fetcher {
         allowedUpdates: allowedUpdates.map((e) => e.type).toList(),
       );
       for (var update in updates) {
+        if (_updateStreamController.isClosed) {
+          throw LongPollingException.streamClosed;
+        }
         addUpdate(update);
         offset = update.updateId + 1;
       }
 
-      await Future.delayed(Duration(milliseconds: 200));
+      await Future.delayed(delayDuration);
       _resetRetryDelay();
     } catch (err, stackTrace) {
       _isPolling = false;
@@ -112,6 +120,7 @@ class LongPolling extends Fetcher {
     int offset = 0,
     int timeout = 30,
     int limit = 100,
+    Duration delayDuration = const Duration(milliseconds: 200),
   }) {
     List<UpdateType> allowedUpdates = [
       for (var type in UpdateType.values)
@@ -122,6 +131,7 @@ class LongPolling extends Fetcher {
       offset: offset,
       timeout: timeout,
       limit: limit,
+      delayDuration: delayDuration,
     );
   }
 }

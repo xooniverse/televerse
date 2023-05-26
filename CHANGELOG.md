@@ -1,3 +1,11 @@
+## 1.9.5
+
+- Added `Televerse.onStop` to listen when the bot is stopped. (Fix [#95](https://github.com/HeySreelal/televerse/issues/95))
+- Added `delayDuration` parameter to `LongPolling` class to set the delay duration between each long polling request.
+- Moved all methods in `SessionFileExtension` and `SessionsSaver` to `Session` and `SessionsManager` classes respectively.
+- This is to simplify the API and to make it easier to use.
+- Updated `http` dependency to `^1.0.0`.
+
 ## 1.9.4
 
 - Added `SessionFileExtension` class to represent a file extension.

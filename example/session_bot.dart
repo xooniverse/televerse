@@ -22,7 +22,7 @@ class MySession extends Session {
 // the id parameter is the chat id for which the session is being initialized
 // so now you can create a session based on the chat id
 MySession init(int id) {
-  final loaded = SessionFileExtension.loadFromFile(
+  final loaded = Session.loadFromFile(
     MySession.fromJson,
     id: id,
   );
