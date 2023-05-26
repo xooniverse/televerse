@@ -1,3 +1,10 @@
+## 1.9.4
+
+- Added `SessionFileExtension` class to represent a file extension.
+- Added `SessionsSaver` extension on `SessionsManager` class to save all sessions to a directory.
+- Updated [/example/session_bot.dart](./example/session_bot.dart) file to reflect the changes.
+- Minor breaking change: the initializer function now should accept a `int` as parameter.
+
 ## 1.9.3
 
 - Fixed an issue with sessions that caused crash when not initialized.

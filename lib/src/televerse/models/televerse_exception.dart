@@ -39,4 +39,11 @@ class TeleverseException implements Exception {
     description:
         "To use sessions, enable them using `Televerse.initSessions()` method.",
   );
+
+  /// Exception thrown when the session is tried to be saved without providing path or id.
+  static TeleverseException sessionIdNotSet = TeleverseException(
+    "Session ID not set",
+    description:
+        "To save/load the session, you must provide a path or set the session ID.",
+  );
 }

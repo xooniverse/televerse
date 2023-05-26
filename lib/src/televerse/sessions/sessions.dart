@@ -53,11 +53,17 @@ part of televerse;
 /// }
 /// ```
 abstract class Session {
+  /// The session id - this is the chat id.
+  int? id;
+
   /// Converts the session object to a JSON object.
   Map<String, dynamic> toJson();
 
   /// Constructor for the session.
-  const Session();
+  Session({this.id});
+
+  /// Get the Chat ID object
+  ChatID get chatID => ChatID(id!);
 }
 
 /// Manages the sessions for Televerse.
@@ -66,7 +72,7 @@ class SessionsManager<T extends Session> {
   bool enabled = true;
 
   /// Initialization function for the sessions.
-  final T Function() _init;
+  final T Function(int) _init;
 
   /// Creates a new sessions manager.
   SessionsManager._(this._init);
@@ -87,7 +93,7 @@ class SessionsManager<T extends Session> {
   /// Gets a session from the sessions map.
   T getSession(int id) {
     if (!_sessions.containsKey(id)) {
-      _sessions[id] = _init();
+      _sessions[id] = _init(id)..id = id;
     }
 
     return _sessions[id]!;
