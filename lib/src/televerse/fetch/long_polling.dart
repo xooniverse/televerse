@@ -86,7 +86,7 @@ class LongPolling extends Fetcher {
       );
       for (var update in updates) {
         if (_updateStreamController.isClosed) {
-          throw LongPollingException.streamClosed;
+          return;
         }
         addUpdate(update);
         offset = update.updateId + 1;
