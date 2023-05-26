@@ -234,7 +234,12 @@ class Televerse<TeleverseSession extends Session> {
     if (handler != null) {
       command("start", handler);
     }
-    fetcher.onUpdate().listen(_onUpdate);
+    fetcher.onUpdate().listen(
+      _onUpdate,
+      onDone: () {
+        _onStop.call();
+      },
+    );
     try {
       return await fetcher.start();
     } catch (err, stack) {
@@ -1300,5 +1305,15 @@ class Televerse<TeleverseSession extends Session> {
     );
 
     _handlerScopes.add(scope);
+  }
+
+  /// On Stop Handler
+  void Function() _onStop = () {};
+
+  /// Registers a callback when the the bot is stopped.
+  ///
+  /// This can be used to clean up resources.
+  void onStop(void Function() callback) {
+    _onStop = callback;
   }
 }

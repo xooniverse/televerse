@@ -12,18 +12,23 @@ class LongPollingException implements Exception {
   @override
   String toString() => message;
 
-  /// Returns a list of invalid limit exceptions.
+  /// Returns invalid limit exceptions.
   static LongPollingException get invalidLimit => LongPollingException(
         'Invalid limit. Limit must be between 1 and 100',
       );
 
-  /// Returns a list of invalid timeout exceptions.
+  /// Returns invalid timeout exception.
   static LongPollingException get invalidTimeout => LongPollingException(
         'Invalid timeout. Timeout cannot be greater than ${LongPolling.maxTimeout}',
       );
 
-  /// Returns a list of already polling exceptions.
+  /// Returns already polling exception.
   static LongPollingException get alreadyPolling => LongPollingException(
         'Already polling. You cannot start another polling when another polling is working.',
+      );
+
+  /// Returns stream closed exception.
+  static LongPollingException get streamClosed => LongPollingException(
+        'Stream is closed. You cannot add events to a closed stream.',
       );
 }

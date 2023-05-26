@@ -113,6 +113,15 @@ void main() async {
     print('I catch everything :)');
   });
 
+  bot.command("stop", (ctx) async {
+    await ctx.reply("Stopping...");
+    bot.stop();
+  });
+
+  bot.onStop(() {
+    print('Bot stopped!');
+  });
+
   bot.onMessage((ctx) {
     ctx.reply('I got a message!');
   });

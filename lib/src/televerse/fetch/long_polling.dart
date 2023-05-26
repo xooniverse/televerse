@@ -71,6 +71,7 @@ class LongPolling extends Fetcher {
   @override
   Future<void> stop() async {
     _isPolling = false;
+    _updateStreamController.close();
   }
 
   /// Polls the Telegram API for updates.
@@ -84,6 +85,9 @@ class LongPolling extends Fetcher {
         allowedUpdates: allowedUpdates.map((e) => e.type).toList(),
       );
       for (var update in updates) {
+        if (_updateStreamController.isClosed) {
+          throw LongPollingException.streamClosed;
+        }
         addUpdate(update);
         offset = update.updateId + 1;
       }
