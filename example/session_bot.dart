@@ -12,11 +12,21 @@ class MySession extends Session {
   Map<String, dynamic> toJson() {
     return {'count': count};
   }
+
+  factory MySession.fromJson(Map<String, dynamic> json) {
+    return MySession(json['count']);
+  }
 }
 
 // This is the function that will be called to initialize the session
-MySession init() {
-  return MySession(0);
+// the id parameter is the chat id for which the session is being initialized
+// so now you can create a session based on the chat id
+MySession init(int id) {
+  final loaded = SessionFileExtension.loadFromFile(
+    MySession.fromJson,
+    id: id,
+  );
+  return loaded ?? MySession(0);
 }
 
 // Now create the bot instance mentioning the session type
@@ -26,11 +36,18 @@ void main() {
   // Initialize the session
   bot.initSession(init);
 
+  bot.command('save', (ctx) {
+    // Save the sessions to JSON files
+    ctx.session.saveToFile();
+    ctx.reply('Session saved!');
+  });
+
   // Now you can use the session in the bot
   bot.onMessage((ctx) {
     final sess = ctx.session as MySession;
     sess.count++;
     ctx.reply("Times you have sent a message: ${sess.count}");
+    ctx.reply('Session id: ${sess.id}');
   });
   bot.start();
 }
