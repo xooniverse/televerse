@@ -29,6 +29,8 @@ extension SessionFileExtension on Session {
   }
 
   /// Loads the session from a file.
+  ///
+  /// Returns null if the file does not exist.
   static T? loadFromFile<T extends Session>(
     T Function(Map<String, dynamic> json) fromJson, {
     String? path,
