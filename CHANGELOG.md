@@ -1,4 +1,4 @@
-## 1.9.5
+## 1.9.6
 
 - Added `Televerse.onStop` to listen when the bot is stopped. (Fix [#95](https://github.com/HeySreelal/televerse/issues/95))
 - Added `delayDuration` parameter to `LongPolling` class to set the delay duration between each long polling request.
