@@ -2,7 +2,6 @@
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/HeySreelal/televerse?color=green)
-
 ![](https://shields.io/badge/Latest-Bot%20API%206.7-blue)
 
 🤖 `Bot API version: Bot API 6.7 (April 21, 2023)`
@@ -13,7 +12,9 @@ Televerse is a powerful, easy-to-use, and highly customizable Telegram bot frame
 
 We've just added support for Sessions! You can now use the `bot.initSession` method to initialize a session for your bot. This will allow you to store data for each chat. Once you initialize a session, you can use the `ctx.session` property to access the session data.
 
-Please check out the [example](./example/session_bot.dart) file for session usage examples.
+Please check out the [Sessions Bot Example](./example/session_bot.dart) file for session usage examples.
+
+<hr>
 
 ## 💻 Getting Started
 

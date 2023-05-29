@@ -95,9 +95,9 @@ class Televerse<TeleverseSession extends Session> {
 
     api.getMe().then((value) {
       _me = value;
-    }).catchError((err, st) {
+    }).catchError((err, st) async {
       if (_onError != null) {
-        _onError!(err, st);
+        await _onError!(err, st);
       } else {
         throw err;
       }
@@ -198,9 +198,11 @@ class Televerse<TeleverseSession extends Session> {
       }
       if (scope.predicate(context)) {
         if (_checkSync(scope.handler)) {
-          ((scope.handler(context)) as Future).then((_) {}).catchError((err) {
+          ((scope.handler(context)) as Future)
+              .then((_) {})
+              .catchError((err) async {
             if (_onError != null) {
-              _onError!(err, StackTrace.current);
+              await _onError!(err, StackTrace.current);
             } else {
               throw err;
             }
@@ -210,7 +212,7 @@ class Televerse<TeleverseSession extends Session> {
             scope.handler(context);
           } catch (err, stack) {
             if (_onError != null) {
-              _onError!(err, stack);
+              await _onError!(err, stack);
             } else {
               rethrow;
             }

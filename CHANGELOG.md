@@ -1,3 +1,7 @@
+## 1.9.7
+
+- Fix around `onError` method.
+
 ## 1.9.6
 
 - Added `Televerse.onStop` to listen when the bot is stopped. (Fix [#95](https://github.com/HeySreelal/televerse/issues/95))
