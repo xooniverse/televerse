@@ -8,12 +8,16 @@ class TelegramException implements Exception {
   /// Optional description.
   final String? description;
 
+  /// Stack trace of the exception.
+  final StackTrace stackTrace;
+
   /// Constructs a new [TelegramException].
   TelegramException(
     this.code, {
     this.description,
     this.parameters,
-  });
+    StackTrace? stackTrace,
+  }) : stackTrace = stackTrace ?? StackTrace.current;
 
   /// Constructs a new [TelegramException] from a JSON object.
   factory TelegramException.fromJson(Map<String, dynamic> json) {
@@ -40,6 +44,16 @@ class TelegramException implements Exception {
 
   /// Returns true if the exception is a server exception.
   bool get isServerExeption => code >= 500 && code < 600;
+
+  /// Converts this exception to a [LongPollingException].
+  LongPollingException toLongPollingException(StackTrace stackTrace) {
+    return LongPollingException(
+      description ?? "Unknown error occurred",
+      code: code,
+      parameters: parameters,
+      stackTrace: stackTrace,
+    );
+  }
 }
 
 /// Bad Request Exception is thrown when the request is invalid.

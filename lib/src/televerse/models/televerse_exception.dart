@@ -9,14 +9,14 @@ class TeleverseException implements Exception {
   final String? description;
 
   /// Optional stack trace.
-  final StackTrace? stackTrace;
+  final StackTrace stackTrace;
 
   /// Constructs a new [TeleverseException].
   TeleverseException(
     this.message, {
     this.description,
-    this.stackTrace,
-  });
+    StackTrace? stackTrace,
+  }) : stackTrace = stackTrace ?? StackTrace.current;
 
   /// Returns a string representation of the exception.
   @override

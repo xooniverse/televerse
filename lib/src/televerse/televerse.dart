@@ -567,10 +567,23 @@ class Televerse<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for on any unexpected error.
+  ///
+  /// Possible objects that can be passed to the handler:
+  ///  - [TelegramException]
+  ///  - [LongPollingException]
+  ///  - [TeleverseException]
+  ///
+  /// When a [LongPollingException] is thrown, the fetcher will be stopped and
+  /// waits for the [handler] to finish executing. After that, the fetcher will
+  /// be started again.
+  ///
+  /// Note: you DON'T have to manually wait for the [ResponseParameters.retryAfter] duration.
+  /// The fetcher will automatically wait for the duration and start polling again.
   void onError(
     void Function(Object err, StackTrace stackTrace) handler,
   ) {
     _onError = handler;
+    this.fetcher.onError(handler);
   }
 
   /// A filter that matches messages that contains the specified entity type.
