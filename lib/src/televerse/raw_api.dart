@@ -1871,7 +1871,7 @@ class RawAPI {
     String? iconCustomEmojiId,
   }) async {
     if (name.isEmpty || name.length > 128) {
-      throw Exception("Name length must be between 1 and 64");
+      throw TeleverseException("Name length must be between 1 and 64");
     }
 
     Map<String, dynamic> params = {
@@ -1896,7 +1896,7 @@ class RawAPI {
     String? iconCustomEmojiId,
   }) async {
     if (name != null && (name.isEmpty || name.length > 128)) {
-      throw Exception(
+      throw TeleverseException(
         "Name length must be between 1 and 128",
       );
     }
@@ -1979,7 +1979,7 @@ class RawAPI {
     String name,
   ) async {
     if (name.isEmpty || name.length > 128) {
-      throw Exception("name length must be between 1 and 64");
+      throw TeleverseException("name length must be between 1 and 64");
     }
 
     Map<String, dynamic> params = {
