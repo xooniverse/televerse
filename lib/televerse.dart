@@ -44,6 +44,7 @@ part 'src/televerse/markups/keyboard.dart';
 part 'src/televerse/markups/inline_keyboard.dart';
 part 'src/televerse/raw_api.dart';
 part 'src/televerse/sessions/sessions.dart';
+part 'src/televerse/filters/on.dart';
 
 /// Type aliases for the library.
 part 'src/types/aliases.dart';
