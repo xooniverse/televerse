@@ -290,7 +290,7 @@ class Televerse<TeleverseSession extends Session> {
 
   /// Session init method.
   void initSession(
-    TeleverseSession Function(int) fn,
+    TeleverseSession Function(int id) fn,
   ) {
     _sessionsManager = SessionsManager<TeleverseSession>._(fn);
   }
