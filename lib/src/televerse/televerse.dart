@@ -226,6 +226,13 @@ class Televerse<TeleverseSession extends Session> {
   /// List of Handler Scopes
   final List<HandlerScope> _handlerScopes = [];
 
+  /// To manually handle updates without fetcher
+  ///
+  /// This method is useful when you want to use a custom webhook server instead of the default one provided by Televerse,
+  /// or to use in a cloud function.
+  /// use Update.fromJson(json) to convert the json to an update.
+  void handleUpdate(Update update) => _onUpdate(update);
+
   /// Start polling for updates.
   ///
   /// This method starts polling for updates. It will automatically start the fetcher.
