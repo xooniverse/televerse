@@ -32,7 +32,6 @@ export 'src/televerse/context/context.dart'
     hide MessageMixin, CallbackQueryMixin, ManagementMixin, InlineQueryMixin;
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
-export 'src/televerse/filters/filters.dart';
 export 'src/televerse/fetch/fetch.dart';
 export 'src/televerse/extensions/extensions.dart';
 export 'src/televerse/links/links.dart';
@@ -45,6 +44,7 @@ part 'src/televerse/markups/inline_keyboard.dart';
 part 'src/televerse/raw_api.dart';
 part 'src/televerse/sessions/sessions.dart';
 part 'src/televerse/filters/on.dart';
+part 'src/televerse/filters/filters.dart';
 
 /// Type aliases for the library.
 part 'src/types/aliases.dart';

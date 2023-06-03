@@ -1,4 +1,4 @@
-import 'package:televerse/televerse.dart';
+part of televerse;
 
 /// Filter lets you filter messages by their content. This is useful when used along with `Televerse.on` method to listen to only specific messages.
 ///
