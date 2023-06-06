@@ -96,9 +96,11 @@ class LongPolling extends Fetcher {
       _resetRetryDelay();
     } catch (err, stackTrace) {
       _isPolling = false;
-      print("Long polling failed: $err");
-      print(stackTrace);
       if (err is TelegramException) {
+        if (_onError != null) {
+          final longError = err.toLongPollingException(stackTrace);
+          await _onError!(longError, stackTrace);
+        }
         if (err.parameters?.retryAfter != null) {
           print(
             'Polling will be resumed after ${err.parameters!.retryAfter!} seconds',
@@ -110,6 +112,11 @@ class LongPolling extends Fetcher {
           _doubleRetryDelay();
         }
       } else {
+        if (_onError != null) {
+          await _onError!(err, stackTrace);
+        } else {
+          _doubleRetryDelay();
+        }
         rethrow;
       }
     }

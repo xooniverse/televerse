@@ -2,15 +2,26 @@ part of televerse.models;
 
 /// HttpException is thrown when the long polling fails. This exception is thrown when the limit is invalid or the timeout is invalid.
 class LongPollingException implements Exception {
+  /// The error code
+  final int? code;
+
   /// The error message.
   final String message;
 
+  /// Stack trace of the exception.
+  final StackTrace stackTrace;
+
   /// Constructs a new [LongPollingException].
-  LongPollingException(this.message);
+  LongPollingException(
+    this.message, {
+    this.code,
+    this.parameters,
+    StackTrace? stackTrace,
+  }) : stackTrace = stackTrace ?? StackTrace.current;
 
   /// Returns a string representation of the exception.
   @override
-  String toString() => message;
+  String toString() => "LongPollingException [$code]: $message";
 
   /// Returns invalid limit exceptions.
   static LongPollingException get invalidLimit => LongPollingException(
@@ -31,4 +42,7 @@ class LongPollingException implements Exception {
   static LongPollingException get streamClosed => LongPollingException(
         'Stream is closed. You cannot add events to a closed stream.',
       );
+
+  /// Response Parameters
+  ResponseParameters? parameters;
 }

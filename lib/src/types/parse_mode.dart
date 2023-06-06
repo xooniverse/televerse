@@ -27,7 +27,7 @@ enum ParseMode {
       case 'MarkdownV2':
         return markdownV2;
       default:
-        throw Exception('Invalid ParseMode value: $value');
+        throw TeleverseException('Invalid ParseMode value: $value');
     }
   }
 }

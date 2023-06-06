@@ -1,4 +1,4 @@
-import 'package:televerse/televerse.dart';
+part of televerse;
 
 /// Filter lets you filter messages by their content. This is useful when used along with `Televerse.on` method to listen to only specific messages.
 ///
@@ -14,8 +14,12 @@ import 'package:televerse/televerse.dart';
 /// ```
 ///
 enum TeleverseEvent {
-  /// Filters messages to allow only those which have text.
+  /// Filter for all messages - includes both Update.message and Update.channelPost.
   text([UpdateType.message, UpdateType.channelPost]),
+
+  /// Private messages.
+  /// This filter will only allow private messages.
+  privateMessage([UpdateType.message]),
 
   /// Filter for messages or channel posts which have audio.
   audio([UpdateType.message, UpdateType.channelPost]),
