@@ -1,3 +1,12 @@
+## 1.9.8
+
+- Televerse now can support handling updates passed to it as JSON data (without using a fetcher).
+- This can be useful when you want to run bot on a serverless environment like AWS Lambda or Google Cloud Functions.
+- Thanks to [@rohitsangwan01](https://github.com/rohitsangwan01) for the contribution. [#99](https://github.com/HeySreelal/televerse/pull/99)
+- `onError` can now catch errors on the Long Polling.
+- Replaced all `Exception` with `TelegramException` in the library.
+- Replaced the `Televerse.on` logic to an extension on `Televerse` class.
+
 ## 1.9.7
 
 - Fix around `onError` method.

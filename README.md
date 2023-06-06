@@ -150,6 +150,19 @@ final Bot bot = Bot.local(
 
 This will create a bot instance that listens to updates from your local Bot API Server. You can then use the same helper methods to listen for updates, messages, and events.
 
+## 🖥️ Serverless Support
+
+You can even create bots that can run on your serverless platform such as AWS Lambda or Google Cloud Functions. On serverless platforms, you might not be able to listen for updates using a Fetcher. In this case, you can use the `bot.handleUpdate` method to handle updates manually.
+
+```dart
+// Create bot instance, and setup listeners
+// ...
+
+final json = jsonDecode(event.body);
+final update = Update.fromJson(json);
+bot.handleUpdate(update);
+```
+
 ## 🌟 Shoot a Star
 
 If you find Televerse helpful, please consider shooting a star on our [Github repository](https://github.com/HeySreelal/televerse). This helps us to know that our work is appreciated and motivates us to continue improving Televerse.
