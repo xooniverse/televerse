@@ -238,11 +238,17 @@ class Televerse<TeleverseSession extends Session> {
   /// This method starts polling for updates. It will automatically start the fetcher.
   ///
   /// You can pass a [handler] to the method. The handler will be called when a message is received that starts with the `/start` command.
-  Future<void> start([FutureOr<void> Function(MessageContext)? handler]) async {
+  ///
+  /// Optional [isServerless] flag can be passed to the method. If you set this flag to true, the bot will not start the fetcher.
+  Future<void> start([
+    MessageHandler? handler,
+    bool isServerless = false,
+  ]) async {
     // Registers a handler to listen for /start command
     if (handler != null) {
       command("start", handler);
     }
+    if (isServerless) return;
     fetcher.onUpdate().listen(
       _onUpdate,
       onDone: () {
