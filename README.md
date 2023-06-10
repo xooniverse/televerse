@@ -71,7 +71,7 @@ And that's all you need to get started with Televerse!
 
 Televerse has a new API that is much simpler and easier to use. You can now use the `bot` instance to access the powerful Televerse methods and properties, and if you want to access the Telegram Bot API methods, you can use the `bot.api` getter. Simple, and clean.
 
-Now, when you're inside a callback function, you can access the `bot` instance using the `Context` parameter which also provides you with the `api` property.
+Now, when you're inside a callback function, you can use the `Context` parameter which also provides you with the `api` property.
 
 For example, if you want to send a message to a specific chat you can do it like this:
 
@@ -132,7 +132,7 @@ You can also use the `whenMentioned` method to listen for messages that mention 
 
 ```dart
 bot.whenMentioned((ctx) {
-  print('Oh hey, I was sleeping! What did I miss?');
+  ctx.replt('Oh hey, I was sleeping! What did I miss?');
 });
 ```
 
@@ -181,4 +181,4 @@ We have an active Telegram group where you can discuss Televerse and get help fr
 
 # Thank you ❤️
 
-Televerse is a powerful and easy-to-use library for building Telegram bots in TypeScript. With its fully typed interface and helpful helper methods, you can write clean, maintainable code that responds to messages and updates on Telegram. So, what are you waiting for? Start building your Telegram bot with Televerse today!
+Televerse is a powerful and easy-to-use library for building Telegram bots in Dart. With its fully typed interface and helpful helper methods, you can write clean, maintainable code that responds to messages and updates on Telegram. So, what are you waiting for? Start building your Telegram bot with Televerse today!
