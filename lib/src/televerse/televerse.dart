@@ -238,11 +238,17 @@ class Televerse<TeleverseSession extends Session> {
   /// This method starts polling for updates. It will automatically start the fetcher.
   ///
   /// You can pass a [handler] to the method. The handler will be called when a message is received that starts with the `/start` command.
-  Future<void> start([FutureOr<void> Function(MessageContext)? handler]) async {
+  ///
+  /// Optional [isServerless] flag can be passed to the method. If you set this flag to true, the bot will not start the fetcher.
+  Future<void> start([
+    MessageHandler? handler,
+    bool isServerless = false,
+  ]) async {
     // Registers a handler to listen for /start command
     if (handler != null) {
       command("start", handler);
     }
+    if (isServerless) return;
     fetcher.onUpdate().listen(
       _onUpdate,
       onDone: () {
@@ -319,10 +325,16 @@ class Televerse<TeleverseSession extends Session> {
   /// ```
   ///
   /// This will reply "Hello!" to any message that starts with `/start`.
-  void command(
+  Future<void> command(
     Pattern command,
     MessageHandler callback,
-  ) {
+  ) async {
+    User bot;
+    try {
+      bot = me;
+    } catch (err) {
+      bot = await api.getMe();
+    }
     HandlerScope scope = HandlerScope<MessageHandler>(
       isCommand: true,
       handler: callback,
@@ -333,7 +345,9 @@ class Televerse<TeleverseSession extends Session> {
         if (command is RegExp) {
           return command.hasMatch(ctx.message.text!);
         } else if (command is String) {
-          return ctx.message.text!.split(' ').first == '/$command';
+          final firstTerm = ctx.message.text!.split(' ').first;
+          return firstTerm == '/$command' ||
+              firstTerm == '/$command@${bot.username}';
         }
         return false;
       },
@@ -564,12 +578,12 @@ class Televerse<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for the `/settings` command.
-  void settings(MessageHandler handler) {
+  Future<void> settings(MessageHandler handler) {
     return command("settings", handler);
   }
 
   /// Registers a callback for the `/help` command.
-  void help(MessageHandler handler) {
+  Future<void> help(MessageHandler handler) {
     return command("help", handler);
   }
 

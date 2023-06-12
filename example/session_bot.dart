@@ -37,7 +37,7 @@ void main() {
   bot.initSession(init);
 
   bot.command('save', (ctx) {
-    // Save my the sessions to JSON file
+    // Save my sessions to JSON file
     ctx.session.saveToFile();
 
     /// Or save all the sessions

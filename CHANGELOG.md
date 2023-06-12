@@ -1,3 +1,9 @@
+## 1.9.9
+
+- Fix [#102](https://github.com/HeySreelal/televerse/issues/102)
+- Commands that tagged with `@botname` will now be matched.
+- Minor changes on README & Session example.
+
 ## 1.9.8
 
 - Televerse now can support handling updates passed to it as JSON data (without using a fetcher).
