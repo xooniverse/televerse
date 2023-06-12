@@ -325,10 +325,16 @@ class Televerse<TeleverseSession extends Session> {
   /// ```
   ///
   /// This will reply "Hello!" to any message that starts with `/start`.
-  void command(
+  Future<void> command(
     Pattern command,
     MessageHandler callback,
-  ) {
+  ) async {
+    User bot;
+    try {
+      bot = me;
+    } catch (err) {
+      bot = await api.getMe();
+    }
     HandlerScope scope = HandlerScope<MessageHandler>(
       isCommand: true,
       handler: callback,
@@ -339,7 +345,9 @@ class Televerse<TeleverseSession extends Session> {
         if (command is RegExp) {
           return command.hasMatch(ctx.message.text!);
         } else if (command is String) {
-          return ctx.message.text!.split(' ').first == '/$command';
+          final firstTerm = ctx.message.text!.split(' ').first;
+          return firstTerm == '/$command' ||
+              firstTerm == '/$command@${bot.username}';
         }
         return false;
       },
@@ -570,12 +578,12 @@ class Televerse<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for the `/settings` command.
-  void settings(MessageHandler handler) {
+  Future<void> settings(MessageHandler handler) {
     return command("settings", handler);
   }
 
   /// Registers a callback for the `/help` command.
-  void help(MessageHandler handler) {
+  Future<void> help(MessageHandler handler) {
     return command("help", handler);
   }
 
