@@ -20,6 +20,11 @@ void main(List<String> args) {
     ctx.reply("I'm ${bot.me.firstName}");
   });
 
+  bot.onMessage((ctx) {
+    final String text = ctx.message.text!;
+    ctx.reply("You said $text");
+  });
+
   /// Starts the bot
   bot.start();
 }

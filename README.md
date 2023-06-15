@@ -132,7 +132,7 @@ You can also use the `whenMentioned` method to listen for messages that mention 
 
 ```dart
 bot.whenMentioned((ctx) {
-  ctx.replt('Oh hey, I was sleeping! What did I miss?');
+  ctx.reply('Oh hey, I was sleeping! What did I miss?');
 });
 ```
 
