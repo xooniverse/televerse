@@ -1,3 +1,9 @@
+## 1.9.10
+
+- Fix [#104](https://github.com/HeySreelal/televerse/issues/104)
+- When `onMessage` listener is attached it stopped all other listeners from working. This is now fixed.
+- Updated README (some typos).
+
 ## 1.9.9
 
 - Fix [#102](https://github.com/HeySreelal/televerse/issues/102)
