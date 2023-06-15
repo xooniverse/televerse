@@ -171,7 +171,7 @@ class Televerse<TeleverseSession extends Session> {
 
   /// Emit new update into the stream.
   void _onUpdate(Update update) async {
-    final sub = _handlerScopes.where((scope) {
+    final sub = _handlerScopes.reversed.where((scope) {
       return scope.types.contains(update.type);
     });
     for (HandlerScope scope in sub) {
