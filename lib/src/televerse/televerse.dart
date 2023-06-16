@@ -1070,7 +1070,7 @@ class Televerse<TeleverseSession extends Session> {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
       types: [
-        UpdateType.message,
+        UpdateType.editedMessage,
       ],
       predicate: (ctx) => true,
     );
@@ -1083,7 +1083,7 @@ class Televerse<TeleverseSession extends Session> {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
       types: [
-        UpdateType.message,
+        UpdateType.channelPost,
       ],
       predicate: (ctx) => true,
     );
@@ -1096,7 +1096,7 @@ class Televerse<TeleverseSession extends Session> {
     HandlerScope scope = HandlerScope<MessageHandler>(
       handler: callback,
       types: [
-        UpdateType.message,
+        UpdateType.editedChannelPost,
       ],
       predicate: (ctx) => true,
     );
@@ -1213,7 +1213,7 @@ class Televerse<TeleverseSession extends Session> {
     HandlerScope scope = HandlerScope<ChatMemberUpdatedHandler>(
       handler: callback,
       types: [
-        UpdateType.chatMember,
+        UpdateType.myChatMember,
       ],
       predicate: (ctx) => true,
     );
