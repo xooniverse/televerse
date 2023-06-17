@@ -1200,7 +1200,7 @@ class Televerse<TeleverseSession extends Session> {
     HandlerScope scope = HandlerScope<ChatMemberUpdatedHandler>(
       handler: callback,
       types: [
-        UpdateType.chatMember,
+        UpdateType.myChatMember,
       ],
       predicate: (ctx) => true,
     );
@@ -1213,7 +1213,7 @@ class Televerse<TeleverseSession extends Session> {
     HandlerScope scope = HandlerScope<ChatMemberUpdatedHandler>(
       handler: callback,
       types: [
-        UpdateType.myChatMember,
+        UpdateType.chatMember,
       ],
       predicate: (ctx) => true,
     );
