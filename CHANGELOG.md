@@ -1,3 +1,9 @@
+## 1.9.11
+
+- Fixes an issue that caused none of `onEditedMessage`, `onChannelPost`, `onEditedChannelPost`, and `myChatMember` to work.
+- Thanks to [@GiuseppeFn] for rasing [#107](https://github.com/HeySreelal/televerse/pull/106)
+- Merged [#106](https://github.com/HeySreelal/televerse/pull/106)
+
 ## 1.9.10
 
 - Fix [#104](https://github.com/HeySreelal/televerse/issues/104)
