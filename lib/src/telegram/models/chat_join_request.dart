@@ -38,7 +38,7 @@ class ChatJoinRequest {
   factory ChatJoinRequest.fromJson(Map<String, dynamic> json) {
     return ChatJoinRequest(
       chat: Chat.fromJson(json['chat']),
-      user: User.fromJson(json['user']),
+      user: User.fromJson(json['from']),
       date: json['date'],
       bio: json['bio'],
       inviteLink: json['invite_link'] == null
@@ -52,7 +52,7 @@ class ChatJoinRequest {
   Map<String, dynamic> toJson() {
     return {
       'chat': chat.toJson(),
-      'user': user.toJson(),
+      'from': user.toJson(),
       'date': date,
       'bio': bio,
       'invite_link': inviteLink?.toJson(),
