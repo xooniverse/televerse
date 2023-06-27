@@ -110,8 +110,6 @@ class Context {
   /// The Session setter.
   set session(Session session) {
     _bot.sessions.addSession(id.id, _session);
-
-    print(_bot.sessions.toJson());
   }
 
   /// The [ChatID] instance.
