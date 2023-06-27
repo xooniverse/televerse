@@ -1,3 +1,10 @@
+## 1.9.12
+
+- Fixes the issue which caused the crash of bots when a `ChatJoinRequest` update is received.
+- Thanks to @iamcosmin for taking effort to fix this issue. [#109](https://github.com/HeySreelal/televerse/pull/109)
+- The `messageThreadId` parameter noww be defaulted to the `messageThreadId` parameter in the incoming `Context` object on `reply` method.
+- This is to make it easier to reply to a message when the discussion is on a Forum Topic. (Fixes [#110](https://github.com/HeySreelal/televerse/issues/110))
+
 ## 1.9.11
 
 - Fixes an issue that caused none of `onEditedMessage`, `onChannelPost`, `onEditedChannelPost`, and `myChatMember` to work.

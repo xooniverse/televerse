@@ -6,9 +6,6 @@ class Message {
   final int messageId;
 
   /// Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
-  final int? threadId;
-
-  /// Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
   final int? messageThreadId;
 
   /// Optional. Sender of the message; empty for messages sent to channels. For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
@@ -290,7 +287,6 @@ class Message {
     this.isAutomaticForward,
     this.isTopicMessage,
     this.messageThreadId,
-    this.threadId,
     this.userShared,
     this.chatShared,
     this.hasMediaSpoiler,
@@ -427,7 +423,6 @@ class Message {
           : ForumTopicReopened.fromJson(json['forum_topic_reopened']),
       hasProtectedContent: json['has_protected_content'],
       isTopicMessage: json['is_topic_message'],
-      threadId: json['thread_id'],
       messageThreadId: json['message_thread_id'],
       userShared: json['user_shared'] == null
           ? null
@@ -520,7 +515,6 @@ class Message {
       'forum_topic_reopened': forumTopicReopened?.toJson(),
       'has_protected_content': hasProtectedContent,
       'is_topic_message': isTopicMessage,
-      'thread_id': threadId,
       'message_thread_id': messageThreadId,
       'user_shared': userShared?.toJson(),
       'chat_shared': chatShared?.toJson(),
