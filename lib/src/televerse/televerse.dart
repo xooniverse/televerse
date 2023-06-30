@@ -1243,4 +1243,530 @@ class Televerse<TeleverseSession extends Session> {
   void onStop(void Function() callback) {
     _onStop = callback;
   }
+
+  /// Internal method to handle sub message handlers
+  void _internalSubMessageHandler(
+    MessageHandler callback,
+    bool Function(MessageContext) predicate, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        if (includeChannelPosts || onlyChannelPosts) UpdateType.channelPost,
+        if (!onlyChannelPosts) UpdateType.message,
+      ],
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return predicate(ctx);
+      },
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for messages that contain an audio.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onAudio(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.audio != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a document.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onDocument(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.document != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a photo.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onPhoto(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.photo != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a sticker.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onSticker(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.sticker != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a video.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onVideo(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.video != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a video note.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onVideoNote(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.videoNote != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a voice note.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onVoice(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.voice != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a contact.
+  void onContact(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.contact != null,
+    );
+  }
+
+  /// Registers a callback for messages that contain a dice.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onDice(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.dice != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a game.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onGame(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.game != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a poll.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onPollMessage(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.poll != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a venue.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onVenue(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.venue != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contains a location.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onLocation(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.location != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that is a live location update.
+  void onLiveLocation(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) =>
+          ctx.message.location != null &&
+          ctx.message.location!.livePeriod != null,
+    );
+  }
+
+  /// Registers a callback for new chat title service messages.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onNewChatTitle(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.newChatTitle != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for new chat photo service messages.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onNewChatPhoto(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.newChatPhoto != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for delete chat photo service messages.
+  void onDeleteChatPhoto(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) =>
+          ctx.message.deleteChatPhoto != null && ctx.message.deleteChatPhoto!,
+    );
+  }
+
+  /// Registers a callback for pinned message service messages.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onPinnedMessage(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.pinnedMessage != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for a user is shared to the bot
+  void onUsrShared(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.userShared != null,
+    );
+  }
+
+  /// Registers a callback for a chat is shared to the bot
+  void onChatShared(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.chatShared != null,
+    );
+  }
+
+  /// Registers a callback for a video chat is scheduled
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void whenVideoChatScheduled(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.videoChatScheduled != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for a video chat is started
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void whenVideoChatStarted(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.videoChatStarted != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for a video chat is ended
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void whenVideoChatEnded(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.videoChatEnded != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback to be fired when new participants are invited to a video chat
+  void whenVideoChatParticipantsInvited(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.videoChatParticipantsInvited != null,
+    );
+  }
+
+  /// Registers a callback to be fired when a forum topic is created
+  void onForumTopicCreated(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.forumTopicCreated != null,
+    );
+  }
+
+  /// Registers a callback to be fired when a forum topic is edited
+  void onForumTopicEdited(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.forumTopicEdited != null,
+    );
+  }
+
+  /// Registers a callback to be fired when a forum topic is closed
+  void onForumTopicClosed(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.forumTopicClosed != null,
+    );
+  }
+
+  /// Registers a callback to be fired when a forum topic is reopened
+  void onForumTopicReopened(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.forumTopicReopened != null,
+    );
+  }
+
+  /// Registers a callback to be fired when data sent from a web app is received
+  void onWebAppData(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.webAppData != null,
+    );
+  }
+
+  /// Registers a callback to be fired when an animation is sent
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onAnimation(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.animation != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback to be fired when a text message is received.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onText(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.text != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback to be fired when a message with caption is received.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onCaption(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.caption != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
 }
