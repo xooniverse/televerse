@@ -1,3 +1,9 @@
+## 1.9.13
+
+- Added a whole bunch of helper methods to listen to updates.
+- Namely added: `onAudio`, `onDocument`, `onPhoto`, `onSticker`, `onVideo`, `onVideoNote`, `onVoice`, `onContact`, `onDice`, `onGame`, `onPollMessage`, `onVenue`, `onLocation`, `onLiveLocation`, `onNewChatTitle`, `onNewChatPhoto`, `onDeleteChatPhoto`, `onPinnedMessage`, `onUsrShared`, `onChatShared`, `whenVideoChatScheduled`, `whenVideoChatStarted`, `whenVideoChatEnded`, `onVideoChatParticipantsInvited`, `onForumTopicCreated`, `onForumTopicEdited`, `onForumTopicClosed`, `onForumTopicReopened`, `onWebAppData`, `onAnimation`, `onText`, `onCaption`
+- All of these methods are available on `Televerse` class and can make it easier to listen to various `Message` updates.
+
 ## 1.9.12
 
 - Fixes the issue which caused the crash of bots when a `ChatJoinRequest` update is received.
