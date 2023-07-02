@@ -32,4 +32,9 @@ class HandlerScope<T extends Function> {
     this.isRegExp = false,
     this.pattern,
   }) : special = isCommand || isRegExp;
+
+  /// Create context for the specified update.
+  Context context(Televerse t, Update update) {
+    return Context.create(t, update);
+  }
 }
