@@ -1,5 +1,6 @@
 part of models;
 
+/// Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
 class InputMediaAnimation extends InputMedia {
   /// Type of the result, must be [InputMediaType.animation]
   @override

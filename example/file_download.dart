@@ -26,15 +26,7 @@ void main() {
   });
 
   /// Adds a listener for every command (also excuted for /start)
-  bot.on(TeleverseEvent.command, (ctx) {
-    ctx as MessageContext;
-
+  bot.entity(MessageEntityType.botCommand, (ctx) {
     ctx.reply("Got a command: ${ctx.message.text}");
-  });
-
-  /// Adds a listener for every text message
-  bot.on(TeleverseEvent.text, (ctx) {
-    ctx as MessageContext;
-    ctx.reply("I got a text that says: ${ctx.message.text}");
   });
 }

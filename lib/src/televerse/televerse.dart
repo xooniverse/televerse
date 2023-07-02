@@ -15,10 +15,18 @@ part of televerse;
 /// }
 /// ```
 ///
-/// The [Televerse] class extends [Event] class. The [Event] class is used to emit events and additionally provides a bunch of useful methods.
-class Televerse extends Event with OnEvent {
-  /// Bot token.
-  static late String _botToken;
+class Televerse<TeleverseSession extends Session> {
+  /// API Scheme
+  final APIScheme _scheme;
+
+  /// The current bot instance.
+  static late Televerse _instance;
+
+  /// Base URL of the Telegram Bot API.
+  final String _baseURL;
+
+  /// A flag that indicates whether the Bot API is running locally or not.
+  final bool isLocal;
 
   /// Handler for unexpected errors.
   FutureOr<void> Function(Object, StackTrace)? _onError;
@@ -33,7 +41,7 @@ class Televerse extends Event with OnEvent {
   ///   - DO NOT use this getter to create a bot instance. Use the [Televerse] constructor instead. This getter is only used to access the bot instance.
   static Televerse get instance {
     try {
-      return Televerse(_botToken);
+      return _instance;
     } catch (err) {
       throw TeleverseException(
         "Bot instance not found. ",
@@ -52,11 +60,14 @@ class Televerse extends Event with OnEvent {
   /// ```
   ///
   RawAPI get api {
-    return RawAPI(token);
+    if (isLocal) {
+      return RawAPI.local(token, baseUrl: _baseURL, scheme: _scheme);
+    }
+    return RawAPI(token, baseUrl: _baseURL, scheme: APIScheme.https);
   }
 
   /// The fetcher - used to fetch updates from the Telegram servers.
-  late Fetcher fetcher;
+  late final Fetcher fetcher;
 
   /// The bot token.
   final String token;
@@ -65,28 +76,72 @@ class Televerse extends Event with OnEvent {
   ///
   /// To create a new bot instance, you need to pass the bot token. You can also pass a [fetcher] to the constructor. The fetcher is used to fetch updates from the Telegram servers. By default, the bot uses long polling to fetch updates. You can also use webhooks to fetch updates.
   ///
-  /// Also, you can pass a [sync] parameter to the constructor.
-  /// If [sync] is true, events may be fired directly by the stream's subscriptions during an [StreamController.add], [StreamController.addError] or [StreamController.close] call. The returned stream controller is a [SynchronousStreamController], and must be used with the care and attention necessary to not break the [Stream] contract. See [Completer.sync] for some explanations on when a synchronous dispatching can be used. If in doubt, keep the controller non-sync.
+  /// ## Using Local Bot API Server
+  /// You can use the [Televerse] class to create a bot instance that listens to a local Bot API server. Use the [Televerse.local] constructor to create a bot instance that listens to a local Bot API server.
   ///
-  /// If [sync] is false, the event will always be fired at a later time, after the code adding the event has completed. In that case, no guarantees are given with regard to when multiple listeners get the events, except that each listener will get all events in the correct order. Each subscription handles the events individually. If two events are sent on an async controller with two listeners, one of the listeners may get both events before the other listener gets any. A listener must be subscribed both when the event is initiated (that is, when [add] is called) and when the event is later delivered, in order to receive the event.
+  /// You can pass the [baseURL] parameter to the constructor to specify the base URL of the Telegram Bot API. By default, the base URL is `api.telegram.org`. This parameter will be used to create the [RawAPI] instance that points to your local Bot API server.
+  /// If you're running the Bot API server locally, you should pass the [baseURL] and the [scheme] parameters to the constructor.
   Televerse(
     this.token, {
     Fetcher? fetcher,
-    super.sync,
-  }) {
+    String baseURL = RawAPI.defaultBase,
+    APIScheme scheme = APIScheme.https,
+  })  : _baseURL = baseURL,
+        isLocal = baseURL != RawAPI.defaultBase,
+        _scheme = scheme {
     this.fetcher = fetcher ?? LongPolling();
     this.fetcher.setApi(api);
-    _botToken = token;
+    _instance = this;
 
     api.getMe().then((value) {
       _me = value;
-    }).catchError((err, st) {
+    }).catchError((err, st) async {
       if (_onError != null) {
-        _onError!(err, st);
+        await _onError!(err, st);
       } else {
         throw err;
       }
     });
+  }
+
+  /// Televerse local constructor. This constructor is used to create a bot instance that listens to a local Bot API server.
+  ///
+  /// [token] - Bot token.
+  ///
+  /// [baseURL] - Base URL of the Telegram Bot API. By default, the base URL is `localhost:8081`. This parameter will be used to create the [RawAPI] instance that points to your local Bot API server.
+  ///
+  /// [fetcher] - The fetcher - used to fetch updates from the Telegram servers. By default, the bot uses long polling to fetch updates. You can also use webhooks to fetch updates.
+  ///
+  /// [scheme] - The scheme of the Telegram Bot API. By default, the scheme is `APIScheme.http`.
+  ///
+  /// ## Note
+  /// The Bot API server source code is available at [telegram-bot-api](https://github.com/tdlib/telegram-bot-api). You can run it locally and send the requests to your own server instead of ```https://api.telegram.org```.
+  ///
+  /// If you switch to a local Bot API server, your bot will be able to:
+  /// - Download files without a size limit.
+  /// - Upload files up to 2000 MB.
+  /// - Upload files using their local path and the file URI scheme.
+  /// - Use an HTTP URL for the webhook.
+  /// - Use any local IP address for the webhook.
+  /// - Use any port for the webhook.
+  /// - Set max_webhook_connections up to 100000.
+  /// - Receive the absolute local path as a value of the file_path field without the need to download the file after a getFile request.
+  ///
+  /// Learn to setup Local Bot API Server here: https://github.com/tdlib/telegram-bot-api
+  factory Televerse.local(
+    String token, {
+    Fetcher? fetcher,
+    bool sync = false,
+    String baseURL = "localhost:8081",
+    APIScheme scheme = APIScheme.http,
+  }) {
+    print('Using local Bot API server at $baseURL');
+    return Televerse(
+      token,
+      fetcher: fetcher,
+      baseURL: baseURL,
+      scheme: scheme,
+    );
   }
 
   /// Information about the bot.
@@ -107,26 +162,115 @@ class Televerse extends Event with OnEvent {
     }
   }
 
-  /// Emit new update into the stream.
-  void _onUpdate(Update update) {
-    emitUpdate(update, this);
+  /// Whether the function is async or not.
+  /// Thanks to StackOverflow answer: https://stackoverflow.com/a/63109983/10006183
+  bool _checkSync(Function fn) {
+    if (fn is Future Function(Never)) return true;
+    return false;
   }
 
-  /// Start polling for updates.
-  Future<void> start([FutureOr<void> Function(MessageContext)? handler]) async {
-    fetcher.start().catchError((err, st) {
-      if (_onError != null) {
-        _onError!(err, st);
-      } else {
-        throw err;
-      }
+  /// Emit new update into the stream.
+  void _onUpdate(Update update) async {
+    final sub = _handlerScopes.reversed.where((scope) {
+      return scope.types.contains(update.type);
     });
-    fetcher.onUpdate().listen(_onUpdate);
+    for (HandlerScope scope in sub) {
+      Context context = scope.context(this, update);
+      if (scope.special) {
+        if (scope.isCommand) {
+          context as MessageContext;
+          String? text = context.message.text;
+          if (text != null) {
+            List<String> split = text.split(' ');
+            bool hasParam = split.length > 1;
+            if (hasParam && split.first == '/start') {
+              context.startParameter = split.sublist(1).join(' ');
+            }
+          }
+        }
+        if (scope.isRegExp) {
+          context as MessageContext;
+          String? text = context.message.text;
+          if (text != null && scope.pattern != null) {
+            context.matches = scope.pattern!.allMatches(text).toList();
+          }
+        }
+      }
+      if (scope.predicate(context)) {
+        if (_checkSync(scope.handler)) {
+          ((scope.handler(context)) as Future)
+              .then((_) {})
+              .catchError((err) async {
+            if (_onError != null) {
+              await _onError!(err, StackTrace.current);
+            } else {
+              throw err;
+            }
+          });
+        } else {
+          try {
+            scope.handler(context);
+          } catch (err, stack) {
+            if (_onError != null) {
+              await _onError!(err, stack);
+            } else {
+              rethrow;
+            }
+          }
+        }
+        break;
+      }
+    }
+  }
 
+  /// List of Handler Scopes
+  final List<HandlerScope> _handlerScopes = [];
+
+  /// To manually handle updates without fetcher
+  ///
+  /// This method is useful when you want to use a custom webhook server instead of the default one provided by Televerse,
+  /// or to use in a cloud function.
+  /// use Update.fromJson(json) to convert the json to an update.
+  void handleUpdate(Update update) => _onUpdate(update);
+
+  /// Start polling for updates.
+  ///
+  /// This method starts polling for updates. It will automatically start the fetcher.
+  ///
+  /// You can pass a [handler] to the method. The handler will be called when a message is received that starts with the `/start` command.
+  ///
+  /// Optional [isServerless] flag can be passed to the method. If you set this flag to true, the bot will not start the fetcher.
+  Future<void> start([
+    MessageHandler? handler,
+    bool isServerless = false,
+  ]) async {
     // Registers a handler to listen for /start command
     if (handler != null) {
       command("start", handler);
     }
+    if (isServerless) return;
+    fetcher.onUpdate().listen(
+      _onUpdate,
+      onDone: () {
+        _onStop.call();
+      },
+    );
+    try {
+      return await fetcher.start();
+    } catch (err, stack) {
+      if (_onError != null) {
+        fetcher.stop();
+        await _onError!(err, stack);
+        return fetcher.start();
+      } else {
+        rethrow;
+      }
+    }
+  }
+
+  /// Stop listening for updates.
+  Future<void> stop() {
+    return fetcher.stop();
   }
 
   /// Stream of [Update] objects.
@@ -134,6 +278,34 @@ class Televerse extends Event with OnEvent {
   /// This getter returns a stream of [Update] objects. You can use this to listen to incoming updates from Telegram servers.
   Stream<Update> get updatesStream {
     return fetcher.onUpdate();
+  }
+
+  /// The sessions manager (private)
+  late final SessionsManager<TeleverseSession> _sessionsManager;
+
+  /// A flag that indicates whether sessions are enabled or not.
+  bool get sessionsEnabled {
+    try {
+      return _sessionsManager.enabled;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  /// The sessions manager.
+  SessionsManager<TeleverseSession> get sessions {
+    try {
+      return _sessionsManager;
+    } catch (err) {
+      throw TeleverseException.sessionsNotEnabled;
+    }
+  }
+
+  /// Session init method.
+  void initSession(
+    TeleverseSession Function(int id) fn,
+  ) {
+    _sessionsManager = SessionsManager<TeleverseSession>._(fn);
   }
 
   /// Registers a callback for a command.
@@ -153,26 +325,34 @@ class Televerse extends Event with OnEvent {
   /// ```
   ///
   /// This will reply "Hello!" to any message that starts with `/start`.
-  void command(Pattern command, MessageHandler callback) {
-    onMessage.listen((MessageContext context) {
-      if (context.message.text == null) return;
-      if (command is RegExp) {
-        if (command.hasMatch(context.message.text!)) {
-          context.matches = command.allMatches(context.message.text!).toList();
-          callback(context);
+  Future<void> command(
+    Pattern command,
+    MessageHandler callback,
+  ) async {
+    User bot;
+    try {
+      bot = me;
+    } catch (err) {
+      bot = await api.getMe();
+    }
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      isCommand: true,
+      handler: callback,
+      types: [UpdateType.message],
+      predicate: (ctx) {
+        ctx as MessageContext;
+        if (ctx.message.text == null) return false;
+        if (command is RegExp) {
+          return command.hasMatch(ctx.message.text!);
+        } else if (command is String) {
+          final firstTerm = ctx.message.text!.split(' ').first;
+          return firstTerm == '/$command' ||
+              firstTerm == '/$command@${bot.username}';
         }
-      } else if (command is String) {
-        if (context.message.text!.startsWith('/$command')) {
-          if (command == 'start' &&
-              context.message.text!.split(' ').length > 1) {
-            context.startParameter =
-                context.message.text!.split(' ').sublist(1).join(' ');
-          }
-
-          callback(context);
-        }
-      }
-    });
+        return false;
+      },
+    );
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for a callback query.
@@ -195,18 +375,22 @@ class Televerse extends Event with OnEvent {
     CallbackQueryHandler callback, {
     @Deprecated("Use the 'data' parameter instead.") RegExp? regex,
   }) {
-    onCallbackQuery.listen((CallbackQueryContext context) {
-      if (context.data == null) return;
-      if (data is RegExp) {
-        if (data.hasMatch(context.data!)) {
-          callback(context);
+    HandlerScope scope = HandlerScope<CallbackQueryHandler>(
+      handler: callback,
+      types: [UpdateType.callbackQuery],
+      predicate: (ctx) {
+        ctx as CallbackQueryContext;
+        if (ctx.data == null) return false;
+        if (data is RegExp) {
+          return data.hasMatch(ctx.data!);
+        } else if (data is String) {
+          return ctx.data == data;
         }
-      } else if (data is String) {
-        if (context.data == data) {
-          callback(context);
-        }
-      }
-    });
+        return false;
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for particular chat types.
@@ -231,11 +415,18 @@ class Televerse extends Event with OnEvent {
     ChatType type,
     MessageHandler callback,
   ) {
-    onMessage.listen((MessageContext context) {
-      if (context.message.chat.type == type) {
-        callback(context);
-      }
-    });
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        UpdateType.message,
+      ],
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return ctx.message.chat.type == type;
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for multiple chat types.
@@ -258,11 +449,18 @@ class Televerse extends Event with OnEvent {
     List<ChatType> types,
     MessageHandler callback,
   ) {
-    onMessage.listen((MessageContext context) {
-      if (types.contains(context.message.chat.type)) {
-        callback(context);
-      }
-    });
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        UpdateType.message,
+      ],
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return types.contains(ctx.message.chat.type);
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Filter
@@ -282,11 +480,18 @@ class Televerse extends Event with OnEvent {
     bool Function(MessageContext ctx) predicate,
     MessageHandler callback,
   ) {
-    onMessage.listen((MessageContext context) {
-      if (predicate(context)) {
-        callback(context);
-      }
-    });
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        UpdateType.message,
+      ],
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return predicate(ctx);
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for a message that contains a text.
@@ -303,11 +508,18 @@ class Televerse extends Event with OnEvent {
     String text,
     MessageHandler callback,
   ) {
-    onMessage.listen((MessageContext context) {
-      if (context.message.text?.contains(text) ?? false) {
-        callback(context);
-      }
-    });
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        UpdateType.message,
+      ],
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return ctx.message.text == text;
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for a message that contains a text that matches the
@@ -330,13 +542,20 @@ class Televerse extends Event with OnEvent {
     RegExp exp,
     MessageHandler callback,
   ) {
-    onMessage.listen((MessageContext context) {
-      final matches = exp.allMatches(context.message.text ?? '');
-      context.matches = matches.toList();
-      if (matches.isNotEmpty) {
-        callback(context);
-      }
-    });
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      pattern: exp,
+      isRegExp: true,
+      handler: callback,
+      types: [
+        UpdateType.message,
+      ],
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return exp.hasMatch(ctx.message.text ?? '');
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for inline queries.
@@ -345,24 +564,100 @@ class Televerse extends Event with OnEvent {
   void inlineQuery(
     InlineQueryHandler Function(InlineQueryContext ctx) callback,
   ) {
-    onInlineQuery.listen(callback);
+    HandlerScope scope = HandlerScope<InlineQueryHandler>(
+      handler: callback,
+      types: [
+        UpdateType.inlineQuery,
+      ],
+      predicate: (ctx) {
+        return true;
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for the `/settings` command.
-  void settings(MessageHandler handler) async {
-    command("settings", handler);
+  Future<void> settings(MessageHandler handler) {
+    return command("settings", handler);
   }
 
   /// Registers a callback for the `/help` command.
-  void help(MessageHandler handler) async {
-    command("help", handler);
+  Future<void> help(MessageHandler handler) {
+    return command("help", handler);
   }
 
   /// Registers a callback for on any unexpected error.
+  ///
+  /// Possible objects that can be passed to the handler:
+  ///  - [TelegramException]
+  ///  - [LongPollingException]
+  ///  - [TeleverseException]
+  ///
+  /// When a [LongPollingException] is thrown, the fetcher will be stopped and
+  /// waits for the [handler] to finish executing. After that, the fetcher will
+  /// be started again.
+  ///
+  /// Note: you DON'T have to manually wait for the [ResponseParameters.retryAfter] duration.
+  /// The fetcher will automatically wait for the duration and start polling again.
   void onError(
     void Function(Object err, StackTrace stackTrace) handler,
   ) {
     _onError = handler;
+    this.fetcher.onError(handler);
+  }
+
+  /// A filter that matches messages that contains the specified entity type.
+  /// Optionally, you can pass the [content] parameter to match messages that
+  /// contains the specified entity type and the specified content.
+  ///
+  /// This acts as a shortcut for the [entity] method and [onHashtag] methods.
+  bool _internalEntityMatcher({
+    required MessageContext context,
+    required MessageEntityType type,
+    String? content,
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    List<MessageEntity>? entities = context.message.entities;
+    if (shouldMatchCaptionEntities) {
+      entities = entities ?? context.message.captionEntities;
+    }
+    if (entities == null) return false;
+    bool hasMatch = entities.any((element) => element.type == type);
+
+    if (content != null) {
+      String value;
+      switch (type) {
+        case MessageEntityType.hashtag:
+          value = "#$content";
+          break;
+        case MessageEntityType.mention:
+          value = "@$content";
+          break;
+        default:
+          value = content;
+      }
+      hasMatch = entities.any((element) {
+        if (element.type == type) {
+          if (!shouldMatchCaptionEntities) {
+            return context.message.text!.substring(
+                  element.offset,
+                  element.offset + element.length,
+                ) ==
+                value;
+          } else {
+            return context.message.caption!.substring(
+                  element.offset,
+                  element.offset + element.length,
+                ) ==
+                value;
+          }
+        }
+        return false;
+      });
+    }
+
+    return hasMatch;
   }
 
   /// Registers a callback for messages that contains the specified entity type.
@@ -376,17 +671,22 @@ class Televerse extends Event with OnEvent {
     MessageHandler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
-    onMessage.listen((MessageContext context) {
-      List<MessageEntity>? entities = context.message.entities;
-      if (shouldMatchCaptionEntities) {
-        entities = entities ?? context.message.captionEntities;
-      }
-      if (entities == null) return;
-      bool hasMatch = entities.any((element) => element.type == type);
-      if (hasMatch) {
-        callback(context);
-      }
-    });
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        UpdateType.message,
+      ],
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return _internalEntityMatcher(
+          context: ctx,
+          type: type,
+          shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+        );
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for messages that contains the specified entity types.
@@ -402,20 +702,1071 @@ class Televerse extends Event with OnEvent {
     MessageHandler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
-    onMessage.listen((MessageContext context) {
-      List<MessageEntity>? entities = context.message.entities;
-      if (shouldMatchCaptionEntities) {
-        entities = entities ?? context.message.captionEntities;
-      }
-      if (entities == null) return;
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        UpdateType.message,
+      ],
+      predicate: (ctx) {
+        ctx as MessageContext;
+        List<MessageEntity>? entities = ctx.message.entities;
+        if (shouldMatchCaptionEntities) {
+          entities = entities ?? ctx.message.captionEntities;
+        }
+        if (entities == null) return false;
 
-      bool hasMatch = types.every((element) => entities!.any(
-            (e) => e.type == element,
-          ));
+        bool hasMatch = types.every((element) => entities!.any(
+              (e) => e.type == element,
+            ));
 
-      if (hasMatch) {
-        callback(context);
-      }
-    });
+        return hasMatch;
+      },
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers callback for the [ChatMemberUpdated] events
+  void _internalChatMemberUpdatedHandling({
+    required ChatMemberUpdatedHandler callback,
+    ChatMemberStatus? oldStatus,
+    ChatMemberStatus? newStatus,
+  }) {
+    HandlerScope scope = HandlerScope<ChatMemberUpdatedHandler>(
+      handler: callback,
+      types: [
+        UpdateType.chatMember,
+      ],
+      predicate: (ctx) {
+        ctx as ChatMemberUpdatedContext;
+        if (oldStatus == null && newStatus == null) {
+          return true;
+        }
+        if (oldStatus != null && newStatus != null) {
+          if (ctx.oldStatus == oldStatus && ctx.status == newStatus) {
+            return true;
+          }
+        }
+        if (oldStatus != null && ctx.oldStatus == oldStatus) {
+          return true;
+        }
+        if (newStatus != null && ctx.status == newStatus) {
+          return true;
+        }
+        return false;
+      },
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for the [Update.chatMember] events.
+  ///
+  /// If you want to receive the Chat Member updates, you must explicitly specify
+  /// the `UpdateType.chatMember` in the [LongPolling.allowedUpdates] property.
+  ///
+  /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
+  /// filter to only receive updates for a specific status.
+  void chatMember(
+    ChatMemberUpdatedHandler callback, {
+    ChatMemberStatus? oldStatus,
+    ChatMemberStatus? newStatus,
+  }) {
+    return _internalChatMemberUpdatedHandling(
+      callback: callback,
+      oldStatus: oldStatus,
+      newStatus: newStatus,
+    );
+  }
+
+  /// Registers a callback for the [Update.myChatMember] events.
+  ///
+  /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
+  /// filter to only receive updates for a specific status.
+  void myChatMember({
+    required ChatMemberUpdatedHandler callback,
+    ChatMemberStatus? oldStatus,
+    ChatMemberStatus? newStatus,
+  }) {
+    return _internalChatMemberUpdatedHandling(
+      callback: callback,
+      oldStatus: oldStatus,
+      newStatus: newStatus,
+    );
+  }
+
+  /// Registers a callback for the [Update.poll] events.
+  void poll(PollHandler callback) {
+    HandlerScope scope = HandlerScope<PollHandler>(
+      handler: callback,
+      types: [
+        UpdateType.poll,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for the [Update.pollAnswer] events.
+  ///
+  /// Optionally pass the [pollId] parameter to only receive updates for a specific poll.
+  void pollAnswer(
+    PollAnswerHandler callback, {
+    String? pollId,
+  }) {
+    HandlerScope scope = HandlerScope<PollAnswerHandler>(
+      handler: callback,
+      types: [
+        UpdateType.pollAnswer,
+      ],
+      predicate: (ctx) {
+        ctx as PollAnswerContext;
+        if (pollId == null) return true;
+        return ctx.pollId == pollId;
+      },
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for the [Update.chosenInlineResult] events.
+  /// The callback will be called when a chosen inline result is received.
+  void chosenInlineResult(
+    ChosenInlineResultHandler callback,
+  ) {
+    HandlerScope scope = HandlerScope<ChosenInlineResultHandler>(
+      handler: callback,
+      types: [
+        UpdateType.chosenInlineResult,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for the [Update.chatJoinRequest] events.
+  ///
+  /// The callback will be called when a chat join request is received.
+  void chatJoinRequest(ChatJoinRequestHandler callback) {
+    HandlerScope scope = HandlerScope<ChatJoinRequestHandler>(
+      handler: callback,
+      types: [
+        UpdateType.chatJoinRequest,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for Shipping Query events.
+  void shippingQuery(
+    ShippingQueryHandler callback,
+  ) {
+    HandlerScope scope = HandlerScope<ShippingQueryHandler>(
+      handler: callback,
+      types: [
+        UpdateType.shippingQuery,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for Pre Checkout Query events.
+  void preCheckoutQuery(
+    PreCheckoutQueryHandler callback,
+  ) {
+    HandlerScope scope = HandlerScope<PreCheckoutQueryHandler>(
+      handler: callback,
+      types: [
+        UpdateType.preCheckoutQuery,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Sets up a callback for when a message with URL is received.
+  void onURL(
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    return entity(
+      MessageEntityType.url,
+      callback,
+      shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+    );
+  }
+
+  /// Sets up a callback for when a message with email is received.
+  void onEmail(
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    return entity(
+      MessageEntityType.email,
+      callback,
+      shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+    );
+  }
+
+  /// Sets up a callback for when a message with phone number is received.
+  void onPhoneNumber(
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+  }) {
+    return entity(
+      MessageEntityType.phoneNumber,
+      callback,
+      shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+    );
+  }
+
+  /// Sets up a callback for when a message with hashtag is received.
+  void onHashtag(
+    MessageHandler callback, {
+    bool shouldMatchCaptionEntities = false,
+    String? hashtag,
+  }) {
+    if (hashtag == null) {
+      return entity(
+        MessageEntityType.hashtag,
+        callback,
+        shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+      );
+    }
+
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        UpdateType.message,
+      ],
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return _internalEntityMatcher(
+          context: ctx,
+          type: MessageEntityType.hashtag,
+          content: hashtag,
+          shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+        );
+      },
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Sets up a callback for when a mention is occurred.
+  /// Optionally, you can pass the [username] parameter or [userId] parameter to
+  /// only receive updates for a specific user.
+  ///
+  /// [username] - The username of the user. Don't pass the leading '@' character.
+  ///
+  /// [userId] - The ID of the user.
+  ///
+  /// When the [username] parameter is passed, the callback will be called when a
+  /// [MessageEntityType.mention] entity is occurred with the specified username.
+  ///
+  /// When the [userId] parameter is passed, the callback will be called when a
+  /// [MessageEntityType.textMention] entity is occurred with the specified user ID.
+  ///
+  /// That is you don't have to setup a different callback for [MessageEntityType.mention]
+  /// and [MessageEntityType.textMention] entities. (Well, you can if you want to.)
+  void onMention(
+    MessageHandler callback, {
+    String? username,
+    int? userId,
+  }) {
+    if (username == null && userId == null) {
+      return entity(
+        MessageEntityType.mention,
+        callback,
+      );
+    }
+    if (username != null) {
+      HandlerScope scope = HandlerScope<MessageHandler>(
+        handler: callback,
+        types: [
+          UpdateType.message,
+        ],
+        predicate: (ctx) {
+          ctx as MessageContext;
+          return _internalEntityMatcher(
+            context: ctx,
+            type: MessageEntityType.mention,
+            content: username,
+          );
+        },
+      );
+      return _handlerScopes.add(scope);
+    }
+
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        UpdateType.message,
+      ],
+      predicate: (ctx) {
+        ctx as MessageContext;
+        List<MessageEntity>? entities = ctx.message.entities;
+        if (entities == null) return false;
+        bool hasMatch = entities.any((element) {
+          if (element.type == MessageEntityType.textMention) {
+            return element.user?.id == userId;
+          }
+          return false;
+        });
+
+        return hasMatch;
+      },
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// This method sets up a callback when the bot is mentioned.
+  ///
+  /// This method possibly returns a [Future] if the bot information is not available
+  /// when the method is called. If the bot information is not available, the method
+  /// will fetch the bot information using the [RawAPI.getMe] method and then setup the callback.
+  ///
+  ///
+  Future<void> whenMentioned(
+    MessageHandler callback,
+  ) async {
+    try {
+      return onMention(
+        callback,
+        username: me.username,
+      );
+    } on TeleverseException catch (_) {
+      _me = await api.getMe();
+      return onMention(
+        callback,
+        username: me.username,
+      );
+    }
+  }
+
+  /// Registers a callback for all Message updates
+  void onMessage(MessageHandler callback) {
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        UpdateType.message,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Edited Message updates
+  void onEditedMessage(MessageHandler callback) {
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        UpdateType.editedMessage,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Channel Post updates
+  void onChannelPost(MessageHandler callback) {
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        UpdateType.channelPost,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Edited Channel Post updates
+  void onEditedChannelPost(MessageHandler callback) {
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        UpdateType.editedChannelPost,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Inline Query updates
+  void onInlineQuery(InlineQueryHandler callback) {
+    HandlerScope scope = HandlerScope<InlineQueryHandler>(
+      handler: callback,
+      types: [
+        UpdateType.inlineQuery,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Chosen Inline Result updates
+  void onChosenInlineResult(ChosenInlineResultHandler callback) {
+    HandlerScope scope = HandlerScope<ChosenInlineResultHandler>(
+      handler: callback,
+      types: [
+        UpdateType.chosenInlineResult,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Callback Query updates
+  void onCallbackQuery(CallbackQueryHandler callback) {
+    HandlerScope scope = HandlerScope<CallbackQueryHandler>(
+      handler: callback,
+      types: [
+        UpdateType.callbackQuery,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Shipping Query updates
+  void onShippingQuery(ShippingQueryHandler callback) {
+    HandlerScope scope = HandlerScope<ShippingQueryHandler>(
+      handler: callback,
+      types: [
+        UpdateType.shippingQuery,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Pre Checkout Query updates
+  void onPreCheckoutQuery(PreCheckoutQueryHandler callback) {
+    HandlerScope scope = HandlerScope<PreCheckoutQueryHandler>(
+      handler: callback,
+      types: [
+        UpdateType.preCheckoutQuery,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Poll updates
+  void onPoll(PollHandler callback) {
+    HandlerScope scope = HandlerScope<PollHandler>(
+      handler: callback,
+      types: [
+        UpdateType.poll,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Poll Answer updates
+  void onPollAnswer(PollAnswerHandler callback) {
+    HandlerScope scope = HandlerScope<PollAnswerHandler>(
+      handler: callback,
+      types: [
+        UpdateType.pollAnswer,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all My Chat Member updates
+  void onMyChatMember(ChatMemberUpdatedHandler callback) {
+    HandlerScope scope = HandlerScope<ChatMemberUpdatedHandler>(
+      handler: callback,
+      types: [
+        UpdateType.myChatMember,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Chat Member updates
+  void onChatMember(ChatMemberUpdatedHandler callback) {
+    HandlerScope scope = HandlerScope<ChatMemberUpdatedHandler>(
+      handler: callback,
+      types: [
+        UpdateType.chatMember,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for all Chat Join Request updates
+  void onChatJoinRequest(ChatJoinRequestHandler callback) {
+    HandlerScope scope = HandlerScope<ChatJoinRequestHandler>(
+      handler: callback,
+      types: [
+        UpdateType.chatJoinRequest,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// On Stop Handler
+  void Function() _onStop = () {};
+
+  /// Registers a callback when the the bot is stopped.
+  ///
+  /// This can be used to clean up resources.
+  void onStop(void Function() callback) {
+    _onStop = callback;
+  }
+
+  /// Internal method to handle sub message handlers
+  void _internalSubMessageHandler(
+    MessageHandler callback,
+    bool Function(MessageContext) predicate, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    HandlerScope scope = HandlerScope<MessageHandler>(
+      handler: callback,
+      types: [
+        if (includeChannelPosts || onlyChannelPosts) UpdateType.channelPost,
+        if (!onlyChannelPosts) UpdateType.message,
+      ],
+      predicate: (ctx) {
+        ctx as MessageContext;
+        return predicate(ctx);
+      },
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for messages that contain an audio.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onAudio(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.audio != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a document.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onDocument(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.document != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a photo.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onPhoto(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.photo != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a sticker.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onSticker(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.sticker != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a video.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onVideo(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.video != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a video note.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onVideoNote(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.videoNote != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a voice note.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onVoice(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.voice != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a contact.
+  void onContact(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.contact != null,
+    );
+  }
+
+  /// Registers a callback for messages that contain a dice.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onDice(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.dice != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a game.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onGame(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.game != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a poll.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onPollMessage(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.poll != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contain a venue.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onVenue(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.venue != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that contains a location.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onLocation(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.location != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for messages that is a live location update.
+  void onLiveLocation(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) =>
+          ctx.message.location != null &&
+          ctx.message.location!.livePeriod != null,
+    );
+  }
+
+  /// Registers a callback for new chat title service messages.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onNewChatTitle(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.newChatTitle != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for new chat photo service messages.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onNewChatPhoto(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.newChatPhoto != null,
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for delete chat photo service messages.
+  void onDeleteChatPhoto(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) =>
+          ctx.message.deleteChatPhoto != null && ctx.message.deleteChatPhoto!,
+    );
+  }
+
+  /// Registers a callback for pinned message service messages.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onPinnedMessage(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.pinnedMessage != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for a user is shared to the bot
+  void onUsrShared(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.userShared != null,
+    );
+  }
+
+  /// Registers a callback for a chat is shared to the bot
+  void onChatShared(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.chatShared != null,
+    );
+  }
+
+  /// Registers a callback for a video chat is scheduled
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void whenVideoChatScheduled(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.videoChatScheduled != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for a video chat is started
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void whenVideoChatStarted(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.videoChatStarted != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback for a video chat is ended
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void whenVideoChatEnded(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.videoChatEnded != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback to be fired when new participants are invited to a video chat
+  void whenVideoChatParticipantsInvited(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.videoChatParticipantsInvited != null,
+    );
+  }
+
+  /// Registers a callback to be fired when a forum topic is created
+  void onForumTopicCreated(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.forumTopicCreated != null,
+    );
+  }
+
+  /// Registers a callback to be fired when a forum topic is edited
+  void onForumTopicEdited(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.forumTopicEdited != null,
+    );
+  }
+
+  /// Registers a callback to be fired when a forum topic is closed
+  void onForumTopicClosed(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.forumTopicClosed != null,
+    );
+  }
+
+  /// Registers a callback to be fired when a forum topic is reopened
+  void onForumTopicReopened(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.forumTopicReopened != null,
+    );
+  }
+
+  /// Registers a callback to be fired when data sent from a web app is received
+  void onWebAppData(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.webAppData != null,
+    );
+  }
+
+  /// Registers a callback to be fired when an animation is sent
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onAnimation(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.animation != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback to be fired when a text message is received.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onText(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.text != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
+  }
+
+  /// Registers a callback to be fired when a message with caption is received.
+  ///
+  /// By default, this method will only match messages that are sent in private chats / groups.
+  /// You can pass the [includeChannelPosts] parameter to match messages that are sent in channels.
+  ///
+  /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
+  void onCaption(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.caption != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+    );
   }
 }

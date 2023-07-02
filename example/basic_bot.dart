@@ -15,16 +15,14 @@ void main(List<String> args) {
     ctx.reply("Hello $name!");
   });
 
-  /// When a text message is received, the bot will reply with the number of letters in the message
-  bot.on(TeleverseEvent.text, (ctx) {
-    ctx as MessageContext;
-    final int letterCount = ctx.message.text!.length;
-    ctx.reply("Your message has $letterCount letters.");
-  });
-
   /// Setups the /who command listener
   bot.command('who', (ctx) {
     ctx.reply("I'm ${bot.me.firstName}");
+  });
+
+  bot.onMessage((ctx) {
+    final String text = ctx.message.text!;
+    ctx.reply("You said $text");
   });
 
   /// Starts the bot

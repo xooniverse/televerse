@@ -9,14 +9,14 @@ class TeleverseException implements Exception {
   final String? description;
 
   /// Optional stack trace.
-  final StackTrace? stackTrace;
+  final StackTrace stackTrace;
 
   /// Constructs a new [TeleverseException].
   TeleverseException(
     this.message, {
     this.description,
-    this.stackTrace,
-  });
+    StackTrace? stackTrace,
+  }) : stackTrace = stackTrace ?? StackTrace.current;
 
   /// Returns a string representation of the exception.
   @override
@@ -32,4 +32,18 @@ class TeleverseException implements Exception {
           "The file $path does not exist. Please check the path and try again.",
     );
   }
+
+  /// Exception thrown when the sessions are used without enabling them.
+  static TeleverseException sessionsNotEnabled = TeleverseException(
+    "Sessions aren't enabled for the bot ",
+    description:
+        "To use sessions, enable them using `Televerse.initSessions()` method.",
+  );
+
+  /// Exception thrown when the session is tried to be saved without providing path or id.
+  static TeleverseException sessionIdNotSet = TeleverseException(
+    "Session ID not set",
+    description:
+        "To save/load the session, you must provide a path or set the session ID.",
+  );
 }

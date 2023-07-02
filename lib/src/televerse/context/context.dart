@@ -37,10 +37,17 @@
 /// ```
 ///
 /// ## Different Contexts
-/// Televerse currently supports 3 types of contexts:
+/// Televerse currently supports following contexts:
 /// - [MessageContext] - This context is used when a message is received.
 /// - [InlineQueryContext] - This context is used when an inline query is received.
 /// - [CallbackQueryContext] - This context is used when a callback query is received.
+/// - [ChatMemberUpdatedContext] - Represents the context when a [UpdateType.chatMember] or [UpdateType.myChatMember] event occurs.
+/// - [PollContext] - Represents the context when a [UpdateType.poll] event occurs.
+/// - [PollAnswerContext] - Represents the context when a [UpdateType.pollAnswer] event occurs.
+/// - [ChosenInlineResultContext] - Represents the context when a [UpdateType.chosenInlineResult] event occurs.
+/// - [ChatJoinRequestContext] - Represents the context when a [UpdateType.chatJoinRequest] event occurs.
+/// - [ShippingQueryContext] - Represents the context when a [UpdateType.shippingQuery] event occurs.
+/// - [PreCheckoutQueryContext] - Represents the context when a [UpdateType.preCheckoutQuery] event occurs.
 ///
 /// More context types will be added in the future.
 library televerse.context;
@@ -55,26 +62,55 @@ part 'mixins/management.dart';
 part 'message.dart';
 part 'inline_query.dart';
 part 'callback_query.dart';
+part 'chat_member.dart';
+part 'poll.dart';
+part 'poll_answer.dart';
+part 'chosen_inline_result.dart';
+part 'chat_join_request.dart';
+part 'shipping_query.dart';
+part 'pre_checkout_query.dart';
 
 /// This class is used to represent the context of an update. It contains the update and the [RawAPI] instance.
 ///
-/// Whenever an update is received, a context is created and passed to the handler. Currently we have 3 types of contexts:
+/// Whenever an update is received, a context is created and passed to the handler.
+/// Currently Televerse support the following types of contexts:
 /// - [MessageContext] - This context is used when a message is received.
 /// - [InlineQueryContext] - This context is used when an inline query is received.
 /// - [CallbackQueryContext] - This context is used when a callback query is received.
+/// - [ChatMemberUpdatedContext] - Represents the context when a [UpdateType.chatMember] or [UpdateType.myChatMember] event occurs.
+/// - [PollContext] - Represents the context when a [UpdateType.poll] event occurs.
+/// - [PollAnswerContext] - Represents the context when a [UpdateType.pollAnswer] event occurs.
+/// - [ChosenInlineResultContext] - Represents the context when a [UpdateType.chosenInlineResult] event occurs.
 ///
 /// Contexts are subclasses of this class. You can use this class to access the update and the Televerse instance.
 class Context {
   /// The RawAPI getter.
-  RawAPI get api => _api;
+  RawAPI get api => _bot.api;
 
   /// The RawAPI instance.
-  final RawAPI _api;
+  final Televerse _bot;
 
   /// The [Update] instance.
   ///
   /// This represents the update for which the context is created.
   final Update update;
+
+  /// The Session
+  late Session _session;
+
+  /// The Session getter.
+  Session get session {
+    try {
+      return _session;
+    } catch (e) {
+      throw TeleverseException.sessionsNotEnabled;
+    }
+  }
+
+  /// The Session setter.
+  set session(Session session) {
+    _bot.sessions.addSession(id.id, _session);
+  }
 
   /// The [ChatID] instance.
   ///
@@ -118,9 +154,53 @@ class Context {
     return ChatID(update.message!.chat.id);
   }
 
+  /// Get the type of Context based on the update type.
+  Type get typeOfContext {
+    if (update.type == UpdateType.chatJoinRequest) {
+      return ChatJoinRequestContext;
+    }
+    if (update.type == UpdateType.chatMember) {
+      return ChatMemberUpdatedContext;
+    }
+    if (update.type == UpdateType.myChatMember) {
+      return ChatMemberUpdatedContext;
+    }
+    if (update.type == UpdateType.preCheckoutQuery) {
+      return PreCheckoutQueryContext;
+    }
+    if (update.type == UpdateType.shippingQuery) {
+      return ShippingQueryContext;
+    }
+    if (update.type == UpdateType.callbackQuery) {
+      return CallbackQueryContext;
+    }
+    if (update.type == UpdateType.inlineQuery) {
+      return InlineQueryContext;
+    }
+    if (update.type == UpdateType.chosenInlineResult) {
+      return ChosenInlineResultContext;
+    }
+    if (update.type == UpdateType.pollAnswer) {
+      return PollAnswerContext;
+    }
+    if (update.type == UpdateType.poll) {
+      return PollContext;
+    }
+    if (update.type == UpdateType.unknown) {
+      throw TeleverseException(
+        "The update type is ${update.type}, which does not have a context.",
+      );
+    }
+    return MessageContext;
+  }
+
   /// Creates a new context.
   Context(
-    this._api, {
+    this._bot, {
     required this.update,
-  });
+  }) {
+    if (_bot.sessionsEnabled) {
+      _session = _bot.sessions.getSession(id.id);
+    }
+  }
 }

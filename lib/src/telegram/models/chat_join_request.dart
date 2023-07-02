@@ -6,7 +6,7 @@ class ChatJoinRequest {
   final Chat chat;
 
   /// User that sent the join request
-  final User user;
+  final User from;
 
   /// Date the request was sent in Unix time
   ///
@@ -27,7 +27,7 @@ class ChatJoinRequest {
   /// Creates a new [ChatJoinRequest] object.
   const ChatJoinRequest({
     required this.chat,
-    required this.user,
+    required this.from,
     required this.date,
     this.bio,
     this.inviteLink,
@@ -38,7 +38,7 @@ class ChatJoinRequest {
   factory ChatJoinRequest.fromJson(Map<String, dynamic> json) {
     return ChatJoinRequest(
       chat: Chat.fromJson(json['chat']),
-      user: User.fromJson(json['user']),
+      from: User.fromJson(json['from']),
       date: json['date'],
       bio: json['bio'],
       inviteLink: json['invite_link'] == null
@@ -52,7 +52,7 @@ class ChatJoinRequest {
   Map<String, dynamic> toJson() {
     return {
       'chat': chat.toJson(),
-      'user': user.toJson(),
+      'from': from.toJson(),
       'date': date,
       'bio': bio,
       'invite_link': inviteLink?.toJson(),
@@ -62,4 +62,7 @@ class ChatJoinRequest {
 
   /// Returns a [DateTime] object representing the [date] field
   DateTime get dateTime => DateTime.fromMillisecondsSinceEpoch(date * 1000);
+
+  /// User that sent the join request (alias for [from])
+  User get user => from;
 }

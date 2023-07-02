@@ -3,6 +3,9 @@ part of televerse.fetch;
 /// A class that handles long polling.
 /// This class is used to fetch updates from the Telegram API. It uses the long polling method.
 class LongPolling extends Fetcher {
+  /// Delay time between each long polling request.
+  final Duration delayDuration;
+
   /// The offset of the next update to fetch.
   int offset;
 
@@ -32,6 +35,7 @@ class LongPolling extends Fetcher {
     this.timeout = 30,
     this.limit = 100,
     this.allowedUpdates = const [],
+    this.delayDuration = const Duration(milliseconds: 200),
   }) {
     if (timeout > maxTimeout) throw LongPollingException.invalidTimeout;
     if (limit > 100) throw LongPollingException.invalidLimit;
@@ -67,6 +71,7 @@ class LongPolling extends Fetcher {
   @override
   Future<void> stop() async {
     _isPolling = false;
+    _updateStreamController.close();
   }
 
   /// Polls the Telegram API for updates.
@@ -80,22 +85,60 @@ class LongPolling extends Fetcher {
         allowedUpdates: allowedUpdates.map((e) => e.type).toList(),
       );
       for (var update in updates) {
+        if (_updateStreamController.isClosed) {
+          return;
+        }
         addUpdate(update);
         offset = update.updateId + 1;
       }
 
-      await Future.delayed(Duration(milliseconds: 200));
+      await Future.delayed(delayDuration);
       _resetRetryDelay();
     } catch (err, stackTrace) {
-      if (err is HttpException && err.isClientException) {
-        _isPolling = false;
-        throw LongPollingException("Long polling stopped: ${err.message}");
+      _isPolling = false;
+      if (err is TelegramException) {
+        if (_onError != null) {
+          final longError = err.toLongPollingException(stackTrace);
+          await _onError!(longError, stackTrace);
+        }
+        if (err.parameters?.retryAfter != null) {
+          print(
+            'Polling will be resumed after ${err.parameters!.retryAfter!} seconds',
+          );
+          _retryDelay = Duration(seconds: err.parameters!.retryAfter!);
+          await Future.delayed(_retryDelay);
+          _isPolling = true;
+        } else {
+          _doubleRetryDelay();
+        }
+      } else {
+        if (_onError != null) {
+          await _onError!(err, stackTrace);
+        } else {
+          _doubleRetryDelay();
+        }
+        rethrow;
       }
-      print("Long polling failed: $err");
-      print(stackTrace);
-
-      await Future.delayed(_retryDelay);
-      _doubleRetryDelay();
     }
+  }
+
+  /// [LongPolling] with all updates allowed.
+  static LongPolling allUpdates({
+    int offset = 0,
+    int timeout = 30,
+    int limit = 100,
+    Duration delayDuration = const Duration(milliseconds: 200),
+  }) {
+    List<UpdateType> allowedUpdates = [
+      for (var type in UpdateType.values)
+        if (type != UpdateType.unknown) type
+    ];
+    return LongPolling(
+      allowedUpdates: allowedUpdates,
+      offset: offset,
+      timeout: timeout,
+      limit: limit,
+      delayDuration: delayDuration,
+    );
   }
 }

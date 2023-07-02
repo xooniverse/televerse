@@ -25,7 +25,7 @@ mixin MessageMixin on Context {
     return await api.sendMessage(
       id,
       text,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       parseMode: parseMode,
       entities: entities,
       disableWebPagePreview: disableWebPagePreview,

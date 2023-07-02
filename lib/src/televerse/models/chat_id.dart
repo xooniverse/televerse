@@ -63,7 +63,7 @@ class ChatID extends ID {
   /// The [ChatID] class is a subclass of [ID] and is used to represent a chat id.
   /// When the chat id is an integer, you can use this class to represent the chat id.
   ///
-  /// You can use the [ChatID.chat] getter to get the [Chat] object of the chat.  Make sure that the last instance of the [Bot] class is a member of the chat or chatted with the person.
+  /// You can use the [ChatID.get] getter to get the [Chat] object of the chat.  Make sure that the last instance of the [Bot] class is a member of the chat or chatted with the person.
   ///
   /// ```dart
   /// // Get the chat id of the chat.

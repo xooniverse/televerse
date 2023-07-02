@@ -29,4 +29,8 @@ class ResponseParameters {
       'retry_after': retryAfter,
     }..removeWhere((key, value) => value == null);
   }
+
+  /// Returns a string representation of this object.
+  @override
+  String toString() => "ResponseParameters(${toJson()})";
 }

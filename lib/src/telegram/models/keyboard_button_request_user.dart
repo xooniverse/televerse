@@ -11,6 +11,7 @@ class KeyboardButtonRequestUser {
   /// Optional. Pass True to request a premium user, pass False to request a non-premium user. If not specified, no additional restrictions are applied.
   bool? userIsPremium;
 
+  /// Creates a new [KeyboardButtonRequestUser] object
   KeyboardButtonRequestUser({
     required this.requestId,
     this.userIsBot,

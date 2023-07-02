@@ -37,8 +37,8 @@ class InputFile {
     this.url,
   }) {
     if (fileId == null && file == null && url == null) {
-      throw Exception(
-        'InputFile must have a value. Use either fileId, file, or url.\n\nYou can use [InputFile.fromFileId], [InputFile.fromFile], or [InputFile.fromUrl] to create an InputFile.',
+      throw TeleverseException(
+        'InputFile must be initialized with a value. Use either fileId, file, or url.\n\nYou can use [InputFile.fromFileId], [InputFile.fromFile], or [InputFile.fromUrl] to create an InputFile.',
       );
     }
   }
@@ -61,7 +61,7 @@ class InputFile {
     } else if (url != null) {
       return InputFileType.url;
     } else {
-      throw Exception('InputFile must have a value');
+      throw TeleverseException('InputFile must have a value');
     }
   }
 

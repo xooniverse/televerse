@@ -35,7 +35,9 @@ abstract class ChatMember {
       case 'kicked':
         return ChatMemberBanned.fromJson(json);
       default:
-        throw Exception('Unknown ChatMember status: ${json['status']}');
+        throw TeleverseException(
+          'Unknown ChatMember status: ${json['status']}',
+        );
     }
   }
 

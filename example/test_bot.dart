@@ -5,19 +5,32 @@ import 'package:televerse/televerse.dart';
 /// This is a general bot that tests different features of the library.
 void main() async {
   /// Creates the bot instance
-  final Bot bot = Bot(Platform.environment["BOT_TOKEN"]!);
+  final Bot bot = Bot(
+    Platform.environment["BOT_TOKEN"]!,
+    fetcher: LongPolling.allUpdates(),
+  );
 
   /// Starts the bot and sets up the /start command listener
   bot.start((ctx) {
+    UserMention mention = ctx.message.from!.mention;
+
+    // Custom emoji
+    // This will only work if the bots that purchased additional usernames on Fragment
+    CustomEmoji emoji = CustomEmoji("👍", 5368324170671202286);
+
+    ctx.reply("Hello $mention! $emoji", parseMode: ParseMode.html);
+
+    ShareLink link = ShareLink("https://google.com", text: "Google");
+    GroupBotLink groupLink = GroupBotLink("xclairebot");
+
     final keyboard = InlineKeyboard()
         .row()
         .add("Noob", "exp-noob")
         .add("Pro", "exp-pro")
         .row()
-        .add("Expert", "exp-expert")
-        .add("Master", "exp-master")
+        .addUrl("Add me to a group", "$groupLink")
         .row()
-        .add("God", "exp-god");
+        .addUrl("Share", "$link");
 
     ctx.reply(
       "Choose your experience level",
@@ -63,5 +76,53 @@ void main() async {
     await ctx.reply(
       "Select one of ${poll.options.map((e) => e.text).join(', ')} to vote.",
     );
+  });
+
+  bot.chatMember((ctx) {
+    ChatMemberUpdated member = ctx.chatMemberUpdated;
+    ChatMember newMember = member.newChatMember;
+
+    bot.api.sendMessage(
+      ChatID(member.chat.id),
+      "Member Updated: ${newMember.user.firstName}: ${newMember.status}",
+    );
+  });
+
+  bot.pollAnswer((ctx) {
+    PollAnswer pollAnswer = ctx.pollAnswer;
+    ctx.reply('Poll Answered: ${pollAnswer.optionIds}');
+  });
+
+  bot.whenMentioned((ctx) {
+    ctx.reply('Duh, ah! Cheese burger, please! 🍔');
+  });
+
+  bot.command('test', (ctx) {
+    ctx.reply('Test passed!');
+  });
+
+  bot.command('testing', (ctx) async {
+    ctx.reply('Testing...');
+
+    await Future.delayed(Duration(seconds: 5));
+
+    throw Exception('Test failed!');
+  });
+
+  bot.onError((err, stackTrace) {
+    print('I catch everything :)');
+  });
+
+  bot.command("stop", (ctx) async {
+    await ctx.reply("Stopping...");
+    bot.stop();
+  });
+
+  bot.onStop(() {
+    print('Bot stopped!');
+  });
+
+  bot.onMessage((ctx) {
+    ctx.reply('I got a message!');
   });
 }
