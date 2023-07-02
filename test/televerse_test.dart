@@ -5,12 +5,24 @@ import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 import 'package:test/test.dart';
 
+// This will avoid github's builder to throw errors caused by env vars.
+String environ(String key) {
+  final value = Platform.environment[key] ?? '';
+
+  if (value.isEmpty) {
+    log("Wasn't able to get '$key' from the environment values.");
+    io.exit(0);
+  }
+
+  return value;
+}
+
 void main() {
-  Bot bot = Bot(Platform.environment['BOT_TOKEN']!);
-  int chatId = int.parse(Platform.environment['CHAT_ID']!);
-  int gID = int.parse(Platform.environment['CHANNEL_ID']!);
-  ChatID id = ChatID(chatId);
-  ChatID groupID = ChatID(gID);
+  final bot = Bot(Platform.environment['BOT_TOKEN']!);
+  final chatId = int.parse(Platform.environment['CHAT_ID']!);
+  final gID = int.parse(Platform.environment['CHANNEL_ID']!);
+
+  final id = ChatID(chatId), groupID = ChatID(gID);
 
   String stickerFileID =
       "CAACAgUAAxkBAAELxJhjw5m8ZywifRtXVhjG9HkygYQ-7gAC6AcAAqY4CVS1s3ikdwGZby0E";

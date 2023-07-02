@@ -5,7 +5,7 @@ import 'package:televerse/televerse.dart';
 /// This is a general bot that tests different features of the library.
 void main() async {
   /// Creates the bot instance
-  final Bot bot = Bot(
+  final bot = Bot(
     Platform.environment["BOT_TOKEN"]!,
     fetcher: LongPolling.allUpdates(),
   );
@@ -16,12 +16,12 @@ void main() async {
 
     // Custom emoji
     // This will only work if the bots that purchased additional usernames on Fragment
-    CustomEmoji emoji = CustomEmoji("👍", 5368324170671202286);
+    final emoji = CustomEmoji("👍", 5368324170671202286);
 
     ctx.reply("Hello $mention! $emoji", parseMode: ParseMode.html);
 
-    ShareLink link = ShareLink("https://google.com", text: "Google");
-    GroupBotLink groupLink = GroupBotLink("xclairebot");
+    final link = ShareLink("https://google.com", text: "Google");
+    final groupLink = GroupBotLink("xclairebot");
 
     final keyboard = InlineKeyboard()
         .row()
@@ -89,7 +89,7 @@ void main() async {
   });
 
   bot.pollAnswer((ctx) {
-    PollAnswer pollAnswer = ctx.pollAnswer;
+    final pollAnswer = ctx.pollAnswer;
     ctx.reply('Poll Answered: ${pollAnswer.optionIds}');
   });
 
@@ -102,7 +102,7 @@ void main() async {
   });
 
   bot.command('testing', (ctx) async {
-    ctx.reply('Testing...');
+    await ctx.reply('Testing...');
 
     await Future.delayed(Duration(seconds: 5));
 
