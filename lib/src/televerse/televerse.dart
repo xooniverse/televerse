@@ -175,7 +175,7 @@ class Televerse<TeleverseSession extends Session> {
       return scope.types.contains(update.type);
     });
     for (HandlerScope scope in sub) {
-      Context context = scope.context(this, update);
+      Context context = Context.create(this, update);
       if (scope.special) {
         if (scope.isCommand) {
           context as MessageContext;

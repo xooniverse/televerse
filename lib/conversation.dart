@@ -19,7 +19,9 @@
 /// can use all the features of the Televerse library in your conversation.
 library conversation;
 
+import 'dart:async';
+
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 
-part 'src/televerse/conversation/conversation.dart';
+part 'src/conversation/conversation_base.dart';

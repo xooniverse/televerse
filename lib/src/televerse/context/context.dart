@@ -203,4 +203,52 @@ class Context {
       _session = _bot.sessions.getSession(id.id);
     }
   }
+
+  /// Creates a new Context object for the specified update.
+  static Context create(Televerse t, Update update) {
+    switch (update.type) {
+      case UpdateType.message:
+        return MessageContext(t, update.message!, update: update);
+      case UpdateType.editedMessage:
+        return MessageContext(t, update.editedMessage!, update: update);
+      case UpdateType.channelPost:
+        return MessageContext(t, update.channelPost!, update: update);
+
+      case UpdateType.editedChannelPost:
+        return MessageContext(t, update.editedChannelPost!, update: update);
+
+      case UpdateType.inlineQuery:
+        return InlineQueryContext(t, update: update);
+
+      case UpdateType.chosenInlineResult:
+        return ChosenInlineResultContext(t, update: update);
+
+      case UpdateType.callbackQuery:
+        return CallbackQueryContext(t, update: update);
+
+      case UpdateType.shippingQuery:
+        return ShippingQueryContext(t, update: update);
+
+      case UpdateType.preCheckoutQuery:
+        return PreCheckoutQueryContext(t, update: update);
+
+      case UpdateType.poll:
+        return PollContext(t, update: update);
+
+      case UpdateType.pollAnswer:
+        return PollAnswerContext(t, update: update);
+
+      case UpdateType.myChatMember:
+        return ChatMemberUpdatedContext(t, update: update);
+
+      case UpdateType.chatMember:
+        return ChatMemberUpdatedContext(t, update: update);
+
+      case UpdateType.chatJoinRequest:
+        return ChatJoinRequestContext(t, update: update);
+
+      case UpdateType.unknown:
+        return Context(t, update: update);
+    }
+  }
 }
