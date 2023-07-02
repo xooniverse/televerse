@@ -177,17 +177,6 @@ class Televerse<TeleverseSession extends Session> {
     for (HandlerScope scope in sub) {
       Context context = scope.context(this, update);
       if (scope.special) {
-        if (scope.isCommand) {
-          context as MessageContext;
-          String? text = context.message.text;
-          if (text != null) {
-            List<String> split = text.split(' ');
-            bool hasParam = split.length > 1;
-            if (hasParam && split.first == '/start') {
-              context.startParameter = split.sublist(1).join(' ');
-            }
-          }
-        }
         if (scope.isRegExp) {
           context as MessageContext;
           String? text = context.message.text;
