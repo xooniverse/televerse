@@ -116,8 +116,8 @@ class LongPolling extends Fetcher {
           await _onError!(err, stackTrace);
         } else {
           _doubleRetryDelay();
+          rethrow;
         }
-        rethrow;
       }
     }
   }
