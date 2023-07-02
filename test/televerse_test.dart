@@ -18,9 +18,9 @@ String environ(String key) {
 }
 
 void main() {
-  final bot = Bot(Platform.environment['BOT_TOKEN']!);
-  final chatId = int.parse(Platform.environment['CHAT_ID']!);
-  final gID = int.parse(Platform.environment['CHANNEL_ID']!);
+  final bot = Bot(environ('BOT_TOKEN'));
+  final chatId = int.parse(environ('CHAT_ID'));
+  final gID = int.parse(environ('CHANNEL_ID'));
 
   final id = ChatID(chatId), groupID = ChatID(gID);
 
@@ -36,10 +36,10 @@ void main() {
   });
 
   test("Send Message", () async {
-    Message message = await bot.api.sendMessage(id, "Hello World");
+    final message = await bot.api.sendMessage(id, "Hello World");
     expect(message.text, "Hello World");
 
-    Message specialMessage = await bot.api.sendMessage(
+    final specialMessage = await bot.api.sendMessage(
       id,
       "<b>Hello World</b>\n\nYou can use <a href=\"https://core.telegram.org/bots/api\">Telegram Bot API</a> here.",
       parseMode: ParseMode.html,
@@ -61,7 +61,7 @@ void main() {
   });
 
   test("Send Photo", () async {
-    Message message = await bot.api.sendPhoto(
+    final message = await bot.api.sendPhoto(
       id,
       InputFile.fromUrl("https://i.imgur.com/CUG0Aof.jpeg"),
       caption: "<b>Not So Secret Recipe</b>",
@@ -73,7 +73,7 @@ void main() {
   });
 
   test("Send Contact", () async {
-    Message message = await bot.api.sendContact(
+    final message = await bot.api.sendContact(
       id,
       "+628123456789",
       "John",
@@ -87,7 +87,7 @@ void main() {
   });
 
   test("Send Location", () async {
-    Message message = await bot.api.sendLocation(
+    final message = await bot.api.sendLocation(
       id,
       37.4220,
       -122.0841,
@@ -105,7 +105,7 @@ void main() {
   });
 
   test("Send Venue", () async {
-    Message message = await bot.api.sendVenue(
+    final message = await bot.api.sendVenue(
       id,
       37.4220,
       -122.0841,
@@ -132,7 +132,7 @@ void main() {
   // Send Invoice currently won't work because we don't provide a valid provider token
   /*
     test("Send Invoice", () async {
-      Message message = await bot.api.sendInvoice(
+      final message = await bot.api.sendInvoice(
         id,
         title: "Test Invoice",
         description: "Test Invoice Description",
@@ -153,7 +153,7 @@ void main() {
   */
 
   test("Send Video", () async {
-    Message message = await bot.api.sendVideo(
+    final message = await bot.api.sendVideo(
       id,
       InputFile.fromUrl(
         "https://telegram.org/file/464001154/11e69/9FLiJnH4fF4.2869553.mp4/18ca1dba8837d3db6f",
@@ -171,7 +171,7 @@ void main() {
   });
 
   test("Send Sticker", () async {
-    Message message = await bot.api.sendSticker(
+    final message = await bot.api.sendSticker(
       id,
       InputFile.fromFileId(stickerFileID),
     );
@@ -180,16 +180,16 @@ void main() {
   });
 
   test("Delete Message", () async {
-    Message message = await bot.api.sendMessage(id, "Hello World");
+    final message = await bot.api.sendMessage(id, "Hello World");
     expect(message.text, "Hello World");
-    bool deleted = await bot.api.deleteMessage(id, message.messageId);
+    final deleted = await bot.api.deleteMessage(id, message.messageId);
     expect(deleted, true, reason: "Message is not deleted");
   });
 
   test("Edit Message Text", () async {
-    Message message = await bot.api.sendMessage(id, "Hello World");
+    final message = await bot.api.sendMessage(id, "Hello World");
     expect(message.text, "Hello World");
-    Message editedMessage = await bot.api.editMessageText(
+    final editedMessage = await bot.api.editMessageText(
       id,
       message.messageId,
       "Hello World Edited",
@@ -198,19 +198,19 @@ void main() {
   });
 
   test("Get Chat", () async {
-    Chat chat = await bot.api.getChat(id);
-    Chat groupChat = await bot.api.getChat(groupID);
+    final chat = await bot.api.getChat(id);
+    final groupChat = await bot.api.getChat(groupID);
     print(groupChat.type);
     expect(chat.id, id.id);
   });
 
   test("Get Chat Administrators", () async {
-    List<ChatMember> chatMembers = await bot.api.getChatAdministrators(groupID);
+    final chatMembers = await bot.api.getChatAdministrators(groupID);
     expect(chatMembers.isNotEmpty, true, reason: "Chat members is empty");
   });
 
   test("Get Chat Menu Button", () async {
-    MenuButton button = await bot.api.getChatMenuButton(id);
+    final button = await bot.api.getChatMenuButton(id);
     print(button.type);
     expect(MenuButtonType.values.contains(button.type), true);
   });
