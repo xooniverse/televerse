@@ -8,7 +8,7 @@ void main() async {
   final String token = Platform.environment["BOT_TOKEN"]!;
 
   /// Create a new bot instance
-  Bot bot = Bot(token, fetcher: LongPolling());
+  final bot = Bot(token, fetcher: LongPolling());
 
   /// Listen to commands
   bot.command("hello", (ctx) => ctx.reply("Hello!"));

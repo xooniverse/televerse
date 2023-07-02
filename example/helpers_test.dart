@@ -10,7 +10,7 @@ MessageHandler handler(String text) {
 }
 
 void main() async {
-  bot.onAudio(handler("audo"));
+  bot.onAudio(handler("audio"));
   bot.onDocument(handler("document"));
   bot.onPhoto(handler("photo"));
   bot.onSticker(handler("sticker"));
@@ -34,7 +34,8 @@ void main() async {
   bot.whenVideoChatStarted(handler("video chat started"));
   bot.whenVideoChatEnded(handler("video chat ended"));
   bot.whenVideoChatParticipantsInvited(
-      handler("video chat participants invited"));
+    handler("video chat participants invited"),
+  );
   bot.onForumTopicCreated(handler("forum topic created"));
   bot.onForumTopicEdited(handler("forum topic edited"));
   bot.onForumTopicClosed(handler("forum topic closed"));

@@ -184,18 +184,8 @@ class Televerse<TeleverseSession extends Session> {
       if (scope.handler == null) continue;
 
       if (scope.special) {
-        context as MessageContext;
-        if (scope.isCommand) {
-          String? text = context.message.text;
-          if (text != null) {
-            List<String> split = text.split(' ');
-            bool hasParam = split.length > 1;
-            if (hasParam && split.first == '/start') {
-              context.startParameter = split.sublist(1).join(' ');
-            }
-          }
-        }
         if (scope.isRegExp) {
+          context as MessageContext;
           String? text = context.message.text;
           if (text != null && scope.pattern != null) {
             context.matches = scope.pattern!.allMatches(text).toList();
