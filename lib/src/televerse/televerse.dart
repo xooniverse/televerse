@@ -176,6 +176,13 @@ class Televerse<TeleverseSession extends Session> {
     });
     for (HandlerScope scope in sub) {
       Context context = Context.create(this, update);
+
+      if (scope.isConversation && scope.predicate(context)) {
+        break;
+      }
+
+      if (scope.handler == null) break;
+
       if (scope.special) {
         if (scope.isCommand) {
           context as MessageContext;
@@ -196,9 +203,10 @@ class Televerse<TeleverseSession extends Session> {
           }
         }
       }
+
       if (scope.predicate(context)) {
-        if (_checkSync(scope.handler)) {
-          ((scope.handler(context)) as Future)
+        if (_checkSync(scope.handler!)) {
+          ((scope.handler!(context)) as Future)
               .then((_) {})
               .catchError((err) async {
             if (_onError != null) {
@@ -209,7 +217,7 @@ class Televerse<TeleverseSession extends Session> {
           });
         } else {
           try {
-            scope.handler(context);
+            scope.handler!(context);
           } catch (err, stack) {
             if (_onError != null) {
               await _onError!(err, stack);

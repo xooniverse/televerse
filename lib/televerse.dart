@@ -23,6 +23,7 @@ library televerse;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as io;
+import 'dart:math';
 import 'package:http/http.dart';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
@@ -45,6 +46,9 @@ part 'src/televerse/raw_api.dart';
 part 'src/televerse/sessions/sessions.dart';
 part 'src/televerse/filters/on.dart';
 part 'src/televerse/filters/filters.dart';
+
+/// Conversation API
+part 'src/conversation/conversation.dart';
 
 /// Type aliases for the library.
 part 'src/types/aliases.dart';

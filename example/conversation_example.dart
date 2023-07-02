@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:televerse/conversation.dart';
 import 'package:televerse/televerse.dart';
 
 // Create the bot instance

@@ -251,4 +251,44 @@ class Context {
         return Context(t, update: update);
     }
   }
+
+  /// Get the update types for the given context
+  static List<UpdateType> updateTypes(Type ctx) {
+    if (ctx == MessageContext) {
+      return [
+        UpdateType.message,
+        UpdateType.editedMessage,
+        UpdateType.channelPost,
+        UpdateType.editedChannelPost,
+      ];
+    }
+    if (ctx == InlineQueryContext) {
+      return [UpdateType.inlineQuery];
+    }
+    if (ctx == CallbackQueryContext) {
+      return [UpdateType.callbackQuery];
+    }
+    if (ctx == ChatMemberUpdatedContext) {
+      return [UpdateType.chatMember, UpdateType.myChatMember];
+    }
+    if (ctx == PollContext) {
+      return [UpdateType.poll];
+    }
+    if (ctx == PollAnswerContext) {
+      return [UpdateType.pollAnswer];
+    }
+    if (ctx == ChosenInlineResultContext) {
+      return [UpdateType.chosenInlineResult];
+    }
+    if (ctx == ChatJoinRequestContext) {
+      return [UpdateType.chatJoinRequest];
+    }
+    if (ctx == ShippingQueryContext) {
+      return [UpdateType.shippingQuery];
+    }
+    if (ctx == PreCheckoutQueryContext) {
+      return [UpdateType.preCheckoutQuery];
+    }
+    return [UpdateType.unknown];
+  }
 }

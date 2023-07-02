@@ -1,12 +1,24 @@
-part of conversation;
+part of televerse;
 
-/// Conversation
+/// ## Televerse Conversation
 ///
-/// This class represents a conversation between the user and the bot.
-/// The conversation class helps you to implement a conversation in a simple and
-/// straightforward way.
+/// Televerse Conversation is a library that provides a simple way to create
+/// a conversation between the user and the bot.
 ///
+/// As a Telegram bot developer, there are times when you need to create a
+/// conversation between the user and the bot. For example, when you need to
+/// ask the user for some information, or when you need to ask the user to
+/// choose one of the options. And this can be quite complicated. You need to
+/// create a state machine, and you need to store the state of the conversation
+/// somewhere. And this is where Televerse Conversation comes in.
 ///
+/// Televerse Conversation provides a simple way to create a conversation
+/// between the user and the bot. You can create a conversation with just a
+/// few lines of code. And you don't need to worry about storing the state of
+/// the conversation. Televerse Conversation will take care of that for you.
+///
+/// Televerse Conversation is built on top of the Televerse library. So you
+/// can use all the features of the Televerse library in your conversation.
 class Conversation<T extends Session> {
   /// The bot that this conversation belongs to.
   final Televerse<T> bot;
@@ -201,6 +213,15 @@ class Conversation<T extends Session> {
     );
   }
 
+  /// Internal method to check if the chat is the same.
+  bool _sameChatMethod(Update update, ID chatId) {
+    bool sameChat = update.message?.chat.id == chatId.id;
+    if (chatId is ChannelID || chatId is SupergroupID) {
+      sameChat = sameChat || update.message?.chat.username == chatId.id;
+    }
+    return sameChat;
+  }
+
   /// Wait for any message from the user.
   Future<DC> waitFor<DC extends Context>({
     required ID chatId,
@@ -211,15 +232,23 @@ class Conversation<T extends Session> {
     StreamSubscription<Update>? subscription;
 
     subscription = bot.updatesStream.listen((update) {
-      bool sameChat = update.message?.chat.id == chatId.id;
-      if (chatId is ChannelID || chatId is SupergroupID) {
-        sameChat = sameChat || update.message?.chat.username == chatId.id;
-      }
+      bool sameChat = _sameChatMethod(update, chatId);
       if (sameChat && filter(update)) {
         completer.complete(Context.create(bot, update) as DC);
         subscription?.cancel();
       }
     });
+
+    final scopeName = "conversation+${_getRandomID()}";
+    bot._handlerScopes.add(
+      HandlerScope<DC Function(DC)>(
+        isConversation: true,
+        name: scopeName,
+        predicate: (ctx) =>
+            _sameChatMethod(ctx.update, chatId) && filter(ctx.update),
+        types: Context.updateTypes(DC),
+      ),
+    );
 
     if (timeout != null) {
       Future.delayed(timeout, () {
@@ -227,11 +256,27 @@ class Conversation<T extends Session> {
           completer.completeError(
             TimeoutException("Conversation request timed out."),
           );
+
           subscription?.cancel();
+          bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
         }
       });
     }
 
-    return await completer.future;
+    final ctx = await completer.future;
+
+    bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
+
+    return ctx;
+  }
+
+  // Internal method to generate a random id.
+  // Include a-z, A-Z, 0-9
+  String _getRandomID() {
+    final random = Random();
+    final chars =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    return List.generate(20, (index) => chars[random.nextInt(chars.length)])
+        .join();
   }
 }
