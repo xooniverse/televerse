@@ -1,3 +1,10 @@
+## 1.9.14
+
+- Fixed a critical issue that caused bots to crash when an exception other than `TelegramException` is thrown.
+- The weird thing was that the `onError` method was able to catch the exception but it rethrows it again.
+- This is now fixed and the `onError` method will not rethrow the exception.
+- Thanks to [@GiuseppeFn](https://github.com/GiuseppeFn) for raising this.
+
 ## 1.9.13
 
 - Added a whole bunch of helper methods to listen to updates.
