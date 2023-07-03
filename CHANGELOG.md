@@ -1,3 +1,11 @@
+## 1.10.0
+
+- Introducing the `Televerse Conversation`! 🎉
+- The conversation API lets you create straight forward conversations with the users.
+- Added `Conversation` class to represent a conversation.
+- Added `waitForTextMessage`, `waitForPhotoMessage`, `waitForVideoMessage`, `waitForVoiceMessage`, `waitForDocumentMessage`, `waitForContactMessage`, `waitForLocationMessage`, `waitForVenueMessage`, `waitForPollMessage`, `waitForDiceMessage`, `waitForGameMessage`, `waitForStickerMessage`, `waitForVideoNoteMessage`, `waitToStartVideoChat`, `waitToEndVideoChat` & `waitForCallbackQuery` methods to `Conversation` class.
+- Added an example to demonstrate the usage of Televerse conversations in [/example/conversation_example.dart](./example/conversation_example.dart).
+
 ## 1.9.14
 
 - Fixed a critical issue that caused bots to crash when an exception other than `TelegramException` is thrown.
