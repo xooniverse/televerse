@@ -8,11 +8,11 @@
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot framework built with Dart programming language. It provides a complete and well-structured API that enables developers to create and deploy complex Telegram bots with ease. Televerse provides a total of 0 dynamic types on its public interface, making it easy for developers to write strictly typed code.
 
-## 🔥 Latest Update: Sessions!
+## 🔥 Latest Update: Conversation!
 
-We've just added support for Sessions! You can now use the `bot.initSession` method to initialize a session for your bot. This will allow you to store data for each chat. Once you initialize a session, you can use the `ctx.session` property to access the session data.
+Televerse now has a simple and easy-to-use Conversation API that allows you to create complex conversations with your users. You can use the Conversation API to create conversation between the bot and the user in a straight-forward way.
 
-Please check out the [Sessions Bot Example](./example/session_bot.dart) file for session usage examples.
+The `Conversation` class helps you wait for a specific message from the user, and then respond to it. Check out the [Conversation Bot Example](./example/conversations_example.dart) to learn more about the Conversation API also check out the [Not Conversation Example](./example/not_conversation_example.dart) to understand the difference.
 
 <hr>
 
