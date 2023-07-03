@@ -21,10 +21,10 @@ part of televerse;
 /// can use all the features of the Televerse library in your conversation.
 class Conversation<T extends Session> {
   /// The bot that this conversation belongs to.
-  final Televerse<T> bot;
+  final Televerse<T> _bot;
 
   /// Creates a new conversation.
-  Conversation(this.bot);
+  Conversation(this._bot);
 
   /// Wait for a text message from the user.
   Future<MessageContext> waitForTextMessage({
@@ -231,16 +231,16 @@ class Conversation<T extends Session> {
     Completer<DC> completer = Completer<DC>();
     StreamSubscription<Update>? subscription;
 
-    subscription = bot.updatesStream.listen((update) {
+    subscription = _bot.updatesStream.listen((update) {
       bool sameChat = _sameChatMethod(update, chatId);
       if (sameChat && filter(update)) {
-        completer.complete(Context.create(bot, update) as DC);
+        completer.complete(Context.create(_bot, update) as DC);
         subscription?.cancel();
       }
     });
 
     final scopeName = "conversation+${_getRandomID()}";
-    bot._handlerScopes.add(
+    _bot._handlerScopes.add(
       HandlerScope<DC Function(DC)>(
         isConversation: true,
         name: scopeName,
@@ -258,14 +258,14 @@ class Conversation<T extends Session> {
           );
 
           subscription?.cancel();
-          bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
+          _bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
         }
       });
     }
 
     final ctx = await completer.future;
 
-    bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
+    _bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
 
     return ctx;
   }
