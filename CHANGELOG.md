@@ -5,6 +5,9 @@
 - Added `Conversation` class to represent a conversation.
 - Added `waitForTextMessage`, `waitForPhotoMessage`, `waitForVideoMessage`, `waitForVoiceMessage`, `waitForDocumentMessage`, `waitForContactMessage`, `waitForLocationMessage`, `waitForVenueMessage`, `waitForPollMessage`, `waitForDiceMessage`, `waitForGameMessage`, `waitForStickerMessage`, `waitForVideoNoteMessage`, `waitToStartVideoChat`, `waitToEndVideoChat` & `waitForCallbackQuery` methods to `Conversation` class.
 - Added an example to demonstrate the usage of Televerse conversations in [/example/conversation_example.dart](./example/conversation_example.dart).
+- Added `MessageContext.args` getter to get the arguments passed to the command. Thanks to [@GiuseppeFn](https://github.com/GiuseppeFn) for the contribution. [#115](https://github.com/HeySreelal/televerse/pull/115)
+- Removed `MessageContext.startParameter` getter as it's no longer needed.
+- Refactored examples to make it easier to understand.
 
 ## 1.9.14
 
