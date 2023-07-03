@@ -6,7 +6,7 @@ void main(List<String> args) {
   final token = Platform.environment['BOT_TOKEN']!;
 
   /// Use the [Bot.local] constructor to create a bot instance.
-  Bot bot = Bot.local(token);
+  final bot = Bot.local(token);
 
   /// Start polling and setup the handler for the `/start` command.
   bot.start((ctx) {

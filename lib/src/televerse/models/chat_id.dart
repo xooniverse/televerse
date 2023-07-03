@@ -70,7 +70,7 @@ class ChatID extends ID {
   /// final chatID = ChatID(123456789);
   ///
   /// // Get the chat object of the chat.
-  /// final chat = await chatID.chat;
+  /// final chat = await chatID.get();
   ///
   /// // Print the chat's title.
   /// print(chat.title);

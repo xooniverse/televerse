@@ -175,19 +175,15 @@ class Televerse<TeleverseSession extends Session> {
       return scope.types.contains(update.type);
     });
     for (HandlerScope scope in sub) {
-      Context context = scope.context(this, update);
+      Context context = Context.create(this, update);
+
+      if (scope.isConversation && scope.predicate(context)) {
+        break;
+      }
+
+      if (scope.handler == null) continue;
+
       if (scope.special) {
-        if (scope.isCommand) {
-          context as MessageContext;
-          String? text = context.message.text;
-          if (text != null) {
-            List<String> split = text.split(' ');
-            bool hasParam = split.length > 1;
-            if (hasParam && split.first == '/start') {
-              context.startParameter = split.sublist(1).join(' ');
-            }
-          }
-        }
         if (scope.isRegExp) {
           context as MessageContext;
           String? text = context.message.text;
@@ -196,9 +192,10 @@ class Televerse<TeleverseSession extends Session> {
           }
         }
       }
+
       if (scope.predicate(context)) {
-        if (_checkSync(scope.handler)) {
-          ((scope.handler(context)) as Future)
+        if (_checkSync(scope.handler!)) {
+          ((scope.handler!(context)) as Future)
               .then((_) {})
               .catchError((err) async {
             if (_onError != null) {
@@ -209,7 +206,7 @@ class Televerse<TeleverseSession extends Session> {
           });
         } else {
           try {
-            scope.handler(context);
+            scope.handler!(context);
           } catch (err, stack) {
             if (_onError != null) {
               await _onError!(err, stack);

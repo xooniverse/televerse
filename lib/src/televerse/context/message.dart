@@ -24,12 +24,6 @@ class MessageContext extends Context with MessageMixin, ManagementMixin {
   /// This will be automatically set when you use the [Televerse.hears] method.
   List<RegExpMatch>? matches;
 
-  /// Start Parameter - Used for deep linking.
-  /// This will be set when your bot is started with a deep link.
-  /// Example: `https://t.me/MyBot?start=12345` will set `startParameter` to `12345`.
-  /// This will be `null` if the bot is not started with a deep link.
-  String? startParameter;
-
   /// **Chat ID**
   ///
   /// This is a shortcut for `ChatID(message.chat.id)`. So you can simply use `ctx.id` instead of repeating `ChatID(message.chat.id)`.
@@ -53,4 +47,14 @@ class MessageContext extends Context with MessageMixin, ManagementMixin {
   /// User who sent the message.
   /// This will be `null` if the message is sent if the message is sent on a channel or an anonymous admin.
   User? get from => message.from;
+
+  /// If the message is a command, the list will be filled with the command arguments.
+  /// e.g. /hello @mom @dad will have a ctx.args like this: ['@mom', '@dad'].
+  /// This will be empty if the message is not a command or if the message doesn't contain text
+  /// NOTE: This is obviously also used for the deeplink start parameters.
+  List<String> get args {
+    if (!(message.text?.startsWith('/') ?? false)) return [];
+
+    return message.text!.split(' ').sublist(1);
+  }
 }
