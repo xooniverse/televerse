@@ -2,6 +2,7 @@
 
 - Fixed an issue with the `command` method that crashed the bot when setting up the listener.
 - Thanks to [@GiuseppeFn](https://github.com/GiuseppeFn) for reporting this issue.
+- Refactored code for better performance.
 
 ## 1.10.0
 
