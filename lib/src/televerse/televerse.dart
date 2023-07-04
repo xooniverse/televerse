@@ -173,29 +173,30 @@ class Televerse<TeleverseSession extends Session> {
   void _onUpdate(Update update) async {
     final sub = _handlerScopes.reversed.where((scope) {
       return scope.types.contains(update.type);
-    });
-    for (HandlerScope scope in sub) {
+    }).toList();
+    int len = sub.length;
+    for (int i = 0; i < len; i++) {
       Context context = Context.create(this, update);
 
-      if (scope.isConversation && scope.predicate(context)) {
+      if (sub[i].isConversation && sub[i].predicate(context)) {
         break;
       }
 
-      if (scope.handler == null) continue;
+      if (sub[i].handler == null) continue;
 
-      if (scope.special) {
-        if (scope.isRegExp) {
+      if (sub[i].special) {
+        if (sub[i].isRegExp) {
           context as MessageContext;
           String? text = context.message.text;
-          if (text != null && scope.pattern != null) {
-            context.matches = scope.pattern!.allMatches(text).toList();
+          if (text != null && sub[i].pattern != null) {
+            context.matches = sub[i].pattern!.allMatches(text).toList();
           }
         }
       }
 
-      if (scope.predicate(context)) {
-        if (_checkSync(scope.handler!)) {
-          ((scope.handler!(context)) as Future)
+      if (sub[i].predicate(context)) {
+        if (_checkSync(sub[i].handler!)) {
+          ((sub[i].handler!(context)) as Future)
               .then((_) {})
               .catchError((err) async {
             if (_onError != null) {
@@ -206,7 +207,7 @@ class Televerse<TeleverseSession extends Session> {
           });
         } else {
           try {
-            scope.handler!(context);
+            sub[i].handler!(context);
           } catch (err, stack) {
             if (_onError != null) {
               await _onError!(err, stack);

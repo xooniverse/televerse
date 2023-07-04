@@ -854,21 +854,24 @@ class RawAPI {
     List<Map<String, dynamic>> mediaList = [];
 
     if (media.any((m) => m.media.type == InputFileType.file)) {
-      for (InputMedia m in media) {
-        if (m.media.type == InputFileType.file) {
-          if (!m.media.file!.existsSync()) {
-            throw TeleverseException.fileDoesNotExist(m.media.file!.path);
+      int length = media.length;
+      for (int i = 0; i < length; i++) {
+        if (media[i].media.type == InputFileType.file) {
+          if (!media[i].media.file!.existsSync()) {
+            throw TeleverseException.fileDoesNotExist(
+              media[i].media.file!.path,
+            );
           }
-          String filename = m.media.file!.path.split("/").last;
+          String filename = media[i].media.file!.filename;
           files.add(
             MultipartFile.fromBytes(
               filename,
-              m.media.file!.readAsBytesSync(),
+              media[i].media.file!.readAsBytesSync(),
               filename: filename,
             ),
           );
         }
-        mediaList.add(m.toJson());
+        mediaList.add(media[i].toJson());
       }
       params["media"] = jsonEncode(mediaList);
       List<dynamic> response = await HttpClient.multipartPost(
@@ -1783,9 +1786,7 @@ class RawAPI {
     List<dynamic> data = await HttpClient.getURI(
       _buildUri("getChatAdministrators", params),
     );
-    for (var i = 0; i < data.length; i++) {
-      response.add(ChatMember.fromJson(data[i]));
-    }
+    response = data.map((e) => ChatMember.fromJson(e)).toList();
     return response;
   }
 
@@ -1853,9 +1854,7 @@ class RawAPI {
     List<dynamic> data = await HttpClient.getURI(
       _buildUri("getForumTopicIconStickers"),
     );
-    for (var i = 0; i < data.length; i++) {
-      response.add(Sticker.fromJson(data[i]));
-    }
+    response = data.map((e) => Sticker.fromJson(e)).toList();
     return response;
   }
 
@@ -3270,13 +3269,14 @@ class RawAPI {
     };
     bool response;
     List<MultipartFile> files = [];
+    int len = stickers.length;
 
-    for (var sticker in stickers) {
-      if (sticker.sticker.type == InputFileType.file) {
-        String fileName = sticker.sticker.file!.path.split("/").last;
+    for (int i = 0; i < len; i++) {
+      if (stickers[i].sticker.type == InputFileType.file) {
+        String fileName = stickers[i].sticker.file!.path.split("/").last;
         files.add(MultipartFile.fromBytes(
           fileName,
-          sticker.sticker.file!.readAsBytesSync(),
+          stickers[i].sticker.file!.readAsBytesSync(),
           filename: fileName,
         ));
       }
