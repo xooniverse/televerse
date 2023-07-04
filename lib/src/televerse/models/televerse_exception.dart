@@ -46,4 +46,13 @@ class TeleverseException implements Exception {
     description:
         "To save/load the session, you must provide a path or set the session ID.",
   );
+
+  /// Exception thrown when the `getMe` request is failed when setting up a bot command.
+  static TeleverseException getMeRequestFailed(Object err, StackTrace stack) =>
+      TeleverseException(
+        "RawAPI/getMe Request Failed",
+        description:
+            "The request to getMe failed. Please check your internet connection and try again. \n\nError: $err",
+        stackTrace: stack,
+      );
 }

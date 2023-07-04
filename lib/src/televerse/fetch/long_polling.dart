@@ -84,12 +84,13 @@ class LongPolling extends Fetcher {
         timeout: timeout,
         allowedUpdates: allowedUpdates.map((e) => e.type).toList(),
       );
-      for (var update in updates) {
+      int len = updates.length;
+      for (int i = 0; i < len; i++) {
         if (_updateStreamController.isClosed) {
           return;
         }
-        addUpdate(update);
-        offset = update.updateId + 1;
+        addUpdate(updates[i]);
+        offset = updates[i].updateId + 1;
       }
 
       await Future.delayed(delayDuration);
@@ -129,10 +130,8 @@ class LongPolling extends Fetcher {
     int limit = 100,
     Duration delayDuration = const Duration(milliseconds: 200),
   }) {
-    List<UpdateType> allowedUpdates = [
-      for (var type in UpdateType.values)
-        if (type != UpdateType.unknown) type
-    ];
+    List<UpdateType> allowedUpdates = UpdateType.values;
+    allowedUpdates.remove(UpdateType.unknown);
     return LongPolling(
       allowedUpdates: allowedUpdates,
       offset: offset,
