@@ -326,11 +326,21 @@ class Televerse<TeleverseSession extends Session> {
     Pattern command,
     MessageHandler callback,
   ) async {
-    User bot;
+    User? bot;
     try {
       bot = me;
     } catch (err) {
-      bot = await api.getMe();
+      try {
+        bot = await api.getMe();
+        _me = bot;
+      } catch (err, st) {
+        if (_onError != null) {
+          final ex = TeleverseException.getMeRequestFailed(err, st);
+          await _onError!(ex, st);
+        } else {
+          rethrow;
+        }
+      }
     }
     HandlerScope scope = HandlerScope<MessageHandler>(
       isCommand: true,
@@ -343,8 +353,8 @@ class Televerse<TeleverseSession extends Session> {
           return command.hasMatch(ctx.message.text!);
         } else if (command is String) {
           final firstTerm = ctx.message.text!.split(' ').first;
-          return firstTerm == '/$command' ||
-              firstTerm == '/$command@${bot.username}';
+          final suffix = bot?.username != null ? '@${bot?.username}' : '';
+          return firstTerm == '/$command' || firstTerm == '/$command$suffix';
         }
         return false;
       },
