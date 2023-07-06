@@ -173,7 +173,7 @@ We have an active Telegram group where you can discuss Televerse and get help fr
 
 <a href="https://t.me/TeleverseDart">
   <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> 
-</a> <a href="https://github.com/HeySreelal/televerse/discussions">
+</a> <a href="https://github.com/HeySreelal/televerse/">
   <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </a>
 
