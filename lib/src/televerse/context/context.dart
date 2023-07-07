@@ -156,42 +156,37 @@ class Context {
 
   /// Get the type of Context based on the update type.
   Type get typeOfContext {
-    if (update.type == UpdateType.chatJoinRequest) {
-      return ChatJoinRequestContext;
+    switch (update.type) {
+      case UpdateType.chatJoinRequest:
+        return ChatJoinRequestContext;
+      case UpdateType.chatMember:
+        return ChatMemberUpdatedContext;
+      case UpdateType.myChatMember:
+        return ChatMemberUpdatedContext;
+      case UpdateType.preCheckoutQuery:
+        return PreCheckoutQueryContext;
+      case UpdateType.shippingQuery:
+        return ShippingQueryContext;
+      case UpdateType.callbackQuery:
+        return CallbackQueryContext;
+      case UpdateType.inlineQuery:
+        return InlineQueryContext;
+      case UpdateType.chosenInlineResult:
+        return ChosenInlineResultContext;
+      case UpdateType.pollAnswer:
+        return PollAnswerContext;
+      case UpdateType.poll:
+        return PollContext;
+      case UpdateType.channelPost:
+      case UpdateType.editedChannelPost:
+      case UpdateType.message:
+      case UpdateType.editedMessage:
+        return MessageContext;
+      case UpdateType.unknown:
+        throw TeleverseException(
+          "The update type is ${update.type}, which does not have a context.",
+        );
     }
-    if (update.type == UpdateType.chatMember) {
-      return ChatMemberUpdatedContext;
-    }
-    if (update.type == UpdateType.myChatMember) {
-      return ChatMemberUpdatedContext;
-    }
-    if (update.type == UpdateType.preCheckoutQuery) {
-      return PreCheckoutQueryContext;
-    }
-    if (update.type == UpdateType.shippingQuery) {
-      return ShippingQueryContext;
-    }
-    if (update.type == UpdateType.callbackQuery) {
-      return CallbackQueryContext;
-    }
-    if (update.type == UpdateType.inlineQuery) {
-      return InlineQueryContext;
-    }
-    if (update.type == UpdateType.chosenInlineResult) {
-      return ChosenInlineResultContext;
-    }
-    if (update.type == UpdateType.pollAnswer) {
-      return PollAnswerContext;
-    }
-    if (update.type == UpdateType.poll) {
-      return PollContext;
-    }
-    if (update.type == UpdateType.unknown) {
-      throw TeleverseException(
-        "The update type is ${update.type}, which does not have a context.",
-      );
-    }
-    return MessageContext;
   }
 
   /// Creates a new context.
