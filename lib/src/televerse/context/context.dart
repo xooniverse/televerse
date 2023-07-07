@@ -119,39 +119,39 @@ class Context {
   /// Note: On `poll`, and `unknown` updates, this will throw a [TeleverseException].
   /// This is because these updates do not have a chat.
   ID get id {
-    if (update.type == UpdateType.chatJoinRequest) {
-      return ChatID(update.chatJoinRequest!.chat.id);
+    switch (update.type) {
+      case UpdateType.message:
+        return ChatID(update.message!.chat.id);
+      case UpdateType.editedMessage:
+        return ChatID(update.editedMessage!.chat.id);
+      case UpdateType.channelPost:
+        return ChatID(update.channelPost!.chat.id);
+      case UpdateType.editedChannelPost:
+        return ChatID(update.editedChannelPost!.chat.id);
+      case UpdateType.inlineQuery:
+        return ChatID(update.inlineQuery!.from.id);
+      case UpdateType.chosenInlineResult:
+        return ChatID(update.chosenInlineResult!.from.id);
+      case UpdateType.callbackQuery:
+        return ChatID(update.callbackQuery!.message!.chat.id);
+      case UpdateType.shippingQuery:
+        return ChatID(update.shippingQuery!.from.id);
+      case UpdateType.preCheckoutQuery:
+        return ChatID(update.preCheckoutQuery!.from.id);
+      case UpdateType.pollAnswer:
+        return ChatID(update.pollAnswer!.user.id);
+      case UpdateType.myChatMember:
+        return ChatID(update.myChatMember!.chat.id);
+      case UpdateType.chatMember:
+        return ChatID(update.chatMember!.chat.id);
+      case UpdateType.chatJoinRequest:
+        return ChatID(update.chatJoinRequest!.chat.id);
+      case UpdateType.poll:
+      case UpdateType.unknown:
+        throw TeleverseException(
+          "The update type is ${update.type}, which does not have a chat.",
+        );
     }
-    if (update.type == UpdateType.chatMember) {
-      return ChatID(update.chatMember!.chat.id);
-    }
-    if (update.type == UpdateType.myChatMember) {
-      return ChatID(update.myChatMember!.chat.id);
-    }
-    if (update.type == UpdateType.preCheckoutQuery) {
-      return ChatID(update.preCheckoutQuery!.from.id);
-    }
-    if (update.type == UpdateType.shippingQuery) {
-      return ChatID(update.shippingQuery!.from.id);
-    }
-    if (update.type == UpdateType.callbackQuery) {
-      return ChatID(update.callbackQuery!.message!.chat.id);
-    }
-    if (update.type == UpdateType.inlineQuery) {
-      return ChatID(update.inlineQuery!.from.id);
-    }
-    if (update.type == UpdateType.chosenInlineResult) {
-      return ChatID(update.chosenInlineResult!.from.id);
-    }
-    if (update.type == UpdateType.pollAnswer) {
-      return ChatID(update.pollAnswer!.user.id);
-    }
-    if (update.type == UpdateType.poll || update.type == UpdateType.unknown) {
-      throw TeleverseException(
-        "The update type is ${update.type}, which does not have a chat.",
-      );
-    }
-    return ChatID(update.message!.chat.id);
   }
 
   /// Get the type of Context based on the update type.
@@ -249,41 +249,34 @@ class Context {
 
   /// Get the update types for the given context
   static List<UpdateType> updateTypes(Type ctx) {
-    if (ctx == MessageContext) {
-      return [
-        UpdateType.message,
-        UpdateType.editedMessage,
-        UpdateType.channelPost,
-        UpdateType.editedChannelPost,
-      ];
+    switch (ctx) {
+      case MessageContext:
+        return [
+          UpdateType.message,
+          UpdateType.editedMessage,
+          UpdateType.channelPost,
+          UpdateType.editedChannelPost,
+        ];
+      case InlineQueryContext:
+        return [UpdateType.inlineQuery];
+      case CallbackQueryContext:
+        return [UpdateType.callbackQuery];
+      case ChatMemberUpdatedContext:
+        return [UpdateType.chatMember, UpdateType.myChatMember];
+      case PollContext:
+        return [UpdateType.poll];
+      case PollAnswerContext:
+        return [UpdateType.pollAnswer];
+      case ChosenInlineResultContext:
+        return [UpdateType.chosenInlineResult];
+      case ChatJoinRequestContext:
+        return [UpdateType.chatJoinRequest];
+      case ShippingQueryContext:
+        return [UpdateType.shippingQuery];
+      case PreCheckoutQueryContext:
+        return [UpdateType.preCheckoutQuery];
+      default:
+        return [UpdateType.unknown];
     }
-    if (ctx == InlineQueryContext) {
-      return [UpdateType.inlineQuery];
-    }
-    if (ctx == CallbackQueryContext) {
-      return [UpdateType.callbackQuery];
-    }
-    if (ctx == ChatMemberUpdatedContext) {
-      return [UpdateType.chatMember, UpdateType.myChatMember];
-    }
-    if (ctx == PollContext) {
-      return [UpdateType.poll];
-    }
-    if (ctx == PollAnswerContext) {
-      return [UpdateType.pollAnswer];
-    }
-    if (ctx == ChosenInlineResultContext) {
-      return [UpdateType.chosenInlineResult];
-    }
-    if (ctx == ChatJoinRequestContext) {
-      return [UpdateType.chatJoinRequest];
-    }
-    if (ctx == ShippingQueryContext) {
-      return [UpdateType.shippingQuery];
-    }
-    if (ctx == PreCheckoutQueryContext) {
-      return [UpdateType.preCheckoutQuery];
-    }
-    return [UpdateType.unknown];
   }
 }
