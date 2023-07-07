@@ -1,3 +1,9 @@
+## 1.10.2
+
+- Fixed issue that might cause a crash when `LongPolling.allUpdates` is used.
+- Rectified the `MessageContext.args` getter. Thanks to [@devsdocs](https://github.com/devsdocs) for [PR #121](https://github.com/HeySreelal/televerse/pull/121).
+- More code improvements. Thanks to [@aaxxios](https://github.com/aaxxios) for [PR #122](https://github.com/HeySreelal/televerse/pull/122)
+
 ## 1.10.1
 
 - Fixed an issue with the `command` method that crashed the bot when setting up the listener.

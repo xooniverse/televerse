@@ -55,6 +55,6 @@ class MessageContext extends Context with MessageMixin, ManagementMixin {
   List<String> get args {
     if (!(message.text?.startsWith('/') ?? false)) return [];
 
-    return message.text!.split(' ').sublist(1);
+    return message.text!.clean.split(' ').sublist(1);
   }
 }

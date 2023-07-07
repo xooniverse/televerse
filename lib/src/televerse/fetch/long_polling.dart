@@ -131,8 +131,8 @@ class LongPolling extends Fetcher {
     int limit = 100,
     Duration delayDuration = const Duration(milliseconds: 200),
   }) {
-    List<UpdateType> allowedUpdates = UpdateType.values;
-    allowedUpdates.remove(UpdateType.unknown);
+    List<UpdateType> allowedUpdates =
+        UpdateType.values.where((el) => el != UpdateType.unknown).toList();
     return LongPolling(
       allowedUpdates: allowedUpdates,
       offset: offset,
