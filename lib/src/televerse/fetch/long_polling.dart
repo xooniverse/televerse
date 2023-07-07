@@ -90,9 +90,10 @@ class LongPolling extends Fetcher {
           return;
         }
         addUpdate(updates[i]);
-        offset = updates[i].updateId + 1;
       }
-
+      if (updates.isNotEmpty) {
+        offset = updates[updates.length - 1].updateId + 1;
+      }
       await Future.delayed(delayDuration);
       _resetRetryDelay();
     } catch (err, stackTrace) {
