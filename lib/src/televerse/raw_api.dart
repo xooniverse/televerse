@@ -195,7 +195,7 @@ class RawAPI {
     return response;
   }
 
-  /// Use this method to send text messages. On success, the sent [MessageContext] is returned.
+  /// Use this method to send text messages. On success, the sent [Message] is returned.
   ///
   /// Required parameters:
   /// - [chatId] - Chat ID can either be [ChatID] or [ChannelID] or [SupergroupID]
@@ -215,7 +215,7 @@ class RawAPI {
   /// bot.sendMessage(ChannelID("@myChannel"), "Hello World!");
   /// ```
   ///
-  /// On success, the sent [MessageContext] is which can be used to reply to the message.
+  /// On success, the sent [Message] is which can be used to reply to the message.
   Future<Message> sendMessage(
     ID chatId,
     String text, {
@@ -249,7 +249,7 @@ class RawAPI {
     return Message.fromJson(response);
   }
 
-  /// Use this method to forward messages of any kind. Service messages can't be forwarded. On success, the sent [MessageContext] is returned.
+  /// Use this method to forward messages of any kind. Service messages can't be forwarded. On success, the sent [Message] is returned.
   ///
   /// Required parameters:
   /// - [chatId] - Chat ID can either be [ChatID] or [ChannelID] or [SupergroupID]
@@ -2234,7 +2234,7 @@ class RawAPI {
   ///
   /// If you're looking for a way to edit inline messages, use [editInlineMessageCaption].
   ///
-  /// On success, [MessageContext] is returned.
+  /// On success, [Message] is returned.
   Future<Message> editMessageCaption(
     ID chatId,
     int messageId, {
@@ -3045,7 +3045,7 @@ class RawAPI {
     return response;
   }
 
-  /// Use this method to send a game. On success, the sent [MessageContext] is returned.
+  /// Use this method to send a game. On success, the sent [Message] is returned.
   Future<Message> sendGame(
     ID chatId,
     String gameShortName, {
@@ -3076,7 +3076,7 @@ class RawAPI {
   }
 
   /// Use this method to set the score of the specified user in a game message.
-  /// On success the [MessageContext] is returned.
+  /// On success the [Message] is returned.
   ///
   /// Returns an error, if the new score is not greater than the user's current score in the chat and [force] is False.
   ///

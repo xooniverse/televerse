@@ -684,5 +684,11 @@ mixin MessageMixin on Context {
   }
 
   /// The [Message] recieved in the current context
-  Message get _msg => update.message!;
+  Message get _msg {
+    Message? m = update.message ??
+        update.editedMessage ??
+        update.channelPost ??
+        update.editedChannelPost;
+    return m!;
+  }
 }

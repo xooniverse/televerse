@@ -203,14 +203,14 @@ class Context {
   static Context create(Televerse t, Update update) {
     switch (update.type) {
       case UpdateType.message:
-        return MessageContext(t, update.message!, update: update);
+        return MessageContext(t, update: update);
       case UpdateType.editedMessage:
-        return MessageContext(t, update.editedMessage!, update: update);
+        return MessageContext(t, update: update);
       case UpdateType.channelPost:
-        return MessageContext(t, update.channelPost!, update: update);
+        return MessageContext(t, update: update);
 
       case UpdateType.editedChannelPost:
-        return MessageContext(t, update.editedChannelPost!, update: update);
+        return MessageContext(t, update: update);
 
       case UpdateType.inlineQuery:
         return InlineQueryContext(t, update: update);
