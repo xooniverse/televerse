@@ -203,12 +203,8 @@ class Context {
   static Context create(Televerse t, Update update) {
     switch (update.type) {
       case UpdateType.message:
-        return MessageContext(t, update: update);
       case UpdateType.editedMessage:
-        return MessageContext(t, update: update);
       case UpdateType.channelPost:
-        return MessageContext(t, update: update);
-
       case UpdateType.editedChannelPost:
         return MessageContext(t, update: update);
 
@@ -234,8 +230,6 @@ class Context {
         return PollAnswerContext(t, update: update);
 
       case UpdateType.myChatMember:
-        return ChatMemberUpdatedContext(t, update: update);
-
       case UpdateType.chatMember:
         return ChatMemberUpdatedContext(t, update: update);
 
