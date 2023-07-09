@@ -2837,7 +2837,7 @@ class RawAPI {
     required String providerToken,
     required String currency,
     required List<LabeledPrice> prices,
-    String? messageThreadId,
+    int? messageThreadId,
     int? maxTipAmount = 0,
     List<int>? suggestedTipAmounts,
     String? startParameter,
