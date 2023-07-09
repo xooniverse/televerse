@@ -154,11 +154,29 @@ class Televerse<TeleverseSession extends Session> {
   User get me {
     try {
       return _me;
-    } catch (err) {
+    } catch (err, stack) {
       throw TeleverseException(
-        "Bot information not found. ",
-        description: "Couldn't fetch bot information.",
+        "Bot information not found.",
+        description:
+            "This happens when the initial getMe request is not completed. You can call `bot.getMe` method to set this property.",
+        stackTrace: stack,
       );
+    }
+  }
+
+  /// Get information about the bot.
+  ///
+  /// This will also set `bot.me`. If by any chance the request is failed,
+  /// this will throw a TeleverseException with the details about the exception.
+  ///
+  /// Note: As of now this won't be handled in `onError` handler.
+  Future<User> getMe() async {
+    try {
+      _me = await api.getMe();
+      return _me;
+    } catch (err, stack) {
+      final exception = TeleverseException.getMeRequestFailed(err, stack);
+      throw exception;
     }
   }
 
