@@ -46,6 +46,7 @@ part 'src/televerse/raw_api.dart';
 part 'src/televerse/sessions/sessions.dart';
 part 'src/televerse/filters/on.dart';
 part 'src/televerse/filters/filters.dart';
+part 'src/televerse/markups/inline_menu.dart';
 
 /// Conversation API
 part 'src/conversation/conversation.dart';

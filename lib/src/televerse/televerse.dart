@@ -1795,4 +1795,22 @@ class Televerse<TeleverseSession extends Session> {
       onlyChannelPosts: onlyChannelPosts,
     );
   }
+
+  /// Attach an Inline Menu.
+  ///
+  /// This method will make the menu handlers to be called when the menu buttons are pressed.
+  void attachMenu(InlineMenu menu) {
+    int rows = menu.actions.length;
+    for (int i = 0; i < rows; i++) {
+      int cols = menu.actions[i].length;
+      for (int j = 0; j < cols; j++) {
+        final key = menu.actions[i].keys.elementAt(j);
+        final action = menu.actions[i][key]!;
+        callbackQuery(
+          key,
+          action,
+        );
+      }
+    }
+  }
 }
