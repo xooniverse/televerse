@@ -25,7 +25,8 @@ mixin MessageMixin on Context {
     return await api.sendMessage(
       id,
       text,
-      messageThreadId: messageThreadId ?? _msg.messageThreadId,
+      messageThreadId:
+          messageThreadId ?? _msg.messageThreadId ?? _msg.messageThreadId,
       parseMode: parseMode,
       entities: entities,
       disableWebPagePreview: disableWebPagePreview,
@@ -61,7 +62,7 @@ mixin MessageMixin on Context {
     return await api.sendPhoto(
       id,
       photo,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       caption: caption,
       parseMode: parseMode,
       captionEntities: captionEntities,
@@ -96,7 +97,7 @@ mixin MessageMixin on Context {
     return await api.sendAudio(
       id,
       audio,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       caption: caption,
       parseMode: parseMode,
       captionEntities: captionEntities,
@@ -133,7 +134,7 @@ mixin MessageMixin on Context {
     return await api.sendDocument(
       id,
       document,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       thumbnail: thumbnail,
       caption: caption,
       parseMode: parseMode,
@@ -172,7 +173,7 @@ mixin MessageMixin on Context {
     return await api.sendVideo(
       id,
       video,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       duration: duration,
       width: width,
       height: height,
@@ -209,7 +210,7 @@ mixin MessageMixin on Context {
     return await api.sendVideoNote(
       id,
       videoNote,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       duration: duration,
       length: length,
       thumbnail: thumbnail,
@@ -241,7 +242,7 @@ mixin MessageMixin on Context {
     return await api.sendVoice(
       id,
       voice,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       caption: caption,
       parseMode: parseMode,
       captionEntities: captionEntities,
@@ -269,7 +270,7 @@ mixin MessageMixin on Context {
     return await api.sendMediaGroup(
       id,
       media,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       disableNotification: disableNotification,
       protectContent: protectContent,
       replyToMessageId: replyToMessageId,
@@ -298,7 +299,7 @@ mixin MessageMixin on Context {
       id,
       latitude,
       longitude,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       horizontalAccuracy: horizontalAccuracy,
       livePeriod: livePeriod,
       heading: heading,
@@ -336,7 +337,7 @@ mixin MessageMixin on Context {
       longitude,
       title,
       address,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       foursquareId: foursquareId,
       foursquareType: foursquareType,
       googlePlaceId: googlePlaceId,
@@ -369,7 +370,7 @@ mixin MessageMixin on Context {
       phoneNumber,
       firstName,
       lastName: lastName,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       vcard: vcard,
       disableNotification: disableNotification,
       protectContent: protectContent,
@@ -406,7 +407,7 @@ mixin MessageMixin on Context {
       id,
       question,
       options,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       isAnonymous: isAnonymous,
       type: type,
       allowsMultipleAnswers: allowsMultipleAnswers,
@@ -440,7 +441,7 @@ mixin MessageMixin on Context {
     return await api.sendDice(
       id,
       emoji: emoji,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       disableNotification: disableNotification,
       protectContent: protectContent,
       replyToMessageId: replyToMessageId,
@@ -459,7 +460,7 @@ mixin MessageMixin on Context {
     return await api.sendChatAction(
       id,
       action,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
     );
   }
 
@@ -478,7 +479,7 @@ mixin MessageMixin on Context {
     return await api.sendGame(
       id,
       shortName,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       disableNotification: disableNotification,
       protectContent: protectContent,
       replyToMessageId: replyToMessageId,
@@ -510,7 +511,7 @@ mixin MessageMixin on Context {
     return await api.sendAnimation(
       id,
       animation,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       duration: duration,
       width: width,
       height: height,
@@ -532,7 +533,7 @@ mixin MessageMixin on Context {
   /// Provide a [sticker] to send a sticker.
   Future<Message> replyWithSticker(
     InputFile sticker, {
-    String? messageThreadId,
+    int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
     int? replyToMessageId,
@@ -542,7 +543,7 @@ mixin MessageMixin on Context {
     return await api.sendSticker(
       id,
       sticker,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       disableNotification: disableNotification,
       protectContent: protectContent,
       replyToMessageId: replyToMessageId,
@@ -638,7 +639,7 @@ mixin MessageMixin on Context {
       chatId,
       id,
       _msg.messageId,
-      messageThreadId: messageThreadId,
+      messageThreadId: messageThreadId ?? _msg.messageThreadId,
       disableNotification: disableNotification,
       protectContent: protectContent,
     );

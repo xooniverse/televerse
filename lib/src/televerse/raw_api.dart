@@ -2470,7 +2470,7 @@ class RawAPI {
   Future<Message> sendSticker(
     ID chatId,
     InputFile sticker, {
-    String? messageThreadId,
+    int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
     int? replyToMessageId,
