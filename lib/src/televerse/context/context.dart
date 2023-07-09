@@ -87,6 +87,9 @@ class Context {
   /// The RawAPI getter.
   RawAPI get api => _bot.api;
 
+  /// The bot that received the update's informations.
+  User get bot => _bot.me;
+
   /// The RawAPI instance.
   final Televerse _bot;
 
