@@ -6,24 +6,39 @@ void main() async {
   /// Creates the bot instance
   final bot = Bot(Platform.environment["BOT_TOKEN"]!);
 
+  // Create the menu
+  final startMenu = InlineMenu()
+      .text("Hello", helloCallback)
+      .row()
+      .text("Start", firstCallback)
+      .text("Finish", finishCallback);
+
+  // Attach it to the bot
+  bot.attachMenu(startMenu);
+
+  // Start the bot and listen for /start command updates
   bot.start((ctx) {
-    // Create the menu
-    final menu = InlineMenu()
-        .text("Hello", (ctx) => ctx.answer(text: "Cool!"))
-        .row()
-        .text(
-          "Another",
-          (ctx) => ctx.answerWithAlert(text: "That's what you like :)"),
-        )
-        .text("Second", (ctx) => ctx.editMessage("How was that?"));
-
-    // Attach it to the bot
-    bot.attachMenu(menu);
-
     // Reply with the menu
     ctx.reply(
       "Hello, choose an option:",
-      replyMarkup: menu,
+      replyMarkup: startMenu,
     );
   });
+}
+
+// When a user clicks on the "Hello" button, the bot will answer with "Cool!"
+void helloCallback(CallbackQueryContext ctx) {
+  ctx.answer(text: "Cool!");
+}
+
+// When a user clicks on the "First" button, the bot will answer with
+// "That's what you like :)" in an alert
+void firstCallback(CallbackQueryContext ctx) {
+  ctx.answerWithAlert(text: "That's what you like :)");
+}
+
+// When a user clicks on the "Second" button, the bot will edit the message
+// with "How was that?"
+void finishCallback(CallbackQueryContext ctx) {
+  ctx.editMessage("How was that?");
 }
