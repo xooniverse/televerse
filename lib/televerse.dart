@@ -48,6 +48,7 @@ part 'src/televerse/filters/on.dart';
 part 'src/televerse/filters/filters.dart';
 part 'src/televerse/markups/inline_menu.dart';
 part 'src/televerse/markups/menu.dart';
+part 'src/televerse/markups/keyboard_menu.dart';
 
 /// Conversation API
 part 'src/conversation/conversation.dart';

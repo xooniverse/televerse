@@ -4,15 +4,15 @@ import 'package:televerse/televerse.dart';
 /// Creates the bot instance
 final bot = Bot(Platform.environment["BOT_TOKEN"]!);
 
+// Create the menu
+final startMenu = InlineMenu(name: "Start Menu")
+    .text("Hello", helloCallback)
+    .row()
+    .text("Start", firstCallback)
+    .text("Finish", finishCallback);
+
 /// This is a general bot that tests different features of the library.
 void main() async {
-  // Create the menu
-  final startMenu = InlineMenu()
-      .text("Hello", helloCallback)
-      .row()
-      .text("Start", firstCallback)
-      .text("Finish", finishCallback);
-
   // Attach it to the bot
   bot.attachMenu(startMenu);
 
@@ -41,4 +41,7 @@ void firstCallback(CallbackQueryContext ctx) {
 // with "How was that?"
 void finishCallback(CallbackQueryContext ctx) {
   ctx.editMessage("How was that?");
+
+  // Removes the menu listeners from the bot
+  bot.removeMenu(startMenu);
 }

@@ -1286,8 +1286,10 @@ class Televerse<TeleverseSession extends Session> {
     bool Function(MessageContext) predicate, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    String? name,
   }) {
     HandlerScope scope = HandlerScope<MessageHandler>(
+      name: name,
       handler: callback,
       types: [
         if (includeChannelPosts || onlyChannelPosts) UpdateType.channelPost,
@@ -1436,7 +1438,9 @@ class Televerse<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for messages that contain a contact.
-  void onContact(MessageHandler callback) {
+  void onContact(
+    MessageHandler callback,
+  ) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message.contact != null,
@@ -1825,6 +1829,47 @@ class Televerse<TeleverseSession extends Session> {
         }
       }
     }
+    if (menu is KeyboardMenu) {
+      for (int i = 0; i < rows; i++) {
+        int cols = menu.actions[i].length;
+        for (int j = 0; j < cols; j++) {
+          final key = menu.actions[i].keys.elementAt(j);
+          final name = "${menu.name}-$key";
+
+          final action = menu.actions[i][key]!;
+          final data = jsonDecode(key);
+          switch (data['type']) {
+            case 'text':
+              _internalSubMessageHandler(
+                action,
+                (ctx) => ctx.message.text == data['text'],
+                name: name,
+              );
+              break;
+            case 'request_contact':
+              _internalSubMessageHandler(
+                action,
+                (ctx) => ctx.message.contact != null,
+                name: name,
+              );
+              break;
+            case 'request_location':
+              _internalSubMessageHandler(
+                action,
+                (ctx) => ctx.message.location != null,
+                name: name,
+              );
+              break;
+            case 'request_user':
+              _internalSubMessageHandler(
+                action,
+                (ctx) => ctx.message.userShared != null,
+                name: name,
+              );
+          }
+        }
+      }
+    }
   }
 
   /// Remove an Inline Menu.
@@ -1832,7 +1877,7 @@ class Televerse<TeleverseSession extends Session> {
     List<String> keys = [];
     int rows = menu.actions.length;
     for (int i = 0; i < rows; i++) {
-      keys.addAll(menu.actions[i].keys);
+      keys.addAll(menu.actions[i].keys.map((e) => "${menu.name}-$e"));
     }
 
     _handlerScopes.removeWhere((scope) => keys.contains(scope.name));

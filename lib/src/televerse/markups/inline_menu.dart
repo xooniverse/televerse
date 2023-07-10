@@ -7,7 +7,7 @@ class InlineMenu
         TeleverseMenu<CallbackQueryContext, CallbackQueryHandler> {
   /// Name of the menu
   @override
-  String? name;
+  String name;
 
   /// Map that represents the text and action to be done
   @override
@@ -16,9 +16,10 @@ class InlineMenu
   /// Constructs a InlineMenu
   InlineMenu({
     List<Map<String, CallbackQueryHandler>>? actions,
-    this.name,
+    String? name,
   })  : actions = actions ?? [{}],
-        inlineKeyboard = TeleverseMenu._makeInlineKeyboard(actions);
+        inlineKeyboard = TeleverseMenu._makeInlineKeyboard(actions),
+        name = name ?? _getRandomID();
 
   /// Add a new row to the keyboard
   InlineMenu row() {

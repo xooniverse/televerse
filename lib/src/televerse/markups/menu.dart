@@ -7,7 +7,7 @@ abstract class TeleverseMenu<CTX extends Context,
   List<Map<String, CtxHandler>> actions;
 
   /// Name of the menu
-  String? name;
+  String name;
 
   /// Converts the object to a JSON object
   Map<String, dynamic> toJson();
@@ -30,8 +30,36 @@ abstract class TeleverseMenu<CTX extends Context,
   ) {
     if (rows == null) return [];
     return rows.map((row) {
-      return row.keys.map((element) {
-        return KeyboardButton(text: element);
+      return row.keys.map((e) {
+        final data = jsonDecode(e);
+        final text = data['text'];
+        final type = data['type'];
+        switch (type) {
+          case 'text':
+            return KeyboardButton(text: text);
+          case 'request_contact':
+            return KeyboardButton(
+              text: text,
+              requestContact: true,
+            );
+          case 'request_location':
+            return KeyboardButton(
+              text: text,
+              requestLocation: true,
+            );
+          case 'request_user':
+            return KeyboardButton(
+              text: text,
+              requestUser: KeyboardButtonRequestUser.fromJson(data),
+            );
+          case 'request_chat':
+            return KeyboardButton(
+              text: text,
+              requestChat: KeyboardButtonRequestChat.fromJson(data),
+            );
+          default:
+            return KeyboardButton(text: text);
+        }
       }).toList();
     }).toList();
   }
@@ -39,6 +67,7 @@ abstract class TeleverseMenu<CTX extends Context,
   /// Constructs a TeleverseMenu
   TeleverseMenu({
     List<Map<String, CtxHandler>>? actions,
-    this.name,
-  }) : actions = actions ?? [{}];
+    String? name,
+  })  : actions = actions ?? [{}],
+        name = name ?? _getRandomID();
 }
