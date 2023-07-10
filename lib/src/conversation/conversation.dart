@@ -241,7 +241,7 @@ class Conversation<T extends Session> {
 
     final scopeName = "conversation+${_getRandomID()}";
     _bot._handlerScopes.add(
-      HandlerScope<DC Function(DC)>(
+      HandlerScope<FutureOr<void> Function(DC)>(
         isConversation: true,
         name: scopeName,
         predicate: (ctx) =>
@@ -268,15 +268,5 @@ class Conversation<T extends Session> {
     _bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
 
     return ctx;
-  }
-
-  // Internal method to generate a random id.
-  // Include a-z, A-Z, 0-9
-  String _getRandomID() {
-    final random = Random();
-    final chars =
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    return List.generate(20, (index) => chars[random.nextInt(chars.length)])
-        .join();
   }
 }
