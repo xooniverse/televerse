@@ -381,6 +381,31 @@ class Televerse<TeleverseSession extends Session> {
     _handlerScopes.add(scope);
   }
 
+  /// Registers a Handler Scope to listen to matching callback query.
+  void _internalCallbackQueryRegister(
+    Pattern data,
+    CallbackQueryHandler callback, {
+    String? name,
+  }) {
+    HandlerScope scope = HandlerScope<CallbackQueryHandler>(
+      name: name,
+      handler: callback,
+      types: [UpdateType.callbackQuery],
+      predicate: (ctx) {
+        ctx as CallbackQueryContext;
+        if (ctx.data == null) return false;
+        if (data is RegExp) {
+          return data.hasMatch(ctx.data!);
+        } else if (data is String) {
+          return ctx.data == data;
+        }
+        return false;
+      },
+    );
+
+    _handlerScopes.add(scope);
+  }
+
   /// Registers a callback for a callback query.
   ///
   /// The callback will be called when a callback query is received that has
@@ -401,22 +426,7 @@ class Televerse<TeleverseSession extends Session> {
     CallbackQueryHandler callback, {
     @Deprecated("Use the 'data' parameter instead.") RegExp? regex,
   }) {
-    HandlerScope scope = HandlerScope<CallbackQueryHandler>(
-      handler: callback,
-      types: [UpdateType.callbackQuery],
-      predicate: (ctx) {
-        ctx as CallbackQueryContext;
-        if (ctx.data == null) return false;
-        if (data is RegExp) {
-          return data.hasMatch(ctx.data!);
-        } else if (data is String) {
-          return ctx.data == data;
-        }
-        return false;
-      },
-    );
-
-    _handlerScopes.add(scope);
+    return _internalCallbackQueryRegister(data, callback);
   }
 
   /// Registers a callback for particular chat types.
@@ -1799,18 +1809,32 @@ class Televerse<TeleverseSession extends Session> {
   /// Attach an Inline Menu.
   ///
   /// This method will make the menu handlers to be called when the menu buttons are pressed.
-  void attachMenu(InlineMenu menu) {
+  void attachMenu(TeleverseMenu menu) {
     int rows = menu.actions.length;
-    for (int i = 0; i < rows; i++) {
-      int cols = menu.actions[i].length;
-      for (int j = 0; j < cols; j++) {
-        final key = menu.actions[i].keys.elementAt(j);
-        final action = menu.actions[i][key]!;
-        callbackQuery(
-          key,
-          action,
-        );
+    if (menu is InlineMenu) {
+      for (int i = 0; i < rows; i++) {
+        int cols = menu.actions[i].length;
+        for (int j = 0; j < cols; j++) {
+          final key = menu.actions[i].keys.elementAt(j);
+          final action = menu.actions[i][key]!;
+          _internalCallbackQueryRegister(
+            key,
+            action,
+            name: "${menu.name}-$key",
+          );
+        }
       }
     }
+  }
+
+  /// Remove an Inline Menu.
+  void removeMenu(TeleverseMenu menu) {
+    List<String> keys = [];
+    int rows = menu.actions.length;
+    for (int i = 0; i < rows; i++) {
+      keys.addAll(menu.actions[i].keys);
+    }
+
+    _handlerScopes.removeWhere((scope) => keys.contains(scope.name));
   }
 }

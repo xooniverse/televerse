@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:televerse/televerse.dart';
 
+/// Creates the bot instance
+final bot = Bot(Platform.environment["BOT_TOKEN"]!);
+
 /// This is a general bot that tests different features of the library.
 void main() async {
-  /// Creates the bot instance
-  final bot = Bot(Platform.environment["BOT_TOKEN"]!);
-
   // Create the menu
   final startMenu = InlineMenu()
       .text("Hello", helloCallback)

@@ -67,14 +67,17 @@ class InlineKeyboard extends InlineKeyboardMarkup {
 
   /// Adds a new row to the current keyboard.
   InlineKeyboard row() {
+    if (inlineKeyboard.last.isEmpty) return this;
     inlineKeyboard.add([]);
     return this;
   }
 
   /// Adds a Inline Keyboard Button with given [text] and [data] to the current row.
   InlineKeyboard add(String text, String data) {
-    inlineKeyboard.last
-        .add(InlineKeyboardButton(text: text, callbackData: data));
+    inlineKeyboard.last.add(InlineKeyboardButton(
+      text: text,
+      callbackData: data,
+    ));
     return this;
   }
 
