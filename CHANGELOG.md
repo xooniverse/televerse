@@ -1,3 +1,17 @@
+## 1.10.3
+
+- Introducing `Televerse Menu`.
+- Added `InlineMenu` and `KeyboardMenu` classes to represent an inline menu and a keyboard menu respectively.
+- Added `bot.attachMenu` method to attach a menu to the bot.
+- Added `bot.removeMenu` method to remove a menu listeners from from the bot.
+- Usage of `Televerse Menu` is demonstrated in [/example/menu_bot.dart](./example/menu_bot.dart).
+- Fixed an issue with the `MessageContext` and `MessageMixin`- [#124](https://github.com/HeySreelal/televerse/issues/124)
+- Improved code quality.
+- Fixed the incorrect type of `messagThreadId` parameter in multiple methods.
+- Updated `ChatMemberUpdatedContext` class to support both `chat_member` and `my_chat_member` updates.
+- Added `bot.me` getter to get the information about the bot. (Thanks to [@GiuseppeFn](https://github.com/GiuseppeFn))
+- Added `bot.getMe` method to get the information about the bot and set it to the `bot.me` getter.
+
 ## 1.10.2
 
 - Fixed issue that might cause a crash when `LongPolling.allUpdates` is used.
