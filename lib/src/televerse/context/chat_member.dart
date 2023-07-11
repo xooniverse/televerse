@@ -11,7 +11,10 @@ class ChatMemberUpdatedContext extends Context with MessageMixin {
   });
 
   /// The [ChatMemberUpdated] instance.
-  ChatMemberUpdated get chatMemberUpdated => update.chatMember!;
+  ///
+  /// This can either be `chatMemberUpdated` or `myChatMemberUpdated`.
+  ChatMemberUpdated get chatMemberUpdated =>
+      (update.chatMember ?? update.myChatMember)!;
 
   /// The old chat member.
   ChatMember get oldChatMember => chatMemberUpdated.oldChatMember;

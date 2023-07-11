@@ -195,7 +195,7 @@ class RawAPI {
     return response;
   }
 
-  /// Use this method to send text messages. On success, the sent [MessageContext] is returned.
+  /// Use this method to send text messages. On success, the sent [Message] is returned.
   ///
   /// Required parameters:
   /// - [chatId] - Chat ID can either be [ChatID] or [ChannelID] or [SupergroupID]
@@ -215,7 +215,7 @@ class RawAPI {
   /// bot.sendMessage(ChannelID("@myChannel"), "Hello World!");
   /// ```
   ///
-  /// On success, the sent [MessageContext] is which can be used to reply to the message.
+  /// On success, the sent [Message] is which can be used to reply to the message.
   Future<Message> sendMessage(
     ID chatId,
     String text, {
@@ -249,7 +249,7 @@ class RawAPI {
     return Message.fromJson(response);
   }
 
-  /// Use this method to forward messages of any kind. Service messages can't be forwarded. On success, the sent [MessageContext] is returned.
+  /// Use this method to forward messages of any kind. Service messages can't be forwarded. On success, the sent [Message] is returned.
   ///
   /// Required parameters:
   /// - [chatId] - Chat ID can either be [ChatID] or [ChannelID] or [SupergroupID]
@@ -2234,7 +2234,7 @@ class RawAPI {
   ///
   /// If you're looking for a way to edit inline messages, use [editInlineMessageCaption].
   ///
-  /// On success, [MessageContext] is returned.
+  /// On success, [Message] is returned.
   Future<Message> editMessageCaption(
     ID chatId,
     int messageId, {
@@ -2470,7 +2470,7 @@ class RawAPI {
   Future<Message> sendSticker(
     ID chatId,
     InputFile sticker, {
-    String? messageThreadId,
+    int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
     int? replyToMessageId,
@@ -2580,97 +2580,6 @@ class RawAPI {
 
     return File.fromJson(response);
   }
-
-  // /// Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Returns True on success.
-  // Future<bool> createNewStickerSet(
-  //   int userId,
-  //   String name,
-  //   String title,
-  //   InputFile pngSticker, {
-  //   InputFile? tgsSticker,
-  //   InputFile? webmSticker,
-  //   StickerType? stickerType = StickerType.regular,
-  //   required String emojis,
-  //   bool? containsMasks,
-  //   MaskPosition? maskPosition,
-  // }) async {
-  //   Map<String, dynamic> params = {
-  //     "user_id": userId,
-  //     "name": name,
-  //     "title": title,
-  //     "emojis": emojis,
-  //     "contains_masks": containsMasks,
-  //     "mask_position": jsonEncode(maskPosition?.toJson()),
-  //     "sticker_type": jsonEncode(stickerType?.toJson()),
-  //   };
-
-  //   bool response;
-  //   List<MultipartFile> files = [];
-  //   if (pngSticker.type == InputFileType.file) {
-  //     params["png_sticker"] = pngSticker.toJson();
-  //     files.add(
-  //       MultipartFile.fromBytes(
-  //         "png_sticker",
-  //         pngSticker.file!.readAsBytesSync(),
-  //         filename: pngSticker.file!.filename,
-  //       ),
-  //     );
-  //   } else {
-  //     params["png_sticker"] = pngSticker.toJson();
-  //   }
-
-  //   if (tgsSticker != null) {
-  //     if (tgsSticker.type == InputFileType.file) {
-  //       params["tgs_sticker"] = tgsSticker.toJson();
-  //       files.add(
-  //         MultipartFile.fromBytes(
-  //           "tgs_sticker",
-  //           tgsSticker.file!.readAsBytesSync(),
-  //           filename: tgsSticker.file!.filename,
-  //         ),
-  //       );
-  //     } else {
-  //       throw TeleverseException(
-  //         "Invalid Parameter [tgsSticker]",
-  //         description:
-  //             "Only upload TGS file. Use [InputFile.fromFile] to upload file.",
-  //       );
-  //     }
-  //   }
-
-  //   if (webmSticker != null) {
-  //     if (webmSticker.type == InputFileType.file) {
-  //       params["webm_sticker"] = webmSticker.toJson();
-  //       files.add(
-  //         MultipartFile.fromBytes(
-  //           "webm_sticker",
-  //           webmSticker.file!.readAsBytesSync(),
-  //           filename: webmSticker.file!.filename,
-  //         ),
-  //       );
-  //     } else {
-  //       throw TeleverseException(
-  //         "Invalid Parameter [webmSticker]",
-  //         description:
-  //             "Only upload WEBM file. Use [InputFile.fromFile] to upload file.",
-  //       );
-  //     }
-  //   }
-
-  //   if (files.isEmpty) {
-  //     response = await HttpClient.getURI(
-  //       _buildUri("createNewStickerSet", params),
-  //     );
-  //   } else {
-  //     response = await HttpClient.multipartPost(
-  //       _buildUri("createNewStickerSet"),
-  //       files,
-  //       params,
-  //     );
-  //   }
-
-  //   return response;
-  // }
 
   /// Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.
   Future<bool> addStickerToSet(
@@ -2837,7 +2746,7 @@ class RawAPI {
     required String providerToken,
     required String currency,
     required List<LabeledPrice> prices,
-    String? messageThreadId,
+    int? messageThreadId,
     int? maxTipAmount = 0,
     List<int>? suggestedTipAmounts,
     String? startParameter,
@@ -3045,7 +2954,7 @@ class RawAPI {
     return response;
   }
 
-  /// Use this method to send a game. On success, the sent [MessageContext] is returned.
+  /// Use this method to send a game. On success, the sent [Message] is returned.
   Future<Message> sendGame(
     ID chatId,
     String gameShortName, {
@@ -3076,7 +2985,7 @@ class RawAPI {
   }
 
   /// Use this method to set the score of the specified user in a game message.
-  /// On success the [MessageContext] is returned.
+  /// On success the [Message] is returned.
   ///
   /// Returns an error, if the new score is not greater than the user's current score in the chat and [force] is False.
   ///

@@ -5,12 +5,13 @@ part of televerse.context;
 /// `MessageContext` will be passed to the callback functions of any methods that listen to messages. For example, if you use `Televerse.text` to listen to text messages, the callback function will be called with a `MessageContext` object as parameter.
 class MessageContext extends Context with MessageMixin, ManagementMixin {
   /// The incoming message.
-  final Message message;
+  ///
+  /// This can either be `Message` or `Channel Post` or `Edited Message` or `Edited Channel Post`.
+  Message get message => _msg;
 
   /// Constructs a new [MessageContext].
   MessageContext(
-    super._bot,
-    this.message, {
+    super._bot, {
     required Update update,
   }) : super(update: update);
 

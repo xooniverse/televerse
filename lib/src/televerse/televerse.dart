@@ -154,11 +154,29 @@ class Televerse<TeleverseSession extends Session> {
   User get me {
     try {
       return _me;
-    } catch (err) {
+    } catch (err, stack) {
       throw TeleverseException(
-        "Bot information not found. ",
-        description: "Couldn't fetch bot information.",
+        "Bot information not found.",
+        description:
+            "This happens when the initial getMe request is not completed. You can call `bot.getMe` method to set this property.",
+        stackTrace: stack,
       );
+    }
+  }
+
+  /// Get information about the bot.
+  ///
+  /// This will also set `bot.me`. If by any chance the request is failed,
+  /// this will throw a TeleverseException with the details about the exception.
+  ///
+  /// Note: As of now this won't be handled in `onError` handler.
+  Future<User> getMe() async {
+    try {
+      _me = await api.getMe();
+      return _me;
+    } catch (err, stack) {
+      final exception = TeleverseException.getMeRequestFailed(err, stack);
+      throw exception;
     }
   }
 
@@ -363,6 +381,31 @@ class Televerse<TeleverseSession extends Session> {
     _handlerScopes.add(scope);
   }
 
+  /// Registers a Handler Scope to listen to matching callback query.
+  void _internalCallbackQueryRegister(
+    Pattern data,
+    CallbackQueryHandler callback, {
+    String? name,
+  }) {
+    HandlerScope scope = HandlerScope<CallbackQueryHandler>(
+      name: name,
+      handler: callback,
+      types: [UpdateType.callbackQuery],
+      predicate: (ctx) {
+        ctx as CallbackQueryContext;
+        if (ctx.data == null) return false;
+        if (data is RegExp) {
+          return data.hasMatch(ctx.data!);
+        } else if (data is String) {
+          return ctx.data == data;
+        }
+        return false;
+      },
+    );
+
+    _handlerScopes.add(scope);
+  }
+
   /// Registers a callback for a callback query.
   ///
   /// The callback will be called when a callback query is received that has
@@ -383,22 +426,7 @@ class Televerse<TeleverseSession extends Session> {
     CallbackQueryHandler callback, {
     @Deprecated("Use the 'data' parameter instead.") RegExp? regex,
   }) {
-    HandlerScope scope = HandlerScope<CallbackQueryHandler>(
-      handler: callback,
-      types: [UpdateType.callbackQuery],
-      predicate: (ctx) {
-        ctx as CallbackQueryContext;
-        if (ctx.data == null) return false;
-        if (data is RegExp) {
-          return data.hasMatch(ctx.data!);
-        } else if (data is String) {
-          return ctx.data == data;
-        }
-        return false;
-      },
-    );
-
-    _handlerScopes.add(scope);
+    return _internalCallbackQueryRegister(data, callback);
   }
 
   /// Registers a callback for particular chat types.
@@ -1258,8 +1286,10 @@ class Televerse<TeleverseSession extends Session> {
     bool Function(MessageContext) predicate, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    String? name,
   }) {
     HandlerScope scope = HandlerScope<MessageHandler>(
+      name: name,
       handler: callback,
       types: [
         if (includeChannelPosts || onlyChannelPosts) UpdateType.channelPost,
@@ -1408,7 +1438,9 @@ class Televerse<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for messages that contain a contact.
-  void onContact(MessageHandler callback) {
+  void onContact(
+    MessageHandler callback,
+  ) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message.contact != null,
@@ -1776,5 +1808,78 @@ class Televerse<TeleverseSession extends Session> {
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
     );
+  }
+
+  /// Attach an Inline Menu.
+  ///
+  /// This method will make the menu handlers to be called when the menu buttons are pressed.
+  void attachMenu(TeleverseMenu menu) {
+    int rows = menu.actions.length;
+    if (menu is InlineMenu) {
+      for (int i = 0; i < rows; i++) {
+        int cols = menu.actions[i].length;
+        for (int j = 0; j < cols; j++) {
+          final key = menu.actions[i].keys.elementAt(j);
+          final action = menu.actions[i][key]!;
+          _internalCallbackQueryRegister(
+            key,
+            action,
+            name: "${menu.name}-$key",
+          );
+        }
+      }
+    }
+    if (menu is KeyboardMenu) {
+      for (int i = 0; i < rows; i++) {
+        int cols = menu.actions[i].length;
+        for (int j = 0; j < cols; j++) {
+          final key = menu.actions[i].keys.elementAt(j);
+          final name = "${menu.name}-$key";
+
+          final action = menu.actions[i][key]!;
+          final data = jsonDecode(key);
+          switch (data['type']) {
+            case 'text':
+              _internalSubMessageHandler(
+                action,
+                (ctx) => ctx.message.text == data['text'],
+                name: name,
+              );
+              break;
+            case 'request_contact':
+              _internalSubMessageHandler(
+                action,
+                (ctx) => ctx.message.contact != null,
+                name: name,
+              );
+              break;
+            case 'request_location':
+              _internalSubMessageHandler(
+                action,
+                (ctx) => ctx.message.location != null,
+                name: name,
+              );
+              break;
+            case 'request_user':
+              _internalSubMessageHandler(
+                action,
+                (ctx) => ctx.message.userShared != null,
+                name: name,
+              );
+          }
+        }
+      }
+    }
+  }
+
+  /// Remove an Inline Menu.
+  void removeMenu(TeleverseMenu menu) {
+    List<String> keys = [];
+    int rows = menu.actions.length;
+    for (int i = 0; i < rows; i++) {
+      keys.addAll(menu.actions[i].keys.map((e) => "${menu.name}-$e"));
+    }
+
+    _handlerScopes.removeWhere((scope) => keys.contains(scope.name));
   }
 }

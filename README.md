@@ -8,11 +8,11 @@
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot framework built with Dart programming language. It provides a complete and well-structured API that enables developers to create and deploy complex Telegram bots with ease. Televerse provides a total of 0 dynamic types on its public interface, making it easy for developers to write strictly typed code.
 
-## 🔥 Latest Update: Conversation!
+## 🔥 Latest Update: Televerse Menu!
 
-Televerse now has a simple and easy-to-use Conversation API that allows you to create complex conversations with your users. You can use the Conversation API to create conversation between the bot and the user in a straight-forward way.
+Inline Keyboard and Keyboard are a great way to interact with bots. However, effectively managing input through Telegram Bot Keyboards can present challenges, potentially resulting in messy and less efficient code. Let's say - what if you want to create a more complex menu with multiple options? That's where Televerse Menu comes in.
 
-The `Conversation` class helps you wait for a specific message from the user, and then respond to it. Check out the [Conversation Bot Example](./example/conversations_example.dart) to learn more about the Conversation API also check out the [Not Conversation Example](./example/not_conversation_example.dart) to understand the difference.
+Televerse Menu is a powerful and easy-to-use menu builder that allows you to create complex menus with ease. You can create menus with multiple options along with attaching callbacks to each option. Check out the [example](./example/menu_bot.dart) to learn more about Televerse Menu.
 
 <hr>
 
