@@ -1820,11 +1820,12 @@ class Televerse<TeleverseSession extends Session> {
         int cols = menu.actions[i].length;
         for (int j = 0; j < cols; j++) {
           final key = menu.actions[i].keys.elementAt(j);
+          final data = key.data ?? key.text;
           final action = menu.actions[i][key]!;
           _internalCallbackQueryRegister(
-            key,
+            data,
             action,
-            name: "${menu.name}-$key",
+            name: "${menu.name}-$data",
           );
         }
       }
