@@ -1,3 +1,9 @@
+## 1.10.4
+
+- Fix [#130](https://github.com/HeySreelal/televerse/issues/130) - `RawAPI.editMessageMedia` method now works as expected.
+- Added callback data to `InlineMenu` - [#129](https://github.com/HeySreelal/televerse/pull/129) (Thanks to [@devsdocs](https://github.com/devsdocs)).
+- Now all `RawAPI` methods uses HTTP `POST` / `Multipart POST` requests instead of `GET` requests.
+
 ## 1.10.3
 
 - Introducing `Televerse Menu`.
