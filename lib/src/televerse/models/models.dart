@@ -17,3 +17,4 @@ part 'televerse_exception.dart';
 part 'mention.dart';
 part 'custom_emoji.dart';
 part 'handler_scope.dart';
+part 'inline_menu_data.dart';

@@ -2,9 +2,9 @@ part of televerse;
 
 /// Abstract class to represent a menu
 abstract class TeleverseMenu<CTX extends Context,
-    CtxHandler extends FutureOr<void> Function(CTX)> {
+    CtxHandler extends FutureOr<void> Function(CTX), Data> {
   /// Map that represents the text and action to be done
-  List<Map<String, CtxHandler>> actions;
+  List<Map<Data, CtxHandler>> actions;
 
   /// Name of the menu
   String name;
@@ -14,12 +14,15 @@ abstract class TeleverseMenu<CTX extends Context,
 
   /// Converts a list of rows to a list of InlineKeyboardButton
   static List<List<InlineKeyboardButton>> _makeInlineKeyboard(
-    List<Map<String, CallbackQueryHandler>>? rows,
+    List<Map<InlineMenuData, CallbackQueryHandler>>? rows,
   ) {
     if (rows == null) return [];
     return rows.map((row) {
       return row.keys.map((element) {
-        return InlineKeyboardButton(text: element, callbackData: element);
+        return InlineKeyboardButton(
+          text: element.text,
+          callbackData: element.data ?? element.text,
+        );
       }).toList();
     }).toList();
   }
@@ -66,7 +69,7 @@ abstract class TeleverseMenu<CTX extends Context,
 
   /// Constructs a TeleverseMenu
   TeleverseMenu({
-    List<Map<String, CtxHandler>>? actions,
+    List<Map<Data, CtxHandler>>? actions,
     String? name,
   })  : actions = actions ?? [{}],
         name = name ?? _getRandomID();

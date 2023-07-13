@@ -111,6 +111,9 @@ class LongPolling extends Fetcher {
           await Future.delayed(_retryDelay);
           _isPolling = true;
         } else {
+          if (err.isClientException) {
+            rethrow;
+          }
           _doubleRetryDelay();
         }
       } else {

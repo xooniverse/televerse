@@ -4,7 +4,7 @@ part of televerse;
 class KeyboardMenu
     implements
         ReplyKeyboardMarkup,
-        TeleverseMenu<MessageContext, MessageHandler> {
+        TeleverseMenu<MessageContext, MessageHandler, String> {
   /// Name of the menu
   @override
   String name;
