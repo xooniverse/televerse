@@ -51,7 +51,7 @@ part 'src/televerse/markups/menu.dart';
 part 'src/televerse/markups/keyboard_menu.dart';
 
 /// Conversation API
-part 'src/conversation/conversation.dart';
+part 'src/televerse/conversation/conversation.dart';
 
 /// Type aliases for the library.
 part 'src/types/aliases.dart';
