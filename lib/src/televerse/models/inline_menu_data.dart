@@ -10,4 +10,11 @@ class InlineMenuData {
 
   /// Callback data
   final String? data;
+
+  /// Gets ID part
+  String get id => data ?? text;
+
+  /// String representation - this is just the ID itself
+  @override
+  String toString() => id;
 }

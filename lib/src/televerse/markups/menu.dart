@@ -2,9 +2,9 @@ part of televerse;
 
 /// Abstract class to represent a menu
 abstract class TeleverseMenu<CTX extends Context,
-    CtxHandler extends FutureOr<void> Function(CTX), T> {
+    CtxHandler extends FutureOr<void> Function(CTX), Data> {
   /// Map that represents the text and action to be done
-  List<Map<T, CtxHandler>> actions;
+  List<Map<Data, CtxHandler>> actions;
 
   /// Name of the menu
   String name;
@@ -20,7 +20,9 @@ abstract class TeleverseMenu<CTX extends Context,
     return rows.map((row) {
       return row.keys.map((element) {
         return InlineKeyboardButton(
-            text: element.text, callbackData: element.data ?? element.text);
+          text: element.text,
+          callbackData: element.data ?? element.text,
+        );
       }).toList();
     }).toList();
   }
@@ -67,7 +69,7 @@ abstract class TeleverseMenu<CTX extends Context,
 
   /// Constructs a TeleverseMenu
   TeleverseMenu({
-    List<Map<T, CtxHandler>>? actions,
+    List<Map<Data, CtxHandler>>? actions,
     String? name,
   })  : actions = actions ?? [{}],
         name = name ?? _getRandomID();
