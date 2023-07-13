@@ -22,12 +22,7 @@ class HttpClient {
     Map<String, dynamic> body,
   ) async {
     body.removeWhere((key, value) => value == null || value == "null");
-    Map<String, String> bodyContent = body.map((k, v) {
-      if (v is List) {
-        return MapEntry(k, jsonEncode(v));
-      }
-      return MapEntry(k, "$v");
-    });
+    Map<String, String> bodyContent = body.map(_getEntry);
 
     final response = await post(uri, body: bodyContent);
     final resBody = json.decode(response.body);
@@ -47,7 +42,7 @@ class HttpClient {
     body.removeWhere((key, value) => value == null || value == "null");
     final request = MultipartRequest("POST", uri)
       ..headers.addAll({"Content-Type": "multipart/form-data"})
-      ..fields.addAll(body.map((k, v) => MapEntry(k, "$v")))
+      ..fields.addAll(body.map(_getEntry))
       ..files.addAll(files);
     final response = await request.send();
     final resBody = await response.stream.bytesToString();
@@ -57,5 +52,16 @@ class HttpClient {
     } else {
       throw TelegramException.fromJson(res);
     }
+  }
+
+  /// Convert the MapEntry to MapEntry<String, String>.
+  static MapEntry<String, String> _getEntry(String k, dynamic v) {
+    if (v is List) {
+      return MapEntry(k, jsonEncode(v));
+    }
+    if (v is Map) {
+      return MapEntry(k, jsonEncode(v));
+    }
+    return MapEntry(k, "$v");
   }
 }

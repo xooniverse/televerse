@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:televerse/telegram.dart';
+import 'package:televerse/src/telegram/models/models.dart';
 import 'package:televerse/televerse.dart';
 
 /// This is a general bot that tests different features of the library.
@@ -7,122 +7,55 @@ void main() async {
   /// Creates the bot instance
   final bot = Bot(
     Platform.environment["BOT_TOKEN"]!,
-    fetcher: LongPolling.allUpdates(),
   );
 
-  /// Starts the bot and sets up the /start command listener
-  bot.start((ctx) {
-    UserMention mention = ctx.message.from!.mention;
+  bot.command('edit', editor());
+  bot.start(starter());
+  bot.onError((err, stackTrace) {
+    print("We got some problems!");
+    print(err);
+    print(stackTrace);
+  });
+}
 
-    // Custom emoji
-    // This will only work if the bots that purchased additional usernames on Fragment
-    final emoji = CustomEmoji("👍", 5368324170671202286);
-
-    ctx.reply("Hello $mention! $emoji", parseMode: ParseMode.html);
-
-    final link = ShareLink("https://google.com", text: "Google");
-    final groupLink = GroupBotLink("xclairebot");
-
-    final keyboard = InlineKeyboard()
-        .row()
-        .add("Noob", "exp-noob")
-        .add("Pro", "exp-pro")
-        .row()
-        .addUrl("Add me to a group", "$groupLink")
-        .row()
-        .addUrl("Share", "$link");
-
-    ctx.reply(
-      "Choose your experience level",
-      replyMarkup: keyboard,
+MessageHandler starter() {
+  return (ctx) async {
+    await ctx.reply("Hello, world!");
+    final msg = await ctx.replyWithPhoto(
+      InputFile.fromUrl(
+        "https://cdn.mos.cms.futurecdn.net/uxdsce4CMFwqPDRKEKvbX4.jpeg",
+      ),
+      caption: "This is a test image.",
     );
-  });
+    await ctx.reply("The message id of the image is ${msg.messageId}.");
+  };
+}
 
-  /// Adds a listener for callback queries
-  bot.callbackQuery(RegExp(r"^exp"), (ctx) {
-    final value = ctx.data!.split("-").last;
-    ctx.answer(
-      text: "You are $value at Dart",
-    );
-  });
-
-  bot.command('name', (ctx) {
-    ctx.api.setMyName(name: 'Claire ✨');
-  });
-
-  bot.filter((ctx) {
-    return ctx.message.videoChatParticipantsInvited != null;
-  }, (ctx) {
-    ctx.reply('Quick! Join the video chat!');
-  });
-
-  bot.filter((ctx) {
-    return ctx.message.videoChatStarted != null;
-  }, (ctx) {
-    ctx.reply('Video chat started!');
-  });
-
-  bot.filter((ctx) {
-    return ctx.message.poll != null;
-  }, (ctx) async {
-    Poll poll = ctx.message.poll!;
-
-    if (poll.type == PollType.quiz) {
-      await ctx.reply('Quiz started!');
-    } else {
-      await ctx.reply('Poll started!');
+MessageHandler editor() {
+  return (ctx) async {
+    String param;
+    try {
+      param = ctx.args[0];
+    } catch (e) {
+      await ctx.reply("Please provide a message id.");
+      return;
     }
 
-    await ctx.reply(
-      "Select one of ${poll.options.map((e) => e.text).join(', ')} to vote.",
+    final msgId = int.tryParse(param);
+    if (msgId == null) {
+      await ctx.reply("Please provide a valid message id.");
+      return;
+    }
+
+    await ctx.reply("Editing message...");
+    await ctx.api.editMessageMedia(
+      ctx.id,
+      msgId,
+      InputMediaPhoto(
+        media: InputFile.fromUrl(
+          "https://cdn.mos.cms.futurecdn.net/aSFaRjH2UffnnDd2Tq8zHF.jpg",
+        ),
+      ),
     );
-  });
-
-  bot.chatMember((ctx) {
-    ChatMemberUpdated member = ctx.chatMemberUpdated;
-    ChatMember newMember = member.newChatMember;
-
-    bot.api.sendMessage(
-      ChatID(member.chat.id),
-      "Member Updated: ${newMember.user.firstName}: ${newMember.status}",
-    );
-  });
-
-  bot.pollAnswer((ctx) {
-    final pollAnswer = ctx.pollAnswer;
-    ctx.reply('Poll Answered: ${pollAnswer.optionIds}');
-  });
-
-  bot.whenMentioned((ctx) {
-    ctx.reply('Duh, ah! Cheese burger, please! 🍔');
-  });
-
-  bot.command('test', (ctx) {
-    ctx.reply('Test passed!');
-  });
-
-  bot.command('testing', (ctx) async {
-    await ctx.reply('Testing...');
-
-    await Future.delayed(Duration(seconds: 5));
-
-    throw Exception('Test failed!');
-  });
-
-  bot.onError((err, stackTrace) {
-    print('I catch everything :)');
-  });
-
-  bot.command("stop", (ctx) async {
-    await ctx.reply("Stopping...");
-    bot.stop();
-  });
-
-  bot.onStop(() {
-    print('Bot stopped!');
-  });
-
-  bot.onMessage((ctx) {
-    ctx.reply('I got a message!');
-  });
+  };
 }
