@@ -1,6 +1,8 @@
 ## 1.10.5
 
-- All exceptions thrown by any of the `RawAPI` methods or occurred inside handlers will now be caught and passed to the `onError` method.
+- Improved error handling.
+- All exceptions thrown inside handler methods will now be caught and passed to the `onError` method.
+- That is no more unexpected crashes even if you don't handle the exceptions inside the handler methods.
 
 ## 1.10.4
 
