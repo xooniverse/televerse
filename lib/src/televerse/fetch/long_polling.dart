@@ -98,18 +98,15 @@ class LongPolling extends Fetcher {
       _resetRetryDelay();
     } catch (err, stackTrace) {
       _isPolling = false;
+      // If the error is a TelegramException, just go handle it.
       if (err is TelegramException) {
+        // If the onError handler is set, call it.
         if (_onError != null) {
           final longError = err.toLongPollingException(stackTrace);
           await _onError!(longError, stackTrace);
-        }
-        if (err.parameters?.retryAfter != null) {
-          print(
-            'Polling will be resumed after ${err.parameters!.retryAfter!} seconds',
-          );
-          _retryDelay = Duration(seconds: err.parameters!.retryAfter!);
-          await Future.delayed(_retryDelay);
-          _isPolling = true;
+          await _awaitRetryAfter(err.parameters?.retryAfter);
+        } else if (err.parameters?.retryAfter != null) {
+          await _awaitRetryAfter(err.parameters?.retryAfter);
         } else {
           if (err.isClientException) {
             rethrow;
@@ -125,6 +122,17 @@ class LongPolling extends Fetcher {
         }
       }
     }
+  }
+
+  /// Waits for the retry after time.
+  Future<void> _awaitRetryAfter([int? retryAfter]) async {
+    _isPolling = false;
+    if (retryAfter != null) {
+      print('Polling will be resumed after $retryAfter seconds');
+      _retryDelay = Duration(seconds: retryAfter);
+    }
+    await Future.delayed(_retryDelay);
+    _isPolling = true;
   }
 
   /// [LongPolling] with all updates allowed.
