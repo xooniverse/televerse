@@ -39,7 +39,7 @@ class ShareLink extends Deeplink {
   /// https://t.me/ link
   @override
   String get https {
-    final url = 'https://t.me/share?url=$_encodedUrl';
+    final url = 'https://t.me/share/url?url=$_encodedUrl';
     if (text != null) {
       return '$url&text=$_encodedText';
     } else {

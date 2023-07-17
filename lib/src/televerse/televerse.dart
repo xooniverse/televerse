@@ -214,15 +214,15 @@ class Televerse<TeleverseSession extends Session> {
 
       if (sub[i].predicate(context)) {
         if (_checkSync(sub[i].handler!)) {
-          ((sub[i].handler!(context)) as Future)
-              .then((_) {})
-              .catchError((err) async {
+          try {
+            await ((sub[i].handler!(context)) as Future);
+          } catch (err, stack) {
             if (_onError != null) {
-              await _onError!(err, StackTrace.current);
+              await _onError!(err, stack);
             } else {
-              throw err;
+              rethrow;
             }
-          });
+          }
         } else {
           try {
             sub[i].handler!(context);

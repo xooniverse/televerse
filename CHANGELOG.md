@@ -1,3 +1,9 @@
+## 1.10.5
+
+- Improved error handling.
+- All exceptions thrown inside handler methods will now be caught and passed to the `onError` method.
+- That is no more unexpected crashes even if you don't handle the exceptions inside the handler methods.
+
 ## 1.10.4
 
 - Fix [#130](https://github.com/HeySreelal/televerse/issues/130) - `RawAPI.editMessageMedia` method now works as expected.
