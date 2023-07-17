@@ -1,8 +1,10 @@
-## 1.10.5
+## 1.10.6
 
 - Improved error handling.
 - All exceptions thrown inside handler methods will now be caught and passed to the `onError` method.
 - That is no more unexpected crashes even if you don't handle the exceptions inside the handler methods.
+- Removed some unnecessary code.
+- Updated long polling error handling.
 
 ## 1.10.4
 
