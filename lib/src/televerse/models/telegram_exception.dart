@@ -36,7 +36,8 @@ class TelegramException implements Exception {
   /// Returns a string representation of the exception.
   @override
   String toString() {
-    return "TelegramException [$code]: ${description != null ? '\n($description)' : ''}";
+    return "TelegramException [$code]: ${description != null ? '($description)' : ''}\n"
+        "${parameters != null ? '\nParameters: $parameters' : ''}";
   }
 
   /// Returns true if the exception is a client exception.
@@ -54,24 +55,4 @@ class TelegramException implements Exception {
       stackTrace: stackTrace,
     );
   }
-}
-
-/// Bad Request Exception is thrown when the request is invalid.
-class BadRequestException extends TelegramException {
-  /// Constructs a new [BadRequestException]. The [message] is the error message.
-  BadRequestException(
-    String message, {
-    ResponseParameters? parameters,
-  }) : super(400, description: message, parameters: parameters);
-}
-
-/// This exception is thrown when the bot token is invalid.
-class UnauthorizedException extends TelegramException {
-  /// Constructs a new [UnauthorizedException].
-  UnauthorizedException()
-      : super(
-          401,
-          description:
-              "This exception is thrown when the bot token is invalid.",
-        );
 }

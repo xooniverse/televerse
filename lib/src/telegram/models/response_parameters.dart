@@ -32,5 +32,7 @@ class ResponseParameters {
 
   /// Returns a string representation of this object.
   @override
-  String toString() => "ResponseParameters(${toJson()})";
+  String toString() {
+    return "ResponseParameters(${migrateToChatId != null ? 'migrateToChatId: $migrateToChatId,' : ''}${retryAfter != null ? 'retryAfter: $retryAfter,' : ''})";
+  }
 }
