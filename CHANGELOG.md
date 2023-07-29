@@ -1,3 +1,6 @@
+## 1.10.7
+- Fixed a minor formatting issue
+
 ## 1.10.6
 
 - Fix [#135](https://github.com/HeySreelal/televerse/issues/135) - Methods in `MessageContext` failed to work when message is in a General Topic of a Forum.
