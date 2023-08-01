@@ -21,6 +21,9 @@ class BotError implements Exception {
     this.ctx,
   });
 
+  /// A flag to simplify checking if the error has a context
+  bool get hasContext => ctx?.update != null;
+
   /// The associated update.
   Update? get update => ctx?.update;
 
