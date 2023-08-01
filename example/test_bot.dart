@@ -18,10 +18,9 @@ void main() async {
       allowSendingWithoutReply: true,
     );
   });
-  bot.onError((err, stackTrace) {
+  bot.onError((err) {
     print("We got some problems!");
     print(err);
-    print(stackTrace);
   });
   bot.start();
 }

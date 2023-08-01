@@ -29,7 +29,7 @@ class Televerse<TeleverseSession extends Session> {
   final bool isLocal;
 
   /// Handler for unexpected errors.
-  FutureOr<void> Function(Object, StackTrace)? _onError;
+  FutureOr<void> Function(BotError error)? _onError;
 
   /// Get the bot instance.
   ///
@@ -97,7 +97,8 @@ class Televerse<TeleverseSession extends Session> {
       _me = value;
     }).catchError((err, st) async {
       if (_onError != null) {
-        await _onError!(err, st);
+        final botErr = BotError(err, st);
+        await _onError!(botErr);
       } else {
         throw err;
       }
@@ -218,7 +219,8 @@ class Televerse<TeleverseSession extends Session> {
             await ((sub[i].handler!(context)) as Future);
           } catch (err, stack) {
             if (_onError != null) {
-              await _onError!(err, stack);
+              final botErr = BotError(err, stack, ctx: context);
+              await _onError!(botErr);
             } else {
               rethrow;
             }
@@ -228,7 +230,8 @@ class Televerse<TeleverseSession extends Session> {
             sub[i].handler!(context);
           } catch (err, stack) {
             if (_onError != null) {
-              await _onError!(err, stack);
+              final botErr = BotError(err, stack, ctx: context);
+              await _onError!(botErr);
             } else {
               rethrow;
             }
@@ -276,7 +279,8 @@ class Televerse<TeleverseSession extends Session> {
     } catch (err, stack) {
       if (_onError != null) {
         fetcher.stop();
-        await _onError!(err, stack);
+        final botErr = BotError(err, stack);
+        await _onError!(botErr);
         return fetcher.start();
       } else {
         rethrow;
@@ -355,7 +359,8 @@ class Televerse<TeleverseSession extends Session> {
       } catch (err, st) {
         if (_onError != null) {
           final ex = TeleverseException.getMeRequestFailed(err, st);
-          await _onError!(ex, st);
+          final botErr = BotError(ex, st);
+          await _onError!(botErr);
         } else {
           rethrow;
         }
@@ -623,9 +628,12 @@ class Televerse<TeleverseSession extends Session> {
     return command("help", handler);
   }
 
-  /// Registers a callback for on any unexpected error.
+  /// Registers a callback for any unexpected error.
   ///
-  /// Possible objects that can be passed to the handler:
+  /// The `err` parameter will be an instance of [BotError].
+  ///
+  /// The handler will be called whenever one of the following exceptions are thrown,
+  /// or any unexpected error is thrown:
   ///  - [TelegramException]
   ///  - [LongPollingException]
   ///  - [TeleverseException]
@@ -637,7 +645,7 @@ class Televerse<TeleverseSession extends Session> {
   /// Note: you DON'T have to manually wait for the [ResponseParameters.retryAfter] duration.
   /// The fetcher will automatically wait for the duration and start polling again.
   void onError(
-    void Function(Object err, StackTrace stackTrace) handler,
+    void Function(BotError err) handler,
   ) {
     _onError = handler;
     this.fetcher.onError(handler);
