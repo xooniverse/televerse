@@ -30,13 +30,17 @@ class InputFile {
   /// URL of the file to be sent. Use either this field or fileId to specify a file.
   final Uri? url;
 
+  /// The bytes of the file.
+  final Uint8List? bytes;
+
   /// Creates a new [InputFile].
   InputFile({
     this.fileId,
     this.file,
     this.url,
+    this.bytes,
   }) {
-    if (fileId == null && file == null && url == null) {
+    if (fileId == null && file == null && url == null && bytes == null) {
       throw TeleverseException(
         'InputFile must be initialized with a value. Use either fileId, file, or url.\n\nYou can use [InputFile.fromFileId], [InputFile.fromFile], or [InputFile.fromUrl] to create an InputFile.',
       );
@@ -52,6 +56,9 @@ class InputFile {
   /// Creates a new [InputFile] using the File ID on the Telegram Servers.
   factory InputFile.fromFileId(String fileId) => InputFile(fileId: fileId);
 
+  /// Creates a new [InputFile] using the bytes of the file.
+  factory InputFile.fromBytes(Uint8List bytes) => InputFile(bytes: bytes);
+
   /// Returns the type of the [InputFile].
   InputFileType get type {
     if (fileId != null) {
@@ -60,6 +67,8 @@ class InputFile {
       return InputFileType.file;
     } else if (url != null) {
       return InputFileType.url;
+    } else if (bytes != null) {
+      return InputFileType.bytes;
     } else {
       throw TeleverseException('InputFile must have a value');
     }
@@ -74,6 +83,21 @@ class InputFile {
         return "attach://${file!.filename}";
       case InputFileType.url:
         return url!.toString();
+      case InputFileType.bytes:
+        return "attach://file";
+    }
+  }
+
+  /// Get bytes of either the file or the bytes itself.
+  Uint8List getBytes() {
+    if (bytes != null) {
+      return bytes!;
+    } else if (file != null) {
+      return file!.readAsBytesSync();
+    } else {
+      throw TeleverseException(
+        'InputFile must be created with either [InputFile.fromBytes] or [InputFile.fromFile]',
+      );
     }
   }
 }
