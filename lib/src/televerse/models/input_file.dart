@@ -33,8 +33,8 @@ class InputFile {
   /// The bytes of the file.
   final Uint8List? bytes;
 
-  /// Creates a new [InputFile].
-  InputFile({
+  /// Private constructor for [InputFile].
+  InputFile._({
     this.fileId,
     this.file,
     this.url,
@@ -48,16 +48,16 @@ class InputFile {
   }
 
   /// Creates a new [InputFile] using a local file.
-  factory InputFile.fromFile(io.File file) => InputFile(file: file);
+  factory InputFile.fromFile(io.File file) => InputFile._(file: file);
 
   /// Creates a new [InputFile] using the file url.
-  factory InputFile.fromUrl(String url) => InputFile(url: Uri.parse(url));
+  factory InputFile.fromUrl(String url) => InputFile._(url: Uri.parse(url));
 
   /// Creates a new [InputFile] using the File ID on the Telegram Servers.
-  factory InputFile.fromFileId(String fileId) => InputFile(fileId: fileId);
+  factory InputFile.fromFileId(String fileId) => InputFile._(fileId: fileId);
 
   /// Creates a new [InputFile] using the bytes of the file.
-  factory InputFile.fromBytes(Uint8List bytes) => InputFile(bytes: bytes);
+  factory InputFile.fromBytes(Uint8List bytes) => InputFile._(bytes: bytes);
 
   /// Returns the type of the [InputFile].
   InputFileType get type {
