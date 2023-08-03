@@ -75,10 +75,6 @@ MessageHandler handler(String text) {
       final fileToUpload = await file.download();
       ctx.replyWithAudio(InputFile.fromFile(fileToUpload!));
     }
-    if (ctx.message.dice != null) {
-      final emoji = ctx.message.dice!.emoji;
-      ctx.replyWithDice(emoji: emoji);
-    }
     if (ctx.message.document != null) {
       final fileId = ctx.message.document!.fileId;
       final file = await ctx.api.getFile(fileId);
@@ -91,6 +87,31 @@ MessageHandler handler(String text) {
       final fileToUpload = await file.download();
       ctx.replyWithSticker(InputFile.fromFile(fileToUpload!));
     }
+    if (ctx.message.photo != null) {
+      final fileId = ctx.message.photo!.last.fileId;
+      final file = await ctx.api.getFile(fileId);
+      final fileToUpload = await file.download();
+      ctx.replyWithPhoto(InputFile.fromFile(fileToUpload!));
+    }
+    if (ctx.message.voice != null) {
+      final fileId = ctx.message.voice!.fileId;
+      final file = await ctx.api.getFile(fileId);
+      final fileToUpload = await file.download();
+      ctx.replyWithVoice(InputFile.fromFile(fileToUpload!));
+    }
+    if (ctx.message.video != null) {
+      final fileId = ctx.message.video!.fileId;
+      final file = await ctx.api.getFile(fileId);
+      final fileToUpload = await file.download();
+      ctx.replyWithVideo(InputFile.fromFile(fileToUpload!));
+    }
+    if (ctx.message.videoNote != null) {
+      final fileId = ctx.message.videoNote!.fileId;
+      final file = await ctx.api.getFile(fileId);
+      final fileToUpload = await file.download();
+      ctx.replyWithVideoNote(InputFile.fromFile(fileToUpload!));
+    }
+
     await ctx.reply("Got a $text");
   };
 }
