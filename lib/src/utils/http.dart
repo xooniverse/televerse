@@ -1,14 +1,17 @@
 import 'dart:convert';
 
-import 'package:http/http.dart';
+import 'package:dio/dio.dart';
 import 'package:televerse/televerse.dart';
 
 /// HttpClient is used to send HTTP requests to the Telegram Bot API.
 class HttpClient {
+  ///
+  static final dio = Dio();
+
   /// Send GET request to the given [uri] and return the response body.
   static Future<dynamic> getURI(Uri uri) async {
-    final response = await get(uri);
-    final body = json.decode(response.body);
+    final response = await dio.getUri(uri);
+    final body = json.decode(response.data);
     if (body["ok"] == true) {
       return body["result"];
     } else {
@@ -24,8 +27,10 @@ class HttpClient {
     body.removeWhere((key, value) => value == null || value == "null");
     Map<String, String> bodyContent = body.map(_getEntry);
 
-    final response = await post(uri, body: bodyContent);
-    final resBody = json.decode(response.body);
+    final response = await dio.postUri<String>(uri,
+        data: bodyContent, options: Options(responseType: ResponseType.json));
+
+    final resBody = json.decode(response.data!);
     if (resBody["ok"] == true) {
       return resBody["result"];
     } else {
@@ -36,17 +41,37 @@ class HttpClient {
   /// Send Multipart POST request to the given [uri] and return the response body.
   static Future<dynamic> multipartPost(
     Uri uri,
-    List<MultipartFile> files,
+    List<Map<String, MultipartFile>> files,
     Map<String, dynamic> body,
   ) async {
     body.removeWhere((key, value) => value == null || value == "null");
-    final request = MultipartRequest("POST", uri)
-      ..headers.addAll({"Content-Type": "multipart/form-data"})
-      ..fields.addAll(body.map(_getEntry))
-      ..files.addAll(files);
-    final response = await request.send();
-    final resBody = await response.stream.bytesToString();
-    final res = json.decode(resBody);
+    // final request = MultipartRequest("POST", uri)
+    //   ..headers.addAll({"Content-Type": "multipart/form-data"})
+    //   ..fields.addAll(body.map(_getEntry))
+    //   ..files.addAll(files);
+    // final response = await request.send();
+    // final resBody = await response.stream.bytesToString();
+
+    final map = body.map(_getEntry).entries;
+    final map2 = files.map((e) => MapEntry(e.keys.single, e.values.single));
+    final formData = FormData()
+
+      // final formData = FormData.fromMap({
+      //   ...body.map(_getEntry),
+      //   'files': files,
+      // });
+      ..fields.addAll(map)
+      ..files.addAll(map2);
+
+    final req = await dio.postUri(uri,
+        data: formData,
+        options: Options(
+            headers: {"Content-Type": "multipart/form-data"},
+            responseType: ResponseType.bytes));
+
+    final toString = utf8.decode(req.data as List<int>);
+
+    final res = json.decode(toString);
     if (res["ok"] == true) {
       return res["result"];
     } else {

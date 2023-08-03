@@ -24,7 +24,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as io;
 import 'dart:math';
-import 'package:http/http.dart';
+import 'package:dio/dio.dart';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 import 'package:televerse/src/utils/http.dart';
