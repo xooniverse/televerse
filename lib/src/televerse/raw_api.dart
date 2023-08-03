@@ -2574,7 +2574,7 @@ class RawAPI {
       params["sticker"] = sticker.toJson();
       List<Map<String, MultipartFile>> files = [
         {
-          'sticker': MultipartFile.fromBytes(
+          sticker.file!.filename: MultipartFile.fromBytes(
             sticker.file!.readAsBytesSync(),
             // "sticker",
             filename: sticker.file!.filename,
