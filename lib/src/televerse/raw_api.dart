@@ -2540,12 +2540,9 @@ class RawAPI {
     };
 
     bool response;
-    List<MultipartFile> files = _getFiles([
-      _MultipartHelper(
-        sticker.sticker,
-        field,
-      )
-    ]);
+    List<MultipartFile> files = _getFiles(
+      [_MultipartHelper(sticker.sticker, field)],
+    );
 
     if (files.isEmpty) {
       response = await HttpClient.postURI(

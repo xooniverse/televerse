@@ -301,6 +301,9 @@ void main() {
     final audio = InputFile.fromFile(io.File("./example/assets/audio.mp3"));
     final video = InputFile.fromFile(io.File("./example/assets/video.mp4"));
     final animation = InputFile.fromFile(io.File("./examples/assets/gif.gif"));
+    final videoNote = InputFile.fromFile(
+      io.File("./example/assets/video_note.mp4"),
+    );
     test("Send Photo", () async {
       final message = await bot.api.sendPhoto(id, photo);
       expect(message.photo != null, true, reason: "Photo is null");
@@ -332,7 +335,7 @@ void main() {
     });
 
     test("Send Video Note", () async {
-      final message = await bot.api.sendVideoNote(id, video);
+      final message = await bot.api.sendVideoNote(id, videoNote);
       expect(message.videoNote != null, true, reason: "Video Note is null");
     });
 
@@ -349,6 +352,30 @@ void main() {
       final msgs = await bot.api.sendMediaGroup(id, medias);
 
       expect(msgs, isNotEmpty);
+    });
+
+    test("Set Chat Photo", () async {
+      final res = await bot.api.setChatPhoto(groupID, photo);
+      expect(res, true);
+    });
+
+    test("Edit Message Media", () async {
+      final message = await bot.api.sendPhoto(id, photo);
+      expect(message.photo != null, true, reason: "Photo is null");
+      final editedMessage = await bot.api.editMessageMedia(
+        id,
+        message.messageId,
+        InputMediaPhoto(
+          media: InputFile.fromFile(io.File("./example/assets/burger.jpeg")),
+          caption: "Hello World Edited",
+        ),
+      );
+      expect(editedMessage.photo != null, true, reason: "Photo is null");
+    });
+
+    test("Send Sticker", () async {
+      final message = await bot.api.sendSticker(id, photo);
+      expect(message.sticker != null, true, reason: "Sticker is null");
     });
   });
 }
