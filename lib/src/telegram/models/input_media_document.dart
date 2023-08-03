@@ -33,11 +33,11 @@ class InputMediaDocument extends InputMedia {
 
   /// Converts an [InputMediaDocument] object to a JSON object
   @override
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> getValue([String? field, String? thumb]) {
     return {
       'type': type.value,
-      'media': media.toJson(),
-      'thumbnail': thumbnail?.toJson(),
+      'media': media.getValue(field),
+      'thumbnail': thumbnail?.getValue(thumb),
       'caption': caption,
       'parse_mode': parseMode?.value,
       'caption_entities': captionEntities,

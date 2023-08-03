@@ -75,16 +75,16 @@ class InputFile {
   }
 
   /// Returns the file name of the [InputFile].
-  String toJson() {
+  String getValue([String? field]) {
     switch (type) {
       case InputFileType.fileId:
         return fileId!;
       case InputFileType.file:
-        return "attach://${file!.filename}";
+        return "attach://${field ?? file!.filenameWithoutExtension}";
       case InputFileType.url:
         return url!.toString();
       case InputFileType.bytes:
-        return "attach://file";
+        return "attach://${field ?? 'file'}";
     }
   }
 

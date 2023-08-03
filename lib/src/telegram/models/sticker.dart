@@ -87,7 +87,8 @@ class Sticker {
       maskPosition: json['mask_position'] == null
           ? null
           : MaskPosition.fromJson(
-              json['mask_position'] as Map<String, dynamic>),
+              json['mask_position'] as Map<String, dynamic>,
+            ),
       customEmojiId: json['custom_emoji_id'] as String?,
       fileSize: json['file_size'] as int?,
       needsRepainting: json['needs_repainting'] as bool?,

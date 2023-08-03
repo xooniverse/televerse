@@ -759,9 +759,11 @@ class Televerse<TeleverseSession extends Session> {
         }
         if (entities == null) return false;
 
-        bool hasMatch = types.every((element) => entities!.any(
-              (e) => e.type == element,
-            ));
+        bool hasMatch = types.every(
+          (element) => entities!.any(
+            (e) => e.type == element,
+          ),
+        );
 
         return hasMatch;
       },

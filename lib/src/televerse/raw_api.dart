@@ -37,6 +37,12 @@ class RawAPI {
   /// Base URL for the Telegram API.
   final String _baseUrl;
 
+  /// Just a constant variable to hold "thumbnail" string
+  static const String _thumb = "thumbnail";
+
+  /// Filter that removes null from the parameters.
+  bool _nullChecker(String _, dynamic v) => v == null || v == "null";
+
   /// Build the URI for the Telegram API.
   Uri _buildUri(String method, [Map<String, dynamic>? params]) {
     params = params?.map((key, value) {
@@ -45,7 +51,7 @@ class RawAPI {
       }
       return MapEntry(key, "$value");
     });
-    params?.removeWhere((key, value) => value == null || value == "null");
+    params?.removeWhere(_nullChecker);
     Uri uri;
     if (_isLocal) {
       RegExp https = RegExp(r'^(https?://)');
@@ -62,6 +68,22 @@ class RawAPI {
       uri = Uri.https(_baseUrl, "/bot$token/$method", params);
     }
     return uri;
+  }
+
+  List<MultipartFile> _getFiles(List<_MultipartHelper> list) {
+    List<MultipartFile> files = list.where((el) {
+      return el.type == InputFileType.file || el.type == InputFileType.bytes;
+    }).map((e) {
+      if (e.type == InputFileType.file && !e.file.file!.existsSync()) {
+        throw TeleverseException.fileDoesNotExist(e.file.file!.path);
+      }
+      return MultipartFile.fromBytes(
+        e.field,
+        e.file.getBytes(),
+        filename: e.name,
+      );
+    }).toList();
+    return files;
   }
 
   /// Use this method to receive incoming updates using long polling.
@@ -124,12 +146,14 @@ class RawAPI {
     };
     if (certificate != null) {
       List<MultipartFile> files = [];
-      files.add(MultipartFile(
-        'certificate',
-        certificate.openRead(),
-        certificate.lengthSync(),
-        filename: certificate.path.split("/").last,
-      ));
+      files.add(
+        MultipartFile(
+          'certificate',
+          certificate.openRead(),
+          certificate.lengthSync(),
+          filename: certificate.path.split("/").last,
+        ),
+      );
       Uri uri = _buildUri("setWebhook");
       return await HttpClient.multipartPost(uri, files, params);
     } else {
@@ -356,26 +380,18 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
       "has_spoiler": hasSpoiler,
     };
+    const field = "photo";
     Map<String, dynamic> response;
-    if (photo.type == InputFileType.file) {
-      if (!photo.file!.existsSync()) {
-        throw TeleverseException.fileDoesNotExist(photo.file!.path);
-      }
-      List<MultipartFile> files = [
-        MultipartFile.fromBytes(
-          "photo",
-          photo.file!.readAsBytesSync(),
-          filename: photo.file!.path.split("/").last,
-        )
-      ];
-      params.removeWhere((key, value) => value == null);
+    List<MultipartFile> files = _getFiles([_MultipartHelper(photo, field)]);
+    params[field] = photo.getValue(field);
+    params.removeWhere(_nullChecker);
+    if (files.isNotEmpty) {
       response = await HttpClient.multipartPost(
         _buildUri("sendPhoto"),
         files,
         params,
       );
     } else {
-      params["photo"] = photo.fileId ?? photo.url;
       response = await HttpClient.postURI(_buildUri("sendPhoto"), params);
     }
     return Message.fromJson(response);
@@ -416,42 +432,24 @@ class RawAPI {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
+    const field = "audio";
+
     Map<String, dynamic> response;
-    List<MultipartFile> files = [];
-    if (audio.type == InputFileType.file ||
-        thumbnail?.type == InputFileType.file) {
-      if (audio.type == InputFileType.file) {
-        if (!audio.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(audio.file!.path);
-        }
-        files.add(
-          MultipartFile.fromBytes(
-            "audio",
-            audio.file!.readAsBytesSync(),
-            filename: audio.file!.path.split("/").last,
-          ),
-        );
-      }
-      if (thumbnail?.type == InputFileType.file) {
-        if (!thumbnail!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
-        }
-        files.add(
-          MultipartFile.fromBytes(
-            "thumbnail",
-            thumbnail.file!.readAsBytesSync(),
-            filename: thumbnail.file!.path.split("/").last,
-          ),
-        );
-      }
+    final l = [_MultipartHelper(audio, field)];
+
+    if (thumbnail != null) {
+      l.add(_MultipartHelper(thumbnail, _thumb));
+    }
+    List<MultipartFile> files = _getFiles(l);
+    params[field] = audio.getValue(field);
+    params[_thumb] = thumbnail?.getValue(_thumb);
+    if (files.isNotEmpty) {
       response = await HttpClient.multipartPost(
         _buildUri("sendAudio"),
         files,
         params,
       );
     } else {
-      params["audio"] = audio.fileId ?? audio.url;
-      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.postURI(_buildUri("sendAudio"), params);
     }
     return Message.fromJson(response);
@@ -486,43 +484,23 @@ class RawAPI {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
+    const field = "document";
+
     Map<String, dynamic> response;
-    List<MultipartFile> files = [];
-    if (document.type == InputFileType.file ||
-        thumbnail?.type == InputFileType.file) {
-      if (document.type == InputFileType.file) {
-        if (!document.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(document.file!.path);
-        }
-        files.add(
-          MultipartFile.fromBytes(
-            "document",
-            document.file!.readAsBytesSync(),
-            filename: document.file!.path.split("/").last,
-          ),
-        );
-      }
-      if (thumbnail?.type == InputFileType.file) {
-        if (!thumbnail!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
-        }
-        files.add(
-          MultipartFile.fromBytes(
-            "thumbnail",
-            thumbnail.file!.readAsBytesSync(),
-            filename: thumbnail.file!.path.split("/").last,
-          ),
-        );
-      }
-      params.removeWhere((key, value) => value == null);
+    final l = [_MultipartHelper(document, field)];
+    if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
+
+    List<MultipartFile> files = _getFiles(l);
+    params[field] = document.getValue(field);
+    params[_thumb] = thumbnail?.getValue(_thumb);
+    params.removeWhere(_nullChecker);
+    if (files.isNotEmpty) {
       response = await HttpClient.multipartPost(
         _buildUri("sendDocument"),
         files,
         params,
       );
     } else {
-      params["document"] = document.fileId ?? document.url;
-      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.postURI(_buildUri("sendDocument"), params);
     }
     return Message.fromJson(response);
@@ -565,43 +543,20 @@ class RawAPI {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
+    final field = "video";
     Map<String, dynamic> response;
-    List<MultipartFile> files = [];
-    if (video.type == InputFileType.file ||
-        thumbnail?.type == InputFileType.file) {
-      if (video.type == InputFileType.file) {
-        if (!video.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(video.file!.path);
-        }
-        files.add(
-          MultipartFile.fromBytes(
-            "video",
-            video.file!.readAsBytesSync(),
-            filename: video.file!.path.split("/").last,
-          ),
-        );
-      }
-      if (thumbnail?.type == InputFileType.file) {
-        if (!thumbnail!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
-        }
-        files.add(
-          MultipartFile.fromBytes(
-            "thumbnail",
-            thumbnail.file!.readAsBytesSync(),
-            filename: thumbnail.file!.path.split("/").last,
-          ),
-        );
-      }
-      params.removeWhere((key, value) => value == null);
+    final l = [_MultipartHelper(video, field)];
+    if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
+    List<MultipartFile> files = _getFiles(l);
+    params[field] = video.getValue(field);
+    params[_thumb] = thumbnail?.getValue(_thumb);
+    if (files.isNotEmpty) {
       response = await HttpClient.multipartPost(
         _buildUri("sendVideo"),
         files,
         params,
       );
     } else {
-      params["video"] = video.fileId ?? video.url;
-      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.postURI(_buildUri("sendVideo"), params);
     }
     return Message.fromJson(response);
@@ -642,43 +597,22 @@ class RawAPI {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
+    const field = "animation";
     Map<String, dynamic> response;
-    List<MultipartFile> files = [];
-    if (animation.type == InputFileType.file ||
-        thumbnail?.type == InputFileType.file) {
-      if (animation.type == InputFileType.file) {
-        if (!animation.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(animation.file!.path);
-        }
-        files.add(
-          MultipartFile.fromBytes(
-            "animation",
-            animation.file!.readAsBytesSync(),
-            filename: animation.file!.path.split("/").last,
-          ),
-        );
-      }
-      if (thumbnail?.type == InputFileType.file) {
-        if (!thumbnail!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
-        }
-        files.add(
-          MultipartFile.fromBytes(
-            "thumbnail",
-            thumbnail.file!.readAsBytesSync(),
-            filename: thumbnail.file!.path.split("/").last,
-          ),
-        );
-      }
-      params.removeWhere((key, value) => value == null);
+    final l = [_MultipartHelper(animation, field)];
+    if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
+
+    List<MultipartFile> files = _getFiles(l);
+    params[field] = animation.getValue(field);
+    params[_thumb] = thumbnail?.getValue(_thumb);
+    params.removeWhere(_nullChecker);
+    if (files.isNotEmpty) {
       response = await HttpClient.multipartPost(
         _buildUri("sendAnimation"),
         files,
         params,
       );
     } else {
-      params["animation"] = animation.fileId ?? animation.url;
-      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.postURI(_buildUri("sendAnimation"), params);
     }
     return Message.fromJson(response);
@@ -712,27 +646,19 @@ class RawAPI {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
+    const field = "voice";
     Map<String, dynamic> response;
-    List<MultipartFile> files = [];
-    if (voice.type == InputFileType.file) {
-      if (!voice.file!.existsSync()) {
-        throw TeleverseException.fileDoesNotExist(voice.file!.path);
-      }
-      files.add(
-        MultipartFile.fromBytes(
-          "voice",
-          voice.file!.readAsBytesSync(),
-          filename: voice.file!.path.split("/").last,
-        ),
-      );
-      params.removeWhere((key, value) => value == null);
+    final l = [_MultipartHelper(voice, field)];
+    List<MultipartFile> files = _getFiles(l);
+    params[field] = voice.getValue(field);
+    params.removeWhere(_nullChecker);
+    if (files.isNotEmpty) {
       response = await HttpClient.multipartPost(
         _buildUri("sendVoice"),
         files,
         params,
       );
     } else {
-      params["voice"] = voice.fileId ?? voice.url;
       response = await HttpClient.postURI(_buildUri("sendVoice"), params);
     }
     return Message.fromJson(response);
@@ -764,43 +690,21 @@ class RawAPI {
       "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
+    const field = "video_note";
     Map<String, dynamic> response;
-    List<MultipartFile> files = [];
-    if (videoNote.type == InputFileType.file ||
-        thumbnail?.type == InputFileType.file) {
-      if (videoNote.type == InputFileType.file) {
-        if (!videoNote.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(videoNote.file!.path);
-        }
-        files.add(
-          MultipartFile.fromBytes(
-            "video_note",
-            videoNote.file!.readAsBytesSync(),
-            filename: videoNote.file!.path.split("/").last,
-          ),
-        );
-      }
-      if (thumbnail?.type == InputFileType.file) {
-        if (!thumbnail!.file!.existsSync()) {
-          throw TeleverseException.fileDoesNotExist(thumbnail.file!.path);
-        }
-        files.add(
-          MultipartFile.fromBytes(
-            "thumbnail",
-            thumbnail.file!.readAsBytesSync(),
-            filename: thumbnail.file!.path.split("/").last,
-          ),
-        );
-      }
-      params.removeWhere((key, value) => value == null);
+    final l = [_MultipartHelper(videoNote, field)];
+    if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
+    List<MultipartFile> files = _getFiles(l);
+    params[field] = videoNote.getValue(field);
+    params.removeWhere(_nullChecker);
+    params[_thumb] = thumbnail?.getValue(_thumb);
+    if (files.isNotEmpty) {
       response = await HttpClient.multipartPost(
         _buildUri("sendVideoNote"),
         files,
         params,
       );
     } else {
-      params["video_note"] = videoNote.fileId ?? videoNote.url;
-      params["thumbnail"] = thumbnail?.fileId ?? thumbnail?.url;
       response = await HttpClient.postURI(_buildUri("sendVideoNote"), params);
     }
     return Message.fromJson(response);
@@ -849,30 +753,20 @@ class RawAPI {
       "allow_sending_without_reply": allowSendingWithoutReply,
     };
 
-    List<MultipartFile> files = [];
+    List<_MultipartHelper> helpers = [];
     List<Map<String, dynamic>> mediaList = [];
+    final length = media.length;
 
-    if (media.any((m) => m.media.type == InputFileType.file)) {
-      int length = media.length;
-      for (int i = 0; i < length; i++) {
-        if (media[i].media.type == InputFileType.file) {
-          if (!media[i].media.file!.existsSync()) {
-            throw TeleverseException.fileDoesNotExist(
-              media[i].media.file!.path,
-            );
-          }
-          String filename = media[i].media.file!.filename;
-          files.add(
-            MultipartFile.fromBytes(
-              filename,
-              media[i].media.file!.readAsBytesSync(),
-              filename: filename,
-            ),
-          );
-        }
-        mediaList.add(media[i].toJson());
-      }
-      params["media"] = jsonEncode(mediaList);
+    for (int i = 0; i < length; i++) {
+      final m = media[i];
+      mediaList.add(m.getValue("media$i", "thumb$i"));
+      helpers.add(_MultipartHelper(m.media, "media$i"));
+    }
+
+    List<MultipartFile> files = _getFiles(helpers);
+    params["media"] = jsonEncode(mediaList);
+
+    if (files.isNotEmpty) {
       List<dynamic> response = await HttpClient.multipartPost(
         _buildUri("sendMediaGroup"),
         files,
@@ -880,8 +774,6 @@ class RawAPI {
       );
       return (response).map((e) => Message.fromJson(e)).toList();
     }
-
-    params["media"] = jsonEncode(media.map((m) => m.toJson()).toList());
 
     List<dynamic> response = await HttpClient.postURI(
       _buildUri("sendMediaGroup"),
@@ -1648,22 +1540,18 @@ class RawAPI {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
     };
+    const field = "photo";
     bool response;
-    if (photo.type == InputFileType.file) {
-      params["photo"] = photo.file;
-      List<MultipartFile> files = [];
-      files.add(MultipartFile.fromBytes(
-        "photo",
-        photo.file!.readAsBytesSync(),
-        filename: photo.file!.filename,
-      ));
+    List<MultipartFile> files = _getFiles([_MultipartHelper(photo, field)]);
+    params[field] = photo.getValue(field);
+
+    if (files.isNotEmpty) {
       response = await HttpClient.multipartPost(
         _buildUri("setChatPhoto"),
         files,
         params,
       );
     } else {
-      params["photo"] = photo.url ?? photo.fileId;
       response = await HttpClient.postURI(
         _buildUri("setChatPhoto"),
         params,
@@ -2367,17 +2255,14 @@ class RawAPI {
       "message_id": messageId,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
+    const field = "media";
 
     Map<String, dynamic> response;
-    if (media.media.type == InputFileType.file) {
-      params["media"] = media.toJson();
-      List<MultipartFile> files = [
-        MultipartFile.fromBytes(
-          "media",
-          media.media.file!.readAsBytesSync(),
-          filename: media.media.file!.filename,
-        ),
-      ];
+    List<MultipartFile> files = _getFiles([
+      _MultipartHelper(media.media, field),
+    ]);
+    params[field] = media.getValue(field);
+    if (files.isNotEmpty) {
       response = await HttpClient.multipartPost(
         _buildUri(
           "editMessageMedia",
@@ -2386,7 +2271,6 @@ class RawAPI {
         params,
       );
     } else {
-      params["media"] = media.toJson();
       response = await HttpClient.postURI(
         _buildUri("editMessageMedia"),
         params,
@@ -2412,17 +2296,14 @@ class RawAPI {
       "inline_message_id": inlineMessageId,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
+    const field = "media";
 
     bool response;
-    if (media.media.type == InputFileType.file) {
-      params["media"] = media.toJson();
-      List<MultipartFile> files = [
-        MultipartFile.fromBytes(
-          "media",
-          media.media.file!.readAsBytesSync(),
-          filename: media.media.file!.filename,
-        ),
-      ];
+    List<MultipartFile> files = _getFiles([
+      _MultipartHelper(media.media, field),
+    ]);
+    params[field] = media.getValue(field);
+    if (files.isNotEmpty) {
       response = await HttpClient.multipartPost(
         _buildUri(
           "editInlineMessageMedia",
@@ -2431,7 +2312,6 @@ class RawAPI {
         params,
       );
     } else {
-      params["media"] = media.toJson();
       response = await HttpClient.postURI(
         _buildUri("editInlineMessageMedia"),
         params,
@@ -2558,17 +2438,13 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
       "emoji": emoji,
     };
-
+    const field = "sticker";
     Map<String, dynamic> response;
-    if (sticker.type == InputFileType.file) {
-      params["sticker"] = sticker.toJson();
-      List<MultipartFile> files = [
-        MultipartFile.fromBytes(
-          "sticker",
-          sticker.file!.readAsBytesSync(),
-          filename: sticker.file!.filename,
-        ),
-      ];
+    List<MultipartFile> files = _getFiles([
+      _MultipartHelper(sticker, field),
+    ]);
+    params[field] = sticker.getValue(field);
+    if (files.isNotEmpty) {
       response = await HttpClient.multipartPost(
         _buildUri(
           "sendSticker",
@@ -2577,7 +2453,6 @@ class RawAPI {
         params,
       );
     } else {
-      params["sticker"] = sticker.toJson();
       response = await HttpClient.postURI(
         _buildUri("sendSticker"),
         params,
@@ -2625,17 +2500,14 @@ class RawAPI {
       "user_id": userId,
       "sticker_format": stickerFormat.value,
     };
+    const field = "sticker";
 
     Map<String, dynamic> response;
-    if (sticker.type == InputFileType.file) {
-      params["sticker"] = sticker.toJson();
-      List<MultipartFile> files = [
-        MultipartFile.fromBytes(
-          sticker.file!.filename,
-          sticker.file!.readAsBytesSync(),
-          filename: sticker.file!.filename,
-        ),
-      ];
+    List<MultipartFile> files = _getFiles([
+      _MultipartHelper(sticker, field),
+    ]);
+    params[field] = sticker.getValue(field);
+    if (files.isNotEmpty) {
       response = await HttpClient.multipartPost(
         _buildUri(
           "uploadStickerFile",
@@ -2660,25 +2532,20 @@ class RawAPI {
     String name, {
     required InputSticker sticker,
   }) async {
+    const field = "sticker";
     Map<String, dynamic> params = {
       "user_id": userId,
       "name": name,
-      "sticker": jsonEncode(sticker.toJson()),
+      "sticker": jsonEncode(sticker.toJson(field)),
     };
 
     bool response;
-    List<MultipartFile> files = [];
-
-    if (sticker.sticker.type == InputFileType.file) {
-      String fileName = sticker.sticker.file!.filename;
-      files.add(
-        MultipartFile.fromBytes(
-          fileName,
-          sticker.sticker.file!.readAsBytesSync(),
-          filename: fileName,
-        ),
-      );
-    }
+    List<MultipartFile> files = _getFiles([
+      _MultipartHelper(
+        sticker.sticker,
+        field,
+      )
+    ]);
 
     if (files.isEmpty) {
       response = await HttpClient.postURI(
@@ -2737,20 +2604,15 @@ class RawAPI {
     Map<String, dynamic> params = {
       "name": name,
       "user_id": userId,
-      "thumbnail": thumbnail?.toJson()
-    }..removeWhere((key, value) => value == null);
+      "thumbnail": thumbnail?.getValue(_thumb)
+    }..removeWhere(_nullChecker);
 
     bool response;
     List<MultipartFile> files = [];
     if (thumbnail != null) {
-      if (thumbnail.type == InputFileType.file) {
-        files.add(
-          MultipartFile.fromBytes(
-            thumbnail.file!.filename,
-            thumbnail.file!.readAsBytesSync(),
-          ),
-        );
-      }
+      files = _getFiles([
+        _MultipartHelper(thumbnail, _thumb),
+      ]);
     }
 
     if (files.isEmpty) {
@@ -3250,25 +3112,21 @@ class RawAPI {
       "user_id": userId,
       "name": name,
       "title": title,
-      "stickers": jsonEncode(stickers.map((e) => e.toJson()).toList()),
       "sticker_format": stickerFormat.value,
       "sticker_type": stickerType.type,
       "needs_repainting": needsRepainting,
     };
     bool response;
-    List<MultipartFile> files = [];
-    int len = stickers.length;
+    List<Map<String, dynamic>> stickersList = [];
+    List<_MultipartHelper> helpers = [];
 
-    for (int i = 0; i < len; i++) {
-      if (stickers[i].sticker.type == InputFileType.file) {
-        String fileName = stickers[i].sticker.file!.path.split("/").last;
-        files.add(MultipartFile.fromBytes(
-          fileName,
-          stickers[i].sticker.file!.readAsBytesSync(),
-          filename: fileName,
-        ));
-      }
+    final length = stickers.length;
+    for (int i = 0; i < length; i++) {
+      stickersList.add(stickers[i].toJson("sticker$i"));
+      helpers.add(_MultipartHelper(stickers[i].sticker, "stickers$i"));
     }
+
+    List<MultipartFile> files = _getFiles(helpers);
 
     response = await HttpClient.multipartPost(
       _buildUri("createNewStickerSet"),

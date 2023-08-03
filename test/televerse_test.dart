@@ -295,4 +295,60 @@ void main() {
     final id2 = ChatID(123);
     expect(id1 == id2, true);
   });
+
+  group("Tests Sending Files Using InputFile", () {
+    final photo = InputFile.fromFile(io.File("./example/assets/photo.jpeg"));
+    final audio = InputFile.fromFile(io.File("./example/assets/audio.mp3"));
+    final video = InputFile.fromFile(io.File("./example/assets/video.mp4"));
+    final animation = InputFile.fromFile(io.File("./examples/assets/gif.gif"));
+    test("Send Photo", () async {
+      final message = await bot.api.sendPhoto(id, photo);
+      expect(message.photo != null, true, reason: "Photo is null");
+    });
+
+    test("Send Audio", () async {
+      final message = await bot.api.sendAudio(id, audio, thumbnail: photo);
+      expect(message.audio != null, true, reason: "Audio is null");
+    });
+
+    test("Send Document", () async {
+      final message = await bot.api.sendDocument(id, photo);
+      expect(message.document != null, true, reason: "Document is null");
+    });
+
+    test("Send Video", () async {
+      final message = await bot.api.sendVideo(id, video, thumbnail: photo);
+      expect(message.video != null, true, reason: "Video is null");
+    });
+
+    test("Send Animation", () async {
+      final message = await bot.api.sendAnimation(id, animation);
+      expect(message.animation != null, true, reason: "Animation is null");
+    });
+
+    test("Send Voice", () async {
+      final message = await bot.api.sendVoice(id, audio);
+      expect(message.voice != null, true, reason: "Voice is null");
+    });
+
+    test("Send Video Note", () async {
+      final message = await bot.api.sendVideoNote(id, video);
+      expect(message.videoNote != null, true, reason: "Video Note is null");
+    });
+
+    test("Send Media Group", () async {
+      final medias = [
+        InputMediaPhoto(
+          media: photo,
+          caption: "Not So Secret Recipe",
+        ),
+        InputMediaVideo(
+          media: video,
+        ),
+      ];
+      final msgs = await bot.api.sendMediaGroup(id, medias);
+
+      expect(msgs, isNotEmpty);
+    });
+  });
 }

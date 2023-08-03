@@ -4,6 +4,12 @@ part of televerse;
 extension Filename on io.File {
   /// The filename of this file.
   String get filename => path.split('/').last;
+
+  /// The extension of this file.
+  String get extension => filename.split('.').last;
+
+  /// The filename without the extension.
+  String get filenameWithoutExtension => filename.split('.').first;
 }
 
 /// [String] extension, to clean the [String]

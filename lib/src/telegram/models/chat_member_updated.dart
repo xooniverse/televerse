@@ -51,7 +51,8 @@ class ChatMemberUpdated {
       inviteLink: json['invite_link'] == null
           ? null
           : ChatInviteLink.fromJson(
-              json['invite_link'] as Map<String, dynamic>),
+              json['invite_link'] as Map<String, dynamic>,
+            ),
       viaChatFolderInviteLink: json['via_chat_folder_invite_link'] as bool?,
     );
   }

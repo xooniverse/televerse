@@ -21,7 +21,7 @@ abstract class TeleverseMenu<CTX extends Context,
       return row.keys.map((element) {
         return InlineKeyboardButton(
           text: element.text,
-          callbackData: element.id
+          callbackData: element.id,
         );
       }).toList();
     }).toList();

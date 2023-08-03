@@ -15,8 +15,11 @@ class UserProfilePhotos {
   factory UserProfilePhotos.fromJson(Map<String, dynamic> json) {
     return UserProfilePhotos(
       totalCount: json['total_count'],
-      photos: List<List<PhotoSize>>.from(json['photos'].map(
-          (x) => List<PhotoSize>.from(x.map((x) => PhotoSize.fromJson(x))))),
+      photos: List<List<PhotoSize>>.from(
+        json['photos'].map(
+          (x) => List<PhotoSize>.from(x.map((x) => PhotoSize.fromJson(x))),
+        ),
+      ),
     );
   }
 
