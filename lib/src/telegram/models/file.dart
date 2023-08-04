@@ -68,9 +68,13 @@ class File {
   /// Use the [token] parameter to specify the bot token to be used - if you're running multiple bots with the same code.
   Future<Uint8List?> getBytes([String? token]) async {
     try {
-      final r = await get(getDownloadURI(token));
+      final dio = Dio();
+      final r = await dio.getUri(
+        getDownloadURI(token),
+        options: Options(responseType: ResponseType.bytes),
+      );
       if (r.statusCode == 200) {
-        return r.bodyBytes;
+        return r.data as Uint8List;
       } else {
         throw TeleverseException("Couldn't fetch the file data.");
       }
