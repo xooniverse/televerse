@@ -70,12 +70,14 @@ class InlineQueryResultArticle extends InlineQueryResult {
     return InlineQueryResultArticle(
       title: json['title'] as String,
       inputMessageContent: InputMessageContent.fromJson(
-          json['input_message_content'] as Map<String, dynamic>),
+        json['input_message_content'] as Map<String, dynamic>,
+      ),
       id: json['id'] as String,
       replyMarkup: json['reply_markup'] == null
           ? null
           : InlineKeyboardMarkup.fromJson(
-              json['reply_markup'] as Map<String, dynamic>),
+              json['reply_markup'] as Map<String, dynamic>,
+            ),
       url: json['url'] as String?,
       hideUrl: json['hide_url'] as bool?,
       description: json['description'] as String?,

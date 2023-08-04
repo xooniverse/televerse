@@ -36,8 +36,13 @@ class ReplyKeyboardMarkup extends ReplyMarkup {
   /// Constructs a [ReplyKeyboardMarkup] object from a json [String]
   factory ReplyKeyboardMarkup.fromJson(Map<String, dynamic> json) {
     return ReplyKeyboardMarkup(
-      keyboard: List<List<KeyboardButton>>.from(json['keyboard'].map((x) =>
-          List<KeyboardButton>.from(x.map((x) => KeyboardButton.fromJson(x))))),
+      keyboard: List<List<KeyboardButton>>.from(
+        json['keyboard'].map(
+          (x) => List<KeyboardButton>.from(
+            x.map((x) => KeyboardButton.fromJson(x)),
+          ),
+        ),
+      ),
       resizeKeyboard: json['resize_keyboard'],
       oneTimeKeyboard: json['one_time_keyboard'],
       inputFieldPlaceholder: json['input_field_placeholder'],

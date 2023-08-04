@@ -103,7 +103,8 @@ class LongPolling extends Fetcher {
         // If the onError handler is set, call it.
         if (_onError != null) {
           final longError = err.toLongPollingException(stackTrace);
-          await _onError!(longError, stackTrace);
+          final botErr = BotError(longError, stackTrace);
+          await _onError!(botErr);
           await _awaitRetryAfter(err.parameters?.retryAfter);
         } else if (err.parameters?.retryAfter != null) {
           await _awaitRetryAfter(err.parameters?.retryAfter);
@@ -115,7 +116,8 @@ class LongPolling extends Fetcher {
         }
       } else {
         if (_onError != null) {
-          await _onError!(err, stackTrace);
+          final botErr = BotError(err, stackTrace);
+          await _onError!(botErr);
         } else {
           _doubleRetryDelay();
           rethrow;

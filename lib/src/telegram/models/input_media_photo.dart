@@ -29,10 +29,10 @@ class InputMediaPhoto extends InputMedia {
 
   /// Converts an [InputMediaPhoto] object to a JSON object
   @override
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> getValue([String? field, String? thumb]) {
     return {
       'type': type.value,
-      'media': media.toJson(),
+      'media': media.getValue(field),
       'caption': caption,
       'parse_mode': parseMode?.value,
       'caption_entities': captionEntities,

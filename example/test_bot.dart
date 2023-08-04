@@ -8,20 +8,20 @@ void main() async {
   final bot = Bot(
     Platform.environment["BOT_TOKEN"]!,
   );
-  bot.entity(MessageEntityType.botCommand, (ctx) async {
-    await ctx.reply("Works");
+
+  final video = InputFile.fromFile(File("./example/assets/video.mp4"));
+  bot.onText((ctx) async {
+    print('sending video');
+    await ctx.replyWithVideo(video);
   });
-  bot.on(TeleverseEvent.text, (ctx) async {
-    ctx as MessageContext;
-    await ctx.reply(
-      "Hello ${ctx.message.from!.firstName}!",
-      allowSendingWithoutReply: true,
-    );
+
+  bot.onVideoNote((ctx) async {
+    final v = ctx.update.message!.videoNote!;
+    final file = await ctx.api.getFile(v.fileId);
+    print('downloading video note');
+    await file.download();
+    await ctx.reply('Successfully downloaded video note');
   });
-  bot.onError((err, stackTrace) {
-    print("We got some problems!");
-    print(err);
-    print(stackTrace);
-  });
+
   bot.start();
 }

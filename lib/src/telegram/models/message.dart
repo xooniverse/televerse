@@ -373,7 +373,8 @@ class Message {
           json['message_auto_delete_timer_changed'] == null
               ? null
               : MessageAutoDeleteTimerChanged.fromJson(
-                  json['message_auto_delete_timer_changed']),
+                  json['message_auto_delete_timer_changed'],
+                ),
       migrateToChatId: json['migrate_to_chat_id'],
       migrateFromChatId: json['migrate_from_chat_id'],
       pinnedMessage: json['pinned_message'] == null
@@ -408,7 +409,8 @@ class Message {
           json['video_chat_participants_invited'] == null
               ? null
               : VideoChatParticipantsInvited.fromJson(
-                  json['video_chat_participants_invited']),
+                  json['video_chat_participants_invited'],
+                ),
       videoChatScheduled: json['video_chat_scheduled'] == null
           ? null
           : VideoChatScheduled.fromJson(json['video_chat_scheduled']),
@@ -437,11 +439,13 @@ class Message {
       generalForumTopicHidden: json['general_forum_topic_hidden'] == null
           ? null
           : GeneralForumTopicHidden.fromJson(
-              json['general_forum_topic_hidden']),
+              json['general_forum_topic_hidden'],
+            ),
       generalForumTopicUnhidden: json['general_forum_topic_unhidden'] == null
           ? null
           : GeneralForumTopicUnhidden.fromJson(
-              json['general_forum_topic_unhidden']),
+              json['general_forum_topic_unhidden'],
+            ),
       writeAccessAllowed: json['write_access_allowed'] == null
           ? null
           : WriteAccessAllowed.fromJson(json['write_access_allowed']),

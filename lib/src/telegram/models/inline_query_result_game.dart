@@ -38,7 +38,8 @@ class InlineQueryResultGame extends InlineQueryResult {
       replyMarkup: json['reply_markup'] == null
           ? null
           : InlineKeyboardMarkup.fromJson(
-              json['reply_markup'] as Map<String, dynamic>),
+              json['reply_markup'] as Map<String, dynamic>,
+            ),
     );
   }
 }

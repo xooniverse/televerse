@@ -23,9 +23,9 @@ class InputSticker {
   });
 
   /// Creates JSON object from the Input Sticker object.
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson([String? field]) {
     return {
-      'sticker': sticker.toJson(),
+      'sticker': sticker.getValue(field),
       'emoji_list': emojiList,
       'mask_position': maskPosition,
       'keywords': keywords,

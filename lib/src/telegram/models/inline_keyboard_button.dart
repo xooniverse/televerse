@@ -79,7 +79,8 @@ class InlineKeyboardButton {
       switchInlineQueryChosenChat:
           json['switch_inline_query_chosen_chat'] != null
               ? SwitchInlineQueryChosenChat.fromJson(
-                  json['switch_inline_query_chosen_chat'])
+                  json['switch_inline_query_chosen_chat'],
+                )
               : null,
     );
   }

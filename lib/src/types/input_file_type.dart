@@ -15,7 +15,10 @@ enum InputFileType {
   file("file"),
 
   /// For a file sent as a url
-  url("url");
+  url("url"),
+
+  /// For a file sent as bytes
+  bytes("bytes");
 
   /// The value of this enum.
   final String value;
