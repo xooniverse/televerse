@@ -70,18 +70,19 @@ class RawAPI {
     return uri;
   }
 
-  List<MultipartFile> _getFiles(List<_MultipartHelper> list) {
-    List<MultipartFile> files = list.where((el) {
+  List<Map<String, MultipartFile>> _getFiles(List<_MultipartHelper> list) {
+    List<Map<String, MultipartFile>> files = list.where((el) {
       return el.type == InputFileType.file || el.type == InputFileType.bytes;
     }).map((e) {
       if (e.type == InputFileType.file && !e.file.file!.existsSync()) {
         throw TeleverseException.fileDoesNotExist(e.file.file!.path);
       }
-      return MultipartFile.fromBytes(
-        e.field,
-        e.file.getBytes(),
-        filename: e.name,
-      );
+      return {
+        e.field: MultipartFile.fromBytes(
+          e.file.getBytes(),
+          filename: e.name,
+        )
+      };
     }).toList();
     return files;
   }
@@ -145,15 +146,13 @@ class RawAPI {
       "secret_token": secretToken,
     };
     if (certificate != null) {
-      List<MultipartFile> files = [];
-      files.add(
-        MultipartFile(
-          'certificate',
-          certificate.openRead(),
-          certificate.lengthSync(),
+      List<Map<String, MultipartFile>> files = [];
+      files.add({
+        "certificate": MultipartFile.fromBytes(
+          certificate.readAsBytesSync(),
           filename: certificate.path.split("/").last,
         ),
-      );
+      });
       Uri uri = _buildUri("setWebhook");
       return await HttpClient.multipartPost(uri, files, params);
     } else {
@@ -382,7 +381,7 @@ class RawAPI {
     };
     const field = "photo";
     Map<String, dynamic> response;
-    List<MultipartFile> files = _getFiles([_MultipartHelper(photo, field)]);
+    final files = _getFiles([_MultipartHelper(photo, field)]);
     params[field] = photo.getValue(field);
     params.removeWhere(_nullChecker);
     if (files.isNotEmpty) {
@@ -440,7 +439,7 @@ class RawAPI {
     if (thumbnail != null) {
       l.add(_MultipartHelper(thumbnail, _thumb));
     }
-    List<MultipartFile> files = _getFiles(l);
+    final files = _getFiles(l);
     params[field] = audio.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
     if (files.isNotEmpty) {
@@ -490,7 +489,7 @@ class RawAPI {
     final l = [_MultipartHelper(document, field)];
     if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
 
-    List<MultipartFile> files = _getFiles(l);
+    final files = _getFiles(l);
     params[field] = document.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
     params.removeWhere(_nullChecker);
@@ -547,7 +546,7 @@ class RawAPI {
     Map<String, dynamic> response;
     final l = [_MultipartHelper(video, field)];
     if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
-    List<MultipartFile> files = _getFiles(l);
+    final files = _getFiles(l);
     params[field] = video.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
     if (files.isNotEmpty) {
@@ -602,7 +601,7 @@ class RawAPI {
     final l = [_MultipartHelper(animation, field)];
     if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
 
-    List<MultipartFile> files = _getFiles(l);
+    final files = _getFiles(l);
     params[field] = animation.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
     params.removeWhere(_nullChecker);
@@ -649,7 +648,7 @@ class RawAPI {
     const field = "voice";
     Map<String, dynamic> response;
     final l = [_MultipartHelper(voice, field)];
-    List<MultipartFile> files = _getFiles(l);
+    final files = _getFiles(l);
     params[field] = voice.getValue(field);
     params.removeWhere(_nullChecker);
     if (files.isNotEmpty) {
@@ -694,7 +693,7 @@ class RawAPI {
     Map<String, dynamic> response;
     final l = [_MultipartHelper(videoNote, field)];
     if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
-    List<MultipartFile> files = _getFiles(l);
+    final files = _getFiles(l);
     params[field] = videoNote.getValue(field);
     params.removeWhere(_nullChecker);
     params[_thumb] = thumbnail?.getValue(_thumb);
@@ -763,7 +762,7 @@ class RawAPI {
       helpers.add(_MultipartHelper(m.media, "media$i"));
     }
 
-    List<MultipartFile> files = _getFiles(helpers);
+    final files = _getFiles(helpers);
     params["media"] = jsonEncode(mediaList);
 
     if (files.isNotEmpty) {
@@ -1542,7 +1541,7 @@ class RawAPI {
     };
     const field = "photo";
     bool response;
-    List<MultipartFile> files = _getFiles([_MultipartHelper(photo, field)]);
+    final files = _getFiles([_MultipartHelper(photo, field)]);
     params[field] = photo.getValue(field);
 
     if (files.isNotEmpty) {
@@ -2258,7 +2257,7 @@ class RawAPI {
     const field = "media";
 
     Map<String, dynamic> response;
-    List<MultipartFile> files = _getFiles([
+    final files = _getFiles([
       _MultipartHelper(media.media, field),
     ]);
     params[field] = media.getValue(field);
@@ -2299,7 +2298,7 @@ class RawAPI {
     const field = "media";
 
     bool response;
-    List<MultipartFile> files = _getFiles([
+    final files = _getFiles([
       _MultipartHelper(media.media, field),
     ]);
     params[field] = media.getValue(field);
@@ -2440,7 +2439,7 @@ class RawAPI {
     };
     const field = "sticker";
     Map<String, dynamic> response;
-    List<MultipartFile> files = _getFiles([
+    final files = _getFiles([
       _MultipartHelper(sticker, field),
     ]);
     params[field] = sticker.getValue(field);
@@ -2503,7 +2502,7 @@ class RawAPI {
     const field = "sticker";
 
     Map<String, dynamic> response;
-    List<MultipartFile> files = _getFiles([
+    final files = _getFiles([
       _MultipartHelper(sticker, field),
     ]);
     params[field] = sticker.getValue(field);
@@ -2540,7 +2539,7 @@ class RawAPI {
     };
 
     bool response;
-    List<MultipartFile> files = _getFiles(
+    final files = _getFiles(
       [_MultipartHelper(sticker.sticker, field)],
     );
 
@@ -2605,7 +2604,7 @@ class RawAPI {
     }..removeWhere(_nullChecker);
 
     bool response;
-    List<MultipartFile> files = [];
+    List<Map<String, MultipartFile>> files = [];
     if (thumbnail != null) {
       files = _getFiles([
         _MultipartHelper(thumbnail, _thumb),
@@ -3123,7 +3122,7 @@ class RawAPI {
       helpers.add(_MultipartHelper(stickers[i].sticker, "stickers$i"));
     }
 
-    List<MultipartFile> files = _getFiles(helpers);
+    final files = _getFiles(helpers);
 
     response = await HttpClient.multipartPost(
       _buildUri("createNewStickerSet"),
