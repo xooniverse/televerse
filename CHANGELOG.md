@@ -1,3 +1,11 @@
+## 1.10.8
+- ⚠️ BREAKING CHANGES
+- Added `BotError` class that will be passed to the `Televerse.onError` handler
+- ⚠️ `Televerse.onError` will now only accept one parameter which is instance of `BotError`
+- ⚠️ Made the `InputFile` constructor private. Use `InputFile.fromFile` or `InputFile.fromBytes` or `InputFile.fromUrl` or `InputFile.fromFileId` to create an `InputFile` instance.
+- 🆕 Added the `InputFile.fromBytes` constructor to create an `InputFile` instance from a `Uint8List` object.
+- ⚙️ Migrated to `dio` instead of `http` package.
+- Refactors & tets
 ## 1.10.7
 - Fixed a minor formatting issue
 
