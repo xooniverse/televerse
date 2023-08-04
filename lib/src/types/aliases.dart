@@ -9,7 +9,8 @@ typedef MessageHandler = FutureOr<void> Function(MessageContext ctx);
 ///
 /// This is used to define a callback function for almost all the methods that listen to callback queries.
 typedef CallbackQueryHandler = FutureOr<void> Function(
-    CallbackQueryContext ctx);
+  CallbackQueryContext ctx,
+);
 
 /// [InlineQueryHandler] is a type alias for a function that takes a [InlineQueryContext] as parameter and returns a [FutureOr] of void].
 ///
@@ -20,7 +21,8 @@ typedef InlineQueryHandler = FutureOr<void> Function(InlineQueryContext ctx);
 ///
 /// This is used to define a callback function for almost all the methods that listen to chat member updates.
 typedef ChatMemberUpdatedHandler = FutureOr<void> Function(
-    ChatMemberUpdatedContext ctx);
+  ChatMemberUpdatedContext ctx,
+);
 
 /// [PollHandler] is a type alias for a function that takes a [PollContext] as parameter and returns a [FutureOr] of void.
 ///
@@ -36,25 +38,29 @@ typedef PollAnswerHandler = FutureOr<void> Function(PollAnswerContext ctx);
 ///
 /// This is used to define a callback function for almost all the methods that listen to chosen inline results.
 typedef ChosenInlineResultHandler = FutureOr<void> Function(
-    ChosenInlineResultContext ctx);
+  ChosenInlineResultContext ctx,
+);
 
 /// [ChatJoinRequestHandler] is a type alias for a function that takes a [ChatJoinRequestContext] as parameter and returns a [FutureOr] of void.
 ///
 /// This is used to define a callback function for almost all the methods that listen to chat join requests.
 typedef ChatJoinRequestHandler = FutureOr<void> Function(
-    ChatJoinRequestContext ctx);
+  ChatJoinRequestContext ctx,
+);
 
 /// [ShippingQueryHandler] is a type alias for a function that takes a [ShippingQueryContext] as parameter and returns a [FutureOr] of void.
 ///
 /// This is used to define a callback function for almost all the methods that listen to shipping queries.
 typedef ShippingQueryHandler = FutureOr<void> Function(
-    ShippingQueryContext ctx);
+  ShippingQueryContext ctx,
+);
 
 /// [PreCheckoutQueryHandler] is a type alias for a function that takes a [PreCheckoutQueryContext] as parameter and returns a [FutureOr] of void.
 ///
 /// This is used to define a callback function for almost all the methods that listen to pre checkout queries.
 typedef PreCheckoutQueryHandler = FutureOr<void> Function(
-    PreCheckoutQueryContext ctx);
+  PreCheckoutQueryContext ctx,
+);
 
 /// Base handler
 typedef Handler = FutureOr<void> Function(Context ctx);

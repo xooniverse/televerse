@@ -44,11 +44,9 @@ abstract class Fetcher {
   void setApi(RawAPI api) => this.api = api;
 
   /// Error handler for long polling.
-  FutureOr<void> Function(Object error, StackTrace stackTrace)? _onError;
+  FutureOr<void> Function(BotError err)? _onError;
 
   /// Sets the error handler for long polling.
-  void onError(
-          FutureOr<void> Function(Object error, StackTrace stackTrace)
-              onError) =>
+  void onError(FutureOr<void> Function(BotError err) onError) =>
       _onError = onError;
 }

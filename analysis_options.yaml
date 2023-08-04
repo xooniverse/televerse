@@ -24,6 +24,7 @@ linter:
     - public_member_api_docs
     - slash_for_doc_comments
     - unnecessary_library_directive
+    - require_trailing_commas
 # analyzer:
 #   exclude:
 #     - path/to/excluded/files/**

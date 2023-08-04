@@ -6,7 +6,7 @@ library models;
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:http/http.dart';
+import 'package:dio/dio.dart';
 import 'package:televerse/televerse.dart';
 import 'dart:io' as io;
 

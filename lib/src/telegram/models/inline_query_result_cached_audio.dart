@@ -67,11 +67,13 @@ class InlineQueryResultCachedAudio extends InlineQueryResult {
       replyMarkup: json['reply_markup'] == null
           ? null
           : InlineKeyboardMarkup.fromJson(
-              json['reply_markup'] as Map<String, dynamic>),
+              json['reply_markup'] as Map<String, dynamic>,
+            ),
       inputMessageContent: json['input_message_content'] == null
           ? null
           : InputMessageContent.fromJson(
-              json['input_message_content'] as Map<String, dynamic>),
+              json['input_message_content'] as Map<String, dynamic>,
+            ),
     );
   }
 }

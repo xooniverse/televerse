@@ -1,13 +1,13 @@
 name: televerse
 description: Televerse lets you create your own efficient Telegram bots with ease in Dart. Supports latest Telegram Bot API - 6.7!
-version: 1.10.6
+version: 1.10.8
 homepage: https://github.com/HeySreelal/televerse
 
 environment:
   sdk: ">=2.17.7 <4.0.0"
 
 dependencies:
-  http: ^1.0.0
+  dio: ^5.3.1
 
 dev_dependencies:
   lints: ^2.0.0

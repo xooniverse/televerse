@@ -55,4 +55,11 @@ class TeleverseException implements Exception {
             "The request to getMe failed. Please check your internet connection and try again. \n\nError: $err",
         stackTrace: stack,
       );
+
+  /// Exception thrown when bytes are not provided in case of uploading a file.
+  static TeleverseException bytesNotProvided() => TeleverseException(
+        "Bytes not provided",
+        description:
+            "You must provide the bytes of the file to upload. Use the `InputFile.fromBytes` constructor to create an InputFile.",
+      );
 }

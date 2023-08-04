@@ -23,5 +23,5 @@ abstract class InputMedia {
   });
 
   /// Converts a [InputMedia] to a [Map] for JSON encoding.
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> getValue([String? field, String? thumb]);
 }
