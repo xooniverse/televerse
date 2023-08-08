@@ -9,19 +9,15 @@ void main() async {
     Platform.environment["BOT_TOKEN"]!,
   );
 
-  final video = InputFile.fromFile(File("./example/assets/video.mp4"));
-  bot.onText((ctx) async {
-    print('sending video');
-    await ctx.replyWithVideo(video);
-  });
-
-  bot.onVideoNote((ctx) async {
-    final v = ctx.update.message!.videoNote!;
-    final file = await ctx.api.getFile(v.fileId);
-    print('downloading video note');
-    await file.download();
-    await ctx.reply('Successfully downloaded video note');
+  bot.command('hi', (ctx) async {
+    final msg = await ctx.reply('What is your name?');
+    bot.setNextStep(msg, handleName);
   });
 
   bot.start();
+}
+
+void handleName(MessageContext ctx) async {
+  final name = ctx.message.text;
+  await ctx.reply('Hello $name');
 }
