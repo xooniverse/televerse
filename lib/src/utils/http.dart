@@ -8,14 +8,36 @@ class HttpClient {
   ///
   static final dio = Dio();
 
+  // Throws formatted exception
+  static void _dioCatch(Object? e) {
+    if (e is TelegramException) {
+      throw e;
+    }
+    if (e is DioException) {
+      if (e.response != null) {
+        final body = json.decode(e.response!.data);
+        throw TelegramException.fromJson(body);
+      }
+      throw TelegramException(
+        e.response?.statusCode ?? 500,
+        description: e.message,
+        stackTrace: e.stackTrace,
+      );
+    }
+  }
+
   /// Send GET request to the given [uri] and return the response body.
   static Future<dynamic> getURI(Uri uri) async {
-    final response = await dio.getUri(uri);
-    final body = json.decode(response.data);
-    if (body["ok"] == true) {
-      return body["result"];
-    } else {
-      throw TelegramException.fromJson(body);
+    try {
+      final response = await dio.getUri(uri);
+      final body = json.decode(response.data);
+      if (body["ok"] == true) {
+        return body["result"];
+      } else {
+        throw TelegramException.fromJson(body);
+      }
+    } catch (e) {
+      _dioCatch(e);
     }
   }
 
@@ -27,17 +49,21 @@ class HttpClient {
     body.removeWhere((key, value) => value == null || value == "null");
     Map<String, String> bodyContent = body.map(_getEntry);
 
-    final response = await dio.postUri<String>(
-      uri,
-      data: bodyContent,
-      options: Options(responseType: ResponseType.json),
-    );
+    try {
+      final response = await dio.postUri<String>(
+        uri,
+        data: bodyContent,
+        options: Options(responseType: ResponseType.json),
+      );
 
-    final resBody = json.decode(response.data!);
-    if (resBody["ok"] == true) {
-      return resBody["result"];
-    } else {
-      throw TelegramException.fromJson(resBody);
+      final resBody = json.decode(response.data!);
+      if (resBody["ok"] == true) {
+        return resBody["result"];
+      } else {
+        throw TelegramException.fromJson(resBody);
+      }
+    } catch (e) {
+      _dioCatch(e);
     }
   }
 
@@ -55,22 +81,26 @@ class HttpClient {
       ..fields.addAll(parameters)
       ..files.addAll(filesMap);
 
-    final req = await dio.postUri(
-      uri,
-      data: formData,
-      options: Options(
-        headers: {"Content-Type": "multipart/form-data"},
-        responseType: ResponseType.bytes,
-      ),
-    );
+    try {
+      final req = await dio.postUri(
+        uri,
+        data: formData,
+        options: Options(
+          headers: {"Content-Type": "multipart/form-data"},
+          responseType: ResponseType.bytes,
+        ),
+      );
 
-    final toString = utf8.decode(req.data as List<int>);
+      final toString = utf8.decode(req.data as List<int>);
 
-    final res = json.decode(toString);
-    if (res["ok"] == true) {
-      return res["result"];
-    } else {
-      throw TelegramException.fromJson(res);
+      final res = json.decode(toString);
+      if (res["ok"] == true) {
+        return res["result"];
+      } else {
+        throw TelegramException.fromJson(res);
+      }
+    } catch (e) {
+      _dioCatch(e);
     }
   }
 
