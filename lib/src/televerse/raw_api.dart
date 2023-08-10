@@ -22,11 +22,11 @@ class RawAPI {
     this.token, {
     String? baseUrl,
     APIScheme? scheme,
-    bool enableLogging = false,
+    LoggerOptions? loggerOptions,
   })  : _baseUrl = baseUrl ?? defaultBase,
         _isLocal = baseUrl != defaultBase,
         _scheme = scheme ?? APIScheme.https,
-        _httpClient = HttpClient(enableLogging: enableLogging);
+        _httpClient = HttpClient(loggerOptions);
 
   /// Creates a new RawAPI instance with the given [token] and [baseUrl].
   ///
@@ -35,13 +35,13 @@ class RawAPI {
     String token, {
     String baseUrl = "localhost:8081",
     APIScheme scheme = APIScheme.http,
-    bool enableLogging = false,
+    LoggerOptions? loggerOptions,
   }) {
     return RawAPI(
       token,
       baseUrl: baseUrl,
       scheme: scheme,
-      enableLogging: enableLogging,
+      loggerOptions: loggerOptions,
     );
   }
 
@@ -119,7 +119,7 @@ class RawAPI {
     }
 
     Uri uri = _buildUri("getUpdates");
-    final response = await _httpClient.postURI(uri, params, shouldLog: false);
+    final response = await _httpClient.postURI(uri, params);
 
     if (response is! List) {
       throw LongPollingException("Got an invalid response. $response");

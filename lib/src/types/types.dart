@@ -21,3 +21,4 @@ part 'parse_mode.dart';
 part 'chat_action.dart';
 part 'sticker_format.dart';
 part 'scheme.dart';
+part 'methods.dart';

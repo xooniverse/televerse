@@ -28,8 +28,8 @@ class Televerse<TeleverseSession extends Session> {
   /// A flag that indicates whether the Bot API is running locally or not.
   final bool isLocal;
 
-  /// Logging flag
-  final bool _enableLogging;
+  /// Options to configure the logger.
+  final LoggerOptions? _loggerOptions;
 
   /// Handler for unexpected errors.
   FutureOr<void> Function(BotError error)? _onError;
@@ -68,14 +68,14 @@ class Televerse<TeleverseSession extends Session> {
         token,
         baseUrl: _baseURL,
         scheme: _scheme,
-        enableLogging: _enableLogging,
+        loggerOptions: _loggerOptions,
       );
     }
     return RawAPI(
       token,
       baseUrl: _baseURL,
       scheme: APIScheme.https,
-      enableLogging: _enableLogging,
+      loggerOptions: _loggerOptions,
     );
   }
 
@@ -99,10 +99,10 @@ class Televerse<TeleverseSession extends Session> {
     Fetcher? fetcher,
     String baseURL = RawAPI.defaultBase,
     APIScheme scheme = APIScheme.https,
-    bool enableLogging = false,
+    LoggerOptions? loggerOptions,
   })  : _baseURL = baseURL,
         isLocal = baseURL != RawAPI.defaultBase,
-        _enableLogging = enableLogging,
+        _loggerOptions = loggerOptions,
         _scheme = scheme {
     this.fetcher = fetcher ?? LongPolling();
     this.fetcher.setApi(api);
@@ -150,7 +150,7 @@ class Televerse<TeleverseSession extends Session> {
     bool sync = false,
     String baseURL = "localhost:8081",
     APIScheme scheme = APIScheme.http,
-    bool enableLogging = false,
+    LoggerOptions? loggerOptions,
   }) {
     print('Using local Bot API server at $baseURL');
     return Televerse(
@@ -158,7 +158,7 @@ class Televerse<TeleverseSession extends Session> {
       fetcher: fetcher,
       baseURL: baseURL,
       scheme: scheme,
-      enableLogging: enableLogging,
+      loggerOptions: loggerOptions,
     );
   }
 
