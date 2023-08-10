@@ -8,8 +8,12 @@ class HttpClient {
   /// Construc client with optionally logging
   HttpClient({required bool enableLogging}) : _enableLogging = enableLogging {
     if (_enableLogging) {
-      _dio.interceptors
-          .add(LogInterceptor(requestBody: true, responseBody: true));
+      _dio.interceptors.add(
+        LogInterceptor(
+          requestBody: true,
+          responseBody: true,
+        ),
+      );
     }
   }
 
@@ -56,14 +60,14 @@ class HttpClient {
   Future<dynamic> postURI(
     Uri uri,
     Map<String, dynamic> body, {
-    bool? logOption,
+    bool? shouldLog,
   }) async {
     body.removeWhere((key, value) => value == null || value == "null");
     Map<String, String> bodyContent = body.map(_getEntry);
 
     try {
-      logOption ??= _enableLogging;
-      final response = await (logOption ? _dio : Dio()).postUri<String>(
+      shouldLog ??= _enableLogging;
+      final response = await (shouldLog ? _dio : Dio()).postUri<String>(
         uri,
         data: bodyContent,
         options: Options(responseType: ResponseType.json),
