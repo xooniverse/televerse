@@ -7,7 +7,7 @@ void main(List<String> args) {
   final String token = Platform.environment["BOT_TOKEN"]!;
 
   /// Create a bot instance
-  final Bot bot = Bot(token);
+  final Bot bot = Bot(token, enableLogging: true);
 
   /// Adds the /start command listener and starts the bot
   bot.command("start", (ctx) {

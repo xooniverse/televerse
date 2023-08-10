@@ -5,12 +5,23 @@ import 'package:televerse/televerse.dart';
 
 /// HttpClient is used to send HTTP requests to the Telegram Bot API.
 class HttpClient {
-  ///
-  static final dio = Dio();
+  /// Construc client with optionally logging
+  HttpClient({required bool enableLogging}) : _enableLogging = enableLogging {
+    if (_enableLogging) {
+      _dio.interceptors
+          .add(LogInterceptor(requestBody: true, responseBody: true));
+    }
+  }
+
+  /// Initialize Dio
+  final _dio = Dio();
+
+  /// Enable logging flag
+  final bool _enableLogging;
 
   /// Send GET request to the given [uri] and return the response body.
-  static Future<dynamic> getURI(Uri uri) async {
-    final response = await dio.getUri(uri);
+  Future<dynamic> getURI(Uri uri) async {
+    final response = await _dio.getUri(uri);
     final body = json.decode(response.data);
     if (body["ok"] == true) {
       return body["result"];
@@ -20,14 +31,14 @@ class HttpClient {
   }
 
   /// Send POST request to the given [uri] and return the response body.
-  static Future<dynamic> postURI(
+  Future<dynamic> postURI(
     Uri uri,
     Map<String, dynamic> body,
   ) async {
     body.removeWhere((key, value) => value == null || value == "null");
     Map<String, String> bodyContent = body.map(_getEntry);
 
-    final response = await dio.postUri<String>(
+    final response = await _dio.postUri<String>(
       uri,
       data: bodyContent,
       options: Options(responseType: ResponseType.json),
@@ -42,7 +53,7 @@ class HttpClient {
   }
 
   /// Send Multipart POST request to the given [uri] and return the response body.
-  static Future<dynamic> multipartPost(
+  Future<dynamic> multipartPost(
     Uri uri,
     List<Map<String, MultipartFile>> files,
     Map<String, dynamic> body,
@@ -55,7 +66,7 @@ class HttpClient {
       ..fields.addAll(parameters)
       ..files.addAll(filesMap);
 
-    final req = await dio.postUri(
+    final req = await _dio.postUri(
       uri,
       data: formData,
       options: Options(
@@ -75,7 +86,7 @@ class HttpClient {
   }
 
   /// Convert the MapEntry to MapEntry<String, String>.
-  static MapEntry<String, String> _getEntry(String k, dynamic v) {
+  MapEntry<String, String> _getEntry(String k, dynamic v) {
     if (v is List) {
       return MapEntry(k, jsonEncode(v));
     }
