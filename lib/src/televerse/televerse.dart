@@ -536,9 +536,11 @@ class Televerse<TeleverseSession extends Session> {
   /// ```
   void filter(
     bool Function(MessageContext ctx) predicate,
-    MessageHandler callback,
-  ) {
+    MessageHandler callback, {
+    String? name,
+  }) {
     HandlerScope scope = HandlerScope<MessageHandler>(
+      name: name,
       handler: callback,
       types: [
         UpdateType.message,
@@ -1909,5 +1911,25 @@ class Televerse<TeleverseSession extends Session> {
     }
 
     _handlerScopes.removeWhere((scope) => keys.contains(scope.name));
+  }
+
+  /// Next step handler
+  void setNextStep(Message msg, MessageHandler callback) {
+    final scopeName = "next-step-${msg.messageId}";
+    bool isNextMessage(int messageId) {
+      return messageId == msg.messageId + 1 || messageId == msg.messageId + 2;
+    }
+
+    filter(
+      (ctx) {
+        return ctx.message.chat.id == msg.chat.id &&
+            isNextMessage(ctx.message.messageId);
+      },
+      (ctx) async {
+        await callback(ctx);
+        _handlerScopes.removeWhere((scope) => scope.name == scopeName);
+      },
+      name: scopeName,
+    );
   }
 }

@@ -1,4 +1,10 @@
+## 1.10.9
+
+- Added `Televerse.setNextStep` method which can be used to set next step handler.
+- Catches `DioExceptions` and throws meaningful exceptions.
+
 ## 1.10.8
+
 - ⚠️ BREAKING CHANGES
 - Added `BotError` class that will be passed to the `Televerse.onError` handler
 - ⚠️ `Televerse.onError` will now only accept one parameter which is instance of `BotError`
@@ -6,7 +12,9 @@
 - 🆕 Added the `InputFile.fromBytes` constructor to create an `InputFile` instance from a `Uint8List` object.
 - ⚙️ Migrated to `dio` instead of `http` package.
 - Refactors & tets
+
 ## 1.10.7
+
 - Fixed a minor formatting issue
 
 ## 1.10.6
