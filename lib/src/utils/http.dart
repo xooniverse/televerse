@@ -6,8 +6,8 @@ import 'package:televerse/televerse.dart';
 /// HttpClient is used to send HTTP requests to the Telegram Bot API.
 class HttpClient {
   /// Construc client with optionally logging
-  HttpClient({required bool enableLogging}) {
-    if (enableLogging) {
+  HttpClient({required bool enableLogging}) : _enableLogging = enableLogging {
+    if (_enableLogging) {
       _dio.interceptors
           .add(LogInterceptor(requestBody: true, responseBody: true));
     }
@@ -15,6 +15,9 @@ class HttpClient {
 
   /// Initialize Dio
   final _dio = Dio();
+
+  /// Log flag
+  final bool _enableLogging;
 
   // Throws formatted exception
   void _dioCatch(Object? e) {
@@ -52,13 +55,15 @@ class HttpClient {
   /// Send POST request to the given [uri] and return the response body.
   Future<dynamic> postURI(
     Uri uri,
-    Map<String, dynamic> body,
-  ) async {
+    Map<String, dynamic> body, {
+    bool? logOption,
+  }) async {
     body.removeWhere((key, value) => value == null || value == "null");
     Map<String, String> bodyContent = body.map(_getEntry);
 
     try {
-      final response = await _dio.postUri<String>(
+      logOption ??= _enableLogging;
+      final response = await (logOption ? _dio : Dio()).postUri<String>(
         uri,
         data: bodyContent,
         options: Options(responseType: ResponseType.json),
