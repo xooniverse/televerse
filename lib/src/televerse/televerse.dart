@@ -1109,7 +1109,7 @@ class Televerse<TeleverseSession extends Session> {
         username: me.username,
       );
     } on TeleverseException catch (_) {
-      _me = await api.getMe();
+      _me = await getMe();
       return onMention(
         callback,
         username: me.username,

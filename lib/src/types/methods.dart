@@ -354,4 +354,31 @@ enum APIMethod {
   static APIMethod method(String path) {
     return APIMethod.values.firstWhere((element) => element.name == path);
   }
+
+  /// List of API methods that are used to send messages of any kind.
+  ///
+  /// This includes sending text messages, photos, videos, etc.
+  static List<APIMethod> get sendMethods {
+    return [
+      APIMethod.sendMessage,
+      APIMethod.forwardMessage,
+      APIMethod.copyMessage,
+      APIMethod.sendPhoto,
+      APIMethod.sendAudio,
+      APIMethod.sendDocument,
+      APIMethod.sendVideo,
+      APIMethod.sendAnimation,
+      APIMethod.sendVoice,
+      APIMethod.sendVideoNote,
+      APIMethod.sendMediaGroup,
+      APIMethod.sendLocation,
+      APIMethod.sendVenue,
+      APIMethod.sendContact,
+      APIMethod.sendPoll,
+      APIMethod.sendDice,
+      APIMethod.sendChatAction,
+      APIMethod.sendSticker,
+      APIMethod.sendGame,
+    ];
+  }
 }
