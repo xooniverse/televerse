@@ -18,7 +18,7 @@ void _debugPrint(Object? object) {
 /// Example:
 /// ```dart
 /// final bot = Bot(
-///    TOKEN,
+///    "<YOUR TOKEN>",
 ///    loggerOptions: LoggerOptions(
 ///      methods: [
 ///        APIMethod.sendMessage,
@@ -31,14 +31,14 @@ class LoggerOptions {
   /// Creates a new [LoggerOptions] instance. This can be used to configure logging the
   /// request and response data Televerse makes and receives.
   ///
-  /// [request] - Print request [Options]
-  /// [requestHeader] - Print request header [Options.headers]
-  /// [requestBody] - Print request data [Options]
-  /// [responseHeader] - Print [Response.headers]
-  /// [responseBody] - Print [Response.data]
-  /// [error] - Print error message
-  /// [logPrint] - Log printer; defaults print log to console.
-  /// [methods] - Methods to be logged.
+  /// - [request] - Print request [Options]
+  /// - [requestHeader] - Print request header [Options.headers]
+  /// - [requestBody] - Print request data [Options]
+  /// - [responseHeader] - Print [Response.headers]
+  /// - [responseBody] - Print [Response.data]
+  /// - [error] - Print error message
+  /// - [logPrint] - Log printer; defaults print log to console.
+  /// - [methods] - Methods to be logged.
   LoggerOptions({
     this.request = true,
     this.requestHeader = true,
