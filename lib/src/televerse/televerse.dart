@@ -28,6 +28,9 @@ class Televerse<TeleverseSession extends Session> {
   /// A flag that indicates whether the Bot API is running locally or not.
   final bool isLocal;
 
+  /// Options to configure the logger.
+  final LoggerOptions? _loggerOptions;
+
   /// Handler for unexpected errors.
   FutureOr<void> Function(BotError error)? _onError;
 
@@ -61,9 +64,19 @@ class Televerse<TeleverseSession extends Session> {
   ///
   RawAPI get api {
     if (isLocal) {
-      return RawAPI.local(token, baseUrl: _baseURL, scheme: _scheme);
+      return RawAPI.local(
+        token,
+        baseUrl: _baseURL,
+        scheme: _scheme,
+        loggerOptions: _loggerOptions,
+      );
     }
-    return RawAPI(token, baseUrl: _baseURL, scheme: APIScheme.https);
+    return RawAPI(
+      token,
+      baseUrl: _baseURL,
+      scheme: APIScheme.https,
+      loggerOptions: _loggerOptions,
+    );
   }
 
   /// The fetcher - used to fetch updates from the Telegram servers.
@@ -86,8 +99,10 @@ class Televerse<TeleverseSession extends Session> {
     Fetcher? fetcher,
     String baseURL = RawAPI.defaultBase,
     APIScheme scheme = APIScheme.https,
+    LoggerOptions? loggerOptions,
   })  : _baseURL = baseURL,
         isLocal = baseURL != RawAPI.defaultBase,
+        _loggerOptions = loggerOptions,
         _scheme = scheme {
     this.fetcher = fetcher ?? LongPolling();
     this.fetcher.setApi(api);
@@ -135,6 +150,7 @@ class Televerse<TeleverseSession extends Session> {
     bool sync = false,
     String baseURL = "localhost:8081",
     APIScheme scheme = APIScheme.http,
+    LoggerOptions? loggerOptions,
   }) {
     print('Using local Bot API server at $baseURL');
     return Televerse(
@@ -142,6 +158,7 @@ class Televerse<TeleverseSession extends Session> {
       fetcher: fetcher,
       baseURL: baseURL,
       scheme: scheme,
+      loggerOptions: loggerOptions,
     );
   }
 
@@ -1092,7 +1109,7 @@ class Televerse<TeleverseSession extends Session> {
         username: me.username,
       );
     } on TeleverseException catch (_) {
-      _me = await api.getMe();
+      _me = await getMe();
       return onMention(
         callback,
         username: me.username,

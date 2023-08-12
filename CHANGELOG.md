@@ -1,3 +1,10 @@
+## 1.10.10
+
+- Added `LoggerOptions` class to configure the logger.
+- Now the `Televerse` class accepts a `LoggerOptions` object to setup logging requests and responses to and from the Telegram Bot API.
+- Added the `APIMethod` enum to represent the Telegram Bot API methods.
+- You can pass the List of `APIMethod` to the `LoggerOptions` class to log only the specified methods. By default all methods will be logged.
+
 ## 1.10.9
 
 - Added `Televerse.setNextStep` method which can be used to set next step handler.

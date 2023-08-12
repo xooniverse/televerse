@@ -1,15 +1,26 @@
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:televerse/televerse.dart';
 
 /// HttpClient is used to send HTTP requests to the Telegram Bot API.
 class HttpClient {
-  ///
-  static final dio = Dio();
+  /// Construc client with optionally logging
+  HttpClient(this.loggerOptions) {
+    if (loggerOptions != null) {
+      _dio.interceptors.add(
+        loggerOptions!.interceptor,
+      );
+    }
+  }
+
+  /// Initialize Dio
+  final _dio = Dio();
+
+  /// Log flag
+  final LoggerOptions? loggerOptions;
 
   // Throws formatted exception
-  static void _dioCatch(Object? e) {
+  void _dioCatch(Object? e) {
     if (e is TelegramException) {
       throw e;
     }
@@ -27,9 +38,9 @@ class HttpClient {
   }
 
   /// Send GET request to the given [uri] and return the response body.
-  static Future<dynamic> getURI(Uri uri) async {
+  Future<dynamic> getURI(Uri uri) async {
     try {
-      final response = await dio.getUri(uri);
+      final response = await _dio.getUri(uri);
       final body = json.decode(response.data);
       if (body["ok"] == true) {
         return body["result"];
@@ -42,7 +53,7 @@ class HttpClient {
   }
 
   /// Send POST request to the given [uri] and return the response body.
-  static Future<dynamic> postURI(
+  Future<dynamic> postURI(
     Uri uri,
     Map<String, dynamic> body,
   ) async {
@@ -50,7 +61,7 @@ class HttpClient {
     Map<String, String> bodyContent = body.map(_getEntry);
 
     try {
-      final response = await dio.postUri<String>(
+      final response = await _dio.postUri<String>(
         uri,
         data: bodyContent,
         options: Options(responseType: ResponseType.json),
@@ -68,7 +79,7 @@ class HttpClient {
   }
 
   /// Send Multipart POST request to the given [uri] and return the response body.
-  static Future<dynamic> multipartPost(
+  Future<dynamic> multipartPost(
     Uri uri,
     List<Map<String, MultipartFile>> files,
     Map<String, dynamic> body,
@@ -82,7 +93,7 @@ class HttpClient {
       ..files.addAll(filesMap);
 
     try {
-      final req = await dio.postUri(
+      final req = await _dio.postUri(
         uri,
         data: formData,
         options: Options(
@@ -105,7 +116,7 @@ class HttpClient {
   }
 
   /// Convert the MapEntry to MapEntry<String, String>.
-  static MapEntry<String, String> _getEntry(String k, dynamic v) {
+  MapEntry<String, String> _getEntry(String k, dynamic v) {
     if (v is List) {
       return MapEntry(k, jsonEncode(v));
     }
