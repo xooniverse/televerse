@@ -105,6 +105,7 @@ class Webhook extends Fetcher {
   @override
   Future<void> start() async {
     if (await setWebhook()) {
+      _isActive = true;
       _server.listen((io.HttpRequest r) async {
         if (r.uri.path == secretPath) {
           final b = await r.cast<List<int>>().transform(utf8.decoder).join();
@@ -129,6 +130,14 @@ class Webhook extends Fetcher {
   Future<void> stop({bool dropPendingUpdates = false}) async {
     _updateStreamController.close();
     await api.deleteWebhook(dropPendingUpdates: dropPendingUpdates);
+    _isActive = false;
     return _server.close(force: true);
   }
+
+  /// Internal flag to check if the webhook is running.
+  bool _isActive = false;
+
+  /// Flag to check if the webhook is running.
+  @override
+  bool get isActive => _isActive;
 }

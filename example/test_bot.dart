@@ -5,21 +5,7 @@ import 'package:televerse/televerse.dart';
 /// On investigation about #135
 void main() async {
   /// Creates the bot instance
-  final bot = Bot(
-    Platform.environment["BOT_TOKEN"]!,
-    loggerOptions: LoggerOptions(
-      request: true,
-      requestHeader: true,
-      requestBody: true,
-      responseHeader: true,
-      responseBody: true,
-      error: true,
-      methods: [
-        APIMethod.sendMessage,
-        APIMethod.getMe,
-      ],
-    ),
-  );
+  final bot = Bot(Platform.environment["BOT_TOKEN"]!);
 
   bot.command('hi', (ctx) async {
     final msg = await ctx.reply('What is your name?');
@@ -31,6 +17,14 @@ void main() async {
   bot.command('me', (ctx) async {
     final user = await ctx.api.getMe();
     await ctx.reply('My name is ${user.firstName}');
+  });
+
+  bot.command('active', (ctx) async {
+    if (bot.fetcher.isActive) {
+      await ctx.reply('I am active');
+    } else {
+      await ctx.reply('I am not active');
+    }
   });
 }
 

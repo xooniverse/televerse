@@ -154,4 +154,8 @@ class LongPolling extends Fetcher {
       delayDuration: delayDuration,
     );
   }
+
+  /// Flag to check if the long polling is active.
+  @override
+  bool get isActive => _isPolling;
 }
