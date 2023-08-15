@@ -37,6 +37,7 @@ class LoggerOptions {
   /// - [responseHeader] - Print [Response.headers]
   /// - [responseBody] - Print [Response.data]
   /// - [error] - Print error message
+  /// - [stackTrace] - Print error stack trace [DioException.stackTrace]
   /// - [logPrint] - Log printer; defaults print log to console.
   /// - [methods] - Methods to be logged.
   LoggerOptions({
@@ -46,6 +47,7 @@ class LoggerOptions {
     this.responseHeader = true,
     this.responseBody = true,
     this.error = true,
+    this.stackTrace = true,
     this.logPrint = _debugPrint,
     List<APIMethod>? methods,
   }) : methods = methods ?? APIMethod.values; // Default all methods
@@ -68,6 +70,9 @@ class LoggerOptions {
   /// Print error message
   bool error;
 
+  /// Print error stack trace [DioException.stackTrace]
+  bool stackTrace;
+
   /// Log printer; defaults print log to console.
   void Function(Object object) logPrint;
 
@@ -81,7 +86,15 @@ class LoggerOptions {
 
   /// Returns the interceptor to be used in [Dio].
   Interceptor get interceptor {
-    JsonEncoder encoder = JsonEncoder.withIndent('  ');
+    final LogInterceptor l = LogInterceptor(
+      logPrint: logPrint,
+      request: request,
+      requestHeader: requestHeader,
+      requestBody: requestBody,
+      responseBody: responseBody,
+      responseHeader: responseHeader,
+      error: error,
+    );
     return InterceptorsWrapper(
       onRequest: (options, handler) {
         if (request) {
@@ -89,15 +102,7 @@ class LoggerOptions {
           final allowed = APIMethod.isExistingMethod(path) &&
               isAllowed(APIMethod.method(path));
           if (allowed) {
-            logPrint("***** -->\nRequest: ${options.method} ${options.uri}");
-            if (requestHeader) {
-              logPrint("Headers:");
-              logPrint(encoder.convert(options.headers));
-            }
-            if (requestBody) {
-              logPrint("Body:");
-              logPrint(encoder.convert(options.data));
-            }
+            return l.onRequest(options, handler);
           }
         }
         return handler.next(options);
@@ -110,17 +115,8 @@ class LoggerOptions {
           return handler.next(response);
         }
         if (responseBody) {
-          logPrint(
-            "<-- *****\nResponse: ${response.statusCode} ${response.requestOptions.uri}",
-          );
-          if (responseHeader) {
-            logPrint("Headers:");
-            logPrint(encoder.convert(response.headers.map));
-          }
-          logPrint("Response Data:");
-          logPrint(encoder.convert(jsonDecode(response.data)));
+          return l.onResponse(response, handler);
         }
-        return handler.next(response);
       },
       onError: (DioException e, handler) {
         final path = e.requestOptions.uri.pathSegments.last;
@@ -130,6 +126,10 @@ class LoggerOptions {
         if (error) {
           logPrint("<-- Error -->");
           logPrint(e);
+          if (stackTrace) {
+            logPrint("Stack Trace:");
+            logPrint(e.stackTrace);
+          }
           logPrint("<-- End Error -->");
         }
         return handler.next(e);

@@ -6,6 +6,8 @@ part of televerse.models;
 /// Optionally, it can contain the context of the error.
 class BotError implements Exception {
   /// The error.
+  ///
+  /// This can possibly be a [TelegramException] or [TeleverseException] or [LongPollingException] or [DioException]
   final Object error;
 
   /// The stack trace.

@@ -49,4 +49,7 @@ abstract class Fetcher {
   /// Sets the error handler for long polling.
   void onError(FutureOr<void> Function(BotError err) onError) =>
       _onError = onError;
+
+  /// Flag to check if the fetcher is running.
+  bool get isActive;
 }
