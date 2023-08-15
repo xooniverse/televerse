@@ -1,3 +1,8 @@
+## 1.10.11
+
+- Using `LoggerOptions` unknowingly caused the bot to crash. This is now fixed.
+- Thanks to [@iamcosmin](https://github.com/iamcosmin) for raising [#148](https://github.com/HeySreelal/televerse/issues/148).
+
 ## 1.10.10
 
 - Added `LoggerOptions` class to configure the logger.
