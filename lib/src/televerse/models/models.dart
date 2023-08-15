@@ -8,6 +8,7 @@ import 'dart:io' as io;
 import 'dart:typed_data';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
+import 'package:dio/dio.dart' show DioException;
 
 part 'chat_id.dart';
 part 'input_file.dart';

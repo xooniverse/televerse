@@ -5,30 +5,22 @@ import 'package:televerse/televerse.dart';
 /// On investigation about #135
 void main() async {
   /// Creates the bot instance
-  final bot = Bot(Platform.environment["BOT_TOKEN"]!);
-
-  bot.command('hi', (ctx) async {
-    final msg = await ctx.reply('What is your name?');
-    bot.setNextStep(msg, handleName);
-  });
+  final bot = Bot(
+    Platform.environment["BOT_TOKEN"]!,
+    loggerOptions: LoggerOptions(
+      methods: [APIMethod.sendVideo],
+    ),
+  );
 
   bot.start();
 
-  bot.command('me', (ctx) async {
-    final user = await ctx.api.getMe();
-    await ctx.reply('My name is ${user.firstName}');
+  bot.command('hello', (ctx) async {
+    await ctx.reply('Hello World!');
+    await ctx.replyWithVideo(
+      InputFile.fromFile(
+        File('example/assets/video.mp4'),
+      ),
+    );
+    await ctx.reply('Done!');
   });
-
-  bot.command('active', (ctx) async {
-    if (bot.fetcher.isActive) {
-      await ctx.reply('I am active');
-    } else {
-      await ctx.reply('I am not active');
-    }
-  });
-}
-
-void handleName(MessageContext ctx) async {
-  final name = ctx.message.text;
-  await ctx.reply('Hello $name');
 }

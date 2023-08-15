@@ -29,19 +29,21 @@ class HttpClient {
         final body = json.decode(e.response!.data);
         throw TelegramException.fromJson(body);
       }
-      throw TelegramException(
-        e.response?.statusCode ?? 500,
-        description: e.message,
-        stackTrace: e.stackTrace,
-      );
+      throw e;
     }
   }
 
   /// Send GET request to the given [uri] and return the response body.
   Future<dynamic> getURI(Uri uri) async {
     try {
-      final response = await _dio.getUri(uri);
-      final body = json.decode(response.data);
+      final response = await _dio.getUri(
+        uri,
+        options: Options(
+          headers: {"Content-Type": "application/json"},
+          responseType: ResponseType.json,
+        ),
+      );
+      final body = response.data;
       if (body["ok"] == true) {
         return body["result"];
       } else {
@@ -61,13 +63,14 @@ class HttpClient {
     Map<String, String> bodyContent = body.map(_getEntry);
 
     try {
-      final response = await _dio.postUri<String>(
+      final response = await _dio.postUri(
         uri,
         data: bodyContent,
-        options: Options(responseType: ResponseType.json),
+        options: Options(
+          headers: {"Content-Type": "application/json"},
+        ),
       );
-
-      final resBody = json.decode(response.data!);
+      final resBody = response.data;
       if (resBody["ok"] == true) {
         return resBody["result"];
       } else {
@@ -87,7 +90,7 @@ class HttpClient {
     body.removeWhere((key, value) => value == null || value == "null");
 
     final parameters = body.map(_getEntry).entries;
-    final filesMap = files.map((e) => MapEntry(e.keys.single, e.values.single));
+    final filesMap = files.expand((element) => element.entries);
     final formData = FormData()
       ..fields.addAll(parameters)
       ..files.addAll(filesMap);
@@ -98,19 +101,19 @@ class HttpClient {
         data: formData,
         options: Options(
           headers: {"Content-Type": "multipart/form-data"},
-          responseType: ResponseType.bytes,
+          responseType: ResponseType.json,
         ),
       );
-
-      final toString = utf8.decode(req.data as List<int>);
-
-      final res = json.decode(toString);
+      final res = req.data;
       if (res["ok"] == true) {
         return res["result"];
       } else {
         throw TelegramException.fromJson(res);
       }
-    } catch (e) {
+    } catch (e, st) {
+      print("THE FUCK IS WRONG WITH YOU BITCH");
+      print(e);
+      print(st);
       _dioCatch(e);
     }
   }
