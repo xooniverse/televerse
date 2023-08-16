@@ -24,6 +24,15 @@ void main() async {
     await ctx.reply('Done!');
   });
 
+  bot.command('test', (ctx) async {
+    await ctx.api.sendPhoto(
+      ctx.id,
+      InputFile.fromFile(
+        File('example/assets/photo.jpeg'),
+      ),
+    );
+  });
+
   bot.onCommand((ctx) async {
     await ctx.reply("You just sent me a command!");
   });
