@@ -1932,4 +1932,28 @@ class Televerse<TeleverseSession extends Session> {
       name: scopeName,
     );
   }
+
+  /// Register a callback for any command.
+  ///
+  /// This method will match any command that is sent to the bot.
+  void onCommand(
+    MessageHandler callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+    String? name,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.message.entities?.any((element) {
+              return element.type == MessageEntityType.botCommand &&
+                  element.offset == 0;
+            }) ??
+            false;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+      name: name,
+    );
+  }
 }

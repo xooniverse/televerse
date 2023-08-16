@@ -110,10 +110,7 @@ class HttpClient {
       } else {
         throw TelegramException.fromJson(res);
       }
-    } catch (e, st) {
-      print("THE FUCK IS WRONG WITH YOU BITCH");
-      print(e);
-      print(st);
+    } catch (e) {
       _dioCatch(e);
     }
   }

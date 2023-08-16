@@ -23,4 +23,8 @@ void main() async {
     );
     await ctx.reply('Done!');
   });
+
+  bot.onCommand((ctx) async {
+    await ctx.reply("You just sent me a command!");
+  });
 }
