@@ -26,8 +26,10 @@ class HttpClient {
     }
     if (e is DioException) {
       if (e.response != null) {
-        final body = json.decode(e.response!.data);
-        throw TelegramException.fromJson(body);
+        throw TelegramException.fromJson(
+          e.response!.data,
+          stack: e.stackTrace,
+        );
       }
       throw e;
     }
@@ -110,10 +112,7 @@ class HttpClient {
       } else {
         throw TelegramException.fromJson(res);
       }
-    } catch (e, st) {
-      print("THE FUCK IS WRONG WITH YOU BITCH");
-      print(e);
-      print(st);
+    } catch (e) {
       _dioCatch(e);
     }
   }
