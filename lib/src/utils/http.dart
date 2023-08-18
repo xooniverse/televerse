@@ -26,7 +26,10 @@ class HttpClient {
     }
     if (e is DioException) {
       if (e.response != null) {
-        throw TelegramException.fromJson(e.response!.data);
+        throw TelegramException.fromJson(
+          e.response!.data,
+          stack: e.stackTrace,
+        );
       }
       throw e;
     }

@@ -20,13 +20,17 @@ class TelegramException implements Exception {
   }) : stackTrace = stackTrace ?? StackTrace.current;
 
   /// Constructs a new [TelegramException] from a JSON object.
-  factory TelegramException.fromJson(Map<String, dynamic> json) {
+  factory TelegramException.fromJson(
+    Map<String, dynamic> json, {
+    StackTrace? stack,
+  }) {
     return TelegramException(
       json['error_code'],
       description: json['description'],
       parameters: json['parameters'] != null
           ? ResponseParameters.fromJson(json['parameters'])
           : null,
+      stackTrace: stack,
     );
   }
 
