@@ -4,6 +4,7 @@
 - Thanks to [@iamcosmin](https://github.com/iamcosmin) for raising [#148](https://github.com/HeySreelal/televerse/issues/148).
 - Fixed an issue with the Http client that caused the bot to crash when an exception is received from the Telegram Bot API.
 - Thanks to [@OttomanDeveloper](https://github.com/OttomanDeveloper) for raising [#151](https://github.com/HeySreelal/televerse/issues/151).
+- Added `Televerse.onCommand` method to listen to all commands - [#150](https://github.com/HeySreelal/televerse/issues/150) by [@Defuera](https://github.com/Defuera).
 
 ## 1.10.10
 
