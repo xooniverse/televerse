@@ -26,8 +26,7 @@ class HttpClient {
     }
     if (e is DioException) {
       if (e.response != null) {
-        final body = json.decode(e.response!.data);
-        throw TelegramException.fromJson(body);
+        throw TelegramException.fromJson(e.response!.data);
       }
       throw e;
     }
