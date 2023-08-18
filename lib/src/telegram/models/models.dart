@@ -151,3 +151,6 @@ part 'input_sticker.dart';
 part 'inline_query_results_button.dart';
 part 'switch_inline_query_chosen_chat.dart';
 part 'bot_name.dart';
+
+/// Bot API 6.8
+part 'story.dart';
