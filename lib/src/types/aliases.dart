@@ -12,7 +12,7 @@ typedef CallbackQueryHandler = FutureOr<void> Function(
   CallbackQueryContext ctx,
 );
 
-/// [InlineQueryHandler] is a type alias for a function that takes a [InlineQueryContext] as parameter and returns a [FutureOr] of void].
+/// [InlineQueryHandler] is a type alias for a function that takes a [InlineQueryContext] as parameter and returns a [FutureOr] of void.
 ///
 /// This is used to define a callback function for almost all the methods that listen to inline queries.
 typedef InlineQueryHandler = FutureOr<void> Function(InlineQueryContext ctx);

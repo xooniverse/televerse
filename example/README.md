@@ -1,5 +1,9 @@
-import 'dart:io';
+## Televerse Example
 
+Here is a simple example of how to use the Televerse library.
+
+```dart
+import 'dart:io';
 import 'package:televerse/televerse.dart';
 
 /// This is a general example of how to use the Televerse library.
@@ -80,3 +84,10 @@ void main() async {
     );
   });
 }
+```
+
+## Learn More
+
+Well we know that this is probably just the tip of the iceberg. So if you want to learn more about the Televerse library, you can check out the [API documentation](https://pub.dev/documentation/televerse/latest/televerse/televerse-library.html).
+
+Or you can check out the dedicated [examples repository here](https://github.com/xooniverse/TeleverseExamples).
