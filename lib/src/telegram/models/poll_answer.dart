@@ -3,19 +3,23 @@ part of models;
 /// This object represents an answer of a user in a non-anonymous poll.
 class PollAnswer {
   /// Unique poll identifier
-  String pollId;
+  final String pollId;
 
   /// The user, who changed the answer to the poll
-  User user;
+  final User? user;
 
   /// 0-based identifiers of answer options, chosen by the user. May be empty if the user retracted their vote.
-  List<int> optionIds;
+  final List<int> optionIds;
+
+  /// Optional. The chat that changed the answer to the poll, if the voter is anonymous
+  final Chat? voterChat;
 
   /// Constructs a [PollAnswer] object
-  PollAnswer({
+  const PollAnswer({
     required this.pollId,
     required this.user,
     required this.optionIds,
+    this.voterChat,
   });
 
   /// Creates a [PollAnswer] object from JSON object
@@ -24,6 +28,9 @@ class PollAnswer {
       pollId: json['poll_id']!,
       user: User.fromJson(json['user']!),
       optionIds: List<int>.from(json['option_ids']! as List<dynamic>),
+      voterChat: json['voter_chat'] == null
+          ? null
+          : Chat.fromJson(json['voter_chat']!),
     );
   }
 
@@ -31,8 +38,9 @@ class PollAnswer {
   Map<String, dynamic> toJson() {
     return {
       'poll_id': pollId,
-      'user': user.toJson(),
+      'user': user?.toJson(),
       'option_ids': optionIds,
+      'voter_chat': voterChat?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 }

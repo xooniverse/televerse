@@ -3310,4 +3310,20 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to clear the list of pinned messages in a General forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
+  Future<bool> unpinAllGeneralForumTopicMessages(
+    ID chatId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+    };
+
+    bool response = await _httpClient.postURI(
+      _buildUri("unpinAllGeneralForumTopicMessages"),
+      params,
+    );
+
+    return response;
+  }
 }

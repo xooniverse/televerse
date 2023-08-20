@@ -15,7 +15,7 @@ class PollAnswerContext extends Context with MessageMixin {
   String get pollId => pollAnswer.pollId;
 
   /// The user who answered the poll
-  User get user => pollAnswer.user;
+  User? get user => pollAnswer.user;
 
   /// The option IDs chosen by the user
   List<int> get optionIds => pollAnswer.optionIds;
@@ -27,6 +27,16 @@ class PollAnswerContext extends Context with MessageMixin {
   ///
   /// Note that the user has to be initiated the conversation with the bot for the bot to be able
   /// to send messages to the user.
+  ///
+  /// If the voter is anonymous, this will throw a [TeleverseException].
   @override
-  ID get id => ChatID(user.id);
+  ID get id {
+    if (user == null) {
+      throw TeleverseException(
+        'Cannot get Chat ID from PollAnswerContext because the user is null.',
+        description: "This is possibly because the poll voter is anonymous",
+      );
+    }
+    return ChatID(user!.id);
+  }
 }

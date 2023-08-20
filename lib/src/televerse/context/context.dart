@@ -141,8 +141,6 @@ class Context {
         return ChatID(update.shippingQuery!.from.id);
       case UpdateType.preCheckoutQuery:
         return ChatID(update.preCheckoutQuery!.from.id);
-      case UpdateType.pollAnswer:
-        return ChatID(update.pollAnswer!.user.id);
       case UpdateType.myChatMember:
         return ChatID(update.myChatMember!.chat.id);
       case UpdateType.chatMember:
@@ -151,6 +149,7 @@ class Context {
         return ChatID(update.chatJoinRequest!.chat.id);
       case UpdateType.poll:
       case UpdateType.unknown:
+      default:
         throw TeleverseException(
           "The update type is ${update.type}, which does not have a chat.",
         );

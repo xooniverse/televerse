@@ -221,6 +221,9 @@ class Message {
   /// Optional. Service message: the user allowed the bot added to the attachment menu to write messages
   final WriteAccessAllowed? writeAccessAllowed;
 
+  /// Optional. Message is a forwarded story
+  final Story? story;
+
   /// Creates a Message object.
   const Message({
     required this.messageId,
@@ -294,6 +297,7 @@ class Message {
     this.generalForumTopicHidden,
     this.generalForumTopicUnhidden,
     this.writeAccessAllowed,
+    this.story,
   });
 
   /// Creates a [Message] object from json map.
@@ -449,6 +453,7 @@ class Message {
       writeAccessAllowed: json['write_access_allowed'] == null
           ? null
           : WriteAccessAllowed.fromJson(json['write_access_allowed']),
+      story: json['story'] == null ? null : Story.fromJson(json['story']),
     );
   }
 
@@ -527,6 +532,7 @@ class Message {
       'general_forum_topic_hidden': generalForumTopicHidden?.toJson(),
       'general_forum_topic_unhidden': generalForumTopicUnhidden?.toJson(),
       'write_access_allowed': writeAccessAllowed?.toJson(),
+      'story': story?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 
