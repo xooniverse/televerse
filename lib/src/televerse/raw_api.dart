@@ -1291,6 +1291,9 @@ class RawAPI {
     bool? canInviteUsers,
     bool? canPinMessages,
     bool? canManageTopics,
+    bool? canPostStories,
+    bool? canEditStories,
+    bool? canDeleteStories,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,

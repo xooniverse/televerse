@@ -3,43 +3,52 @@ part of models;
 /// Represents the rights of an administrator in a chat.
 class ChatAdministratorRights {
   /// True, if the user's presence in the chat is hidden
-  bool isAnonymous;
+  final bool isAnonymous;
 
   /// True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege
-  bool canManageChat;
+  final bool canManageChat;
 
   /// True, if the administrator can delete messages of other users
-  bool canDeleteMessages;
+  final bool canDeleteMessages;
 
   /// True, if the administrator can manage video chats
-  bool canManageVideoChats;
+  final bool canManageVideoChats;
 
   /// True, if the administrator can restrict, ban or unban chat members
-  bool canRestrictMembers;
+  final bool canRestrictMembers;
 
   /// True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by the user)
-  bool canPromoteMembers;
+  final bool canPromoteMembers;
 
   /// True, if the user is allowed to change the chat title, photo and other settings
-  bool canChangeInfo;
+  final bool canChangeInfo;
 
   /// True, if the user is allowed to invite new users to the chat
-  bool canInviteUsers;
+  final bool canInviteUsers;
 
   /// Optional. True, if the administrator can post in the channel; channels only
-  bool? canPostMessages;
+  final bool? canPostMessages;
 
   /// Optional. True, if the administrator can edit messages of other users and can pin messages; channels only
-  bool? canEditMessages;
+  final bool? canEditMessages;
 
   /// Optional. True, if the user is allowed to pin messages; groups and supergroups only
-  bool? canPinMessages;
+  final bool? canPinMessages;
 
   /// Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; supergroups only
-  bool? canManageForum;
+  final bool? canManageForum;
+
+  /// Optional. True, if the administrator can post stories in the channel; channels only
+  final bool? canPostStories;
+
+  /// Optional. True, if the administrator can edit stories posted by other users; channels only
+  final bool? canEditStories;
+
+  /// Optional. True, if the administrator can delete stories posted by other users
+  final bool? canDeleteStories;
 
   /// Creates a new [ChatAdministratorRights] object.
-  ChatAdministratorRights({
+  const ChatAdministratorRights({
     required this.isAnonymous,
     required this.canManageChat,
     required this.canDeleteMessages,
@@ -52,6 +61,9 @@ class ChatAdministratorRights {
     this.canEditMessages,
     this.canPinMessages,
     this.canManageForum,
+    this.canPostStories,
+    this.canEditStories,
+    this.canDeleteStories,
   });
 
   /// Creates a new [ChatAdministratorRights] object from json.
@@ -69,6 +81,9 @@ class ChatAdministratorRights {
       canEditMessages: json['can_edit_messages'],
       canPinMessages: json['can_pin_messages'],
       canManageForum: json['can_manage_forum'],
+      canPostStories: json['can_post_stories'],
+      canEditStories: json['can_edit_stories'],
+      canDeleteStories: json['can_delete_stories'],
     );
   }
 
@@ -87,6 +102,9 @@ class ChatAdministratorRights {
       'can_edit_messages': canEditMessages,
       'can_pin_messages': canPinMessages,
       'can_manage_forum': canManageForum,
+      'can_post_stories': canPostStories,
+      'can_edit_stories': canEditStories,
+      'can_delete_stories': canDeleteStories,
     }..removeWhere((key, value) => value == null);
   }
 }
