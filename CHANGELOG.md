@@ -1,6 +1,12 @@
+## 1.11.1
+
+- 🤖 [Telegram Bot API 6.9 (September 22, 2023)](https://core.telegram.org/bots/api-changelog#september-22-2023)
+- Examples are now moved to the Examples Repo
+- Updated Example files.
+
 ## 1.11.0
 
-- 🤖 [Telegram Bot API 6.8 (August 18, 2023)](https://core.telegram.org/bots/api#august-18-2023)
+- 🤖 [Telegram Bot API 6.8 (August 18, 2023)](https://core.telegram.org/bots/api-changelog#august-18-2023)
 - Possibly breaking: The `PollAnswer.user` property is now returns a nullable `User` object.
 ## 1.10.12
 
