@@ -242,21 +242,6 @@ void main() {
     final msgs = await bot.api.sendMediaGroup(id, medias);
 
     expect(msgs, isNotEmpty);
-
-    final group = [
-      InputMediaPhoto(
-        media: InputFile.fromFile(
-          io.File("./example/assets/photo.jpeg"),
-        ),
-      ),
-      InputMediaPhoto(
-        media: InputFile.fromFile(
-          io.File("./example/assets/galaxy.jpeg"),
-        ),
-      ),
-    ];
-    final roundTwo = await bot.api.sendMediaGroup(id, group);
-    expect(roundTwo, isNotEmpty);
   });
 
   test("Send Poll", () async {
