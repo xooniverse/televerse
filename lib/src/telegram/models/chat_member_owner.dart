@@ -30,7 +30,7 @@ class ChatMemberOwner implements ChatMember {
       'status': status.value,
       'user': user.toJson(),
       'is_anonymous': isAnonymous,
-      'custom_title': customTitle
+      'custom_title': customTitle,
     }..removeWhere((key, value) => value == null);
   }
 
