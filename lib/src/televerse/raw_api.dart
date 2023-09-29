@@ -92,7 +92,7 @@ class RawAPI {
         e.field: MultipartFile.fromBytes(
           e.file.getBytes(),
           filename: e.name,
-        )
+        ),
       };
     }).toList();
     return files;
@@ -2614,7 +2614,7 @@ class RawAPI {
     Map<String, dynamic> params = {
       "name": name,
       "user_id": userId,
-      "thumbnail": thumbnail?.getValue(_thumb)
+      "thumbnail": thumbnail?.getValue(_thumb),
     }..removeWhere(_nullChecker);
 
     bool response;

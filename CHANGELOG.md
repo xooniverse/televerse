@@ -1,3 +1,8 @@
+## 1.11.2
+
+- Fixed an issue with the `InlineKeyboardButton` class that caused a crash when `webAppInfo` parameter is set. 
+- Moved all Telegram Models into one file. This will make it easier to maintain the code.
+
 ## 1.11.1
 
 - 🤖 [Telegram Bot API 6.9 (September 22, 2023)](https://core.telegram.org/bots/api-changelog#september-22-2023)

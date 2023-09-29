@@ -268,7 +268,7 @@ void main() {
     final commands = [
       BotCommand(command: "start", description: "Start the bot"),
       BotCommand(command: "help", description: "Get help"),
-      BotCommand(command: "ban", description: "Ban a user")
+      BotCommand(command: "ban", description: "Ban a user"),
     ];
     final scope = BotCommandScopeChatAdministrators(chatId: groupID);
     final res = await bot.api.setMyCommands(commands, scope: scope);

@@ -25,9 +25,10 @@ linter:
     - slash_for_doc_comments
     - unnecessary_library_directive
     - require_trailing_commas
-# analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
 
 # For more information about the core and recommended set of lints, see
 # https://dart.dev/go/core-lints
