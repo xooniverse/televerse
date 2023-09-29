@@ -2928,7 +2928,7 @@ class InlineKeyboardButton {
   bool? pay;
 
   /// Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Available only in private chats between a user and the bot.
-  WebAppInfo? webAppInfo;
+  WebAppInfo? webApp;
 
   /// Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field
   ///
@@ -2947,7 +2947,7 @@ class InlineKeyboardButton {
     this.switchInlineQueryCurrentChat,
     this.callbackGame,
     this.pay,
-    this.webAppInfo,
+    this.webApp,
     this.switchInlineQueryChosenChat,
   });
 
@@ -2966,7 +2966,7 @@ class InlineKeyboardButton {
           ? CallbackGame.fromJson(json['callback_game'])
           : null,
       pay: json['pay'],
-      webAppInfo: json['web_app_info'] != null
+      webApp: json['web_app'] != null
           ? WebAppInfo.fromJson(json['web_app_info'])
           : null,
       switchInlineQueryChosenChat:
@@ -2989,7 +2989,7 @@ class InlineKeyboardButton {
       'switch_inline_query_current_chat': switchInlineQueryCurrentChat,
       'callback_game': callbackGame?.toJson(),
       'pay': pay,
-      'web_app_info': webAppInfo?.toJson(),
+      'web_app': webApp?.toJson(),
       'switch_inline_query_chosen_chat': switchInlineQueryChosenChat?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
@@ -8368,16 +8368,6 @@ class ChatInviteLink {
   }
 }
 
-/// ## Telegram Passport
-///
-/// Telegram Passport is a unified authorization method for services that require
-/// personal identification. Users can upload their documents once, then instantly
-/// share their data with services that require real-world ID (finance, ICOs, etc.).
-///
-/// Please see the [manual](https://core.telegram.org/passport) for details.
-
-// Errors
-
 /// This object represents an inline button that switches the current user to inline mode in a chosen chat, with an optional default inline query.
 class SwitchInlineQueryChosenChat {
   /// Optional. The default inline query to be inserted in the input field. If left empty, only the bot's username will be inserted
@@ -8895,47 +8885,6 @@ class VideoChatParticipantsInvited {
     }..removeWhere((key, value) => value == null);
   }
 }
-
-/// ## GAMES
-///
-/// Your bot can offer users HTML5 games to play solo or to compete against each
-/// other in groups and one-on-one chats. Create games via @BotFather using the
-/// /newgame command. Please note that this kind of power requires responsibility:
-/// you will need to accept the terms for each game that your bots will be offering.
-///
-/// - Games are a new type of content on Telegram, represented by the Game and
-/// InlineQueryResultGame objects.
-///
-/// - Once you've created a game via BotFather, you can send games to chats as
-/// regular messages using the sendGame method, or use inline mode with [InlineQueryResultGame](https://core.telegram.org/bots/api#inlinequeryresultgame).
-///
-/// - If you send the game message without any buttons, it will automatically
-///  have a 'Play GameName' button. When this button is pressed, your bot gets
-/// a CallbackQuery with the game_short_name of the requested game. You provide
-/// the correct URL for this particular user and the app opens the game in the
-/// in-app browser.
-///
-/// - You can manually add multiple buttons to your game message. Please note
-/// that the first button in the first row must always launch the game, using
-/// the field callback_game in [InlineKeyboardButton](https://core.telegram.org/bots/api#inlinekeyboardbutton).
-/// You can add extra buttons according to taste: e.g., for a description of the
-/// rules, or to open thegame's official community.
-///
-/// - To make your game more attractive, you can upload a GIF animation that
-///  demostrates the game to the users via BotFather (see Lumberjack for example).
-///
-/// - A game message will also display high scores for the current chat. Use
-/// setGameScore to post high scores to the chat with the game, add the
-/// edit_message parameter to automatically update the message with the current
-/// scoreboard.
-///
-/// - Use getGameHighScores to get data for in-game high score tables.
-///
-/// - You can also add an extra sharing button for users to share their best
-/// score to different chats.
-///
-/// - For examples of what can be done using this new stuff, check the @gamebot
-/// and @gamee bots.
 
 /// Represents an issue with the reverse side of a document. The error is considered resolved when the file with reverse side of the document changes.
 class PassportElementErrorReverseSide extends PassportElementError {
