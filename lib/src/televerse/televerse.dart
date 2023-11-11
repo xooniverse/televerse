@@ -1234,6 +1234,14 @@ class Televerse<TeleverseSession extends Session> {
     _handlerScopes.add(scope);
   }
 
+  /// Registers a callback to be fired for all successful payments
+  void onSuccessfulPayment(MessageHandler callback) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) => ctx.message.successfulPayment != null,
+    );
+  }
+
   /// Registers a callback for all Poll updates
   void onPoll(PollHandler callback) {
     HandlerScope scope = HandlerScope<PollHandler>(
