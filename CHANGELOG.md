@@ -1,3 +1,7 @@
+## 1.11.3
+
+- Added [Televerse.onSuccessfulPayment] method to listen to successful payments service messages [#158](https://github.com/HeySreelal/televerse/issues/158), thanks to [@Defuera](https://github.com/Defuera) for the suggestion and [@GiuseppeFn](github.com/GiuseppeFn) for the contribution.
+
 ## 1.11.2
 
 - Fixed an issue with the `InlineKeyboardButton` class that caused a crash when `webAppInfo` parameter is set. 
