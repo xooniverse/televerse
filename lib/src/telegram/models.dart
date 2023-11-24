@@ -2482,9 +2482,8 @@ class Poll {
       'allows_multiple_answers': allowsMultipleAnswers,
       'correct_option_id': correctOptionId,
       'explanation': explanation,
-      'explanation_entities': explanationEntities == null
-          ? null
-          : explanationEntities!.map((x) => x.toJson()).toList(),
+      'explanation_entities':
+          explanationEntities?.map((x) => x.toJson()).toList(),
       'open_period': openPeriod,
       'close_date': closeDate,
     }..removeWhere((key, value) => value == null);
