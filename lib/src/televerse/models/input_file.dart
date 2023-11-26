@@ -1,4 +1,4 @@
-part of televerse.models;
+part of 'models.dart';
 
 /// This class is used to represent a file to be sent.
 ///

@@ -1,4 +1,4 @@
-part of televerse.context;
+part of '../context.dart';
 
 /// Mixin for sending messages.
 ///

@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// This object represents the status of a member in a chat.
 enum ChatMemberStatus {

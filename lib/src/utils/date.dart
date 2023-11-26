@@ -1,4 +1,4 @@
-part of televerse;
+part of '../../televerse.dart';
 
 /// UnixTime extension is used to convert a [DateTime] object to unix time.
 extension UnixTime on DateTime {

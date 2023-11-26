@@ -1,4 +1,4 @@
-part of televerse.models;
+part of 'models.dart';
 
 /// This class is used to represent a chat id. It is a superclass of [ChatID], [ChannelID] and [SupergroupID].
 ///
@@ -75,7 +75,7 @@ class ChatID extends ID {
   /// // Print the chat's title.
   /// print(chat.title);
   /// ```
-  ChatID(int id) : super(id);
+  ChatID(int super.id);
 
   /// Creates a new [ChatID] object with the passed [id] which is an integer.
   factory ChatID.create(int id) {
@@ -88,7 +88,7 @@ class ChatID extends ID {
 /// Simply pass the channel's username to the constructor to create a channel id.
 class ChannelID extends ID {
   /// Creates a new [ChannelID] object with the passed [id] which is a string.
-  ChannelID(String id) : super(id);
+  ChannelID(String super.id);
 
   /// Creates a new [ChannelID] object with the passed [id] which is a string.
   factory ChannelID.create(String id) {
@@ -101,7 +101,7 @@ class ChannelID extends ID {
 /// Simply pass the supergroup's username to the constructor to create a supergroup id.
 class SupergroupID extends ID {
   /// Creates a new [SupergroupID] object with the passed [id] which is a string.
-  SupergroupID(String id) : super(id);
+  SupergroupID(String super.id);
 
   /// Creates a new [SupergroupID] object with the passed [id] which is a string.
   factory SupergroupID.create(String id) {

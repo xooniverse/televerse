@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// This object represents a chat action.
 enum ChatAction {

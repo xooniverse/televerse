@@ -1,4 +1,4 @@
-part of televerse;
+part of '../../../televerse.dart';
 
 /// This object represents a Keyboard menu with the actions to be done.
 class KeyboardMenu

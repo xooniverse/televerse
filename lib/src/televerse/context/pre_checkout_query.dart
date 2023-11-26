@@ -1,4 +1,4 @@
-part of televerse.context;
+part of 'context.dart';
 
 /// This class is used to represent the context of a [UpdateType.preCheckoutQuery] event.
 class PreCheckoutQueryContext extends Context with MessageMixin {
@@ -35,8 +35,8 @@ class PreCheckoutQueryContext extends Context with MessageMixin {
   /// Creates a new pre-checkout query context.
   PreCheckoutQueryContext(
     super._bot, {
-    required Update update,
-  }) : super(update: update);
+    required super.update,
+  });
 
   /// Sends an answer to the pre-checkout query.
   ///

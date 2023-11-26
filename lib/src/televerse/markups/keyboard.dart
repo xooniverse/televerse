@@ -1,4 +1,4 @@
-part of televerse;
+part of '../../../televerse.dart';
 
 /// The [Keyboard] class can be used to represent a [ReplyKeyboardMarkup]. This is an easy method to show a keyboard to the user.
 class Keyboard extends ReplyKeyboardMarkup {

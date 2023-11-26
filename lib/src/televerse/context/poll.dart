@@ -1,4 +1,4 @@
-part of televerse.context;
+part of 'context.dart';
 
 /// This context is used when a [UpdateType.poll] event occurs.
 class PollContext extends Context {
@@ -8,7 +8,7 @@ class PollContext extends Context {
   Poll get poll => update.poll!;
 
   /// Creates a new [PollContext] instance.
-  PollContext(super._bot, {required Update update}) : super(update: update);
+  PollContext(super._bot, {required super.update});
 
   /// (DO NOT USE) - The Chat ID getter.
   @Deprecated("Poll Updates does not have a chat.")

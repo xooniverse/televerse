@@ -339,7 +339,7 @@ class InlineQueryResultMpeg4Gif extends InlineQueryResult {
   InlineQueryResultMpeg4Gif({
     required this.mpeg4Url,
     required this.thumbnailUrl,
-    required String id,
+    required super.id,
     this.mpeg4Width,
     this.mpeg4Height,
     this.mpeg4Duration,
@@ -350,7 +350,7 @@ class InlineQueryResultMpeg4Gif extends InlineQueryResult {
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultMpeg4Gif] object to a JSON object
   @override
@@ -614,13 +614,13 @@ class InlineQueryResultCachedAudio extends InlineQueryResult {
   /// Constructs an [InlineQueryResultCachedAudio] objectA
   InlineQueryResultCachedAudio({
     required this.audioFileId,
-    required String id,
+    required super.id,
     this.caption,
     this.parseMode,
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultCachedAudio] object to a JSON map
   @override
@@ -1419,14 +1419,11 @@ class PassportElementErrorFiles extends PassportElementError {
 
   /// Constructs a [PassportElementErrorFiles] object
   const PassportElementErrorFiles({
-    required String source,
-    required PassportType type,
+    required super.source,
+    required super.type,
     required this.message,
     required this.fileHashes,
-  }) : super(
-          source: source,
-          type: type,
-        );
+  });
 
   /// Converts a [PassportElementErrorFiles] object to JSON object
   @override
@@ -2192,7 +2189,7 @@ class InlineQueryResultCachedPhoto extends InlineQueryResult {
   /// Constructs an [InlineQueryResultCachedPhoto] object
   InlineQueryResultCachedPhoto({
     required this.photoFileId,
-    required String id,
+    required super.id,
     this.title,
     this.description,
     this.caption,
@@ -2200,7 +2197,7 @@ class InlineQueryResultCachedPhoto extends InlineQueryResult {
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultCachedPhoto] object to a JSON map
   @override
@@ -2258,14 +2255,11 @@ class PassportElementErrorSelfie extends PassportElementError {
 
   /// Constructs a [PassportElementErrorSelfie] object
   const PassportElementErrorSelfie({
-    required String source,
-    required PassportType type,
+    required super.source,
+    required super.type,
     required this.message,
     required this.fileHash,
-  }) : super(
-          source: source,
-          type: type,
-        );
+  });
 
   /// Converts a [PassportElementErrorSelfie] object to JSON object
   @override
@@ -2482,9 +2476,8 @@ class Poll {
       'allows_multiple_answers': allowsMultipleAnswers,
       'correct_option_id': correctOptionId,
       'explanation': explanation,
-      'explanation_entities': explanationEntities == null
-          ? null
-          : explanationEntities!.map((x) => x.toJson()).toList(),
+      'explanation_entities':
+          explanationEntities?.map((x) => x.toJson()).toList(),
       'open_period': openPeriod,
       'close_date': closeDate,
     }..removeWhere((key, value) => value == null);
@@ -2533,13 +2526,13 @@ class InlineQueryResultCachedVoice extends InlineQueryResult {
   InlineQueryResultCachedVoice({
     required this.voiceFileId,
     required this.title,
-    required String id,
+    required super.id,
     this.caption,
     this.parseMode,
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultCachedVoice] object to a JSON map
   @override
@@ -2682,7 +2675,7 @@ class InlineQueryResultVideo extends InlineQueryResult {
     required this.mimeType,
     required this.thumbnailUrl,
     required this.title,
-    required String id,
+    required super.id,
     this.caption,
     this.parseMode,
     this.captionEntities,
@@ -2692,7 +2685,7 @@ class InlineQueryResultVideo extends InlineQueryResult {
     this.description,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Constructs an [InlineQueryResultVideo] from JSON object
   factory InlineQueryResultVideo.fromJson(Map<String, dynamic> json) {
@@ -3451,7 +3444,7 @@ class InlineQueryResultAudio extends InlineQueryResult {
   InlineQueryResultAudio({
     required this.audioUrl,
     required this.title,
-    required String id,
+    required super.id,
     this.caption,
     this.parseMode,
     this.captionEntities,
@@ -3459,7 +3452,7 @@ class InlineQueryResultAudio extends InlineQueryResult {
     this.audioDuration,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultAudio] object to a JSON map
   @override
@@ -3538,14 +3531,14 @@ class InlineQueryResultCachedGif extends InlineQueryResult {
   /// Constructs an [InlineQueryResultCachedGif] object
   InlineQueryResultCachedGif({
     required this.gifFileId,
-    required String id,
+    required super.id,
     this.title,
     this.caption,
     this.parseMode,
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultCachedGif] object to a JSON map
   @override
@@ -3875,7 +3868,7 @@ class InlineQueryResultVenue extends InlineQueryResult {
     required this.longitude,
     required this.title,
     required this.address,
-    required String id,
+    required super.id,
     this.foursquareId,
     this.foursquareType,
     this.googlePlaceId,
@@ -3885,7 +3878,7 @@ class InlineQueryResultVenue extends InlineQueryResult {
     this.thumbnailUrl,
     this.thumbnailWidth,
     this.thumbnailHeight,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultVenue] object to a JSON map
   @override
@@ -4038,7 +4031,7 @@ class InlineQueryResultLocation extends InlineQueryResult {
     required this.latitude,
     required this.longitude,
     required this.title,
-    required String id,
+    required super.id,
     this.horizontalAccuracy,
     this.livePeriod,
     this.heading,
@@ -4048,7 +4041,7 @@ class InlineQueryResultLocation extends InlineQueryResult {
     this.thumbnailUrl,
     this.thumbnailWidth,
     this.thumbnailHeight,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultLocation] object to a JSON map
   @override
@@ -4245,14 +4238,14 @@ class InlineQueryResultCachedVideo extends InlineQueryResult {
   InlineQueryResultCachedVideo({
     required this.videoFileId,
     required this.title,
-    required String id,
+    required super.id,
     this.description,
     this.caption,
     this.parseMode,
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultCachedVideo] object to a JSON map
   @override
@@ -4380,14 +4373,14 @@ class InlineQueryResultVoice extends InlineQueryResult {
   InlineQueryResultVoice({
     required this.voiceUrl,
     required this.title,
-    required String id,
+    required super.id,
     this.caption,
     this.parseMode,
     this.captionEntities,
     this.voiceDuration,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultVoice] object to a JSON map
   @override
@@ -4817,7 +4810,7 @@ class InlineQueryResultGif extends InlineQueryResult {
   InlineQueryResultGif({
     required this.gifUrl,
     required this.thumbnailUrl,
-    required String id,
+    required super.id,
     this.gifWidth,
     this.gifHeight,
     this.gifDuration,
@@ -4828,7 +4821,7 @@ class InlineQueryResultGif extends InlineQueryResult {
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultGif] object to a JSON map
   @override
@@ -5001,14 +4994,11 @@ class PassportElementErrorFrontSide extends PassportElementError {
 
   /// Constructs a [PassportElementErrorFrontSide] object
   const PassportElementErrorFrontSide({
-    required String source,
-    required PassportType type,
+    required super.source,
+    required super.type,
     required this.message,
     required this.fileHash,
-  }) : super(
-          source: source,
-          type: type,
-        );
+  });
 
   /// Converts a [PassportElementErrorFrontSide] object to JSON object
   @override
@@ -5094,14 +5084,14 @@ class InlineQueryResultCachedMpeg4Gif extends InlineQueryResult {
   /// Constructs an [InlineQueryResultCachedMpeg4Gif] object
   InlineQueryResultCachedMpeg4Gif({
     required this.mpeg4FileId,
-    required String id,
+    required super.id,
     this.title,
     this.caption,
     this.parseMode,
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultCachedMpeg4Gif] object to a JSON map
   @override
@@ -5188,7 +5178,7 @@ class InlineQueryResultPhoto extends InlineQueryResult {
   InlineQueryResultPhoto({
     required this.photoUrl,
     required this.thumbnailUrl,
-    required String id,
+    required super.id,
     this.photoWidth,
     this.photoHeight,
     this.title,
@@ -5198,7 +5188,7 @@ class InlineQueryResultPhoto extends InlineQueryResult {
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultPhoto] object to a JSON object
   @override
@@ -5260,14 +5250,11 @@ class PassportElementErrorUnspecified extends PassportElementError {
 
   /// Constructs a [PassportElementErrorUnspecified] object
   const PassportElementErrorUnspecified({
-    required String source,
-    required PassportType type,
+    required super.source,
+    required super.type,
     required this.message,
     required this.elementHash,
-  }) : super(
-          source: source,
-          type: type,
-        );
+  });
 
   /// Converts a [PassportElementErrorUnspecified] object to JSON object
   @override
@@ -5328,7 +5315,7 @@ class InlineQueryResultArticle extends InlineQueryResult {
   InlineQueryResultArticle({
     required this.title,
     required this.inputMessageContent,
-    required String id,
+    required super.id,
     this.replyMarkup,
     this.url,
     this.hideUrl,
@@ -5336,7 +5323,7 @@ class InlineQueryResultArticle extends InlineQueryResult {
     this.thumbnailUrl,
     this.thumbnailWidth,
     this.thumbnailHeight,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultArticle] object to a JSON map
   @override
@@ -5769,7 +5756,7 @@ class InlineQueryResultDocument extends InlineQueryResult {
     required this.title,
     required this.documentUrl,
     required this.mimeType,
-    required String id,
+    required super.id,
     this.caption,
     this.parseMode,
     this.captionEntities,
@@ -5779,7 +5766,7 @@ class InlineQueryResultDocument extends InlineQueryResult {
     this.thumbnailUrl,
     this.thumbnailWidth,
     this.thumbnailHeight,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultDocument] object to a JSON map
   @override
@@ -6007,15 +5994,12 @@ class PassportElementErrorDataField extends PassportElementError {
 
   /// Constructs a [PassportElementErrorDataField] object
   const PassportElementErrorDataField({
-    required String source,
-    required PassportType type,
+    required super.source,
+    required super.type,
     required this.message,
     required this.fieldName,
     required this.dataHash,
-  }) : super(
-          source: source,
-          type: type,
-        );
+  });
 
   /// Creates a [PassportElementErrorDataField] object from JSON object
   @override
@@ -6051,14 +6035,11 @@ class PassportElementErrorTranslationFile extends PassportElementError {
 
   /// Constructs a [PassportElementErrorTranslationFile] object
   const PassportElementErrorTranslationFile({
-    required String source,
-    required PassportType type,
+    required super.source,
+    required super.type,
     required this.message,
     required this.fileHash,
-  }) : super(
-          source: source,
-          type: type,
-        );
+  });
 
   /// Converts a [PassportElementErrorTranslationFile] object to JSON object
   @override
@@ -6761,14 +6742,11 @@ class PassportElementErrorFile extends PassportElementError {
 
   /// Constructs a [PassportElementErrorFile] object
   const PassportElementErrorFile({
-    required String source,
-    required PassportType type,
+    required super.source,
+    required super.type,
     required this.message,
     required this.fileHash,
-  }) : super(
-          source: source,
-          type: type,
-        );
+  });
 
   /// Creates a [PassportElementErrorFile] object from JSON object
   @override
@@ -6901,14 +6879,14 @@ class InlineQueryResultCachedDocument extends InlineQueryResult {
   InlineQueryResultCachedDocument({
     required this.documentFileId,
     required this.title,
-    required String id,
+    required super.id,
     this.description,
     this.caption,
     this.parseMode,
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultCachedDocument] object to a JSON map
   @override
@@ -7569,10 +7547,10 @@ class InlineQueryResultCachedSticker extends InlineQueryResult {
   /// Constructs an [InlineQueryResultCachedSticker] object
   InlineQueryResultCachedSticker({
     required this.stickerFileId,
-    required String id,
+    required super.id,
     this.replyMarkup,
     this.inputMessageContent,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultCachedSticker] object to a JSON map
   @override
@@ -8054,9 +8032,9 @@ class InlineQueryResultGame extends InlineQueryResult {
   /// Constructs an [InlineQueryResultGame] object
   InlineQueryResultGame({
     required this.gameShortName,
-    required String id,
+    required super.id,
     this.replyMarkup,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultGame] object to a JSON map
   @override
@@ -8553,7 +8531,7 @@ class InlineQueryResultContact extends InlineQueryResult {
   InlineQueryResultContact({
     required this.phoneNumber,
     required this.firstName,
-    required String id,
+    required super.id,
     this.lastName,
     this.vcard,
     this.replyMarkup,
@@ -8561,7 +8539,7 @@ class InlineQueryResultContact extends InlineQueryResult {
     this.thumbnailUrl,
     this.thumbnailWidth,
     this.thumbnailHeight,
-  }) : super(id: id);
+  });
 
   /// Converts an [InlineQueryResultContact] object to a JSON map
   @override
@@ -8744,14 +8722,11 @@ class PassportElementErrorTranslationFiles extends PassportElementError {
 
   /// Constructs a [PassportElementErrorTranslationFiles] object
   const PassportElementErrorTranslationFiles({
-    required String source,
-    required PassportType type,
+    required super.source,
+    required super.type,
     required this.message,
     required this.fileHashes,
-  }) : super(
-          source: source,
-          type: type,
-        );
+  });
 
   /// Converts a [PassportElementErrorTranslationFiles] object to JSON object
   @override
@@ -8896,14 +8871,11 @@ class PassportElementErrorReverseSide extends PassportElementError {
 
   /// Constructs a [PassportElementErrorReverseSide] object
   const PassportElementErrorReverseSide({
-    required String source,
-    required PassportType type,
+    required super.source,
+    required super.type,
     required this.message,
     required this.fileHash,
-  }) : super(
-          source: source,
-          type: type,
-        );
+  });
 
   /// Converts a [PassportElementErrorReverseSide] object to JSON object
   @override

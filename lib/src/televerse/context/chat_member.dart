@@ -1,4 +1,4 @@
-part of televerse.context;
+part of 'context.dart';
 
 /// This context is created when a chat member is updated. This can be used to handle chat member updates.
 ///

@@ -1,4 +1,4 @@
-part of televerse.context;
+part of 'context.dart';
 
 /// This class is used to represent a message context. This class provides information about the current incoming message and contains a bunch of context aware methods.
 ///
@@ -12,8 +12,8 @@ class MessageContext extends Context with MessageMixin, ManagementMixin {
   /// Constructs a new [MessageContext].
   MessageContext(
     super._bot, {
-    required Update update,
-  }) : super(update: update);
+    required super.update,
+  });
 
   /// Chat of the message.
   Chat get chat => message.chat;

@@ -1,4 +1,4 @@
-part of televerse.models;
+part of 'models.dart';
 
 /// A class representing a mention.
 ///

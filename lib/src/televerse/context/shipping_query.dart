@@ -1,4 +1,4 @@
-part of televerse.context;
+part of 'context.dart';
 
 /// [ShippingQueryContext] is the context for a shipping query.
 class ShippingQueryContext extends Context with MessageMixin {
@@ -8,8 +8,8 @@ class ShippingQueryContext extends Context with MessageMixin {
   /// The [ShippingQueryContext] constructor.
   ShippingQueryContext(
     super._bot, {
-    required Update update,
-  }) : super(update: update);
+    required super.update,
+  });
 
   /// Invoice Payload.
   String get invoicePayload => shippingQuery.invoicePayload;

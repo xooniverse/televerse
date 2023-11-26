@@ -1,4 +1,4 @@
-part of televerse.models;
+part of 'models.dart';
 
 /// A Handler Scope is used to define the scope and related information of a handler method.
 class HandlerScope<T extends Function> {

@@ -1,4 +1,4 @@
-part of links;
+part of 'links.dart';
 
 /// ID links are merely an abstraction offered by the bot API to simplify construction of
 /// [inputMessageEntityMentionName](https://core.telegram.org/constructor/inputMessageEntityMentionName) and

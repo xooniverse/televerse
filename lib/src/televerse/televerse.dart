@@ -1,4 +1,4 @@
-part of televerse;
+part of '../../televerse.dart';
 
 /// Televerse
 /// This class is used to create a new bot instance. The bot instance is used to send and receive messages.

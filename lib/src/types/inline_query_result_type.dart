@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// This object represents the type of a result of an inline query.
 enum InlineQueryResultType {

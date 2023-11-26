@@ -1,4 +1,4 @@
-part of televerse.models;
+part of 'models.dart';
 
 /// TeleverseException is thrown when an error occurs in the library.
 class TeleverseException implements Exception {

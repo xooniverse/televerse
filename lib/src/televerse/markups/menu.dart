@@ -1,4 +1,4 @@
-part of televerse;
+part of '../../../televerse.dart';
 
 /// Abstract class to represent a menu
 abstract class TeleverseMenu<CTX extends Context,

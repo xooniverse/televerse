@@ -1,4 +1,4 @@
-part of televerse.models;
+part of 'models.dart';
 
 /// This object will be passed to the error handler.
 /// It contains the error and the stack trace.

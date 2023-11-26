@@ -1,4 +1,4 @@
-part of televerse;
+part of '../../televerse.dart';
 
 /// [MessageHandler] is a type alias for a function that takes a [MessageContext] as parameter and returns a [FutureOr] of void.
 ///

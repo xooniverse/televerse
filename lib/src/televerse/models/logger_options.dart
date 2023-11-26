@@ -1,4 +1,4 @@
-part of televerse;
+part of '../../../televerse.dart';
 
 /// Debug Print
 void _debugPrint(Object? object) {

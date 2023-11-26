@@ -1,4 +1,4 @@
-part of extensions;
+part of 'extensions.dart';
 
 /// Extensions for the [User] class.
 ///

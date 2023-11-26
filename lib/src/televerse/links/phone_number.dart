@@ -1,4 +1,4 @@
-part of links;
+part of 'links.dart';
 
 /// Used to link to public and private users by their phone number.
 class PhoneNumberLink extends Deeplink {

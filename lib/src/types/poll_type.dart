@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// This object contains information about a poll. Currently supported poll types are `regular` and `quiz`.
 enum PollType {

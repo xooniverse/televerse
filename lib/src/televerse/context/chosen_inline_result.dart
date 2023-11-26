@@ -1,4 +1,4 @@
-part of televerse.context;
+part of 'context.dart';
 
 /// This class is used to represent the context of a chosen inline query update.
 ///
@@ -10,8 +10,7 @@ class ChosenInlineResultContext extends Context with MessageMixin {
   ChosenInlineResult get chosenInlineResult => update.chosenInlineResult!;
 
   /// Creates a new [ChosenInlineResultContext] instance.
-  ChosenInlineResultContext(super._bot, {required Update update})
-      : super(update: update);
+  ChosenInlineResultContext(super._bot, {required super.update});
 
   /// The user who chose the inline query.
   User get user => chosenInlineResult.from;

@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// A class that represents the type of a sticker.
 ///

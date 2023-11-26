@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// This object represents type of a chat. Currently, the following 5 types are supported:
 /// - [ChatType.private] : For a private chat with a user

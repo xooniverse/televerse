@@ -1,4 +1,4 @@
-part of televerse.models;
+part of 'models.dart';
 
 /// Class for handling inline menu displayed text and callback data used in [InlineMenu]
 class InlineMenuData {

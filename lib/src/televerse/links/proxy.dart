@@ -1,4 +1,4 @@
-part of links;
+part of 'links.dart';
 
 /// Used to share a proxy server that can be used to connect to Telegram.
 ///
