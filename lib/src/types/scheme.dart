@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// API Scheme - HTTP or HTTPS.
 enum APIScheme {

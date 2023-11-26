@@ -1,4 +1,4 @@
-part of televerse.models;
+part of 'models.dart';
 
 /// HttpException is thrown when the HTTP request fails.
 class TelegramException implements Exception {

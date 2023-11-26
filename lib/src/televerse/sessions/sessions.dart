@@ -1,4 +1,4 @@
-part of televerse;
+part of '../../../televerse.dart';
 
 /// Abstract class for sessions to be used in Televerse.
 ///

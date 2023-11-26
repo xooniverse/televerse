@@ -1,4 +1,4 @@
-part of televerse.context;
+part of 'context.dart';
 
 /// This class is used to represent the context of a chat join request update.
 class ChatJoinRequestContext extends Context with MessageMixin {
@@ -8,8 +8,7 @@ class ChatJoinRequestContext extends Context with MessageMixin {
   ChatJoinRequest get chatJoinRequest => update.chatJoinRequest!;
 
   /// Creates a new [ChatJoinRequestContext] instance.
-  ChatJoinRequestContext(super._bot, {required Update update})
-      : super(update: update);
+  ChatJoinRequestContext(super._bot, {required super.update});
 
   /// The user who requested to join the chat
   User get user => chatJoinRequest.user;

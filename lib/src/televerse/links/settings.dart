@@ -1,4 +1,4 @@
-part of links;
+part of 'links.dart';
 
 /// Represents Telegram settings deeplinks.
 class SettingsLinks {

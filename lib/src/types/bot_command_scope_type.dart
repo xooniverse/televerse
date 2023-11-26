@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported:
 /// - [BotCommandScopeType.defaultScope] : The default scope. Default commands are used if no commands with a narrower scope are specified for the user.

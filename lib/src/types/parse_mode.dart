@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// This object represents the [ParseMode] of a message. See the [Telegram API docs](https://core.telegram.org/bots/api#formatting-options) for more information.
 enum ParseMode {

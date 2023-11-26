@@ -1,4 +1,4 @@
-part of televerse;
+part of '../../televerse.dart';
 
 /// Filename extension for [io.File] is used to get the filename of a file.
 extension Filename on io.File {

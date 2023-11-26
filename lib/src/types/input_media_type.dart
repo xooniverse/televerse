@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// This object represents the type of a media to send.
 /// Currently, the following 5 types are supported:

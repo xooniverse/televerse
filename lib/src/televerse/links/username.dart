@@ -1,4 +1,4 @@
-part of links;
+part of 'links.dart';
 
 /// Used to link to public users, groups and channels, [see here for more info on how to handle them »](https://core.telegram.org/api/invites#public-usernames).
 class UsernameLink extends Deeplink {

@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// StickerFormat to specify the type of sticker used with [RawAPI.createNewStickerSet]
 enum StickerFormat {

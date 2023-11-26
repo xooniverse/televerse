@@ -1,4 +1,4 @@
-part of televerse.context;
+part of '../context.dart';
 
 /// Mixin that contains methods for managing the chat.
 ///

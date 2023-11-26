@@ -1,4 +1,4 @@
-part of televerse;
+part of '../../../televerse.dart';
 
 /// The On event. Attaches handlers for specific events.
 extension On on Televerse {

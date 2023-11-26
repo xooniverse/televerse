@@ -1,4 +1,4 @@
-part of links;
+part of 'links.dart';
 
 /// Represents a bot admin rights.
 class BotAdminRights {

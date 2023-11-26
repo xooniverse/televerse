@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// This object represents the Menu Button Type. Read about the [Menu Button](https://core.telegram.org/bots/api#menubutton) here.
 enum MenuButtonType {

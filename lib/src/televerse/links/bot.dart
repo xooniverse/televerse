@@ -1,4 +1,4 @@
-part of links;
+part of 'links.dart';
 
 /// This class represents a Telegram bot deeplink.
 ///

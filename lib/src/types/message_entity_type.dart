@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// Type of the entity. Currently, can be: one of
 /// - [mention] - (@username)

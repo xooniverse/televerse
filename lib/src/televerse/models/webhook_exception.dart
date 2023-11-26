@@ -1,4 +1,4 @@
-part of televerse.models;
+part of 'models.dart';
 
 /// WebhookException is thrown when an error occurs while setting up a webhook.
 class WebhookException implements Exception {

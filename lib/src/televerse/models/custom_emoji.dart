@@ -1,4 +1,4 @@
-part of televerse.models;
+part of 'models.dart';
 
 /// This object represents a custom emoji entity.
 class CustomEmoji {

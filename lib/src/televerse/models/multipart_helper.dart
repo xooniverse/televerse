@@ -1,4 +1,4 @@
-part of televerse;
+part of '../../../televerse.dart';
 
 /// This class helps to create multipart request
 class _MultipartHelper {

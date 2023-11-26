@@ -1,4 +1,4 @@
-part of links;
+part of 'links.dart';
 
 /// Used to share a prepared message and URL into a chosen chat's text field.
 /// These links should be handled as follows:

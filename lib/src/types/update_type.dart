@@ -1,4 +1,4 @@
-part of types;
+part of 'types.dart';
 
 /// This object represents type of an incoming update.
 enum UpdateType {

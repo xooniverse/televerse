@@ -1,4 +1,4 @@
-part of televerse.context;
+part of 'context.dart';
 
 /// This class is used to represent the context of a poll answer update.
 class PollAnswerContext extends Context with MessageMixin {
@@ -8,8 +8,7 @@ class PollAnswerContext extends Context with MessageMixin {
   PollAnswer get pollAnswer => update.pollAnswer!;
 
   /// Creates a new [PollAnswerContext] instance.
-  PollAnswerContext(super._bot, {required Update update})
-      : super(update: update);
+  PollAnswerContext(super._bot, {required super.update});
 
   /// The poll ID
   String get pollId => pollAnswer.pollId;
