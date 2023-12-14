@@ -2701,7 +2701,7 @@ class RawAPI {
     int? maxTipAmount = 0,
     List<int>? suggestedTipAmounts,
     String? startParameter,
-    String? providerData,
+    dynamic providerData,
     String? photoUrl,
     int? photoSize,
     int? photoWidth,
