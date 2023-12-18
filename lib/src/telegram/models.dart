@@ -4571,16 +4571,16 @@ class MessageAutoDeleteTimerChanged {
 /// This object represents information about an order.
 class OrderInfo {
   /// User name
-  String name;
+  String? name;
 
   /// User's phone number
-  String phoneNumber;
+  String? phoneNumber;
 
   /// User email
-  String email;
+  String? email;
 
   /// User shipping address
-  ShippingAddress shippingAddress;
+  ShippingAddress? shippingAddress;
 
   /// Creates a new [OrderInfo] object.
   OrderInfo({
@@ -4596,17 +4596,19 @@ class OrderInfo {
       'name': name,
       'phone_number': phoneNumber,
       'email': email,
-      'shipping_address': shippingAddress.toJson(),
+      'shipping_address': shippingAddress?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 
   /// Creates a [OrderInfo] object from a JSON object
   factory OrderInfo.fromJson(Map<String, dynamic> json) {
     return OrderInfo(
-      name: json['name']!,
-      phoneNumber: json['phone_number']!,
-      email: json['email']!,
-      shippingAddress: ShippingAddress.fromJson(json['shipping_address']!),
+      name: json['name'],
+      phoneNumber: json['phone_number'],
+      email: json['email'],
+      shippingAddress: json['shipping_address'] != null
+          ? ShippingAddress.fromJson(json['shipping_address'])
+          : null,
     );
   }
 }
