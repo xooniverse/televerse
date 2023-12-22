@@ -1,3 +1,8 @@
+## 1.11.5
+
+- Made the parameters inside `OrderInfo` class nullable as per the documentation.
+- Thanks to [@Defuera](https://github.com/Defuera) for the contribution.
+
 ## 1.11.4
 
 - Refactored the code to make it easier to maintain.
