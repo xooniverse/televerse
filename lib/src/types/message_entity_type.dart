@@ -69,6 +69,9 @@ enum MessageEntityType {
 
   /// For inline custom emoji stickers
   customEmoji("custom_emoji"),
+
+  /// Block quotation
+  blockquote("blockquote"),
   ;
 
   /// The value of this enum.
