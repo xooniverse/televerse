@@ -230,6 +230,9 @@ class Message {
   /// Optional. For replies that quote part of the original message, the quoted part of the message
   final TextQuote? quote;
 
+  /// Optional. Options used for link preview generation for the message, if it is a text message and link preview options were changed
+  final LinkPreviewOptions? linkPreviewOptions;
+
   /// Creates a Message object.
   const Message({
     required this.messageId,
@@ -306,6 +309,7 @@ class Message {
     this.story,
     this.externalReply,
     this.quote,
+    this.linkPreviewOptions,
   });
 
   /// Creates a [Message] object from json map.
@@ -466,6 +470,9 @@ class Message {
           ? null
           : ExternalReplyInfo.fromJson(json['external_reply']),
       quote: json['quote'] == null ? null : TextQuote.fromJson(json['quote']),
+      linkPreviewOptions: json['link_preview_options'] == null
+          ? null
+          : LinkPreviewOptions.fromJson(json['link_preview_options']),
     );
   }
 
@@ -547,6 +554,7 @@ class Message {
       'story': story?.toJson(),
       'external_reply': externalReply?.toJson(),
       'quote': quote?.toJson(),
+      'link_preview_options': linkPreviewOptions?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 
