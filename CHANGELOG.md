@@ -21,11 +21,16 @@
 
 ## Multiple Message Actions 📨
 
+- Added `deleteMessages`, `forwardMessages`, and `copyMessages`
+
+## Request for multiple users 🙋‍♂️
+
 - ⚠️ BREAKING: `KeyboardButton.requestUser` is now renamed as `KeyboardButton.requestUsers` and the type is changed to `KeyboardButtonRequestUsers`.
 - Renamed the class KeyboardButtonRequestUser to KeyboardButtonRequestUsers and added the field max_quantity to it.
 - Renamed the field `request_user` in the class KeyboardButton to `request_users`.
 - Added the class `UsersShared`.
 - Replaced the field `user_shared` in the class Message with the field `users_shared`.
+
 
 # 1.11.5
 
