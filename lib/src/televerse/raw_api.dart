@@ -3329,4 +3329,28 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to change the chosen reactions on a message.
+  /// Service messages can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel.
+  /// In albums, bots must react to the first message. Returns True on success.
+  Future<bool> setMessageReaction(
+    dynamic chatId,
+    int messageId,
+    List<ReactionType>? reaction,
+    bool? isBig,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId,
+      "message_id": messageId,
+      "reaction": reaction?.map((e) => e.toJson()).toList(),
+      "is_big": isBig,
+    };
+
+    bool response = await _httpClient.postURI(
+      _buildUri("setMessageReaction"),
+      params,
+    );
+
+    return response;
+  }
 }

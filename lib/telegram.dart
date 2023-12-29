@@ -5,4 +5,4 @@
 /// Learn more about the Telegram API at https://core.telegram.org/bots/api#available-types
 library telegram;
 
-export 'src/telegram/models.dart';
+export 'src/telegram/models/models.dart';

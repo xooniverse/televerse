@@ -23,3 +23,4 @@ part 'sticker_format.dart';
 part 'scheme.dart';
 part 'methods.dart';
 part 'passport_type.dart';
+part 'reaction_type_emoji_type.dart';

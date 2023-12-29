@@ -1964,4 +1964,34 @@ class Televerse<TeleverseSession extends Session> {
       name: name,
     );
   }
+
+  /// Register a callback when a reaction to a message was changed by a user.
+  void onMessageReaction(
+    MessageReactionHandler callback,
+  ) {
+    HandlerScope scope = HandlerScope<MessageReactionHandler>(
+      handler: callback,
+      types: [
+        UpdateType.messageReaction,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Reactions to a message with anonymous reactions were changed.
+  void onMessageReactionCount(
+    MessageReactionCountHandler callback,
+  ) {
+    HandlerScope scope = HandlerScope<MessageReactionCountHandler>(
+      handler: callback,
+      types: [
+        UpdateType.messageReactionCount,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
 }

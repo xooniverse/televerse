@@ -69,6 +69,8 @@ part 'chosen_inline_result.dart';
 part 'chat_join_request.dart';
 part 'shipping_query.dart';
 part 'pre_checkout_query.dart';
+part 'message_reaction.dart';
+part 'message_reaction_count.dart';
 
 /// This class is used to represent the context of an update. It contains the update and the [RawAPI] instance.
 ///
@@ -147,6 +149,10 @@ class Context {
         return ChatID(update.chatMember!.chat.id);
       case UpdateType.chatJoinRequest:
         return ChatID(update.chatJoinRequest!.chat.id);
+      case UpdateType.messageReaction:
+        return ChatID(update.messageReaction!.chat.id);
+      case UpdateType.messageReactionCount:
+        return ChatID(update.messageReactionCount!.chat.id);
       case UpdateType.poll:
       case UpdateType.unknown:
       default:
@@ -184,7 +190,11 @@ class Context {
       case UpdateType.message:
       case UpdateType.editedMessage:
         return MessageContext;
-      case UpdateType.unknown:
+      case UpdateType.messageReaction:
+        return MessageReactionContext;
+      case UpdateType.messageReactionCount:
+        return MessageReactionCountUpdatedContext;
+      default:
         throw TeleverseException(
           "The update type is ${update.type}, which does not have a context.",
         );
@@ -238,7 +248,13 @@ class Context {
       case UpdateType.chatJoinRequest:
         return ChatJoinRequestContext(t, update: update);
 
-      case UpdateType.unknown:
+      case UpdateType.messageReaction:
+        return MessageReactionContext(t, update: update);
+
+      case UpdateType.messageReactionCount:
+        return MessageReactionCountUpdatedContext(t, update: update);
+
+      default:
         return Context(t, update: update);
     }
   }
