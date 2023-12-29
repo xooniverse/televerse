@@ -55,8 +55,14 @@ class Update {
   /// Optional. Reactions to a message with anonymous reactions were changed. The bot must be an administrator in the chat and must explicitly specify "message_reaction_count" in the list of allowed_updates to receive these updates.
   final MessageReactionCountUpdated? messageReactionCount;
 
+  /// Optional. A chat boost was added or changed. The bot must be an administrator in the chat to receive these updates.
+  final ChatBoostUpdated? chatBoost;
+
+  /// Optional. A chat boost was removed. The bot must be an administrator in the chat to receive these updates.
+  final ChatBoostRemoved? chatBoostRemoved;
+
   /// Update Constructor
-  Update({
+  const Update({
     required this.updateId,
     this.message,
     this.editedMessage,
@@ -74,6 +80,8 @@ class Update {
     this.chatJoinRequest,
     this.messageReaction,
     this.messageReactionCount,
+    this.chatBoost,
+    this.chatBoostRemoved,
   });
 
   /// Creates a [Update] from json [Map].
@@ -127,6 +135,12 @@ class Update {
               json['message_reaction_count']!,
             )
           : null,
+      chatBoost: json['chat_boost'] != null
+          ? ChatBoostUpdated.fromJson(json['chat_boost']!)
+          : null,
+      chatBoostRemoved: json['chat_boost_removed'] != null
+          ? ChatBoostRemoved.fromJson(json['chat_boost_removed']!)
+          : null,
     );
   }
 
@@ -150,7 +164,9 @@ class Update {
       'chat_join_request': chatJoinRequest?.toJson(),
       'message_reaction': messageReaction?.toJson(),
       'message_reaction_count': messageReactionCount?.toJson(),
-    }..removeWhere((key, value) => value == null);
+      'chat_boost': chatBoost?.toJson(),
+      'chat_boost_removed': chatBoostRemoved?.toJson(),
+    }..removeWhere((_, value) => value == null);
   }
 
   /// Converts a [Update] object to a JSON string.
@@ -190,6 +206,10 @@ class Update {
       return UpdateType.messageReaction;
     } else if (messageReactionCount != null) {
       return UpdateType.messageReactionCount;
+    } else if (chatBoost != null) {
+      return UpdateType.chatBoost;
+    } else if (chatBoostRemoved != null) {
+      return UpdateType.chatBoostRemoved;
     } else {
       return UpdateType.unknown;
     }
