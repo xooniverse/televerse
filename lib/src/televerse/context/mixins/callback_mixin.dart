@@ -70,7 +70,7 @@ mixin CallbackQueryMixin on Context {
     String text, {
     ParseMode? parseMode,
     List<MessageEntity>? entities,
-    bool disableWebPagePreview = false,
+    LinkPreviewOptions? linkPreviewOptions,
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     return await api.editMessageText(
@@ -79,7 +79,7 @@ mixin CallbackQueryMixin on Context {
       text,
       parseMode: parseMode,
       entities: entities,
-      disableWebPagePreview: disableWebPagePreview,
+      linkPreviewOptions: linkPreviewOptions,
       replyMarkup: replyMarkup,
     );
   }

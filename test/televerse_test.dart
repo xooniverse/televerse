@@ -43,7 +43,6 @@ void main() {
       id,
       "<b>Hello World</b>\n\nYou can use <a href=\"https://core.telegram.org/bots/api\">Telegram Bot API</a> here.",
       parseMode: ParseMode.html,
-      disableWebPagePreview: true,
       disableNotification: true,
       replyParameters: ReplyParameters(messageId: message.messageId),
     );
