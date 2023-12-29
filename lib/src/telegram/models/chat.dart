@@ -89,6 +89,9 @@ class Chat {
   /// Optional. Expiration date of the emoji status of the other party in a private chat, if any. Returned only in getChat.
   final int? emojiStatusExpirationDate;
 
+  /// Optional. List of available reactions allowed in the chat. If omitted, then all emoji reactions are allowed. Returned only in getChat.
+  final List<ReactionType>? availableReactions;
+
   /// Constructs a [Chat] object.
   const Chat({
     required this.id,
@@ -120,6 +123,7 @@ class Chat {
     this.hasHiddenMembers,
     this.hasAggressiveAntiSpamEnabled,
     this.emojiStatusExpirationDate,
+    this.availableReactions,
   });
 
   /// Creates a [Chat] object from json.
@@ -163,6 +167,9 @@ class Chat {
       hasHiddenMembers: json['has_hidden_members'],
       hasAggressiveAntiSpamEnabled: json['has_aggressive_anti_spam_enabled'],
       emojiStatusExpirationDate: json['emoji_status_expiration_date'],
+      availableReactions: (json['available_reactions'] as List<dynamic>?)
+          ?.map((e) => ReactionType.fromJson(e))
+          .toList(),
     );
   }
 
@@ -199,6 +206,8 @@ class Chat {
       'has_hidden_members': hasHiddenMembers,
       'has_aggressive_anti_spam_enabled': hasAggressiveAntiSpamEnabled,
       'emoji_status_expiration_date': emojiStatusExpirationDate,
+      'available_reactions':
+          availableReactions?.map((e) => e.toJson()).toList(),
     }..removeWhere((key, value) => value == null);
   }
 }
