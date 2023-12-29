@@ -13,6 +13,12 @@
 - ⚠️ Affected methods on `RawAPI`: `copyMessage`, `sendMessage`, `sendPhoto`, `sendVideo`, `sendAnimation`, `sendAudio`, `sendDocument`, `sendSticker`, `sendVideoNote`, `sendVoice`, `sendLocation`, `sendVenue`, `sendContact`, `sendPoll`, `sendDice`, `sendInvoice`, `sendGame`, and `sendMediaGroup`.
 - ⚠️ Affected methods on `MessageContext`: `reply`, `replyWithPhoto`, `replyWithAudio`, `replyWithDocument`, `replyWithVideo`, `replyWithVideoNote`, `replyWithVoice`, `replyWithMediaGroup`, `replyWithLocation`, `replyWithVenue`, `replyWithContact`, `replyWithPoll`, `replyWithDice`, `replyWithGame`, `replyWithAnimation`, `replyWithSticker`.
 
+## Link Preview Customization 📎
+
+- ⚠️ BREAKING: Replaced the parameter `disableWebPagePreview` with `linkPreviewOptions` in the methods `RawAPI.sendMessage` and `RawAPI.editMessageText`.
+- ⚠️ Affected methods on Televerse: `ChatJoinRequestContext.replyToUser`, `ChatMemberUpdatedContext.replyToUser`, `CallbackQueryContext.editMessage`, `MessageContext.reply`, and `MessageContext.editMessageText`.
+
+
 # 1.11.5
 
 - Made the parameters inside `OrderInfo` class nullable as per the documentation.

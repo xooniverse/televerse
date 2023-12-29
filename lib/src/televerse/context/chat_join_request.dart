@@ -46,6 +46,7 @@ class ChatJoinRequestContext extends Context with MessageMixin {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    LinkPreviewOptions? linkPreviewOptions,
   }) async {
     return api.sendMessage(
       userId,
@@ -53,11 +54,11 @@ class ChatJoinRequestContext extends Context with MessageMixin {
       messageThreadId: messageThreadId,
       parseMode: parseMode,
       entities: entities,
-      disableWebPagePreview: disableWebPagePreview,
       disableNotification: disableNotification,
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      linkPreviewOptions: linkPreviewOptions,
     );
   }
 }

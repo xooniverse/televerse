@@ -21,7 +21,7 @@ mixin MessageMixin on Context {
     int? messageThreadId,
     ParseMode? parseMode,
     List<MessageEntity>? entities,
-    bool? disableWebPagePreview,
+    LinkPreviewOptions? linkPreviewOptions,
     bool? disableNotification,
     bool? protectContent,
     ReplyParameters? replyParameters,
@@ -33,7 +33,7 @@ mixin MessageMixin on Context {
       messageThreadId: _threadId(messageThreadId),
       parseMode: parseMode,
       entities: entities,
-      disableWebPagePreview: disableWebPagePreview,
+      linkPreviewOptions: linkPreviewOptions,
       disableNotification: disableNotification,
       protectContent: protectContent,
       replyParameters: replyParameters,
@@ -532,7 +532,7 @@ mixin MessageMixin on Context {
     String text, {
     ParseMode? parseMode,
     List<MessageEntity>? entities,
-    bool disableWebPagePreview = false,
+    LinkPreviewOptions? linkPreviewOptions,
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     return await api.editMessageText(
@@ -541,7 +541,7 @@ mixin MessageMixin on Context {
       text,
       parseMode: parseMode,
       entities: entities,
-      disableWebPagePreview: disableWebPagePreview,
+      linkPreviewOptions: linkPreviewOptions,
       replyMarkup: replyMarkup,
     );
   }

@@ -64,11 +64,11 @@ class ChatMemberUpdatedContext extends Context with MessageMixin {
     int? messageThreadId,
     ParseMode? parseMode,
     List<MessageEntity>? entities,
-    bool? disableWebPagePreview,
     bool? disableNotification,
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    LinkPreviewOptions? linkPreviewOptions,
   }) async {
     return await api.sendMessage(
       userID,
@@ -76,7 +76,7 @@ class ChatMemberUpdatedContext extends Context with MessageMixin {
       messageThreadId: messageThreadId,
       parseMode: parseMode,
       entities: entities,
-      disableWebPagePreview: disableWebPagePreview,
+      linkPreviewOptions: linkPreviewOptions,
       disableNotification: disableNotification,
       protectContent: protectContent,
       replyMarkup: replyMarkup,

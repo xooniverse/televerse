@@ -255,11 +255,11 @@ class RawAPI {
     int? messageThreadId,
     ParseMode? parseMode,
     List<MessageEntity>? entities,
-    bool? disableWebPagePreview,
     bool? disableNotification,
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    LinkPreviewOptions? linkPreviewOptions,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -267,11 +267,11 @@ class RawAPI {
       "message_thread_id": messageThreadId,
       "parse_mode": parseMode?.value,
       "entities": entities?.map((e) => e.toJson()).toList(),
-      "disable_web_page_preview": disableWebPagePreview,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "link_preview_options": linkPreviewOptions?.toJson(),
     };
 
     Uri uri = _buildUri("sendMessage");
@@ -2111,8 +2111,8 @@ class RawAPI {
     String text, {
     ParseMode? parseMode,
     List<MessageEntity>? entities,
-    bool disableWebPagePreview = false,
     InlineKeyboardMarkup? replyMarkup,
+    LinkPreviewOptions? linkPreviewOptions,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2120,8 +2120,8 @@ class RawAPI {
       "text": text,
       "parse_mode": parseMode?.value,
       "entities": entities?.map((e) => e.toJson()).toList(),
-      "disable_web_page_preview": disableWebPagePreview,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
+      "link_preview": linkPreviewOptions?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri("editMessageText"),
@@ -2143,16 +2143,16 @@ class RawAPI {
     String text, {
     ParseMode? parseMode,
     List<MessageEntity>? entities,
-    bool disableWebPagePreview = false,
     InlineKeyboardMarkup? replyMarkup,
+    LinkPreviewOptions? linkPreviewOptions,
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
       "text": text,
       "parse_mode": parseMode?.value,
       "entities": entities?.map((e) => e.toJson()).toList(),
-      "disable_web_page_preview": disableWebPagePreview,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
+      "link_preview": linkPreviewOptions?.toJson(),
     };
     bool response = await _httpClient.postURI(
       _buildUri("editInlineMessageText"),
