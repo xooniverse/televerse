@@ -3318,4 +3318,94 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to delete multiple messages simultaneously. If some of the specified messages can't be found, they are skipped. Returns True on success.
+  ///
+  /// [chatId] Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+  /// [messageIds] Identifiers of 1-100 messages to delete. See deleteMessage for limitations on which messages can be deleted
+  Future<bool> deleteMessages(
+    ID chatId,
+    List<int> messageIds,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_ids": messageIds,
+    };
+
+    bool response = await _httpClient.postURI(
+      _buildUri("deleteMessages"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to forward multiple messages of any kind. If some of the specified messages can't be found or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album grouping is kept for forwarded messages. On success, an array of MessageId of the sent messages is returned.
+  ///
+  /// [chatId] Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+  /// [messageThreadId] Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+  /// [fromChatId] Unique identifier for the chat where the original messages were sent (or channel username in the format @channelusername)
+  /// [messageIds] Identifiers of 1-100 messages in the chat from_chat_id to forward. The identifiers must be specified in a strictly increasing order.
+  /// [disableNotification] Sends the messages silently. Users will receive a notification with no sound.
+  /// [protectContent] Protects the contents of the forwarded messages from forwarding and saving
+  Future<List<int>> forwardMessages(
+    ID chatId,
+    int? messageThreadId,
+    ID fromChatId,
+    List<int> messageIds, {
+    bool? disableNotification,
+    bool? protectContent,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "from_chat_id": fromChatId.id,
+      "message_ids": messageIds,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+    };
+
+    List<int> response = await _httpClient.postURI(
+      _buildUri("forwardMessages"),
+      params,
+    );
+
+    return response;
+  }
+
+  /// Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of MessageId of the sent messages is returned.
+  ///
+  /// [chatId] Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+  /// [messageThreadId] Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+  /// [fromChatId] Unique identifier for the chat where the original messages were sent (or channel username in the format @channelusername)
+  /// [messageIds] Identifiers of 1-100 messages in the chat from_chat_id to copy. The identifiers must be specified in a strictly increasing order.
+  /// [disableNotification] Sends the messages silently. Users will receive a notification with no sound.
+  /// [protectContent] Protects the contents of the sent messages from forwarding and saving
+  /// [removeCaption] Pass True to copy the messages without their captions
+  Future<List<int>> copyMessages(
+    ID chatId,
+    int? messageThreadId,
+    ID fromChatId,
+    List<int> messageIds, {
+    bool? disableNotification,
+    bool? protectContent,
+    bool? removeCaption,
+  }) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "message_thread_id": messageThreadId,
+      "from_chat_id": fromChatId.id,
+      "message_ids": messageIds,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "remove_caption": removeCaption,
+    };
+
+    List<int> response = await _httpClient.postURI(
+      _buildUri("copyMessages"),
+      params,
+    );
+
+    return response;
+  }
 }
