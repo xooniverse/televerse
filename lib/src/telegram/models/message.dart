@@ -613,6 +613,7 @@ class Message {
       case MessageEntityType.code:
       case MessageEntityType.pre:
       case MessageEntityType.textLink:
+      case MessageEntityType.blockquote:
         break;
       case MessageEntityType.customEmoji:
         entxt = entity.customEmojiId!;
