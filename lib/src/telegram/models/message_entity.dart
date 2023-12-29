@@ -6,7 +6,7 @@ class MessageEntity {
   /// - mention - (@username)
   /// - hashtag - (#hashtag),
   /// - cashtag - ($USD),
-  /// - botC  ommand - (/start@jobs_bot),
+  /// - botCommand - (/start@jobs_bot),
   /// - url - (https://telegram.org),
   /// - email - (do-not-reply@telegram.org),
   /// - phoneNumber - (+1-212-555-0123),
