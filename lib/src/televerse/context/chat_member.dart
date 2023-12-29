@@ -67,8 +67,7 @@ class ChatMemberUpdatedContext extends Context with MessageMixin {
     bool? disableWebPagePreview,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendMessage(
@@ -80,9 +79,8 @@ class ChatMemberUpdatedContext extends Context with MessageMixin {
       disableWebPagePreview: disableWebPagePreview,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
       replyMarkup: replyMarkup,
+      replyParameters: replyParameters,
     );
   }
 }

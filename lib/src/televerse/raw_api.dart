@@ -258,9 +258,8 @@ class RawAPI {
     bool? disableWebPagePreview,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -271,9 +270,8 @@ class RawAPI {
       "disable_web_page_preview": disableWebPagePreview,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
 
     Uri uri = _buildUri("sendMessage");
@@ -339,9 +337,8 @@ class RawAPI {
     List<MessageEntity>? captionEntities,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -353,9 +350,8 @@ class RawAPI {
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
     Uri uri = _buildUri("copyMessage");
 
@@ -373,10 +369,9 @@ class RawAPI {
     List<MessageEntity>? captionEntities,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
     bool? hasSpoiler,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -385,10 +380,10 @@ class RawAPI {
       "parse_mode": parseMode?.value,
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
       "disable_notification": disableNotification,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
       "has_spoiler": hasSpoiler,
+      "protect_content": protectContent,
+      "reply_parameters": replyParameters?.toJson(),
     };
     const field = "photo";
     Map<String, dynamic> response;
@@ -423,9 +418,8 @@ class RawAPI {
     InputFile? thumbnail,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -438,9 +432,8 @@ class RawAPI {
       "title": title,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
     const field = "audio";
 
@@ -477,9 +470,8 @@ class RawAPI {
     bool? disableContentTypeDetection,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -490,9 +482,8 @@ class RawAPI {
       "disable_content_type_detection": disableContentTypeDetection,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
     const field = "document";
 
@@ -532,9 +523,8 @@ class RawAPI {
     bool? supportsStreaming,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -549,9 +539,8 @@ class RawAPI {
       "supports_streaming": supportsStreaming,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
     final field = "video";
     Map<String, dynamic> response;
@@ -587,9 +576,8 @@ class RawAPI {
     bool? hasSpoiler,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -603,9 +591,8 @@ class RawAPI {
       "has_spoiler": hasSpoiler,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
     const field = "animation";
     Map<String, dynamic> response;
@@ -639,9 +626,8 @@ class RawAPI {
     int? duration,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -652,9 +638,8 @@ class RawAPI {
       "duration": duration,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
     const field = "voice";
     Map<String, dynamic> response;
@@ -684,9 +669,8 @@ class RawAPI {
     InputFile? thumbnail,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -696,9 +680,8 @@ class RawAPI {
       "thumbnail": thumbnail?.fileId ?? thumbnail?.url,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
     const field = "video_note";
     Map<String, dynamic> response;
@@ -727,8 +710,7 @@ class RawAPI {
     int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
   }) async {
     if (media.length > 10) {
       throw TeleverseException(
@@ -759,8 +741,7 @@ class RawAPI {
       "message_thread_id": messageThreadId,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
+      "reply_parameters": replyParameters?.toJson(),
     };
 
     List<_MultipartHelper> helpers = [];
@@ -804,9 +785,8 @@ class RawAPI {
     int? proximityAlertRadius,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -819,9 +799,8 @@ class RawAPI {
       "proximity_alert_radius": proximityAlertRadius,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri("sendLocation"),
@@ -955,9 +934,8 @@ class RawAPI {
     String? googlePlaceType,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -972,9 +950,8 @@ class RawAPI {
       "google_place_type": googlePlaceType,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri("sendVenue"),
@@ -993,9 +970,8 @@ class RawAPI {
     String? vcard,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -1006,9 +982,8 @@ class RawAPI {
       "vcard": vcard,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri("sendContact"),
@@ -1035,9 +1010,8 @@ class RawAPI {
     bool? isClosed,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     if (options.length < 2 || options.length > 10) {
       throw TeleverseException(
@@ -1104,9 +1078,8 @@ class RawAPI {
       "is_closed": isClosed,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri("sendPoll"),
@@ -1131,9 +1104,8 @@ class RawAPI {
     int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -1141,9 +1113,8 @@ class RawAPI {
       "emoji": emoji.emoji,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri("sendDice"),
@@ -2436,20 +2407,18 @@ class RawAPI {
     int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     InlineKeyboardMarkup? replyMarkup,
     String? emoji,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
       "emoji": emoji,
+      "reply_parameters": jsonEncode(replyParameters?.toJson()),
     };
     const field = "sticker";
     Map<String, dynamic> response;
@@ -2715,9 +2684,8 @@ class RawAPI {
     bool? isFlexible,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     InlineKeyboardMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2745,9 +2713,8 @@ class RawAPI {
       "is_flexible": isFlexible,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": jsonEncode(replyParameters?.toJson()),
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
@@ -2912,9 +2879,8 @@ class RawAPI {
     int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2922,9 +2888,8 @@ class RawAPI {
       "message_thread_id": messageThreadId,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_to_message_id": replyToMessageId,
-      "allow_sending_without_reply": allowSendingWithoutReply,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_parameters": jsonEncode(replyParameters?.toJson()),
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(

@@ -168,3 +168,4 @@ part 'link_preview_options.dart';
 part 'giveaway.dart';
 part 'giveaway_winners.dart';
 part 'text_quote.dart';
+part 'reply_parameters.dart';
