@@ -24,3 +24,4 @@ part 'scheme.dart';
 part 'methods.dart';
 part 'passport_type.dart';
 part 'reaction_type_emoji_type.dart';
+part 'chat_boost_source_type.dart';
