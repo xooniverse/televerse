@@ -26,7 +26,7 @@ class KeyboardButton {
   /// Optional. If specified, pressing the button will open a list of suitable users. Tapping on any user will send their identifier to the bot in a “user_shared” service message. Available in private chats only.
   ///
   /// Since: Bot API 6.5
-  KeyboardButtonRequestUser? requestUser;
+  KeyboardButtonRequestUsers? requestUsers;
 
   /// Optional. If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a “chat_shared” service message. Available in private chats only.
   ///
@@ -43,7 +43,7 @@ class KeyboardButton {
   ///
   /// [webApp] - If specified, the described Web App will be launched when the button is pressed. The Web App will be able to send a “web_app_data” service message. Available in private chats only.
   ///
-  /// [requestUser] - If specified, pressing the button will open a list of suitable users. Tapping on any user will send their identifier to the bot in a “user_shared” service message. Available in private chats only.
+  /// [requestUsers] - If specified, pressing the button will open a list of suitable users. Tapping on any user will send their identifier to the bot in a “user_shared” service message. Available in private chats only.
   ///
   /// [requestChat] - If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a “chat_shared” service message. Available in private chats only.
   KeyboardButton({
@@ -52,7 +52,7 @@ class KeyboardButton {
     this.requestLocation,
     this.requestPoll,
     this.webApp,
-    this.requestUser,
+    this.requestUsers,
     this.requestChat,
   });
 
@@ -67,8 +67,8 @@ class KeyboardButton {
           : null,
       webApp:
           json['web_app'] != null ? WebAppInfo.fromJson(json['web_app']) : null,
-      requestUser: json['request_user'] != null
-          ? KeyboardButtonRequestUser.fromJson(json['request_user'])
+      requestUsers: json['request_users'] != null
+          ? KeyboardButtonRequestUsers.fromJson(json['request_users'])
           : null,
       requestChat: json['request_chat'] != null
           ? KeyboardButtonRequestChat.fromJson(json['request_chat'])
@@ -84,7 +84,7 @@ class KeyboardButton {
       'request_location': requestLocation,
       'request_poll': requestPoll?.toJson(),
       'web_app': webApp?.toJson(),
-      'request_user': requestUser?.toJson(),
+      'request_users': requestUsers?.toJson(),
       'request_chat': requestChat?.toJson(),
     }..removeWhere((key, value) => value == null);
   }

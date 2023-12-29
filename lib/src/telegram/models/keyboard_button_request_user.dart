@@ -1,7 +1,7 @@
 part of 'models.dart';
 
 /// This object defines the criteria used to request a suitable user. The identifier of the selected user will be shared with the bot when the corresponding button is pressed.
-class KeyboardButtonRequestUser {
+class KeyboardButtonRequestUsers {
   /// Signed 32-bit identifier of the request
   int requestId;
 
@@ -11,19 +11,24 @@ class KeyboardButtonRequestUser {
   /// Optional. Pass True to request a premium user, pass False to request a non-premium user. If not specified, no additional restrictions are applied.
   bool? userIsPremium;
 
-  /// Creates a new [KeyboardButtonRequestUser] object
-  KeyboardButtonRequestUser({
+  /// Optional. The maximum number of users to be selected; 1-10. Defaults to 1.
+  int? maxQuantity;
+
+  /// Creates a new [KeyboardButtonRequestUsers] object
+  KeyboardButtonRequestUsers({
     required this.requestId,
     this.userIsBot,
     this.userIsPremium,
+    this.maxQuantity,
   });
 
-  /// Creates a new [KeyboardButtonRequestUser] from a JSON object.
-  factory KeyboardButtonRequestUser.fromJson(Map<String, dynamic> json) {
-    return KeyboardButtonRequestUser(
+  /// Creates a new [KeyboardButtonRequestUsers] from a JSON object.
+  factory KeyboardButtonRequestUsers.fromJson(Map<String, dynamic> json) {
+    return KeyboardButtonRequestUsers(
       requestId: json['request_id']!,
       userIsBot: json['user_is_bot'],
       userIsPremium: json['user_is_premium'],
+      maxQuantity: json['max_quantity'],
     );
   }
 
@@ -33,6 +38,7 @@ class KeyboardButtonRequestUser {
       'request_id': requestId,
       'user_is_bot': userIsBot,
       'user_is_premium': userIsPremium,
-    }..removeWhere((key, value) => value == null);
+      'max_quantity': maxQuantity,
+    }..removeWhere((_, value) => value == null);
   }
 }

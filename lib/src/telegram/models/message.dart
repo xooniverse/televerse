@@ -201,7 +201,7 @@ class Message {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Service message: a user was shared with the bot
-  final UserShared? userShared;
+  final UsersShared? usersShared;
 
   /// Optional. Service message: a chat was shared with the bot
   final ChatShared? chatShared;
@@ -299,7 +299,7 @@ class Message {
     this.isAutomaticForward,
     this.isTopicMessage,
     this.messageThreadId,
-    this.userShared,
+    this.usersShared,
     this.chatShared,
     this.hasMediaSpoiler,
     this.forumTopicEdited,
@@ -442,9 +442,9 @@ class Message {
       hasProtectedContent: json['has_protected_content'],
       isTopicMessage: json['is_topic_message'],
       messageThreadId: json['message_thread_id'],
-      userShared: json['user_shared'] == null
+      usersShared: json['users_shared'] == null
           ? null
-          : UserShared.fromJson(json['user_shared']),
+          : UsersShared.fromJson(json['user_shared']),
       chatShared: json['chat_shared'] == null
           ? null
           : ChatShared.fromJson(json['chat_shared']),
@@ -544,7 +544,7 @@ class Message {
       'has_protected_content': hasProtectedContent,
       'is_topic_message': isTopicMessage,
       'message_thread_id': messageThreadId,
-      'user_shared': userShared?.toJson(),
+      'users_shared': usersShared?.toJson(),
       'chat_shared': chatShared?.toJson(),
       'has_media_spoiler': hasMediaSpoiler,
       'forum_topic_edited': forumTopicEdited?.toJson(),

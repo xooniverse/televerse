@@ -19,6 +19,14 @@
 - ⚠️ Affected methods on Televerse: `ChatJoinRequestContext.replyToUser`, `ChatMemberUpdatedContext.replyToUser`, `CallbackQueryContext.editMessage`, `MessageContext.reply`, and `MessageContext.editMessageText`.
 - ⚠️ BREAKING: `InputTextMessageContent.disableWebPagePreview` is now renamed to `InputTextMessageContent.linkPreviewOptions` and the type is changed to `LinkPreviewOptions`.
 
+## Multiple Message Actions 📨
+
+- ⚠️ BREAKING: `KeyboardButton.requestUser` is now renamed as `KeyboardButton.requestUsers` and the type is changed to `KeyboardButtonRequestUsers`.
+- Renamed the class KeyboardButtonRequestUser to KeyboardButtonRequestUsers and added the field max_quantity to it.
+- Renamed the field `request_user` in the class KeyboardButton to `request_users`.
+- Added the class `UsersShared`.
+- Replaced the field `user_shared` in the class Message with the field `users_shared`.
+
 # 1.11.5
 
 - Made the parameters inside `OrderInfo` class nullable as per the documentation.

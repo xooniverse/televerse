@@ -1661,7 +1661,7 @@ class Televerse<TeleverseSession extends Session> {
   void onUsrShared(MessageHandler callback) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message.userShared != null,
+      (ctx) => ctx.message.usersShared != null,
     );
   }
 
@@ -1901,7 +1901,7 @@ class Televerse<TeleverseSession extends Session> {
             case 'request_user':
               _internalSubMessageHandler(
                 action,
-                (ctx) => ctx.message.userShared != null,
+                (ctx) => ctx.message.usersShared != null,
                 name: name,
               );
           }

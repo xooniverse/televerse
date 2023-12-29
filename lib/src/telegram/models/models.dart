@@ -139,7 +139,7 @@ part 'write_access_allowed.dart';
 // Bot API 6.5
 part 'keyboard_button_request_user.dart';
 part 'keyboard_button_request_chat.dart';
-part 'user_shared.dart';
+part 'users_shared.dart';
 part 'chat_shared.dart';
 
 // Bot API 6.6
