@@ -8900,3 +8900,163 @@ class PassportElementErrorReverseSide extends PassportElementError {
     );
   }
 }
+
+// Bot API 7.0 Updates
+
+/// This object describes the type of a reaction. Currently, it can be one of
+/// - [ReactionTypeEmoji]
+/// - [ReactionTypeCustomEmoji]
+
+abstract class ReactionType {
+  /// The type of the reaction.
+  final ReactionTypeType type;
+
+  /// Constructs a [ReactionType] object
+  const ReactionType({
+    required this.type,
+  });
+}
+
+/// The reaction is based on an emoji.
+class ReactionTypeEmoji implements ReactionType {
+  /// Type of the reaction, always “emoji”
+  @override
+  final ReactionTypeType type = ReactionTypeType.emoji;
+
+  /// The reaction emoji.
+  ///
+  /// Currently, it can be one of "👍", "👎", "❤", "🔥", "🥰", "👏", "😁", "🤔", "🤯", "😱", "🤬", "😢", "🎉", "🤩", "🤮", "💩", "🙏", "👌", "🕊", "🤡", "🥱", "🥴", "😍", "🐳", "❤‍🔥", "🌚", "🌭", "💯", "🤣", "⚡", "🍌", "🏆", "💔", "🤨", "😐", "🍓", "🍾", "💋", "🖕", "😈", "😴", "😭", "🤓", "👻", "👨‍💻", "👀", "🎃", "🙈", "😇", "😨", "🤝", "✍", "🤗", "🫡", "🎅", "🎄", "☃", "💅", "🤪", "🗿", "🆒", "💘", "🙉", "🦄", "😘", "💊", "🙊", "😎", "👾", "🤷‍♂", "🤷", "🤷‍♀", "😡"
+  final String emoji;
+
+  /// Constructs a [ReactionTypeEmoji] object
+  ReactionTypeEmoji({
+    required this.emoji,
+  }) : assert(
+          allowedEmojis.contains(emoji),
+          'Invalid emoji, please check the [ReactionTypeEmoji.allowedEmojis] list to see the allowed emojis.',
+        );
+
+  /// Converts a [ReactionTypeEmoji] object to JSON object
+  Map<String, dynamic> toJson() {
+    return {
+      'type': type.value,
+      'emoji': emoji,
+    }..removeWhere((key, value) => value == null);
+  }
+
+  /// Creates a [ReactionTypeEmoji] object from JSON object
+  factory ReactionTypeEmoji.fromJson(Map<String, dynamic> json) {
+    return ReactionTypeEmoji(
+      emoji: json['emoji']!,
+    );
+  }
+
+  /// Currently allowed emojis.
+  static List<String> get allowedEmojis {
+    return const [
+      "👍",
+      "👎",
+      "❤",
+      "🔥",
+      "🥰",
+      "👏",
+      "😁",
+      "🤔",
+      "🤯",
+      "😱",
+      "🤬",
+      "😢",
+      "🎉",
+      "🤩",
+      "🤮",
+      "💩",
+      "🙏",
+      "👌",
+      "🕊",
+      "🤡",
+      "🥱",
+      "🥴",
+      "😍",
+      "🐳",
+      "❤‍🔥",
+      "🌚",
+      "🌭",
+      "💯",
+      "🤣",
+      "⚡",
+      "🍌",
+      "🏆",
+      "💔",
+      "🤨",
+      "😐",
+      "🍓",
+      "🍾",
+      "💋",
+      "🖕",
+      "😈",
+      "😴",
+      "😭",
+      "🤓",
+      "👻",
+      "👨‍💻",
+      "👀",
+      "🎃",
+      "🙈",
+      "😇",
+      "😨",
+      "🤝",
+      "✍",
+      "🤗",
+      "🫡",
+      "🎅",
+      "🎄",
+      "☃",
+      "💅",
+      "🤪",
+      "🗿",
+      "🆒",
+      "💘",
+      "🙉",
+      "🦄",
+      "😘",
+      "💊",
+      "🙊",
+      "😎",
+      "👾",
+      "🤷‍♂",
+      "🤷",
+      "🤷‍♀",
+      "😡",
+    ];
+  }
+}
+
+/// The reaction is based on a custom emoji.
+class ReactionTypeCustomEmoji implements ReactionType {
+  /// Type of the reaction, always “custom”
+  @override
+  final ReactionTypeType type = ReactionTypeType.customEmoji;
+
+  /// Custom emoji identifier
+  final String customEmoji;
+
+  /// Constructs a [ReactionTypeCustomEmoji] object
+  ReactionTypeCustomEmoji({
+    required this.customEmoji,
+  });
+
+  /// Converts a [ReactionTypeCustomEmoji] object to JSON object
+  Map<String, dynamic> toJson() {
+    return {
+      'type': type.value,
+      'custom_emoji': customEmoji,
+    };
+  }
+
+  /// Creates a [ReactionTypeCustomEmoji] object from JSON object
+  factory ReactionTypeCustomEmoji.fromJson(Map<String, dynamic> json) {
+    return ReactionTypeCustomEmoji(
+      customEmoji: json['custom_emoji']!,
+    );
+  }
+}
