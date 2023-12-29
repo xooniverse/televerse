@@ -124,7 +124,7 @@ class ExternalReplyInfo {
       'location': location?.toJson(),
       'poll': poll?.toJson(),
       'venue': venue?.toJson(),
-    };
+    }..removeWhere((_, v) => v == null);
   }
 
   /// Creates instance of [ExternalReplyInfo] from JSON data.
