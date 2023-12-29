@@ -17,7 +17,7 @@
 
 - ⚠️ BREAKING: Replaced the parameter `disableWebPagePreview` with `linkPreviewOptions` in the methods `RawAPI.sendMessage` and `RawAPI.editMessageText`.
 - ⚠️ Affected methods on Televerse: `ChatJoinRequestContext.replyToUser`, `ChatMemberUpdatedContext.replyToUser`, `CallbackQueryContext.editMessage`, `MessageContext.reply`, and `MessageContext.editMessageText`.
-
+- ⚠️ BREAKING: `InputTextMessageContent.disableWebPagePreview` is now renamed to `InputTextMessageContent.linkPreviewOptions` and the type is changed to `LinkPreviewOptions`.
 
 # 1.11.5
 

@@ -12,14 +12,14 @@ class InputTextMessageContent extends InputMessageContent {
   List<MessageEntity>? entities;
 
   /// Optional. Disables link previews for links in the sent message
-  bool? disableWebPagePreview;
+  LinkPreviewOptions? linkPreviewOptions;
 
   /// Constructs an [InputTextMessageContent] object
   InputTextMessageContent({
     required this.messageText,
     this.parseMode,
     this.entities,
-    this.disableWebPagePreview,
+    this.linkPreviewOptions,
   });
 
   /// Converts an [InputTextMessageContent] object to a JSON object
@@ -29,7 +29,7 @@ class InputTextMessageContent extends InputMessageContent {
       'message_text': messageText,
       'parse_mode': parseMode?.value,
       'entities': entities?.map((e) => e.toJson()).toList(),
-      'disable_web_page_preview': disableWebPagePreview,
+      'link_preview_options': linkPreviewOptions?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 
@@ -43,7 +43,11 @@ class InputTextMessageContent extends InputMessageContent {
       entities: (json['entities'] as List<dynamic>?)
           ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
-      disableWebPagePreview: json['disable_web_page_preview'] as bool?,
+      linkPreviewOptions: json['disable_web_page_preview'] == null
+          ? null
+          : LinkPreviewOptions.fromJson(
+              json['disable_web_page_preview'] as Map<String, dynamic>,
+            ),
     );
   }
 }
