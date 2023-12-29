@@ -162,3 +162,8 @@ part 'reaction_type_custom_emoji.dart';
 part 'message_reaction_updated.dart';
 part 'message_reaction_count_updated.dart';
 part 'reaction_count.dart';
+part 'external_reply_info.dart';
+part 'abstracts/message_origin.dart';
+part 'link_preview_options.dart';
+part 'giveaway.dart';
+part 'giveaway_winners.dart';
