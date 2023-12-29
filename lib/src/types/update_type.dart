@@ -44,6 +44,12 @@ enum UpdateType {
   /// Chat join request update
   chatJoinRequest("chat_join_request"),
 
+  /// A reaction to a message was changed by a user.
+  messageReaction("message_reaction"),
+
+  /// Update when reactions to a message with anonymous reactions were changed.
+  messageReactionCount("message_reaction_count"),
+
   /// Unknow update type
   unknown("unknown");
 
@@ -94,6 +100,12 @@ enum UpdateType {
 
   /// Check if the update is a chat join request update
   bool get isChatJoinRequest => this == UpdateType.chatJoinRequest;
+
+  /// Check if the update is a message reaction update
+  bool get isMessageReaction => this == UpdateType.messageReaction;
+
+  /// Check if the update is a message reaction count update
+  bool get isMessageReactionCount => this == UpdateType.messageReactionCount;
 
   /// Constructs a new [UpdateType] from a [String].
   factory UpdateType.fromJson(String type) {
