@@ -167,3 +167,4 @@ part 'abstracts/message_origin.dart';
 part 'link_preview_options.dart';
 part 'giveaway.dart';
 part 'giveaway_winners.dart';
+part 'text_quote.dart';
