@@ -45,7 +45,7 @@ void main() {
       parseMode: ParseMode.html,
       disableWebPagePreview: true,
       disableNotification: true,
-      replyToMessageId: message.messageId,
+      replyParameters: ReplyParameters(messageId: message.messageId),
     );
 
     expect(

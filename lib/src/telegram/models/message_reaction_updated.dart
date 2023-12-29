@@ -44,7 +44,7 @@ class MessageReactionUpdated {
       'date': date,
       'old_reaction': oldReaction.map((e) => e.toJson()).toList(),
       'new_reaction': newReaction.map((e) => e.toJson()).toList(),
-    };
+    }..removeWhere((_, v) => v == null);
   }
 
   /// Creates a [MessageReactionUpdated] object from JSON object.

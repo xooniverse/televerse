@@ -224,6 +224,12 @@ class Message {
   /// Optional. Message is a forwarded story
   final Story? story;
 
+  /// Optional. Information about the message that is being replied to, which may come from another chat or forum topic
+  final ExternalReplyInfo? externalReply;
+
+  /// Optional. For replies that quote part of the original message, the quoted part of the message
+  final TextQuote? quote;
+
   /// Creates a Message object.
   const Message({
     required this.messageId,
@@ -298,6 +304,8 @@ class Message {
     this.generalForumTopicUnhidden,
     this.writeAccessAllowed,
     this.story,
+    this.externalReply,
+    this.quote,
   });
 
   /// Creates a [Message] object from json map.
@@ -454,6 +462,10 @@ class Message {
           ? null
           : WriteAccessAllowed.fromJson(json['write_access_allowed']),
       story: json['story'] == null ? null : Story.fromJson(json['story']),
+      externalReply: json['external_reply'] == null
+          ? null
+          : ExternalReplyInfo.fromJson(json['external_reply']),
+      quote: json['quote'] == null ? null : TextQuote.fromJson(json['quote']),
     );
   }
 
@@ -533,6 +545,8 @@ class Message {
       'general_forum_topic_unhidden': generalForumTopicUnhidden?.toJson(),
       'write_access_allowed': writeAccessAllowed?.toJson(),
       'story': story?.toJson(),
+      'external_reply': externalReply?.toJson(),
+      'quote': quote?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 
