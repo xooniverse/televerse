@@ -53,7 +53,7 @@ abstract class TeleverseMenu<CTX extends Context,
           case 'request_user':
             return KeyboardButton(
               text: text,
-              requestUser: KeyboardButtonRequestUser.fromJson(data),
+              requestUsers: KeyboardButtonRequestUsers.fromJson(data),
             );
           case 'request_chat':
             return KeyboardButton(
