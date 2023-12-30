@@ -1,10 +1,7 @@
 part of 'models.dart';
 
 /// This object represents a message.
-class Message {
-  /// Unique message identifier inside this chat
-  final int messageId;
-
+class Message extends MaybeInaccessibleMessage {
   /// Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
   final int? messageThreadId;
 
@@ -14,33 +11,8 @@ class Message {
   /// Optional. Sender of the message, sent on behalf of a chat. For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
   final Chat? senderChat;
 
-  /// Date the message was sent in Unix time
-  ///
-  /// Note: Handy [DateTime] object is available in [dateTime] getter.
-  final int date;
-
-  /// Conversation the message belongs to
-  final Chat chat;
-
-  /// Optional. For forwarded messages, sender of the original message
-  final User? forwardFrom;
-
-  /// Optional. For messages forwarded from channels or from anonymous administrators, information about the original sender chat
-  final Chat? forwardFromChat;
-
-  /// Optional. For messages forwarded from channels, identifier of the original message in the channel
-  final int? forwardFromMessageId;
-
-  /// Optional. For forwarded messages that were originally sent in channels or by an anonymous chat administrator, signature of the message sender if present
-  final String? forwardSignature;
-
-  /// Optional. Sender's name for messages forwarded from users who disallow adding a link to their account in forwarded messages
-  final String? forwardSenderName;
-
-  /// Optional. For forwarded messages, date the original message was sent in Unix time
-  ///
-  /// Note: Handy [DateTime] object is available in [forwardDateTime] getter.
-  final int? forwardDate;
+  /// Optional. Information about the original message for forwarded messages
+  final MessageOrigin? forwardOrigin;
 
   /// Optional. True, if the message is sent to a forum topic
   final bool? isTopicMessage;
@@ -247,17 +219,11 @@ class Message {
 
   /// Creates a Message object.
   const Message({
-    required this.messageId,
+    required super.messageId,
     this.from,
     this.senderChat,
-    required this.date,
-    required this.chat,
-    this.forwardFrom,
-    this.forwardFromChat,
-    this.forwardFromMessageId,
-    this.forwardSignature,
-    this.forwardSenderName,
-    this.forwardDate,
+    required super.date,
+    required super.chat,
     this.replyToMessage,
     this.viaBot,
     this.editDate,
@@ -326,6 +292,7 @@ class Message {
     this.giveawayCreated,
     this.giveawayWinners,
     this.giveawayCompleted,
+    this.forwardOrigin,
   });
 
   /// Creates a [Message] object from json map.
@@ -338,16 +305,6 @@ class Message {
           : Chat.fromJson(json['sender_chat']),
       date: json['date'],
       chat: Chat.fromJson(json['chat']),
-      forwardFrom: json['forward_from'] == null
-          ? null
-          : User.fromJson(json['forward_from']),
-      forwardFromChat: json['forward_from_chat'] == null
-          ? null
-          : Chat.fromJson(json['forward_from_chat']),
-      forwardFromMessageId: json['forward_from_message_id'],
-      forwardSignature: json['forward_signature'],
-      forwardSenderName: json['forward_sender_name'],
-      forwardDate: json['forward_date'],
       replyToMessage: json['reply_to_message'] == null
           ? null
           : Message.fromJson(json['reply_to_message']),
@@ -500,10 +457,14 @@ class Message {
       giveawayCompleted: json['giveaway_completed'] == null
           ? null
           : GiveawayCompleted.fromJson(json['giveaway_completed']),
+      forwardOrigin: json['forward_origin'] == null
+          ? null
+          : MessageOrigin.fromJson(json['forward_origin']),
     );
   }
 
   /// Returns the JSON representation of the Message object.
+  @override
   Map<String, dynamic> toJson() {
     return {
       'message_id': messageId,
@@ -511,12 +472,6 @@ class Message {
       'sender_chat': senderChat?.toJson(),
       'date': date,
       'chat': chat.toJson(),
-      'forward_from': forwardFrom?.toJson(),
-      'forward_from_chat': forwardFromChat?.toJson(),
-      'forward_from_message_id': forwardFromMessageId,
-      'forward_signature': forwardSignature,
-      'forward_sender_name': forwardSenderName,
-      'forward_date': forwardDate,
       'reply_to_message': replyToMessage?.toJson(),
       'via_bot': viaBot?.toJson(),
       'edit_date': editDate,
@@ -586,6 +541,7 @@ class Message {
       'giveaway_created': giveawayCreated?.toJson(),
       'giveaway_winners': giveawayWinners?.toJson(),
       'giveaway_completed': giveawayCompleted?.toJson(),
+      'forward_origin': forwardOrigin?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 
@@ -598,9 +554,10 @@ class Message {
       : DateTime.fromMillisecondsSinceEpoch(editDate! * 1000);
 
   /// Getter for the [DateTime] object that represents the message forward date
-  DateTime? get forwardDateTime => forwardDate == null
-      ? null
-      : DateTime.fromMillisecondsSinceEpoch(forwardDate! * 1000);
+  DateTime? get forwardDateTime {
+    if (forwardOrigin == null) return null;
+    return DateTime.fromMillisecondsSinceEpoch(forwardOrigin!.date * 1000);
+  }
 
   /// Returns true if the message is a command
   bool get isCommand => entities != null && entities!.isNotEmpty

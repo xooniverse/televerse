@@ -29,9 +29,6 @@ class Chat {
   /// Optional. If non-empty, the list of all active chat usernames; for private chats, supergroups and channels. Returned only in getChat.
   final List<String>? activeUsernames;
 
-  /// Optional. Custom emoji identifier of emoji status of the other party in a private chat. Returned only in getChat.
-  final String? emojiStatusSustomEmojiId;
-
   /// Optional. Bio of the other party in a private chat. Returned only in getChat.
   final String? bio;
 
@@ -89,8 +86,26 @@ class Chat {
   /// Optional. Expiration date of the emoji status of the other party in a private chat, if any. Returned only in getChat.
   final int? emojiStatusExpirationDate;
 
-  /// Optional. List of available reactions allowed in the chat. If omitted, then all emoji reactions are allowed. Returned only in getChat.
+  /// Optional. Expiration date of the emoji status of the chat or the other party in a private chat, in Unix time, if any. Returned only in getChat.
   final List<ReactionType>? availableReactions;
+
+  /// Optional. Custom emoji identifier of the emoji status of the chat or the other party in a private chat. Returned only in getChat.
+  final String? emojiStatusCustomEmojiId;
+
+  /// Optional. Identifier of the accent color for the chat name and backgrounds of the chat photo, reply header, and link preview. See [accent colors](https://core.telegram.org/bots/api#accent-colors) for more details. Returned only in getChat. Always returned in [getChat](https://core.telegram.org/bots/api#getchat)
+  final int? accentColorId;
+
+  /// Optional. Custom emoji identifier of emoji chosen by the chat for the reply header and link preview background. Returned only in getChat.
+  final String? backgroundCustomEmojiId;
+
+  /// Optional. Identifier of the accent color for the chat's profile background. See profile accent colors for more details. Returned only in getChat.
+  final int? profileAccentColorId;
+
+  /// Optional. Custom emoji identifier of the emoji chosen by the chat for its profile background. Returned only in getChat.
+  final String? profileBackgroundCustomEmojiId;
+
+  /// Optional. True, if new chat members will have access to old messages; available only to chat administrators. Returned only in getChat.
+  final bool? hasVisibleHistory;
 
   /// Constructs a [Chat] object.
   const Chat({
@@ -103,7 +118,6 @@ class Chat {
     this.isForum,
     this.photo,
     this.activeUsernames,
-    this.emojiStatusSustomEmojiId,
     this.bio,
     this.hasPrivateForwards,
     this.hasRestrictedVoiceAndVideoMessages,
@@ -124,6 +138,12 @@ class Chat {
     this.hasAggressiveAntiSpamEnabled,
     this.emojiStatusExpirationDate,
     this.availableReactions,
+    this.emojiStatusCustomEmojiId,
+    this.accentColorId,
+    this.backgroundCustomEmojiId,
+    this.profileAccentColorId,
+    this.profileBackgroundCustomEmojiId,
+    this.hasVisibleHistory,
   });
 
   /// Creates a [Chat] object from json.
@@ -140,7 +160,6 @@ class Chat {
       activeUsernames: (json['active_usernames'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      emojiStatusSustomEmojiId: json['emoji_status_custom_emoji_id'],
       bio: json['bio'],
       hasPrivateForwards: json['has_private_forwards'],
       hasRestrictedVoiceAndVideoMessages:
@@ -170,6 +189,13 @@ class Chat {
       availableReactions: (json['available_reactions'] as List<dynamic>?)
           ?.map((e) => ReactionType.fromJson(e))
           .toList(),
+      emojiStatusCustomEmojiId: json['emoji_status_custom_emoji_id'],
+      accentColorId: json['accent_color_id'],
+      backgroundCustomEmojiId: json['background_custom_emoji_id'],
+      profileAccentColorId: json['profile_accent_color_id'],
+      profileBackgroundCustomEmojiId:
+          json['profile_background_custom_emoji_id'],
+      hasVisibleHistory: json['has_visible_history'],
     );
   }
 
@@ -185,7 +211,6 @@ class Chat {
       'is_forum': isForum,
       'photo': photo?.toJson(),
       'active_usernames': activeUsernames,
-      'emoji_status_custom_emoji_id': emojiStatusSustomEmojiId,
       'bio': bio,
       'has_private_forwards': hasPrivateForwards,
       'has_restricted_voice_and_video_messages':
@@ -208,6 +233,12 @@ class Chat {
       'emoji_status_expiration_date': emojiStatusExpirationDate,
       'available_reactions':
           availableReactions?.map((e) => e.toJson()).toList(),
+      'emoji_status_custom_emoji_id': emojiStatusCustomEmojiId,
+      'accent_color_id': accentColorId,
+      'background_custom_emoji_id': backgroundCustomEmojiId,
+      'profile_accent_color_id': profileAccentColorId,
+      'profile_background_custom_emoji_id': profileBackgroundCustomEmojiId,
+      'has_visible_history': hasVisibleHistory,
     }..removeWhere((key, value) => value == null);
   }
 }
