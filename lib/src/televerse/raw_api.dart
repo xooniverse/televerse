@@ -3299,11 +3299,11 @@ class RawAPI {
   /// Service messages can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel.
   /// In albums, bots must react to the first message. Returns True on success.
   Future<bool> setMessageReaction(
-    dynamic chatId,
-    int messageId,
+    ID chatId,
+    int messageId, {
     List<ReactionType>? reaction,
     bool? isBig,
-  ) async {
+  }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId,
       "message_id": messageId,

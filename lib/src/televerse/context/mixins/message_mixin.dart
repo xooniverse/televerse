@@ -665,4 +665,36 @@ mixin MessageMixin on Context {
         update.editedChannelPost;
     return m!;
   }
+
+  /// React to the message with a reaction.
+  Future<bool> react(
+    String emoji, {
+    bool? isBig,
+  }) async {
+    return await api.setMessageReaction(
+      id,
+      _msg.messageId,
+      reaction: [
+        ReactionTypeEmoji(emoji: emoji),
+      ],
+      isBig: isBig,
+    );
+  }
+
+  /// React to the message with multiple reactions.
+  Future<bool> reactMultiple(
+    List<String> emojis, {
+    bool? isBig,
+  }) async {
+    return await api.setMessageReaction(
+      id,
+      _msg.messageId,
+      reaction: emojis
+          .map(
+            (e) => ReactionTypeEmoji(emoji: e),
+          )
+          .toList(),
+      isBig: isBig,
+    );
+  }
 }
