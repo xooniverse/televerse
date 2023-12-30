@@ -179,3 +179,7 @@ part 'chat_boost_removed.dart';
 part 'user_chat_boosts.dart';
 part 'giveaway_created.dart';
 part 'giveaway_completed.dart';
+part 'message_origin_user.dart';
+part 'message_origin_hidden_user.dart';
+part 'message_origin_chat.dart';
+part 'message_origin_channel.dart';
