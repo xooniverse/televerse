@@ -31,10 +31,16 @@
 - Added the class `UsersShared`.
 - Replaced the field `user_shared` in the class Message with the field `users_shared`.
 
-# Chat Boosts 🚀
+## Chat Boosts 🚀
 
 - 🆕 New methods to listen the `ChatBoostUpdated` and `ChatBoostRemoved` updates, respectively `Televerse.onChatBoosted`, `Televerse.onChatBoostRemoved` are added.
 - 🆕 New context objects `ChatBoostUpdatedContext` and `ChatBoostRemovedContext` are added.
+
+## Other Changes 🎉
+
+- Updated `Chat` model to reflect the changes in the API.
+- ⚠️ BREAKING: Added the class `MessageOrigin` and replaced the fields `forward_from`, `forward_from_chat`, `forward_from_message_id`, `forward_signature`, `forward_sender_name`, and `forward_date` with the field `forwardOrigin` of type `MessageOrigin` in the class `Message`.
+- ⚠️ BREAKING: `CallbackQuery.message` is now of the type `MaybeInaccessibleMessage` instead of `Message`.
 
 # 1.11.5
 
