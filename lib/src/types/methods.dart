@@ -337,6 +337,21 @@ enum APIMethod {
 
   /// Get Game High Scores - gets a game's high scores
   getGameHighScores._("getGameHighScores"),
+
+  /// Set Message Reaction
+  setMessageReaction._("setMessageReaction"),
+
+  /// Delete Messages
+  deleteMessages._("deleteMessages"),
+
+  /// Forward Messages
+  forwardMessages._("forwardMessages"),
+
+  /// Copy Messages
+  copyMessages._("copyMessages"),
+
+  /// Get User Chat Boosts - gets a user's active chat boosts
+  getUserChatBoosts._("getUserChatBoosts"),
   ;
 
   /// The name of the method.

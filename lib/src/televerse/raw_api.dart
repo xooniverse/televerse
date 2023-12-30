@@ -3305,7 +3305,7 @@ class RawAPI {
     bool? isBig,
   }) async {
     Map<String, dynamic> params = {
-      "chat_id": chatId,
+      "chat_id": chatId.id,
       "message_id": messageId,
       "reaction": reaction?.map((e) => e.toJson()).toList(),
       "is_big": isBig,
