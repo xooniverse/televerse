@@ -1994,4 +1994,38 @@ class Televerse<TeleverseSession extends Session> {
 
     _handlerScopes.add(scope);
   }
+
+  /// Registers a callback for when the chat was boosted.
+  ///
+  /// The bot must be an administrator in the chat for this to work.
+  void onChatBoosted(
+    ChatBoostUpdatedHandler callback,
+  ) {
+    HandlerScope scope = HandlerScope<ChatBoostUpdatedHandler>(
+      handler: callback,
+      types: [
+        UpdateType.chatBoost,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback to be fired when the chat boost was removed.
+  ///
+  /// The bot must be an administrator in the chat for this to work.
+  void onChatBoostRemoved(
+    ChatBoostRemovedHandler callback,
+  ) {
+    HandlerScope scope = HandlerScope<ChatBoostRemovedHandler>(
+      handler: callback,
+      types: [
+        UpdateType.chatBoostRemoved,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
 }

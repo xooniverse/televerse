@@ -50,6 +50,12 @@ enum UpdateType {
   /// Update when reactions to a message with anonymous reactions were changed.
   messageReactionCount("message_reaction_count"),
 
+  /// Update when a chat is boosted.
+  chatBoost("chat_boost"),
+
+  /// Update when a chat boost is removed.
+  chatBoostRemoved("chat_boost_removed"),
+
   /// Unknow update type
   unknown("unknown");
 

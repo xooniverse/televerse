@@ -3408,4 +3408,25 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to get the list of boosts added to a chat by a user. Requires administrator rights in the chat. Returns a UserChatBoosts object.
+  ///
+  /// [chatId] Unique identifier for the chat or username of the channel (in the format @channelusername) (Instance of [ID] this can be either [ChatID] or [ChannelID])
+  /// [userId] Unique identifier of the target user
+  Future<UserChatBoosts> getUserChatBoosts(
+    ID chatId,
+    int userId,
+  ) async {
+    Map<String, dynamic> params = {
+      "chat_id": chatId.id,
+      "user_id": userId,
+    };
+
+    Map<String, dynamic> response = await _httpClient.postURI(
+      _buildUri("getUserChatBoosts"),
+      params,
+    );
+
+    return UserChatBoosts.fromJson(response);
+  }
 }
