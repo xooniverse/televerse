@@ -233,6 +233,12 @@ class Message {
   /// Optional. Options used for link preview generation for the message, if it is a text message and link preview options were changed
   final LinkPreviewOptions? linkPreviewOptions;
 
+  /// Optional. The message is a scheduled giveaway message
+  final Giveaway? giveaway;
+
+  /// Optional. Service message: a scheduled giveaway was created
+  final GiveawayCreated? giveawayCreated;
+
   /// Creates a Message object.
   const Message({
     required this.messageId,
@@ -310,6 +316,8 @@ class Message {
     this.externalReply,
     this.quote,
     this.linkPreviewOptions,
+    this.giveaway,
+    this.giveawayCreated,
   });
 
   /// Creates a [Message] object from json map.
@@ -473,6 +481,11 @@ class Message {
       linkPreviewOptions: json['link_preview_options'] == null
           ? null
           : LinkPreviewOptions.fromJson(json['link_preview_options']),
+      giveaway:
+          json['giveaway'] == null ? null : Giveaway.fromJson(json['giveaway']),
+      giveawayCreated: json['giveaway_created'] == null
+          ? null
+          : GiveawayCreated.fromJson(json['giveaway_created']),
     );
   }
 
@@ -555,6 +568,8 @@ class Message {
       'external_reply': externalReply?.toJson(),
       'quote': quote?.toJson(),
       'link_preview_options': linkPreviewOptions?.toJson(),
+      'giveaway': giveaway?.toJson(),
+      'giveaway_created': giveawayCreated?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 
