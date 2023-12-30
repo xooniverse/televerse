@@ -64,3 +64,23 @@ typedef PreCheckoutQueryHandler = FutureOr<void> Function(
 
 /// Base handler
 typedef Handler = FutureOr<void> Function(Context ctx);
+
+/// [MessageReactionHandler] is a type alias for a function that takes a [MessageReactionContext] as parameter and returns a [FutureOr] of void.
+typedef MessageReactionHandler = FutureOr<void> Function(
+  MessageReactionContext ctx,
+);
+
+/// [MessageReactionCountHandler] is a type alias for a function that takes a [MessageReactionCountUpdatedContext] as parameter and returns a [FutureOr] of void.
+typedef MessageReactionCountHandler = FutureOr<void> Function(
+  MessageReactionCountUpdatedContext ctx,
+);
+
+/// [ChatBoostUpdatedHandler] is a type alias for a function that takes a [ChatBoostUpdatedContext] as parameter and returns a [FutureOr] of void.
+typedef ChatBoostUpdatedHandler = FutureOr<void> Function(
+  ChatBoostUpdatedContext ctx,
+);
+
+/// [ChatBoostRemovedHandler] is a type alias for a function that takes a [ChatBoostRemovedContext] as parameter and returns a [FutureOr] of void.
+typedef ChatBoostRemovedHandler = FutureOr<void> Function(
+  ChatBoostRemovedContext ctx,
+);

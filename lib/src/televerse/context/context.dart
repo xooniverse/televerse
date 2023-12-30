@@ -69,6 +69,10 @@ part 'chosen_inline_result.dart';
 part 'chat_join_request.dart';
 part 'shipping_query.dart';
 part 'pre_checkout_query.dart';
+part 'message_reaction.dart';
+part 'message_reaction_count.dart';
+part 'chat_boost_updated.dart';
+part 'chat_boost_removed.dart';
 
 /// This class is used to represent the context of an update. It contains the update and the [RawAPI] instance.
 ///
@@ -147,6 +151,14 @@ class Context {
         return ChatID(update.chatMember!.chat.id);
       case UpdateType.chatJoinRequest:
         return ChatID(update.chatJoinRequest!.chat.id);
+      case UpdateType.messageReaction:
+        return ChatID(update.messageReaction!.chat.id);
+      case UpdateType.messageReactionCount:
+        return ChatID(update.messageReactionCount!.chat.id);
+      case UpdateType.chatBoost:
+        return ChatID(update.chatBoost!.chat.id);
+      case UpdateType.chatBoostRemoved:
+        return ChatID(update.chatBoostRemoved!.chat.id);
       case UpdateType.poll:
       case UpdateType.unknown:
       default:
@@ -184,7 +196,16 @@ class Context {
       case UpdateType.message:
       case UpdateType.editedMessage:
         return MessageContext;
+      case UpdateType.messageReaction:
+        return MessageReactionContext;
+      case UpdateType.messageReactionCount:
+        return MessageReactionCountUpdatedContext;
+      case UpdateType.chatBoost:
+        return ChatBoostUpdatedContext;
+      case UpdateType.chatBoostRemoved:
+        return ChatBoostRemovedContext;
       case UpdateType.unknown:
+      default:
         throw TeleverseException(
           "The update type is ${update.type}, which does not have a context.",
         );
@@ -238,7 +259,19 @@ class Context {
       case UpdateType.chatJoinRequest:
         return ChatJoinRequestContext(t, update: update);
 
-      case UpdateType.unknown:
+      case UpdateType.messageReaction:
+        return MessageReactionContext(t, update: update);
+
+      case UpdateType.messageReactionCount:
+        return MessageReactionCountUpdatedContext(t, update: update);
+
+      case UpdateType.chatBoost:
+        return ChatBoostUpdatedContext(t, update: update);
+
+      case UpdateType.chatBoostRemoved:
+        return ChatBoostRemovedContext(t, update: update);
+
+      default:
         return Context(t, update: update);
     }
   }
@@ -271,6 +304,14 @@ class Context {
         return [UpdateType.shippingQuery];
       case PreCheckoutQueryContext:
         return [UpdateType.preCheckoutQuery];
+      case MessageReactionContext:
+        return [UpdateType.messageReaction];
+      case MessageReactionCountUpdatedContext:
+        return [UpdateType.messageReactionCount];
+      case ChatBoostUpdatedContext:
+        return [UpdateType.chatBoost];
+      case ChatBoostRemovedContext:
+        return [UpdateType.chatBoostRemoved];
       default:
         return [UpdateType.unknown];
     }

@@ -101,7 +101,7 @@ class Keyboard extends ReplyKeyboardMarkup {
     return add(
       KeyboardButton(
         text: text,
-        requestUser: KeyboardButtonRequestUser(
+        requestUsers: KeyboardButtonRequestUsers(
           requestId: requestId,
           userIsBot: userIsBot,
           userIsPremium: userIsPremium,

@@ -1,4 +1,4 @@
-part of '../../../televerse.dart';
+part of 'package:televerse/televerse.dart';
 
 /// Represents an inline keyboard that appears right next to the message it belongs to. This is a shortcut for [InlineKeyboardMarkup].
 ///
@@ -88,7 +88,7 @@ class InlineKeyboard extends InlineKeyboardMarkup {
     inlineKeyboard.last.add(
       InlineKeyboardButton(
         text: text,
-        webApp: WebAppInfo(url: url),
+        webAppInfo: WebAppInfo(url: url),
       ),
     );
     return this;

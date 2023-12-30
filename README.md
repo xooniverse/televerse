@@ -2,17 +2,26 @@
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/HeySreelal/televerse?color=green)
-![](https://shields.io/badge/Latest-Bot%20API%206.9-blue)
+![](https://shields.io/badge/Latest-Bot%20API%207.0-blue)
 
-🤖 `Bot API version: Bot API 6.9 (September 22, 2023)`
+🤖 `Bot API version: Bot API 7.0 (December 29, 2023)`
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot framework built with Dart programming language. It provides a complete and well-structured API that enables developers to create and deploy complex Telegram bots with ease. Televerse provides a total of 0 dynamic types on its public interface, making it easy for developers to write strictly typed code.
 
-## 🔥 Latest Update: Televerse Menu!
+## 🔥 Latest Update: Bot API 7.0
 
-Inline Keyboard and Keyboard are a great way to interact with bots. However, effectively managing input through Telegram Bot Keyboards can present challenges, potentially resulting in messy and less efficient code. Let's say - what if you want to create a more complex menu with multiple options? That's where Televerse Menu comes in.
+The biggest update to Bot API yet! Bot API 7.0 brings a lot of new features and improvements to the Telegram Bot API. Televerse 1.12.0 brings support for Bot API 7.0, and also adds a lot of new features and improvements to the Televerse API.
 
-Televerse Menu is a powerful and easy-to-use menu builder that allows you to create complex menus with ease. You can create menus with multiple options along with attaching callbacks to each option. Check out the [example](./example/menu_bot.dart) to learn more about Televerse Menu.
+Our favorite is the new `ctx.react()` method, which allows you to react to a message. Or let's see a quick example:
+
+```dart
+  bot.start((ctx) async {
+    await ctx.react("🎉", isBig: true);
+    await ctx.reply("Happy Holidays!");
+  });
+```
+
+Please note that there are a lot of breaking changes in this update. Please refer to the [changelog](./CHANGELOG.md) for more information.
 
 <hr>
 

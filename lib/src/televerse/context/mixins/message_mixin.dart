@@ -21,11 +21,10 @@ mixin MessageMixin on Context {
     int? messageThreadId,
     ParseMode? parseMode,
     List<MessageEntity>? entities,
-    bool? disableWebPagePreview,
+    LinkPreviewOptions? linkPreviewOptions,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendMessage(
@@ -34,11 +33,10 @@ mixin MessageMixin on Context {
       messageThreadId: _threadId(messageThreadId),
       parseMode: parseMode,
       entities: entities,
-      disableWebPagePreview: disableWebPagePreview,
+      linkPreviewOptions: linkPreviewOptions,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -60,8 +58,7 @@ mixin MessageMixin on Context {
     List<MessageEntity>? captionEntities,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendPhoto(
@@ -73,8 +70,7 @@ mixin MessageMixin on Context {
       captionEntities: captionEntities,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -95,8 +91,7 @@ mixin MessageMixin on Context {
     InputFile? thumbnail,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendAudio(
@@ -112,8 +107,7 @@ mixin MessageMixin on Context {
       thumbnail: thumbnail,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -132,8 +126,7 @@ mixin MessageMixin on Context {
     bool? disableContentTypeDetection,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendDocument(
@@ -147,8 +140,7 @@ mixin MessageMixin on Context {
       disableContentTypeDetection: disableContentTypeDetection,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -171,8 +163,7 @@ mixin MessageMixin on Context {
     bool? supportsStreaming,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendVideo(
@@ -190,8 +181,7 @@ mixin MessageMixin on Context {
       supportsStreaming: supportsStreaming,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -208,8 +198,7 @@ mixin MessageMixin on Context {
     InputFile? thumbnail,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendVideoNote(
@@ -221,8 +210,7 @@ mixin MessageMixin on Context {
       thumbnail: thumbnail,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -240,8 +228,7 @@ mixin MessageMixin on Context {
     int? duration,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendVoice(
@@ -254,8 +241,7 @@ mixin MessageMixin on Context {
       duration: duration,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -269,8 +255,7 @@ mixin MessageMixin on Context {
     int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
   }) async {
     return await api.sendMediaGroup(
       id,
@@ -278,8 +263,7 @@ mixin MessageMixin on Context {
       messageThreadId: _threadId(messageThreadId),
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
     );
   }
 
@@ -296,8 +280,7 @@ mixin MessageMixin on Context {
     int? proximityAlertRadius,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendLocation(
@@ -311,8 +294,7 @@ mixin MessageMixin on Context {
       proximityAlertRadius: proximityAlertRadius,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -332,8 +314,7 @@ mixin MessageMixin on Context {
     String? googlePlaceType,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendVenue(
@@ -349,8 +330,7 @@ mixin MessageMixin on Context {
       googlePlaceType: googlePlaceType,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -366,8 +346,7 @@ mixin MessageMixin on Context {
     String? vcard,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendContact(
@@ -379,8 +358,7 @@ mixin MessageMixin on Context {
       vcard: vcard,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -404,8 +382,7 @@ mixin MessageMixin on Context {
     bool? isClosed,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendPoll(
@@ -425,8 +402,7 @@ mixin MessageMixin on Context {
       isClosed: isClosed,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -439,8 +415,7 @@ mixin MessageMixin on Context {
     int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendDice(
@@ -449,8 +424,7 @@ mixin MessageMixin on Context {
       messageThreadId: _threadId(messageThreadId),
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -477,8 +451,7 @@ mixin MessageMixin on Context {
     int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendGame(
@@ -487,8 +460,7 @@ mixin MessageMixin on Context {
       messageThreadId: _threadId(messageThreadId),
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -509,8 +481,7 @@ mixin MessageMixin on Context {
     bool? hasSpoiler,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
     return await api.sendAnimation(
@@ -527,8 +498,7 @@ mixin MessageMixin on Context {
       hasSpoiler: hasSpoiler,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -541,8 +511,7 @@ mixin MessageMixin on Context {
     int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
-    int? replyToMessageId,
-    bool? allowSendingWithoutReply,
+    ReplyParameters? replyParameters,
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     return await api.sendSticker(
@@ -551,8 +520,7 @@ mixin MessageMixin on Context {
       messageThreadId: _threadId(messageThreadId),
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyToMessageId: replyToMessageId,
-      allowSendingWithoutReply: allowSendingWithoutReply,
+      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
     );
   }
@@ -564,7 +532,7 @@ mixin MessageMixin on Context {
     String text, {
     ParseMode? parseMode,
     List<MessageEntity>? entities,
-    bool disableWebPagePreview = false,
+    LinkPreviewOptions? linkPreviewOptions,
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     return await api.editMessageText(
@@ -573,7 +541,7 @@ mixin MessageMixin on Context {
       text,
       parseMode: parseMode,
       entities: entities,
-      disableWebPagePreview: disableWebPagePreview,
+      linkPreviewOptions: linkPreviewOptions,
       replyMarkup: replyMarkup,
     );
   }
@@ -696,5 +664,37 @@ mixin MessageMixin on Context {
         update.channelPost ??
         update.editedChannelPost;
     return m!;
+  }
+
+  /// React to the message with a reaction.
+  Future<bool> react(
+    String emoji, {
+    bool? isBig,
+  }) async {
+    return await api.setMessageReaction(
+      id,
+      _msg.messageId,
+      reaction: [
+        ReactionTypeEmoji(emoji: emoji),
+      ],
+      isBig: isBig,
+    );
+  }
+
+  /// React to the message with multiple reactions.
+  Future<bool> reactMultiple(
+    List<String> emojis, {
+    bool? isBig,
+  }) async {
+    return await api.setMessageReaction(
+      id,
+      _msg.messageId,
+      reaction: emojis
+          .map(
+            (e) => ReactionTypeEmoji(emoji: e),
+          )
+          .toList(),
+      isBig: isBig,
+    );
   }
 }

@@ -1661,7 +1661,7 @@ class Televerse<TeleverseSession extends Session> {
   void onUsrShared(MessageHandler callback) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message.userShared != null,
+      (ctx) => ctx.message.usersShared != null,
     );
   }
 
@@ -1901,7 +1901,7 @@ class Televerse<TeleverseSession extends Session> {
             case 'request_user':
               _internalSubMessageHandler(
                 action,
-                (ctx) => ctx.message.userShared != null,
+                (ctx) => ctx.message.usersShared != null,
                 name: name,
               );
           }
@@ -1963,5 +1963,87 @@ class Televerse<TeleverseSession extends Session> {
       onlyChannelPosts: onlyChannelPosts,
       name: name,
     );
+  }
+
+  /// Register a callback when a reaction to a message was changed by a user.
+  void onMessageReaction(
+    MessageReactionHandler callback,
+  ) {
+    HandlerScope scope = HandlerScope<MessageReactionHandler>(
+      handler: callback,
+      types: [
+        UpdateType.messageReaction,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Reactions to a message with anonymous reactions were changed.
+  void onMessageReactionCount(
+    MessageReactionCountHandler callback,
+  ) {
+    HandlerScope scope = HandlerScope<MessageReactionCountHandler>(
+      handler: callback,
+      types: [
+        UpdateType.messageReactionCount,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback for when the chat was boosted.
+  ///
+  /// The bot must be an administrator in the chat for this to work.
+  void onChatBoosted(
+    ChatBoostUpdatedHandler callback,
+  ) {
+    HandlerScope scope = HandlerScope<ChatBoostUpdatedHandler>(
+      handler: callback,
+      types: [
+        UpdateType.chatBoost,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback to be fired when the chat boost was removed.
+  ///
+  /// The bot must be an administrator in the chat for this to work.
+  void onChatBoostRemoved(
+    ChatBoostRemovedHandler callback,
+  ) {
+    HandlerScope scope = HandlerScope<ChatBoostRemovedHandler>(
+      handler: callback,
+      types: [
+        UpdateType.chatBoostRemoved,
+      ],
+      predicate: (ctx) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback to be fired when a user reacts given emoji to a message.
+  void whenReacted(String emoji, MessageReactionHandler callback) {
+    HandlerScope scope = HandlerScope<MessageReactionHandler>(
+      handler: callback,
+      types: [
+        UpdateType.messageReaction,
+      ],
+      predicate: (ctx) {
+        ctx as MessageReactionContext;
+        return ctx.newReaction.any((ReactionType el) {
+          return el is ReactionTypeEmoji && el.emoji == emoji;
+        });
+      },
+    );
+
+    _handlerScopes.add(scope);
   }
 }
