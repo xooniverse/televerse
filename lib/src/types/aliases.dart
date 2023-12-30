@@ -74,3 +74,13 @@ typedef MessageReactionHandler = FutureOr<void> Function(
 typedef MessageReactionCountHandler = FutureOr<void> Function(
   MessageReactionCountUpdatedContext ctx,
 );
+
+/// [ChatBoostUpdatedHandler] is a type alias for a function that takes a [ChatBoostUpdatedContext] as parameter and returns a [FutureOr] of void.
+typedef ChatBoostUpdatedHandler = FutureOr<void> Function(
+  ChatBoostUpdatedContext ctx,
+);
+
+/// [ChatBoostRemovedHandler] is a type alias for a function that takes a [ChatBoostRemovedContext] as parameter and returns a [FutureOr] of void.
+typedef ChatBoostRemovedHandler = FutureOr<void> Function(
+  ChatBoostRemovedContext ctx,
+);

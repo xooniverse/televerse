@@ -31,6 +31,10 @@
 - Added the class `UsersShared`.
 - Replaced the field `user_shared` in the class Message with the field `users_shared`.
 
+# Chat Boosts 🚀
+
+- 🆕 New methods to listen the `ChatBoostUpdated` and `ChatBoostRemoved` updates, respectively `Televerse.onChatBoosted`, `Televerse.onChatBoostRemoved` are added.
+- 🆕 New context objects `ChatBoostUpdatedContext` and `ChatBoostRemovedContext` are added.
 
 # 1.11.5
 
