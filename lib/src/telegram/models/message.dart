@@ -233,6 +233,18 @@ class Message {
   /// Optional. Options used for link preview generation for the message, if it is a text message and link preview options were changed
   final LinkPreviewOptions? linkPreviewOptions;
 
+  /// Optional. The message is a scheduled giveaway message
+  final Giveaway? giveaway;
+
+  /// Optional. Service message: a scheduled giveaway was created
+  final GiveawayCreated? giveawayCreated;
+
+  /// Optional. A giveaway with public winners was completed
+  final GiveawayWinners? giveawayWinners;
+
+  /// Optional. Service message: a giveaway without public winners was completed
+  final GiveawayCompleted? giveawayCompleted;
+
   /// Creates a Message object.
   const Message({
     required this.messageId,
@@ -310,6 +322,10 @@ class Message {
     this.externalReply,
     this.quote,
     this.linkPreviewOptions,
+    this.giveaway,
+    this.giveawayCreated,
+    this.giveawayWinners,
+    this.giveawayCompleted,
   });
 
   /// Creates a [Message] object from json map.
@@ -473,6 +489,17 @@ class Message {
       linkPreviewOptions: json['link_preview_options'] == null
           ? null
           : LinkPreviewOptions.fromJson(json['link_preview_options']),
+      giveaway:
+          json['giveaway'] == null ? null : Giveaway.fromJson(json['giveaway']),
+      giveawayCreated: json['giveaway_created'] == null
+          ? null
+          : GiveawayCreated.fromJson(json['giveaway_created']),
+      giveawayWinners: json['giveaway_winners'] == null
+          ? null
+          : GiveawayWinners.fromJson(json['giveaway_winners']),
+      giveawayCompleted: json['giveaway_completed'] == null
+          ? null
+          : GiveawayCompleted.fromJson(json['giveaway_completed']),
     );
   }
 
@@ -555,6 +582,10 @@ class Message {
       'external_reply': externalReply?.toJson(),
       'quote': quote?.toJson(),
       'link_preview_options': linkPreviewOptions?.toJson(),
+      'giveaway': giveaway?.toJson(),
+      'giveaway_created': giveawayCreated?.toJson(),
+      'giveaway_winners': giveawayWinners?.toJson(),
+      'giveaway_completed': giveawayCompleted?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 
