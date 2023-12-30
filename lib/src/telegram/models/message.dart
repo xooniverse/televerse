@@ -1,10 +1,7 @@
 part of 'models.dart';
 
 /// This object represents a message.
-class Message {
-  /// Unique message identifier inside this chat
-  final int messageId;
-
+class Message extends MaybeInaccessibleMessage {
   /// Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
   final int? messageThreadId;
 
@@ -13,14 +10,6 @@ class Message {
 
   /// Optional. Sender of the message, sent on behalf of a chat. For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
   final Chat? senderChat;
-
-  /// Date the message was sent in Unix time
-  ///
-  /// Note: Handy [DateTime] object is available in [dateTime] getter.
-  final int date;
-
-  /// Conversation the message belongs to
-  final Chat chat;
 
   /// Optional. Information about the original message for forwarded messages
   final MessageOrigin? forwardOrigin;
@@ -230,11 +219,11 @@ class Message {
 
   /// Creates a Message object.
   const Message({
-    required this.messageId,
+    required super.messageId,
     this.from,
     this.senderChat,
-    required this.date,
-    required this.chat,
+    required super.date,
+    required super.chat,
     this.replyToMessage,
     this.viaBot,
     this.editDate,
@@ -475,6 +464,7 @@ class Message {
   }
 
   /// Returns the JSON representation of the Message object.
+  @override
   Map<String, dynamic> toJson() {
     return {
       'message_id': messageId,

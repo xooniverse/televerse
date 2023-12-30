@@ -183,3 +183,5 @@ part 'message_origin_user.dart';
 part 'message_origin_hidden_user.dart';
 part 'message_origin_chat.dart';
 part 'message_origin_channel.dart';
+part 'abstracts/maybe_inaccessible_message.dart';
+part 'inaccessible_message.dart';

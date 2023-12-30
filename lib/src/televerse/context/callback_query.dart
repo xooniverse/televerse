@@ -16,13 +16,18 @@ class CallbackQueryContext extends Context with CallbackQueryMixin {
   String? get data => query.data;
 
   /// The message of the query.
-  Message? get message => query.message;
+  MaybeInaccessibleMessage? get message => query.message;
 
   /// The chat of the query.
   Chat? get chat => message?.chat;
 
   /// The user of the query.
-  User? get from => message?.from;
+  User? get from {
+    if (message?.isInaccessible ?? true) {
+      return null;
+    }
+    return (message as Message?)?.from;
+  }
 
   /// The list of regex matches.
   List<RegExpMatch>? matches;

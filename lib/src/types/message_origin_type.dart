@@ -1,6 +1,6 @@
 part of 'types.dart';
 
-/// The type of a [MessageOrigin].
+/// The type of a `MessageOrigin
 enum MessageOriginType {
   /// User
   user._('user'),
