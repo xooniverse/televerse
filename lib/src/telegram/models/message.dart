@@ -242,6 +242,9 @@ class Message {
   /// Optional. A giveaway with public winners was completed
   final GiveawayWinners? giveawayWinners;
 
+  /// Optional. Service message: a giveaway without public winners was completed
+  final GiveawayCompleted? giveawayCompleted;
+
   /// Creates a Message object.
   const Message({
     required this.messageId,
@@ -322,6 +325,7 @@ class Message {
     this.giveaway,
     this.giveawayCreated,
     this.giveawayWinners,
+    this.giveawayCompleted,
   });
 
   /// Creates a [Message] object from json map.
@@ -493,6 +497,9 @@ class Message {
       giveawayWinners: json['giveaway_winners'] == null
           ? null
           : GiveawayWinners.fromJson(json['giveaway_winners']),
+      giveawayCompleted: json['giveaway_completed'] == null
+          ? null
+          : GiveawayCompleted.fromJson(json['giveaway_completed']),
     );
   }
 
@@ -578,6 +585,7 @@ class Message {
       'giveaway': giveaway?.toJson(),
       'giveaway_created': giveawayCreated?.toJson(),
       'giveaway_winners': giveawayWinners?.toJson(),
+      'giveaway_completed': giveawayCompleted?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 

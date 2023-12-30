@@ -178,3 +178,4 @@ part 'chat_boost_source_giveaway.dart';
 part 'chat_boost_removed.dart';
 part 'user_chat_boosts.dart';
 part 'giveaway_created.dart';
+part 'giveaway_completed.dart';
