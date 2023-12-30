@@ -6,6 +6,8 @@
 
 - New Context objects, `MessageReactionContext` & `MessageReactionCountUpdatedContext` to represent `message_reaction` and `message_reaction_count` updates respectively.
 - Added `Televerse.onMessageReaction` and `Televerse.onMessageReactionCount` methods to listen to `message_reaction` and `message_reaction_count` updates respectively.
+- 🆕 Added methods `MessageContext.react` and `MessageContext.reactMultiple` to react to a message.
+- 🆕 Added `Televerse.whenReacted` method to listen to particular reactions on a message.
 
 ## Replies 2.0 🗯
 

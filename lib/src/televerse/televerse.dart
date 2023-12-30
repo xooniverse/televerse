@@ -2028,4 +2028,22 @@ class Televerse<TeleverseSession extends Session> {
 
     _handlerScopes.add(scope);
   }
+
+  /// Registers a callback to be fired when a user reacts given emoji to a message.
+  void whenReacted(String emoji, MessageReactionHandler callback) {
+    HandlerScope scope = HandlerScope<MessageReactionHandler>(
+      handler: callback,
+      types: [
+        UpdateType.messageReaction,
+      ],
+      predicate: (ctx) {
+        ctx as MessageReactionContext;
+        return ctx.newReaction.any((ReactionType el) {
+          return el is ReactionTypeEmoji && el.emoji == emoji;
+        });
+      },
+    );
+
+    _handlerScopes.add(scope);
+  }
 }
