@@ -88,7 +88,7 @@ class InlineKeyboard extends InlineKeyboardMarkup {
     inlineKeyboard.last.add(
       InlineKeyboardButton(
         text: text,
-        webAppInfo: WebAppInfo(url: url),
+        webApp: WebAppInfo(url: url),
       ),
     );
     return this;
