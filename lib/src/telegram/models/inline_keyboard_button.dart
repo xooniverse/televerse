@@ -73,9 +73,8 @@ class InlineKeyboardButton {
           ? CallbackGame.fromJson(json['callback_game'])
           : null,
       pay: json['pay'],
-      webApp: json['web_app'] != null
-          ? WebAppInfo.fromJson(json['web_app_info'])
-          : null,
+      webApp:
+          json['web_app'] != null ? WebAppInfo.fromJson(json['web_app']) : null,
       switchInlineQueryChosenChat:
           json['switch_inline_query_chosen_chat'] != null
               ? SwitchInlineQueryChosenChat.fromJson(

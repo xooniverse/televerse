@@ -1,4 +1,4 @@
-# 1.12.1
+# 1.12.2
 
 - Fixed an issue with the `InlineKeyboardButton` class that caused a crash when `webAppInfo` parameter is set. ([#190](https://github.com/HeySreelal/televerse/issues/190))
 
