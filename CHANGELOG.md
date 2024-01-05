@@ -1,3 +1,7 @@
+# 1.12.1
+
+- Fixed an issue with the `InlineKeyboardButton` class that caused a crash when `webAppInfo` parameter is set. ([#190](https://github.com/HeySreelal/televerse/issues/190))
+
 # 1.12.0
 
 - Bot API 7.0 (December 29, 2023)
