@@ -39,7 +39,7 @@ class InlineQuery {
       offset: json['offset'] as String,
       chatType: json['chat_type'] == null
           ? null
-          : ChatType.values[json['chat_type'] as int],
+          : ChatType.fromJson(json['chat_type']),
       location: json['location'] == null
           ? null
           : Location.fromJson(json['location'] as Map<String, dynamic>),
