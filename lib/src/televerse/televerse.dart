@@ -622,7 +622,8 @@ class Televerse<TeleverseSession extends Session> {
   ///
   /// The callback will be called when an inline query with the specified query is received.
   void inlineQuery(
-    InlineQueryHandler Function(InlineQueryContext ctx) callback,
+    Pattern query,
+    InlineQueryHandler callback,
   ) {
     HandlerScope scope = HandlerScope<InlineQueryHandler>(
       handler: callback,
@@ -630,7 +631,14 @@ class Televerse<TeleverseSession extends Session> {
         UpdateType.inlineQuery,
       ],
       predicate: (ctx) {
-        return true;
+        ctx as InlineQueryContext;
+        if (query is RegExp) {
+          return query.hasMatch(ctx.queryText);
+        }
+        if (query is String) {
+          return RegExp(query).hasMatch(ctx.queryText);
+        }
+        return false;
       },
     );
 
