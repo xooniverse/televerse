@@ -7,28 +7,28 @@ class InlineQueryResultCachedVideo extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.video;
 
   /// A valid file identifier for the video file
-  String videoFileId;
+  final String videoFileId;
 
   /// Title for the result
-  String title;
+  final String title;
 
   /// Optional. Short description of the result
-  String? description;
+  final String? description;
 
   /// Optional. Caption of the video to be sent, 0-1024 characters after entities parsing
-  String? caption;
+  final String? caption;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting options for more details.
-  ParseMode? parseMode;
+  final ParseMode? parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
-  List<MessageEntity>? captionEntities;
+  final List<MessageEntity>? captionEntities;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the video
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedVideo] object
   InlineQueryResultCachedVideo({

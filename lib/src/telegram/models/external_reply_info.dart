@@ -72,7 +72,7 @@ class ExternalReplyInfo {
   final Venue? venue;
 
   /// Constructs the [ExternalReplyInfo]
-  ExternalReplyInfo({
+  const ExternalReplyInfo({
     required this.origin,
     this.chat,
     this.messageId,

@@ -9,46 +9,46 @@ class InlineQueryResultVenue extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.venue;
 
   /// Latitude of the venue location in degrees
-  double latitude;
+  final double latitude;
 
   /// Longitude of the venue location in degrees
-  double longitude;
+  final double longitude;
 
   /// Title of the venue
-  String title;
+  final String title;
 
   /// Address of the venue
-  String address;
+  final String address;
 
   /// Optional. Foursquare identifier of the venue if known
-  String? foursquareId;
+  final String? foursquareId;
 
   /// Optional. Foursquare type of the venue, if known. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
-  String? foursquareType;
+  final String? foursquareType;
 
   /// Optional. Google Places identifier of the venue
-  String? googlePlaceId;
+  final String? googlePlaceId;
 
   /// Optional. Google Places type of the venue. (See supported types.)
-  String? googlePlaceType;
+  final String? googlePlaceType;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the venue
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Optional. Url of the thumbnail for the result
-  String? thumbnailUrl;
+  final String? thumbnailUrl;
 
   /// Optional. Thumbnail width
-  int? thumbnailWidth;
+  final int? thumbnailWidth;
 
   /// Optional. Thumbnail height
-  int? thumbnailHeight;
+  final int? thumbnailHeight;
 
   /// Constructs an [InlineQueryResultVenue] object
-  InlineQueryResultVenue({
+  const InlineQueryResultVenue({
     required this.latitude,
     required this.longitude,
     required this.title,

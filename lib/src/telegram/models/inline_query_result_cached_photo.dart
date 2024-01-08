@@ -7,31 +7,31 @@ class InlineQueryResultCachedPhoto extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.photo;
 
   /// A valid file identifier of the photo
-  String photoFileId;
+  final String photoFileId;
 
   /// Optional. Title for the result
-  String? title;
+  final String? title;
 
   /// Optional. Short description of the result
-  String? description;
+  final String? description;
 
   /// Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
-  String? caption;
+  final String? caption;
 
   /// Optional. Mode for parsing entities in the photo caption. See formatting options for more details.
-  ParseMode? parseMode;
+  final ParseMode? parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
-  List<MessageEntity>? captionEntities;
+  final List<MessageEntity>? captionEntities;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the photo
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedPhoto] object
-  InlineQueryResultCachedPhoto({
+  const InlineQueryResultCachedPhoto({
     required this.photoFileId,
     required super.id,
     this.title,

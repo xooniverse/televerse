@@ -9,31 +9,31 @@ class InlineQueryResultVoice extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.voice;
 
   /// A valid URL for the voice recording
-  String voiceUrl;
+  final String voiceUrl;
 
   /// Recording title
-  String title;
+  final String title;
 
   /// Optional. Caption, 0-1024 characters after entities parsing
-  String? caption;
+  final String? caption;
 
   /// Optional. Mode for parsing entities in the voice message caption. See formatting options for more details.
-  ParseMode? parseMode;
+  final ParseMode? parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
-  List<MessageEntity>? captionEntities;
+  final List<MessageEntity>? captionEntities;
 
   /// Optional. Recording duration in seconds
-  int? voiceDuration;
+  final int? voiceDuration;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the voice recording
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultVoice] object
-  InlineQueryResultVoice({
+  const InlineQueryResultVoice({
     required this.voiceUrl,
     required this.title,
     required super.id,

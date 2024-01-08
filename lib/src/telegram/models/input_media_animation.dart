@@ -31,7 +31,7 @@ class InputMediaAnimation extends InputMedia {
   final bool? hasSpoiler;
 
   /// Constructs an [InputMediaAnimation] object
-  InputMediaAnimation({
+  const InputMediaAnimation({
     required super.media,
     this.thumbnail,
     this.caption,

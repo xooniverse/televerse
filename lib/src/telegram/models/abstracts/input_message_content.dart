@@ -8,17 +8,21 @@ part of '../models.dart';
 /// - [InputContactMessageContent]
 /// - [InputInvoiceMessageContent]
 abstract class InputMessageContent {
+  /// Constructor
+  const InputMessageContent();
+
   /// Converts a [InputMessageContent] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson();
 
   /// Creates a new [InputMessageContent] object from a JSON object.
   /// This method decides which [InputMessageContent] subclass to use based on the fields.
   static InputMessageContent fromJson(Map<String, dynamic> json) {
-    bool isText = json['message_text'] != null;
-    bool isLocation = json['latitude'] != null && json['title'] == null;
-    bool isVenue = json['latitude'] != null && json['title'] != null;
-    bool isContact = json['phone_number'] != null;
-    bool isInVoice = json['currency'] != null && json['provider_token'] != null;
+    final isText = json['message_text'] != null;
+    final isLocation = json['latitude'] != null && json['title'] == null;
+    final isVenue = json['latitude'] != null && json['title'] != null;
+    final isContact = json['phone_number'] != null;
+    final isInVoice =
+        json['currency'] != null && json['provider_token'] != null;
 
     if (isText) {
       return InputTextMessageContent.fromJson(json);

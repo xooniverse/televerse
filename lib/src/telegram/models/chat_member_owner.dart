@@ -4,20 +4,20 @@ part of 'models.dart';
 class ChatMemberOwner implements ChatMember {
   /// The member's status in the chat, always “creator”
   @override
-  ChatMemberStatus status = ChatMemberStatus.creator;
+  final ChatMemberStatus status = ChatMemberStatus.creator;
 
   /// Information about the user
   @override
-  User user;
+  final User user;
 
   /// True, if the user's presence in the chat is hidden
-  bool isAnonymous;
+  final bool isAnonymous;
 
   /// Custom title for this user
-  String? customTitle;
+  final String? customTitle;
 
   /// Creates a new [ChatMemberOwner] object.
-  ChatMemberOwner({
+  const ChatMemberOwner({
     required this.user,
     required this.isAnonymous,
     this.customTitle,

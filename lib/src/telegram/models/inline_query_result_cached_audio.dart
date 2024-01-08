@@ -9,25 +9,25 @@ class InlineQueryResultCachedAudio extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.audio;
 
   /// A valid file identifier for the audio file
-  String audioFileId;
+  final String audioFileId;
 
   /// Optional. Caption, 0-1024 characters after entities parsing
-  String? caption;
+  final String? caption;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting options for more details.
-  ParseMode? parseMode;
+  final ParseMode? parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
-  List<MessageEntity>? captionEntities;
+  final List<MessageEntity>? captionEntities;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the voice message
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedAudio] objectA
-  InlineQueryResultCachedAudio({
+  const InlineQueryResultCachedAudio({
     required this.audioFileId,
     required super.id,
     this.caption,

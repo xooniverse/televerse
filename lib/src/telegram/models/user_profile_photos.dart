@@ -3,13 +3,16 @@ part of 'models.dart';
 /// This object represent a user's profile pictures.
 class UserProfilePhotos {
   /// Total number of profile pictures the target user has
-  int totalCount;
+  final int totalCount;
 
   /// Requested profile pictures (in up to 4 sizes each)
-  List<List<PhotoSize>> photos;
+  final List<List<PhotoSize>> photos;
 
   /// Constructs a [UserProfilePhotos] object
-  UserProfilePhotos({required this.totalCount, required this.photos});
+  const UserProfilePhotos({
+    required this.totalCount,
+    required this.photos,
+  });
 
   /// Creates a [UserProfilePhotos] object from JSON object
   factory UserProfilePhotos.fromJson(Map<String, dynamic> json) {
@@ -36,6 +39,6 @@ class UserProfilePhotos {
           ),
         ),
       ),
-    }..removeWhere((key, value) => value == null);
+    };
   }
 }

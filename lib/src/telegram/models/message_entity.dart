@@ -20,28 +20,28 @@ class MessageEntity {
   /// - textLink - (for clickable text URLs),
   /// - textMention - (for users without usernames),
   /// - customEmoji - (for inline custom emoji stickers)
-  MessageEntityType type;
+  final MessageEntityType type;
 
   /// Offset in UTF-16 code units to the start of the entity
-  int offset;
+  final int offset;
 
   /// Length of the entity in UTF-16 code units
-  int length;
+  final int length;
 
   /// Optional. For “text_link” only, URL that will be opened after user taps on the text
-  String? url;
+  final String? url;
 
   /// Optional. For “text_mention” only, the mentioned user
-  User? user;
+  final User? user;
 
   /// Optional. For “pre” only, the programming language of the entity text
-  String? language;
+  final String? language;
 
   /// Optional. For “custom_emoji” only, unique identifier of the custom emoji. Use getCustomEmojiStickers to get full information about the sticker
-  String? customEmojiId;
+  final String? customEmojiId;
 
   /// Constructs a [MessageEntity] object
-  MessageEntity({
+  const MessageEntity({
     required this.type,
     required this.offset,
     required this.length,

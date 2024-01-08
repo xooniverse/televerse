@@ -3,25 +3,25 @@ part of 'models.dart';
 /// This object represents a point on the map.
 class Location {
   /// Longitude as defined by sender
-  double longitude;
+  final double longitude;
 
   /// Latitude as defined by sender
-  double latitude;
+  final double latitude;
 
   /// The radius of uncertainty for the location, measured in meters; 0-1500
-  double? horizontalAccuracy;
+  final double? horizontalAccuracy;
 
   /// Optional. Time relative to the message sending date, during which the location can be updated; in seconds. For active live locations only.
-  int? livePeriod;
+  final int? livePeriod;
 
   /// Optional. The direction in which user is moving, in degrees; 1-360. For active live locations only.
-  int? heading;
+  final int? heading;
 
   /// Optional. The maximum distance for proximity alerts about approaching another chat member, in meters. For sent live locations only.
-  int? proximityAlertRadius;
+  final int? proximityAlertRadius;
 
   /// Constructs a [Location] object
-  Location({
+ const Location({
     required this.longitude,
     required this.latitude,
     this.horizontalAccuracy,

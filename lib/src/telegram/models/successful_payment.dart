@@ -3,28 +3,28 @@ part of 'payments.dart';
 /// This object contains basic information about a successful payment.
 class SuccessfulPayment {
   /// Three-letter ISO 4217 currency code
-  String currency;
+  final String currency;
 
   /// Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in [currencies.json](https://core.telegram.org/bots/payments/currencies.json), it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).
-  int totalAmount;
+  final int totalAmount;
 
   /// Bot specified invoice payload
-  String invoicePayload;
+  final String invoicePayload;
 
   /// Optional. Identifier of the shipping option chosen by the user
-  String? shippingOptionId;
+  final String? shippingOptionId;
 
   /// Optional. Order info provided by the user
-  OrderInfo? orderInfo;
+  final OrderInfo? orderInfo;
 
   /// Telegram payment identifier
-  String telegramPaymentChargeId;
+  final String telegramPaymentChargeId;
 
   /// Provider payment identifier
-  String providerPaymentChargeId;
+  final String providerPaymentChargeId;
 
   /// Constructs a [SuccessfulPayment] object
-  SuccessfulPayment({
+  const SuccessfulPayment({
     required this.currency,
     required this.totalAmount,
     required this.invoicePayload,

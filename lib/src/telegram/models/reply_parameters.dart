@@ -24,7 +24,7 @@ class ReplyParameters {
   final int? quotePosition;
 
   /// Constructs a `ReplyParameters`.
-  ReplyParameters({
+  const ReplyParameters({
     required this.messageId,
     this.chatId,
     this.allowSendingWithoutReply,

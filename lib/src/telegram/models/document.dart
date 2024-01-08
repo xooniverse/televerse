@@ -3,25 +3,25 @@ part of 'models.dart';
 /// This object represents a general file (as opposed to photos, voice messages and audio files).
 class Document {
   /// Identifier for this file, which can be used to download or reuse the file
-  String fileId;
+  final String fileId;
 
   /// Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-  String fileUniqueId;
+  final String fileUniqueId;
 
   /// Optional. Thumbnail of the album cover to which the music file belongs
-  PhotoSize? thumbnail;
+  final PhotoSize? thumbnail;
 
   /// Optional. Original filename as defined by sender
-  String? fileName;
+  final String? fileName;
 
   /// Optional. MIME type of the file as defined by sender
-  String? mimeType;
+  final String? mimeType;
 
   /// Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
-  int? fileSize;
+  final int? fileSize;
 
   /// Creates a new [Document] object.
-  Document({
+  const Document({
     required this.fileId,
     required this.fileUniqueId,
     this.thumbnail,

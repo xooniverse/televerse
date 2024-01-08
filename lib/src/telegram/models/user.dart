@@ -3,40 +3,40 @@ part of 'models.dart';
 /// This object represents a Telegram user or bot.
 class User {
   /// Unique identifier for this user or bot. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
-  int id;
+  final int id;
 
   /// True, if this user is a bot
-  bool isBot;
+  final bool isBot;
 
   /// User's or bot's first name
-  String firstName;
+  final String firstName;
 
   /// Optional. User's or bot's last name
-  String? lastName;
+  final String? lastName;
 
   /// Optional. User's or bot's username
-  String? username;
+  final String? username;
 
   /// Optional. IETF language tag of the user's language
-  String? languageCode;
+  final String? languageCode;
 
   /// Optional. True, if this user is a Telegram Premium user
-  bool? isPremium;
+  final bool? isPremium;
 
   /// Optional. True, if this user added the bot to the attachment menu
-  bool? addedToAttachmentMenu;
+  final bool? addedToAttachmentMenu;
 
   /// Optional. True, if the bot can be invited to groups. Returned only in getMe.
-  bool? canJoinGroups;
+  final bool? canJoinGroups;
 
   /// Optional. True, if privacy mode is disabled for the bot. Returned only in getMe.
-  bool? canReadAllGroupMessages;
+  final bool? canReadAllGroupMessages;
 
   /// Optional. True, if the bot supports inline queries. Returned only in getMe.
-  bool? supportsInlineQueries;
+  final bool? supportsInlineQueries;
 
   /// Constructs a [User] object
-  User({
+  const User({
     required this.id,
     required this.isBot,
     required this.firstName,

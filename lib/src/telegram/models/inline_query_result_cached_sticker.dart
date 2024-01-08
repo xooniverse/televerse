@@ -9,16 +9,16 @@ class InlineQueryResultCachedSticker extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.sticker;
 
   /// A valid file identifier of the sticker
-  String stickerFileId;
+  final String stickerFileId;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the sticker
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedSticker] object
-  InlineQueryResultCachedSticker({
+  const InlineQueryResultCachedSticker({
     required this.stickerFileId,
     required super.id,
     this.replyMarkup,

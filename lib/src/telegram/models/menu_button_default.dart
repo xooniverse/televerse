@@ -7,7 +7,7 @@ class MenuButtonDefault extends MenuButton {
   MenuButtonType get type => MenuButtonType.defaultButton;
 
   /// Constructs a [MenuButtonDefault] object
-  MenuButtonDefault();
+  const MenuButtonDefault();
 
   /// Creates a [MenuButtonDefault] object from JSON object
   MenuButtonDefault.fromJson(Map<String, dynamic> json);

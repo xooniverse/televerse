@@ -3,28 +3,28 @@ part of 'models.dart';
 /// This object represents a venue.
 class Venue {
   /// Venue location
-  Location location;
+  final Location location;
 
   /// Name of the venue
-  String title;
+  final String title;
 
   /// Address of the venue
-  String address;
+  final String address;
 
   /// Optional. Foursquare identifier of the venue
-  String? foursquareId;
+  final String? foursquareId;
 
   /// Optional. Foursquare type of the venue. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
-  String? foursquareType;
+  final String? foursquareType;
 
   /// Optional. Google Places identifier of the venue
-  String? googlePlaceId;
+  final String? googlePlaceId;
 
   /// Optional. Google Places type of the venue. (See supported types.)
-  String? googlePlaceType;
+  final String? googlePlaceType;
 
   /// Constructs a [Venue] object
-  Venue({
+  const Venue({
     required this.location,
     required this.title,
     required this.address,

@@ -9,43 +9,43 @@ class InlineQueryResultVideo extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.video;
 
   /// A valid URL for the embedded video player or video file
-  String videoUrl;
+  final String videoUrl;
 
   /// MIME type of the content of the video URL, “text/html” or “video/mp4”
-  String mimeType;
+  final String mimeType;
 
   /// URL of the thumbnail (JPEG only) for the video
-  String thumbnailUrl;
+  final String thumbnailUrl;
 
   /// Title for the result
-  String title;
+  final String title;
 
   /// Optional. Caption of the video to be sent, 0-1024 characters after entities parsing
-  String? caption;
+  final String? caption;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting options for more details.
-  ParseMode? parseMode;
+  final ParseMode? parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
-  List<MessageEntity>? captionEntities;
+  final List<MessageEntity>? captionEntities;
 
   /// Optional. Video width
-  int? videoWidth;
+  final int? videoWidth;
 
   /// Optional. Video height
-  int? videoHeight;
+  final int? videoHeight;
 
   /// Optional. Video duration in seconds
-  int? videoDuration;
+  final int? videoDuration;
 
   /// Optional. Short description of the result
-  String? description;
+  final String? description;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the video. This field is required if InlineQueryResultVideo is used to send an HTML-page as a result (e.g., a YouTube video).
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Converts [InlineQueryResultVideo] object to a JSON object
   @override
@@ -69,7 +69,7 @@ class InlineQueryResultVideo extends InlineQueryResult {
   }
 
   /// Constructs an [InlineQueryResultVideo] object
-  InlineQueryResultVideo({
+  const InlineQueryResultVideo({
     required this.videoUrl,
     required this.mimeType,
     required this.thumbnailUrl,

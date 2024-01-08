@@ -3,16 +3,16 @@ part of 'payments.dart';
 /// This object represents one shipping option.
 class ShippingOption {
   /// Shipping option identifier
-  String id;
+  final String id;
 
   /// Option title
-  String title;
+  final String title;
 
   /// List of price portions
-  List<LabeledPrice> prices;
+  final List<LabeledPrice> prices;
 
   /// Constructs a [ShippingOption] object
-  ShippingOption({
+  const ShippingOption({
     required this.id,
     required this.title,
     required this.prices,

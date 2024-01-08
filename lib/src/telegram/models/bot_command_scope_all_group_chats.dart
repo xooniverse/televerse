@@ -7,7 +7,7 @@ class BotCommandScopeAllGroupChats extends BotCommandScope {
   BotCommandScopeType get type => BotCommandScopeType.allGroupChats;
 
   /// Creates a new [BotCommandScopeAllGroupChats] object.
-  BotCommandScopeAllGroupChats();
+  const BotCommandScopeAllGroupChats();
 
   /// Creates a new [BotCommandScopeAllGroupChats] object from json.
   factory BotCommandScopeAllGroupChats.fromJson(Map<String, dynamic> json) {

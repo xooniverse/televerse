@@ -9,7 +9,7 @@ class ChatBoostUpdated {
   final ChatBoost boost;
 
   /// Creates a ChatBoostUpdated object.
-  ChatBoostUpdated({
+  const ChatBoostUpdated({
     required this.chat,
     required this.boost,
   });

@@ -7,7 +7,7 @@ class MenuButtonCommands extends MenuButton {
   MenuButtonType get type => MenuButtonType.commands;
 
   /// Constructs a [MenuButtonCommands] object
-  MenuButtonCommands();
+  const MenuButtonCommands();
 
   /// Creates a [MenuButtonCommands] object from JSON object
   MenuButtonCommands.fromJson(Map<String, dynamic> json);

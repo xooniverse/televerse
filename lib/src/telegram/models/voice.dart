@@ -3,24 +3,24 @@ part of 'models.dart';
 /// This object represents a voice note.
 class Voice {
   /// Identifier for this file, which can be used to download or reuse the file
-  String fileId;
+  final String fileId;
 
   /// Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-  String fileUniqueId;
+  final String fileUniqueId;
 
   /// Duration of the video in seconds as defined by sender
   ///
   /// A handy [Duration] getter is available as [durationTime]
-  int duration;
+  final int duration;
 
   /// Optional. MIME type of the file as defined by sender
-  String? mimeType;
+  final String? mimeType;
 
   /// Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
-  int? fileSize;
+  final int? fileSize;
 
   /// Constructs a [Voice] object
-  Voice({
+  const Voice({
     required this.fileId,
     required this.fileUniqueId,
     required this.duration,

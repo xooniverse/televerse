@@ -3,22 +3,22 @@ part of 'models.dart';
 /// Represents a result of an inline query that was chosen by the user and sent to their chat partner.
 class ChosenInlineResult {
   /// The unique identifier for the result that was chosen
-  String resultId;
+  final String resultId;
 
   /// The user that chose the result
-  User from;
+  final User from;
 
   /// Optional. Sender location, only for bots that require user location
-  Location? location;
+  final Location? location;
 
   /// Optional. Identifier of the sent inline message. Available only if there is an inline keyboard attached to the message. Will be also received in callback queries and can be used to edit the message.
-  String? inlineMessageId;
+  final String? inlineMessageId;
 
   /// The query that was used to obtain the result
-  String query;
+  final String query;
 
   /// Creates a new [ChosenInlineResult] object.
-  ChosenInlineResult({
+  const ChosenInlineResult({
     required this.resultId,
     required this.from,
     this.location,

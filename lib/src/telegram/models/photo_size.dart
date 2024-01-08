@@ -3,22 +3,22 @@ part of 'models.dart';
 /// This object represents one size of a photo or a file / sticker thumbnail.
 class PhotoSize {
   /// Identifier for this file, which can be used to download or reuse the file
-  String fileId;
+  final String fileId;
 
   /// Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-  String fileUniqueId;
+  final String fileUniqueId;
 
   /// Photo width
-  int width;
+  final int width;
 
   /// Photo height
-  int height;
+  final int height;
 
   /// Optional. File size in bytes
-  int? fileSize;
+  final int? fileSize;
 
   /// Constructs a [PhotoSize] object
-  PhotoSize({
+  const PhotoSize({
     required this.fileId,
     required this.fileUniqueId,
     required this.width,

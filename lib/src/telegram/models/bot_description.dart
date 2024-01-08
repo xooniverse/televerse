@@ -6,7 +6,7 @@ class BotDescription {
   final String description;
 
   /// Creates the Bot Description object.
-  BotDescription({
+  const BotDescription({
     required this.description,
   });
 

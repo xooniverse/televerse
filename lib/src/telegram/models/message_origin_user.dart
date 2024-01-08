@@ -14,7 +14,7 @@ class MessageOriginUser implements MessageOrigin {
   final User senderUser;
 
   /// Constructor
-  MessageOriginUser({
+  const MessageOriginUser({
     required this.date,
     required this.senderUser,
   });

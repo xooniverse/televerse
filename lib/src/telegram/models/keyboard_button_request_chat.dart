@@ -5,31 +5,31 @@ part of 'models.dart';
 /// https://core.telegram.org/bots/api#keyboardbuttonrequestchat
 class KeyboardButtonRequestChat {
   /// Signed 32-bit identifier of the request
-  int requestId;
+  final int requestId;
 
   /// Pass True to request a channel chat, pass False to request a group or a supergroup chat.
-  bool chatIsChannel;
+  final bool chatIsChannel;
 
   /// Optional. Pass True to request a forum supergroup, pass False to request a non-forum chat. If not specified, no additional restrictions are applied.
-  bool? chatIsForum;
+  final bool? chatIsForum;
 
   /// Optional. Pass True to request a supergroup or a channel with a username, pass False to request a chat without a username. If not specified, no additional restrictions are applied.
-  bool? chatHasUsername;
+  final bool? chatHasUsername;
 
   /// Optional. Pass True to request a chat owned by the user. Otherwise, no additional restrictions are applied.
-  bool? chatIsCreated;
+  final bool? chatIsCreated;
 
   /// Optional. A JSON-serialized object listing the required administrator rights of the user in the chat. If not specified, no additional restrictions are applied.
-  ChatAdministratorRights? userAdministratorRights;
+  final ChatAdministratorRights? userAdministratorRights;
 
   /// Optional. A JSON-serialized object listing the required administrator rights of the bot in the chat. The rights must be a subset of user_administrator_rights. If not specified, no additional restrictions are applied.
-  ChatAdministratorRights? botAdministratorRights;
+  final ChatAdministratorRights? botAdministratorRights;
 
   /// Optional. Pass True to request a chat with the bot as a member. Otherwise, no additional restrictions are applied.
-  bool? botIsMember;
+  final bool? botIsMember;
 
   /// This object defines the criteria used to request a suitable chat. The identifier of the selected chat will be shared with the bot when the corresponding button is pressed.
-  KeyboardButtonRequestChat({
+  const KeyboardButtonRequestChat({
     required this.requestId,
     required this.chatIsChannel,
     this.chatIsForum,

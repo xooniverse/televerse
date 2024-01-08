@@ -9,34 +9,34 @@ class InlineQueryResultAudio extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.audio;
 
   /// A valid URL for the audio file
-  String audioUrl;
+  final String audioUrl;
 
   /// Title
-  String title;
+  final String title;
 
   /// Optional. Caption, 0-1024 characters after entities parsing
-  String? caption;
+  final String? caption;
 
   /// Optional. Mode for parsing entities in the audio caption. See formatting options for more details.
-  ParseMode? parseMode;
+  final ParseMode? parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
-  List<MessageEntity>? captionEntities;
+  final List<MessageEntity>? captionEntities;
 
   /// Optional. Performer
-  String? performer;
+  final String? performer;
 
   /// Optional. Audio duration in seconds
-  int? audioDuration;
+  final int? audioDuration;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the audio
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultAudio] object
-  InlineQueryResultAudio({
+  const InlineQueryResultAudio({
     required this.audioUrl,
     required this.title,
     required super.id,

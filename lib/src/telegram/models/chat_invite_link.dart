@@ -3,36 +3,36 @@ part of 'models.dart';
 /// Represents an invite link for a chat.
 class ChatInviteLink {
   /// The invite link. If the link was created by another chat administrator, then the second part of the link will be replaced with “…”.
-  String inviteLink;
+  final String inviteLink;
 
   /// Creator of the link
-  User? creator;
+  final User? creator;
 
   /// True, if users joining the chat via the link need to be approved by chat administrators
-  bool? createsJoinRequest;
+  final bool? createsJoinRequest;
 
   /// True, if the link is primary
-  bool? isPrimary;
+  final bool? isPrimary;
 
   /// True, if the link is revoked
-  bool? isRevoked;
+  final bool? isRevoked;
 
   /// Optional. Invite link name
-  String? name;
+  final String? name;
 
   /// Optional. Point in time (Unix timestamp) when the link will expire or has been expired
   ///
   /// The expiry date is available as [DateTime] object in [expireDateTime] getter.
-  int? expireDate;
+  final int? expireDate;
 
   /// Optional. The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999
-  int? memberLimit;
+  final int? memberLimit;
 
   /// Optional. Number of pending join requests created using this link
-  int? pendingMemberCount;
+  final int? pendingMemberCount;
 
   /// Creates a new [ChatInviteLink] object.
-  ChatInviteLink({
+  const ChatInviteLink({
     required this.inviteLink,
     this.creator,
     this.createsJoinRequest,

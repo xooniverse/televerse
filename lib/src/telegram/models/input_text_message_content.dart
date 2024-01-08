@@ -3,19 +3,19 @@ part of 'models.dart';
 /// Represents the content of a text message to be sent as the result of an inline query.
 class InputTextMessageContent extends InputMessageContent {
   /// Text of the message to be sent, 1-4096 characters
-  String messageText;
+  final String messageText;
 
   /// Optional. Mode for parsing entities in the message text. See formatting options for more details.
-  ParseMode? parseMode;
+  final ParseMode? parseMode;
 
   /// Optional. List of special entities that appear in message text, which can be specified instead of parse_mode
-  List<MessageEntity>? entities;
+  final List<MessageEntity>? entities;
 
   /// Optional. Disables link previews for links in the sent message
-  LinkPreviewOptions? linkPreviewOptions;
+  final LinkPreviewOptions? linkPreviewOptions;
 
   /// Constructs an [InputTextMessageContent] object
-  InputTextMessageContent({
+  const InputTextMessageContent({
     required this.messageText,
     this.parseMode,
     this.entities,

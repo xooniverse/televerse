@@ -9,43 +9,43 @@ class InlineQueryResultDocument extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.document;
 
   /// Title for the result
-  String title;
+  final String title;
 
   /// Optional. Caption of the document to be sent, 0-1024 characters after entities parsing
-  String? caption;
+  final String? caption;
 
   /// Optional. Mode for parsing entities in the document caption. See formatting options for more details.
-  ParseMode? parseMode;
+  final ParseMode? parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
-  List<MessageEntity>? captionEntities;
+  final List<MessageEntity>? captionEntities;
 
   /// A valid URL for the file
-  String documentUrl;
+  final String documentUrl;
 
   /// MIME type of the content of the file, either “application/pdf” or “application/zip”
-  String mimeType;
+  final String mimeType;
 
   /// Optional. Short description of the result
-  String? description;
+  final String? description;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the file
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Optional. URL of the thumbnail (JPEG only) for the file
-  String? thumbnailUrl;
+  final String? thumbnailUrl;
 
   /// Optional. Thumbnail width
-  int? thumbnailWidth;
+  final int? thumbnailWidth;
 
   /// Optional. Thumbnail height
-  int? thumbnailHeight;
+  final int? thumbnailHeight;
 
   /// Constructs an [InlineQueryResultDocument] object
-  InlineQueryResultDocument({
+  const InlineQueryResultDocument({
     required this.title,
     required this.documentUrl,
     required this.mimeType,

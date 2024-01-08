@@ -3,7 +3,7 @@ part of 'models.dart';
 /// This object represents a service message about General forum topic hidden in the chat. Currently holds no information.
 class GeneralForumTopicHidden {
   /// Constructs a [GeneralForumTopicHidden] object
-  GeneralForumTopicHidden();
+  const GeneralForumTopicHidden();
 
   /// Converts a [GeneralForumTopicHidden] object to a JSON map
   Map<String, dynamic> toJson() {

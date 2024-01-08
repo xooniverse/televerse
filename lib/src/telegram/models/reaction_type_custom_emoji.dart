@@ -10,7 +10,7 @@ class ReactionTypeCustomEmoji implements ReactionType {
   final String customEmoji;
 
   /// Constructs a [ReactionTypeCustomEmoji] object
-  ReactionTypeCustomEmoji({
+  const ReactionTypeCustomEmoji({
     required this.customEmoji,
   });
 

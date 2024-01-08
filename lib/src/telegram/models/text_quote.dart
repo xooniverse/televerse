@@ -15,7 +15,7 @@ class TextQuote {
   final bool? isManual;
 
   /// Constructs a `TextQuote`.
-  TextQuote({
+  const TextQuote({
     required this.text,
     this.entities,
     required this.position,

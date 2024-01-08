@@ -3,19 +3,19 @@ part of 'models.dart';
 /// This object defines the criteria used to request a suitable user. The identifier of the selected user will be shared with the bot when the corresponding button is pressed.
 class KeyboardButtonRequestUsers {
   /// Signed 32-bit identifier of the request
-  int requestId;
+  final int requestId;
 
   /// Optional. Pass True to request a bot, pass False to request a regular user. If not specified, no additional restrictions are applied.
-  bool? userIsBot;
+  final bool? userIsBot;
 
   /// Optional. Pass True to request a premium user, pass False to request a non-premium user. If not specified, no additional restrictions are applied.
-  bool? userIsPremium;
+  final bool? userIsPremium;
 
   /// Optional. The maximum number of users to be selected; 1-10. Defaults to 1.
-  int? maxQuantity;
+  final int? maxQuantity;
 
   /// Creates a new [KeyboardButtonRequestUsers] object
-  KeyboardButtonRequestUsers({
+  const KeyboardButtonRequestUsers({
     required this.requestId,
     this.userIsBot,
     this.userIsPremium,

@@ -3,50 +3,50 @@ part of 'models.dart';
 /// This object contains information about a poll.
 class Poll {
   /// Unique poll identifier
-  String id;
+  final String id;
 
   /// Poll question, 1-300 characters
-  String question;
+  final String question;
 
   /// List of poll options
-  List<PollOption> options;
+  final List<PollOption> options;
 
   /// Total number of users that voted in the poll
-  int totalVoterCount;
+  final int totalVoterCount;
 
   /// True, if the poll is closed
-  bool isClosed;
+  final bool isClosed;
 
   /// True, if the poll is anonymous
-  bool isAnonymous;
+  final bool isAnonymous;
 
   /// Poll type, currently can be “regular” or “quiz”
-  PollType type;
+  final PollType type;
 
   /// True, if the poll allows multiple answers
-  bool allowsMultipleAnswers;
+  final bool allowsMultipleAnswers;
 
   /// Optional. 0-based identifier of the correct answer option. Available only for polls in the quiz mode, which are closed, or was sent (not forwarded) by the bot or to the private chat with the bot.
-  int? correctOptionId;
+  final int? correctOptionId;
 
   /// Optional. Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters
-  String? explanation;
+  final String? explanation;
 
   /// Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the explanation
-  List<MessageEntity>? explanationEntities;
+  final List<MessageEntity>? explanationEntities;
 
   /// Optional. Amount of time in seconds the poll will be active after creation
   ///
   /// A handy [Duration] object is available as [openPeriodDuration] getter
-  int? openPeriod;
+  final int? openPeriod;
 
   /// Optional. Point in time (Unix timestamp) when the poll will be automatically closed
   ///
   /// A handy [DateTime] object is available as [closeDateTime] getter
-  int? closeDate;
+  final int? closeDate;
 
   /// Constructs a [Poll] object
-  Poll({
+  const Poll({
     required this.id,
     required this.question,
     required this.options,

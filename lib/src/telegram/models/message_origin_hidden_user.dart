@@ -14,7 +14,7 @@ class MessageOriginHiddenUser implements MessageOrigin {
   final String senderUserName;
 
   /// Constructor
-  MessageOriginHiddenUser({
+  const MessageOriginHiddenUser({
     required this.date,
     required this.senderUserName,
   });

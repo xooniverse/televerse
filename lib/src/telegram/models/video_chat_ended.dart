@@ -5,10 +5,10 @@ class VideoChatEnded {
   /// Video chat duration in seconds
   ///
   /// [Duration] object is available as [durationTime] getter
-  int duration;
+  final int duration;
 
   /// Constructs a [VideoChatEnded] object
-  VideoChatEnded({required this.duration});
+  const VideoChatEnded({required this.duration});
 
   /// Creates a [VideoChatEnded] object from JSON object
   factory VideoChatEnded.fromJson(Map<String, dynamic> json) {

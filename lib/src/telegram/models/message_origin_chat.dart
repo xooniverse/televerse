@@ -17,7 +17,7 @@ class MessageOriginChat implements MessageOrigin {
   final String? authorSignature;
 
   /// Constructor
-  MessageOriginChat({
+  const MessageOriginChat({
     required this.date,
     required this.senderChat,
     this.authorSignature,

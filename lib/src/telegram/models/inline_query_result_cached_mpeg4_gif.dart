@@ -7,28 +7,28 @@ class InlineQueryResultCachedMpeg4Gif extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.mpeg4Gif;
 
   /// A valid file identifier for the MPEG4 file
-  String mpeg4FileId;
+  final String mpeg4FileId;
 
   /// Optional. Title for the result
-  String? title;
+  final String? title;
 
   /// Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities parsing
-  String? caption;
+  final String? caption;
 
   /// Optional. Mode for parsing entities in the caption. See formatting options for more details.
-  ParseMode? parseMode;
+  final ParseMode? parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
-  List<MessageEntity>? captionEntities;
+  final List<MessageEntity>? captionEntities;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the video animation
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedMpeg4Gif] object
-  InlineQueryResultCachedMpeg4Gif({
+  const InlineQueryResultCachedMpeg4Gif({
     required this.mpeg4FileId,
     required super.id,
     this.title,

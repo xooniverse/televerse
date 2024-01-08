@@ -15,7 +15,7 @@ class MessageReactionCountUpdated {
   final List<ReactionCount> reactions;
 
   /// Creates a new instance of [MessageReactionCountUpdated].
-  MessageReactionCountUpdated({
+  const MessageReactionCountUpdated({
     required this.chat,
     required this.messageId,
     required this.date,

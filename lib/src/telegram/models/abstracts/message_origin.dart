@@ -14,7 +14,7 @@ abstract class MessageOrigin {
   final int date;
 
   /// Creates a new [MessageOrigin] instance.
-  MessageOrigin({
+  const MessageOrigin({
     required this.type,
     required this.date,
   });

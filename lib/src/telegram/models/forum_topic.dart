@@ -15,7 +15,7 @@ class ForumTopic {
   final String? iconCustomEmojiId;
 
   /// Creates a new [ForumTopic] object.
-  ForumTopic({
+  const ForumTopic({
     required this.messageThreadId,
     required this.name,
     required this.iconColor,

@@ -16,7 +16,7 @@ class InlineQueryResultsButton {
   final String? startParameter;
 
   /// Constructs an [InlineQueryResultsButton]
-  InlineQueryResultsButton({
+  const InlineQueryResultsButton({
     required this.text,
     this.webApp,
     this.startParameter,

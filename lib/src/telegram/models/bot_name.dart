@@ -21,6 +21,6 @@ class BotName {
   Map<String, dynamic> toJson() {
     return {
       'name': name,
-    }..removeWhere((_, value) => value == null);
+    };
   }
 }

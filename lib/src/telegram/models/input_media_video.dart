@@ -34,7 +34,7 @@ class InputMediaVideo extends InputMedia {
   final bool? hasSpoiler;
 
   /// Constructs an [InputMediaVideo] object
-  InputMediaVideo({
+  const InputMediaVideo({
     required super.media,
     this.thumbnail,
     this.caption,
