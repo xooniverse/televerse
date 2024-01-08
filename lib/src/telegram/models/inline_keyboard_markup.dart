@@ -3,10 +3,10 @@ part of 'models.dart';
 /// This object represents an inline keyboard that appears right next to the message it belongs to.
 class InlineKeyboardMarkup extends ReplyMarkup {
   /// Array of button rows, each represented by an Array of InlineKeyboardButton objects
-  List<List<InlineKeyboardButton>> inlineKeyboard;
+  final List<List<InlineKeyboardButton>> inlineKeyboard;
 
   /// Creates an [InlineKeyboardMarkup] object
-  InlineKeyboardMarkup({
+  const InlineKeyboardMarkup({
     required this.inlineKeyboard,
   });
 

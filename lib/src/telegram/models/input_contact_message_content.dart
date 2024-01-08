@@ -3,19 +3,19 @@ part of 'models.dart';
 /// Represents the content of a contact message to be sent as the result of an inline query.
 class InputContactMessageContent extends InputMessageContent {
   /// Contact's phone number
-  String phoneNumber;
+  final String phoneNumber;
 
   /// Contact's first name
-  String firstName;
+  final String firstName;
 
   /// Optional. Contact's last name
-  String? lastName;
+  final String? lastName;
 
   /// Optional. Additional data about the contact in the form of a [vCard](https://en.wikipedia.org/wiki/VCard), 0-2048 bytes
-  String? vcard;
+  final String? vcard;
 
   /// Constructs an [InputContactMessageContent] object
-  InputContactMessageContent({
+  const InputContactMessageContent({
     required this.phoneNumber,
     required this.firstName,
     this.lastName,

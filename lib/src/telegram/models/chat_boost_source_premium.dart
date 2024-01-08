@@ -10,7 +10,7 @@ class ChatBoostSourcePremium implements ChatBoostSource {
   final User user;
 
   /// Creates a source of a chat boost.
-  ChatBoostSourcePremium({
+  const ChatBoostSourcePremium({
     required this.user,
   });
 

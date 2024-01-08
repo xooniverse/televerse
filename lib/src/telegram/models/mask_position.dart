@@ -3,19 +3,19 @@ part of 'models.dart';
 /// This object describes the position on faces where a mask should be placed by default.
 class MaskPosition {
   /// The part of the face relative to which the mask should be placed. One of “forehead”, “eyes”, “mouth”, or “chin”.
-  MaskPositionPoint point;
+  final MaskPositionPoint point;
 
   /// Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. For example, choosing -1.0 will place mask just to the left of the default mask position.
-  double xShift;
+  final double xShift;
 
   /// Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. For example, 1.0 will place the mask just below the default mask position.
-  double yShift;
+  final double yShift;
 
   /// Mask scaling coefficient. For example, 2.0 means double size.
-  double scale;
+  final double scale;
 
   /// Constructs a [MaskPosition] object
-  MaskPosition({
+  const MaskPosition({
     required this.point,
     required this.xShift,
     required this.yShift,

@@ -10,7 +10,7 @@ class InputMediaPhoto extends InputMedia {
   final String? caption;
 
   /// Optional. Mode for parsing entities in the photo caption. See formatting options for more details.
-  ParseMode? parseMode;
+  final ParseMode? parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
   final List<MessageEntity>? captionEntities;
@@ -19,7 +19,7 @@ class InputMediaPhoto extends InputMedia {
   final bool? hasSpoiler;
 
   /// Constructs an [InputMediaPhoto] object
-  InputMediaPhoto({
+  const InputMediaPhoto({
     required super.media,
     this.caption,
     this.parseMode,

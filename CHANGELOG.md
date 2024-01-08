@@ -1,3 +1,9 @@
+# 1.12.3
+
+- Made almost all models to have const constructors
+- `Bot.inlineQuery` method is updated to accept `Pattern query` to listen to inline queries that match the passed pattern. It had an unintended behavior before.
+- Updated `toString` on `InlineQueryResultType` enum for it to work with `RawAPI.answerInlineQuery`
+
 # 1.12.2
 
 - Fixed an issue with the `InlineKeyboardButton` class that caused a crash when `webAppInfo` parameter is set. ([#190](https://github.com/HeySreelal/televerse/issues/190))

@@ -28,7 +28,7 @@ class InputMediaAudio extends InputMedia {
   final String? title;
 
   /// Constructs an [InputMediaAudio] object
-  InputMediaAudio({
+  const InputMediaAudio({
     required super.media,
     this.thumbnail,
     this.caption,

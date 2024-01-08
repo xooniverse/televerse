@@ -9,34 +9,34 @@ class InlineQueryResultContact extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.contact;
 
   /// Contact's phone number
-  String phoneNumber;
+  final String phoneNumber;
 
   /// Contact's first name
-  String firstName;
+  final String firstName;
 
   /// Optional. Contact's last name
-  String? lastName;
+  final String? lastName;
 
   /// Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
-  String? vcard;
+  final String? vcard;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the contact
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Optional. Url of the thumbnail for the result
-  String? thumbnailUrl;
+  final String? thumbnailUrl;
 
   /// Optional. Thumbnail width
-  int? thumbnailWidth;
+  final int? thumbnailWidth;
 
   /// Optional. Thumbnail height
-  int? thumbnailHeight;
+  final int? thumbnailHeight;
 
   /// Constructs an [InlineQueryResultContact] object
-  InlineQueryResultContact({
+  const InlineQueryResultContact({
     required this.phoneNumber,
     required this.firstName,
     required super.id,

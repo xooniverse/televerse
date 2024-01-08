@@ -36,7 +36,7 @@ class GiveawayWinners {
   final String? prizeDescription;
 
   /// Constructor
-  GiveawayWinners({
+  const GiveawayWinners({
     required this.chat,
     required this.giveawayMessageId,
     required this.winnersSelectionDate,

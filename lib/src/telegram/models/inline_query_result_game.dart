@@ -7,13 +7,13 @@ class InlineQueryResultGame extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.game;
 
   /// Short name of the game
-  String gameShortName;
+  final String gameShortName;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Constructs an [InlineQueryResultGame] object
-  InlineQueryResultGame({
+  const InlineQueryResultGame({
     required this.gameShortName,
     required super.id,
     this.replyMarkup,

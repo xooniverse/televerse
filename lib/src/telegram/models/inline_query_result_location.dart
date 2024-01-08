@@ -7,43 +7,43 @@ class InlineQueryResultLocation extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.location;
 
   /// Location latitude in degrees
-  double latitude;
+  final double latitude;
 
   /// Location longitude in degrees
-  double longitude;
+  final double longitude;
 
   /// Location title
-  String title;
+  final String title;
 
   /// Optional. The radius of uncertainty for the location, measured in meters; 0-1500
-  int? horizontalAccuracy;
+  final int? horizontalAccuracy;
 
   /// Optional. Period in seconds for which the location can be updated, should be between 60 and 86400.
-  int? livePeriod;
+  final int? livePeriod;
 
   /// Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
-  int? heading;
+  final int? heading;
 
   /// Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
-  int? proximityAlertRadius;
+  final int? proximityAlertRadius;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the location
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Optional. Url of the thumbnail for the result
-  String? thumbnailUrl;
+  final String? thumbnailUrl;
 
   /// Optional. Thumbnail width
-  int? thumbnailWidth;
+  final int? thumbnailWidth;
 
   /// Optional. Thumbnail height
-  int? thumbnailHeight;
+  final int? thumbnailHeight;
 
   /// Constructs an [InlineQueryResultLocation] object
-  InlineQueryResultLocation({
+  const InlineQueryResultLocation({
     required this.latitude,
     required this.longitude,
     required this.title,

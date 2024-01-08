@@ -3,10 +3,12 @@ part of 'models.dart';
 /// This object represents a service message about new members invited to a video chat.
 class VideoChatParticipantsInvited {
   /// New members that were invited to the video chat
-  List<User> users;
+  final List<User> users;
 
   /// Constructs a [VideoChatParticipantsInvited] object
-  VideoChatParticipantsInvited({required this.users});
+  const VideoChatParticipantsInvited({
+    required this.users,
+  });
 
   /// Creates a [VideoChatParticipantsInvited] object from JSON object
   factory VideoChatParticipantsInvited.fromJson(Map<String, dynamic> json) {

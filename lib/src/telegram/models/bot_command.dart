@@ -9,7 +9,7 @@ class BotCommand {
   final String description;
 
   /// Creates a new [BotCommand] object.
-  BotCommand({
+  const BotCommand({
     required this.command,
     required this.description,
   });

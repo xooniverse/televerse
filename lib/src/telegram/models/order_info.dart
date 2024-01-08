@@ -3,19 +3,19 @@ part of 'payments.dart';
 /// This object represents information about an order.
 class OrderInfo {
   /// User name
-  String? name;
+  final String? name;
 
   /// User's phone number
-  String? phoneNumber;
+  final String? phoneNumber;
 
   /// User email
-  String? email;
+  final String? email;
 
   /// User shipping address
-  ShippingAddress? shippingAddress;
+  final ShippingAddress? shippingAddress;
 
   /// Creates a new [OrderInfo] object.
-  OrderInfo({
+  const OrderInfo({
     this.name,
     this.phoneNumber,
     this.email,

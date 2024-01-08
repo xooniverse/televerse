@@ -47,4 +47,8 @@ enum InlineQueryResultType {
 
   /// Constructs a new [InlineQueryResultType].
   const InlineQueryResultType(this.value);
+
+  /// Stringifies the enum.
+  @override
+  String toString() => value;
 }

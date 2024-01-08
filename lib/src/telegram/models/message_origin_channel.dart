@@ -20,7 +20,7 @@ class MessageOriginChannel implements MessageOrigin {
   final String? authorSignature;
 
   /// Constructor
-  MessageOriginChannel({
+  const MessageOriginChannel({
     required this.date,
     required this.chat,
     required this.messageId,

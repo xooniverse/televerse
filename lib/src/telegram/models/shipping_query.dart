@@ -3,19 +3,19 @@ part of 'payments.dart';
 /// This object contains information about an incoming shipping query.
 class ShippingQuery {
   /// Unique query identifier
-  String id;
+  final String id;
 
   /// User who sent the query
-  User from;
+  final User from;
 
   /// Bot specified invoice payload
-  String invoicePayload;
+  final String invoicePayload;
 
   /// User specified shipping address
-  ShippingAddress shippingAddress;
+  final ShippingAddress shippingAddress;
 
   /// Constructs a [ShippingQuery] object
-  ShippingQuery({
+  const ShippingQuery({
     required this.id,
     required this.from,
     required this.invoicePayload,
@@ -29,7 +29,7 @@ class ShippingQuery {
       'from': from.toJson(),
       'invoice_payload': invoicePayload,
       'shipping_address': shippingAddress.toJson(),
-    }..removeWhere((key, value) => value == null);
+    };
   }
 
   /// Creates a [ShippingQuery] object from a JSON object

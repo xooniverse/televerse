@@ -15,7 +15,7 @@ class ChatBoost {
   final ChatBoostSource source;
 
   /// Creates a chat boost.
-  ChatBoost({
+  const ChatBoost({
     required this.boostId,
     required this.addDate,
     required this.expirationDate,

@@ -9,28 +9,28 @@ class InlineQueryResultCachedVoice extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.voice;
 
   /// A valid file identifier for the voice message
-  String voiceFileId;
+  final String voiceFileId;
 
   /// Voice message title
-  String title;
+  final String title;
 
   /// Optional. Caption, 0-1024 characters after entities parsing
-  String? caption;
+  final String? caption;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting options for more details.
-  ParseMode? parseMode;
+  final ParseMode? parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
-  List<MessageEntity>? captionEntities;
+  final List<MessageEntity>? captionEntities;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the voice message
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedVoice] object
-  InlineQueryResultCachedVoice({
+  const InlineQueryResultCachedVoice({
     required this.voiceFileId,
     required this.title,
     required super.id,

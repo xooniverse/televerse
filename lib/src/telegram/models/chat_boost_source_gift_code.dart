@@ -10,7 +10,7 @@ class ChatBoostSourceGiftCode implements ChatBoostSource {
   final User user;
 
   /// Creates a source of a chat boost.
-  ChatBoostSourceGiftCode({
+  const ChatBoostSourceGiftCode({
     required this.user,
   });
 

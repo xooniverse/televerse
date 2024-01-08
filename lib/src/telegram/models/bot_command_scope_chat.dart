@@ -7,10 +7,10 @@ class BotCommandScopeChat implements BotCommandScope {
   BotCommandScopeType get type => BotCommandScopeType.chat;
 
   /// Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-  ID chatId;
+  final ID chatId;
 
   /// Creates a new [BotCommandScopeChat] object.
-  BotCommandScopeChat({
+  const BotCommandScopeChat({
     required this.chatId,
   });
 

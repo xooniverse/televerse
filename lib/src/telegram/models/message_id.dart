@@ -3,10 +3,10 @@ part of 'models.dart';
 /// This object represents a unique message identifier.
 class MessageId {
   /// Unique message identifier
-  int messageId;
+  final int messageId;
 
   /// Constructs a [MessageId] object
-  MessageId({
+  const MessageId({
     required this.messageId,
   });
 

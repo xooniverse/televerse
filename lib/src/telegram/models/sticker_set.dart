@@ -3,28 +3,28 @@ part of 'models.dart';
 /// This object represents a sticker set.
 class StickerSet {
   /// Sticker set name
-  String name;
+  final String name;
 
   /// Sticker set title
-  String title;
+  final String title;
 
   /// Type of stickers in the set, currently one of “regular”, “mask”, “custom_emoji”
-  StickerType type;
+  final StickerType type;
 
   /// True, if the sticker set contains animated stickers
-  bool isAnimated;
+  final bool isAnimated;
 
   /// True, if the sticker set contains video stickers
-  bool isVideo;
+  final bool isVideo;
 
   /// List of all set stickers
-  List<Sticker> stickers;
+  final List<Sticker> stickers;
 
   /// Optional. Sticker set thumbnail in the .WEBP or .TGS format
-  PhotoSize? thumbnail;
+  final PhotoSize? thumbnail;
 
   /// Constructs a [StickerSet] object
-  StickerSet({
+  const StickerSet({
     required this.name,
     required this.title,
     required this.type,

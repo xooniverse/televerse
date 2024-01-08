@@ -5,10 +5,10 @@ class VideoChatScheduled {
   /// Point in time (Unix timestamp) when the video chat is supposed to be started by a chat administrator
   ///
   /// Note: You can also use the [DateTime] object getter as [startDateTime]
-  int startDate;
+  final int startDate;
 
   /// Constructs a [VideoChatScheduled] object
-  VideoChatScheduled({
+  const VideoChatScheduled({
     required this.startDate,
   });
 
@@ -23,7 +23,7 @@ class VideoChatScheduled {
   Map<String, dynamic> toJson() {
     return {
       'start_date': startDate,
-    }..removeWhere((key, value) => value == null);
+    };
   }
 
   /// [DateTime] object getter for [startDate]

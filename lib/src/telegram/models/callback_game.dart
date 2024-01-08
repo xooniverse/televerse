@@ -3,7 +3,7 @@ part of 'games.dart';
 /// A placeholder, currently holds no information. Use BotFather to set up your game.
 class CallbackGame {
   /// Creates a new [CallbackGame] object.
-  CallbackGame();
+  const CallbackGame();
 
   /// Creates a new [CallbackGame] object from json.
   factory CallbackGame.fromJson(Map<String, dynamic> json) {

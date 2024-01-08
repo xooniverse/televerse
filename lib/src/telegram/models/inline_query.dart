@@ -3,25 +3,25 @@ part of 'models.dart';
 /// This object represents an incoming inline query. When the user sends an empty query, your bot could return some default or trending results.
 class InlineQuery {
   /// Unique identifier for this query
-  String id;
+  final String id;
 
   /// Sender
-  User from;
+  final User from;
 
   /// Text of the query (up to 256 characters)
-  String query;
+  final String query;
 
   /// Offset of the results to be returned, can be controlled by the bot
-  String offset;
+  final String offset;
 
   /// Optional. Type of the chat from which the inline query was sent. Can be either “sender” for a private chat with the inline query sender, “private”, “group”, “supergroup”, or “channel”. The chat type should be always known for requests sent from official clients and most third-party clients, unless the request was sent from a secret chat
-  ChatType? chatType;
+  final ChatType? chatType;
 
   /// Optional. Sender location, only for bots that request user location
-  Location? location;
+  final Location? location;
 
   /// Constructs an [InlineQuery] object
-  InlineQuery({
+  const InlineQuery({
     required this.id,
     required this.from,
     required this.query,
@@ -39,7 +39,7 @@ class InlineQuery {
       offset: json['offset'] as String,
       chatType: json['chat_type'] == null
           ? null
-          : ChatType.values[json['chat_type'] as int],
+          : ChatType.fromJson(json['chat_type']),
       location: json['location'] == null
           ? null
           : Location.fromJson(json['location'] as Map<String, dynamic>),

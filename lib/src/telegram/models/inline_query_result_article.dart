@@ -7,34 +7,34 @@ class InlineQueryResultArticle extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.article;
 
   /// Title of the result
-  String title;
+  final String title;
 
   /// Content of the message to be sent
-  InputMessageContent inputMessageContent;
+  final InputMessageContent inputMessageContent;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. URL of the result
-  String? url;
+  final String? url;
 
   /// Optional. Pass True if you don't want the URL to be shown in the message
-  bool? hideUrl;
+  final bool? hideUrl;
 
   /// Optional. Short description of the result
-  String? description;
+  final String? description;
 
   /// Optional. Url of the thumbnail for the result
-  String? thumbnailUrl;
+  final String? thumbnailUrl;
 
   /// Optional. Thumbnail width
-  int? thumbnailWidth;
+  final int? thumbnailWidth;
 
   /// Optional. Thumbnail height
-  int? thumbnailHeight;
+  final int? thumbnailHeight;
 
   /// This object represents a link to an article or web page.A
-  InlineQueryResultArticle({
+  const InlineQueryResultArticle({
     required super.id,
     required this.title,
     required this.inputMessageContent,

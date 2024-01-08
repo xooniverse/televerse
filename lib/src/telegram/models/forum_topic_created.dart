@@ -3,16 +3,16 @@ part of 'models.dart';
 /// This object represents a service message about a new forum topic created in the chat.
 class ForumTopicCreated {
   /// Name of the topic
-  String name;
+  final String name;
 
   /// Color of the topic icon in RGB format
-  int color;
+  final int color;
 
   /// Optional. Unique identifier of the custom emoji shown as the topic icon
-  String? iconCustomEmojiId;
+  final String? iconCustomEmojiId;
 
   /// Creates a new [ForumTopicCreated] object.
-  ForumTopicCreated({
+  const ForumTopicCreated({
     required this.name,
     required this.color,
     this.iconCustomEmojiId,

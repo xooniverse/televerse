@@ -2,6 +2,9 @@ part of '../models.dart';
 
 /// This object represents the scope to which bot commands are applied.
 abstract class BotCommandScope {
+  /// Constructor
+  const BotCommandScope();
+
   /// The scope type.
   BotCommandScopeType get type;
 

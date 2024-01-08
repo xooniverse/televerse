@@ -6,10 +6,10 @@ abstract class InlineQueryResult {
   InlineQueryResultType get type;
 
   /// Unique identifier for this result, 1-64 Bytes
-  String id;
+  final String id;
 
   /// Creates a new [InlineQueryResult] object.
-  InlineQueryResult({
+  const InlineQueryResult({
     required this.id,
   });
 

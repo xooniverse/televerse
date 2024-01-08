@@ -9,7 +9,7 @@ class ReactionCount {
   final int totalCount;
 
   /// Creates a new instance of [ReactionCount].
-  ReactionCount({
+  const ReactionCount({
     required this.type,
     required this.totalCount,
   });

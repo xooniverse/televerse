@@ -5,10 +5,10 @@ class MessageAutoDeleteTimerChanged {
   /// New auto-delete time for messages in the chat; in seconds
   ///
   /// Note: you can also use the getter [timeInDuration] to get the time in [Duration] object
-  int messageAutoDeleteTime;
+  final int messageAutoDeleteTime;
 
   /// Constructs a [MessageAutoDeleteTimerChanged] object
-  MessageAutoDeleteTimerChanged({
+  const MessageAutoDeleteTimerChanged({
     required this.messageAutoDeleteTime,
   });
 

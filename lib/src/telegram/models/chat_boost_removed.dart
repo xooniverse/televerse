@@ -15,7 +15,7 @@ class ChatBoostRemoved {
   final ChatBoostSource source;
 
   /// Creates a `ChatBoostRemoved` object.
-  ChatBoostRemoved({
+  const ChatBoostRemoved({
     required this.chat,
     required this.boostId,
     required this.removeDate,

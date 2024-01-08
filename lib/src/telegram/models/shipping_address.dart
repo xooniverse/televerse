@@ -3,25 +3,25 @@ part of 'payments.dart';
 /// This object represents a shipping address.
 class ShippingAddress {
   /// ISO 3166-1 alpha-2 country code
-  String countryCode;
+  final String countryCode;
 
   /// State, if applicable
-  String state;
+  final String state;
 
   /// City
-  String city;
+  final String city;
 
   /// First line for the address
-  String streetLine1;
+  final String streetLine1;
 
   /// Second line for the address
-  String streetLine2;
+  final String streetLine2;
 
   /// Address post code
-  String postCode;
+  final String postCode;
 
   /// Constructs a [ShippingAddress] object
-  ShippingAddress({
+  const ShippingAddress({
     required this.countryCode,
     required this.state,
     required this.city,

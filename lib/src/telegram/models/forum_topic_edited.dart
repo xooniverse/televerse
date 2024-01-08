@@ -9,7 +9,7 @@ class ForumTopicEdited {
   final String? iconCustomEmojiId;
 
   /// Creates a new [ForumTopicEdited] object.
-  ForumTopicEdited({
+  const ForumTopicEdited({
     this.name,
     this.iconCustomEmojiId,
   });

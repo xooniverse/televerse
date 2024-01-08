@@ -6,7 +6,7 @@ class UserChatBoosts {
   final List<ChatBoost> boosts;
 
   /// Constructs a [UserChatBoosts] object.
-  UserChatBoosts({
+  const UserChatBoosts({
     required this.boosts,
   });
 

@@ -7,43 +7,43 @@ class InlineQueryResultMpeg4Gif extends InlineQueryResult {
   InlineQueryResultType get type => InlineQueryResultType.mpeg4Gif;
 
   /// A valid URL for the MPEG4 file. File size must not exceed 1MB
-  String mpeg4Url;
+  final String mpeg4Url;
 
   /// Optional. Video width
-  int? mpeg4Width;
+  final int? mpeg4Width;
 
   /// Optional. Video height
-  int? mpeg4Height;
+  final int? mpeg4Height;
 
   /// Optional. Video duration
-  int? mpeg4Duration;
+  final int? mpeg4Duration;
 
   /// URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
-  String thumbnailUrl;
+  final String thumbnailUrl;
 
   /// Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”
-  String? thumbnailMimeType;
+  final String? thumbnailMimeType;
 
   /// Optional. Title for the result
-  String? title;
+  final String? title;
 
   /// Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities parsing
-  String? caption;
+  final String? caption;
 
   /// Optional. Mode for parsing entities in the caption. See formatting options for more details.
-  ParseMode? parseMode;
+  final ParseMode? parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
-  List<MessageEntity>? captionEntities;
+  final List<MessageEntity>? captionEntities;
 
   /// Optional. Inline keyboard attached to the message
-  InlineKeyboardMarkup? replyMarkup;
+  final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the video animation
-  InputMessageContent? inputMessageContent;
+  final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultMpeg4Gif] object
-  InlineQueryResultMpeg4Gif({
+  const InlineQueryResultMpeg4Gif({
     required this.mpeg4Url,
     required this.thumbnailUrl,
     required super.id,

@@ -7,7 +7,7 @@ class BotCommandScopeAllChatAdministrators implements BotCommandScope {
   BotCommandScopeType get type => BotCommandScopeType.allChatAdministrators;
 
   /// Creates a new [BotCommandScopeAllChatAdministrators] object.
-  BotCommandScopeAllChatAdministrators();
+  const BotCommandScopeAllChatAdministrators();
 
   /// Creates a new [BotCommandScopeAllChatAdministrators] object from json.
   factory BotCommandScopeAllChatAdministrators.fromJson(

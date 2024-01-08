@@ -3,13 +3,13 @@ part of 'models.dart';
 /// This object contains information about one answer option in a poll.
 class PollOption {
   /// Option text, 1-100 characters
-  String text;
+  final String text;
 
   /// Number of users that voted for this option
-  int voterCount;
+  final int voterCount;
 
   /// Constructs a [PollOption] object
-  PollOption({
+  const PollOption({
     required this.text,
     required this.voterCount,
   });

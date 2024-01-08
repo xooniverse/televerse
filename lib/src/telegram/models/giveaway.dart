@@ -27,7 +27,7 @@ class Giveaway {
   final int? premiumSubscriptionMonthCount;
 
   /// Constructor
-  Giveaway({
+  const Giveaway({
     required this.chats,
     required this.winnersSelectionDate,
     required this.winnerCount,

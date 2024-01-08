@@ -18,7 +18,7 @@ class LinkPreviewOptions {
   final bool? showAboveText;
 
   /// Constructs an instance of [LinkPreviewOptions].
-  LinkPreviewOptions({
+  const LinkPreviewOptions({
     this.isDisabled,
     this.url,
     this.preferSmallMedia,
