@@ -1,3 +1,7 @@
+# 1.12.4
+
+- Implemented `MessageOrigin.fromJson` which was part of the Bot API 7.0
+
 # 1.12.3
 
 - Made almost all models to have const constructors

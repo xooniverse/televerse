@@ -21,7 +21,18 @@ abstract class MessageOrigin {
 
   /// Creates a new [MessageOrigin] instance from a JSON object.
   factory MessageOrigin.fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError('MessageOrigin.fromJson not implemented');
+    switch (json['type']) {
+      case 'user':
+        return MessageOriginUser.fromJson(json);
+      case 'hidden_user':
+        return MessageOriginHiddenUser.fromJson(json);
+      case 'chat':
+        return MessageOriginChat.fromJson(json);
+      case 'channel':
+        return MessageOriginChannel.fromJson(json);
+      default:
+        throw TeleverseException("Unknown message origin type");
+    }
   }
 
   /// Converts [MessageOrigin] instance to a JSON object.
