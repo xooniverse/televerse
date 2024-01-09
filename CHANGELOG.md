@@ -1,3 +1,7 @@
+# 1.12.5
+
+- Added `ID` parameter to `toJson` of many `InlineQueryResult` classes.
+
 # 1.12.4
 
 - Implemented `MessageOrigin.fromJson` which was part of the Bot API 7.0
