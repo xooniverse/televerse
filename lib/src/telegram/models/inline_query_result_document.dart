@@ -78,6 +78,7 @@ class InlineQueryResultDocument extends InlineQueryResult {
       'thumbnail_url': thumbnailUrl,
       'thumbnail_width': thumbnailWidth,
       'thumbnail_height': thumbnailHeight,
+      'id': id,
     }..removeWhere((key, value) => value == null);
   }
 

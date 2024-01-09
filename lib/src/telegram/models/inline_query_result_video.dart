@@ -65,6 +65,7 @@ class InlineQueryResultVideo extends InlineQueryResult {
       'description': description,
       'reply_markup': replyMarkup?.toJson(),
       'input_message_content': inputMessageContent?.toJson(),
+      'id': id,
     }..removeWhere((_, v) => v == null);
   }
 
