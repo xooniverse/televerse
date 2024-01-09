@@ -1,3 +1,7 @@
+# 1.12.6
+
+- Updated Example File
+
 # 1.12.5
 
 - Added `ID` parameter to `toJson` of many `InlineQueryResult` classes.
