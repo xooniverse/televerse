@@ -55,7 +55,7 @@ class RawAPI {
   bool _nullChecker(String _, dynamic v) => v == null || v == "null";
 
   /// Build the URI for the Telegram API.
-  Uri _buildUri(String method, [Map<String, dynamic>? params]) {
+  Uri _buildUri(APIMethod method, [Map<String, dynamic>? params]) {
     params = params?.map((key, value) {
       if (value is List) {
         return MapEntry(key, jsonEncode(value));
@@ -118,7 +118,7 @@ class RawAPI {
       params["allowed_updates"] = jsonEncode(allowedUpdates);
     }
 
-    Uri uri = _buildUri("getUpdates");
+    Uri uri = _buildUri(APIMethod.getUpdates);
     final response = await _httpClient.postURI(uri, params);
 
     if (response is! List) {
@@ -164,10 +164,10 @@ class RawAPI {
           filename: certificate.path.split("/").last,
         ),
       });
-      Uri uri = _buildUri("setWebhook");
+      Uri uri = _buildUri(APIMethod.setWebhook);
       return await _httpClient.multipartPost(uri, files, params);
     } else {
-      Uri uri = _buildUri("setWebhook");
+      Uri uri = _buildUri(APIMethod.setWebhook);
       return await _httpClient.postURI(uri, params);
     }
   }
@@ -180,7 +180,7 @@ class RawAPI {
     Map<String, dynamic> params = {
       "drop_pending_updates": dropPendingUpdates,
     };
-    Uri uri = _buildUri("deleteWebhook");
+    Uri uri = _buildUri(APIMethod.deleteWebhook);
     bool response = await _httpClient.postURI(uri, params);
     return response;
   }
@@ -190,7 +190,7 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#getwebhookinfo
   Future<WebhookInfo> getWebhookInfo() async {
-    Uri uri = _buildUri("getWebhookInfo");
+    Uri uri = _buildUri(APIMethod.getWebhookInfo);
 
     Map<String, dynamic> response = await _httpClient.postURI(uri, {});
     return WebhookInfo.fromJson(response);
@@ -201,7 +201,7 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#getme
   Future<User> getMe() async {
-    Uri uri = _buildUri("getMe");
+    Uri uri = _buildUri(APIMethod.getMe);
 
     Map<String, dynamic> response = await _httpClient.postURI(uri, {});
     return User.fromJson(response);
@@ -212,7 +212,7 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#logout
   Future<bool> logOut() async {
-    Uri uri = _buildUri("logOut");
+    Uri uri = _buildUri(APIMethod.logOut);
 
     bool response = await _httpClient.postURI(uri, {});
     return response;
@@ -222,7 +222,7 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#close
   Future<bool> close() async {
-    Uri uri = _buildUri("close");
+    Uri uri = _buildUri(APIMethod.close);
 
     bool response = await _httpClient.postURI(uri, {});
     return response;
@@ -274,7 +274,7 @@ class RawAPI {
       "link_preview_options": linkPreviewOptions?.toJson(),
     };
 
-    Uri uri = _buildUri("sendMessage");
+    Uri uri = _buildUri(APIMethod.sendMessage);
 
     Map<String, dynamic> response = await _httpClient.postURI(uri, params);
     return Message.fromJson(response);
@@ -320,7 +320,7 @@ class RawAPI {
       "message_thread_id": messageThreadId,
       "protect_content": protectContent,
     };
-    Uri uri = _buildUri("forwardMessage");
+    Uri uri = _buildUri(APIMethod.forwardMessage);
 
     Map<String, dynamic> response = await _httpClient.postURI(uri, params);
     return Message.fromJson(response);
@@ -353,7 +353,7 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
       "reply_parameters": replyParameters?.toJson(),
     };
-    Uri uri = _buildUri("copyMessage");
+    Uri uri = _buildUri(APIMethod.copyMessage);
 
     Map<String, dynamic> response = await _httpClient.postURI(uri, params);
     return MessageId.fromJson(response);
@@ -392,12 +392,15 @@ class RawAPI {
     params.removeWhere(_nullChecker);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
-        _buildUri("sendPhoto"),
+        _buildUri(APIMethod.sendPhoto),
         files,
         params,
       );
     } else {
-      response = await _httpClient.postURI(_buildUri("sendPhoto"), params);
+      response = await _httpClient.postURI(
+        _buildUri(APIMethod.sendPhoto),
+        params,
+      );
     }
     return Message.fromJson(response);
   }
@@ -448,12 +451,15 @@ class RawAPI {
     params[_thumb] = thumbnail?.getValue(_thumb);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
-        _buildUri("sendAudio"),
+        _buildUri(APIMethod.sendAudio),
         files,
         params,
       );
     } else {
-      response = await _httpClient.postURI(_buildUri("sendAudio"), params);
+      response = await _httpClient.postURI(
+        _buildUri(APIMethod.sendAudio),
+        params,
+      );
     }
     return Message.fromJson(response);
   }
@@ -497,12 +503,15 @@ class RawAPI {
     params.removeWhere(_nullChecker);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
-        _buildUri("sendDocument"),
+        _buildUri(APIMethod.sendDocument),
         files,
         params,
       );
     } else {
-      response = await _httpClient.postURI(_buildUri("sendDocument"), params);
+      response = await _httpClient.postURI(
+        _buildUri(APIMethod.sendDocument),
+        params,
+      );
     }
     return Message.fromJson(response);
   }
@@ -551,12 +560,15 @@ class RawAPI {
     params[_thumb] = thumbnail?.getValue(_thumb);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
-        _buildUri("sendVideo"),
+        _buildUri(APIMethod.sendVideo),
         files,
         params,
       );
     } else {
-      response = await _httpClient.postURI(_buildUri("sendVideo"), params);
+      response = await _httpClient.postURI(
+        _buildUri(APIMethod.sendVideo),
+        params,
+      );
     }
     return Message.fromJson(response);
   }
@@ -605,12 +617,15 @@ class RawAPI {
     params.removeWhere(_nullChecker);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
-        _buildUri("sendAnimation"),
+        _buildUri(APIMethod.sendAnimation),
         files,
         params,
       );
     } else {
-      response = await _httpClient.postURI(_buildUri("sendAnimation"), params);
+      response = await _httpClient.postURI(
+        _buildUri(APIMethod.sendAnimation),
+        params,
+      );
     }
     return Message.fromJson(response);
   }
@@ -649,12 +664,15 @@ class RawAPI {
     params.removeWhere(_nullChecker);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
-        _buildUri("sendVoice"),
+        _buildUri(APIMethod.sendVoice),
         files,
         params,
       );
     } else {
-      response = await _httpClient.postURI(_buildUri("sendVoice"), params);
+      response = await _httpClient.postURI(
+        _buildUri(APIMethod.sendVoice),
+        params,
+      );
     }
     return Message.fromJson(response);
   }
@@ -693,12 +711,13 @@ class RawAPI {
     params[_thumb] = thumbnail?.getValue(_thumb);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
-        _buildUri("sendVideoNote"),
+        _buildUri(APIMethod.sendVideoNote),
         files,
         params,
       );
     } else {
-      response = await _httpClient.postURI(_buildUri("sendVideoNote"), params);
+      response =
+          await _httpClient.postURI(_buildUri(APIMethod.sendVideoNote), params);
     }
     return Message.fromJson(response);
   }
@@ -759,7 +778,7 @@ class RawAPI {
 
     if (files.isNotEmpty) {
       List<dynamic> response = await _httpClient.multipartPost(
-        _buildUri("sendMediaGroup"),
+        _buildUri(APIMethod.sendMediaGroup),
         files,
         params,
       );
@@ -767,7 +786,7 @@ class RawAPI {
     }
 
     List<dynamic> response = await _httpClient.postURI(
-      _buildUri("sendMediaGroup"),
+      _buildUri(APIMethod.sendMediaGroup),
       params,
     );
     return (response).map((e) => Message.fromJson(e)).toList();
@@ -803,7 +822,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("sendLocation"),
+      _buildUri(APIMethod.sendLocation),
       params,
     );
     return Message.fromJson(response);
@@ -836,7 +855,7 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("editMessageLiveLocation"),
+      _buildUri(APIMethod.editMessageLiveLocation),
       params,
     );
 
@@ -869,7 +888,7 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     bool response = await _httpClient.postURI(
-      _buildUri("editMessageLiveLocation"),
+      _buildUri(APIMethod.editMessageLiveLocation),
       params,
     );
 
@@ -892,7 +911,7 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("stopMessageLiveLocation"),
+      _buildUri(APIMethod.stopMessageLiveLocation),
       params,
     );
     return Message.fromJson(response);
@@ -914,7 +933,7 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     bool response = await _httpClient.postURI(
-      _buildUri("stopMessageLiveLocation"),
+      _buildUri(APIMethod.stopMessageLiveLocation),
       params,
     );
     return response;
@@ -954,7 +973,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("sendVenue"),
+      _buildUri(APIMethod.sendVenue),
       params,
     );
     return Message.fromJson(response);
@@ -986,7 +1005,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("sendContact"),
+      _buildUri(APIMethod.sendContact),
       params,
     );
     return Message.fromJson(response);
@@ -1082,7 +1101,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("sendPoll"),
+      _buildUri(APIMethod.sendPoll),
       params,
     );
     return Message.fromJson(response);
@@ -1117,7 +1136,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("sendDice"),
+      _buildUri(APIMethod.sendDice),
       params,
     );
     return Message.fromJson(response);
@@ -1145,7 +1164,7 @@ class RawAPI {
       "message_thread_id": messageThreadId,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("sendChatAction"),
+      _buildUri(APIMethod.sendChatAction),
       params,
     );
     return response;
@@ -1163,7 +1182,7 @@ class RawAPI {
       "limit": limit,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("getUserProfilePhotos"),
+      _buildUri(APIMethod.getUserProfilePhotos),
       params,
     );
     return UserProfilePhotos.fromJson(response);
@@ -1177,7 +1196,7 @@ class RawAPI {
       "file_id": fileId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("getFile"),
+      _buildUri(APIMethod.getFile),
       params,
     );
     return File.fromJson(response);
@@ -1197,7 +1216,7 @@ class RawAPI {
       "revoke_messages": revokeMessages,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("banChatMember"),
+      _buildUri(APIMethod.getChatMember),
       params,
     );
     return response;
@@ -1215,7 +1234,7 @@ class RawAPI {
       "only_if_banned": onlyIfBanned,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("unbanChatMember"),
+      _buildUri(APIMethod.unbanChatMember),
       params,
     );
     return response;
@@ -1240,7 +1259,7 @@ class RawAPI {
       "use_independent_chat_permissions": useIndependentChatPermissions,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("restrictChatMember"),
+      _buildUri(APIMethod.restrictChatMember),
       params,
     );
     return response;
@@ -1283,7 +1302,7 @@ class RawAPI {
       "can_manage_topics": canManageTopics,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("promoteChatMember"),
+      _buildUri(APIMethod.promoteChatMember),
       params,
     );
     return response;
@@ -1301,7 +1320,7 @@ class RawAPI {
       "custom_title": customTitle,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("setChatAdministratorCustomTitle"),
+      _buildUri(APIMethod.setChatAdministratorCustomTitle),
       params,
     );
     return response;
@@ -1317,7 +1336,7 @@ class RawAPI {
       "sender_chat_id": senderChatId,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("banChatChannelChat"),
+      _buildUri(APIMethod.banChatSenderChat),
       params,
     );
     return response;
@@ -1333,7 +1352,7 @@ class RawAPI {
       "sender_chat_id": senderChatId,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("unbanChatSenderChat"),
+      _buildUri(APIMethod.unbanChatSenderChat),
       params,
     );
     return response;
@@ -1354,7 +1373,7 @@ class RawAPI {
       "use_independent_chat_permissions": useIndependentChatPermissions,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("setChatPermissions"),
+      _buildUri(APIMethod.setChatPermissions),
       params,
     );
     return response;
@@ -1370,7 +1389,7 @@ class RawAPI {
       "chat_id": chatId.id,
     };
     String response = await _httpClient.postURI(
-      _buildUri("exportChatInviteLink"),
+      _buildUri(APIMethod.exportChatInviteLink),
       params,
     );
     return response;
@@ -1415,7 +1434,7 @@ class RawAPI {
       "creates_join_request": createsJoinRequest,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("createChatInviteLink"),
+      _buildUri(APIMethod.createChatInviteLink),
       params,
     );
     return ChatInviteLink.fromJson(response);
@@ -1462,7 +1481,7 @@ class RawAPI {
       "creates_join_request": createsJoinRequest,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("editChatInviteLink"),
+      _buildUri(APIMethod.editChatInviteLink),
       params,
     );
     return ChatInviteLink.fromJson(response);
@@ -1478,7 +1497,7 @@ class RawAPI {
       "invite_link": inviteLink,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("revokeChatInviteLink"),
+      _buildUri(APIMethod.revokeChatInviteLink),
       params,
     );
     return ChatInviteLink.fromJson(response);
@@ -1494,7 +1513,7 @@ class RawAPI {
       "user_id": userId,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("approveChatJoinRequest"),
+      _buildUri(APIMethod.approveChatJoinRequest),
       params,
     );
     return response;
@@ -1510,7 +1529,7 @@ class RawAPI {
       "user_id": userId,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("declineChatJoinRequest"),
+      _buildUri(APIMethod.declineChatJoinRequest),
       params,
     );
     return response;
@@ -1531,13 +1550,13 @@ class RawAPI {
 
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
-        _buildUri("setChatPhoto"),
+        _buildUri(APIMethod.setChatPhoto),
         files,
         params,
       );
     } else {
       response = await _httpClient.postURI(
-        _buildUri("setChatPhoto"),
+        _buildUri(APIMethod.setChatPhoto),
         params,
       );
     }
@@ -1552,7 +1571,7 @@ class RawAPI {
       "chat_id": chatId.id,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("deleteChatPhoto"),
+      _buildUri(APIMethod.deleteChatPhoto),
       params,
     );
     return response;
@@ -1575,7 +1594,7 @@ class RawAPI {
       "title": title,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("setChatTitle"),
+      _buildUri(APIMethod.setChatTitle),
       params,
     );
     return response;
@@ -1598,7 +1617,7 @@ class RawAPI {
       "description": description,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("setChatDescription"),
+      _buildUri(APIMethod.setChatDescription),
       params,
     );
     return response;
@@ -1616,7 +1635,7 @@ class RawAPI {
       "disable_notification": disableNotification,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("pinChatMessage"),
+      _buildUri(APIMethod.pinChatMessage),
       params,
     );
     return response;
@@ -1632,7 +1651,7 @@ class RawAPI {
       "message_id": messageId,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("unpinChatMessage"),
+      _buildUri(APIMethod.unpinChatMessage),
       params,
     );
     return response;
@@ -1646,7 +1665,7 @@ class RawAPI {
       "chat_id": chatId.id,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("unpinAllChatMessages"),
+      _buildUri(APIMethod.unpinAllChatMessages),
       params,
     );
     return response;
@@ -1660,7 +1679,7 @@ class RawAPI {
       "chat_id": chatId.id,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("leaveChat"),
+      _buildUri(APIMethod.leaveChat),
       params,
     );
     return response;
@@ -1675,7 +1694,7 @@ class RawAPI {
     };
     Chat response = Chat.fromJson(
       await _httpClient.postURI(
-        _buildUri("getChat"),
+        _buildUri(APIMethod.getChat),
         params,
       ),
     );
@@ -1691,7 +1710,7 @@ class RawAPI {
     };
     List<ChatMember> response = [];
     List<dynamic> data = await _httpClient.postURI(
-      _buildUri("getChatAdministrators"),
+      _buildUri(APIMethod.getChatAdministrators),
       params,
     );
     response = data.map((e) => ChatMember.fromJson(e)).toList();
@@ -1706,7 +1725,7 @@ class RawAPI {
       "chat_id": chatId.id,
     };
     int response = await _httpClient.postURI(
-      _buildUri("getChatMembersCount"),
+      _buildUri(APIMethod.getChatMembersCount),
       params,
     );
     return response;
@@ -1723,7 +1742,7 @@ class RawAPI {
     };
     ChatMember response = ChatMember.fromJson(
       await _httpClient.postURI(
-        _buildUri("getChatMember"),
+        _buildUri(APIMethod.getChatMember),
         params,
       ),
     );
@@ -1740,7 +1759,7 @@ class RawAPI {
       "sticker_set_name": stickerSetName,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("setChatStickerSet"),
+      _buildUri(APIMethod.setChatStickerSet),
       params,
     );
     return response;
@@ -1754,7 +1773,7 @@ class RawAPI {
       "chat_id": chatId.id,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("deleteChatStickerSet"),
+      _buildUri(APIMethod.deleteChatStickerSet),
       params,
     );
     return response;
@@ -1764,7 +1783,7 @@ class RawAPI {
   Future<List<Sticker>> getForumTopicIconStickers() async {
     List<Sticker> response = [];
     List<dynamic> data = await _httpClient.postURI(
-      _buildUri("getForumTopicIconStickers"),
+      _buildUri(APIMethod.getForumTopicIconStickers),
       {},
     );
     response = data.map((e) => Sticker.fromJson(e)).toList();
@@ -1794,7 +1813,7 @@ class RawAPI {
     };
     ForumTopic response = ForumTopic.fromJson(
       await _httpClient.postURI(
-        _buildUri("createForumTopic"),
+        _buildUri(APIMethod.createForumTopic),
         params,
       ),
     );
@@ -1821,7 +1840,7 @@ class RawAPI {
       "icon_custom_emoji_id": iconCustomEmojiId,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("editForumTopic"),
+      _buildUri(APIMethod.editForumTopic),
       params,
     );
     return response;
@@ -1837,7 +1856,7 @@ class RawAPI {
       "message_thread_id": messageThreadId,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("closeForumTopic"),
+      _buildUri(APIMethod.closeForumTopic),
       params,
     );
     return response;
@@ -1853,7 +1872,7 @@ class RawAPI {
       "message_thread_id": messageThreadId,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("reopenForumTopic"),
+      _buildUri(APIMethod.reopenForumTopic),
       params,
     );
     return response;
@@ -1869,7 +1888,7 @@ class RawAPI {
       "message_thread_id": messageThreadId,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("deleteForumTopic"),
+      _buildUri(APIMethod.deleteForumTopic),
       params,
     );
     return response;
@@ -1885,7 +1904,7 @@ class RawAPI {
       "message_thread_id": messageThreadId,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("unpinAllForumTopicMessages"),
+      _buildUri(APIMethod.unpinAllForumTopicMessages),
       params,
     );
     return response;
@@ -1905,7 +1924,7 @@ class RawAPI {
       "name": name,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("editGeneralForumTopic"),
+      _buildUri(APIMethod.editGeneralForumTopic),
       params,
     );
     return response;
@@ -1919,7 +1938,7 @@ class RawAPI {
       "chat_id": chatId.id,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("closeGeneralForumTopic"),
+      _buildUri(APIMethod.closeGeneralForumTopic),
       params,
     );
     return response;
@@ -1933,7 +1952,7 @@ class RawAPI {
       "chat_id": chatId.id,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("reopenGeneralForumTopic"),
+      _buildUri(APIMethod.reopenGeneralForumTopic),
       params,
     );
     return response;
@@ -1947,7 +1966,7 @@ class RawAPI {
       "chat_id": chatId.id,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("hideGeneralForumTopic"),
+      _buildUri(APIMethod.hideGeneralForumTopic),
       params,
     );
     return response;
@@ -1961,7 +1980,7 @@ class RawAPI {
       "chat_id": chatId.id,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("unhideGeneralForumTopic"),
+      _buildUri(APIMethod.unhideGeneralForumTopic),
       params,
     );
     return response;
@@ -1983,7 +2002,7 @@ class RawAPI {
       "cache_time": cacheTime,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("answerCallbackQuery"),
+      _buildUri(APIMethod.answerCallbackQuery),
       params,
     );
     return response;
@@ -2001,7 +2020,7 @@ class RawAPI {
       "language_code": languageCode,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("setMyCommands"),
+      _buildUri(APIMethod.setMyCommands),
       params,
     );
     return response;
@@ -2017,7 +2036,7 @@ class RawAPI {
       "language_code": languageCode,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("deleteMyCommands"),
+      _buildUri(APIMethod.deleteMyCommands),
       params,
     );
     return response;
@@ -2033,7 +2052,7 @@ class RawAPI {
       "language_code": languageCode,
     };
     List<dynamic> response = await _httpClient.postURI(
-      _buildUri("getMyCommands"),
+      _buildUri(APIMethod.getMyCommands),
       params,
     );
     return response.map((e) => BotCommand.fromJson(e)).toList();
@@ -2049,7 +2068,7 @@ class RawAPI {
       "menu_button": menuButton.toJson(),
     };
     bool response = await _httpClient.postURI(
-      _buildUri("setChatMenuButton"),
+      _buildUri(APIMethod.setChatMenuButton),
       params,
     );
     return response;
@@ -2063,7 +2082,7 @@ class RawAPI {
       "chat_id": chatId.id,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("getChatMenuButton"),
+      _buildUri(APIMethod.getChatMenuButton),
       params,
     );
     return MenuButton.create(response);
@@ -2079,7 +2098,7 @@ class RawAPI {
       "for_channels": forChannels,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("setMyDefaultAdministratorRights"),
+      _buildUri(APIMethod.setMyDefaultAdministratorRights),
       params,
     );
     return response;
@@ -2093,7 +2112,7 @@ class RawAPI {
       "for_channels": forChannels,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("getMyDefaultAdministratorRights"),
+      _buildUri(APIMethod.getMyDefaultAdministratorRights),
       params,
     );
     return ChatAdministratorRights.fromJson(response);
@@ -2124,7 +2143,7 @@ class RawAPI {
       "link_preview": linkPreviewOptions?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("editMessageText"),
+      _buildUri(APIMethod.editMessageText),
       params,
     );
     return Message.fromJson(response);
@@ -2155,7 +2174,7 @@ class RawAPI {
       "link_preview": linkPreviewOptions?.toJson(),
     };
     bool response = await _httpClient.postURI(
-      _buildUri("editInlineMessageText"),
+      _buildUri(APIMethod.editMessageText),
       params,
     );
     return response;
@@ -2186,7 +2205,7 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("editMessageCaption"),
+      _buildUri(APIMethod.editMessageCaption),
       params,
     );
     return Message.fromJson(response);
@@ -2215,7 +2234,7 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     bool response = await _httpClient.postURI(
-      _buildUri("editInlineMessageCaption"),
+      _buildUri(APIMethod.editMessageCaption),
       params,
     );
     return response;
@@ -2249,14 +2268,14 @@ class RawAPI {
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
         _buildUri(
-          "editMessageMedia",
+          APIMethod.editMessageMedia,
         ),
         files,
         params,
       );
     } else {
       response = await _httpClient.postURI(
-        _buildUri("editMessageMedia"),
+        _buildUri(APIMethod.editMessageMedia),
         params,
       );
     }
@@ -2290,14 +2309,14 @@ class RawAPI {
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
         _buildUri(
-          "editInlineMessageMedia",
+          APIMethod.editMessageMedia,
         ),
         files,
         params,
       );
     } else {
       response = await _httpClient.postURI(
-        _buildUri("editInlineMessageMedia"),
+        _buildUri(APIMethod.editMessageMedia),
         params,
       );
     }
@@ -2324,7 +2343,7 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("editMessageReplyMarkup"),
+      _buildUri(APIMethod.editMessageReplyMarkup),
       params,
     );
     return Message.fromJson(response);
@@ -2347,7 +2366,7 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     bool response = await _httpClient.postURI(
-      _buildUri("editInlineMessageReplyMarkup"),
+      _buildUri(APIMethod.editMessageText),
       params,
     );
     return response;
@@ -2365,7 +2384,7 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("stopPoll"),
+      _buildUri(APIMethod.stopPoll),
       params,
     );
     return Poll.fromJson(response);
@@ -2391,7 +2410,7 @@ class RawAPI {
       "message_id": messageId,
     };
     bool response = await _httpClient.postURI(
-      _buildUri("deleteMessage"),
+      _buildUri(APIMethod.deleteMessage),
       params,
     );
     return response;
@@ -2429,14 +2448,14 @@ class RawAPI {
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
         _buildUri(
-          "sendSticker",
+          APIMethod.sendSticker,
         ),
         files,
         params,
       );
     } else {
       response = await _httpClient.postURI(
-        _buildUri("sendSticker"),
+        _buildUri(APIMethod.sendSticker),
         params,
       );
     }
@@ -2452,7 +2471,7 @@ class RawAPI {
       "name": name,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("getStickerSet"),
+      _buildUri(APIMethod.getStickerSet),
       params,
     );
     return StickerSet.fromJson(response);
@@ -2466,7 +2485,7 @@ class RawAPI {
       "custom_emoji_ids": jsonEncode(customEmojiIds),
     };
     List<dynamic> response = await _httpClient.postURI(
-      _buildUri("getCustomEmojiStickers"),
+      _buildUri(APIMethod.getCustomEmojiStickers),
       params,
     );
     return response.map((e) => Sticker.fromJson(e)).toList();
@@ -2492,7 +2511,7 @@ class RawAPI {
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
         _buildUri(
-          "uploadStickerFile",
+          APIMethod.uploadStickerFile,
         ),
         files,
         params,
@@ -2528,12 +2547,12 @@ class RawAPI {
 
     if (files.isEmpty) {
       response = await _httpClient.postURI(
-        _buildUri("addStickerToSet"),
+        _buildUri(APIMethod.addStickerToSet),
         params,
       );
     } else {
       response = await _httpClient.multipartPost(
-        _buildUri("addStickerToSet"),
+        _buildUri(APIMethod.addStickerToSet),
         files,
         params,
       );
@@ -2553,7 +2572,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("setStickerPositionInSet"),
+      _buildUri(APIMethod.setStickerPositionInSet),
       params,
     );
 
@@ -2567,7 +2586,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("deleteStickerFromSet"),
+      _buildUri(APIMethod.deleteStickerFromSet),
       params,
     );
 
@@ -2596,12 +2615,12 @@ class RawAPI {
 
     if (files.isEmpty) {
       response = await _httpClient.postURI(
-        _buildUri("setStickerSetThumb"),
+        _buildUri(APIMethod.setStickerSetThumbnail),
         params,
       );
     } else {
       response = await _httpClient.multipartPost(
-        _buildUri("setStickerSetThumb"),
+        _buildUri(APIMethod.setStickerSetThumbnail),
         files,
         params,
       );
@@ -2632,7 +2651,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("answerInlineQuery"),
+      _buildUri(APIMethod.answerInlineQuery),
       params,
     );
 
@@ -2650,7 +2669,7 @@ class RawAPI {
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("answerWebAppQuery"),
+      _buildUri(APIMethod.answerWebAppQuery),
       params,
     );
 
@@ -2718,7 +2737,7 @@ class RawAPI {
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("sendInvoice"),
+      _buildUri(APIMethod.sendInvoice),
       params,
     );
 
@@ -2772,7 +2791,7 @@ class RawAPI {
     };
 
     String response = await _httpClient.postURI(
-      _buildUri("createInvoiceLink"),
+      _buildUri(APIMethod.createInvoiceLink),
       params,
     );
 
@@ -2814,7 +2833,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("answerShippingQuery"),
+      _buildUri(APIMethod.answerShippingQuery),
       params,
     );
 
@@ -2846,7 +2865,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("answerPreCheckoutQuery"),
+      _buildUri(APIMethod.answerPreCheckoutQuery),
       params,
     );
 
@@ -2865,7 +2884,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("setPassportDataErrors"),
+      _buildUri(APIMethod.setPassportDataErrors),
       params,
     );
 
@@ -2893,7 +2912,7 @@ class RawAPI {
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("sendGame"),
+      _buildUri(APIMethod.sendGame),
       params,
     );
 
@@ -2924,7 +2943,7 @@ class RawAPI {
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("setGameScore"),
+      _buildUri(APIMethod.setGameScore),
       params,
     );
 
@@ -2954,7 +2973,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("setInlineGameScore"),
+      _buildUri(APIMethod.setInlineGameScore),
       params,
     );
 
@@ -2985,7 +3004,7 @@ class RawAPI {
     };
 
     List<Map<String, dynamic>> response = await _httpClient.postURI(
-      _buildUri("getGameHighScores"),
+      _buildUri(APIMethod.getGameHighScores),
       params,
     );
 
@@ -3007,7 +3026,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("setMyDescription"),
+      _buildUri(APIMethod.setMyDescription),
       params,
     );
 
@@ -3023,7 +3042,7 @@ class RawAPI {
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("getMyDescription"),
+      _buildUri(APIMethod.getMyDescription),
       params,
     );
 
@@ -3041,7 +3060,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("setMyShortDescription"),
+      _buildUri(APIMethod.setMyShortDescription),
       params,
     );
 
@@ -3057,7 +3076,7 @@ class RawAPI {
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("getMyShortDescription"),
+      _buildUri(APIMethod.getMyShortDescription),
       params,
     );
 
@@ -3104,7 +3123,7 @@ class RawAPI {
     final files = _getFiles(helpers);
 
     response = await _httpClient.multipartPost(
-      _buildUri("createNewStickerSet"),
+      _buildUri(APIMethod.createNewStickerSet),
       files,
       params,
     );
@@ -3127,7 +3146,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("setCustomEmojiStickerSetThumbnail"),
+      _buildUri(APIMethod.setCustomEmojiStickerSetThumbnail),
       params,
     );
 
@@ -3149,7 +3168,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("setStickerSetTitle"),
+      _buildUri(APIMethod.setStickerSetTitle),
       params,
     );
 
@@ -3168,7 +3187,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("deleteStickerSet"),
+      _buildUri(APIMethod.deleteStickerSet),
       params,
     );
 
@@ -3190,7 +3209,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("setStickerEmojiList"),
+      _buildUri(APIMethod.setStickerEmojiList),
       params,
     );
 
@@ -3212,7 +3231,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("setStickerKeywords"),
+      _buildUri(APIMethod.setStickerKeywords),
       params,
     );
 
@@ -3234,7 +3253,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("setStickerMaskPosition"),
+      _buildUri(APIMethod.setStickerMaskPosition),
       params,
     );
 
@@ -3254,7 +3273,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("setMyName"),
+      _buildUri(APIMethod.setMyName),
       params,
     );
 
@@ -3271,7 +3290,7 @@ class RawAPI {
 
     BotName response = BotName.fromJson(
       await _httpClient.postURI(
-        _buildUri("getMyName"),
+        _buildUri(APIMethod.getMyName),
         params,
       ),
     );
@@ -3288,7 +3307,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("unpinAllGeneralForumTopicMessages"),
+      _buildUri(APIMethod.unpinAllGeneralForumTopicMessages),
       params,
     );
 
@@ -3312,7 +3331,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("setMessageReaction"),
+      _buildUri(APIMethod.setMessageReaction),
       params,
     );
 
@@ -3333,7 +3352,7 @@ class RawAPI {
     };
 
     bool response = await _httpClient.postURI(
-      _buildUri("deleteMessages"),
+      _buildUri(APIMethod.deleteMessages),
       params,
     );
 
@@ -3366,7 +3385,7 @@ class RawAPI {
     };
 
     List<int> response = await _httpClient.postURI(
-      _buildUri("forwardMessages"),
+      _buildUri(APIMethod.forwardMessages),
       params,
     );
 
@@ -3402,7 +3421,7 @@ class RawAPI {
     };
 
     List<int> response = await _httpClient.postURI(
-      _buildUri("copyMessages"),
+      _buildUri(APIMethod.copyMessages),
       params,
     );
 
@@ -3423,7 +3442,7 @@ class RawAPI {
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri("getUserChatBoosts"),
+      _buildUri(APIMethod.getUserChatBoosts),
       params,
     );
 

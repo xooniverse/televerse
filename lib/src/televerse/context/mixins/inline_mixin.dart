@@ -8,14 +8,14 @@ mixin InlineQueryMixin on Context {
   InlineQuery get inlineQuery => update.inlineQuery!;
 
   /// Answer the inline query.
-  Future<void> answer(
+  Future<bool> answer(
     List<InlineQueryResult> results, {
     int? cacheTime,
     bool? isPersonal,
     String? nextOffset,
     InlineQueryResultsButton? button,
-  }) async {
-    await api.answerInlineQuery(
+  }) {
+    return api.answerInlineQuery(
       inlineQuery.id,
       results,
       cacheTime: cacheTime,
@@ -26,14 +26,14 @@ mixin InlineQueryMixin on Context {
   }
 
   /// Answer the inline query with a list of articles.
-  Future<void> answerWithArticles(
+  Future<bool> answerWithArticles(
     List<InlineQueryResultArticle> articles, {
     int? cacheTime,
     bool? isPersonal,
     String? nextOffset,
     InlineQueryResultsButton? button,
-  }) async {
-    await api.answerInlineQuery(
+  }) {
+    return api.answerInlineQuery(
       inlineQuery.id,
       articles,
       cacheTime: cacheTime,
