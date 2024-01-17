@@ -352,6 +352,18 @@ enum APIMethod {
 
   /// Get User Chat Boosts - gets a user's active chat boosts
   getUserChatBoosts._("getUserChatBoosts"),
+
+  /// Get Webhook Info - returns the webhook info
+  getWebhookInfo._("getWebhookInfo"),
+
+  /// Set Inline Game Score - sets an inline game's score
+  setInlineGameScore._("setInlineGameScore"),
+
+  /// Unpin All General Forum Topic Messages - unpins all general forum topic messages
+  unpinAllGeneralForumTopicMessages._("unpinAllGeneralForumTopicMessages"),
+
+  /// Get Chat Members Count - gets a chat's member count
+  getChatMembersCount._("getChatMembersCount"),
   ;
 
   /// The name of the method.
@@ -396,4 +408,7 @@ enum APIMethod {
       APIMethod.sendGame,
     ];
   }
+
+  @override
+  String toString() => name;
 }

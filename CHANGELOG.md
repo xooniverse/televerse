@@ -1,3 +1,9 @@
+# 1.12.7
+
+- Now Televerse uses `APIMethod` instead of hard coded strings to call API endpoints.
+- Cleared missing `APIMethod` implementations and typos.
+- Cleaned up the code.
+
 # 1.12.6
 
 - Updated Example File
