@@ -2366,7 +2366,7 @@ class RawAPI {
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
     };
     bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageText),
+      _buildUri(APIMethod.editMessageReplyMarkup),
       params,
     );
     return response;

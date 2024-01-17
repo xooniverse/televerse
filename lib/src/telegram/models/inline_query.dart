@@ -53,7 +53,7 @@ class InlineQuery {
       'from': from.toJson(),
       'query': query,
       'offset': offset,
-      'chat_type': chatType?.index,
+      'chat_type': chatType?.value,
       'location': location?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
