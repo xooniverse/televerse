@@ -21,11 +21,13 @@ part of 'models.dart';
 /// bot.sendPhoto(chatId, photo);
 /// ```
 class InputFile {
+  /// The name of the file to be sent.
+  ///
+  /// Include the file extension for the file name.
+  final String? name;
+
   /// Unique identifier for this file
   final String? fileId;
-
-  /// File path. Use either this field or fileId to specify a file.
-  final io.File? file;
 
   /// URL of the file to be sent. Use either this field or fileId to specify a file.
   final Uri? url;
@@ -34,37 +36,49 @@ class InputFile {
   final Uint8List? bytes;
 
   /// Private constructor for [InputFile].
-  InputFile._({
+  const InputFile._({
     this.fileId,
-    this.file,
     this.url,
     this.bytes,
-  }) {
-    if (fileId == null && file == null && url == null && bytes == null) {
-      throw TeleverseException(
-        'InputFile must be initialized with a value. Use either fileId, file, or url.\n\nYou can use [InputFile.fromFileId], [InputFile.fromFile], or [InputFile.fromUrl] to create an InputFile.',
-      );
-    }
-  }
+    this.name,
+  });
 
   /// Creates a new [InputFile] using a local file.
-  factory InputFile.fromFile(io.File file) => InputFile._(file: file);
+  factory InputFile.fromFile(
+    io.File file, {
+    String? name,
+  }) {
+    if (!file.existsSync()) {
+      throw TeleverseException.fileDoesNotExist(file.path);
+    }
+    return InputFile._(
+      bytes: file.readAsBytesSync(),
+      name: name ?? file.filename,
+    );
+  }
 
   /// Creates a new [InputFile] using the file url.
-  factory InputFile.fromUrl(String url) => InputFile._(url: Uri.parse(url));
+  factory InputFile.fromUrl(String url, {String? name}) => InputFile._(
+        url: Uri.parse(url),
+        name: name,
+      );
 
   /// Creates a new [InputFile] using the File ID on the Telegram Servers.
-  factory InputFile.fromFileId(String fileId) => InputFile._(fileId: fileId);
+  factory InputFile.fromFileId(String fileId, {String? name}) => InputFile._(
+        fileId: fileId,
+        name: name,
+      );
 
   /// Creates a new [InputFile] using the bytes of the file.
-  factory InputFile.fromBytes(Uint8List bytes) => InputFile._(bytes: bytes);
+  factory InputFile.fromBytes(Uint8List bytes, {String? name}) => InputFile._(
+        bytes: bytes,
+        name: name,
+      );
 
   /// Returns the type of the [InputFile].
   InputFileType get type {
     if (fileId != null) {
       return InputFileType.fileId;
-    } else if (file != null) {
-      return InputFileType.file;
     } else if (url != null) {
       return InputFileType.url;
     } else if (bytes != null) {
@@ -79,8 +93,6 @@ class InputFile {
     switch (type) {
       case InputFileType.fileId:
         return fileId!;
-      case InputFileType.file:
-        return "attach://${field ?? file!.filenameWithoutExtension}";
       case InputFileType.url:
         return url!.toString();
       case InputFileType.bytes:
@@ -92,8 +104,6 @@ class InputFile {
   Uint8List getBytes() {
     if (bytes != null) {
       return bytes!;
-    } else if (file != null) {
-      return file!.readAsBytesSync();
     } else {
       throw TeleverseException(
         'InputFile must be created with either [InputFile.fromBytes] or [InputFile.fromFile]',

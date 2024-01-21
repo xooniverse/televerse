@@ -14,6 +14,6 @@ class _MultipartHelper {
   /// The InputFile Type
   InputFileType get type => file.type;
 
-  /// The file name
-  String get name => file.file?.filename ?? field;
+  /// Returns the file name of the [InputFile].
+  String get name => file.name ?? 'file';
 }
