@@ -9,7 +9,7 @@ class StickerSet {
   final String title;
 
   /// Type of stickers in the set, currently one of “regular”, “mask”, “custom_emoji”
-  final StickerType stickerType;
+  final StickerType type;
 
   /// True, if the sticker set contains animated stickers
   final bool isAnimated;
@@ -27,32 +27,19 @@ class StickerSet {
   const StickerSet({
     required this.name,
     required this.title,
-    required this.stickerType,
+    required this.type,
     required this.isAnimated,
     required this.isVideo,
     required this.stickers,
     this.thumbnail,
   });
 
-  /// Returns JSON-encodeable map of this object.
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'title': title,
-      'sticker_type': stickerType.toJson(),
-      'is_animated': isAnimated,
-      'is_video': isVideo,
-      'stickers': stickers,
-      'thumbnail': thumbnail,
-    }..removeWhere((_, v) => v == null);
-  }
-
   /// Creates a [StickerSet] object from JSON object
   factory StickerSet.fromJson(Map<String, dynamic> json) {
     return StickerSet(
       name: json['name'] as String,
       title: json['title'] as String,
-      stickerType: StickerType.fromJson(json['sticker_type'] as String),
+      type: StickerType.values[json['type'] as int],
       isAnimated: json['is_animated'] as bool,
       isVideo: json['is_video'] as bool,
       stickers: (json['stickers'] as List<dynamic>)
