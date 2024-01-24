@@ -83,11 +83,8 @@ class RawAPI {
 
   List<Map<String, MultipartFile>> _getFiles(List<_MultipartHelper> list) {
     List<Map<String, MultipartFile>> files = list.where((el) {
-      return el.type == InputFileType.file || el.type == InputFileType.bytes;
+      return el.type == InputFileType.bytes;
     }).map((e) {
-      if (e.type == InputFileType.file && !e.file.file!.existsSync()) {
-        throw TeleverseException.fileDoesNotExist(e.file.file!.path);
-      }
       return {
         e.field: MultipartFile.fromBytes(
           e.file.getBytes(),
