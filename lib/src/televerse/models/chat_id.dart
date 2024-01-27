@@ -51,7 +51,7 @@ abstract class ID {
   int get hashCode => id.hashCode;
 
   /// Returns the [Chat] object of the chat.
-  Future<Chat> get() => Televerse.instance.api.getChat(this);
+  Future<Chat> get() => Bot.instance.api.getChat(this);
 }
 
 /// This class is used to represent a chat id. It is a subclass of [ID].

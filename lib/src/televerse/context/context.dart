@@ -87,7 +87,7 @@ part 'chat_boost_removed.dart';
 /// - [ChosenInlineResultContext] - Represents the context when a [UpdateType.chosenInlineResult] event occurs.
 ///
 /// Contexts are subclasses of this class. You can use this class to access the update and the Televerse instance.
-class Context {
+class Context<TeleverseSession extends Session> {
   /// The RawAPI getter.
   RawAPI get api => _bot.api;
 
@@ -95,7 +95,7 @@ class Context {
   User get me => _bot.me;
 
   /// The RawAPI instance.
-  final Televerse _bot;
+  final Bot<TeleverseSession> _bot;
 
   /// The [Update] instance.
   ///
@@ -103,10 +103,10 @@ class Context {
   final Update update;
 
   /// The Session
-  late Session _session;
+  late TeleverseSession _session;
 
   /// The Session getter.
-  Session get session {
+  TeleverseSession get session {
     try {
       return _session;
     } catch (e) {
@@ -115,7 +115,7 @@ class Context {
   }
 
   /// The Session setter.
-  set session(Session session) {
+  set session(TeleverseSession session) {
     _bot.sessions.addSession(id.id, _session);
   }
 
@@ -223,7 +223,7 @@ class Context {
   }
 
   /// Creates a new Context object for the specified update.
-  static Context create(Televerse t, Update update) {
+  static Context create(Bot t, Update update) {
     switch (update.type) {
       case UpdateType.message:
       case UpdateType.editedMessage:
@@ -280,40 +280,40 @@ class Context {
   static List<UpdateType> updateTypes(Type ctx) {
     switch (ctx) {
       case MessageContext:
-        return [
+        return const [
           UpdateType.message,
           UpdateType.editedMessage,
           UpdateType.channelPost,
           UpdateType.editedChannelPost,
         ];
       case InlineQueryContext:
-        return [UpdateType.inlineQuery];
+        return const [UpdateType.inlineQuery];
       case CallbackQueryContext:
-        return [UpdateType.callbackQuery];
+        return const [UpdateType.callbackQuery];
       case ChatMemberUpdatedContext:
-        return [UpdateType.chatMember, UpdateType.myChatMember];
+        return const [UpdateType.chatMember, UpdateType.myChatMember];
       case PollContext:
-        return [UpdateType.poll];
+        return const [UpdateType.poll];
       case PollAnswerContext:
-        return [UpdateType.pollAnswer];
+        return const [UpdateType.pollAnswer];
       case ChosenInlineResultContext:
-        return [UpdateType.chosenInlineResult];
+        return const [UpdateType.chosenInlineResult];
       case ChatJoinRequestContext:
-        return [UpdateType.chatJoinRequest];
+        return const [UpdateType.chatJoinRequest];
       case ShippingQueryContext:
-        return [UpdateType.shippingQuery];
+        return const [UpdateType.shippingQuery];
       case PreCheckoutQueryContext:
-        return [UpdateType.preCheckoutQuery];
+        return const [UpdateType.preCheckoutQuery];
       case MessageReactionContext:
-        return [UpdateType.messageReaction];
+        return const [UpdateType.messageReaction];
       case MessageReactionCountUpdatedContext:
-        return [UpdateType.messageReactionCount];
+        return const [UpdateType.messageReactionCount];
       case ChatBoostUpdatedContext:
-        return [UpdateType.chatBoost];
+        return const [UpdateType.chatBoost];
       case ChatBoostRemovedContext:
-        return [UpdateType.chatBoostRemoved];
+        return const [UpdateType.chatBoostRemoved];
       default:
-        return [UpdateType.unknown];
+        return const [UpdateType.unknown];
     }
   }
 }

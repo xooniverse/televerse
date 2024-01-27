@@ -15,12 +15,12 @@ part of '../../televerse.dart';
 /// }
 /// ```
 ///
-class Televerse<TeleverseSession extends Session> {
+class Bot<TeleverseSession extends Session> {
   /// API Scheme
   final APIScheme _scheme;
 
   /// The current bot instance.
-  static late Televerse _instance;
+  static late Bot _instance;
 
   /// Base URL of the Telegram Bot API.
   final String _baseURL;
@@ -41,8 +41,8 @@ class Televerse<TeleverseSession extends Session> {
   /// Notes:
   ///   - If you try to access this getter before creating a bot instance, it will throw an error.
   ///   - The instance will be the last created bot instance.
-  ///   - DO NOT use this getter to create a bot instance. Use the [Televerse] constructor instead. This getter is only used to access the bot instance.
-  static Televerse get instance {
+  ///   - DO NOT use this getter to create a bot instance. Use the [Bot] constructor instead. This getter is only used to access the bot instance.
+  static Bot get instance {
     try {
       return _instance;
     } catch (err) {
@@ -90,11 +90,11 @@ class Televerse<TeleverseSession extends Session> {
   /// To create a new bot instance, you need to pass the bot token. You can also pass a [fetcher] to the constructor. The fetcher is used to fetch updates from the Telegram servers. By default, the bot uses long polling to fetch updates. You can also use webhooks to fetch updates.
   ///
   /// ## Using Local Bot API Server
-  /// You can use the [Televerse] class to create a bot instance that listens to a local Bot API server. Use the [Televerse.local] constructor to create a bot instance that listens to a local Bot API server.
+  /// You can use the [Bot] class to create a bot instance that listens to a local Bot API server. Use the [Bot.local] constructor to create a bot instance that listens to a local Bot API server.
   ///
   /// You can pass the [baseURL] parameter to the constructor to specify the base URL of the Telegram Bot API. By default, the base URL is `api.telegram.org`. This parameter will be used to create the [RawAPI] instance that points to your local Bot API server.
   /// If you're running the Bot API server locally, you should pass the [baseURL] and the [scheme] parameters to the constructor.
-  Televerse(
+  Bot(
     this.token, {
     Fetcher? fetcher,
     String baseURL = RawAPI.defaultBase,
@@ -144,7 +144,7 @@ class Televerse<TeleverseSession extends Session> {
   /// - Receive the absolute local path as a value of the file_path field without the need to download the file after a getFile request.
   ///
   /// Learn to setup Local Bot API Server here: https://github.com/tdlib/telegram-bot-api
-  factory Televerse.local(
+  factory Bot.local(
     String token, {
     Fetcher? fetcher,
     bool sync = false,
@@ -153,7 +153,7 @@ class Televerse<TeleverseSession extends Session> {
     LoggerOptions? loggerOptions,
   }) {
     print('Using local Bot API server at $baseURL');
-    return Televerse(
+    return Bot(
       token,
       fetcher: fetcher,
       baseURL: baseURL,
@@ -324,7 +324,7 @@ class Televerse<TeleverseSession extends Session> {
   bool get sessionsEnabled {
     try {
       return _sessionsManager.enabled;
-    } catch (err) {
+    } catch (_) {
       return false;
     }
   }

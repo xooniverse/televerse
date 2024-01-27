@@ -1,7 +1,7 @@
 part of '../../../televerse.dart';
 
 /// The On event. Attaches handlers for specific events.
-extension On on Televerse {
+extension On on Bot {
   /// Registers a callback for particular filter types.
   ///
   /// The call back will be only be executed on specific update types. You can

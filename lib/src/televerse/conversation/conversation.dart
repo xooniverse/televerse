@@ -21,7 +21,7 @@ part of '../../../televerse.dart';
 /// can use all the features of the Televerse library in your conversation.
 class Conversation<T extends Session> {
   /// The bot that this conversation belongs to.
-  final Televerse<T> _bot;
+  final Bot<T> _bot;
 
   /// Creates a new conversation.
   Conversation(this._bot);

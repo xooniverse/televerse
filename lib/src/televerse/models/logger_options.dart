@@ -10,7 +10,7 @@ void _debugPrint(Object? object) {
 
 /// This class represents the logger options.
 ///
-/// Instance of [LoggerOptions] can be passed to the [Televerse] / [Bot] instance.
+/// Instance of [LoggerOptions] can be passed to the [Bot] / [Bot] instance.
 /// This will setup logging the request and response data your bot makes.
 ///
 /// This will be useful in cases like debugging your code, etc.

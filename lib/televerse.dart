@@ -61,5 +61,5 @@ part 'src/types/aliases.dart';
 /// The main class of the library.
 ///
 /// This class is used to create a new bot instance. This is just a
-/// type alias for [Televerse] class.
-typedef Bot<T extends Session> = Televerse;
+/// type alias for [Bot] class.
+typedef Televerse<T extends Session> = Bot<T>;

@@ -43,7 +43,7 @@ class HandlerScope<T extends Function> {
         assert(handler != null || isConversation);
 
   /// Create context for the specified update.
-  Context context(Televerse t, Update update) {
+  Context context(Bot t, Update update) {
     return Context.create(t, update);
   }
 }

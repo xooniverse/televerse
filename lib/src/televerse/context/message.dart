@@ -22,7 +22,7 @@ class MessageContext extends Context with MessageMixin, ManagementMixin {
   ///
   /// Contains the matches of the regular expression.
   ///
-  /// This will be automatically set when you use the [Televerse.hears] method.
+  /// This will be automatically set when you use the [Bot.hears] method.
   List<RegExpMatch>? matches;
 
   /// **Chat ID**
