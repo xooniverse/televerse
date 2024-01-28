@@ -905,7 +905,7 @@ class RawAPI {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.stopMessageLiveLocation),

@@ -200,6 +200,18 @@ class Context<TeleverseSession extends Session> {
         ?.from;
   }
 
+  /// Internal getter for the file id
+  String? get _fileId {
+    return _msg?.photo?.last.fileId ??
+        _msg?.animation?.fileId ??
+        _msg?.audio?.fileId ??
+        _msg?.document?.fileId ??
+        _msg?.video?.fileId ??
+        _msg?.videoNote?.fileId ??
+        _msg?.voice?.fileId ??
+        _msg?.sticker?.fileId;
+  }
+
   /// The Chat ID for internal use
   int? get _chatId {
     return chat?.id;
@@ -210,6 +222,12 @@ class Context<TeleverseSession extends Session> {
     return _msg?.messageId ??
         messageReaction?.messageId ??
         messageReactionCount?.messageId;
+  }
+
+  /// Internal getter for inline message id
+  String? get _inlineMsgId {
+    return callbackQuery?.inlineMessageId ??
+        chosenInlineResult?.inlineMessageId;
   }
 
   /// Internal method to check if the context contains necessary information
@@ -1125,6 +1143,128 @@ class Context<TeleverseSession extends Session> {
   Future<bool> unpinAllGeneralForumTopicMessages() async {
     _verifyInfo([_chatId], APIMethod.unpinAllGeneralForumTopicMessages);
     return await api.unpinAllGeneralForumTopicMessages(id);
+  }
+
+  /// Context aware method for answering a callback query [APIMethod.answerCallbackQuery].
+  Future<bool> answerCallbackQuery({
+    String? text,
+    bool showAlert = false,
+    String? url,
+    int cacheTime = 0,
+  }) async {
+    _verifyInfo([callbackQuery?.id], APIMethod.answerCallbackQuery);
+    return await api.answerCallbackQuery(
+      callbackQuery!.id,
+      text: text,
+      showAlert: showAlert,
+      url: url,
+      cacheTime: cacheTime,
+    );
+  }
+
+  /// Context aware method for copying a message [APIMethod.copyMessage].
+  Future<MessageId> copyMessage(
+    ID chatId, {
+    int? messageThreadId,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? disableNotification,
+    bool? protectContent,
+    ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
+  }) async {
+    _verifyInfo([_chatId, _msgId], APIMethod.copyMessage);
+    return await api.copyMessage(
+      chatId,
+      id,
+      _msgId!,
+      messageThreadId: _threadId(messageThreadId),
+      caption: caption,
+      parseMode: parseMode,
+      captionEntities: captionEntities,
+      disableNotification: disableNotification,
+      protectContent: protectContent,
+      replyMarkup: replyMarkup,
+      replyParameters: replyParameters,
+    );
+  }
+
+  /// Context aware method for editing live location of inline message [APIMethod.editMessageLiveLocation].
+  Future<bool> editInlineMessageLiveLocation({
+    double? latitude,
+    double? longitude,
+    double? horizontalAccuracy,
+    int? heading,
+    int? proximityAlertRadius,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    _verifyInfo([_inlineMsgId], APIMethod.editMessageLiveLocation);
+    return await api.editInlineMessageLiveLocation(
+      _inlineMsgId!,
+      latitude: latitude,
+      longitude: longitude,
+      horizontalAccuracy: horizontalAccuracy,
+      heading: heading,
+      proximityAlertRadius: proximityAlertRadius,
+      replyMarkup: replyMarkup,
+    );
+  }
+
+  /// Context aware method for stopping live location of message: [APIMethod.stopMessageLiveLocation].
+  ///
+  /// Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.
+  ///
+  /// **IMPORTANT NOTE**
+  ///
+  /// This only works for Messages but not INLINE MESSAGES. If you're looking for a way to stop updating inline live location messages, check out [stopInlineMessageLiveLocation].
+  Future<Message> stopMessageLiveLocation({
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    _verifyInfo([_chatId, _msgId], APIMethod.stopMessageLiveLocation);
+    return await api.stopMessageLiveLocation(
+      id,
+      _msgId!,
+      replyMarkup: replyMarkup,
+    );
+  }
+
+  /// Context aware method for stopping live location of inline message: [APIMethod.stopMessageLiveLocation].
+  Future<bool> stopInlineMessageLiveLocation({
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    _verifyInfo([_inlineMsgId], APIMethod.stopMessageLiveLocation);
+    return await api.stopInlineMessageLiveLocation(
+      _inlineMsgId!,
+      replyMarkup: replyMarkup,
+    );
+  }
+
+  /// Context aware method for send "Typing..." action: [APIMethod.sendChatAction].
+  Future<bool> sendTyping() async {
+    _verifyInfo([_chatId], APIMethod.sendChatAction);
+    return await replyWithChatAction(ChatAction.typing);
+  }
+
+  /// Context aware method for getting users profile photos: [APIMethod.getUserProfilePhotos].
+  Future<UserProfilePhotos> getUserProfilePhotos({
+    int? offset,
+    int? limit,
+  }) async {
+    _verifyInfo([from?.id], APIMethod.getUserProfilePhotos);
+    return await api.getUserProfilePhotos(
+      from!.id,
+      offset: offset,
+      limit: limit,
+    );
+  }
+
+  /// Context aware method for getting file: [APIMethod.getFile].
+  ///
+  /// This method will return the file in the current context.
+  Future<File> getFile() async {
+    _verifyInfo([_fileId], APIMethod.getFile);
+    return await api.getFile(_fileId!);
   }
 }
 
