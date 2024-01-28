@@ -216,7 +216,7 @@ class Context<TeleverseSession extends Session> {
   }
 
   /// A shorthand getter for the [User] instance from the update.
-  User? get user {
+  User? get from {
     return (callbackQuery ??
             inlineQuery ??
             shippingQuery ??
