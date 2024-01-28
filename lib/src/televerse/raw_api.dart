@@ -2729,8 +2729,8 @@ class RawAPI {
       "is_flexible": isFlexible,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
-      "reply_parameters": jsonEncode(replyParameters?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
+      "reply_parameters": replyParameters?.toJson(),
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(

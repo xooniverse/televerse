@@ -258,7 +258,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendMessage);
-    return await api.sendMessage(
+    return api.sendMessage(
       id,
       text,
       messageThreadId: _threadId(messageThreadId),
@@ -294,7 +294,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendPhoto);
-    return await api.sendPhoto(
+    return api.sendPhoto(
       id,
       photo,
       messageThreadId: _threadId(messageThreadId),
@@ -328,7 +328,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendAudio);
-    return await api.sendAudio(
+    return api.sendAudio(
       id,
       audio,
       messageThreadId: _threadId(messageThreadId),
@@ -364,7 +364,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendDocument);
-    return await api.sendDocument(
+    return api.sendDocument(
       id,
       document,
       messageThreadId: _threadId(messageThreadId),
@@ -402,7 +402,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendVideo);
-    return await api.sendVideo(
+    return api.sendVideo(
       id,
       video,
       messageThreadId: _threadId(messageThreadId),
@@ -438,7 +438,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendVideoNote);
-    return await api.sendVideoNote(
+    return api.sendVideoNote(
       id,
       videoNote,
       messageThreadId: _threadId(messageThreadId),
@@ -469,7 +469,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendVoice);
-    return await api.sendVoice(
+    return api.sendVoice(
       id,
       voice,
       messageThreadId: _threadId(messageThreadId),
@@ -496,7 +496,7 @@ class Context<TeleverseSession extends Session> {
     ReplyParameters? replyParameters,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendMediaGroup);
-    return await api.sendMediaGroup(
+    return api.sendMediaGroup(
       id,
       media,
       messageThreadId: _threadId(messageThreadId),
@@ -523,7 +523,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendLocation);
-    return await api.sendLocation(
+    return api.sendLocation(
       id,
       latitude,
       longitude,
@@ -558,7 +558,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendVenue);
-    return await api.sendVenue(
+    return api.sendVenue(
       id,
       latitude,
       longitude,
@@ -591,7 +591,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendContact);
-    return await api.sendContact(
+    return api.sendContact(
       id,
       phoneNumber,
       firstName,
@@ -627,7 +627,7 @@ class Context<TeleverseSession extends Session> {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
-    return await api.sendPoll(
+    return api.sendPoll(
       id,
       question,
       options,
@@ -661,7 +661,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendDice);
-    return await api.sendDice(
+    return api.sendDice(
       id,
       emoji: emoji,
       messageThreadId: _threadId(messageThreadId),
@@ -680,7 +680,7 @@ class Context<TeleverseSession extends Session> {
     int? messageThreadId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendChatAction);
-    return await api.sendChatAction(
+    return api.sendChatAction(
       id,
       action,
       messageThreadId: _threadId(messageThreadId),
@@ -699,7 +699,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendGame);
-    return await api.sendGame(
+    return api.sendGame(
       id,
       shortName,
       messageThreadId: _threadId(messageThreadId),
@@ -730,7 +730,7 @@ class Context<TeleverseSession extends Session> {
     ReplyMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendAnimation);
-    return await api.sendAnimation(
+    return api.sendAnimation(
       id,
       animation,
       messageThreadId: _threadId(messageThreadId),
@@ -761,7 +761,7 @@ class Context<TeleverseSession extends Session> {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendSticker);
-    return await api.sendSticker(
+    return api.sendSticker(
       id,
       sticker,
       messageThreadId: _threadId(messageThreadId),
@@ -777,7 +777,7 @@ class Context<TeleverseSession extends Session> {
   /// Use this method to delete the message received by the bot.
   Future<bool> deleteMessage() async {
     _verifyInfo([_chatId, _msgId], APIMethod.deleteMessage);
-    return await api.deleteMessage(
+    return api.deleteMessage(
       id,
       _msgId!,
     );
@@ -796,7 +796,7 @@ class Context<TeleverseSession extends Session> {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId, _msgId], APIMethod.editMessageLiveLocation);
-    return await api.editMessageLiveLocation(
+    return api.editMessageLiveLocation(
       id,
       _msgId!,
       latitude: latitude,
@@ -818,7 +818,7 @@ class Context<TeleverseSession extends Session> {
     bool? protectContent,
   }) async {
     _verifyInfo([_chatId, _msgId], APIMethod.forwardMessage);
-    return await api.forwardMessage(
+    return api.forwardMessage(
       chatId,
       id,
       _msgId!,
@@ -833,7 +833,7 @@ class Context<TeleverseSession extends Session> {
   /// This method will get the chat member in the current context.
   Future<ChatMember> getAuthor() async {
     _verifyInfo([_chatId, from?.id], APIMethod.getChatMember);
-    return await api.getChatMember(id, from!.id);
+    return api.getChatMember(id, from!.id);
   }
 
   /// hasText checks if the message has the given text.
@@ -872,7 +872,7 @@ class Context<TeleverseSession extends Session> {
     bool? isBig,
   }) async {
     _verifyInfo([_chatId, _msgId], APIMethod.setMessageReaction);
-    return await api.setMessageReaction(
+    return api.setMessageReaction(
       id,
       _msgId!,
       reaction: [
@@ -888,7 +888,7 @@ class Context<TeleverseSession extends Session> {
     bool? isBig,
   }) async {
     _verifyInfo([_chatId, _msgId], APIMethod.setMessageReaction);
-    return await api.setMessageReaction(
+    return api.setMessageReaction(
       id,
       _msgId!,
       reaction: emojis
@@ -903,31 +903,31 @@ class Context<TeleverseSession extends Session> {
   /// Context aware method to get chat member [APIMethod.getChatMember].
   Future<ChatMember> getChatMember(int userId) async {
     _verifyInfo([_chatId], APIMethod.getChatMember);
-    return await api.getChatMember(id, userId);
+    return api.getChatMember(id, userId);
   }
 
   /// Context aware method for set chat sticker set [APIMethod.setChatStickerSet].
   Future<bool> setChatStickerSet(String stickerSetName) async {
     _verifyInfo([_chatId], APIMethod.setChatStickerSet);
-    return await api.setChatStickerSet(id, stickerSetName);
+    return api.setChatStickerSet(id, stickerSetName);
   }
 
   /// Context aware method for delete chat sticker set [APIMethod.deleteChatStickerSet].
   Future<bool> deleteChatStickerSet() async {
     _verifyInfo([_chatId], APIMethod.deleteChatStickerSet);
-    return await api.deleteChatStickerSet(id);
+    return api.deleteChatStickerSet(id);
   }
 
   /// Context aware method for set chat title [APIMethod.setChatTitle].
   Future<bool> setChatTitle(String title) async {
     _verifyInfo([_chatId], APIMethod.setChatTitle);
-    return await api.setChatTitle(id, title);
+    return api.setChatTitle(id, title);
   }
 
   /// Context aware method for set chat description [APIMethod.setChatDescription].
   Future<bool> setChatDescription(String description) async {
     _verifyInfo([_chatId], APIMethod.setChatDescription);
-    return await api.setChatDescription(id, description);
+    return api.setChatDescription(id, description);
   }
 
   /// Context aware method for pin chat message [APIMethod.pinChatMessage].
@@ -936,7 +936,7 @@ class Context<TeleverseSession extends Session> {
     bool? disableNotification,
   }) async {
     _verifyInfo([_chatId], APIMethod.pinChatMessage);
-    return await api.pinChatMessage(
+    return api.pinChatMessage(
       id,
       messageId,
       disableNotification: disableNotification,
@@ -948,7 +948,7 @@ class Context<TeleverseSession extends Session> {
     bool? disableNotification,
   }) async {
     _verifyInfo([_chatId, _msgId], APIMethod.pinChatMessage);
-    return await api.pinChatMessage(
+    return api.pinChatMessage(
       id,
       _msgId!,
       disableNotification: disableNotification,
@@ -958,14 +958,14 @@ class Context<TeleverseSession extends Session> {
   /// Context aware method for unpin chat message [APIMethod.unpinChatMessage].
   Future<bool> unpinChatMessage(int messageId) async {
     _verifyInfo([_chatId], APIMethod.unpinChatMessage);
-    return await api.unpinChatMessage(id, messageId);
+    return api.unpinChatMessage(id, messageId);
   }
 
   /// Context aware method for unpin the current message [APIMethod.unpinChatMessage].
   /// This will unpin the message in the current context.
   Future<bool> unpinThisMessage() async {
     _verifyInfo([_chatId, _msgId], APIMethod.unpinChatMessage);
-    return await api.unpinChatMessage(id, _msgId!);
+    return api.unpinChatMessage(id, _msgId!);
   }
 
   /// Context aware method for creating a new forum topic [APIMethod.createForumTopic].
@@ -975,7 +975,7 @@ class Context<TeleverseSession extends Session> {
     String? iconCustomEmojiId,
   }) async {
     _verifyInfo([_chatId], APIMethod.createForumTopic);
-    return await api.createForumTopic(
+    return api.createForumTopic(
       id,
       name,
       iconColor: iconColor,
@@ -995,7 +995,7 @@ class Context<TeleverseSession extends Session> {
       [_chatId, _threadId(messageThreadId)],
       APIMethod.editForumTopic,
     );
-    return await api.editForumTopic(
+    return api.editForumTopic(
       id,
       _threadId(messageThreadId)!,
       name: name,
@@ -1013,7 +1013,7 @@ class Context<TeleverseSession extends Session> {
       [_chatId, _threadId(messageThreadId)],
       APIMethod.closeForumTopic,
     );
-    return await api.closeForumTopic(
+    return api.closeForumTopic(
       id,
       _threadId(messageThreadId)!,
     );
@@ -1029,7 +1029,7 @@ class Context<TeleverseSession extends Session> {
       [_chatId, _threadId(messageThreadId)],
       APIMethod.reopenForumTopic,
     );
-    return await api.reopenForumTopic(
+    return api.reopenForumTopic(
       id,
       _threadId(messageThreadId)!,
     );
@@ -1045,7 +1045,7 @@ class Context<TeleverseSession extends Session> {
       [_chatId, _threadId(messageThreadId)],
       APIMethod.deleteForumTopic,
     );
-    return await api.deleteForumTopic(
+    return api.deleteForumTopic(
       id,
       _threadId(messageThreadId)!,
     );
@@ -1061,7 +1061,7 @@ class Context<TeleverseSession extends Session> {
       [_chatId, _threadId(messageThreadId)],
       APIMethod.unpinAllForumTopicMessages,
     );
-    return await api.unpinAllForumTopicMessages(
+    return api.unpinAllForumTopicMessages(
       id,
       _threadId(messageThreadId)!,
     );
@@ -1072,7 +1072,7 @@ class Context<TeleverseSession extends Session> {
     String name,
   ) async {
     _verifyInfo([_chatId], APIMethod.editGeneralForumTopic);
-    return await api.editGeneralForumTopic(
+    return api.editGeneralForumTopic(
       id,
       name,
     );
@@ -1081,31 +1081,31 @@ class Context<TeleverseSession extends Session> {
   /// Context aware method for closing the general forum topic [APIMethod.closeGeneralForumTopic].
   Future<bool> closeGeneralForumTopic() async {
     _verifyInfo([_chatId], APIMethod.closeGeneralForumTopic);
-    return await api.closeGeneralForumTopic(id);
+    return api.closeGeneralForumTopic(id);
   }
 
   /// Context aware method for reopening the general forum topic [APIMethod.reopenGeneralForumTopic].
   Future<bool> reopenGeneralForumTopic() async {
     _verifyInfo([_chatId], APIMethod.reopenGeneralForumTopic);
-    return await api.reopenGeneralForumTopic(id);
+    return api.reopenGeneralForumTopic(id);
   }
 
   /// Context aware method for hiding the general forum topic [APIMethod.hideGeneralForumTopic].
   Future<bool> hideGeneralForumTopic() async {
     _verifyInfo([_chatId], APIMethod.hideGeneralForumTopic);
-    return await api.hideGeneralForumTopic(id);
+    return api.hideGeneralForumTopic(id);
   }
 
   /// Context aware method for unhiding the general forum topic [APIMethod.unhideGeneralForumTopic].
   Future<bool> unhideGeneralForumTopic() async {
     _verifyInfo([_chatId], APIMethod.unhideGeneralForumTopic);
-    return await api.unhideGeneralForumTopic(id);
+    return api.unhideGeneralForumTopic(id);
   }
 
   /// Context aware method for unpinning all general forum topic messages [APIMethod.unpinAllGeneralForumTopicMessages].
   Future<bool> unpinAllGeneralForumTopicMessages() async {
     _verifyInfo([_chatId], APIMethod.unpinAllGeneralForumTopicMessages);
-    return await api.unpinAllGeneralForumTopicMessages(id);
+    return api.unpinAllGeneralForumTopicMessages(id);
   }
 
   /// Context aware method for answering a callback query [APIMethod.answerCallbackQuery].
@@ -1116,7 +1116,7 @@ class Context<TeleverseSession extends Session> {
     int cacheTime = 0,
   }) async {
     _verifyInfo([callbackQuery?.id], APIMethod.answerCallbackQuery);
-    return await api.answerCallbackQuery(
+    return api.answerCallbackQuery(
       callbackQuery!.id,
       text: text,
       showAlert: showAlert,
@@ -1138,7 +1138,7 @@ class Context<TeleverseSession extends Session> {
     ReplyParameters? replyParameters,
   }) async {
     _verifyInfo([_chatId, _msgId], APIMethod.copyMessage);
-    return await api.copyMessage(
+    return api.copyMessage(
       chatId,
       id,
       _msgId!,
@@ -1163,7 +1163,7 @@ class Context<TeleverseSession extends Session> {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     _verifyInfo([_inlineMsgId], APIMethod.editMessageLiveLocation);
-    return await api.editInlineMessageLiveLocation(
+    return api.editInlineMessageLiveLocation(
       _inlineMsgId!,
       latitude: latitude,
       longitude: longitude,
@@ -1185,7 +1185,7 @@ class Context<TeleverseSession extends Session> {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     _verifyInfo([_chatId, _msgId], APIMethod.stopMessageLiveLocation);
-    return await api.stopMessageLiveLocation(
+    return api.stopMessageLiveLocation(
       id,
       _msgId!,
       replyMarkup: replyMarkup,
@@ -1197,7 +1197,7 @@ class Context<TeleverseSession extends Session> {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     _verifyInfo([_inlineMsgId], APIMethod.stopMessageLiveLocation);
-    return await api.stopInlineMessageLiveLocation(
+    return api.stopInlineMessageLiveLocation(
       _inlineMsgId!,
       replyMarkup: replyMarkup,
     );
@@ -1206,7 +1206,7 @@ class Context<TeleverseSession extends Session> {
   /// Context aware method for send "Typing..." action: [APIMethod.sendChatAction].
   Future<bool> sendTyping() async {
     _verifyInfo([_chatId], APIMethod.sendChatAction);
-    return await replyWithChatAction(ChatAction.typing);
+    return replyWithChatAction(ChatAction.typing);
   }
 
   /// Context aware method for getting users profile photos: [APIMethod.getUserProfilePhotos].
@@ -1215,7 +1215,7 @@ class Context<TeleverseSession extends Session> {
     int? limit,
   }) async {
     _verifyInfo([from?.id], APIMethod.getUserProfilePhotos);
-    return await api.getUserProfilePhotos(
+    return api.getUserProfilePhotos(
       from!.id,
       offset: offset,
       limit: limit,
@@ -1227,7 +1227,7 @@ class Context<TeleverseSession extends Session> {
   /// This method will return the file in the current context.
   Future<File> getFile() async {
     _verifyInfo([_fileId], APIMethod.getFile);
-    return await api.getFile(_fileId!);
+    return api.getFile(_fileId!);
   }
 
   /// Context aware method for banning a user: [APIMethod.banChatMember].
@@ -1237,7 +1237,7 @@ class Context<TeleverseSession extends Session> {
     bool? revokeMessages,
   }) async {
     _verifyInfo([_chatId], APIMethod.banChatMember);
-    return await api.banChatMember(
+    return api.banChatMember(
       id,
       userId,
       untilDate: untilDate,
@@ -1251,7 +1251,7 @@ class Context<TeleverseSession extends Session> {
     bool? onlyIfBanned,
   }) async {
     _verifyInfo([_chatId], APIMethod.unbanChatMember);
-    return await api.unbanChatMember(
+    return api.unbanChatMember(
       id,
       userId,
       onlyIfBanned: onlyIfBanned,
@@ -1265,7 +1265,7 @@ class Context<TeleverseSession extends Session> {
     bool? revokeMessages,
   }) async {
     _verifyInfo([_chatId, from?.id], APIMethod.banChatMember);
-    return await api.banChatMember(
+    return api.banChatMember(
       id,
       from!.id,
       untilDate: untilDate,
@@ -1279,7 +1279,7 @@ class Context<TeleverseSession extends Session> {
     bool? onlyIfBanned,
   }) async {
     _verifyInfo([_chatId, from?.id], APIMethod.unbanChatMember);
-    return await api.unbanChatMember(
+    return api.unbanChatMember(
       id,
       from!.id,
       onlyIfBanned: onlyIfBanned,
@@ -1294,7 +1294,7 @@ class Context<TeleverseSession extends Session> {
     bool? useIndependentChatPermissions,
   }) async {
     _verifyInfo([_chatId], APIMethod.restrictChatMember);
-    return await api.restrictChatMember(
+    return api.restrictChatMember(
       id,
       userId,
       permissions,
@@ -1310,7 +1310,7 @@ class Context<TeleverseSession extends Session> {
     bool? useIndependentChatPermissions,
   }) async {
     _verifyInfo([_chatId, from?.id], APIMethod.restrictChatMember);
-    return await api.restrictChatMember(
+    return api.restrictChatMember(
       id,
       from!.id,
       permissions,
@@ -1340,7 +1340,7 @@ class Context<TeleverseSession extends Session> {
     bool? canDeleteStories,
   }) async {
     _verifyInfo([_chatId], APIMethod.promoteChatMember);
-    return await api.promoteChatMember(
+    return api.promoteChatMember(
       id,
       userId,
       isAnonymous: isAnonymous,
@@ -1381,7 +1381,7 @@ class Context<TeleverseSession extends Session> {
     bool? canDeleteStories,
   }) async {
     _verifyInfo([_chatId, from?.id], APIMethod.promoteChatMember);
-    return await api.promoteChatMember(
+    return api.promoteChatMember(
       id,
       from!.id,
       isAnonymous: isAnonymous,
@@ -1408,7 +1408,7 @@ class Context<TeleverseSession extends Session> {
     String customTitle,
   ) async {
     _verifyInfo([_chatId], APIMethod.setChatAdministratorCustomTitle);
-    return await api.setChatAdministratorCustomTitle(
+    return api.setChatAdministratorCustomTitle(
       id,
       userId,
       customTitle,
@@ -1420,7 +1420,7 @@ class Context<TeleverseSession extends Session> {
     String customTitle,
   ) async {
     _verifyInfo([_chatId, from?.id], APIMethod.setChatAdministratorCustomTitle);
-    return await api.setChatAdministratorCustomTitle(
+    return api.setChatAdministratorCustomTitle(
       id,
       from!.id,
       customTitle,
@@ -1433,7 +1433,7 @@ class Context<TeleverseSession extends Session> {
     bool? useIndependentChatPermissions,
   }) async {
     _verifyInfo([_chatId], APIMethod.setChatPermissions);
-    return await api.setChatPermissions(
+    return api.setChatPermissions(
       id,
       permissions,
       useIndependentChatPermissions: useIndependentChatPermissions,
@@ -1443,7 +1443,7 @@ class Context<TeleverseSession extends Session> {
   /// Export the chat invite link.
   Future<String> exportChatInviteLink() async {
     _verifyInfo([_chatId], APIMethod.exportChatInviteLink);
-    return await api.exportChatInviteLink(id);
+    return api.exportChatInviteLink(id);
   }
 
   /// Create a chat invite link.
@@ -1454,7 +1454,7 @@ class Context<TeleverseSession extends Session> {
     bool? createsJoinRequest,
   }) async {
     _verifyInfo([_chatId], APIMethod.createChatInviteLink);
-    return await api.createChatInviteLink(
+    return api.createChatInviteLink(
       id,
       name: name,
       expireDate: expireDate,
@@ -1472,7 +1472,7 @@ class Context<TeleverseSession extends Session> {
     bool? createsJoinRequest,
   }) async {
     _verifyInfo([_chatId], APIMethod.editChatInviteLink);
-    return await api.editChatInviteLink(
+    return api.editChatInviteLink(
       id,
       inviteLink,
       name: name,
@@ -1487,7 +1487,7 @@ class Context<TeleverseSession extends Session> {
     String inviteLink,
   ) async {
     _verifyInfo([_chatId], APIMethod.revokeChatInviteLink);
-    return await api.revokeChatInviteLink(
+    return api.revokeChatInviteLink(
       id,
       inviteLink,
     );
@@ -1503,7 +1503,7 @@ class Context<TeleverseSession extends Session> {
       [_chatId, userId ?? from?.id],
       APIMethod.approveChatJoinRequest,
     );
-    return await api.approveChatJoinRequest(
+    return api.approveChatJoinRequest(
       id,
       userId ?? from!.id,
     );
@@ -1517,7 +1517,7 @@ class Context<TeleverseSession extends Session> {
       [_chatId, userId ?? from?.id],
       APIMethod.declineChatJoinRequest,
     );
-    return await api.declineChatJoinRequest(
+    return api.declineChatJoinRequest(
       id,
       userId ?? from!.id,
     );
@@ -1528,7 +1528,7 @@ class Context<TeleverseSession extends Session> {
     InputFile photo,
   ) async {
     _verifyInfo([_chatId], APIMethod.setChatPhoto);
-    return await api.setChatPhoto(
+    return api.setChatPhoto(
       id,
       photo,
     );
@@ -1537,37 +1537,37 @@ class Context<TeleverseSession extends Session> {
   /// Delete the chat photo.
   Future<bool> deleteChatPhoto() async {
     _verifyInfo([_chatId], APIMethod.deleteChatPhoto);
-    return await api.deleteChatPhoto(id);
+    return api.deleteChatPhoto(id);
   }
 
   /// Unpin all messages in the chat.
   Future<bool> unpinAllMessages() async {
     _verifyInfo([_chatId], APIMethod.unpinAllChatMessages);
-    return await api.unpinAllChatMessages(id);
+    return api.unpinAllChatMessages(id);
   }
 
   /// Leave the chat.
   Future<bool> leaveChat() async {
     _verifyInfo([_chatId], APIMethod.leaveChat);
-    return await api.leaveChat(id);
+    return api.leaveChat(id);
   }
 
   /// Get information about the chat.
   Future<Chat> getChat() async {
     _verifyInfo([_chatId], APIMethod.getChat);
-    return await api.getChat(id);
+    return api.getChat(id);
   }
 
   /// Get the list of administrators in the chat, which aren't bots.
   Future<List<ChatMember>> getChatAdministrators() async {
     _verifyInfo([_chatId], APIMethod.getChatAdministrators);
-    return await api.getChatAdministrators(id);
+    return api.getChatAdministrators(id);
   }
 
   /// Get the number of members in the chat.
   Future<int> getChatMembersCount() async {
     _verifyInfo([_chatId], APIMethod.getChatMembersCount);
-    return await api.getChatMembersCount(id);
+    return api.getChatMembersCount(id);
   }
 
   /// Change the list of bot's commands.
@@ -1577,7 +1577,7 @@ class Context<TeleverseSession extends Session> {
     String? languageCode,
   }) async {
     _verifyInfo([_chatId], APIMethod.setMyCommands);
-    return await api.setMyCommands(
+    return api.setMyCommands(
       commands,
       scope: scope,
       languageCode: languageCode,
@@ -1590,7 +1590,7 @@ class Context<TeleverseSession extends Session> {
     String? languageCode,
   }) async {
     _verifyInfo([_chatId], APIMethod.deleteMyCommands);
-    return await api.deleteMyCommands(
+    return api.deleteMyCommands(
       scope: scope,
       languageCode: languageCode,
     );
@@ -1602,7 +1602,7 @@ class Context<TeleverseSession extends Session> {
     String? languageCode,
   }) async {
     _verifyInfo([_chatId], APIMethod.getMyCommands);
-    return await api.getMyCommands(
+    return api.getMyCommands(
       scope: scope,
       languageCode: languageCode,
     );
@@ -1611,13 +1611,13 @@ class Context<TeleverseSession extends Session> {
   /// Set the bot's menu button for this chat (must be a private chat).
   Future<bool> setChatMenuButton(MenuButton menuButton) async {
     _verifyInfo([_chatId], APIMethod.setChatMenuButton);
-    return await api.setChatMenuButton(id, menuButton);
+    return api.setChatMenuButton(id, menuButton);
   }
 
   /// Get the current chat menu button
   Future<MenuButton> getChatMenuButton() async {
     _verifyInfo([_chatId], APIMethod.getChatMenuButton);
-    return await api.getChatMenuButton(id);
+    return api.getChatMenuButton(id);
   }
 
   /// Set bot's default administrator rights
@@ -1626,7 +1626,7 @@ class Context<TeleverseSession extends Session> {
     bool? forChannels,
   ) async {
     _verifyInfo([_chatId], APIMethod.setMyDefaultAdministratorRights);
-    return await api.setMyDefaultAdministratorRights(
+    return api.setMyDefaultAdministratorRights(
       rights: rights,
       forChannels: forChannels,
     );
@@ -1637,7 +1637,7 @@ class Context<TeleverseSession extends Session> {
     bool? forChannels,
   }) async {
     _verifyInfo([_chatId], APIMethod.getMyDefaultAdministratorRights);
-    return await api.getMyDefaultAdministratorRights(
+    return api.getMyDefaultAdministratorRights(
       forChannels: forChannels,
     );
   }
@@ -1750,6 +1750,210 @@ class Context<TeleverseSession extends Session> {
       );
     }
     return true;
+  }
+
+  /// Answer inline query
+  ///
+  /// Use this method to send answers to an inline query. On success, True is returned.
+  Future<bool> answerInlineQuery(
+    List<InlineQueryResult> results, {
+    int? cacheTime = 300,
+    bool? isPersonal,
+    String? nextOffset,
+    InlineQueryResultsButton? button,
+  }) async {
+    _verifyInfo([inlineQuery?.id], APIMethod.answerInlineQuery);
+    return api.answerInlineQuery(
+      inlineQuery!.id,
+      results,
+      cacheTime: cacheTime,
+      isPersonal: isPersonal,
+      nextOffset: nextOffset,
+      button: button,
+    );
+  }
+
+  /// Anwer a web app query
+  ///
+  /// Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a [SentWebAppMessage] object is returned.
+  Future<SentWebAppMessage> answerWebAppQuery(
+    String webAppQueryId,
+    InlineQueryResult result,
+  ) async {
+    _verifyInfo([], APIMethod.answerWebAppQuery);
+    return api.answerWebAppQuery(
+      webAppQueryId,
+      result,
+    );
+  }
+
+  /// Send invoice to the chat
+  Future<Message> sendInvoice({
+    required String title,
+    required String description,
+    required String payload,
+    required String providerToken,
+    required String currency,
+    required List<LabeledPrice> prices,
+    int? messageThreadId,
+    int? maxTipAmount = 0,
+    List<int>? suggestedTipAmounts,
+    String? startParameter,
+    String? providerData,
+    String? photoUrl,
+    int? photoSize,
+    int? photoWidth,
+    int? photoHeight,
+    bool? needName,
+    bool? needPhoneNumber,
+    bool? needEmail,
+    bool? needShippingAddress,
+    bool? sendPhoneNumberToProvider,
+    bool? sendEmailToProvider,
+    bool? isFlexible,
+    bool? disableNotification,
+    bool? protectContent,
+    InlineKeyboardMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.sendInvoice);
+    return api.sendInvoice(
+      id,
+      title: title,
+      description: description,
+      payload: payload,
+      providerToken: providerToken,
+      currency: currency,
+      prices: prices,
+      messageThreadId: _threadId(messageThreadId),
+      maxTipAmount: maxTipAmount,
+      suggestedTipAmounts: suggestedTipAmounts,
+      startParameter: startParameter,
+      providerData: providerData,
+      photoUrl: photoUrl,
+      photoSize: photoSize,
+      photoWidth: photoWidth,
+      photoHeight: photoHeight,
+      needName: needName,
+      needPhoneNumber: needPhoneNumber,
+      needEmail: needEmail,
+      needShippingAddress: needShippingAddress,
+      sendPhoneNumberToProvider: sendPhoneNumberToProvider,
+      sendEmailToProvider: sendEmailToProvider,
+      isFlexible: isFlexible,
+      disableNotification: disableNotification,
+      protectContent: protectContent,
+      replyMarkup: replyMarkup,
+      replyParameters: replyParameters,
+    );
+  }
+
+  /// Create invoice link
+  Future<String> createInvoiceLink({
+    required String title,
+    required String description,
+    required String payload,
+    required String providerToken,
+    required String currency,
+    required List<LabeledPrice> prices,
+    int? maxTipAmount = 0,
+    List<int>? suggestedTipAmounts,
+    String? providerData,
+    String? photoUrl,
+    int? photoSize,
+    int? photoWidth,
+    int? photoHeight,
+    bool? needName,
+    bool? needPhoneNumber,
+    bool? needEmail,
+    bool? needShippingAddress,
+    bool? sendPhoneNumberToProvider,
+    bool? sendEmailToProvider,
+    bool? isFlexible,
+  }) async {
+    return api.createInvoiceLink(
+      title: title,
+      description: description,
+      payload: payload,
+      providerToken: providerToken,
+      currency: currency,
+      prices: prices,
+      maxTipAmount: maxTipAmount,
+      suggestedTipAmounts: suggestedTipAmounts,
+      providerData: providerData,
+      photoUrl: photoUrl,
+      photoSize: photoSize,
+      photoWidth: photoWidth,
+      photoHeight: photoHeight,
+      needName: needName,
+      needPhoneNumber: needPhoneNumber,
+      needEmail: needEmail,
+      needShippingAddress: needShippingAddress,
+      sendPhoneNumberToProvider: sendPhoneNumberToProvider,
+      sendEmailToProvider: sendEmailToProvider,
+      isFlexible: isFlexible,
+    );
+  }
+
+  /// Answer the incoming shipping query
+  Future<bool> answerShippingQuery(
+    bool ok, {
+    List<ShippingOption>? shippingOptions,
+    String? errorMessage,
+  }) async {
+    _verifyInfo([shippingQuery?.id], APIMethod.answerShippingQuery);
+    return api.answerShippingQuery(
+      shippingQuery!.id,
+      ok,
+      shippingOptions: shippingOptions,
+      errorMessage: errorMessage,
+    );
+  }
+
+  /// Answer pre checkout query
+  Future<bool> answerPreCheckouQUery(
+    bool ok, {
+    String? errorMessage,
+  }) async {
+    _verifyInfo([preCheckoutQuery?.id], APIMethod.answerPreCheckoutQuery);
+    return api.answerPreCheckoutQuery(
+      preCheckoutQuery!.id,
+      ok,
+      errorMessage: errorMessage,
+    );
+  }
+
+  /// Set my description
+  Future<bool> setMyDescription({
+    String? description,
+    String? languageCode,
+  }) async {
+    return api.setMyDescription(
+      description: description,
+      languageCode: languageCode,
+    );
+  }
+
+  /// Set my short description
+  Future<bool> setMyShortDescription({
+    String? shortDescription,
+    String? languageCode,
+  }) async {
+    return api.setMyShortDescription(
+      shortDescription: shortDescription,
+      languageCode: languageCode,
+    );
+  }
+
+  /// Set my name
+  Future<bool> setMyName({
+    String? name,
+    String? languageCode,
+  }) async {
+    return api.setMyName(
+      name: name,
+      languageCode: languageCode,
+    );
   }
 }
 
