@@ -232,10 +232,15 @@ class Context<TeleverseSession extends Session> {
 
   /// Internal method to check if the context contains necessary information
   /// to call the context aware methods.
-  void _verifyInfo(List<dynamic> info, APIMethod method) {
+  void _verifyInfo(
+    List<dynamic> info,
+    APIMethod method, {
+    String? description,
+  }) {
     if (info.contains(null)) {
       throw TeleverseException(
         "The context does not contain necessary information to call the method `$method`.",
+        description: description,
       );
     }
   }
@@ -767,28 +772,6 @@ class Context<TeleverseSession extends Session> {
     );
   }
 
-  /// Edit the text of a message.
-  ///
-  /// This method can be used to edit text of messages sent by the bot.
-  Future<Message> editMessageText(
-    String text, {
-    ParseMode? parseMode,
-    List<MessageEntity>? entities,
-    LinkPreviewOptions? linkPreviewOptions,
-    InlineKeyboardMarkup? replyMarkup,
-  }) async {
-    _verifyInfo([_chatId, _msgId], APIMethod.editMessageText);
-    return await api.editMessageText(
-      id,
-      _msgId!,
-      text,
-      parseMode: parseMode,
-      entities: entities,
-      linkPreviewOptions: linkPreviewOptions,
-      replyMarkup: replyMarkup,
-    );
-  }
-
   /// Delete the message.
   ///
   /// Use this method to delete the message received by the bot.
@@ -797,26 +780,6 @@ class Context<TeleverseSession extends Session> {
     return await api.deleteMessage(
       id,
       _msgId!,
-    );
-  }
-
-  /// Edit the caption of a message.
-  ///
-  /// This method can be used to edit captions of the message in the current context.
-  Future<Message> editMessageCaption(
-    String caption, {
-    ParseMode? parseMode,
-    List<MessageEntity>? captionEntities,
-    InlineKeyboardMarkup? replyMarkup,
-  }) async {
-    _verifyInfo([_chatId, _msgId], APIMethod.editMessageCaption);
-    return await api.editMessageCaption(
-      id,
-      _msgId!,
-      caption: caption,
-      parseMode: parseMode,
-      captionEntities: captionEntities,
-      replyMarkup: replyMarkup,
     );
   }
 
@@ -1265,6 +1228,528 @@ class Context<TeleverseSession extends Session> {
   Future<File> getFile() async {
     _verifyInfo([_fileId], APIMethod.getFile);
     return await api.getFile(_fileId!);
+  }
+
+  /// Context aware method for banning a user: [APIMethod.banChatMember].
+  Future<bool> banChatMember(
+    int userId, {
+    DateTime? untilDate,
+    bool? revokeMessages,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.banChatMember);
+    return await api.banChatMember(
+      id,
+      userId,
+      untilDate: untilDate,
+      revokeMessages: revokeMessages,
+    );
+  }
+
+  /// Context aware method for unbanning a user: [APIMethod.unbanChatMember].
+  Future<bool> unbanChatMember(
+    int userId, {
+    bool? onlyIfBanned,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.unbanChatMember);
+    return await api.unbanChatMember(
+      id,
+      userId,
+      onlyIfBanned: onlyIfBanned,
+    );
+  }
+
+  /// Ban the author of the message.
+  /// This method will ban the author of the message in the current context.
+  Future<bool> banAuthor({
+    DateTime? untilDate,
+    bool? revokeMessages,
+  }) async {
+    _verifyInfo([_chatId, from?.id], APIMethod.banChatMember);
+    return await api.banChatMember(
+      id,
+      from!.id,
+      untilDate: untilDate,
+      revokeMessages: revokeMessages,
+    );
+  }
+
+  /// Unban the author of the message.
+  /// This method will unban the author of the message in the current context.
+  Future<bool> unbanAuthor({
+    bool? onlyIfBanned,
+  }) async {
+    _verifyInfo([_chatId, from?.id], APIMethod.unbanChatMember);
+    return await api.unbanChatMember(
+      id,
+      from!.id,
+      onlyIfBanned: onlyIfBanned,
+    );
+  }
+
+  /// Restrict a user in the current context.
+  Future<bool> restrictChatMember(
+    int userId,
+    ChatPermissions permissions, {
+    DateTime? untilDate,
+    bool? useIndependentChatPermissions,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.restrictChatMember);
+    return await api.restrictChatMember(
+      id,
+      userId,
+      permissions,
+      untilDate: untilDate,
+      useIndependentChatPermissions: useIndependentChatPermissions,
+    );
+  }
+
+  /// Restrict the author of the message in the current context.
+  Future<bool> restrictAuthor(
+    ChatPermissions permissions, {
+    DateTime? untilDate,
+    bool? useIndependentChatPermissions,
+  }) async {
+    _verifyInfo([_chatId, from?.id], APIMethod.restrictChatMember);
+    return await api.restrictChatMember(
+      id,
+      from!.id,
+      permissions,
+      untilDate: untilDate,
+      useIndependentChatPermissions: useIndependentChatPermissions,
+    );
+  }
+
+  /// Promote a user in the current context.
+  /// This method will promote the user in the current context.
+  Future<bool> promoteChatMember(
+    int userId, {
+    bool? isAnonymous,
+    bool? canManageChat,
+    bool? canPostMessages,
+    bool? canEditMessages,
+    bool? canDeleteMessages,
+    bool? canManageVideoChats,
+    bool? canRestrictMembers,
+    bool? canPromoteMembers,
+    bool? canChangeInfo,
+    bool? canInviteUsers,
+    bool? canPinMessages,
+    bool? canManageTopics,
+    bool? canPostStories,
+    bool? canEditStories,
+    bool? canDeleteStories,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.promoteChatMember);
+    return await api.promoteChatMember(
+      id,
+      userId,
+      isAnonymous: isAnonymous,
+      canManageChat: canManageChat,
+      canPostMessages: canPostMessages,
+      canEditMessages: canEditMessages,
+      canDeleteMessages: canDeleteMessages,
+      canManageVideoChats: canManageVideoChats,
+      canRestrictMembers: canRestrictMembers,
+      canPromoteMembers: canPromoteMembers,
+      canChangeInfo: canChangeInfo,
+      canInviteUsers: canInviteUsers,
+      canPinMessages: canPinMessages,
+      canManageTopics: canManageTopics,
+      canPostStories: canPostStories,
+      canEditStories: canEditStories,
+      canDeleteStories: canDeleteStories,
+    );
+  }
+
+  /// Promote the author of the message in the current context.
+  /// This method will promote the author of the message in the current context.
+  Future<bool> promoteAuthor({
+    bool? isAnonymous,
+    bool? canManageChat,
+    bool? canPostMessages,
+    bool? canEditMessages,
+    bool? canDeleteMessages,
+    bool? canManageVideoChats,
+    bool? canRestrictMembers,
+    bool? canPromoteMembers,
+    bool? canChangeInfo,
+    bool? canInviteUsers,
+    bool? canPinMessages,
+    bool? canManageTopics,
+    bool? canPostStories,
+    bool? canEditStories,
+    bool? canDeleteStories,
+  }) async {
+    _verifyInfo([_chatId, from?.id], APIMethod.promoteChatMember);
+    return await api.promoteChatMember(
+      id,
+      from!.id,
+      isAnonymous: isAnonymous,
+      canManageChat: canManageChat,
+      canPostMessages: canPostMessages,
+      canEditMessages: canEditMessages,
+      canDeleteMessages: canDeleteMessages,
+      canManageVideoChats: canManageVideoChats,
+      canRestrictMembers: canRestrictMembers,
+      canPromoteMembers: canPromoteMembers,
+      canChangeInfo: canChangeInfo,
+      canInviteUsers: canInviteUsers,
+      canPinMessages: canPinMessages,
+      canManageTopics: canManageTopics,
+      canPostStories: canPostStories,
+      canEditStories: canEditStories,
+      canDeleteStories: canDeleteStories,
+    );
+  }
+
+  /// Set the chat administrator custom title.
+  Future<bool> setChatAdministratorCustomTitle(
+    int userId,
+    String customTitle,
+  ) async {
+    _verifyInfo([_chatId], APIMethod.setChatAdministratorCustomTitle);
+    return await api.setChatAdministratorCustomTitle(
+      id,
+      userId,
+      customTitle,
+    );
+  }
+
+  /// Set the chat administrator custom title of the author of the message.
+  Future<bool> setChatAdministratorCustomTitleOfAuthor(
+    String customTitle,
+  ) async {
+    _verifyInfo([_chatId, from?.id], APIMethod.setChatAdministratorCustomTitle);
+    return await api.setChatAdministratorCustomTitle(
+      id,
+      from!.id,
+      customTitle,
+    );
+  }
+
+  /// Set the chat permissions.
+  Future<bool> setChatPermissions(
+    ChatPermissions permissions, {
+    bool? useIndependentChatPermissions,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.setChatPermissions);
+    return await api.setChatPermissions(
+      id,
+      permissions,
+      useIndependentChatPermissions: useIndependentChatPermissions,
+    );
+  }
+
+  /// Export the chat invite link.
+  Future<String> exportChatInviteLink() async {
+    _verifyInfo([_chatId], APIMethod.exportChatInviteLink);
+    return await api.exportChatInviteLink(id);
+  }
+
+  /// Create a chat invite link.
+  Future<ChatInviteLink> createChatInviteLink({
+    String? name,
+    DateTime? expireDate,
+    int? memberLimit,
+    bool? createsJoinRequest,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.createChatInviteLink);
+    return await api.createChatInviteLink(
+      id,
+      name: name,
+      expireDate: expireDate,
+      memberLimit: memberLimit,
+      createsJoinRequest: createsJoinRequest,
+    );
+  }
+
+  /// Edit chat invite link.
+  Future<ChatInviteLink> editChatInviteLink(
+    String inviteLink, {
+    String? name,
+    DateTime? expireDate,
+    int? memberLimit,
+    bool? createsJoinRequest,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.editChatInviteLink);
+    return await api.editChatInviteLink(
+      id,
+      inviteLink,
+      name: name,
+      expireDate: expireDate,
+      memberLimit: memberLimit,
+      createsJoinRequest: createsJoinRequest,
+    );
+  }
+
+  /// Revoke chat invite link.
+  Future<ChatInviteLink> revokeChatInviteLink(
+    String inviteLink,
+  ) async {
+    _verifyInfo([_chatId], APIMethod.revokeChatInviteLink);
+    return await api.revokeChatInviteLink(
+      id,
+      inviteLink,
+    );
+  }
+
+  /// Approve the chat join request.
+  ///
+  /// Optionally, you can pass the [userId] parameter to approve the join request of a specific user. If you don't pass the [userId] parameter, the bot will approve the join request of the user who sent the current join request.
+  Future<bool> approveChatJoinRequest({
+    int? userId,
+  }) async {
+    _verifyInfo(
+      [_chatId, userId ?? from?.id],
+      APIMethod.approveChatJoinRequest,
+    );
+    return await api.approveChatJoinRequest(
+      id,
+      userId ?? from!.id,
+    );
+  }
+
+  /// Decline the chat join request.
+  Future<bool> declineChatJoinRequest({
+    int? userId,
+  }) async {
+    _verifyInfo(
+      [_chatId, userId ?? from?.id],
+      APIMethod.declineChatJoinRequest,
+    );
+    return await api.declineChatJoinRequest(
+      id,
+      userId ?? from!.id,
+    );
+  }
+
+  /// Set the chat photo.
+  Future<bool> setChatPhoto(
+    InputFile photo,
+  ) async {
+    _verifyInfo([_chatId], APIMethod.setChatPhoto);
+    return await api.setChatPhoto(
+      id,
+      photo,
+    );
+  }
+
+  /// Delete the chat photo.
+  Future<bool> deleteChatPhoto() async {
+    _verifyInfo([_chatId], APIMethod.deleteChatPhoto);
+    return await api.deleteChatPhoto(id);
+  }
+
+  /// Unpin all messages in the chat.
+  Future<bool> unpinAllMessages() async {
+    _verifyInfo([_chatId], APIMethod.unpinAllChatMessages);
+    return await api.unpinAllChatMessages(id);
+  }
+
+  /// Leave the chat.
+  Future<bool> leaveChat() async {
+    _verifyInfo([_chatId], APIMethod.leaveChat);
+    return await api.leaveChat(id);
+  }
+
+  /// Get information about the chat.
+  Future<Chat> getChat() async {
+    _verifyInfo([_chatId], APIMethod.getChat);
+    return await api.getChat(id);
+  }
+
+  /// Get the list of administrators in the chat, which aren't bots.
+  Future<List<ChatMember>> getChatAdministrators() async {
+    _verifyInfo([_chatId], APIMethod.getChatAdministrators);
+    return await api.getChatAdministrators(id);
+  }
+
+  /// Get the number of members in the chat.
+  Future<int> getChatMembersCount() async {
+    _verifyInfo([_chatId], APIMethod.getChatMembersCount);
+    return await api.getChatMembersCount(id);
+  }
+
+  /// Change the list of bot's commands.
+  Future<bool> setMyCommands(
+    List<BotCommand> commands, {
+    BotCommandScope? scope,
+    String? languageCode,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.setMyCommands);
+    return await api.setMyCommands(
+      commands,
+      scope: scope,
+      languageCode: languageCode,
+    );
+  }
+
+  /// Delete the list of bot's commands for the given scope and user language.
+  Future<bool> deleteMyCommands({
+    BotCommandScope? scope,
+    String? languageCode,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.deleteMyCommands);
+    return await api.deleteMyCommands(
+      scope: scope,
+      languageCode: languageCode,
+    );
+  }
+
+  /// Get the current list of bot's commands for the given scope and user language.
+  Future<List<BotCommand>> getMyCommands({
+    BotCommandScope? scope,
+    String? languageCode,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.getMyCommands);
+    return await api.getMyCommands(
+      scope: scope,
+      languageCode: languageCode,
+    );
+  }
+
+  /// Set the bot's menu button for this chat (must be a private chat).
+  Future<bool> setChatMenuButton(MenuButton menuButton) async {
+    _verifyInfo([_chatId], APIMethod.setChatMenuButton);
+    return await api.setChatMenuButton(id, menuButton);
+  }
+
+  /// Get the current chat menu button
+  Future<MenuButton> getChatMenuButton() async {
+    _verifyInfo([_chatId], APIMethod.getChatMenuButton);
+    return await api.getChatMenuButton(id);
+  }
+
+  /// Set bot's default administrator rights
+  Future<bool> setMyDefaultAdministratorRights(
+    ChatAdministratorRights? rights,
+    bool? forChannels,
+  ) async {
+    _verifyInfo([_chatId], APIMethod.setMyDefaultAdministratorRights);
+    return await api.setMyDefaultAdministratorRights(
+      rights: rights,
+      forChannels: forChannels,
+    );
+  }
+
+  /// Get bot's default administrator rights
+  Future<ChatAdministratorRights> getMyDefaultAdministratorRights({
+    bool? forChannels,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.getMyDefaultAdministratorRights);
+    return await api.getMyDefaultAdministratorRights(
+      forChannels: forChannels,
+    );
+  }
+
+  bool _isInline() {
+    return _inlineMsgId != null;
+  }
+
+  /// Edit the message text
+  Future<bool> editMessageText(
+    String text, {
+    ParseMode? parseMode,
+    List<MessageEntity>? entities,
+    InlineKeyboardMarkup? replyMarkup,
+    LinkPreviewOptions? linkPreviewOptions,
+  }) async {
+    if (_isInline()) {
+      await api.editInlineMessageText(
+        _inlineMsgId!,
+        text,
+        parseMode: parseMode,
+        entities: entities,
+        replyMarkup: replyMarkup,
+        linkPreviewOptions: linkPreviewOptions,
+      );
+    } else {
+      _verifyInfo([_chatId, _msgId], APIMethod.editMessageText);
+      await api.editMessageText(
+        id,
+        _msgId!,
+        text,
+        parseMode: parseMode,
+        entities: entities,
+        replyMarkup: replyMarkup,
+        linkPreviewOptions: linkPreviewOptions,
+      );
+    }
+    return true;
+  }
+
+  /// Edit the message caption
+  Future<bool> editMessageCaption({
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    if (_isInline()) {
+      await api.editInlineMessageCaption(
+        _inlineMsgId!,
+        caption: caption,
+        parseMode: parseMode,
+        captionEntities: captionEntities,
+        replyMarkup: replyMarkup,
+      );
+    } else {
+      _verifyInfo([_chatId, _msgId], APIMethod.editMessageCaption);
+      await api.editMessageCaption(
+        id,
+        _msgId!,
+        caption: caption,
+        parseMode: parseMode,
+        captionEntities: captionEntities,
+        replyMarkup: replyMarkup,
+      );
+    }
+    return true;
+  }
+
+  /// Edit the message media
+  /// Use this method to edit animation, audio, document, photo, or video messages.
+  Future<bool> editMessageMedia(
+    InputMedia media, {
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    if (_isInline()) {
+      await api.editInlineMessageMedia(
+        _inlineMsgId!,
+        media,
+        replyMarkup: replyMarkup,
+      );
+    } else {
+      _verifyInfo([_chatId, _msgId], APIMethod.editMessageMedia);
+      await api.editMessageMedia(
+        id,
+        _msgId!,
+        media,
+        replyMarkup: replyMarkup,
+      );
+    }
+    return true;
+  }
+
+  /// Edit the message reply markup
+  /// Use this method to edit only the reply markup of messages.
+  Future<bool> editMessageReplyMarkup({
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    if (_isInline()) {
+      await api.editInlineMessageReplyMarkup(
+        _inlineMsgId!,
+        replyMarkup: replyMarkup,
+      );
+    } else {
+      _verifyInfo([_chatId, _msgId], APIMethod.editMessageReplyMarkup);
+      await api.editMessageReplyMarkup(
+        id,
+        _msgId!,
+        replyMarkup: replyMarkup,
+      );
+    }
+    return true;
   }
 }
 

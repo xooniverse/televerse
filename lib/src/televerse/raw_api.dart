@@ -2025,11 +2025,11 @@ class RawAPI {
 
   /// Use this method to delete the list of the bot's commands for the given scope and user language. After deletion, higher level commands will be shown to affected users. Returns True on success.
   Future<bool> deleteMyCommands({
-    BotCommandScope scope = const BotCommandScopeDefault(),
+    BotCommandScope? scope,
     String? languageCode,
   }) async {
     Map<String, dynamic> params = {
-      "scope": scope.toJson(),
+      "scope": scope?.toJson(),
       "language_code": languageCode,
     };
     bool response = await _httpClient.postURI(
@@ -2041,11 +2041,11 @@ class RawAPI {
 
   /// Use this method to get the current list of the bot's commands for the given scope and user language. Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned.
   Future<List<BotCommand>> getMyCommands({
-    BotCommandScope scope = const BotCommandScopeDefault(),
+    BotCommandScope? scope,
     String? languageCode,
   }) async {
     Map<String, dynamic> params = {
-      "scope": scope.toJson(),
+      "scope": scope?.toJson(),
       "language_code": languageCode,
     };
     List<dynamic> response = await _httpClient.postURI(
@@ -2217,8 +2217,8 @@ class RawAPI {
   ///
   /// On success, [bool] is returned.
   Future<bool> editInlineMessageCaption(
-    String inlineMessageId,
-    String caption, {
+    String inlineMessageId, {
+    String? caption,
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
@@ -2253,7 +2253,7 @@ class RawAPI {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
     };
     const field = "media";
 
