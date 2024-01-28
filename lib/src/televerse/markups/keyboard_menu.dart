@@ -2,16 +2,14 @@ part of '../../../televerse.dart';
 
 /// This object represents a Keyboard menu with the actions to be done.
 class KeyboardMenu
-    implements
-        ReplyKeyboardMarkup,
-        TeleverseMenu<MessageContext, MessageHandler, String> {
+    implements ReplyKeyboardMarkup, TeleverseMenu<Context, Handler, String> {
   /// Name of the menu
   @override
   String name;
 
   /// Map that represents the text and action to be done
   @override
-  List<Map<String, MessageHandler>> actions;
+  List<Map<String, Handler>> actions;
 
   /// Constructs a KeyboardMenu
   KeyboardMenu({
@@ -34,7 +32,7 @@ class KeyboardMenu
   }
 
   /// Add new item to the last row
-  KeyboardMenu text(String text, MessageHandler handler) {
+  KeyboardMenu text(String text, Handler handler) {
     if (actions.isEmpty) actions.add({});
     final data = jsonEncode({'type': 'text', 'text': text});
     actions.last.addAll({data: handler});
@@ -43,7 +41,7 @@ class KeyboardMenu
   }
 
   /// Request contact from the user
-  KeyboardMenu requestContact(String text, MessageHandler handler) {
+  KeyboardMenu requestContact(String text, Handler handler) {
     if (actions.isEmpty) actions.add({});
     String data = jsonEncode({'type': 'request_contact', 'text': text});
     actions.last.addAll({data: handler});
@@ -52,7 +50,7 @@ class KeyboardMenu
   }
 
   /// Request location from the user
-  KeyboardMenu requestLocation(String text, MessageHandler handler) {
+  KeyboardMenu requestLocation(String text, Handler handler) {
     if (actions.isEmpty) actions.add({});
     String data = jsonEncode({'type': 'request_location', 'text': text});
     actions.last.addAll({data: handler});
@@ -63,7 +61,7 @@ class KeyboardMenu
   /// Request the user to select a user from the list
   KeyboardMenu requestUser({
     required String text,
-    required MessageHandler handler,
+    required Handler handler,
     required int requestId,
     bool? isBot,
     bool? userIsPremium,
@@ -86,7 +84,7 @@ class KeyboardMenu
   /// Requests the user to select a chat from the list.
   KeyboardMenu requestChat({
     required String text,
-    required MessageHandler handler,
+    required Handler handler,
     required int requestId,
     bool chatIsChannel = false,
     bool? chatIsForum,

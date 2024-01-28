@@ -29,8 +29,6 @@ import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 import 'package:televerse/src/utils/http.dart';
 
-export 'src/televerse/context/context.dart'
-    hide MessageMixin, CallbackQueryMixin, ManagementMixin, InlineQueryMixin;
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
 export 'src/televerse/fetch/fetch.dart';
@@ -51,12 +49,10 @@ part 'src/televerse/markups/menu.dart';
 part 'src/televerse/markups/keyboard_menu.dart';
 part 'src/televerse/models/multipart_helper.dart';
 part 'src/televerse/models/logger_options.dart';
+part 'src/televerse/context/context.dart';
 
 /// Conversation API
 part 'src/televerse/conversation/conversation.dart';
-
-/// Type aliases for the library.
-part 'src/types/aliases.dart';
 
 /// The main class of the library.
 ///

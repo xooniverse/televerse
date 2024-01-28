@@ -27,11 +27,11 @@ class Conversation<T extends Session> {
   Conversation(this._bot);
 
   /// Wait for a text message from the user.
-  Future<MessageContext> waitForTextMessage({
+  Future<Context> waitForTextMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.text != null,
@@ -39,11 +39,11 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a photo message from the user.
-  Future<MessageContext> waitForPhotoMessage({
+  Future<Context> waitForPhotoMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.photo != null,
@@ -51,11 +51,11 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video message from the user.
-  Future<MessageContext> waitForVideoMessage({
+  Future<Context> waitForVideoMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.video != null,
@@ -63,11 +63,11 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a voice message from the user.
-  Future<MessageContext> waitForVoiceMessage({
+  Future<Context> waitForVoiceMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.voice != null,
@@ -75,11 +75,11 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a document message from the user.
-  Future<MessageContext> waitForDocumentMessage({
+  Future<Context> waitForDocumentMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.document != null,
@@ -87,11 +87,11 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a contact message from the user.
-  Future<MessageContext> waitForContactMessage({
+  Future<Context> waitForContactMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.contact != null,
@@ -99,11 +99,11 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a location message from the user.
-  Future<MessageContext> waitForLocationMessage({
+  Future<Context> waitForLocationMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.location != null,
@@ -111,11 +111,11 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a venue message from the user.
-  Future<MessageContext> waitForVenueMessage({
+  Future<Context> waitForVenueMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.venue != null,
@@ -123,11 +123,11 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a poll message from the user.
-  Future<MessageContext> waitForPollMessage({
+  Future<Context> waitForPollMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.poll != null,
@@ -135,11 +135,11 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a dice message from the user.
-  Future<MessageContext> waitForDiceMessage({
+  Future<Context> waitForDiceMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.dice != null,
@@ -147,11 +147,11 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a game message from the user.
-  Future<MessageContext> waitForGameMessage({
+  Future<Context> waitForGameMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.game != null,
@@ -159,55 +159,55 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a sticker message from the user.
-  Future<MessageContext> waitForStickerMessage({
+  Future<Context> waitForStickerMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       filter: (up) => up.message?.sticker != null,
     );
   }
 
   /// Wait for a video note message from the user.
-  Future<MessageContext> waitForVideoNoteMessage({
+  Future<Context> waitForVideoNoteMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       filter: (up) => up.message?.videoNote != null,
     );
   }
 
   /// Wait for a video chat to start.
-  Future<MessageContext> waitToStartVideoChat({
+  Future<Context> waitToStartVideoChat({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       filter: (up) => up.message?.videoChatStarted != null,
     );
   }
 
   /// Wait for a video chat to end.
-  Future<MessageContext> waitToEndVideoChat({
+  Future<Context> waitToEndVideoChat({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<MessageContext>(
+    return await waitFor(
       chatId: chatId,
       filter: (up) => up.message?.videoChatEnded != null,
     );
   }
 
   /// Wait for a callback query from the user.
-  Future<CallbackQueryContext> waitForCallbackQuery({
+  Future<Context> waitForCallbackQuery({
     required ID chatId,
     Duration? timeout,
   }) async {
-    return await waitFor<CallbackQueryContext>(
+    return await waitFor(
       chatId: chatId,
       filter: (up) => up.callbackQuery != null,
     );
@@ -223,30 +223,30 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for any message from the user.
-  Future<DC> waitFor<DC extends Context>({
+  Future<Context> waitFor({
     required ID chatId,
     Duration? timeout,
     required bool Function(Update update) filter,
   }) async {
-    Completer<DC> completer = Completer<DC>();
+    Completer<Context> completer = Completer<Context>();
     StreamSubscription<Update>? subscription;
 
     subscription = _bot.updatesStream.listen((update) {
       bool sameChat = _sameChatMethod(update, chatId);
       if (sameChat && filter(update)) {
-        completer.complete(Context.create(_bot, update) as DC);
+        completer.complete(Context(_bot, update: update));
         subscription?.cancel();
       }
     });
 
     final scopeName = "conversation+${_getRandomID()}";
     _bot._handlerScopes.add(
-      HandlerScope<FutureOr<void> Function(DC)>(
+      HandlerScope<FutureOr<void> Function(Context)>(
         isConversation: true,
         name: scopeName,
         predicate: (ctx) =>
             _sameChatMethod(ctx.update, chatId) && filter(ctx.update),
-        types: Context.updateTypes(DC),
+        types: UpdateType.values,
       ),
     );
 

@@ -211,7 +211,9 @@ class Update {
     } else if (chatBoostRemoved != null) {
       return UpdateType.chatBoostRemoved;
     } else {
-      return UpdateType.unknown;
+      throw TeleverseException(
+        "The update type is unknown",
+      );
     }
   }
 }

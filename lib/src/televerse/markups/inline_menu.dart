@@ -4,19 +4,18 @@ part of '../../../televerse.dart';
 class InlineMenu
     implements
         InlineKeyboardMarkup,
-        TeleverseMenu<CallbackQueryContext, CallbackQueryHandler,
-            InlineMenuData> {
+        TeleverseMenu<Context, Handler, InlineMenuData> {
   /// Name of the menu
   @override
   String name;
 
   /// Map that represents the text and action to be done
   @override
-  List<Map<InlineMenuData, CallbackQueryHandler>> actions;
+  List<Map<InlineMenuData, Handler>> actions;
 
   /// Constructs a InlineMenu
   InlineMenu({
-    List<Map<InlineMenuData, CallbackQueryHandler>>? actions,
+    List<Map<InlineMenuData, Handler>>? actions,
     String? name,
   })  : actions = actions ?? [{}],
         inlineKeyboard = TeleverseMenu._makeInlineKeyboard(actions),
@@ -33,7 +32,7 @@ class InlineMenu
   /// Add new item to the last row
   InlineMenu text(
     String text,
-    CallbackQueryHandler handler, {
+    Handler handler, {
     String? data,
   }) {
     if (actions.isEmpty) actions.add({});

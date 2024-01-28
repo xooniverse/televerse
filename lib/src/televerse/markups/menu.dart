@@ -14,7 +14,7 @@ abstract class TeleverseMenu<CTX extends Context,
 
   /// Converts a list of rows to a list of InlineKeyboardButton
   static List<List<InlineKeyboardButton>> _makeInlineKeyboard(
-    List<Map<InlineMenuData, CallbackQueryHandler>>? rows,
+    List<Map<InlineMenuData, Handler>>? rows,
   ) {
     if (rows == null) return [];
     return rows.map((row) {
@@ -29,7 +29,7 @@ abstract class TeleverseMenu<CTX extends Context,
 
   /// Converts a list of rows to a list of KeyboardButton
   static List<List<KeyboardButton>> _makeKeyboard(
-    List<Map<String, MessageHandler>>? rows,
+    List<Map<String, Handler>>? rows,
   ) {
     if (rows == null) return [];
     return rows.map((row) {
