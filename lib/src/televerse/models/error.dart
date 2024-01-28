@@ -36,6 +36,6 @@ class BotError implements Exception {
   @override
   String toString() {
     return "BotError: $error\n"
-        "StackTrace: $stackTrace";
+        "StackTrace:\n$stackTrace";
   }
 }

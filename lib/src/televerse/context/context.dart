@@ -43,45 +43,12 @@ class Context<TeleverseSession extends Session> {
   /// Note: On `poll`, and `unknown` updates, this will throw a [TeleverseException].
   /// This is because these updates do not have a chat.
   ID get id {
-    switch (update.type) {
-      case UpdateType.message:
-        return ChatID(update.message!.chat.id);
-      case UpdateType.editedMessage:
-        return ChatID(update.editedMessage!.chat.id);
-      case UpdateType.channelPost:
-        return ChatID(update.channelPost!.chat.id);
-      case UpdateType.editedChannelPost:
-        return ChatID(update.editedChannelPost!.chat.id);
-      case UpdateType.inlineQuery:
-        return ChatID(update.inlineQuery!.from.id);
-      case UpdateType.chosenInlineResult:
-        return ChatID(update.chosenInlineResult!.from.id);
-      case UpdateType.callbackQuery:
-        return ChatID(update.callbackQuery!.message!.chat.id);
-      case UpdateType.shippingQuery:
-        return ChatID(update.shippingQuery!.from.id);
-      case UpdateType.preCheckoutQuery:
-        return ChatID(update.preCheckoutQuery!.from.id);
-      case UpdateType.myChatMember:
-        return ChatID(update.myChatMember!.chat.id);
-      case UpdateType.chatMember:
-        return ChatID(update.chatMember!.chat.id);
-      case UpdateType.chatJoinRequest:
-        return ChatID(update.chatJoinRequest!.chat.id);
-      case UpdateType.messageReaction:
-        return ChatID(update.messageReaction!.chat.id);
-      case UpdateType.messageReactionCount:
-        return ChatID(update.messageReactionCount!.chat.id);
-      case UpdateType.chatBoost:
-        return ChatID(update.chatBoost!.chat.id);
-      case UpdateType.chatBoostRemoved:
-        return ChatID(update.removedChatBoost!.chat.id);
-      case UpdateType.poll:
-      default:
-        throw TeleverseException(
-          "The update type is ${update.type}, which does not have a chat.",
-        );
+    if (chat == null) {
+      throw TeleverseException(
+        "The update type is ${update.type}, which does not have a chat.",
+      );
     }
+    return ChatID(chat!.id);
   }
 
   /// Creates a new context.
@@ -92,11 +59,6 @@ class Context<TeleverseSession extends Session> {
     if (_bot.sessionsEnabled) {
       _session = _bot.sessions.getSession(id.id);
     }
-  }
-
-  /// Creates a new Context object for the specified update.
-  static Context create(Bot t, Update update) {
-    return Context(t, update: update);
   }
 
   /// Contains the matches of the regular expression. (Internal)
@@ -137,6 +99,15 @@ class Context<TeleverseSession extends Session> {
 
   /// The incoming message.
   Message? get message => update.message;
+
+  /// The edited message.
+  Message? get editedMessage => update.editedMessage;
+
+  /// The channel post.
+  Message? get channelPost => update.channelPost;
+
+  /// The edited channel post.
+  Message? get editedChannelPost => update.editedChannelPost;
 
   /// The callback query of the update.
   CallbackQuery? get callbackQuery => update.callbackQuery;
@@ -229,6 +200,21 @@ class Context<TeleverseSession extends Session> {
         ?.from;
   }
 
+  /// The Chat ID for internal use
+  int? get _chatId {
+    return chat?.id;
+  }
+
+  /// Internal method to check if the context contains necessary information
+  /// to call the context aware methods.
+  void _verifyInfo(List<dynamic> info, APIMethod method) {
+    if (info.contains(null)) {
+      throw TeleverseException(
+        "The context does not contain necessary information to call the method `$method`.",
+      );
+    }
+  }
+
   /// Reply a Text Message to the user.
   Future<Message> reply(
     String text, {
@@ -241,6 +227,7 @@ class Context<TeleverseSession extends Session> {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
+    _verifyInfo([_chatId], APIMethod.sendMessage);
     return await api.sendMessage(
       id,
       text,
