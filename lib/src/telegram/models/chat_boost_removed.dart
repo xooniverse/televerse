@@ -1,8 +1,9 @@
 part of 'models.dart';
 
 /// This object represents a boost removed from a chat.
-class ChatBoostRemoved {
+class ChatBoostRemoved implements ChatModel {
   /// Chat which was boosted
+  @override
   final Chat chat;
 
   /// Unique identifier of the boost

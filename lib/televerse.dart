@@ -50,6 +50,7 @@ part 'src/televerse/markups/keyboard_menu.dart';
 part 'src/televerse/models/multipart_helper.dart';
 part 'src/televerse/models/logger_options.dart';
 part 'src/televerse/context/context.dart';
+part 'src/televerse/abstractions/abstractions.dart';
 
 /// Conversation API
 part 'src/televerse/conversation/conversation.dart';

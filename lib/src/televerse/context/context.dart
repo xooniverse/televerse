@@ -75,7 +75,7 @@ class Context<TeleverseSession extends Session> {
       case UpdateType.chatBoost:
         return ChatID(update.chatBoost!.chat.id);
       case UpdateType.chatBoostRemoved:
-        return ChatID(update.chatBoostRemoved!.chat.id);
+        return ChatID(update.removedChatBoost!.chat.id);
       case UpdateType.poll:
       default:
         throw TeleverseException(
@@ -121,14 +121,19 @@ class Context<TeleverseSession extends Session> {
 
   /// This is a shorthand getter for the [Message] recieved in the current context
   ///
-  /// This can either be `Message` or `Channel Post` or `Edited Message` or `Edited Channel Post`.
-  Message? get msg {
+  /// This can either be `Message` or `Channel Post` or `Edited Message` or `Edited Channel Post`. (Internal)
+  Message? get _msg {
     Message? m = update.message ??
         update.editedMessage ??
         update.channelPost ??
         update.editedChannelPost;
     return m;
   }
+
+  /// This is a shorthand getter for the [Message] recieved in the current context
+  ///
+  /// This can either be `Message` or `Channel Post` or `Edited Message` or `Edited Channel Post`.
+  Message? get msg => _msg;
 
   /// The incoming message.
   Message? get message => update.message;
@@ -143,7 +148,7 @@ class Context<TeleverseSession extends Session> {
   ChosenInlineResult? get chosenInlineResult => update.chosenInlineResult;
 
   /// The chat boost that was removed.
-  ChatBoostRemoved? get chatBoostRemoved => update.chatBoostRemoved;
+  ChatBoostRemoved? get chatBoostRemoved => update.removedChatBoost;
 
   /// The chat boost that was updated.
   ChatBoostUpdated? get chatBoost => update.chatBoost;
@@ -180,6 +185,53 @@ class Context<TeleverseSession extends Session> {
   ///
   /// This represents the pre-checkout query for which the context is created.
   PreCheckoutQuery? get preCheckoutQuery => update.preCheckoutQuery;
+
+  /// The thread id
+  int? _threadId([int? id]) {
+    bool isInTopic = _msg?.isTopicMessage ?? false;
+    return id ?? (isInTopic ? _msg?.messageThreadId : null);
+  }
+
+  /// A shorthand getter for the [Chat] instance from the update.
+  ///
+  /// This can be any of `msg.chat` or `myChatMember.chat` or `chatMember.chat` or `chatJoinRequest.chat` or `messageReaction.chat` or `messageReactionCount.chat` or `chatBoost.chat` or `removedChatBoost.chat`.
+  Chat? get chat {
+    return (_msg ??
+            update.myChatMember ??
+            update.chatMember ??
+            update.chatJoinRequest ??
+            update.messageReaction ??
+            update.messageReactionCount ??
+            update.chatBoost ??
+            update.removedChatBoost)
+        ?.chat;
+  }
+
+  /// Reply a Text Message to the user.
+  Future<Message> reply(
+    String text, {
+    int? messageThreadId,
+    ParseMode? parseMode,
+    List<MessageEntity>? entities,
+    LinkPreviewOptions? linkPreviewOptions,
+    bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    return await api.sendMessage(
+      id,
+      text,
+      messageThreadId: _threadId(messageThreadId),
+      parseMode: parseMode,
+      entities: entities,
+      linkPreviewOptions: linkPreviewOptions,
+      disableNotification: disableNotification,
+      protectContent: protectContent,
+      replyParameters: replyParameters,
+      replyMarkup: replyMarkup,
+    );
+  }
 }
 
 /// Base handler

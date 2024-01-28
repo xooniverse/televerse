@@ -3,8 +3,9 @@ part of '../models.dart';
 /// This object describes a message that can be inaccessible to the bot. It can be one of
 /// - [Message]
 /// - [InaccessibleMessage]
-abstract class MaybeInaccessibleMessage {
+abstract class MaybeInaccessibleMessage implements ChatModel {
   /// Chat the message belonged to
+  @override
   final Chat chat;
 
   /// Unique message identifier inside the chat
