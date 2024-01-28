@@ -918,6 +918,214 @@ class Context<TeleverseSession extends Session> {
       isBig: isBig,
     );
   }
+
+  /// Context aware method to get chat member [APIMethod.getChatMember].
+  Future<ChatMember> getChatMember(int userId) async {
+    _verifyInfo([_chatId], APIMethod.getChatMember);
+    return await api.getChatMember(id, userId);
+  }
+
+  /// Context aware method for set chat sticker set [APIMethod.setChatStickerSet].
+  Future<bool> setChatStickerSet(String stickerSetName) async {
+    _verifyInfo([_chatId], APIMethod.setChatStickerSet);
+    return await api.setChatStickerSet(id, stickerSetName);
+  }
+
+  /// Context aware method for delete chat sticker set [APIMethod.deleteChatStickerSet].
+  Future<bool> deleteChatStickerSet() async {
+    _verifyInfo([_chatId], APIMethod.deleteChatStickerSet);
+    return await api.deleteChatStickerSet(id);
+  }
+
+  /// Context aware method for set chat title [APIMethod.setChatTitle].
+  Future<bool> setChatTitle(String title) async {
+    _verifyInfo([_chatId], APIMethod.setChatTitle);
+    return await api.setChatTitle(id, title);
+  }
+
+  /// Context aware method for set chat description [APIMethod.setChatDescription].
+  Future<bool> setChatDescription(String description) async {
+    _verifyInfo([_chatId], APIMethod.setChatDescription);
+    return await api.setChatDescription(id, description);
+  }
+
+  /// Context aware method for pin chat message [APIMethod.pinChatMessage].
+  Future<bool> pinChatMessage(
+    int messageId, {
+    bool? disableNotification,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.pinChatMessage);
+    return await api.pinChatMessage(
+      id,
+      messageId,
+      disableNotification: disableNotification,
+    );
+  }
+
+  /// Context aware method for pin the current message [APIMethod.pinChatMessage].
+  Future<bool> pinThisMessage({
+    bool? disableNotification,
+  }) async {
+    _verifyInfo([_chatId, _msgId], APIMethod.pinChatMessage);
+    return await api.pinChatMessage(
+      id,
+      _msgId!,
+      disableNotification: disableNotification,
+    );
+  }
+
+  /// Context aware method for unpin chat message [APIMethod.unpinChatMessage].
+  Future<bool> unpinChatMessage(int messageId) async {
+    _verifyInfo([_chatId], APIMethod.unpinChatMessage);
+    return await api.unpinChatMessage(id, messageId);
+  }
+
+  /// Context aware method for unpin the current message [APIMethod.unpinChatMessage].
+  /// This will unpin the message in the current context.
+  Future<bool> unpinThisMessage() async {
+    _verifyInfo([_chatId, _msgId], APIMethod.unpinChatMessage);
+    return await api.unpinChatMessage(id, _msgId!);
+  }
+
+  /// Context aware method for creating a new forum topic [APIMethod.createForumTopic].
+  Future<ForumTopic> createForumTopic(
+    String name, {
+    int? iconColor,
+    String? iconCustomEmojiId,
+  }) async {
+    _verifyInfo([_chatId], APIMethod.createForumTopic);
+    return await api.createForumTopic(
+      id,
+      name,
+      iconColor: iconColor,
+      iconCustomEmojiId: iconCustomEmojiId,
+    );
+  }
+
+  /// Context aware method for editing a forum topic [APIMethod.editForumTopic].
+  ///
+  /// If you want to edit a different forum topic, you can pass the [messageThreadId] parameter. Otherwise, the bot will edit the current forum topic.
+  Future<bool> editForumTopic({
+    int? messageThreadId,
+    String? name,
+    String? iconCustomEmojiId,
+  }) async {
+    _verifyInfo(
+      [_chatId, _threadId(messageThreadId)],
+      APIMethod.editForumTopic,
+    );
+    return await api.editForumTopic(
+      id,
+      _threadId(messageThreadId)!,
+      name: name,
+      iconCustomEmojiId: iconCustomEmojiId,
+    );
+  }
+
+  /// Context aware method for closing a forum topic [APIMethod.closeForumTopic].
+  ///
+  /// If you want to close a different forum topic, you can pass the [messageThreadId] parameter. Otherwise, the bot will close the current forum topic.
+  Future<bool> closeForumTopic({
+    int? messageThreadId,
+  }) async {
+    _verifyInfo(
+      [_chatId, _threadId(messageThreadId)],
+      APIMethod.closeForumTopic,
+    );
+    return await api.closeForumTopic(
+      id,
+      _threadId(messageThreadId)!,
+    );
+  }
+
+  /// Context aware method for reopening a forum topic [APIMethod.reopenForumTopic].
+  ///
+  /// If you want to reopen a different forum topic, you can pass the [messageThreadId] parameter. Otherwise, the bot will reopen the current forum topic.
+  Future<bool> reopenForumTopic({
+    int? messageThreadId,
+  }) async {
+    _verifyInfo(
+      [_chatId, _threadId(messageThreadId)],
+      APIMethod.reopenForumTopic,
+    );
+    return await api.reopenForumTopic(
+      id,
+      _threadId(messageThreadId)!,
+    );
+  }
+
+  /// Context aware method for deleting a forum topic [APIMethod.deleteForumTopic].
+  ///
+  /// If you want to delete a different forum topic, you can pass the [messageThreadId] parameter. Otherwise, the bot will delete the current forum topic.
+  Future<bool> deleteForumTopic({
+    int? messageThreadId,
+  }) async {
+    _verifyInfo(
+      [_chatId, _threadId(messageThreadId)],
+      APIMethod.deleteForumTopic,
+    );
+    return await api.deleteForumTopic(
+      id,
+      _threadId(messageThreadId)!,
+    );
+  }
+
+  /// Context aware method for unpinning all forum topic messages [APIMethod.unpinAllForumTopicMessages].
+  ///
+  /// If you want to unpin all forum topic messages of a different forum topic, you can pass the [messageThreadId] parameter. Otherwise, the bot will unpin all forum topic messages of the current forum topic.
+  Future<bool> unpinAllForumTopicMessages({
+    int? messageThreadId,
+  }) async {
+    _verifyInfo(
+      [_chatId, _threadId(messageThreadId)],
+      APIMethod.unpinAllForumTopicMessages,
+    );
+    return await api.unpinAllForumTopicMessages(
+      id,
+      _threadId(messageThreadId)!,
+    );
+  }
+
+  /// Context aware method for editing the general forum topic [APIMethod.editGeneralForumTopic].
+  Future<bool> editGeneralForumTopic(
+    String name,
+  ) async {
+    _verifyInfo([_chatId], APIMethod.editGeneralForumTopic);
+    return await api.editGeneralForumTopic(
+      id,
+      name,
+    );
+  }
+
+  /// Context aware method for closing the general forum topic [APIMethod.closeGeneralForumTopic].
+  Future<bool> closeGeneralForumTopic() async {
+    _verifyInfo([_chatId], APIMethod.closeGeneralForumTopic);
+    return await api.closeGeneralForumTopic(id);
+  }
+
+  /// Context aware method for reopening the general forum topic [APIMethod.reopenGeneralForumTopic].
+  Future<bool> reopenGeneralForumTopic() async {
+    _verifyInfo([_chatId], APIMethod.reopenGeneralForumTopic);
+    return await api.reopenGeneralForumTopic(id);
+  }
+
+  /// Context aware method for hiding the general forum topic [APIMethod.hideGeneralForumTopic].
+  Future<bool> hideGeneralForumTopic() async {
+    _verifyInfo([_chatId], APIMethod.hideGeneralForumTopic);
+    return await api.hideGeneralForumTopic(id);
+  }
+
+  /// Context aware method for unhiding the general forum topic [APIMethod.unhideGeneralForumTopic].
+  Future<bool> unhideGeneralForumTopic() async {
+    _verifyInfo([_chatId], APIMethod.unhideGeneralForumTopic);
+    return await api.unhideGeneralForumTopic(id);
+  }
+
+  /// Context aware method for unpinning all general forum topic messages [APIMethod.unpinAllGeneralForumTopicMessages].
+  Future<bool> unpinAllGeneralForumTopicMessages() async {
+    _verifyInfo([_chatId], APIMethod.unpinAllGeneralForumTopicMessages);
+    return await api.unpinAllGeneralForumTopicMessages(id);
+  }
 }
 
 /// Base handler
