@@ -1,12 +1,13 @@
 part of 'models.dart';
 
 /// This object represents changes in the status of a chat member.
-class ChatMemberUpdated implements WithChat {
+class ChatMemberUpdated implements WithChat, WithUser {
   /// Chat the user belongs to
   @override
   final Chat chat;
 
   /// Performer of the action, which resulted in the change
+  @override
   final User from;
 
   /// Date the change was done in Unix time

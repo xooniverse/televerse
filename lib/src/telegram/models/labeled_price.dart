@@ -1,4 +1,4 @@
-part of 'payments.dart';
+part of 'models.dart';
 
 /// This object represents a portion of the price for goods or services.
 class LabeledPrice {

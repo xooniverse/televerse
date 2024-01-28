@@ -1,4 +1,4 @@
-part of 'payments.dart';
+part of 'models.dart';
 
 /// This object contains basic information about an invoice.
 class Invoice {

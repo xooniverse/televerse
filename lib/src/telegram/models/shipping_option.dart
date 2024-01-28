@@ -1,4 +1,4 @@
-part of 'payments.dart';
+part of 'models.dart';
 
 /// This object represents one shipping option.
 class ShippingOption {

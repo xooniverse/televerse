@@ -1,12 +1,13 @@
 part of 'models.dart';
 
 /// Represents a join request sent to a chat.
-class ChatJoinRequest implements WithChat {
+class ChatJoinRequest implements WithChat, WithUser {
   /// Chat to which the request was sent
   @override
   final Chat chat;
 
   /// User that sent the join request
+  @override
   final User from;
 
   /// Date the request was sent in Unix time

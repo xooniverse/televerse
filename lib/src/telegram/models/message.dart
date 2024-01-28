@@ -1,11 +1,24 @@
 part of 'models.dart';
 
 /// This object represents a message.
-class Message extends MaybeInaccessibleMessage {
+class Message implements MaybeInaccessibleMessage, WithUser {
+  /// Chat the message belonged to
+  @override
+  final Chat chat;
+
+  /// Unique message identifier inside the chat
+  @override
+  final int messageId;
+
+  /// Date the message was sent in Unix time. It is always a positive number, representing a valid date.
+  @override
+  final int date;
+
   /// Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
   final int? messageThreadId;
 
   /// Optional. Sender of the message; empty for messages sent to channels. For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
+  @override
   final User? from;
 
   /// Optional. Sender of the message, sent on behalf of a chat. For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
@@ -219,11 +232,8 @@ class Message extends MaybeInaccessibleMessage {
 
   /// Creates a Message object.
   const Message({
-    required super.messageId,
     this.from,
     this.senderChat,
-    required super.date,
-    required super.chat,
     this.replyToMessage,
     this.viaBot,
     this.editDate,
@@ -293,6 +303,9 @@ class Message extends MaybeInaccessibleMessage {
     this.giveawayWinners,
     this.giveawayCompleted,
     this.forwardOrigin,
+    required this.chat,
+    required this.date,
+    required this.messageId,
   });
 
   /// Creates a [Message] object from json map.
@@ -609,4 +622,10 @@ class Message extends MaybeInaccessibleMessage {
     }
     return entxt;
   }
+
+  @override
+  bool get isAccessible => true;
+
+  @override
+  bool get isInaccessible => false;
 }

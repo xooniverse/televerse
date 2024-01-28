@@ -1,11 +1,12 @@
-part of 'payments.dart';
+part of 'models.dart';
 
 /// This object contains information about an incoming shipping query.
-class ShippingQuery {
+class ShippingQuery implements WithUser {
   /// Unique query identifier
   final String id;
 
   /// User who sent the query
+  @override
   final User from;
 
   /// Bot specified invoice payload

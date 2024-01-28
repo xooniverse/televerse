@@ -11,7 +11,7 @@ abstract class MaybeInaccessibleMessage implements WithChat {
   /// Unique message identifier inside the chat
   final int messageId;
 
-  /// Always 0. The field can be used to differentiate regular and inaccessible messages.
+  /// Date the message was sent in Unix time. It is always a positive number, representing a valid date.
   final int date;
 
   /// Constructor

@@ -1,11 +1,12 @@
 part of 'models.dart';
 
 /// Represents a result of an inline query that was chosen by the user and sent to their chat partner.
-class ChosenInlineResult {
+class ChosenInlineResult implements WithUser {
   /// The unique identifier for the result that was chosen
   final String resultId;
 
   /// The user that chose the result
+  @override
   final User from;
 
   /// Optional. Sender location, only for bots that require user location

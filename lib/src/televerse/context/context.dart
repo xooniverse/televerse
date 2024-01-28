@@ -204,15 +204,29 @@ class Context<TeleverseSession extends Session> {
   ///
   /// This can be any of `msg.chat` or `myChatMember.chat` or `chatMember.chat` or `chatJoinRequest.chat` or `messageReaction.chat` or `messageReactionCount.chat` or `chatBoost.chat` or `removedChatBoost.chat`.
   Chat? get chat {
-    return (_msg ??
-            myChatMember ??
+    return (chatJoinRequest ??
+            removedChatBoost ??
+            chatBoost ??
             chatMember ??
-            chatJoinRequest ??
+            myChatMember ??
             messageReaction ??
             messageReactionCount ??
-            chatBoost ??
-            removedChatBoost)
+            msg)
         ?.chat;
+  }
+
+  /// A shorthand getter for the [User] instance from the update.
+  User? get user {
+    return (callbackQuery ??
+            inlineQuery ??
+            shippingQuery ??
+            preCheckoutQuery ??
+            chosenInlineResult ??
+            msg ??
+            myChatMember ??
+            chatMember ??
+            chatJoinRequest)
+        ?.from;
   }
 
   /// Reply a Text Message to the user.
