@@ -154,7 +154,7 @@ class Context<TeleverseSession extends Session> {
   ChatBoostUpdated? get chatBoost => update.chatBoost;
 
   /// The [ChatJoinRequest] instance.
-  ChatJoinRequest get chatJoinRequest => update.chatJoinRequest!;
+  ChatJoinRequest? get chatJoinRequest => update.chatJoinRequest;
 
   /// Shorthand getter for the [ChatMemberUpdated] instance.
   ///
@@ -178,6 +178,9 @@ class Context<TeleverseSession extends Session> {
   /// The [PollAnswer] instance.
   PollAnswer? get pollAnswer => update.pollAnswer;
 
+  /// Removed chat boost instance
+  ChatBoostRemoved? get removedChatBoost => update.removedChatBoost;
+
   /// The [Poll] instance.
   Poll? get poll => update.poll;
 
@@ -185,6 +188,11 @@ class Context<TeleverseSession extends Session> {
   ///
   /// This represents the pre-checkout query for which the context is created.
   PreCheckoutQuery? get preCheckoutQuery => update.preCheckoutQuery;
+
+  /// The [ShippingQuery] instance.
+  ///
+  /// This represents the shipping query for which the context is created.
+  ShippingQuery? get shippingQuery => update.shippingQuery;
 
   /// The thread id
   int? _threadId([int? id]) {
@@ -197,13 +205,13 @@ class Context<TeleverseSession extends Session> {
   /// This can be any of `msg.chat` or `myChatMember.chat` or `chatMember.chat` or `chatJoinRequest.chat` or `messageReaction.chat` or `messageReactionCount.chat` or `chatBoost.chat` or `removedChatBoost.chat`.
   Chat? get chat {
     return (_msg ??
-            update.myChatMember ??
-            update.chatMember ??
-            update.chatJoinRequest ??
-            update.messageReaction ??
-            update.messageReactionCount ??
-            update.chatBoost ??
-            update.removedChatBoost)
+            myChatMember ??
+            chatMember ??
+            chatJoinRequest ??
+            messageReaction ??
+            messageReactionCount ??
+            chatBoost ??
+            removedChatBoost)
         ?.chat;
   }
 

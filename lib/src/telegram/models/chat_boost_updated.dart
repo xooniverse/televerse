@@ -1,7 +1,7 @@
 part of 'models.dart';
 
 /// This object represents a boost added to a chat or changed.
-class ChatBoostUpdated implements ChatModel {
+class ChatBoostUpdated implements WithChat {
   /// Chat which was boosted
   @override
   final Chat chat;

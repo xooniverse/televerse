@@ -1,7 +1,7 @@
 part of 'models.dart';
 
 /// This object represents changes in the status of a chat member.
-class ChatMemberUpdated implements ChatModel {
+class ChatMemberUpdated implements WithChat {
   /// Chat the user belongs to
   @override
   final Chat chat;

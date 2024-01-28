@@ -1,7 +1,7 @@
 part of 'models.dart';
 
 /// Represents a change of a reaction on a message performed by a user.
-class MessageReactionUpdated implements ChatModel {
+class MessageReactionUpdated implements WithChat {
   /// The chat containing the message the user reacted to.
   @override
   final Chat chat;
