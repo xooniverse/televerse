@@ -1844,8 +1844,8 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// This method will make the menu handlers to be called when the menu buttons are pressed.
   void attachMenu(TeleverseMenu menu) {
-    int rows = menu.actions.length;
-    if (menu is InlineMenu) {
+    if (menu is InlineMenu<TeleverseSession>) {
+      int rows = menu.actions.length;
       for (int i = 0; i < rows; i++) {
         int cols = menu.actions[i].length;
         for (int j = 0; j < cols; j++) {
@@ -1860,7 +1860,8 @@ class Bot<TeleverseSession extends Session> {
         }
       }
     }
-    if (menu is KeyboardMenu) {
+    if (menu is KeyboardMenu<TeleverseSession>) {
+      int rows = menu.actions.length;
       for (int i = 0; i < rows; i++) {
         int cols = menu.actions[i].length;
         for (int j = 0; j < cols; j++) {
