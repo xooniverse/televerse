@@ -24,7 +24,7 @@ class Conversation<T extends Session> {
   final Bot<T> _bot;
 
   /// Creates a new conversation.
-  Conversation(this._bot);
+  const Conversation(this._bot);
 
   /// Wait for a text message from the user.
   Future<Context<T>> waitForTextMessage({
@@ -216,9 +216,9 @@ class Conversation<T extends Session> {
   /// Internal method to check if the chat is the same.
   bool _sameChatMethod(Update update, ID chatId) {
     bool sameChat =
-        update.msg?.chat.id == chatId.id || update.from?.id == chatId.id;
+        update.chat?.id == chatId.id || update.from?.id == chatId.id;
     if (chatId is ChannelID || chatId is SupergroupID) {
-      sameChat = sameChat || update.message?.chat.username == chatId.id;
+      sameChat = sameChat || update.chat?.username == chatId.id;
     }
     return sameChat;
   }
