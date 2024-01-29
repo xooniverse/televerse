@@ -27,7 +27,7 @@ class Conversation<T extends Session> {
   Conversation(this._bot);
 
   /// Wait for a text message from the user.
-  Future<Context> waitForTextMessage({
+  Future<Context<T>> waitForTextMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -39,7 +39,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a photo message from the user.
-  Future<Context> waitForPhotoMessage({
+  Future<Context<T>> waitForPhotoMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -51,7 +51,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video message from the user.
-  Future<Context> waitForVideoMessage({
+  Future<Context<T>> waitForVideoMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -63,7 +63,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a voice message from the user.
-  Future<Context> waitForVoiceMessage({
+  Future<Context<T>> waitForVoiceMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -75,7 +75,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a document message from the user.
-  Future<Context> waitForDocumentMessage({
+  Future<Context<T>> waitForDocumentMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -87,7 +87,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a contact message from the user.
-  Future<Context> waitForContactMessage({
+  Future<Context<T>> waitForContactMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -99,7 +99,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a location message from the user.
-  Future<Context> waitForLocationMessage({
+  Future<Context<T>> waitForLocationMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -111,7 +111,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a venue message from the user.
-  Future<Context> waitForVenueMessage({
+  Future<Context<T>> waitForVenueMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -123,7 +123,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a poll message from the user.
-  Future<Context> waitForPollMessage({
+  Future<Context<T>> waitForPollMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -135,7 +135,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a dice message from the user.
-  Future<Context> waitForDiceMessage({
+  Future<Context<T>> waitForDiceMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -147,7 +147,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a game message from the user.
-  Future<Context> waitForGameMessage({
+  Future<Context<T>> waitForGameMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -159,7 +159,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a sticker message from the user.
-  Future<Context> waitForStickerMessage({
+  Future<Context<T>> waitForStickerMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -170,7 +170,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video note message from the user.
-  Future<Context> waitForVideoNoteMessage({
+  Future<Context<T>> waitForVideoNoteMessage({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -181,7 +181,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video chat to start.
-  Future<Context> waitToStartVideoChat({
+  Future<Context<T>> waitToStartVideoChat({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -192,7 +192,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video chat to end.
-  Future<Context> waitToEndVideoChat({
+  Future<Context<T>> waitToEndVideoChat({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -203,7 +203,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a callback query from the user.
-  Future<Context> waitForCallbackQuery({
+  Future<Context<T>> waitForCallbackQuery({
     required ID chatId,
     Duration? timeout,
   }) async {
@@ -224,7 +224,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for any message from the user.
-  Future<Context> waitFor({
+  Future<Context<T>> waitFor({
     required ID chatId,
     Duration? timeout,
     required bool Function(Update update) filter,
