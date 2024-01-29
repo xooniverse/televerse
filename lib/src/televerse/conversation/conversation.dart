@@ -215,7 +215,8 @@ class Conversation<T extends Session> {
 
   /// Internal method to check if the chat is the same.
   bool _sameChatMethod(Update update, ID chatId) {
-    bool sameChat = update.message?.chat.id == chatId.id;
+    bool sameChat =
+        update.msg?.chat.id == chatId.id || update.from?.id == chatId.id;
     if (chatId is ChannelID || chatId is SupergroupID) {
       sameChat = sameChat || update.message?.chat.username == chatId.id;
     }
@@ -228,20 +229,20 @@ class Conversation<T extends Session> {
     Duration? timeout,
     required bool Function(Update update) filter,
   }) async {
-    Completer<Context> completer = Completer<Context>();
+    final completer = Completer<Context<T>>();
     StreamSubscription<Update>? subscription;
 
     subscription = _bot.updatesStream.listen((update) {
-      bool sameChat = _sameChatMethod(update, chatId);
+      final sameChat = _sameChatMethod(update, chatId);
       if (sameChat && filter(update)) {
-        completer.complete(Context(_bot, update: update));
+        completer.complete(Context<T>(_bot, update: update));
         subscription?.cancel();
       }
     });
 
     final scopeName = "conversation+${_getRandomID()}";
     _bot._handlerScopes.add(
-      HandlerScope<FutureOr<void> Function(Context)>(
+      HandlerScope<Handler<T>>(
         isConversation: true,
         name: scopeName,
         predicate: (ctx) =>

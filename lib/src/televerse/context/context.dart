@@ -83,19 +83,8 @@ class Context<TeleverseSession extends Session> {
 
   /// This is a shorthand getter for the [Message] recieved in the current context
   ///
-  /// This can either be `Message` or `Channel Post` or `Edited Message` or `Edited Channel Post`. (Internal)
-  Message? get _msg {
-    Message? m = update.message ??
-        update.editedMessage ??
-        update.channelPost ??
-        update.editedChannelPost;
-    return m;
-  }
-
-  /// This is a shorthand getter for the [Message] recieved in the current context
-  ///
-  /// This can either be `Message` or `Channel Post` or `Edited Message` or `Edited Channel Post`.
-  Message? get msg => _msg;
+  /// This can either be `Message` or `Channel Post` or `Edited Message` or `Edited Channel Post` or `Callback Query Message`.
+  Message? get msg => update.msg;
 
   /// The incoming message.
   Message? get message => update.message;
@@ -167,49 +156,28 @@ class Context<TeleverseSession extends Session> {
 
   /// The thread id
   int? _threadId([int? id]) {
-    bool isInTopic = _msg?.isTopicMessage ?? false;
-    return id ?? (isInTopic ? _msg?.messageThreadId : null);
+    bool isInTopic = msg?.isTopicMessage ?? false;
+    return id ?? (isInTopic ? msg?.messageThreadId : null);
   }
 
   /// A shorthand getter for the [Chat] instance from the update.
   ///
   /// This can be any of `msg.chat` or `myChatMember.chat` or `chatMember.chat` or `chatJoinRequest.chat` or `messageReaction.chat` or `messageReactionCount.chat` or `chatBoost.chat` or `removedChatBoost.chat`.
-  Chat? get chat {
-    return (chatJoinRequest ??
-            removedChatBoost ??
-            chatBoost ??
-            chatMember ??
-            myChatMember ??
-            messageReaction ??
-            messageReactionCount ??
-            msg)
-        ?.chat;
-  }
+  Chat? get chat => update.chat;
 
   /// A shorthand getter for the [User] instance from the update.
-  User? get from {
-    return (callbackQuery ??
-            inlineQuery ??
-            shippingQuery ??
-            preCheckoutQuery ??
-            chosenInlineResult ??
-            msg ??
-            myChatMember ??
-            chatMember ??
-            chatJoinRequest)
-        ?.from;
-  }
+  User? get from => update.from;
 
   /// Internal getter for the file id
   String? get _fileId {
-    return _msg?.photo?.last.fileId ??
-        _msg?.animation?.fileId ??
-        _msg?.audio?.fileId ??
-        _msg?.document?.fileId ??
-        _msg?.video?.fileId ??
-        _msg?.videoNote?.fileId ??
-        _msg?.voice?.fileId ??
-        _msg?.sticker?.fileId;
+    return msg?.photo?.last.fileId ??
+        msg?.animation?.fileId ??
+        msg?.audio?.fileId ??
+        msg?.document?.fileId ??
+        msg?.video?.fileId ??
+        msg?.videoNote?.fileId ??
+        msg?.voice?.fileId ??
+        msg?.sticker?.fileId;
   }
 
   /// The Chat ID for internal use
@@ -219,9 +187,10 @@ class Context<TeleverseSession extends Session> {
 
   /// The message id for internal use
   int? get _msgId {
-    return _msg?.messageId ??
+    return msg?.messageId ??
         messageReaction?.messageId ??
-        messageReactionCount?.messageId;
+        messageReactionCount?.messageId ??
+        callbackQuery?.message?.messageId;
   }
 
   /// Internal getter for inline message id
@@ -848,7 +817,7 @@ class Context<TeleverseSession extends Session> {
   /// Returns true if the message text matches any of the patterns.
   bool hasText({Pattern? text, List<Pattern>? texts}) {
     // Ensure message text is available for comparison
-    final messageText = _msg?.text;
+    final messageText = msg?.text;
     if (messageText == null) return false;
 
     // Check for exact match with `text`
