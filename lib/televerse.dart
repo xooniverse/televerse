@@ -29,15 +29,13 @@ import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 import 'package:televerse/src/utils/http.dart';
 
-export 'src/televerse/context/context.dart'
-    hide MessageMixin, CallbackQueryMixin, ManagementMixin, InlineQueryMixin;
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
 export 'src/televerse/fetch/fetch.dart';
 export 'src/televerse/extensions/extensions.dart';
 export 'src/televerse/links/links.dart';
 
-part 'src/televerse/televerse.dart';
+part 'src/televerse/bot.dart';
 part 'src/utils/date.dart';
 part 'src/utils/utils.dart';
 part 'src/televerse/markups/keyboard.dart';
@@ -51,15 +49,13 @@ part 'src/televerse/markups/menu.dart';
 part 'src/televerse/markups/keyboard_menu.dart';
 part 'src/televerse/models/multipart_helper.dart';
 part 'src/televerse/models/logger_options.dart';
+part 'src/televerse/context/context.dart';
 
 /// Conversation API
 part 'src/televerse/conversation/conversation.dart';
 
-/// Type aliases for the library.
-part 'src/types/aliases.dart';
-
 /// The main class of the library.
 ///
 /// This class is used to create a new bot instance. This is just a
-/// type alias for [Televerse] class.
-typedef Bot<T extends Session> = Televerse;
+/// type alias for [Bot] class.
+typedef Televerse<T extends Session> = Bot<T>;

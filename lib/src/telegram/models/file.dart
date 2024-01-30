@@ -47,7 +47,7 @@ class File {
   /// This method uses the latest Bot token used in your code. If you have multiple bots running with the same code, you might want to
   /// pass the [token] parameter that can be used to generate the download URL.
   String getDownloadUrl([String? token]) {
-    return 'https://api.telegram.org/file/bot${token ?? Televerse.instance.token}/$filePath';
+    return 'https://api.telegram.org/file/bot${token ?? Bot.instance.token}/$filePath';
   }
 
   /// Returns the [Uri] object of the download URL. This is an shorthand method for:

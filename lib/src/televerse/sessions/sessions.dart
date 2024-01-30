@@ -143,9 +143,8 @@ class SessionsManager<T extends Session> {
   /// bot.sessions.saveAllSessions(path: '/path/to/sessions');
   /// ```
   void saveAllSessions({String? path}) {
-    final int count = _sessions.length;
-    for (int i = 0; i < count; i++) {
-      _sessions[i]?.saveToFile(path: path);
+    for (final key in _sessions.keys) {
+      _sessions[key]?.saveToFile(path: path);
     }
   }
 

@@ -3,14 +3,15 @@ part of '../models.dart';
 /// This object describes a message that can be inaccessible to the bot. It can be one of
 /// - [Message]
 /// - [InaccessibleMessage]
-abstract class MaybeInaccessibleMessage {
+abstract class MaybeInaccessibleMessage implements WithChat {
   /// Chat the message belonged to
+  @override
   final Chat chat;
 
   /// Unique message identifier inside the chat
   final int messageId;
 
-  /// Always 0. The field can be used to differentiate regular and inaccessible messages.
+  /// Date the message was sent in Unix time. It is always a positive number, representing a valid date.
   final int date;
 
   /// Constructor

@@ -55,9 +55,7 @@ enum UpdateType {
 
   /// Update when a chat boost is removed.
   chatBoostRemoved("chat_boost_removed"),
-
-  /// Unknow update type
-  unknown("unknown");
+  ;
 
   /// The value of this enum.
   final String type;

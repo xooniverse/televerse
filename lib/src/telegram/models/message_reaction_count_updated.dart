@@ -1,8 +1,9 @@
 part of 'models.dart';
 
 /// Represents reaction changes on a message with anonymous reactions.
-class MessageReactionCountUpdated {
+class MessageReactionCountUpdated implements WithChat {
   /// The chat containing the message.
+  @override
   final Chat chat;
 
   /// Unique message identifier inside the chat.

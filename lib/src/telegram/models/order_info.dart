@@ -1,4 +1,4 @@
-part of 'payments.dart';
+part of 'models.dart';
 
 /// This object represents information about an order.
 class OrderInfo {

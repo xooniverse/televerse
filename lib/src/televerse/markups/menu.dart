@@ -1,10 +1,9 @@
 part of '../../../televerse.dart';
 
 /// Abstract class to represent a menu
-abstract class TeleverseMenu<CTX extends Context,
-    CtxHandler extends FutureOr<void> Function(CTX), Data> {
+abstract class TeleverseMenu<TeleverseSession extends Session, Data> {
   /// Map that represents the text and action to be done
-  List<Map<Data, CtxHandler>> actions;
+  List<Map<Data, Handler<TeleverseSession>>> actions;
 
   /// Name of the menu
   String name;
@@ -13,8 +12,9 @@ abstract class TeleverseMenu<CTX extends Context,
   Map<String, dynamic> toJson();
 
   /// Converts a list of rows to a list of InlineKeyboardButton
-  static List<List<InlineKeyboardButton>> _makeInlineKeyboard(
-    List<Map<InlineMenuData, CallbackQueryHandler>>? rows,
+  static List<List<InlineKeyboardButton>>
+      _makeInlineKeyboard<TeleverseSession extends Session>(
+    List<Map<InlineMenuData, Handler<TeleverseSession>>>? rows,
   ) {
     if (rows == null) return [];
     return rows.map((row) {
@@ -28,8 +28,9 @@ abstract class TeleverseMenu<CTX extends Context,
   }
 
   /// Converts a list of rows to a list of KeyboardButton
-  static List<List<KeyboardButton>> _makeKeyboard(
-    List<Map<String, MessageHandler>>? rows,
+  static List<List<KeyboardButton>>
+      _makeKeyboard<TeleverseSession extends Session>(
+    List<Map<String, Handler<TeleverseSession>>>? rows,
   ) {
     if (rows == null) return [];
     return rows.map((row) {
@@ -69,7 +70,7 @@ abstract class TeleverseMenu<CTX extends Context,
 
   /// Constructs a TeleverseMenu
   TeleverseMenu({
-    List<Map<Data, CtxHandler>>? actions,
+    List<Map<Data, Handler<TeleverseSession>>>? actions,
     String? name,
   })  : actions = actions ?? [{}],
         name = name ?? _getRandomID();

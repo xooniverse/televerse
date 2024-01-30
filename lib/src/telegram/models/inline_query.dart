@@ -1,11 +1,12 @@
 part of 'models.dart';
 
 /// This object represents an incoming inline query. When the user sends an empty query, your bot could return some default or trending results.
-class InlineQuery {
+class InlineQuery implements WithUser {
   /// Unique identifier for this query
   final String id;
 
   /// Sender
+  @override
   final User from;
 
   /// Text of the query (up to 256 characters)

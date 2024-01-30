@@ -59,7 +59,7 @@ class Update {
   final ChatBoostUpdated? chatBoost;
 
   /// Optional. A chat boost was removed. The bot must be an administrator in the chat to receive these updates.
-  final ChatBoostRemoved? chatBoostRemoved;
+  final ChatBoostRemoved? removedChatBoost;
 
   /// Update Constructor
   const Update({
@@ -81,7 +81,7 @@ class Update {
     this.messageReaction,
     this.messageReactionCount,
     this.chatBoost,
-    this.chatBoostRemoved,
+    this.removedChatBoost,
   });
 
   /// Creates a [Update] from json [Map].
@@ -138,7 +138,7 @@ class Update {
       chatBoost: json['chat_boost'] != null
           ? ChatBoostUpdated.fromJson(json['chat_boost']!)
           : null,
-      chatBoostRemoved: json['chat_boost_removed'] != null
+      removedChatBoost: json['chat_boost_removed'] != null
           ? ChatBoostRemoved.fromJson(json['chat_boost_removed']!)
           : null,
     );
@@ -165,7 +165,7 @@ class Update {
       'message_reaction': messageReaction?.toJson(),
       'message_reaction_count': messageReactionCount?.toJson(),
       'chat_boost': chatBoost?.toJson(),
-      'chat_boost_removed': chatBoostRemoved?.toJson(),
+      'chat_boost_removed': removedChatBoost?.toJson(),
     }..removeWhere((_, value) => value == null);
   }
 
@@ -208,10 +208,12 @@ class Update {
       return UpdateType.messageReactionCount;
     } else if (chatBoost != null) {
       return UpdateType.chatBoost;
-    } else if (chatBoostRemoved != null) {
+    } else if (removedChatBoost != null) {
       return UpdateType.chatBoostRemoved;
     } else {
-      return UpdateType.unknown;
+      throw TeleverseException(
+        "The update type is unknown",
+      );
     }
   }
 }

@@ -12,11 +12,22 @@ import 'dart:io' as io;
 
 import 'games.dart';
 import 'passport.dart';
-import 'payments.dart';
 
 export 'games.dart';
 export 'passport.dart';
-export 'payments.dart';
+
+/// Abstractions
+part 'abstractions.dart';
+
+/// Payments
+part 'labeled_price.dart';
+part 'order_info.dart';
+part 'shipping_address.dart';
+part 'shipping_option.dart';
+part 'shipping_query.dart';
+part 'pre_checkout_query.dart';
+part 'successful_payment.dart';
+part 'invoice.dart';
 
 part 'input_location_message_content.dart';
 part 'forum_topic_reopened.dart';

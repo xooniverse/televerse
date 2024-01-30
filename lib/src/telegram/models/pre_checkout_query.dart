@@ -1,11 +1,12 @@
-part of 'payments.dart';
+part of 'models.dart';
 
 /// This object contains information about an incoming pre-checkout query.
-class PreCheckoutQuery {
+class PreCheckoutQuery implements WithUser {
   ///  Unique query identifier
   final String id;
 
   ///  User who sent the query
+  @override
   final User from;
 
   ///  Three-letter ISO 4217 currency code

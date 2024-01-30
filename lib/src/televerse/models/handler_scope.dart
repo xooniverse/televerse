@@ -41,9 +41,4 @@ class HandlerScope<T extends Function> {
     this.isConversation = false,
   })  : special = isCommand || isRegExp,
         assert(handler != null || isConversation);
-
-  /// Create context for the specified update.
-  Context context(Televerse t, Update update) {
-    return Context.create(t, update);
-  }
 }
