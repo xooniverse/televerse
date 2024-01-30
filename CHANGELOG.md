@@ -1,3 +1,10 @@
+# 1.13.0
+
+- All Televerse listeners are now based on the single `Context` class.
+- Removed all the different `Context` subclasses, such as `MessageContext`, `InlineQueryContext`, `CallbackQueryContext` etc.
+- Added context-aware methods for almost all the methods in the `RawAPI` class.
+- `Conversation.waitFor` methods no longer accepts generic type. All the methods return the `Context` class. 
+
 # 1.12.7
 
 - Now Televerse uses `APIMethod` instead of hard coded strings to call API endpoints.
