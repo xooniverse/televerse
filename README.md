@@ -16,7 +16,7 @@ Our favorite is the new `ctx.react()` method, which allows you to react to a mes
 
 ```dart
   bot.start((ctx) async {
-    await ctx.react("🎉", isBig: true);
+    await ctx.react("🎉");
     await ctx.reply("Happy Holidays!");
   });
 ```
