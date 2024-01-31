@@ -21,7 +21,7 @@ class Location {
   final int? proximityAlertRadius;
 
   /// Constructs a [Location] object
- const Location({
+  const Location({
     required this.longitude,
     required this.latitude,
     this.horizontalAccuracy,
