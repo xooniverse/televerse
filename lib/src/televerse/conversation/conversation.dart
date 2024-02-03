@@ -301,7 +301,9 @@ class Conversation<T extends Session> {
     }
 
     // Check if there's a listener already with the same name.
-    if (_bot._handlerScopes.any((scope) => scope.name == scopeName)) {
+    if (_bot._handlerScopes.any((scope) {
+      return scope.name == scopeName;
+    })) {
       // Cancel the previous listener.
       final prev = _subscriptionsList.firstWhere(
         (sub) => sub.scope == scopeName,
@@ -334,6 +336,7 @@ class Conversation<T extends Session> {
         predicate: (ctx) =>
             _sameChatMethod(ctx.update, chatId) && filter(ctx.update),
         types: UpdateType.values,
+        chatId: chatId,
       ),
     );
 

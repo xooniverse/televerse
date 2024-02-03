@@ -7,7 +7,7 @@ extension On<T extends Session> on Bot<T> {
   /// The call back will be only be executed on specific update types. You can
   /// use the [TeleverseEvent] object to specify which update you want to listen to.
   void on(TeleverseEvent type, void Function(Context ctx) callback) {
-    HandlerScope scope = HandlerScope<Handler>(
+    HandlerScope<Handler<T>> scope = HandlerScope<Handler<T>>(
       handler: callback,
       types: type.types,
       predicate: (ctx) {
