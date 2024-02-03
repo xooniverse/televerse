@@ -36,7 +36,7 @@ class Conversation<T extends Session> {
   }) : name = name ?? "conv-${_getRandomID(5)}";
 
   /// Wait for a text message from the user.
-  Future<Context<T>> waitForTextMessage({
+  Future<Context<T>?> waitForTextMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -51,7 +51,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a photo message from the user.
-  Future<Context<T>> waitForPhotoMessage({
+  Future<Context<T>?> waitForPhotoMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -66,7 +66,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video message from the user.
-  Future<Context<T>> waitForVideoMessage({
+  Future<Context<T>?> waitForVideoMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -81,7 +81,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a voice message from the user.
-  Future<Context<T>> waitForVoiceMessage({
+  Future<Context<T>?> waitForVoiceMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -96,7 +96,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a document message from the user.
-  Future<Context<T>> waitForDocumentMessage({
+  Future<Context<T>?> waitForDocumentMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -111,7 +111,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a contact message from the user.
-  Future<Context<T>> waitForContactMessage({
+  Future<Context<T>?> waitForContactMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -126,7 +126,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a location message from the user.
-  Future<Context<T>> waitForLocationMessage({
+  Future<Context<T>?> waitForLocationMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -141,7 +141,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a venue message from the user.
-  Future<Context<T>> waitForVenueMessage({
+  Future<Context<T>?> waitForVenueMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -156,7 +156,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a poll message from the user.
-  Future<Context<T>> waitForPollMessage({
+  Future<Context<T>?> waitForPollMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -171,7 +171,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a dice message from the user.
-  Future<Context<T>> waitForDiceMessage({
+  Future<Context<T>?> waitForDiceMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -186,7 +186,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a game message from the user.
-  Future<Context<T>> waitForGameMessage({
+  Future<Context<T>?> waitForGameMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -201,7 +201,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a sticker message from the user.
-  Future<Context<T>> waitForStickerMessage({
+  Future<Context<T>?> waitForStickerMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -216,7 +216,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video note message from the user.
-  Future<Context<T>> waitForVideoNoteMessage({
+  Future<Context<T>?> waitForVideoNoteMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -231,7 +231,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video chat to start.
-  Future<Context<T>> waitToStartVideoChat({
+  Future<Context<T>?> waitToStartVideoChat({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -246,7 +246,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video chat to end.
-  Future<Context<T>> waitToEndVideoChat({
+  Future<Context<T>?> waitToEndVideoChat({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -261,7 +261,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a callback query from the user.
-  Future<Context<T>> waitForCallbackQuery({
+  Future<Context<T>?> waitForCallbackQuery({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -276,7 +276,7 @@ class Conversation<T extends Session> {
   }
 
   /// Internal method to check if the chat is the same.
-  bool _sameChatMethod(Update update, ID chatId) {
+  bool _isSameChat(Update update, ID chatId) {
     bool sameChat =
         update.chat?.id == chatId.id || update.from?.id == chatId.id;
     if (chatId is ChannelID || chatId is SupergroupID) {
@@ -286,7 +286,7 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for any message from the user.
-  Future<Context<T>> waitFor({
+  Future<Context<T>?> waitFor({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -297,12 +297,12 @@ class Conversation<T extends Session> {
         handlerName == null ? "$name+${_getRandomID()}" : "$name+$handlerName";
 
     if (clearUnfulfilled) {
-      await clear();
+      await clear(chatId);
     }
 
     // Check if there's a listener already with the same name.
     if (_bot._handlerScopes.any((scope) {
-      return scope.name == scopeName;
+      return scope.name == scopeName && scope.chatId == chatId;
     })) {
       // Cancel the previous listener.
       final prev = _subscriptionsList.firstWhere(
@@ -315,18 +315,18 @@ class Conversation<T extends Session> {
           'already exists. It has been removed.');
     }
 
-    final completer = Completer<Context<T>>();
+    final completer = Completer<Context<T>?>();
     StreamSubscription<Update>? subscription;
 
     subscription = _bot.updatesStream.listen((update) {
-      final sameChat = _sameChatMethod(update, chatId);
+      final sameChat = _isSameChat(update, chatId);
       if (sameChat && filter(update)) {
         completer.complete(Context<T>(_bot, update: update));
       }
     });
 
     _subscriptionsList.add(
-      _ISubHelper(subscription, scopeName),
+      _ISubHelper(subscription, scopeName, completer),
     );
 
     _bot._handlerScopes.add(
@@ -334,7 +334,7 @@ class Conversation<T extends Session> {
         isConversation: true,
         name: scopeName,
         predicate: (ctx) =>
-            _sameChatMethod(ctx.update, chatId) && filter(ctx.update),
+            _isSameChat(ctx.update, chatId) && filter(ctx.update),
         types: UpdateType.values,
         chatId: chatId,
       ),
@@ -344,7 +344,10 @@ class Conversation<T extends Session> {
       Future.delayed(timeout, () {
         if (!completer.isCompleted) {
           completer.completeError(
-            TimeoutException("Conversation request timed out."),
+            ConversationException(
+              "Conversation request timed out.",
+              ConversationExceptionType.timeout,
+            ),
           );
 
           subscription?.cancel();
@@ -358,7 +361,6 @@ class Conversation<T extends Session> {
     final s = _subscriptionsList.firstWhere(
       (sub) => sub.scope == scopeName,
     );
-
     _subscriptionsList.remove(s);
     subscription.cancel();
     _bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
@@ -366,19 +368,33 @@ class Conversation<T extends Session> {
     return ctx;
   }
 
-  /// Removes all the conversation listeners.
-  Future<void> clear() async {
+  /// Removes all the conversation listeners for the given chat.
+  Future<void> clear(ID id) async {
     _bot._handlerScopes.removeWhere(
       (scope) =>
-          scope.isConversation && (scope.name?.startsWith(name) ?? false),
+          scope.isConversation &&
+          (scope.name?.startsWith(name) ?? false) &&
+          scope.chatId == id,
     );
-    for (int i = 0; i < _subscriptionsList.length; i++) {
-      await _subscriptionsList[i].cancel();
-    }
+
+    final subsToCancel =
+        _subscriptionsList.where((sub) => sub.scope.startsWith(name));
+    await Future.wait(subsToCancel.map((sub) => sub.cancel()));
+    _subscriptionsList.removeWhere((sub) => sub.scope.startsWith(name));
+  }
+
+  /// Clear all the conversation listeners.
+  Future<void> clearAll() async {
+    _bot._handlerScopes.removeWhere(
+      (scope) => scope.isConversation && scope.name?.startsWith(name) == true,
+    );
+
+    await Future.wait(_subscriptionsList.map((sub) => sub.cancel()));
+    _subscriptionsList.clear();
   }
 
   /// Wait for pattern from the user.
-  Future<Context<T>> waitForPattern({
+  Future<Context<T>?> waitForPattern({
     required ID chatId,
     required Pattern pattern,
     Duration? timeout,
@@ -405,10 +421,14 @@ class Conversation<T extends Session> {
 class _ISubHelper {
   final StreamSubscription<Update> subscription;
   final String scope;
+  final Completer<Context?> completer;
 
-  const _ISubHelper(this.subscription, this.scope);
+  const _ISubHelper(this.subscription, this.scope, this.completer);
 
   Future<void> cancel() {
+    if (!completer.isCompleted) {
+      completer.complete(null);
+    }
     return subscription.cancel();
   }
 }
