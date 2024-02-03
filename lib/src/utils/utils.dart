@@ -20,11 +20,13 @@ extension CleanString on String {
 
 /// Internal method to generate a random id.
 /// Include a-z, A-Z, 0-9
-String _getRandomID() {
+String _getRandomID([
+  int len = 20,
+]) {
   final random = Random();
   final chars =
       "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  return List.generate(20, (index) => chars[random.nextInt(chars.length)])
+  return List.generate(len, (index) => chars[random.nextInt(chars.length)])
       .join();
 }
 

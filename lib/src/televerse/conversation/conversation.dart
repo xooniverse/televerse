@@ -20,21 +20,33 @@ part of '../../../televerse.dart';
 /// Televerse Conversation is built on top of the Televerse library. So you
 /// can use all the features of the Televerse library in your conversation.
 class Conversation<T extends Session> {
+  /// A list of subscriptions.
+  final List<_ISubHelper> _subscriptionsList = [];
+
+  /// Name of the conversation.
+  final String name;
+
   /// The bot that this conversation belongs to.
   final Bot<T> _bot;
 
   /// Creates a new conversation.
-  const Conversation(this._bot);
+  Conversation(
+    this._bot, {
+    String? name,
+  }) : name = name ?? "conv-${_getRandomID(5)}";
 
   /// Wait for a text message from the user.
   Future<Context<T>> waitForTextMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.text != null,
+      handlerName: "text",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -42,11 +54,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForPhotoMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.photo != null,
+      handlerName: "photo",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -54,11 +69,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForVideoMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.video != null,
+      handlerName: "video",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -66,11 +84,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForVoiceMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.voice != null,
+      handlerName: "voice",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -78,11 +99,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForDocumentMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.document != null,
+      handlerName: "document",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -90,11 +114,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForContactMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.contact != null,
+      handlerName: "contact",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -102,11 +129,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForLocationMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.location != null,
+      handlerName: "location",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -114,11 +144,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForVenueMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.venue != null,
+      handlerName: "venue",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -126,11 +159,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForPollMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.poll != null,
+      handlerName: "poll",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -138,11 +174,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForDiceMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.dice != null,
+      handlerName: "dice",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -150,11 +189,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForGameMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.game != null,
+      handlerName: "game",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -162,10 +204,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForStickerMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       filter: (up) => up.message?.sticker != null,
+      timeout: timeout,
+      handlerName: "sticker",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -173,10 +219,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForVideoNoteMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       filter: (up) => up.message?.videoNote != null,
+      timeout: timeout,
+      handlerName: "videoNote",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -184,10 +234,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitToStartVideoChat({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       filter: (up) => up.message?.videoChatStarted != null,
+      timeout: timeout,
+      handlerName: "videoChatStarted",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -195,10 +249,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitToEndVideoChat({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       filter: (up) => up.message?.videoChatEnded != null,
+      timeout: timeout,
+      handlerName: "videoChatEnded",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -206,10 +264,14 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitForCallbackQuery({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       filter: (up) => up.callbackQuery != null,
+      timeout: timeout,
+      handlerName: "callbackQuery",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
@@ -227,8 +289,30 @@ class Conversation<T extends Session> {
   Future<Context<T>> waitFor({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
     required bool Function(Update update) filter,
+    String? handlerName,
   }) async {
+    final scopeName =
+        handlerName == null ? "$name+${_getRandomID()}" : "$name+$handlerName";
+
+    if (clearUnfulfilled) {
+      await clear();
+    }
+
+    // Check if there's a listener already with the same name.
+    if (_bot._handlerScopes.any((scope) => scope.name == scopeName)) {
+      // Cancel the previous listener.
+      final prev = _subscriptionsList.firstWhere(
+        (sub) => sub.scope == scopeName,
+      );
+      await prev.cancel();
+      _subscriptionsList.remove(prev);
+      _bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
+      print('[Televerse] Warning: Conversation listener with the same name '
+          'already exists. It has been removed.');
+    }
+
     final completer = Completer<Context<T>>();
     StreamSubscription<Update>? subscription;
 
@@ -236,11 +320,13 @@ class Conversation<T extends Session> {
       final sameChat = _sameChatMethod(update, chatId);
       if (sameChat && filter(update)) {
         completer.complete(Context<T>(_bot, update: update));
-        subscription?.cancel();
       }
     });
 
-    final scopeName = "conversation+${_getRandomID()}";
+    _subscriptionsList.add(
+      _ISubHelper(subscription, scopeName),
+    );
+
     _bot._handlerScopes.add(
       HandlerScope<Handler<T>>(
         isConversation: true,
@@ -266,8 +352,60 @@ class Conversation<T extends Session> {
 
     final ctx = await completer.future;
 
+    final s = _subscriptionsList.firstWhere(
+      (sub) => sub.scope == scopeName,
+    );
+
+    _subscriptionsList.remove(s);
+    subscription.cancel();
     _bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
 
     return ctx;
+  }
+
+  /// Removes all the conversation listeners.
+  Future<void> clear() async {
+    _bot._handlerScopes.removeWhere(
+      (scope) =>
+          scope.isConversation && (scope.name?.startsWith(name) ?? false),
+    );
+    for (int i = 0; i < _subscriptionsList.length; i++) {
+      await _subscriptionsList[i].cancel();
+    }
+  }
+
+  /// Wait for pattern from the user.
+  Future<Context<T>> waitForPattern({
+    required ID chatId,
+    required Pattern pattern,
+    Duration? timeout,
+    bool clearUnfulfilled = true,
+  }) async {
+    return await waitFor(
+      chatId: chatId,
+      timeout: timeout,
+      clearUnfulfilled: clearUnfulfilled,
+      filter: (up) {
+        if (pattern is String) {
+          return up.msg?.text?.contains(pattern) == true;
+        } else if (pattern is RegExp) {
+          return pattern.hasMatch(up.msg?.text ?? "");
+        } else {
+          return false;
+        }
+      },
+    );
+  }
+}
+
+/// Internal helper class to store the subscription and the scope name.
+class _ISubHelper {
+  final StreamSubscription<Update> subscription;
+  final String scope;
+
+  const _ISubHelper(this.subscription, this.scope);
+
+  Future<void> cancel() {
+    return subscription.cancel();
   }
 }
