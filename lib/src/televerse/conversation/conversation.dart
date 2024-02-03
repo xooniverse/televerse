@@ -36,6 +36,9 @@ class Conversation<T extends Session> {
   }) : name = name ?? "conv-${_getRandomID(5)}";
 
   /// Wait for a text message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, , returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForTextMessage({
     required ID chatId,
     Duration? timeout,
@@ -51,6 +54,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a photo message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForPhotoMessage({
     required ID chatId,
     Duration? timeout,
@@ -66,6 +72,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForVideoMessage({
     required ID chatId,
     Duration? timeout,
@@ -81,6 +90,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a voice message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForVoiceMessage({
     required ID chatId,
     Duration? timeout,
@@ -96,6 +108,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a document message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForDocumentMessage({
     required ID chatId,
     Duration? timeout,
@@ -111,6 +126,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a contact message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForContactMessage({
     required ID chatId,
     Duration? timeout,
@@ -126,6 +144,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a location message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForLocationMessage({
     required ID chatId,
     Duration? timeout,
@@ -141,6 +162,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a venue message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForVenueMessage({
     required ID chatId,
     Duration? timeout,
@@ -156,6 +180,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a poll message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForPollMessage({
     required ID chatId,
     Duration? timeout,
@@ -171,6 +198,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a dice message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForDiceMessage({
     required ID chatId,
     Duration? timeout,
@@ -186,6 +216,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a game message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForGameMessage({
     required ID chatId,
     Duration? timeout,
@@ -201,6 +234,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a sticker message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForStickerMessage({
     required ID chatId,
     Duration? timeout,
@@ -216,6 +252,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video note message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForVideoNoteMessage({
     required ID chatId,
     Duration? timeout,
@@ -231,6 +270,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video chat to start.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitToStartVideoChat({
     required ID chatId,
     Duration? timeout,
@@ -246,6 +288,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a video chat to end.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitToEndVideoChat({
     required ID chatId,
     Duration? timeout,
@@ -261,6 +306,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for a callback query from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForCallbackQuery({
     required ID chatId,
     Duration? timeout,
@@ -286,6 +334,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for any message from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitFor({
     required ID chatId,
     Duration? timeout,
@@ -394,6 +445,9 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for pattern from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
   Future<Context<T>?> waitForPattern({
     required ID chatId,
     required Pattern pattern,
