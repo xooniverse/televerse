@@ -1,3 +1,11 @@
+# 1.13.1
+
+- Improved the `Conversation` API to make it easier and more efficient to use.
+- Added the parameter `clearUnfulfilled` (true by default) to all `waitFor` methods in Conversation which will clear the unfulfilled Conversation listeners when new one is attached.
+- Added `Conversation.clear` and `Conversation.clearAll` methods to clear attached listeners.
+- All conversation method now return nullable `Context` object, this is because when clearing the unfulfilled listeners, the method will return `null`.
+- Added `ConversationException` class to represent the exceptions that can be thrown from the `Conversation` class. For now, the only exception that can possibly be thrown is the Timeout Exception.
+
 # 1.13.0
 
 - All Televerse listeners are now based on the single `Context` class.
