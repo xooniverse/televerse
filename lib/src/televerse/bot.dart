@@ -259,7 +259,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// List of Handler Scopes
-  final List<HandlerScope> _handlerScopes = [];
+  final List<HandlerScope<Handler<TeleverseSession>>> _handlerScopes = [];
 
   /// To manually handle updates without fetcher
   ///

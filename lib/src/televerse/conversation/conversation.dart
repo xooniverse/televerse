@@ -20,201 +20,311 @@ part of '../../../televerse.dart';
 /// Televerse Conversation is built on top of the Televerse library. So you
 /// can use all the features of the Televerse library in your conversation.
 class Conversation<T extends Session> {
+  /// A list of subscriptions.
+  final List<_ISubHelper> _subscriptionsList = [];
+
+  /// Name of the conversation.
+  final String name;
+
   /// The bot that this conversation belongs to.
   final Bot<T> _bot;
 
   /// Creates a new conversation.
-  const Conversation(this._bot);
+  Conversation(
+    this._bot, {
+    String? name,
+  }) : name = name ?? "conv-${_getRandomID(5)}";
 
   /// Wait for a text message from the user.
-  Future<Context<T>> waitForTextMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, , returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForTextMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.text != null,
+      handlerName: "text",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a photo message from the user.
-  Future<Context<T>> waitForPhotoMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForPhotoMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.photo != null,
+      handlerName: "photo",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a video message from the user.
-  Future<Context<T>> waitForVideoMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForVideoMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.video != null,
+      handlerName: "video",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a voice message from the user.
-  Future<Context<T>> waitForVoiceMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForVoiceMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.voice != null,
+      handlerName: "voice",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a document message from the user.
-  Future<Context<T>> waitForDocumentMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForDocumentMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.document != null,
+      handlerName: "document",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a contact message from the user.
-  Future<Context<T>> waitForContactMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForContactMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.contact != null,
+      handlerName: "contact",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a location message from the user.
-  Future<Context<T>> waitForLocationMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForLocationMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.location != null,
+      handlerName: "location",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a venue message from the user.
-  Future<Context<T>> waitForVenueMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForVenueMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.venue != null,
+      handlerName: "venue",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a poll message from the user.
-  Future<Context<T>> waitForPollMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForPollMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.poll != null,
+      handlerName: "poll",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a dice message from the user.
-  Future<Context<T>> waitForDiceMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForDiceMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.dice != null,
+      handlerName: "dice",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a game message from the user.
-  Future<Context<T>> waitForGameMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForGameMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       timeout: timeout,
       filter: (up) => up.message?.game != null,
+      handlerName: "game",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a sticker message from the user.
-  Future<Context<T>> waitForStickerMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForStickerMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       filter: (up) => up.message?.sticker != null,
+      timeout: timeout,
+      handlerName: "sticker",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a video note message from the user.
-  Future<Context<T>> waitForVideoNoteMessage({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForVideoNoteMessage({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       filter: (up) => up.message?.videoNote != null,
+      timeout: timeout,
+      handlerName: "videoNote",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a video chat to start.
-  Future<Context<T>> waitToStartVideoChat({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitToStartVideoChat({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       filter: (up) => up.message?.videoChatStarted != null,
+      timeout: timeout,
+      handlerName: "videoChatStarted",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a video chat to end.
-  Future<Context<T>> waitToEndVideoChat({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitToEndVideoChat({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       filter: (up) => up.message?.videoChatEnded != null,
+      timeout: timeout,
+      handlerName: "videoChatEnded",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Wait for a callback query from the user.
-  Future<Context<T>> waitForCallbackQuery({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForCallbackQuery({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
   }) async {
     return await waitFor(
       chatId: chatId,
       filter: (up) => up.callbackQuery != null,
+      timeout: timeout,
+      handlerName: "callbackQuery",
+      clearUnfulfilled: clearUnfulfilled,
     );
   }
 
   /// Internal method to check if the chat is the same.
-  bool _sameChatMethod(Update update, ID chatId) {
+  bool _isSameChat(Update update, ID chatId) {
     bool sameChat =
         update.chat?.id == chatId.id || update.from?.id == chatId.id;
     if (chatId is ChannelID || chatId is SupergroupID) {
@@ -224,30 +334,60 @@ class Conversation<T extends Session> {
   }
 
   /// Wait for any message from the user.
-  Future<Context<T>> waitFor({
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitFor({
     required ID chatId,
     Duration? timeout,
+    bool clearUnfulfilled = true,
     required bool Function(Update update) filter,
+    String? handlerName,
   }) async {
-    final completer = Completer<Context<T>>();
+    final scopeName =
+        handlerName == null ? "$name+${_getRandomID()}" : "$name+$handlerName";
+
+    if (clearUnfulfilled) {
+      await clear(chatId);
+    }
+
+    // Check if there's a listener already with the same name.
+    if (_bot._handlerScopes.any((scope) {
+      return scope.name == scopeName && scope.chatId == chatId;
+    })) {
+      // Cancel the previous listener.
+      final prev = _subscriptionsList.firstWhere(
+        (sub) => sub.scope == scopeName,
+      );
+      await prev.cancel();
+      _subscriptionsList.remove(prev);
+      _bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
+      print('[Televerse] Warning: Conversation listener with the same name '
+          'already exists. It has been removed.');
+    }
+
+    final completer = Completer<Context<T>?>();
     StreamSubscription<Update>? subscription;
 
     subscription = _bot.updatesStream.listen((update) {
-      final sameChat = _sameChatMethod(update, chatId);
+      final sameChat = _isSameChat(update, chatId);
       if (sameChat && filter(update)) {
         completer.complete(Context<T>(_bot, update: update));
-        subscription?.cancel();
       }
     });
 
-    final scopeName = "conversation+${_getRandomID()}";
+    _subscriptionsList.add(
+      _ISubHelper(subscription, scopeName, completer),
+    );
+
     _bot._handlerScopes.add(
       HandlerScope<Handler<T>>(
         isConversation: true,
         name: scopeName,
         predicate: (ctx) =>
-            _sameChatMethod(ctx.update, chatId) && filter(ctx.update),
+            _isSameChat(ctx.update, chatId) && filter(ctx.update),
         types: UpdateType.values,
+        chatId: chatId,
       ),
     );
 
@@ -255,7 +395,10 @@ class Conversation<T extends Session> {
       Future.delayed(timeout, () {
         if (!completer.isCompleted) {
           completer.completeError(
-            TimeoutException("Conversation request timed out."),
+            ConversationException(
+              "Conversation request timed out.",
+              ConversationExceptionType.timeout,
+            ),
           );
 
           subscription?.cancel();
@@ -266,8 +409,80 @@ class Conversation<T extends Session> {
 
     final ctx = await completer.future;
 
+    final s = _subscriptionsList.firstWhere(
+      (sub) => sub.scope == scopeName,
+    );
+    _subscriptionsList.remove(s);
+    subscription.cancel();
     _bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
 
     return ctx;
+  }
+
+  /// Removes all the conversation listeners for the given chat.
+  Future<void> clear(ID id) async {
+    _bot._handlerScopes.removeWhere(
+      (scope) =>
+          scope.isConversation &&
+          (scope.name?.startsWith(name) ?? false) &&
+          scope.chatId == id,
+    );
+
+    final subsToCancel =
+        _subscriptionsList.where((sub) => sub.scope.startsWith(name));
+    await Future.wait(subsToCancel.map((sub) => sub.cancel()));
+    _subscriptionsList.removeWhere((sub) => sub.scope.startsWith(name));
+  }
+
+  /// Clear all the conversation listeners.
+  Future<void> clearAll() async {
+    _bot._handlerScopes.removeWhere(
+      (scope) => scope.isConversation && scope.name?.startsWith(name) == true,
+    );
+
+    await Future.wait(_subscriptionsList.map((sub) => sub.cancel()));
+    _subscriptionsList.clear();
+  }
+
+  /// Wait for pattern from the user.
+  ///
+  /// Possibly returns `null` if the listener has been cancelled before
+  /// it completes. Otherwise, returns a [Context] object with the incoming update.
+  Future<Context<T>?> waitForPattern({
+    required ID chatId,
+    required Pattern pattern,
+    Duration? timeout,
+    bool clearUnfulfilled = true,
+  }) async {
+    return await waitFor(
+      chatId: chatId,
+      timeout: timeout,
+      clearUnfulfilled: clearUnfulfilled,
+      filter: (up) {
+        if (pattern is String) {
+          return up.msg?.text?.contains(pattern) == true;
+        } else if (pattern is RegExp) {
+          return pattern.hasMatch(up.msg?.text ?? "");
+        } else {
+          return false;
+        }
+      },
+    );
+  }
+}
+
+/// Internal helper class to store the subscription and the scope name.
+class _ISubHelper {
+  final StreamSubscription<Update> subscription;
+  final String scope;
+  final Completer<Context?> completer;
+
+  const _ISubHelper(this.subscription, this.scope, this.completer);
+
+  Future<void> cancel() {
+    if (!completer.isCompleted) {
+      completer.complete(null);
+    }
+    return subscription.cancel();
   }
 }

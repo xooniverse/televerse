@@ -53,6 +53,7 @@ part 'src/televerse/context/context.dart';
 
 /// Conversation API
 part 'src/televerse/conversation/conversation.dart';
+part 'src/televerse/conversation/conversation_exception.dart';
 
 /// The main class of the library.
 ///

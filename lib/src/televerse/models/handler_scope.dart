@@ -29,6 +29,9 @@ class HandlerScope<T extends Function> {
   /// A flag that indicates if this is a conversation scope.
   final bool isConversation;
 
+  /// Chat ID of the conversation.
+  final ID? chatId;
+
   /// Creates a new [HandlerScope].
   const HandlerScope({
     this.name,
@@ -39,6 +42,7 @@ class HandlerScope<T extends Function> {
     this.isRegExp = false,
     this.pattern,
     this.isConversation = false,
+    this.chatId,
   })  : special = isCommand || isRegExp,
         assert(handler != null || isConversation);
 }
