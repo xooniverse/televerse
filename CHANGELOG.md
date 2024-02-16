@@ -1,3 +1,8 @@
+# 1.13.2
+
+- 🤖 Bot API 7.1 is here.
+- [Refer to official changelog here.](https://core.telegram.org/bots/api-changelog#february-16-2024)
+
 # 1.13.1
 
 - Improved the `Conversation` API to make it easier and more efficient to use.

@@ -370,7 +370,7 @@ class Bot<TeleverseSession extends Session> {
       bot = me;
     } catch (err) {
       try {
-        bot = await api.getMe();
+        bot = await getMe();
         _me = bot;
       } catch (err, st) {
         if (_onError != null) {
@@ -387,11 +387,11 @@ class Bot<TeleverseSession extends Session> {
       handler: callback,
       types: [UpdateType.message],
       predicate: (ctx) {
-        if (ctx.message?.text == null) return false;
+        if (ctx.msg?.text == null) return false;
         if (command is RegExp) {
-          return command.hasMatch(ctx.message?.text ?? "");
+          return command.hasMatch(ctx.msg?.text ?? "");
         } else if (command is String) {
-          final firstTerm = ctx.message?.text!.split(' ').first;
+          final firstTerm = ctx.msg?.text!.split(' ').first;
           final suffix = bot?.username != null ? '@${bot?.username}' : '';
           return firstTerm == '/$command' || firstTerm == '/$command$suffix';
         }
@@ -638,12 +638,12 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for the `/settings` command.
-  Future<void> settings(Handler handler) {
+  Future<void> settings(Handler<TeleverseSession> handler) {
     return command("settings", handler);
   }
 
   /// Registers a callback for the `/help` command.
-  Future<void> help(Handler handler) {
+  Future<void> help(Handler<TeleverseSession> handler) {
     return command("help", handler);
   }
 

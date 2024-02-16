@@ -4,15 +4,16 @@
 ![GitHub](https://img.shields.io/github/license/HeySreelal/televerse?color=green)
 ![](https://shields.io/badge/Latest-Bot%20API%207.0-blue)
 
-🤖 `Bot API version: Bot API 7.0 (December 29, 2023)`
+🤖 `Bot API version: Bot API 7.1 (February 16, 2024)`
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot framework built with Dart programming language. It provides a complete and well-structured API that enables developers to create and deploy complex Telegram bots with ease. Televerse provides a total of 0 dynamic types on its public interface, making it easy for developers to write strictly typed code.
 
-## 🔥 Latest Update: Bot API 7.0
+## 🔥 Latest Update: Bot API 7.1
 
-The biggest update to Bot API yet! Bot API 7.0 brings a lot of new features and improvements to the Telegram Bot API. Televerse 1.12.0 brings support for Bot API 7.0, and also adds a lot of new features and improvements to the Televerse API.
 
-Our favorite is the new `ctx.react()` method, which allows you to react to a message. Or let's see a quick example:
+All the changes from the latest Bot API (7.1) are now available in Televerse. This update includes new `ChatBoostAdded` service message and couple of new fields in the `Chat` object.
+
+Also feel free to try out the Bot API 7.0's reaction features with Televerse. Our favorite is the `react` method, which allows you to react to messages with emojis. For example:
 
 ```dart
   bot.start((ctx) async {

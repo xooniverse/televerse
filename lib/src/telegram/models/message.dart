@@ -230,6 +230,15 @@ class Message implements MaybeInaccessibleMessage, WithUser {
   /// Optional. Service message: a giveaway without public winners was completed
   final GiveawayCompleted? giveawayCompleted;
 
+  /// Optional. Service message: user boosted the chat
+  final ChatBoostAdded? boostAdded;
+
+  /// Optional. If the sender of the message boosted the chat, the number of boosts added by the user
+  final int? senderBoostCount;
+
+  /// Optional. For replies to a story, the original story
+  final Story? replyToStory;
+
   /// Creates a Message object.
   const Message({
     this.from,
@@ -306,6 +315,9 @@ class Message implements MaybeInaccessibleMessage, WithUser {
     required this.chat,
     required this.date,
     required this.messageId,
+    this.boostAdded,
+    this.senderBoostCount,
+    this.replyToStory,
   });
 
   /// Creates a [Message] object from json map.
@@ -473,6 +485,15 @@ class Message implements MaybeInaccessibleMessage, WithUser {
       forwardOrigin: json['forward_origin'] == null
           ? null
           : MessageOrigin.fromJson(json['forward_origin']),
+      boostAdded: json["boost_added"] != null
+          ? ChatBoostAdded.fromJson(
+              json["boost_added"],
+            )
+          : null,
+      senderBoostCount: json["sender_boost_count"],
+      replyToStory: json["reply_to_story"] != null
+          ? Story.fromJson(json["reply_to_story"])
+          : null,
     );
   }
 
@@ -555,6 +576,9 @@ class Message implements MaybeInaccessibleMessage, WithUser {
       'giveaway_winners': giveawayWinners?.toJson(),
       'giveaway_completed': giveawayCompleted?.toJson(),
       'forward_origin': forwardOrigin?.toJson(),
+      'boost_added': boostAdded?.toJson(),
+      'sender_boost_count': senderBoostCount,
+      'reply_to_story': replyToStory?.toJson(),
     }..removeWhere((key, value) => value == null);
   }
 

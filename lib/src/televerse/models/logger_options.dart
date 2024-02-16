@@ -40,7 +40,7 @@ class LoggerOptions {
   /// - [stackTrace] - Print error stack trace [DioException.stackTrace]
   /// - [logPrint] - Log printer; defaults print log to console.
   /// - [methods] - Methods to be logged.
-  LoggerOptions({
+  const LoggerOptions({
     this.request = true,
     this.requestHeader = true,
     this.requestBody = true,
@@ -53,31 +53,31 @@ class LoggerOptions {
   }) : methods = methods ?? APIMethod.values; // Default all methods
 
   /// Print request [Options]
-  bool request;
+  final bool request;
 
   /// Print request header [Options.headers]
-  bool requestHeader;
+  final bool requestHeader;
 
   /// Print request data [Options]
-  bool requestBody;
+  final bool requestBody;
 
   /// Print [Response.data]
-  bool responseBody;
+  final bool responseBody;
 
   /// Print [Response.headers]
-  bool responseHeader;
+  final bool responseHeader;
 
   /// Print error message
-  bool error;
+  final bool error;
 
   /// Print error stack trace [DioException.stackTrace]
-  bool stackTrace;
+  final bool stackTrace;
 
   /// Log printer; defaults print log to console.
-  void Function(Object object) logPrint;
+  final void Function(Object object) logPrint;
 
   /// Methods to be logged.
-  List<APIMethod> methods;
+  final List<APIMethod> methods;
 
   /// Returns true if the given [method] is allowed.
   bool isAllowed(APIMethod method) {
