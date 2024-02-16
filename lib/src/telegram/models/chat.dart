@@ -107,6 +107,12 @@ class Chat {
   /// Optional. True, if new chat members will have access to old messages; available only to chat administrators. Returned only in getChat.
   final bool? hasVisibleHistory;
 
+  /// Optional. For supergroups, the minimum number of boosts that a non-administrator user needs to add in order to ignore slow mode and chat permissions. Returned only in getChat.
+  final int? unrestrictBoostCount;
+
+  /// Optional. For supergroups, the name of the group's custom emoji sticker set. Custom emoji from this set can be used by all users and bots in the group. Returned only in getChat.
+  final String? customEmojiStickerSetName;
+
   /// Constructs a [Chat] object.
   const Chat({
     required this.id,
@@ -144,6 +150,8 @@ class Chat {
     this.profileAccentColorId,
     this.profileBackgroundCustomEmojiId,
     this.hasVisibleHistory,
+    this.unrestrictBoostCount,
+    this.customEmojiStickerSetName,
   });
 
   /// Creates a [Chat] object from json.
@@ -196,6 +204,8 @@ class Chat {
       profileBackgroundCustomEmojiId:
           json['profile_background_custom_emoji_id'],
       hasVisibleHistory: json['has_visible_history'],
+      unrestrictBoostCount: json['unrestrict_boost_count'],
+      customEmojiStickerSetName: json['custom_emoji_sticker_set_name'],
     );
   }
 
@@ -239,6 +249,8 @@ class Chat {
       'profile_accent_color_id': profileAccentColorId,
       'profile_background_custom_emoji_id': profileBackgroundCustomEmojiId,
       'has_visible_history': hasVisibleHistory,
+      'unrestrict_boost_count': unrestrictBoostCount,
+      'custom_emoji_sticker_set_name': customEmojiStickerSetName,
     }..removeWhere((key, value) => value == null);
   }
 }

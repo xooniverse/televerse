@@ -196,3 +196,7 @@ part 'message_origin_chat.dart';
 part 'message_origin_channel.dart';
 part 'abstracts/maybe_inaccessible_message.dart';
 part 'inaccessible_message.dart';
+
+// Bot API 7.1
+
+part 'chat_boost_added.dart';
