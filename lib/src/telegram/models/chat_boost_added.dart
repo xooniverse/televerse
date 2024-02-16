@@ -24,7 +24,6 @@ class ChatBoostAdded {
     );
   }
 
-
   @override
   String toString() => 'ChatBoostAdded(boostCount: $boostCount)';
 
