@@ -1580,7 +1580,7 @@ class Context<TeleverseSession extends Session> {
   /// Set the bot's menu button for this chat (must be a private chat).
   Future<bool> setChatMenuButton(MenuButton menuButton) async {
     _verifyInfo([_chatId], APIMethod.setChatMenuButton);
-    return api.setChatMenuButton(id, menuButton);
+    return api.setChatMenuButton(menuButton, chatId: id);
   }
 
   /// Get the current chat menu button
