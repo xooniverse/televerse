@@ -1,3 +1,8 @@
+# 1.13.3
+
+- Fix [#212](https://github.com/HeySreelal/televerse/issues/212) - `setChatMenuButton` required `ID` instance where it should be optional.
+- Thanks to [@Sominemo](https://github.com/Sominemo) for raising this issue.
+
 # 1.13.2
 
 - 🤖 Bot API 7.1 is here.

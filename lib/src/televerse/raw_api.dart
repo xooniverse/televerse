@@ -2057,11 +2057,11 @@ class RawAPI {
 
   /// Use this method to change the bot's menu button in a private chat, or the default menu button. Returns True on success.
   Future<bool> setChatMenuButton(
-    ID chatId,
-    MenuButton menuButton,
-  ) async {
+    MenuButton menuButton, {
+    ID? chatId,
+  }) async {
     Map<String, dynamic> params = {
-      "chat_id": chatId.id,
+      "chat_id": chatId?.id,
       "menu_button": menuButton.toJson(),
     };
     bool response = await _httpClient.postURI(
