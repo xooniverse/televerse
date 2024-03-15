@@ -1,3 +1,12 @@
+# 1.13.4
+
+- Added a new property `timeout` to `Bot` and `RawAPI` classes to set the timeout for the API requests.
+- The timeout does not affect the long polling (getUpdates) requests.
+- Added `TeleverseExceptionType` to categorize the exceptions that can be thrown from the Televerse library.
+- The `TeleverseException` class now has a `type` property to represent the type of the exception.
+- Added `RawAPI.closeClient` method to close the HTTP client.
+- Removed the `HttpClient` export.
+
 # 1.13.3
 
 - Fix [#212](https://github.com/HeySreelal/televerse/issues/212) - `setChatMenuButton` required `ID` instance where it should be optional.
