@@ -23,5 +23,7 @@ class UserLink extends Deeplink {
   @override
   String get https => throw TeleverseException(
         "https://t.me/ links are not supported for user links",
+        description: "User links are not supported for t.me links.",
+        type: TeleverseExceptionType.unsupported,
       );
 }

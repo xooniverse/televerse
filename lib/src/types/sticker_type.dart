@@ -32,7 +32,11 @@ enum StickerType {
       case "custom_emoji":
         return StickerType.customEmoji;
       default:
-        throw TeleverseException("Unknown StickerType: $type");
+        throw TeleverseException(
+          "Unknown StickerType: $type",
+          description: "The given value does not match any StickerType.",
+          type: TeleverseExceptionType.invalidParameter,
+        );
     }
   }
 

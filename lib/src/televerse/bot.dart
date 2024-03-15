@@ -54,6 +54,7 @@ class Bot<TeleverseSession extends Session> {
       throw TeleverseException(
         "Bot instance not found. ",
         description: "Create a Bot instance with a token first.",
+        type: TeleverseExceptionType.botNotInitialized,
       );
     }
   }
@@ -194,6 +195,7 @@ class Bot<TeleverseSession extends Session> {
         description:
             "This happens when the initial getMe request is not completed. You can call `bot.getMe` method to set this property.",
         stackTrace: stack,
+        type: TeleverseExceptionType.requestFailed,
       );
     }
   }
