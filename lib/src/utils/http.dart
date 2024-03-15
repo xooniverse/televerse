@@ -1,11 +1,9 @@
-import 'dart:convert';
-import 'package:dio/dio.dart';
-import 'package:televerse/televerse.dart';
+part of '../../televerse.dart';
 
 /// HttpClient is used to send HTTP requests to the Telegram Bot API.
-class HttpClient {
+class _HttpClient {
   /// Construc client with optionally logging
-  HttpClient(this.loggerOptions) {
+  _HttpClient(this.loggerOptions) {
     if (loggerOptions != null) {
       _dio.interceptors.add(
         loggerOptions!.interceptor,
@@ -126,5 +124,10 @@ class HttpClient {
       return MapEntry(k, jsonEncode(v));
     }
     return MapEntry(k, "$v");
+  }
+
+  /// Close the client
+  void close() {
+    _dio.close();
   }
 }

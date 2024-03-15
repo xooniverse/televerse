@@ -305,7 +305,12 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Stop listening for updates.
-  Future<void> stop() {
+  Future<void> stop({
+    bool shouldCloseHttpClient = true,
+  }) {
+    if (shouldCloseHttpClient) {
+      api.closeClient();
+    }
     return fetcher.stop();
   }
 

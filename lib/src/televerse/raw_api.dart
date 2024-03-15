@@ -15,7 +15,7 @@ class RawAPI {
   final String token;
 
   /// Http client
-  final HttpClient _httpClient;
+  final _HttpClient _httpClient;
 
   /// The Raw API.
   RawAPI(
@@ -26,7 +26,7 @@ class RawAPI {
   })  : _baseUrl = baseUrl ?? defaultBase,
         _isLocal = baseUrl != defaultBase,
         _scheme = scheme ?? APIScheme.https,
-        _httpClient = HttpClient(loggerOptions);
+        _httpClient = _HttpClient(loggerOptions);
 
   /// Creates a new RawAPI instance with the given [token] and [baseUrl].
   ///
@@ -93,6 +93,11 @@ class RawAPI {
       };
     }).toList();
     return files;
+  }
+
+  /// Close the HTTP client.
+  void closeClient() {
+    _httpClient.close();
   }
 
   /// Use this method to receive incoming updates using long polling.
