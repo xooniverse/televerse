@@ -2,7 +2,7 @@
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/HeySreelal/televerse?color=green)
-![](https://shields.io/badge/Latest-Bot%20API%207.0-blue)
+![](https://shields.io/badge/Latest-Bot%20API%207.1-blue)
 
 🤖 `Bot API version: Bot API 7.1 (February 16, 2024)`
 
