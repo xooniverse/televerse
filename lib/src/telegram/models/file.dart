@@ -73,10 +73,16 @@ class File {
         getDownloadURI(token),
         options: Options(responseType: ResponseType.bytes),
       );
+      dio.close();
       if (r.statusCode == 200) {
         return r.data as Uint8List;
       } else {
-        throw TeleverseException("Couldn't fetch the file data.");
+        throw TeleverseException(
+          "Couldn't fetch the file data.",
+          description:
+              "The request to fetch the file data failed with status code ${r.statusCode}.",
+          type: TeleverseExceptionType.requestFailed,
+        );
       }
     } catch (err) {
       return null;

@@ -84,7 +84,10 @@ class InputFile {
     } else if (bytes != null) {
       return InputFileType.bytes;
     } else {
-      throw TeleverseException('InputFile must have a value');
+      throw TeleverseException(
+        'InputFile must have a value',
+        type: TeleverseExceptionType.invalidParameter,
+      );
     }
   }
 
@@ -107,6 +110,7 @@ class InputFile {
     } else {
       throw TeleverseException(
         'InputFile must be created with either [InputFile.fromBytes] or [InputFile.fromFile]',
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
   }

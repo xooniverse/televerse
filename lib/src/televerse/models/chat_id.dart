@@ -28,6 +28,7 @@ abstract class ID {
         throw TeleverseException(
           "The passed value is not a valid chat id. The value must be an integer or a string.",
           description: "The passed value is of type ${value.runtimeType}.",
+          type: TeleverseExceptionType.invalidParameter,
         );
     }
   }

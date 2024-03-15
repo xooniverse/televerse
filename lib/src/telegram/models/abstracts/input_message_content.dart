@@ -35,7 +35,12 @@ abstract class InputMessageContent {
     } else if (isInVoice) {
       return InputInvoiceMessageContent.fromJson(json);
     } else {
-      throw TeleverseException('Unknown InputMessageContent type');
+      throw TeleverseException(
+        'Unknown InputMessageContent type',
+        description:
+            'The given JSON object does not match any InputMessageContent type.',
+        type: TeleverseExceptionType.invalidParameter,
+      );
     }
   }
 }

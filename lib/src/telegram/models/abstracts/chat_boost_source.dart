@@ -28,6 +28,7 @@ abstract class ChatBoostSource {
           "Invalid value '${json['type']}' for ChatBoostSourceType.",
           description:
               'The given value does not match any ChatBoostSourceType.',
+          type: TeleverseExceptionType.invalidParameter,
         );
     }
   }

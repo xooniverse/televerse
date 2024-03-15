@@ -32,6 +32,7 @@ enum ChatBoostSourceType {
           "Invalid value '$json' for ChatBoostSourceType.",
           description:
               'The given value does not match any ChatBoostSourceType.',
+          type: TeleverseExceptionType.invalidParameter,
         );
     }
   }
