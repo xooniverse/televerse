@@ -46,7 +46,7 @@ void main() async {
     ..resized();
 
   /// Now you can simply send the keyboard as the replyMarkup for sendMessage or other methods in RawAPI
-  bot.command("/keyboard", (ctx) async {
+  bot.command("keyboard", (ctx) async {
     await ctx.reply("Here is the keyboard!", replyMarkup: keyboard);
   });
 
