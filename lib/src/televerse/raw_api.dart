@@ -748,12 +748,14 @@ class RawAPI {
       throw TeleverseException(
         "Invalid Parameter in [sendMediaGroup]",
         description: "The maximum number of items in a media group is 10.",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
     if (media.length < 2) {
       throw TeleverseException(
         "Invalid Parameter in [sendMediaGroup]",
         description: "The minimum number of items in a media group is 2.",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
     bool containsInvalidType = media.any((m) {
@@ -765,6 +767,7 @@ class RawAPI {
         "Invalid Parameter in [sendMediaGroup]",
         description:
             "Audio and Animation files can't be sent in a media group.",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -1050,6 +1053,7 @@ class RawAPI {
         "The number of options must be between 2 and 10",
         description:
             "You provided ${options.length} options. Please provide between 2 and 10 options.",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
     if (closeDate != null && openPeriod != null) {
@@ -1057,6 +1061,7 @@ class RawAPI {
         "You can't provide both a close date and an open period",
         description:
             "You provided both a close date and an open period. Please provide only one of them.",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -1065,6 +1070,7 @@ class RawAPI {
         "The close date must be in the future",
         description:
             "The close date you provided is in the past. Please provide a date in the future.",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -1073,6 +1079,7 @@ class RawAPI {
         "The open period must be at least 5 seconds",
         description:
             "The open period you provided is less than 5 seconds. Please provide a period of at least 5 seconds.",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -1081,6 +1088,7 @@ class RawAPI {
         "The open period must be at most 600 seconds",
         description:
             "The open period you provided is more than 600 seconds. Please provide a period of at most 600 seconds.",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -1089,6 +1097,7 @@ class RawAPI {
         "You must provide a correct option ID for a quiz",
         description:
             "You provided a quiz poll type but did not provide a correct option ID. Please provide a correct option ID.",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -1418,16 +1427,18 @@ class RawAPI {
   }) async {
     if (expireDate != null && expireDate.isBefore(DateTime.now())) {
       throw TeleverseException(
-        "Invalid Argument [expireDate]",
+        "Invalid Parameter [expireDate]",
         description: "Expire date must be in the future",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
     if (createsJoinRequest == true && memberLimit != null) {
       throw TeleverseException(
-        "Invalid Arguments",
+        "Invalid Parameter",
         description:
-            "You can't set a member limit and allow join requests at the same time",
+            "You can't set a member limit and allow join requests at the same time.",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -1436,6 +1447,7 @@ class RawAPI {
         "Invalid Argument [memberLimit]",
         description:
             "The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -1464,24 +1476,27 @@ class RawAPI {
   }) async {
     if (expireDate != null && expireDate.isBefore(DateTime.now())) {
       throw TeleverseException(
-        "Invalid Argument [expireDate]",
+        "Invalid Parameter [expireDate]",
         description: "Expire date must be in the future",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
     if (createsJoinRequest == true && memberLimit != null) {
       throw TeleverseException(
-        "Invalid Arguments",
+        "Invalid Parameter",
         description:
             "You can't set a member limit and allow join requests at the same time",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
     if (memberLimit != null && (memberLimit < 1 || memberLimit > 99999)) {
       throw TeleverseException(
-        "Invalid Argument [memberLimit]",
+        "Invalid Parameter [memberLimit]",
         description:
             "The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -1597,8 +1612,9 @@ class RawAPI {
   ) async {
     if (title.length > 128) {
       throw TeleverseException(
-        "Invalid Argument [title]",
+        "Invalid Parameter [title]",
         description: "Chat title can't be longer than 128 characters",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -1620,8 +1636,9 @@ class RawAPI {
   ) async {
     if (description != null && description.length > 255) {
       throw TeleverseException(
-        "Invalid Argument [description]",
+        "Invalid Parameter [description]",
         description: "Chat description can't be longer than 255 characters",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -1815,7 +1832,11 @@ class RawAPI {
     String? iconCustomEmojiId,
   }) async {
     if (name.isEmpty || name.length > 128) {
-      throw TeleverseException("Name length must be between 1 and 64");
+      throw TeleverseException(
+        "Invalid parameter [name]",
+        description: "Name length must be between 1 and 64",
+        type: TeleverseExceptionType.invalidParameter,
+      );
     }
 
     Map<String, dynamic> params = {
@@ -1842,7 +1863,9 @@ class RawAPI {
   }) async {
     if (name != null && (name.isEmpty || name.length > 128)) {
       throw TeleverseException(
-        "Name length must be between 1 and 128",
+        "Invalid parameter [name]",
+        description: "Name length must be between 1 and 128",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -1929,7 +1952,11 @@ class RawAPI {
     String name,
   ) async {
     if (name.isEmpty || name.length > 128) {
-      throw TeleverseException("name length must be between 1 and 64");
+      throw TeleverseException(
+        "Invalid Parameter [name]",
+        description: "Length of name must be between 1 and 64",
+        type: TeleverseExceptionType.invalidParameter,
+      );
     }
 
     Map<String, dynamic> params = {
@@ -2531,9 +2558,10 @@ class RawAPI {
       );
     } else {
       throw TeleverseException(
-        "uploadStickerFile",
+        "Invalid parameter [sticker]",
         description:
             "Only upload file. Use [InputFile.fromFile] to upload file.",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -2828,6 +2856,7 @@ class RawAPI {
       throw TeleverseException(
         "Invalid Parameter [shippingOptions]",
         description: "shippingOptions is required if ok is True",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -2835,6 +2864,7 @@ class RawAPI {
       throw TeleverseException(
         "Invalid Parameter [errorMessage]",
         description: "errorMessage is required if ok is False",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -2868,6 +2898,7 @@ class RawAPI {
       throw TeleverseException(
         "Invalid Parameter [errorMessage]",
         description: "errorMessage is required if ok is False",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 
@@ -3006,6 +3037,7 @@ class RawAPI {
         "Invalid Parameter",
         description:
             "chatId, messageId, and inlineMessageId cannot all be null",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
 

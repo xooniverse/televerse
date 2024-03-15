@@ -31,7 +31,12 @@ abstract class MessageOrigin {
       case 'channel':
         return MessageOriginChannel.fromJson(json);
       default:
-        throw TeleverseException("Unknown message origin type");
+        throw TeleverseException(
+          "Unknown message origin type",
+          description:
+              "The given JSON object does not match any MessageOrigin type.",
+          type: TeleverseExceptionType.invalidParameter,
+        );
     }
   }
 

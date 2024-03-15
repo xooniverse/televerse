@@ -46,6 +46,7 @@ class Context<TeleverseSession extends Session> {
     if (chat == null) {
       throw TeleverseException(
         "The update type is ${update.type}, which does not have a chat.",
+        type: TeleverseExceptionType.updateTypeDoesNotHaveChat,
       );
     }
     return ChatID(chat!.id);
@@ -210,6 +211,7 @@ class Context<TeleverseSession extends Session> {
       throw TeleverseException(
         "The context does not contain necessary information to call the method `$method`.",
         description: description,
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
   }

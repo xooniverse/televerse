@@ -37,6 +37,8 @@ abstract class ChatMember {
       default:
         throw TeleverseException(
           'Unknown ChatMember status: ${json['status']}',
+          description: 'The given status does not match any ChatMemberStatus.',
+          type: TeleverseExceptionType.invalidParameter,
         );
     }
   }

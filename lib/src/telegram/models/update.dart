@@ -213,6 +213,8 @@ class Update {
     } else {
       throw TeleverseException(
         "The update type is unknown",
+        description: "The given update does not match any known update type.",
+        type: TeleverseExceptionType.invalidParameter,
       );
     }
   }

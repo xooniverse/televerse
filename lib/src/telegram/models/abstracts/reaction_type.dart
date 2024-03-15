@@ -26,6 +26,8 @@ abstract class ReactionType {
       default:
         throw TeleverseException(
           'Invalid reaction type: ${json['type']}',
+          description: 'The given type does not match any ReactionType.',
+          type: TeleverseExceptionType.invalidParameter,
         );
     }
   }

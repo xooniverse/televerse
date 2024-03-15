@@ -34,6 +34,8 @@ enum MessageOriginType {
       default:
         throw TeleverseException(
           'Invalid MessageOriginType value.',
+          description: 'The given value does not match any MessageOriginType.',
+          type: TeleverseExceptionType.invalidParameter,
         );
     }
   }
