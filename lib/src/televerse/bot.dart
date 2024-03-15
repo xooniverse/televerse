@@ -34,6 +34,11 @@ class Bot<TeleverseSession extends Session> {
   /// Handler for unexpected errors.
   FutureOr<void> Function(BotError error)? _onError;
 
+  /// The timeout duration for the requests.
+  ///
+  /// This is used to set the timeout duration for the requests. When the timeout duration is reached, the request will be cancelled.
+  final Duration? timeout;
+
   /// Get the bot instance.
   ///
   /// This getter returns the bot instance. You can use this to access the bot instance from anywhere in your code.
@@ -69,6 +74,7 @@ class Bot<TeleverseSession extends Session> {
         baseUrl: _baseURL,
         scheme: _scheme,
         loggerOptions: _loggerOptions,
+        timeout: timeout,
       );
     }
     return RawAPI(
@@ -76,6 +82,7 @@ class Bot<TeleverseSession extends Session> {
       baseUrl: _baseURL,
       scheme: APIScheme.https,
       loggerOptions: _loggerOptions,
+      timeout: timeout,
     );
   }
 
@@ -100,6 +107,7 @@ class Bot<TeleverseSession extends Session> {
     String baseURL = RawAPI.defaultBase,
     APIScheme scheme = APIScheme.https,
     LoggerOptions? loggerOptions,
+    this.timeout,
   })  : _baseURL = baseURL,
         isLocal = baseURL != RawAPI.defaultBase,
         _loggerOptions = loggerOptions,
@@ -110,10 +118,16 @@ class Bot<TeleverseSession extends Session> {
 
     api.getMe().then((value) {
       _me = value;
-    }).catchError((err, st) async {
+    }).catchError((Object err, StackTrace st) async {
       if (_onError != null) {
         final botErr = BotError(err, st);
         await _onError!(botErr);
+      } else if (err is DioException) {
+        if (err.type == DioExceptionType.connectionTimeout ||
+            err.type == DioExceptionType.receiveTimeout ||
+            err.type == DioExceptionType.sendTimeout) {
+          throw TeleverseException.timeoutException(st, timeout!);
+        }
       } else {
         throw err;
       }
@@ -151,6 +165,7 @@ class Bot<TeleverseSession extends Session> {
     String baseURL = "localhost:8081",
     APIScheme scheme = APIScheme.http,
     LoggerOptions? loggerOptions,
+    Duration? timeout,
   }) {
     print('Using local Bot API server at $baseURL');
     return Bot(
@@ -159,6 +174,7 @@ class Bot<TeleverseSession extends Session> {
       baseURL: baseURL,
       scheme: scheme,
       loggerOptions: loggerOptions,
+      timeout: timeout,
     );
   }
 
@@ -305,7 +321,12 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Stop listening for updates.
-  Future<void> stop() {
+  Future<void> stop({
+    bool shouldCloseHttpClient = true,
+  }) {
+    if (shouldCloseHttpClient) {
+      api.closeClient();
+    }
     return fetcher.stop();
   }
 

@@ -27,7 +27,6 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
-import 'package:televerse/src/utils/http.dart';
 
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
@@ -35,6 +34,7 @@ export 'src/televerse/fetch/fetch.dart';
 export 'src/televerse/extensions/extensions.dart';
 export 'src/televerse/links/links.dart';
 
+part 'src/utils/http.dart';
 part 'src/televerse/bot.dart';
 part 'src/utils/date.dart';
 part 'src/utils/utils.dart';

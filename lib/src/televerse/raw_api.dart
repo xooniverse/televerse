@@ -2,6 +2,11 @@ part of '../../televerse.dart';
 
 /// Raw API for the Telegram Bot API.
 class RawAPI {
+  /// Timeout Duration for the HTTP client.
+  ///
+  /// When the timeout is reached, the API request will be cancelled and the client will throw an exception.
+  final Duration? timeout;
+
   /// API Scheme
   final APIScheme _scheme;
 
@@ -15,7 +20,7 @@ class RawAPI {
   final String token;
 
   /// Http client
-  final HttpClient _httpClient;
+  final _HttpClient _httpClient;
 
   /// The Raw API.
   RawAPI(
@@ -23,10 +28,14 @@ class RawAPI {
     String? baseUrl,
     APIScheme? scheme,
     LoggerOptions? loggerOptions,
+    this.timeout,
   })  : _baseUrl = baseUrl ?? defaultBase,
         _isLocal = baseUrl != defaultBase,
         _scheme = scheme ?? APIScheme.https,
-        _httpClient = HttpClient(loggerOptions);
+        _httpClient = _HttpClient(
+          loggerOptions,
+          timeout: timeout,
+        );
 
   /// Creates a new RawAPI instance with the given [token] and [baseUrl].
   ///
@@ -36,12 +45,14 @@ class RawAPI {
     String baseUrl = "localhost:8081",
     APIScheme scheme = APIScheme.http,
     LoggerOptions? loggerOptions,
+    Duration? timeout,
   }) {
     return RawAPI(
       token,
       baseUrl: baseUrl,
       scheme: scheme,
       loggerOptions: loggerOptions,
+      timeout: timeout,
     );
   }
 
@@ -93,6 +104,11 @@ class RawAPI {
       };
     }).toList();
     return files;
+  }
+
+  /// Close the HTTP client.
+  void closeClient() {
+    _httpClient.close();
   }
 
   /// Use this method to receive incoming updates using long polling.
