@@ -62,4 +62,18 @@ class TeleverseException implements Exception {
         description:
             "You must provide the bytes of the file to upload. Use the `InputFile.fromBytes` constructor to create an InputFile.",
       );
+
+  /// Exception thrown when the timeout exception occurs.
+  static TeleverseException timeoutException(StackTrace st, Duration timeout) {
+    return TeleverseException(
+      "Connection timeout.",
+      description:
+          "The request took too long to complete. This might be due to a slow internet connection or sometimes due to the Telegram servers. Try again later.\n\n"
+          "Possible solutions:\n"
+          "   1. Increase the timeout duration. Currently it is set to $timeout.\n"
+          "   2. Check your internet connection.\n"
+          "   3. Attach a error handler using `Bot.onError` to handle the timeout exception.",
+      stackTrace: st,
+    );
+  }
 }

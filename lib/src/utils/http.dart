@@ -3,7 +3,10 @@ part of '../../televerse.dart';
 /// HttpClient is used to send HTTP requests to the Telegram Bot API.
 class _HttpClient {
   /// Construc client with optionally logging
-  _HttpClient(this.loggerOptions) {
+  _HttpClient(
+    this.loggerOptions, {
+    this.timeout,
+  }) {
     if (loggerOptions != null) {
       _dio.interceptors.add(
         loggerOptions!.interceptor,
@@ -16,6 +19,18 @@ class _HttpClient {
 
   /// Log flag
   final LoggerOptions? loggerOptions;
+
+  /// Timeout for the requests
+  final Duration? timeout;
+
+  /// Returns the timeout duration for the given [uri]. The [timeout] will not be used for `getUpdates` requests.
+  Duration? _timeoutDuration(Uri uri) {
+    // If the URI is of getUpdates, ignore the timeout.
+    if (uri.pathSegments.last == APIMethod.getUpdates.name) {
+      return null;
+    }
+    return timeout;
+  }
 
   // Throws formatted exception
   void _dioCatch(Object? e) {
@@ -68,6 +83,8 @@ class _HttpClient {
         data: bodyContent,
         options: Options(
           headers: {"Content-Type": "application/json"},
+          sendTimeout: _timeoutDuration(uri),
+          receiveTimeout: _timeoutDuration(uri),
         ),
       );
       final resBody = response.data;
