@@ -11,5 +11,7 @@ extension UnixTime on DateTime {
 /// Telegram uses unix time, so this extension is used to convert unix time to a [DateTime] object.
 extension IntDate on int {
   /// The [DateTime] object of this integer.
-  DateTime get dateTime => DateTime.fromMillisecondsSinceEpoch(this * 1000);
+  ///
+  /// This method is used to convert an integer to a [DateTime] object. The integer is assumed to be unix time and is converted to a [DateTime] object.
+  DateTime toDateTime() => DateTime.fromMillisecondsSinceEpoch(this * 1000);
 }

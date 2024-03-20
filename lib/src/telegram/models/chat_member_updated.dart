@@ -73,5 +73,5 @@ class ChatMemberUpdated implements WithChat, WithUser {
   }
 
   /// Returns a [DateTime] object representing the [date] field
-  DateTime get dateTime => DateTime.fromMillisecondsSinceEpoch(date * 1000);
+  DateTime get dateTime => date.toDateTime();
 }

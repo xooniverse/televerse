@@ -46,6 +46,5 @@ class PassportFile {
 
   /// Returns the [DateTime] object of [fileDate].
   /// [DateTime] object of [fileDate].
-  DateTime get fileDateTime =>
-      DateTime.fromMillisecondsSinceEpoch(fileDate * 1000);
+  DateTime get fileDateTime => fileDate.toDateTime();
 }

@@ -77,7 +77,6 @@ class ChatInviteLink {
   /// Returns the expiry date as [DateTime] object.
   /// Returns `null` if the link doesn't expire.
   DateTime? get expireDateTime {
-    if (expireDate == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(expireDate! * 1000);
+    return expireDate?.toDateTime();
   }
 }
