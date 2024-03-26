@@ -1,17 +1,161 @@
 part of '../../../televerse.dart';
 
+/// This object represents a Keyboard with callback data.
+class _InlineMenuCallbackDataButton<TS extends Session> extends _TMenuButton {
+  final String? data;
+
+  const _InlineMenuCallbackDataButton(
+    super.text,
+    this.data,
+    Handler<TS> handler,
+  ) : super(hasHandler: true, handler: handler as Handler);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'callback_data': data,
+    };
+  }
+
+  @override
+  String? getData() {
+    return data;
+  }
+}
+
+class _InlineMenuUrlButton extends _TMenuButton {
+  final String url;
+  const _InlineMenuUrlButton(super.text, this.url);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'url': url,
+    };
+  }
+}
+
+class _InlineMenuWebAppButton extends _TMenuButton {
+  final String url;
+  const _InlineMenuWebAppButton(super.text, this.url);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'web_app': WebAppInfo(
+        url: url,
+      ).toJson(),
+    };
+  }
+}
+
+class _InlineMenuLoginButton extends _TMenuButton {
+  final String url;
+  final String? forwardText;
+  final String? botUsername;
+  final bool? requestWriteAccess;
+
+  const _InlineMenuLoginButton(
+    super.text,
+    this.url, {
+    this.forwardText,
+    this.botUsername,
+    this.requestWriteAccess,
+  });
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'login_url': LoginURL(
+        url: url,
+        forwardText: forwardText,
+        botUsername: botUsername,
+        requestWriteAccess: requestWriteAccess,
+      ).toJson(),
+    };
+  }
+}
+
+class _InlineMenuSwitchInlineQueryButton extends _TMenuButton {
+  final String query;
+  const _InlineMenuSwitchInlineQueryButton(super.text, this.query);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'switch_inline_query': query,
+    };
+  }
+}
+
+class _InlineMenuSwitchInlineQueryCurrentChatButton extends _TMenuButton {
+  final String query;
+  const _InlineMenuSwitchInlineQueryCurrentChatButton(super.text, this.query);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'switch_inline_query_current_chat': query,
+    };
+  }
+}
+
+class _InlineMenuSwitchInlineQueryChosenChatButton extends _TMenuButton {
+  final SwitchInlineQueryChosenChat switchInlineQueryChosenChat;
+  const _InlineMenuSwitchInlineQueryChosenChatButton(
+    super.text,
+    this.switchInlineQueryChosenChat,
+  );
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'switch_inline_query_chosen_chat': switchInlineQueryChosenChat.toJson(),
+    };
+  }
+}
+
+class _InlineMenuCallbackGameButton extends _TMenuButton {
+  final CallbackGame callbackGame;
+  const _InlineMenuCallbackGameButton(super.text, this.callbackGame);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'callback_game': callbackGame.toJson(),
+    };
+  }
+}
+
+class _InlineMenuPayButton extends _TMenuButton {
+  const _InlineMenuPayButton(super.text);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'pay': true,
+    };
+  }
+}
+
 /// This object represents a Inline Keyboard with the action to be done.
 class InlineMenu<TeleverseSession extends Session>
-    implements
-        InlineKeyboardMarkup,
-        TeleverseMenu<TeleverseSession, InlineMenuData> {
+    implements InlineKeyboardMarkup, TeleverseMenu<TeleverseSession> {
   /// Name of the menu
   @override
-  String name;
+  final String name;
 
   /// Map that represents the text and action to be done
-  @override
-  List<Map<InlineMenuData, Handler<TeleverseSession>>> actions;
+  final List<List<_TMenuButton>> _buttons;
 
   /// Constructs a InlineMenu
   ///
@@ -51,19 +195,16 @@ class InlineMenu<TeleverseSession extends Session>
   /// });
   /// ```
   InlineMenu({
-    List<Map<InlineMenuData, Handler<TeleverseSession>>>? actions,
     String? name,
-  })  : actions = actions ?? [{}],
-        inlineKeyboard = TeleverseMenu._makeInlineKeyboard<TeleverseSession>(
-          actions,
-        ),
+  })  : _buttons = [],
+        inlineKeyboard = [],
         name = name ?? _getRandomID();
 
   /// Add a new row to the keyboard
   InlineMenu row() {
-    if (actions.last.isEmpty) return this;
-    actions.add({});
-    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(actions);
+    if (_buttons.last.isEmpty) return this;
+    _buttons.add([]);
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
     return this;
   }
 
@@ -73,9 +214,117 @@ class InlineMenu<TeleverseSession extends Session>
     Handler<TeleverseSession> handler, {
     String? data,
   }) {
-    if (actions.isEmpty) actions.add({});
-    actions.last.addAll({InlineMenuData(text, data): handler});
-    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(actions);
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(
+      _InlineMenuCallbackDataButton<TeleverseSession>(
+        text,
+        data,
+        handler,
+      ),
+    );
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    return this;
+  }
+
+  /// Add a URL button to the last row
+  InlineMenu url(
+    String text,
+    String url,
+  ) {
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(_InlineMenuUrlButton(text, url));
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    return this;
+  }
+
+  /// Add a Web App button to the last row
+  InlineMenu webApp(
+    String text,
+    String url,
+  ) {
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(_InlineMenuWebAppButton(text, url));
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    return this;
+  }
+
+  /// Add a Login button to the last row
+  InlineMenu login(
+    String text,
+    String url, {
+    String? forwardText,
+    String? botUsername,
+    bool? requestWriteAccess,
+  }) {
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(
+      _InlineMenuLoginButton(
+        text,
+        url,
+        forwardText: forwardText,
+        botUsername: botUsername,
+        requestWriteAccess: requestWriteAccess,
+      ),
+    );
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    return this;
+  }
+
+  /// Add a Switch Inline Query button to the last row
+  InlineMenu switchInlineQuery(String text, String query) {
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(
+      _InlineMenuSwitchInlineQueryButton(
+        text,
+        query,
+      ),
+    );
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    return this;
+  }
+
+  /// Add a Switch Inline Query Current Chat button to the last row
+  InlineMenu switchInlineQueryCurrentChat(String text, String query) {
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(
+      _InlineMenuSwitchInlineQueryCurrentChatButton(
+        text,
+        query,
+      ),
+    );
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    return this;
+  }
+
+  /// Add a Switch Inline Query Chosen Chat button to the last row
+  InlineMenu switchInlineQueryChosenChat(
+    String text,
+    SwitchInlineQueryChosenChat switchInlineQueryChosenChat,
+  ) {
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(
+      _InlineMenuSwitchInlineQueryChosenChatButton(
+        text,
+        switchInlineQueryChosenChat,
+      ),
+    );
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    return this;
+  }
+
+  /// Add a Callback Game button to the last row
+  InlineMenu callbackGame(String text, CallbackGame game) {
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(_InlineMenuCallbackGameButton(text, game));
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    return this;
+  }
+
+  /// Add a Pay button to the last row
+  InlineMenu pay(String text) {
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(_InlineMenuPayButton(text));
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
     return this;
   }
 
@@ -92,6 +341,6 @@ class InlineMenu<TeleverseSession extends Session>
           return button.toJson();
         }).toList();
       }).toList(),
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere((_, value) => value == null);
   }
 }

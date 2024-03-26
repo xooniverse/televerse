@@ -1868,54 +1868,55 @@ class Bot<TeleverseSession extends Session> {
   /// This method will make the menu handlers to be called when the menu buttons are pressed.
   void attachMenu(TeleverseMenu menu) {
     if (menu is InlineMenu<TeleverseSession>) {
-      int rows = menu.actions.length;
+      int rows = menu._buttons.length;
       for (int i = 0; i < rows; i++) {
-        int cols = menu.actions[i].length;
+        int cols = menu._buttons[i].length;
         for (int j = 0; j < cols; j++) {
-          final key = menu.actions[i].keys.elementAt(j);
-          final data = key.id;
-          final action = menu.actions[i][key]!;
-          _internalCallbackQueryRegister(
-            data,
-            action,
-            name: "${menu.name}-$data",
-          );
+          if (menu._buttons[i][j].hasHandler) {
+            final data =
+                menu._buttons[i][j].getData() ?? menu._buttons[i][j].text;
+            _internalCallbackQueryRegister(
+              data,
+              menu._buttons[i][j].handler as Handler<TeleverseSession>,
+              name: "${menu.name}-$data",
+            );
+          }
         }
       }
     }
     if (menu is KeyboardMenu<TeleverseSession>) {
-      int rows = menu.actions.length;
+      int rows = menu._buttons.length;
       for (int i = 0; i < rows; i++) {
-        int cols = menu.actions[i].length;
+        int cols = menu._buttons[i].length;
         for (int j = 0; j < cols; j++) {
-          final key = menu.actions[i].keys.elementAt(j);
-          final name = "${menu.name}-$key";
+          final text = menu._buttons[i][j].text;
+          final name = "${menu.name}-$text";
 
-          final action = menu.actions[i][key]!;
-          final data = jsonDecode(key);
-          switch (data['type']) {
-            case 'text':
+          final action =
+              menu._buttons[i][j].handler as Handler<TeleverseSession>;
+          switch (menu._buttons[i][j].runtimeType) {
+            case _KeyboardMenuTextButton:
               _internalSubMessageHandler(
                 action,
-                (ctx) => ctx.message?.text == data['text'],
+                (ctx) => ctx.message?.text == text,
                 name: name,
               );
               break;
-            case 'request_contact':
+            case _KeyboardMenuRequestContactButton:
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.contact != null,
                 name: name,
               );
               break;
-            case 'request_location':
+            case _KeyboardMenuRequestLocationButton:
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.location != null,
                 name: name,
               );
               break;
-            case 'request_user':
+            case _KeyboardMenuRequestUsersButton:
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.usersShared != null,
@@ -1929,13 +1930,9 @@ class Bot<TeleverseSession extends Session> {
 
   /// Remove an Inline Menu.
   void removeMenu(TeleverseMenu menu) {
-    List<String> keys = [];
-    int rows = menu.actions.length;
-    for (int i = 0; i < rows; i++) {
-      keys.addAll(menu.actions[i].keys.map((e) => "${menu.name}-$e"));
-    }
-
-    _handlerScopes.removeWhere((scope) => keys.contains(scope.name));
+    _handlerScopes.removeWhere(
+      (scope) => scope.name?.startsWith(menu.name) ?? false,
+    );
   }
 
   /// Next step handler
