@@ -1,14 +1,14 @@
 part of '../../../televerse.dart';
 
 /// This object represents a Keyboard with callback data.
-class _InlineMenuCallbackDataButton<TS extends Session> extends _TMenuButton {
+class _InlineMenuCallbackDataButton extends _TMenuButton {
   final String? data;
 
   const _InlineMenuCallbackDataButton(
     super.text,
     this.data,
-    Handler<TS> handler,
-  ) : super(hasHandler: true, handler: handler as Handler);
+    Handler handler,
+  ) : super(hasHandler: true, handler: handler);
 
   @override
   Map<String, dynamic> toJson() {
@@ -148,8 +148,7 @@ class _InlineMenuPayButton extends _TMenuButton {
 }
 
 /// This object represents a Inline Keyboard with the action to be done.
-class InlineMenu<TeleverseSession extends Session>
-    implements InlineKeyboardMarkup, TeleverseMenu<TeleverseSession> {
+class InlineMenu implements InlineKeyboardMarkup, TeleverseMenu {
   /// Name of the menu
   @override
   final String name;
@@ -164,7 +163,7 @@ class InlineMenu<TeleverseSession extends Session>
   /// The `actions` parameter is a list of rows, each row is a map of `InlineMenuData` and `Handler`. The `InlineMenuData` represents the text and the data to be sent to the bot when the button is pressed. The `Handler` is the function to be executed when the button is pressed.
   /// The `name` parameter is the name of the menu.
   ///
-  /// If you are using Televerse with sessions, you can specify the type of the session in the `TeleverseSession` generic and then the `Handler` will be `Handler<TeleverseSession>` allowing you to
+  /// If you are using Televerse with sessions, you can specify the type of the session in the `TeleverseSession` generic and then the `Handler` will be `Handler` allowing you to
   /// access the session in the handler.
   ///
   /// Example:
@@ -211,12 +210,12 @@ class InlineMenu<TeleverseSession extends Session>
   /// Add new item to the last row
   InlineMenu text(
     String text,
-    Handler<TeleverseSession> handler, {
+    Handler handler, {
     String? data,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _InlineMenuCallbackDataButton<TeleverseSession>(
+      _InlineMenuCallbackDataButton(
         text,
         data,
         handler,

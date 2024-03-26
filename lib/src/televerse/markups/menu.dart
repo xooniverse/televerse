@@ -1,10 +1,10 @@
 part of '../../../televerse.dart';
 
 /// Abstract internal class to represent a menu button
-abstract class _TMenuButton<TS extends Session> {
+abstract class _TMenuButton {
   final bool hasHandler;
   final String text;
-  final Handler<TS>? handler;
+  final Handler? handler;
 
   const _TMenuButton(
     this.text, {
@@ -21,7 +21,7 @@ abstract class _TMenuButton<TS extends Session> {
 }
 
 /// Abstract class to represent a menu
-abstract class TeleverseMenu<TeleverseSession extends Session> {
+abstract class TeleverseMenu {
   /// Name of the menu
   final String name;
 
@@ -29,9 +29,8 @@ abstract class TeleverseMenu<TeleverseSession extends Session> {
   Map<String, dynamic> toJson();
 
   /// Converts a list of rows to a list of InlineKeyboardButton
-  static List<List<InlineKeyboardButton>>
-      _makeInlineKeyboard<TeleverseSession extends Session>(
-    List<List<_TMenuButton<TeleverseSession>>>? rows,
+  static List<List<InlineKeyboardButton>> _makeInlineKeyboard(
+    List<List<_TMenuButton>>? rows,
   ) {
     if (rows == null) return [];
     return rows.map((row) {
@@ -42,9 +41,8 @@ abstract class TeleverseMenu<TeleverseSession extends Session> {
   }
 
   /// Converts a list of rows to a list of KeyboardButton
-  static List<List<KeyboardButton>>
-      _makeKeyboard<TeleverseSession extends Session>(
-    List<List<_TMenuButton<TeleverseSession>>>? rows,
+  static List<List<KeyboardButton>> _makeKeyboard(
+    List<List<_TMenuButton>>? rows,
   ) {
     if (rows == null) return [];
     return rows.map((row) {

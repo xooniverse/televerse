@@ -1,10 +1,10 @@
 part of '../../../televerse.dart';
 
-class _KeyboardMenuTextButton<TS extends Session> extends _TMenuButton<TS> {
+class _KeyboardMenuTextButton extends _TMenuButton {
   const _KeyboardMenuTextButton(
     super.text,
-    Handler<TS> handler,
-  ) : super(hasHandler: true, handler: handler as Handler);
+    Handler handler,
+  ) : super(hasHandler: true, handler: handler);
 
   @override
   Map<String, dynamic> toJson() {
@@ -14,8 +14,7 @@ class _KeyboardMenuTextButton<TS extends Session> extends _TMenuButton<TS> {
   }
 }
 
-class _KeyboardMenuRequestUsersButton<TS extends Session>
-    extends _TMenuButton<TS> {
+class _KeyboardMenuRequestUsersButton extends _TMenuButton {
   final KeyboardButtonRequestUsers requestUsers;
 
   const _KeyboardMenuRequestUsersButton(
@@ -32,15 +31,14 @@ class _KeyboardMenuRequestUsersButton<TS extends Session>
   }
 }
 
-class _KeyboardMenuRequestChatButton<TS extends Session>
-    extends _TMenuButton<TS> {
+class _KeyboardMenuRequestChatButton extends _TMenuButton {
   final KeyboardButtonRequestChat requestChat;
 
   const _KeyboardMenuRequestChatButton(
     super.text,
     this.requestChat,
-    Handler<TS> handler,
-  ) : super(hasHandler: true, handler: handler as Handler);
+    Handler handler,
+  ) : super(hasHandler: true, handler: handler);
 
   @override
   Map<String, dynamic> toJson() {
@@ -51,12 +49,11 @@ class _KeyboardMenuRequestChatButton<TS extends Session>
   }
 }
 
-class _KeyboardMenuRequestContactButton<TS extends Session>
-    extends _TMenuButton<TS> {
+class _KeyboardMenuRequestContactButton extends _TMenuButton {
   const _KeyboardMenuRequestContactButton(
     super.text,
-    Handler<TS> handler,
-  ) : super(hasHandler: true, handler: handler as Handler);
+    Handler handler,
+  ) : super(hasHandler: true, handler: handler);
 
   @override
   Map<String, dynamic> toJson() {
@@ -67,12 +64,11 @@ class _KeyboardMenuRequestContactButton<TS extends Session>
   }
 }
 
-class _KeyboardMenuRequestLocationButton<TS extends Session>
-    extends _TMenuButton<TS> {
+class _KeyboardMenuRequestLocationButton extends _TMenuButton {
   const _KeyboardMenuRequestLocationButton(
     super.text,
-    Handler<TS> handler,
-  ) : super(hasHandler: true, handler: handler as Handler);
+    Handler handler,
+  ) : super(hasHandler: true, handler: handler);
 
   @override
   Map<String, dynamic> toJson() {
@@ -83,8 +79,7 @@ class _KeyboardMenuRequestLocationButton<TS extends Session>
   }
 }
 
-class _KeyboardMenuRequestPollButton<TS extends Session>
-    extends _TMenuButton<TS> {
+class _KeyboardMenuRequestPollButton extends _TMenuButton {
   final KeyboardButtonPollType requestPoll;
 
   const _KeyboardMenuRequestPollButton(
@@ -101,7 +96,7 @@ class _KeyboardMenuRequestPollButton<TS extends Session>
   }
 }
 
-class _KeyboardMenuWebAppButton<TS extends Session> extends _TMenuButton<TS> {
+class _KeyboardMenuWebAppButton extends _TMenuButton {
   final String url;
 
   const _KeyboardMenuWebAppButton(
@@ -121,14 +116,13 @@ class _KeyboardMenuWebAppButton<TS extends Session> extends _TMenuButton<TS> {
 }
 
 /// This object represents a Keyboard menu with the actions to be done.
-class KeyboardMenu<TeleverseSession extends Session>
-    implements ReplyKeyboardMarkup, TeleverseMenu<TeleverseSession> {
+class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
   /// Name of the menu
   @override
   String name;
 
   /// Map that represents the text and action to be done
-  final List<List<_TMenuButton<TeleverseSession>>> _buttons;
+  final List<List<_TMenuButton>> _buttons;
 
   /// Constructs a KeyboardMenu
   ///
@@ -137,11 +131,10 @@ class KeyboardMenu<TeleverseSession extends Session>
   /// The `actions` parameter is a list of rows, where each row is a map of `String` and `Handler`. The `key` (String) will be the text that is shown to the user as button text. The `Handler` is the function to be executed when the button is pressed.
   /// The `name` parameter is the name of the menu.
   ///
-  /// If you are using Televerse with sessions, you can specify the type of the session in the `TeleverseSession` generic. In this case, the `Handler` will be `Handler<TeleverseSession>`, allowing you to access the session in the handler.
+  /// If you are using Televerse with sessions, you can specify the type of the session in the `TeleverseSession` generic. In this case, the `Handler` will be `Handler`, allowing you to access the session in the handler.
   ///
   /// See also:
   /// - [Handler]
-  /// - [Session]
   ///
   /// Check out our example for more information >> [keyboard_menu_bot.dart](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/keyboard_menu_bot.dart)
   KeyboardMenu({
@@ -159,7 +152,7 @@ class KeyboardMenu<TeleverseSession extends Session>
   KeyboardMenu row() {
     if (_buttons.last.isEmpty) return this;
     _buttons.add([]);
-    keyboard = TeleverseMenu._makeKeyboard<TeleverseSession>(_buttons);
+    keyboard = TeleverseMenu._makeKeyboard(_buttons);
     return this;
   }
 
