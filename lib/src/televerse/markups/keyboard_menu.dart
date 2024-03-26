@@ -131,8 +131,6 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
   /// The `actions` parameter is a list of rows, where each row is a map of `String` and `Handler`. The `key` (String) will be the text that is shown to the user as button text. The `Handler` is the function to be executed when the button is pressed.
   /// The `name` parameter is the name of the menu.
   ///
-  /// If you are using Televerse with sessions, you can specify the type of the session in the `TeleverseSession` generic. In this case, the `Handler` will be `Handler`, allowing you to access the session in the handler.
-  ///
   /// See also:
   /// - [Handler]
   ///
@@ -144,7 +142,7 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
     this.oneTimeKeyboard,
     this.resizeKeyboard,
     this.selective,
-  })  : _buttons = [],
+  })  : _buttons = [[]],
         keyboard = [[]],
         name = name ?? _getRandomID();
 

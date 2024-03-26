@@ -163,9 +163,6 @@ class InlineMenu implements InlineKeyboardMarkup, TeleverseMenu {
   /// The `actions` parameter is a list of rows, each row is a map of `InlineMenuData` and `Handler`. The `InlineMenuData` represents the text and the data to be sent to the bot when the button is pressed. The `Handler` is the function to be executed when the button is pressed.
   /// The `name` parameter is the name of the menu.
   ///
-  /// If you are using Televerse with sessions, you can specify the type of the session in the `TeleverseSession` generic and then the `Handler` will be `Handler` allowing you to
-  /// access the session in the handler.
-  ///
   /// Example:
   ///
   /// ```dart
