@@ -27,6 +27,5 @@ class VideoChatScheduled {
   }
 
   /// [DateTime] object getter for [startDate]
-  DateTime get startDateTime =>
-      DateTime.fromMillisecondsSinceEpoch(startDate * 1000);
+  DateTime get startDateTime => startDate.toDateTime();
 }

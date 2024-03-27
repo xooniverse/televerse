@@ -110,7 +110,5 @@ class Poll {
       openPeriod == null ? null : Duration(seconds: openPeriod!);
 
   /// The [DateTime] object for [closeDate]
-  DateTime? get closeDateTime => closeDate == null
-      ? null
-      : DateTime.fromMillisecondsSinceEpoch(closeDate! * 1000);
+  DateTime? get closeDateTime => closeDate?.toDateTime();
 }

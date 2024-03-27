@@ -15,7 +15,7 @@ part of '../../televerse.dart';
 /// }
 /// ```
 ///
-class Bot<TeleverseSession extends Session> {
+class Bot {
   /// API Scheme
   final APIScheme _scheme;
 
@@ -277,7 +277,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// List of Handler Scopes
-  final List<HandlerScope<Handler<TeleverseSession>>> _handlerScopes = [];
+  final List<HandlerScope<Handler>> _handlerScopes = [];
 
   /// To manually handle updates without fetcher
   ///
@@ -294,7 +294,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Optional [isServerless] flag can be passed to the method. If you set this flag to true, the bot will not start the fetcher.
   Future<void> start([
-    Handler<TeleverseSession>? handler,
+    Handler? handler,
     bool isServerless = false,
   ]) async {
     // Registers a handler to listen for /start command
@@ -339,34 +339,6 @@ class Bot<TeleverseSession extends Session> {
     return fetcher.onUpdate();
   }
 
-  /// The sessions manager (private)
-  late final SessionsManager<TeleverseSession> _sessionsManager;
-
-  /// A flag that indicates whether sessions are enabled or not.
-  bool get sessionsEnabled {
-    try {
-      return _sessionsManager.enabled;
-    } catch (_) {
-      return false;
-    }
-  }
-
-  /// The sessions manager.
-  SessionsManager<TeleverseSession> get sessions {
-    try {
-      return _sessionsManager;
-    } catch (err) {
-      throw TeleverseException.sessionsNotEnabled;
-    }
-  }
-
-  /// Session init method.
-  void initSession(
-    TeleverseSession Function(int id) fn,
-  ) {
-    _sessionsManager = SessionsManager<TeleverseSession>._(fn);
-  }
-
   /// Registers a callback for a command.
   /// The command must be without the leading slash.
   ///
@@ -386,7 +358,7 @@ class Bot<TeleverseSession extends Session> {
   /// This will reply "Hello!" to any message that starts with `/start`.
   Future<void> command(
     Pattern command,
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) async {
     User? bot;
     try {
@@ -405,7 +377,7 @@ class Bot<TeleverseSession extends Session> {
         }
       }
     }
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       isCommand: true,
       handler: callback,
       types: [UpdateType.message],
@@ -427,10 +399,10 @@ class Bot<TeleverseSession extends Session> {
   /// Registers a Handler Scope to listen to matching callback query.
   void _internalCallbackQueryRegister(
     Pattern data,
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     String? name,
   }) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       name: name,
       handler: callback,
       types: [UpdateType.callbackQuery],
@@ -465,7 +437,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   void callbackQuery(
     Pattern data,
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     @Deprecated("Use the 'data' parameter instead.") RegExp? regex,
   }) {
     return _internalCallbackQueryRegister(data, callback);
@@ -491,9 +463,9 @@ class Bot<TeleverseSession extends Session> {
   /// the [chatTypes] method.
   void chatType(
     ChatType type,
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.message,
@@ -524,9 +496,9 @@ class Bot<TeleverseSession extends Session> {
   /// from a private chat or a group.
   void chatTypes(
     List<ChatType> types,
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.message,
@@ -554,10 +526,10 @@ class Bot<TeleverseSession extends Session> {
   /// ```
   void filter(
     bool Function(Context ctx) predicate,
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     String? name,
   }) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       name: name,
       handler: callback,
       types: [
@@ -583,9 +555,9 @@ class Bot<TeleverseSession extends Session> {
   /// ```
   void text(
     String text,
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.message,
@@ -616,9 +588,9 @@ class Bot<TeleverseSession extends Session> {
   /// matches the regular expression `Hello, (.*)!`.
   void hears(
     RegExp exp,
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       pattern: exp,
       isRegExp: true,
       handler: callback,
@@ -638,9 +610,9 @@ class Bot<TeleverseSession extends Session> {
   /// The callback will be called when an inline query with the specified query is received.
   void inlineQuery(
     Pattern query,
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.inlineQuery,
@@ -661,12 +633,12 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for the `/settings` command.
-  Future<void> settings(Handler<TeleverseSession> handler) {
+  Future<void> settings(Handler handler) {
     return command("settings", handler);
   }
 
   /// Registers a callback for the `/help` command.
-  Future<void> help(Handler<TeleverseSession> handler) {
+  Future<void> help(Handler handler) {
     return command("help", handler);
   }
 
@@ -690,7 +662,7 @@ class Bot<TeleverseSession extends Session> {
     void Function(BotError err) handler,
   ) {
     _onError = handler;
-    this.fetcher.onError(handler);
+    fetcher.onError(handler);
   }
 
   /// A filter that matches messages that contains the specified entity type.
@@ -754,10 +726,10 @@ class Bot<TeleverseSession extends Session> {
   /// By default, this method will ONLY match entities in the message text.
   void entity(
     MessageEntityType type,
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.message,
@@ -784,10 +756,10 @@ class Bot<TeleverseSession extends Session> {
   /// By default, this method will ONLY match entities in the message text.
   void entities(
     List<MessageEntityType> types,
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.message,
@@ -813,11 +785,11 @@ class Bot<TeleverseSession extends Session> {
 
   /// Registers callback for the [ChatMemberUpdated] events
   void _internalChatMemberUpdatedHandling({
-    required Handler<TeleverseSession> callback,
+    required Handler callback,
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
   }) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.chatMember,
@@ -854,7 +826,7 @@ class Bot<TeleverseSession extends Session> {
   /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
   /// filter to only receive updates for a specific status.
   void chatMember(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
   }) {
@@ -870,7 +842,7 @@ class Bot<TeleverseSession extends Session> {
   /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
   /// filter to only receive updates for a specific status.
   void myChatMember({
-    required Handler<TeleverseSession> callback,
+    required Handler callback,
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
   }) {
@@ -882,8 +854,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for the [Update.poll] events.
-  void poll(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void poll(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.poll,
@@ -898,10 +870,10 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Optionally pass the [pollId] parameter to only receive updates for a specific poll.
   void pollAnswer(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     String? pollId,
   }) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.pollAnswer,
@@ -918,9 +890,9 @@ class Bot<TeleverseSession extends Session> {
   /// Registers a callback for the [Update.chosenInlineResult] events.
   /// The callback will be called when a chosen inline result is received.
   void chosenInlineResult(
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.chosenInlineResult,
@@ -934,8 +906,8 @@ class Bot<TeleverseSession extends Session> {
   /// Registers a callback for the [Update.chatJoinRequest] events.
   ///
   /// The callback will be called when a chat join request is received.
-  void chatJoinRequest(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void chatJoinRequest(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.chatJoinRequest,
@@ -948,9 +920,9 @@ class Bot<TeleverseSession extends Session> {
 
   /// Registers a callback for Shipping Query events.
   void shippingQuery(
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.shippingQuery,
@@ -963,9 +935,9 @@ class Bot<TeleverseSession extends Session> {
 
   /// Registers a callback for Pre Checkout Query events.
   void preCheckoutQuery(
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.preCheckoutQuery,
@@ -978,7 +950,7 @@ class Bot<TeleverseSession extends Session> {
 
   /// Sets up a callback for when a message with URL is received.
   void onURL(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
     return entity(
@@ -990,7 +962,7 @@ class Bot<TeleverseSession extends Session> {
 
   /// Sets up a callback for when a message with email is received.
   void onEmail(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
     return entity(
@@ -1002,7 +974,7 @@ class Bot<TeleverseSession extends Session> {
 
   /// Sets up a callback for when a message with phone number is received.
   void onPhoneNumber(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
     return entity(
@@ -1014,7 +986,7 @@ class Bot<TeleverseSession extends Session> {
 
   /// Sets up a callback for when a message with hashtag is received.
   void onHashtag(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool shouldMatchCaptionEntities = false,
     String? hashtag,
   }) {
@@ -1026,7 +998,7 @@ class Bot<TeleverseSession extends Session> {
       );
     }
 
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.message,
@@ -1061,7 +1033,7 @@ class Bot<TeleverseSession extends Session> {
   /// That is you don't have to setup a different callback for [MessageEntityType.mention]
   /// and [MessageEntityType.textMention] entities. (Well, you can if you want to.)
   void onMention(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     String? username,
     int? userId,
   }) {
@@ -1072,7 +1044,7 @@ class Bot<TeleverseSession extends Session> {
       );
     }
     if (username != null) {
-      final scope = HandlerScope<Handler<TeleverseSession>>(
+      final scope = HandlerScope<Handler>(
         handler: callback,
         types: [
           UpdateType.message,
@@ -1088,7 +1060,7 @@ class Bot<TeleverseSession extends Session> {
       return _handlerScopes.add(scope);
     }
 
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.message,
@@ -1118,7 +1090,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   ///
   Future<void> whenMentioned(
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) async {
     try {
       return onMention(
@@ -1135,8 +1107,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Message updates
-  void onMessage(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onMessage(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.message,
@@ -1148,8 +1120,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Edited Message updates
-  void onEditedMessage(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onEditedMessage(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.editedMessage,
@@ -1161,8 +1133,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Channel Post updates
-  void onChannelPost(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onChannelPost(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.channelPost,
@@ -1174,8 +1146,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Edited Channel Post updates
-  void onEditedChannelPost(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onEditedChannelPost(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.editedChannelPost,
@@ -1187,8 +1159,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Inline Query updates
-  void onInlineQuery(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onInlineQuery(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.inlineQuery,
@@ -1200,8 +1172,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Chosen Inline Result updates
-  void onChosenInlineResult(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onChosenInlineResult(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.chosenInlineResult,
@@ -1213,8 +1185,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Callback Query updates
-  void onCallbackQuery(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onCallbackQuery(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.callbackQuery,
@@ -1226,8 +1198,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Shipping Query updates
-  void onShippingQuery(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onShippingQuery(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.shippingQuery,
@@ -1239,8 +1211,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Pre Checkout Query updates
-  void onPreCheckoutQuery(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onPreCheckoutQuery(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.preCheckoutQuery,
@@ -1252,7 +1224,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback to be fired for all successful payments
-  void onSuccessfulPayment(Handler<TeleverseSession> callback) {
+  void onSuccessfulPayment(Handler callback) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message?.successfulPayment != null,
@@ -1260,8 +1232,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Poll updates
-  void onPoll(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onPoll(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.poll,
@@ -1273,8 +1245,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Poll Answer updates
-  void onPollAnswer(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onPollAnswer(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.pollAnswer,
@@ -1286,8 +1258,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all My Chat Member updates
-  void onMyChatMember(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onMyChatMember(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.myChatMember,
@@ -1299,8 +1271,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Chat Member updates
-  void onChatMember(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onChatMember(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.chatMember,
@@ -1312,8 +1284,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for all Chat Join Request updates
-  void onChatJoinRequest(Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void onChatJoinRequest(Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.chatJoinRequest,
@@ -1336,13 +1308,13 @@ class Bot<TeleverseSession extends Session> {
 
   /// Internal method to handle sub message handlers
   void _internalSubMessageHandler(
-    Handler<TeleverseSession> callback,
+    Handler callback,
     bool Function(Context) predicate, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     String? name,
   }) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       name: name,
       handler: callback,
       types: [
@@ -1364,7 +1336,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onAudio(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1383,7 +1355,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onDocument(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1402,7 +1374,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onPhoto(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1421,7 +1393,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onSticker(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1440,7 +1412,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onVideo(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1459,7 +1431,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onVideoNote(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1478,7 +1450,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onVoice(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1492,7 +1464,7 @@ class Bot<TeleverseSession extends Session> {
 
   /// Registers a callback for messages that contain a contact.
   void onContact(
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
     return _internalSubMessageHandler(
       callback,
@@ -1507,7 +1479,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onDice(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1526,7 +1498,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onGame(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1545,7 +1517,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onPollMessage(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1564,7 +1536,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onVenue(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1583,7 +1555,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onLocation(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1596,7 +1568,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for messages that is a live location update.
-  void onLiveLocation(Handler<TeleverseSession> callback) {
+  void onLiveLocation(Handler callback) {
     return _internalSubMessageHandler(
       callback,
       (ctx) =>
@@ -1612,7 +1584,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onNewChatTitle(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1631,7 +1603,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onNewChatPhoto(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1644,7 +1616,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for delete chat photo service messages.
-  void onDeleteChatPhoto(Handler<TeleverseSession> callback) {
+  void onDeleteChatPhoto(Handler callback) {
     return _internalSubMessageHandler(
       callback,
       (ctx) =>
@@ -1659,7 +1631,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onPinnedMessage(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1674,7 +1646,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for a user is shared to the bot
-  void onUsrShared(Handler<TeleverseSession> callback) {
+  void onUsrShared(Handler callback) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message?.usersShared != null,
@@ -1682,7 +1654,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback for a chat is shared to the bot
-  void onChatShared(Handler<TeleverseSession> callback) {
+  void onChatShared(Handler callback) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message?.chatShared != null,
@@ -1696,7 +1668,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void whenVideoChatScheduled(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1717,7 +1689,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void whenVideoChatStarted(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1738,7 +1710,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void whenVideoChatEnded(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1753,7 +1725,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback to be fired when new participants are invited to a video chat
-  void whenVideoChatParticipantsInvited(Handler<TeleverseSession> callback) {
+  void whenVideoChatParticipantsInvited(Handler callback) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message?.videoChatParticipantsInvited != null,
@@ -1761,7 +1733,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback to be fired when a forum topic is created
-  void onForumTopicCreated(Handler<TeleverseSession> callback) {
+  void onForumTopicCreated(Handler callback) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message?.forumTopicCreated != null,
@@ -1769,7 +1741,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback to be fired when a forum topic is edited
-  void onForumTopicEdited(Handler<TeleverseSession> callback) {
+  void onForumTopicEdited(Handler callback) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message?.forumTopicEdited != null,
@@ -1777,7 +1749,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback to be fired when a forum topic is closed
-  void onForumTopicClosed(Handler<TeleverseSession> callback) {
+  void onForumTopicClosed(Handler callback) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message?.forumTopicClosed != null,
@@ -1785,7 +1757,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback to be fired when a forum topic is reopened
-  void onForumTopicReopened(Handler<TeleverseSession> callback) {
+  void onForumTopicReopened(Handler callback) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message?.forumTopicReopened != null,
@@ -1793,7 +1765,7 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback to be fired when data sent from a web app is received
-  void onWebAppData(Handler<TeleverseSession> callback) {
+  void onWebAppData(Handler callback) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message?.webAppData != null,
@@ -1807,7 +1779,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onAnimation(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1828,7 +1800,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onText(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1849,7 +1821,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onCaption(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
   }) {
@@ -1867,55 +1839,55 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// This method will make the menu handlers to be called when the menu buttons are pressed.
   void attachMenu(TeleverseMenu menu) {
-    if (menu is InlineMenu<TeleverseSession>) {
-      int rows = menu.actions.length;
+    if (menu is InlineMenu) {
+      int rows = menu._buttons.length;
       for (int i = 0; i < rows; i++) {
-        int cols = menu.actions[i].length;
+        int cols = menu._buttons[i].length;
         for (int j = 0; j < cols; j++) {
-          final key = menu.actions[i].keys.elementAt(j);
-          final data = key.id;
-          final action = menu.actions[i][key]!;
-          _internalCallbackQueryRegister(
-            data,
-            action,
-            name: "${menu.name}-$data",
-          );
+          if (menu._buttons[i][j].hasHandler) {
+            final data =
+                menu._buttons[i][j].getData() ?? menu._buttons[i][j].text;
+            _internalCallbackQueryRegister(
+              data,
+              menu._buttons[i][j].handler as Handler,
+              name: "${menu.name}-$data",
+            );
+          }
         }
       }
     }
-    if (menu is KeyboardMenu<TeleverseSession>) {
-      int rows = menu.actions.length;
+    if (menu is KeyboardMenu) {
+      int rows = menu._buttons.length;
       for (int i = 0; i < rows; i++) {
-        int cols = menu.actions[i].length;
+        int cols = menu._buttons[i].length;
         for (int j = 0; j < cols; j++) {
-          final key = menu.actions[i].keys.elementAt(j);
-          final name = "${menu.name}-$key";
+          final text = menu._buttons[i][j].text;
+          final name = "${menu.name}-$text";
 
-          final action = menu.actions[i][key]!;
-          final data = jsonDecode(key);
-          switch (data['type']) {
-            case 'text':
+          final action = menu._buttons[i][j].handler as Handler;
+          switch (menu._buttons[i][j].runtimeType) {
+            case _KeyboardMenuTextButton:
               _internalSubMessageHandler(
                 action,
-                (ctx) => ctx.message?.text == data['text'],
+                (ctx) => ctx.message?.text == text,
                 name: name,
               );
               break;
-            case 'request_contact':
+            case _KeyboardMenuRequestContactButton:
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.contact != null,
                 name: name,
               );
               break;
-            case 'request_location':
+            case _KeyboardMenuRequestLocationButton:
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.location != null,
                 name: name,
               );
               break;
-            case 'request_user':
+            case _KeyboardMenuRequestUsersButton:
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.usersShared != null,
@@ -1929,17 +1901,13 @@ class Bot<TeleverseSession extends Session> {
 
   /// Remove an Inline Menu.
   void removeMenu(TeleverseMenu menu) {
-    List<String> keys = [];
-    int rows = menu.actions.length;
-    for (int i = 0; i < rows; i++) {
-      keys.addAll(menu.actions[i].keys.map((e) => "${menu.name}-$e"));
-    }
-
-    _handlerScopes.removeWhere((scope) => keys.contains(scope.name));
+    _handlerScopes.removeWhere(
+      (scope) => scope.name?.startsWith(menu.name) ?? false,
+    );
   }
 
   /// Next step handler
-  void setNextStep(Message msg, Handler<TeleverseSession> callback) {
+  void setNextStep(Message msg, Handler callback) {
     final scopeName = "next-step-${msg.messageId}";
     bool isNextMessage(int? messageId) {
       return messageId == msg.messageId + 1 || messageId == msg.messageId + 2;
@@ -1962,7 +1930,7 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// This method will match any command that is sent to the bot.
   void onCommand(
-    Handler<TeleverseSession> callback, {
+    Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     String? name,
@@ -1984,9 +1952,9 @@ class Bot<TeleverseSession extends Session> {
 
   /// Register a callback when a reaction to a message was changed by a user.
   void onMessageReaction(
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.messageReaction,
@@ -1999,9 +1967,9 @@ class Bot<TeleverseSession extends Session> {
 
   /// Reactions to a message with anonymous reactions were changed.
   void onMessageReactionCount(
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.messageReactionCount,
@@ -2016,9 +1984,9 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// The bot must be an administrator in the chat for this to work.
   void onChatBoosted(
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.chatBoost,
@@ -2033,9 +2001,9 @@ class Bot<TeleverseSession extends Session> {
   ///
   /// The bot must be an administrator in the chat for this to work.
   void onChatBoostRemoved(
-    Handler<TeleverseSession> callback,
+    Handler callback,
   ) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.chatBoostRemoved,
@@ -2047,8 +2015,8 @@ class Bot<TeleverseSession extends Session> {
   }
 
   /// Registers a callback to be fired when a user reacts given emoji to a message.
-  void whenReacted(String emoji, Handler<TeleverseSession> callback) {
-    final scope = HandlerScope<Handler<TeleverseSession>>(
+  void whenReacted(String emoji, Handler callback) {
+    final scope = HandlerScope<Handler>(
       handler: callback,
       types: [
         UpdateType.messageReaction,

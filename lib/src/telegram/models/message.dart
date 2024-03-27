@@ -583,17 +583,15 @@ class Message implements MaybeInaccessibleMessage, WithUser {
   }
 
   /// Getter for the [DateTime] object that represents the message sent date
-  DateTime get dateTime => DateTime.fromMillisecondsSinceEpoch(date * 1000);
+  DateTime get dateTime => date.toDateTime();
 
   /// Getter for the [DateTime] object that represents the message edit date
-  DateTime? get editDateTime => editDate == null
-      ? null
-      : DateTime.fromMillisecondsSinceEpoch(editDate! * 1000);
+  DateTime? get editDateTime => editDate?.toDateTime();
 
   /// Getter for the [DateTime] object that represents the message forward date
   DateTime? get forwardDateTime {
     if (forwardOrigin == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(forwardOrigin!.date * 1000);
+    return forwardOrigin!.date.toDateTime();
   }
 
   /// Returns true if the message is a command

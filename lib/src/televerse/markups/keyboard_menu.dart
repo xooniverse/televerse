@@ -1,15 +1,128 @@
 part of '../../../televerse.dart';
 
+class _KeyboardMenuTextButton extends _TMenuButton {
+  const _KeyboardMenuTextButton(
+    super.text,
+    Handler handler,
+  ) : super(hasHandler: true, handler: handler);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+    };
+  }
+}
+
+class _KeyboardMenuRequestUsersButton extends _TMenuButton {
+  final KeyboardButtonRequestUsers requestUsers;
+
+  const _KeyboardMenuRequestUsersButton(
+    super.text,
+    this.requestUsers,
+  ) : super(hasHandler: true);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      ...requestUsers.toJson(),
+    };
+  }
+}
+
+class _KeyboardMenuRequestChatButton extends _TMenuButton {
+  final KeyboardButtonRequestChat requestChat;
+
+  const _KeyboardMenuRequestChatButton(
+    super.text,
+    this.requestChat,
+    Handler handler,
+  ) : super(hasHandler: true, handler: handler);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      ...requestChat.toJson(),
+    };
+  }
+}
+
+class _KeyboardMenuRequestContactButton extends _TMenuButton {
+  const _KeyboardMenuRequestContactButton(
+    super.text,
+    Handler handler,
+  ) : super(hasHandler: true, handler: handler);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'request_contact': true,
+    };
+  }
+}
+
+class _KeyboardMenuRequestLocationButton extends _TMenuButton {
+  const _KeyboardMenuRequestLocationButton(
+    super.text,
+    Handler handler,
+  ) : super(hasHandler: true, handler: handler);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'request_location': true,
+    };
+  }
+}
+
+class _KeyboardMenuRequestPollButton extends _TMenuButton {
+  final KeyboardButtonPollType requestPoll;
+
+  const _KeyboardMenuRequestPollButton(
+    super.text,
+    this.requestPoll,
+  ) : super(hasHandler: true);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      ...requestPoll.toJson(),
+    };
+  }
+}
+
+class _KeyboardMenuWebAppButton extends _TMenuButton {
+  final String url;
+
+  const _KeyboardMenuWebAppButton(
+    super.text,
+    this.url,
+  );
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'web_app': WebAppInfo(
+        url: url,
+      ).toJson(),
+    };
+  }
+}
+
 /// This object represents a Keyboard menu with the actions to be done.
-class KeyboardMenu<TeleverseSession extends Session>
-    implements ReplyKeyboardMarkup, TeleverseMenu<TeleverseSession, String> {
+class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
   /// Name of the menu
   @override
   String name;
 
   /// Map that represents the text and action to be done
-  @override
-  List<Map<String, Handler<TeleverseSession>>> actions;
+  final List<List<_TMenuButton>> _buttons;
 
   /// Constructs a KeyboardMenu
   ///
@@ -18,40 +131,8 @@ class KeyboardMenu<TeleverseSession extends Session>
   /// The `actions` parameter is a list of rows, where each row is a map of `String` and `Handler`. The `key` (String) will be the text that is shown to the user as button text. The `Handler` is the function to be executed when the button is pressed.
   /// The `name` parameter is the name of the menu.
   ///
-  /// If you are using Televerse with sessions, you can specify the type of the session in the `TeleverseSession` generic. In this case, the `Handler` will be `Handler<TeleverseSession>`, allowing you to access the session in the handler.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = KeyboardMenu(
-  ///   name: 'exampleMenu',
-  ///   actions: [
-  ///     {'Button 1': handleButton1},
-  ///     {'Button 2': handleButton2},
-  ///   ],
-  /// );
-  /// ```
-  ///
-  /// In this example, pressing 'Button 1' will trigger the `handleButton1` function, and pressing 'Button 2' will trigger the `handleButton2` function.
-  ///
-  ///
-  /// Usage:
-  /// ```dart
-  /// final keyboard = KeyboardMenu(
-  ///   name: 'exampleMenu',
-  ///   actions: [
-  ///     {'Button 1': handleButton1},
-  ///     {'Button 2': handleButton2},
-  ///   ],
-  /// );
-  /// ```
-  /// Where `handleButton1` and `handleButton2` are functions to be executed on button press.
-  ///
   /// See also:
   /// - [Handler]
-  /// - [Session]
-  ///
-  /// Note: Ensure that the `actions` list is properly formatted with corresponding handlers for each button.
-  /// If using sessions, make sure to specify the session type in the `TeleverseSession` generic.
   ///
   /// Check out our example for more information >> [keyboard_menu_bot.dart](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/keyboard_menu_bot.dart)
   KeyboardMenu({
@@ -61,42 +142,39 @@ class KeyboardMenu<TeleverseSession extends Session>
     this.oneTimeKeyboard,
     this.resizeKeyboard,
     this.selective,
-  })  : actions = [{}],
+  })  : _buttons = [[]],
         keyboard = [[]],
         name = name ?? _getRandomID();
 
   /// Add a new row to the keyboard
   KeyboardMenu row() {
-    if (actions.last.isEmpty) return this;
-    actions.add({});
-    keyboard = TeleverseMenu._makeKeyboard<TeleverseSession>(actions);
+    if (_buttons.last.isEmpty) return this;
+    _buttons.add([]);
+    keyboard = TeleverseMenu._makeKeyboard(_buttons);
     return this;
   }
 
   /// Add new item to the last row
   KeyboardMenu text(String text, Handler handler) {
-    if (actions.isEmpty) actions.add({});
-    final data = jsonEncode({'type': 'text', 'text': text});
-    actions.last.addAll({data: handler});
-    keyboard = TeleverseMenu._makeKeyboard(actions);
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(_KeyboardMenuTextButton(text, handler));
+    keyboard = TeleverseMenu._makeKeyboard(_buttons);
     return this;
   }
 
   /// Request contact from the user
   KeyboardMenu requestContact(String text, Handler handler) {
-    if (actions.isEmpty) actions.add({});
-    String data = jsonEncode({'type': 'request_contact', 'text': text});
-    actions.last.addAll({data: handler});
-    keyboard = TeleverseMenu._makeKeyboard(actions);
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(_KeyboardMenuRequestContactButton(text, handler));
+    keyboard = TeleverseMenu._makeKeyboard(_buttons);
     return this;
   }
 
   /// Request location from the user
   KeyboardMenu requestLocation(String text, Handler handler) {
-    if (actions.isEmpty) actions.add({});
-    String data = jsonEncode({'type': 'request_location', 'text': text});
-    actions.last.addAll({data: handler});
-    keyboard = TeleverseMenu._makeKeyboard(actions);
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(_KeyboardMenuRequestLocationButton(text, handler));
+    keyboard = TeleverseMenu._makeKeyboard(_buttons);
     return this;
   }
 
@@ -105,21 +183,47 @@ class KeyboardMenu<TeleverseSession extends Session>
     required String text,
     required Handler handler,
     required int requestId,
-    bool? isBot,
+    bool? userIsBot,
     bool? userIsPremium,
   }) {
-    final data = jsonEncode({
-      'type': 'request_user',
-      'text': text,
-      'request_id': requestId,
-      'is_bot': isBot,
-      'user_is_premium': userIsPremium,
-    });
-    if (actions.isEmpty) actions.add({});
-    actions.last.addAll({
-      data: handler,
-    });
-    keyboard = TeleverseMenu._makeKeyboard(actions);
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(
+      _KeyboardMenuRequestUsersButton(
+        text,
+        KeyboardButtonRequestUsers(
+          requestId: requestId,
+          userIsBot: userIsBot,
+          userIsPremium: userIsPremium,
+          maxQuantity: 1,
+        ),
+      ),
+    );
+    keyboard = TeleverseMenu._makeKeyboard(_buttons);
+    return this;
+  }
+
+  /// Request the user to select multiple users from the list
+  KeyboardMenu requestUsers({
+    required String text,
+    required Handler handler,
+    required int requestId,
+    bool? userIsBot,
+    bool? userIsPremium,
+    int? maxQuantity,
+  }) {
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(
+      _KeyboardMenuRequestUsersButton(
+        text,
+        KeyboardButtonRequestUsers(
+          requestId: requestId,
+          userIsBot: userIsBot,
+          userIsPremium: userIsPremium,
+          maxQuantity: maxQuantity,
+        ),
+      ),
+    );
+    keyboard = TeleverseMenu._makeKeyboard(_buttons);
     return this;
   }
 
@@ -136,23 +240,40 @@ class KeyboardMenu<TeleverseSession extends Session>
     ChatAdministratorRights? botAdministratorRights,
     bool? botIsMember,
   }) {
-    final data = jsonEncode({
-      'type': 'request_chat',
-      'text': text,
-      'request_id': requestId,
-      'chat_is_channel': chatIsChannel,
-      'chat_is_forum': chatIsForum,
-      'chat_has_username': chatHasUsername,
-      'chat_is_created': chatIsCreated,
-      'user_administrator_rights': userAdministratorRights?.toJson(),
-      'bot_administrator_rights': botAdministratorRights?.toJson(),
-      'bot_is_member': botIsMember,
-    });
-    if (actions.isEmpty) actions.add({});
-    actions.last.addAll({
-      data: handler,
-    });
-    keyboard = TeleverseMenu._makeKeyboard(actions);
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(
+      _KeyboardMenuRequestChatButton(
+        text,
+        KeyboardButtonRequestChat(
+          requestId: requestId,
+          chatIsChannel: chatIsChannel,
+          chatIsForum: chatIsForum,
+          chatHasUsername: chatHasUsername,
+          chatIsCreated: chatIsCreated,
+          userAdministratorRights: userAdministratorRights,
+          botAdministratorRights: botAdministratorRights,
+          botIsMember: botIsMember,
+        ),
+        handler,
+      ),
+    );
+    keyboard = TeleverseMenu._makeKeyboard(_buttons);
+    return this;
+  }
+
+  /// Add a web app button to the last row
+  KeyboardMenu webApp(String text, String url) {
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(_KeyboardMenuWebAppButton(text, url));
+    keyboard = TeleverseMenu._makeKeyboard(_buttons);
+    return this;
+  }
+
+  /// Add a poll button to the last row
+  KeyboardMenu requestPoll(String text, KeyboardButtonPollType requestPoll) {
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(_KeyboardMenuRequestPollButton(text, requestPoll));
+    keyboard = TeleverseMenu._makeKeyboard(_buttons);
     return this;
   }
 

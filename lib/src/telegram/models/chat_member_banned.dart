@@ -39,8 +39,7 @@ class ChatMemberBanned implements ChatMember {
   /// Returns the [untilDate] as a [DateTime] object
   ///
   /// This will return null if the user is banned forever
-  DateTime? get untilDateTime =>
-      isForever ? null : DateTime.fromMillisecondsSinceEpoch(untilDate * 1000);
+  DateTime? get untilDateTime => isForever ? null : untilDate.toDateTime();
 
   /// Creates a new [ChatMemberBanned] object from json.
   factory ChatMemberBanned.fromJson(Map<String, dynamic> json) {

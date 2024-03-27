@@ -1,3 +1,10 @@
+# 1.14.0
+
+- 🆕 Whole new version of `TeleverseMenu`
+- Both `InlineMenu` and `KeyboardMenu` are now can be used to create menus with all available button types. 
+- ‼️ **BREAKING**: Removed the `Session`, `SessionManager`, and all Televerse Session related methods and properties.
+- Refactored the Unix Time to DateTime conversion.
+
 # 1.13.4
 
 - Added a new property `timeout` to `Bot` and `RawAPI` classes to set the timeout for the API requests.

@@ -4,7 +4,7 @@ part of '../../../televerse.dart';
 ///
 /// Whenever an update is received, a context is created and passed to the handler.
 /// Currently Televerse support the following types of contexts:
-class Context<TeleverseSession extends Session> {
+class Context {
   /// The RawAPI getter.
   RawAPI get api => _bot.api;
 
@@ -12,29 +12,12 @@ class Context<TeleverseSession extends Session> {
   User get me => _bot.me;
 
   /// The RawAPI instance.
-  final Bot<TeleverseSession> _bot;
+  final Bot _bot;
 
   /// The [Update] instance.
   ///
   /// This represents the update for which the context is created.
   final Update update;
-
-  /// The Session
-  late TeleverseSession _session;
-
-  /// The Session getter.
-  TeleverseSession get session {
-    try {
-      return _session;
-    } catch (e) {
-      throw TeleverseException.sessionsNotEnabled;
-    }
-  }
-
-  /// The Session setter.
-  set session(TeleverseSession session) {
-    _bot.sessions.addSession(id.id, _session);
-  }
 
   /// The [ChatID] instance.
   ///
@@ -56,11 +39,7 @@ class Context<TeleverseSession extends Session> {
   Context(
     this._bot, {
     required this.update,
-  }) {
-    if (_bot.sessionsEnabled) {
-      _session = _bot.sessions.getSession(id.id);
-    }
-  }
+  });
 
   /// Contains the matches of the regular expression. (Internal)
   List<RegExpMatch>? _matches;
@@ -1929,6 +1908,6 @@ class Context<TeleverseSession extends Session> {
 }
 
 /// Base handler
-typedef Handler<TeleverseSession extends Session> = FutureOr<void> Function(
-  Context<TeleverseSession> ctx,
+typedef Handler = FutureOr<void> Function(
+  Context ctx,
 );

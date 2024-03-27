@@ -90,7 +90,7 @@ class ChatMemberRestricted implements ChatMember {
   /// Note: This returns null if the restriction is forever. You can check if the restriction is forever by [isForever]
   DateTime? get untilDateTime {
     if (isForever) return null;
-    return DateTime.fromMillisecondsSinceEpoch(untilDate * 1000);
+    return untilDate.toDateTime();
   }
 
   /// True if the restriction is forever
