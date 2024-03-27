@@ -5,12 +5,6 @@ enum TeleverseExceptionType {
   /// File does not exist.
   fileDoesNotExist,
 
-  /// Sessions are not enabled.
-  sessionsNotEnabled,
-
-  /// Session ID is not set.
-  sessionIdNotSet,
-
   /// Thrown when a API request is failed
   requestFailed,
 
@@ -75,22 +69,6 @@ class TeleverseException implements Exception {
       type: TeleverseExceptionType.fileDoesNotExist,
     );
   }
-
-  /// Exception thrown when the sessions are used without enabling them.
-  static TeleverseException sessionsNotEnabled = TeleverseException(
-    "Sessions aren't enabled for the bot ",
-    description:
-        "To use sessions, enable them using `Televerse.initSessions()` method.",
-    type: TeleverseExceptionType.sessionsNotEnabled,
-  );
-
-  /// Exception thrown when the session is tried to be saved without providing path or id.
-  static TeleverseException sessionIdNotSet = TeleverseException(
-    "Session ID not set",
-    description:
-        "To save/load the session, you must provide a path or set the session ID.",
-    type: TeleverseExceptionType.sessionIdNotSet,
-  );
 
   /// Exception thrown when the `getMe` request is failed when setting up a bot command.
   static TeleverseException getMeRequestFailed(Object err, StackTrace stack) =>

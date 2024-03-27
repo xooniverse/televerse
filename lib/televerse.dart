@@ -41,7 +41,6 @@ part 'src/utils/utils.dart';
 part 'src/televerse/markups/keyboard.dart';
 part 'src/televerse/markups/inline_keyboard.dart';
 part 'src/televerse/raw_api.dart';
-part 'src/televerse/sessions/sessions.dart';
 part 'src/televerse/filters/on.dart';
 part 'src/televerse/filters/filters.dart';
 part 'src/televerse/markups/inline_menu.dart';
@@ -59,4 +58,4 @@ part 'src/televerse/conversation/conversation_exception.dart';
 ///
 /// This class is used to create a new bot instance. This is just a
 /// type alias for [Bot] class.
-typedef Televerse<T extends Session> = Bot<T>;
+typedef Televerse = Bot;
