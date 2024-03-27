@@ -251,6 +251,6 @@ class Chat {
       'has_visible_history': hasVisibleHistory,
       'unrestrict_boost_count': unrestrictBoostCount,
       'custom_emoji_sticker_set_name': customEmojiStickerSetName,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

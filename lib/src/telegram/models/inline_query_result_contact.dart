@@ -64,7 +64,7 @@ class InlineQueryResultContact extends InlineQueryResult {
       'thumbnail_width': thumbnailWidth,
       'thumbnail_height': thumbnailHeight,
       'id': id,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Constructs an [InlineQueryResultContact] object from a JSON map

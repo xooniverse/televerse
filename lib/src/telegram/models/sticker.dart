@@ -112,6 +112,6 @@ class Sticker {
       'mask_position': maskPosition?.toJson(),
       'custom_emoji_id': customEmojiId,
       'file_size': fileSize,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

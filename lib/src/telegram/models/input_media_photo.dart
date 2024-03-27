@@ -37,6 +37,6 @@ class InputMediaPhoto extends InputMedia {
       'parse_mode': parseMode?.value,
       'caption_entities': captionEntities,
       'has_spoiler': hasSpoiler,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

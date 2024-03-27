@@ -40,7 +40,7 @@ class InputLocationMessageContent extends InputMessageContent {
       'horizontal_accuracy': horizontalAccuracy,
       'heading': heading,
       'proximity_alert_radius': proximityAlertRadius,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Constructs an [InputLocationMessageContent] object from a JSON map

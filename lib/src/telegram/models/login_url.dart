@@ -45,6 +45,6 @@ class LoginURL {
       'forward_text': forwardText,
       'bot_username': botUsername,
       'request_write_access': requestWriteAccess,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

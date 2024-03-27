@@ -30,7 +30,7 @@ class InputTextMessageContent extends InputMessageContent {
       'parse_mode': parseMode?.value,
       'entities': entities?.map((e) => e.toJson()).toList(),
       'link_preview_options': linkPreviewOptions?.toJson(),
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Constructs an [InputTextMessageContent] object from a JSON object

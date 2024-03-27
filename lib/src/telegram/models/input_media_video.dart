@@ -62,6 +62,6 @@ class InputMediaVideo extends InputMedia {
       'duration': duration,
       'supports_streaming': supportsStreaming,
       'has_spoiler': hasSpoiler,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

@@ -62,7 +62,7 @@ class InlineQueryResultArticle extends InlineQueryResult {
       'thumbnail_url': thumbnailUrl,
       'thumbnail_width': thumbnailWidth,
       'thumbnail_height': thumbnailHeight,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// De-serializes a [InlineQueryResultArticle] object from a JSON map

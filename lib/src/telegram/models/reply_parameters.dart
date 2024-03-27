@@ -44,7 +44,7 @@ class ReplyParameters {
       'quote_parse_mode': quoteParseMode,
       'quote_entities': quoteEntities?.map((e) => e.toJson()).toList(),
       'quote_position': quotePosition,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a `ReplyParameters` object from a JSON object.

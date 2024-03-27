@@ -61,6 +61,6 @@ class CallbackQuery implements WithUser {
       'chat_instance': chatInstance,
       'data': data,
       'game_short_name': gameShortName,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

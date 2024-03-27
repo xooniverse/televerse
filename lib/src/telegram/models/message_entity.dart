@@ -74,6 +74,6 @@ class MessageEntity {
       'user': user?.toJson(),
       'language': language,
       'custom_emoji_id': customEmojiId,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

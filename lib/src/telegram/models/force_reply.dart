@@ -34,7 +34,7 @@ class ForceReply extends ReplyMarkup {
     data['force_reply'] = forceReply;
     data['selective'] = selective;
     data['input_field_placeholder'] = inputFieldPlaceholder;
-    data.removeWhere((key, value) => value == null);
+    data.removeWhere(_nullFilter);
     return data;
   }
 }

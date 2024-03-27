@@ -57,6 +57,6 @@ class InputMediaAnimation extends InputMedia {
       'height': height,
       'duration': duration,
       'has_spoiler': hasSpoiler,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

@@ -35,6 +35,6 @@ class GiveawayCompleted {
       'winner_count': winnerCount,
       'unclaimed_prize_count': unclaimedPrizeCount,
       'giveaway_message': giveawayMessage?.toJson(),
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 }

@@ -30,6 +30,9 @@ String _getRandomID([
       .join();
 }
 
+/// Null filter function.
+bool _nullFilter(String _, dynamic value) => value == null || value == 'null';
+
 /// [Update] extension to get the [Chat] and [User] from the update.
 extension FromAndChatExt on Update {
   /// A shorthand getter for the [Chat] instance from the update.

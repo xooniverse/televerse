@@ -106,7 +106,7 @@ class ChatMemberAdministrator implements ChatMember {
       'can_post_stories': canPostStories,
       'can_edit_stories': canEditStories,
       'can_delete_stories': canDeleteStories,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a new [ChatMemberAdministrator] object from json.

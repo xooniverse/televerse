@@ -84,7 +84,7 @@ class InlineQueryResultVenue extends InlineQueryResult {
       'thumbnail_width': thumbnailWidth,
       'thumbnail_height': thumbnailHeight,
       'id': id,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Constructs an [InlineQueryResultVenue] object from a JSON map

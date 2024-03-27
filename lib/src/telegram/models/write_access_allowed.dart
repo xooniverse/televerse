@@ -24,7 +24,7 @@ class WriteAccessAllowed {
       'web_app_name': webAppName,
       'from_request': fromRequest,
       'from_attachment_menu': fromAttachmentMenu,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [WriteAccessAllowed] object from JSON object

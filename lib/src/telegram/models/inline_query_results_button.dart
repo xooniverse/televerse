@@ -28,7 +28,7 @@ class InlineQueryResultsButton {
       'text': text,
       'web_app': webApp?.toJson(),
       'start_parameter': startParameter,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates an [InlineQueryResultsButton] from a JSON object.

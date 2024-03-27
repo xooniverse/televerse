@@ -82,6 +82,6 @@ class GiveawayWinners {
       'only_new_members': onlyNewMembers,
       'was_refunded': wasRefunded,
       'prize_description': prizeDescription,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 }

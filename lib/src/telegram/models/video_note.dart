@@ -55,7 +55,7 @@ class VideoNote {
       'duration': duration,
       'thumbnail': thumbnail?.toJson(),
       'file_size': fileSize,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Duration of the video as [Duration] object.

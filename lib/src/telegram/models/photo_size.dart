@@ -45,6 +45,6 @@ class PhotoSize {
       'width': width,
       'height': height,
       'file_size': fileSize,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

@@ -52,6 +52,6 @@ class InputMediaAudio extends InputMedia {
       'duration': duration,
       'performer': performer,
       'title': title,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

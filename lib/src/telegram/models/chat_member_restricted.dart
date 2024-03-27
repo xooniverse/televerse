@@ -118,7 +118,7 @@ class ChatMemberRestricted implements ChatMember {
       'can_send_videos': canSendVideos,
       'can_send_video_notes': canSendVideoNotes,
       'can_send_voice_notes': canSendVoiceNotes,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [ChatMemberRestricted] object from a [Map] of JSON data.

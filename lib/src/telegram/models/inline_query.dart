@@ -56,6 +56,6 @@ class InlineQuery implements WithUser {
       'offset': offset,
       'chat_type': chatType?.value,
       'location': location?.toJson(),
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

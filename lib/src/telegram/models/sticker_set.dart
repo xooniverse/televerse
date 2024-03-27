@@ -44,7 +44,7 @@ class StickerSet {
       'is_video': isVideo,
       'stickers': stickers,
       'thumbnail': thumbnail,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [StickerSet] object from JSON object

@@ -166,7 +166,7 @@ class Update {
       'message_reaction_count': messageReactionCount?.toJson(),
       'chat_boost': chatBoost?.toJson(),
       'chat_boost_removed': removedChatBoost?.toJson(),
-    }..removeWhere((_, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Converts a [Update] object to a JSON string.

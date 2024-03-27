@@ -62,9 +62,6 @@ class RawAPI {
   /// Just a constant variable to hold "thumbnail" string
   static const String _thumb = "thumbnail";
 
-  /// Filter that removes null from the parameters.
-  bool _nullChecker(String _, dynamic v) => v == null || v == "null";
-
   /// Build the URI for the Telegram API.
   Uri _buildUri(APIMethod method, [Map<String, dynamic>? params]) {
     params = params?.map((key, value) {
@@ -73,7 +70,7 @@ class RawAPI {
       }
       return MapEntry(key, "$value");
     });
-    params?.removeWhere(_nullChecker);
+    params?.removeWhere(_nullFilter);
     Uri uri;
     if (_isLocal) {
       RegExp https = RegExp(r'^(https?://)');
@@ -402,7 +399,7 @@ class RawAPI {
     Map<String, dynamic> response;
     final files = _getFiles([_MultipartHelper(photo, field)]);
     params[field] = photo.getValue(field);
-    params.removeWhere(_nullChecker);
+    params.removeWhere(_nullFilter);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
         _buildUri(APIMethod.sendPhoto),
@@ -513,7 +510,7 @@ class RawAPI {
     final files = _getFiles(l);
     params[field] = document.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
-    params.removeWhere(_nullChecker);
+    params.removeWhere(_nullFilter);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
         _buildUri(APIMethod.sendDocument),
@@ -627,7 +624,7 @@ class RawAPI {
     final files = _getFiles(l);
     params[field] = animation.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
-    params.removeWhere(_nullChecker);
+    params.removeWhere(_nullFilter);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
         _buildUri(APIMethod.sendAnimation),
@@ -674,7 +671,7 @@ class RawAPI {
     final l = [_MultipartHelper(voice, field)];
     final files = _getFiles(l);
     params[field] = voice.getValue(field);
-    params.removeWhere(_nullChecker);
+    params.removeWhere(_nullFilter);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
         _buildUri(APIMethod.sendVoice),
@@ -720,7 +717,7 @@ class RawAPI {
     if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
     final files = _getFiles(l);
     params[field] = videoNote.getValue(field);
-    params.removeWhere(_nullChecker);
+    params.removeWhere(_nullFilter);
     params[_thumb] = thumbnail?.getValue(_thumb);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
@@ -2644,7 +2641,7 @@ class RawAPI {
       "name": name,
       "user_id": userId,
       "thumbnail": thumbnail?.getValue(_thumb),
-    }..removeWhere(_nullChecker);
+    }..removeWhere(_nullFilter);
 
     bool response;
     List<Map<String, MultipartFile>> files = [];

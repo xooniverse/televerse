@@ -97,6 +97,6 @@ class InlineKeyboardButton {
       'pay': pay,
       'web_app': webApp?.toJson(),
       'switch_inline_query_chosen_chat': switchInlineQueryChosenChat?.toJson(),
-    }..removeWhere((_, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

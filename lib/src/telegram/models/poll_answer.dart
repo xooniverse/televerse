@@ -41,6 +41,6 @@ class PollAnswer {
       'user': user?.toJson(),
       'option_ids': optionIds,
       'voter_chat': voterChat?.toJson(),
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

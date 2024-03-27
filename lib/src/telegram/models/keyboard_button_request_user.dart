@@ -39,6 +39,6 @@ class KeyboardButtonRequestUsers {
       'user_is_bot': userIsBot,
       'user_is_premium': userIsPremium,
       'max_quantity': maxQuantity,
-    }..removeWhere((_, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

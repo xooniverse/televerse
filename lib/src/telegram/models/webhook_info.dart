@@ -71,7 +71,7 @@ class WebhookInfo {
       'last_error_network_date': lastErrorNetworkDate,
       'max_connections': maxConnections,
       'allowed_updates': allowedUpdates,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Get JSON string of this object.

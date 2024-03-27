@@ -24,7 +24,7 @@ class PassportElementErrorSelfie extends PassportElementError {
       'type': type,
       'message': message,
       'file_hash': fileHash,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [PassportElementErrorSelfie] object from JSON object

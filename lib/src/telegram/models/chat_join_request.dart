@@ -59,7 +59,7 @@ class ChatJoinRequest implements WithChat, WithUser {
       'bio': bio,
       'invite_link': inviteLink?.toJson(),
       'user_chat_id': userChatId,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Returns a [DateTime] object representing the [date] field

@@ -39,7 +39,7 @@ class File {
       'file_unique_id': fileUniqueId,
       'file_size': fileSize,
       'file_path': filePath,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Returns the download URL for the particular file as [String]

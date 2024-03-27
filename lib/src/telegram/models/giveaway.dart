@@ -64,6 +64,6 @@ class Giveaway {
       'prize_description': prizeDescription,
       'country_codes': countryCodes,
       'premium_subscription_month_count': premiumSubscriptionMonthCount,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 }

@@ -35,7 +35,7 @@ class ChosenInlineResult implements WithUser {
       'location': location?.toJson(),
       'inline_message_id': inlineMessageId,
       'query': query,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a new [ChosenInlineResult] object from json.

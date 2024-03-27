@@ -44,7 +44,7 @@ class SuccessfulPayment {
       'order_info': orderInfo?.toJson(),
       'telegram_payment_charge_id': telegramPaymentChargeId,
       'provider_payment_charge_id': providerPaymentChargeId,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [SuccessfulPayment] object from a JSON object

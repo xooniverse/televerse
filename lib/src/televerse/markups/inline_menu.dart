@@ -337,6 +337,6 @@ class InlineMenu implements InlineKeyboardMarkup, TeleverseMenu {
           return button.toJson();
         }).toList();
       }).toList(),
-    }..removeWhere((_, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

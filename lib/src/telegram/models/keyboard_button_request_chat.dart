@@ -69,6 +69,6 @@ class KeyboardButtonRequestChat {
       'user_administrator_rights': userAdministratorRights?.toJson(),
       'bot_administrator_rights': botAdministratorRights?.toJson(),
       'bot_is_member': botIsMember,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

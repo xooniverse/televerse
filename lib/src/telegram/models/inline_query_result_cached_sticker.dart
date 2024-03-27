@@ -34,7 +34,7 @@ class InlineQueryResultCachedSticker extends InlineQueryResult {
       'sticker_file_id': stickerFileId,
       'reply_markup': replyMarkup?.toJson(),
       'input_message_content': inputMessageContent?.toJson(),
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Constructs an [InlineQueryResultCachedSticker] object from a JSON map

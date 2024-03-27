@@ -33,6 +33,6 @@ class ReplyKeyboardRemove extends ReplyMarkup {
     return {
       'remove_keyboard': removeKeyboard,
       'selective': selective,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

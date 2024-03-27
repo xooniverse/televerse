@@ -40,6 +40,6 @@ class MessageOriginChat implements MessageOrigin {
       'date': date,
       'sender_chat': senderChat.toJson(),
       'author_signature': authorSignature,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 }

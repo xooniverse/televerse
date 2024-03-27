@@ -24,7 +24,7 @@ class PassportElementErrorUnspecified extends PassportElementError {
       'type': type,
       'message': message,
       'element_hash': elementHash,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [PassportElementErrorUnspecified] object from JSON object

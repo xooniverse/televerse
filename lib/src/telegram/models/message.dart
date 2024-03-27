@@ -579,7 +579,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
       'boost_added': boostAdded?.toJson(),
       'sender_boost_count': senderBoostCount,
       'reply_to_story': replyToStory?.toJson(),
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Getter for the [DateTime] object that represents the message sent date

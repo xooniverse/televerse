@@ -11,3 +11,6 @@ abstract class WithUser {
   /// The user who triggered the event.
   User? get from;
 }
+
+/// Null filter function.
+bool _nullFilter(String _, dynamic value) => value == null;

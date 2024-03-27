@@ -45,6 +45,6 @@ class SwitchInlineQueryChosenChat {
       'allow_bot_chats': allowBotChats,
       'allow_group_chats': allowGroupChats,
       'allow_channel_chats': allowChannelChats,
-    }..removeWhere((_, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }
