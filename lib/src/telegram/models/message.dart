@@ -239,6 +239,12 @@ class Message implements MaybeInaccessibleMessage, WithUser {
   /// Optional. For replies to a story, the original story
   final Story? replyToStory;
 
+  /// Optional. Unique identifier of the business connection from which the message was received. If non-empty, the message belongs to a chat of the corresponding business account that is independent from any potential bot chat which might share the same identifier.
+  final String? businessConnectionId;
+
+  /// Optional. The bot that actually sent the message on behalf of the business account. Available only for outgoing messages sent on behalf of the connected business account.
+  final User? senderBusinessBot;
+
   /// Creates a Message object.
   const Message({
     this.from,
@@ -318,6 +324,8 @@ class Message implements MaybeInaccessibleMessage, WithUser {
     this.boostAdded,
     this.senderBoostCount,
     this.replyToStory,
+    this.businessConnectionId,
+    this.senderBusinessBot,
   });
 
   /// Creates a [Message] object from json map.
@@ -494,6 +502,10 @@ class Message implements MaybeInaccessibleMessage, WithUser {
       replyToStory: json["reply_to_story"] != null
           ? Story.fromJson(json["reply_to_story"])
           : null,
+      businessConnectionId: json["business_connection_id"],
+      senderBusinessBot: json["sender_business_bot"] != null
+          ? User.fromJson(json["sender_business_bot"])
+          : null,
     );
   }
 
@@ -579,6 +591,8 @@ class Message implements MaybeInaccessibleMessage, WithUser {
       'boost_added': boostAdded?.toJson(),
       'sender_boost_count': senderBoostCount,
       'reply_to_story': replyToStory?.toJson(),
+      'business_connection_id': businessConnectionId,
+      'sender_business_bot': senderBusinessBot?.toJson(),
     }..removeWhere(_nullFilter);
   }
 
