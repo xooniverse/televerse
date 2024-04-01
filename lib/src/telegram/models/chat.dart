@@ -113,6 +113,15 @@ class Chat {
   /// Optional. For supergroups, the name of the group's custom emoji sticker set. Custom emoji from this set can be used by all users and bots in the group. Returned only in getChat.
   final String? customEmojiStickerSetName;
 
+  /// Optional. For private chats with business accounts, the intro of the business. Returned only in getChat.
+  final BusinessIntro? businessIntro;
+
+  /// Optional. For private chats with business accounts, the location of the business. Returned only in getChat.
+  final BusinessLocation? businessLocation;
+
+  /// Optional. For private chats with business accounts, the opening hours of the business. Returned only in getChat.
+  final BusinessOpeningHours? businessOpeningHours;
+
   /// Constructs a [Chat] object.
   const Chat({
     required this.id,
@@ -152,6 +161,9 @@ class Chat {
     this.hasVisibleHistory,
     this.unrestrictBoostCount,
     this.customEmojiStickerSetName,
+    this.businessIntro,
+    this.businessLocation,
+    this.businessOpeningHours,
   });
 
   /// Creates a [Chat] object from json.
@@ -206,6 +218,15 @@ class Chat {
       hasVisibleHistory: json['has_visible_history'],
       unrestrictBoostCount: json['unrestrict_boost_count'],
       customEmojiStickerSetName: json['custom_emoji_sticker_set_name'],
+      businessIntro: json['business_intro'] == null
+          ? null
+          : BusinessIntro.fromJson(json['business_intro']),
+      businessLocation: json['business_location'] == null
+          ? null
+          : BusinessLocation.fromJson(json['business_location']),
+      businessOpeningHours: json['business_opening_hours'] == null
+          ? null
+          : BusinessOpeningHours.fromJson(json['business_opening_hours']),
     );
   }
 

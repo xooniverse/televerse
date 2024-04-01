@@ -205,3 +205,7 @@ part 'chat_boost_added.dart';
 
 part 'bot_connection.dart';
 part 'business_message_deleted.dart';
+part 'business_intro.dart';
+part 'business_location.dart';
+part 'business_opening_hours.dart';
+part 'business_opening_hours_interval.dart';
