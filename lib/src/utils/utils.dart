@@ -30,11 +30,14 @@ String _getRandomID([
       .join();
 }
 
+/// Null filter function.
+bool _nullFilter(String _, dynamic value) => value == null || value == 'null';
+
 /// [Update] extension to get the [Chat] and [User] from the update.
 extension FromAndChatExt on Update {
   /// A shorthand getter for the [Chat] instance from the update.
   ///
-  /// This can be any of `msg.chat` or `myChatMember.chat` or `chatMember.chat` or `chatJoinRequest.chat` or `messageReaction.chat` or `messageReactionCount.chat` or `chatBoost.chat` or `removedChatBoost.chat` or `callbackQuery.message.chat`.
+  /// This can be any of `msg.chat` or `myChatMember.chat` or `chatMember.chat` or `chatJoinRequest.chat` or `messageReaction.chat` or `messageReactionCount.chat` or `chatBoost.chat` or `removedChatBoost.chat` or `callbackQuery.message.chat`, or `businessMessage.chat` or `editedBusinessMessage.chat`.
   Chat? get chat {
     Chat? x = (chatJoinRequest ??
             removedChatBoost ??
@@ -73,9 +76,14 @@ extension FromAndChatExt on Update {
 
   /// This is a shorthand getter for the [Message] recieved in the current context
   ///
-  /// This can either be `Message` or `Channel Post` or `Edited Message` or `Edited Channel Post`. (Internal)
+  /// This can either be `Message` or `Channel Post` or `Edited Message` or `Edited Channel Post` or `Business Message` or `Edited Business Message` or `Callback Query Message`.
   Message? get msg {
-    Message? m = message ?? editedMessage ?? channelPost ?? editedChannelPost;
+    Message? m = message ??
+        editedMessage ??
+        channelPost ??
+        editedChannelPost ??
+        businessMessage ??
+        editedBusinessMessage;
     if (callbackQuery?.message is Message) {
       m ??= (callbackQuery?.message as Message);
     }

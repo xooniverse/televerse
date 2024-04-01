@@ -113,6 +113,21 @@ class Chat {
   /// Optional. For supergroups, the name of the group's custom emoji sticker set. Custom emoji from this set can be used by all users and bots in the group. Returned only in getChat.
   final String? customEmojiStickerSetName;
 
+  /// Optional. For private chats with business accounts, the intro of the business. Returned only in getChat.
+  final BusinessIntro? businessIntro;
+
+  /// Optional. For private chats with business accounts, the location of the business. Returned only in getChat.
+  final BusinessLocation? businessLocation;
+
+  /// Optional. For private chats with business accounts, the opening hours of the business. Returned only in getChat.
+  final BusinessOpeningHours? businessOpeningHours;
+
+  /// Optional. For private chats, the personal channel of the user. Returned only in getChat.
+  final Chat? personalChat;
+
+  /// Optional. For private chats, the date of birth of the user. Returned only in getChat.
+  final Birthdate? birthdate;
+
   /// Constructs a [Chat] object.
   const Chat({
     required this.id,
@@ -152,6 +167,11 @@ class Chat {
     this.hasVisibleHistory,
     this.unrestrictBoostCount,
     this.customEmojiStickerSetName,
+    this.businessIntro,
+    this.businessLocation,
+    this.businessOpeningHours,
+    this.personalChat,
+    this.birthdate,
   });
 
   /// Creates a [Chat] object from json.
@@ -206,6 +226,21 @@ class Chat {
       hasVisibleHistory: json['has_visible_history'],
       unrestrictBoostCount: json['unrestrict_boost_count'],
       customEmojiStickerSetName: json['custom_emoji_sticker_set_name'],
+      businessIntro: json['business_intro'] == null
+          ? null
+          : BusinessIntro.fromJson(json['business_intro']),
+      businessLocation: json['business_location'] == null
+          ? null
+          : BusinessLocation.fromJson(json['business_location']),
+      businessOpeningHours: json['business_opening_hours'] == null
+          ? null
+          : BusinessOpeningHours.fromJson(json['business_opening_hours']),
+      personalChat: json['personal_chat'] == null
+          ? null
+          : Chat.fromJson(json['personal_chat']),
+      birthdate: json['birthdate'] == null
+          ? null
+          : Birthdate.fromJson(json['birthdate']),
     );
   }
 
@@ -251,6 +286,11 @@ class Chat {
       'has_visible_history': hasVisibleHistory,
       'unrestrict_boost_count': unrestrictBoostCount,
       'custom_emoji_sticker_set_name': customEmojiStickerSetName,
-    }..removeWhere((key, value) => value == null);
+      'business_intro': businessIntro?.toJson(),
+      'business_location': businessLocation?.toJson(),
+      'business_opening_hours': businessOpeningHours?.toJson(),
+      'personal_chat': personalChat?.toJson(),
+      'birthdate': birthdate?.toJson(),
+    }..removeWhere(_nullFilter);
   }
 }

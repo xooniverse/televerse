@@ -19,7 +19,7 @@ class ForumTopicEdited {
     return {
       'name': name,
       'icon_custom_emoji_id': iconCustomEmojiId,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a new [ForumTopicEdited] object from json.

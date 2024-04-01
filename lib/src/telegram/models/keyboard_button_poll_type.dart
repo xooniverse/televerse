@@ -19,6 +19,6 @@ class KeyboardButtonPollType {
   Map<String, dynamic> toJson() {
     return {
       'type': type?.type,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

@@ -30,7 +30,7 @@ class InputContactMessageContent extends InputMessageContent {
       'first_name': firstName,
       'last_name': lastName,
       'vcard': vcard,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Constructs an [InputContactMessageContent] object from a JSON map

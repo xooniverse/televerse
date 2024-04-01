@@ -39,6 +39,6 @@ class ForumTopic {
       'name': name,
       'icon_color': iconColor,
       'icon_custom_emoji_id': iconCustomEmojiId,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

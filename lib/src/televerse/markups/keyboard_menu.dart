@@ -295,7 +295,7 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
       'one_time_keyboard': oneTimeKeyboard,
       'resize_keyboard': resizeKeyboard,
       'selective': selective,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Optional. The placeholder to be shown in the input field when the keyboard is active; 1-64 characters

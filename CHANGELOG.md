@@ -1,3 +1,10 @@
+# 1.15.0
+
+- 🤖 Bot API 7.2!
+- All changes from the Bot API 7.2 is added to this release.
+- Added the methods `Bot.onBusinessConnection`, `Bot.onBusinessMessage`, `Bot.onBusinessMessageEdited`, `Bot.onBusinessMessageDeleted` to handle business messages and connection related updates.
+- Added `Context.businessConnection`, `Context.businessMessage`, `Context.editedBusinessMessage`, `Context.businessMessageDelete` getters to get the business connection, business message, edited business message, and business message delete updates respectively.
+
 # 1.14.0
 
 - 🆕 Whole new version of `TeleverseMenu`

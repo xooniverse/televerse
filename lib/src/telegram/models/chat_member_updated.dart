@@ -69,7 +69,7 @@ class ChatMemberUpdated implements WithChat, WithUser {
       'new_chat_member': newChatMember.toJson(),
       'invite_link': inviteLink?.toJson(),
       'via_chat_folder_invite_link': viaChatFolderInviteLink,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Returns a [DateTime] object representing the [date] field

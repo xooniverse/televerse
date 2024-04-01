@@ -62,9 +62,6 @@ class RawAPI {
   /// Just a constant variable to hold "thumbnail" string
   static const String _thumb = "thumbnail";
 
-  /// Filter that removes null from the parameters.
-  bool _nullChecker(String _, dynamic v) => v == null || v == "null";
-
   /// Build the URI for the Telegram API.
   Uri _buildUri(APIMethod method, [Map<String, dynamic>? params]) {
     params = params?.map((key, value) {
@@ -73,7 +70,7 @@ class RawAPI {
       }
       return MapEntry(key, "$value");
     });
-    params?.removeWhere(_nullChecker);
+    params?.removeWhere(_nullFilter);
     Uri uri;
     if (_isLocal) {
       RegExp https = RegExp(r'^(https?://)');
@@ -273,6 +270,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     LinkPreviewOptions? linkPreviewOptions,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -285,6 +283,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "link_preview_options": linkPreviewOptions?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
 
     Uri uri = _buildUri(APIMethod.sendMessage);
@@ -385,6 +384,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     bool? hasSpoiler,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -397,12 +397,13 @@ class RawAPI {
       "has_spoiler": hasSpoiler,
       "protect_content": protectContent,
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     const field = "photo";
     Map<String, dynamic> response;
     final files = _getFiles([_MultipartHelper(photo, field)]);
     params[field] = photo.getValue(field);
-    params.removeWhere(_nullChecker);
+    params.removeWhere(_nullFilter);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
         _buildUri(APIMethod.sendPhoto),
@@ -436,6 +437,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -448,8 +450,9 @@ class RawAPI {
       "title": title,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     const field = "audio";
 
@@ -491,6 +494,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -503,6 +507,7 @@ class RawAPI {
       "protect_content": protectContent,
       "reply_markup": jsonEncode(replyMarkup?.toJson()),
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     const field = "document";
 
@@ -513,7 +518,7 @@ class RawAPI {
     final files = _getFiles(l);
     params[field] = document.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
-    params.removeWhere(_nullChecker);
+    params.removeWhere(_nullFilter);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
         _buildUri(APIMethod.sendDocument),
@@ -547,6 +552,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -561,8 +567,9 @@ class RawAPI {
       "supports_streaming": supportsStreaming,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     final field = "video";
     Map<String, dynamic> response;
@@ -603,6 +610,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -616,8 +624,9 @@ class RawAPI {
       "has_spoiler": hasSpoiler,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     const field = "animation";
     Map<String, dynamic> response;
@@ -627,7 +636,7 @@ class RawAPI {
     final files = _getFiles(l);
     params[field] = animation.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
-    params.removeWhere(_nullChecker);
+    params.removeWhere(_nullFilter);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
         _buildUri(APIMethod.sendAnimation),
@@ -656,6 +665,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -666,15 +676,16 @@ class RawAPI {
       "duration": duration,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     const field = "voice";
     Map<String, dynamic> response;
     final l = [_MultipartHelper(voice, field)];
     final files = _getFiles(l);
     params[field] = voice.getValue(field);
-    params.removeWhere(_nullChecker);
+    params.removeWhere(_nullFilter);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
         _buildUri(APIMethod.sendVoice),
@@ -702,6 +713,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -711,8 +723,9 @@ class RawAPI {
       "thumbnail": thumbnail?.fileId ?? thumbnail?.url,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     const field = "video_note";
     Map<String, dynamic> response;
@@ -720,7 +733,7 @@ class RawAPI {
     if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
     final files = _getFiles(l);
     params[field] = videoNote.getValue(field);
-    params.removeWhere(_nullChecker);
+    params.removeWhere(_nullFilter);
     params[_thumb] = thumbnail?.getValue(_thumb);
     if (files.isNotEmpty) {
       response = await _httpClient.multipartPost(
@@ -743,6 +756,7 @@ class RawAPI {
     bool? disableNotification,
     bool? protectContent,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     if (media.length > 10) {
       throw TeleverseException(
@@ -777,6 +791,7 @@ class RawAPI {
       "disable_notification": disableNotification,
       "protect_content": protectContent,
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
 
     List<_MultipartHelper> helpers = [];
@@ -822,6 +837,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -834,8 +850,9 @@ class RawAPI {
       "proximity_alert_radius": proximityAlertRadius,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendLocation),
@@ -971,6 +988,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -985,8 +1003,9 @@ class RawAPI {
       "google_place_type": googlePlaceType,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendVenue),
@@ -1007,6 +1026,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -1017,8 +1037,9 @@ class RawAPI {
       "vcard": vcard,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendContact),
@@ -1047,6 +1068,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     if (options.length < 2 || options.length > 10) {
       throw TeleverseException(
@@ -1119,8 +1141,9 @@ class RawAPI {
       "is_closed": isClosed,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendPoll),
@@ -1147,6 +1170,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -1154,8 +1178,9 @@ class RawAPI {
       "emoji": emoji.emoji,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendDice),
@@ -1179,11 +1204,13 @@ class RawAPI {
     ID chatId,
     ChatAction action, {
     int? messageThreadId,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "action": action.value,
       "message_thread_id": messageThreadId,
+      "business_connection_id": businessConnectionId,
     };
     bool response = await _httpClient.postURI(
       _buildUri(APIMethod.sendChatAction),
@@ -2469,15 +2496,17 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     String? emoji,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "emoji": emoji,
-      "reply_parameters": jsonEncode(replyParameters?.toJson()),
+      "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     const field = "sticker";
     Map<String, dynamic> response;
@@ -2639,12 +2668,14 @@ class RawAPI {
     String name,
     int userId, {
     InputFile? thumbnail,
+    required InputStickerFormat format,
   }) async {
     Map<String, dynamic> params = {
       "name": name,
       "user_id": userId,
       "thumbnail": thumbnail?.getValue(_thumb),
-    }..removeWhere(_nullChecker);
+      "format": format.value,
+    }..removeWhere(_nullFilter);
 
     bool response;
     List<Map<String, MultipartFile>> files = [];
@@ -2944,6 +2975,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2951,8 +2983,9 @@ class RawAPI {
       "message_thread_id": messageThreadId,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
-      "reply_parameters": jsonEncode(replyParameters?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
+      "reply_parameters": replyParameters?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
@@ -3135,7 +3168,6 @@ class RawAPI {
   /// - [name] - Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
   /// - [title] - Sticker set title, 1-64 characters
   /// - [stickers] - List of stickers to be added to the set
-  /// - [stickerFormat] - Sticker format
   /// - [stickerType] - Sticker type
   /// - [needsRepainting] - Pass True if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only
   Future<bool> createNewStickerSet({
@@ -3143,7 +3175,6 @@ class RawAPI {
     required String name,
     required String title,
     required List<InputSticker> stickers,
-    required StickerFormat stickerFormat,
     StickerType stickerType = StickerType.regular,
     bool needsRepainting = false,
   }) async {
@@ -3151,7 +3182,6 @@ class RawAPI {
       "user_id": userId,
       "name": name,
       "title": title,
-      "sticker_format": stickerFormat.value,
       "sticker_type": stickerType.type,
       "needs_repainting": needsRepainting,
     };
@@ -3492,5 +3522,57 @@ class RawAPI {
     );
 
     return UserChatBoosts.fromJson(response);
+  }
+
+  /// Use this method to get information about the connection of the bot with a business account. Returns a [BusinessConnection] object on success.
+  Future<BusinessConnection> getBusinessConnection(
+    String businessConnectionId,
+  ) async {
+    Map<String, dynamic> response = await _httpClient.postURI(
+      _buildUri(APIMethod.getBusinessConnection),
+      {
+        "business_connection_id": businessConnectionId,
+      },
+    );
+
+    return BusinessConnection.fromJson(response);
+  }
+
+  /// Use this method to replace an existing sticker in a sticker set with a new one.
+  /// The method is equivalent to calling deleteStickerFromSet, then addStickerToSet,
+  /// then setStickerPositionInSet. Returns True on success.
+  Future<bool> replaceStickerInSet({
+    required int userId,
+    required String name,
+    required String oldSticker,
+    required InputSticker sticker,
+  }) async {
+    const field = "sticker";
+    Map<String, dynamic> params = {
+      "user_id": userId,
+      "name": name,
+      "old_sticker": oldSticker,
+      "sticker": jsonEncode(sticker.toJson(field)),
+    };
+
+    bool response;
+    final files = _getFiles(
+      [_MultipartHelper(sticker.sticker, field)],
+    );
+
+    if (files.isEmpty) {
+      response = await _httpClient.postURI(
+        _buildUri(APIMethod.replaceStickerInSet),
+        params,
+      );
+    } else {
+      response = await _httpClient.multipartPost(
+        _buildUri(APIMethod.replaceStickerInSet),
+        files,
+        params,
+      );
+    }
+
+    return response;
   }
 }

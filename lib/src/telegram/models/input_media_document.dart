@@ -42,6 +42,6 @@ class InputMediaDocument extends InputMedia {
       'parse_mode': parseMode?.value,
       'caption_entities': captionEntities,
       'disable_content_type_detection': disableContentTypeDetection,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

@@ -86,6 +86,6 @@ class KeyboardButton {
       'web_app': webApp?.toJson(),
       'request_users': requestUsers?.toJson(),
       'request_chat': requestChat?.toJson(),
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

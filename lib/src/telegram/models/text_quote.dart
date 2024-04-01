@@ -29,7 +29,7 @@ class TextQuote {
       'entities': entities?.map((e) => e.toJson()).toList(),
       'position': position,
       'is_manual': isManual,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a `TextQuote` object from a JSON object.

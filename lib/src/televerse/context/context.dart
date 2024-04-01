@@ -134,6 +134,19 @@ class Context {
   /// This represents the shipping query for which the context is created.
   ShippingQuery? get shippingQuery => update.shippingQuery;
 
+  /// The [BusinessConnection] instance. This represents the business connection for which the context is created.
+  BusinessConnection? get businessConnection => update.businessConnection;
+
+  /// New non-service message from a connected business account
+  Message? get businessMessage => update.businessMessage;
+
+  /// New version of a message from a connected business account
+  Message? get editedBusinessMessage => update.editedBusinessMessage;
+
+  /// Messages were deleted from a connected business account
+  BusinessMessagesDeleted? get businessMessageDelete =>
+      update.deletedBusinessMessages;
+
   /// The thread id
   int? _threadId([int? id]) {
     bool isInTopic = msg?.isTopicMessage ?? false;

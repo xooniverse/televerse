@@ -29,7 +29,7 @@ class PassportElementErrorDataField extends PassportElementError {
       'message': message,
       'field_name': fieldName,
       'data_hash': dataHash,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [PassportElementErrorDataField] object from JSON object

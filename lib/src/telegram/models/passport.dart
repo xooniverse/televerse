@@ -25,3 +25,6 @@ part 'passport_element_error_files.dart';
 part 'passport_element_error_translation_file.dart';
 part 'passport_element_error_translation_files.dart';
 part 'passport_element_error_unspecified.dart';
+
+/// Null filter function.
+bool _nullFilter(String _, dynamic value) => value == null;

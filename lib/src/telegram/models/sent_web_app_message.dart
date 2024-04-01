@@ -14,7 +14,7 @@ class SentWebAppMessage {
   Map<String, dynamic> toJson() {
     return {
       'inline_message_id': inlineMessageId,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [SentWebAppMessage] object from JSON object

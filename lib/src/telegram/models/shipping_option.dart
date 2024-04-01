@@ -24,7 +24,7 @@ class ShippingOption {
       'id': id,
       'title': title,
       'prices': prices.map((e) => e.toJson()).toList(),
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Converts a [ShippingOption] object to JSON object

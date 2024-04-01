@@ -29,6 +29,6 @@ class BotCommandScopeChatAdministrators implements BotCommandScope {
     return {
       'type': type.toJson(),
       'chat_id': chatId,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

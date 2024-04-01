@@ -46,6 +46,6 @@ class MessageOriginChannel implements MessageOrigin {
       'chat': chat.toJson(),
       'message_id': messageId,
       'author_signature': authorSignature,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 }

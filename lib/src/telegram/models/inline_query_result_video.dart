@@ -66,7 +66,7 @@ class InlineQueryResultVideo extends InlineQueryResult {
       'reply_markup': replyMarkup?.toJson(),
       'input_message_content': inputMessageContent?.toJson(),
       'id': id,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Constructs an [InlineQueryResultVideo] object

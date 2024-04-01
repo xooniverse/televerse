@@ -27,6 +27,6 @@ class PollOption {
     return {
       'text': text,
       'voter_count': voterCount,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

@@ -39,7 +39,7 @@ class ChatPhoto {
     data['small_file_unique_id'] = smallFileUniqueId;
     data['big_file_id'] = bigFileId;
     data['big_file_unique_id'] = bigFileUniqueId;
-    data.removeWhere((key, value) => value == null);
+    data.removeWhere(_nullFilter);
     return data;
   }
 }

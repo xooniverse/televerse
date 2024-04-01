@@ -34,7 +34,7 @@ class LinkPreviewOptions {
       'prefer_small_media': preferSmallMedia,
       'prefer_large_media': preferLargeMedia,
       'show_above_text': showAboveText,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates an instance of [LinkPreviewOptions] from JSON data.

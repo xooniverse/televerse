@@ -110,7 +110,7 @@ class InputInvoiceMessageContent extends InputMessageContent {
       'send_phone_number_to_provider': sendPhoneNumberToProvider,
       'send_email_to_provider': sendEmailToProvider,
       'is_flexible': isFlexible,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Constructs an [InputInvoiceMessageContent] object from a JSON map

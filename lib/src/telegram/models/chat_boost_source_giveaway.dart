@@ -30,7 +30,7 @@ class ChatBoostSourceGiveaway implements ChatBoostSource {
       'user': user?.toJson(),
       'is_unclaimed': isUnclaimed,
       'giveaway_message_id': giveawayMessageId,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a `ChatBoostSourceGiveaway` object from a JSON object.

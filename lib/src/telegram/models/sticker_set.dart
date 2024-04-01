@@ -11,12 +11,6 @@ class StickerSet {
   /// Type of stickers in the set, currently one of “regular”, “mask”, “custom_emoji”
   final StickerType stickerType;
 
-  /// True, if the sticker set contains animated stickers
-  final bool isAnimated;
-
-  /// True, if the sticker set contains video stickers
-  final bool isVideo;
-
   /// List of all set stickers
   final List<Sticker> stickers;
 
@@ -28,8 +22,6 @@ class StickerSet {
     required this.name,
     required this.title,
     required this.stickerType,
-    required this.isAnimated,
-    required this.isVideo,
     required this.stickers,
     this.thumbnail,
   });
@@ -40,11 +32,9 @@ class StickerSet {
       'name': name,
       'title': title,
       'sticker_type': stickerType.toJson(),
-      'is_animated': isAnimated,
-      'is_video': isVideo,
       'stickers': stickers,
       'thumbnail': thumbnail,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [StickerSet] object from JSON object
@@ -53,8 +43,6 @@ class StickerSet {
       name: json['name'] as String,
       title: json['title'] as String,
       stickerType: StickerType.fromJson(json['sticker_type'] as String),
-      isAnimated: json['is_animated'] as bool,
-      isVideo: json['is_video'] as bool,
       stickers: (json['stickers'] as List<dynamic>)
           .map((e) => Sticker.fromJson(e as Map<String, dynamic>))
           .toList(),

@@ -29,6 +29,6 @@ class InputSticker {
       'emoji_list': emojiList,
       'mask_position': maskPosition,
       'keywords': keywords,
-    }..removeWhere((_, v) => v == null);
+    }..removeWhere(_nullFilter);
   }
 }

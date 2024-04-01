@@ -34,7 +34,7 @@ class Invoice {
       'start_parameter': startParameter,
       'currency': currency,
       'total_amount': totalAmount,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Converts a JSON object to an [Invoice] object

@@ -57,6 +57,6 @@ class Game {
       'text': text,
       'text_entities': textEntities?.map((e) => e.toJson()).toList(),
       'animation': animation?.toJson(),
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

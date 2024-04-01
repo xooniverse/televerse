@@ -74,7 +74,7 @@ class _HttpClient {
     Uri uri,
     Map<String, dynamic> body,
   ) async {
-    body.removeWhere((key, value) => value == null || value == "null");
+    body.removeWhere(_nullFilter);
     Map<String, String> bodyContent = body.map(_getEntry);
 
     try {
@@ -104,7 +104,7 @@ class _HttpClient {
     List<Map<String, MultipartFile>> files,
     Map<String, dynamic> body,
   ) async {
-    body.removeWhere((key, value) => value == null || value == "null");
+    body.removeWhere(_nullFilter);
 
     final parameters = body.map(_getEntry).entries;
     final filesMap = files.expand((element) => element.entries);

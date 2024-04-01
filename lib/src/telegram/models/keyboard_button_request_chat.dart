@@ -28,6 +28,15 @@ class KeyboardButtonRequestChat {
   /// Optional. Pass True to request a chat with the bot as a member. Otherwise, no additional restrictions are applied.
   final bool? botIsMember;
 
+  /// Optional. Pass True to request the chat's title
+  final bool? requestTitle;
+
+  /// Optional. Pass True to request the chat's username
+  final bool? requestUsername;
+
+  /// Optional. Pass True to request the chat's photo
+  final bool? requestPhoto;
+
   /// This object defines the criteria used to request a suitable chat. The identifier of the selected chat will be shared with the bot when the corresponding button is pressed.
   const KeyboardButtonRequestChat({
     required this.requestId,
@@ -38,6 +47,9 @@ class KeyboardButtonRequestChat {
     this.userAdministratorRights,
     this.botAdministratorRights,
     this.botIsMember,
+    this.requestPhoto,
+    this.requestTitle,
+    this.requestUsername,
   });
 
   /// Creates a [KeyboardButtonRequestChat] from JSON object
@@ -55,6 +67,9 @@ class KeyboardButtonRequestChat {
           ? ChatAdministratorRights.fromJson(json['bot_administrator_rights']!)
           : null,
       botIsMember: json['bot_is_member'],
+      requestPhoto: json['request_photo'],
+      requestTitle: json['request_title'],
+      requestUsername: json['request_username'],
     );
   }
 
@@ -69,6 +84,9 @@ class KeyboardButtonRequestChat {
       'user_administrator_rights': userAdministratorRights?.toJson(),
       'bot_administrator_rights': botAdministratorRights?.toJson(),
       'bot_is_member': botIsMember,
-    }..removeWhere((key, value) => value == null);
+      'request_photo': requestPhoto,
+      'request_title': requestTitle,
+      'request_username': requestUsername,
+    }..removeWhere(_nullFilter);
   }
 }

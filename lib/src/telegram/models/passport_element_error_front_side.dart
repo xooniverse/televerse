@@ -24,7 +24,7 @@ class PassportElementErrorFrontSide extends PassportElementError {
       'type': type,
       'message': message,
       'file_hash': fileHash,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [PassportElementErrorFrontSide] object from JSON object

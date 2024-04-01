@@ -24,7 +24,7 @@ class PassportElementErrorTranslationFiles extends PassportElementError {
       'type': type,
       'message': message,
       'file_hashes': fileHashes,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [PassportElementErrorTranslationFiles] object from JSON object

@@ -45,3 +45,6 @@ import 'package:televerse/src/telegram/models/models.dart';
 part 'game.dart';
 part 'callback_game.dart';
 part 'game_high_score.dart';
+
+/// Null filter function.
+bool _nullFilter(String _, dynamic value) => value == null;

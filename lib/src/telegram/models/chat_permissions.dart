@@ -100,6 +100,6 @@ class ChatPermissions {
       'can_send_videos': canSendVideos,
       'can_send_video_notes': canSendVideoNotes,
       'can_send_voice_notes': canSendVoiceNotes,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

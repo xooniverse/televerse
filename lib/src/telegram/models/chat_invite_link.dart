@@ -71,7 +71,7 @@ class ChatInviteLink {
       'expire_date': expireDate,
       'member_limit': memberLimit,
       'pending_member_count': pendingMemberCount,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Returns the expiry date as [DateTime] object.

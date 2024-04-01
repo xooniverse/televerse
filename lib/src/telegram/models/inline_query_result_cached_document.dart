@@ -59,7 +59,7 @@ class InlineQueryResultCachedDocument extends InlineQueryResult {
       'reply_markup': replyMarkup?.toJson(),
       'input_message_content': inputMessageContent?.toJson(),
       'id': id,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Constructs an [InlineQueryResultCachedDocument] object from a JSON map

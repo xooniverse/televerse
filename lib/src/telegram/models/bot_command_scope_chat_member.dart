@@ -33,6 +33,6 @@ class BotCommandScopeChatMember implements BotCommandScope {
       'type': type.toJson(),
       'chat_id': chatId.toJson(),
       'user_id': userId,
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 }

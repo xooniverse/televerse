@@ -45,7 +45,7 @@ class PreCheckoutQuery implements WithUser {
       'invoice_payload': invoicePayload,
       'shipping_option_id': shippingOptionId,
       'order_info': orderInfo?.toJson(),
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [PreCheckoutQuery] object from a JSON object

@@ -61,6 +61,18 @@ class Update {
   /// Optional. A chat boost was removed. The bot must be an administrator in the chat to receive these updates.
   final ChatBoostRemoved? removedChatBoost;
 
+  /// Optional. The bot was connected to or disconnected from a business account, or a user edited an existing connection with the bot
+  final BusinessConnection? businessConnection;
+
+  /// Optional. New non-service message from a connected business account
+  final Message? businessMessage;
+
+  /// Optional. New version of a message from a connected business account
+  final Message? editedBusinessMessage;
+
+  /// Optional. Messages were deleted from a connected business account
+  final BusinessMessagesDeleted? deletedBusinessMessages;
+
   /// Update Constructor
   const Update({
     required this.updateId,
@@ -82,10 +94,14 @@ class Update {
     this.messageReactionCount,
     this.chatBoost,
     this.removedChatBoost,
+    this.businessConnection,
+    this.businessMessage,
+    this.editedBusinessMessage,
+    this.deletedBusinessMessages,
   });
 
   /// Creates a [Update] from json [Map].
-  static Update fromJson(Map<String, dynamic> json) {
+  factory Update.fromJson(Map<String, dynamic> json) {
     return Update(
       updateId: json['update_id']!,
       message:
@@ -141,6 +157,18 @@ class Update {
       removedChatBoost: json['chat_boost_removed'] != null
           ? ChatBoostRemoved.fromJson(json['chat_boost_removed']!)
           : null,
+      businessConnection: json['business_connection'] != null
+          ? BusinessConnection.fromJson(json['business_connection']!)
+          : null,
+      businessMessage: json['business_message'] != null
+          ? Message.fromJson(json['business_message'])
+          : null,
+      editedBusinessMessage: json['edited_business_message'] != null
+          ? Message.fromJson(json['edited_business_message'])
+          : null,
+      deletedBusinessMessages: json['deleted_business_messages'] != null
+          ? BusinessMessagesDeleted.fromJson(json['deleted_business_messages'])
+          : null,
     );
   }
 
@@ -166,7 +194,11 @@ class Update {
       'message_reaction_count': messageReactionCount?.toJson(),
       'chat_boost': chatBoost?.toJson(),
       'chat_boost_removed': removedChatBoost?.toJson(),
-    }..removeWhere((_, value) => value == null);
+      'business_connection': businessConnection?.toJson(),
+      'business_message': businessMessage?.toJson(),
+      'edited_business_message': editedBusinessMessage?.toJson(),
+      'deleted_business_messages': deletedBusinessMessages?.toJson(),
+    }..removeWhere(_nullFilter);
   }
 
   /// Converts a [Update] object to a JSON string.
@@ -210,6 +242,14 @@ class Update {
       return UpdateType.chatBoost;
     } else if (removedChatBoost != null) {
       return UpdateType.chatBoostRemoved;
+    } else if (businessConnection != null) {
+      return UpdateType.businessConnection;
+    } else if (businessMessage != null) {
+      return UpdateType.businessMessage;
+    } else if (editedBusinessMessage != null) {
+      return UpdateType.editedBusinessMessage;
+    } else if (deletedBusinessMessages != null) {
+      return UpdateType.deletedBusinessMessages;
     } else {
       throw TeleverseException(
         "The update type is unknown",

@@ -29,7 +29,7 @@ class OrderInfo {
       'phone_number': phoneNumber,
       'email': email,
       'shipping_address': shippingAddress?.toJson(),
-    }..removeWhere((key, value) => value == null);
+    }..removeWhere(_nullFilter);
   }
 
   /// Creates a [OrderInfo] object from a JSON object
