@@ -2668,11 +2668,13 @@ class RawAPI {
     String name,
     int userId, {
     InputFile? thumbnail,
+    required InputStickerFormat format,
   }) async {
     Map<String, dynamic> params = {
       "name": name,
       "user_id": userId,
       "thumbnail": thumbnail?.getValue(_thumb),
+      "format": format.value,
     }..removeWhere(_nullFilter);
 
     bool response;
@@ -3166,7 +3168,6 @@ class RawAPI {
   /// - [name] - Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
   /// - [title] - Sticker set title, 1-64 characters
   /// - [stickers] - List of stickers to be added to the set
-  /// - [stickerFormat] - Sticker format
   /// - [stickerType] - Sticker type
   /// - [needsRepainting] - Pass True if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only
   Future<bool> createNewStickerSet({
@@ -3174,7 +3175,6 @@ class RawAPI {
     required String name,
     required String title,
     required List<InputSticker> stickers,
-    required StickerFormat stickerFormat,
     StickerType stickerType = StickerType.regular,
     bool needsRepainting = false,
   }) async {
@@ -3182,7 +3182,6 @@ class RawAPI {
       "user_id": userId,
       "name": name,
       "title": title,
-      "sticker_format": stickerFormat.value,
       "sticker_type": stickerType.type,
       "needs_repainting": needsRepainting,
     };
