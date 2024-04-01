@@ -1,3 +1,8 @@
+# 1.15.0
+
+- 🤖 Bot API 7.2!
+- All changes from the Bot API 7.2 is added to this release.
+
 # 1.14.0
 
 - 🆕 Whole new version of `TeleverseMenu`

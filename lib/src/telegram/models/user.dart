@@ -35,6 +35,9 @@ class User {
   /// Optional. True, if the bot supports inline queries. Returned only in getMe.
   final bool? supportsInlineQueries;
 
+  /// Optional. True, if the bot can be connected to a Telegram Business account to receive its messages. Returned only in getMe.
+  final bool? canConnectToBusiness;
+
   /// Constructs a [User] object
   const User({
     required this.id,
@@ -48,6 +51,7 @@ class User {
     this.canJoinGroups,
     this.canReadAllGroupMessages,
     this.supportsInlineQueries,
+    this.canConnectToBusiness,
   });
 
   /// Creates a [User] object from JSON object
@@ -64,6 +68,7 @@ class User {
       canJoinGroups: json['can_join_groups'],
       canReadAllGroupMessages: json['can_read_all_group_messages'],
       supportsInlineQueries: json['supports_inline_queries'],
+      canConnectToBusiness: json['can_connect_to_business'],
     );
   }
 
@@ -81,6 +86,7 @@ class User {
       'can_join_groups': canJoinGroups,
       'can_read_all_group_messages': canReadAllGroupMessages,
       'supports_inline_queries': supportsInlineQueries,
+      'can_connect_to_business': canConnectToBusiness,
     }..removeWhere(_nullFilter);
   }
 }
