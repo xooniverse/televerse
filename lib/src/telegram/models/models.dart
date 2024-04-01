@@ -200,3 +200,8 @@ part 'inaccessible_message.dart';
 // Bot API 7.1
 
 part 'chat_boost_added.dart';
+
+// Bot API 7.2
+
+part 'bot_connection.dart';
+part 'business_message_deleted.dart';

@@ -3490,4 +3490,18 @@ class RawAPI {
 
     return UserChatBoosts.fromJson(response);
   }
+
+  /// Use this method to get information about the connection of the bot with a business account. Returns a [BusinessConnection] object on success.
+  Future<BusinessConnection> getBusinessConnection(
+    String businessConnectionId,
+  ) async {
+    Map<String, dynamic> response = await _httpClient.postURI(
+      _buildUri(APIMethod.getBusinessConnection),
+      {
+        "business_connection_id": businessConnectionId,
+      },
+    );
+
+    return BusinessConnection.fromJson(response);
+  }
 }

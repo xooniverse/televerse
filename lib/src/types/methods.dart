@@ -364,6 +364,9 @@ enum APIMethod {
 
   /// Get Chat Members Count - gets a chat's member count
   getChatMembersCount._("getChatMembersCount"),
+
+  /// To get information about the connection of the bot with a business account
+  getBusinessConnection._("getBusinessConnection"),
   ;
 
   /// The name of the method.

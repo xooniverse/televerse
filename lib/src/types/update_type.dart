@@ -55,6 +55,15 @@ enum UpdateType {
 
   /// Update when a chat boost is removed.
   chatBoostRemoved("chat_boost_removed"),
+
+  /// Update when a business connection is established.
+  businessConnection("business_connection"),
+
+  /// When a message from a connected business account is recieved
+  businessMessage("business_message"),
+
+  /// New version of a message from a connected business account
+  editedBusinessMessage("edited_business_message"),
   ;
 
   /// The value of this enum.
