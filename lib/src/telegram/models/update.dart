@@ -70,6 +70,9 @@ class Update {
   /// Optional. New version of a message from a connected business account
   final Message? editedBusinessMessage;
 
+  /// Optional. Messages were deleted from a connected business account
+  final BusinessMessagesDeleted? deletedBusinessMessages;
+
   /// Update Constructor
   const Update({
     required this.updateId,
@@ -94,10 +97,11 @@ class Update {
     this.businessConnection,
     this.businessMessage,
     this.editedBusinessMessage,
+    this.deletedBusinessMessages,
   });
 
   /// Creates a [Update] from json [Map].
-  static Update fromJson(Map<String, dynamic> json) {
+  factory Update.fromJson(Map<String, dynamic> json) {
     return Update(
       updateId: json['update_id']!,
       message:
@@ -162,6 +166,9 @@ class Update {
       editedBusinessMessage: json['edited_business_message'] != null
           ? Message.fromJson(json['edited_business_message'])
           : null,
+      deletedBusinessMessages: json['deleted_business_messages'] != null
+          ? BusinessMessagesDeleted.fromJson(json['deleted_business_messages'])
+          : null,
     );
   }
 
@@ -190,6 +197,7 @@ class Update {
       'business_connection': businessConnection?.toJson(),
       'business_message': businessMessage?.toJson(),
       'edited_business_message': editedBusinessMessage?.toJson(),
+      'deleted_business_messages': deletedBusinessMessages?.toJson(),
     }..removeWhere(_nullFilter);
   }
 
@@ -240,6 +248,8 @@ class Update {
       return UpdateType.businessMessage;
     } else if (editedBusinessMessage != null) {
       return UpdateType.editedBusinessMessage;
+    } else if (deletedBusinessMessages != null) {
+      return UpdateType.deletedBusinessMessages;
     } else {
       throw TeleverseException(
         "The update type is unknown",

@@ -2031,4 +2031,64 @@ class Bot {
 
     _handlerScopes.add(scope);
   }
+
+  /// Registers a callback to be fired when a connection of the bot with a business account is made.
+  void onBusinessConnection(
+    Handler callback,
+  ) {
+    final scope = HandlerScope<Handler>(
+      handler: callback,
+      types: [
+        UpdateType.businessConnection,
+      ],
+      predicate: (_) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers callback to be fired when a new message is received in a business account connected to the bot.
+  void onBusinessMessage(
+    Handler callback,
+  ) {
+    final scope = HandlerScope<Handler>(
+      handler: callback,
+      types: [
+        UpdateType.businessMessage,
+      ],
+      predicate: (_) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback to be fired when a business message is edited.
+  void onBusinessMessageEdited(
+    Handler callback,
+  ) {
+    final scope = HandlerScope<Handler>(
+      handler: callback,
+      types: [
+        UpdateType.editedBusinessMessage,
+      ],
+      predicate: (_) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Registers a callback to be fired when a business message is deleted.
+  void onBusinessMessageDeleted(
+    Handler callback,
+  ) {
+    final scope = HandlerScope<Handler>(
+      handler: callback,
+      types: [
+        UpdateType.deletedBusinessMessages,
+      ],
+      predicate: (_) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
 }

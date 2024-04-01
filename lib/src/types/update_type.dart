@@ -64,6 +64,9 @@ enum UpdateType {
 
   /// New version of a message from a connected business account
   editedBusinessMessage("edited_business_message"),
+
+  /// Messages were deleted from a connected business account
+  deletedBusinessMessages("deleted_business_messages"),
   ;
 
   /// The value of this enum.
