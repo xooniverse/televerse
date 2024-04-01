@@ -122,6 +122,12 @@ class Chat {
   /// Optional. For private chats with business accounts, the opening hours of the business. Returned only in getChat.
   final BusinessOpeningHours? businessOpeningHours;
 
+  /// Optional. For private chats, the personal channel of the user. Returned only in getChat.
+  final Chat? personalChat;
+
+  /// Optional. For private chats, the date of birth of the user. Returned only in getChat.
+  final Birthdate? birthdate;
+
   /// Constructs a [Chat] object.
   const Chat({
     required this.id,
@@ -164,6 +170,8 @@ class Chat {
     this.businessIntro,
     this.businessLocation,
     this.businessOpeningHours,
+    this.personalChat,
+    this.birthdate,
   });
 
   /// Creates a [Chat] object from json.
@@ -227,6 +235,12 @@ class Chat {
       businessOpeningHours: json['business_opening_hours'] == null
           ? null
           : BusinessOpeningHours.fromJson(json['business_opening_hours']),
+      personalChat: json['personal_chat'] == null
+          ? null
+          : Chat.fromJson(json['personal_chat']),
+      birthdate: json['birthdate'] == null
+          ? null
+          : Birthdate.fromJson(json['birthdate']),
     );
   }
 
@@ -272,6 +286,11 @@ class Chat {
       'has_visible_history': hasVisibleHistory,
       'unrestrict_boost_count': unrestrictBoostCount,
       'custom_emoji_sticker_set_name': customEmojiStickerSetName,
+      'business_intro': businessIntro?.toJson(),
+      'business_location': businessLocation?.toJson(),
+      'business_opening_hours': businessOpeningHours?.toJson(),
+      'personal_chat': personalChat?.toJson(),
+      'birthdate': birthdate?.toJson(),
     }..removeWhere(_nullFilter);
   }
 }

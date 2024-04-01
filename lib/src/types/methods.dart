@@ -367,6 +367,9 @@ enum APIMethod {
 
   /// To get information about the connection of the bot with a business account
   getBusinessConnection._("getBusinessConnection"),
+
+  /// To replace an exsiting sticker in a sticker pack
+  replaceStickerInSet._("replaceStickerInSet"),
   ;
 
   /// The name of the method.

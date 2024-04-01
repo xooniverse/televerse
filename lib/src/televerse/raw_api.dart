@@ -3537,4 +3537,42 @@ class RawAPI {
 
     return BusinessConnection.fromJson(response);
   }
+
+  /// Use this method to replace an existing sticker in a sticker set with a new one.
+  /// The method is equivalent to calling deleteStickerFromSet, then addStickerToSet,
+  /// then setStickerPositionInSet. Returns True on success.
+  Future<bool> replaceStickerInSet({
+    required int userId,
+    required String name,
+    required String oldSticker,
+    required InputSticker sticker,
+  }) async {
+    const field = "sticker";
+    Map<String, dynamic> params = {
+      "user_id": userId,
+      "name": name,
+      "old_sticker": oldSticker,
+      "sticker": jsonEncode(sticker.toJson(field)),
+    };
+
+    bool response;
+    final files = _getFiles(
+      [_MultipartHelper(sticker.sticker, field)],
+    );
+
+    if (files.isEmpty) {
+      response = await _httpClient.postURI(
+        _buildUri(APIMethod.replaceStickerInSet),
+        params,
+      );
+    } else {
+      response = await _httpClient.multipartPost(
+        _buildUri(APIMethod.replaceStickerInSet),
+        files,
+        params,
+      );
+    }
+
+    return response;
+  }
 }

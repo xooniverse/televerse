@@ -245,6 +245,9 @@ class Message implements MaybeInaccessibleMessage, WithUser {
   /// Optional. The bot that actually sent the message on behalf of the business account. Available only for outgoing messages sent on behalf of the connected business account.
   final User? senderBusinessBot;
 
+  /// Optional. True, if the message was sent by an implicit action, for example, as an away or a greeting business message, or as a scheduled message
+  final bool? isFromOffline;
+
   /// Creates a Message object.
   const Message({
     this.from,
@@ -326,6 +329,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
     this.replyToStory,
     this.businessConnectionId,
     this.senderBusinessBot,
+    this.isFromOffline,
   });
 
   /// Creates a [Message] object from json map.
@@ -506,6 +510,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
       senderBusinessBot: json["sender_business_bot"] != null
           ? User.fromJson(json["sender_business_bot"])
           : null,
+      isFromOffline: json["is_from_offline"],
     );
   }
 
@@ -593,6 +598,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
       'reply_to_story': replyToStory?.toJson(),
       'business_connection_id': businessConnectionId,
       'sender_business_bot': senderBusinessBot?.toJson(),
+      'is_from_offline': isFromOffline,
     }..removeWhere(_nullFilter);
   }
 

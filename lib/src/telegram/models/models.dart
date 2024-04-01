@@ -210,3 +210,4 @@ part 'business_location.dart';
 part 'business_opening_hours.dart';
 part 'business_opening_hours_interval.dart';
 part 'shared_user.dart';
+part 'birthdate.dart';
