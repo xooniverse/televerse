@@ -148,7 +148,7 @@ part 'general_forum_topic_unhidden.dart';
 part 'write_access_allowed.dart';
 
 // Bot API 6.5
-part 'keyboard_button_request_user.dart';
+part 'keyboard_button_request_users.dart';
 part 'keyboard_button_request_chat.dart';
 part 'users_shared.dart';
 part 'chat_shared.dart';
@@ -209,3 +209,4 @@ part 'business_intro.dart';
 part 'business_location.dart';
 part 'business_opening_hours.dart';
 part 'business_opening_hours_interval.dart';
+part 'shared_user.dart';

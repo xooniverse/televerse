@@ -8,19 +8,21 @@ class UsersShared {
   final int requestId;
 
   /// Identifiers of the shared users. These numbers may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting them. But they have at most 52 significant bits, so 64-bit integers or double-precision float types are safe for storing these identifiers. The bot may not have access to the users and could be unable to use these identifiers, unless the users are already known to the bot by some other means.
-  final int userIds;
+  final List<SharedUser> users;
 
   /// Constructs a [UsersShared] object
   const UsersShared({
     required this.requestId,
-    required this.userIds,
+    required this.users,
   });
 
   /// Creates a [UsersShared] object from JSON object
   factory UsersShared.fromJson(Map<String, dynamic> json) {
     return UsersShared(
       requestId: json['request_id']!,
-      userIds: json['user_ids']!,
+      users: (json['user_ids'] as List<dynamic>)
+          .map((e) => SharedUser.fromJson(e))
+          .toList(),
     );
   }
 
@@ -28,7 +30,7 @@ class UsersShared {
   Map<String, dynamic> toJson() {
     return {
       'request_id': requestId,
-      'user_ids': userIds,
+      'user_ids': users.map((user) => user.toJson()).toList(),
     };
   }
 }
