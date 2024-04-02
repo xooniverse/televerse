@@ -381,7 +381,7 @@ class Conversation {
     );
 
     _bot._handlerScopes.add(
-      HandlerScope<Handler>(
+      HandlerScope(
         isConversation: true,
         name: scopeName,
         predicate: (ctx) =>
