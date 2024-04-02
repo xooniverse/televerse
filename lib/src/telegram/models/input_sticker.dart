@@ -30,7 +30,7 @@ class InputSticker {
   Map<String, dynamic> toJson([String? field]) {
     return {
       'sticker': sticker.getValue(field),
-      'format': format,
+      'format': format.value,
       'emoji_list': emojiList,
       'mask_position': maskPosition,
       'keywords': keywords,

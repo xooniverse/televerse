@@ -1,4 +1,9 @@
+# 1.15.3
+ 
+- Fix `InputSticker` conversion to json 🤦 (thx @defuera)
+
 # 1.15.2
+
 - Add missing field `InputStickerFormat` to `InputSticker` class. (Thanks to @defuera)
 
 # 1.15.1
