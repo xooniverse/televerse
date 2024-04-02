@@ -1,3 +1,7 @@
+# 1.15.1
+
+- Fix an issue with the `RawAPI.banChatMember` (Thanks to @Sominemo for [#223](https://github.com/HeySreelal/televerse/pull/223))
+
 # 1.15.0
 
 - 🤖 Bot API 7.2!
