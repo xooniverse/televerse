@@ -1265,7 +1265,7 @@ class RawAPI {
       "revoke_messages": revokeMessages,
     };
     bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.getChatMember),
+      _buildUri(APIMethod.banChatMember),
       params,
     );
     return response;
