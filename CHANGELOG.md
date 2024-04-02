@@ -5,6 +5,7 @@
 # 1.15.2
 
 - Add missing field `InputStickerFormat` to `InputSticker` class. (Thanks to @defuera)
+- Generic typing removed for `HandlerScope` (This doesn't affect anything on the public API)
 
 # 1.15.1
 
