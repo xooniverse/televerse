@@ -1,3 +1,6 @@
+# 1.15.2
+- Add missing field `InputStickerFormat` to `InputSticker` class. (Thanks to @defuera)
+
 # 1.15.1
 
 - Fix an issue with the `RawAPI.banChatMember` (Thanks to @Sominemo for [#223](https://github.com/HeySreelal/televerse/pull/223))
