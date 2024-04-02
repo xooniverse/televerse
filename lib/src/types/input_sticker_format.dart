@@ -5,10 +5,10 @@ enum InputStickerFormat {
   /// For a .WEBP or .PNG image
   static._('static'),
 
-  /// HTML
+  /// For a .TGS animation
   animated._('animated'),
 
-  /// MarkdownV2
+  /// For a WEBM video
   video._('video');
 
   /// The value of this enum.
