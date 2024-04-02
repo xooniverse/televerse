@@ -6,20 +6,20 @@ extension On on Bot {
   ///
   /// The call back will be only be executed on specific update types. You can
   /// use the [TeleverseEvent] object to specify which update you want to listen to.
-  void on(TeleverseEvent type, void Function(Context ctx) callback) {
-    HandlerScope<Handler> scope = HandlerScope<Handler>(
+  void on(TeleverseEvent type, Handler callback) {
+    final scope = HandlerScope(
       handler: callback,
       types: type.types,
       predicate: (ctx) {
-        bool isMessage = ctx.update.message != null;
-        bool isChannelPost = ctx.update.channelPost != null;
-        bool isEditedMessage = ctx.update.editedMessage != null;
-        bool isEditedChannelPost = ctx.update.editedChannelPost != null;
+        final isMessage = ctx.update.message != null;
+        final isChannelPost = ctx.update.channelPost != null;
+        final isEditedMessage = ctx.update.editedMessage != null;
+        final isEditedChannelPost = ctx.update.editedChannelPost != null;
 
-        bool isMessageEvent = isMessage || isEditedMessage;
-        bool isChannelPostEvent = isChannelPost || isEditedChannelPost;
+        final isMessageEvent = isMessage || isEditedMessage;
+        final isChannelPostEvent = isChannelPost || isEditedChannelPost;
 
-        bool isPrivateMessage =
+        final isPrivateMessage =
             isMessageEvent && ctx.update.message?.chat.type == ChatType.private;
 
         Message? message;
@@ -33,22 +33,22 @@ extension On on Bot {
           message = ctx.update.editedChannelPost;
         }
 
-        bool isCommand = message?.entities?.any(
+        final isCommand = message?.entities?.any(
               (entity) =>
                   entity.type == MessageEntityType.botCommand &&
                   entity.offset == 0,
             ) ??
             false;
 
-        bool isTextMessage = message?.text != null && !isCommand;
-        bool isAudio = message?.audio != null;
-        bool isAudioMessage = ctx.update.message?.audio != null ||
+        final isTextMessage = message?.text != null && !isCommand;
+        final isAudio = message?.audio != null;
+        final isAudioMessage = ctx.update.message?.audio != null ||
             ctx.update.editedMessage?.audio != null;
 
-        bool isEdited = isEditedMessage || isEditedChannelPost;
+        final isEdited = isEditedMessage || isEditedChannelPost;
 
-        bool hasDocument = message?.document != null;
-        bool hasPhoto = message?.photo != null;
+        final hasDocument = message?.document != null;
+        final hasPhoto = message?.photo != null;
 
         if (type == TeleverseEvent.command && isCommand) {
           return true;

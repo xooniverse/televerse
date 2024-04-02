@@ -277,7 +277,7 @@ class Bot {
   }
 
   /// List of Handler Scopes
-  final List<HandlerScope<Handler>> _handlerScopes = [];
+  final List<HandlerScope> _handlerScopes = [];
 
   /// To manually handle updates without fetcher
   ///
@@ -377,7 +377,7 @@ class Bot {
         }
       }
     }
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       isCommand: true,
       handler: callback,
       types: [UpdateType.message],
@@ -402,7 +402,7 @@ class Bot {
     Handler callback, {
     String? name,
   }) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       name: name,
       handler: callback,
       types: [UpdateType.callbackQuery],
@@ -465,7 +465,7 @@ class Bot {
     ChatType type,
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.message,
@@ -498,7 +498,7 @@ class Bot {
     List<ChatType> types,
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.message,
@@ -529,7 +529,7 @@ class Bot {
     Handler callback, {
     String? name,
   }) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       name: name,
       handler: callback,
       types: [
@@ -557,7 +557,7 @@ class Bot {
     String text,
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.message,
@@ -590,7 +590,7 @@ class Bot {
     RegExp exp,
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       pattern: exp,
       isRegExp: true,
       handler: callback,
@@ -612,7 +612,7 @@ class Bot {
     Pattern query,
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.inlineQuery,
@@ -729,7 +729,7 @@ class Bot {
     Handler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.message,
@@ -759,7 +759,7 @@ class Bot {
     Handler callback, {
     bool shouldMatchCaptionEntities = false,
   }) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.message,
@@ -789,7 +789,7 @@ class Bot {
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
   }) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.chatMember,
@@ -855,7 +855,7 @@ class Bot {
 
   /// Registers a callback for the [Update.poll] events.
   void poll(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.poll,
@@ -873,7 +873,7 @@ class Bot {
     Handler callback, {
     String? pollId,
   }) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.pollAnswer,
@@ -892,7 +892,7 @@ class Bot {
   void chosenInlineResult(
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.chosenInlineResult,
@@ -907,7 +907,7 @@ class Bot {
   ///
   /// The callback will be called when a chat join request is received.
   void chatJoinRequest(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.chatJoinRequest,
@@ -922,7 +922,7 @@ class Bot {
   void shippingQuery(
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.shippingQuery,
@@ -937,7 +937,7 @@ class Bot {
   void preCheckoutQuery(
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.preCheckoutQuery,
@@ -998,7 +998,7 @@ class Bot {
       );
     }
 
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.message,
@@ -1044,7 +1044,7 @@ class Bot {
       );
     }
     if (username != null) {
-      final scope = HandlerScope<Handler>(
+      final scope = HandlerScope(
         handler: callback,
         types: [
           UpdateType.message,
@@ -1060,7 +1060,7 @@ class Bot {
       return _handlerScopes.add(scope);
     }
 
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.message,
@@ -1108,7 +1108,7 @@ class Bot {
 
   /// Registers a callback for all Message updates
   void onMessage(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.message,
@@ -1121,7 +1121,7 @@ class Bot {
 
   /// Registers a callback for all Edited Message updates
   void onEditedMessage(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.editedMessage,
@@ -1134,7 +1134,7 @@ class Bot {
 
   /// Registers a callback for all Channel Post updates
   void onChannelPost(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.channelPost,
@@ -1147,7 +1147,7 @@ class Bot {
 
   /// Registers a callback for all Edited Channel Post updates
   void onEditedChannelPost(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.editedChannelPost,
@@ -1160,7 +1160,7 @@ class Bot {
 
   /// Registers a callback for all Inline Query updates
   void onInlineQuery(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.inlineQuery,
@@ -1173,7 +1173,7 @@ class Bot {
 
   /// Registers a callback for all Chosen Inline Result updates
   void onChosenInlineResult(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.chosenInlineResult,
@@ -1186,7 +1186,7 @@ class Bot {
 
   /// Registers a callback for all Callback Query updates
   void onCallbackQuery(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.callbackQuery,
@@ -1199,7 +1199,7 @@ class Bot {
 
   /// Registers a callback for all Shipping Query updates
   void onShippingQuery(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.shippingQuery,
@@ -1212,7 +1212,7 @@ class Bot {
 
   /// Registers a callback for all Pre Checkout Query updates
   void onPreCheckoutQuery(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.preCheckoutQuery,
@@ -1233,7 +1233,7 @@ class Bot {
 
   /// Registers a callback for all Poll updates
   void onPoll(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.poll,
@@ -1246,7 +1246,7 @@ class Bot {
 
   /// Registers a callback for all Poll Answer updates
   void onPollAnswer(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.pollAnswer,
@@ -1259,7 +1259,7 @@ class Bot {
 
   /// Registers a callback for all My Chat Member updates
   void onMyChatMember(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.myChatMember,
@@ -1272,7 +1272,7 @@ class Bot {
 
   /// Registers a callback for all Chat Member updates
   void onChatMember(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.chatMember,
@@ -1285,7 +1285,7 @@ class Bot {
 
   /// Registers a callback for all Chat Join Request updates
   void onChatJoinRequest(Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.chatJoinRequest,
@@ -1314,7 +1314,7 @@ class Bot {
     bool onlyChannelPosts = false,
     String? name,
   }) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       name: name,
       handler: callback,
       types: [
@@ -1954,7 +1954,7 @@ class Bot {
   void onMessageReaction(
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.messageReaction,
@@ -1969,7 +1969,7 @@ class Bot {
   void onMessageReactionCount(
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.messageReactionCount,
@@ -1986,7 +1986,7 @@ class Bot {
   void onChatBoosted(
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.chatBoost,
@@ -2003,7 +2003,7 @@ class Bot {
   void onChatBoostRemoved(
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.chatBoostRemoved,
@@ -2016,7 +2016,7 @@ class Bot {
 
   /// Registers a callback to be fired when a user reacts given emoji to a message.
   void whenReacted(String emoji, Handler callback) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.messageReaction,
@@ -2036,7 +2036,7 @@ class Bot {
   void onBusinessConnection(
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.businessConnection,
@@ -2051,7 +2051,7 @@ class Bot {
   void onBusinessMessage(
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.businessMessage,
@@ -2066,7 +2066,7 @@ class Bot {
   void onBusinessMessageEdited(
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.editedBusinessMessage,
@@ -2081,7 +2081,7 @@ class Bot {
   void onBusinessMessageDeleted(
     Handler callback,
   ) {
-    final scope = HandlerScope<Handler>(
+    final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.deletedBusinessMessages,

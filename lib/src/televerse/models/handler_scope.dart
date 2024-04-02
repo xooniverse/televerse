@@ -1,14 +1,19 @@
 part of 'models.dart';
 
 /// A Handler Scope is used to define the scope and related information of a handler method.
-class HandlerScope<T extends Function> {
+class HandlerScope {
   /// Optional. The name of the handler. (For debugging purposes)
   final String? name;
 
   /// Whether the handler is a special handler.
+  ///
+  /// True if it's a command handler or a RegExp handler.
+  ///
+  /// - If it's a command handler, we set `args` to the parameter of the command.
+  /// - If it's a RegExp handler, we'll set the `MessageContext.matches` to the matches of the RegExp.
   final bool special;
 
-  /// If it's a command handler, we might check for /start command and set `startParameter` to the parameter of the command.
+  /// If it's a command handler, we set `args` to the parameter of the command.
   final bool isCommand;
 
   /// If it's a RegExp handler, we'll set the `MessageContext.matches` to the matches of the RegExp.
@@ -18,7 +23,7 @@ class HandlerScope<T extends Function> {
   final RegExp? pattern;
 
   /// Handler
-  final T? handler;
+  final Handler? handler;
 
   /// The update type
   final List<UpdateType> types;
