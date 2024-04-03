@@ -1,7 +1,7 @@
 part of 'models.dart';
 
 /// Represents the connection of the bot with a business account.
-class BusinessConnection {
+class BusinessConnection implements WithUser {
   /// Unique identifier of the business connection.
   final String id;
 
@@ -55,4 +55,8 @@ class BusinessConnection {
       'is_enabled': isEnabled,
     };
   }
+
+  /// Business account user that created the business connection.
+  @override
+  User get from => user;
 }

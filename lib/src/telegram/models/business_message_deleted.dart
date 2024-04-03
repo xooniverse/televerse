@@ -1,12 +1,13 @@
 part of 'models.dart';
 
 /// Represents an object received when messages are deleted from a connected business account.
-class BusinessMessagesDeleted {
+class BusinessMessagesDeleted implements WithChat {
   /// Unique identifier of the business connection.
   final String businessConnectionId;
 
   /// Information about a chat in the business account.
   /// The bot may not have access to the chat or the corresponding user.
+  @override
   final Chat chat;
 
   /// A JSON-serialized list of identifiers of deleted messages in the chat
