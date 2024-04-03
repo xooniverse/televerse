@@ -1,7 +1,7 @@
 part of 'models.dart';
 
 /// Represents a chat member that owns the chat and has all administrator privileges.
-class ChatMemberOwner implements ChatMember {
+class ChatMemberOwner implements ChatMember, WithUser {
   /// The member's status in the chat, always “creator”
   @override
   final ChatMemberStatus status = ChatMemberStatus.creator;
@@ -42,4 +42,8 @@ class ChatMemberOwner implements ChatMember {
       customTitle: json['custom_title'],
     );
   }
+
+  /// Information about the user
+  @override
+  User get from => user;
 }
