@@ -30,11 +30,10 @@ class ForceReply extends ReplyMarkup {
   /// Converts a [ForceReply] object to json.
   @override
   Map<String, dynamic> toJson() {
-    Map<String, dynamic> data = <String, dynamic>{};
-    data['force_reply'] = forceReply;
-    data['selective'] = selective;
-    data['input_field_placeholder'] = inputFieldPlaceholder;
-    data.removeWhere(_nullFilter);
-    return data;
+    return {
+      'force_reply': forceReply,
+      'selective': selective,
+      'input_field_placeholder': inputFieldPlaceholder,
+    }..removeWhere(_nullFilter);
   }
 }
