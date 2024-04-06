@@ -3192,16 +3192,24 @@ class RawAPI {
     final length = stickers.length;
     for (int i = 0; i < length; i++) {
       stickersList.add(stickers[i].toJson("sticker$i"));
-      helpers.add(_MultipartHelper(stickers[i].sticker, "stickers$i"));
+      helpers.add(_MultipartHelper(stickers[i].sticker, "sticker$i"));
     }
 
     final files = _getFiles(helpers);
+    params["stickers"] = stickersList;
 
-    response = await _httpClient.multipartPost(
-      _buildUri(APIMethod.createNewStickerSet),
-      files,
-      params,
-    );
+    if (files.isNotEmpty) {
+      response = await _httpClient.multipartPost(
+        _buildUri(APIMethod.createNewStickerSet),
+        files,
+        params,
+      );
+    } else {
+      response = await _httpClient.postURI(
+        _buildUri(APIMethod.createNewStickerSet),
+        params,
+      );
+    }
 
     return response;
   }
