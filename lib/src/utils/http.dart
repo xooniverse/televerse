@@ -48,39 +48,17 @@ class _HttpClient {
     }
   }
 
-  /// Send GET request to the given [uri] and return the response body.
-  Future<dynamic> getURI(Uri uri) async {
-    try {
-      final response = await _dio.getUri(
-        uri,
-        options: Options(
-          headers: {"Content-Type": "application/json"},
-          responseType: ResponseType.json,
-        ),
-      );
-      final body = response.data;
-      if (body["ok"] == true) {
-        return body["result"];
-      } else {
-        throw TelegramException.fromJson(body);
-      }
-    } catch (e) {
-      _dioCatch(e);
-    }
-  }
-
   /// Send POST request to the given [uri] and return the response body.
   Future<dynamic> postURI(
     Uri uri,
     Map<String, dynamic> body,
   ) async {
     body.removeWhere(_nullFilter);
-    Map<String, String> bodyContent = body.map(_getEntry);
 
     try {
       final response = await _dio.postUri(
         uri,
-        data: bodyContent,
+        data: jsonEncode(body),
         options: Options(
           headers: {"Content-Type": "application/json"},
           sendTimeout: _timeoutDuration(uri),
