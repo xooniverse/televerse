@@ -47,4 +47,89 @@ class MessageContentGenerator {
       proximityAlertRadius: proximityAlertRadius,
     );
   }
+
+  /// Adds Venue content to the result
+  InputVenueMessageContent venue(
+    double latitude,
+    double longitude, {
+    required String title,
+    required String address,
+    String? foursquareId,
+    String? foursquareType,
+    String? googlePlaceId,
+    String? googlePlaceType,
+  }) {
+    return InputVenueMessageContent(
+      latitude: latitude,
+      longitude: longitude,
+      title: title,
+      address: address,
+      foursquareId: foursquareId,
+      foursquareType: foursquareType,
+      googlePlaceId: googlePlaceId,
+      googlePlaceType: googlePlaceType,
+    );
+  }
+
+  /// Adds contact content to the result
+  InputContactMessageContent contact(
+    String firstName,
+    String phoneNumber, {
+    String? lastName,
+    String? vcard,
+  }) {
+    return InputContactMessageContent(
+      firstName: firstName,
+      phoneNumber: phoneNumber,
+      lastName: lastName,
+      vcard: vcard,
+    );
+  }
+
+  /// Adds an invoice message to be sent as the result of an inline query.
+  InputInvoiceMessageContent invoice({
+    required String title,
+    required String description,
+    required String payload,
+    required String providerToken,
+    required String currency,
+    required List<LabeledPrice> prices,
+    int? maxTipAmount,
+    List<int>? suggestedTipAmounts,
+    String? providerData,
+    String? photoUrl,
+    int? photoSize,
+    int? photoWidth,
+    int? photoHeight,
+    bool? needName,
+    bool? needPhoneNumber,
+    bool? needEmail,
+    bool? needShippingAddress,
+    bool? sendPhoneNumberToProvider,
+    bool? sendEmailToProvider,
+    bool? isFlexible,
+  }) {
+    return InputInvoiceMessageContent(
+      title: title,
+      description: description,
+      payload: payload,
+      providerToken: providerToken,
+      currency: currency,
+      prices: prices,
+      maxTipAmount: maxTipAmount,
+      suggestedTipAmounts: suggestedTipAmounts,
+      providerData: providerData,
+      photoUrl: photoUrl,
+      photoSize: photoSize,
+      photoWidth: photoWidth,
+      photoHeight: photoHeight,
+      needName: needName,
+      needPhoneNumber: needPhoneNumber,
+      needEmail: needEmail,
+      needShippingAddress: needShippingAddress,
+      sendPhoneNumberToProvider: sendPhoneNumberToProvider,
+      sendEmailToProvider: sendEmailToProvider,
+      isFlexible: isFlexible,
+    );
+  }
 }
