@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo.
@@ -107,6 +108,37 @@ class InlineQueryResultPhoto implements InlineQueryResult {
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>,
             ),
+    );
+  }
+
+  /// Copy method
+  InlineQueryResultPhoto copyWith({
+    String? id,
+    String? photoUrl,
+    String? thumbnailUrl,
+    int? photoWidth,
+    int? photoHeight,
+    String? title,
+    String? description,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    InlineKeyboardMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+  }) {
+    return InlineQueryResultPhoto(
+      id: id ?? this.id,
+      photoUrl: photoUrl ?? this.photoUrl,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
+      photoWidth: photoWidth ?? this.photoWidth,
+      photoHeight: photoHeight ?? this.photoHeight,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      caption: caption ?? this.caption,
+      parseMode: parseMode ?? this.parseMode,
+      captionEntities: captionEntities ?? this.captionEntities,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
     );
   }
 }

@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to a file. By default, this file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the file. Currently, only .PDF and .ZIP files can be sent using this method.
@@ -115,6 +116,39 @@ class InlineQueryResultDocument implements InlineQueryResult {
       thumbnailUrl: json['thumbnail_url'] as String?,
       thumbnailWidth: json['thumbnail_width'] as int?,
       thumbnailHeight: json['thumbnail_height'] as int?,
+    );
+  }
+
+  /// Copy method
+  InlineQueryResultDocument copyWith({
+    String? id,
+    String? title,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    String? documentUrl,
+    String? mimeType,
+    String? description,
+    InlineKeyboardMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+    String? thumbnailUrl,
+    int? thumbnailWidth,
+    int? thumbnailHeight,
+  }) {
+    return InlineQueryResultDocument(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      caption: caption ?? this.caption,
+      parseMode: parseMode ?? this.parseMode,
+      captionEntities: captionEntities ?? this.captionEntities,
+      documentUrl: documentUrl ?? this.documentUrl,
+      mimeType: mimeType ?? this.mimeType,
+      description: description ?? this.description,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
+      thumbnailWidth: thumbnailWidth ?? this.thumbnailWidth,
+      thumbnailHeight: thumbnailHeight ?? this.thumbnailHeight,
     );
   }
 }

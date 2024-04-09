@@ -91,4 +91,31 @@ class InlineQueryResultArticle implements InlineQueryResult {
 
   @override
   final String id;
+
+  /// Copy method
+  InlineQueryResultArticle copyWith({
+    String? title,
+    InputMessageContent? inputMessageContent,
+    InlineKeyboardMarkup? replyMarkup,
+    String? url,
+    bool? hideUrl,
+    String? description,
+    String? thumbnailUrl,
+    int? thumbnailWidth,
+    int? thumbnailHeight,
+    String? id,
+  }) {
+    return InlineQueryResultArticle(
+      title: title ?? this.title,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      url: url ?? this.url,
+      hideUrl: hideUrl ?? this.hideUrl,
+      description: description ?? this.description,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
+      thumbnailWidth: thumbnailWidth ?? this.thumbnailWidth,
+      thumbnailHeight: thumbnailHeight ?? this.thumbnailHeight,
+      id: id ?? this.id,
+    );
+  }
 }

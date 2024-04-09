@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a Game.
@@ -50,4 +51,17 @@ class InlineQueryResultGame implements InlineQueryResult {
   /// Input Message Content for Game result is always null.
   @override
   InputMessageContent? get inputMessageContent => null;
+
+  /// Copy method
+  InlineQueryResultGame copyWith({
+    String? id,
+    String? gameShortName,
+    InlineKeyboardMarkup? replyMarkup,
+  }) {
+    return InlineQueryResultGame(
+      id: id ?? this.id,
+      gameShortName: gameShortName ?? this.gameShortName,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+    );
+  }
 }

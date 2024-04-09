@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to a voice recording in an .OGG container encoded with OPUS. By default, this voice recording will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the the voice message.
@@ -65,5 +66,30 @@ class InlineQueryResultVoice implements InlineQueryResult {
       'input_message_content': inputMessageContent?.toJson(),
       'id': id,
     }..removeWhere(_nullFilter);
+  }
+
+  /// Copy method
+  InlineQueryResultVoice copyWith({
+    String? id,
+    String? voiceUrl,
+    String? title,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    int? voiceDuration,
+    InlineKeyboardMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+  }) {
+    return InlineQueryResultVoice(
+      id: id ?? this.id,
+      voiceUrl: voiceUrl ?? this.voiceUrl,
+      title: title ?? this.title,
+      caption: caption ?? this.caption,
+      parseMode: parseMode ?? this.parseMode,
+      captionEntities: captionEntities ?? this.captionEntities,
+      voiceDuration: voiceDuration ?? this.voiceDuration,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+    );
   }
 }

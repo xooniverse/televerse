@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to a video animation (H.264/MPEG-4 AVC video without sound). By default, this animated MPEG-4 file will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation.
@@ -113,6 +114,39 @@ class InlineQueryResultMpeg4Gif implements InlineQueryResult {
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>,
             ),
+    );
+  }
+
+  /// Copy method
+  InlineQueryResultMpeg4Gif copyWith({
+    String? id,
+    String? mpeg4Url,
+    int? mpeg4Width,
+    int? mpeg4Height,
+    int? mpeg4Duration,
+    String? thumbnailUrl,
+    String? thumbnailMimeType,
+    String? title,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    InlineKeyboardMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+  }) {
+    return InlineQueryResultMpeg4Gif(
+      id: id ?? this.id,
+      mpeg4Url: mpeg4Url ?? this.mpeg4Url,
+      mpeg4Width: mpeg4Width ?? this.mpeg4Width,
+      mpeg4Height: mpeg4Height ?? this.mpeg4Height,
+      mpeg4Duration: mpeg4Duration ?? this.mpeg4Duration,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
+      thumbnailMimeType: thumbnailMimeType ?? this.thumbnailMimeType,
+      title: title ?? this.title,
+      caption: caption ?? this.caption,
+      parseMode: parseMode ?? this.parseMode,
+      captionEntities: captionEntities ?? this.captionEntities,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
     );
   }
 }
