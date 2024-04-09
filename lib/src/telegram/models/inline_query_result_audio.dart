@@ -1,9 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to an MP3 audio file. By default, this audio file will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the audio.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultAudio extends InlineQueryResult {
+class InlineQueryResultAudio implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.audio]
   @override
   InlineQueryResultType get type => InlineQueryResultType.audio;
@@ -39,7 +44,7 @@ class InlineQueryResultAudio extends InlineQueryResult {
   const InlineQueryResultAudio({
     required this.audioUrl,
     required this.title,
-    required super.id,
+    required this.id,
     this.caption,
     this.parseMode,
     this.captionEntities,
@@ -92,6 +97,33 @@ class InlineQueryResultAudio extends InlineQueryResult {
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>,
             ),
+    );
+  }
+
+  /// Copy method
+  InlineQueryResultAudio copyWith({
+    String? id,
+    String? audioUrl,
+    String? title,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    String? performer,
+    int? audioDuration,
+    InlineKeyboardMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+  }) {
+    return InlineQueryResultAudio(
+      id: id ?? this.id,
+      audioUrl: audioUrl ?? this.audioUrl,
+      title: title ?? this.title,
+      caption: caption ?? this.caption,
+      parseMode: parseMode ?? this.parseMode,
+      captionEntities: captionEntities ?? this.captionEntities,
+      performer: performer ?? this.performer,
+      audioDuration: audioDuration ?? this.audioDuration,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
     );
   }
 }

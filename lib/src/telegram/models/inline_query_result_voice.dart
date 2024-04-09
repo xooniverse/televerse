@@ -1,9 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to a voice recording in an .OGG container encoded with OPUS. By default, this voice recording will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the the voice message.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultVoice extends InlineQueryResult {
+class InlineQueryResultVoice implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.voice]
   @override
   InlineQueryResultType get type => InlineQueryResultType.voice;
@@ -36,7 +41,7 @@ class InlineQueryResultVoice extends InlineQueryResult {
   const InlineQueryResultVoice({
     required this.voiceUrl,
     required this.title,
-    required super.id,
+    required this.id,
     this.caption,
     this.parseMode,
     this.captionEntities,
@@ -60,5 +65,30 @@ class InlineQueryResultVoice extends InlineQueryResult {
       'input_message_content': inputMessageContent?.toJson(),
       'id': id,
     }..removeWhere(_nullFilter);
+  }
+
+  /// Copy method
+  InlineQueryResultVoice copyWith({
+    String? id,
+    String? voiceUrl,
+    String? title,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    int? voiceDuration,
+    InlineKeyboardMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+  }) {
+    return InlineQueryResultVoice(
+      id: id ?? this.id,
+      voiceUrl: voiceUrl ?? this.voiceUrl,
+      title: title ?? this.title,
+      caption: caption ?? this.caption,
+      parseMode: parseMode ?? this.parseMode,
+      captionEntities: captionEntities ?? this.captionEntities,
+      voiceDuration: voiceDuration ?? this.voiceDuration,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+    );
   }
 }

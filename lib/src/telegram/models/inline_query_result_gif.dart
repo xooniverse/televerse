@@ -1,7 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to an animated GIF file. By default, this animated GIF file will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation.
-class InlineQueryResultGif extends InlineQueryResult {
+class InlineQueryResultGif implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.gif]
   @override
   InlineQueryResultType get type => InlineQueryResultType.gif;
@@ -46,7 +51,7 @@ class InlineQueryResultGif extends InlineQueryResult {
   const InlineQueryResultGif({
     required this.gifUrl,
     required this.thumbnailUrl,
-    required super.id,
+    required this.id,
     this.gifWidth,
     this.gifHeight,
     this.gifDuration,
@@ -104,6 +109,39 @@ class InlineQueryResultGif extends InlineQueryResult {
       inputMessageContent: json['input_message_content'] != null
           ? InputMessageContent.fromJson(json['input_message_content'])
           : null,
+    );
+  }
+
+  /// Copy method
+  InlineQueryResultGif copyWith({
+    String? id,
+    String? gifUrl,
+    int? gifWidth,
+    int? gifHeight,
+    int? gifDuration,
+    String? thumbnailUrl,
+    String? thumbnailMimeType,
+    String? title,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    InlineKeyboardMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+  }) {
+    return InlineQueryResultGif(
+      id: id ?? this.id,
+      gifUrl: gifUrl ?? this.gifUrl,
+      gifWidth: gifWidth ?? this.gifWidth,
+      gifHeight: gifHeight ?? this.gifHeight,
+      gifDuration: gifDuration ?? this.gifDuration,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
+      thumbnailMimeType: thumbnailMimeType ?? this.thumbnailMimeType,
+      title: title ?? this.title,
+      caption: caption ?? this.caption,
+      parseMode: parseMode ?? this.parseMode,
+      captionEntities: captionEntities ?? this.captionEntities,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
     );
   }
 }

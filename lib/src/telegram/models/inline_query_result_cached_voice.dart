@@ -1,9 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to a voice message stored on the Telegram servers. By default, this voice message will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the voice message.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultCachedVoice extends InlineQueryResult {
+class InlineQueryResultCachedVoice implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.voice]
   @override
   InlineQueryResultType get type => InlineQueryResultType.voice;
@@ -33,7 +38,7 @@ class InlineQueryResultCachedVoice extends InlineQueryResult {
   const InlineQueryResultCachedVoice({
     required this.voiceFileId,
     required this.title,
-    required super.id,
+    required this.id,
     this.caption,
     this.parseMode,
     this.captionEntities,
@@ -80,6 +85,29 @@ class InlineQueryResultCachedVoice extends InlineQueryResult {
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>,
             ),
+    );
+  }
+
+  /// Copy method
+  InlineQueryResultCachedVoice copyWith({
+    String? id,
+    String? voiceFileId,
+    String? title,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    InlineKeyboardMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+  }) {
+    return InlineQueryResultCachedVoice(
+      id: id ?? this.id,
+      voiceFileId: voiceFileId ?? this.voiceFileId,
+      title: title ?? this.title,
+      caption: caption ?? this.caption,
+      parseMode: parseMode ?? this.parseMode,
+      captionEntities: captionEntities ?? this.captionEntities,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
     );
   }
 }

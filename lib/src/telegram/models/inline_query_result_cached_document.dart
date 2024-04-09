@@ -1,9 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to a file stored on the Telegram servers. By default, this file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the file.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultCachedDocument extends InlineQueryResult {
+class InlineQueryResultCachedDocument implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.document]
   @override
   InlineQueryResultType get type => InlineQueryResultType.document;
@@ -36,7 +41,7 @@ class InlineQueryResultCachedDocument extends InlineQueryResult {
   const InlineQueryResultCachedDocument({
     required this.documentFileId,
     required this.title,
-    required super.id,
+    required this.id,
     this.description,
     this.caption,
     this.parseMode,
@@ -86,6 +91,31 @@ class InlineQueryResultCachedDocument extends InlineQueryResult {
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>,
             ),
+    );
+  }
+
+  /// Copy method
+  InlineQueryResultCachedDocument copyWith({
+    String? id,
+    String? documentFileId,
+    String? title,
+    String? description,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    InlineKeyboardMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+  }) {
+    return InlineQueryResultCachedDocument(
+      id: id ?? this.id,
+      documentFileId: documentFileId ?? this.documentFileId,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      caption: caption ?? this.caption,
+      parseMode: parseMode ?? this.parseMode,
+      captionEntities: captionEntities ?? this.captionEntities,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
     );
   }
 }

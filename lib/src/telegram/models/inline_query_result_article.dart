@@ -1,7 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to an article or web page.
-class InlineQueryResultArticle extends InlineQueryResult {
+class InlineQueryResultArticle implements InlineQueryResult {
   /// Type of the result, always [InlineQueryResultType.article]
   @override
   InlineQueryResultType get type => InlineQueryResultType.article;
@@ -35,7 +36,7 @@ class InlineQueryResultArticle extends InlineQueryResult {
 
   /// This object represents a link to an article or web page.A
   const InlineQueryResultArticle({
-    required super.id,
+    required this.id,
     required this.title,
     required this.inputMessageContent,
     this.replyMarkup,
@@ -84,6 +85,36 @@ class InlineQueryResultArticle extends InlineQueryResult {
       thumbnailUrl: json['thumbnail_url'] as String?,
       thumbnailWidth: json['thumbnail_width'] as int?,
       thumbnailHeight: json['thumbnail_height'] as int?,
+    );
+  }
+
+  @override
+  final String id;
+
+  /// Copy method
+  InlineQueryResultArticle copyWith({
+    String? title,
+    InputMessageContent? inputMessageContent,
+    InlineKeyboardMarkup? replyMarkup,
+    String? url,
+    bool? hideUrl,
+    String? description,
+    String? thumbnailUrl,
+    int? thumbnailWidth,
+    int? thumbnailHeight,
+    String? id,
+  }) {
+    return InlineQueryResultArticle(
+      title: title ?? this.title,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      url: url ?? this.url,
+      hideUrl: hideUrl ?? this.hideUrl,
+      description: description ?? this.description,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
+      thumbnailWidth: thumbnailWidth ?? this.thumbnailWidth,
+      thumbnailHeight: thumbnailHeight ?? this.thumbnailHeight,
+      id: id ?? this.id,
     );
   }
 }

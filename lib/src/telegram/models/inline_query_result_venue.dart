@@ -1,9 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a venue. By default, the venue will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the venue.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultVenue extends InlineQueryResult {
+class InlineQueryResultVenue implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.venue]
   @override
   InlineQueryResultType get type => InlineQueryResultType.venue;
@@ -53,7 +58,7 @@ class InlineQueryResultVenue extends InlineQueryResult {
     required this.longitude,
     required this.title,
     required this.address,
-    required super.id,
+    required this.id,
     this.foursquareId,
     this.foursquareType,
     this.googlePlaceId,
@@ -112,6 +117,41 @@ class InlineQueryResultVenue extends InlineQueryResult {
       thumbnailUrl: json['thumbnail_url'] as String?,
       thumbnailWidth: json['thumbnail_width'] as int?,
       thumbnailHeight: json['thumbnail_height'] as int?,
+    );
+  }
+
+  /// Copy method
+  InlineQueryResultVenue copyWith({
+    String? id,
+    double? latitude,
+    double? longitude,
+    String? title,
+    String? address,
+    String? foursquareId,
+    String? foursquareType,
+    String? googlePlaceId,
+    String? googlePlaceType,
+    InlineKeyboardMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+    String? thumbnailUrl,
+    int? thumbnailWidth,
+    int? thumbnailHeight,
+  }) {
+    return InlineQueryResultVenue(
+      id: id ?? this.id,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      title: title ?? this.title,
+      address: address ?? this.address,
+      foursquareId: foursquareId ?? this.foursquareId,
+      foursquareType: foursquareType ?? this.foursquareType,
+      googlePlaceId: googlePlaceId ?? this.googlePlaceId,
+      googlePlaceType: googlePlaceType ?? this.googlePlaceType,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
+      thumbnailWidth: thumbnailWidth ?? this.thumbnailWidth,
+      thumbnailHeight: thumbnailHeight ?? this.thumbnailHeight,
     );
   }
 }
