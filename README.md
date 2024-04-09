@@ -8,11 +8,11 @@
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot framework built with Dart programming language. It provides a complete and well-structured API that enables developers to create and deploy complex Telegram bots with ease. Televerse provides a total of 0 dynamic types on its public interface, making it easy for developers to write strictly typed code.
 
-## 🔥 Latest Update: Bot API 7.2
+## 🔥 Latest Update: Inline Query Result Builder
 
-Televerse now supports Bot API 7.2! This update brings improved business account management, including connection handling and updates for messages and edits. You'll also find new methods for working with mixed-format sticker packs and other Bot API 7.2 enhancements. 
+Televerse now includes the powerful `InlineQueryResultBuilder`! This feature simplifies the creation of inline query results with efficiency and simplicity in mind. Utilize methods like `InlineQueryResultBuilder.article`, `InlineQueryResultBuilder.audio`, `InlineQueryResultBuilder.contact`, and more to effortlessly generate various types of inline query results. Upgrade now and streamline your bot development process with Televerse. 
 
-Please note that there are a lot of breaking changes in this update. Please refer to the [changelog](./CHANGELOG.md) for more information.
+Check out [the example](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/inline_queries_bot.dart) and [changelog](./CHANGELOG.md) for more details! 🚀
 
 <hr>
 
