@@ -1,3 +1,13 @@
+# 1.15.4
+
+- 🆕 `InlineQueryResultBuilder` utility class is added
+- The `InlineQueryResultBuilder` can be used to build Inline Query Results in a better and easier way.
+- Made `callback_data` required for `InlineMenu.text`
+- 👨🏻‍🔧 Fix `createNewStickerSet` (Thanks to @defuera for pointing out the issue.)
+- Removed unnecessary JSON encodings
+- Improved `LoggerOptions` and logging the requests and responses.
+- Refactors around `ForceReply`, `ChatMember`, etc.
+
 # 1.15.3
  
 - Fix `InputSticker` conversion to json 🤦 (thx @defuera)
