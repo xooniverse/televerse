@@ -1,7 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to an article or web page.
-class InlineQueryResultArticle extends InlineQueryResult {
+class InlineQueryResultArticle implements InlineQueryResult {
   /// Type of the result, always [InlineQueryResultType.article]
   @override
   InlineQueryResultType get type => InlineQueryResultType.article;
@@ -10,6 +11,7 @@ class InlineQueryResultArticle extends InlineQueryResult {
   final String title;
 
   /// Content of the message to be sent
+  @override
   final InputMessageContent inputMessageContent;
 
   /// Optional. Inline keyboard attached to the message
@@ -35,7 +37,7 @@ class InlineQueryResultArticle extends InlineQueryResult {
 
   /// This object represents a link to an article or web page.A
   const InlineQueryResultArticle({
-    required super.id,
+    required this.id,
     required this.title,
     required this.inputMessageContent,
     this.replyMarkup,
@@ -86,4 +88,7 @@ class InlineQueryResultArticle extends InlineQueryResult {
       thumbnailHeight: json['thumbnail_height'] as int?,
     );
   }
+
+  @override
+  final String id;
 }

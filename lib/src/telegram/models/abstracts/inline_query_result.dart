@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of '../models.dart';
 
 /// This object represents one result of an inline query. Telegram clients currently support results of the following 20 types:
@@ -11,7 +12,11 @@ abstract class InlineQueryResult {
   /// Creates a new [InlineQueryResult] object.
   const InlineQueryResult({
     required this.id,
+    this.inputMessageContent,
   });
+
+  /// Content of a message to be sent as a result of an inline query
+  final InputMessageContent? inputMessageContent;
 
   /// Converts a [InlineQueryResult] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson();

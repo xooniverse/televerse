@@ -3,7 +3,11 @@ part of 'models.dart';
 /// Represents a link to a file. By default, this file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the file. Currently, only .PDF and .ZIP files can be sent using this method.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultDocument extends InlineQueryResult {
+class InlineQueryResultDocument implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.document]
   @override
   InlineQueryResultType get type => InlineQueryResultType.document;
@@ -33,6 +37,7 @@ class InlineQueryResultDocument extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the file
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Optional. URL of the thumbnail (JPEG only) for the file
@@ -49,7 +54,7 @@ class InlineQueryResultDocument extends InlineQueryResult {
     required this.title,
     required this.documentUrl,
     required this.mimeType,
-    required super.id,
+    required this.id,
     this.caption,
     this.parseMode,
     this.captionEntities,

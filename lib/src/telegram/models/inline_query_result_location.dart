@@ -1,7 +1,11 @@
 part of 'models.dart';
 
 /// Represents a location on a map. By default, the location will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the location.
-class InlineQueryResultLocation extends InlineQueryResult {
+class InlineQueryResultLocation implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.location]
   @override
   InlineQueryResultType get type => InlineQueryResultType.location;
@@ -31,6 +35,7 @@ class InlineQueryResultLocation extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the location
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Optional. Url of the thumbnail for the result
@@ -47,7 +52,7 @@ class InlineQueryResultLocation extends InlineQueryResult {
     required this.latitude,
     required this.longitude,
     required this.title,
-    required super.id,
+    required this.id,
     this.horizontalAccuracy,
     this.livePeriod,
     this.heading,

@@ -1,7 +1,11 @@
 part of 'models.dart';
 
 /// Represents a link to a video animation (H.264/MPEG-4 AVC video without sound) stored on the Telegram servers. By default, this animated MPEG-4 file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation.
-class InlineQueryResultCachedMpeg4Gif extends InlineQueryResult {
+class InlineQueryResultCachedMpeg4Gif implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.mpeg4Gif]
   @override
   InlineQueryResultType get type => InlineQueryResultType.mpeg4Gif;
@@ -25,12 +29,13 @@ class InlineQueryResultCachedMpeg4Gif extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the video animation
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedMpeg4Gif] object
   const InlineQueryResultCachedMpeg4Gif({
     required this.mpeg4FileId,
-    required super.id,
+    required this.id,
     this.title,
     this.caption,
     this.parseMode,

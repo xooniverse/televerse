@@ -1,7 +1,11 @@
 part of 'models.dart';
 
 /// Represents a link to a photo stored on the Telegram servers. By default, this photo will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo.
-class InlineQueryResultCachedPhoto extends InlineQueryResult {
+class InlineQueryResultCachedPhoto implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.photo]
   @override
   InlineQueryResultType get type => InlineQueryResultType.photo;
@@ -28,12 +32,13 @@ class InlineQueryResultCachedPhoto extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the photo
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedPhoto] object
   const InlineQueryResultCachedPhoto({
     required this.photoFileId,
-    required super.id,
+    required this.id,
     this.title,
     this.description,
     this.caption,

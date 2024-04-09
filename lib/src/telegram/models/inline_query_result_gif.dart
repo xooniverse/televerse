@@ -1,7 +1,11 @@
 part of 'models.dart';
 
 /// Represents a link to an animated GIF file. By default, this animated GIF file will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation.
-class InlineQueryResultGif extends InlineQueryResult {
+class InlineQueryResultGif implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.gif]
   @override
   InlineQueryResultType get type => InlineQueryResultType.gif;
@@ -40,13 +44,14 @@ class InlineQueryResultGif extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the GIF animation
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultGif] object
   const InlineQueryResultGif({
     required this.gifUrl,
     required this.thumbnailUrl,
-    required super.id,
+    required this.id,
     this.gifWidth,
     this.gifHeight,
     this.gifDuration,

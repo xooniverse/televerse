@@ -1,7 +1,11 @@
 part of 'models.dart';
 
 /// Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo.
-class InlineQueryResultPhoto extends InlineQueryResult {
+class InlineQueryResultPhoto implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.photo]
   @override
   InlineQueryResultType get type => InlineQueryResultType.photo;
@@ -37,13 +41,14 @@ class InlineQueryResultPhoto extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the photo
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultPhoto] object
   const InlineQueryResultPhoto({
     required this.photoUrl,
     required this.thumbnailUrl,
-    required super.id,
+    required this.id,
     this.photoWidth,
     this.photoHeight,
     this.title,

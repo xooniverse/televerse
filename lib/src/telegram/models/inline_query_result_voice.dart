@@ -3,7 +3,11 @@ part of 'models.dart';
 /// Represents a link to a voice recording in an .OGG container encoded with OPUS. By default, this voice recording will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the the voice message.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultVoice extends InlineQueryResult {
+class InlineQueryResultVoice implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.voice]
   @override
   InlineQueryResultType get type => InlineQueryResultType.voice;
@@ -30,13 +34,14 @@ class InlineQueryResultVoice extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the voice recording
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultVoice] object
   const InlineQueryResultVoice({
     required this.voiceUrl,
     required this.title,
-    required super.id,
+    required this.id,
     this.caption,
     this.parseMode,
     this.captionEntities,

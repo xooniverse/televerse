@@ -1,7 +1,11 @@
 part of 'models.dart';
 
 /// Represents a Game.
-class InlineQueryResultGame extends InlineQueryResult {
+class InlineQueryResultGame implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, must be [InlineQueryResultType.game]
   @override
   InlineQueryResultType get type => InlineQueryResultType.game;
@@ -15,7 +19,7 @@ class InlineQueryResultGame extends InlineQueryResult {
   /// Constructs an [InlineQueryResultGame] object
   const InlineQueryResultGame({
     required this.gameShortName,
-    required super.id,
+    required this.id,
     this.replyMarkup,
   });
 
@@ -42,4 +46,8 @@ class InlineQueryResultGame extends InlineQueryResult {
             ),
     );
   }
+
+  /// Input Message Content for Game result is always null.
+  @override
+  InputMessageContent? get inputMessageContent => null;
 }

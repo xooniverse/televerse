@@ -3,7 +3,11 @@ part of 'models.dart';
 /// Represents a link to a sticker stored on the Telegram servers. By default, this sticker will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the sticker.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016 for static stickers and after 06 July, 2019 for animated stickers. Older clients will ignore them.
-class InlineQueryResultCachedSticker extends InlineQueryResult {
+class InlineQueryResultCachedSticker implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.sticker]
   @override
   InlineQueryResultType get type => InlineQueryResultType.sticker;
@@ -15,12 +19,13 @@ class InlineQueryResultCachedSticker extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the sticker
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedSticker] object
   const InlineQueryResultCachedSticker({
     required this.stickerFileId,
-    required super.id,
+    required this.id,
     this.replyMarkup,
     this.inputMessageContent,
   });

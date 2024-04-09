@@ -3,7 +3,11 @@ part of 'models.dart';
 /// Represents a link to a voice message stored on the Telegram servers. By default, this voice message will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the voice message.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultCachedVoice extends InlineQueryResult {
+class InlineQueryResultCachedVoice implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.voice]
   @override
   InlineQueryResultType get type => InlineQueryResultType.voice;
@@ -27,13 +31,14 @@ class InlineQueryResultCachedVoice extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the voice message
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedVoice] object
   const InlineQueryResultCachedVoice({
     required this.voiceFileId,
     required this.title,
-    required super.id,
+    required this.id,
     this.caption,
     this.parseMode,
     this.captionEntities,

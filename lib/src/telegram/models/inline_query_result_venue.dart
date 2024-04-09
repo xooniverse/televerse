@@ -3,7 +3,11 @@ part of 'models.dart';
 /// Represents a venue. By default, the venue will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the venue.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultVenue extends InlineQueryResult {
+class InlineQueryResultVenue implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.venue]
   @override
   InlineQueryResultType get type => InlineQueryResultType.venue;
@@ -36,6 +40,7 @@ class InlineQueryResultVenue extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the venue
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Optional. Url of the thumbnail for the result
@@ -53,7 +58,7 @@ class InlineQueryResultVenue extends InlineQueryResult {
     required this.longitude,
     required this.title,
     required this.address,
-    required super.id,
+    required this.id,
     this.foursquareId,
     this.foursquareType,
     this.googlePlaceId,

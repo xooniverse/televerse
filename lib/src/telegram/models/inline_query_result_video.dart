@@ -3,7 +3,11 @@ part of 'models.dart';
 /// Represents a link to a page containing an embedded video player or a video file. By default, this video file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the video.
 ///
 /// If an InlineQueryResultVideo message contains an embedded video (e.g., YouTube), you must replace its content using input_message_content.
-class InlineQueryResultVideo extends InlineQueryResult {
+class InlineQueryResultVideo implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.video]
   @override
   InlineQueryResultType get type => InlineQueryResultType.video;
@@ -45,6 +49,7 @@ class InlineQueryResultVideo extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the video. This field is required if InlineQueryResultVideo is used to send an HTML-page as a result (e.g., a YouTube video).
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Converts [InlineQueryResultVideo] object to a JSON object
@@ -75,7 +80,7 @@ class InlineQueryResultVideo extends InlineQueryResult {
     required this.mimeType,
     required this.thumbnailUrl,
     required this.title,
-    required super.id,
+    required this.id,
     this.caption,
     this.parseMode,
     this.captionEntities,

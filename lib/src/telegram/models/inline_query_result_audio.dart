@@ -3,7 +3,11 @@ part of 'models.dart';
 /// Represents a link to an MP3 audio file. By default, this audio file will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the audio.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultAudio extends InlineQueryResult {
+class InlineQueryResultAudio implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.audio]
   @override
   InlineQueryResultType get type => InlineQueryResultType.audio;
@@ -33,13 +37,14 @@ class InlineQueryResultAudio extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the audio
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultAudio] object
   const InlineQueryResultAudio({
     required this.audioUrl,
     required this.title,
-    required super.id,
+    required this.id,
     this.caption,
     this.parseMode,
     this.captionEntities,

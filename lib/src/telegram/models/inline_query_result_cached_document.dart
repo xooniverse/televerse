@@ -3,7 +3,11 @@ part of 'models.dart';
 /// Represents a link to a file stored on the Telegram servers. By default, this file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the file.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultCachedDocument extends InlineQueryResult {
+class InlineQueryResultCachedDocument implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.document]
   @override
   InlineQueryResultType get type => InlineQueryResultType.document;
@@ -30,13 +34,14 @@ class InlineQueryResultCachedDocument extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the file
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedDocument] object
   const InlineQueryResultCachedDocument({
     required this.documentFileId,
     required this.title,
-    required super.id,
+    required this.id,
     this.description,
     this.caption,
     this.parseMode,

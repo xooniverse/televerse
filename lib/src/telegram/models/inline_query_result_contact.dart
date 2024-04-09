@@ -3,7 +3,11 @@ part of 'models.dart';
 /// Represents a contact with a phone number. By default, this contact will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the contact.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultContact extends InlineQueryResult {
+class InlineQueryResultContact implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.contact]
   @override
   InlineQueryResultType get type => InlineQueryResultType.contact;
@@ -24,6 +28,7 @@ class InlineQueryResultContact extends InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the contact
+  @override
   final InputMessageContent? inputMessageContent;
 
   /// Optional. Url of the thumbnail for the result
@@ -39,7 +44,7 @@ class InlineQueryResultContact extends InlineQueryResult {
   const InlineQueryResultContact({
     required this.phoneNumber,
     required this.firstName,
-    required super.id,
+    required this.id,
     this.lastName,
     this.vcard,
     this.replyMarkup,
