@@ -1,17 +1,5 @@
 part of '../../../televerse.dart';
 
-/// Basically stuffs the input message content to the Inline Query Result
-class InputMessageContentStuffer {
-  /// The Inline Query Result to which the content should be stuffed.
-  InlineQueryResult result;
-
-  /// Creates a content stuffer.
-  InputMessageContentStuffer(this.result);
-
-  /// Attaches the input message content tot he query result.
-  void build() {}
-}
-
 /// A utility class to build Inline Query Results quickly and easily.
 ///
 /// # Inline Query Result Builder
@@ -27,7 +15,9 @@ class InlineQueryResultBuilder {
   InlineQueryResultBuilder article(
     String id,
     String title,
-    InputMessageContent inputMessageContent, {
+    InputMessageContent Function(
+      MessageContentGenerator content,
+    ) contentGenerator, {
     InlineKeyboardMarkup? replyMarkup,
     String? url,
     bool? hideUrl,
@@ -40,7 +30,9 @@ class InlineQueryResultBuilder {
       InlineQueryResultArticle(
         id: id,
         title: title,
-        inputMessageContent: inputMessageContent,
+        inputMessageContent: contentGenerator(
+          MessageContentGenerator.i,
+        ),
         replyMarkup: replyMarkup,
         url: url,
         hideUrl: hideUrl,
@@ -55,16 +47,18 @@ class InlineQueryResultBuilder {
 
   /// Adds an Audio result to the final results
   InlineQueryResultBuilder audio(
+    String id,
     String audioUrl,
-    String title,
-    String id, {
+    String title, {
     String? caption,
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     String? performer,
     int? audioDuration,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? inputMessageContent,
+    InputMessageContent? Function(
+      MessageContentGenerator content,
+    )? contentGenerator,
   }) {
     _results.add(
       InlineQueryResultAudio(
@@ -77,7 +71,7 @@ class InlineQueryResultBuilder {
         performer: performer,
         audioDuration: audioDuration,
         replyMarkup: replyMarkup,
-        inputMessageContent: inputMessageContent,
+        inputMessageContent: contentGenerator?.call(MessageContentGenerator.i),
       ),
     );
     return this;
@@ -85,13 +79,15 @@ class InlineQueryResultBuilder {
 
   /// Adds a contact result to the final results
   InlineQueryResultBuilder contact(
+    String id,
     String phoneNumber,
-    String firstName,
-    String id, {
+    String firstName, {
     String? lastName,
     String? vcard,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? inputMessageContent,
+    InputMessageContent? Function(
+      MessageContentGenerator content,
+    )? contentGenerator,
     String? thumbnailUrl,
     int? thumbnailWidth,
     int? thumbnailHeight,
@@ -104,7 +100,7 @@ class InlineQueryResultBuilder {
         lastName: lastName,
         vcard: vcard,
         replyMarkup: replyMarkup,
-        inputMessageContent: inputMessageContent,
+        inputMessageContent: contentGenerator?.call(MessageContentGenerator.i),
         thumbnailUrl: thumbnailUrl,
         thumbnailWidth: thumbnailWidth,
         thumbnailHeight: thumbnailHeight,
@@ -115,8 +111,8 @@ class InlineQueryResultBuilder {
 
   /// Adds an game result to the final results
   InlineQueryResultBuilder game(
-    String gameShortName,
-    String id, {
+    String id,
+    String gameShortName, {
     InlineKeyboardMarkup? replyMarkup,
   }) {
     _results.add(
@@ -131,16 +127,18 @@ class InlineQueryResultBuilder {
 
   /// Adds an document result to the final results
   InlineQueryResultBuilder document(
+    String id,
     String title,
     String documentUrl,
-    String mimeType,
-    String id, {
+    String mimeType, {
     String? caption,
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     String? description,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? inputMessageContent,
+    InputMessageContent? Function(
+      MessageContentGenerator content,
+    )? contentGenerator,
     String? thumbnailUrl,
     int? thumbnailWidth,
     int? thumbnailHeight,
@@ -156,7 +154,7 @@ class InlineQueryResultBuilder {
         captionEntities: captionEntities,
         description: description,
         replyMarkup: replyMarkup,
-        inputMessageContent: inputMessageContent,
+        inputMessageContent: contentGenerator?.call(MessageContentGenerator.i),
         thumbnailUrl: thumbnailUrl,
         thumbnailWidth: thumbnailWidth,
         thumbnailHeight: thumbnailHeight,
@@ -167,9 +165,9 @@ class InlineQueryResultBuilder {
 
   /// Adds an GIF result to the final results
   InlineQueryResultBuilder gif(
+    String id,
     String gifUrl,
-    String thumbnailUrl,
-    String id, {
+    String thumbnailUrl, {
     int? gifWidth,
     int? gifHeight,
     int? gifDuration,
@@ -179,7 +177,9 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? inputMessageContent,
+    InputMessageContent? Function(
+      MessageContentGenerator content,
+    )? contentGenerator,
   }) {
     _results.add(
       InlineQueryResultGif(
@@ -195,7 +195,7 @@ class InlineQueryResultBuilder {
         parseMode: parseMode,
         captionEntities: captionEntities,
         replyMarkup: replyMarkup,
-        inputMessageContent: inputMessageContent,
+        inputMessageContent: contentGenerator?.call(MessageContentGenerator.i),
       ),
     );
     return this;
@@ -203,16 +203,18 @@ class InlineQueryResultBuilder {
 
   /// Adds an location result to the final results
   InlineQueryResultBuilder location(
+    String id,
     double latitude,
     double longitude,
-    String title,
-    String id, {
+    String title, {
     int? horizontalAccuracy,
     int? livePeriod,
     int? heading,
     int? proximityAlertRadius,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? inputMessageContent,
+    InputMessageContent? Function(
+      MessageContentGenerator content,
+    )? contentGenerator,
     String? thumbnailUrl,
     int? thumbnailWidth,
     int? thumbnailHeight,
@@ -228,7 +230,7 @@ class InlineQueryResultBuilder {
         heading: heading,
         proximityAlertRadius: proximityAlertRadius,
         replyMarkup: replyMarkup,
-        inputMessageContent: inputMessageContent,
+        inputMessageContent: contentGenerator?.call(MessageContentGenerator.i),
         thumbnailUrl: thumbnailUrl,
         thumbnailWidth: thumbnailWidth,
         thumbnailHeight: thumbnailHeight,
@@ -239,9 +241,9 @@ class InlineQueryResultBuilder {
 
   /// Adds an Mpeg4GIF result to the final results
   InlineQueryResultBuilder mpeg4gif(
+    String id,
     String mpeg4Url,
-    String thumbnailUrl,
-    String id, {
+    String thumbnailUrl, {
     int? mpeg4Width,
     int? mpeg4Height,
     int? mpeg4Duration,
@@ -251,7 +253,9 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? inputMessageContent,
+    InputMessageContent? Function(
+      MessageContentGenerator content,
+    )? contentGenerator,
   }) {
     _results.add(
       InlineQueryResultMpeg4Gif(
@@ -267,7 +271,7 @@ class InlineQueryResultBuilder {
         parseMode: parseMode,
         captionEntities: captionEntities,
         replyMarkup: replyMarkup,
-        inputMessageContent: inputMessageContent,
+        inputMessageContent: contentGenerator?.call(MessageContentGenerator.i),
       ),
     );
     return this;
@@ -275,9 +279,9 @@ class InlineQueryResultBuilder {
 
   /// Adds an photo result to the final results
   InlineQueryResultBuilder photo(
+    String id,
     String photoUrl,
-    String thumbnailUrl,
-    String id, {
+    String thumbnailUrl, {
     int? photoWidth,
     int? photoHeight,
     String? title,
@@ -286,7 +290,9 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? inputMessageContent,
+    InputMessageContent? Function(
+      MessageContentGenerator content,
+    )? contentGenerator,
   }) {
     _results.add(
       InlineQueryResultPhoto(
@@ -301,7 +307,7 @@ class InlineQueryResultBuilder {
         parseMode: parseMode,
         captionEntities: captionEntities,
         replyMarkup: replyMarkup,
-        inputMessageContent: inputMessageContent,
+        inputMessageContent: contentGenerator?.call(MessageContentGenerator.i),
       ),
     );
     return this;
@@ -309,17 +315,19 @@ class InlineQueryResultBuilder {
 
   /// Adds an venue result to the final results
   InlineQueryResultBuilder venue(
+    String id,
     double latitude,
     double longitude,
     String title,
-    String address,
-    String id, {
+    String address, {
     String? foursquareId,
     String? foursquareType,
     String? googlePlaceId,
     String? googlePlaceType,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? inputMessageContent,
+    InputMessageContent? Function(
+      MessageContentGenerator content,
+    )? contentGenerator,
     String? thumbnailUrl,
     int? thumbnailWidth,
     int? thumbnailHeight,
@@ -336,7 +344,7 @@ class InlineQueryResultBuilder {
         googlePlaceId: googlePlaceId,
         googlePlaceType: googlePlaceType,
         replyMarkup: replyMarkup,
-        inputMessageContent: inputMessageContent,
+        inputMessageContent: contentGenerator?.call(MessageContentGenerator.i),
         thumbnailUrl: thumbnailUrl,
         thumbnailWidth: thumbnailWidth,
         thumbnailHeight: thumbnailHeight,
@@ -347,17 +355,19 @@ class InlineQueryResultBuilder {
 
   /// Adds an video result to the final results
   InlineQueryResultBuilder video(
+    String id,
     double latitude,
     double longitude,
     String title,
-    String address,
-    String id, {
+    String address, {
     String? foursquareId,
     String? foursquareType,
     String? googlePlaceId,
     String? googlePlaceType,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? inputMessageContent,
+    InputMessageContent? Function(
+      MessageContentGenerator content,
+    )? contentGenerator,
     String? thumbnailUrl,
     int? thumbnailWidth,
     int? thumbnailHeight,
@@ -374,7 +384,7 @@ class InlineQueryResultBuilder {
         googlePlaceId: googlePlaceId,
         googlePlaceType: googlePlaceType,
         replyMarkup: replyMarkup,
-        inputMessageContent: inputMessageContent,
+        inputMessageContent: contentGenerator?.call(MessageContentGenerator.i),
         thumbnailUrl: thumbnailUrl,
         thumbnailWidth: thumbnailWidth,
         thumbnailHeight: thumbnailHeight,
@@ -385,17 +395,19 @@ class InlineQueryResultBuilder {
 
   /// Adds an voice result to the final results
   InlineQueryResultBuilder voice(
+    String id,
     double latitude,
     double longitude,
     String title,
-    String address,
-    String id, {
+    String address, {
     String? foursquareId,
     String? foursquareType,
     String? googlePlaceId,
     String? googlePlaceType,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? inputMessageContent,
+    InputMessageContent? Function(
+      MessageContentGenerator content,
+    )? contentGenerator,
     String? thumbnailUrl,
     int? thumbnailWidth,
     int? thumbnailHeight,
@@ -412,7 +424,7 @@ class InlineQueryResultBuilder {
         googlePlaceId: googlePlaceId,
         googlePlaceType: googlePlaceType,
         replyMarkup: replyMarkup,
-        inputMessageContent: inputMessageContent,
+        inputMessageContent: contentGenerator?.call(MessageContentGenerator.i),
         thumbnailUrl: thumbnailUrl,
         thumbnailWidth: thumbnailWidth,
         thumbnailHeight: thumbnailHeight,
