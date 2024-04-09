@@ -1,9 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to a page containing an embedded video player or a video file. By default, this video file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the video.
 ///
 /// If an InlineQueryResultVideo message contains an embedded video (e.g., YouTube), you must replace its content using input_message_content.
-class InlineQueryResultVideo extends InlineQueryResult {
+class InlineQueryResultVideo implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.video]
   @override
   InlineQueryResultType get type => InlineQueryResultType.video;
@@ -75,7 +80,7 @@ class InlineQueryResultVideo extends InlineQueryResult {
     required this.mimeType,
     required this.thumbnailUrl,
     required this.title,
-    required super.id,
+    required this.id,
     this.caption,
     this.parseMode,
     this.captionEntities,
@@ -107,6 +112,41 @@ class InlineQueryResultVideo extends InlineQueryResult {
       replyMarkup: InlineKeyboardMarkup.fromJson(json['reply_markup']),
       inputMessageContent:
           InputMessageContent.fromJson(json['input_message_content']),
+    );
+  }
+
+  /// Copy method
+  InlineQueryResultVideo copyWith({
+    String? id,
+    String? videoUrl,
+    String? mimeType,
+    String? thumbnailUrl,
+    String? title,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    int? videoWidth,
+    int? videoHeight,
+    int? videoDuration,
+    String? description,
+    InlineKeyboardMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+  }) {
+    return InlineQueryResultVideo(
+      id: id ?? this.id,
+      videoUrl: videoUrl ?? this.videoUrl,
+      mimeType: mimeType ?? this.mimeType,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
+      title: title ?? this.title,
+      caption: caption ?? this.caption,
+      parseMode: parseMode ?? this.parseMode,
+      captionEntities: captionEntities ?? this.captionEntities,
+      videoWidth: videoWidth ?? this.videoWidth,
+      videoHeight: videoHeight ?? this.videoHeight,
+      videoDuration: videoDuration ?? this.videoDuration,
+      description: description ?? this.description,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
     );
   }
 }

@@ -30,4 +30,8 @@ class ChatMemberMember implements ChatMember {
       user: User.fromJson(json['user']),
     );
   }
+
+  /// Information about the user
+  @override
+  User get from => user;
 }

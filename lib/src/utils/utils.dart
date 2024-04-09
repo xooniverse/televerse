@@ -37,7 +37,7 @@ bool _nullFilter(String _, dynamic value) => value == null || value == 'null';
 extension FromAndChatExt on Update {
   /// A shorthand getter for the [Chat] instance from the update.
   ///
-  /// This can be any of `msg.chat` or `myChatMember.chat` or `chatMember.chat` or `chatJoinRequest.chat` or `messageReaction.chat` or `messageReactionCount.chat` or `chatBoost.chat` or `removedChatBoost.chat` or `callbackQuery.message.chat`, or `businessMessage.chat` or `editedBusinessMessage.chat`.
+  /// This can be any of `msg.chat` or `myChatMember.chat` or `chatMember.chat` or `chatJoinRequest.chat` or `messageReaction.chat` or `messageReactionCount.chat` or `chatBoost.chat` or `removedChatBoost.chat` or `callbackQuery.message.chat`, or `businessMessage.chat` or `editedBusinessMessage.chat` or `deletedBusinessMessage.chat`.
   Chat? get chat {
     Chat? x = (chatJoinRequest ??
             removedChatBoost ??
@@ -46,6 +46,7 @@ extension FromAndChatExt on Update {
             myChatMember ??
             messageReaction ??
             messageReactionCount ??
+            deletedBusinessMessages ??
             msg)
         ?.chat;
 
@@ -66,7 +67,8 @@ extension FromAndChatExt on Update {
             msg ??
             myChatMember ??
             chatMember ??
-            chatJoinRequest)
+            chatJoinRequest ??
+            businessConnection)
         ?.from;
     if (callbackQuery?.message is Message) {
       x ??= (callbackQuery?.message as Message).from;

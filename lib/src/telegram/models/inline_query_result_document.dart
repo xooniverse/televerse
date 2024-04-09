@@ -1,9 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a link to a file. By default, this file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the file. Currently, only .PDF and .ZIP files can be sent using this method.
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
-class InlineQueryResultDocument extends InlineQueryResult {
+class InlineQueryResultDocument implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, always [InlineQueryResultType.document]
   @override
   InlineQueryResultType get type => InlineQueryResultType.document;
@@ -49,7 +54,7 @@ class InlineQueryResultDocument extends InlineQueryResult {
     required this.title,
     required this.documentUrl,
     required this.mimeType,
-    required super.id,
+    required this.id,
     this.caption,
     this.parseMode,
     this.captionEntities,
@@ -110,6 +115,39 @@ class InlineQueryResultDocument extends InlineQueryResult {
       thumbnailUrl: json['thumbnail_url'] as String?,
       thumbnailWidth: json['thumbnail_width'] as int?,
       thumbnailHeight: json['thumbnail_height'] as int?,
+    );
+  }
+
+  /// Copy method
+  InlineQueryResultDocument copyWith({
+    String? id,
+    String? title,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    String? documentUrl,
+    String? mimeType,
+    String? description,
+    InlineKeyboardMarkup? replyMarkup,
+    InputMessageContent? inputMessageContent,
+    String? thumbnailUrl,
+    int? thumbnailWidth,
+    int? thumbnailHeight,
+  }) {
+    return InlineQueryResultDocument(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      caption: caption ?? this.caption,
+      parseMode: parseMode ?? this.parseMode,
+      captionEntities: captionEntities ?? this.captionEntities,
+      documentUrl: documentUrl ?? this.documentUrl,
+      mimeType: mimeType ?? this.mimeType,
+      description: description ?? this.description,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
+      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
+      thumbnailWidth: thumbnailWidth ?? this.thumbnailWidth,
+      thumbnailHeight: thumbnailHeight ?? this.thumbnailHeight,
     );
   }
 }

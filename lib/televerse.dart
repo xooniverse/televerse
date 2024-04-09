@@ -54,6 +54,10 @@ part 'src/televerse/context/context.dart';
 part 'src/televerse/conversation/conversation.dart';
 part 'src/televerse/conversation/conversation_exception.dart';
 
+/// Inline Query Result Builder
+part 'src/televerse/builders/inline_query_result_builder.dart';
+part 'src/televerse/builders/message_content_generator.dart';
+
 /// The main class of the library.
 ///
 /// This class is used to create a new bot instance. This is just a

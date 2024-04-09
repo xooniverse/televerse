@@ -1,7 +1,7 @@
 part of '../models.dart';
 
 /// This object contains information about one member of a chat.
-abstract class ChatMember {
+abstract class ChatMember implements WithUser {
   /// The member's status
   final ChatMemberStatus status;
 
@@ -50,4 +50,8 @@ abstract class ChatMember {
       'user': user.toJson(),
     }..removeWhere(_nullFilter);
   }
+
+  /// Information about the user
+  @override
+  User get from => user;
 }

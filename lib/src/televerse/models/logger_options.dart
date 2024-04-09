@@ -40,6 +40,7 @@ class LoggerOptions {
   /// - [stackTrace] - Print error stack trace [DioException.stackTrace]
   /// - [logPrint] - Log printer; defaults print log to console.
   /// - [methods] - Methods to be logged.
+  /// - [prettyPrint] - Whether to pretty print the response body
   const LoggerOptions({
     this.request = true,
     this.requestHeader = true,
@@ -50,6 +51,7 @@ class LoggerOptions {
     this.stackTrace = true,
     this.logPrint = _debugPrint,
     List<APIMethod>? methods,
+    this.prettyPrint = true,
   }) : methods = methods ?? APIMethod.values; // Default all methods
 
   /// Print request [Options]
@@ -79,6 +81,9 @@ class LoggerOptions {
   /// Methods to be logged.
   final List<APIMethod> methods;
 
+  /// Should the logger pretty print the response body
+  final bool prettyPrint;
+
   /// Returns true if the given [method] is allowed.
   bool isAllowed(APIMethod method) {
     return methods.contains(method);
@@ -86,24 +91,39 @@ class LoggerOptions {
 
   /// Returns the interceptor to be used in [Dio].
   Interceptor get interceptor {
-    final LogInterceptor l = LogInterceptor(
-      logPrint: logPrint,
-      request: request,
-      requestHeader: requestHeader,
-      requestBody: requestBody,
-      responseBody: responseBody,
-      responseHeader: responseHeader,
-      error: error,
-    );
     return InterceptorsWrapper(
       onRequest: (options, handler) {
         if (request) {
           final path = options.uri.pathSegments.last;
           final allowed = APIMethod.isExistingMethod(path) &&
               isAllowed(APIMethod.method(path));
-          if (allowed) {
-            return l.onRequest(options, handler);
+          if (!allowed) return handler.next(options);
+          logPrint('*** Request ***');
+          _printKV('uri', options.uri);
+
+          if (request) {
+            _printKV('method', options.method);
+            _printKV('responseType', options.responseType.toString());
+            _printKV('followRedirects', options.followRedirects);
+            _printKV('persistentConnection', options.persistentConnection);
+            _printKV('connectTimeout', options.connectTimeout);
+            _printKV('sendTimeout', options.sendTimeout);
+            _printKV('receiveTimeout', options.receiveTimeout);
+            _printKV(
+              'receiveDataWhenStatusError',
+              options.receiveDataWhenStatusError,
+            );
+            _printKV('extra', options.extra);
           }
+          if (requestHeader) {
+            logPrint('headers:');
+            options.headers.forEach((key, v) => _printKV(' $key', v));
+          }
+          if (requestBody) {
+            logPrint('data:');
+            _printAll(options.data);
+          }
+          logPrint('');
         }
         return handler.next(options);
       },
@@ -115,8 +135,9 @@ class LoggerOptions {
           return handler.next(response);
         }
         if (responseBody) {
-          return l.onResponse(response, handler);
+          _printResponse(response);
         }
+        return handler.next(response);
       },
       onError: (DioException e, handler) {
         final path = e.requestOptions.uri.pathSegments.last;
@@ -135,5 +156,50 @@ class LoggerOptions {
         return handler.next(e);
       },
     );
+  }
+
+  void _printKV(String key, Object? v) {
+    logPrint('$key: $v');
+  }
+
+  void _printAll(msg) {
+    if (msg is FormData) {
+      logPrint(" - files:");
+      for (final e in msg.files) {
+        logPrint('    ${e.key}: ${e.value}');
+      }
+      logPrint(" - fields:");
+      for (final e in msg.fields) {
+        logPrint('    ${e.key}: ${e.value}');
+      }
+    } else {
+      msg.toString().split('\n').forEach(logPrint);
+    }
+  }
+
+  void _printResponse(Response response) {
+    _printKV('uri', response.requestOptions.uri);
+    if (responseHeader) {
+      _printKV('statusCode', response.statusCode);
+      if (response.isRedirect == true) {
+        _printKV('redirect', response.realUri);
+      }
+
+      logPrint('headers:');
+      response.headers.forEach((key, v) => _printKV(' $key', v.join('\r\n\t')));
+    }
+    if (responseBody) {
+      logPrint('Response Text:');
+      try {
+        if (prettyPrint) {
+          _printAll(JsonEncoder.withIndent("  ").convert(response.data));
+        } else {
+          throw 0;
+        }
+      } catch (_) {
+        _printAll(response.toString());
+      }
+    }
+    logPrint('');
   }
 }

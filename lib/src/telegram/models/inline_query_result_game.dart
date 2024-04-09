@@ -1,7 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'models.dart';
 
 /// Represents a Game.
-class InlineQueryResultGame extends InlineQueryResult {
+class InlineQueryResultGame implements InlineQueryResult {
+  /// Unique identifier for this result, 1-64 Bytes
+  @override
+  final String id;
+
   /// Type of the result, must be [InlineQueryResultType.game]
   @override
   InlineQueryResultType get type => InlineQueryResultType.game;
@@ -15,7 +20,7 @@ class InlineQueryResultGame extends InlineQueryResult {
   /// Constructs an [InlineQueryResultGame] object
   const InlineQueryResultGame({
     required this.gameShortName,
-    required super.id,
+    required this.id,
     this.replyMarkup,
   });
 
@@ -40,6 +45,19 @@ class InlineQueryResultGame extends InlineQueryResult {
           : InlineKeyboardMarkup.fromJson(
               json['reply_markup'] as Map<String, dynamic>,
             ),
+    );
+  }
+
+  /// Copy method
+  InlineQueryResultGame copyWith({
+    String? id,
+    String? gameShortName,
+    InlineKeyboardMarkup? replyMarkup,
+  }) {
+    return InlineQueryResultGame(
+      id: id ?? this.id,
+      gameShortName: gameShortName ?? this.gameShortName,
+      replyMarkup: replyMarkup ?? this.replyMarkup,
     );
   }
 }

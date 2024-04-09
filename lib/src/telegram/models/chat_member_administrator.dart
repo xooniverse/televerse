@@ -1,7 +1,7 @@
 part of 'models.dart';
 
 /// Represents a chat member that owns the chat and has all administrator privileges.
-class ChatMemberAdministrator implements ChatMember {
+class ChatMemberAdministrator implements ChatMember, WithUser {
   /// The member's status in the chat, always [ChatMemberStatus.administrator]
   @override
   final ChatMemberStatus status = ChatMemberStatus.administrator;
@@ -132,4 +132,8 @@ class ChatMemberAdministrator implements ChatMember {
       canDeleteStories: json['can_delete_stories'],
     );
   }
+
+  /// Information about the user
+  @override
+  User get from => user;
 }

@@ -64,12 +64,6 @@ class RawAPI {
 
   /// Build the URI for the Telegram API.
   Uri _buildUri(APIMethod method, [Map<String, dynamic>? params]) {
-    params = params?.map((key, value) {
-      if (value is List) {
-        return MapEntry(key, jsonEncode(value));
-      }
-      return MapEntry(key, "$value");
-    });
     params?.removeWhere(_nullFilter);
     Uri uri;
     if (_isLocal) {
@@ -122,11 +116,8 @@ class RawAPI {
       "offset": offset,
       "limit": limit,
       "timeout": timeout,
+      "allowed_updates": allowedUpdates,
     };
-
-    if (allowedUpdates != null && allowedUpdates.isNotEmpty) {
-      params["allowed_updates"] = jsonEncode(allowedUpdates);
-    }
 
     Uri uri = _buildUri(APIMethod.getUpdates);
     final response = await _httpClient.postURI(uri, params);
@@ -162,7 +153,7 @@ class RawAPI {
       "url": url,
       "ip_address": ipAddress,
       "max_connections": maxConnections,
-      "allowed_updates": jsonEncode(allowedUpdates),
+      "allowed_updates": allowedUpdates,
       "drop_pending_updates": dropPendingUpdates,
       "secret_token": secretToken,
     };
@@ -362,7 +353,7 @@ class RawAPI {
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
     };
     Uri uri = _buildUri(APIMethod.copyMessage);
@@ -393,7 +384,7 @@ class RawAPI {
       "parse_mode": parseMode?.value,
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
       "disable_notification": disableNotification,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "has_spoiler": hasSpoiler,
       "protect_content": protectContent,
       "reply_parameters": replyParameters?.toJson(),
@@ -505,7 +496,7 @@ class RawAPI {
       "disable_content_type_detection": disableContentTypeDetection,
       "disable_notification": disableNotification,
       "protect_content": protectContent,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
     };
@@ -805,7 +796,7 @@ class RawAPI {
     }
 
     final files = _getFiles(helpers);
-    params["media"] = jsonEncode(mediaList);
+    params["media"] = mediaList;
 
     if (files.isNotEmpty) {
       List<dynamic> response = await _httpClient.multipartPost(
@@ -885,7 +876,7 @@ class RawAPI {
       "horizontal_accuracy": horizontalAccuracy,
       "heading": heading,
       "proximity_alert_radius": proximityAlertRadius,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageLiveLocation),
@@ -918,7 +909,7 @@ class RawAPI {
       "horizontal_accuracy": horizontalAccuracy,
       "heading": heading,
       "proximity_alert_radius": proximityAlertRadius,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
     };
     bool response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageLiveLocation),
@@ -963,7 +954,7 @@ class RawAPI {
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
     };
     bool response = await _httpClient.postURI(
       _buildUri(APIMethod.stopMessageLiveLocation),
@@ -2083,7 +2074,7 @@ class RawAPI {
   }) async {
     Map<String, dynamic> params = {
       "commands": commands.map((e) => e.toJson()).toList(),
-      "scope": jsonEncode(scope?.toJson()),
+      "scope": scope?.toJson(),
       "language_code": languageCode,
     };
     bool response = await _httpClient.postURI(
@@ -2161,7 +2152,7 @@ class RawAPI {
     bool? forChannels,
   }) async {
     Map<String, dynamic> params = {
-      "rights": jsonEncode(rights?.toJson()),
+      "rights": rights?.toJson(),
       "for_channels": forChannels,
     };
     bool response = await _httpClient.postURI(
@@ -2269,7 +2260,7 @@ class RawAPI {
       "caption": caption,
       "parse_mode": parseMode?.value,
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageCaption),
@@ -2298,7 +2289,7 @@ class RawAPI {
       "caption": caption,
       "parse_mode": parseMode?.value,
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
     };
     bool response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageCaption),
@@ -2364,7 +2355,7 @@ class RawAPI {
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
     };
     const field = "media";
 
@@ -2407,7 +2398,7 @@ class RawAPI {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageReplyMarkup),
@@ -2430,7 +2421,7 @@ class RawAPI {
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
     };
     bool response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageReplyMarkup),
@@ -2448,7 +2439,7 @@ class RawAPI {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
-      "reply_markup": jsonEncode(replyMarkup?.toJson()),
+      "reply_markup": replyMarkup?.toJson(),
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.stopPoll),
@@ -2551,7 +2542,7 @@ class RawAPI {
     List<String> customEmojiIds,
   ) async {
     Map<String, dynamic> params = {
-      "custom_emoji_ids": jsonEncode(customEmojiIds),
+      "custom_emoji_ids": customEmojiIds,
     };
     List<dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.getCustomEmojiStickers),
@@ -2607,7 +2598,7 @@ class RawAPI {
     Map<String, dynamic> params = {
       "user_id": userId,
       "name": name,
-      "sticker": jsonEncode(sticker.toJson(field)),
+      "sticker": sticker.toJson(field),
     };
 
     bool response;
@@ -3192,16 +3183,24 @@ class RawAPI {
     final length = stickers.length;
     for (int i = 0; i < length; i++) {
       stickersList.add(stickers[i].toJson("sticker$i"));
-      helpers.add(_MultipartHelper(stickers[i].sticker, "stickers$i"));
+      helpers.add(_MultipartHelper(stickers[i].sticker, "sticker$i"));
     }
 
     final files = _getFiles(helpers);
+    params["stickers"] = stickersList;
 
-    response = await _httpClient.multipartPost(
-      _buildUri(APIMethod.createNewStickerSet),
-      files,
-      params,
-    );
+    if (files.isNotEmpty) {
+      response = await _httpClient.multipartPost(
+        _buildUri(APIMethod.createNewStickerSet),
+        files,
+        params,
+      );
+    } else {
+      response = await _httpClient.postURI(
+        _buildUri(APIMethod.createNewStickerSet),
+        params,
+      );
+    }
 
     return response;
   }
@@ -3280,7 +3279,7 @@ class RawAPI {
   ) async {
     Map<String, dynamic> params = {
       "sticker": sticker,
-      "emoji_list": jsonEncode(emojiList),
+      "emoji_list": emojiList,
     };
 
     bool response = await _httpClient.postURI(
@@ -3302,7 +3301,7 @@ class RawAPI {
   ) async {
     Map<String, dynamic> params = {
       "sticker": sticker,
-      "keywords": jsonEncode(keywords),
+      "keywords": keywords,
     };
 
     bool response = await _httpClient.postURI(
@@ -3324,7 +3323,7 @@ class RawAPI {
   ) async {
     Map<String, dynamic> params = {
       "sticker": sticker,
-      "mask_position": jsonEncode(maskPosition.toJson()),
+      "mask_position": maskPosition.toJson(),
     };
 
     bool response = await _httpClient.postURI(
@@ -3552,7 +3551,7 @@ class RawAPI {
       "user_id": userId,
       "name": name,
       "old_sticker": oldSticker,
-      "sticker": jsonEncode(sticker.toJson(field)),
+      "sticker": sticker.toJson(field),
     };
 
     bool response;

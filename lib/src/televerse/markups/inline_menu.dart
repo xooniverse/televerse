@@ -2,7 +2,7 @@ part of '../../../televerse.dart';
 
 /// This object represents a Keyboard with callback data.
 class _InlineMenuCallbackDataButton extends _TMenuButton {
-  final String? data;
+  final String data;
 
   const _InlineMenuCallbackDataButton(
     super.text,
@@ -19,7 +19,7 @@ class _InlineMenuCallbackDataButton extends _TMenuButton {
   }
 
   @override
-  String? getData() {
+  String getData() {
     return data;
   }
 }
@@ -208,7 +208,7 @@ class InlineMenu implements InlineKeyboardMarkup, TeleverseMenu {
   InlineMenu text(
     String text,
     Handler handler, {
-    String? data,
+    required String data,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(

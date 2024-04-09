@@ -1,7 +1,7 @@
 part of 'models.dart';
 
 /// Represents a chat member that is under certain restrictions in the chat. Supergroups only.
-class ChatMemberRestricted implements ChatMember {
+class ChatMemberRestricted implements ChatMember, WithUser {
   /// The member's status in the chat, always “creator”
   @override
   final ChatMemberStatus status = ChatMemberStatus.restricted;
@@ -143,4 +143,8 @@ class ChatMemberRestricted implements ChatMember {
       canSendVoiceNotes: json['can_send_voice_notes'],
     );
   }
+
+  /// Information about the user
+  @override
+  User get from => user;
 }

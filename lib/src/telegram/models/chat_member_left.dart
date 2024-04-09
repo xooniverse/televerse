@@ -1,7 +1,7 @@
 part of 'models.dart';
 
 /// Represents a chat member that isn't currently a member of the chat, but may join it themselves.
-class ChatMemberLeft implements ChatMember {
+class ChatMemberLeft implements ChatMember, WithUser {
   /// The member's status in the chat, always “left”
   @override
   final ChatMemberStatus status = ChatMemberStatus.left;
@@ -30,4 +30,8 @@ class ChatMemberLeft implements ChatMember {
       'status': status.value,
     };
   }
+
+  /// Information about the user
+  @override
+  User get from => user;
 }

@@ -203,7 +203,7 @@ part 'chat_boost_added.dart';
 
 // Bot API 7.2
 
-part 'bot_connection.dart';
+part 'business_connection.dart';
 part 'business_message_deleted.dart';
 part 'business_intro.dart';
 part 'business_location.dart';

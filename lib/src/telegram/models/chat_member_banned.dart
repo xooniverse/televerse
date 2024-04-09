@@ -1,7 +1,7 @@
 part of 'models.dart';
 
 /// Represents a [ChatMember] that was banned in the chat and can't return to the chat or view chat messages.
-class ChatMemberBanned implements ChatMember {
+class ChatMemberBanned implements ChatMember, WithUser {
   /// The member's status in the chat, always "kicked"
   @override
   final ChatMemberStatus status = ChatMemberStatus.kicked;
@@ -48,4 +48,8 @@ class ChatMemberBanned implements ChatMember {
       untilDate: json['until_date'] as int,
     );
   }
+
+  /// Information about the user
+  @override
+  User get from => user;
 }
