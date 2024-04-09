@@ -33,7 +33,6 @@ class InlineQueryResultCachedPhoto implements InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the photo
-  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedPhoto] object

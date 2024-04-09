@@ -35,7 +35,6 @@ class InlineQueryResultVoice implements InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the voice recording
-  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultVoice] object

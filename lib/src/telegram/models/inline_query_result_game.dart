@@ -48,10 +48,6 @@ class InlineQueryResultGame implements InlineQueryResult {
     );
   }
 
-  /// Input Message Content for Game result is always null.
-  @override
-  InputMessageContent? get inputMessageContent => null;
-
   /// Copy method
   InlineQueryResultGame copyWith({
     String? id,

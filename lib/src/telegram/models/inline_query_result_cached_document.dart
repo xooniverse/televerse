@@ -35,7 +35,6 @@ class InlineQueryResultCachedDocument implements InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the file
-  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedDocument] object

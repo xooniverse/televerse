@@ -38,7 +38,6 @@ class InlineQueryResultAudio implements InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the audio
-  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultAudio] object

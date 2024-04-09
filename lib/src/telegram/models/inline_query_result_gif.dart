@@ -45,7 +45,6 @@ class InlineQueryResultGif implements InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the GIF animation
-  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultGif] object

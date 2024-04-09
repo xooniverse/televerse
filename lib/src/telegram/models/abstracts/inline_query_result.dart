@@ -12,11 +12,7 @@ abstract class InlineQueryResult {
   /// Creates a new [InlineQueryResult] object.
   const InlineQueryResult({
     required this.id,
-    this.inputMessageContent,
   });
-
-  /// Content of a message to be sent as a result of an inline query
-  final InputMessageContent? inputMessageContent;
 
   /// Converts a [InlineQueryResult] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson();

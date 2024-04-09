@@ -30,7 +30,6 @@ class InlineQueryResultCachedMpeg4Gif implements InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the video animation
-  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedMpeg4Gif] object

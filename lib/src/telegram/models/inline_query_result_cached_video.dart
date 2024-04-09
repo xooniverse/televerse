@@ -33,11 +33,10 @@ class InlineQueryResultCachedVideo implements InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the video
-  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedVideo] object
-  InlineQueryResultCachedVideo({
+  const InlineQueryResultCachedVideo({
     required this.videoFileId,
     required this.title,
     required this.id,

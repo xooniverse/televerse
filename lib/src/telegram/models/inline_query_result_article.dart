@@ -11,7 +11,6 @@ class InlineQueryResultArticle implements InlineQueryResult {
   final String title;
 
   /// Content of the message to be sent
-  @override
   final InputMessageContent inputMessageContent;
 
   /// Optional. Inline keyboard attached to the message

@@ -36,7 +36,6 @@ class InlineQueryResultLocation implements InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the location
-  @override
   final InputMessageContent? inputMessageContent;
 
   /// Optional. Url of the thumbnail for the result

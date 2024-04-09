@@ -29,7 +29,6 @@ class InlineQueryResultCachedAudio implements InlineQueryResult {
   final InlineKeyboardMarkup? replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the voice message
-  @override
   final InputMessageContent? inputMessageContent;
 
   /// Constructs an [InlineQueryResultCachedAudio] objectA
