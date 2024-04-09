@@ -1,3 +1,9 @@
+# 1.15.5
+
+- Completes the helper class `MessageContentGenerator` for ease of use to create `InputMessageContent`.
+- All types of InputMessageContent can be now generated with the new `MessageContentGenerator` methods `text`, `location`, `venue`, `contact` and `invoice`.
+- Updated README, and added an example for handling inline queries.
+
 # 1.15.4
 
 - 🆕 `InlineQueryResultBuilder` utility class is added
