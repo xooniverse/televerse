@@ -1,7 +1,6 @@
 # 1.15.6
 
 - Added missing methods in the `InlineKeyboard`
-- Updated Dart SDK constraints to `>=2.17.7`
 
 # 1.15.5
 
