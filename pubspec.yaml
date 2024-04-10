@@ -10,7 +10,7 @@ topics:
   - bot-framework
 
 environment:
-  sdk: ">=2.17.7"
+  sdk: ">=2.17.7 <4.0.0"
 
 dependencies:
   dio: ^5.4.0
