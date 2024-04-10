@@ -104,4 +104,106 @@ class InlineKeyboard extends InlineKeyboardMarkup {
     );
     return this;
   }
+
+  /// Adds a button withgiven [text] and login url ([url])
+  InlineKeyboard addLogin(
+    String text,
+    String url, {
+    String? forwardText,
+    String? botUsername,
+    bool? requestWriteAccess,
+  }) {
+    inlineKeyboard.last.add(
+      InlineKeyboardButton(
+        text: text,
+        loginUrl: LoginURL(
+          url: url,
+          forwardText: forwardText,
+          botUsername: botUsername,
+          requestWriteAccess: requestWriteAccess,
+        ),
+      ),
+    );
+    return this;
+  }
+
+  /// Adds a button with the given [text] label when tapped prompts user to prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline [query] in the input field
+  InlineKeyboard switchInlineQuery(
+    String text, [
+    String query = "",
+  ]) {
+    inlineKeyboard.last.add(
+      InlineKeyboardButton(
+        text: text,
+        switchInlineQuery: query,
+      ),
+    );
+    return this;
+  }
+
+  /// Adds a button with the given [text] label when tapped the button will insert the bot's username and the specified inline [query] in the current chat's input field.
+  InlineKeyboard switchInlineQueryCurrentChat(
+    String text, [
+    String query = "",
+  ]) {
+    inlineKeyboard.last.add(
+      InlineKeyboardButton(
+        text: text,
+        switchInlineQueryCurrentChat: query,
+      ),
+    );
+    return this;
+  }
+
+  /// Adds a button with the given [text] label when tapped the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field.
+  InlineKeyboard switchInlineQueryChosenChat(
+    String text, {
+    String query = "",
+    bool? allowUserChats,
+    bool? allowBotChats,
+    bool? allowGroupChats,
+    bool? allowChannelChats,
+  }) {
+    inlineKeyboard.last.add(
+      InlineKeyboardButton(
+        text: text,
+        switchInlineQueryChosenChat: SwitchInlineQueryChosenChat(
+          query: query,
+          allowUserChats: allowUserChats,
+          allowBotChats: allowBotChats,
+          allowGroupChats: allowGroupChats,
+          allowChannelChats: allowChannelChats,
+        ),
+      ),
+    );
+    return this;
+  }
+
+  /// Adds a callback game button to the keyboard
+  InlineKeyboard game(
+    String text, {
+    CallbackGame game = const CallbackGame(),
+  }) {
+    inlineKeyboard.last.add(
+      InlineKeyboardButton(
+        text: text,
+        callbackGame: game,
+      ),
+    );
+    return this;
+  }
+
+  /// Adds a [Pay Button](https://core.telegram.org/bots/api#payments) to the keyboard
+  InlineKeyboard pay(
+    String text, {
+    bool pay = true,
+  }) {
+    inlineKeyboard.last.add(
+      InlineKeyboardButton(
+        text: text,
+        pay: pay,
+      ),
+    );
+    return this;
+  }
 }
