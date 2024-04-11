@@ -80,8 +80,6 @@ class Bot {
     }
     return RawAPI(
       token,
-      baseUrl: _baseURL,
-      scheme: APIScheme.https,
       loggerOptions: _loggerOptions,
       timeout: timeout,
     );
