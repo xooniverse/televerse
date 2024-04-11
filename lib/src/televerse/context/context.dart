@@ -55,10 +55,10 @@ class Context {
   /// e.g. /hello @mom @dad will have a ctx.args like this: ['@mom', '@dad'].
   /// This will be empty if the message is not a command or if the message doesn't contain text
   /// NOTE: This is obviously also used for the deeplink start parameters.
-  List<String>? get args {
+  List<String> get args {
     if (!(msg?.text?.startsWith('/') ?? false)) return [];
 
-    return msg?.text?.clean.split(' ').sublist(1);
+    return msg?.text?.clean.split(' ').sublist(1) ?? [];
   }
 
   /// This is a shorthand getter for the [Message] recieved in the current context
