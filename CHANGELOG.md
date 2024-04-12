@@ -1,3 +1,10 @@
+# 1.15.8
+
+- Introducing `TGException` enum which is a collection of different possible Telegram exceptions binded with their reasons and possible solutions. 
+- Added `LoggerOptions.only` method to turn on logging for ONLY specified actions.
+- Prints resposne data if any on exception with Logger.
+- Prints `StackTrace` along with uncaught `TelegramException` errors.
+
 # 1.15.7
 
 - `Context.args` will no longer return null. 
