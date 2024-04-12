@@ -1,3 +1,10 @@
+# 1.15.7
+
+- `Context.args` will no longer return null. 
+- ⚠️ Updated `RawAPI` constructor
+- Updated DartDoc comments for the `Bot.command` method.
+- Added new methods to `Keyboard` for simplicity.
+
 # 1.15.6
 
 - Added missing methods in the `InlineKeyboard`
