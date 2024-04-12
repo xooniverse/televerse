@@ -176,7 +176,10 @@ class LoggerOptions {
         if (error) {
           logPrint("--- [Logger]: Error ---");
           if (e.response != null) {
-            logPrint("Telegram Exception Occurred\n  ${e.response}");
+            final encoded = JsonEncoder.withIndent("  ").convert(
+              e.response?.data,
+            );
+            logPrint("Telegram Exception:\n$encoded");
             logPrint("");
           }
           if (stackTrace) {
