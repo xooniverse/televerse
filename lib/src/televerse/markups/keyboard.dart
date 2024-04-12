@@ -29,8 +29,20 @@ class Keyboard extends ReplyKeyboardMarkup {
   }
 
   /// This method adds a new [KeyboardButton] with the passed [text] to the end of the row.
+  ///
+  /// There's a `text` method that does the same.
   Keyboard addText(String text) {
     return add(KeyboardButton(text: text));
+  }
+
+  /// Shorthand method to add a text button to the end row. This is the same as `addText` call.
+  Keyboard text(String text) {
+    return add(KeyboardButton(text: text));
+  }
+
+  /// Adds multiple text buttons to the current row.
+  Keyboard texts(List<String> texts) {
+    return addRow(texts.map((e) => KeyboardButton(text: e)).toList());
   }
 
   /// Adds a new [KeyboardButton] tapping which the user's contact is requested with the specified [text] on it.

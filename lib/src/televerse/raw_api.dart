@@ -23,7 +23,7 @@ class RawAPI {
   final _HttpClient _httpClient;
 
   /// The Raw API.
-  RawAPI(
+  RawAPI._(
     this.token, {
     String? baseUrl,
     APIScheme? scheme,
@@ -37,6 +37,27 @@ class RawAPI {
           timeout: timeout,
         );
 
+  /// `RawAPI` gives you access to all methods of Telegram Bot API.
+  ///
+  /// - [token] - The bot token. This will be used to interact with the Telegram Bot API server.
+  /// - [loggerOptions] - Configuration of network logger. Logs requests and responses to and from Telegram Bot API.
+  /// - [timeout] - Time out Duration for each network request. If a response isn't received within this duration, the request is terminated, and the client throws an exception.
+  ///
+  /// ## Local Bot API
+  ///
+  /// If you're looking to create instance that use local bot api server support, you can use the `RawAPI.local` constructor.
+  factory RawAPI(
+    String token, {
+    LoggerOptions? loggerOptions,
+    Duration? timeout,
+  }) {
+    return RawAPI._(
+      token,
+      loggerOptions: loggerOptions,
+      timeout: timeout,
+    );
+  }
+
   /// Creates a new RawAPI instance with the given [token] and [baseUrl].
   ///
   /// When using `RawAPI.local`, the [baseUrl] is set to `localhost:8081` by default.
@@ -47,7 +68,7 @@ class RawAPI {
     LoggerOptions? loggerOptions,
     Duration? timeout,
   }) {
-    return RawAPI(
+    return RawAPI._(
       token,
       baseUrl: baseUrl,
       scheme: scheme,
