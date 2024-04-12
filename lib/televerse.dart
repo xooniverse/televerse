@@ -58,6 +58,9 @@ part 'src/televerse/conversation/conversation_exception.dart';
 part 'src/televerse/builders/inline_query_result_builder.dart';
 part 'src/televerse/builders/message_content_generator.dart';
 
+/// Extras
+part 'src/televerse/extras/tg_exceptions.dart';
+
 /// The main class of the library.
 ///
 /// This class is used to create a new bot instance. This is just a

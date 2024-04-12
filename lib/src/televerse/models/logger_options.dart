@@ -181,6 +181,14 @@ class LoggerOptions {
             );
             logPrint("Telegram Exception:\n$encoded");
             logPrint("");
+            final tge = TGException.find(e.response!.data["description"]);
+            if (tge != null) {
+              logPrint("Reason:");
+              logPrint("  - ${tge.reason}\n");
+              logPrint("Possible Solution:");
+              logPrint("  - ${tge.help}");
+              logPrint("");
+            }
           }
           if (stackTrace) {
             logPrint("Stack Trace:");
