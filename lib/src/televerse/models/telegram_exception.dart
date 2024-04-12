@@ -40,8 +40,16 @@ class TelegramException implements Exception {
   /// Returns a string representation of the exception.
   @override
   String toString() {
-    return "TelegramException [$code]: ${description != null ? '($description)' : ''}\n"
-        "${parameters != null ? '\nParameters: $parameters' : ''}";
+    String str = "TelegramException [$code]: ";
+    if (description != null) {
+      str += "($description)\n";
+    }
+    if (parameters != null) {
+      str += "\nParameters: $parameters";
+    }
+
+    str += "\nStack Trace:\n$stackTrace";
+    return str;
   }
 
   /// Returns true if the exception is a client exception.
