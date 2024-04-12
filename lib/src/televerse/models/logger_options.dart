@@ -31,6 +31,8 @@ class LoggerOptions {
   /// Creates a new [LoggerOptions] instance. This can be used to configure logging the
   /// request and response data Televerse makes and receives.
   ///
+  /// By default this constructor enabled logging all of the parameters such as `request`., `requestHeader`., `requestBody`., `responseHeader`., `responseBody`., error, and `stackTrace`.
+  ///
   /// - [request] - Print request [Options]
   /// - [requestHeader] - Print request header [Options.headers]
   /// - [requestBody] - Print request data [Options]
@@ -49,6 +51,33 @@ class LoggerOptions {
     this.responseBody = true,
     this.error = true,
     this.stackTrace = true,
+    this.logPrint = _debugPrint,
+    List<APIMethod>? methods,
+    this.prettyPrint = true,
+  }) : methods = methods ?? APIMethod.values; // Default all methods
+
+  /// Creates a new [LoggerOptions] instance with only specified configuration.
+  ///
+  /// All of the parameters are turned off by default.
+  ///
+  /// - [request] - Print request [Options]
+  /// - [requestHeader] - Print request header [Options.headers]
+  /// - [requestBody] - Print request data [Options]
+  /// - [responseHeader] - Print [Response.headers]
+  /// - [responseBody] - Print [Response.data]
+  /// - [error] - Print error message
+  /// - [stackTrace] - Print error stack trace [DioException.stackTrace]
+  /// - [logPrint] - Log printer; defaults print log to console.
+  /// - [methods] - Methods to be logged.
+  /// - [prettyPrint] - Whether to pretty print the response body
+  const LoggerOptions.only({
+    this.request = false,
+    this.requestHeader = false,
+    this.requestBody = false,
+    this.responseHeader = false,
+    this.responseBody = false,
+    this.error = false,
+    this.stackTrace = false,
     this.logPrint = _debugPrint,
     List<APIMethod>? methods,
     this.prettyPrint = true,
@@ -76,7 +105,7 @@ class LoggerOptions {
   final bool stackTrace;
 
   /// Log printer; defaults print log to console.
-  final void Function(Object object) logPrint;
+  final void Function(Object? object) logPrint;
 
   /// Methods to be logged.
   final List<APIMethod> methods;
@@ -145,13 +174,27 @@ class LoggerOptions {
             isAllowed(APIMethod.method(path));
         final error = allowed && this.error;
         if (error) {
-          logPrint("<-- Error -->");
-          logPrint(e);
+          logPrint("--- [Logger]: Error ---");
+          if (e.response != null) {
+            final encoded = JsonEncoder.withIndent("  ").convert(
+              e.response?.data,
+            );
+            logPrint("Telegram Exception:\n$encoded");
+            logPrint("");
+            final tge = TGException.find(e.response!.data["description"]);
+            if (tge != null) {
+              logPrint("Reason:");
+              logPrint("  - ${tge.reason}\n");
+              logPrint("Possible Solution:");
+              logPrint("  - ${tge.help}");
+              logPrint("");
+            }
+          }
           if (stackTrace) {
             logPrint("Stack Trace:");
             logPrint(e.stackTrace);
           }
-          logPrint("<-- End Error -->");
+          logPrint("--- [Logger]: End Error ---\n");
         }
         return handler.next(e);
       },

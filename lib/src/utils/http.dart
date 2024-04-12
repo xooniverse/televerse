@@ -33,7 +33,7 @@ class _HttpClient {
   }
 
   // Throws formatted exception
-  void _dioCatch(Object? e) {
+  void _apiError(Object? e) {
     if (e is TelegramException) {
       throw e;
     }
@@ -72,7 +72,7 @@ class _HttpClient {
         throw TelegramException.fromJson(resBody);
       }
     } catch (e) {
-      _dioCatch(e);
+      _apiError(e);
     }
   }
 
@@ -106,7 +106,7 @@ class _HttpClient {
         throw TelegramException.fromJson(res);
       }
     } catch (e) {
-      _dioCatch(e);
+      _apiError(e);
     }
   }
 
