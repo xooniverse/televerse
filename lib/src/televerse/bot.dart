@@ -341,14 +341,14 @@ class Bot {
   /// The command must be without the leading slash.
   ///
   /// For example, to register a callback for the `/start` command, you would
-  /// call `onCommand('start', callback)`.
+  /// call `command('start', callback)`.
   ///
   /// The callback will be called when a message is received that starts with
   /// the command.
   ///
   /// Example:
   /// ```dart
-  /// bot.onCommand('start', (ctx) {
+  /// bot.command('start', (ctx) {
   ///   ctx.reply('Hello!');
   /// });
   /// ```
