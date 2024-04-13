@@ -115,22 +115,26 @@ class Bot {
     this.fetcher.setApi(api);
     _instance = this;
 
-    api.getMe().then((value) {
-      _me = value;
-    }).catchError((Object err, StackTrace st) async {
-      if (_onError != null) {
-        final botErr = BotError(err, st);
-        await _onError!(botErr);
-      } else if (err is DioException) {
-        if (err.type == DioExceptionType.connectionTimeout ||
-            err.type == DioExceptionType.receiveTimeout ||
-            err.type == DioExceptionType.sendTimeout) {
-          throw TeleverseException.timeoutException(st, timeout!);
-        }
-      } else {
-        throw err;
+    getMe().then(_ignore).catchError(_thenHandleGetMeError);
+  }
+
+  /// Function to ignore things.
+  void _ignore(_) {}
+
+  /// Handles the error in initial `getMe` call
+  FutureOr<Null> _thenHandleGetMeError(Object err, StackTrace st) async {
+    if (_onError != null) {
+      final botErr = BotError(err, st);
+      await _onError!(botErr);
+    } else if (err is DioException) {
+      if (err.type == DioExceptionType.connectionTimeout ||
+          err.type == DioExceptionType.receiveTimeout ||
+          err.type == DioExceptionType.sendTimeout) {
+        throw TeleverseException.timeoutException(st, timeout!);
       }
-    });
+    } else {
+      throw err;
+    }
   }
 
   /// Televerse local constructor. This constructor is used to create a bot instance that listens to a local Bot API server.
@@ -177,6 +181,15 @@ class Bot {
     );
   }
 
+  /// List of pending calls
+  final List<_PendingCall> _pendingCalls = [];
+
+  /// Whether _me is filled or not
+  _GetMeStatus _getMeStatus = _GetMeStatus.notInitiated;
+
+  /// Whether the `Bot.me` is filled
+  bool get initialized => _getMeStatus == _GetMeStatus.completed;
+
   /// Information about the bot.
   late User _me;
 
@@ -206,7 +219,19 @@ class Bot {
   /// Note: As of now this won't be handled in `onError` handler.
   Future<User> getMe() async {
     try {
+      if (initialized) {
+        return _me;
+      }
+      _getMeStatus = _GetMeStatus.pending;
       _me = await api.getMe();
+      _getMeStatus = _GetMeStatus.completed;
+
+      if (_pendingCalls.isNotEmpty) {
+        for (final fn in _pendingCalls) {
+          fn.call();
+        }
+      }
+
       return _me;
     } catch (err, stack) {
       final exception = TeleverseException.getMeRequestFailed(err, stack);
@@ -358,40 +383,35 @@ class Bot {
     Pattern command,
     Handler callback,
   ) async {
-    User? bot;
-    try {
-      bot = me;
-    } catch (err) {
-      try {
-        bot = await getMe();
-        _me = bot;
-      } catch (err, st) {
-        if (_onError != null) {
-          final ex = TeleverseException.getMeRequestFailed(err, st);
-          final botErr = BotError(ex, st);
-          await _onError!(botErr);
-        } else {
-          rethrow;
-        }
-      }
+    if (initialized) {
+      final scope = HandlerScope(
+        isCommand: true,
+        handler: callback,
+        types: [UpdateType.message],
+        predicate: (ctx) {
+          if (ctx.msg?.text == null) return false;
+          if (command is RegExp) {
+            return command.hasMatch(ctx.msg?.text ?? "");
+          } else if (command is String) {
+            final firstTerm = ctx.msg?.text!.split(' ').first;
+            final suffix = me.username != null ? '@${me.username}' : '';
+            return firstTerm == '/$command' || firstTerm == '/$command$suffix';
+          }
+          return false;
+        },
+      );
+      _handlerScopes.add(scope);
+      return;
     }
-    final scope = HandlerScope(
-      isCommand: true,
-      handler: callback,
-      types: [UpdateType.message],
-      predicate: (ctx) {
-        if (ctx.msg?.text == null) return false;
-        if (command is RegExp) {
-          return command.hasMatch(ctx.msg?.text ?? "");
-        } else if (command is String) {
-          final firstTerm = ctx.msg?.text!.split(' ').first;
-          final suffix = bot?.username != null ? '@${bot?.username}' : '';
-          return firstTerm == '/$command' || firstTerm == '/$command$suffix';
-        }
-        return false;
-      },
-    );
-    _handlerScopes.add(scope);
+
+    if (_getMeStatus == _GetMeStatus.pending) {
+      _pendingCalls.add(
+        _PendingCall(
+          fn: this.command,
+          params: [command, callback],
+        ),
+      );
+    }
   }
 
   /// Registers a Handler Scope to listen to matching callback query.
@@ -509,7 +529,6 @@ class Bot {
     _handlerScopes.add(scope);
   }
 
-  /// Filter
   /// Registers a callback for a message that matches the specified filter.
   ///
   /// The callback will be called when a message is received that matches the
@@ -521,6 +540,11 @@ class Bot {
   ///
   /// Example:
   /// ```dart
+  /// bot.filter((ctx) {
+  ///   return (ctx.message.photo?.last.fileSize ?? 0) > 1000000;
+  /// }, (ctx) async {
+  ///   await ctx.reply('Wow, that\'s a big photo!');
+  /// });
   /// ```
   void filter(
     bool Function(Context ctx) predicate,
@@ -530,12 +554,8 @@ class Bot {
     final scope = HandlerScope(
       name: name,
       handler: callback,
-      types: [
-        UpdateType.message,
-      ],
-      predicate: (ctx) {
-        return predicate(ctx);
-      },
+      types: UpdateType.values,
+      predicate: predicate,
     );
 
     _handlerScopes.add(scope);
@@ -1090,16 +1110,18 @@ class Bot {
   Future<void> whenMentioned(
     Handler callback,
   ) async {
-    try {
+    if (initialized) {
       return onMention(
         callback,
         username: me.username,
       );
-    } on TeleverseException catch (_) {
-      _me = await getMe();
-      return onMention(
-        callback,
-        username: me.username,
+    }
+    if (_getMeStatus == _GetMeStatus.pending) {
+      _pendingCalls.add(
+        _PendingCall(
+          fn: whenMentioned,
+          params: [callback],
+        ),
       );
     }
   }

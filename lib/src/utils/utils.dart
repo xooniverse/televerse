@@ -92,3 +92,44 @@ extension FromAndChatExt on Update {
     return m;
   }
 }
+
+/// (Internal) Current status of the initial `Bot.getMe` call
+enum _GetMeStatus {
+  /// Completed
+  completed,
+
+  /// Pending
+  pending,
+
+  /// Not Initiated
+  notInitiated,
+  ;
+}
+
+/// Represents a pending method call
+class _PendingCall {
+  final Function fn;
+  final List<dynamic> params;
+
+  const _PendingCall({
+    required this.fn,
+    required this.params,
+  });
+
+  void call() {
+    switch (params.length) {
+      case 0:
+        fn.call();
+        break;
+      case 1:
+        fn.call(params[0]);
+        break;
+      case 2:
+        fn.call(params[0], params[1]);
+        break;
+      case 3:
+        fn.call(params[0], params[1], params[2]);
+        break;
+    }
+  }
+}
