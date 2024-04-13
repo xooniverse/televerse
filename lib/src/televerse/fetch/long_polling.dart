@@ -16,7 +16,7 @@ class LongPolling extends Fetcher {
   final int limit;
 
   /// A list of update types to fetch.
-  final List<UpdateType> allowedUpdates;
+  final List<UpdateType>? allowedUpdates;
 
   /// The maximum timeout allowed by the Telegram API.
   static const int maxTimeout = 50;
@@ -34,7 +34,7 @@ class LongPolling extends Fetcher {
     this.offset = 0,
     this.timeout = 30,
     this.limit = 100,
-    this.allowedUpdates = const [],
+    this.allowedUpdates,
     this.delayDuration = const Duration(milliseconds: 200),
   }) {
     if (timeout > maxTimeout) throw LongPollingException.invalidTimeout;
@@ -82,7 +82,7 @@ class LongPolling extends Fetcher {
         offset: offset,
         limit: limit,
         timeout: timeout,
-        allowedUpdates: allowedUpdates.map((e) => e.type).toList(),
+        allowedUpdates: allowedUpdates?.map((e) => e.type).toList(),
       );
       int len = updates.length;
       for (int i = 0; i < len; i++) {
