@@ -1,3 +1,10 @@
+# 1.15.9
+
+- Improved efficiency by removing redundant `getMe` calls while registering `command` handlers and `whenMentioned` handlers.
+- Made `LongPolling.allowedUpdates` nullable, and removed the constant empty list initialization. 
+- Updated the README.
+
+
 # 1.15.8
 
 - Introducing `TGException` enum which is a collection of different possible Telegram exceptions binded with their reasons and possible solutions. 
