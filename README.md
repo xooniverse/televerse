@@ -1,15 +1,15 @@
-<center> 
-<h1> Televerse </h1> 
+<div align="center">
+  <h1> Televerse </h1> 
 
-[![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
-![GitHub](https://img.shields.io/github/license/HeySreelal/televerse?color=green)
-![](https://shields.io/badge/Latest-Bot%20API%207.2-blue)
+  [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
+  ![GitHub](https://img.shields.io/github/license/HeySreelal/televerse?color=green)
+  ![](https://shields.io/badge/Latest-Bot%20API%207.2-blue)
 
-<a href="https://telegram.me/TeleverseDart">
-  <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> 
-</a>
+  <a href="https://telegram.me/TeleverseDart">
+    <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> 
+  </a>
 
-</center>
+</div>
 
 ---
 
