@@ -465,6 +465,22 @@ class Bot {
     _handlerScopes.add(scope);
   }
 
+  /// Adds Handler Scope for a Accept-All predicate
+  void _acceptAll(
+    Handler callback,
+    List<UpdateType> types, {
+    String? name,
+  }) {
+    final scope = HandlerScope(
+      name: name,
+      handler: callback,
+      types: types,
+      predicate: (_) => true,
+    );
+
+    _handlerScopes.add(scope);
+  }
+
   /// Registers a callback for a callback query.
   ///
   /// The callback will be called when a callback query is received that has
@@ -891,16 +907,11 @@ class Bot {
   }
 
   /// Registers a callback for the [Update.poll] events.
-  void poll(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.poll,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void poll(
+    Handler callback, {
+    String? name,
+  }) {
+    return _acceptAll(callback, [UpdateType.poll], name: name);
   }
 
   /// Registers a callback for the [Update.pollAnswer] events.
@@ -927,17 +938,10 @@ class Bot {
   /// Registers a callback for the [Update.chosenInlineResult] events.
   /// The callback will be called when a chosen inline result is received.
   void chosenInlineResult(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.chosenInlineResult,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+    Handler callback, {
+    String? name,
+  }) {
+    return _acceptAll(callback, [UpdateType.chosenInlineResult], name: name);
   }
 
   /// Registers a callback for the [Update.chatJoinRequest] events of the particular chat mentioned by the chatId.
@@ -1144,193 +1148,82 @@ class Bot {
   }
 
   /// Registers a callback for all Message updates
-  void onMessage(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.message,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onMessage(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.message], name: name);
   }
 
   /// Registers a callback for all Edited Message updates
-  void onEditedMessage(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.editedMessage,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onEditedMessage(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.editedMessage], name: name);
   }
 
   /// Registers a callback for all Channel Post updates
-  void onChannelPost(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.channelPost,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onChannelPost(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.channelPost], name: name);
   }
 
   /// Registers a callback for all Edited Channel Post updates
-  void onEditedChannelPost(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.editedChannelPost,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onEditedChannelPost(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.editedChannelPost], name: name);
   }
 
   /// Registers a callback for all Inline Query updates
-  void onInlineQuery(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.inlineQuery,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onInlineQuery(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.inlineQuery], name: name);
   }
 
   /// Registers a callback for all Chosen Inline Result updates
-  void onChosenInlineResult(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.chosenInlineResult,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onChosenInlineResult(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.chosenInlineResult], name: name);
   }
 
   /// Registers a callback for all Callback Query updates
-  void onCallbackQuery(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.callbackQuery,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onCallbackQuery(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.callbackQuery], name: name);
   }
 
   /// Registers a callback for all Shipping Query updates
-  void onShippingQuery(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.shippingQuery,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onShippingQuery(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.shippingQuery], name: name);
   }
 
   /// Registers a callback for all Pre Checkout Query updates
-  void onPreCheckoutQuery(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.preCheckoutQuery,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onPreCheckoutQuery(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.preCheckoutQuery], name: name);
   }
 
   /// Registers a callback to be fired for all successful payments
-  void onSuccessfulPayment(Handler callback) {
+  void onSuccessfulPayment(Handler callback, {String? name}) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message?.successfulPayment != null,
+      name: name,
     );
   }
 
   /// Registers a callback for all Poll updates
-  void onPoll(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.poll,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onPoll(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.poll], name: name);
   }
 
   /// Registers a callback for all Poll Answer updates
-  void onPollAnswer(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.pollAnswer,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onPollAnswer(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.pollAnswer], name: name);
   }
 
   /// Registers a callback for all My Chat Member updates
-  void onMyChatMember(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.myChatMember,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onMyChatMember(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.myChatMember], name: name);
   }
 
   /// Registers a callback for all Chat Member updates
-  void onChatMember(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.chatMember,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onChatMember(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.chatMember], name: name);
   }
 
   /// Registers a callback for all Chat Join Request updates
-  void onChatJoinRequest(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.chatJoinRequest,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+  void onChatJoinRequest(Handler callback, {String? name}) {
+    return _acceptAll(callback, [UpdateType.chatJoinRequest], name: name);
   }
 
   /// On Stop Handler
@@ -2077,66 +1970,38 @@ class Bot {
 
   /// Register a callback when a reaction to a message was changed by a user.
   void onMessageReaction(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.messageReaction,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+    Handler callback, {
+    String? name,
+  }) {
+    return _acceptAll(callback, [UpdateType.messageReaction], name: name);
   }
 
   /// Reactions to a message with anonymous reactions were changed.
   void onMessageReactionCount(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.messageReactionCount,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+    Handler callback, {
+    String? name,
+  }) {
+    return _acceptAll(callback, [UpdateType.messageReactionCount], name: name);
   }
 
   /// Registers a callback for when the chat was boosted.
   ///
   /// The bot must be an administrator in the chat for this to work.
   void onChatBoosted(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.chatBoost,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+    Handler callback, {
+    String? name,
+  }) {
+    return _acceptAll(callback, [UpdateType.chatBoost], name: name);
   }
 
   /// Registers a callback to be fired when the chat boost was removed.
   ///
   /// The bot must be an administrator in the chat for this to work.
   void onChatBoostRemoved(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.chatBoostRemoved,
-      ],
-      predicate: (ctx) => true,
-    );
-
-    _handlerScopes.add(scope);
+    Handler callback, {
+    String? name,
+  }) {
+    return _acceptAll(callback, [UpdateType.chatBoostRemoved], name: name);
   }
 
   /// Registers a callback to be fired when a user reacts given emoji to a message.
@@ -2166,61 +2031,37 @@ class Bot {
 
   /// Registers a callback to be fired when a connection of the bot with a business account is made.
   void onBusinessConnection(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.businessConnection,
-      ],
-      predicate: (_) => true,
-    );
-
-    _handlerScopes.add(scope);
+    Handler callback, {
+    String? name,
+  }) {
+    return _acceptAll(callback, [UpdateType.businessConnection], name: name);
   }
 
   /// Registers callback to be fired when a new message is received in a business account connected to the bot.
   void onBusinessMessage(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.businessMessage,
-      ],
-      predicate: (_) => true,
-    );
-
-    _handlerScopes.add(scope);
+    Handler callback, {
+    String? name,
+  }) {
+    return _acceptAll(callback, [UpdateType.businessMessage], name: name);
   }
 
   /// Registers a callback to be fired when a business message is edited.
   void onBusinessMessageEdited(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.editedBusinessMessage,
-      ],
-      predicate: (_) => true,
-    );
-
-    _handlerScopes.add(scope);
+    Handler callback, {
+    String? name,
+  }) {
+    return _acceptAll(callback, [UpdateType.channelPost], name: name);
   }
 
   /// Registers a callback to be fired when a business message is deleted.
   void onBusinessMessageDeleted(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.deletedBusinessMessages,
-      ],
-      predicate: (_) => true,
+    Handler callback, {
+    String? name,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.deletedBusinessMessages],
+      name: name,
     );
-
-    _handlerScopes.add(scope);
   }
 }
