@@ -406,10 +406,10 @@ class Bot {
   /// ```
   ///
   /// This will reply "Hello!" to any message that starts with `/start`.
-  Future<void> command(
+  void command(
     Pattern command,
     Handler callback,
-  ) async {
+  ) {
     if (initialized) {
       final scope = HandlerScope(
         isCommand: true,
@@ -674,12 +674,12 @@ class Bot {
   }
 
   /// Registers a callback for the `/settings` command.
-  Future<void> settings(Handler handler) {
+  void settings(Handler handler) {
     return command("settings", handler);
   }
 
   /// Registers a callback for the `/help` command.
-  Future<void> help(Handler handler) {
+  void help(Handler handler) {
     return command("help", handler);
   }
 
@@ -772,9 +772,7 @@ class Bot {
   }) {
     final scope = HandlerScope(
       handler: callback,
-      types: [
-        UpdateType.message,
-      ],
+      types: UpdateType.messages(),
       predicate: (ctx) {
         return _internalEntityMatcher(
           context: ctx,
@@ -802,9 +800,7 @@ class Bot {
   }) {
     final scope = HandlerScope(
       handler: callback,
-      types: [
-        UpdateType.message,
-      ],
+      types: UpdateType.messages(),
       predicate: (ctx) {
         List<MessageEntity>? entities = ctx.message?.entities;
         if (shouldMatchCaptionEntities) {
