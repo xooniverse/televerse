@@ -59,6 +59,8 @@ class Bot {
     }
   }
 
+  RawAPI? _api;
+
   /// Raw API - gives you access to all the methods of Telegram Bot API.
   ///
   /// This getter returns the [RawAPI] instance. You can use this to access the raw API instance from anywhere in your code.
@@ -69,20 +71,25 @@ class Bot {
   /// ```
   ///
   RawAPI get api {
+    if (_api != null) {
+      return _api!;
+    }
     if (isLocal) {
-      return RawAPI.local(
+      _api = RawAPI.local(
         token,
         baseUrl: _baseURL,
         scheme: _scheme,
         loggerOptions: _loggerOptions,
         timeout: timeout,
       );
+      return _api!;
     }
-    return RawAPI(
+    _api = RawAPI(
       token,
       loggerOptions: _loggerOptions,
       timeout: timeout,
     );
+    return _api!;
   }
 
   /// The fetcher - used to fetch updates from the Telegram servers.
@@ -164,7 +171,6 @@ class Bot {
   factory Bot.local(
     String token, {
     Fetcher? fetcher,
-    bool sync = false,
     String baseURL = "localhost:8081",
     APIScheme scheme = APIScheme.http,
     LoggerOptions? loggerOptions,
@@ -179,6 +185,27 @@ class Bot {
       loggerOptions: loggerOptions,
       timeout: timeout,
     );
+  }
+
+  /// Constructs a Bot instance from the passed `RawAPI` instance.
+  ///
+  /// This is useful when your code primarily focuses on RawAPI than listeners and when you'd like to have access to
+  /// `RawAPI` instance separately.
+  Bot.fromAPI(
+    RawAPI api, {
+    Fetcher? fetcher,
+  })  : _api = api,
+        _baseURL = api._baseUrl,
+        isLocal = api._baseUrl != RawAPI.defaultBase,
+        _loggerOptions = api._httpClient.loggerOptions,
+        _scheme = api._scheme,
+        timeout = api.timeout,
+        token = api.token,
+        fetcher = fetcher ?? LongPolling() {
+    this.fetcher.setApi(api);
+    _instance = this;
+
+    getMe().then(_ignore).catchError(_thenHandleGetMeError);
   }
 
   /// List of pending calls
