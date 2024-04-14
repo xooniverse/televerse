@@ -59,6 +59,7 @@ class Bot {
     }
   }
 
+  /// Raw API instance associated with this bot instance (internal)
   RawAPI? _api;
 
   /// Raw API - gives you access to all the methods of Telegram Bot API.
@@ -257,6 +258,7 @@ class Bot {
         for (final fn in _pendingCalls) {
           fn.call();
         }
+        _pendingCalls.clear();
       }
 
       return _me;
