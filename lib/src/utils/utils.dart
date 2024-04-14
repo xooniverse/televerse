@@ -133,3 +133,49 @@ class _PendingCall {
     }
   }
 }
+
+/// Extension on `Chat` to create ID of the chat
+extension GetChatID on Chat {
+  /// Returns the `ChatID` of the chat.
+  ChatID getId() {
+    return ChatID(id);
+  }
+
+  /// Gets the chat's `ChannelID` from the username
+  ID? getChannelId() {
+    if (username != null) return ChannelID(username!);
+    return null;
+  }
+
+  /// Returns true if the [chatId] passed matches the current chat's ID.
+  bool isTheSameChat(ID chatId) {
+    if (chatId is ChatID) return chatId == getId();
+    if (chatId is SupergroupID || chatId is ChannelID) {
+      return chatId == getChannelId();
+    }
+    return false;
+  }
+}
+
+/// Extension on `User` to create ID of the chat
+extension GetUserChatID on User {
+  /// Returns the `ChatID` of the chat.
+  ChatID getId() {
+    return ChatID(id);
+  }
+
+  /// Gets the chat's `ChannelID` from the username
+  ID? getChannelId() {
+    if (username != null) return ChannelID(username!);
+    return null;
+  }
+
+  /// Returns true if the [chatId] passed matches the current chat's ID.
+  bool isTheSameChat(ID chatId) {
+    if (chatId is ChatID) return chatId == getId();
+    if (chatId is SupergroupID || chatId is ChannelID) {
+      return chatId == getChannelId();
+    }
+    return false;
+  }
+}

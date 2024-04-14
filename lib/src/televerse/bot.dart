@@ -940,23 +940,24 @@ class Bot {
     _handlerScopes.add(scope);
   }
 
-  /// Registers a callback for the [Update.chatJoinRequest] events.
+  /// Registers a callback for the [Update.chatJoinRequest] events of the particular chat mentioned by the chatId.
   ///
   /// The callback will be called when a chat join request is received.
-  void chatJoinRequest(Handler callback) {
+  void chatJoinRequest(ID chatId, Handler callback) {
     final scope = HandlerScope(
       handler: callback,
       types: [
         UpdateType.chatJoinRequest,
       ],
-      predicate: (ctx) => true,
+      predicate: (ctx) => ctx.chat?.isTheSameChat(chatId) ?? false,
     );
 
     _handlerScopes.add(scope);
   }
 
-  /// Registers a callback for Shipping Query events.
+  /// Registers a callback for Shipping Query events for the specified User.
   void shippingQuery(
+    ID chatId,
     Handler callback,
   ) {
     final scope = HandlerScope(
@@ -964,7 +965,9 @@ class Bot {
       types: [
         UpdateType.shippingQuery,
       ],
-      predicate: (ctx) => true,
+      predicate: (ctx) {
+        return ctx.from?.isTheSameChat(chatId) ?? false;
+      },
     );
 
     _handlerScopes.add(scope);
@@ -972,6 +975,7 @@ class Bot {
 
   /// Registers a callback for Pre Checkout Query events.
   void preCheckoutQuery(
+    ChatID chatId,
     Handler callback,
   ) {
     final scope = HandlerScope(
@@ -979,7 +983,9 @@ class Bot {
       types: [
         UpdateType.preCheckoutQuery,
       ],
-      predicate: (ctx) => true,
+      predicate: (ctx) {
+        return ctx.from?.isTheSameChat(chatId) ?? false;
+      },
     );
 
     _handlerScopes.add(scope);
@@ -1037,9 +1043,7 @@ class Bot {
 
     final scope = HandlerScope(
       handler: callback,
-      types: [
-        UpdateType.message,
-      ],
+      types: UpdateType.messages(),
       predicate: (ctx) {
         return _internalEntityMatcher(
           context: ctx,
@@ -1119,14 +1123,8 @@ class Bot {
     _handlerScopes.add(scope);
   }
 
-  /// This method sets up a callback when the bot is mentioned.
-  ///
-  /// This method possibly returns a [Future] if the bot information is not available
-  /// when the method is called. If the bot information is not available, the method
-  /// will fetch the bot information using the [RawAPI.getMe] method and then setup the callback.
-  ///
-  ///
-  Future<void> whenMentioned(
+  /// This method sets up a callback to be fired when the bot is mentioned.
+  void whenMentioned(
     Handler callback,
   ) async {
     if (initialized) {
@@ -1352,6 +1350,7 @@ class Bot {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     String? name,
+    ID? chatId,
   }) {
     final scope = HandlerScope(
       name: name,
@@ -1361,6 +1360,9 @@ class Bot {
         if (!onlyChannelPosts) UpdateType.message,
       ],
       predicate: (ctx) {
+        if (chatId != null) {
+          return predicate(ctx) && (ctx.chat?.isTheSameChat(chatId) ?? false);
+        }
         return predicate(ctx);
       },
     );
@@ -1378,12 +1380,14 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.audio != null,
+      (ctx) => ctx.msg?.audio != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1397,12 +1401,14 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.document != null,
+      (ctx) => ctx.msg?.document != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1416,12 +1422,14 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.photo != null,
+      (ctx) => ctx.msg?.photo != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1435,12 +1443,14 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.sticker != null,
+      (ctx) => ctx.msg?.sticker != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1454,12 +1464,14 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.video != null,
+      (ctx) => ctx.msg?.video != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1473,12 +1485,14 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.videoNote != null,
+      (ctx) => ctx.msg?.videoNote != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1492,22 +1506,26 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.voice != null,
+      (ctx) => ctx.msg?.voice != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
   /// Registers a callback for messages that contain a contact.
   void onContact(
-    Handler callback,
-  ) {
+    Handler callback, {
+    ID? chatId,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.contact != null,
+      (ctx) => ctx.msg?.contact != null,
+      chatId: chatId,
     );
   }
 
@@ -1521,12 +1539,14 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.dice != null,
+      (ctx) => ctx.msg?.dice != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1540,12 +1560,14 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.game != null,
+      (ctx) => ctx.msg?.game != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1559,12 +1581,14 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.poll != null,
+      (ctx) => ctx.msg?.poll != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1578,12 +1602,14 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.venue != null,
+      (ctx) => ctx.msg?.venue != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1597,22 +1623,27 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.location != null,
+      (ctx) => ctx.msg?.location != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
   /// Registers a callback for messages that is a live location update.
-  void onLiveLocation(Handler callback) {
+  void onLiveLocation(
+    Handler callback, {
+    ID? chatId,
+  }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) =>
-          ctx.message?.location != null &&
-          ctx.message?.location!.livePeriod != null,
+          ctx.msg?.location != null && ctx.msg?.location!.livePeriod != null,
+      chatId: chatId,
     );
   }
 
@@ -1626,12 +1657,14 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.newChatTitle != null,
+      (ctx) => ctx.msg?.newChatTitle != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1645,21 +1678,26 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.newChatPhoto != null,
+      (ctx) => ctx.msg?.newChatPhoto != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
   /// Registers a callback for delete chat photo service messages.
-  void onDeleteChatPhoto(Handler callback) {
+  void onDeleteChatPhoto(
+    Handler callback, {
+    ID? chatId,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) =>
-          ctx.message?.deleteChatPhoto != null && ctx.message!.deleteChatPhoto!,
+      (ctx) => ctx.msg?.deleteChatPhoto != null && ctx.msg!.deleteChatPhoto!,
+      chatId: chatId,
     );
   }
 
@@ -1673,30 +1711,40 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.pinnedMessage != null;
+        return ctx.msg?.pinnedMessage != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
   /// Registers a callback for a user is shared to the bot
-  void onUsrShared(Handler callback) {
+  void onUsrShared(
+    Handler callback, {
+    ID? chatId,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.usersShared != null,
+      (ctx) => ctx.msg?.usersShared != null,
+      chatId: chatId,
     );
   }
 
   /// Registers a callback for a chat is shared to the bot
-  void onChatShared(Handler callback) {
+  void onChatShared(
+    Handler callback, {
+    ID? chatId,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.chatShared != null,
+      (ctx) => ctx.msg?.chatShared != null,
+      chatId: chatId,
     );
   }
 
@@ -1710,14 +1758,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.videoChatScheduled != null;
+        return ctx.msg?.videoChatScheduled != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1731,14 +1781,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.videoChatStarted != null;
+        return ctx.msg?.videoChatStarted != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1752,62 +1804,88 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.videoChatEnded != null;
+        return ctx.msg?.videoChatEnded != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
   /// Registers a callback to be fired when new participants are invited to a video chat
-  void whenVideoChatParticipantsInvited(Handler callback) {
+  void whenVideoChatParticipantsInvited(
+    Handler callback, {
+    ID? chatId,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.videoChatParticipantsInvited != null,
+      (ctx) => ctx.msg?.videoChatParticipantsInvited != null,
+      chatId: chatId,
     );
   }
 
   /// Registers a callback to be fired when a forum topic is created
-  void onForumTopicCreated(Handler callback) {
+  void onForumTopicCreated(
+    Handler callback, {
+    ID? chatId,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.forumTopicCreated != null,
+      (ctx) => ctx.msg?.forumTopicCreated != null,
+      chatId: chatId,
     );
   }
 
   /// Registers a callback to be fired when a forum topic is edited
-  void onForumTopicEdited(Handler callback) {
+  void onForumTopicEdited(
+    Handler callback, {
+    ID? chatId,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.forumTopicEdited != null,
+      (ctx) => ctx.msg?.forumTopicEdited != null,
+      chatId: chatId,
     );
   }
 
   /// Registers a callback to be fired when a forum topic is closed
-  void onForumTopicClosed(Handler callback) {
+  void onForumTopicClosed(
+    Handler callback, {
+    ID? chatId,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.forumTopicClosed != null,
+      (ctx) => ctx.msg?.forumTopicClosed != null,
+      chatId: chatId,
     );
   }
 
   /// Registers a callback to be fired when a forum topic is reopened
-  void onForumTopicReopened(Handler callback) {
+  void onForumTopicReopened(
+    Handler callback, {
+    ID? chatId,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.forumTopicReopened != null,
+      (ctx) => ctx.msg?.forumTopicReopened != null,
+      chatId: chatId,
     );
   }
 
   /// Registers a callback to be fired when data sent from a web app is received
-  void onWebAppData(Handler callback) {
+  void onWebAppData(
+    Handler callback, {
+    ID? chatId,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.webAppData != null,
+      (ctx) => ctx.msg?.webAppData != null,
+      chatId: chatId,
     );
   }
 
@@ -1821,14 +1899,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.animation != null;
+        return ctx.msg?.animation != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1842,14 +1922,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.text != null;
+        return ctx.msg?.text != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1863,14 +1945,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.caption != null;
+        return ctx.msg?.caption != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
     );
   }
 
@@ -1954,7 +2038,7 @@ class Bot {
 
     filter(
       (ctx) {
-        return ctx.message?.chat.id == msg.chat.id &&
+        return (ctx.chat?.isTheSameChat(msg.chat.getId()) ?? false) &&
             isNextMessage(ctx.message?.messageId);
       },
       (ctx) async {
@@ -1973,11 +2057,12 @@ class Bot {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     String? name,
+    ID? chatId,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.entities?.any((element) {
+        return ctx.msg?.entities?.any((element) {
               return element.type == MessageEntityType.botCommand &&
                   element.offset == 0;
             }) ??
@@ -1986,6 +2071,7 @@ class Bot {
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
       name: name,
+      chatId: chatId,
     );
   }
 
@@ -2062,7 +2148,14 @@ class Bot {
       ],
       predicate: (ctx) {
         return ctx.messageReaction?.newReaction.any((ReactionType el) {
-              return el is ReactionTypeEmoji && el.emoji == emoji;
+              if (el is ReactionTypeEmoji) {
+                try {
+                  return el.emoji.codeUnitAt(0) == emoji.codeUnitAt(0);
+                } catch (_) {
+                  return false;
+                }
+              }
+              return false;
             }) ??
             false;
       },
