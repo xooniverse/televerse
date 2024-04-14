@@ -637,11 +637,9 @@ class Bot {
       pattern: exp,
       isRegExp: true,
       handler: callback,
-      types: [
-        UpdateType.message,
-      ],
+      types: UpdateType.messages(),
       predicate: (ctx) {
-        return exp.hasMatch(ctx.message?.text ?? '');
+        return exp.hasMatch(ctx.msg?.text ?? '');
       },
     );
 
