@@ -414,7 +414,7 @@ class Bot {
       final scope = HandlerScope(
         isCommand: true,
         handler: callback,
-        types: [UpdateType.message],
+        types: UpdateType.messages(),
         predicate: (ctx) {
           if (ctx.msg?.text == null) return false;
           if (command is RegExp) {

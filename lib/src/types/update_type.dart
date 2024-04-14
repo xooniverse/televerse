@@ -127,4 +127,16 @@ enum UpdateType {
   factory UpdateType.fromJson(String type) {
     return UpdateType.values.firstWhere((e) => e.type == type);
   }
+
+  /// List of update types that related to a Message event.
+  static List<UpdateType> messages() {
+    return [
+      message,
+      editedMessage,
+      channelPost,
+      editedChannelPost,
+      businessMessage,
+      editedBusinessMessage,
+    ];
+  }
 }
