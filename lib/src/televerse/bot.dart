@@ -604,11 +604,9 @@ class Bot {
   ) {
     final scope = HandlerScope(
       handler: callback,
-      types: [
-        UpdateType.message,
-      ],
+      types: UpdateType.messages(),
       predicate: (ctx) {
-        return ctx.message?.text == text;
+        return ctx.msg?.text == text;
       },
     );
 
