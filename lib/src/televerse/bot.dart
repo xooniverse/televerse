@@ -289,6 +289,7 @@ class Bot {
     }
   }
 
+  /// Processes the Update as per the scope definition.
   Future<void> _processUpdate(HandlerScope scope, Context context) async {
     if (_isAsync(scope.handler!)) {
       try {
@@ -315,28 +316,41 @@ class Bot {
     }
   }
 
-  /// Emit new update into the stream.
+  /// Handles the update
+  ///
+  /// This method creates the Context instance for the update and resolves the
+  /// Handler Scopes and proceeds to process the update.
   void _onUpdate(Update update) async {
+    // Gets the sublist of Handler Scopes that is apt for the recieved Update
     final sub = _handlerScopes.reversed.where((scope) {
       return scope.types.contains(update.type);
     }).toList();
-    int len = sub.length;
 
+    // Creates the context instance for the update
     final context = Context(this, update: update);
 
-    final forks =
-        sub.indexed.where((s) => s.$2.forked).map((e) => e.$1).toList();
+    // Indexes of the forked Handler Scopes
+    final forks = sub.indexed
+        .where((s) => s.$2.forked)
+        .map(
+          (e) => e.$1,
+        )
+        .toList();
 
+    // Processes forked handlers first
     for (int i = 0; i < forks.length; i++) {
       final passing = sub[forks[i]].predicate(context);
       if (!passing) continue;
       _preProcess(sub[forks[i]], context);
-      _processUpdate(sub[forks[i]], context);
+      await _processUpdate(sub[forks[i]], context);
       sub[forks[i]].executed();
     }
 
-    for (int i = 0; i < len; i++) {
-      if (sub[i].isConversation && sub[i].predicate(context)) {
+    // Finds and processes the handler scopes.
+    for (int i = 0; i < sub.length; i++) {
+      final passing = sub[i].predicate(context);
+
+      if (sub[i].isConversation && passing) {
         break;
       }
 
@@ -345,7 +359,7 @@ class Bot {
 
       _preProcess(sub[i], context);
 
-      if (sub[i].predicate(context)) {
+      if (passing) {
         await _processUpdate(sub[i], context);
         sub[i].executed();
         break;
