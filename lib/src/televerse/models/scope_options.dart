@@ -29,5 +29,5 @@ class ScopeOptions {
   /// Constructs a `ScopeOption` that is forked. This scope will allow the processing of subsequent handler scope as well.
   ///
   /// - [name] - Name of the Handler Scope. This can be used to remove the scope later.
-  const ScopeOptions.forked([this.name]) : forked = true;
+  const ScopeOptions.forked({this.name}) : forked = true;
 }

@@ -2373,4 +2373,12 @@ class Bot {
       options: options,
     );
   }
+
+  /// Removes an already added listener by name
+  bool removeScope(String name) {
+    final ix = _handlerScopes.indexWhere((s) => s.name == name);
+    if (ix == -1) return false;
+    _handlerScopes.removeAt(ix);
+    return true;
+  }
 }
