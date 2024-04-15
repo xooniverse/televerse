@@ -19,18 +19,19 @@ abstract class ID {
   ///
   /// If the passed [value] is neither an integer nor a string, this method will throw a [TeleverseException].
   static ID create(dynamic value) {
-    switch (value.runtimeType) {
-      case int:
-        return ChatID.create(value);
-      case String:
-        return SupergroupID.create(value);
-      default:
-        throw TeleverseException(
-          "The passed value is not a valid chat id. The value must be an integer or a string.",
-          description: "The passed value is of type ${value.runtimeType}.",
-          type: TeleverseExceptionType.invalidParameter,
-        );
+    if (value is int) {
+      return ChatID.create(value);
     }
+
+    if (value is String) {
+      return ChannelID.create(value);
+    }
+
+    throw TeleverseException(
+      "The passed value is not a valid chat id. The value must be an integer or a string.",
+      description: "The passed value is of type ${value.runtimeType}.",
+      type: TeleverseExceptionType.invalidParameter,
+    );
   }
 
   /// Returns the id as a string or an integer.
