@@ -326,6 +326,12 @@ class Bot {
       return scope.types.contains(update.type);
     }).toList();
 
+    if (sub.any((el) => el.hasCustomPredicate)) {
+      sub.sort((a, b) {
+        return "${b.hasCustomPredicate}".compareTo("${a.hasCustomPredicate}");
+      });
+    }
+
     // Creates the context instance for the update
     final context = Context(this, update: update);
 
@@ -349,6 +355,19 @@ class Bot {
     // Finds and processes the handler scopes.
     for (int i = 0; i < sub.length; i++) {
       final passing = sub[i].predicate(context);
+      if (sub[i].hasCustomPredicate) {
+        try {
+          final customPass =
+              await sub[i].options!.customPredicate!.call(context);
+          if (!customPass) continue;
+        } catch (err, stack) {
+          if (_onError != null) {
+            final botErr = BotError(err, stack);
+            await _onError!(botErr);
+          }
+          continue;
+        }
+      }
 
       if (sub[i].isConversation && passing) {
         break;

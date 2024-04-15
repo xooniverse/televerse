@@ -58,4 +58,7 @@ class HandlerScope {
   void executed() {
     isExecuted = true;
   }
+
+  /// Whether the scope has a custom predicate
+  bool get hasCustomPredicate => options?.customPredicate != null;
 }
