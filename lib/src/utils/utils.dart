@@ -110,26 +110,57 @@ enum _GetMeStatus {
 class _PendingCall {
   final Function fn;
   final List<dynamic> params;
+  final Map<Symbol, dynamic> namedParams;
 
   const _PendingCall({
     required this.fn,
     required this.params,
+    this.namedParams = const <Symbol, dynamic>{},
   });
+}
 
-  void call() {
-    switch (params.length) {
-      case 0:
-        fn.call();
-        break;
-      case 1:
-        fn.call(params[0]);
-        break;
-      case 2:
-        fn.call(params[0], params[1]);
-        break;
-      case 3:
-        fn.call(params[0], params[1], params[2]);
-        break;
+/// Extension on `Chat` to create ID of the chat
+extension GetChatID on Chat {
+  /// Returns the `ChatID` of the chat.
+  ChatID getId() {
+    return ChatID(id);
+  }
+
+  /// Gets the chat's `ChannelID` from the username
+  ID? getChannelId() {
+    if (username != null) return ChannelID(username!);
+    return null;
+  }
+
+  /// Returns true if the [chatId] passed matches the current chat's ID.
+  bool isTheSameChat(ID chatId) {
+    if (chatId is ChatID) return chatId == getId();
+    if (chatId is SupergroupID || chatId is ChannelID) {
+      return chatId == getChannelId();
     }
+    return false;
+  }
+}
+
+/// Extension on `User` to create ID of the chat
+extension GetUserChatID on User {
+  /// Returns the `ChatID` of the chat.
+  ChatID getId() {
+    return ChatID(id);
+  }
+
+  /// Gets the chat's `ChannelID` from the username
+  ID? getChannelId() {
+    if (username != null) return ChannelID(username!);
+    return null;
+  }
+
+  /// Returns true if the [chatId] passed matches the current chat's ID.
+  bool isTheSameChat(ID chatId) {
+    if (chatId is ChatID) return chatId == getId();
+    if (chatId is SupergroupID || chatId is ChannelID) {
+      return chatId == getChannelId();
+    }
+    return false;
   }
 }

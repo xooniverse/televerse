@@ -383,7 +383,7 @@ class Conversation {
     _bot._handlerScopes.add(
       HandlerScope(
         isConversation: true,
-        name: scopeName,
+        options: ScopeOptions(name: scopeName),
         predicate: (ctx) =>
             _isSameChat(ctx.update, chatId) && filter(ctx.update),
         types: UpdateType.values,

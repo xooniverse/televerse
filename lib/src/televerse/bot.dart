@@ -59,6 +59,9 @@ class Bot {
     }
   }
 
+  /// Raw API instance associated with this bot instance (internal)
+  RawAPI? _api;
+
   /// Raw API - gives you access to all the methods of Telegram Bot API.
   ///
   /// This getter returns the [RawAPI] instance. You can use this to access the raw API instance from anywhere in your code.
@@ -69,20 +72,25 @@ class Bot {
   /// ```
   ///
   RawAPI get api {
+    if (_api != null) {
+      return _api!;
+    }
     if (isLocal) {
-      return RawAPI.local(
+      _api = RawAPI.local(
         token,
         baseUrl: _baseURL,
         scheme: _scheme,
         loggerOptions: _loggerOptions,
         timeout: timeout,
       );
+      return _api!;
     }
-    return RawAPI(
+    _api = RawAPI(
       token,
       loggerOptions: _loggerOptions,
       timeout: timeout,
     );
+    return _api!;
   }
 
   /// The fetcher - used to fetch updates from the Telegram servers.
@@ -164,7 +172,6 @@ class Bot {
   factory Bot.local(
     String token, {
     Fetcher? fetcher,
-    bool sync = false,
     String baseURL = "localhost:8081",
     APIScheme scheme = APIScheme.http,
     LoggerOptions? loggerOptions,
@@ -179,6 +186,27 @@ class Bot {
       loggerOptions: loggerOptions,
       timeout: timeout,
     );
+  }
+
+  /// Constructs a Bot instance from the passed `RawAPI` instance.
+  ///
+  /// This is useful when your code primarily focuses on RawAPI than listeners and when you'd like to have access to
+  /// `RawAPI` instance separately.
+  Bot.fromAPI(
+    RawAPI api, {
+    Fetcher? fetcher,
+  })  : _api = api,
+        _baseURL = api._baseUrl,
+        isLocal = api._baseUrl != RawAPI.defaultBase,
+        _loggerOptions = api._httpClient.loggerOptions,
+        _scheme = api._scheme,
+        timeout = api.timeout,
+        token = api.token,
+        fetcher = fetcher ?? LongPolling() {
+    this.fetcher.setApi(api);
+    _instance = this;
+
+    getMe().then(_ignore).catchError(_thenHandleGetMeError);
   }
 
   /// List of pending calls
@@ -228,8 +256,10 @@ class Bot {
 
       if (_pendingCalls.isNotEmpty) {
         for (final fn in _pendingCalls) {
-          fn.call();
+          final mirror = reflect(fn);
+          mirror.invoke(#fn, fn.params, fn.namedParams);
         }
+        _pendingCalls.clear();
       }
 
       return _me;
@@ -241,59 +271,116 @@ class Bot {
 
   /// Whether the function is async or not.
   /// Thanks to StackOverflow answer: https://stackoverflow.com/a/63109983/10006183
-  bool _checkSync(Function fn) {
+  bool _isAsync(Function fn) {
     if (fn is Future Function(Never)) return true;
     return false;
   }
 
-  /// Emit new update into the stream.
+  /// Preprocessing the Context.
+  ///
+  /// This method sets additional info if any has to be set. For example, this method currently sets `Context.matches`
+  /// parameter if the [scope] is a RegExp handler.
+  void _preProcess(HandlerScope scope, Context context) async {
+    if (scope.isRegExp) {
+      final text = context.msg?.text ?? "";
+      if (scope.pattern != null) {
+        context._matches = scope.pattern!.allMatches(text).toList();
+      }
+    }
+  }
+
+  /// Processes the Update as per the scope definition.
+  Future<void> _processUpdate(HandlerScope scope, Context context) async {
+    if (_isAsync(scope.handler!)) {
+      try {
+        await ((scope.handler!(context)) as Future);
+      } catch (err, stack) {
+        if (_onError != null) {
+          final botErr = BotError(err, stack, ctx: context);
+          await _onError!(botErr);
+        } else {
+          rethrow;
+        }
+      }
+    } else {
+      try {
+        scope.handler!(context);
+      } catch (err, stack) {
+        if (_onError != null) {
+          final botErr = BotError(err, stack, ctx: context);
+          await _onError!(botErr);
+        } else {
+          rethrow;
+        }
+      }
+    }
+  }
+
+  /// Handles the update
+  ///
+  /// This method creates the Context instance for the update and resolves the
+  /// Handler Scopes and proceeds to process the update.
   void _onUpdate(Update update) async {
+    // Gets the sublist of Handler Scopes that is apt for the recieved Update
     final sub = _handlerScopes.reversed.where((scope) {
       return scope.types.contains(update.type);
     }).toList();
-    int len = sub.length;
-    for (int i = 0; i < len; i++) {
-      final context = Context(this, update: update);
 
-      if (sub[i].isConversation && sub[i].predicate(context)) {
+    if (sub.any((el) => el.hasCustomPredicate)) {
+      sub.sort((a, b) {
+        return "${b.hasCustomPredicate}".compareTo("${a.hasCustomPredicate}");
+      });
+    }
+
+    // Creates the context instance for the update
+    final context = Context(this, update: update);
+
+    // Indexes of the forked Handler Scopes
+    final forks = sub.indexed
+        .where((s) => s.$2.forked)
+        .map(
+          (e) => e.$1,
+        )
+        .toList();
+
+    // Processes forked handlers first
+    for (int i = 0; i < forks.length; i++) {
+      final passing = sub[forks[i]].predicate(context);
+      if (!passing) continue;
+      _preProcess(sub[forks[i]], context);
+      await _processUpdate(sub[forks[i]], context);
+      sub[forks[i]].executed();
+    }
+
+    // Finds and processes the handler scopes.
+    for (int i = 0; i < sub.length; i++) {
+      final passing = sub[i].predicate(context);
+      if (sub[i].hasCustomPredicate) {
+        try {
+          final customPass =
+              await sub[i].options!.customPredicate!.call(context);
+          if (!customPass) continue;
+        } catch (err, stack) {
+          if (_onError != null) {
+            final botErr = BotError(err, stack);
+            await _onError!(botErr);
+          }
+          continue;
+        }
+      }
+
+      if (sub[i].isConversation && passing) {
         break;
       }
 
       if (sub[i].handler == null) continue;
+      if (sub[i].isExecuted) continue;
 
-      if (sub[i].special) {
-        if (sub[i].isRegExp) {
-          final text = context.msg?.text ?? "";
-          if (sub[i].pattern != null) {
-            context._matches = sub[i].pattern!.allMatches(text).toList();
-          }
-        }
-      }
+      _preProcess(sub[i], context);
 
-      if (sub[i].predicate(context)) {
-        if (_checkSync(sub[i].handler!)) {
-          try {
-            await ((sub[i].handler!(context)) as Future);
-          } catch (err, stack) {
-            if (_onError != null) {
-              final botErr = BotError(err, stack, ctx: context);
-              await _onError!(botErr);
-            } else {
-              rethrow;
-            }
-          }
-        } else {
-          try {
-            sub[i].handler!(context);
-          } catch (err, stack) {
-            if (_onError != null) {
-              final botErr = BotError(err, stack, ctx: context);
-              await _onError!(botErr);
-            } else {
-              rethrow;
-            }
-          }
-        }
+      if (passing) {
+        await _processUpdate(sub[i], context);
+        sub[i].executed();
         break;
       }
     }
@@ -373,21 +460,23 @@ class Bot {
   ///
   /// Example:
   /// ```dart
-  /// bot.command('start', (ctx) {
-  ///   ctx.reply('Hello!');
+  /// bot.command('start', (ctx) async {
+  ///   await ctx.reply('Hello!');
   /// });
   /// ```
   ///
   /// This will reply "Hello!" to any message that starts with `/start`.
-  Future<void> command(
+  void command(
     Pattern command,
-    Handler callback,
-  ) async {
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
     if (initialized) {
       final scope = HandlerScope(
         isCommand: true,
+        options: options,
         handler: callback,
-        types: [UpdateType.message],
+        types: UpdateType.messages(),
         predicate: (ctx) {
           if (ctx.msg?.text == null) return false;
           if (command is RegExp) {
@@ -409,6 +498,9 @@ class Bot {
         _PendingCall(
           fn: this.command,
           params: [command, callback],
+          namedParams: {
+            #options: options,
+          },
         ),
       );
     }
@@ -418,10 +510,10 @@ class Bot {
   void _internalCallbackQueryRegister(
     Pattern data,
     Handler callback, {
-    String? name,
+    ScopeOptions? options,
   }) {
     final scope = HandlerScope(
-      name: name,
+      options: options,
       handler: callback,
       types: [UpdateType.callbackQuery],
       predicate: (ctx) {
@@ -433,6 +525,22 @@ class Bot {
         }
         return false;
       },
+    );
+
+    _handlerScopes.add(scope);
+  }
+
+  /// Adds Handler Scope for a Accept-All predicate
+  void _acceptAll(
+    Handler callback,
+    List<UpdateType> types, {
+    ScopeOptions? options,
+  }) {
+    final scope = HandlerScope(
+      options: options,
+      handler: callback,
+      types: types,
+      predicate: (_) => true,
     );
 
     _handlerScopes.add(scope);
@@ -457,8 +565,13 @@ class Bot {
     Pattern data,
     Handler callback, {
     @Deprecated("Use the 'data' parameter instead.") RegExp? regex,
+    ScopeOptions? options,
   }) {
-    return _internalCallbackQueryRegister(data, callback);
+    return _internalCallbackQueryRegister(
+      data,
+      callback,
+      options: options,
+    );
   }
 
   /// Registers a callback for particular chat types.
@@ -481,9 +594,11 @@ class Bot {
   /// the [chatTypes] method.
   void chatType(
     ChatType type,
-    Handler callback,
-  ) {
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
     final scope = HandlerScope(
+      options: options,
       handler: callback,
       types: [
         UpdateType.message,
@@ -514,9 +629,11 @@ class Bot {
   /// from a private chat or a group.
   void chatTypes(
     List<ChatType> types,
-    Handler callback,
-  ) {
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
     final scope = HandlerScope(
+      options: options,
       handler: callback,
       types: [
         UpdateType.message,
@@ -549,10 +666,10 @@ class Bot {
   void filter(
     bool Function(Context ctx) predicate,
     Handler callback, {
-    String? name,
+    ScopeOptions? options,
   }) {
     final scope = HandlerScope(
-      name: name,
+      options: options,
       handler: callback,
       types: UpdateType.values,
       predicate: predicate,
@@ -573,15 +690,15 @@ class Bot {
   /// ```
   void text(
     String text,
-    Handler callback,
-  ) {
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
     final scope = HandlerScope(
+      options: options,
       handler: callback,
-      types: [
-        UpdateType.message,
-      ],
+      types: UpdateType.messages(),
       predicate: (ctx) {
-        return ctx.message?.text == text;
+        return ctx.msg?.text == text;
       },
     );
 
@@ -606,17 +723,17 @@ class Bot {
   /// matches the regular expression `Hello, (.*)!`.
   void hears(
     RegExp exp,
-    Handler callback,
-  ) {
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
     final scope = HandlerScope(
+      options: options,
       pattern: exp,
       isRegExp: true,
       handler: callback,
-      types: [
-        UpdateType.message,
-      ],
+      types: UpdateType.messages(),
       predicate: (ctx) {
-        return exp.hasMatch(ctx.message?.text ?? '');
+        return exp.hasMatch(ctx.msg?.text ?? '');
       },
     );
 
@@ -628,9 +745,11 @@ class Bot {
   /// The callback will be called when an inline query with the specified query is received.
   void inlineQuery(
     Pattern query,
-    Handler callback,
-  ) {
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
     final scope = HandlerScope(
+      options: options,
       handler: callback,
       types: [
         UpdateType.inlineQuery,
@@ -651,13 +770,27 @@ class Bot {
   }
 
   /// Registers a callback for the `/settings` command.
-  Future<void> settings(Handler handler) {
-    return command("settings", handler);
+  void settings(
+    Handler handler, {
+    ScopeOptions? options,
+  }) {
+    return command(
+      "settings",
+      handler,
+      options: options,
+    );
   }
 
   /// Registers a callback for the `/help` command.
-  Future<void> help(Handler handler) {
-    return command("help", handler);
+  void help(
+    Handler handler, {
+    ScopeOptions? options,
+  }) {
+    return command(
+      "help",
+      handler,
+      options: options,
+    );
   }
 
   /// Registers a callback for any unexpected error.
@@ -746,12 +879,12 @@ class Bot {
     MessageEntityType type,
     Handler callback, {
     bool shouldMatchCaptionEntities = false,
+    ScopeOptions? options,
   }) {
     final scope = HandlerScope(
+      options: options,
       handler: callback,
-      types: [
-        UpdateType.message,
-      ],
+      types: UpdateType.messages(),
       predicate: (ctx) {
         return _internalEntityMatcher(
           context: ctx,
@@ -776,12 +909,12 @@ class Bot {
     List<MessageEntityType> types,
     Handler callback, {
     bool shouldMatchCaptionEntities = false,
+    ScopeOptions? options,
   }) {
     final scope = HandlerScope(
+      options: options,
       handler: callback,
-      types: [
-        UpdateType.message,
-      ],
+      types: UpdateType.messages(),
       predicate: (ctx) {
         List<MessageEntity>? entities = ctx.message?.entities;
         if (shouldMatchCaptionEntities) {
@@ -806,9 +939,11 @@ class Bot {
     required Handler callback,
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
+    ScopeOptions? options,
   }) {
     final scope = HandlerScope(
       handler: callback,
+      options: options,
       types: [
         UpdateType.chatMember,
       ],
@@ -847,8 +982,10 @@ class Bot {
     Handler callback, {
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
+    ScopeOptions? options,
   }) {
     return _internalChatMemberUpdatedHandling(
+      options: options,
       callback: callback,
       oldStatus: oldStatus,
       newStatus: newStatus,
@@ -863,25 +1000,26 @@ class Bot {
     required Handler callback,
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
+    ScopeOptions? options,
   }) {
     return _internalChatMemberUpdatedHandling(
       callback: callback,
       oldStatus: oldStatus,
       newStatus: newStatus,
+      options: options,
     );
   }
 
   /// Registers a callback for the [Update.poll] events.
-  void poll(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.poll,
-      ],
-      predicate: (ctx) => true,
+  void poll(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.poll],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for the [Update.pollAnswer] events.
@@ -890,8 +1028,10 @@ class Bot {
   void pollAnswer(
     Handler callback, {
     String? pollId,
+    ScopeOptions? options,
   }) {
     final scope = HandlerScope(
+      options: options,
       handler: callback,
       types: [
         UpdateType.pollAnswer,
@@ -908,44 +1048,51 @@ class Bot {
   /// Registers a callback for the [Update.chosenInlineResult] events.
   /// The callback will be called when a chosen inline result is received.
   void chosenInlineResult(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.chosenInlineResult,
-      ],
-      predicate: (ctx) => true,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.chosenInlineResult],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
-  /// Registers a callback for the [Update.chatJoinRequest] events.
+  /// Registers a callback for the [Update.chatJoinRequest] events of the particular chat mentioned by the chatId.
   ///
   /// The callback will be called when a chat join request is received.
-  void chatJoinRequest(Handler callback) {
+  void chatJoinRequest(
+    ID chatId,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
     final scope = HandlerScope(
+      options: options,
       handler: callback,
       types: [
         UpdateType.chatJoinRequest,
       ],
-      predicate: (ctx) => true,
+      predicate: (ctx) => ctx.chat?.isTheSameChat(chatId) ?? false,
     );
 
     _handlerScopes.add(scope);
   }
 
-  /// Registers a callback for Shipping Query events.
+  /// Registers a callback for Shipping Query events for the specified User.
   void shippingQuery(
-    Handler callback,
-  ) {
+    ID chatId,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
     final scope = HandlerScope(
+      options: options,
       handler: callback,
       types: [
         UpdateType.shippingQuery,
       ],
-      predicate: (ctx) => true,
+      predicate: (ctx) {
+        return ctx.from?.isTheSameChat(chatId) ?? false;
+      },
     );
 
     _handlerScopes.add(scope);
@@ -953,14 +1100,19 @@ class Bot {
 
   /// Registers a callback for Pre Checkout Query events.
   void preCheckoutQuery(
-    Handler callback,
-  ) {
+    ChatID chatId,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
     final scope = HandlerScope(
+      options: options,
       handler: callback,
       types: [
         UpdateType.preCheckoutQuery,
       ],
-      predicate: (ctx) => true,
+      predicate: (ctx) {
+        return ctx.from?.isTheSameChat(chatId) ?? false;
+      },
     );
 
     _handlerScopes.add(scope);
@@ -970,11 +1122,13 @@ class Bot {
   void onURL(
     Handler callback, {
     bool shouldMatchCaptionEntities = false,
+    ScopeOptions? options,
   }) {
     return entity(
       MessageEntityType.url,
       callback,
       shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+      options: options,
     );
   }
 
@@ -982,11 +1136,13 @@ class Bot {
   void onEmail(
     Handler callback, {
     bool shouldMatchCaptionEntities = false,
+    ScopeOptions? options,
   }) {
     return entity(
       MessageEntityType.email,
       callback,
       shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+      options: options,
     );
   }
 
@@ -994,11 +1150,13 @@ class Bot {
   void onPhoneNumber(
     Handler callback, {
     bool shouldMatchCaptionEntities = false,
+    ScopeOptions? options,
   }) {
     return entity(
       MessageEntityType.phoneNumber,
       callback,
       shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+      options: options,
     );
   }
 
@@ -1007,20 +1165,21 @@ class Bot {
     Handler callback, {
     bool shouldMatchCaptionEntities = false,
     String? hashtag,
+    ScopeOptions? options,
   }) {
     if (hashtag == null) {
       return entity(
         MessageEntityType.hashtag,
         callback,
         shouldMatchCaptionEntities: shouldMatchCaptionEntities,
+        options: options,
       );
     }
 
     final scope = HandlerScope(
+      options: options,
       handler: callback,
-      types: [
-        UpdateType.message,
-      ],
+      types: UpdateType.messages(),
       predicate: (ctx) {
         return _internalEntityMatcher(
           context: ctx,
@@ -1054,15 +1213,18 @@ class Bot {
     Handler callback, {
     String? username,
     int? userId,
+    ScopeOptions? options,
   }) {
     if (username == null && userId == null) {
       return entity(
         MessageEntityType.mention,
         callback,
+        options: options,
       );
     }
     if (username != null) {
       final scope = HandlerScope(
+        options: options,
         handler: callback,
         types: [
           UpdateType.message,
@@ -1079,6 +1241,7 @@ class Bot {
     }
 
     final scope = HandlerScope(
+      options: options,
       handler: callback,
       types: [
         UpdateType.message,
@@ -1100,20 +1263,16 @@ class Bot {
     _handlerScopes.add(scope);
   }
 
-  /// This method sets up a callback when the bot is mentioned.
-  ///
-  /// This method possibly returns a [Future] if the bot information is not available
-  /// when the method is called. If the bot information is not available, the method
-  /// will fetch the bot information using the [RawAPI.getMe] method and then setup the callback.
-  ///
-  ///
-  Future<void> whenMentioned(
-    Handler callback,
-  ) async {
+  /// This method sets up a callback to be fired when the bot is mentioned.
+  void whenMentioned(
+    Handler callback, {
+    ScopeOptions? options,
+  }) async {
     if (initialized) {
       return onMention(
         callback,
         username: me.username,
+        options: options,
       );
     }
     if (_getMeStatus == _GetMeStatus.pending) {
@@ -1121,199 +1280,192 @@ class Bot {
         _PendingCall(
           fn: whenMentioned,
           params: [callback],
+          namedParams: {
+            #options: options,
+          },
         ),
       );
     }
   }
 
   /// Registers a callback for all Message updates
-  void onMessage(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.message,
-      ],
-      predicate: (ctx) => true,
+  void onMessage(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.message],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for all Edited Message updates
-  void onEditedMessage(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.editedMessage,
-      ],
-      predicate: (ctx) => true,
+  void onEditedMessage(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.editedMessage],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for all Channel Post updates
-  void onChannelPost(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.channelPost,
-      ],
-      predicate: (ctx) => true,
+  void onChannelPost(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.channelPost],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for all Edited Channel Post updates
-  void onEditedChannelPost(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.editedChannelPost,
-      ],
-      predicate: (ctx) => true,
+  void onEditedChannelPost(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.editedChannelPost],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for all Inline Query updates
-  void onInlineQuery(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.inlineQuery,
-      ],
-      predicate: (ctx) => true,
+  void onInlineQuery(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.inlineQuery],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for all Chosen Inline Result updates
-  void onChosenInlineResult(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.chosenInlineResult,
-      ],
-      predicate: (ctx) => true,
+  void onChosenInlineResult(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.chosenInlineResult],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for all Callback Query updates
-  void onCallbackQuery(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.callbackQuery,
-      ],
-      predicate: (ctx) => true,
+  void onCallbackQuery(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.callbackQuery],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for all Shipping Query updates
-  void onShippingQuery(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.shippingQuery,
-      ],
-      predicate: (ctx) => true,
+  void onShippingQuery(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.shippingQuery],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for all Pre Checkout Query updates
-  void onPreCheckoutQuery(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.preCheckoutQuery,
-      ],
-      predicate: (ctx) => true,
+  void onPreCheckoutQuery(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.preCheckoutQuery],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback to be fired for all successful payments
-  void onSuccessfulPayment(Handler callback) {
+  void onSuccessfulPayment(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) => ctx.message?.successfulPayment != null,
+      options: options,
     );
   }
 
   /// Registers a callback for all Poll updates
-  void onPoll(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.poll,
-      ],
-      predicate: (ctx) => true,
+  void onPoll(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.poll],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for all Poll Answer updates
-  void onPollAnswer(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.pollAnswer,
-      ],
-      predicate: (ctx) => true,
+  void onPollAnswer(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.pollAnswer],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for all My Chat Member updates
-  void onMyChatMember(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.myChatMember,
-      ],
-      predicate: (ctx) => true,
+  void onMyChatMember(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.myChatMember],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for all Chat Member updates
-  void onChatMember(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.chatMember,
-      ],
-      predicate: (ctx) => true,
+  void onChatMember(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.chatMember],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for all Chat Join Request updates
-  void onChatJoinRequest(Handler callback) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.chatJoinRequest,
-      ],
-      predicate: (ctx) => true,
+  void onChatJoinRequest(
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.chatJoinRequest],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// On Stop Handler
@@ -1332,16 +1484,20 @@ class Bot {
     bool Function(Context) predicate, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
-    String? name,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     final scope = HandlerScope(
-      name: name,
+      options: options,
       handler: callback,
       types: [
         if (includeChannelPosts || onlyChannelPosts) UpdateType.channelPost,
         if (!onlyChannelPosts) UpdateType.message,
       ],
       predicate: (ctx) {
+        if (chatId != null) {
+          return predicate(ctx) && (ctx.chat?.isTheSameChat(chatId) ?? false);
+        }
         return predicate(ctx);
       },
     );
@@ -1359,12 +1515,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.audio != null,
+      (ctx) => ctx.msg?.audio != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1378,12 +1538,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.document != null,
+      (ctx) => ctx.msg?.document != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1397,12 +1561,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.photo != null,
+      (ctx) => ctx.msg?.photo != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1416,12 +1584,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.sticker != null,
+      (ctx) => ctx.msg?.sticker != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1435,12 +1607,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.video != null,
+      (ctx) => ctx.msg?.video != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1454,12 +1630,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.videoNote != null,
+      (ctx) => ctx.msg?.videoNote != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1473,22 +1653,30 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.voice != null,
+      (ctx) => ctx.msg?.voice != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
   /// Registers a callback for messages that contain a contact.
   void onContact(
-    Handler callback,
-  ) {
+    Handler callback, {
+    ID? chatId,
+    ScopeOptions? options,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.contact != null,
+      (ctx) => ctx.msg?.contact != null,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1502,12 +1690,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.dice != null,
+      (ctx) => ctx.msg?.dice != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1521,12 +1713,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.game != null,
+      (ctx) => ctx.msg?.game != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1540,12 +1736,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.poll != null,
+      (ctx) => ctx.msg?.poll != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1559,12 +1759,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.venue != null,
+      (ctx) => ctx.msg?.venue != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1578,22 +1782,31 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.location != null,
+      (ctx) => ctx.msg?.location != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
   /// Registers a callback for messages that is a live location update.
-  void onLiveLocation(Handler callback) {
+  void onLiveLocation(
+    Handler callback, {
+    ID? chatId,
+    ScopeOptions? options,
+  }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) =>
-          ctx.message?.location != null &&
-          ctx.message?.location!.livePeriod != null,
+          ctx.msg?.location != null && ctx.msg?.location!.livePeriod != null,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1607,12 +1820,16 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.newChatTitle != null,
+      (ctx) => ctx.msg?.newChatTitle != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1626,21 +1843,30 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.newChatPhoto != null,
+      (ctx) => ctx.msg?.newChatPhoto != null,
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
   /// Registers a callback for delete chat photo service messages.
-  void onDeleteChatPhoto(Handler callback) {
+  void onDeleteChatPhoto(
+    Handler callback, {
+    ID? chatId,
+    ScopeOptions? options,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) =>
-          ctx.message?.deleteChatPhoto != null && ctx.message!.deleteChatPhoto!,
+      (ctx) => ctx.msg?.deleteChatPhoto != null && ctx.msg!.deleteChatPhoto!,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1654,30 +1880,46 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.pinnedMessage != null;
+        return ctx.msg?.pinnedMessage != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
   /// Registers a callback for a user is shared to the bot
-  void onUsrShared(Handler callback) {
+  void onUsrShared(
+    Handler callback, {
+    ID? chatId,
+    ScopeOptions? options,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.usersShared != null,
+      (ctx) => ctx.msg?.usersShared != null,
+      chatId: chatId,
+      options: options,
     );
   }
 
   /// Registers a callback for a chat is shared to the bot
-  void onChatShared(Handler callback) {
+  void onChatShared(
+    Handler callback, {
+    ID? chatId,
+    ScopeOptions? options,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.chatShared != null,
+      (ctx) => ctx.msg?.chatShared != null,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1691,14 +1933,18 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.videoChatScheduled != null;
+        return ctx.msg?.videoChatScheduled != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1712,14 +1958,18 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.videoChatStarted != null;
+        return ctx.msg?.videoChatStarted != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1733,62 +1983,102 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.videoChatEnded != null;
+        return ctx.msg?.videoChatEnded != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
   /// Registers a callback to be fired when new participants are invited to a video chat
-  void whenVideoChatParticipantsInvited(Handler callback) {
+  void whenVideoChatParticipantsInvited(
+    Handler callback, {
+    ID? chatId,
+    ScopeOptions? options,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.videoChatParticipantsInvited != null,
+      (ctx) => ctx.msg?.videoChatParticipantsInvited != null,
+      chatId: chatId,
+      options: options,
     );
   }
 
   /// Registers a callback to be fired when a forum topic is created
-  void onForumTopicCreated(Handler callback) {
+  void onForumTopicCreated(
+    Handler callback, {
+    ID? chatId,
+    ScopeOptions? options,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.forumTopicCreated != null,
+      (ctx) => ctx.msg?.forumTopicCreated != null,
+      chatId: chatId,
+      options: options,
     );
   }
 
   /// Registers a callback to be fired when a forum topic is edited
-  void onForumTopicEdited(Handler callback) {
+  void onForumTopicEdited(
+    Handler callback, {
+    ID? chatId,
+    ScopeOptions? options,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.forumTopicEdited != null,
+      (ctx) => ctx.msg?.forumTopicEdited != null,
+      chatId: chatId,
+      options: options,
     );
   }
 
   /// Registers a callback to be fired when a forum topic is closed
-  void onForumTopicClosed(Handler callback) {
+  void onForumTopicClosed(
+    Handler callback, {
+    ID? chatId,
+    ScopeOptions? options,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.forumTopicClosed != null,
+      (ctx) => ctx.msg?.forumTopicClosed != null,
+      chatId: chatId,
+      options: options,
     );
   }
 
   /// Registers a callback to be fired when a forum topic is reopened
-  void onForumTopicReopened(Handler callback) {
+  void onForumTopicReopened(
+    Handler callback, {
+    ID? chatId,
+    ScopeOptions? options,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.forumTopicReopened != null,
+      (ctx) => ctx.msg?.forumTopicReopened != null,
+      chatId: chatId,
+      options: options,
     );
   }
 
   /// Registers a callback to be fired when data sent from a web app is received
-  void onWebAppData(Handler callback) {
+  void onWebAppData(
+    Handler callback, {
+    ID? chatId,
+    ScopeOptions? options,
+  }) {
     return _internalSubMessageHandler(
       callback,
-      (ctx) => ctx.message?.webAppData != null,
+      (ctx) => ctx.msg?.webAppData != null,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1802,14 +2092,18 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.animation != null;
+        return ctx.msg?.animation != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1823,14 +2117,18 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.text != null;
+        return ctx.msg?.text != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1844,14 +2142,18 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.caption != null;
+        return ctx.msg?.caption != null;
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
     );
   }
 
@@ -1870,7 +2172,7 @@ class Bot {
             _internalCallbackQueryRegister(
               data,
               menu._buttons[i][j].handler as Handler,
-              name: "${menu.name}-$data",
+              options: ScopeOptions(name: "${menu.name}-$data"),
             );
           }
         }
@@ -1881,37 +2183,38 @@ class Bot {
       for (int i = 0; i < rows; i++) {
         int cols = menu._buttons[i].length;
         for (int j = 0; j < cols; j++) {
-          final text = menu._buttons[i][j].text;
+          final button = menu._buttons[i][j];
+          final text = button.text;
           final name = "${menu.name}-$text";
 
-          final action = menu._buttons[i][j].handler as Handler;
-          switch (menu._buttons[i][j].runtimeType) {
-            case _KeyboardMenuTextButton:
+          final action = button.handler as Handler;
+          switch (button.runtimeType) {
+            case const (_KeyboardMenuTextButton):
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.text == text,
-                name: name,
+                options: ScopeOptions._createOrCopy(button.options, name: name),
               );
               break;
-            case _KeyboardMenuRequestContactButton:
+            case const (_KeyboardMenuRequestContactButton):
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.contact != null,
-                name: name,
+                options: ScopeOptions._createOrCopy(button.options, name: name),
               );
               break;
-            case _KeyboardMenuRequestLocationButton:
+            case const (_KeyboardMenuRequestLocationButton):
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.location != null,
-                name: name,
+                options: ScopeOptions._createOrCopy(button.options, name: name),
               );
               break;
-            case _KeyboardMenuRequestUsersButton:
+            case const (_KeyboardMenuRequestUsersButton):
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.usersShared != null,
-                name: name,
+                options: ScopeOptions._createOrCopy(button.options, name: name),
               );
           }
         }
@@ -1927,7 +2230,11 @@ class Bot {
   }
 
   /// Next step handler
-  void setNextStep(Message msg, Handler callback) {
+  void setNextStep(
+    Message msg,
+    Handler callback,
+    ScopeOptions? options,
+  ) {
     final scopeName = "next-step-${msg.messageId}";
     bool isNextMessage(int? messageId) {
       return messageId == msg.messageId + 1 || messageId == msg.messageId + 2;
@@ -1935,14 +2242,14 @@ class Bot {
 
     filter(
       (ctx) {
-        return ctx.message?.chat.id == msg.chat.id &&
+        return (ctx.chat?.isTheSameChat(msg.chat.getId()) ?? false) &&
             isNextMessage(ctx.message?.messageId);
       },
       (ctx) async {
         await callback(ctx);
         _handlerScopes.removeWhere((scope) => scope.name == scopeName);
       },
-      name: scopeName,
+      options: options,
     );
   }
 
@@ -1953,12 +2260,13 @@ class Bot {
     Handler callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
-    String? name,
+    ID? chatId,
+    ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
       callback,
       (ctx) {
-        return ctx.message?.entities?.any((element) {
+        return ctx.msg?.entities?.any((element) {
               return element.type == MessageEntityType.botCommand &&
                   element.offset == 0;
             }) ??
@@ -1966,84 +2274,85 @@ class Bot {
       },
       includeChannelPosts: includeChannelPosts,
       onlyChannelPosts: onlyChannelPosts,
-      name: name,
+      chatId: chatId,
+      options: options,
     );
   }
 
   /// Register a callback when a reaction to a message was changed by a user.
   void onMessageReaction(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.messageReaction,
-      ],
-      predicate: (ctx) => true,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.messageReaction],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Reactions to a message with anonymous reactions were changed.
   void onMessageReactionCount(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.messageReactionCount,
-      ],
-      predicate: (ctx) => true,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.messageReactionCount],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback for when the chat was boosted.
   ///
   /// The bot must be an administrator in the chat for this to work.
   void onChatBoosted(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.chatBoost,
-      ],
-      predicate: (ctx) => true,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.chatBoost],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback to be fired when the chat boost was removed.
   ///
   /// The bot must be an administrator in the chat for this to work.
   void onChatBoostRemoved(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.chatBoostRemoved,
-      ],
-      predicate: (ctx) => true,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.chatBoostRemoved],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback to be fired when a user reacts given emoji to a message.
-  void whenReacted(String emoji, Handler callback) {
+  void whenReacted(
+    String emoji,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
     final scope = HandlerScope(
+      options: options,
       handler: callback,
       types: [
         UpdateType.messageReaction,
       ],
       predicate: (ctx) {
         return ctx.messageReaction?.newReaction.any((ReactionType el) {
-              return el is ReactionTypeEmoji && el.emoji == emoji;
+              if (el is ReactionTypeEmoji) {
+                try {
+                  return el.emoji.codeUnitAt(0) == emoji.codeUnitAt(0);
+                } catch (_) {
+                  return false;
+                }
+              }
+              return false;
             }) ??
             false;
       },
@@ -2054,61 +2363,57 @@ class Bot {
 
   /// Registers a callback to be fired when a connection of the bot with a business account is made.
   void onBusinessConnection(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.businessConnection,
-      ],
-      predicate: (_) => true,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.businessConnection],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers callback to be fired when a new message is received in a business account connected to the bot.
   void onBusinessMessage(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.businessMessage,
-      ],
-      predicate: (_) => true,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.businessMessage],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback to be fired when a business message is edited.
   void onBusinessMessageEdited(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.editedBusinessMessage,
-      ],
-      predicate: (_) => true,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.channelPost],
+      options: options,
     );
-
-    _handlerScopes.add(scope);
   }
 
   /// Registers a callback to be fired when a business message is deleted.
   void onBusinessMessageDeleted(
-    Handler callback,
-  ) {
-    final scope = HandlerScope(
-      handler: callback,
-      types: [
-        UpdateType.deletedBusinessMessages,
-      ],
-      predicate: (_) => true,
+    Handler callback, {
+    ScopeOptions? options,
+  }) {
+    return _acceptAll(
+      callback,
+      [UpdateType.deletedBusinessMessages],
+      options: options,
     );
+  }
 
-    _handlerScopes.add(scope);
+  /// Removes an already added listener by name
+  bool removeScope(String name) {
+    final ix = _handlerScopes.indexWhere((s) => s.name == name);
+    if (ix == -1) return false;
+    _handlerScopes.removeAt(ix);
+    return true;
   }
 }

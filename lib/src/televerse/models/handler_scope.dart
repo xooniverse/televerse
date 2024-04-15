@@ -2,17 +2,6 @@ part of 'models.dart';
 
 /// A Handler Scope is used to define the scope and related information of a handler method.
 class HandlerScope {
-  /// Optional. The name of the handler. (For debugging purposes)
-  final String? name;
-
-  /// Whether the handler is a special handler.
-  ///
-  /// True if it's a command handler or a RegExp handler.
-  ///
-  /// - If it's a command handler, we set `args` to the parameter of the command.
-  /// - If it's a RegExp handler, we'll set the `MessageContext.matches` to the matches of the RegExp.
-  final bool special;
-
   /// If it's a command handler, we set `args` to the parameter of the command.
   final bool isCommand;
 
@@ -23,6 +12,8 @@ class HandlerScope {
   final RegExp? pattern;
 
   /// Handler
+  ///
+  /// Required unless [isConversation] is `true`.
   final Handler? handler;
 
   /// The update type
@@ -37,9 +28,14 @@ class HandlerScope {
   /// Chat ID of the conversation.
   final ID? chatId;
 
+  /// Scope Options - Additional parameters for the scope.
+  final ScopeOptions? options;
+
+  /// Flag whether already executed
+  bool isExecuted;
+
   /// Creates a new [HandlerScope].
-  const HandlerScope({
-    this.name,
+  HandlerScope({
     this.handler,
     required this.predicate,
     required this.types,
@@ -48,6 +44,21 @@ class HandlerScope {
     this.pattern,
     this.isConversation = false,
     this.chatId,
-  })  : special = isCommand || isRegExp,
-        assert(handler != null || isConversation);
+    this.options,
+    this.isExecuted = false,
+  }) : assert(handler != null || isConversation);
+
+  /// Whether the scope is forked or not.
+  bool get forked => options?.forked ?? false;
+
+  /// Name of the scope
+  String? get name => options?.name;
+
+  /// Sets executiion status to true.
+  void executed() {
+    isExecuted = true;
+  }
+
+  /// Whether the scope has a custom predicate
+  bool get hasCustomPredicate => options?.customPredicate != null;
 }

@@ -1,9 +1,21 @@
+# 1.15.10
+
+- Added `Bot.fromAPI` constructor for creating Bot instance from `RawAPI` instance.
+- `Bot.command`, `Bot.text`, `Bot.hears`, and many more methods now listens to all Message types (Message, Channel Posts, and edited messages of both)
+- ⚠️ Added `chatId` parameter to `Bot.shippingQuery` and `Bot.preCheckoutQuery`.
+- Refactored code for quality and better readability and added docs.
+- Added `ScopeOptions` class that can contain additional info for handler scope.
+- `ScopeOptions.forked` to create forked handlers. Forked handlers are run without conditions.
+- `ScopeOptions.customPredicate` can be used to set a middleware to check if the update should be processed or skipped.
+- Migrated to `Dart 3.0.0`
+- `Bot.removeScope` can be used to remove already set handlers.
+- Accepts `ScopeOption` on both menus as well.
+
 # 1.15.9
 
 - Improved efficiency by removing redundant `getMe` calls while registering `command` handlers and `whenMentioned` handlers.
 - Made `LongPolling.allowedUpdates` nullable, and removed the constant empty list initialization. 
 - Updated the README.
-
 
 # 1.15.8
 

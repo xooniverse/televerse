@@ -24,6 +24,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as io;
 import 'dart:math';
+import 'dart:mirrors';
 import 'package:dio/dio.dart';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
@@ -60,6 +61,7 @@ part 'src/televerse/builders/message_content_generator.dart';
 
 /// Extras
 part 'src/televerse/extras/tg_exceptions.dart';
+part 'src/televerse/models/scope_options.dart';
 
 /// The main class of the library.
 ///
