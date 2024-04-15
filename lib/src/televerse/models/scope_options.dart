@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of '../../../televerse.dart';
 
 /// Represents additional options that can be passed to create Handler Scope
@@ -54,4 +55,51 @@ class ScopeOptions {
     this.name,
     this.customPredicate,
   }) : forked = true;
+
+  /// Creates a copy of this [ScopeOptions] object with potentially modified properties.
+
+  /// Provides options to override the following properties:
+  ///
+  /// * [name]: The name of the scope. If not provided, it will be inherited from the original object.
+  /// * [forked]: Whether the scope is forked. If not provided, it will be inherited from the original object.
+  /// * [customPredicate]: A custom predicate function that determines when updates within the scope are processed.
+  ///   If not provided, it will be inherited from the original object.
+  ///
+  /// The predicate function receives a [Context] object as an argument and should return a [FutureOr<bool>].
+  /// The update is only processed if the predicate function evaluates to `true`.
+  ///
+  /// Returns a new instance of [ScopeOptions] with the updated properties.
+  ScopeOptions copyWith({
+    String? name,
+    bool? forked,
+    FutureOr<bool> Function(Context ctx)? customPredicate,
+  }) {
+    return ScopeOptions(
+      name: name ?? this.name,
+      forked: forked ?? this.forked,
+      customPredicate: customPredicate ?? this.customPredicate,
+    );
+  }
+
+  /// Internal copyWith
+  static ScopeOptions _createOrCopy(
+    ScopeOptions? options, {
+    String? name,
+    bool? forked,
+    FutureOr<bool> Function(Context ctx)? customPredicate,
+  }) {
+    if (options != null) {
+      return options.copyWith(
+        name: name,
+        forked: forked,
+        customPredicate: customPredicate,
+      );
+    }
+
+    return ScopeOptions(
+      name: name,
+      forked: forked ?? false,
+      customPredicate: customPredicate,
+    );
+  }
 }

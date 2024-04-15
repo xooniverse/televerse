@@ -2183,37 +2183,38 @@ class Bot {
       for (int i = 0; i < rows; i++) {
         int cols = menu._buttons[i].length;
         for (int j = 0; j < cols; j++) {
-          final text = menu._buttons[i][j].text;
+          final button = menu._buttons[i][j];
+          final text = button.text;
           final name = "${menu.name}-$text";
 
-          final action = menu._buttons[i][j].handler as Handler;
-          switch (menu._buttons[i][j].runtimeType) {
+          final action = button.handler as Handler;
+          switch (button.runtimeType) {
             case const (_KeyboardMenuTextButton):
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.text == text,
-                options: ScopeOptions(name: name),
+                options: ScopeOptions._createOrCopy(button.options, name: name),
               );
               break;
             case const (_KeyboardMenuRequestContactButton):
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.contact != null,
-                options: ScopeOptions(name: name),
+                options: ScopeOptions._createOrCopy(button.options, name: name),
               );
               break;
             case const (_KeyboardMenuRequestLocationButton):
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.location != null,
-                options: ScopeOptions(name: name),
+                options: ScopeOptions._createOrCopy(button.options, name: name),
               );
               break;
             case const (_KeyboardMenuRequestUsersButton):
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.usersShared != null,
-                options: ScopeOptions(name: name),
+                options: ScopeOptions._createOrCopy(button.options, name: name),
               );
           }
         }
