@@ -2188,28 +2188,28 @@ class Bot {
 
           final action = menu._buttons[i][j].handler as Handler;
           switch (menu._buttons[i][j].runtimeType) {
-            case _KeyboardMenuTextButton _:
+            case const (_KeyboardMenuTextButton):
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.text == text,
                 options: ScopeOptions(name: name),
               );
               break;
-            case _KeyboardMenuRequestContactButton _:
+            case const (_KeyboardMenuRequestContactButton):
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.contact != null,
                 options: ScopeOptions(name: name),
               );
               break;
-            case _KeyboardMenuRequestLocationButton _:
+            case const (_KeyboardMenuRequestLocationButton):
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.location != null,
                 options: ScopeOptions(name: name),
               );
               break;
-            case _KeyboardMenuRequestUsersButton _:
+            case const (_KeyboardMenuRequestUsersButton):
               _internalSubMessageHandler(
                 action,
                 (ctx) => ctx.message?.usersShared != null,

@@ -3,8 +3,9 @@ part of '../../../televerse.dart';
 class _KeyboardMenuTextButton extends _TMenuButton {
   const _KeyboardMenuTextButton(
     super.text,
-    Handler handler,
-  ) : super(hasHandler: true, handler: handler);
+    Handler handler, {
+    super.options,
+  }) : super(hasHandler: true, handler: handler);
 
   @override
   Map<String, dynamic> toJson() {
@@ -20,7 +21,9 @@ class _KeyboardMenuRequestUsersButton extends _TMenuButton {
   const _KeyboardMenuRequestUsersButton(
     super.text,
     this.requestUsers,
-  ) : super(hasHandler: true);
+    Handler handler, {
+    super.options,
+  }) : super(hasHandler: true, handler: handler);
 
   @override
   Map<String, dynamic> toJson() {
@@ -37,8 +40,9 @@ class _KeyboardMenuRequestChatButton extends _TMenuButton {
   const _KeyboardMenuRequestChatButton(
     super.text,
     this.requestChat,
-    Handler handler,
-  ) : super(hasHandler: true, handler: handler);
+    Handler handler, {
+    super.options,
+  }) : super(hasHandler: true, handler: handler);
 
   @override
   Map<String, dynamic> toJson() {
@@ -52,8 +56,9 @@ class _KeyboardMenuRequestChatButton extends _TMenuButton {
 class _KeyboardMenuRequestContactButton extends _TMenuButton {
   const _KeyboardMenuRequestContactButton(
     super.text,
-    Handler handler,
-  ) : super(hasHandler: true, handler: handler);
+    Handler handler, {
+    super.options,
+  }) : super(hasHandler: true, handler: handler);
 
   @override
   Map<String, dynamic> toJson() {
@@ -67,8 +72,9 @@ class _KeyboardMenuRequestContactButton extends _TMenuButton {
 class _KeyboardMenuRequestLocationButton extends _TMenuButton {
   const _KeyboardMenuRequestLocationButton(
     super.text,
-    Handler handler,
-  ) : super(hasHandler: true, handler: handler);
+    Handler handler, {
+    super.options,
+  }) : super(hasHandler: true, handler: handler);
 
   @override
   Map<String, dynamic> toJson() {
@@ -84,8 +90,9 @@ class _KeyboardMenuRequestPollButton extends _TMenuButton {
 
   const _KeyboardMenuRequestPollButton(
     super.text,
-    this.requestPoll,
-  ) : super(hasHandler: true);
+    this.requestPoll, {
+    super.options,
+  }) : super(hasHandler: true);
 
   @override
   Map<String, dynamic> toJson() {
@@ -155,25 +162,55 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
   }
 
   /// Add new item to the last row
-  KeyboardMenu text(String text, Handler handler) {
+  KeyboardMenu text(
+    String text,
+    Handler handler, {
+    ScopeOptions? options,
+  }) {
     if (_buttons.isEmpty) _buttons.add([]);
-    _buttons.last.add(_KeyboardMenuTextButton(text, handler));
+    _buttons.last.add(
+      _KeyboardMenuTextButton(
+        text,
+        handler,
+        options: options,
+      ),
+    );
     keyboard = TeleverseMenu._makeKeyboard(_buttons);
     return this;
   }
 
   /// Request contact from the user
-  KeyboardMenu requestContact(String text, Handler handler) {
+  KeyboardMenu requestContact(
+    String text,
+    Handler handler, {
+    ScopeOptions? options,
+  }) {
     if (_buttons.isEmpty) _buttons.add([]);
-    _buttons.last.add(_KeyboardMenuRequestContactButton(text, handler));
+    _buttons.last.add(
+      _KeyboardMenuRequestContactButton(
+        text,
+        handler,
+        options: options,
+      ),
+    );
     keyboard = TeleverseMenu._makeKeyboard(_buttons);
     return this;
   }
 
   /// Request location from the user
-  KeyboardMenu requestLocation(String text, Handler handler) {
+  KeyboardMenu requestLocation(
+    String text,
+    Handler handler, {
+    ScopeOptions? options,
+  }) {
     if (_buttons.isEmpty) _buttons.add([]);
-    _buttons.last.add(_KeyboardMenuRequestLocationButton(text, handler));
+    _buttons.last.add(
+      _KeyboardMenuRequestLocationButton(
+        text,
+        handler,
+        options: options,
+      ),
+    );
     keyboard = TeleverseMenu._makeKeyboard(_buttons);
     return this;
   }
@@ -185,6 +222,7 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
     required int requestId,
     bool? userIsBot,
     bool? userIsPremium,
+    ScopeOptions? options,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
@@ -196,6 +234,8 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
           userIsPremium: userIsPremium,
           maxQuantity: 1,
         ),
+        handler,
+        options: options,
       ),
     );
     keyboard = TeleverseMenu._makeKeyboard(_buttons);
@@ -210,6 +250,7 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
     bool? userIsBot,
     bool? userIsPremium,
     int? maxQuantity,
+    ScopeOptions? options,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
@@ -221,6 +262,8 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
           userIsPremium: userIsPremium,
           maxQuantity: maxQuantity,
         ),
+        handler,
+        options: options,
       ),
     );
     keyboard = TeleverseMenu._makeKeyboard(_buttons);
@@ -239,6 +282,7 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
     ChatAdministratorRights? userAdministratorRights,
     ChatAdministratorRights? botAdministratorRights,
     bool? botIsMember,
+    ScopeOptions? options,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
@@ -255,6 +299,7 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
           botIsMember: botIsMember,
         ),
         handler,
+        options: options,
       ),
     );
     keyboard = TeleverseMenu._makeKeyboard(_buttons);
@@ -270,9 +315,19 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
   }
 
   /// Add a poll button to the last row
-  KeyboardMenu requestPoll(String text, KeyboardButtonPollType requestPoll) {
+  KeyboardMenu requestPoll(
+    String text,
+    KeyboardButtonPollType requestPoll, {
+    ScopeOptions? options,
+  }) {
     if (_buttons.isEmpty) _buttons.add([]);
-    _buttons.last.add(_KeyboardMenuRequestPollButton(text, requestPoll));
+    _buttons.last.add(
+      _KeyboardMenuRequestPollButton(
+        text,
+        requestPoll,
+        options: options,
+      ),
+    );
     keyboard = TeleverseMenu._makeKeyboard(_buttons);
     return this;
   }

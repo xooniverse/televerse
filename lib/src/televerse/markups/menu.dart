@@ -5,11 +5,13 @@ abstract class _TMenuButton {
   final bool hasHandler;
   final String text;
   final Handler? handler;
+  final ScopeOptions? options;
 
   const _TMenuButton(
     this.text, {
     this.hasHandler = false,
     this.handler,
+    this.options,
   });
 
   Map<String, dynamic> toJson();

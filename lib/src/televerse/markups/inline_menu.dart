@@ -7,8 +7,12 @@ class _InlineMenuCallbackDataButton extends _TMenuButton {
   const _InlineMenuCallbackDataButton(
     super.text,
     this.data,
-    Handler handler,
-  ) : super(hasHandler: true, handler: handler);
+    Handler handler, {
+    super.options,
+  }) : super(
+          hasHandler: true,
+          handler: handler,
+        );
 
   @override
   Map<String, dynamic> toJson() {
@@ -209,6 +213,7 @@ class InlineMenu implements InlineKeyboardMarkup, TeleverseMenu {
     String text,
     Handler handler, {
     required String data,
+    ScopeOptions? options,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
@@ -216,6 +221,7 @@ class InlineMenu implements InlineKeyboardMarkup, TeleverseMenu {
         text,
         data,
         handler,
+        options: options,
       ),
     );
     inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
