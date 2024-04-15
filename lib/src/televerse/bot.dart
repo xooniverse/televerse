@@ -256,7 +256,8 @@ class Bot {
 
       if (_pendingCalls.isNotEmpty) {
         for (final fn in _pendingCalls) {
-          fn.call();
+          final mirror = reflect(fn);
+          mirror.invoke(#fn, fn.params, fn.namedParams);
         }
         _pendingCalls.clear();
       }
@@ -323,7 +324,9 @@ class Bot {
             }
           }
         }
-        break;
+        if (!sub[i].forked) {
+          break;
+        }
       }
     }
   }
@@ -410,10 +413,14 @@ class Bot {
   /// This will reply "Hello!" to any message that starts with `/start`.
   void command(
     Pattern command,
-    Handler callback,
-  ) {
+    Handler callback, {
+    bool? fork,
+    String? name,
+  }) {
     if (initialized) {
       final scope = HandlerScope(
+        name: name,
+        forked: fork,
         isCommand: true,
         handler: callback,
         types: UpdateType.messages(),
@@ -438,6 +445,10 @@ class Bot {
         _PendingCall(
           fn: this.command,
           params: [command, callback],
+          namedParams: {
+            #name: name,
+            #fork: fork,
+          },
         ),
       );
     }

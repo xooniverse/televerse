@@ -37,6 +37,9 @@ class HandlerScope {
   /// Chat ID of the conversation.
   final ID? chatId;
 
+  /// Whether this scope is forked or not
+  final bool forked;
+
   /// Creates a new [HandlerScope].
   const HandlerScope({
     this.name,
@@ -48,6 +51,8 @@ class HandlerScope {
     this.pattern,
     this.isConversation = false,
     this.chatId,
+    bool? forked,
   })  : special = isCommand || isRegExp,
+        forked = forked ?? false,
         assert(handler != null || isConversation);
 }
