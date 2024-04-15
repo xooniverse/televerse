@@ -2,9 +2,6 @@ part of 'models.dart';
 
 /// A Handler Scope is used to define the scope and related information of a handler method.
 class HandlerScope {
-  /// Optional. The name of the handler. (For debugging purposes)
-  final String? name;
-
   /// Whether the handler is a special handler.
   ///
   /// True if it's a command handler or a RegExp handler.
@@ -37,12 +34,14 @@ class HandlerScope {
   /// Chat ID of the conversation.
   final ID? chatId;
 
-  /// Whether this scope is forked or not
-  final bool forked;
+  /// Scope Options - Additional parameters for the scope.
+  final ScopeOptions? options;
+
+  /// Flag whether already executed
+  bool isExecuted;
 
   /// Creates a new [HandlerScope].
-  const HandlerScope({
-    this.name,
+  HandlerScope({
     this.handler,
     required this.predicate,
     required this.types,
@@ -51,8 +50,19 @@ class HandlerScope {
     this.pattern,
     this.isConversation = false,
     this.chatId,
-    bool? forked,
+    this.options,
+    this.isExecuted = false,
   })  : special = isCommand || isRegExp,
-        forked = forked ?? false,
         assert(handler != null || isConversation);
+
+  /// Whether the scope is forked or not.
+  bool get forked => options?.forked ?? false;
+
+  /// Name of the scope
+  String? get name => options?.name;
+
+  /// Sets executiion status to true.
+  void executed() {
+    isExecuted = true;
+  }
 }

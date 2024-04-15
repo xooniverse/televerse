@@ -61,6 +61,7 @@ part 'src/televerse/builders/message_content_generator.dart';
 
 /// Extras
 part 'src/televerse/extras/tg_exceptions.dart';
+part 'src/televerse/models/scope_options.dart';
 
 /// The main class of the library.
 ///
