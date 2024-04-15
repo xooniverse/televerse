@@ -110,28 +110,13 @@ enum _GetMeStatus {
 class _PendingCall {
   final Function fn;
   final List<dynamic> params;
+  final Map<Symbol, dynamic> namedParams;
 
   const _PendingCall({
     required this.fn,
     required this.params,
+    this.namedParams = const <Symbol, dynamic>{},
   });
-
-  void call() {
-    switch (params.length) {
-      case 0:
-        fn.call();
-        break;
-      case 1:
-        fn.call(params[0]);
-        break;
-      case 2:
-        fn.call(params[0], params[1]);
-        break;
-      case 3:
-        fn.call(params[0], params[1], params[2]);
-        break;
-    }
-  }
 }
 
 /// Extension on `Chat` to create ID of the chat
