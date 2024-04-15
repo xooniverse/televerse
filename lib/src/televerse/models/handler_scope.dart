@@ -2,14 +2,6 @@ part of 'models.dart';
 
 /// A Handler Scope is used to define the scope and related information of a handler method.
 class HandlerScope {
-  /// Whether the handler is a special handler.
-  ///
-  /// True if it's a command handler or a RegExp handler.
-  ///
-  /// - If it's a command handler, we set `args` to the parameter of the command.
-  /// - If it's a RegExp handler, we'll set the `MessageContext.matches` to the matches of the RegExp.
-  final bool special;
-
   /// If it's a command handler, we set `args` to the parameter of the command.
   final bool isCommand;
 
@@ -20,6 +12,8 @@ class HandlerScope {
   final RegExp? pattern;
 
   /// Handler
+  ///
+  /// Required unless [isConversation] is `true`.
   final Handler? handler;
 
   /// The update type
@@ -52,8 +46,7 @@ class HandlerScope {
     this.chatId,
     this.options,
     this.isExecuted = false,
-  })  : special = isCommand || isRegExp,
-        assert(handler != null || isConversation);
+  }) : assert(handler != null || isConversation);
 
   /// Whether the scope is forked or not.
   bool get forked => options?.forked ?? false;

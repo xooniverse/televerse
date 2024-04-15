@@ -341,6 +341,7 @@ class Bot {
       }
 
       if (sub[i].handler == null) continue;
+      if (sub[i].isExecuted) continue;
 
       _preProcess(sub[i], context);
 
