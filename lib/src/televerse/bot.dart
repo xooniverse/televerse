@@ -349,7 +349,12 @@ class Bot {
       if (!passing) continue;
       _preProcess(sub[forks[i]], context);
       await _processUpdate(sub[forks[i]], context);
-      sub.removeAt(forks[i]);
+    }
+
+    // Once completed, remove the forked handlers in the decending order.
+    forks.sort((a, b) => b.compareTo(a));
+    for (final i in forks) {
+      sub.removeAt(i);
     }
 
     // Finds and processes the handler scopes.

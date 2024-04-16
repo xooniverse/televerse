@@ -1,3 +1,7 @@
+# 1.15.12
+
+- Fix: Forked Handlers caused crash.
+
 # 1.15.11
 
 - Minor fix in update processing
