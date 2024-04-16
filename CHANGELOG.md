@@ -1,3 +1,8 @@
+# 1.15.11
+
+- Minor fix in update processing
+- Added `businessConnectionId` to Context aware methods.
+
 # 1.15.10
 
 - Added `Bot.fromAPI` constructor for creating Bot instance from `RawAPI` instance.
