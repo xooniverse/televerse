@@ -322,7 +322,7 @@ class Bot {
   /// Handler Scopes and proceeds to process the update.
   void _onUpdate(Update update) async {
     // Gets the sublist of Handler Scopes that is apt for the recieved Update
-    final sub = _handlerScopes.reversed.where((scope) {
+    List<HandlerScope> sub = _handlerScopes.reversed.where((scope) {
       return scope.types.contains(update.type);
     }).toList();
 
@@ -349,12 +349,13 @@ class Bot {
       if (!passing) continue;
       _preProcess(sub[forks[i]], context);
       await _processUpdate(sub[forks[i]], context);
-      sub[forks[i]].executed();
+      sub.removeAt(forks[i]);
     }
 
     // Finds and processes the handler scopes.
     for (int i = 0; i < sub.length; i++) {
       final passing = sub[i].predicate(context);
+
       if (sub[i].hasCustomPredicate) {
         try {
           final customPass =
@@ -374,13 +375,11 @@ class Bot {
       }
 
       if (sub[i].handler == null) continue;
-      if (sub[i].isExecuted) continue;
 
       _preProcess(sub[i], context);
 
       if (passing) {
         await _processUpdate(sub[i], context);
-        sub[i].executed();
         break;
       }
     }

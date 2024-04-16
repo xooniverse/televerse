@@ -31,9 +31,6 @@ class HandlerScope {
   /// Scope Options - Additional parameters for the scope.
   final ScopeOptions? options;
 
-  /// Flag whether already executed
-  bool isExecuted;
-
   /// Creates a new [HandlerScope].
   HandlerScope({
     this.handler,
@@ -45,7 +42,6 @@ class HandlerScope {
     this.isConversation = false,
     this.chatId,
     this.options,
-    this.isExecuted = false,
   }) : assert(handler != null || isConversation);
 
   /// Whether the scope is forked or not.
@@ -53,11 +49,6 @@ class HandlerScope {
 
   /// Name of the scope
   String? get name => options?.name;
-
-  /// Sets executiion status to true.
-  void executed() {
-    isExecuted = true;
-  }
 
   /// Whether the scope has a custom predicate
   bool get hasCustomPredicate => options?.customPredicate != null;

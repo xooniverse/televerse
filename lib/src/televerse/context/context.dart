@@ -219,6 +219,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendMessage);
     return api.sendMessage(
@@ -232,6 +233,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -255,6 +257,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendPhoto);
     return api.sendPhoto(
@@ -268,6 +271,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -289,6 +293,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendAudio);
     return api.sendAudio(
@@ -306,6 +311,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -325,6 +331,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendDocument);
     return api.sendDocument(
@@ -340,6 +347,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -363,6 +371,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendVideo);
     return api.sendVideo(
@@ -382,6 +391,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -399,6 +409,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendVideoNote);
     return api.sendVideoNote(
@@ -412,6 +423,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -430,6 +442,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendVoice);
     return api.sendVoice(
@@ -444,6 +457,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -457,6 +471,7 @@ class Context {
     bool? disableNotification,
     bool? protectContent,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendMediaGroup);
     return api.sendMediaGroup(
@@ -466,6 +481,7 @@ class Context {
       disableNotification: disableNotification,
       protectContent: protectContent,
       replyParameters: replyParameters,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -484,6 +500,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendLocation);
     return api.sendLocation(
@@ -499,6 +516,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -519,6 +537,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendVenue);
     return api.sendVenue(
@@ -536,6 +555,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -552,6 +572,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendContact);
     return api.sendContact(
@@ -565,6 +586,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -589,6 +611,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     return api.sendPoll(
       id,
@@ -609,6 +632,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -622,6 +646,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendDice);
     return api.sendDice(
@@ -632,6 +657,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -641,12 +667,14 @@ class Context {
   Future<bool> replyWithChatAction(
     ChatAction action, {
     int? messageThreadId,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendChatAction);
     return api.sendChatAction(
       id,
       action,
       messageThreadId: _threadId(messageThreadId),
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -660,6 +688,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendGame);
     return api.sendGame(
@@ -670,6 +699,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -691,6 +721,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendAnimation);
     return api.sendAnimation(
@@ -709,6 +740,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
@@ -722,6 +754,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendSticker);
     return api.sendSticker(
@@ -732,6 +765,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
   }
 
