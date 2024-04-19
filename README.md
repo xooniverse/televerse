@@ -296,8 +296,6 @@ Efficiently build inline query results with the InlineQueryResultBuilder, simpli
 
 ---
 
-Feel free to adjust the examples or add more details to them as needed. Let me know if there's anything else you'd like to add or modify!
-
 ## 🌟 Shoot a Star
 
 If you find Televerse helpful, please consider shooting a star on our [Github repository](https://github.com/HeySreelal/televerse). This helps us to know that our work is appreciated and motivates us to continue improving Televerse.
