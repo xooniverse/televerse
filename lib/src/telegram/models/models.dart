@@ -1,7 +1,7 @@
 /// Telegram Bot API models
 ///
 /// This library contains all the models used by the Telegram Bot API.
-library models;
+library;
 
 import 'dart:convert';
 import 'dart:typed_data';

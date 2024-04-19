@@ -1,7 +1,7 @@
 /// ## Televerse Models
 ///
 /// This library contains all the models used by Televerse.
-library televerse.models;
+library;
 
 import 'dart:async';
 import 'dart:io' as io;

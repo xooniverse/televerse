@@ -1,5 +1,5 @@
 /// Extensions for the raw Telegram API models
-library extensions;
+library;
 
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';

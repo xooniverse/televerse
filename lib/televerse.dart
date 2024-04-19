@@ -18,7 +18,7 @@
 /// ```
 ///
 /// Happy coding!
-library televerse;
+library;
 
 import 'dart:async';
 import 'dart:convert';

@@ -4,7 +4,7 @@
 /// adding a bot to a group / channel, to name a few.
 ///
 /// Televerse provides a convenient way to create these deeplinks.
-library links;
+library;
 
 import 'package:televerse/televerse.dart';
 
