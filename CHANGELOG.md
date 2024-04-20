@@ -1,5 +1,10 @@
 # 1.15.13
 
+- Removed usage of `dart:mirrors`
+- Updated README
+
+# 1.15.12
+
 - Fix: Forked Handlers caused crash.
 
 # 1.15.11
