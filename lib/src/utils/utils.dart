@@ -117,6 +117,10 @@ class _PendingCall {
     required this.params,
     this.namedParams = const <Symbol, dynamic>{},
   });
+
+  void call() {
+    Function.apply(fn, params, namedParams);
+  }
 }
 
 /// Extension on `Chat` to create ID of the chat

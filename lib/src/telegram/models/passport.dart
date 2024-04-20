@@ -5,7 +5,7 @@
 /// share their data with services that require real-world ID (finance, ICOs, etc.).
 ///
 /// Please see the [manual](https://core.telegram.org/passport) for details.
-library passport;
+library;
 
 import 'package:televerse/televerse.dart';
 

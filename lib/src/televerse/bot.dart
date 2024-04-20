@@ -256,8 +256,8 @@ class Bot {
 
       if (_pendingCalls.isNotEmpty) {
         for (final fn in _pendingCalls) {
-          final mirror = reflect(fn);
-          mirror.invoke(#fn, fn.params, fn.namedParams);
+          fn.call();
+          print('pending call is executed');
         }
         _pendingCalls.clear();
       }

@@ -18,13 +18,12 @@
 /// ```
 ///
 /// Happy coding!
-library televerse;
+library;
 
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as io;
 import 'dart:math';
-import 'dart:mirrors';
 import 'package:dio/dio.dart';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';

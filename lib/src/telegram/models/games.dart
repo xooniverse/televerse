@@ -38,7 +38,7 @@
 ///
 /// - For examples of what can be done using this new stuff, check the @gamebot
 /// and @gamee bots.
-library games;
+library;
 
 import 'package:televerse/src/telegram/models/models.dart';
 
