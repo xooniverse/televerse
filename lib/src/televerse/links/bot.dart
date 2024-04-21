@@ -105,8 +105,8 @@ class GroupBotLink extends Deeplink {
     } else {
       final params = <String>[];
       if (parameter != null) params.add('=$_encodedParameter');
-      if (admin != null) params.add('admin=${admin!.param}');
-      return '$url${params.join('&')}';
+      if (admin != null) params.add('&admin=${admin!.param}');
+      return '$url${params.join('')}';
     }
   }
 
@@ -119,8 +119,8 @@ class GroupBotLink extends Deeplink {
     } else {
       final params = <String>[];
       if (parameter != null) params.add('=$_encodedParameter');
-      if (admin != null) params.add('admin=${admin!.param}');
-      return '$url${params.join('&')}';
+      if (admin != null) params.add('&admin=${admin!.param}');
+      return '$url${params.join('')}';
     }
   }
 
