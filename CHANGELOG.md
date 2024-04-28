@@ -1,3 +1,8 @@
+# 1.15.14
+
+- Removed unnecessary print in the callback setter.
+- Fixed `BotLink` link generation.
+
 # 1.15.13
 
 - Removed usage of `dart:mirrors`
