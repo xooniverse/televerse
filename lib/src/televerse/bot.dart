@@ -257,7 +257,6 @@ class Bot {
       if (_pendingCalls.isNotEmpty) {
         for (final fn in _pendingCalls) {
           fn.call();
-          print('pending call is executed');
         }
         _pendingCalls.clear();
       }
