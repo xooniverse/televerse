@@ -198,7 +198,7 @@ Televerse offers a wide array of listener methods to cater to your bot's needs, 
 | Method  | Description |
 | --- | --- |
 | `bot.command` | For listening commands |
-| `bot.hears` | For listening to specified Regular Expression; |
+| `bot.hears` | For listening to specified Regular Expression |
 | `bot.inlineQuery` | For listening to inline query with specified query text |
 | `bot.text` | For listening to message with specified text |
 | `bot.callbackQuery` | For listening to specified callback data |
@@ -206,7 +206,7 @@ Televerse offers a wide array of listener methods to cater to your bot's needs, 
 | `bot.onPhoto` | For listening to photo messages |
 | `bot.chatType` | This method can be used to listen to messages/updates coming from a specific type of chat such as Super Group or Channel or Private Chat |
 | `bot.entity` | Sets up handler method for messages that contains specified entity type |
-| `bot.myChatMember` | Listens to change in Bot's chat member status - such as bot is added to a channel or kicked from a group etc. }
+| `bot.myChatMember` | Listens to change in Bot's chat member status - such as bot is added to a channel or kicked from a group etc.
 - And much much more :)
 
 
