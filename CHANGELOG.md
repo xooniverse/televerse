@@ -1,3 +1,9 @@
+# 1.16.0
+
+- 🤖 Bot API 7.3 (May 6, 2024)
+- Added `Keyboard.remove` method to remove Keyboard.
+- Refactors and improvements
+
 # 1.15.14
 
 - Removed unnecessary print in the callback setter.
