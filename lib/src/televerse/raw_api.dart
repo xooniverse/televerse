@@ -888,6 +888,7 @@ class RawAPI {
     int? heading,
     int? proximityAlertRadius,
     InlineKeyboardMarkup? replyMarkup,
+    int? livePeriod,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -898,6 +899,7 @@ class RawAPI {
       "heading": heading,
       "proximity_alert_radius": proximityAlertRadius,
       "reply_markup": replyMarkup?.toJson(),
+      "live_period": livePeriod,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageLiveLocation),
@@ -922,6 +924,7 @@ class RawAPI {
     int? heading,
     int? proximityAlertRadius,
     InlineKeyboardMarkup? replyMarkup,
+    int? livePeriod,
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
@@ -931,6 +934,7 @@ class RawAPI {
       "heading": heading,
       "proximity_alert_radius": proximityAlertRadius,
       "reply_markup": replyMarkup?.toJson(),
+      "live_period": livePeriod,
     };
     bool response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageLiveLocation),
@@ -1064,7 +1068,7 @@ class RawAPI {
   Future<Message> sendPoll(
     ID chatId,
     String question,
-    List<String> options, {
+    List<InputPollOption> options, {
     int? messageThreadId,
     bool? isAnonymous,
     PollType type = PollType.regular,
@@ -1081,6 +1085,8 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    ParseMode? questionParseMode,
+    List<MessageEntity>? questionEntities,
   }) async {
     if (options.length < 2 || options.length > 10) {
       throw TeleverseException(
@@ -1139,7 +1145,7 @@ class RawAPI {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "question": question,
-      "options": options,
+      "options": options.map((e) => e.toJson()),
       "is_anonymous": isAnonymous,
       "type": type.type,
       "allows_multiple_answers": allowsMultipleAnswers,
@@ -1156,6 +1162,8 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "question_entities": questionEntities?.map((e) => e.toJson()).toList(),
+      "question_parse_mode": questionParseMode?.value,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendPoll),
@@ -1755,13 +1763,13 @@ class RawAPI {
   }
 
   /// Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a Chat object on success.
-  Future<Chat> getChat(
+  Future<ChatFullInfo> getChat(
     ID chatId,
   ) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
     };
-    Chat response = Chat.fromJson(
+    final response = ChatFullInfo.fromJson(
       await _httpClient.postURI(
         _buildUri(APIMethod.getChat),
         params,

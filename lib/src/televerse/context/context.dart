@@ -595,7 +595,7 @@ class Context {
   /// Provide a [question], a list of [options] and a [type] to send a poll.
   Future<Message> replyWithPoll(
     String question,
-    List<String> options, {
+    List<InputPollOption> options, {
     int? messageThreadId,
     bool? isAnonymous,
     PollType type = PollType.regular,

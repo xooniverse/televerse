@@ -29,6 +29,11 @@ class ChatMemberUpdated implements WithChat, WithUser {
   /// Since Bot API 6.7
   final bool? viaChatFolderInviteLink;
 
+  /// Optional. True, if the user joined the chat after sending a direct join request and being approved by an administrator
+  ///
+  /// Since Bot API 7.3
+  final bool? viaJoinRequest;
+
   /// Creates a new [ChatMemberUpdated] object.
   const ChatMemberUpdated({
     required this.chat,
@@ -38,6 +43,7 @@ class ChatMemberUpdated implements WithChat, WithUser {
     required this.newChatMember,
     this.inviteLink,
     this.viaChatFolderInviteLink,
+    this.viaJoinRequest,
   });
 
   /// Creates a new [ChatMemberUpdated] object from json.
@@ -56,6 +62,7 @@ class ChatMemberUpdated implements WithChat, WithUser {
               json['invite_link'] as Map<String, dynamic>,
             ),
       viaChatFolderInviteLink: json['via_chat_folder_invite_link'] as bool?,
+      viaJoinRequest: json['via_join_request'] as bool?,
     );
   }
 
@@ -69,6 +76,7 @@ class ChatMemberUpdated implements WithChat, WithUser {
       'new_chat_member': newChatMember.toJson(),
       'invite_link': inviteLink?.toJson(),
       'via_chat_folder_invite_link': viaChatFolderInviteLink,
+      'via_join_request': viaJoinRequest,
     }..removeWhere(_nullFilter);
   }
 

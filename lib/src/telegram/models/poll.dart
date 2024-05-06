@@ -45,6 +45,9 @@ class Poll {
   /// A handy [DateTime] object is available as [closeDateTime] getter
   final int? closeDate;
 
+  /// Optional. Special entities that appear in the question. Currently, only custom emoji entities are allowed in poll questions
+  final List<MessageEntity>? questionEntities;
+
   /// Constructs a [Poll] object
   const Poll({
     required this.id,
@@ -60,6 +63,7 @@ class Poll {
     this.explanationEntities,
     this.openPeriod,
     this.closeDate,
+    this.questionEntities,
   });
 
   /// Creates a [Poll] object from JSON object
@@ -82,6 +86,9 @@ class Poll {
           .toList(),
       openPeriod: json['open_period'],
       closeDate: json['close_date'],
+      questionEntities: (json['question_entities'] as List<dynamic>?)
+          ?.map((x) => MessageEntity.fromJson(x as Map<String, dynamic>))
+          .toList(),
     );
   }
 
@@ -102,6 +109,7 @@ class Poll {
           explanationEntities?.map((x) => x.toJson()).toList(),
       'open_period': openPeriod,
       'close_date': closeDate,
+      'question_entities': questionEntities?.map((x) => x.toJson()).toList(),
     }..removeWhere(_nullFilter);
   }
 

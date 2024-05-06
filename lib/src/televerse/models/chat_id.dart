@@ -5,25 +5,35 @@ part of 'models.dart';
 /// When you want to send a message to a chat, you need to specify the chat id. You can use this class to represent the chat id.
 abstract class ID {
   /// The id of the chat. It can be an integer or a string.
-  dynamic id;
+  final dynamic id;
 
   /// Creates a new [ID] object with the passed [id].
   ///
   /// The [id] can be an integer or a string.
-  ID(this.id);
+  const ID(this.id);
 
   /// Creates a new [ID] object with the passed [value].
   ///
-  /// This method will return a [ChatID] if the passed [value] is an integer or
-  /// a [SupergroupID] if the passed [value] is a string.
+  /// ---
+  ///
+  /// Easter Egg! 🥚 You've found the only place where Televerse uses `dynamic` type on public interface. We highly encourage you to rely on `ChatID` or `ChannelID` classes to
+  /// create instance of `ID` but yeah, this can be quite an easy one.
+  ///
+  /// ---
+  ///
+  /// This method will return:
+  /// - a [ChatID] if the passed [value] is an integer or a string that can be parsed to an integer value
+  /// - a [ChannelID] if the passed [value] is a string that cannot be parsed to int.
   ///
   /// If the passed [value] is neither an integer nor a string, this method will throw a [TeleverseException].
-  static ID create(dynamic value) {
+  factory ID.create(dynamic value) {
     if (value is int) {
       return ChatID.create(value);
     }
 
     if (value is String) {
+      final parsed = int.tryParse(value);
+      if (parsed != null) return ChatID(parsed);
       return ChannelID.create(value);
     }
 
@@ -77,7 +87,11 @@ class ChatID extends ID {
   /// // Print the chat's title.
   /// print(chat.title);
   /// ```
-  ChatID(int super.id);
+  ChatID(super.id);
+
+  /// The ID getter, returns the actual integer value
+  @override
+  int get id => super.id;
 
   /// Creates a new [ChatID] object with the passed [id] which is an integer.
   factory ChatID.create(int id) {
@@ -96,6 +110,10 @@ class ChannelID extends ID {
   factory ChannelID.create(String id) {
     return ChannelID(id);
   }
+
+  /// The ID getter, returns the actual String value
+  @override
+  String get id => super.id;
 }
 
 /// This class is used to represent a supergroup id. It is a subclass of [ID].
@@ -109,4 +127,8 @@ class SupergroupID extends ID {
   factory SupergroupID.create(String id) {
     return SupergroupID(id);
   }
+
+  /// The ID getter, returns the actual String value
+  @override
+  String get id => super.id;
 }

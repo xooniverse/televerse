@@ -166,4 +166,9 @@ class Keyboard extends ReplyKeyboardMarkup {
       ),
     );
   }
+
+  /// This method can be used to remove the Keyboard that is already attached.
+  static ReplyKeyboardRemove remove({bool? selective}) {
+    return ReplyKeyboardRemove(selective: selective);
+  }
 }

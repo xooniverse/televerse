@@ -247,7 +247,7 @@ void main() {
     final msg = await bot.api.sendPoll(
       id,
       "What is your favorite color?",
-      ["Red", "Green", "Blue"],
+      ["Red", "Green", "Blue"].map((e) => InputPollOption(text: e)).toList(),
       isAnonymous: false,
       type: PollType.regular,
       replyMarkup: ReplyKeyboardRemove(),

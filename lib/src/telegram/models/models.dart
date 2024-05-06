@@ -125,7 +125,7 @@ part 'bot_command_scope_all_group_chats.dart';
 part 'inline_keyboard_markup.dart';
 part 'chat_member_banned.dart';
 part 'photo_size.dart';
-part 'chat.dart';
+part 'chat_full_info.dart';
 part 'inline_query_result_game.dart';
 part 'user_profile_photos.dart';
 part 'chat_join_request.dart';
@@ -211,3 +211,17 @@ part 'business_opening_hours.dart';
 part 'business_opening_hours_interval.dart';
 part 'shared_user.dart';
 part 'birthdate.dart';
+
+// Bot API 7.3
+part 'input_poll_option.dart';
+part 'abstracts/background_type_fill.dart';
+part 'abstracts/background_fill.dart';
+part 'background_type_fill.dart';
+part 'background_type_wallpaper.dart';
+part 'background_type_pattern.dart';
+part 'background_type_chat_theme.dart';
+part 'background_fill_solid.dart';
+part 'background_fill_freeform_gradient.dart';
+part 'background_fill_gradient.dart';
+part 'chat_background.dart';
+part 'chat.dart';
