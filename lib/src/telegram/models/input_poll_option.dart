@@ -35,6 +35,6 @@ class InputPollOption {
       'text': text,
       'text_parse_mode': textParseMode?.value,
       'text_entities': textEntities?.map((entity) => entity.toJson()).toList(),
-    };
+    }..removeWhere(_nullFilter);
   }
 }
