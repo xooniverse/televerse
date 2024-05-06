@@ -248,6 +248,9 @@ class Message implements MaybeInaccessibleMessage, WithUser {
   /// Optional. True, if the message was sent by an implicit action, for example, as an away or a greeting business message, or as a scheduled message
   final bool? isFromOffline;
 
+  /// Optional. Service message: chat background set
+  final ChatBackground? chatBackgroundSet;
+
   /// Creates a Message object.
   const Message({
     this.from,
@@ -330,6 +333,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
     this.businessConnectionId,
     this.senderBusinessBot,
     this.isFromOffline,
+    this.chatBackgroundSet,
   });
 
   /// Creates a [Message] object from json map.
@@ -511,6 +515,9 @@ class Message implements MaybeInaccessibleMessage, WithUser {
           ? User.fromJson(json["sender_business_bot"])
           : null,
       isFromOffline: json["is_from_offline"],
+      chatBackgroundSet: json["chat_background_set"] != null
+          ? ChatBackground.fromJson(json["chat_background_set"])
+          : null,
     );
   }
 
@@ -599,6 +606,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
       'business_connection_id': businessConnectionId,
       'sender_business_bot': senderBusinessBot?.toJson(),
       'is_from_offline': isFromOffline,
+      'chat_background_set': chatBackgroundSet?.toJson(),
     }..removeWhere(_nullFilter);
   }
 
