@@ -3,7 +3,7 @@
 
   [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
   ![GitHub](https://img.shields.io/github/license/HeySreelal/televerse?color=green)
-  ![](https://shields.io/badge/Latest-Bot%20API%207.2-blue)
+  ![](https://shields.io/badge/Latest-Bot%20API%207.3-blue)
 
   <a href="https://telegram.me/TeleverseDart">
     <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> 
@@ -13,15 +13,15 @@
 
 ---
 
-🤖 `Bot API version: Bot API 7.2 (March 31, 2024)`
+🤖 `Bot API version: Bot API 7.3 (May 6, 2024)`
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot framework built with Dart programming language. It provides a complete and well-structured API that enables developers to create and deploy complex Telegram bots with ease. Televerse provides a total of 0 dynamic types on its public interface, making it easy for developers to write strictly typed code.
 
-## 🔥 Latest Update: Inline Query Result Builder
+## 🔥 Bot API 7.3 (May 6, 2024)
 
-Televerse now includes the powerful `InlineQueryResultBuilder`! This feature simplifies the creation of inline query results with efficiency and simplicity in mind. Utilize methods like `InlineQueryResultBuilder.article`, `InlineQueryResultBuilder.audio`, `InlineQueryResultBuilder.contact`, and more to effortlessly generate various types of inline query results. Upgrade now and streamline your bot development process with Televerse. 
+In a nutshell, the updates include, InlineKeyboardMarkup support for business messages, infinite editability for live locations. Support for new poll features and to chat background changes service messages. 
 
-Check out [the example](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/inline_queries_bot.dart) and [changelog](./CHANGELOG.md) for more details! 🚀
+Checkout [changelog](https://core.telegram.org/bots/api-changelog#may-6-2024) for more details! 🚀
 
 <hr>
 
