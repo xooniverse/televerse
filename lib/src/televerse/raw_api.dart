@@ -1145,7 +1145,7 @@ class RawAPI {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "question": question,
-      "options": options.map((e) => e.toJson()),
+      "options": options.map((e) => e.toJson()).toList(),
       "is_anonymous": isAnonymous,
       "type": type.type,
       "allows_multiple_answers": allowsMultipleAnswers,
