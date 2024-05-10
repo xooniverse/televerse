@@ -2,109 +2,109 @@ part of 'models.dart';
 
 /// This object represents a chat.
 class ChatFullInfo extends Chat {
-  /// Optional. Chat photo. Returned only in getChat.
+  /// Optional. Chat photo.
   final ChatPhoto? photo;
 
-  /// Optional. If non-empty, the list of all active chat usernames; for private chats, supergroups and channels. Returned only in getChat.
+  /// Optional. If non-empty, the list of all active chat usernames; for private chats, supergroups and channels.
   final List<String>? activeUsernames;
 
-  /// Optional. Bio of the other party in a private chat. Returned only in getChat.
+  /// Optional. Bio of the other party in a private chat.
   final String? bio;
 
-  /// Optional. True, if privacy settings of the other party in the private chat allows to use tg://user?id=<user_id> links only in chats with the user. Returned only in getChat.
+  /// Optional. True, if privacy settings of the other party in the private chat allows to use tg://user?id=<user_id> links only in chats with the user.
   final bool? hasPrivateForwards;
 
-  /// Optional. True, if the privacy settings of the other party restrict sending voice and video note messages in the private chat. Returned only in getChat.
+  /// Optional. True, if the privacy settings of the other party restrict sending voice and video note messages in the private chat.
   final bool? hasRestrictedVoiceAndVideoMessages;
 
-  /// Optional. True, if users need to join the supergroup before they can send messages. Returned only in getChat.
+  /// Optional. True, if users need to join the supergroup before they can send messages.
   final bool? joinToSendMessages;
 
-  /// Optional. True, if all users directly joining the supergroup need to be approved by supergroup administrators. Returned only in getChat.
+  /// Optional. True, if all users directly joining the supergroup need to be approved by supergroup administrators.
   final bool? joinByRequest;
 
-  /// Optional. Description, for groups, supergroups and channel chats. Returned only in getChat.
+  /// Optional. Description, for groups, supergroups and channel chats.
   final String? description;
 
-  /// Optional. Primary invite link, for groups, supergroups and channel chats. Returned only in getChat.
+  /// Optional. Primary invite link, for groups, supergroups and channel chats.
   final String? inviteLink;
 
-  /// Optional. The most recent pinned message (by sending date). Returned only in getChat.
+  /// Optional. The most recent pinned message (by sending date).
   final Message? pinnedMessage;
 
-  /// Optional. Default chat member permissions, for groups and supergroups. Returned only in getChat.
+  /// Optional. Default chat member permissions, for groups and supergroups.
   final ChatPermissions? permissions;
 
-  /// Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unpriviledged user; in seconds. Returned only in getChat.
+  /// Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unpriviledged user; in seconds.
   final int? slowModeDelay;
 
-  /// Optional. The time after which all messages sent to the chat will be automatically deleted; in seconds. Returned only in getChat.
+  /// Optional. The time after which all messages sent to the chat will be automatically deleted; in seconds.
   final int? messageAutoDeleteTime;
 
-  /// Optional. True, if messages from the chat can't be forwarded to other chats. Returned only in getChat.
+  /// Optional. True, if messages from the chat can't be forwarded to other chats.
   final bool? hasProtectedContent;
 
-  /// Optional. For supergroups, name of group sticker set. Returned only in getChat.
+  /// Optional. For supergroups, name of group sticker set.
   final String? stickerSetName;
 
-  /// Optional. True, if the bot can change the group sticker set. Returned only in getChat.
+  /// Optional. True, if the bot can change the group sticker set.
   final bool? canSetStickerSet;
 
-  /// Optional. Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats. This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier. Returned only in getChat.
+  /// Optional. Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats. This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
   final int? linkedChatId;
 
-  /// Optional. For supergroups, the location to which the supergroup is connected. Returned only in getChat.
+  /// Optional. For supergroups, the location to which the supergroup is connected.
   final ChatLocation? location;
 
-  /// Optional. True, if non-administrators can only get the list of bots and administrators in the chat. Returned only in getChat.
+  /// Optional. True, if non-administrators can only get the list of bots and administrators in the chat.
   final bool? hasHiddenMembers;
 
-  /// Optional. True, if aggressive anti-spam checks are enabled in the supergroup. The field is only available to chat administrators. Returned only in getChat.
+  /// Optional. True, if aggressive anti-spam checks are enabled in the supergroup. The field is only available to chat administrators.
   final bool? hasAggressiveAntiSpamEnabled;
 
-  /// Optional. Expiration date of the emoji status of the other party in a private chat, if any. Returned only in getChat.
+  /// Optional. Expiration date of the emoji status of the other party in a private chat, if any.
   final int? emojiStatusExpirationDate;
 
-  /// Optional. Expiration date of the emoji status of the chat or the other party in a private chat, in Unix time, if any. Returned only in getChat.
+  /// Optional. Expiration date of the emoji status of the chat or the other party in a private chat, in Unix time, if any.
   final List<ReactionType>? availableReactions;
 
-  /// Optional. Custom emoji identifier of the emoji status of the chat or the other party in a private chat. Returned only in getChat.
+  /// Optional. Custom emoji identifier of the emoji status of the chat or the other party in a private chat.
   final String? emojiStatusCustomEmojiId;
 
-  /// Optional. Identifier of the accent color for the chat name and backgrounds of the chat photo, reply header, and link preview. See [accent colors](https://core.telegram.org/bots/api#accent-colors) for more details. Returned only in getChat. Always returned in [getChat](https://core.telegram.org/bots/api#getchat)
+  /// Optional. Identifier of the accent color for the chat name and backgrounds of the chat photo, reply header, and link preview. See [accent colors](https://core.telegram.org/bots/api#accent-colors) for more details. Always returned in [getChat](https://core.telegram.org/bots/api#getchat)
   final int? accentColorId;
 
-  /// Optional. Custom emoji identifier of emoji chosen by the chat for the reply header and link preview background. Returned only in getChat.
+  /// Optional. Custom emoji identifier of emoji chosen by the chat for the reply header and link preview background.
   final String? backgroundCustomEmojiId;
 
-  /// Optional. Identifier of the accent color for the chat's profile background. See profile accent colors for more details. Returned only in getChat.
+  /// Optional. Identifier of the accent color for the chat's profile background. See profile accent colors for more details.
   final int? profileAccentColorId;
 
-  /// Optional. Custom emoji identifier of the emoji chosen by the chat for its profile background. Returned only in getChat.
+  /// Optional. Custom emoji identifier of the emoji chosen by the chat for its profile background.
   final String? profileBackgroundCustomEmojiId;
 
-  /// Optional. True, if new chat members will have access to old messages; available only to chat administrators. Returned only in getChat.
+  /// Optional. True, if new chat members will have access to old messages; available only to chat administrators.
   final bool? hasVisibleHistory;
 
-  /// Optional. For supergroups, the minimum number of boosts that a non-administrator user needs to add in order to ignore slow mode and chat permissions. Returned only in getChat.
+  /// Optional. For supergroups, the minimum number of boosts that a non-administrator user needs to add in order to ignore slow mode and chat permissions.
   final int? unrestrictBoostCount;
 
-  /// Optional. For supergroups, the name of the group's custom emoji sticker set. Custom emoji from this set can be used by all users and bots in the group. Returned only in getChat.
+  /// Optional. For supergroups, the name of the group's custom emoji sticker set. Custom emoji from this set can be used by all users and bots in the group.
   final String? customEmojiStickerSetName;
 
-  /// Optional. For private chats with business accounts, the intro of the business. Returned only in getChat.
+  /// Optional. For private chats with business accounts, the intro of the business.
   final BusinessIntro? businessIntro;
 
-  /// Optional. For private chats with business accounts, the location of the business. Returned only in getChat.
+  /// Optional. For private chats with business accounts, the location of the business.
   final BusinessLocation? businessLocation;
 
-  /// Optional. For private chats with business accounts, the opening hours of the business. Returned only in getChat.
+  /// Optional. For private chats with business accounts, the opening hours of the business.
   final BusinessOpeningHours? businessOpeningHours;
 
-  /// Optional. For private chats, the personal channel of the user. Returned only in getChat.
+  /// Optional. For private chats, the personal channel of the user.
   final Chat? personalChat;
 
-  /// Optional. For private chats, the date of birth of the user. Returned only in getChat.
+  /// Optional. For private chats, the date of birth of the user.
   final Birthdate? birthdate;
 
   /// The maximum number of reactions that can be set on a message in the chat
@@ -261,8 +261,9 @@ class ChatFullInfo extends Chat {
       'has_hidden_members': hasHiddenMembers,
       'has_aggressive_anti_spam_enabled': hasAggressiveAntiSpamEnabled,
       'emoji_status_expiration_date': emojiStatusExpirationDate,
-      'available_reactions':
-          availableReactions?.map((e) => e.toJson()).toList(),
+      'available_reactions': availableReactions?.map((e) {
+        return e.toJson();
+      }).toList(),
       'emoji_status_custom_emoji_id': emojiStatusCustomEmojiId,
       'accent_color_id': accentColorId,
       'background_custom_emoji_id': backgroundCustomEmojiId,
