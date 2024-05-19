@@ -1,4 +1,4 @@
-part of 'passport.dart';
+part of 'models.dart';
 
 /// Describes data required for decrypting and authenticating EncryptedPassportElement. See the Telegram Passport Documentation for a complete description of the data decryption and authentication processes.
 class EncryptedCredentials {

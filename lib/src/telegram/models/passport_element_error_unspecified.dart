@@ -1,4 +1,4 @@
-part of 'passport.dart';
+part of 'models.dart';
 
 /// Represents an issue in an unspecified place. The error is considered resolved when new data is added.
 class PassportElementErrorUnspecified extends PassportElementError {

@@ -1,4 +1,4 @@
-part of 'games.dart';
+part of 'models.dart';
 
 /// This object represents one row of the high scores table for a game.
 class GameHighScore {

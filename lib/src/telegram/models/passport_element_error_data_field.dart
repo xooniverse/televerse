@@ -1,4 +1,4 @@
-part of 'passport.dart';
+part of 'models.dart';
 
 /// Represents an issue in one of the data fields that was provided by the user. The error is considered resolved when the field's value changes.
 class PassportElementErrorDataField extends PassportElementError {

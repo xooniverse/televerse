@@ -1,4 +1,4 @@
-part of 'passport.dart';
+part of 'models.dart';
 
 /// Describes Telegram Passport data shared with the bot by the user.
 class PassportData {

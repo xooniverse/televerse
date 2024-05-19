@@ -87,7 +87,7 @@ class ChatID extends ID {
   /// // Print the chat's title.
   /// print(chat.title);
   /// ```
-  ChatID(super.id);
+  const ChatID(super.id);
 
   /// The ID getter, returns the actual integer value
   @override
@@ -104,7 +104,7 @@ class ChatID extends ID {
 /// Simply pass the channel's username to the constructor to create a channel id.
 class ChannelID extends ID {
   /// Creates a new [ChannelID] object with the passed [id] which is a string.
-  ChannelID(String super.id);
+  const ChannelID(String super.id);
 
   /// Creates a new [ChannelID] object with the passed [id] which is a string.
   factory ChannelID.create(String id) {
@@ -121,7 +121,7 @@ class ChannelID extends ID {
 /// Simply pass the supergroup's username to the constructor to create a supergroup id.
 class SupergroupID extends ID {
   /// Creates a new [SupergroupID] object with the passed [id] which is a string.
-  SupergroupID(String super.id);
+  const SupergroupID(String super.id);
 
   /// Creates a new [SupergroupID] object with the passed [id] which is a string.
   factory SupergroupID.create(String id) {

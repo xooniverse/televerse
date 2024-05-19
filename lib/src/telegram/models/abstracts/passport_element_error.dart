@@ -1,4 +1,4 @@
-part of '../passport.dart';
+part of '../models.dart';
 
 /// This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user.
 abstract class PassportElementError {
