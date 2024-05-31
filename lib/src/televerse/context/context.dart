@@ -220,6 +220,7 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendMessage);
     return api.sendMessage(
@@ -234,6 +235,7 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -258,6 +260,8 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
+    bool? showCaptionAboveMedia,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendPhoto);
     return api.sendPhoto(
@@ -272,6 +276,8 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
+      showCaptionAboveMedia: showCaptionAboveMedia,
     );
   }
 
@@ -294,6 +300,7 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendAudio);
     return api.sendAudio(
@@ -312,6 +319,7 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -332,6 +340,7 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendDocument);
     return api.sendDocument(
@@ -348,6 +357,7 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -372,6 +382,8 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
+    bool? showCaptionAboveMedia,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendVideo);
     return api.sendVideo(
@@ -392,6 +404,8 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
+      showCaptionAboveMedia: showCaptionAboveMedia,
     );
   }
 
@@ -410,6 +424,7 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendVideoNote);
     return api.sendVideoNote(
@@ -424,6 +439,7 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -443,6 +459,7 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendVoice);
     return api.sendVoice(
@@ -458,6 +475,7 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -472,6 +490,7 @@ class Context {
     bool? protectContent,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendMediaGroup);
     return api.sendMediaGroup(
@@ -482,6 +501,7 @@ class Context {
       protectContent: protectContent,
       replyParameters: replyParameters,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -501,6 +521,7 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendLocation);
     return api.sendLocation(
@@ -517,6 +538,7 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -538,6 +560,7 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendVenue);
     return api.sendVenue(
@@ -556,6 +579,7 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -573,6 +597,7 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendContact);
     return api.sendContact(
@@ -587,6 +612,7 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -612,6 +638,7 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     return api.sendPoll(
       id,
@@ -633,6 +660,7 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -647,6 +675,7 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendDice);
     return api.sendDice(
@@ -658,6 +687,7 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -689,6 +719,7 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendGame);
     return api.sendGame(
@@ -700,6 +731,7 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -722,6 +754,8 @@ class Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
+    bool? showCaptionAboveMedia,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendAnimation);
     return api.sendAnimation(
@@ -741,6 +775,8 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
+      showCaptionAboveMedia: showCaptionAboveMedia,
     );
   }
 
@@ -755,6 +791,7 @@ class Context {
     ReplyParameters? replyParameters,
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendSticker);
     return api.sendSticker(
@@ -766,6 +803,7 @@ class Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -1133,6 +1171,7 @@ class Context {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    bool? showCaptionAboveMedia,
   }) async {
     _verifyInfo([_chatId, _msgId], APIMethod.copyMessage);
     return api.copyMessage(
@@ -1147,6 +1186,7 @@ class Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
+      showCaptionAboveMedia: showCaptionAboveMedia,
     );
   }
 
@@ -1681,6 +1721,7 @@ class Context {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
+    bool? showCaptionAboveMedia,
   }) async {
     if (_isInline()) {
       await api.editInlineMessageCaption(
@@ -1689,6 +1730,7 @@ class Context {
         parseMode: parseMode,
         captionEntities: captionEntities,
         replyMarkup: replyMarkup,
+        showCaptionAboveMedia: showCaptionAboveMedia,
       );
     } else {
       _verifyInfo([_chatId, _msgId], APIMethod.editMessageCaption);
@@ -1699,6 +1741,7 @@ class Context {
         parseMode: parseMode,
         captionEntities: captionEntities,
         replyMarkup: replyMarkup,
+        showCaptionAboveMedia: showCaptionAboveMedia,
       );
     }
     return true;
@@ -1789,7 +1832,7 @@ class Context {
     required String title,
     required String description,
     required String payload,
-    required String providerToken,
+    String? providerToken,
     required String currency,
     required List<LabeledPrice> prices,
     int? messageThreadId,
@@ -1812,6 +1855,7 @@ class Context {
     bool? protectContent,
     InlineKeyboardMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? messageEffectId,
   }) async {
     _verifyInfo([_chatId], APIMethod.sendInvoice);
     return api.sendInvoice(
@@ -1842,6 +1886,7 @@ class Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
+      messageEffectId: messageEffectId,
     );
   }
 
@@ -1850,7 +1895,7 @@ class Context {
     required String title,
     required String description,
     required String payload,
-    required String providerToken,
+    String? providerToken,
     required String currency,
     required List<LabeledPrice> prices,
     int? maxTipAmount = 0,

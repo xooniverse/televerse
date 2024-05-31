@@ -365,6 +365,7 @@ class RawAPI {
     bool? protectContent,
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    bool? showCaptionAboveMedia,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -378,6 +379,7 @@ class RawAPI {
       "protect_content": protectContent,
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "show_caption_above_media": showCaptionAboveMedia,
     };
     Uri uri = _buildUri(APIMethod.copyMessage);
 
@@ -2348,6 +2350,7 @@ class RawAPI {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
+    bool? showCaptionAboveMedia,
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
@@ -2355,6 +2358,7 @@ class RawAPI {
       "parse_mode": parseMode?.value,
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
       "reply_markup": replyMarkup?.toJson(),
+      "show_caption_above_media": showCaptionAboveMedia,
     };
     bool response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageCaption),
