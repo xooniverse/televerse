@@ -94,4 +94,20 @@ class TeleverseException implements Exception {
       type: TeleverseExceptionType.timeoutException,
     );
   }
+
+  /// Exception thrown when the timeout exception occurs.
+  static TeleverseException typeParameterRequired(
+    Type type,
+    List<Type> expected,
+  ) {
+    return TeleverseException(
+      "Type Parameter Required.",
+      description:
+          "Televerse is a strictly typed library and does not allows usage of dynamic types. This exception is thrown either\n"
+          "   1. when you do not mention type parameter when it is required\n"
+          "   2. when you passed the type [$type] where types [${expected.join(', ')}] are expected.\n\n"
+          "If you are using the `Context.editMessageMedia` method, try `ctx.editMessageMedia<bool>` for inline messages or `editMessageMedia<Message>` otherwise.",
+      type: TeleverseExceptionType.invalidParameter,
+    );
+  }
 }

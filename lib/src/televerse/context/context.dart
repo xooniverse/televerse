@@ -1749,26 +1749,38 @@ class Context {
 
   /// Edit the message media
   /// Use this method to edit animation, audio, document, photo, or video messages.
-  Future<bool> editMessageMedia(
+  ///
+  /// Make sure to pass the type parameter for correct typing. If the message to be edited is an
+  /// inline message, the type parameter should be `bool`, otherwise `Message` should be passed.
+  ///
+  /// Since Televerse don't deal with `dynamic` types on the public interface, if you do not pass
+  /// type parameter, this method will throw a `TeleverseException`.
+  Future<MessageOrBool> editMessageMedia<MessageOrBool>(
     InputMedia media, {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
+    if (MessageOrBool != Message && MessageOrBool != bool) {
+      throw TeleverseException.typeParameterRequired(
+        MessageOrBool,
+        [Message, bool],
+      );
+    }
+
     if (_isInline()) {
-      await api.editInlineMessageMedia(
+      return await api.editInlineMessageMedia(
         _inlineMsgId!,
         media,
         replyMarkup: replyMarkup,
-      );
+      ) as MessageOrBool;
     } else {
       _verifyInfo([_chatId, _msgId], APIMethod.editMessageMedia);
-      await api.editMessageMedia(
+      return await api.editMessageMedia(
         id,
         _msgId!,
         media,
         replyMarkup: replyMarkup,
-      );
+      ) as MessageOrBool;
     }
-    return true;
   }
 
   /// Edit the message reply markup
