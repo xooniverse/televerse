@@ -370,6 +370,9 @@ enum APIMethod {
 
   /// To replace an exsiting sticker in a sticker pack
   replaceStickerInSet._("replaceStickerInSet"),
+
+  /// To refunds a successful payment in Telegram Stars.
+  refundStarPayment._("refundStarPayment"),
   ;
 
   /// The name of the method.

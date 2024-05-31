@@ -11,8 +11,8 @@ class InputInvoiceMessageContent extends InputMessageContent {
   /// Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
   final String payload;
 
-  /// Payment provider token, obtained via @BotFather
-  final String providerToken;
+  /// Optional. Payment provider token, obtained via @BotFather. Pass an empty string for payments in Telegram Stars.
+  final String? providerToken;
 
   /// Three-letter ISO 4217 currency code, [see more on currencies](https://core.telegram.org/bots/payments#supported-currencies)
   final String currency;
@@ -67,7 +67,7 @@ class InputInvoiceMessageContent extends InputMessageContent {
     required this.title,
     required this.description,
     required this.payload,
-    required this.providerToken,
+    this.providerToken,
     required this.currency,
     required this.prices,
     this.maxTipAmount,
@@ -119,7 +119,7 @@ class InputInvoiceMessageContent extends InputMessageContent {
       title: json['title'] as String,
       description: json['description'] as String,
       payload: json['payload'] as String,
-      providerToken: json['provider_token'] as String,
+      providerToken: json['provider_token'] as String?,
       currency: json['currency'] as String,
       prices: (json['prices'] as List<dynamic>)
           .map((e) => LabeledPrice.fromJson(e as Map<String, dynamic>))

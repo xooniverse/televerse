@@ -2769,16 +2769,35 @@ class RawAPI {
   }
 
   /// Use this method to send invoices. On success, the sent Message is returned.
+  ///
+  /// ## Important Parameters
+  /// - [chatId] : Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+  ///
+  /// - [title] : Product name, 1-32 characters
+  ///
+  /// - [description] : Product description, 1-255 characters
+  ///
+  /// - [payload] : Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
+  ///
+  /// - [providerToken] : Payment token is obtained via [@BotFather](https://t.me/botfather).
+  /// Pass empty string for payments in [Telegram Stars](https://t.me/BotNews/90).
+  ///
+  /// - [currency] : Three-letter ISO 4217 currency code, [see more on currencies](https://core.telegram.org/bots/payments#supported-currencies).
+  ///  Pass “XTR” for payments in Telegram Stars](https://t.me/BotNews/90).
+  ///
+  /// - [prices] : Price breakdown, a JSON-serialized list of components
+  /// (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.).
+  /// Must contain exactly one item for payments in Telegram Stars.
   Future<Message> sendInvoice(
     ID chatId, {
     required String title,
     required String description,
     required String payload,
-    required String providerToken,
+    String? providerToken,
     required String currency,
     required List<LabeledPrice> prices,
     int? messageThreadId,
-    int? maxTipAmount = 0,
+    int? maxTipAmount,
     List<int>? suggestedTipAmounts,
     String? startParameter,
     String? providerData,
@@ -2837,14 +2856,31 @@ class RawAPI {
   }
 
   /// Use this method to create a link for an invoice. Returns the created invoice link as String on success.
+  ///
+  /// ## Important Parameters
+  /// - [title] : Product name, 1-32 characters
+  ///
+  /// - [description] : Product description, 1-255 characters
+  ///
+  /// - [payload] : Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
+  ///
+  /// - [providerToken] : Payment token is obtained via [@BotFather](https://t.me/botfather).
+  /// Pass empty string for payments in [Telegram Stars](https://t.me/BotNews/90).
+  ///
+  /// - [currency] : Three-letter ISO 4217 currency code, [see more on currencies](https://core.telegram.org/bots/payments#supported-currencies).
+  ///  Pass “XTR” for payments in Telegram Stars](https://t.me/BotNews/90).
+  ///
+  /// - [prices] : Price breakdown, a JSON-serialized list of components
+  /// (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.).
+  /// Must contain exactly one item for payments in Telegram Stars.
   Future<String> createInvoiceLink({
     required String title,
     required String description,
     required String payload,
-    required String providerToken,
+    String? providerToken,
     required String currency,
     required List<LabeledPrice> prices,
-    int? maxTipAmount = 0,
+    int? maxTipAmount,
     List<int>? suggestedTipAmounts,
     String? providerData,
     String? photoUrl,
@@ -3601,6 +3637,29 @@ class RawAPI {
       );
     }
 
+    return response;
+  }
+
+  /// Refunds a successful payment in [Telegram Stars](https://t.me/BotNews/90). Returns True on success.
+  ///
+  /// (Since Bot API 7.4)
+  ///
+  /// - [userId] : Identifier of the user whose payment will be refunded
+  ///
+  /// - [telegramPaymentChargeId] : Telegram payment identifier
+  Future<bool> refundStarPayment({
+    required int userId,
+    required String telegramPaymentChargeId,
+  }) async {
+    Map<String, dynamic> params = {
+      "user_id": userId,
+      "telegram_payment_charge_id": telegramPaymentChargeId,
+    };
+
+    bool response = await _httpClient.postURI(
+      _buildUri(APIMethod.refundStarPayment),
+      params,
+    );
     return response;
   }
 }
