@@ -1761,6 +1761,7 @@ class Context {
   }) async {
     if (MessageOrBool != Message && MessageOrBool != bool) {
       throw TeleverseException.typeParameterRequired(
+        "editMessageMedia",
         MessageOrBool,
         [Message, bool],
       );
@@ -1785,23 +1786,29 @@ class Context {
 
   /// Edit the message reply markup
   /// Use this method to edit only the reply markup of messages.
-  Future<bool> editMessageReplyMarkup({
+  Future<MessageOrBool> editMessageReplyMarkup<MessageOrBool>({
     InlineKeyboardMarkup? replyMarkup,
   }) async {
+    if (MessageOrBool != Message && MessageOrBool != bool) {
+      throw TeleverseException.typeParameterRequired(
+        "editMessageReplyMarkup",
+        MessageOrBool,
+        [Message, bool],
+      );
+    }
     if (_isInline()) {
-      await api.editInlineMessageReplyMarkup(
+      return await api.editInlineMessageReplyMarkup(
         _inlineMsgId!,
         replyMarkup: replyMarkup,
-      );
+      ) as MessageOrBool;
     } else {
       _verifyInfo([_chatId, _msgId], APIMethod.editMessageReplyMarkup);
-      await api.editMessageReplyMarkup(
+      return await api.editMessageReplyMarkup(
         id,
         _msgId!,
         replyMarkup: replyMarkup,
-      );
+      ) as MessageOrBool;
     }
-    return true;
   }
 
   /// Answer inline query
