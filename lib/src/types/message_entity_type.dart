@@ -72,6 +72,9 @@ enum MessageEntityType {
 
   /// Block quotation
   blockquote("blockquote"),
+
+  /// Expandable Block Quote
+  expandableBlockquote("expandable_blockquote"),
   ;
 
   /// The value of this enum.
