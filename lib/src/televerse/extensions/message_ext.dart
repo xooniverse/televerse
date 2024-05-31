@@ -22,14 +22,23 @@ extension MessageExtension on Message {
 
   /// Returns the text where the given [MessageEntityType] is found
   String? getEntityText(MessageEntityType type) {
-    if (entities == null || entities!.isEmpty) return null;
-    if ((text ?? caption) == null) return null;
-    if (entities?.any((element) => element.type == type) != true) return null;
-    final entity = (entities ?? captionEntities)
-        ?.firstWhere((element) => element.type == type);
-    if (entity == null) return null;
-    String entxt =
-        text!.substring(entity.offset, entity.offset + entity.length);
+    final ents = entities ?? captionEntities;
+    final msgTxt = text ?? caption;
+
+    // If entities property is null or is empty just return null
+    if (ents == null || ents.isEmpty) return null;
+    if (msgTxt == null) return null;
+
+    if (ents.any((e) => e.type == type) != true) return null;
+
+    final entity = ents.firstWhere(
+      (element) => element.type == type,
+    );
+
+    String entxt = msgTxt.substring(
+      entity.offset,
+      entity.offset + entity.length,
+    );
 
     switch (type) {
       case MessageEntityType.mention:
@@ -57,6 +66,7 @@ extension MessageExtension on Message {
       case MessageEntityType.pre:
       case MessageEntityType.textLink:
       case MessageEntityType.blockquote:
+      case MessageEntityType.expandableBlockquote:
         break;
       case MessageEntityType.customEmoji:
         entxt = entity.customEmojiId!;
