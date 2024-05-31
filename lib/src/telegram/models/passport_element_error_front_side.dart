@@ -1,4 +1,4 @@
-part of 'passport.dart';
+part of 'models.dart';
 
 /// Represents an issue with the front side of a document. The error is considered resolved when the file with the front side of the document changes.
 class PassportElementErrorFrontSide extends PassportElementError {

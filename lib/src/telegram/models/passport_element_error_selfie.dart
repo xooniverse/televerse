@@ -1,4 +1,4 @@
-part of 'passport.dart';
+part of 'models.dart';
 
 /// Represents an issue with the selfie with a document. The error is considered resolved when the file with the selfie changes.
 class PassportElementErrorSelfie extends PassportElementError {

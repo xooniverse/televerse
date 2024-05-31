@@ -18,6 +18,9 @@ class InputMediaPhoto extends InputMedia {
   /// Optional. Pass True if the photo needs to be covered with a spoiler animation
   final bool? hasSpoiler;
 
+  /// Optional. True, if the caption must be shown above the message media
+  final bool? showCaptionAboveMedia;
+
   /// Constructs an [InputMediaPhoto] object
   const InputMediaPhoto({
     required super.media,
@@ -25,6 +28,7 @@ class InputMediaPhoto extends InputMedia {
     this.parseMode,
     this.captionEntities,
     this.hasSpoiler,
+    this.showCaptionAboveMedia,
   });
 
   /// Converts an [InputMediaPhoto] object to a JSON object
@@ -37,6 +41,7 @@ class InputMediaPhoto extends InputMedia {
       'parse_mode': parseMode?.value,
       'caption_entities': captionEntities,
       'has_spoiler': hasSpoiler,
+      'show_caption_above_media': showCaptionAboveMedia,
     }..removeWhere(_nullFilter);
   }
 }

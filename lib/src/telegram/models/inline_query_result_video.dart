@@ -52,6 +52,9 @@ class InlineQueryResultVideo implements InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the video. This field is required if InlineQueryResultVideo is used to send an HTML-page as a result (e.g., a YouTube video).
   final InputMessageContent? inputMessageContent;
 
+  /// Optional. True, if the caption must be shown above the message media
+  final bool? showCaptionAboveMedia;
+
   /// Converts [InlineQueryResultVideo] object to a JSON object
   @override
   Map<String, dynamic> toJson() {
@@ -71,6 +74,7 @@ class InlineQueryResultVideo implements InlineQueryResult {
       'reply_markup': replyMarkup?.toJson(),
       'input_message_content': inputMessageContent?.toJson(),
       'id': id,
+      'show_caption_above_media': showCaptionAboveMedia,
     }..removeWhere(_nullFilter);
   }
 
@@ -90,6 +94,7 @@ class InlineQueryResultVideo implements InlineQueryResult {
     this.description,
     this.replyMarkup,
     this.inputMessageContent,
+    this.showCaptionAboveMedia,
   });
 
   /// Constructs an [InlineQueryResultVideo] from JSON object
@@ -112,6 +117,7 @@ class InlineQueryResultVideo implements InlineQueryResult {
       replyMarkup: InlineKeyboardMarkup.fromJson(json['reply_markup']),
       inputMessageContent:
           InputMessageContent.fromJson(json['input_message_content']),
+      showCaptionAboveMedia: json['show_caption_above_media'],
     );
   }
 
@@ -131,6 +137,7 @@ class InlineQueryResultVideo implements InlineQueryResult {
     String? description,
     InlineKeyboardMarkup? replyMarkup,
     InputMessageContent? inputMessageContent,
+    bool? showCaptionAboveMedia,
   }) {
     return InlineQueryResultVideo(
       id: id ?? this.id,
@@ -147,6 +154,8 @@ class InlineQueryResultVideo implements InlineQueryResult {
       description: description ?? this.description,
       replyMarkup: replyMarkup ?? this.replyMarkup,
       inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      showCaptionAboveMedia:
+          showCaptionAboveMedia ?? this.showCaptionAboveMedia,
     );
   }
 }

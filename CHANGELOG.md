@@ -1,3 +1,8 @@
+# 1.17.0
+
+- 🤖 Bot API 7.4 (May 28, 2024)
+- Refactors and formatting improvements
+
 # 1.16.0
 
 - 🤖 Bot API 7.3 (May 6, 2024)

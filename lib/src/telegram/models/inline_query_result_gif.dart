@@ -47,6 +47,9 @@ class InlineQueryResultGif implements InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the GIF animation
   final InputMessageContent? inputMessageContent;
 
+  /// Optional. True, if the caption must be shown above the message media
+  final bool? showCaptionAboveMedia;
+
   /// Constructs an [InlineQueryResultGif] object
   const InlineQueryResultGif({
     required this.gifUrl,
@@ -62,6 +65,7 @@ class InlineQueryResultGif implements InlineQueryResult {
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
+    this.showCaptionAboveMedia,
   });
 
   /// Converts an [InlineQueryResultGif] object to a JSON map
@@ -82,6 +86,7 @@ class InlineQueryResultGif implements InlineQueryResult {
       'caption_entities': captionEntities,
       'reply_markup': replyMarkup,
       'input_message_content': inputMessageContent,
+      'show_caption_above_media': showCaptionAboveMedia,
     }..removeWhere(_nullFilter);
   }
 
@@ -109,6 +114,7 @@ class InlineQueryResultGif implements InlineQueryResult {
       inputMessageContent: json['input_message_content'] != null
           ? InputMessageContent.fromJson(json['input_message_content'])
           : null,
+      showCaptionAboveMedia: json['show_caption_above_media'],
     );
   }
 
@@ -127,6 +133,7 @@ class InlineQueryResultGif implements InlineQueryResult {
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
     InputMessageContent? inputMessageContent,
+    bool? showCaptionAboveMedia,
   }) {
     return InlineQueryResultGif(
       id: id ?? this.id,
@@ -142,6 +149,8 @@ class InlineQueryResultGif implements InlineQueryResult {
       captionEntities: captionEntities ?? this.captionEntities,
       replyMarkup: replyMarkup ?? this.replyMarkup,
       inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      showCaptionAboveMedia:
+          showCaptionAboveMedia ?? this.showCaptionAboveMedia,
     );
   }
 }

@@ -1,4 +1,4 @@
-part of 'passport.dart';
+part of 'models.dart';
 
 /// Describes documents or other Telegram Passport elements shared with the bot by the user.
 class EncryptedPassportElement {

@@ -30,6 +30,9 @@ class InputMediaAnimation extends InputMedia {
   /// Optional. Pass True if the animation needs to be covered with a spoiler animation
   final bool? hasSpoiler;
 
+  /// Optional. True, if the caption must be shown above the message media
+  final bool? showCaptionAboveMedia;
+
   /// Constructs an [InputMediaAnimation] object
   const InputMediaAnimation({
     required super.media,
@@ -41,6 +44,7 @@ class InputMediaAnimation extends InputMedia {
     this.height,
     this.duration,
     this.hasSpoiler,
+    this.showCaptionAboveMedia,
   });
 
   /// Converts an [InputMediaAnimation] object to a JSON object
@@ -57,6 +61,7 @@ class InputMediaAnimation extends InputMedia {
       'height': height,
       'duration': duration,
       'has_spoiler': hasSpoiler,
+      'show_caption_above_media': showCaptionAboveMedia,
     }..removeWhere(_nullFilter);
   }
 }
