@@ -283,6 +283,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     LinkPreviewOptions? linkPreviewOptions,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -296,6 +297,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "link_preview_options": linkPreviewOptions?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
 
     Uri uri = _buildUri(APIMethod.sendMessage);
@@ -397,6 +399,7 @@ class RawAPI {
     bool? hasSpoiler,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -410,6 +413,7 @@ class RawAPI {
       "protect_content": protectContent,
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     const field = "photo";
     Map<String, dynamic> response;
@@ -450,6 +454,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -465,6 +470,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     const field = "audio";
 
@@ -507,6 +513,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -520,6 +527,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     const field = "document";
 
@@ -565,6 +573,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -582,6 +591,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     final field = "video";
     Map<String, dynamic> response;
@@ -623,6 +633,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -639,6 +650,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     const field = "animation";
     Map<String, dynamic> response;
@@ -678,6 +690,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -691,6 +704,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     const field = "voice";
     Map<String, dynamic> response;
@@ -726,6 +740,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -738,6 +753,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     const field = "video_note";
     Map<String, dynamic> response;
@@ -769,6 +785,7 @@ class RawAPI {
     bool? protectContent,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     if (media.length > 10) {
       throw TeleverseException(
@@ -804,6 +821,7 @@ class RawAPI {
       "protect_content": protectContent,
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
 
     List<_MultipartHelper> helpers = [];
@@ -850,6 +868,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -865,6 +884,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendLocation),
@@ -1005,6 +1025,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -1022,6 +1043,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendVenue),
@@ -1043,6 +1065,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -1056,6 +1079,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendContact),
@@ -1087,6 +1111,7 @@ class RawAPI {
     String? businessConnectionId,
     ParseMode? questionParseMode,
     List<MessageEntity>? questionEntities,
+    String? messageEffectId,
   }) async {
     if (options.length < 2 || options.length > 10) {
       throw TeleverseException(
@@ -1164,6 +1189,7 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "question_entities": questionEntities?.map((e) => e.toJson()).toList(),
       "question_parse_mode": questionParseMode?.value,
+      "message_effect_id": messageEffectId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendPoll),
@@ -1191,6 +1217,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -1201,6 +1228,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendDice),
@@ -2517,6 +2545,7 @@ class RawAPI {
     String? emoji,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2527,6 +2556,7 @@ class RawAPI {
       "emoji": emoji,
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     const field = "sticker";
     Map<String, dynamic> response;
@@ -2816,6 +2846,7 @@ class RawAPI {
     bool? protectContent,
     InlineKeyboardMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2845,6 +2876,7 @@ class RawAPI {
       "protect_content": protectContent,
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "message_effect_id": messageEffectId,
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
@@ -3032,6 +3064,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -3042,6 +3075,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
