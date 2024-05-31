@@ -283,6 +283,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     LinkPreviewOptions? linkPreviewOptions,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -296,6 +297,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "link_preview_options": linkPreviewOptions?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
 
     Uri uri = _buildUri(APIMethod.sendMessage);
@@ -397,6 +399,8 @@ class RawAPI {
     bool? hasSpoiler,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
+    bool? showCaptionAboveMedia,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -410,6 +414,8 @@ class RawAPI {
       "protect_content": protectContent,
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
+      "show_caption_above_media": showCaptionAboveMedia,
     };
     const field = "photo";
     Map<String, dynamic> response;
@@ -450,6 +456,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -465,6 +472,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     const field = "audio";
 
@@ -507,6 +515,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -520,6 +529,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     const field = "document";
 
@@ -565,6 +575,8 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
+    bool? showCaptionAboveMedia,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -582,6 +594,8 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
+      "show_caption_above_media": showCaptionAboveMedia,
     };
     final field = "video";
     Map<String, dynamic> response;
@@ -623,6 +637,8 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
+    bool? showCaptionAboveMedia,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -639,6 +655,8 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
+      "show_caption_above_media": showCaptionAboveMedia,
     };
     const field = "animation";
     Map<String, dynamic> response;
@@ -678,6 +696,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -691,6 +710,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     const field = "voice";
     Map<String, dynamic> response;
@@ -726,6 +746,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -738,6 +759,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     const field = "video_note";
     Map<String, dynamic> response;
@@ -769,6 +791,7 @@ class RawAPI {
     bool? protectContent,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     if (media.length > 10) {
       throw TeleverseException(
@@ -804,6 +827,7 @@ class RawAPI {
       "protect_content": protectContent,
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
 
     List<_MultipartHelper> helpers = [];
@@ -850,6 +874,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -865,6 +890,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendLocation),
@@ -1005,6 +1031,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -1022,6 +1049,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendVenue),
@@ -1043,6 +1071,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -1056,6 +1085,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendContact),
@@ -1087,6 +1117,7 @@ class RawAPI {
     String? businessConnectionId,
     ParseMode? questionParseMode,
     List<MessageEntity>? questionEntities,
+    String? messageEffectId,
   }) async {
     if (options.length < 2 || options.length > 10) {
       throw TeleverseException(
@@ -1164,6 +1195,7 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "question_entities": questionEntities?.map((e) => e.toJson()).toList(),
       "question_parse_mode": questionParseMode?.value,
+      "message_effect_id": messageEffectId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendPoll),
@@ -1191,6 +1223,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -1201,6 +1234,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.sendDice),
@@ -2282,6 +2316,7 @@ class RawAPI {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
+    bool? showCaptionAboveMedia,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2290,6 +2325,7 @@ class RawAPI {
       "parse_mode": parseMode?.value,
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
       "reply_markup": replyMarkup?.toJson(),
+      "show_caption_above_media": showCaptionAboveMedia,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageCaption),
@@ -2517,6 +2553,7 @@ class RawAPI {
     String? emoji,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2527,6 +2564,7 @@ class RawAPI {
       "emoji": emoji,
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
     const field = "sticker";
     Map<String, dynamic> response;
@@ -2769,16 +2807,35 @@ class RawAPI {
   }
 
   /// Use this method to send invoices. On success, the sent Message is returned.
+  ///
+  /// ## Important Parameters
+  /// - [chatId] : Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+  ///
+  /// - [title] : Product name, 1-32 characters
+  ///
+  /// - [description] : Product description, 1-255 characters
+  ///
+  /// - [payload] : Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
+  ///
+  /// - [providerToken] : Payment token is obtained via [@BotFather](https://t.me/botfather).
+  /// Pass empty string for payments in [Telegram Stars](https://t.me/BotNews/90).
+  ///
+  /// - [currency] : Three-letter ISO 4217 currency code, [see more on currencies](https://core.telegram.org/bots/payments#supported-currencies).
+  ///  Pass “XTR” for payments in Telegram Stars](https://t.me/BotNews/90).
+  ///
+  /// - [prices] : Price breakdown, a JSON-serialized list of components
+  /// (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.).
+  /// Must contain exactly one item for payments in Telegram Stars.
   Future<Message> sendInvoice(
     ID chatId, {
     required String title,
     required String description,
     required String payload,
-    required String providerToken,
+    String? providerToken,
     required String currency,
     required List<LabeledPrice> prices,
     int? messageThreadId,
-    int? maxTipAmount = 0,
+    int? maxTipAmount,
     List<int>? suggestedTipAmounts,
     String? startParameter,
     String? providerData,
@@ -2797,6 +2854,7 @@ class RawAPI {
     bool? protectContent,
     InlineKeyboardMarkup? replyMarkup,
     ReplyParameters? replyParameters,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2826,6 +2884,7 @@ class RawAPI {
       "protect_content": protectContent,
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
+      "message_effect_id": messageEffectId,
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
@@ -2837,14 +2896,31 @@ class RawAPI {
   }
 
   /// Use this method to create a link for an invoice. Returns the created invoice link as String on success.
+  ///
+  /// ## Important Parameters
+  /// - [title] : Product name, 1-32 characters
+  ///
+  /// - [description] : Product description, 1-255 characters
+  ///
+  /// - [payload] : Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
+  ///
+  /// - [providerToken] : Payment token is obtained via [@BotFather](https://t.me/botfather).
+  /// Pass empty string for payments in [Telegram Stars](https://t.me/BotNews/90).
+  ///
+  /// - [currency] : Three-letter ISO 4217 currency code, [see more on currencies](https://core.telegram.org/bots/payments#supported-currencies).
+  ///  Pass “XTR” for payments in Telegram Stars](https://t.me/BotNews/90).
+  ///
+  /// - [prices] : Price breakdown, a JSON-serialized list of components
+  /// (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.).
+  /// Must contain exactly one item for payments in Telegram Stars.
   Future<String> createInvoiceLink({
     required String title,
     required String description,
     required String payload,
-    required String providerToken,
+    String? providerToken,
     required String currency,
     required List<LabeledPrice> prices,
-    int? maxTipAmount = 0,
+    int? maxTipAmount,
     List<int>? suggestedTipAmounts,
     String? providerData,
     String? photoUrl,
@@ -2996,6 +3072,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? businessConnectionId,
+    String? messageEffectId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -3006,6 +3083,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
+      "message_effect_id": messageEffectId,
     };
 
     Map<String, dynamic> response = await _httpClient.postURI(
@@ -3512,6 +3590,7 @@ class RawAPI {
     bool? disableNotification,
     bool? protectContent,
     bool? removeCaption,
+    bool? showCaptionAboveMedia,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -3521,6 +3600,7 @@ class RawAPI {
       "disable_notification": disableNotification,
       "protect_content": protectContent,
       "remove_caption": removeCaption,
+      "show_caption_above_media": showCaptionAboveMedia,
     };
 
     List<int> response = await _httpClient.postURI(
@@ -3601,6 +3681,29 @@ class RawAPI {
       );
     }
 
+    return response;
+  }
+
+  /// Refunds a successful payment in [Telegram Stars](https://t.me/BotNews/90). Returns True on success.
+  ///
+  /// (Since Bot API 7.4)
+  ///
+  /// - [userId] : Identifier of the user whose payment will be refunded
+  ///
+  /// - [telegramPaymentChargeId] : Telegram payment identifier
+  Future<bool> refundStarPayment({
+    required int userId,
+    required String telegramPaymentChargeId,
+  }) async {
+    Map<String, dynamic> params = {
+      "user_id": userId,
+      "telegram_payment_charge_id": telegramPaymentChargeId,
+    };
+
+    bool response = await _httpClient.postURI(
+      _buildUri(APIMethod.refundStarPayment),
+      params,
+    );
     return response;
   }
 }

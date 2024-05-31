@@ -47,6 +47,9 @@ class InlineQueryResultMpeg4Gif implements InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the video animation
   final InputMessageContent? inputMessageContent;
 
+  /// Optional. True, if the caption must be shown above the message media
+  final bool? showCaptionAboveMedia;
+
   /// Constructs an [InlineQueryResultMpeg4Gif] object
   const InlineQueryResultMpeg4Gif({
     required this.mpeg4Url,
@@ -62,6 +65,7 @@ class InlineQueryResultMpeg4Gif implements InlineQueryResult {
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
+    this.showCaptionAboveMedia,
   });
 
   /// Converts an [InlineQueryResultMpeg4Gif] object to a JSON object
@@ -82,6 +86,7 @@ class InlineQueryResultMpeg4Gif implements InlineQueryResult {
       'caption_entities': captionEntities?.map((e) => e.toJson()).toList(),
       'reply_markup': replyMarkup?.toJson(),
       'input_message_content': inputMessageContent?.toJson(),
+      'show_caption_above_media': showCaptionAboveMedia,
     }..removeWhere(_nullFilter);
   }
 
@@ -113,6 +118,7 @@ class InlineQueryResultMpeg4Gif implements InlineQueryResult {
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>,
             ),
+      showCaptionAboveMedia: json['show_caption_above_media'],
     );
   }
 
@@ -131,6 +137,7 @@ class InlineQueryResultMpeg4Gif implements InlineQueryResult {
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
     InputMessageContent? inputMessageContent,
+    bool? showCaptionAboveMedia,
   }) {
     return InlineQueryResultMpeg4Gif(
       id: id ?? this.id,
@@ -146,6 +153,8 @@ class InlineQueryResultMpeg4Gif implements InlineQueryResult {
       captionEntities: captionEntities ?? this.captionEntities,
       replyMarkup: replyMarkup ?? this.replyMarkup,
       inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      showCaptionAboveMedia:
+          showCaptionAboveMedia ?? this.showCaptionAboveMedia,
     );
   }
 }

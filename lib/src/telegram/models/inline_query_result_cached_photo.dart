@@ -35,6 +35,9 @@ class InlineQueryResultCachedPhoto implements InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the photo
   final InputMessageContent? inputMessageContent;
 
+  /// Optional. True, if the caption must be shown above the message media
+  final bool? showCaptionAboveMedia;
+
   /// Constructs an [InlineQueryResultCachedPhoto] object
   const InlineQueryResultCachedPhoto({
     required this.photoFileId,
@@ -46,6 +49,7 @@ class InlineQueryResultCachedPhoto implements InlineQueryResult {
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
+    this.showCaptionAboveMedia,
   });
 
   /// Converts an [InlineQueryResultCachedPhoto] object to a JSON map
@@ -62,6 +66,7 @@ class InlineQueryResultCachedPhoto implements InlineQueryResult {
       'reply_markup': replyMarkup?.toJson(),
       'input_message_content': inputMessageContent?.toJson(),
       'id': id,
+      'show_caption_above_media': showCaptionAboveMedia,
     }..removeWhere(_nullFilter);
   }
 
@@ -91,6 +96,7 @@ class InlineQueryResultCachedPhoto implements InlineQueryResult {
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>,
             ),
+      showCaptionAboveMedia: json['show_caption_above_media'],
     );
   }
 
@@ -105,6 +111,7 @@ class InlineQueryResultCachedPhoto implements InlineQueryResult {
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
     InputMessageContent? inputMessageContent,
+    bool? showCaptionAboveMedia,
   }) {
     return InlineQueryResultCachedPhoto(
       id: id ?? this.id,
@@ -116,6 +123,8 @@ class InlineQueryResultCachedPhoto implements InlineQueryResult {
       captionEntities: captionEntities ?? this.captionEntities,
       replyMarkup: replyMarkup ?? this.replyMarkup,
       inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      showCaptionAboveMedia:
+          showCaptionAboveMedia ?? this.showCaptionAboveMedia,
     );
   }
 }
