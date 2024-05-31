@@ -33,6 +33,9 @@ class InputMediaVideo extends InputMedia {
   /// Optional. Pass True if the video needs to be covered with a spoiler animation
   final bool? hasSpoiler;
 
+  /// Optional. True, if the caption must be shown above the message media
+  final bool? showCaptionAboveMedia;
+
   /// Constructs an [InputMediaVideo] object
   const InputMediaVideo({
     required super.media,
@@ -45,6 +48,7 @@ class InputMediaVideo extends InputMedia {
     this.duration,
     this.supportsStreaming,
     this.hasSpoiler,
+    this.showCaptionAboveMedia,
   });
 
   /// Converts an [InputMediaVideo] object to a JSON object
@@ -62,6 +66,7 @@ class InputMediaVideo extends InputMedia {
       'duration': duration,
       'supports_streaming': supportsStreaming,
       'has_spoiler': hasSpoiler,
+      'show_caption_above_media': showCaptionAboveMedia,
     }..removeWhere(_nullFilter);
   }
 }

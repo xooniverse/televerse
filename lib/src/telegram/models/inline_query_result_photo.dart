@@ -44,6 +44,9 @@ class InlineQueryResultPhoto implements InlineQueryResult {
   /// Optional. Content of the message to be sent instead of the photo
   final InputMessageContent? inputMessageContent;
 
+  /// Optional. True, if the caption must be shown above the message media
+  final bool? showCaptionAboveMedia;
+
   /// Constructs an [InlineQueryResultPhoto] object
   const InlineQueryResultPhoto({
     required this.photoUrl,
@@ -58,6 +61,7 @@ class InlineQueryResultPhoto implements InlineQueryResult {
     this.captionEntities,
     this.replyMarkup,
     this.inputMessageContent,
+    this.showCaptionAboveMedia,
   });
 
   /// Converts an [InlineQueryResultPhoto] object to a JSON object
@@ -77,6 +81,7 @@ class InlineQueryResultPhoto implements InlineQueryResult {
       'reply_markup': replyMarkup?.toJson(),
       'input_message_content': inputMessageContent?.toJson(),
       'id': id,
+      'show_caption_above_media': showCaptionAboveMedia,
     }..removeWhere(_nullFilter);
   }
 
@@ -107,6 +112,7 @@ class InlineQueryResultPhoto implements InlineQueryResult {
           : InputMessageContent.fromJson(
               json['input_message_content'] as Map<String, dynamic>,
             ),
+      showCaptionAboveMedia: json['show_caption_above_media'],
     );
   }
 
@@ -124,6 +130,7 @@ class InlineQueryResultPhoto implements InlineQueryResult {
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
     InputMessageContent? inputMessageContent,
+    bool? showCaptionAboveMedia,
   }) {
     return InlineQueryResultPhoto(
       id: id ?? this.id,
@@ -138,6 +145,8 @@ class InlineQueryResultPhoto implements InlineQueryResult {
       captionEntities: captionEntities ?? this.captionEntities,
       replyMarkup: replyMarkup ?? this.replyMarkup,
       inputMessageContent: inputMessageContent ?? this.inputMessageContent,
+      showCaptionAboveMedia:
+          showCaptionAboveMedia ?? this.showCaptionAboveMedia,
     );
   }
 }

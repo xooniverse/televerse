@@ -400,6 +400,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? showCaptionAboveMedia,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -414,6 +415,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "show_caption_above_media": showCaptionAboveMedia,
     };
     const field = "photo";
     Map<String, dynamic> response;
@@ -574,6 +576,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? showCaptionAboveMedia,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -592,6 +595,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "show_caption_above_media": showCaptionAboveMedia,
     };
     final field = "video";
     Map<String, dynamic> response;
@@ -634,6 +638,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? showCaptionAboveMedia,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -651,6 +656,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "show_caption_above_media": showCaptionAboveMedia,
     };
     const field = "animation";
     Map<String, dynamic> response;
@@ -2310,6 +2316,7 @@ class RawAPI {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
+    bool? showCaptionAboveMedia,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2318,6 +2325,7 @@ class RawAPI {
       "parse_mode": parseMode?.value,
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
       "reply_markup": replyMarkup?.toJson(),
+      "show_caption_above_media": showCaptionAboveMedia,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageCaption),
@@ -3582,6 +3590,7 @@ class RawAPI {
     bool? disableNotification,
     bool? protectContent,
     bool? removeCaption,
+    bool? showCaptionAboveMedia,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -3591,6 +3600,7 @@ class RawAPI {
       "disable_notification": disableNotification,
       "protect_content": protectContent,
       "remove_caption": removeCaption,
+      "show_caption_above_media": showCaptionAboveMedia,
     };
 
     List<int> response = await _httpClient.postURI(

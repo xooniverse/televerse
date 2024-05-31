@@ -251,10 +251,13 @@ class Message implements MaybeInaccessibleMessage, WithUser {
   /// Optional. Service message: chat background set
   final ChatBackground? chatBackgroundSet;
 
+  // (Since Bot API 7.4)
+
   /// Optional. Unique identifier of the message effect added to the message
-  ///
-  /// (Since Bot API 7.4)
   final String? effectId;
+
+  /// Optional. True, if the caption must be shown above the message media
+  final bool? showCaptionAboveMedia;
 
   /// Creates a Message object.
   const Message({
@@ -340,6 +343,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
     this.isFromOffline,
     this.chatBackgroundSet,
     this.effectId,
+    this.showCaptionAboveMedia,
   });
 
   /// Creates a [Message] object from json map.
@@ -525,6 +529,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
           ? ChatBackground.fromJson(json["chat_background_set"])
           : null,
       effectId: json["effect_id"],
+      showCaptionAboveMedia: json["show_caption_above_media"],
     );
   }
 
@@ -615,6 +620,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
       'is_from_offline': isFromOffline,
       'chat_background_set': chatBackgroundSet?.toJson(),
       'effect_id': effectId,
+      'show_caption_above_media': showCaptionAboveMedia,
     }..removeWhere(_nullFilter);
   }
 
