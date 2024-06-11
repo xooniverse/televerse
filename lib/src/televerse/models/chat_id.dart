@@ -87,7 +87,7 @@ class ChatID extends ID {
   /// // Print the chat's title.
   /// print(chat.title);
   /// ```
-  const ChatID(super.id);
+  const ChatID(int super.id);
 
   /// The ID getter, returns the actual integer value
   @override
