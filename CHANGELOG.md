@@ -1,3 +1,8 @@
+# 1.17.1
+
+- ‼️ Strict typing for `ctx.editMessageMedia` and `ctx.editMessageReplyMarkup`
+- Fix: `ChatID` constuctor accepted `dynamic`
+
 # 1.17.0
 
 - 🤖 Bot API 7.4 (May 28, 2024)
