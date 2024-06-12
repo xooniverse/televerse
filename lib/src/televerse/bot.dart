@@ -473,6 +473,7 @@ class Bot {
     Pattern command,
     Handler callback, {
     ScopeOptions? options,
+    bool considerCaption = false,
   }) {
     if (initialized) {
       final scope = HandlerScope(
@@ -481,12 +482,18 @@ class Bot {
         handler: callback,
         types: UpdateType.messages(),
         predicate: (ctx) {
-          if (ctx.msg?.text == null) return false;
+          String? text;
+          if (considerCaption) {
+            text = ctx.msg?.caption;
+          }
+          text ??= ctx.msg?.text;
+
+          if (text == null) return false;
           if (command is RegExp) {
-            return command.hasMatch(ctx.msg?.text ?? "");
+            return command.hasMatch(text);
           } else if (command is String) {
-            final firstTerm = ctx.msg?.text!.split(' ').first;
-            final suffix = me.username != null ? '@${me.username}' : '';
+            final firstTerm = text.split(' ').first;
+            final suffix = '@${me.username}';
             return firstTerm == '/$command' || firstTerm == '/$command$suffix';
           }
           return false;
@@ -503,6 +510,7 @@ class Bot {
           params: [command, callback],
           namedParams: {
             #options: options,
+            #considerCaption: considerCaption,
           },
         ),
       );
