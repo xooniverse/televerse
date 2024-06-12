@@ -1,3 +1,7 @@
+# 1.17.2
+
+- Added `considerCaption` parameter in `Bot.command` mehtod to match commands in the caption of video/photo messages.
+
 # 1.17.1
 
 - ‼️ Strict typing for `ctx.editMessageMedia` and `ctx.editMessageReplyMarkup`
