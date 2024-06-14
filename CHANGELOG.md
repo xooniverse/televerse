@@ -1,3 +1,8 @@
+# 1.17.2
+
+- Added `considerCaption` parameter in `Bot.command` mehtod to match commands in the caption of video/photo messages.
+- 🐞 Fixed: JSON parsing bug in `UsersShared` causing the `users` field to be null and resulting in crashes.
+
 # 1.17.1
 
 - ‼️ Strict typing for `ctx.editMessageMedia` and `ctx.editMessageReplyMarkup`

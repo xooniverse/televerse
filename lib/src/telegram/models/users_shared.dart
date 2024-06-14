@@ -20,7 +20,7 @@ class UsersShared {
   factory UsersShared.fromJson(Map<String, dynamic> json) {
     return UsersShared(
       requestId: json['request_id']!,
-      users: (json['user_ids'] as List<dynamic>)
+      users: (json['users'] as List<dynamic>)
           .map((e) => SharedUser.fromJson(e))
           .toList(),
     );
@@ -30,7 +30,7 @@ class UsersShared {
   Map<String, dynamic> toJson() {
     return {
       'request_id': requestId,
-      'user_ids': users.map((user) => user.toJson()).toList(),
+      'users': users.map((user) => user.toJson()).toList(),
     };
   }
 }
