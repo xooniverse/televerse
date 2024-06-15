@@ -1,7 +1,7 @@
 part of 'models.dart';
 
 /// This object represents a chat.
-class ChatFullInfo extends Chat {
+class ChatFullInfo extends Chat implements WithID {
   /// Optional. Chat photo.
   final ChatPhoto? photo;
 
