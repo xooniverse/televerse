@@ -1,5 +1,8 @@
-# 1.17.3
+# 1.18.0
 
+- 🤖 Bot API 7.5 
+- Improved context aware methods
+- Added `WithID` abstraction
 
 # 1.17.2
 
