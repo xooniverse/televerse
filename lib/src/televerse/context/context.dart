@@ -208,6 +208,17 @@ class Context {
     }
   }
 
+  /// Internal method to check whether the passed type argument is correct
+  void _verifyMessageOrBoolean<MessageOrBool>() {
+    if (MessageOrBool != Message && MessageOrBool != bool) {
+      throw TeleverseException.typeParameterRequired(
+        "editMessageMedia",
+        MessageOrBool,
+        [Message, bool],
+      );
+    }
+  }
+
   /// Reply a Text Message to the user.
   Future<Message> reply(
     String text, {
@@ -821,7 +832,7 @@ class Context {
   /// Edit message live location
   ///
   /// This method will edit the message live location in the current context.
-  Future<Message> editMessageLiveLocation({
+  Future<MessageOrBool> editMessageLiveLocation<MessageOrBool>({
     String? inlineMessageId,
     double? latitude,
     double? longitude,
@@ -829,18 +840,34 @@ class Context {
     int? heading,
     int? proximityAlertRadius,
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
-    _verifyInfo([_chatId, _msgId], APIMethod.editMessageLiveLocation);
-    return api.editMessageLiveLocation(
-      id,
-      _msgId!,
-      latitude: latitude,
-      longitude: longitude,
-      horizontalAccuracy: horizontalAccuracy,
-      heading: heading,
-      proximityAlertRadius: proximityAlertRadius,
-      replyMarkup: replyMarkup,
-    );
+    _verifyMessageOrBoolean<MessageOrBool>();
+    if (_isInline()) {
+      return api.editInlineMessageLiveLocation(
+        _inlineMsgId!,
+        latitude: latitude,
+        longitude: longitude,
+        horizontalAccuracy: horizontalAccuracy,
+        heading: heading,
+        proximityAlertRadius: proximityAlertRadius,
+        replyMarkup: replyMarkup,
+        businessConnectionId: businessConnectionId,
+      ) as MessageOrBool;
+    } else {
+      _verifyInfo([_chatId, _msgId], APIMethod.editMessageLiveLocation);
+      return api.editMessageLiveLocation(
+        id,
+        _msgId!,
+        latitude: latitude,
+        longitude: longitude,
+        horizontalAccuracy: horizontalAccuracy,
+        heading: heading,
+        proximityAlertRadius: proximityAlertRadius,
+        replyMarkup: replyMarkup,
+        businessConnectionId: businessConnectionId,
+      ) as MessageOrBool;
+    }
   }
 
   /// Forward the message.
@@ -1214,30 +1241,27 @@ class Context {
   /// Context aware method for stopping live location of message: [APIMethod.stopMessageLiveLocation].
   ///
   /// Use this method to stop updating a live location message before live_period expires. On success, if the message is not an inline message, the edited Message is returned, otherwise True is returned.
-  ///
-  /// **IMPORTANT NOTE**
-  ///
-  /// This only works for Messages but not INLINE MESSAGES. If you're looking for a way to stop updating inline live location messages, check out [stopInlineMessageLiveLocation].
-  Future<Message> stopMessageLiveLocation({
+  Future<MessageOrBool> stopMessageLiveLocation<MessageOrBool>({
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
+    _verifyMessageOrBoolean<MessageOrBool>();
+
+    if (_isInline()) {
+      return api.stopInlineMessageLiveLocation(
+        _inlineMsgId!,
+        replyMarkup: replyMarkup,
+        businessConnectionId: businessConnectionId,
+      ) as MessageOrBool;
+    }
+
     _verifyInfo([_chatId, _msgId], APIMethod.stopMessageLiveLocation);
     return api.stopMessageLiveLocation(
       id,
       _msgId!,
       replyMarkup: replyMarkup,
-    );
-  }
-
-  /// Context aware method for stopping live location of inline message: [APIMethod.stopMessageLiveLocation].
-  Future<bool> stopInlineMessageLiveLocation({
-    InlineKeyboardMarkup? replyMarkup,
-  }) async {
-    _verifyInfo([_inlineMsgId], APIMethod.stopMessageLiveLocation);
-    return api.stopInlineMessageLiveLocation(
-      _inlineMsgId!,
-      replyMarkup: replyMarkup,
-    );
+      businessConnectionId: businessConnectionId,
+    ) as MessageOrBool;
   }
 
   /// Context aware method for send "Typing..." action: [APIMethod.sendChatAction].
@@ -1690,6 +1714,7 @@ class Context {
     List<MessageEntity>? entities,
     InlineKeyboardMarkup? replyMarkup,
     LinkPreviewOptions? linkPreviewOptions,
+    String? businessConnectionId,
   }) async {
     if (_isInline()) {
       await api.editInlineMessageText(
@@ -1699,6 +1724,7 @@ class Context {
         entities: entities,
         replyMarkup: replyMarkup,
         linkPreviewOptions: linkPreviewOptions,
+        businessConnectionId: businessConnectionId,
       );
     } else {
       _verifyInfo([_chatId, _msgId], APIMethod.editMessageText);
@@ -1710,6 +1736,7 @@ class Context {
         entities: entities,
         replyMarkup: replyMarkup,
         linkPreviewOptions: linkPreviewOptions,
+        businessConnectionId: businessConnectionId,
       );
     }
     return true;
@@ -1722,6 +1749,7 @@ class Context {
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
     bool? showCaptionAboveMedia,
+    String? businessConnectionId,
   }) async {
     if (_isInline()) {
       await api.editInlineMessageCaption(
@@ -1731,6 +1759,7 @@ class Context {
         captionEntities: captionEntities,
         replyMarkup: replyMarkup,
         showCaptionAboveMedia: showCaptionAboveMedia,
+        businessConnectionId: businessConnectionId,
       );
     } else {
       _verifyInfo([_chatId, _msgId], APIMethod.editMessageCaption);
@@ -1742,6 +1771,7 @@ class Context {
         captionEntities: captionEntities,
         replyMarkup: replyMarkup,
         showCaptionAboveMedia: showCaptionAboveMedia,
+        businessConnectionId: businessConnectionId,
       );
     }
     return true;
@@ -1758,20 +1788,16 @@ class Context {
   Future<MessageOrBool> editMessageMedia<MessageOrBool>(
     InputMedia media, {
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
-    if (MessageOrBool != Message && MessageOrBool != bool) {
-      throw TeleverseException.typeParameterRequired(
-        "editMessageMedia",
-        MessageOrBool,
-        [Message, bool],
-      );
-    }
+    _verifyMessageOrBoolean<MessageOrBool>();
 
     if (_isInline()) {
       return await api.editInlineMessageMedia(
         _inlineMsgId!,
         media,
         replyMarkup: replyMarkup,
+        businessConnectionId: businessConnectionId,
       ) as MessageOrBool;
     } else {
       _verifyInfo([_chatId, _msgId], APIMethod.editMessageMedia);
@@ -1780,6 +1806,7 @@ class Context {
         _msgId!,
         media,
         replyMarkup: replyMarkup,
+        businessConnectionId: businessConnectionId,
       ) as MessageOrBool;
     }
   }
@@ -1788,18 +1815,15 @@ class Context {
   /// Use this method to edit only the reply markup of messages.
   Future<MessageOrBool> editMessageReplyMarkup<MessageOrBool>({
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
-    if (MessageOrBool != Message && MessageOrBool != bool) {
-      throw TeleverseException.typeParameterRequired(
-        "editMessageReplyMarkup",
-        MessageOrBool,
-        [Message, bool],
-      );
-    }
+    _verifyMessageOrBoolean<MessageOrBool>();
+
     if (_isInline()) {
       return await api.editInlineMessageReplyMarkup(
         _inlineMsgId!,
         replyMarkup: replyMarkup,
+        businessConnectionId: businessConnectionId,
       ) as MessageOrBool;
     } else {
       _verifyInfo([_chatId, _msgId], APIMethod.editMessageReplyMarkup);
@@ -1807,6 +1831,7 @@ class Context {
         id,
         _msgId!,
         replyMarkup: replyMarkup,
+        businessConnectionId: businessConnectionId,
       ) as MessageOrBool;
     }
   }
