@@ -933,6 +933,10 @@ class RawAPI {
       params,
     );
 
+    if (MessageOrBool == _Ignore) {
+      return _ignore as MessageOrBool;
+    }
+
     if (MessageOrBool == Message) {
       return Message.fromJson(response) as MessageOrBool;
     }
@@ -1021,6 +1025,10 @@ class RawAPI {
       _buildUri(APIMethod.stopMessageLiveLocation),
       params,
     );
+
+    if (MessageOrBool == _Ignore) {
+      return _ignore as MessageOrBool;
+    }
 
     if (MessageOrBool == Message) {
       return Message.fromJson(response) as MessageOrBool;
@@ -2320,6 +2328,10 @@ class RawAPI {
       params,
     );
 
+    if (MessageOrBool == _Ignore) {
+      return _ignore as MessageOrBool;
+    }
+
     if (MessageOrBool == Message) {
       return Message.fromJson(response) as MessageOrBool;
     }
@@ -2343,6 +2355,7 @@ class RawAPI {
     String? businessConnectionId,
   }) async {
     return await _editMessageText<Message>(
+      chatId: chatId,
       text: text,
       messageId: messageId,
       parseMode: parseMode,
@@ -2408,6 +2421,10 @@ class RawAPI {
       _buildUri(APIMethod.editMessageCaption),
       params,
     );
+
+    if (MessageOrBool == _Ignore) {
+      return _ignore as MessageOrBool;
+    }
 
     if (MessageOrBool == Message) {
       return Message.fromJson(response) as MessageOrBool;
@@ -2512,6 +2529,10 @@ class RawAPI {
       );
     }
 
+    if (MessageOrBool == _Ignore) {
+      return _ignore as MessageOrBool;
+    }
+
     if (MessageOrBool == Message) {
       return Message.fromJson(response) as MessageOrBool;
     }
@@ -2582,6 +2603,10 @@ class RawAPI {
       _buildUri(APIMethod.editMessageReplyMarkup),
       params,
     );
+
+    if (MessageOrBool == _Ignore) {
+      return _ignore as MessageOrBool;
+    }
 
     if (MessageOrBool == Message) {
       return Message.fromJson(response) as MessageOrBool;
