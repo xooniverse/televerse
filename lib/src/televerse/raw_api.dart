@@ -917,6 +917,7 @@ class RawAPI {
     int? proximityAlertRadius,
     InlineKeyboardMarkup? replyMarkup,
     int? livePeriod,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -928,6 +929,7 @@ class RawAPI {
       "proximity_alert_radius": proximityAlertRadius,
       "reply_markup": replyMarkup?.toJson(),
       "live_period": livePeriod,
+      "business_connection_id": businessConnectionId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageLiveLocation),
@@ -953,6 +955,7 @@ class RawAPI {
     int? proximityAlertRadius,
     InlineKeyboardMarkup? replyMarkup,
     int? livePeriod,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
@@ -963,6 +966,7 @@ class RawAPI {
       "proximity_alert_radius": proximityAlertRadius,
       "reply_markup": replyMarkup?.toJson(),
       "live_period": livePeriod,
+      "business_connection_id": businessConnectionId,
     };
     bool response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageLiveLocation),
@@ -981,11 +985,13 @@ class RawAPI {
     ID chatId,
     int messageId, {
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
       "reply_markup": replyMarkup?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.stopMessageLiveLocation),
@@ -1004,10 +1010,12 @@ class RawAPI {
   Future<bool> stopInlineMessageLiveLocation(
     String? inlineMessageId, {
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
       "reply_markup": replyMarkup?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     bool response = await _httpClient.postURI(
       _buildUri(APIMethod.stopMessageLiveLocation),
@@ -2255,6 +2263,7 @@ class RawAPI {
     List<MessageEntity>? entities,
     InlineKeyboardMarkup? replyMarkup,
     LinkPreviewOptions? linkPreviewOptions,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2264,6 +2273,7 @@ class RawAPI {
       "entities": entities?.map((e) => e.toJson()).toList(),
       "reply_markup": replyMarkup?.toJson(),
       "link_preview": linkPreviewOptions?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageText),
@@ -2287,6 +2297,7 @@ class RawAPI {
     List<MessageEntity>? entities,
     InlineKeyboardMarkup? replyMarkup,
     LinkPreviewOptions? linkPreviewOptions,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
@@ -2295,6 +2306,7 @@ class RawAPI {
       "entities": entities?.map((e) => e.toJson()).toList(),
       "reply_markup": replyMarkup?.toJson(),
       "link_preview": linkPreviewOptions?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     bool response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageText),
@@ -2319,6 +2331,7 @@ class RawAPI {
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
     bool? showCaptionAboveMedia,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
@@ -2328,6 +2341,7 @@ class RawAPI {
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
       "reply_markup": replyMarkup?.toJson(),
       "show_caption_above_media": showCaptionAboveMedia,
+      "business_connection_id": businessConnectionId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageCaption),
@@ -2351,6 +2365,7 @@ class RawAPI {
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
     bool? showCaptionAboveMedia,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
@@ -2359,6 +2374,7 @@ class RawAPI {
       "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
       "reply_markup": replyMarkup?.toJson(),
       "show_caption_above_media": showCaptionAboveMedia,
+      "business_connection_id": businessConnectionId,
     };
     bool response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageCaption),
@@ -2379,11 +2395,13 @@ class RawAPI {
     int messageId,
     InputMedia media, {
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
       "reply_markup": replyMarkup?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     const field = "media";
 
@@ -2421,10 +2439,12 @@ class RawAPI {
     String inlineMessageId,
     InputMedia media, {
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
       "reply_markup": replyMarkup?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     const field = "media";
 
@@ -2463,11 +2483,13 @@ class RawAPI {
     ID chatId,
     int messageId, {
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
       "reply_markup": replyMarkup?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageReplyMarkup),
@@ -2487,10 +2509,12 @@ class RawAPI {
   Future<bool> editInlineMessageReplyMarkup(
     String inlineMessageId, {
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "inline_message_id": inlineMessageId,
       "reply_markup": replyMarkup?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     bool response = await _httpClient.postURI(
       _buildUri(APIMethod.editMessageReplyMarkup),
@@ -2504,11 +2528,13 @@ class RawAPI {
     ID chatId,
     int messageId, {
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
       "reply_markup": replyMarkup?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.stopPoll),
@@ -3709,5 +3735,24 @@ class RawAPI {
       params,
     );
     return response;
+  }
+
+  /// Returns the bot's Telegram Star transactions in chronological order.
+  /// On success, returns a [StarTransactions] object.
+  ///
+  /// See more at https://core.telegram.org/bots/api#getstartransactions
+  Future<StarTransactions> getStarTransactions({
+    int? offset,
+    int? limit = 100,
+  }) async {
+    Map<String, dynamic> params = {
+      "offset": offset,
+      "limit": limit,
+    };
+
+    Uri uri = _buildUri(APIMethod.getStarTransactions);
+    Map<String, dynamic> response = await _httpClient.postURI(uri, params);
+
+    return StarTransactions.fromJson(response);
   }
 }
