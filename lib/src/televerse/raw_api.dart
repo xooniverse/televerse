@@ -901,6 +901,44 @@ class RawAPI {
     return Message.fromJson(response);
   }
 
+  /// (Internal) Abstract method for editing message live location
+  Future<MessageOrBool> _editMessageLiveLocation<MessageOrBool>({
+    ID? chatId,
+    int? messageId,
+    String? inlineMessageId,
+    double? latitude,
+    double? longitude,
+    double? horizontalAccuracy,
+    int? heading,
+    int? proximityAlertRadius,
+    InlineKeyboardMarkup? replyMarkup,
+    int? livePeriod,
+    String? businessConnectionId,
+  }) async {
+    final params = {
+      "inline_message_id": inlineMessageId,
+      "chat_id": chatId?.id,
+      "message_id": messageId,
+      "latitude": latitude,
+      "longitude": longitude,
+      "horizontal_accuracy": horizontalAccuracy,
+      "heading": heading,
+      "proximity_alert_radius": proximityAlertRadius,
+      "reply_markup": replyMarkup?.toJson(),
+      "live_period": livePeriod,
+      "business_connection_id": businessConnectionId,
+    };
+    final response = await _httpClient.postURI(
+      _buildUri(APIMethod.editMessageLiveLocation),
+      params,
+    );
+
+    if (MessageOrBool == Message) {
+      return Message.fromJson(response) as MessageOrBool;
+    }
+    return response;
+  }
+
   /// Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to [stopMessageLiveLocation].
   ///
   /// On success, the edited [Message] is returned.
@@ -919,24 +957,18 @@ class RawAPI {
     int? livePeriod,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
-      "chat_id": chatId.id,
-      "message_id": messageId,
-      "latitude": latitude,
-      "longitude": longitude,
-      "horizontal_accuracy": horizontalAccuracy,
-      "heading": heading,
-      "proximity_alert_radius": proximityAlertRadius,
-      "reply_markup": replyMarkup?.toJson(),
-      "live_period": livePeriod,
-      "business_connection_id": businessConnectionId,
-    };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageLiveLocation),
-      params,
+    return await _editMessageLiveLocation<Message>(
+      chatId: chatId,
+      messageId: messageId,
+      latitude: latitude,
+      longitude: longitude,
+      horizontalAccuracy: horizontalAccuracy,
+      heading: heading,
+      proximityAlertRadius: proximityAlertRadius,
+      replyMarkup: replyMarkup,
+      livePeriod: livePeriod,
+      businessConnectionId: businessConnectionId,
     );
-
-    return Message.fromJson(response);
   }
 
   /// Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to [stopMessageLiveLocation].
@@ -957,22 +989,42 @@ class RawAPI {
     int? livePeriod,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
-      "inline_message_id": inlineMessageId,
-      "latitude": latitude,
-      "longitude": longitude,
-      "horizontal_accuracy": horizontalAccuracy,
-      "heading": heading,
-      "proximity_alert_radius": proximityAlertRadius,
+    return await _editMessageLiveLocation<bool>(
+      inlineMessageId: inlineMessageId,
+      latitude: latitude,
+      longitude: longitude,
+      horizontalAccuracy: horizontalAccuracy,
+      heading: heading,
+      proximityAlertRadius: proximityAlertRadius,
+      replyMarkup: replyMarkup,
+      livePeriod: livePeriod,
+      businessConnectionId: businessConnectionId,
+    );
+  }
+
+  /// (Internal) Abstract method for stopping live location
+  Future<MessageOrBool> _stopMessageLiveLocation<MessageOrBool>({
+    ID? chatId,
+    int? messageId,
+    String? inlineMessageId,
+    InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
+  }) async {
+    final params = {
+      "chat_id": chatId?.id,
+      "message_id": messageId,
       "reply_markup": replyMarkup?.toJson(),
-      "live_period": livePeriod,
       "business_connection_id": businessConnectionId,
+      "inline_message_id": inlineMessageId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageLiveLocation),
+    final response = await _httpClient.postURI(
+      _buildUri(APIMethod.stopMessageLiveLocation),
       params,
     );
 
+    if (MessageOrBool == Message) {
+      return Message.fromJson(response) as MessageOrBool;
+    }
     return response;
   }
 
@@ -987,17 +1039,12 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
-      "chat_id": chatId.id,
-      "message_id": messageId,
-      "reply_markup": replyMarkup?.toJson(),
-      "business_connection_id": businessConnectionId,
-    };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.stopMessageLiveLocation),
-      params,
+    return await _stopMessageLiveLocation<Message>(
+      chatId: chatId,
+      messageId: messageId,
+      replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
-    return Message.fromJson(response);
   }
 
   /// Use this method to stop updating a live location message before live_period expires.
@@ -1008,20 +1055,15 @@ class RawAPI {
   ///
   /// On success, true is returned.
   Future<bool> stopInlineMessageLiveLocation(
-    String? inlineMessageId, {
+    String inlineMessageId, {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
-      "inline_message_id": inlineMessageId,
-      "reply_markup": replyMarkup?.toJson(),
-      "business_connection_id": businessConnectionId,
-    };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.stopMessageLiveLocation),
-      params,
+    return await _stopMessageLiveLocation<bool>(
+      inlineMessageId: inlineMessageId,
+      replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
-    return response;
   }
 
   /// Use this method to send information about a venue. On success, the sent Message is returned.
@@ -2249,6 +2291,41 @@ class RawAPI {
     return ChatAdministratorRights.fromJson(response);
   }
 
+  /// (Internal) Abstract method for the `editMessageText`
+  Future<MessageOrBool> _editMessageText<MessageOrBool>({
+    required String text,
+    ID? chatId,
+    int? messageId,
+    String? inlineMessageId,
+    ParseMode? parseMode,
+    List<MessageEntity>? entities,
+    InlineKeyboardMarkup? replyMarkup,
+    LinkPreviewOptions? linkPreviewOptions,
+    String? businessConnectionId,
+  }) async {
+    final params = {
+      "inline_message_id": inlineMessageId,
+      "chat_id": chatId?.id,
+      "message_id": messageId,
+      "text": text,
+      "parse_mode": parseMode?.value,
+      "entities": entities?.map((e) => e.toJson()).toList(),
+      "reply_markup": replyMarkup?.toJson(),
+      "link_preview": linkPreviewOptions?.toJson(),
+      "business_connection_id": businessConnectionId,
+    };
+
+    final response = await _httpClient.postURI(
+      _buildUri(APIMethod.editMessageText),
+      params,
+    );
+
+    if (MessageOrBool == Message) {
+      return Message.fromJson(response) as MessageOrBool;
+    }
+    return response;
+  }
+
   /// Use this method to edit text and game messages.
   ///
   /// IMPORTANT:
@@ -2265,21 +2342,15 @@ class RawAPI {
     LinkPreviewOptions? linkPreviewOptions,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
-      "chat_id": chatId.id,
-      "message_id": messageId,
-      "text": text,
-      "parse_mode": parseMode?.value,
-      "entities": entities?.map((e) => e.toJson()).toList(),
-      "reply_markup": replyMarkup?.toJson(),
-      "link_preview": linkPreviewOptions?.toJson(),
-      "business_connection_id": businessConnectionId,
-    };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageText),
-      params,
+    return await _editMessageText<Message>(
+      text: text,
+      messageId: messageId,
+      parseMode: parseMode,
+      entities: entities,
+      replyMarkup: replyMarkup,
+      linkPreviewOptions: linkPreviewOptions,
+      businessConnectionId: businessConnectionId,
     );
-    return Message.fromJson(response);
   }
 
   /// Use this method to edit inline text messages.
@@ -2299,19 +2370,49 @@ class RawAPI {
     LinkPreviewOptions? linkPreviewOptions,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
+    return await _editMessageText<bool>(
+      text: text,
+      inlineMessageId: inlineMessageId,
+      parseMode: parseMode,
+      entities: entities,
+      replyMarkup: replyMarkup,
+      linkPreviewOptions: linkPreviewOptions,
+      businessConnectionId: businessConnectionId,
+    );
+  }
+
+  /// (Internal) Abstract method for editing message captions
+  Future<MessageOrBool> _editMessageCaption<MessageOrBool>({
+    ID? chatId,
+    int? messageId,
+    String? inlineMessageId,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    InlineKeyboardMarkup? replyMarkup,
+    bool? showCaptionAboveMedia,
+    String? businessConnectionId,
+  }) async {
+    final params = {
       "inline_message_id": inlineMessageId,
-      "text": text,
+      "chat_id": chatId?.id,
+      "message_id": messageId,
+      "caption": caption,
       "parse_mode": parseMode?.value,
-      "entities": entities?.map((e) => e.toJson()).toList(),
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
       "reply_markup": replyMarkup?.toJson(),
-      "link_preview": linkPreviewOptions?.toJson(),
+      "show_caption_above_media": showCaptionAboveMedia,
       "business_connection_id": businessConnectionId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageText),
+    final response = await _httpClient.postURI(
+      _buildUri(APIMethod.editMessageCaption),
       params,
     );
+
+    if (MessageOrBool == Message) {
+      return Message.fromJson(response) as MessageOrBool;
+    }
+
     return response;
   }
 
@@ -2333,21 +2434,16 @@ class RawAPI {
     bool? showCaptionAboveMedia,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
-      "chat_id": chatId.id,
-      "message_id": messageId,
-      "caption": caption,
-      "parse_mode": parseMode?.value,
-      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
-      "reply_markup": replyMarkup?.toJson(),
-      "show_caption_above_media": showCaptionAboveMedia,
-      "business_connection_id": businessConnectionId,
-    };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageCaption),
-      params,
+    return await _editMessageCaption<Message>(
+      chatId: chatId,
+      messageId: messageId,
+      caption: caption,
+      parseMode: parseMode,
+      captionEntities: captionEntities,
+      replyMarkup: replyMarkup,
+      showCaptionAboveMedia: showCaptionAboveMedia,
+      businessConnectionId: businessConnectionId,
     );
-    return Message.fromJson(response);
   }
 
   /// Use this method to edit inline captions of messages.
@@ -2367,45 +2463,36 @@ class RawAPI {
     bool? showCaptionAboveMedia,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
-      "inline_message_id": inlineMessageId,
-      "caption": caption,
-      "parse_mode": parseMode?.value,
-      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
-      "reply_markup": replyMarkup?.toJson(),
-      "show_caption_above_media": showCaptionAboveMedia,
-      "business_connection_id": businessConnectionId,
-    };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageCaption),
-      params,
+    return await _editMessageCaption<bool>(
+      inlineMessageId: inlineMessageId,
+      caption: caption,
+      parseMode: parseMode,
+      captionEntities: captionEntities,
+      replyMarkup: replyMarkup,
+      showCaptionAboveMedia: showCaptionAboveMedia,
+      businessConnectionId: businessConnectionId,
     );
-    return response;
   }
 
-  /// Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
-  ///
-  /// IMPORTANT:
-  /// * This method is only for editing messages. This won't work for inline messages.
-  /// * If you're looking for a way to edit inline messages, use [editInlineMessageMedia].
-  ///
-  /// On success, [Message] is returned.
-  Future<Message> editMessageMedia(
-    ID chatId,
-    int messageId,
-    InputMedia media, {
+  /// (Internal) Abstract method for editing message media
+  Future<MessageOrBool> _editMessageMedia<MessageOrBool>({
+    required InputMedia media,
+    ID? chatId,
+    int? messageId,
+    String? inlineMessageId,
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
-      "chat_id": chatId.id,
+    final params = {
+      "chat_id": chatId?.id,
       "message_id": messageId,
+      "inline_message_id": inlineMessageId,
       "reply_markup": replyMarkup?.toJson(),
       "business_connection_id": businessConnectionId,
     };
     const field = "media";
 
-    Map<String, dynamic> response;
+    dynamic response;
     final files = _getFiles([
       _MultipartHelper(media.media, field),
     ]);
@@ -2425,7 +2512,34 @@ class RawAPI {
       );
     }
 
-    return Message.fromJson(response);
+    if (MessageOrBool == Message) {
+      return Message.fromJson(response) as MessageOrBool;
+    }
+
+    return response;
+  }
+
+  /// Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+  ///
+  /// IMPORTANT:
+  /// * This method is only for editing messages. This won't work for inline messages.
+  /// * If you're looking for a way to edit inline messages, use [editInlineMessageMedia].
+  ///
+  /// On success, [Message] is returned.
+  Future<Message> editMessageMedia(
+    ID chatId,
+    int messageId,
+    InputMedia media, {
+    InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
+  }) async {
+    return await _editMessageMedia<Message>(
+      media: media,
+      chatId: chatId,
+      messageId: messageId,
+      replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
+    );
   }
 
   /// Use this method to edit inline media of messages.
@@ -2441,31 +2555,36 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
+    return await _editMessageMedia<bool>(
+      media: media,
+      inlineMessageId: inlineMessageId,
+      replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
+    );
+  }
+
+  /// (Internal) Abstract method for editing message reply markup
+  Future<MessageOrBool> _editMessageReplyMarkup<MessageOrBool>({
+    ID? chatId,
+    int? messageId,
+    String? inlineMessageId,
+    InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
+  }) async {
+    final params = {
+      "chat_id": chatId?.id,
       "inline_message_id": inlineMessageId,
+      "message_id": messageId,
       "reply_markup": replyMarkup?.toJson(),
       "business_connection_id": businessConnectionId,
     };
-    const field = "media";
+    final response = await _httpClient.postURI(
+      _buildUri(APIMethod.editMessageReplyMarkup),
+      params,
+    );
 
-    bool response;
-    final files = _getFiles([
-      _MultipartHelper(media.media, field),
-    ]);
-    params[field] = media.getValue(field);
-    if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(
-          APIMethod.editMessageMedia,
-        ),
-        files,
-        params,
-      );
-    } else {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.editMessageMedia),
-        params,
-      );
+    if (MessageOrBool == Message) {
+      return Message.fromJson(response) as MessageOrBool;
     }
 
     return response;
@@ -2485,17 +2604,12 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
-      "chat_id": chatId.id,
-      "message_id": messageId,
-      "reply_markup": replyMarkup?.toJson(),
-      "business_connection_id": businessConnectionId,
-    };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageReplyMarkup),
-      params,
+    return await _editMessageReplyMarkup<Message>(
+      chatId: chatId,
+      messageId: messageId,
+      replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
-    return Message.fromJson(response);
   }
 
   /// Use this method to edit only the reply markup of inline messages.
@@ -2511,16 +2625,11 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
-      "inline_message_id": inlineMessageId,
-      "reply_markup": replyMarkup?.toJson(),
-      "business_connection_id": businessConnectionId,
-    };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageReplyMarkup),
-      params,
+    return await _editMessageReplyMarkup<bool>(
+      inlineMessageId: inlineMessageId,
+      replyMarkup: replyMarkup,
+      businessConnectionId: businessConnectionId,
     );
-    return response;
   }
 
   /// Use this method to stop a poll which was sent by the bot. On success, the stopped [Poll] is returned.
