@@ -168,3 +168,11 @@ extension GetUserChatID on User {
     return false;
   }
 }
+
+/// (Internal) Ignore value
+class _Ignore {
+  const _Ignore();
+}
+
+/// Ignores the value
+const _ignore = _Ignore();

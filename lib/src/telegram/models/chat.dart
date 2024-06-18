@@ -1,8 +1,9 @@
 part of 'models.dart';
 
 /// This object represents a chat.
-class Chat {
+class Chat implements WithID {
   /// Unique identifier for this chat.
+  @override
   final int id;
 
   /// Type of the chat, can be either "private", "group", "supergroup" or "channel".

@@ -22,14 +22,26 @@ abstract class Fetcher {
   /// The stream controller that emits new updates.
   final StreamController<Update> _updateStreamController;
 
+  /// The stream controller that emits new updates.
+  final StreamController<List<Update>> _updatesStreamController;
+
   /// Creates a new fetcher.
-  Fetcher() : _updateStreamController = StreamController.broadcast();
+  Fetcher()
+      : _updateStreamController = StreamController.broadcast(),
+        _updatesStreamController = StreamController.broadcast();
 
   /// Emit new update into the stream.
   void addUpdate(Update update) => _updateStreamController.add(update);
 
+  /// Emit new update into the stream.
+  void addUpdates(List<Update> updates) =>
+      _updatesStreamController.add(updates);
+
   /// Handler for new updates.
   Stream<Update> onUpdate() => _updateStreamController.stream;
+
+  /// Handler for new updates.
+  Stream<List<Update>> onUpdates() => _updatesStreamController.stream;
 
   /// Starts fetching updates.
   Future<void> start();

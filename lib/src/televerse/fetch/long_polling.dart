@@ -84,6 +84,7 @@ class LongPolling extends Fetcher {
         timeout: timeout,
         allowedUpdates: allowedUpdates?.map((e) => e.type).toList(),
       );
+      addUpdates(updates);
       int len = updates.length;
       for (int i = 0; i < len; i++) {
         if (_updateStreamController.isClosed) {
@@ -95,7 +96,9 @@ class LongPolling extends Fetcher {
         offset = updates[updates.length - 1].updateId + 1;
       }
       await Future.delayed(delayDuration);
-      _resetRetryDelay();
+      if (_retryDelay.inSeconds != 1) {
+        _resetRetryDelay();
+      }
     } catch (err, stackTrace) {
       _isPolling = false;
       // If the error is a TelegramException, just go handle it.

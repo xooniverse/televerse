@@ -1,3 +1,9 @@
+# 1.18.0
+
+- 🤖 Bot API 7.5 
+- Improved context aware methods
+- Added `WithID` abstraction
+
 # 1.17.2
 
 - Added `considerCaption` parameter in `Bot.command` mehtod to match commands in the caption of video/photo messages.

@@ -12,5 +12,11 @@ abstract class WithUser {
   User? get from;
 }
 
+/// The base class for all the models that have a user.
+abstract class WithID {
+  /// The user who triggered the event.
+  int get id;
+}
+
 /// Null filter function.
 bool _nullFilter(String _, dynamic value) => value == null;
