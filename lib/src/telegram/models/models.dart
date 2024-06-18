@@ -242,3 +242,15 @@ part 'background_fill_freeform_gradient.dart';
 part 'background_fill_gradient.dart';
 part 'chat_background.dart';
 part 'chat.dart';
+
+// Bot API 7.5
+part 'star_transaction.dart';
+part 'star_transactions.dart';
+part 'abstracts/transaction_partner.dart';
+part 'transaction_partner_fragment.dart';
+part 'transaction_partner_other.dart';
+part 'transaction_partner_user.dart';
+part 'abstracts/revenue_withdrawal_state.dart';
+part 'revenue_withdrawal_state_pending.dart';
+part 'revenue_withdrawal_state_succeeded.dart';
+part 'revenue_withdrawal_state_failed.dart';

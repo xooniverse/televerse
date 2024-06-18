@@ -29,3 +29,5 @@ part 'message_origin_type.dart';
 part 'input_sticker_format.dart';
 part 'background_fill_type.dart';
 part 'background_type_type.dart';
+part 'transaction_partner_type.dart';
+part 'revenue_withdrawal_state_type.dart';
