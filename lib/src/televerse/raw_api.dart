@@ -2528,11 +2528,13 @@ class RawAPI {
     ID chatId,
     int messageId, {
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     Map<String, dynamic> params = {
       "chat_id": chatId.id,
       "message_id": messageId,
       "reply_markup": replyMarkup?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
     Map<String, dynamic> response = await _httpClient.postURI(
       _buildUri(APIMethod.stopPoll),
