@@ -3710,4 +3710,23 @@ class RawAPI {
     );
     return response;
   }
+
+  /// Returns the bot's Telegram Star transactions in chronological order.
+  /// On success, returns a [StarTransactions] object.
+  ///
+  /// See more at https://core.telegram.org/bots/api#getstartransactions
+  Future<StarTransactions> getStarTransactions({
+    int? offset,
+    int? limit = 100,
+  }) async {
+    Map<String, dynamic> params = {
+      "offset": offset,
+      "limit": limit,
+    };
+
+    Uri uri = _buildUri(APIMethod.getStarTransactions);
+    Map<String, dynamic> response = await _httpClient.postURI(uri, params);
+
+    return StarTransactions.fromJson(response);
+  }
 }

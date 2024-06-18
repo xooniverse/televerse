@@ -373,6 +373,9 @@ enum APIMethod {
 
   /// To refunds a successful payment in Telegram Stars.
   refundStarPayment._("refundStarPayment"),
+
+  /// Returns the bot's Telegram Star transactions in chronological order
+  getStarTransactions._("getStarTransactions"),
   ;
 
   /// The name of the method.
