@@ -417,8 +417,9 @@ class Bot {
     if (isServerless) return;
     fetcher.onUpdate().listen(
       _onUpdate,
-      onDone: () {
+      onDone: () async {
         _onStop.call();
+        await _onStopAsync.call();
       },
     );
     try {
@@ -1482,11 +1483,21 @@ class Bot {
   /// On Stop Handler
   void Function() _onStop = () {};
 
+  /// On Stop Async Handler
+  Future<void> Function() _onStopAsync = () async {};
+
   /// Registers a callback when the the bot is stopped.
   ///
   /// This can be used to clean up resources.
   void onStop(void Function() callback) {
     _onStop = callback;
+  }
+
+  /// Registers an async callback when the the bot is stopped.
+  ///
+  /// This can be used to clean up resources.
+  Future<void> onStopAsync(Future<void> Function() asyncCallback) async {
+    _onStopAsync = asyncCallback;
   }
 
   /// Internal method to handle sub message handlers
