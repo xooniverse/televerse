@@ -136,15 +136,50 @@ class RawAPI {
     _httpClient.close();
   }
 
-  /// Make API call
+  /// All API calls goes through this method :)
   Future<T> _makeApiCall<T>(
     APIMethod method, {
-    Map<String, dynamic> params = const {},
+    Map<String, dynamic>? params,
+    List<Map<String, MultipartFile>>? files,
   }) async {
+    params?.removeWhere(_nullFilter);
+
     final uri = _buildUri(method);
-    final result = await _httpClient.postURI(uri, params);
+
+    dynamic result;
+
+    if (files?.isNotEmpty ?? false) {
+      result = await _httpClient.multipartPost(uri, files!, params ?? {});
+    } else {
+      result = await _httpClient.postURI(uri, params ?? {});
+    }
+
     return result;
   }
+
+  /// Make API call and expect `Map<String, dynamic>` result
+  Future<Map<String, dynamic>> _makeApiJsonCall(
+    APIMethod method, {
+    Map<String, dynamic>? params,
+    List<Map<String, MultipartFile>>? files,
+  }) async =>
+      await _makeApiCall<Map<String, dynamic>>(
+        method,
+        params: params,
+        files: files,
+      );
+
+  /// Make API call and expect `bool` result (Shorthand for `_makeApiCall` method)
+  Future<bool> _makeApiBoolCall(
+    APIMethod method, {
+    Map<String, dynamic>? params,
+    List<Map<String, MultipartFile>>? files,
+  }) async =>
+      await _makeApiCall<bool>(
+        method,
+        params: params,
+        files: files,
+      );
 
   /// Use this method to receive incoming updates using long polling.
   /// An Array of Update objects is returned.
@@ -156,7 +191,7 @@ class RawAPI {
     int? timeout,
     List<String>? allowedUpdates,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "offset": offset,
       "limit": limit,
       "timeout": timeout,
@@ -184,14 +219,16 @@ class RawAPI {
   /// See more at https://core.telegram.org/bots/api#setwebhook
   Future<bool> setWebhook({
     required String url,
-    io.File? certificate,
+    InputFile? certificate,
     String? ipAddress,
     int? maxConnections,
     List<String>? allowedUpdates,
     bool? dropPendingUpdates,
     String? secretToken,
   }) async {
-    Map<String, dynamic> params = {
+    const field = "certificate";
+
+    final params = {
       "url": url,
       "ip_address": ipAddress,
       "max_connections": maxConnections,
@@ -199,20 +236,18 @@ class RawAPI {
       "drop_pending_updates": dropPendingUpdates,
       "secret_token": secretToken,
     };
-    if (certificate != null) {
-      List<Map<String, MultipartFile>> files = [];
-      files.add({
-        "certificate": MultipartFile.fromBytes(
-          certificate.readAsBytesSync(),
-          filename: certificate.path.split("/").last,
-        ),
-      });
-      Uri uri = _buildUri(APIMethod.setWebhook);
-      return await _httpClient.multipartPost(uri, files, params);
-    } else {
-      Uri uri = _buildUri(APIMethod.setWebhook);
-      return await _httpClient.postURI(uri, params);
-    }
+
+    final files = certificate != null
+        ? _getFiles([_MultipartHelper(certificate, field)])
+        : null;
+    params[field] = certificate?.getValue(field);
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setWebhook,
+      files: files,
+      params: params,
+    );
+    return response;
   }
 
   /// Use this method to remove webhook integration if you decide to switch back to getUpdates.
@@ -220,11 +255,13 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#deletewebhook
   Future<bool> deleteWebhook({bool? dropPendingUpdates}) async {
-    Map<String, dynamic> params = {
+    final params = {
       "drop_pending_updates": dropPendingUpdates,
     };
-    Uri uri = _buildUri(APIMethod.deleteWebhook);
-    bool response = await _httpClient.postURI(uri, params);
+    final response = await _makeApiBoolCall(
+      APIMethod.deleteWebhook,
+      params: params,
+    );
     return response;
   }
 
@@ -233,9 +270,9 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#getwebhookinfo
   Future<WebhookInfo> getWebhookInfo() async {
-    Uri uri = _buildUri(APIMethod.getWebhookInfo);
-
-    Map<String, dynamic> response = await _httpClient.postURI(uri, {});
+    final response = await _makeApiJsonCall(
+      APIMethod.getWebhookInfo,
+    );
     return WebhookInfo.fromJson(response);
   }
 
@@ -244,9 +281,7 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#getme
   Future<User> getMe() async {
-    Uri uri = _buildUri(APIMethod.getMe);
-
-    Map<String, dynamic> response = await _httpClient.postURI(uri, {});
+    final response = await _makeApiJsonCall(APIMethod.getMe);
     return User.fromJson(response);
   }
 
@@ -255,9 +290,7 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#logout
   Future<bool> logOut() async {
-    Uri uri = _buildUri(APIMethod.logOut);
-
-    bool response = await _httpClient.postURI(uri, {});
+    final response = await _makeApiBoolCall(APIMethod.logOut);
     return response;
   }
 
@@ -265,9 +298,7 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#close
   Future<bool> close() async {
-    Uri uri = _buildUri(APIMethod.close);
-
-    bool response = await _httpClient.postURI(uri, {});
+    final response = await _makeApiBoolCall(APIMethod.close);
     return response;
   }
 
@@ -306,7 +337,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "text": text,
       "message_thread_id": messageThreadId,
@@ -321,9 +352,10 @@ class RawAPI {
       "message_effect_id": messageEffectId,
     };
 
-    Uri uri = _buildUri(APIMethod.sendMessage);
-
-    Map<String, dynamic> response = await _httpClient.postURI(uri, params);
+    final response = await _makeApiJsonCall(
+      APIMethod.sendMessage,
+      params: params,
+    );
     return Message.fromJson(response);
   }
 
@@ -359,7 +391,7 @@ class RawAPI {
     int? messageThreadId,
     bool? protectContent,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "from_chat_id": fromChatId.id,
       "message_id": messageId,
@@ -367,9 +399,10 @@ class RawAPI {
       "message_thread_id": messageThreadId,
       "protect_content": protectContent,
     };
-    Uri uri = _buildUri(APIMethod.forwardMessage);
-
-    Map<String, dynamic> response = await _httpClient.postURI(uri, params);
+    final response = await _makeApiJsonCall(
+      APIMethod.forwardMessage,
+      params: params,
+    );
     return Message.fromJson(response);
   }
 
@@ -388,7 +421,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     bool? showCaptionAboveMedia,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "from_chat_id": fromChatId.id,
       "message_id": messageId,
@@ -402,9 +435,10 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "show_caption_above_media": showCaptionAboveMedia,
     };
-    Uri uri = _buildUri(APIMethod.copyMessage);
-
-    Map<String, dynamic> response = await _httpClient.postURI(uri, params);
+    final response = await _makeApiJsonCall(
+      APIMethod.copyMessage,
+      params: params,
+    );
     return MessageId.fromJson(response);
   }
 
@@ -425,7 +459,8 @@ class RawAPI {
     String? messageEffectId,
     bool? showCaptionAboveMedia,
   }) async {
-    Map<String, dynamic> params = {
+    const field = "photo";
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "caption": caption,
@@ -440,23 +475,14 @@ class RawAPI {
       "message_effect_id": messageEffectId,
       "show_caption_above_media": showCaptionAboveMedia,
     };
-    const field = "photo";
-    Map<String, dynamic> response;
-    final files = _getFiles([_MultipartHelper(photo, field)]);
     params[field] = photo.getValue(field);
-    params.removeWhere(_nullFilter);
-    if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.sendPhoto),
-        files,
-        params,
-      );
-    } else {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.sendPhoto),
-        params,
-      );
-    }
+    final files = _getFiles([_MultipartHelper(photo, field)]);
+
+    final response = await _makeApiJsonCall(
+      APIMethod.sendPhoto,
+      files: files,
+      params: params,
+    );
     return Message.fromJson(response);
   }
 
@@ -481,7 +507,8 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
   }) async {
-    Map<String, dynamic> params = {
+    const field = "audio";
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "caption": caption,
@@ -497,29 +524,21 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
     };
-    const field = "audio";
+    params[field] = audio.getValue(field);
+    params[_thumb] = thumbnail?.getValue(_thumb);
 
-    Map<String, dynamic> response;
     final l = [_MultipartHelper(audio, field)];
-
     if (thumbnail != null) {
       l.add(_MultipartHelper(thumbnail, _thumb));
     }
     final files = _getFiles(l);
-    params[field] = audio.getValue(field);
-    params[_thumb] = thumbnail?.getValue(_thumb);
-    if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.sendAudio),
-        files,
-        params,
-      );
-    } else {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.sendAudio),
-        params,
-      );
-    }
+
+    final response = await _makeApiJsonCall(
+      APIMethod.sendAudio,
+      params: params,
+      files: files,
+    );
+
     return Message.fromJson(response);
   }
 
@@ -540,7 +559,8 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
   }) async {
-    Map<String, dynamic> params = {
+    const field = "document";
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "caption": caption,
@@ -554,28 +574,18 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
     };
-    const field = "document";
 
-    Map<String, dynamic> response;
-    final l = [_MultipartHelper(document, field)];
-    if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
-
-    final files = _getFiles(l);
     params[field] = document.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
-    params.removeWhere(_nullFilter);
-    if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.sendDocument),
-        files,
-        params,
-      );
-    } else {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.sendDocument),
-        params,
-      );
-    }
+    final l = [_MultipartHelper(document, field)];
+    if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
+    final files = _getFiles(l);
+
+    final response = await _makeApiJsonCall(
+      APIMethod.sendDocument,
+      params: params,
+      files: files,
+    );
     return Message.fromJson(response);
   }
 
@@ -601,7 +611,8 @@ class RawAPI {
     String? messageEffectId,
     bool? showCaptionAboveMedia,
   }) async {
-    Map<String, dynamic> params = {
+    final field = "video";
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "duration": duration,
@@ -620,25 +631,18 @@ class RawAPI {
       "message_effect_id": messageEffectId,
       "show_caption_above_media": showCaptionAboveMedia,
     };
-    final field = "video";
-    Map<String, dynamic> response;
+    params[field] = video.getValue(field);
+    params[_thumb] = thumbnail?.getValue(_thumb);
+
     final l = [_MultipartHelper(video, field)];
     if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
     final files = _getFiles(l);
-    params[field] = video.getValue(field);
-    params[_thumb] = thumbnail?.getValue(_thumb);
-    if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.sendVideo),
-        files,
-        params,
-      );
-    } else {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.sendVideo),
-        params,
-      );
-    }
+
+    final response = await _makeApiJsonCall(
+      APIMethod.sendVideo,
+      params: params,
+      files: files,
+    );
     return Message.fromJson(response);
   }
 
@@ -663,7 +667,8 @@ class RawAPI {
     String? messageEffectId,
     bool? showCaptionAboveMedia,
   }) async {
-    Map<String, dynamic> params = {
+    const field = "animation";
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "duration": duration,
@@ -681,27 +686,18 @@ class RawAPI {
       "message_effect_id": messageEffectId,
       "show_caption_above_media": showCaptionAboveMedia,
     };
-    const field = "animation";
-    Map<String, dynamic> response;
-    final l = [_MultipartHelper(animation, field)];
-    if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
-
-    final files = _getFiles(l);
     params[field] = animation.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
-    params.removeWhere(_nullFilter);
-    if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.sendAnimation),
-        files,
-        params,
-      );
-    } else {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.sendAnimation),
-        params,
-      );
-    }
+
+    final l = [_MultipartHelper(animation, field)];
+    if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
+    final files = _getFiles(l);
+
+    final response = await _makeApiJsonCall(
+      APIMethod.sendAnimation,
+      params: params,
+      files: files,
+    );
     return Message.fromJson(response);
   }
 
@@ -721,7 +717,8 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
   }) async {
-    Map<String, dynamic> params = {
+    const field = "voice";
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "caption": caption,
@@ -735,24 +732,17 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
     };
-    const field = "voice";
-    Map<String, dynamic> response;
+    params[field] = voice.getValue(field);
+
     final l = [_MultipartHelper(voice, field)];
     final files = _getFiles(l);
-    params[field] = voice.getValue(field);
-    params.removeWhere(_nullFilter);
-    if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.sendVoice),
-        files,
-        params,
-      );
-    } else {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.sendVoice),
-        params,
-      );
-    }
+
+    final response = await _makeApiJsonCall(
+      APIMethod.sendVoice,
+      params: params,
+      files: files,
+    );
+
     return Message.fromJson(response);
   }
 
@@ -771,7 +761,8 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
   }) async {
-    Map<String, dynamic> params = {
+    const field = "video_note";
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "duration": duration,
@@ -784,24 +775,18 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
     };
-    const field = "video_note";
-    Map<String, dynamic> response;
+    params[field] = videoNote.getValue(field);
+    params[_thumb] = thumbnail?.getValue(_thumb);
+
     final l = [_MultipartHelper(videoNote, field)];
     if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
     final files = _getFiles(l);
-    params[field] = videoNote.getValue(field);
-    params.removeWhere(_nullFilter);
-    params[_thumb] = thumbnail?.getValue(_thumb);
-    if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.sendVideoNote),
-        files,
-        params,
-      );
-    } else {
-      response =
-          await _httpClient.postURI(_buildUri(APIMethod.sendVideoNote), params);
-    }
+
+    final response = await _makeApiJsonCall(
+      APIMethod.sendVideoNote,
+      params: params,
+      files: files,
+    );
     return Message.fromJson(response);
   }
 
@@ -843,7 +828,7 @@ class RawAPI {
       );
     }
 
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "disable_notification": disableNotification,
@@ -866,19 +851,12 @@ class RawAPI {
     final files = _getFiles(helpers);
     params["media"] = mediaList;
 
-    if (files.isNotEmpty) {
-      List<dynamic> response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.sendMediaGroup),
-        files,
-        params,
-      );
-      return (response).map((e) => Message.fromJson(e)).toList();
-    }
-
-    List<dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.sendMediaGroup),
-      params,
+    final response = await _makeApiCall<List>(
+      APIMethod.sendMediaGroup,
+      params: params,
+      files: files,
     );
+
     return (response).map((e) => Message.fromJson(e)).toList();
   }
 
@@ -899,7 +877,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "latitude": latitude,
@@ -915,9 +893,9 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.sendLocation),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.sendLocation,
+      params: params,
     );
     return Message.fromJson(response);
   }
@@ -949,9 +927,9 @@ class RawAPI {
       "live_period": livePeriod,
       "business_connection_id": businessConnectionId,
     };
-    final response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageLiveLocation),
-      params,
+    final response = await _makeApiCall(
+      APIMethod.editMessageLiveLocation,
+      params: params,
     );
 
     if (MessageOrBool == _Ignore) {
@@ -1042,9 +1020,9 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "inline_message_id": inlineMessageId,
     };
-    final response = await _httpClient.postURI(
-      _buildUri(APIMethod.stopMessageLiveLocation),
-      params,
+    final response = await _makeApiCall(
+      APIMethod.stopMessageLiveLocation,
+      params: params,
     );
 
     if (MessageOrBool == _Ignore) {
@@ -1114,7 +1092,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "latitude": latitude,
@@ -1132,9 +1110,9 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.sendVenue),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.sendVenue,
+      params: params,
     );
     return Message.fromJson(response);
   }
@@ -1154,7 +1132,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "phone_number": phoneNumber,
@@ -1168,9 +1146,9 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.sendContact),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.sendContact,
+      params: params,
     );
     return Message.fromJson(response);
   }
@@ -1253,7 +1231,7 @@ class RawAPI {
       );
     }
 
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "question": question,
@@ -1278,9 +1256,9 @@ class RawAPI {
       "question_parse_mode": questionParseMode?.value,
       "message_effect_id": messageEffectId,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.sendPoll),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.sendPoll,
+      params: params,
     );
     return Message.fromJson(response);
   }
@@ -1306,7 +1284,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "emoji": emoji.emoji,
@@ -1317,9 +1295,9 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.sendDice),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.sendDice,
+      params: params,
     );
     return Message.fromJson(response);
   }
@@ -1341,15 +1319,15 @@ class RawAPI {
     int? messageThreadId,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "action": action.value,
       "message_thread_id": messageThreadId,
       "business_connection_id": businessConnectionId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.sendChatAction),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.sendChatAction,
+      params: params,
     );
     return response;
   }
@@ -1360,14 +1338,14 @@ class RawAPI {
     int? offset,
     int? limit,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "user_id": userId,
       "offset": offset,
       "limit": limit,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.getUserProfilePhotos),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.getUserProfilePhotos,
+      params: params,
     );
     return UserProfilePhotos.fromJson(response);
   }
@@ -1376,12 +1354,12 @@ class RawAPI {
   ///
   /// Note: This function may not preserve the original file name and MIME type. You should save the file's MIME type and name (if available) when the File object is received.
   Future<File> getFile(String fileId) async {
-    Map<String, dynamic> params = {
+    final params = {
       "file_id": fileId,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.getFile),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.getFile,
+      params: params,
     );
     return File.fromJson(response);
   }
@@ -1393,15 +1371,15 @@ class RawAPI {
     DateTime? untilDate,
     bool? revokeMessages,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "user_id": userId,
       "until_date": untilDate?.unixTime,
       "revoke_messages": revokeMessages,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.banChatMember),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.banChatMember,
+      params: params,
     );
     return response;
   }
@@ -1412,14 +1390,14 @@ class RawAPI {
     int userId, {
     bool? onlyIfBanned,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "user_id": userId,
       "only_if_banned": onlyIfBanned,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.unbanChatMember),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.unbanChatMember,
+      params: params,
     );
     return response;
   }
@@ -1435,16 +1413,16 @@ class RawAPI {
     DateTime? untilDate,
     bool? useIndependentChatPermissions,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "user_id": userId,
       "permissions": permissions.toJson(),
       "until_date": untilDate?.unixTime,
       "use_independent_chat_permissions": useIndependentChatPermissions,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.restrictChatMember),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.restrictChatMember,
+      params: params,
     );
     return response;
   }
@@ -1469,7 +1447,7 @@ class RawAPI {
     bool? canEditStories,
     bool? canDeleteStories,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "user_id": userId,
       "is_anonymous": isAnonymous,
@@ -1485,9 +1463,9 @@ class RawAPI {
       "can_pin_messages": canPinMessages,
       "can_manage_topics": canManageTopics,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.promoteChatMember),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.promoteChatMember,
+      params: params,
     );
     return response;
   }
@@ -1498,14 +1476,14 @@ class RawAPI {
     int userId,
     String customTitle,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "user_id": userId,
       "custom_title": customTitle,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setChatAdministratorCustomTitle),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setChatAdministratorCustomTitle,
+      params: params,
     );
     return response;
   }
@@ -1515,13 +1493,13 @@ class RawAPI {
     ID chatId,
     int senderChatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "sender_chat_id": senderChatId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.banChatSenderChat),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.banChatSenderChat,
+      params: params,
     );
     return response;
   }
@@ -1531,13 +1509,13 @@ class RawAPI {
     ID chatId,
     int senderChatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "sender_chat_id": senderChatId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.unbanChatSenderChat),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.unbanChatSenderChat,
+      params: params,
     );
     return response;
   }
@@ -1551,14 +1529,14 @@ class RawAPI {
     ChatPermissions permissions, {
     bool? useIndependentChatPermissions,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "permissions": permissions.toJson(),
       "use_independent_chat_permissions": useIndependentChatPermissions,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setChatPermissions),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setChatPermissions,
+      params: params,
     );
     return response;
   }
@@ -1569,12 +1547,12 @@ class RawAPI {
   Future<String> exportChatInviteLink(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    String response = await _httpClient.postURI(
-      _buildUri(APIMethod.exportChatInviteLink),
-      params,
+    final response = await _makeApiCall<String>(
+      APIMethod.exportChatInviteLink,
+      params: params,
     );
     return response;
   }
@@ -1613,16 +1591,16 @@ class RawAPI {
       );
     }
 
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "name": name,
       "expire_date": expireDate?.unixTime,
       "member_limit": memberLimit,
       "creates_join_request": createsJoinRequest,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.createChatInviteLink),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.createChatInviteLink,
+      params: params,
     );
     return ChatInviteLink.fromJson(response);
   }
@@ -1662,7 +1640,7 @@ class RawAPI {
       );
     }
 
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "invite_link": inviteLink,
       "name": name,
@@ -1670,9 +1648,9 @@ class RawAPI {
       "member_limit": memberLimit,
       "creates_join_request": createsJoinRequest,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.editChatInviteLink),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.editChatInviteLink,
+      params: params,
     );
     return ChatInviteLink.fromJson(response);
   }
@@ -1682,13 +1660,13 @@ class RawAPI {
     ID chatId,
     String inviteLink,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "invite_link": inviteLink,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.revokeChatInviteLink),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.revokeChatInviteLink,
+      params: params,
     );
     return ChatInviteLink.fromJson(response);
   }
@@ -1698,13 +1676,13 @@ class RawAPI {
     ID chatId,
     int userId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "user_id": userId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.approveChatJoinRequest),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.approveChatJoinRequest,
+      params: params,
     );
     return response;
   }
@@ -1714,13 +1692,13 @@ class RawAPI {
     ID chatId,
     int userId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "user_id": userId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.declineChatJoinRequest),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.declineChatJoinRequest,
+      params: params,
     );
     return response;
   }
@@ -1730,26 +1708,18 @@ class RawAPI {
     ID chatId,
     InputFile photo,
   ) async {
-    Map<String, dynamic> params = {
+    const field = "photo";
+    final params = {
       "chat_id": chatId.id,
     };
-    const field = "photo";
-    bool response;
-    final files = _getFiles([_MultipartHelper(photo, field)]);
     params[field] = photo.getValue(field);
+    final files = _getFiles([_MultipartHelper(photo, field)]);
 
-    if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.setChatPhoto),
-        files,
-        params,
-      );
-    } else {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.setChatPhoto),
-        params,
-      );
-    }
+    final response = await _makeApiBoolCall(
+      APIMethod.setChatPhoto,
+      params: params,
+      files: files,
+    );
     return response;
   }
 
@@ -1757,12 +1727,12 @@ class RawAPI {
   Future<bool> deleteChatPhoto(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.deleteChatPhoto),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.deleteChatPhoto,
+      params: params,
     );
     return response;
   }
@@ -1780,13 +1750,13 @@ class RawAPI {
       );
     }
 
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "title": title,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setChatTitle),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setChatTitle,
+      params: params,
     );
     return response;
   }
@@ -1804,13 +1774,14 @@ class RawAPI {
       );
     }
 
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "description": description,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setChatDescription),
-      params,
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setChatDescription,
+      params: params,
     );
     return response;
   }
@@ -1821,14 +1792,14 @@ class RawAPI {
     int messageId, {
     bool? disableNotification,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_id": messageId,
       "disable_notification": disableNotification,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.pinChatMessage),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.pinChatMessage,
+      params: params,
     );
     return response;
   }
@@ -1838,13 +1809,13 @@ class RawAPI {
     ID chatId,
     int messageId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_id": messageId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.unpinChatMessage),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.unpinChatMessage,
+      params: params,
     );
     return response;
   }
@@ -1853,12 +1824,12 @@ class RawAPI {
   Future<bool> unpinAllChatMessages(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.unpinAllChatMessages),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.unpinAllChatMessages,
+      params: params,
     );
     return response;
   }
@@ -1867,12 +1838,12 @@ class RawAPI {
   Future<bool> leaveChat(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.leaveChat),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.leaveChat,
+      params: params,
     );
     return response;
   }
@@ -1881,44 +1852,37 @@ class RawAPI {
   Future<ChatFullInfo> getChat(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    final response = ChatFullInfo.fromJson(
-      await _httpClient.postURI(
-        _buildUri(APIMethod.getChat),
-        params,
-      ),
-    );
-    return response;
+    final response = await _makeApiJsonCall(APIMethod.getChat, params: params);
+    return ChatFullInfo.fromJson(response);
   }
 
   /// Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of ChatMember objects.
   Future<List<ChatMember>> getChatAdministrators(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    List<ChatMember> response = [];
-    List<dynamic> data = await _httpClient.postURI(
-      _buildUri(APIMethod.getChatAdministrators),
-      params,
+    final response = await _makeApiCall<List>(
+      APIMethod.getChatAdministrators,
+      params: params,
     );
-    response = data.map((e) => ChatMember.fromJson(e)).toList();
-    return response;
+    return response.map((e) => ChatMember.fromJson(e)).toList();
   }
 
   /// Use this method to get the number of members in a chat. Returns Int on success.
   Future<int> getChatMembersCount(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    int response = await _httpClient.postURI(
-      _buildUri(APIMethod.getChatMembersCount),
-      params,
+    int response = await _makeApiCall<int>(
+      APIMethod.getChatMembersCount,
+      params: params,
     );
     return response;
   }
@@ -1928,17 +1892,15 @@ class RawAPI {
     ID chatId,
     int userId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "user_id": userId,
     };
-    ChatMember response = ChatMember.fromJson(
-      await _httpClient.postURI(
-        _buildUri(APIMethod.getChatMember),
-        params,
-      ),
+    final response = await _makeApiJsonCall(
+      APIMethod.getChatMember,
+      params: params,
     );
-    return response;
+    return ChatMember.fromJson(response);
   }
 
   /// Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.
@@ -1946,13 +1908,13 @@ class RawAPI {
     ID chatId,
     String stickerSetName,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "sticker_set_name": stickerSetName,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setChatStickerSet),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setChatStickerSet,
+      params: params,
     );
     return response;
   }
@@ -1961,25 +1923,22 @@ class RawAPI {
   Future<bool> deleteChatStickerSet(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.deleteChatStickerSet),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.deleteChatStickerSet,
+      params: params,
     );
     return response;
   }
 
   /// Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of Sticker objects.
   Future<List<Sticker>> getForumTopicIconStickers() async {
-    List<Sticker> response = [];
-    List<dynamic> data = await _httpClient.postURI(
-      _buildUri(APIMethod.getForumTopicIconStickers),
-      {},
+    final response = await _makeApiCall<List>(
+      APIMethod.getForumTopicIconStickers,
     );
-    response = data.map((e) => Sticker.fromJson(e)).toList();
-    return response;
+    return response.map((e) => Sticker.fromJson(e)).toList();
   }
 
   /// Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns information about the created topic as a ForumTopic object.
@@ -2001,19 +1960,17 @@ class RawAPI {
       );
     }
 
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "name": name,
       "icon_color": iconColor,
       "icon_custom_emoji_id": iconCustomEmojiId,
     };
-    ForumTopic response = ForumTopic.fromJson(
-      await _httpClient.postURI(
-        _buildUri(APIMethod.createForumTopic),
-        params,
-      ),
+    final response = await _makeApiJsonCall(
+      APIMethod.createForumTopic,
+      params: params,
     );
-    return response;
+    return ForumTopic.fromJson(response);
   }
 
   /// Use this method to edit name and icon of a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have can_manage_topics administrator rights, unless it is the creator of the topic. Returns True on success.
@@ -2031,15 +1988,15 @@ class RawAPI {
       );
     }
 
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "name": name,
       "icon_custom_emoji_id": iconCustomEmojiId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.editForumTopic),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.editForumTopic,
+      params: params,
     );
     return response;
   }
@@ -2049,13 +2006,13 @@ class RawAPI {
     ID chatId,
     int messageThreadId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.closeForumTopic),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.closeForumTopic,
+      params: params,
     );
     return response;
   }
@@ -2065,13 +2022,13 @@ class RawAPI {
     ID chatId,
     int messageThreadId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.reopenForumTopic),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.reopenForumTopic,
+      params: params,
     );
     return response;
   }
@@ -2081,13 +2038,13 @@ class RawAPI {
     ID chatId,
     int messageThreadId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.deleteForumTopic),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.deleteForumTopic,
+      params: params,
     );
     return response;
   }
@@ -2097,13 +2054,13 @@ class RawAPI {
     ID chatId,
     int messageThreadId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.unpinAllForumTopicMessages),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.unpinAllForumTopicMessages,
+      params: params,
     );
     return response;
   }
@@ -2121,13 +2078,13 @@ class RawAPI {
       );
     }
 
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "name": name,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.editGeneralForumTopic),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.editGeneralForumTopic,
+      params: params,
     );
     return response;
   }
@@ -2136,12 +2093,12 @@ class RawAPI {
   Future<bool> closeGeneralForumTopic(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.closeGeneralForumTopic),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.closeGeneralForumTopic,
+      params: params,
     );
     return response;
   }
@@ -2150,12 +2107,12 @@ class RawAPI {
   Future<bool> reopenGeneralForumTopic(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.reopenGeneralForumTopic),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.reopenGeneralForumTopic,
+      params: params,
     );
     return response;
   }
@@ -2164,12 +2121,12 @@ class RawAPI {
   Future<bool> hideGeneralForumTopic(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.hideGeneralForumTopic),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.hideGeneralForumTopic,
+      params: params,
     );
     return response;
   }
@@ -2178,12 +2135,12 @@ class RawAPI {
   Future<bool> unhideGeneralForumTopic(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.unhideGeneralForumTopic),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.unhideGeneralForumTopic,
+      params: params,
     );
     return response;
   }
@@ -2196,16 +2153,16 @@ class RawAPI {
     String? url,
     int cacheTime = 0,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "callback_query_id": callbackQueryId,
       "text": text,
       "show_alert": showAlert,
       "url": url,
       "cache_time": cacheTime,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.answerCallbackQuery),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.answerCallbackQuery,
+      params: params,
     );
     return response;
   }
@@ -2216,14 +2173,14 @@ class RawAPI {
     BotCommandScope? scope,
     String? languageCode,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "commands": commands.map((e) => e.toJson()).toList(),
       "scope": scope?.toJson(),
       "language_code": languageCode,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setMyCommands),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setMyCommands,
+      params: params,
     );
     return response;
   }
@@ -2233,13 +2190,13 @@ class RawAPI {
     BotCommandScope? scope,
     String? languageCode,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "scope": scope?.toJson(),
       "language_code": languageCode,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.deleteMyCommands),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.deleteMyCommands,
+      params: params,
     );
     return response;
   }
@@ -2249,13 +2206,13 @@ class RawAPI {
     BotCommandScope? scope,
     String? languageCode,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "scope": scope?.toJson(),
       "language_code": languageCode,
     };
-    List<dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.getMyCommands),
-      params,
+    final response = await _makeApiCall<List>(
+      APIMethod.getMyCommands,
+      params: params,
     );
     return response.map((e) => BotCommand.fromJson(e)).toList();
   }
@@ -2265,13 +2222,13 @@ class RawAPI {
     MenuButton menuButton, {
     ID? chatId,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId?.id,
       "menu_button": menuButton.toJson(),
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setChatMenuButton),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setChatMenuButton,
+      params: params,
     );
     return response;
   }
@@ -2280,12 +2237,12 @@ class RawAPI {
   Future<MenuButton> getChatMenuButton(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.getChatMenuButton),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.getChatMenuButton,
+      params: params,
     );
     return MenuButton.create(response);
   }
@@ -2295,13 +2252,13 @@ class RawAPI {
     ChatAdministratorRights? rights,
     bool? forChannels,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "rights": rights?.toJson(),
       "for_channels": forChannels,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setMyDefaultAdministratorRights),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setMyDefaultAdministratorRights,
+      params: params,
     );
     return response;
   }
@@ -2310,12 +2267,12 @@ class RawAPI {
   Future<ChatAdministratorRights> getMyDefaultAdministratorRights({
     bool? forChannels,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "for_channels": forChannels,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.getMyDefaultAdministratorRights),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.getMyDefaultAdministratorRights,
+      params: params,
     );
     return ChatAdministratorRights.fromJson(response);
   }
@@ -2344,9 +2301,9 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
     };
 
-    final response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageText),
-      params,
+    final response = await _makeApiCall(
+      APIMethod.editMessageText,
+      params: params,
     );
 
     if (MessageOrBool == _Ignore) {
@@ -2438,9 +2395,9 @@ class RawAPI {
       "show_caption_above_media": showCaptionAboveMedia,
       "business_connection_id": businessConnectionId,
     };
-    final response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageCaption),
-      params,
+    final response = await _makeApiCall(
+      APIMethod.editMessageCaption,
+      params: params,
     );
 
     if (MessageOrBool == _Ignore) {
@@ -2521,6 +2478,7 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
   }) async {
+    const field = "media";
     final params = {
       "chat_id": chatId?.id,
       "message_id": messageId,
@@ -2528,27 +2486,17 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "business_connection_id": businessConnectionId,
     };
-    const field = "media";
 
-    dynamic response;
     final files = _getFiles([
       _MultipartHelper(media.media, field),
     ]);
     params[field] = media.getValue(field);
-    if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(
-          APIMethod.editMessageMedia,
-        ),
-        files,
-        params,
-      );
-    } else {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.editMessageMedia),
-        params,
-      );
-    }
+
+    final response = await _makeApiCall(
+      APIMethod.editMessageMedia,
+      params: params,
+      files: files,
+    );
 
     if (MessageOrBool == _Ignore) {
       return _ignore as MessageOrBool;
@@ -2620,9 +2568,9 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "business_connection_id": businessConnectionId,
     };
-    final response = await _httpClient.postURI(
-      _buildUri(APIMethod.editMessageReplyMarkup),
-      params,
+    final response = await _makeApiCall(
+      APIMethod.editMessageReplyMarkup,
+      params: params,
     );
 
     if (MessageOrBool == _Ignore) {
@@ -2685,15 +2633,15 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_id": messageId,
       "reply_markup": replyMarkup?.toJson(),
       "business_connection_id": businessConnectionId,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.stopPoll),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.stopPoll,
+      params: params,
     );
     return Poll.fromJson(response);
   }
@@ -2713,14 +2661,11 @@ class RawAPI {
     ID chatId,
     int messageId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_id": messageId,
     };
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.deleteMessage),
-      params,
-    );
+    final response = _makeApiBoolCall(APIMethod.deleteMessage, params: params);
     return response;
   }
 
@@ -2740,7 +2685,8 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
   }) async {
-    Map<String, dynamic> params = {
+    const field = "sticker";
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "disable_notification": disableNotification,
@@ -2751,26 +2697,17 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
     };
-    const field = "sticker";
-    Map<String, dynamic> response;
+    params[field] = sticker.getValue(field);
+
     final files = _getFiles([
       _MultipartHelper(sticker, field),
     ]);
-    params[field] = sticker.getValue(field);
-    if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(
-          APIMethod.sendSticker,
-        ),
-        files,
-        params,
-      );
-    } else {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.sendSticker),
-        params,
-      );
-    }
+
+    final response = await _makeApiJsonCall(
+      APIMethod.sendSticker,
+      params: params,
+      files: files,
+    );
 
     return Message.fromJson(response);
   }
@@ -2779,12 +2716,12 @@ class RawAPI {
   Future<StickerSet> getStickerSet(
     String name,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "name": name,
     };
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.getStickerSet),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.getStickerSet,
+      params: params,
     );
     return StickerSet.fromJson(response);
   }
@@ -2793,12 +2730,12 @@ class RawAPI {
   Future<List<Sticker>> getCustomEmojiStickers(
     List<String> customEmojiIds,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "custom_emoji_ids": customEmojiIds,
     };
-    List<dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.getCustomEmojiStickers),
-      params,
+    List<dynamic> response = await _makeApiCall<List>(
+      APIMethod.getCustomEmojiStickers,
+      params: params,
     );
     return response.map((e) => Sticker.fromJson(e)).toList();
   }
@@ -2809,25 +2746,23 @@ class RawAPI {
     InputFile sticker,
     StickerFormat stickerFormat,
   ) async {
-    Map<String, dynamic> params = {
+    const field = "sticker";
+    final params = {
       "user_id": userId,
       "sticker_format": stickerFormat.value,
     };
-    const field = "sticker";
+    params[field] = sticker.getValue(field);
 
-    Map<String, dynamic> response;
     final files = _getFiles([
       _MultipartHelper(sticker, field),
     ]);
-    params[field] = sticker.getValue(field);
     if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(
-          APIMethod.uploadStickerFile,
-        ),
-        files,
-        params,
+      final response = await _makeApiJsonCall(
+        APIMethod.uploadStickerFile,
+        files: files,
+        params: params,
       );
+      return File.fromJson(response);
     } else {
       throw TeleverseException(
         "Invalid parameter [sticker]",
@@ -2836,8 +2771,6 @@ class RawAPI {
         type: TeleverseExceptionType.invalidParameter,
       );
     }
-
-    return File.fromJson(response);
   }
 
   /// Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.
@@ -2847,29 +2780,21 @@ class RawAPI {
     required InputSticker sticker,
   }) async {
     const field = "sticker";
-    Map<String, dynamic> params = {
+    final params = {
       "user_id": userId,
       "name": name,
       "sticker": sticker.toJson(field),
     };
 
-    bool response;
     final files = _getFiles(
       [_MultipartHelper(sticker.sticker, field)],
     );
 
-    if (files.isEmpty) {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.addStickerToSet),
-        params,
-      );
-    } else {
-      response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.addStickerToSet),
-        files,
-        params,
-      );
-    }
+    final response = await _makeApiBoolCall(
+      APIMethod.addStickerToSet,
+      params: params,
+      files: files,
+    );
 
     return response;
   }
@@ -2879,28 +2804,26 @@ class RawAPI {
   /// [sticker] File identifier of the sticker.
   /// [position] New sticker position in the set, zero-based.
   Future<bool> setStickerPositionInSet(String sticker, int position) async {
-    Map<String, dynamic> params = {
+    final params = {
       "sticker": sticker,
       "position": position,
     };
-
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setStickerPositionInSet),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setStickerPositionInSet,
+      params: params,
     );
-
     return response;
   }
 
   /// Use this method to delete a sticker from a set created by the bot. Returns True on success.
   Future<bool> deleteStickerFromSet(String sticker) async {
-    Map<String, dynamic> params = {
+    final params = {
       "sticker": sticker,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.deleteStickerFromSet),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.deleteStickerFromSet,
+      params: params,
     );
 
     return response;
@@ -2913,33 +2836,26 @@ class RawAPI {
     InputFile? thumbnail,
     required InputStickerFormat format,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "name": name,
       "user_id": userId,
       "thumbnail": thumbnail?.getValue(_thumb),
       "format": format.value,
-    }..removeWhere(_nullFilter);
+    };
 
-    bool response;
-    List<Map<String, MultipartFile>> files = [];
+    List<Map<String, MultipartFile>>? files;
+
     if (thumbnail != null) {
       files = _getFiles([
         _MultipartHelper(thumbnail, _thumb),
       ]);
     }
 
-    if (files.isEmpty) {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.setStickerSetThumbnail),
-        params,
-      );
-    } else {
-      response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.setStickerSetThumbnail),
-        files,
-        params,
-      );
-    }
+    final response = await _makeApiBoolCall(
+      APIMethod.setStickerSetThumbnail,
+      params: params,
+      files: files,
+    );
 
     return response;
   }
@@ -2956,7 +2872,7 @@ class RawAPI {
     String? nextOffset,
     InlineQueryResultsButton? button,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "inline_query_id": inlineQueryId,
       "results": results.map((e) => e.toJson()).toList(),
       "cache_time": cacheTime,
@@ -2965,9 +2881,9 @@ class RawAPI {
       "button": button?.toJson(),
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.answerInlineQuery),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.answerInlineQuery,
+      params: params,
     );
 
     return response;
@@ -2978,16 +2894,15 @@ class RawAPI {
     String webAppQueryId,
     InlineQueryResult result,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "web_app_query_id": webAppQueryId,
       "result": result.toJson(),
     };
 
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.answerWebAppQuery),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.answerWebAppQuery,
+      params: params,
     );
-
     return SentWebAppMessage.fromJson(response);
   }
 
@@ -3041,7 +2956,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? messageEffectId,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "title": title,
       "description": description,
@@ -3072,9 +2987,9 @@ class RawAPI {
       "message_effect_id": messageEffectId,
     };
 
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.sendInvoice),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.sendInvoice,
+      params: params,
     );
 
     return Message.fromJson(response);
@@ -3120,7 +3035,7 @@ class RawAPI {
     bool? sendEmailToProvider,
     bool? isFlexible,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "title": title,
       "description": description,
       "payload": payload,
@@ -3143,9 +3058,9 @@ class RawAPI {
       "is_flexible": isFlexible,
     };
 
-    String response = await _httpClient.postURI(
-      _buildUri(APIMethod.createInvoiceLink),
-      params,
+    final response = await _makeApiCall<String>(
+      APIMethod.createInvoiceLink,
+      params: params,
     );
 
     return response;
@@ -3180,16 +3095,16 @@ class RawAPI {
       );
     }
 
-    Map<String, dynamic> params = {
+    final params = {
       "shipping_query_id": shippingQueryId,
       "ok": ok,
       "shipping_options": shippingOptions?.map((e) => e.toJson()).toList(),
       "error_message": errorMessage,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.answerShippingQuery),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.answerShippingQuery,
+      params: params,
     );
 
     return response;
@@ -3214,15 +3129,15 @@ class RawAPI {
       );
     }
 
-    Map<String, dynamic> params = {
+    final params = {
       "pre_checkout_query_id": preCheckoutQueryId,
       "ok": ok,
       "error_message": errorMessage,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.answerPreCheckoutQuery),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.answerPreCheckoutQuery,
+      params: params,
     );
 
     return response;
@@ -3234,16 +3149,15 @@ class RawAPI {
     int userId,
     List<PassportElementError> errors,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "user_id": userId,
       "errors": errors.map((e) => e.toJson()).toList(),
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setPassportDataErrors),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setPassportDataErrors,
+      params: params,
     );
-
     return response;
   }
 
@@ -3259,7 +3173,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "game_short_name": gameShortName,
       "message_thread_id": messageThreadId,
@@ -3271,9 +3185,9 @@ class RawAPI {
       "message_effect_id": messageEffectId,
     };
 
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.sendGame),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.sendGame,
+      params: params,
     );
 
     return Message.fromJson(response);
@@ -3293,7 +3207,7 @@ class RawAPI {
     bool? force,
     bool? disableEditMessage,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "user_id": userId,
       "score": score,
       "force": force,
@@ -3302,9 +3216,9 @@ class RawAPI {
       "message_id": messageId,
     };
 
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.setGameScore),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.setGameScore,
+      params: params,
     );
 
     return Message.fromJson(response);
@@ -3324,7 +3238,7 @@ class RawAPI {
     bool? force,
     bool? disableEditMessage,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "user_id": userId,
       "score": score,
       "force": force,
@@ -3332,9 +3246,9 @@ class RawAPI {
       "inline_message_id": inlineMessageId,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setInlineGameScore),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setInlineGameScore,
+      params: params,
     );
 
     return response;
@@ -3357,16 +3271,16 @@ class RawAPI {
       );
     }
 
-    Map<String, dynamic> params = {
+    final params = {
       "user_id": userId,
       "chat_id": chatId?.id,
       "message_id": messageId,
       "inline_message_id": inlineMessageId,
     };
 
-    List<Map<String, dynamic>> response = await _httpClient.postURI(
-      _buildUri(APIMethod.getGameHighScores),
-      params,
+    final response = await _makeApiCall<List>(
+      APIMethod.getGameHighScores,
+      params: params,
     );
 
     return response.map((e) => GameHighScore.fromJson(e)).toList();
@@ -3381,14 +3295,14 @@ class RawAPI {
     String? description,
     String? languageCode,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "description": description,
       "language_code": languageCode,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setMyDescription),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setMyDescription,
+      params: params,
     );
 
     return response;
@@ -3398,13 +3312,13 @@ class RawAPI {
   Future<BotDescription> getMyDescription({
     String? languageCode,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "language_code": languageCode,
     };
 
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.getMyDescription),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.getMyDescription,
+      params: params,
     );
 
     return BotDescription.fromJson(response);
@@ -3415,14 +3329,14 @@ class RawAPI {
     String? shortDescription,
     String? languageCode,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "short_description": shortDescription,
       "language_code": languageCode,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setMyShortDescription),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setMyShortDescription,
+      params: params,
     );
 
     return response;
@@ -3432,13 +3346,13 @@ class RawAPI {
   Future<BotShortDescription> getMyShortDescription({
     String? languageCode,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "language_code": languageCode,
     };
 
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.getMyShortDescription),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.getMyShortDescription,
+      params: params,
     );
 
     return BotShortDescription.fromJson(response);
@@ -3461,14 +3375,13 @@ class RawAPI {
     StickerType stickerType = StickerType.regular,
     bool needsRepainting = false,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "user_id": userId,
       "name": name,
       "title": title,
       "sticker_type": stickerType.type,
       "needs_repainting": needsRepainting,
     };
-    bool response;
     List<Map<String, dynamic>> stickersList = [];
     List<_MultipartHelper> helpers = [];
 
@@ -3481,18 +3394,11 @@ class RawAPI {
     final files = _getFiles(helpers);
     params["stickers"] = stickersList;
 
-    if (files.isNotEmpty) {
-      response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.createNewStickerSet),
-        files,
-        params,
-      );
-    } else {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.createNewStickerSet),
-        params,
-      );
-    }
+    final response = await _makeApiBoolCall(
+      APIMethod.createNewStickerSet,
+      params: params,
+      files: files,
+    );
 
     return response;
   }
@@ -3506,14 +3412,14 @@ class RawAPI {
     String name, {
     String? customEmojiId,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "name": name,
       "custom_emoji_id": customEmojiId,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setCustomEmojiStickerSetThumbnail),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setCustomEmojiStickerSetThumbnail,
+      params: params,
     );
 
     return response;
@@ -3528,14 +3434,14 @@ class RawAPI {
     String name,
     String title,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "name": name,
       "title": title,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setStickerSetTitle),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setStickerSetTitle,
+      params: params,
     );
 
     return response;
@@ -3548,13 +3454,13 @@ class RawAPI {
   Future<bool> deleteStickerSet(
     String name,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "name": name,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.deleteStickerSet),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.deleteStickerSet,
+      params: params,
     );
 
     return response;
@@ -3569,14 +3475,14 @@ class RawAPI {
     String sticker,
     List<String> emojiList,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "sticker": sticker,
       "emoji_list": emojiList,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setStickerEmojiList),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setStickerEmojiList,
+      params: params,
     );
 
     return response;
@@ -3591,14 +3497,14 @@ class RawAPI {
     String sticker,
     List<String> keywords,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "sticker": sticker,
       "keywords": keywords,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setStickerKeywords),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setStickerKeywords,
+      params: params,
     );
 
     return response;
@@ -3613,14 +3519,14 @@ class RawAPI {
     String sticker,
     MaskPosition maskPosition,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "sticker": sticker,
       "mask_position": maskPosition.toJson(),
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setStickerMaskPosition),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setStickerMaskPosition,
+      params: params,
     );
 
     return response;
@@ -3633,16 +3539,15 @@ class RawAPI {
     String? name,
     String? languageCode,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "name": name,
       "language_code": languageCode,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setMyName),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setMyName,
+      params: params,
     );
-
     return response;
   }
 
@@ -3650,31 +3555,29 @@ class RawAPI {
   Future<BotName> getMyName({
     String? languageCode,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "language_code": languageCode,
     };
 
-    BotName response = BotName.fromJson(
-      await _httpClient.postURI(
-        _buildUri(APIMethod.getMyName),
-        params,
-      ),
+    final response = await _makeApiJsonCall(
+      APIMethod.getMyName,
+      params: params,
     );
 
-    return response;
+    return BotName.fromJson(response);
   }
 
   /// Use this method to clear the list of pinned messages in a General forum topic. The bot must be an administrator in the chat for this to work and must have the can_pin_messages administrator right in the supergroup. Returns True on success.
   Future<bool> unpinAllGeneralForumTopicMessages(
     ID chatId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.unpinAllGeneralForumTopicMessages),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.unpinAllGeneralForumTopicMessages,
+      params: params,
     );
 
     return response;
@@ -3689,16 +3592,16 @@ class RawAPI {
     List<ReactionType>? reaction,
     bool? isBig,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_id": messageId,
       "reaction": reaction?.map((e) => e.toJson()).toList(),
       "is_big": isBig,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.setMessageReaction),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.setMessageReaction,
+      params: params,
     );
 
     return response;
@@ -3712,14 +3615,14 @@ class RawAPI {
     ID chatId,
     List<int> messageIds,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_ids": messageIds,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.deleteMessages),
-      params,
+    final response = await _makeApiBoolCall(
+      APIMethod.deleteMessages,
+      params: params,
     );
 
     return response;
@@ -3733,7 +3636,7 @@ class RawAPI {
   /// [messageIds] Identifiers of 1-100 messages in the chat from_chat_id to forward. The identifiers must be specified in a strictly increasing order.
   /// [disableNotification] Sends the messages silently. Users will receive a notification with no sound.
   /// [protectContent] Protects the contents of the forwarded messages from forwarding and saving
-  Future<List<int>> forwardMessages(
+  Future<List<MessageId>> forwardMessages(
     ID chatId,
     int? messageThreadId,
     ID fromChatId,
@@ -3741,7 +3644,7 @@ class RawAPI {
     bool? disableNotification,
     bool? protectContent,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "from_chat_id": fromChatId.id,
@@ -3750,12 +3653,12 @@ class RawAPI {
       "protect_content": protectContent,
     };
 
-    List<int> response = await _httpClient.postURI(
-      _buildUri(APIMethod.forwardMessages),
-      params,
+    final response = await _makeApiCall<List>(
+      APIMethod.forwardMessages,
+      params: params,
     );
 
-    return response;
+    return response.map((e) => MessageId.fromJson(e)).toList();
   }
 
   /// Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_id is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of MessageId of the sent messages is returned.
@@ -3767,7 +3670,7 @@ class RawAPI {
   /// [disableNotification] Sends the messages silently. Users will receive a notification with no sound.
   /// [protectContent] Protects the contents of the sent messages from forwarding and saving
   /// [removeCaption] Pass True to copy the messages without their captions
-  Future<List<int>> copyMessages(
+  Future<List<MessageId>> copyMessages(
     ID chatId,
     int? messageThreadId,
     ID fromChatId,
@@ -3777,7 +3680,7 @@ class RawAPI {
     bool? removeCaption,
     bool? showCaptionAboveMedia,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
       "from_chat_id": fromChatId.id,
@@ -3788,12 +3691,12 @@ class RawAPI {
       "show_caption_above_media": showCaptionAboveMedia,
     };
 
-    List<int> response = await _httpClient.postURI(
-      _buildUri(APIMethod.copyMessages),
-      params,
+    final response = await _makeApiCall<List>(
+      APIMethod.copyMessages,
+      params: params,
     );
 
-    return response;
+    return response.map((e) => MessageId.fromJson(e)).toList();
   }
 
   /// Use this method to get the list of boosts added to a chat by a user. Requires administrator rights in the chat. Returns a UserChatBoosts object.
@@ -3804,14 +3707,14 @@ class RawAPI {
     ID chatId,
     int userId,
   ) async {
-    Map<String, dynamic> params = {
+    final params = {
       "chat_id": chatId.id,
       "user_id": userId,
     };
 
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.getUserChatBoosts),
-      params,
+    final response = await _makeApiJsonCall(
+      APIMethod.getUserChatBoosts,
+      params: params,
     );
 
     return UserChatBoosts.fromJson(response);
@@ -3821,11 +3724,12 @@ class RawAPI {
   Future<BusinessConnection> getBusinessConnection(
     String businessConnectionId,
   ) async {
-    Map<String, dynamic> response = await _httpClient.postURI(
-      _buildUri(APIMethod.getBusinessConnection),
-      {
-        "business_connection_id": businessConnectionId,
-      },
+    final params = {
+      "business_connection_id": businessConnectionId,
+    };
+    final response = await _makeApiJsonCall(
+      APIMethod.getBusinessConnection,
+      params: params,
     );
 
     return BusinessConnection.fromJson(response);
@@ -3841,30 +3745,22 @@ class RawAPI {
     required InputSticker sticker,
   }) async {
     const field = "sticker";
-    Map<String, dynamic> params = {
+    final params = {
       "user_id": userId,
       "name": name,
       "old_sticker": oldSticker,
       "sticker": sticker.toJson(field),
     };
 
-    bool response;
     final files = _getFiles(
       [_MultipartHelper(sticker.sticker, field)],
     );
 
-    if (files.isEmpty) {
-      response = await _httpClient.postURI(
-        _buildUri(APIMethod.replaceStickerInSet),
-        params,
-      );
-    } else {
-      response = await _httpClient.multipartPost(
-        _buildUri(APIMethod.replaceStickerInSet),
-        files,
-        params,
-      );
-    }
+    final response = _makeApiBoolCall(
+      APIMethod.replaceStickerInSet,
+      params: params,
+      files: files,
+    );
 
     return response;
   }
@@ -3880,14 +3776,14 @@ class RawAPI {
     required int userId,
     required String telegramPaymentChargeId,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "user_id": userId,
       "telegram_payment_charge_id": telegramPaymentChargeId,
     };
 
-    bool response = await _httpClient.postURI(
-      _buildUri(APIMethod.refundStarPayment),
-      params,
+    final response = _makeApiBoolCall(
+      APIMethod.refundStarPayment,
+      params: params,
     );
     return response;
   }
@@ -3900,13 +3796,15 @@ class RawAPI {
     int? offset,
     int? limit = 100,
   }) async {
-    Map<String, dynamic> params = {
+    final params = {
       "offset": offset,
       "limit": limit,
     };
 
-    Uri uri = _buildUri(APIMethod.getStarTransactions);
-    Map<String, dynamic> response = await _httpClient.postURI(uri, params);
+    final response = await _makeApiJsonCall(
+      APIMethod.getStarTransactions,
+      params: params,
+    );
 
     return StarTransactions.fromJson(response);
   }
