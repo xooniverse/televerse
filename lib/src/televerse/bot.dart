@@ -417,8 +417,8 @@ class Bot {
     if (isServerless) return;
     fetcher.onUpdate().listen(
       _onUpdate,
-      onDone: () {
-        _onStop.call();
+      onDone: () async {
+        await _onStop.call();
       },
     );
     try {
@@ -1480,12 +1480,12 @@ class Bot {
   }
 
   /// On Stop Handler
-  void Function() _onStop = () {};
+  FutureOr<void> Function() _onStop = () {};
 
   /// Registers a callback when the the bot is stopped.
   ///
   /// This can be used to clean up resources.
-  void onStop(void Function() callback) {
+  void onStop(FutureOr<void> Function() callback) {
     _onStop = callback;
   }
 
