@@ -30,10 +30,7 @@ class Webhook extends Fetcher {
   bool? dropPendingUpdates;
 
   /// Public key certificate.
-  io.File? certificate;
-
-  /// Private key certificate.
-  io.File? privateKey;
+  InputFile? certificate;
 
   /// Whether to upload the certificate.
   bool uploadCertificate;
@@ -54,7 +51,6 @@ class Webhook extends Fetcher {
   /// - [allowedUpdates] is the list the types of updates you want your bot to receive.
   /// - [dropPendingUpdates] is the pass True to drop all pending updates.
   /// - [certificate] is the public key certificate.
-  /// - [privateKey] is the private key certificate.
   /// - [uploadCertificate] is the whether to upload the certificate.
   ///
   ///
@@ -72,7 +68,6 @@ class Webhook extends Fetcher {
     this.allowedUpdates,
     this.dropPendingUpdates,
     this.certificate,
-    this.privateKey,
     this.uploadCertificate = true,
   }) {
     if (!_allowedPorts.contains(port)) throw WebhookException.invalidPort;
