@@ -80,28 +80,41 @@ class RawAPI {
   /// Base URL for the Telegram API.
   final String _baseUrl;
 
+  /// The Base URI
+  Uri? _baseUri;
+
   /// Just a constant variable to hold "thumbnail" string
   static const String _thumb = "thumbnail";
 
   /// Build the URI for the Telegram API.
-  Uri _buildUri(APIMethod method, [Map<String, dynamic>? params]) {
-    params?.removeWhere(_nullFilter);
+  Uri _buildUri(APIMethod method) {
+    // If Base URI is already set, just tweak the method part and return
+    if (_baseUri != null) {
+      return _baseUri!.replace(path: "${_baseUri?.path}/$method");
+    }
+
+    // Create the base URI and set the _baseUri property
     Uri uri;
     if (_isLocal) {
       RegExp https = RegExp(r'^(https?://)');
       if (https.hasMatch(_baseUrl)) {
         final authority = _baseUrl.replaceFirst(https, "");
-        uri = Uri.http(authority, "/bot$token/$method", params);
+        uri = Uri.http(authority, "/bot$token");
       } else {
-        uri = Uri.http(_baseUrl, "/bot$token/$method", params);
+        uri = Uri.http(_baseUrl, "/bot$token");
       }
       if (_scheme == APIScheme.https) {
         uri = uri.replace(scheme: "https");
       }
     } else {
-      uri = Uri.https(_baseUrl, "/bot$token/$method", params);
+      uri = Uri.https(_baseUrl, "/bot$token");
     }
-    return uri;
+
+    // Set the _baseUri property for future calls
+    _baseUri = uri;
+
+    // Return the full URI with the method
+    return uri.replace(path: "${uri.path}/$method");
   }
 
   List<Map<String, MultipartFile>> _getFiles(List<_MultipartHelper> list) {
@@ -123,6 +136,16 @@ class RawAPI {
     _httpClient.close();
   }
 
+  /// Make API call
+  Future<T> _makeApiCall<T>(
+    APIMethod method, {
+    Map<String, dynamic> params = const {},
+  }) async {
+    final uri = _buildUri(method);
+    final result = await _httpClient.postURI(uri, params);
+    return result;
+  }
+
   /// Use this method to receive incoming updates using long polling.
   /// An Array of Update objects is returned.
   ///
@@ -140,12 +163,10 @@ class RawAPI {
       "allowed_updates": allowedUpdates,
     };
 
-    Uri uri = _buildUri(APIMethod.getUpdates);
-    final response = await _httpClient.postURI(uri, params);
-
-    if (response is! List) {
-      throw LongPollingException("Got an invalid response. $response");
-    }
+    final response = await _makeApiCall<List>(
+      APIMethod.getUpdates,
+      params: params,
+    );
 
     return (response)
         .map((e) => Update.fromJson(e as Map<String, dynamic>))
