@@ -99,6 +99,14 @@ class Bot {
   /// The bot token.
   final String token;
 
+  /// This method basically removes the trailing / from base URL
+  static String _cookBaseUrlString(String str) {
+    if (str.endsWith('/')) {
+      str = str.substring(0, str.length - 1);
+    }
+    return str;
+  }
+
   /// Create a new bot instance.
   ///
   /// To create a new bot instance, you need to pass the bot token. You can also pass a [fetcher] to the constructor. The fetcher is used to fetch updates from the Telegram servers. By default, the bot uses long polling to fetch updates. You can also use webhooks to fetch updates.
@@ -115,7 +123,7 @@ class Bot {
     APIScheme scheme = APIScheme.https,
     LoggerOptions? loggerOptions,
     this.timeout,
-  })  : _baseURL = baseURL,
+  })  : _baseURL = _cookBaseUrlString(baseURL),
         isLocal = baseURL != RawAPI.defaultBase,
         _loggerOptions = loggerOptions,
         _scheme = scheme {
