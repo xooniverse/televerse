@@ -136,12 +136,36 @@ class RawAPI {
     _httpClient.close();
   }
 
+  /// (Internal) The Context object, which actually invokes the RawAPI method
+  ///
+  /// If the RawAPI access is being made from a Context object, that particular Context object's reference.
+  Context? _context;
+
+  /// Attaches the context to the current RawAPI instance.
+  void _addContext(Context ctx) => _context = ctx;
+
+  /// Transformers added to the RawAPI
+  final List<Transformer> _transformers = [];
+
+  /// Install transformer
+  void use(Transformer transformer) => _transformers.add(transformer);
+
   /// All API calls goes through this method :)
   Future<T> _makeApiCall<T>(
     APIMethod method, {
     Map<String, dynamic>? params,
     List<Map<String, MultipartFile>>? files,
   }) async {
+    params ??= {};
+    int i = 0;
+
+    final ts = [..._transformers, ...(_context?._transfomers ?? [])];
+
+    while (i < ts.length) {
+      params = await ts[i].fn(method, params!, _context);
+      i++;
+    }
+
     params?.removeWhere(_nullFilter);
 
     final uri = _buildUri(method);
@@ -149,7 +173,7 @@ class RawAPI {
     dynamic result;
 
     if (files?.isNotEmpty ?? false) {
-      result = await _httpClient.multipartPost(uri, files!, params ?? {});
+      result = await _httpClient.multipartPost(uri, files!, params!);
     } else {
       result = await _httpClient.postURI(uri, params ?? {});
     }
