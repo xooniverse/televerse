@@ -31,8 +31,31 @@ class Bot {
   /// Options to configure the logger.
   final LoggerOptions? _loggerOptions;
 
+  void _defaultErrorHandler(BotError err) {
+    print("‼️ An error occurred while processing the update.");
+
+    print(err.error);
+    print(err.stackTrace);
+
+    print("---------------------");
+    print(
+      "It seems you haven't set an error handler. You can do this with `bot.onError(...)` to manage most crashes.\n",
+    );
+
+    if (fetcher.isActive) stop();
+
+    print(
+      "If you believe this issue is with the library, please raise an issue on\n"
+      "the repository (link below). Please make sure you remove any sensitive information\n"
+      "from the crash logs before sharing. For additional help, join our discussion\n"
+      "on Telegram or GitHub.\n\n"
+      "Telegram: https://t.me/televersedart\n"
+      "GitHub: https://github.com/HeySreelal/televerse/issues",
+    );
+  }
+
   /// Handler for unexpected errors.
-  FutureOr<void> Function(BotError error)? _onError;
+  late FutureOr<void> Function(BotError error) _onError;
 
   /// The timeout duration for the requests.
   ///
@@ -127,11 +150,18 @@ class Bot {
         isLocal = baseURL != RawAPI.defaultBase,
         _loggerOptions = loggerOptions,
         _scheme = scheme {
+    // Create Fetcher and assign the RawAPI instance
     this.fetcher = fetcher ?? LongPolling();
     this.fetcher.setApi(api);
-    _instance = this;
 
+    // Set the default erorr handler
+    onError(_defaultErrorHandler);
+
+    // Perform initial /getMe request
     getMe().then(_ignore).catchError(_thenHandleGetMeError);
+
+    // Set instance variable
+    _instance = this;
   }
 
   /// Function to ignore things.
@@ -139,18 +169,15 @@ class Bot {
 
   /// Handles the error in initial `getMe` call
   FutureOr<Null> _thenHandleGetMeError(Object err, StackTrace st) async {
-    if (_onError != null) {
-      final botErr = BotError(err, st);
-      await _onError!(botErr);
-    } else if (err is DioException) {
+    if (err is DioException) {
       if (err.type == DioExceptionType.connectionTimeout ||
           err.type == DioExceptionType.receiveTimeout ||
           err.type == DioExceptionType.sendTimeout) {
-        throw TeleverseException.timeoutException(st, timeout!);
+        err = TeleverseException.timeoutException(st, timeout!);
       }
-    } else {
-      throw err;
     }
+    final botErr = BotError(err, st);
+    await _onError(botErr);
   }
 
   /// Televerse local constructor. This constructor is used to create a bot instance that listens to a local Bot API server.
@@ -302,23 +329,15 @@ class Bot {
       try {
         await ((scope.handler!(context)) as Future);
       } catch (err, stack) {
-        if (_onError != null) {
-          final botErr = BotError(err, stack, ctx: context);
-          await _onError!(botErr);
-        } else {
-          rethrow;
-        }
+        final botErr = BotError(err, stack, ctx: context);
+        await _onError(botErr);
       }
     } else {
       try {
         scope.handler!(context);
       } catch (err, stack) {
-        if (_onError != null) {
-          final botErr = BotError(err, stack, ctx: context);
-          await _onError!(botErr);
-        } else {
-          rethrow;
-        }
+        final botErr = BotError(err, stack, ctx: context);
+        await _onError(botErr);
       }
     }
   }
@@ -374,10 +393,8 @@ class Bot {
               await sub[i].options!.customPredicate!.call(context);
           if (!customPass) continue;
         } catch (err, stack) {
-          if (_onError != null) {
-            final botErr = BotError(err, stack);
-            await _onError!(botErr);
-          }
+          final botErr = BotError(err, stack);
+          await _onError(botErr);
           continue;
         }
       }
@@ -468,14 +485,10 @@ class Bot {
     try {
       return await fetcher.start();
     } catch (err, stack) {
-      if (_onError != null) {
-        fetcher.stop();
-        final botErr = BotError(err, stack);
-        await _onError!(botErr);
-        return fetcher.start();
-      } else {
-        rethrow;
-      }
+      fetcher.stop();
+      final botErr = BotError(err, stack);
+      await _onError(botErr);
+      return fetcher.start();
     }
   }
 
