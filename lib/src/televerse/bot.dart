@@ -33,6 +33,9 @@ class Bot {
 
   void _defaultErrorHandler(BotError err) {
     print("‼️ An error occurred while processing the update.");
+    if (err.sourceIsMiddleware) {
+      print("The exception is occurred at an attached middleware.");
+    }
 
     print(err.error);
     print(err.stackTrace);
@@ -431,10 +434,25 @@ class Bot {
 
     Future<void> next() async {
       index++;
+
       if (index < _middlewares.length) {
-        await _middlewares[index].fn(ctx, next);
+        try {
+          await _middlewares[index].fn(ctx, next);
+        } catch (err, stack) {
+          final botErr = BotError(
+            err,
+            stack,
+            sourceIsMiddleware: true,
+          );
+          _onError(botErr);
+        }
       } else {
-        await handler();
+        try {
+          await handler();
+        } catch (err, stack) {
+          final botErr = BotError(err, stack);
+          _onError(botErr);
+        }
       }
     }
 

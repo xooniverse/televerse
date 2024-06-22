@@ -16,11 +16,15 @@ class BotError implements Exception {
   /// The context of the error.
   final Context? ctx;
 
+  /// A flag that indicates whether the error occurred at a Middleware
+  final bool sourceIsMiddleware;
+
   /// Creates a new BotError.
   const BotError(
     this.error,
     this.stackTrace, {
     this.ctx,
+    this.sourceIsMiddleware = false,
   });
 
   /// A flag to simplify checking if the error has a context
