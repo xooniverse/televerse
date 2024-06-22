@@ -13,6 +13,8 @@
   output from middleware functions.
 - ✍️ `Bot.onStop` method can now be asynchronous.
   [#257](https://github.com/HeySreelal/televerse/pull/257) (Thanks to @devsdocs)
+- ⚠️ Type of `Webhook.certificate` is changed to InputFile as described by the
+  official documentation.
 
 # 1.18.0
 
