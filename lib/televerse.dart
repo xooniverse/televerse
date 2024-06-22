@@ -49,6 +49,8 @@ part 'src/televerse/markups/keyboard_menu.dart';
 part 'src/televerse/models/multipart_helper.dart';
 part 'src/televerse/models/logger_options.dart';
 part 'src/televerse/context/context.dart';
+part 'src/televerse/context/methods.dart';
+part 'src/televerse/context/properties.dart';
 
 /// Conversation API
 part 'src/televerse/conversation/conversation.dart';
@@ -61,6 +63,9 @@ part 'src/televerse/builders/message_content_generator.dart';
 /// Extras
 part 'src/televerse/extras/tg_exceptions.dart';
 part 'src/televerse/models/scope_options.dart';
+
+/// Middlewares
+part 'src/televerse/middlewares/middleware.dart';
 
 /// The main class of the library.
 ///

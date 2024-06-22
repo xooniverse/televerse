@@ -383,7 +383,9 @@ class Bot {
       _preProcess(sub[i], context);
 
       if (passing) {
-        await _processUpdate(sub[i], context);
+        await _applyMiddlewares(context, () async {
+          await _processUpdate(sub[i], context);
+        });
         break;
       }
     }
@@ -391,6 +393,40 @@ class Bot {
 
   /// List of Handler Scopes
   final List<HandlerScope> _handlerScopes = [];
+
+  /// List of middlewares added to the bot
+  final List<Middleware> _middlewares = [];
+
+  /// Applies middlewares over the passed context
+  Future<void> _applyMiddlewares(
+    Context ctx,
+    Future<void> Function() handler,
+  ) async {
+    int index = -1;
+
+    Future<void> next() async {
+      index++;
+      if (index < _middlewares.length) {
+        await _middlewares[index].fn(ctx, next);
+      } else {
+        await handler();
+      }
+    }
+
+    await next();
+  }
+
+  /// Registers a middleware
+  void use(MiddlewareBase middleware) {
+    switch (middleware) {
+      case Middleware():
+        _middlewares.add(middleware);
+        break;
+      case Transformer():
+        _api?.use(middleware);
+        break;
+    }
+  }
 
   /// To manually handle updates without fetcher
   ///
@@ -417,8 +453,8 @@ class Bot {
     if (isServerless) return;
     fetcher.onUpdate().listen(
       _onUpdate,
-      onDone: () async {
-        await _onStop.call();
+      onDone: () {
+        _onStop.call();
       },
     );
     try {
