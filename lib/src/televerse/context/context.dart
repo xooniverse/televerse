@@ -109,7 +109,7 @@ class Context {
   /// Executes the middleware on the current context
   Future<void> use(MiddlewareBase middleware) async {
     if (middleware is Middleware) {
-      await middleware.fn(this, () async {});
+      await middleware.handle(this, () async {});
     }
 
     if (middleware is Transformer) {

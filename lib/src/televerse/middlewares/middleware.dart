@@ -3,69 +3,119 @@ part of '../../../televerse.dart';
 /// Base class for the middlewares
 sealed class MiddlewareBase {}
 
-/// The next handler to be executed.
+/// A typedef for the next function used in middleware.
 ///
-/// Invoking this function basically means, you want the next handler to also run.
+/// This function should be called within a middleware to pass control to the
+/// next middleware in the stack. If it's not called, the subsequent middlewares
+/// and the main handler won't be executed.
 typedef NextFunction = FutureOr<void> Function();
 
-/// Represents a Middleware.
+/// Represents a Middlware that can be used to process requests
+/// before they reach the main handler.
 ///
-/// Middlewares are attached to the bot with the `bot.use` method. Middlewares act as an intermediate
-/// handler before the actual handler.
+/// This class should be implemented by any middleware that needs to perform
+/// operations on the [Context] object or decide whether to pass control to
+/// the next middleware or the main handler.
 ///
-/// These intermediate functions can be used to process or modify the Context before it reaches the main handler.
+/// Example usage:
+/// ```dart
+/// class Logger implements Middleware {
+///   @override
+///   FutureOr<void> handle(Context ctx, NextFunction next) async {
+///     print('Request received: ${ctx.update}');
+///     await next(); // Pass control to the next middleware or handler
+///     print('Response sent');
+///   }
+/// }
+/// ```
+///
+/// By using the `Middleware` class, you can create reusable components that
+/// can be attached to the bot and executed in sequence.
 abstract interface class Middleware implements MiddlewareBase {
-  /// The middleware function
+  /// The middleware function that processes the [Context] and optionally
+  /// passes control to the next middleware or main handler.
   ///
-  /// - [ctx] - The current context where the middleware is operating on
+  /// The [handle] function should call the [next] function to pass control
+  /// to the next middleware in the stack or to the main handler if there are
+  /// no more middlewares. If [next] is not called, the subsequent middlewares
+  /// and the main handler will not be executed.
   ///
-  /// - [next] - The next handler method. Gives you ability to decide whether to run or skip the next handler.
-  FutureOr<void> fn(
+  /// Example usage:
+  /// ```dart
+  /// @override
+  /// FutureOr<void> handle(Context ctx, NextFunction next) async {
+  ///   // Perform some pre-processing
+  ///   print('Before main handler');
+  ///
+  ///   // Pass control to the next middleware or the main handler
+  ///   await next();
+  ///
+  ///   // Perform some post-processing
+  ///   print('After main handler');
+  /// }
+  /// ```
+  FutureOr<void> handle(
     Context ctx,
     NextFunction next,
   );
 
-  /// Constructs a Middleware
+  /// Constructs a [Middleware] instance.
   const Middleware();
 }
 
-/// Represents a interceptor which can alter the API requests.
+/// Represents a transformer that can alter API requests before they are sent.
+///
+/// This class should be implemented by any transformer that needs to modify
+/// the request payload based on the API method being called, the provided
+/// payload, or the context.
+///
+/// Example usage:
+/// ```dart
+/// class AutoReplier implements Transformer {
+///   @override
+///   FutureOr<Map<String, dynamic>> transform(
+///     APIMethod method,
+///     Map<String, dynamic> payload,
+///     Context? ctx,
+///   ) {
+///     final isSendMethod = APIMethod.sendMethods.contains(method);
+///     final isNotChatAction = method != APIMethod.sendChatAction;
+///
+///     if (isSendMethod && isNotChatAction) {
+///       payload["reply_markup"] = ForceReply().toJson();
+///     }
+///     return payload;
+///   }
+/// }
+/// ```
+///
+/// By using the `Transformer` class, you can create reusable components that
+/// can be attached to the bot to modify the request payload dynamically.
 abstract interface class Transformer implements MiddlewareBase {
-  /// The API interceptor function.
+  /// The function that processes and alters the API request payload.
   ///
-  /// ## Available Arguments
-  /// Here are the different arugments available to the transfomer function.
+  /// ## Parameters
+  /// - `APIMethod method`: Indicates which API method is being called. This allows
+  /// you to decide whether or not to transform the payload based on the method.
   ///
-  /// ### 1. `APIMethod method`
+  /// - `Map<String, dynamic> payload`: The actual JSON body object to be posted
+  /// to the current method. This payload can be altered and should be returned
+  /// as a valid JSON after transformation. Refer to the [Telegram Bot API documentation](https://core.telegram.org/bots/api)
+  /// to understand the possible parameters that can be passed.
   ///
-  /// This parameter tells which API Method is now being called. Let's you decide whether to
-  /// perform or not perform the transfomer on the payload.
+  /// - `Context? ctx`: The context object, if available. This is accessible when
+  /// the user invokes `RawAPI` methods through the context object, such as `ctx.reply`
+  /// or `ctx.answerCallbackQuery`. Access to the context object allows you to further
+  /// enhance your transformer by leveraging the incoming update.
   ///
-  /// ### 2. `Map<String, dynamic> payload`
-  ///
-  /// The payload is the actual JSON body object to be posted to the current method.
-  /// Check the [Telegram Bot API documentation](https://core.telegram.org/bots/api) to learn about all the possible
-  /// parameters that can be passed. In most fo the cases, you will be altering the payload with a transformer. So,
-  /// it is important to alter and return the valid JSON after transformation.
-  ///
-  /// ### 3. `Context? ctx`
-  /// The available context object. If the user is invoking RawAPI methods through the context object, such as
-  /// `ctx.reply` or `ctx.answerCallbackQuery` the particular context object can be accessed with this argument.
-  /// Having access to the Context object primarily lets you take control of the whole incoming update. This lets you
-  /// further enhance your transfomrmer.
-  ///
-  /// Be aware that `ctx` can be `null`, this occurs when user is invoking the method directly through the `RawAPI` instance.
-  ///
+  /// **Note**: `ctx` can be `null` if the method is invoked directly through the `RawAPI` instance.
   ///
   /// ## Example
-  /// Here's a simple implementation of the `AutoReplier` transformer. The auto-replier transformer can be used to
-  /// automatically require users to reply to the current message the bot sent by passing the `ForceReply` reply markup with all the possible
-  /// send methods.
-  ///
+  /// Here's a simple implementation of the `AutoReplier` transformer:
   /// ```dart
   /// class AutoReplier implements Transformer {
   ///   @override
-  ///   FutureOr<Map<String, dynamic>> fn(
+  ///   FutureOr<Map<String, dynamic>> transform(
   ///     APIMethod method,
   ///     Map<String, dynamic> payload,
   ///     Context? ctx,
@@ -81,19 +131,17 @@ abstract interface class Transformer implements MiddlewareBase {
   /// }
   /// ```
   ///
-  /// The above code, simply creates a auto replier transformer. Now users can use it as:
-  ///
+  /// The above code creates an `AutoReplier` transformer. Users can attach it to the bot:
   /// ```dart
   /// bot.use(AutoReplier());
   /// ```
-  ///
-  /// That's it. Now whenever user makes a send method request, the force reply markup will be added to it.
-  FutureOr<Map<String, dynamic>> fn(
+  /// Now, whenever a send method request is made, the force reply markup will be added.
+  FutureOr<Map<String, dynamic>> transform(
     APIMethod method,
     Map<String, dynamic> payload,
     Context? ctx,
   );
 
-  /// Constructs a API Interceptor middleware
+  /// Constructs a `Transformer` instance.
   const Transformer();
 }
