@@ -1,4 +1,4 @@
-# 1.19.0
+# 1.19.1
 
 - 🆕 Support for Middlewares & Transformers
 - Middlewares lets you attach handlers that are run before your main handler is
@@ -15,6 +15,15 @@
   [#257](https://github.com/HeySreelal/televerse/pull/257) (Thanks to @devsdocs)
 - ⚠️ Type of `Webhook.certificate` is changed to InputFile as described by the
   official documentation.
+- Added examples for
+  [Middleware](https://github.com/xooniverse/TeleverseExamples/blob/1c30d889d3a0b1d7bdceaad48d6cfd88208e87be/lib/middleware_example.dart)
+  and
+  [Transformer](https://github.com/xooniverse/TeleverseExamples/blob/1c30d889d3a0b1d7bdceaad48d6cfd88208e87be/lib/transformer_example.dart)
+  usage in Examples repo.
+
+# 1.19.0
+
+- [Retracted]
 
 # 1.18.0
 

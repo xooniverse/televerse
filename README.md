@@ -351,6 +351,63 @@ bot.start((ctx) async {
 Efficiently build inline query results with the InlineQueryResultBuilder,
 simplifying the process of generating inline query results.
 
+### 13. 🔌 Plugin Support
+
+Televerse support Middlewares and Transformers in the library. These features
+allow you to preprocess and manipulate API requests seamlessly.
+
+#### Middlewares
+
+Middlewares let you execute code before your main handler is run. This is useful
+for tasks like logging, authentication, and more.
+
+#### Example: Logging Middleware
+
+```dart
+class LoggingMiddleware implements Middleware {
+  @override
+  Future<void> handle(
+    Context ctx,
+    NextFunction next,
+  ) async {
+    print('Received update: ${ctx.update}');
+    await next();
+  }
+}
+
+// Usage
+bot.use(LoggingMiddleware());
+```
+
+#### Transformers
+
+Transformers allow you to alter the request payloads directly, providing a more
+flexible way to modify requests before they are sent to the API.
+
+#### Example: Auto Replier Transformer
+
+```dart
+class AutoReplier implements Transformer {
+  @override
+  FutureOr<Map<String, dynamic>> transform(
+    APIMethod method,
+    Map<String, dynamic> payload,
+    Context? ctx,
+  ) {
+    final isSendMethod = APIMethod.sendMethods.contains(method);
+    final isNotChatAction = method != APIMethod.sendChatAction;
+
+    if (isSendMethod && isNotChatAction) {
+      payload["reply_markup"] = ForceReply().toJson();
+    }
+    return payload;
+  }
+}
+
+// Usage
+bot.use(AutoReplier());
+```
+
 ---
 
 ## 🌟 Shoot a Star
@@ -380,3 +437,6 @@ clean, maintainable code that responds to messages and updates on Telegram. So,
 what are you waiting for? Start building your Telegram bot with Televerse today!
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Say%20Thanks-blue?style=flat-square&logo=buy-me-a-coffee)](https://www.buymeacoffee.com/heysreelal)
+
+```
+```

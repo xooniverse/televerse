@@ -162,7 +162,7 @@ class RawAPI {
     final ts = [..._transformers, ...(_context?._transfomers ?? [])];
 
     while (i < ts.length) {
-      params = await ts[i].fn(method, params!, _context);
+      params = await ts[i].transform(method, params!, _context);
       i++;
     }
 

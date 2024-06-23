@@ -437,7 +437,7 @@ class Bot {
 
       if (index < _middlewares.length) {
         try {
-          await _middlewares[index].fn(ctx, next);
+          await _middlewares[index].handle(ctx, next);
         } catch (err, stack) {
           final botErr = BotError(
             err,
