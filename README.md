@@ -384,7 +384,7 @@ bot.use(LoggingMiddleware());
 Transformers allow you to alter the request payloads directly, providing a more
 flexible way to modify requests before they are sent to the API.
 
-### Example: Auto Replier Transformer
+#### Example: Auto Replier Transformer
 
 ```dart
 class AutoReplier implements Transformer {
