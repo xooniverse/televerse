@@ -8,7 +8,7 @@ import 'dart:io' as io;
 import 'dart:typed_data';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
-import 'package:dio/dio.dart' show DioException;
+import 'package:dio/dio.dart' show DioException, MultipartFile;
 
 part 'chat_id.dart';
 part 'input_file.dart';
@@ -21,3 +21,4 @@ part 'custom_emoji.dart';
 part 'handler_scope.dart';
 part 'inline_menu_data.dart';
 part 'error.dart';
+part 'payload.dart';

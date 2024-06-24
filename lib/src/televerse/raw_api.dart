@@ -117,6 +117,27 @@ class RawAPI {
     return uri.replace(path: "${uri.path}/$method");
   }
 
+  /// Extracts a list of maps representing multipart files from a list of helper objects.
+  ///
+  /// This private method iterates through a list of `_MultipartHelper` objects and
+  /// extracts relevant information to create a list of maps suitable for representing
+  /// multipart files. It filters the input list to only include elements where the
+  /// `type` property is set to `InputFileType.bytes`. For each matching element,
+  /// it creates a map with the following structure:
+  ///
+  /// * Key: The `field` property value from the `_MultipartHelper` object.
+  /// * Value: A `MultipartFile` object created using the `file.getBytes()` method
+  ///   on the `_MultipartHelper` object's `file` property. The `filename` is set
+  ///   using the `name` property from the `_MultipartHelper` object.
+  ///
+  /// Parameters:
+  ///
+  /// * [list]: A list of `_MultipartHelper` objects.
+  ///
+  /// Returns:
+  ///
+  /// A new list of maps representing multipart files. The list will be empty if
+  /// no matching elements are found in the input list.
   List<Map<String, MultipartFile>> _getFiles(List<_MultipartHelper> list) {
     List<Map<String, MultipartFile>> files = list.where((el) {
       return el.type == InputFileType.bytes;
@@ -147,62 +168,155 @@ class RawAPI {
   /// Transformers added to the RawAPI
   final List<Transformer> _transformers = [];
 
-  /// Install transformer
+  /// Installs a [Transformer] to be applied to API calls.
+  ///
+  /// The `use` method adds a [Transformer] to the list of transformers.
+  /// These transformers will be applied to the payload of API calls sequentially
+  /// before the actual API call is made. This allows you to modify or augment
+  /// the payload before it is sent to the API.
+  ///
+  /// ## Parameters
+  /// - `transformer` (`Transformer`): The transformer instance to be added to the
+  ///   list of transformers.
+  ///
+  /// ## Example
+  /// ```dart
+  /// final bot = Bot("TOKEN");
+  /// final transformer = AutoReplyEnforcer();
+  /// bot.use(transformer);
+  ///
+  /// // Now, the transformer will be applied to all API calls made by the bot.
+  /// ```
+  ///
+  /// In this example, the `AutoReplyEnforcer` transformer is added to the bot
+  /// using the `use` method. The transformer will then be applied to the payload
+  /// of all API calls made by the bot, allowing you to modify the payload before
+  /// it is sent.
   void use(Transformer transformer) => _transformers.add(transformer);
 
-  /// All API calls goes through this method :)
+  /// Concatenates transformers into a single callable function.
+  ///
+  /// The `_combineTransformer` function takes a previous [APICaller] function and
+  /// a [Transformer] instance, and returns a new [APICaller] function that first
+  /// applies the transformer to the payload before invoking the previous API
+  /// caller. This allows multiple transformers to be chained together,
+  /// processing the payload sequentially.
+  ///
+  /// ## Parameters
+  /// - `prev` (`APICaller`): The previous API caller function.
+  /// - `transformer` (`Transformer`): The transformer to be applied to the
+  ///   payload.
+  ///
+  /// ## Returns
+  /// - `APICaller`: A new API caller function that applies the transformer to
+  ///   the payload before invoking the previous API caller.
+  ///
+  /// ## Example
+  /// Here's an example of how to use the `_combineTransformer` function:
+  ///
+  /// ```dart
+  /// final transformers = [transformer1, transformer2, transformer3];
+  /// APICaller combinedCaller = (method, payload) async {
+  ///   // Initial API call logic
+  ///   return {};
+  /// };
+  ///
+  /// for (final transformer in transformers) {
+  ///   combinedCaller = _combineTransformer(combinedCaller, transformer);
+  /// }
+  ///
+  /// // Now, combinedCaller applies all transformers sequentially
+  /// final result = await combinedCaller(method, payload);
+  /// ```
+  ///
+  /// In this example, the `_combineTransformer` function is used to combine
+  /// multiple transformers into a single API caller function, which processes
+  /// the payload through each transformer in sequence before making the API call.
+  APICaller _combineTransformer(APICaller prev, Transformer transformer) {
+    return (APIMethod method, Payload payload) async {
+      return await transformer.transform(prev, method, payload);
+    };
+  }
+
+  /// Executes an API call, applying any attached transformers.
+  ///
+  /// The `_makeApiCall` method is the central point for executing API calls. It
+  /// constructs the API endpoint URI, processes the payload through a series of
+  /// transformers, and then makes the actual API call. Transformers can modify
+  /// the payload before the call is made.
+  ///
+  /// ## Parameters
+  /// - `method` (`APIMethod`): The API method to be called.
+  /// - `payload` (`Payload?`, optional): The payload for the API call, which can
+  ///   include parameters and files. If not provided, an empty `Payload` is
+  ///   created.
+  ///
+  /// ## Returns
+  /// - `Future<T>`: The result of the API call, cast to the expected type `T`.
+  ///
+  /// ## Example
+  /// ```dart
+  /// final payload = Payload.from({'chat_id': 123, 'text': 'Hello World'});
+  /// final result = await _makeApiCall<Map>(APIMethod.sendMessage, payload: payload);
+  /// ```
+  ///
+  /// This example demonstrates how to make an API call with a payload containing
+  /// parameters. The result of the API call is cast to a `String`.
+  ///
+  /// ## Implementation Details
+  /// - Constructs the API call URI.
+  /// - Removes null values from the payload parameters.
+  /// - Applies transformers in reverse order to the payload.
+  /// - Executes the API call with the transformed payload.
+  ///
+  /// All API calls go through this method :)
   Future<T> _makeApiCall<T>(
     APIMethod method, {
-    Map<String, dynamic>? params,
-    List<Map<String, MultipartFile>>? files,
+    Payload? payload,
   }) async {
-    params ??= {};
-    int i = 0;
+    payload ??= Payload();
 
-    final ts = [..._transformers, ...(_context?._transfomers ?? [])];
+    APICaller call = (APIMethod method, Payload payload) async {
+      final uri = _buildUri(method);
+      payload.params.removeWhere(_nullFilter);
+      final result = await _httpClient._makeApiCall(
+        uri,
+        payload: payload,
+      );
+      return result;
+    };
 
-    while (i < ts.length) {
-      params = await ts[i].transform(method, params!, _context);
-      i++;
+    final transformers = [..._transformers, ...(_context?._transformers ?? [])];
+
+    // Combine transformers
+    for (final transformer in transformers.reversed) {
+      call = _combineTransformer(call, transformer);
     }
 
-    params?.removeWhere(_nullFilter);
+    // Execute the combined call
+    final result = await call(method, payload);
 
-    final uri = _buildUri(method);
-
-    dynamic result;
-
-    if (files?.isNotEmpty ?? false) {
-      result = await _httpClient.multipartPost(uri, files!, params!);
-    } else {
-      result = await _httpClient.postURI(uri, params ?? {});
-    }
-
-    return result;
+    return result["result"] as T;
   }
 
   /// Make API call and expect `Map<String, dynamic>` result
   Future<Map<String, dynamic>> _makeApiJsonCall(
     APIMethod method, {
-    Map<String, dynamic>? params,
-    List<Map<String, MultipartFile>>? files,
+    Payload? payload,
   }) async =>
       await _makeApiCall<Map<String, dynamic>>(
         method,
-        params: params,
-        files: files,
+        payload: payload,
       );
 
   /// Make API call and expect `bool` result (Shorthand for `_makeApiCall` method)
   Future<bool> _makeApiBoolCall(
     APIMethod method, {
-    Map<String, dynamic>? params,
-    List<Map<String, MultipartFile>>? files,
+    Payload? payload,
   }) async =>
       await _makeApiCall<bool>(
         method,
-        params: params,
-        files: files,
+        payload: payload,
       );
 
   /// Use this method to receive incoming updates using long polling.
@@ -224,7 +338,7 @@ class RawAPI {
 
     final response = await _makeApiCall<List>(
       APIMethod.getUpdates,
-      params: params,
+      payload: Payload.from(params),
     );
 
     return (response)
@@ -268,8 +382,7 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setWebhook,
-      files: files,
-      params: params,
+      payload: Payload.from(params, files),
     );
     return response;
   }
@@ -284,7 +397,7 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.deleteWebhook,
-      params: params,
+      payload: Payload.from(params),
     );
     return response;
   }
@@ -378,7 +491,7 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.sendMessage,
-      params: params,
+      payload: Payload.from(params),
     );
     return Message.fromJson(response);
   }
@@ -425,7 +538,7 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.forwardMessage,
-      params: params,
+      payload: Payload.from(params),
     );
     return Message.fromJson(response);
   }
@@ -461,7 +574,7 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.copyMessage,
-      params: params,
+      payload: Payload.from(params),
     );
     return MessageId.fromJson(response);
   }
@@ -504,8 +617,7 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.sendPhoto,
-      files: files,
-      params: params,
+      payload: Payload.from(params, files),
     );
     return Message.fromJson(response);
   }
@@ -559,8 +671,7 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.sendAudio,
-      params: params,
-      files: files,
+      payload: Payload.from(params, files),
     );
 
     return Message.fromJson(response);
@@ -607,8 +718,10 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.sendDocument,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
     return Message.fromJson(response);
   }
@@ -664,8 +777,10 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.sendVideo,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
     return Message.fromJson(response);
   }
@@ -719,8 +834,10 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.sendAnimation,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
     return Message.fromJson(response);
   }
@@ -763,8 +880,10 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.sendVoice,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
 
     return Message.fromJson(response);
@@ -808,8 +927,10 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.sendVideoNote,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
     return Message.fromJson(response);
   }
@@ -877,8 +998,10 @@ class RawAPI {
 
     final response = await _makeApiCall<List>(
       APIMethod.sendMediaGroup,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
 
     return (response).map((e) => Message.fromJson(e)).toList();
@@ -919,7 +1042,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.sendLocation,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return Message.fromJson(response);
   }
@@ -953,7 +1078,9 @@ class RawAPI {
     };
     final response = await _makeApiCall(
       APIMethod.editMessageLiveLocation,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     if (MessageOrBool == _Ignore) {
@@ -1046,7 +1173,9 @@ class RawAPI {
     };
     final response = await _makeApiCall(
       APIMethod.stopMessageLiveLocation,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     if (MessageOrBool == _Ignore) {
@@ -1136,7 +1265,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.sendVenue,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return Message.fromJson(response);
   }
@@ -1172,7 +1303,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.sendContact,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return Message.fromJson(response);
   }
@@ -1282,7 +1415,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.sendPoll,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return Message.fromJson(response);
   }
@@ -1321,7 +1456,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.sendDice,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return Message.fromJson(response);
   }
@@ -1351,7 +1488,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.sendChatAction,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1369,7 +1508,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.getUserProfilePhotos,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return UserProfilePhotos.fromJson(response);
   }
@@ -1383,7 +1524,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.getFile,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return File.fromJson(response);
   }
@@ -1403,7 +1546,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.banChatMember,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1421,7 +1566,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.unbanChatMember,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1446,7 +1593,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.restrictChatMember,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1489,7 +1638,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.promoteChatMember,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1507,7 +1658,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.setChatAdministratorCustomTitle,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1523,7 +1676,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.banChatSenderChat,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1539,7 +1694,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.unbanChatSenderChat,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1560,7 +1717,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.setChatPermissions,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1576,7 +1735,9 @@ class RawAPI {
     };
     final response = await _makeApiCall<String>(
       APIMethod.exportChatInviteLink,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1624,7 +1785,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.createChatInviteLink,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return ChatInviteLink.fromJson(response);
   }
@@ -1674,7 +1837,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.editChatInviteLink,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return ChatInviteLink.fromJson(response);
   }
@@ -1690,7 +1855,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.revokeChatInviteLink,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return ChatInviteLink.fromJson(response);
   }
@@ -1706,7 +1873,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.approveChatJoinRequest,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1722,7 +1891,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.declineChatJoinRequest,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1741,8 +1912,10 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setChatPhoto,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
     return response;
   }
@@ -1756,7 +1929,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.deleteChatPhoto,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1780,7 +1955,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.setChatTitle,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1805,7 +1982,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setChatDescription,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1823,7 +2002,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.pinChatMessage,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1839,7 +2020,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.unpinChatMessage,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1853,7 +2036,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.unpinAllChatMessages,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1867,7 +2052,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.leaveChat,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1879,7 +2066,12 @@ class RawAPI {
     final params = {
       "chat_id": chatId.id,
     };
-    final response = await _makeApiJsonCall(APIMethod.getChat, params: params);
+    final response = await _makeApiJsonCall(
+      APIMethod.getChat,
+      payload: Payload(
+        params: params,
+      ),
+    );
     return ChatFullInfo.fromJson(response);
   }
 
@@ -1892,7 +2084,9 @@ class RawAPI {
     };
     final response = await _makeApiCall<List>(
       APIMethod.getChatAdministrators,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response.map((e) => ChatMember.fromJson(e)).toList();
   }
@@ -1906,7 +2100,9 @@ class RawAPI {
     };
     int response = await _makeApiCall<int>(
       APIMethod.getChatMembersCount,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1922,7 +2118,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.getChatMember,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return ChatMember.fromJson(response);
   }
@@ -1938,7 +2136,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.setChatStickerSet,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1952,7 +2152,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.deleteChatStickerSet,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -1992,7 +2194,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.createForumTopic,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return ForumTopic.fromJson(response);
   }
@@ -2020,7 +2224,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.editForumTopic,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2036,7 +2242,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.closeForumTopic,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2052,7 +2260,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.reopenForumTopic,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2068,7 +2278,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.deleteForumTopic,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2084,7 +2296,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.unpinAllForumTopicMessages,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2108,7 +2322,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.editGeneralForumTopic,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2122,7 +2338,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.closeGeneralForumTopic,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2136,7 +2354,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.reopenGeneralForumTopic,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2150,7 +2370,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.hideGeneralForumTopic,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2164,7 +2386,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.unhideGeneralForumTopic,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2186,7 +2410,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.answerCallbackQuery,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2204,7 +2430,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.setMyCommands,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2220,7 +2448,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.deleteMyCommands,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2236,7 +2466,9 @@ class RawAPI {
     };
     final response = await _makeApiCall<List>(
       APIMethod.getMyCommands,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response.map((e) => BotCommand.fromJson(e)).toList();
   }
@@ -2252,7 +2484,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.setChatMenuButton,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2266,7 +2500,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.getChatMenuButton,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return MenuButton.create(response);
   }
@@ -2282,7 +2518,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.setMyDefaultAdministratorRights,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2296,7 +2534,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.getMyDefaultAdministratorRights,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return ChatAdministratorRights.fromJson(response);
   }
@@ -2327,7 +2567,9 @@ class RawAPI {
 
     final response = await _makeApiCall(
       APIMethod.editMessageText,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     if (MessageOrBool == _Ignore) {
@@ -2421,7 +2663,9 @@ class RawAPI {
     };
     final response = await _makeApiCall(
       APIMethod.editMessageCaption,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     if (MessageOrBool == _Ignore) {
@@ -2518,8 +2762,10 @@ class RawAPI {
 
     final response = await _makeApiCall(
       APIMethod.editMessageMedia,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
 
     if (MessageOrBool == _Ignore) {
@@ -2594,7 +2840,9 @@ class RawAPI {
     };
     final response = await _makeApiCall(
       APIMethod.editMessageReplyMarkup,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     if (MessageOrBool == _Ignore) {
@@ -2665,7 +2913,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.stopPoll,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return Poll.fromJson(response);
   }
@@ -2689,7 +2939,10 @@ class RawAPI {
       "chat_id": chatId.id,
       "message_id": messageId,
     };
-    final response = _makeApiBoolCall(APIMethod.deleteMessage, params: params);
+    final response = _makeApiBoolCall(
+      APIMethod.deleteMessage,
+      payload: Payload(params: params),
+    );
     return response;
   }
 
@@ -2729,8 +2982,10 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.sendSticker,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
 
     return Message.fromJson(response);
@@ -2745,7 +3000,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.getStickerSet,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return StickerSet.fromJson(response);
   }
@@ -2759,7 +3016,9 @@ class RawAPI {
     };
     List<dynamic> response = await _makeApiCall<List>(
       APIMethod.getCustomEmojiStickers,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response.map((e) => Sticker.fromJson(e)).toList();
   }
@@ -2783,8 +3042,10 @@ class RawAPI {
     if (files.isNotEmpty) {
       final response = await _makeApiJsonCall(
         APIMethod.uploadStickerFile,
-        files: files,
-        params: params,
+        payload: Payload(
+          files: files,
+          params: params,
+        ),
       );
       return File.fromJson(response);
     } else {
@@ -2816,8 +3077,10 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.addStickerToSet,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
 
     return response;
@@ -2834,7 +3097,9 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.setStickerPositionInSet,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -2847,7 +3112,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.deleteStickerFromSet,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -2877,8 +3144,10 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setStickerSetThumbnail,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
 
     return response;
@@ -2907,7 +3176,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.answerInlineQuery,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -2925,7 +3196,9 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.answerWebAppQuery,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return SentWebAppMessage.fromJson(response);
   }
@@ -3013,7 +3286,9 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.sendInvoice,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return Message.fromJson(response);
@@ -3084,7 +3359,9 @@ class RawAPI {
 
     final response = await _makeApiCall<String>(
       APIMethod.createInvoiceLink,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3128,7 +3405,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.answerShippingQuery,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3161,7 +3440,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.answerPreCheckoutQuery,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3180,7 +3461,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setPassportDataErrors,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -3211,7 +3494,9 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.sendGame,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return Message.fromJson(response);
@@ -3242,7 +3527,9 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.setGameScore,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return Message.fromJson(response);
@@ -3272,7 +3559,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setInlineGameScore,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3304,7 +3593,9 @@ class RawAPI {
 
     final response = await _makeApiCall<List>(
       APIMethod.getGameHighScores,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response.map((e) => GameHighScore.fromJson(e)).toList();
@@ -3326,7 +3617,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setMyDescription,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3342,7 +3635,9 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.getMyDescription,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return BotDescription.fromJson(response);
@@ -3360,7 +3655,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setMyShortDescription,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3376,7 +3673,9 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.getMyShortDescription,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return BotShortDescription.fromJson(response);
@@ -3420,8 +3719,10 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.createNewStickerSet,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
 
     return response;
@@ -3443,7 +3744,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setCustomEmojiStickerSetThumbnail,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3465,7 +3768,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setStickerSetTitle,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3484,7 +3789,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.deleteStickerSet,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3506,7 +3813,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setStickerEmojiList,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3528,7 +3837,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setStickerKeywords,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3550,7 +3861,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setStickerMaskPosition,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3570,7 +3883,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setMyName,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -3585,7 +3900,9 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.getMyName,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return BotName.fromJson(response);
@@ -3601,7 +3918,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.unpinAllGeneralForumTopicMessages,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3625,7 +3944,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setMessageReaction,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3646,7 +3967,9 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.deleteMessages,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response;
@@ -3679,7 +4002,9 @@ class RawAPI {
 
     final response = await _makeApiCall<List>(
       APIMethod.forwardMessages,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response.map((e) => MessageId.fromJson(e)).toList();
@@ -3717,7 +4042,9 @@ class RawAPI {
 
     final response = await _makeApiCall<List>(
       APIMethod.copyMessages,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return response.map((e) => MessageId.fromJson(e)).toList();
@@ -3738,7 +4065,9 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.getUserChatBoosts,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return UserChatBoosts.fromJson(response);
@@ -3753,7 +4082,9 @@ class RawAPI {
     };
     final response = await _makeApiJsonCall(
       APIMethod.getBusinessConnection,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return BusinessConnection.fromJson(response);
@@ -3782,8 +4113,10 @@ class RawAPI {
 
     final response = _makeApiBoolCall(
       APIMethod.replaceStickerInSet,
-      params: params,
-      files: files,
+      payload: Payload(
+        params: params,
+        files: files,
+      ),
     );
 
     return response;
@@ -3807,7 +4140,9 @@ class RawAPI {
 
     final response = _makeApiBoolCall(
       APIMethod.refundStarPayment,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
     return response;
   }
@@ -3827,7 +4162,9 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.getStarTransactions,
-      params: params,
+      payload: Payload(
+        params: params,
+      ),
     );
 
     return StarTransactions.fromJson(response);

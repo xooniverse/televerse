@@ -1,3 +1,11 @@
+# 1.19.2
+
+- ⚠️ Changed the `Transformer.transform` method definition.
+- Improved the `Transformer` class
+- Added new class `Payload` to accept payload to the API calls
+- Added typedef `APICaller` for the method which actually invokes the API
+  endpoinds.
+
 # 1.19.1
 
 - 🆕 Support for Middlewares & Transformers

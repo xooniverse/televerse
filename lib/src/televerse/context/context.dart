@@ -113,12 +113,12 @@ class Context {
     }
 
     if (middleware is Transformer) {
-      _transfomers.add(middleware);
+      _transformers.add(middleware);
     }
   }
 
   /// Transformers for this particular context
-  final List<Transformer> _transfomers = [];
+  final List<Transformer> _transformers = [];
 
   /// This Map can be used as a storage entity for middlewares.
   final Map<String, dynamic> middlewareStorage = {};

@@ -65,7 +65,10 @@ part 'src/televerse/extras/tg_exceptions.dart';
 part 'src/televerse/models/scope_options.dart';
 
 /// Middlewares
+part 'src/televerse/middlewares/base.dart';
+part 'src/televerse/middlewares/types.dart';
 part 'src/televerse/middlewares/middleware.dart';
+part 'src/televerse/middlewares/transformer.dart';
 
 /// The main class of the library.
 ///
