@@ -48,17 +48,31 @@ class _HttpClient {
     }
   }
 
+  /// All API calls go through this method :)
+  Future<T> _makeApiCall<T>(
+    Uri uri, {
+    Payload? payload,
+  }) async {
+    payload ??= Payload();
+    final hasFiles = payload.files?.isNotEmpty ?? false;
+    if (hasFiles) {
+      return await multipartPost(uri, payload);
+    } else {
+      return await postURI(uri, payload);
+    }
+  }
+
   /// Send POST request to the given [uri] and return the response body.
   Future<dynamic> postURI(
     Uri uri,
-    Map<String, dynamic> body,
+    Payload payload,
   ) async {
-    body.removeWhere(_nullFilter);
+    payload.params.removeWhere(_nullFilter);
 
     try {
       final response = await _dio.postUri(
         uri,
-        data: jsonEncode(body),
+        data: jsonEncode(payload.params),
         options: Options(
           headers: {"Content-Type": "application/json"},
           sendTimeout: _timeoutDuration(uri),
@@ -67,7 +81,7 @@ class _HttpClient {
       );
       final resBody = response.data;
       if (resBody["ok"] == true) {
-        return resBody["result"];
+        return resBody;
       } else {
         throw TelegramException.fromJson(resBody);
       }
@@ -79,13 +93,12 @@ class _HttpClient {
   /// Send Multipart POST request to the given [uri] and return the response body.
   Future<dynamic> multipartPost(
     Uri uri,
-    List<Map<String, MultipartFile>> files,
-    Map<String, dynamic> body,
+    Payload payload,
   ) async {
-    body.removeWhere(_nullFilter);
+    payload.params.removeWhere(_nullFilter);
 
-    final parameters = body.map(_getEntry).entries;
-    final filesMap = files.expand((element) => element.entries);
+    final parameters = payload.params.map(_getEntry).entries;
+    final filesMap = payload.files!.expand((element) => element.entries);
     final formData = FormData()
       ..fields.addAll(parameters)
       ..files.addAll(filesMap);
@@ -101,7 +114,7 @@ class _HttpClient {
       );
       final res = req.data;
       if (res["ok"] == true) {
-        return res["result"];
+        return res;
       } else {
         throw TelegramException.fromJson(res);
       }
