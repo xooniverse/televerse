@@ -387,25 +387,27 @@ flexible way to modify requests before they are sent to the API.
 #### Example: Auto Replier Transformer
 
 ```dart
-class AutoReplier implements Transformer {
+class AutoReplyEnforcer implements Transformer {
   @override
-  FutureOr<Map<String, dynamic>> transform(
+  Future<Map<String, dynamic>> transform(
+    APICaller call,
     APIMethod method,
-    Map<String, dynamic> payload,
-    Context? ctx,
-  ) {
+    Payload payload,
+  ) async {
     final isSendMethod = APIMethod.sendMethods.contains(method);
     final isNotChatAction = method != APIMethod.sendChatAction;
 
     if (isSendMethod && isNotChatAction) {
-      payload["reply_markup"] = ForceReply().toJson();
+      payload.params["reply_markup"] = ForceReply().toJson();
     }
-    return payload;
+
+    return await call(method, payload);
   }
 }
 
+
 // Usage
-bot.use(AutoReplier());
+bot.use(AutoReplyEnforcer());
 ```
 
 ---
