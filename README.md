@@ -439,6 +439,3 @@ clean, maintainable code that responds to messages and updates on Telegram. So,
 what are you waiting for? Start building your Telegram bot with Televerse today!
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Say%20Thanks-blue?style=flat-square&logo=buy-me-a-coffee)](https://www.buymeacoffee.com/heysreelal)
-
-```
-```
