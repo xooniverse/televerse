@@ -5,7 +5,7 @@ part of 'models.dart';
 /// Each map associates a field key (a `String`) with its corresponding
 /// `MultipartFile` object. This type is used to represent a collection
 /// of files to be uploaded in a multipart request.
-typedef PayloadFiles = List<Map<String, MultipartFile>>?;
+typedef PayloadFiles = List<Map<String, MultipartFile>>;
 
 /// Represents a payload object used for making API calls.
 ///
@@ -35,7 +35,7 @@ class Payload {
   /// Each map associates a field key (a `String`) with its corresponding
   /// `MultipartFile` object. This type is used to represent a collection
   /// of files to be uploaded in a multipart request.
-  PayloadFiles files;
+  PayloadFiles? files;
 
   /// Constructs a new `Payload` object.
   ///
@@ -70,7 +70,7 @@ class Payload {
   /// Returns:
   ///
   /// A new `Payload` object with the provided parameters and files.
-  factory Payload.from([Map<String, dynamic>? params, PayloadFiles files]) =>
+  factory Payload.from([Map<String, dynamic>? params, PayloadFiles? files]) =>
       Payload(
         params: params,
         files: files,
