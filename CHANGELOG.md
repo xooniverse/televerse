@@ -1,3 +1,13 @@
+# 1.19.3
+
+- Changed return type of the `Transformer.transform` from
+  `FutureOr<Map<String, dynamic>>` to `Future<Map<String, dynamic>>` because
+  it'll always have to return a Future.
+- Minor type adjustment on the `typedef PayloadFiles`.
+- ✨ Two new plugins are released for Televerse:
+  [auto_chat_action](https://pub.dev/packages/auto_chat_action) and
+  [parse_mode_setter](https://pub.dev/packages/parse_mode_setter)
+
 # 1.19.2
 
 - ⚠️ Changed the `Transformer.transform` method definition.

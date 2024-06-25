@@ -80,7 +80,7 @@ abstract interface class Transformer implements MiddlewareBase {
   /// In this example, the `AutoReplyEnforcer` transformer adds a `ForceReply`
   /// markup to all send methods except for `sendChatAction`, and then invokes the
   /// actual API method with the modified payload.
-  FutureOr<Map<String, dynamic>> transform(
+  Future<Map<String, dynamic>> transform(
     APICaller call,
     APIMethod method,
     Payload payload,
