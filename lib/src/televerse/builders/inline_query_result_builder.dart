@@ -2,16 +2,38 @@ part of '../../../televerse.dart';
 
 /// A utility class to build Inline Query Results quickly and easily.
 ///
-/// # Inline Query Result Builder
+/// This class provides methods to construct various types of Inline Query Results,
+/// such as articles, audio files, documents, and more, which can be used in Telegram bots.
 ///
-/// Use the methods provided by this class to construct various types of Inline Query Results,
-/// such as articles, audio files, documents, etc.
+/// ## Inline Query Result Builder
 ///
+/// Example usage:
+/// ```dart
+/// final builder = InlineQueryResultBuilder();
+/// builder.article(
+///   '1',
+///   'Example Article',
+///   (content) => content.text('This is an example article.'),
+///   description: 'An example article for demonstration.',
+/// );
+/// final results = builder.build();
+/// ```
 class InlineQueryResultBuilder {
   /// Results
   final List<InlineQueryResult> _results = [];
 
-  /// Adds an Article result to the final results
+  /// Adds an Article result to the final results.
+  ///
+  /// - [id] is the unique identifier for this result.
+  /// - [title] is the title of the result.
+  /// - [contentGenerator] is a function that generates the content of the article.
+  /// - [replyMarkup] is an optional inline keyboard attached to the message.
+  /// - [url] is an optional URL of the result.
+  /// - [hideUrl] hides the URL in the message when set to true.
+  /// - [description] is an optional short description of the result.
+  /// - [thumbnailUrl] is an optional URL of the thumbnail for the result.
+  /// - [thumbnailWidth] is the optional width of the thumbnail.
+  /// - [thumbnailHeight] is the optional height of the thumbnail.
   InlineQueryResultBuilder article(
     String id,
     String title,
@@ -45,7 +67,18 @@ class InlineQueryResultBuilder {
     return this;
   }
 
-  /// Adds an Audio result to the final results
+  /// Adds an Audio result to the final results.
+  ///
+  /// - [id] is the unique identifier for this result.
+  /// - [audioUrl] is the URL of the audio file.
+  /// - [title] is the title of the result.
+  /// - [caption] is an optional caption for the audio file.
+  /// - [parseMode] specifies the parse mode of the caption.
+  /// - [captionEntities] specifies special entities in the caption.
+  /// - [performer] is the performer of the audio.
+  /// - [audioDuration] is the duration of the audio in seconds.
+  /// - [replyMarkup] is an optional inline keyboard attached to the message.
+  /// - [contentGenerator] is an optional function to generate additional content.
   InlineQueryResultBuilder audio(
     String id,
     String audioUrl,
@@ -77,7 +110,18 @@ class InlineQueryResultBuilder {
     return this;
   }
 
-  /// Adds a contact result to the final results
+  /// Adds a Contact result to the final results.
+  ///
+  /// - [id] is the unique identifier for this result.
+  /// - [phoneNumber] is the phone number of the contact.
+  /// - [firstName] is the first name of the contact.
+  /// - [lastName] is the optional last name of the contact.
+  /// - [vcard] is the optional vCard of the contact.
+  /// - [replyMarkup] is an optional inline keyboard attached to the message.
+  /// - [contentGenerator] is an optional function to generate additional content.
+  /// - [thumbnailUrl] is an optional URL of the thumbnail for the result.
+  /// - [thumbnailWidth] is the optional width of the thumbnail.
+  /// - [thumbnailHeight] is the optional height of the thumbnail.
   InlineQueryResultBuilder contact(
     String id,
     String phoneNumber,
@@ -109,7 +153,11 @@ class InlineQueryResultBuilder {
     return this;
   }
 
-  /// Adds an game result to the final results
+  /// Adds a Game result to the final results.
+  ///
+  /// - [id] is the unique identifier for this result.
+  /// - [gameShortName] is the short name of the game.
+  /// - [replyMarkup] is an optional inline keyboard attached to the message.
   InlineQueryResultBuilder game(
     String id,
     String gameShortName, {
@@ -163,7 +211,21 @@ class InlineQueryResultBuilder {
     return this;
   }
 
-  /// Adds an GIF result to the final results
+  /// Adds a GIF result to the final results.
+  ///
+  /// - [id] is the unique identifier for this result.
+  /// - [gifUrl] is the URL of the GIF file.
+  /// - [thumbnailUrl] is the URL of the thumbnail for the GIF.
+  /// - [gifWidth] is the optional width of the GIF.
+  /// - [gifHeight] is the optional height of the GIF.
+  /// - [gifDuration] is the optional duration of the GIF in seconds.
+  /// - [thumbnailMimeType] is the optional MIME type of the thumbnail.
+  /// - [title] is an optional title for the GIF.
+  /// - [caption] is an optional caption for the GIF.
+  /// - [parseMode] specifies the parse mode of the caption.
+  /// - [captionEntities] specifies special entities in the caption.
+  /// - [replyMarkup] is an optional inline keyboard attached to the message.
+  /// - [contentGenerator] is an optional function to generate additional content.
   InlineQueryResultBuilder gif(
     String id,
     String gifUrl,
@@ -201,7 +263,21 @@ class InlineQueryResultBuilder {
     return this;
   }
 
-  /// Adds an location result to the final results
+  /// Adds a Location result to the final results.
+  ///
+  /// - [id] is the unique identifier for this result.
+  /// - [latitude] is the latitude of the location.
+  /// - [longitude] is the longitude of the location.
+  /// - [title] is the title of the location.
+  /// - [horizontalAccuracy] is the optional radius of uncertainty for the location.
+  /// - [livePeriod] is the optional period in seconds for which the location can be updated.
+  /// - [heading] is the optional direction in which the user is moving.
+  /// - [proximityAlertRadius] is the optional radius in meters for proximity alerts.
+  /// - [replyMarkup] is an optional inline keyboard attached to the message.
+  /// - [contentGenerator] is an optional function to generate additional content.
+  /// - [thumbnailUrl] is an optional URL of the thumbnail for the location.
+  /// - [thumbnailWidth] is the optional width of the thumbnail.
+  /// - [thumbnailHeight] is the optional height of the thumbnail.
   InlineQueryResultBuilder location(
     String id,
     double latitude,
@@ -239,7 +315,21 @@ class InlineQueryResultBuilder {
     return this;
   }
 
-  /// Adds an Mpeg4GIF result to the final results
+  /// Adds an Mpeg4 GIF result to the final results.
+  ///
+  /// - [id] is the unique identifier for this result.
+  /// - [mpeg4Url] is the URL of the Mpeg4 GIF file.
+  /// - [thumbnailUrl] is the URL of the thumbnail for the Mpeg4 GIF.
+  /// - [mpeg4Width] is the optional width of the Mpeg4 GIF.
+  /// - [mpeg4Height] is the optional height of the Mpeg4 GIF.
+  /// - [mpeg4Duration] is the optional duration of the Mpeg4 GIF in seconds.
+  /// - [thumbnailMimeType] is the optional MIME type of the thumbnail.
+  /// - [title] is an optional title for the Mpeg4 GIF.
+  /// - [caption] is an optional caption for the Mpeg4 GIF.
+  /// - [parseMode] specifies the parse mode of the caption.
+  /// - [captionEntities] specifies special entities in the caption.
+  /// - [replyMarkup] is an optional inline keyboard attached to the message.
+  /// - [contentGenerator] is an optional function to generate additional content.
   InlineQueryResultBuilder mpeg4gif(
     String id,
     String mpeg4Url,
@@ -277,7 +367,20 @@ class InlineQueryResultBuilder {
     return this;
   }
 
-  /// Adds an photo result to the final results
+  /// Adds a Photo result to the final results.
+  ///
+  /// - [id] is the unique identifier for this result.
+  /// - [photoUrl] is the URL of the photo file.
+  /// - [thumbnailUrl] is the URL of the thumbnail for the photo.
+  /// - [photoWidth] is the optional width of the photo.
+  /// - [photoHeight] is the optional height of the photo.
+  /// - [title] is an optional title for the photo.
+  /// - [description] is an optional description for the photo.
+  /// - [caption] is an optional caption for the photo.
+  /// - [parseMode] specifies the parse mode of the caption.
+  /// - [captionEntities] specifies special entities in the caption.
+  /// - [replyMarkup] is an optional inline keyboard attached to the message.
+  /// - [contentGenerator] is an optional function to generate additional content.
   InlineQueryResultBuilder photo(
     String id,
     String photoUrl,
@@ -313,7 +416,22 @@ class InlineQueryResultBuilder {
     return this;
   }
 
-  /// Adds an venue result to the final results
+  /// Adds a Venue result to the final results.
+  ///
+  /// - [id] is the unique identifier for this result.
+  /// - [latitude] is the latitude of the venue.
+  /// - [longitude] is the longitude of the venue.
+  /// - [title] is the title of the venue.
+  /// - [address] is the address of the venue.
+  /// - [foursquareId] is the optional Foursquare identifier of the venue.
+  /// - [foursquareType] is the optional Foursquare type of the venue.
+  /// - [googlePlaceId] is the optional Google Places identifier of the venue.
+  /// - [googlePlaceType] is the optional Google Places type of the venue.
+  /// - [replyMarkup] is an optional inline keyboard attached to the message.
+  /// - [contentGenerator] is an optional function to generate additional content.
+  /// - [thumbnailUrl] is an optional URL of the thumbnail for the venue.
+  /// - [thumbnailWidth] is the optional width of the thumbnail.
+  /// - [thumbnailHeight] is the optional height of the thumbnail.
   InlineQueryResultBuilder venue(
     String id,
     double latitude,
@@ -353,81 +471,99 @@ class InlineQueryResultBuilder {
     return this;
   }
 
-  /// Adds an video result to the final results
+  /// Adds a Video result to the final results.
+  ///
+  /// - [id] is the unique identifier for this result.
+  /// - [title] is the title of the video.
+  /// - [videoUrl] is the URL of the video file.
+  /// - [mimeType] is the MIME type of the video.
+  /// - [thumbnailUrl] is the URL of the thumbnail for the video.
+  /// - [caption] is an optional caption for the video.
+  /// - [parseMode] specifies the parse mode of the caption.
+  /// - [captionEntities] specifies special entities in the caption.
+  /// - [videoWidth] is the optional width of the video.
+  /// - [videoHeight] is the optional height of the video.
+  /// - [videoDuration] is the optional duration of the video in seconds.
+  /// - [description] is an optional description for the video.
+  /// - [replyMarkup] is an optional inline keyboard attached to the message.
+  /// - [showCaptionAboveMedia] specifies whether to show the caption above the media.
+  /// - [contentGenerator] is an optional function to generate additional content.
   InlineQueryResultBuilder video(
     String id,
-    double latitude,
-    double longitude,
-    String title,
-    String address, {
-    String? foursquareId,
-    String? foursquareType,
-    String? googlePlaceId,
-    String? googlePlaceType,
+    String title, {
+    required String videoUrl,
+    required String mimeType,
+    required String thumbnailUrl,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    int? videoWidth,
+    int? videoHeight,
+    int? videoDuration,
+    String? description,
     InlineKeyboardMarkup? replyMarkup,
+    bool? showCaptionAboveMedia,
     InputMessageContent? Function(
       MessageContentGenerator content,
     )? contentGenerator,
-    String? thumbnailUrl,
-    int? thumbnailWidth,
-    int? thumbnailHeight,
   }) {
     _results.add(
-      InlineQueryResultVenue(
-        latitude: latitude,
-        longitude: longitude,
+      InlineQueryResultVideo(
+        videoUrl: videoUrl,
+        mimeType: mimeType,
+        thumbnailUrl: thumbnailUrl,
         title: title,
-        address: address,
         id: id,
-        foursquareId: foursquareId,
-        foursquareType: foursquareType,
-        googlePlaceId: googlePlaceId,
-        googlePlaceType: googlePlaceType,
+        caption: caption,
+        parseMode: parseMode,
+        captionEntities: captionEntities,
+        videoWidth: videoWidth,
+        videoHeight: videoHeight,
+        videoDuration: videoDuration,
+        description: description,
         replyMarkup: replyMarkup,
         inputMessageContent: contentGenerator?.call(MessageContentGenerator.i),
-        thumbnailUrl: thumbnailUrl,
-        thumbnailWidth: thumbnailWidth,
-        thumbnailHeight: thumbnailHeight,
+        showCaptionAboveMedia: showCaptionAboveMedia,
       ),
     );
     return this;
   }
 
-  /// Adds an voice result to the final results
+  /// Adds a Voice result to the final results.
+  ///
+  /// - [id] is the unique identifier for this result.
+  /// - [title] is the title of the voice message.
+  /// - [voiceUrl] is the URL of the voice message file.
+  /// - [caption] is an optional caption for the voice message.
+  /// - [parseMode] specifies the parse mode of the caption.
+  /// - [captionEntities] specifies special entities in the caption.
+  /// - [voiceDuration] is the optional duration of the voice message in seconds.
+  /// - [replyMarkup] is an optional inline keyboard attached to the message.
+  /// - [contentGenerator] is an optional function to generate additional content.
   InlineQueryResultBuilder voice(
     String id,
-    double latitude,
-    double longitude,
-    String title,
-    String address, {
-    String? foursquareId,
-    String? foursquareType,
-    String? googlePlaceId,
-    String? googlePlaceType,
+    String title, {
+    required String voiceUrl,
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    int? voiceDuration,
     InlineKeyboardMarkup? replyMarkup,
     InputMessageContent? Function(
       MessageContentGenerator content,
     )? contentGenerator,
-    String? thumbnailUrl,
-    int? thumbnailWidth,
-    int? thumbnailHeight,
   }) {
     _results.add(
-      InlineQueryResultVenue(
-        latitude: latitude,
-        longitude: longitude,
+      InlineQueryResultVoice(
+        voiceUrl: voiceUrl,
         title: title,
-        address: address,
         id: id,
-        foursquareId: foursquareId,
-        foursquareType: foursquareType,
-        googlePlaceId: googlePlaceId,
-        googlePlaceType: googlePlaceType,
+        caption: caption,
+        parseMode: parseMode,
+        captionEntities: captionEntities,
+        voiceDuration: voiceDuration,
         replyMarkup: replyMarkup,
         inputMessageContent: contentGenerator?.call(MessageContentGenerator.i),
-        thumbnailUrl: thumbnailUrl,
-        thumbnailWidth: thumbnailWidth,
-        thumbnailHeight: thumbnailHeight,
       ),
     );
     return this;
