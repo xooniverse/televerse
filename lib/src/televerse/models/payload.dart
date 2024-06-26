@@ -55,7 +55,7 @@ class Payload {
   Payload({Map<String, dynamic>? params, this.files}) : params = params ?? {};
 
   /// Creates a new `Payload` instance from an existing map of parameters and a list of multipart files.
-
+  ///
   /// This factory constructor is useful when you already have the data for the
   /// payload in separate variables and want to create a new `Payload` object
   /// without the need to construct a new map or list.
