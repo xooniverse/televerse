@@ -1,3 +1,8 @@
+# 1.19.4
+
+- Minor README fix
+- Fixes in documentation comments
+
 # 1.19.3
 
 - Changed return type of the `Transformer.transform` from
