@@ -248,12 +248,21 @@ class Webhook extends Fetcher {
 
   /// Handles incoming HTTP requests.
   Future<void> _handleRequest(io.HttpRequest request) async {
+    final Map<String, dynamic> error = {
+      'ok': false,
+      'error_code': 404,
+      "description": "Not Found",
+    };
+
     if (request.uri.path != path) {
-      _sendResponse(request, 404, {
-        'ok': false,
-        'error_code': 404,
-        "description": "Not Found",
-      });
+      _sendResponse(request, error["error_code"], error);
+      return;
+    }
+
+    if (request.method == "GET") {
+      error["description"] = "GET Requests are not supported";
+      error["error_code"] = 418;
+      _sendResponse(request, error["error_code"], error);
       return;
     }
 
