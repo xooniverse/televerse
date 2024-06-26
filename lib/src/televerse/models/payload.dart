@@ -11,6 +11,7 @@ typedef PayloadFiles = List<Map<String, MultipartFile>>;
 ///
 /// This class encapsulates the data to be sent to an API endpoint. It can
 /// contain both standard parameters and multipart files for upload.
+///
 /// Properties:
 ///
 /// * [params]: An optional map containing additional parameters for the API call.
