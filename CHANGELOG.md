@@ -1,3 +1,12 @@
+# 1.19.5
+
+- 🧑🏻‍🔧 Fix in `InlineQueryResultBuilder` methods `voice` and `video`.
+- Improved `Webhook` implementation. Works perfect now!
+- Added example for building bot with `Webhook` fetcher in
+  [Examples Repo](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/webhook_example.dart)
+- Added detailed documentation for `InlineQueryResultBuilder` and `Webhook`
+  classes.
+
 # 1.19.4
 
 - Minor README fix
@@ -39,9 +48,9 @@
 - ⚠️ Type of `Webhook.certificate` is changed to InputFile as described by the
   official documentation.
 - Added examples for
-  [Middleware](https://github.com/xooniverse/TeleverseExamples/blob/1c30d889d3a0b1d7bdceaad48d6cfd88208e87be/lib/middleware_example.dart)
+  [Middleware](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/middleware_example.dart)
   and
-  [Transformer](https://github.com/xooniverse/TeleverseExamples/blob/1c30d889d3a0b1d7bdceaad48d6cfd88208e87be/lib/transformer_example.dart)
+  [Transformer](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/transformer_example.dart)
   usage in Examples repo.
 
 # 1.19.0
