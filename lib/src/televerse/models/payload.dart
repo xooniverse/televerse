@@ -11,6 +11,7 @@ typedef PayloadFiles = List<Map<String, MultipartFile>>;
 ///
 /// This class encapsulates the data to be sent to an API endpoint. It can
 /// contain both standard parameters and multipart files for upload.
+///
 /// Properties:
 ///
 /// * [params]: An optional map containing additional parameters for the API call.
@@ -52,10 +53,10 @@ class Payload {
   ///   Each map associates a field key (a `String`) with its corresponding
   ///   `MultipartFile` object. This type is typically used to represent a collection
   ///   of files to be uploaded in a multipart request. (See [Payload.files] for details)
-  Payload({Map<String, dynamic>? params, this.files}) : params = params ?? {};
+  Payload([Map<String, dynamic>? params, this.files]) : params = params ?? {};
 
   /// Creates a new `Payload` instance from an existing map of parameters and a list of multipart files.
-
+  ///
   /// This factory constructor is useful when you already have the data for the
   /// payload in separate variables and want to create a new `Payload` object
   /// without the need to construct a new map or list.
@@ -72,8 +73,8 @@ class Payload {
   /// A new `Payload` object with the provided parameters and files.
   factory Payload.from([Map<String, dynamic>? params, PayloadFiles? files]) =>
       Payload(
-        params: params,
-        files: files,
+        params,
+        files,
       );
 
   /// Get the parameter value for the key
