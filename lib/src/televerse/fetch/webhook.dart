@@ -284,7 +284,7 @@ class Webhook extends Fetcher {
     Map<String, dynamic> body,
   ) {
     request.response.statusCode = statusCode;
-    request.response.write(body);
+    request.response.write(JsonEncoder.withIndent('  ').convert(body));
     request.response.close();
   }
 
