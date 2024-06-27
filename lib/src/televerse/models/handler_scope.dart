@@ -20,7 +20,7 @@ class HandlerScope<CTX extends Context> {
   final List<UpdateType> types;
 
   /// Predicate to filter updates
-  final bool Function(Context ctx) predicate;
+  final bool Function(CTX ctx) predicate;
 
   /// A flag that indicates if this is a conversation scope.
   final bool isConversation;
@@ -29,7 +29,7 @@ class HandlerScope<CTX extends Context> {
   final ID? chatId;
 
   /// Scope Options - Additional parameters for the scope.
-  final ScopeOptions? options;
+  final ScopeOptions<CTX>? options;
 
   /// Creates a new [HandlerScope].
   HandlerScope({
