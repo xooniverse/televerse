@@ -372,7 +372,13 @@ class Conversation {
     subscription = _bot.updatesStream.listen((update) {
       final sameChat = _isSameChat(update, chatId);
       if (sameChat && filter(update)) {
-        completer.complete(Context(_bot, update: update));
+        completer.complete(
+          Context(
+            api: _bot.api,
+            me: _bot.me,
+            update: update,
+          ),
+        );
       }
     });
 

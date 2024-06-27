@@ -1,7 +1,7 @@
 part of 'models.dart';
 
 /// A Handler Scope is used to define the scope and related information of a handler method.
-class HandlerScope {
+class HandlerScope<CTX extends Context> {
   /// If it's a command handler, we set `args` to the parameter of the command.
   final bool isCommand;
 
@@ -14,7 +14,7 @@ class HandlerScope {
   /// Handler
   ///
   /// Required unless [isConversation] is `true`.
-  final Handler? handler;
+  final Handler<CTX>? handler;
 
   /// The update type
   final List<UpdateType> types;

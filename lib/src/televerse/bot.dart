@@ -1,5 +1,12 @@
 part of '../../televerse.dart';
 
+/// Context Constructor is a function that takes two inputs and then creates a
+typedef ContextConstructor<CTX extends Context> = CTX Function({
+  required RawAPI api,
+  required User me,
+  required Update update,
+});
+
 /// Televerse
 /// This class is used to create a new bot instance. The bot instance is used to send and receive messages.
 ///
@@ -15,7 +22,7 @@ part of '../../televerse.dart';
 /// }
 /// ```
 ///
-class Bot {
+class Bot<CTX extends Context> {
   /// API Scheme
   final APIScheme _scheme;
 
@@ -161,7 +168,8 @@ class Bot {
     onError(_defaultErrorHandler);
 
     // Perform initial /getMe request
-    getMe().then(_ignore).catchError(_thenHandleGetMeError);
+    _getMeRequest = getMe();
+    _getMeRequest!.then(_ignore).catchError(_thenHandleGetMeError);
 
     // Set instance variable
     _instance = this;
@@ -244,11 +252,17 @@ class Bot {
     this.fetcher.setApi(api);
     _instance = this;
 
-    getMe().then(_ignore).catchError(_thenHandleGetMeError);
+    _getMeRequest = getMe();
+    _getMeRequest!.then(_ignore).catchError(_thenHandleGetMeError);
   }
 
   /// List of pending calls
   final List<_PendingCall> _pendingCalls = [];
+
+  /// (Internal) A Future that resolves to User of Bot info.
+  ///
+  /// In other words, initial getMe request :)
+  Future<User>? _getMeRequest;
 
   /// Whether _me is filled or not
   _GetMeStatus _getMeStatus = _GetMeStatus.notInitiated;
@@ -317,7 +331,7 @@ class Bot {
   ///
   /// This method sets additional info if any has to be set. For example, this method currently sets `Context.matches`
   /// parameter if the [scope] is a RegExp handler.
-  void _preProcess(HandlerScope scope, Context context) async {
+  void _preProcess(HandlerScope<CTX> scope, CTX context) async {
     if (scope.isRegExp) {
       final text = context.msg?.text ?? "";
       if (scope.pattern != null) {
@@ -327,7 +341,7 @@ class Bot {
   }
 
   /// Processes the Update as per the scope definition.
-  Future<void> _processUpdate(HandlerScope scope, Context context) async {
+  Future<void> _processUpdate(HandlerScope<CTX> scope, CTX context) async {
     if (_isAsync(scope.handler!)) {
       try {
         await ((scope.handler!(context)) as Future);
@@ -351,7 +365,7 @@ class Bot {
   /// Handler Scopes and proceeds to process the update.
   void _onUpdate(Update update) async {
     // Gets the sublist of Handler Scopes that is apt for the recieved Update
-    List<HandlerScope> sub = _handlerScopes.reversed.where((scope) {
+    List<HandlerScope<CTX>> sub = _handlerScopes.where((scope) {
       return scope.types.contains(update.type);
     }).toList();
 
@@ -362,7 +376,11 @@ class Bot {
     }
 
     // Creates the context instance for the update
-    final context = Context(this, update: update);
+    final context = _contextConstructor(
+      api: api,
+      me: !initialized ? await _getMeRequest! : me,
+      update: update,
+    );
 
     // Indexes of the forked Handler Scopes
     final forks = sub.indexed
@@ -420,7 +438,7 @@ class Bot {
   }
 
   /// List of Handler Scopes
-  final List<HandlerScope> _handlerScopes = [];
+  final List<HandlerScope<CTX>> _handlerScopes = [];
 
   /// List of middlewares added to the bot
   final List<Middleware> _middlewares = [];
@@ -470,6 +488,23 @@ class Bot {
         break;
     }
   }
+
+  /// Use custom context
+  void useContext(ContextConstructor<CTX> constructor) {
+    _usingCustomContext = true;
+    _contextConstructor = constructor;
+  }
+
+  /// A flag that indicates whether Bot is operating with a custom context.
+  bool get isUsingCustomContext => _usingCustomContext;
+  bool _usingCustomContext = false;
+  ContextConstructor<CTX> _contextConstructor = ({
+    required api,
+    required me,
+    required update,
+  }) {
+    return Context(api: api, me: me, update: update) as CTX;
+  };
 
   /// To manually handle updates without fetcher
   ///
@@ -546,12 +581,12 @@ class Bot {
   /// This will reply "Hello!" to any message that starts with `/start`.
   void command(
     Pattern command,
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
     bool considerCaption = false,
   }) {
     if (initialized) {
-      final scope = HandlerScope(
+      final scope = HandlerScope<CTX>(
         isCommand: true,
         options: options,
         handler: callback,
@@ -598,7 +633,7 @@ class Bot {
     Handler callback, {
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [UpdateType.callbackQuery],
@@ -622,7 +657,7 @@ class Bot {
     List<UpdateType> types, {
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: types,
@@ -683,7 +718,7 @@ class Bot {
     Handler callback, {
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -718,7 +753,7 @@ class Bot {
     Handler callback, {
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -754,7 +789,7 @@ class Bot {
     Handler callback, {
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: UpdateType.values,
@@ -779,7 +814,7 @@ class Bot {
     Handler callback, {
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: UpdateType.messages(),
@@ -812,7 +847,7 @@ class Bot {
     Handler callback, {
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       pattern: exp,
       isRegExp: true,
@@ -834,7 +869,7 @@ class Bot {
     Handler callback, {
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -857,7 +892,7 @@ class Bot {
 
   /// Registers a callback for the `/settings` command.
   void settings(
-    Handler handler, {
+    Handler<CTX> handler, {
     ScopeOptions? options,
   }) {
     return command(
@@ -869,7 +904,7 @@ class Bot {
 
   /// Registers a callback for the `/help` command.
   void help(
-    Handler handler, {
+    Handler<CTX> handler, {
     ScopeOptions? options,
   }) {
     return command(
@@ -967,7 +1002,7 @@ class Bot {
     bool shouldMatchCaptionEntities = false,
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: UpdateType.messages(),
@@ -997,7 +1032,7 @@ class Bot {
     bool shouldMatchCaptionEntities = false,
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: UpdateType.messages(),
@@ -1027,7 +1062,7 @@ class Bot {
     ChatMemberStatus? newStatus,
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       handler: callback,
       options: options,
       types: [
@@ -1116,7 +1151,7 @@ class Bot {
     String? pollId,
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -1152,7 +1187,7 @@ class Bot {
     Handler callback, {
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -1170,7 +1205,7 @@ class Bot {
     Handler callback, {
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -1190,7 +1225,7 @@ class Bot {
     Handler callback, {
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -1262,7 +1297,7 @@ class Bot {
       );
     }
 
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: UpdateType.messages(),
@@ -1309,7 +1344,7 @@ class Bot {
       );
     }
     if (username != null) {
-      final scope = HandlerScope(
+      final scope = HandlerScope<CTX>(
         options: options,
         handler: callback,
         types: [
@@ -1326,7 +1361,7 @@ class Bot {
       return _handlerScopes.add(scope);
     }
 
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -1573,7 +1608,7 @@ class Bot {
     ID? chatId,
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -2423,7 +2458,7 @@ class Bot {
     Handler callback, {
     ScopeOptions? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [

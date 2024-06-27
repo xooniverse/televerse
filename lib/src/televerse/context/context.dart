@@ -6,13 +6,10 @@ part of '../../../televerse.dart';
 /// Currently Televerse support the following types of contexts:
 class Context {
   /// The RawAPI getter.
-  RawAPI get api => _bot.api.._addContext(this);
+  final RawAPI api;
 
   /// The bot that received the update's informations.
-  User get me => _bot.me;
-
-  /// The RawAPI instance.
-  final Bot _bot;
+  final User me;
 
   /// The [Update] instance.
   ///
@@ -36,10 +33,13 @@ class Context {
   }
 
   /// Creates a new context.
-  Context(
-    this._bot, {
+  Context({
+    required this.api,
+    required this.me,
     required this.update,
-  });
+  }) {
+    api._addContext(this);
+  }
 
   /// Contains the matches of the regular expression. (Internal)
   List<RegExpMatch>? _matches;
@@ -141,6 +141,6 @@ class Context {
 }
 
 /// Base handler
-typedef Handler = FutureOr<void> Function(
-  Context ctx,
+typedef Handler<CTX extends Context> = FutureOr<void> Function(
+  CTX ctx,
 );
