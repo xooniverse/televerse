@@ -630,7 +630,7 @@ class Bot<CTX extends Context> {
   /// Registers a Handler Scope to listen to matching callback query.
   void _internalCallbackQueryRegister(
     Pattern data,
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     final scope = HandlerScope<CTX>(
@@ -653,7 +653,7 @@ class Bot<CTX extends Context> {
 
   /// Adds Handler Scope for a Accept-All predicate
   void _acceptAll(
-    Handler callback,
+    Handler<CTX> callback,
     List<UpdateType> types, {
     ScopeOptions? options,
   }) {
@@ -684,7 +684,7 @@ class Bot<CTX extends Context> {
   ///
   void callbackQuery(
     Pattern data,
-    Handler callback, {
+    Handler<CTX> callback, {
     @Deprecated("Use the 'data' parameter instead.") RegExp? regex,
     ScopeOptions? options,
   }) {
@@ -715,7 +715,7 @@ class Bot<CTX extends Context> {
   /// the [chatTypes] method.
   void chatType(
     ChatType type,
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     final scope = HandlerScope<CTX>(
@@ -750,7 +750,7 @@ class Bot<CTX extends Context> {
   /// from a private chat or a group.
   void chatTypes(
     List<ChatType> types,
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     final scope = HandlerScope<CTX>(
@@ -786,7 +786,7 @@ class Bot<CTX extends Context> {
   /// ```
   void filter(
     bool Function(Context ctx) predicate,
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     final scope = HandlerScope<CTX>(
@@ -811,7 +811,7 @@ class Bot<CTX extends Context> {
   /// ```
   void text(
     String text,
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     final scope = HandlerScope<CTX>(
@@ -844,7 +844,7 @@ class Bot<CTX extends Context> {
   /// matches the regular expression `Hello, (.*)!`.
   void hears(
     RegExp exp,
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     final scope = HandlerScope<CTX>(
@@ -866,7 +866,7 @@ class Bot<CTX extends Context> {
   /// The callback will be called when an inline query with the specified query is received.
   void inlineQuery(
     Pattern query,
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     final scope = HandlerScope<CTX>(
@@ -998,7 +998,7 @@ class Bot<CTX extends Context> {
   /// By default, this method will ONLY match entities in the message text.
   void entity(
     MessageEntityType type,
-    Handler callback, {
+    Handler<CTX> callback, {
     bool shouldMatchCaptionEntities = false,
     ScopeOptions? options,
   }) {
@@ -1028,7 +1028,7 @@ class Bot<CTX extends Context> {
   /// By default, this method will ONLY match entities in the message text.
   void entities(
     List<MessageEntityType> types,
-    Handler callback, {
+    Handler<CTX> callback, {
     bool shouldMatchCaptionEntities = false,
     ScopeOptions? options,
   }) {
@@ -1057,7 +1057,7 @@ class Bot<CTX extends Context> {
 
   /// Registers callback for the [ChatMemberUpdated] events
   void _internalChatMemberUpdatedHandling({
-    required Handler callback,
+    required Handler<CTX> callback,
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
     ScopeOptions? options,
@@ -1100,7 +1100,7 @@ class Bot<CTX extends Context> {
   /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
   /// filter to only receive updates for a specific status.
   void chatMember(
-    Handler callback, {
+    Handler<CTX> callback, {
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
     ScopeOptions? options,
@@ -1118,7 +1118,7 @@ class Bot<CTX extends Context> {
   /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
   /// filter to only receive updates for a specific status.
   void myChatMember({
-    required Handler callback,
+    required Handler<CTX> callback,
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
     ScopeOptions? options,
@@ -1133,7 +1133,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for the [Update.poll] events.
   void poll(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1147,7 +1147,7 @@ class Bot<CTX extends Context> {
   ///
   /// Optionally pass the [pollId] parameter to only receive updates for a specific poll.
   void pollAnswer(
-    Handler callback, {
+    Handler<CTX> callback, {
     String? pollId,
     ScopeOptions? options,
   }) {
@@ -1169,7 +1169,7 @@ class Bot<CTX extends Context> {
   /// Registers a callback for the [Update.chosenInlineResult] events.
   /// The callback will be called when a chosen inline result is received.
   void chosenInlineResult(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1184,7 +1184,7 @@ class Bot<CTX extends Context> {
   /// The callback will be called when a chat join request is received.
   void chatJoinRequest(
     ID chatId,
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     final scope = HandlerScope<CTX>(
@@ -1202,7 +1202,7 @@ class Bot<CTX extends Context> {
   /// Registers a callback for Shipping Query events for the specified User.
   void shippingQuery(
     ID chatId,
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     final scope = HandlerScope<CTX>(
@@ -1222,7 +1222,7 @@ class Bot<CTX extends Context> {
   /// Registers a callback for Pre Checkout Query events.
   void preCheckoutQuery(
     ChatID chatId,
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     final scope = HandlerScope<CTX>(
@@ -1241,7 +1241,7 @@ class Bot<CTX extends Context> {
 
   /// Sets up a callback for when a message with URL is received.
   void onURL(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool shouldMatchCaptionEntities = false,
     ScopeOptions? options,
   }) {
@@ -1255,7 +1255,7 @@ class Bot<CTX extends Context> {
 
   /// Sets up a callback for when a message with email is received.
   void onEmail(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool shouldMatchCaptionEntities = false,
     ScopeOptions? options,
   }) {
@@ -1269,7 +1269,7 @@ class Bot<CTX extends Context> {
 
   /// Sets up a callback for when a message with phone number is received.
   void onPhoneNumber(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool shouldMatchCaptionEntities = false,
     ScopeOptions? options,
   }) {
@@ -1283,7 +1283,7 @@ class Bot<CTX extends Context> {
 
   /// Sets up a callback for when a message with hashtag is received.
   void onHashtag(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool shouldMatchCaptionEntities = false,
     String? hashtag,
     ScopeOptions? options,
@@ -1331,7 +1331,7 @@ class Bot<CTX extends Context> {
   /// That is you don't have to setup a different callback for [MessageEntityType.mention]
   /// and [MessageEntityType.textMention] entities. (Well, you can if you want to.)
   void onMention(
-    Handler callback, {
+    Handler<CTX> callback, {
     String? username,
     int? userId,
     ScopeOptions? options,
@@ -1386,7 +1386,7 @@ class Bot<CTX extends Context> {
 
   /// This method sets up a callback to be fired when the bot is mentioned.
   void whenMentioned(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) async {
     if (initialized) {
@@ -1411,7 +1411,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Message updates
   void onMessage(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1423,7 +1423,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Edited Message updates
   void onEditedMessage(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1435,7 +1435,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Channel Post updates
   void onChannelPost(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1447,7 +1447,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Edited Channel Post updates
   void onEditedChannelPost(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1459,7 +1459,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Inline Query updates
   void onInlineQuery(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1471,7 +1471,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Chosen Inline Result updates
   void onChosenInlineResult(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1483,7 +1483,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Callback Query updates
   void onCallbackQuery(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1495,7 +1495,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Shipping Query updates
   void onShippingQuery(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1507,7 +1507,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Pre Checkout Query updates
   void onPreCheckoutQuery(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1519,7 +1519,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback to be fired for all successful payments
   void onSuccessfulPayment(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _internalSubMessageHandler(
@@ -1531,7 +1531,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Poll updates
   void onPoll(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1543,7 +1543,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Poll Answer updates
   void onPollAnswer(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1555,7 +1555,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all My Chat Member updates
   void onMyChatMember(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1567,7 +1567,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Chat Member updates
   void onChatMember(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1579,7 +1579,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for all Chat Join Request updates
   void onChatJoinRequest(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -1601,7 +1601,7 @@ class Bot<CTX extends Context> {
 
   /// Internal method to handle sub message handlers
   void _internalSubMessageHandler(
-    Handler callback,
+    Handler<CTX> callback,
     bool Function(Context) predicate, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
@@ -1633,7 +1633,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onAudio(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1656,7 +1656,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onDocument(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1679,7 +1679,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onPhoto(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1702,7 +1702,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onSticker(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1725,7 +1725,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onVideo(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1748,7 +1748,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onVideoNote(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1771,7 +1771,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onVoice(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1789,7 +1789,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for messages that contain a contact.
   void onContact(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
     ScopeOptions? options,
   }) {
@@ -1808,7 +1808,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onDice(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1831,7 +1831,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onGame(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1854,7 +1854,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onPollMessage(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1877,7 +1877,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onVenue(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1900,7 +1900,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onLocation(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1918,7 +1918,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for messages that is a live location update.
   void onLiveLocation(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
     ScopeOptions? options,
   }) {
@@ -1938,7 +1938,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onNewChatTitle(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1961,7 +1961,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onNewChatPhoto(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -1979,7 +1979,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for delete chat photo service messages.
   void onDeleteChatPhoto(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
     ScopeOptions? options,
   }) {
@@ -1998,7 +1998,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onPinnedMessage(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -2018,7 +2018,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for a user is shared to the bot
   void onUsrShared(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
     ScopeOptions? options,
   }) {
@@ -2032,7 +2032,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback for a chat is shared to the bot
   void onChatShared(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
     ScopeOptions? options,
   }) {
@@ -2051,7 +2051,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void whenVideoChatScheduled(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -2076,7 +2076,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void whenVideoChatStarted(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -2101,7 +2101,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void whenVideoChatEnded(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -2121,7 +2121,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback to be fired when new participants are invited to a video chat
   void whenVideoChatParticipantsInvited(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
     ScopeOptions? options,
   }) {
@@ -2135,7 +2135,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback to be fired when a forum topic is created
   void onForumTopicCreated(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
     ScopeOptions? options,
   }) {
@@ -2149,7 +2149,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback to be fired when a forum topic is edited
   void onForumTopicEdited(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
     ScopeOptions? options,
   }) {
@@ -2163,7 +2163,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback to be fired when a forum topic is closed
   void onForumTopicClosed(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
     ScopeOptions? options,
   }) {
@@ -2177,7 +2177,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback to be fired when a forum topic is reopened
   void onForumTopicReopened(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
     ScopeOptions? options,
   }) {
@@ -2191,7 +2191,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback to be fired when data sent from a web app is received
   void onWebAppData(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
     ScopeOptions? options,
   }) {
@@ -2210,7 +2210,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onAnimation(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -2235,7 +2235,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onText(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -2260,7 +2260,7 @@ class Bot<CTX extends Context> {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onCaption(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -2353,7 +2353,7 @@ class Bot<CTX extends Context> {
   /// Next step handler
   void setNextStep(
     Message msg,
-    Handler callback,
+    Handler<CTX> callback,
     ScopeOptions? options,
   ) {
     final scopeName = "next-step-${msg.messageId}";
@@ -2378,7 +2378,7 @@ class Bot<CTX extends Context> {
   ///
   /// This method will match any command that is sent to the bot.
   void onCommand(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
@@ -2402,7 +2402,7 @@ class Bot<CTX extends Context> {
 
   /// Register a callback when a reaction to a message was changed by a user.
   void onMessageReaction(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -2414,7 +2414,7 @@ class Bot<CTX extends Context> {
 
   /// Reactions to a message with anonymous reactions were changed.
   void onMessageReactionCount(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -2428,7 +2428,7 @@ class Bot<CTX extends Context> {
   ///
   /// The bot must be an administrator in the chat for this to work.
   void onChatBoosted(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -2442,7 +2442,7 @@ class Bot<CTX extends Context> {
   ///
   /// The bot must be an administrator in the chat for this to work.
   void onChatBoostRemoved(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -2455,7 +2455,7 @@ class Bot<CTX extends Context> {
   /// Registers a callback to be fired when a user reacts given emoji to a message.
   void whenReacted(
     String emoji,
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     final scope = HandlerScope<CTX>(
@@ -2484,7 +2484,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback to be fired when a connection of the bot with a business account is made.
   void onBusinessConnection(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -2496,7 +2496,7 @@ class Bot<CTX extends Context> {
 
   /// Registers callback to be fired when a new message is received in a business account connected to the bot.
   void onBusinessMessage(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -2508,7 +2508,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback to be fired when a business message is edited.
   void onBusinessMessageEdited(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
@@ -2520,7 +2520,7 @@ class Bot<CTX extends Context> {
 
   /// Registers a callback to be fired when a business message is deleted.
   void onBusinessMessageDeleted(
-    Handler callback, {
+    Handler<CTX> callback, {
     ScopeOptions? options,
   }) {
     return _acceptAll(
