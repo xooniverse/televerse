@@ -4,7 +4,7 @@ part of 'models.dart';
 /// It contains the error and the stack trace.
 ///
 /// Optionally, it can contain the context of the error.
-class BotError implements Exception {
+class BotError<CTX extends Context> implements Exception {
   /// The error.
   ///
   /// This can possibly be a [TelegramException] or [TeleverseException] or [LongPollingException] or [DioException]
@@ -14,7 +14,7 @@ class BotError implements Exception {
   final StackTrace stackTrace;
 
   /// The context of the error.
-  final Context? ctx;
+  final CTX? ctx;
 
   /// A flag that indicates whether the error occurred at a Middleware
   final bool sourceIsMiddleware;

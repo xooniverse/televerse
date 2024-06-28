@@ -21,7 +21,8 @@ part of '../../../televerse.dart';
 ///
 /// By using the `Middleware` class, you can create reusable components that
 /// can be attached to the bot and executed in sequence.
-abstract interface class Middleware implements MiddlewareBase {
+abstract interface class Middleware<CTX extends Context>
+    implements MiddlewareBase {
   /// The middleware function that processes the [Context] and optionally
   /// passes control to the next middleware or main handler.
   ///
@@ -45,7 +46,7 @@ abstract interface class Middleware implements MiddlewareBase {
   /// }
   /// ```
   FutureOr<void> handle(
-    Context ctx,
+    CTX ctx,
     NextFunction next,
   );
 

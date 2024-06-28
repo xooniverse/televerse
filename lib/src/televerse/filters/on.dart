@@ -1,13 +1,13 @@
 part of '../../../televerse.dart';
 
 /// The On event. Attaches handlers for specific events.
-extension On on Bot {
+extension On<CTX extends Context> on Bot<CTX> {
   /// Registers a callback for particular filter types.
   ///
   /// The call back will be only be executed on specific update types. You can
   /// use the [TeleverseEvent] object to specify which update you want to listen to.
-  void on(TeleverseEvent type, Handler callback) {
-    final scope = HandlerScope(
+  void on(TeleverseEvent type, Handler<CTX> callback) {
+    final scope = HandlerScope<CTX>(
       handler: callback,
       types: type.types,
       predicate: (ctx) {

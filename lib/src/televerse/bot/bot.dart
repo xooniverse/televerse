@@ -1,4 +1,4 @@
-part of '../../televerse.dart';
+part of '../../../televerse.dart';
 
 /// Televerse
 /// This class is used to create a new bot instance. The bot instance is used to send and receive messages.
@@ -15,7 +15,7 @@ part of '../../televerse.dart';
 /// }
 /// ```
 ///
-class Bot {
+class Bot<CTX extends Context> {
   /// API Scheme
   final APIScheme _scheme;
 
@@ -31,7 +31,7 @@ class Bot {
   /// Options to configure the logger.
   final LoggerOptions? _loggerOptions;
 
-  void _defaultErrorHandler(BotError err) {
+  void _defaultErrorHandler(BotError<CTX> err) {
     print("‼️ An error occurred while processing the update.");
     if (err.sourceIsMiddleware) {
       print("The exception is occurred at an attached middleware.");
@@ -40,13 +40,16 @@ class Bot {
     print(err.error);
     print(err.stackTrace);
 
-    print("---------------------");
     print(
       "It seems you haven't set an error handler. You can do this with `bot.onError(...)` to manage most crashes.\n",
     );
 
     if (fetcher.isActive) stop();
+    _report();
+  }
 
+  static void _report() {
+    print("---------------------");
     print(
       "If you believe this issue is with the library, please raise an issue on\n"
       "the repository (link below). Please make sure you remove any sensitive information\n"
@@ -58,7 +61,7 @@ class Bot {
   }
 
   /// Handler for unexpected errors.
-  late FutureOr<void> Function(BotError error) _onError;
+  late FutureOr<void> Function(BotError<CTX> error) _onError;
 
   /// The timeout duration for the requests.
   ///
@@ -120,7 +123,7 @@ class Bot {
   }
 
   /// The fetcher - used to fetch updates from the Telegram servers.
-  late final Fetcher fetcher;
+  late final Fetcher<CTX> fetcher;
 
   /// The bot token.
   final String token;
@@ -144,7 +147,7 @@ class Bot {
   /// If you're running the Bot API server locally, you should pass the [baseURL] and the [scheme] parameters to the constructor.
   Bot(
     this.token, {
-    Fetcher? fetcher,
+    Fetcher<CTX>? fetcher,
     String baseURL = RawAPI.defaultBase,
     APIScheme scheme = APIScheme.https,
     LoggerOptions? loggerOptions,
@@ -152,19 +155,9 @@ class Bot {
   })  : _baseURL = _cookBaseUrlString(baseURL),
         isLocal = baseURL != RawAPI.defaultBase,
         _loggerOptions = loggerOptions,
-        _scheme = scheme {
-    // Create Fetcher and assign the RawAPI instance
-    this.fetcher = fetcher ?? LongPolling();
-    this.fetcher.setApi(api);
-
-    // Set the default erorr handler
-    onError(_defaultErrorHandler);
-
-    // Perform initial /getMe request
-    getMe().then(_ignore).catchError(_thenHandleGetMeError);
-
-    // Set instance variable
-    _instance = this;
+        _scheme = scheme,
+        _api = RawAPI(token, loggerOptions: loggerOptions, timeout: timeout) {
+    _initializeBot(fetcher);
   }
 
   /// Function to ignore things.
@@ -179,7 +172,7 @@ class Bot {
         err = TeleverseException.timeoutException(st, timeout!);
       }
     }
-    final botErr = BotError(err, st);
+    final botErr = BotError<CTX>(err, st);
     await _onError(botErr);
   }
 
@@ -209,7 +202,7 @@ class Bot {
   /// Learn to setup Local Bot API Server here: https://github.com/tdlib/telegram-bot-api
   factory Bot.local(
     String token, {
-    Fetcher? fetcher,
+    Fetcher<CTX>? fetcher,
     String baseURL = "localhost:8081",
     APIScheme scheme = APIScheme.http,
     LoggerOptions? loggerOptions,
@@ -232,23 +225,41 @@ class Bot {
   /// `RawAPI` instance separately.
   Bot.fromAPI(
     RawAPI api, {
-    Fetcher? fetcher,
+    Fetcher<CTX>? fetcher,
   })  : _api = api,
         _baseURL = api._baseUrl,
         isLocal = api._baseUrl != RawAPI.defaultBase,
         _loggerOptions = api._httpClient.loggerOptions,
         _scheme = api._scheme,
         timeout = api.timeout,
-        token = api.token,
-        fetcher = fetcher ?? LongPolling() {
-    this.fetcher.setApi(api);
-    _instance = this;
+        token = api.token {
+    _initializeBot(fetcher);
+  }
 
-    getMe().then(_ignore).catchError(_thenHandleGetMeError);
+  /// Initializes the bot with common setup logic.
+  void _initializeBot(Fetcher<CTX>? fetcher) {
+    // Create Fetcher and assign the RawAPI instance
+    this.fetcher = fetcher ?? LongPolling<CTX>();
+    this.fetcher.setApi(_api!);
+
+    // Set the default error handler
+    onError(_defaultErrorHandler);
+
+    // Perform initial /getMe request
+    _getMeRequest = getMe();
+    _getMeRequest!.then(_ignore).catchError(_thenHandleGetMeError);
+
+    // Set instance variable
+    _instance = this;
   }
 
   /// List of pending calls
   final List<_PendingCall> _pendingCalls = [];
+
+  /// (Internal) A Future that resolves to User of Bot info.
+  ///
+  /// In other words, initial getMe request :)
+  Future<User>? _getMeRequest;
 
   /// Whether _me is filled or not
   _GetMeStatus _getMeStatus = _GetMeStatus.notInitiated;
@@ -317,7 +328,7 @@ class Bot {
   ///
   /// This method sets additional info if any has to be set. For example, this method currently sets `Context.matches`
   /// parameter if the [scope] is a RegExp handler.
-  void _preProcess(HandlerScope scope, Context context) async {
+  void _preProcess(HandlerScope<CTX> scope, CTX context) async {
     if (scope.isRegExp) {
       final text = context.msg?.text ?? "";
       if (scope.pattern != null) {
@@ -327,7 +338,7 @@ class Bot {
   }
 
   /// Processes the Update as per the scope definition.
-  Future<void> _processUpdate(HandlerScope scope, Context context) async {
+  Future<void> _processUpdate(HandlerScope<CTX> scope, CTX context) async {
     if (_isAsync(scope.handler!)) {
       try {
         await ((scope.handler!(context)) as Future);
@@ -351,7 +362,7 @@ class Bot {
   /// Handler Scopes and proceeds to process the update.
   void _onUpdate(Update update) async {
     // Gets the sublist of Handler Scopes that is apt for the recieved Update
-    List<HandlerScope> sub = _handlerScopes.reversed.where((scope) {
+    List<HandlerScope<CTX>> sub = _handlerScopes.where((scope) {
       return scope.types.contains(update.type);
     }).toList();
 
@@ -362,7 +373,11 @@ class Bot {
     }
 
     // Creates the context instance for the update
-    final context = Context(this, update: update);
+    final context = await _contextConstructor(
+      api: api,
+      me: !initialized ? await _getMeRequest! : me,
+      update: update,
+    );
 
     // Indexes of the forked Handler Scopes
     final forks = sub.indexed
@@ -396,7 +411,7 @@ class Bot {
               await sub[i].options!.customPredicate!.call(context);
           if (!customPass) continue;
         } catch (err, stack) {
-          final botErr = BotError(err, stack);
+          final botErr = BotError<CTX>(err, stack);
           await _onError(botErr);
           continue;
         }
@@ -420,14 +435,14 @@ class Bot {
   }
 
   /// List of Handler Scopes
-  final List<HandlerScope> _handlerScopes = [];
+  final List<HandlerScope<CTX>> _handlerScopes = [];
 
   /// List of middlewares added to the bot
   final List<Middleware> _middlewares = [];
 
   /// Applies middlewares over the passed context
   Future<void> _applyMiddlewares(
-    Context ctx,
+    CTX ctx,
     Future<void> Function() handler,
   ) async {
     int index = -1;
@@ -439,7 +454,7 @@ class Bot {
         try {
           await _middlewares[index].handle(ctx, next);
         } catch (err, stack) {
-          final botErr = BotError(
+          final botErr = BotError<CTX>(
             err,
             stack,
             sourceIsMiddleware: true,
@@ -450,7 +465,7 @@ class Bot {
         try {
           await handler();
         } catch (err, stack) {
-          final botErr = BotError(err, stack);
+          final botErr = BotError<CTX>(err, stack);
           _onError(botErr);
         }
       }
@@ -471,6 +486,117 @@ class Bot {
     }
   }
 
+  /// Use custom context constructor to specify how custom context instances should be created.
+  ///
+  /// This method allows you to register a constructor function that creates instances
+  /// of a custom context type (`CTX`). The custom context must extend the base `Context` class
+  /// and its constructor should match the required parameters (`api`, `me`, and `update`).
+  ///
+  /// If you specify a custom context type (`Bot<MyCustomContext>`), ensure you register
+  /// the constructor using this method (`contextBuilder`) before initializing your bot instance.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// class MyCustomContext extends Context {
+  ///   MyCustomContext({
+  ///     required super.api,
+  ///     required super.me,
+  ///     required super.update,
+  ///   });
+  /// }
+  ///
+  /// final bot = Bot<MyCustomContext>(token);
+  /// bot.contextBuilder(MyCustomContext.new);
+  /// ```
+  ///
+  /// If you encounter a `TypeError` indicating that the constructor for your custom context
+  /// hasn't been registered, make sure to use this method to specify the constructor.
+  ///
+  /// ```dart
+  /// bot.contextBuilder(MyCustomContext.new);
+  /// ```
+  ///
+  /// For detailed usage instructions and examples, visit the [Custom Context Documentation](https://televerse.web.app/doc/custom-context).
+  void contextBuilder(ContextConstructor<CTX> constructor) {
+    _usingCustomContext = true;
+    _contextConstructor = constructor;
+  }
+
+  /// A flag that indicates whether the Bot is configured to use a custom context.
+  ///
+  /// When set to `true`, it means the Bot instance is using a custom context type (`CTX`),
+  /// and the context constructor (`_contextConstructor`) has been registered to create instances
+  /// of this custom context.
+  ///
+  /// To use a custom context, you must register its constructor using [contextBuilder].
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final bot = Bot<MyCustomContext>(token);
+  /// bot.contextBuilder(MyCustomContext.new);
+  /// print(bot.isUsingCustomContext); // true
+  /// ```
+  bool get isUsingCustomContext => _usingCustomContext;
+
+  /// Internal flag to track whether the Bot is configured to use a custom context.
+  bool _usingCustomContext = false;
+
+  /// Context constructor function used to create instances of the custom context (`CTX`).
+  ///
+  /// This function is registered using [contextBuilder] and is responsible for creating
+  /// instances of the custom context type (`CTX`) with the required parameters (`api`, `me`, `update`).
+  ///
+  /// Example implementation:
+  /// ```dart
+  /// ContextConstructor<CTX> _contextConstructor = ({
+  ///   required RawAPI api,
+  ///   required User me,
+  ///   required Update update,
+  /// }) {
+  ///   return MyCustomContext(api: api, me: me, update: update);
+  /// };
+  /// ```
+  ContextConstructor<CTX> _contextConstructor = ({
+    required RawAPI api,
+    required User me,
+    required Update update,
+  }) {
+    void handleTypeError() {
+      print("A `TypeError` occurred while trying to create Context.\n");
+
+      if (CTX != Context) {
+        print(
+          "It seems like you have specified a custom context type in the Bot definition as `Bot<$CTX>`, "
+          "but you haven't registered the constructor for your custom Context.\n"
+          "Generally, you can register a constructor with the following line:\n"
+          "  bot.useContext($CTX.new);\n\n"
+          "For example, if you have a custom context class `MyContext`:\n\n"
+          "class MyContext extends Context {\n"
+          "  MyContext({required super.api, required super.me, required super.update});\n"
+          "}\n\n"
+          "You should register the constructor in your bot setup as follows:\n\n"
+          "final bot = Bot<MyContext>(token);\n"
+          "bot.useContext(MyContext.new);\n\n"
+          "This ensures that the bot can create instances of your custom context correctly.\n"
+          "If you still encounter issues, make sure that your custom context class extends `Context` "
+          "and its constructor matches the required parameters:\n\n"
+          "  MyContext({required super.api, required super.me, required super.update});\n"
+          "📖 Check out the complete usage documentation here: https://televerse.web.app/doc/custom-context\n",
+        );
+      }
+
+      _report();
+      print("");
+    }
+
+    try {
+      return Context(api: api, me: me, update: update) as CTX;
+    } catch (err) {
+      if (err is TypeError) handleTypeError();
+      rethrow;
+    }
+  };
+
   /// To manually handle updates without fetcher
   ///
   /// This method is useful when you want to use a custom webhook server instead of the default one provided by Televerse,
@@ -486,7 +612,7 @@ class Bot {
   ///
   /// Optional [isServerless] flag can be passed to the method. If you set this flag to true, the bot will not start the fetcher.
   Future<void> start([
-    Handler? handler,
+    Handler<CTX>? handler,
     bool isServerless = false,
   ]) async {
     // Registers a handler to listen for /start command
@@ -504,7 +630,7 @@ class Bot {
       return await fetcher.start();
     } catch (err, stack) {
       fetcher.stop();
-      final botErr = BotError(err, stack);
+      final botErr = BotError<CTX>(err, stack);
       await _onError(botErr);
       return fetcher.start();
     }
@@ -546,12 +672,12 @@ class Bot {
   /// This will reply "Hello!" to any message that starts with `/start`.
   void command(
     Pattern command,
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
     bool considerCaption = false,
   }) {
     if (initialized) {
-      final scope = HandlerScope(
+      final scope = HandlerScope<CTX>(
         isCommand: true,
         options: options,
         handler: callback,
@@ -595,10 +721,10 @@ class Bot {
   /// Registers a Handler Scope to listen to matching callback query.
   void _internalCallbackQueryRegister(
     Pattern data,
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [UpdateType.callbackQuery],
@@ -618,11 +744,11 @@ class Bot {
 
   /// Adds Handler Scope for a Accept-All predicate
   void _acceptAll(
-    Handler callback,
+    Handler<CTX> callback,
     List<UpdateType> types, {
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: types,
@@ -649,9 +775,9 @@ class Bot {
   ///
   void callbackQuery(
     Pattern data,
-    Handler callback, {
+    Handler<CTX> callback, {
     @Deprecated("Use the 'data' parameter instead.") RegExp? regex,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalCallbackQueryRegister(
       data,
@@ -680,10 +806,10 @@ class Bot {
   /// the [chatTypes] method.
   void chatType(
     ChatType type,
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -715,10 +841,10 @@ class Bot {
   /// from a private chat or a group.
   void chatTypes(
     List<ChatType> types,
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -750,11 +876,11 @@ class Bot {
   /// });
   /// ```
   void filter(
-    bool Function(Context ctx) predicate,
-    Handler callback, {
-    ScopeOptions? options,
+    bool Function(CTX ctx) predicate,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: UpdateType.values,
@@ -776,10 +902,10 @@ class Bot {
   /// ```
   void text(
     String text,
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: UpdateType.messages(),
@@ -809,10 +935,10 @@ class Bot {
   /// matches the regular expression `Hello, (.*)!`.
   void hears(
     RegExp exp,
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       pattern: exp,
       isRegExp: true,
@@ -831,10 +957,10 @@ class Bot {
   /// The callback will be called when an inline query with the specified query is received.
   void inlineQuery(
     Pattern query,
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -857,8 +983,8 @@ class Bot {
 
   /// Registers a callback for the `/settings` command.
   void settings(
-    Handler handler, {
-    ScopeOptions? options,
+    Handler<CTX> handler, {
+    ScopeOptions<CTX>? options,
   }) {
     return command(
       "settings",
@@ -869,8 +995,8 @@ class Bot {
 
   /// Registers a callback for the `/help` command.
   void help(
-    Handler handler, {
-    ScopeOptions? options,
+    Handler<CTX> handler, {
+    ScopeOptions<CTX>? options,
   }) {
     return command(
       "help",
@@ -896,7 +1022,7 @@ class Bot {
   /// Note: you DON'T have to manually wait for the [ResponseParameters.retryAfter] duration.
   /// The fetcher will automatically wait for the duration and start polling again.
   void onError(
-    void Function(BotError err) handler,
+    void Function(BotError<CTX> err) handler,
   ) {
     _onError = handler;
     fetcher.onError(handler);
@@ -908,7 +1034,7 @@ class Bot {
   ///
   /// This acts as a shortcut for the [entity] method and [onHashtag] methods.
   bool _internalEntityMatcher({
-    required Context context,
+    required CTX context,
     required MessageEntityType type,
     String? content,
     bool shouldMatchCaptionEntities = false,
@@ -963,11 +1089,11 @@ class Bot {
   /// By default, this method will ONLY match entities in the message text.
   void entity(
     MessageEntityType type,
-    Handler callback, {
+    Handler<CTX> callback, {
     bool shouldMatchCaptionEntities = false,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: UpdateType.messages(),
@@ -993,11 +1119,11 @@ class Bot {
   /// By default, this method will ONLY match entities in the message text.
   void entities(
     List<MessageEntityType> types,
-    Handler callback, {
+    Handler<CTX> callback, {
     bool shouldMatchCaptionEntities = false,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: UpdateType.messages(),
@@ -1022,12 +1148,12 @@ class Bot {
 
   /// Registers callback for the [ChatMemberUpdated] events
   void _internalChatMemberUpdatedHandling({
-    required Handler callback,
+    required Handler<CTX> callback,
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       handler: callback,
       options: options,
       types: [
@@ -1065,10 +1191,10 @@ class Bot {
   /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
   /// filter to only receive updates for a specific status.
   void chatMember(
-    Handler callback, {
+    Handler<CTX> callback, {
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalChatMemberUpdatedHandling(
       options: options,
@@ -1083,10 +1209,10 @@ class Bot {
   /// You can optionally specify [ChatMemberStatus] to [oldStatus] and [newStatus]
   /// filter to only receive updates for a specific status.
   void myChatMember({
-    required Handler callback,
+    required Handler<CTX> callback,
     ChatMemberStatus? oldStatus,
     ChatMemberStatus? newStatus,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalChatMemberUpdatedHandling(
       callback: callback,
@@ -1098,8 +1224,8 @@ class Bot {
 
   /// Registers a callback for the [Update.poll] events.
   void poll(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1112,11 +1238,11 @@ class Bot {
   ///
   /// Optionally pass the [pollId] parameter to only receive updates for a specific poll.
   void pollAnswer(
-    Handler callback, {
+    Handler<CTX> callback, {
     String? pollId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -1134,8 +1260,8 @@ class Bot {
   /// Registers a callback for the [Update.chosenInlineResult] events.
   /// The callback will be called when a chosen inline result is received.
   void chosenInlineResult(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1149,10 +1275,10 @@ class Bot {
   /// The callback will be called when a chat join request is received.
   void chatJoinRequest(
     ID chatId,
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -1167,10 +1293,10 @@ class Bot {
   /// Registers a callback for Shipping Query events for the specified User.
   void shippingQuery(
     ID chatId,
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -1187,10 +1313,10 @@ class Bot {
   /// Registers a callback for Pre Checkout Query events.
   void preCheckoutQuery(
     ChatID chatId,
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -1206,9 +1332,9 @@ class Bot {
 
   /// Sets up a callback for when a message with URL is received.
   void onURL(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool shouldMatchCaptionEntities = false,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return entity(
       MessageEntityType.url,
@@ -1220,9 +1346,9 @@ class Bot {
 
   /// Sets up a callback for when a message with email is received.
   void onEmail(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool shouldMatchCaptionEntities = false,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return entity(
       MessageEntityType.email,
@@ -1234,9 +1360,9 @@ class Bot {
 
   /// Sets up a callback for when a message with phone number is received.
   void onPhoneNumber(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool shouldMatchCaptionEntities = false,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return entity(
       MessageEntityType.phoneNumber,
@@ -1248,10 +1374,10 @@ class Bot {
 
   /// Sets up a callback for when a message with hashtag is received.
   void onHashtag(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool shouldMatchCaptionEntities = false,
     String? hashtag,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     if (hashtag == null) {
       return entity(
@@ -1262,7 +1388,7 @@ class Bot {
       );
     }
 
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: UpdateType.messages(),
@@ -1296,10 +1422,10 @@ class Bot {
   /// That is you don't have to setup a different callback for [MessageEntityType.mention]
   /// and [MessageEntityType.textMention] entities. (Well, you can if you want to.)
   void onMention(
-    Handler callback, {
+    Handler<CTX> callback, {
     String? username,
     int? userId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     if (username == null && userId == null) {
       return entity(
@@ -1309,7 +1435,7 @@ class Bot {
       );
     }
     if (username != null) {
-      final scope = HandlerScope(
+      final scope = HandlerScope<CTX>(
         options: options,
         handler: callback,
         types: [
@@ -1326,7 +1452,7 @@ class Bot {
       return _handlerScopes.add(scope);
     }
 
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -1351,8 +1477,8 @@ class Bot {
 
   /// This method sets up a callback to be fired when the bot is mentioned.
   void whenMentioned(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) async {
     if (initialized) {
       return onMention(
@@ -1376,8 +1502,8 @@ class Bot {
 
   /// Registers a callback for all Message updates
   void onMessage(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1388,8 +1514,8 @@ class Bot {
 
   /// Registers a callback for all Edited Message updates
   void onEditedMessage(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1400,8 +1526,8 @@ class Bot {
 
   /// Registers a callback for all Channel Post updates
   void onChannelPost(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1412,8 +1538,8 @@ class Bot {
 
   /// Registers a callback for all Edited Channel Post updates
   void onEditedChannelPost(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1424,8 +1550,8 @@ class Bot {
 
   /// Registers a callback for all Inline Query updates
   void onInlineQuery(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1436,8 +1562,8 @@ class Bot {
 
   /// Registers a callback for all Chosen Inline Result updates
   void onChosenInlineResult(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1448,8 +1574,8 @@ class Bot {
 
   /// Registers a callback for all Callback Query updates
   void onCallbackQuery(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1460,8 +1586,8 @@ class Bot {
 
   /// Registers a callback for all Shipping Query updates
   void onShippingQuery(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1472,8 +1598,8 @@ class Bot {
 
   /// Registers a callback for all Pre Checkout Query updates
   void onPreCheckoutQuery(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1484,8 +1610,8 @@ class Bot {
 
   /// Registers a callback to be fired for all successful payments
   void onSuccessfulPayment(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1496,8 +1622,8 @@ class Bot {
 
   /// Registers a callback for all Poll updates
   void onPoll(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1508,8 +1634,8 @@ class Bot {
 
   /// Registers a callback for all Poll Answer updates
   void onPollAnswer(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1520,8 +1646,8 @@ class Bot {
 
   /// Registers a callback for all My Chat Member updates
   void onMyChatMember(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1532,8 +1658,8 @@ class Bot {
 
   /// Registers a callback for all Chat Member updates
   void onChatMember(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1544,8 +1670,8 @@ class Bot {
 
   /// Registers a callback for all Chat Join Request updates
   void onChatJoinRequest(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -1566,14 +1692,14 @@ class Bot {
 
   /// Internal method to handle sub message handlers
   void _internalSubMessageHandler(
-    Handler callback,
+    Handler<CTX> callback,
     bool Function(Context) predicate, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -1598,11 +1724,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onAudio(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1621,11 +1747,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onDocument(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1644,11 +1770,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onPhoto(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1667,11 +1793,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onSticker(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1690,11 +1816,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onVideo(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1713,11 +1839,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onVideoNote(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1736,11 +1862,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onVoice(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1754,9 +1880,9 @@ class Bot {
 
   /// Registers a callback for messages that contain a contact.
   void onContact(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1773,11 +1899,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onDice(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1796,11 +1922,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onGame(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1819,11 +1945,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onPollMessage(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1842,11 +1968,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onVenue(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1865,11 +1991,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onLocation(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1883,9 +2009,9 @@ class Bot {
 
   /// Registers a callback for messages that is a live location update.
   void onLiveLocation(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1903,11 +2029,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onNewChatTitle(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1926,11 +2052,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onNewChatPhoto(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1944,9 +2070,9 @@ class Bot {
 
   /// Registers a callback for delete chat photo service messages.
   void onDeleteChatPhoto(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1963,11 +2089,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onPinnedMessage(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1983,9 +2109,9 @@ class Bot {
 
   /// Registers a callback for a user is shared to the bot
   void onUsrShared(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -1997,9 +2123,9 @@ class Bot {
 
   /// Registers a callback for a chat is shared to the bot
   void onChatShared(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2016,11 +2142,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void whenVideoChatScheduled(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2041,11 +2167,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void whenVideoChatStarted(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2066,11 +2192,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void whenVideoChatEnded(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2086,9 +2212,9 @@ class Bot {
 
   /// Registers a callback to be fired when new participants are invited to a video chat
   void whenVideoChatParticipantsInvited(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2100,9 +2226,9 @@ class Bot {
 
   /// Registers a callback to be fired when a forum topic is created
   void onForumTopicCreated(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2114,9 +2240,9 @@ class Bot {
 
   /// Registers a callback to be fired when a forum topic is edited
   void onForumTopicEdited(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2128,9 +2254,9 @@ class Bot {
 
   /// Registers a callback to be fired when a forum topic is closed
   void onForumTopicClosed(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2142,9 +2268,9 @@ class Bot {
 
   /// Registers a callback to be fired when a forum topic is reopened
   void onForumTopicReopened(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2156,9 +2282,9 @@ class Bot {
 
   /// Registers a callback to be fired when data sent from a web app is received
   void onWebAppData(
-    Handler callback, {
+    Handler<CTX> callback, {
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2175,11 +2301,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onAnimation(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2200,11 +2326,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onText(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2225,11 +2351,11 @@ class Bot {
   ///
   /// Alternatively, you can pass the [onlyChannelPosts] parameter to only match messages that are sent in channels.
   void onCaption(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2246,8 +2372,8 @@ class Bot {
   /// Attach an Inline Menu.
   ///
   /// This method will make the menu handlers to be called when the menu buttons are pressed.
-  void attachMenu(TeleverseMenu menu) {
-    if (menu is InlineMenu) {
+  void attachMenu(TeleverseMenu<CTX> menu) {
+    if (menu is InlineMenu<CTX>) {
       int rows = menu._buttons.length;
       for (int i = 0; i < rows; i++) {
         int cols = menu._buttons[i].length;
@@ -2264,7 +2390,7 @@ class Bot {
         }
       }
     }
-    if (menu is KeyboardMenu) {
+    if (menu is KeyboardMenu<CTX>) {
       int rows = menu._buttons.length;
       for (int i = 0; i < rows; i++) {
         int cols = menu._buttons[i].length;
@@ -2273,32 +2399,41 @@ class Bot {
           final text = button.text;
           final name = "${menu.name}-$text";
 
-          final action = button.handler as Handler;
+          final action = button.handler;
           switch (button.runtimeType) {
             case const (_KeyboardMenuTextButton):
               _internalSubMessageHandler(
-                action,
+                action!,
                 (ctx) => ctx.message?.text == text,
-                options: ScopeOptions._createOrCopy(button.options, name: name),
+                options: ScopeOptions._createOrCopy<CTX>(
+                  button.options,
+                  name: name,
+                ),
               );
               break;
             case const (_KeyboardMenuRequestContactButton):
               _internalSubMessageHandler(
-                action,
+                action!,
                 (ctx) => ctx.message?.contact != null,
-                options: ScopeOptions._createOrCopy(button.options, name: name),
+                options: ScopeOptions._createOrCopy<CTX>(
+                  button.options,
+                  name: name,
+                ),
               );
               break;
             case const (_KeyboardMenuRequestLocationButton):
               _internalSubMessageHandler(
-                action,
+                action!,
                 (ctx) => ctx.message?.location != null,
-                options: ScopeOptions._createOrCopy(button.options, name: name),
+                options: ScopeOptions._createOrCopy<CTX>(
+                  button.options,
+                  name: name,
+                ),
               );
               break;
             case const (_KeyboardMenuRequestUsersButton):
               _internalSubMessageHandler(
-                action,
+                action!,
                 (ctx) => ctx.message?.usersShared != null,
                 options: ScopeOptions._createOrCopy(button.options, name: name),
               );
@@ -2309,7 +2444,7 @@ class Bot {
   }
 
   /// Remove an Inline Menu.
-  void removeMenu(TeleverseMenu menu) {
+  void removeMenu(TeleverseMenu<CTX> menu) {
     _handlerScopes.removeWhere(
       (scope) => scope.name?.startsWith(menu.name) ?? false,
     );
@@ -2318,8 +2453,8 @@ class Bot {
   /// Next step handler
   void setNextStep(
     Message msg,
-    Handler callback,
-    ScopeOptions? options,
+    Handler<CTX> callback,
+    ScopeOptions<CTX>? options,
   ) {
     final scopeName = "next-step-${msg.messageId}";
     bool isNextMessage(int? messageId) {
@@ -2343,11 +2478,11 @@ class Bot {
   ///
   /// This method will match any command that is sent to the bot.
   void onCommand(
-    Handler callback, {
+    Handler<CTX> callback, {
     bool includeChannelPosts = false,
     bool onlyChannelPosts = false,
     ID? chatId,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     return _internalSubMessageHandler(
       callback,
@@ -2367,8 +2502,8 @@ class Bot {
 
   /// Register a callback when a reaction to a message was changed by a user.
   void onMessageReaction(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -2379,8 +2514,8 @@ class Bot {
 
   /// Reactions to a message with anonymous reactions were changed.
   void onMessageReactionCount(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -2393,8 +2528,8 @@ class Bot {
   ///
   /// The bot must be an administrator in the chat for this to work.
   void onChatBoosted(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -2407,8 +2542,8 @@ class Bot {
   ///
   /// The bot must be an administrator in the chat for this to work.
   void onChatBoostRemoved(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -2420,10 +2555,10 @@ class Bot {
   /// Registers a callback to be fired when a user reacts given emoji to a message.
   void whenReacted(
     String emoji,
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
-    final scope = HandlerScope(
+    final scope = HandlerScope<CTX>(
       options: options,
       handler: callback,
       types: [
@@ -2449,8 +2584,8 @@ class Bot {
 
   /// Registers a callback to be fired when a connection of the bot with a business account is made.
   void onBusinessConnection(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -2461,8 +2596,8 @@ class Bot {
 
   /// Registers callback to be fired when a new message is received in a business account connected to the bot.
   void onBusinessMessage(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -2473,8 +2608,8 @@ class Bot {
 
   /// Registers a callback to be fired when a business message is edited.
   void onBusinessMessageEdited(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,
@@ -2485,8 +2620,8 @@ class Bot {
 
   /// Registers a callback to be fired when a business message is deleted.
   void onBusinessMessageDeleted(
-    Handler callback, {
-    ScopeOptions? options,
+    Handler<CTX> callback, {
+    ScopeOptions<CTX>? options,
   }) {
     return _acceptAll(
       callback,

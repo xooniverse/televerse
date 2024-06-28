@@ -11,7 +11,7 @@ class KeyboardButtonPollType {
   /// Creates a [KeyboardButtonPollType] object from JSON object
   factory KeyboardButtonPollType.fromJson(Map<String, dynamic> json) {
     return KeyboardButtonPollType(
-      type: json['type'],
+      type: PollType.fromJson(json['type']),
     );
   }
 

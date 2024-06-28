@@ -2,7 +2,7 @@ part of 'fetch.dart';
 
 /// A class that handles long polling.
 /// This class is used to fetch updates from the Telegram API. It uses the long polling method.
-class LongPolling extends Fetcher {
+class LongPolling<CTX extends Context> extends Fetcher<CTX> {
   /// Delay time between each long polling request.
   final Duration delayDuration;
 
@@ -106,7 +106,7 @@ class LongPolling extends Fetcher {
         // If the onError handler is set, call it.
         if (_onError != null) {
           final longError = err.toLongPollingException(stackTrace);
-          final botErr = BotError(longError, stackTrace);
+          final botErr = BotError<CTX>(longError, stackTrace);
           await _onError!(botErr);
           await _awaitRetryAfter(err.parameters?.retryAfter);
         } else if (err.parameters?.retryAfter != null) {
@@ -119,7 +119,7 @@ class LongPolling extends Fetcher {
         }
       } else {
         if (_onError != null) {
-          final botErr = BotError(err, stackTrace);
+          final botErr = BotError<CTX>(err, stackTrace);
           await _onError!(botErr);
         } else {
           _doubleRetryDelay();
