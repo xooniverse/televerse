@@ -1,3 +1,17 @@
+# 1.20.0
+
+- 🥳 Support for Custom Context
+- Added detailed
+  [usage documentation for custom context here](https://televerse.web.app/doc/custom-context).
+- The custom context feature allows you to extend the base functionality of your
+  bot by using your own custom context classes.
+- Added `Bot.contextBuilder` method
+- Refactors across the library to cope with `<CTX extends Context>`
+  - Refactored `Bot`, `Handler`, `Fetcher`, `Menu`, `BotError`, `Conversation`
+    etc.
+- Fixed an issue in `KeyboardMenu` that caused some features not to work.
+- Added documentation on almost all new classes and typedefs.
+
 # 1.19.5
 
 - 🧑🏻‍🔧 Fix in `InlineQueryResultBuilder` methods `voice` and `video`.
