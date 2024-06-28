@@ -23,6 +23,22 @@ public interface, making it easy for developers to write strictly typed code.
 
 ## 🔥 What's latest?
 
+### 🗓️ June 28, 2024
+
+🎉 Support for Custom Contexts!
+
+Televerse now lets you build even more powerful bots with custom contexts!
+
+- Design custom context classes to store information specific to your bot's
+  needs.
+- Keep your bot's logic organized with private context members and methods.
+- Add features like localization by integrating mixins.
+
+With the new `Bot.contextBuilder` method, you can define specialized context
+constructors to create context objects with personalized behaviors and
+capabilities. This update allows you to tailor your bot's responses, handle
+complex workflows, and integrate additional features seamlessly.
+
 ### 🗓️ June 22, 2024
 
 Introducing Middleware & Transformer support! You can now use the `Bot.use`
