@@ -1,11 +1,4 @@
-part of '../../televerse.dart';
-
-/// Context Constructor is a function that takes two inputs and then creates a
-typedef ContextConstructor<CTX extends Context> = CTX Function({
-  required RawAPI api,
-  required User me,
-  required Update update,
-});
+part of '../../../televerse.dart';
 
 /// Televerse
 /// This class is used to create a new bot instance. The bot instance is used to send and receive messages.
@@ -38,7 +31,7 @@ class Bot<CTX extends Context> {
   /// Options to configure the logger.
   final LoggerOptions? _loggerOptions;
 
-  void _defaultErrorHandler(BotError err) {
+  void _defaultErrorHandler(BotError<CTX> err) {
     print("‼️ An error occurred while processing the update.");
     if (err.sourceIsMiddleware) {
       print("The exception is occurred at an attached middleware.");
@@ -68,7 +61,7 @@ class Bot<CTX extends Context> {
   }
 
   /// Handler for unexpected errors.
-  late FutureOr<void> Function(BotError error) _onError;
+  late FutureOr<void> Function(BotError<CTX> error) _onError;
 
   /// The timeout duration for the requests.
   ///
@@ -130,7 +123,7 @@ class Bot<CTX extends Context> {
   }
 
   /// The fetcher - used to fetch updates from the Telegram servers.
-  late final Fetcher fetcher;
+  late final Fetcher<CTX> fetcher;
 
   /// The bot token.
   final String token;
@@ -154,7 +147,7 @@ class Bot<CTX extends Context> {
   /// If you're running the Bot API server locally, you should pass the [baseURL] and the [scheme] parameters to the constructor.
   Bot(
     this.token, {
-    Fetcher? fetcher,
+    Fetcher<CTX>? fetcher,
     String baseURL = RawAPI.defaultBase,
     APIScheme scheme = APIScheme.https,
     LoggerOptions? loggerOptions,
@@ -162,20 +155,9 @@ class Bot<CTX extends Context> {
   })  : _baseURL = _cookBaseUrlString(baseURL),
         isLocal = baseURL != RawAPI.defaultBase,
         _loggerOptions = loggerOptions,
-        _scheme = scheme {
-    // Create Fetcher and assign the RawAPI instance
-    this.fetcher = fetcher ?? LongPolling();
-    this.fetcher.setApi(api);
-
-    // Set the default erorr handler
-    onError(_defaultErrorHandler);
-
-    // Perform initial /getMe request
-    _getMeRequest = getMe();
-    _getMeRequest!.then(_ignore).catchError(_thenHandleGetMeError);
-
-    // Set instance variable
-    _instance = this;
+        _scheme = scheme,
+        _api = RawAPI(token, loggerOptions: loggerOptions, timeout: timeout) {
+    _initializeBot(fetcher);
   }
 
   /// Function to ignore things.
@@ -190,7 +172,7 @@ class Bot<CTX extends Context> {
         err = TeleverseException.timeoutException(st, timeout!);
       }
     }
-    final botErr = BotError(err, st);
+    final botErr = BotError<CTX>(err, st);
     await _onError(botErr);
   }
 
@@ -220,7 +202,7 @@ class Bot<CTX extends Context> {
   /// Learn to setup Local Bot API Server here: https://github.com/tdlib/telegram-bot-api
   factory Bot.local(
     String token, {
-    Fetcher? fetcher,
+    Fetcher<CTX>? fetcher,
     String baseURL = "localhost:8081",
     APIScheme scheme = APIScheme.http,
     LoggerOptions? loggerOptions,
@@ -243,20 +225,32 @@ class Bot<CTX extends Context> {
   /// `RawAPI` instance separately.
   Bot.fromAPI(
     RawAPI api, {
-    Fetcher? fetcher,
+    Fetcher<CTX>? fetcher,
   })  : _api = api,
         _baseURL = api._baseUrl,
         isLocal = api._baseUrl != RawAPI.defaultBase,
         _loggerOptions = api._httpClient.loggerOptions,
         _scheme = api._scheme,
         timeout = api.timeout,
-        token = api.token,
-        fetcher = fetcher ?? LongPolling() {
-    this.fetcher.setApi(api);
-    _instance = this;
+        token = api.token {
+    _initializeBot(fetcher);
+  }
 
+  /// Initializes the bot with common setup logic.
+  void _initializeBot(Fetcher<CTX>? fetcher) {
+    // Create Fetcher and assign the RawAPI instance
+    this.fetcher = fetcher ?? LongPolling<CTX>();
+    this.fetcher.setApi(_api!);
+
+    // Set the default error handler
+    onError(_defaultErrorHandler);
+
+    // Perform initial /getMe request
     _getMeRequest = getMe();
     _getMeRequest!.then(_ignore).catchError(_thenHandleGetMeError);
+
+    // Set instance variable
+    _instance = this;
   }
 
   /// List of pending calls
@@ -379,7 +373,7 @@ class Bot<CTX extends Context> {
     }
 
     // Creates the context instance for the update
-    final context = _contextConstructor(
+    final context = await _contextConstructor(
       api: api,
       me: !initialized ? await _getMeRequest! : me,
       update: update,
@@ -417,7 +411,7 @@ class Bot<CTX extends Context> {
               await sub[i].options!.customPredicate!.call(context);
           if (!customPass) continue;
         } catch (err, stack) {
-          final botErr = BotError(err, stack);
+          final botErr = BotError<CTX>(err, stack);
           await _onError(botErr);
           continue;
         }
@@ -460,7 +454,7 @@ class Bot<CTX extends Context> {
         try {
           await _middlewares[index].handle(ctx, next);
         } catch (err, stack) {
-          final botErr = BotError(
+          final botErr = BotError<CTX>(
             err,
             stack,
             sourceIsMiddleware: true,
@@ -471,7 +465,7 @@ class Bot<CTX extends Context> {
         try {
           await handler();
         } catch (err, stack) {
-          final botErr = BotError(err, stack);
+          final botErr = BotError<CTX>(err, stack);
           _onError(botErr);
         }
       }
@@ -492,15 +486,76 @@ class Bot<CTX extends Context> {
     }
   }
 
-  /// Use custom context
-  void useContext(ContextConstructor<CTX> constructor) {
+  /// Use custom context constructor to specify how custom context instances should be created.
+  ///
+  /// This method allows you to register a constructor function that creates instances
+  /// of a custom context type (`CTX`). The custom context must extend the base `Context` class
+  /// and its constructor should match the required parameters (`api`, `me`, and `update`).
+  ///
+  /// If you specify a custom context type (`Bot<MyCustomContext>`), ensure you register
+  /// the constructor using this method (`contextBuilder`) before initializing your bot instance.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// class MyCustomContext extends Context {
+  ///   MyCustomContext({
+  ///     required super.api,
+  ///     required super.me,
+  ///     required super.update,
+  ///   });
+  /// }
+  ///
+  /// final bot = Bot<MyCustomContext>(token);
+  /// bot.contextBuilder(MyCustomContext.new);
+  /// ```
+  ///
+  /// If you encounter a `TypeError` indicating that the constructor for your custom context
+  /// hasn't been registered, make sure to use this method to specify the constructor.
+  ///
+  /// ```dart
+  /// bot.contextBuilder(MyCustomContext.new);
+  /// ```
+  ///
+  /// For detailed usage instructions and examples, visit the [Custom Context Documentation](https://televerse.web.app/doc/custom-context).
+  void contextBuilder(ContextConstructor<CTX> constructor) {
     _usingCustomContext = true;
     _contextConstructor = constructor;
   }
 
-  /// A flag that indicates whether Bot is operating with a custom context.
+  /// A flag that indicates whether the Bot is configured to use a custom context.
+  ///
+  /// When set to `true`, it means the Bot instance is using a custom context type (`CTX`),
+  /// and the context constructor (`_contextConstructor`) has been registered to create instances
+  /// of this custom context.
+  ///
+  /// To use a custom context, you must register its constructor using [contextBuilder].
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final bot = Bot<MyCustomContext>(token);
+  /// bot.contextBuilder(MyCustomContext.new);
+  /// print(bot.isUsingCustomContext); // true
+  /// ```
   bool get isUsingCustomContext => _usingCustomContext;
+
+  /// Internal flag to track whether the Bot is configured to use a custom context.
   bool _usingCustomContext = false;
+
+  /// Context constructor function used to create instances of the custom context (`CTX`).
+  ///
+  /// This function is registered using [contextBuilder] and is responsible for creating
+  /// instances of the custom context type (`CTX`) with the required parameters (`api`, `me`, `update`).
+  ///
+  /// Example implementation:
+  /// ```dart
+  /// ContextConstructor<CTX> _contextConstructor = ({
+  ///   required RawAPI api,
+  ///   required User me,
+  ///   required Update update,
+  /// }) {
+  ///   return MyCustomContext(api: api, me: me, update: update);
+  /// };
+  /// ```
   ContextConstructor<CTX> _contextConstructor = ({
     required RawAPI api,
     required User me,
@@ -508,15 +563,30 @@ class Bot<CTX extends Context> {
   }) {
     void handleTypeError() {
       print("A `TypeError` occurred while trying to create Context.\n");
+
       if (CTX != Context) {
         print(
-          "Seems like you have specified custom context type in Bot definition as "
-          "`Bot<$CTX>` but it seems like you haven't specified the constructor for your custom Context."
-          "\nYou can register the constructor method using:\n   `bot.useContext($CTX.new);`\n\n",
+          "It seems like you have specified a custom context type in the Bot definition as `Bot<$CTX>`, "
+          "but you haven't registered the constructor for your custom Context.\n"
+          "Generally, you can register a constructor with the following line:\n"
+          "  bot.useContext($CTX.new);\n\n"
+          "For example, if you have a custom context class `MyContext`:\n\n"
+          "class MyContext extends Context {\n"
+          "  MyContext({required super.api, required super.me, required super.update});\n"
+          "}\n\n"
+          "You should register the constructor in your bot setup as follows:\n\n"
+          "final bot = Bot<MyContext>(token);\n"
+          "bot.useContext(MyContext.new);\n\n"
+          "This ensures that the bot can create instances of your custom context correctly.\n"
+          "If you still encounter issues, make sure that your custom context class extends `Context` "
+          "and its constructor matches the required parameters:\n\n"
+          "  MyContext({required super.api, required super.me, required super.update});\n"
+          "📖 Check out the complete usage documentation here: https://televerse.web.app/doc/custom-context\n",
         );
-        _report();
-        print("");
       }
+
+      _report();
+      print("");
     }
 
     try {
@@ -560,7 +630,7 @@ class Bot<CTX extends Context> {
       return await fetcher.start();
     } catch (err, stack) {
       fetcher.stop();
-      final botErr = BotError(err, stack);
+      final botErr = BotError<CTX>(err, stack);
       await _onError(botErr);
       return fetcher.start();
     }
@@ -952,7 +1022,7 @@ class Bot<CTX extends Context> {
   /// Note: you DON'T have to manually wait for the [ResponseParameters.retryAfter] duration.
   /// The fetcher will automatically wait for the duration and start polling again.
   void onError(
-    void Function(BotError err) handler,
+    void Function(BotError<CTX> err) handler,
   ) {
     _onError = handler;
     fetcher.onError(handler);

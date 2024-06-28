@@ -18,7 +18,7 @@ part 'webhook.dart';
 
 /// **Fetcher** - This is the base class for all fetchers. It is used to fetch updates from the Telegram API.
 /// You can use this class to create your own fetcher. Currently, there are two fetchers: [LongPolling] and [Webhook].
-abstract class Fetcher {
+abstract class Fetcher<CTX extends Context> {
   /// The stream controller that emits new updates.
   final StreamController<Update> _updateStreamController;
 
@@ -56,10 +56,10 @@ abstract class Fetcher {
   void setApi(RawAPI api) => this.api = api;
 
   /// Error handler for long polling.
-  FutureOr<void> Function(BotError err)? _onError;
+  FutureOr<void> Function(BotError<CTX> err)? _onError;
 
   /// Sets the error handler for long polling.
-  void onError(FutureOr<void> Function(BotError err) onError) =>
+  void onError(FutureOr<void> Function(BotError<CTX> err) onError) =>
       _onError = onError;
 
   /// Flag to check if the fetcher is running.

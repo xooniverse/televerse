@@ -35,12 +35,12 @@ export 'src/televerse/extensions/extensions.dart';
 export 'src/televerse/links/links.dart';
 
 part 'src/utils/http.dart';
-part 'src/televerse/bot.dart';
+part 'src/televerse/bot/bot.dart';
 part 'src/utils/date.dart';
 part 'src/utils/utils.dart';
 part 'src/televerse/markups/keyboard.dart';
 part 'src/televerse/markups/inline_keyboard.dart';
-part 'src/televerse/raw_api.dart';
+part 'src/televerse/api/raw_api.dart';
 part 'src/televerse/filters/on.dart';
 part 'src/televerse/filters/filters.dart';
 part 'src/televerse/markups/inline_menu.dart';
@@ -51,6 +51,7 @@ part 'src/televerse/models/logger_options.dart';
 part 'src/televerse/context/context.dart';
 part 'src/televerse/context/methods.dart';
 part 'src/televerse/context/properties.dart';
+part 'src/televerse/context/constructor.dart';
 
 /// Conversation API
 part 'src/televerse/conversation/conversation.dart';
