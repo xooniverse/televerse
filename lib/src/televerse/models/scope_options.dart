@@ -1,7 +1,7 @@
 part of '../../../televerse.dart';
 
 /// Represents additional options that can be passed to create Handler Scope
-class ScopeOptions {
+class ScopeOptions<CTX extends Context> {
   /// Name of the Handler Scope.
   ///
   /// This can be used to remove a Handler later on your code.
@@ -33,7 +33,7 @@ class ScopeOptions {
   ///
   /// If by any reason, this method threw any exception, it'll be caught in the passed `Bot.onError` if set.
   /// Otherwise, treated as `false` evaluation and skips the current handler.
-  final FutureOr<bool> Function(Context ctx)? customPredicate;
+  final FutureOr<bool> Function(CTX ctx)? customPredicate;
 
   /// Constructs a `ScopeOption`.
   ///
@@ -68,12 +68,12 @@ class ScopeOptions {
   /// The update is only processed if the predicate function evaluates to `true`.
   ///
   /// Returns a new instance of [ScopeOptions] with the updated properties.
-  ScopeOptions copyWith({
+  ScopeOptions<CTX> copyWith({
     String? name,
     bool? forked,
-    FutureOr<bool> Function(Context ctx)? customPredicate,
+    FutureOr<bool> Function(CTX ctx)? customPredicate,
   }) {
-    return ScopeOptions(
+    return ScopeOptions<CTX>(
       name: name ?? this.name,
       forked: forked ?? this.forked,
       customPredicate: customPredicate ?? this.customPredicate,
@@ -81,11 +81,11 @@ class ScopeOptions {
   }
 
   /// Internal copyWith
-  static ScopeOptions _createOrCopy(
-    ScopeOptions? options, {
+  static ScopeOptions<CTX> _createOrCopy<CTX extends Context>(
+    ScopeOptions<CTX>? options, {
     String? name,
     bool? forked,
-    FutureOr<bool> Function(Context ctx)? customPredicate,
+    FutureOr<bool> Function(CTX ctx)? customPredicate,
   }) {
     if (options != null) {
       return options.copyWith(
@@ -95,7 +95,7 @@ class ScopeOptions {
       );
     }
 
-    return ScopeOptions(
+    return ScopeOptions<CTX>(
       name: name,
       forked: forked ?? false,
       customPredicate: customPredicate,

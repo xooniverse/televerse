@@ -1,9 +1,9 @@
 part of '../../../televerse.dart';
 
-class _KeyboardMenuTextButton extends _TMenuButton {
+class _KeyboardMenuTextButton<CTX extends Context> extends _TMenuButton<CTX> {
   const _KeyboardMenuTextButton(
     super.text,
-    Handler handler, {
+    Handler<CTX> handler, {
     super.options,
   }) : super(hasHandler: true, handler: handler);
 
@@ -15,13 +15,14 @@ class _KeyboardMenuTextButton extends _TMenuButton {
   }
 }
 
-class _KeyboardMenuRequestUsersButton extends _TMenuButton {
+class _KeyboardMenuRequestUsersButton<CTX extends Context>
+    extends _TMenuButton<CTX> {
   final KeyboardButtonRequestUsers requestUsers;
 
   const _KeyboardMenuRequestUsersButton(
     super.text,
     this.requestUsers,
-    Handler handler, {
+    Handler<CTX> handler, {
     super.options,
   }) : super(hasHandler: true, handler: handler);
 
@@ -29,18 +30,19 @@ class _KeyboardMenuRequestUsersButton extends _TMenuButton {
   Map<String, dynamic> toJson() {
     return {
       'text': text,
-      ...requestUsers.toJson(),
+      "request_users": requestUsers.toJson(),
     };
   }
 }
 
-class _KeyboardMenuRequestChatButton extends _TMenuButton {
+class _KeyboardMenuRequestChatButton<CTX extends Context>
+    extends _TMenuButton<CTX> {
   final KeyboardButtonRequestChat requestChat;
 
   const _KeyboardMenuRequestChatButton(
     super.text,
     this.requestChat,
-    Handler handler, {
+    Handler<CTX> handler, {
     super.options,
   }) : super(hasHandler: true, handler: handler);
 
@@ -48,15 +50,16 @@ class _KeyboardMenuRequestChatButton extends _TMenuButton {
   Map<String, dynamic> toJson() {
     return {
       'text': text,
-      ...requestChat.toJson(),
+      "request_chat": requestChat.toJson(),
     };
   }
 }
 
-class _KeyboardMenuRequestContactButton extends _TMenuButton {
+class _KeyboardMenuRequestContactButton<CTX extends Context>
+    extends _TMenuButton<CTX> {
   const _KeyboardMenuRequestContactButton(
     super.text,
-    Handler handler, {
+    Handler<CTX> handler, {
     super.options,
   }) : super(hasHandler: true, handler: handler);
 
@@ -69,10 +72,11 @@ class _KeyboardMenuRequestContactButton extends _TMenuButton {
   }
 }
 
-class _KeyboardMenuRequestLocationButton extends _TMenuButton {
+class _KeyboardMenuRequestLocationButton<CTX extends Context>
+    extends _TMenuButton<CTX> {
   const _KeyboardMenuRequestLocationButton(
     super.text,
-    Handler handler, {
+    Handler<CTX> handler, {
     super.options,
   }) : super(hasHandler: true, handler: handler);
 
@@ -85,25 +89,26 @@ class _KeyboardMenuRequestLocationButton extends _TMenuButton {
   }
 }
 
-class _KeyboardMenuRequestPollButton extends _TMenuButton {
+class _KeyboardMenuRequestPollButton<CTX extends Context>
+    extends _TMenuButton<CTX> {
   final KeyboardButtonPollType requestPoll;
 
   const _KeyboardMenuRequestPollButton(
     super.text,
     this.requestPoll, {
     super.options,
-  }) : super(hasHandler: true);
+  });
 
   @override
   Map<String, dynamic> toJson() {
     return {
       'text': text,
-      ...requestPoll.toJson(),
+      "request_poll": requestPoll.toJson(),
     };
   }
 }
 
-class _KeyboardMenuWebAppButton extends _TMenuButton {
+class _KeyboardMenuWebAppButton<CTX extends Context> extends _TMenuButton<CTX> {
   final String url;
 
   const _KeyboardMenuWebAppButton(
@@ -115,21 +120,22 @@ class _KeyboardMenuWebAppButton extends _TMenuButton {
   Map<String, dynamic> toJson() {
     return {
       'text': text,
-      'web_app': WebAppInfo(
-        url: url,
-      ).toJson(),
+      'web_app': {
+        "url": url,
+      },
     };
   }
 }
 
 /// This object represents a Keyboard menu with the actions to be done.
-class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
+class KeyboardMenu<CTX extends Context>
+    implements ReplyKeyboardMarkup, TeleverseMenu<CTX> {
   /// Name of the menu
   @override
   String name;
 
   /// Map that represents the text and action to be done
-  final List<List<_TMenuButton>> _buttons;
+  final List<List<_TMenuButton<CTX>>> _buttons;
 
   /// Constructs a KeyboardMenu
   ///
@@ -154,79 +160,79 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
         name = name ?? _getRandomID();
 
   /// Add a new row to the keyboard
-  KeyboardMenu row() {
+  KeyboardMenu<CTX> row() {
     if (_buttons.last.isEmpty) return this;
     _buttons.add([]);
-    keyboard = TeleverseMenu._makeKeyboard(_buttons);
+    keyboard = TeleverseMenu._makeKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Add new item to the last row
-  KeyboardMenu text(
+  KeyboardMenu<CTX> text(
     String text,
-    Handler handler, {
-    ScopeOptions? options,
+    Handler<CTX> handler, {
+    ScopeOptions<CTX>? options,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _KeyboardMenuTextButton(
+      _KeyboardMenuTextButton<CTX>(
         text,
         handler,
         options: options,
       ),
     );
-    keyboard = TeleverseMenu._makeKeyboard(_buttons);
+    keyboard = TeleverseMenu._makeKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Request contact from the user
-  KeyboardMenu requestContact(
+  KeyboardMenu<CTX> requestContact(
     String text,
-    Handler handler, {
-    ScopeOptions? options,
+    Handler<CTX> handler, {
+    ScopeOptions<CTX>? options,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _KeyboardMenuRequestContactButton(
+      _KeyboardMenuRequestContactButton<CTX>(
         text,
         handler,
         options: options,
       ),
     );
-    keyboard = TeleverseMenu._makeKeyboard(_buttons);
+    keyboard = TeleverseMenu._makeKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Request location from the user
-  KeyboardMenu requestLocation(
+  KeyboardMenu<CTX> requestLocation(
     String text,
-    Handler handler, {
-    ScopeOptions? options,
+    Handler<CTX> handler, {
+    ScopeOptions<CTX>? options,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _KeyboardMenuRequestLocationButton(
+      _KeyboardMenuRequestLocationButton<CTX>(
         text,
         handler,
         options: options,
       ),
     );
-    keyboard = TeleverseMenu._makeKeyboard(_buttons);
+    keyboard = TeleverseMenu._makeKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Request the user to select a user from the list
-  KeyboardMenu requestUser({
+  KeyboardMenu<CTX> requestUser({
     required String text,
-    required Handler handler,
+    required Handler<CTX> handler,
     required int requestId,
     bool? userIsBot,
     bool? userIsPremium,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _KeyboardMenuRequestUsersButton(
+      _KeyboardMenuRequestUsersButton<CTX>(
         text,
         KeyboardButtonRequestUsers(
           requestId: requestId,
@@ -238,23 +244,23 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
         options: options,
       ),
     );
-    keyboard = TeleverseMenu._makeKeyboard(_buttons);
+    keyboard = TeleverseMenu._makeKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Request the user to select multiple users from the list
-  KeyboardMenu requestUsers({
+  KeyboardMenu<CTX> requestUsers({
     required String text,
-    required Handler handler,
+    required Handler<CTX> handler,
     required int requestId,
     bool? userIsBot,
     bool? userIsPremium,
     int? maxQuantity,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _KeyboardMenuRequestUsersButton(
+      _KeyboardMenuRequestUsersButton<CTX>(
         text,
         KeyboardButtonRequestUsers(
           requestId: requestId,
@@ -266,14 +272,14 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
         options: options,
       ),
     );
-    keyboard = TeleverseMenu._makeKeyboard(_buttons);
+    keyboard = TeleverseMenu._makeKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Requests the user to select a chat from the list.
-  KeyboardMenu requestChat({
+  KeyboardMenu<CTX> requestChat({
     required String text,
-    required Handler handler,
+    required Handler<CTX> handler,
     required int requestId,
     bool chatIsChannel = false,
     bool? chatIsForum,
@@ -282,11 +288,11 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
     ChatAdministratorRights? userAdministratorRights,
     ChatAdministratorRights? botAdministratorRights,
     bool? botIsMember,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _KeyboardMenuRequestChatButton(
+      _KeyboardMenuRequestChatButton<CTX>(
         text,
         KeyboardButtonRequestChat(
           requestId: requestId,
@@ -302,33 +308,33 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
         options: options,
       ),
     );
-    keyboard = TeleverseMenu._makeKeyboard(_buttons);
+    keyboard = TeleverseMenu._makeKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Add a web app button to the last row
-  KeyboardMenu webApp(String text, String url) {
+  KeyboardMenu<CTX> webApp(String text, String url) {
     if (_buttons.isEmpty) _buttons.add([]);
-    _buttons.last.add(_KeyboardMenuWebAppButton(text, url));
-    keyboard = TeleverseMenu._makeKeyboard(_buttons);
+    _buttons.last.add(_KeyboardMenuWebAppButton<CTX>(text, url));
+    keyboard = TeleverseMenu._makeKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Add a poll button to the last row
-  KeyboardMenu requestPoll(
-    String text,
-    KeyboardButtonPollType requestPoll, {
-    ScopeOptions? options,
+  KeyboardMenu<CTX> requestPoll(
+    String text, {
+    PollType? type,
+    ScopeOptions<CTX>? options,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _KeyboardMenuRequestPollButton(
+      _KeyboardMenuRequestPollButton<CTX>(
         text,
-        requestPoll,
+        KeyboardButtonPollType(type: type),
         options: options,
       ),
     );
-    keyboard = TeleverseMenu._makeKeyboard(_buttons);
+    keyboard = TeleverseMenu._makeKeyboard<CTX>(_buttons);
     return this;
   }
 
@@ -377,25 +383,25 @@ class KeyboardMenu implements ReplyKeyboardMarkup, TeleverseMenu {
   bool? selective;
 
   /// Makes the menu resized
-  KeyboardMenu resized() {
+  KeyboardMenu<CTX> resized() {
     resizeKeyboard = true;
     return this;
   }
 
   /// Makes the menu persistent
-  KeyboardMenu persistent() {
+  KeyboardMenu<CTX> persistent() {
     isPersistent = true;
     return this;
   }
 
   /// Makes the menu one time
-  KeyboardMenu oneTime() {
+  KeyboardMenu<CTX> oneTime() {
     oneTimeKeyboard = true;
     return this;
   }
 
   /// Makes the menu selective
-  KeyboardMenu makeSelective() {
+  KeyboardMenu<CTX> makeSelective() {
     selective = true;
     return this;
   }

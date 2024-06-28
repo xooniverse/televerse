@@ -1,13 +1,14 @@
 part of '../../../televerse.dart';
 
 /// This object represents a Keyboard with callback data.
-class _InlineMenuCallbackDataButton extends _TMenuButton {
+class _InlineMenuCallbackDataButton<CTX extends Context>
+    extends _TMenuButton<CTX> {
   final String data;
 
   const _InlineMenuCallbackDataButton(
     super.text,
     this.data,
-    Handler handler, {
+    Handler<CTX> handler, {
     super.options,
   }) : super(
           hasHandler: true,
@@ -28,7 +29,7 @@ class _InlineMenuCallbackDataButton extends _TMenuButton {
   }
 }
 
-class _InlineMenuUrlButton extends _TMenuButton {
+class _InlineMenuUrlButton<CTX extends Context> extends _TMenuButton<CTX> {
   final String url;
   const _InlineMenuUrlButton(super.text, this.url);
 
@@ -41,7 +42,7 @@ class _InlineMenuUrlButton extends _TMenuButton {
   }
 }
 
-class _InlineMenuWebAppButton extends _TMenuButton {
+class _InlineMenuWebAppButton<CTX extends Context> extends _TMenuButton<CTX> {
   final String url;
   const _InlineMenuWebAppButton(super.text, this.url);
 
@@ -56,7 +57,7 @@ class _InlineMenuWebAppButton extends _TMenuButton {
   }
 }
 
-class _InlineMenuLoginButton extends _TMenuButton {
+class _InlineMenuLoginButton<CTX extends Context> extends _TMenuButton<CTX> {
   final String url;
   final String? forwardText;
   final String? botUsername;
@@ -84,7 +85,8 @@ class _InlineMenuLoginButton extends _TMenuButton {
   }
 }
 
-class _InlineMenuSwitchInlineQueryButton extends _TMenuButton {
+class _InlineMenuSwitchInlineQueryButton<CTX extends Context>
+    extends _TMenuButton<CTX> {
   final String query;
   const _InlineMenuSwitchInlineQueryButton(super.text, this.query);
 
@@ -97,7 +99,8 @@ class _InlineMenuSwitchInlineQueryButton extends _TMenuButton {
   }
 }
 
-class _InlineMenuSwitchInlineQueryCurrentChatButton extends _TMenuButton {
+class _InlineMenuSwitchInlineQueryCurrentChatButton<CTX extends Context>
+    extends _TMenuButton<CTX> {
   final String query;
   const _InlineMenuSwitchInlineQueryCurrentChatButton(super.text, this.query);
 
@@ -110,7 +113,8 @@ class _InlineMenuSwitchInlineQueryCurrentChatButton extends _TMenuButton {
   }
 }
 
-class _InlineMenuSwitchInlineQueryChosenChatButton extends _TMenuButton {
+class _InlineMenuSwitchInlineQueryChosenChatButton<CTX extends Context>
+    extends _TMenuButton<CTX> {
   final SwitchInlineQueryChosenChat switchInlineQueryChosenChat;
   const _InlineMenuSwitchInlineQueryChosenChatButton(
     super.text,
@@ -126,7 +130,8 @@ class _InlineMenuSwitchInlineQueryChosenChatButton extends _TMenuButton {
   }
 }
 
-class _InlineMenuCallbackGameButton extends _TMenuButton {
+class _InlineMenuCallbackGameButton<CTX extends Context>
+    extends _TMenuButton<CTX> {
   final CallbackGame callbackGame;
   const _InlineMenuCallbackGameButton(super.text, this.callbackGame);
 
@@ -139,7 +144,7 @@ class _InlineMenuCallbackGameButton extends _TMenuButton {
   }
 }
 
-class _InlineMenuPayButton extends _TMenuButton {
+class _InlineMenuPayButton<CTX extends Context> extends _TMenuButton<CTX> {
   const _InlineMenuPayButton(super.text);
 
   @override
@@ -152,13 +157,14 @@ class _InlineMenuPayButton extends _TMenuButton {
 }
 
 /// This object represents a Inline Keyboard with the action to be done.
-class InlineMenu implements InlineKeyboardMarkup, TeleverseMenu {
+class InlineMenu<CTX extends Context>
+    implements InlineKeyboardMarkup, TeleverseMenu<CTX> {
   /// Name of the menu
   @override
   final String name;
 
   /// Map that represents the text and action to be done
-  final List<List<_TMenuButton>> _buttons;
+  final List<List<_TMenuButton<CTX>>> _buttons;
 
   /// Constructs a InlineMenu
   ///
@@ -209,49 +215,49 @@ class InlineMenu implements InlineKeyboardMarkup, TeleverseMenu {
   }
 
   /// Add new item to the last row
-  InlineMenu text(
+  InlineMenu<CTX> text(
     String text,
-    Handler handler, {
+    Handler<CTX> handler, {
     required String data,
-    ScopeOptions? options,
+    ScopeOptions<CTX>? options,
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _InlineMenuCallbackDataButton(
+      _InlineMenuCallbackDataButton<CTX>(
         text,
         data,
         handler,
         options: options,
       ),
     );
-    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Add a URL button to the last row
-  InlineMenu url(
+  InlineMenu<CTX> url(
     String text,
     String url,
   ) {
     if (_buttons.isEmpty) _buttons.add([]);
-    _buttons.last.add(_InlineMenuUrlButton(text, url));
+    _buttons.last.add(_InlineMenuUrlButton<CTX>(text, url));
     inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
     return this;
   }
 
   /// Add a Web App button to the last row
-  InlineMenu webApp(
+  InlineMenu<CTX> webApp(
     String text,
     String url,
   ) {
     if (_buttons.isEmpty) _buttons.add([]);
-    _buttons.last.add(_InlineMenuWebAppButton(text, url));
-    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    _buttons.last.add(_InlineMenuWebAppButton<CTX>(text, url));
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Add a Login button to the last row
-  InlineMenu login(
+  InlineMenu<CTX> login(
     String text,
     String url, {
     String? forwardText,
@@ -260,7 +266,7 @@ class InlineMenu implements InlineKeyboardMarkup, TeleverseMenu {
   }) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _InlineMenuLoginButton(
+      _InlineMenuLoginButton<CTX>(
         text,
         url,
         forwardText: forwardText,
@@ -268,65 +274,65 @@ class InlineMenu implements InlineKeyboardMarkup, TeleverseMenu {
         requestWriteAccess: requestWriteAccess,
       ),
     );
-    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Add a Switch Inline Query button to the last row
-  InlineMenu switchInlineQuery(String text, String query) {
+  InlineMenu<CTX> switchInlineQuery(String text, String query) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _InlineMenuSwitchInlineQueryButton(
+      _InlineMenuSwitchInlineQueryButton<CTX>(
         text,
         query,
       ),
     );
-    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Add a Switch Inline Query Current Chat button to the last row
-  InlineMenu switchInlineQueryCurrentChat(String text, String query) {
+  InlineMenu<CTX> switchInlineQueryCurrentChat(String text, String query) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _InlineMenuSwitchInlineQueryCurrentChatButton(
+      _InlineMenuSwitchInlineQueryCurrentChatButton<CTX>(
         text,
         query,
       ),
     );
-    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Add a Switch Inline Query Chosen Chat button to the last row
-  InlineMenu switchInlineQueryChosenChat(
+  InlineMenu<CTX> switchInlineQueryChosenChat(
     String text,
     SwitchInlineQueryChosenChat switchInlineQueryChosenChat,
   ) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(
-      _InlineMenuSwitchInlineQueryChosenChatButton(
+      _InlineMenuSwitchInlineQueryChosenChatButton<CTX>(
         text,
         switchInlineQueryChosenChat,
       ),
     );
-    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Add a Callback Game button to the last row
-  InlineMenu callbackGame(String text, CallbackGame game) {
+  InlineMenu<CTX> callbackGame(String text, CallbackGame game) {
     if (_buttons.isEmpty) _buttons.add([]);
-    _buttons.last.add(_InlineMenuCallbackGameButton(text, game));
-    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    _buttons.last.add(_InlineMenuCallbackGameButton<CTX>(text, game));
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard<CTX>(_buttons);
     return this;
   }
 
   /// Add a Pay button to the last row
-  InlineMenu pay(String text) {
+  InlineMenu<CTX> pay(String text) {
     if (_buttons.isEmpty) _buttons.add([]);
-    _buttons.last.add(_InlineMenuPayButton(text));
-    inlineKeyboard = TeleverseMenu._makeInlineKeyboard(_buttons);
+    _buttons.last.add(_InlineMenuPayButton<CTX>(text));
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard<CTX>(_buttons);
     return this;
   }
 

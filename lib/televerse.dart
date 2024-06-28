@@ -24,33 +24,36 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as io;
 import 'dart:math';
+
 import 'package:dio/dio.dart';
+
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 
+export 'src/televerse/extensions/extensions.dart';
+export 'src/televerse/fetch/fetch.dart';
+export 'src/televerse/links/links.dart';
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
-export 'src/televerse/fetch/fetch.dart';
-export 'src/televerse/extensions/extensions.dart';
-export 'src/televerse/links/links.dart';
 
-part 'src/utils/http.dart';
-part 'src/televerse/bot.dart';
-part 'src/utils/date.dart';
-part 'src/utils/utils.dart';
-part 'src/televerse/markups/keyboard.dart';
-part 'src/televerse/markups/inline_keyboard.dart';
-part 'src/televerse/raw_api.dart';
-part 'src/televerse/filters/on.dart';
-part 'src/televerse/filters/filters.dart';
-part 'src/televerse/markups/inline_menu.dart';
-part 'src/televerse/markups/menu.dart';
-part 'src/televerse/markups/keyboard_menu.dart';
-part 'src/televerse/models/multipart_helper.dart';
-part 'src/televerse/models/logger_options.dart';
+part 'src/televerse/api/raw_api.dart';
+part 'src/televerse/bot/bot.dart';
+part 'src/televerse/context/constructor.dart';
 part 'src/televerse/context/context.dart';
 part 'src/televerse/context/methods.dart';
 part 'src/televerse/context/properties.dart';
+part 'src/televerse/filters/filters.dart';
+part 'src/televerse/filters/on.dart';
+part 'src/televerse/markups/inline_keyboard.dart';
+part 'src/televerse/markups/inline_menu.dart';
+part 'src/televerse/markups/keyboard.dart';
+part 'src/televerse/markups/keyboard_menu.dart';
+part 'src/televerse/markups/menu.dart';
+part 'src/televerse/models/logger_options.dart';
+part 'src/televerse/models/multipart_helper.dart';
+part 'src/utils/date.dart';
+part 'src/utils/http.dart';
+part 'src/utils/utils.dart';
 
 /// Conversation API
 part 'src/televerse/conversation/conversation.dart';

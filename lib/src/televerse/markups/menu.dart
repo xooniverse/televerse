@@ -1,11 +1,11 @@
 part of '../../../televerse.dart';
 
 /// Abstract internal class to represent a menu button
-abstract class _TMenuButton {
+abstract class _TMenuButton<CTX extends Context> {
   final bool hasHandler;
   final String text;
-  final Handler? handler;
-  final ScopeOptions? options;
+  final Handler<CTX>? handler;
+  final ScopeOptions<CTX>? options;
 
   const _TMenuButton(
     this.text, {
@@ -23,7 +23,7 @@ abstract class _TMenuButton {
 }
 
 /// Abstract class to represent a menu
-abstract class TeleverseMenu {
+abstract class TeleverseMenu<CTX extends Context> {
   /// Name of the menu
   final String name;
 
@@ -31,8 +31,9 @@ abstract class TeleverseMenu {
   Map<String, dynamic> toJson();
 
   /// Converts a list of rows to a list of InlineKeyboardButton
-  static List<List<InlineKeyboardButton>> _makeInlineKeyboard(
-    List<List<_TMenuButton>>? rows,
+  static List<List<InlineKeyboardButton>>
+      _makeInlineKeyboard<CTX extends Context>(
+    List<List<_TMenuButton<CTX>>>? rows,
   ) {
     if (rows == null) return [];
     return rows.map((row) {
@@ -43,8 +44,8 @@ abstract class TeleverseMenu {
   }
 
   /// Converts a list of rows to a list of KeyboardButton
-  static List<List<KeyboardButton>> _makeKeyboard(
-    List<List<_TMenuButton>>? rows,
+  static List<List<KeyboardButton>> _makeKeyboard<CTX extends Context>(
+    List<List<_TMenuButton<CTX>>>? rows,
   ) {
     if (rows == null) return [];
     return rows.map((row) {

@@ -2,44 +2,140 @@ part of '../../../televerse.dart';
 
 /// ## Televerse Conversation
 ///
-/// Televerse Conversation is a library that provides a simple way to create
-/// a conversation between the user and the bot.
+/// The `Conversation` class provides a streamlined way to manage interactions
+/// between a Telegram bot and its users, simplifying the creation of conversational
+/// flows. This class is part of the Televerse library, which is designed to ease the
+/// development of Telegram bots by handling state management and message listening.
 ///
-/// As a Telegram bot developer, there are times when you need to create a
-/// conversation between the user and the bot. For example, when you need to
-/// ask the user for some information, or when you need to ask the user to
-/// choose one of the options. And this can be quite complicated. You need to
-/// create a state machine, and you need to store the state of the conversation
-/// somewhere. And this is where Televerse Conversation comes in.
+/// ### Overview
 ///
-/// Televerse Conversation provides a simple way to create a conversation
-/// between the user and the bot. You can create a conversation with just a
-/// few lines of code. And you don't need to worry about storing the state of
-/// the conversation. Televerse Conversation will take care of that for you.
+/// When developing a Telegram bot, it's common to require interactions that involve
+/// multiple steps. For example, asking a user for their name and then responding
+/// based on their input. Traditionally, this involves managing states and ensuring
+/// the bot knows what to expect at each step. The `Conversation` class abstracts
+/// this complexity by allowing developers to wait for specific types of messages
+/// without manually handling state transitions.
 ///
-/// Televerse Conversation is built on top of the Televerse library. So you
-/// can use all the features of the Televerse library in your conversation.
-class Conversation {
+/// ### Features
+///
+/// - **Message Filtering**: Wait for specific types of messages, such as text, photo, video, etc.
+/// - **Timeouts**: Define timeouts for waiting messages to prevent hanging listeners.
+/// - **Clear Unfulfilled Listeners**: Optionally clear previous unfulfilled listeners to avoid conflicts.
+///
+/// ### Example Usage
+///
+/// ```dart
+/// // Create the Bot Instance
+/// final bot = Bot(Platform.environment["BOT_TOKEN"]!);
+///
+/// // Now create a conversation
+/// final conv = Conversation(bot);
+///
+/// void main(List<String> args) {
+///   bot.command('start', (ctx) async {
+///     await ctx.reply("Hello, what's your name?");
+///
+///     // ✨ Magic happens here, you can simply wait for the user's response.
+///     final nameCtx = await conv.waitForTextMessage(chatId: ctx.id);
+///     await nameCtx?.reply("Well, hello ${nameCtx?.message?.text}");
+///   });
+///
+///   bot.start();
+/// }
+/// ```
+///
+/// ### Creating a Conversation
+///
+/// To create a conversation, instantiate the `Conversation` class with a bot instance.
+/// You can optionally provide a custom name for the conversation:
+///
+/// ```dart
+/// final conv = Conversation(bot, name: "my_conversation");
+/// ```
+///
+/// ### Waiting for Messages
+///
+/// The `Conversation` class provides several methods to wait for different types of messages:
+///
+/// ```dart
+/// // Wait for a text message
+/// final textCtx = await conv.waitForTextMessage(chatId: ctx.id);
+///
+/// // Wait for a photo message
+/// final photoCtx = await conv.waitForPhotoMessage(chatId: ctx.id);
+/// ```
+///
+/// Each method returns a `Future` that completes with a `Context` object containing the incoming update.
+///
+/// ### Handling Timeouts
+///
+/// You can specify a timeout for each wait method to prevent hanging listeners:
+///
+/// ```dart
+/// final textCtx = await conv.waitForTextMessage(
+///   chatId: ctx.id,
+///   timeout: Duration(seconds: 30),
+/// );
+/// ```
+///
+/// If the timeout is reached, the `Future` completes with an error.
+///
+/// ### Clearing Listeners
+///
+/// You can clear all conversation listeners for a specific chat or all listeners:
+///
+/// ```dart
+/// // Clear all listeners for a specific chat
+/// await conv.clear(ctx.id);
+///
+/// // Clear all listeners for all chats
+/// await conv.clearAll();
+/// ```
+///
+/// The `Conversation` class simplifies managing user interactions in Telegram bots, allowing you to create complex conversational flows with minimal effort.
+class Conversation<CTX extends Context> {
   /// A list of subscriptions.
-  final List<_ISubHelper> _subscriptionsList = [];
+  final List<_ISubHelper<CTX>> _subscriptionsList = [];
 
   /// Name of the conversation.
   final String name;
 
   /// The bot that this conversation belongs to.
-  final Bot _bot;
+  final Bot<CTX> _bot;
 
-  /// Creates a new conversation.
+  /// Creates a new conversation instance.
+  ///
+  /// This constructor initializes a new [Conversation] object associated with a
+  /// specific bot. You can optionally provide a custom name for the conversation;
+  /// otherwise, a default name will be generated.
+  ///
+  /// ### Parameters:
+  /// - [bot]: The bot instance that this conversation belongs to. This is required
+  ///   and allows the conversation to interact with the bot.
+  /// - [name]: An optional parameter to specify a custom name for the conversation.
+  ///   If not provided, a default name in the format "conv-xxxxx" will be generated
+  ///   where "xxxxx" is a random 5-character string.
+  ///
+  /// ### Example:
+  /// ```dart
+  /// // Create a new conversation with the bot
+  /// final bot = Bot(Platform.environment["BOT_TOKEN"]!);
+  /// final conversation = Conversation(bot, name: "myCustomConversation");
+  ///
+  /// // Create a new conversation with a default name
+  /// final defaultConversation = Conversation(bot);
+  /// ```
   Conversation(
-    this._bot, {
+    Bot<CTX> bot, {
     String? name,
-  }) : name = name ?? "conv-${_getRandomID(5)}";
+  })  : _bot = bot,
+        name = name ?? "conv-${_getRandomID(5)}";
 
   /// Wait for a text message from the user.
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, , returns a [Context] object with the incoming update.
-  Future<Context?> waitForTextMessage({
+  Future<CTX?> waitForTextMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -57,7 +153,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForPhotoMessage({
+  Future<CTX?> waitForPhotoMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -75,7 +171,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForVideoMessage({
+  Future<CTX?> waitForVideoMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -93,7 +189,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForVoiceMessage({
+  Future<CTX?> waitForVoiceMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -111,7 +207,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForDocumentMessage({
+  Future<CTX?> waitForDocumentMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -129,7 +225,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForContactMessage({
+  Future<CTX?> waitForContactMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -147,7 +243,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForLocationMessage({
+  Future<CTX?> waitForLocationMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -165,7 +261,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForVenueMessage({
+  Future<CTX?> waitForVenueMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -183,7 +279,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForPollMessage({
+  Future<CTX?> waitForPollMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -201,7 +297,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForDiceMessage({
+  Future<CTX?> waitForDiceMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -219,7 +315,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForGameMessage({
+  Future<CTX?> waitForGameMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -237,7 +333,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForStickerMessage({
+  Future<CTX?> waitForStickerMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -255,7 +351,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForVideoNoteMessage({
+  Future<CTX?> waitForVideoNoteMessage({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -273,7 +369,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitToStartVideoChat({
+  Future<CTX?> waitToStartVideoChat({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -291,7 +387,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitToEndVideoChat({
+  Future<CTX?> waitToEndVideoChat({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -309,7 +405,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForCallbackQuery({
+  Future<CTX?> waitForCallbackQuery({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -337,7 +433,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitFor({
+  Future<CTX?> waitFor({
     required ID chatId,
     Duration? timeout,
     bool clearUnfulfilled = true,
@@ -366,18 +462,24 @@ class Conversation {
           'already exists. It has been removed.');
     }
 
-    final completer = Completer<Context?>();
+    final completer = Completer<CTX?>();
     StreamSubscription<Update>? subscription;
 
     subscription = _bot.updatesStream.listen((update) {
       final sameChat = _isSameChat(update, chatId);
       if (sameChat && filter(update)) {
-        completer.complete(Context(_bot, update: update));
+        completer.complete(
+          _bot._contextConstructor(
+            api: _bot.api,
+            me: _bot.me,
+            update: update,
+          ),
+        );
       }
     });
 
     _subscriptionsList.add(
-      _ISubHelper(subscription, scopeName, completer),
+      _ISubHelper<CTX>(subscription, scopeName, completer),
     );
 
     _bot._handlerScopes.add(
@@ -448,7 +550,7 @@ class Conversation {
   ///
   /// Possibly returns `null` if the listener has been cancelled before
   /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<Context?> waitForPattern({
+  Future<CTX?> waitForPattern({
     required ID chatId,
     required Pattern pattern,
     Duration? timeout,
@@ -472,13 +574,32 @@ class Conversation {
 }
 
 /// Internal helper class to store the subscription and the scope name.
-class _ISubHelper {
+///
+/// This class is used internally by the [Conversation] class to manage
+/// the state of subscriptions and their corresponding scope names.
+class _ISubHelper<CTX extends Context> {
+  /// The subscription to the bot's update stream.
   final StreamSubscription<Update> subscription;
-  final String scope;
-  final Completer<Context?> completer;
 
+  /// The scope name associated with this subscription.
+  final String scope;
+
+  /// A completer that will be completed when the subscription is fulfilled or cancelled.
+  final Completer<CTX?> completer;
+
+  /// Creates a new instance of [_ISubHelper].
+  ///
+  /// ### Parameters:
+  /// - [subscription]: The subscription to the bot's update stream.
+  /// - [scope]: The scope name associated with this subscription.
+  /// - [completer]: The completer that will be completed when the subscription
+  ///   is fulfilled or cancelled.
   const _ISubHelper(this.subscription, this.scope, this.completer);
 
+  /// Cancels the subscription.
+  ///
+  /// If the completer has not been completed yet, it will complete with `null`.
+  /// This method returns a [Future] that completes when the subscription is cancelled.
   Future<void> cancel() {
     if (!completer.isCompleted) {
       completer.complete(null);

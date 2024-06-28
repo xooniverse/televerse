@@ -1,4 +1,4 @@
-part of '../../televerse.dart';
+part of '../../../televerse.dart';
 
 /// Raw API for the Telegram Bot API.
 class RawAPI {
