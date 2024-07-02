@@ -18,7 +18,7 @@ part 'webhook.dart';
 
 /// **Fetcher** - This is the base class for all fetchers. It is used to fetch updates from the Telegram API.
 /// You can use this class to create your own fetcher. Currently, there are two fetchers: [LongPolling] and [Webhook].
-abstract class Fetcher<CTX extends Context> {
+sealed class Fetcher<CTX extends Context> {
   /// The stream controller that emits new updates.
   final StreamController<Update> _updateStreamController;
 

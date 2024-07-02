@@ -620,19 +620,9 @@ class Bot<CTX extends Context> {
   /// Start polling for updates.
   ///
   /// This method starts polling for updates. It will automatically start the fetcher.
-  ///
-  /// You can pass a [handler] to the method. The handler will be called when a message is received that starts with the `/start` command.
-  ///
-  /// Optional [isServerless] flag can be passed to the method. If you set this flag to true, the bot will not start the fetcher.
-  Future<void> start([
-    Handler<CTX>? handler,
-    bool isServerless = false,
-  ]) async {
-    // Registers a handler to listen for /start command
-    if (handler != null) {
-      command("start", handler);
-    }
-    if (isServerless) return;
+  Future<void> start({
+    bool shouldSetWebhook = true,
+  }) async {
     fetcher.onUpdate().listen(
       _onUpdate,
       onDone: () {
@@ -640,7 +630,12 @@ class Bot<CTX extends Context> {
       },
     );
     try {
-      return await fetcher.start();
+      return switch (fetcher) {
+        LongPolling() => fetcher.start(),
+        Webhook() => (fetcher as Webhook).start(
+            shouldSetWebhook: shouldSetWebhook,
+          )
+      };
     } catch (err, stack) {
       fetcher.stop();
       final botErr = BotError<CTX>(err, stack);
