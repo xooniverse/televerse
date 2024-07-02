@@ -2637,4 +2637,70 @@ class Bot<CTX extends Context> {
     _handlerScopes.removeAt(ix);
     return true;
   }
+
+  /// Registers a callback for whenever paid media is received.
+  void onPaidMedia(
+    Handler<CTX> callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions<CTX>? options,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.msg?.paidMedia != null;
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
+    );
+  }
+
+  /// Registers a callback for whenever paid media video is received.
+  void onPaidMediaVideo(
+    Handler<CTX> callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions<CTX>? options,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.msg?.paidMedia != null &&
+            ctx.msg!.paidMedia!.paidMedia.any(
+              (media) => media is PaidMediaVideo,
+            );
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
+    );
+  }
+
+  /// Registers a callback for whenever paid media photo is received.
+  void onPaidMediaPhoto(
+    Handler<CTX> callback, {
+    bool includeChannelPosts = false,
+    bool onlyChannelPosts = false,
+    ID? chatId,
+    ScopeOptions<CTX>? options,
+  }) {
+    return _internalSubMessageHandler(
+      callback,
+      (ctx) {
+        return ctx.msg?.paidMedia?.paidMedia != null &&
+            ctx.msg!.paidMedia!.paidMedia.any(
+              (media) => media is PaidMediaPhoto,
+            );
+      },
+      includeChannelPosts: includeChannelPosts,
+      onlyChannelPosts: onlyChannelPosts,
+      chatId: chatId,
+      options: options,
+    );
+  }
 }
