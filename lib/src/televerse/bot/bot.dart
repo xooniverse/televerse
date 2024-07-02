@@ -361,15 +361,28 @@ class Bot<CTX extends Context> {
   /// This method creates the Context instance for the update and resolves the
   /// Handler Scopes and proceeds to process the update.
   void _onUpdate(Update update) async {
-    // Gets the sublist of Handler Scopes that is apt for the recieved Update
-    List<HandlerScope<CTX>> sub = _handlerScopes.where((scope) {
+    // Find matching scopes
+    bool matchScopes(HandlerScope<CTX> scope) {
       return scope.types.contains(update.type);
-    }).toList();
+    }
 
+    // Checks has
+    final hasMiddlewares = _middlewares.isNotEmpty;
+
+    // Gets the sublist of Handler Scopes that is apt for the recieved Update
+    List<HandlerScope<CTX>> sub =
+        (hasMiddlewares ? _handlerScopes : _handlerScopes.reversed)
+            .where(matchScopes)
+            .toList();
+
+    // Sorter helper method that brings handler scopes that has custom predicate to front
+    int bringCustomChecksFirst(HandlerScope<CTX> a, HandlerScope<CTX> b) {
+      return "${b.hasCustomPredicate}".compareTo("${a.hasCustomPredicate}");
+    }
+
+    // If any Handler Scope has custom predicate attached, we'll sort the handlers
     if (sub.any((el) => el.hasCustomPredicate)) {
-      sub.sort((a, b) {
-        return "${b.hasCustomPredicate}".compareTo("${a.hasCustomPredicate}");
-      });
+      sub.sort(bringCustomChecksFirst);
     }
 
     // Creates the context instance for the update
