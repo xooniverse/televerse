@@ -259,6 +259,9 @@ class Message implements MaybeInaccessibleMessage, WithUser {
   /// Optional. True, if the caption must be shown above the message media
   final bool? showCaptionAboveMedia;
 
+  /// Optional. Message contains paid media; information about the paid media
+  final PaidMediaInfo? paidMedia;
+
   /// Creates a Message object.
   const Message({
     this.from,
@@ -344,6 +347,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
     this.chatBackgroundSet,
     this.effectId,
     this.showCaptionAboveMedia,
+    this.paidMedia,
   });
 
   /// Creates a [Message] object from json map.
@@ -530,6 +534,9 @@ class Message implements MaybeInaccessibleMessage, WithUser {
           : null,
       effectId: json["effect_id"],
       showCaptionAboveMedia: json["show_caption_above_media"],
+      paidMedia: json['paid_media'] != null
+          ? PaidMediaInfo.fromJson(json['paid_media'])
+          : null,
     );
   }
 
@@ -621,6 +628,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
       'chat_background_set': chatBackgroundSet?.toJson(),
       'effect_id': effectId,
       'show_caption_above_media': showCaptionAboveMedia,
+      'paid_media': paidMedia?.toJson(),
     }..removeWhere(_nullFilter);
   }
 

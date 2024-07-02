@@ -71,6 +71,9 @@ class ExternalReplyInfo {
   /// Optional. Message is a venue, information about the venue
   final Venue? venue;
 
+  /// Optional. Message contains paid media; information about the paid media
+  final PaidMediaInfo? paidMedia;
+
   /// Constructs the [ExternalReplyInfo]
   const ExternalReplyInfo({
     required this.origin,
@@ -96,6 +99,7 @@ class ExternalReplyInfo {
     this.location,
     this.poll,
     this.venue,
+    this.paidMedia,
   });
 
   /// Converts instance of [ExternalReplyInfo] into JSON encodable [Map].
@@ -124,6 +128,7 @@ class ExternalReplyInfo {
       'location': location?.toJson(),
       'poll': poll?.toJson(),
       'venue': venue?.toJson(),
+      'paid_media': paidMedia?.toJson(),
     }..removeWhere(_nullFilter);
   }
 
@@ -169,6 +174,9 @@ class ExternalReplyInfo {
           json['location'] != null ? Location.fromJson(json['location']) : null,
       poll: json['poll'] != null ? Poll.fromJson(json['poll']) : null,
       venue: json['venue'] != null ? Venue.fromJson(json['venue']) : null,
+      paidMedia: json['paid_media'] != null
+          ? PaidMediaInfo.fromJson(json['paid_media'])
+          : null,
     );
   }
 }

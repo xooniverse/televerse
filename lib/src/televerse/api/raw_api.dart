@@ -3938,4 +3938,53 @@ class RawAPI {
 
     return StarTransactions.fromJson(response);
   }
+
+  /// Use this method to send paid media to channel chats.
+  /// On success, the sent Message is returned.
+  Future<Message> sendPaidMedia(
+    ID chatId,
+    int starCount,
+    List<InputPaidMedia> media, {
+    String? caption,
+    String? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? showCaptionAboveMedia,
+    bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    final params = {
+      "chat_id": chatId.id,
+      "star_count": starCount,
+      "caption": caption,
+      "parse_mode": parseMode,
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "show_caption_above_media": showCaptionAboveMedia,
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "reply_parameters": replyParameters?.toJson(),
+      "reply_markup": replyMarkup?.toJson(),
+    };
+
+    List<_MultipartHelper> helpers = [];
+    List<Map<String, dynamic>> mediaList = [];
+    final length = media.length;
+
+    for (int i = 0; i < length; i++) {
+      final m = media[i];
+      mediaList.add(m.toJson());
+      helpers.add(_MultipartHelper(m.media, "media$i"));
+    }
+
+    final files = _getFiles(helpers);
+    params["media"] = mediaList;
+
+    final response = await _makeApiCall<Map<String, dynamic>>(
+      APIMethod.sendPaidMedia,
+      payload: Payload(params, files),
+    );
+
+    return Message.fromJson(response);
+  }
 }

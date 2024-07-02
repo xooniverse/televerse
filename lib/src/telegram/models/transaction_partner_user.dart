@@ -8,15 +8,20 @@ class TransactionPartnerUser extends TransactionPartner {
   /// Information about the user.
   final User user;
 
+  /// Bot-specified invoice payload.
+  final String? invoicePayload;
+
   /// Constructs a [TransactionPartnerUser] object.
   const TransactionPartnerUser({
     required this.user,
+    this.invoicePayload,
   });
 
   /// Creates a [TransactionPartnerUser] object from JSON.
   factory TransactionPartnerUser.fromJson(Map<String, dynamic> json) {
     return TransactionPartnerUser(
       user: User.fromJson(json['user']),
+      invoicePayload: json['invoice_payload'],
     );
   }
 
@@ -24,8 +29,9 @@ class TransactionPartnerUser extends TransactionPartner {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'type': type,
+      'type': type.toJson(),
       'user': user.toJson(),
-    };
+      'invoice_payload': invoicePayload,
+    }..removeWhere(_nullFilter);
   }
 }
