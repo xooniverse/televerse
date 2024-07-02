@@ -376,6 +376,9 @@ enum APIMethod {
 
   /// Returns the bot's Telegram Star transactions in chronological order
   getStarTransactions._("getStarTransactions"),
+
+  /// Sends paid media
+  sendPaidMedia._("sendPaidMedia"),
   ;
 
   /// The name of the method.
@@ -418,6 +421,7 @@ enum APIMethod {
       APIMethod.sendChatAction,
       APIMethod.sendSticker,
       APIMethod.sendGame,
+      APIMethod.sendPaidMedia,
     ];
   }
 

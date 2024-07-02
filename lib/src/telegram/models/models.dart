@@ -254,3 +254,13 @@ part 'abstracts/revenue_withdrawal_state.dart';
 part 'revenue_withdrawal_state_pending.dart';
 part 'revenue_withdrawal_state_succeeded.dart';
 part 'revenue_withdrawal_state_failed.dart';
+
+// Bot API 7.6
+part 'abstracts/paid_media.dart';
+part 'paid_media_video.dart';
+part 'paid_media_photo.dart';
+part 'paid_media_preview.dart';
+part 'paid_media_info.dart';
+part 'abstracts/input_paid_media.dart';
+part 'input_paid_media_photo.dart';
+part 'input_paid_media_video.dart';
