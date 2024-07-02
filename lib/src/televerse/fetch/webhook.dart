@@ -237,8 +237,11 @@ class Webhook extends Fetcher {
   ///
   /// It sets the webhook and listens to the server.
   @override
-  Future<void> start() async {
-    if (await setWebhook()) {
+  Future<void> start({
+    bool shouldSetWebhook = true,
+  }) async {
+    final webhookSet = shouldSetWebhook ? await setWebhook() : true;
+    if (webhookSet) {
       _isActive = true;
       server.listen(_handleRequest);
     } else {
