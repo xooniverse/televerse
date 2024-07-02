@@ -1848,4 +1848,38 @@ extension ContextAwareMethods on Context {
       languageCode: languageCode,
     );
   }
+
+  /// Sends paid media to a specified chat.
+  Future<Message> replyWithPaidMedia(
+    int starCount,
+    List<InputPaidMedia> media, {
+    String? caption,
+    String? parseMode,
+    List<MessageEntity>? captionEntities,
+    bool? showCaptionAboveMedia,
+    bool? disableNotification,
+    bool? protectContent,
+    ReplyParameters? replyParameters,
+    ReplyMarkup? replyMarkup,
+  }) async {
+    api._addContext(this);
+    _verifyInfo(
+      [_chatId],
+      APIMethod.sendPaidMedia,
+    );
+
+    return api.sendPaidMedia(
+      id,
+      starCount,
+      media,
+      caption: caption,
+      parseMode: parseMode,
+      captionEntities: captionEntities,
+      showCaptionAboveMedia: showCaptionAboveMedia,
+      disableNotification: disableNotification,
+      protectContent: protectContent,
+      replyParameters: replyParameters,
+      replyMarkup: replyMarkup,
+    );
+  }
 }

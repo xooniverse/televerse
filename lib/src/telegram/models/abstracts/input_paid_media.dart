@@ -2,7 +2,7 @@ part of '../models.dart';
 
 /// This object describes the paid media to be sent.
 /// Currently, it can be one of [InputPaidMediaPhoto] or [InputPaidMediaVideo].
-abstract class InputPaidMedia {
+sealed class InputPaidMedia {
   /// Type of the media.
   InputPaidMediaType get type;
 
