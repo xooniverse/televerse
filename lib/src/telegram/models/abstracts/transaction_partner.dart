@@ -13,6 +13,7 @@ abstract class TransactionPartner {
       'fragment' => TransactionPartnerFragment.fromJson(json),
       'user' => TransactionPartnerUser.fromJson(json),
       'other' => TransactionPartnerOther.fromJson(json),
+      'telegram_ads' => TransactionPartnerTelegramAds.fromJson(json),
       _ => throw ArgumentError('Invalid transaction partner type')
     };
   }
