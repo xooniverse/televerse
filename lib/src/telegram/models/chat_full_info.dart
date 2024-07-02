@@ -110,6 +110,9 @@ class ChatFullInfo extends Chat implements WithID {
   /// The maximum number of reactions that can be set on a message in the chat
   final int maxReactionCount;
 
+  /// Optional. True, if paid media messages can be sent or forwarded to the channel chat. The field is available only for channel chats.
+  final bool? canSendPaidMedia;
+
   /// Constructs a [Chat] object.
   const ChatFullInfo({
     required super.id,
@@ -155,6 +158,7 @@ class ChatFullInfo extends Chat implements WithID {
     this.personalChat,
     this.birthdate,
     this.maxReactionCount = 0,
+    this.canSendPaidMedia,
   });
 
   /// Creates a [Chat] object from json.
@@ -225,6 +229,7 @@ class ChatFullInfo extends Chat implements WithID {
           ? null
           : Birthdate.fromJson(json['birthdate']),
       maxReactionCount: json["max_reaction_count"],
+      canSendPaidMedia: json["can_send_paid_media"],
     );
   }
 
@@ -277,6 +282,7 @@ class ChatFullInfo extends Chat implements WithID {
       'business_opening_hours': businessOpeningHours?.toJson(),
       'personal_chat': personalChat?.toJson(),
       'birthdate': birthdate?.toJson(),
+      'can_send_paid_media': canSendPaidMedia,
     }..removeWhere(_nullFilter);
   }
 }
