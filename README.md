@@ -3,7 +3,7 @@
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/HeySreelal/televerse?color=green)
-![](https://shields.io/badge/Latest-Bot%20API%207.5-blue)
+![](https://shields.io/badge/Latest-Bot%20API%207.6-blue)
 
 <a href="https://telegram.me/TeleverseDart">
     <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/>
@@ -13,7 +13,7 @@
 
 ---
 
-🤖 `Bot API version: Bot API 7.5 (June 18, 2024)`
+🤖 `Bot API version: Bot API 7.6 (July 1, 2024)`
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot
 framework built with Dart programming language. It provides a complete and
@@ -23,9 +23,20 @@ public interface, making it easy for developers to write strictly typed code.
 
 ## 🔥 What's latest?
 
-### 🗓️ June 28, 2024
+### 🤖 Bot API 7.6
 
-🎉 Support for Custom Contexts!
+(🗓️ July 1, 2024)
+
+In a nutshell, the updates include support for the new Paid Media messages.
+Brings the new `sendPaidMedia` message to send paid media messages. Introduces
+`TransactionPartnerTelegramAds`, new field in `ChatFullInfo`, and more.
+
+Checkout [changelog](https://core.telegram.org/bots/api#july-1-2024) for more
+details! 🚀
+
+### 🎉 Support for Custom Contexts!
+
+(🗓️ June 28, 2024)
 
 Televerse now lets you build even more powerful bots with custom contexts!
 
@@ -39,25 +50,15 @@ constructors to create context objects with personalized behaviors and
 capabilities. This update allows you to tailor your bot's responses, handle
 complex workflows, and integrate additional features seamlessly.
 
-### 🗓️ June 22, 2024
+### Introducing Middleware & Transformer support!
 
-Introducing Middleware & Transformer support! You can now use the `Bot.use`
-method to attach middlewares to your bot. These middlewares will be processed
-before your main handler runs, allowing you to pre-process or even decide
-whether to execute the main handler. Additionally, using a `Transformer` lets
-you directly modify the request payload, reducing redundant code and simplifying
-your coding experience.
+(🗓️ June 22, 2024)
 
-### 🗓️ June 18, 2024
-
-In a nutshell, the updates include new Payment system with
-[Telegram Stars](https://t.me/BotNews/90). Includes a bunch of new models
-related to Star Payments and new method to get Bot's Star Payment history. This
-update also includes support for Business Bots to edit messages as well as
-accept callback and inline queries.
-
-Checkout [changelog](https://core.telegram.org/bots/api#june-18-2024) for more
-details! 🚀
+You can now use the `Bot.use` method to attach middlewares to your bot. These
+middlewares will be processed before your main handler runs, allowing you to
+pre-process or even decide whether to execute the main handler. Additionally,
+using a `Transformer` lets you directly modify the request payload, reducing
+redundant code and simplifying your coding experience.
 
 <hr>
 
