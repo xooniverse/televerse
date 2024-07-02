@@ -1,3 +1,15 @@
+# 1.21.0
+
+- 🤖 Bot API 7.6
+- Added methods to register callbacks for handling paid media in bot messages:
+  - `Bot.onPaidMedia`: Registers a callback for whenever any type of paid media
+    is received in messages.
+  - `Bot.onPaidMediaVideo`: Registers a callback for whenever paid media videos
+    are received in messages.
+  - `Bot.onPaidMediaPhoto`: Registers a callback for whenever paid media photos
+    are received in messages.
+- New method `RawAPI.sendPaidMedia` is added to send paid media.
+
 # 1.20.0
 
 - 🥳 Support for Custom Context
