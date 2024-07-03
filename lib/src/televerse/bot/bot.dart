@@ -418,10 +418,11 @@ class Bot<CTX extends Context> {
     for (int i = 0; i < sub.length; i++) {
       final passing = sub[i].predicate(context);
 
-      if (sub[i].hasCustomPredicate) {
+      if (passing && sub[i].hasCustomPredicate) {
         try {
-          final customPass =
-              await sub[i].options!.customPredicate!.call(context);
+          final customPass = await sub[i].options!.customPredicate!.call(
+                context,
+              );
           if (!customPass) continue;
         } catch (err, stack) {
           final botErr = BotError<CTX>(err, stack);
