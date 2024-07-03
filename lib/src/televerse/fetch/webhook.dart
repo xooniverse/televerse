@@ -75,10 +75,12 @@ class Webhook extends Fetcher {
   /// Http server instance.
   final io.HttpServer server;
 
-  /// Webhook URL. This is the URL where your bot will listen for incoming updates.
+  /// Webhook URL. This is the URL is used to call the `setWebhook` method.
+  ///
+  /// If you plan to call the `setWebhook` on your own, leave this field untouched.
   ///
   /// Example: `https://yourdomain.com`
-  String url;
+  String? url;
 
   /// The fixed IP address which will be used to send webhook requests
   /// instead of the IP address resolved through DNS
@@ -126,6 +128,9 @@ class Webhook extends Fetcher {
   /// `A-Z`, `a-z`, `0-9`, `_` and `-` are allowed. The header is useful to
   /// ensure that the request comes from a webhook set by you.
   final String? secretToken;
+
+  /// Flag indicating whether the `setWebhook` call has to be made
+  final bool shouldSetWebhook;
 
   /// Allowed ports.
   final List<int> _allowedPorts = [443, 80, 88, 8443];
@@ -178,7 +183,7 @@ class Webhook extends Fetcher {
   /// - Throws `WebhookException.failedToSetWebhook` if the webhook failed to set.
   Webhook(
     this.server, {
-    required this.url,
+    this.url,
     this.ipAddress,
     this.path = '/',
     this.port = 443,
@@ -187,6 +192,7 @@ class Webhook extends Fetcher {
     this.dropPendingUpdates,
     this.certificate,
     this.secretToken,
+    this.shouldSetWebhook = false,
   }) {
     _validatePort();
     _validateMaxConnections();
@@ -208,15 +214,16 @@ class Webhook extends Fetcher {
 
   /// Normalizes the webhook path.
   void _normalizePath() {
-    if (path.isNotEmpty && !path.startsWith('/')) {
+    if (path != "/" && !path.startsWith('/')) {
       path = '/$path';
     }
   }
 
   /// Normalizes the webhook URL.
   void _normalizeUrl() {
-    if (url.endsWith('/')) {
-      url = url.substring(0, url.length - 1);
+    if (url == null) return;
+    if (url!.endsWith('/')) {
+      url = url!.substring(0, url!.length - 1);
     }
   }
 
@@ -238,7 +245,8 @@ class Webhook extends Fetcher {
   /// It sets the webhook and listens to the server.
   @override
   Future<void> start() async {
-    if (await setWebhook()) {
+    final webhookSet = shouldSetWebhook ? await setWebhook() : true;
+    if (webhookSet) {
       _isActive = true;
       server.listen(_handleRequest);
     } else {

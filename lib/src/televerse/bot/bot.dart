@@ -361,15 +361,28 @@ class Bot<CTX extends Context> {
   /// This method creates the Context instance for the update and resolves the
   /// Handler Scopes and proceeds to process the update.
   void _onUpdate(Update update) async {
-    // Gets the sublist of Handler Scopes that is apt for the recieved Update
-    List<HandlerScope<CTX>> sub = _handlerScopes.where((scope) {
+    // Find matching scopes
+    bool matchScopes(HandlerScope<CTX> scope) {
       return scope.types.contains(update.type);
-    }).toList();
+    }
 
+    // Checks has
+    final hasMiddlewares = _middlewares.isNotEmpty;
+
+    // Gets the sublist of Handler Scopes that is apt for the recieved Update
+    List<HandlerScope<CTX>> sub =
+        (hasMiddlewares ? _handlerScopes : _handlerScopes.reversed)
+            .where(matchScopes)
+            .toList();
+
+    // Sorter helper method that brings handler scopes that has custom predicate to front
+    int bringCustomChecksFirst(HandlerScope<CTX> a, HandlerScope<CTX> b) {
+      return "${b.hasCustomPredicate}".compareTo("${a.hasCustomPredicate}");
+    }
+
+    // If any Handler Scope has custom predicate attached, we'll sort the handlers
     if (sub.any((el) => el.hasCustomPredicate)) {
-      sub.sort((a, b) {
-        return "${b.hasCustomPredicate}".compareTo("${a.hasCustomPredicate}");
-      });
+      sub.sort(bringCustomChecksFirst);
     }
 
     // Creates the context instance for the update
@@ -405,10 +418,11 @@ class Bot<CTX extends Context> {
     for (int i = 0; i < sub.length; i++) {
       final passing = sub[i].predicate(context);
 
-      if (sub[i].hasCustomPredicate) {
+      if (passing && sub[i].hasCustomPredicate) {
         try {
-          final customPass =
-              await sub[i].options!.customPredicate!.call(context);
+          final customPass = await sub[i].options!.customPredicate!.call(
+                context,
+              );
           if (!customPass) continue;
         } catch (err, stack) {
           final botErr = BotError<CTX>(err, stack);
@@ -607,19 +621,9 @@ class Bot<CTX extends Context> {
   /// Start polling for updates.
   ///
   /// This method starts polling for updates. It will automatically start the fetcher.
-  ///
-  /// You can pass a [handler] to the method. The handler will be called when a message is received that starts with the `/start` command.
-  ///
-  /// Optional [isServerless] flag can be passed to the method. If you set this flag to true, the bot will not start the fetcher.
-  Future<void> start([
-    Handler<CTX>? handler,
-    bool isServerless = false,
-  ]) async {
-    // Registers a handler to listen for /start command
-    if (handler != null) {
-      command("start", handler);
-    }
-    if (isServerless) return;
+  Future<void> start({
+    bool shouldSetWebhook = true,
+  }) async {
     fetcher.onUpdate().listen(
       _onUpdate,
       onDone: () {
@@ -627,7 +631,7 @@ class Bot<CTX extends Context> {
       },
     );
     try {
-      return await fetcher.start();
+      fetcher.start();
     } catch (err, stack) {
       fetcher.stop();
       final botErr = BotError<CTX>(err, stack);

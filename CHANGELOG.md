@@ -1,3 +1,10 @@
+# 1.21.1
+
+- `Webhook` now accepts a `shouldSetWebhook` flag which indicates whether the
+  `setWebhook` call to be made implicitly or not.
+- Made the `url` property optional in Webhook.
+- Minor tweaks
+
 # 1.21.0
 
 - 🤖 Bot API 7.6
