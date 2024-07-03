@@ -631,12 +631,7 @@ class Bot<CTX extends Context> {
       },
     );
     try {
-      return switch (fetcher) {
-        LongPolling() => fetcher.start(),
-        Webhook() => (fetcher as Webhook).start(
-            shouldSetWebhook: shouldSetWebhook,
-          )
-      };
+      fetcher.start();
     } catch (err, stack) {
       fetcher.stop();
       final botErr = BotError<CTX>(err, stack);

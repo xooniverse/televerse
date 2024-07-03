@@ -129,6 +129,9 @@ class Webhook extends Fetcher {
   /// ensure that the request comes from a webhook set by you.
   final String? secretToken;
 
+  /// Flag indicating whether the `setWebhook` call has to be made
+  bool shouldSetWebhook;
+
   /// Allowed ports.
   final List<int> _allowedPorts = [443, 80, 88, 8443];
 
@@ -189,6 +192,7 @@ class Webhook extends Fetcher {
     this.dropPendingUpdates,
     this.certificate,
     this.secretToken,
+    this.shouldSetWebhook = false,
   }) {
     _validatePort();
     _validateMaxConnections();
@@ -240,9 +244,7 @@ class Webhook extends Fetcher {
   ///
   /// It sets the webhook and listens to the server.
   @override
-  Future<void> start({
-    bool shouldSetWebhook = true,
-  }) async {
+  Future<void> start() async {
     final webhookSet = shouldSetWebhook ? await setWebhook() : true;
     if (webhookSet) {
       _isActive = true;
