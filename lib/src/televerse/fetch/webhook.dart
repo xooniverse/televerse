@@ -92,7 +92,7 @@ class Webhook extends Fetcher {
   /// `$url:$port$path`, and this path will be matched when processing incoming requests.
   ///
   /// Example: `/mybotwebhook`
-  String? path;
+  String path;
 
   /// Webhook port. This is the port on which the webhook will listen for incoming requests.
   ///
@@ -182,7 +182,7 @@ class Webhook extends Fetcher {
     this.server, {
     this.url,
     this.ipAddress,
-    String? path,
+    this.path = '/',
     this.port = 443,
     this.maxConnections = 40,
     this.allowedUpdates,
@@ -210,13 +210,7 @@ class Webhook extends Fetcher {
 
   /// Normalizes the webhook path.
   void _normalizePath() {
-    if (url != null) {
-      if (url != null && path == null) {
-        path = '/';
-      }
-    }
-    if (path == null) return;
-    if (path!.isNotEmpty && !path!.startsWith('/')) {
+    if (path != "/" && !path.startsWith('/')) {
       path = '/$path';
     }
   }
