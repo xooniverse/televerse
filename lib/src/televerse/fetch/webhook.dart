@@ -130,7 +130,7 @@ class Webhook extends Fetcher {
   final String? secretToken;
 
   /// Flag indicating whether the `setWebhook` call has to be made
-  bool shouldSetWebhook;
+  final bool shouldSetWebhook;
 
   /// Allowed ports.
   final List<int> _allowedPorts = [443, 80, 88, 8443];
