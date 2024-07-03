@@ -75,10 +75,12 @@ class Webhook extends Fetcher {
   /// Http server instance.
   final io.HttpServer server;
 
-  /// Webhook URL. This is the URL where your bot will listen for incoming updates.
+  /// Webhook URL. This is the URL is used to call the `setWebhook` method.
+  ///
+  /// If you plan to call the `setWebhook` on your own, leave this field untouched.
   ///
   /// Example: `https://yourdomain.com`
-  String url;
+  String? url;
 
   /// The fixed IP address which will be used to send webhook requests
   /// instead of the IP address resolved through DNS
@@ -90,7 +92,7 @@ class Webhook extends Fetcher {
   /// `$url:$port$path`, and this path will be matched when processing incoming requests.
   ///
   /// Example: `/mybotwebhook`
-  String path;
+  String? path;
 
   /// Webhook port. This is the port on which the webhook will listen for incoming requests.
   ///
@@ -178,9 +180,9 @@ class Webhook extends Fetcher {
   /// - Throws `WebhookException.failedToSetWebhook` if the webhook failed to set.
   Webhook(
     this.server, {
-    required this.url,
+    this.url,
     this.ipAddress,
-    this.path = '/',
+    String? path,
     this.port = 443,
     this.maxConnections = 40,
     this.allowedUpdates,
@@ -208,15 +210,22 @@ class Webhook extends Fetcher {
 
   /// Normalizes the webhook path.
   void _normalizePath() {
-    if (path.isNotEmpty && !path.startsWith('/')) {
+    if (url != null) {
+      if (url != null && path == null) {
+        path = '/';
+      }
+    }
+    if (path == null) return;
+    if (path!.isNotEmpty && !path!.startsWith('/')) {
       path = '/$path';
     }
   }
 
   /// Normalizes the webhook URL.
   void _normalizeUrl() {
-    if (url.endsWith('/')) {
-      url = url.substring(0, url.length - 1);
+    if (url == null) return;
+    if (url!.endsWith('/')) {
+      url = url!.substring(0, url!.length - 1);
     }
   }
 
