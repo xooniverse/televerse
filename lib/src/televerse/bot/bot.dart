@@ -573,12 +573,10 @@ class Bot<CTX extends Context> {
   /// use Update.fromJson(json) to convert the json to an update.
   void handleUpdate(Update update) => _onUpdate(update);
 
-  /// Start polling for updates.
+  /// Start polling or webhook listener for fetching updates.
   ///
-  /// This method starts polling for updates. It will automatically start the fetcher.
-  Future<void> start({
-    bool shouldSetWebhook = true,
-  }) async {
+  /// Note: This method must be awaited.
+  Future<void> start() async {
     await _initializeBot();
 
     fetcher.onUpdate().listen(
