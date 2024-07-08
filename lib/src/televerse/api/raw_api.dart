@@ -51,7 +51,6 @@ class RawAPI {
     LoggerOptions? loggerOptions,
     Duration? timeout,
   }) {
-    print('not local');
     return RawAPI._(
       token,
       loggerOptions: loggerOptions,
@@ -69,7 +68,6 @@ class RawAPI {
     LoggerOptions? loggerOptions,
     Duration? timeout,
   }) {
-    print('local');
     return RawAPI._(
       token,
       baseUrl: baseUrl,

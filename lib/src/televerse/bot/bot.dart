@@ -158,6 +158,8 @@ class Bot<CTX extends Context> {
         _scheme = scheme,
         _api = RawAPI(token, loggerOptions: loggerOptions, timeout: timeout) {
     _initializeBot(fetcher);
+    print(baseURL);
+    print(_baseURL);
   }
 
   /// Function to ignore things.
