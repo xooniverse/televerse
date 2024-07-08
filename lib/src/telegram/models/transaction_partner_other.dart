@@ -17,7 +17,7 @@ class TransactionPartnerOther extends TransactionPartner {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'type': type,
+      'type': type.value,
     };
   }
 }

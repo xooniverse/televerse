@@ -26,7 +26,7 @@ class TransactionPartnerFragment extends TransactionPartner {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'type': type,
+      'type': type.value,
       'withdrawal_state': withdrawalState?.toJson(),
     };
   }

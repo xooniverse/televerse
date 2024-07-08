@@ -41,7 +41,7 @@ class InputPaidMediaVideo implements InputPaidMedia {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'type': type,
+      'type': type.value,
       'media': media.getValue('media'),
       'thumbnail': thumbnail?.getValue('thumbnail'),
       'width': width,

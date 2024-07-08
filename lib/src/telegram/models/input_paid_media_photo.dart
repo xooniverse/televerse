@@ -21,7 +21,7 @@ class InputPaidMediaPhoto implements InputPaidMedia {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'type': type,
+      'type': type.value,
       'media': media.getValue('media'),
     };
   }

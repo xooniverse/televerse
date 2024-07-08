@@ -34,7 +34,7 @@ class PaidMediaPreview extends PaidMedia {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'type': type,
+      'type': type.value,
       'width': width,
       'height': height,
       'duration': duration,

@@ -21,7 +21,7 @@ class PassportElementErrorUnspecified extends PassportElementError {
   Map<String, dynamic> toJson() {
     return {
       'source': source,
-      'type': type,
+      'type': type.value,
       'message': message,
       'element_hash': elementHash,
     }..removeWhere(_nullFilter);
