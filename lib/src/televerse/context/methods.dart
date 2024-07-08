@@ -649,7 +649,7 @@ extension ContextAwareMethods on Context {
     }
 
     await api._editMessageLiveLocation<_Ignore>(
-      chatId: id,
+      chatId: maybeId,
       messageId: _msgId,
       inlineMessageId: _inlineMsgId,
       latitude: latitude,
@@ -1545,7 +1545,7 @@ extension ContextAwareMethods on Context {
 
     await api._editMessageText<_Ignore>(
       text: text,
-      chatId: id,
+      chatId: maybeId,
       inlineMessageId: _inlineMsgId,
       messageId: _msgId,
       parseMode: parseMode,
@@ -1573,7 +1573,7 @@ extension ContextAwareMethods on Context {
     }
 
     await api._editMessageCaption<_Ignore>(
-      chatId: id,
+      chatId: maybeId,
       messageId: _msgId,
       inlineMessageId: _inlineMsgId,
       caption: caption,
@@ -1603,7 +1603,7 @@ extension ContextAwareMethods on Context {
 
     await api._editMessageMedia<_Ignore>(
       inlineMessageId: _inlineMsgId,
-      chatId: id,
+      chatId: maybeId,
       messageId: _msgId,
       media: media,
       replyMarkup: replyMarkup,
@@ -1625,7 +1625,7 @@ extension ContextAwareMethods on Context {
     }
 
     await api._editMessageReplyMarkup<_Ignore>(
-      chatId: id,
+      chatId: maybeId,
       messageId: _msgId,
       inlineMessageId: _inlineMsgId,
       replyMarkup: replyMarkup,
