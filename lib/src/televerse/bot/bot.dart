@@ -120,6 +120,7 @@ class Bot<CTX extends Context> {
       loggerOptions: _loggerOptions,
       timeout: timeout,
     );
+    print('not local api called');
     return _api!;
   }
 
