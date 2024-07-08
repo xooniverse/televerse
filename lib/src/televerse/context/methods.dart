@@ -1800,7 +1800,7 @@ extension ContextAwareMethods on Context {
   }
 
   /// Answer pre checkout query
-  Future<bool> answerPreCheckouQUery(
+  Future<bool> answerPreCheckouQuery(
     bool ok, {
     String? errorMessage,
   }) async {
