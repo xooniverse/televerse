@@ -279,7 +279,6 @@ class RawAPI {
     APICaller call = (APIMethod method, Payload payload) async {
       final uri = _buildUri(method);
       payload.params.removeWhere(_nullFilter);
-      print(uri);
       final result = await _httpClient._makeApiCall(
         uri,
         payload: payload,
