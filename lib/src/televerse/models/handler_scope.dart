@@ -44,9 +44,6 @@ class HandlerScope<CTX extends Context> {
     this.options,
   }) : assert(handler != null || isConversation);
 
-  /// Whether the scope is forked or not.
-  bool get forked => options?.forked ?? false;
-
   /// Name of the scope
   String? get name => options?.name;
 
