@@ -52,4 +52,7 @@ class HandlerScope<CTX extends Context> {
 
   /// Whether the scope has a custom predicate
   bool get hasCustomPredicate => options?.customPredicate != null;
+
+  @override
+  String toString() => options?.name ?? 'Unnamed';
 }

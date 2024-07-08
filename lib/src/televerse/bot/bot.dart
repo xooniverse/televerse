@@ -156,15 +156,14 @@ class Bot<CTX extends Context> {
         isLocal = baseURL != RawAPI.defaultBase,
         _loggerOptions = loggerOptions,
         _scheme = scheme,
-        _api = RawAPI(token, loggerOptions: loggerOptions, timeout: timeout) {
-    _initializeBot(fetcher);
+        _api = RawAPI(token, loggerOptions: loggerOptions, timeout: timeout),
+        fetcher = fetcher ?? LongPolling<CTX>() {
+    // Set the default error handler
+    onError(_defaultErrorHandler);
   }
 
-  /// Function to ignore things.
-  void _ignore(_) {}
-
   /// Handles the error in initial `getMe` call
-  FutureOr<Null> _thenHandleGetMeError(Object err, StackTrace st) async {
+  Future<void> _thenHandleGetMeError(Object err, StackTrace st) async {
     if (err is DioException) {
       if (err.type == DioExceptionType.connectionTimeout ||
           err.type == DioExceptionType.receiveTimeout ||
@@ -232,29 +231,25 @@ class Bot<CTX extends Context> {
         _loggerOptions = api._httpClient.loggerOptions,
         _scheme = api._scheme,
         timeout = api.timeout,
-        token = api.token {
-    _initializeBot(fetcher);
+        token = api.token,
+        fetcher = fetcher ?? LongPolling<CTX>() {
+    onError(_defaultErrorHandler);
   }
 
   /// Initializes the bot with common setup logic.
-  void _initializeBot(Fetcher<CTX>? fetcher) {
+  Future<void> _initializeBot() async {
     // Create Fetcher and assign the RawAPI instance
-    this.fetcher = fetcher ?? LongPolling<CTX>();
-    this.fetcher.setApi(_api!);
-
-    // Set the default error handler
-    onError(_defaultErrorHandler);
+    fetcher.setApi(_api!);
 
     // Perform initial /getMe request
-    _getMeRequest = getMe();
-    _getMeRequest!.then(_ignore).catchError(_thenHandleGetMeError);
-
+    try {
+      await getMe();
+    } catch (err, st) {
+      _thenHandleGetMeError(err, st);
+    }
     // Set instance variable
     _instance = this;
   }
-
-  /// List of pending calls
-  final List<_PendingCall> _pendingCalls = [];
 
   /// (Internal) A Future that resolves to User of Bot info.
   ///
@@ -268,24 +263,21 @@ class Bot<CTX extends Context> {
   bool get initialized => _getMeStatus == _GetMeStatus.completed;
 
   /// Information about the bot.
-  late User _me;
+  User? _me;
 
   /// Get information about the bot.
   ///
   /// This getter returns the bot information. You can use this to access the bot information from anywhere in your code. This getter will be automatically set when the bot starts.
   /// If you try to access this getter before creating a bot instance, it will throw an error.
   User get me {
-    try {
-      return _me;
-    } catch (err, stack) {
-      throw TeleverseException(
-        "Bot information not found.",
-        description:
-            "This happens when the initial getMe request is not completed. You can call `bot.getMe` method to set this property.",
-        stackTrace: stack,
-        type: TeleverseExceptionType.requestFailed,
-      );
-    }
+    if (_me != null) return _me!;
+
+    throw TeleverseException(
+      "Bot information not found.",
+      description:
+          "This happens when the initial getMe request is not completed. You can call `bot.getMe` method to set this property.",
+      type: TeleverseExceptionType.requestFailed,
+    );
   }
 
   /// Get information about the bot.
@@ -296,21 +288,13 @@ class Bot<CTX extends Context> {
   /// Note: As of now this won't be handled in `onError` handler.
   Future<User> getMe() async {
     try {
-      if (initialized) {
-        return _me;
-      }
+      if (_me != null) return _me!;
+
       _getMeStatus = _GetMeStatus.pending;
       _me = await api.getMe();
       _getMeStatus = _GetMeStatus.completed;
 
-      if (_pendingCalls.isNotEmpty) {
-        for (final fn in _pendingCalls) {
-          fn.call();
-        }
-        _pendingCalls.clear();
-      }
-
-      return _me;
+      return _me!;
     } catch (err, stack) {
       final exception = TeleverseException.getMeRequestFailed(err, stack);
       throw exception;
@@ -366,14 +350,8 @@ class Bot<CTX extends Context> {
       return scope.types.contains(update.type);
     }
 
-    // Checks has
-    final hasMiddlewares = _middlewares.isNotEmpty;
-
     // Gets the sublist of Handler Scopes that is apt for the recieved Update
-    List<HandlerScope<CTX>> sub =
-        (hasMiddlewares ? _handlerScopes : _handlerScopes.reversed)
-            .where(matchScopes)
-            .toList();
+    final sub = _handlerScopes.where(matchScopes).toList();
 
     // Sorter helper method that brings handler scopes that has custom predicate to front
     int bringCustomChecksFirst(HandlerScope<CTX> a, HandlerScope<CTX> b) {
@@ -391,28 +369,6 @@ class Bot<CTX extends Context> {
       me: !initialized ? await _getMeRequest! : me,
       update: update,
     );
-
-    // Indexes of the forked Handler Scopes
-    final forks = sub.indexed
-        .where((s) => s.$2.forked)
-        .map(
-          (e) => e.$1,
-        )
-        .toList();
-
-    // Processes forked handlers first
-    for (int i = 0; i < forks.length; i++) {
-      final passing = sub[forks[i]].predicate(context);
-      if (!passing) continue;
-      _preProcess(sub[forks[i]], context);
-      await _processUpdate(sub[forks[i]], context);
-    }
-
-    // Once completed, remove the forked handlers in the decending order.
-    forks.sort((a, b) => b.compareTo(a));
-    for (final i in forks) {
-      sub.removeAt(i);
-    }
 
     // Finds and processes the handler scopes.
     for (int i = 0; i < sub.length; i++) {
@@ -624,6 +580,8 @@ class Bot<CTX extends Context> {
   Future<void> start({
     bool shouldSetWebhook = true,
   }) async {
+    await _initializeBot();
+
     fetcher.onUpdate().listen(
       _onUpdate,
       onDone: () {
@@ -680,46 +638,31 @@ class Bot<CTX extends Context> {
     ScopeOptions<CTX>? options,
     bool considerCaption = false,
   }) {
-    if (initialized) {
-      final scope = HandlerScope<CTX>(
-        isCommand: true,
-        options: options,
-        handler: callback,
-        types: UpdateType.messages(),
-        predicate: (ctx) {
-          String? text;
-          if (considerCaption) {
-            text = ctx.msg?.caption;
-          }
-          text ??= ctx.msg?.text;
+    final scope = HandlerScope<CTX>(
+      isCommand: true,
+      options: options,
+      handler: callback,
+      types: UpdateType.messages(),
+      predicate: (ctx) {
+        String? text;
+        if (considerCaption) {
+          text = ctx.msg?.caption;
+        }
+        text ??= ctx.msg?.text;
 
-          if (text == null) return false;
-          if (command is RegExp) {
-            return command.hasMatch(text);
-          } else if (command is String) {
-            final firstTerm = text.split(' ').first;
-            final suffix = '@${me.username}';
-            return firstTerm == '/$command' || firstTerm == '/$command$suffix';
-          }
-          return false;
-        },
-      );
-      _handlerScopes.add(scope);
-      return;
-    }
-
-    if (_getMeStatus == _GetMeStatus.pending) {
-      _pendingCalls.add(
-        _PendingCall(
-          fn: this.command,
-          params: [command, callback],
-          namedParams: {
-            #options: options,
-            #considerCaption: considerCaption,
-          },
-        ),
-      );
-    }
+        if (text == null) return false;
+        if (command is RegExp) {
+          return command.hasMatch(text);
+        } else if (command is String) {
+          final firstTerm = text.split(' ').first;
+          final suffix = '@${me.username}';
+          return firstTerm == '/$command' || firstTerm == '/$command$suffix';
+        }
+        return false;
+      },
+    );
+    _handlerScopes.add(scope);
+    return;
   }
 
   /// Registers a Handler Scope to listen to matching callback query.
@@ -1484,24 +1427,11 @@ class Bot<CTX extends Context> {
     Handler<CTX> callback, {
     ScopeOptions<CTX>? options,
   }) async {
-    if (initialized) {
-      return onMention(
-        callback,
-        username: me.username,
-        options: options,
-      );
-    }
-    if (_getMeStatus == _GetMeStatus.pending) {
-      _pendingCalls.add(
-        _PendingCall(
-          fn: whenMentioned,
-          params: [callback],
-          namedParams: {
-            #options: options,
-          },
-        ),
-      );
-    }
+    return onMention(
+      callback,
+      username: me.username,
+      options: options,
+    );
   }
 
   /// Registers a callback for all Message updates
