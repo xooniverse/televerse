@@ -158,8 +158,6 @@ class Bot<CTX extends Context> {
         _scheme = scheme,
         _api = RawAPI(token, loggerOptions: loggerOptions, timeout: timeout) {
     _initializeBot(fetcher);
-    print(baseURL);
-    print(_baseURL);
   }
 
   /// Function to ignore things.
@@ -242,6 +240,7 @@ class Bot<CTX extends Context> {
   void _initializeBot(Fetcher<CTX>? fetcher) {
     // Create Fetcher and assign the RawAPI instance
     this.fetcher = fetcher ?? LongPolling<CTX>();
+    print(_api!._baseUrl);
     this.fetcher.setApi(_api!);
 
     // Set the default error handler
