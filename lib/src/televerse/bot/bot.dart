@@ -123,7 +123,7 @@ class Bot<CTX extends Context> {
   }
 
   /// The fetcher - used to fetch updates from the Telegram servers.
-  late final Fetcher<CTX> fetcher;
+  final Fetcher<CTX> fetcher;
 
   /// The bot token.
   final String token;
