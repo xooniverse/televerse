@@ -1,3 +1,23 @@
+# 1.22.0
+
+- 🤖 Bot API 7.7
+- Added the `RefundedPayment` class and the `Message.refundedPayment` property
+- Initalizes fetcher on the constructor
+- Moved the inital `getMe` call to be made from hte `Bot.start` method
+- Remoed Pending Calls (which caused some troubles in the handler scopes order)
+- Removed forked handlers, - well who knew it was there?
+- All thanks to [@im-trisha](https://github.com/im-trisha)
+- Fixed an issue that caused Bot to listen to the official Bot API even though
+  created with `Bot.local` -
+  [#275](https://github.com/HeySreelal/televerse/issues/275) (Thanks to
+  [@devdocs](https://github.com/devsdocs) for reporting)
+- Fixed [#274](https://github.com/HeySreelal/televerse/issues/274)
+- Fix [#277](https://github.com/HeySreelal/televerse/issues/277)
+- Fix [#104](https://github.com/HeySreelal/televerse/issues/104)
+- Fixed more typing issues.
+- `Bot.start` now accepts zero parameters.
+- Added `Context.maybeId` a nullable ID instance
+
 # 1.21.1
 
 - `Webhook` now accepts a `shouldSetWebhook` flag which indicates whether the
