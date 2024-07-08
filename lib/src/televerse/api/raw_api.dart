@@ -37,6 +37,7 @@ class RawAPI {
           timeout: timeout,
         ) {
     print('$_baseUrl From Private Constructor');
+    print('$baseUrl From Private Constructor Parameter');
   }
 
   /// `RawAPI` gives you access to all methods of Telegram Bot API.
