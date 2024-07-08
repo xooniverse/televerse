@@ -580,11 +580,9 @@ class Bot<CTX extends Context> {
     await _initializeBot();
 
     fetcher.onUpdate().listen(
-      _onUpdate,
-      onDone: () {
-        _onStop.call();
-      },
-    );
+          _onUpdate,
+          onDone: _onStop,
+        );
     try {
       fetcher.start();
     } catch (err, stack) {
