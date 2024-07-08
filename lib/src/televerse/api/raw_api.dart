@@ -93,6 +93,7 @@ class RawAPI {
       return _baseUri!.replace(path: "${_baseUri?.path}/$method");
     }
 
+    print(_isLocal);
     print(_baseUrl);
 
     // Create the base URI and set the _baseUri property
