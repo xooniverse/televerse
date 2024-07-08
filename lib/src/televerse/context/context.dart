@@ -16,6 +16,15 @@ class Context {
   /// This represents the update for which the context is created.
   final Update update;
 
+  /// Possibly the [ChatID] of the chat which the update belongs to.
+  ///
+  /// This is a lighter version of [id]. Instead of throwing an exception,
+  /// this getter will return null if the udpate does not have a chat.
+  ChatID? get maybeId {
+    if (_chatId == null) return null;
+    return ChatID(_chatId!);
+  }
+
   /// The [ChatID] instance.
   ///
   /// This represents the ID of the chat from which the update was sent.

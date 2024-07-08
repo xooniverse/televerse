@@ -18,7 +18,7 @@ abstract class PassportElementError {
   Map<String, dynamic> toJson() {
     return {
       'source': source,
-      'type': type,
+      'type': type.value,
     }..removeWhere(_nullFilter);
   }
 }

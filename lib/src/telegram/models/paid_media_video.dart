@@ -24,7 +24,7 @@ class PaidMediaVideo extends PaidMedia {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'type': type,
+      'type': type.value,
       'video': video.toJson(),
     };
   }

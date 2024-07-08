@@ -3,7 +3,7 @@
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/HeySreelal/televerse?color=green)
-![](https://shields.io/badge/Latest-Bot%20API%207.6-blue)
+![](https://shields.io/badge/Latest-Bot%20API%207.7-blue)
 
 <a href="https://telegram.me/TeleverseDart">
     <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/>
@@ -13,7 +13,7 @@
 
 ---
 
-🤖 `Bot API version: Bot API 7.6 (July 1, 2024)`
+🤖 `Bot API version: Bot API 7.7 (July 7, 2024)`
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot
 framework built with Dart programming language. It provides a complete and
@@ -23,15 +23,13 @@ public interface, making it easy for developers to write strictly typed code.
 
 ## 🔥 What's latest?
 
-### 🤖 Bot API 7.6
+### 🤖 Bot API 7.7
 
-(🗓️ July 1, 2024)
+(🗓️ July 8, 2024)
 
-In a nutshell, the updates include support for the new Paid Media messages.
-Brings the new `sendPaidMedia` message to send paid media messages. Introduces
-`TransactionPartnerTelegramAds`, new field in `ChatFullInfo`, and more.
+Simply, this change brings support for Refunds of Payment.
 
-Checkout [changelog](https://core.telegram.org/bots/api#july-1-2024) for more
+Checkout [changelog](https://core.telegram.org/bots/api#july-7-2024) for more
 details! 🚀
 
 ### 🎉 Support for Custom Contexts!
@@ -49,16 +47,6 @@ With the new `Bot.contextBuilder` method, you can define specialized context
 constructors to create context objects with personalized behaviors and
 capabilities. This update allows you to tailor your bot's responses, handle
 complex workflows, and integrate additional features seamlessly.
-
-### Introducing Middleware & Transformer support!
-
-(🗓️ June 22, 2024)
-
-You can now use the `Bot.use` method to attach middlewares to your bot. These
-middlewares will be processed before your main handler runs, allowing you to
-pre-process or even decide whether to execute the main handler. Additionally,
-using a `Transformer` lets you directly modify the request payload, reducing
-redundant code and simplifying your coding experience.
 
 <hr>
 

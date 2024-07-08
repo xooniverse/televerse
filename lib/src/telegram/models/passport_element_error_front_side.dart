@@ -21,7 +21,7 @@ class PassportElementErrorFrontSide extends PassportElementError {
   Map<String, dynamic> toJson() {
     return {
       'source': source,
-      'type': type,
+      'type': type.value,
       'message': message,
       'file_hash': fileHash,
     }..removeWhere(_nullFilter);

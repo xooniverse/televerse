@@ -265,3 +265,6 @@ part 'abstracts/input_paid_media.dart';
 part 'input_paid_media_photo.dart';
 part 'input_paid_media_video.dart';
 part 'transaction_partner_telegram_ads.dart';
+
+// Bot API 7.7
+part 'refunded_payment.dart';

@@ -106,23 +106,6 @@ enum _GetMeStatus {
   ;
 }
 
-/// Represents a pending method call
-class _PendingCall {
-  final Function fn;
-  final List<dynamic> params;
-  final Map<Symbol, dynamic> namedParams;
-
-  const _PendingCall({
-    required this.fn,
-    required this.params,
-    this.namedParams = const <Symbol, dynamic>{},
-  });
-
-  void call() {
-    Function.apply(fn, params, namedParams);
-  }
-}
-
 /// Extension on `Chat` to create ID of the chat
 extension GetChatID on Chat {
   /// Returns the `ChatID` of the chat.

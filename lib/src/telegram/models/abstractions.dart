@@ -20,3 +20,21 @@ abstract class WithID {
 
 /// Null filter function.
 bool _nullFilter(String _, dynamic value) => value == null;
+
+/// A helper method to parse a nested object from JSON.
+T? _parseJson<T>(
+  Map<String, dynamic>? json,
+  T Function(Map<String, dynamic>) fromJson,
+) {
+  if (json == null) return null;
+  return fromJson(json);
+}
+
+/// A helper method to parse a list of nested objects from JSON.
+List<T>? _parseList<T>(
+  List<dynamic>? json,
+  T Function(Map<String, dynamic>) fromJson,
+) {
+  if (json == null) return null;
+  return (json).map((e) => fromJson(e as Map<String, dynamic>)).toList();
+}

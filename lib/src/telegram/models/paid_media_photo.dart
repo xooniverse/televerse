@@ -26,7 +26,7 @@ class PaidMediaPhoto extends PaidMedia {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'type': type,
+      'type': type.value,
       'photo': photo.map((item) => item.toJson()).toList(),
     };
   }
