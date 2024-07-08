@@ -88,13 +88,13 @@ class RawAPI {
 
   /// Build the URI for the Telegram API.
   Uri _buildUri(APIMethod method) {
+    print(_isLocal);
+    print(_baseUrl);
+    print(_baseUri);
     // If Base URI is already set, just tweak the method part and return
     if (_baseUri != null) {
       return _baseUri!.replace(path: "${_baseUri?.path}/$method");
     }
-
-    print(_isLocal);
-    print(_baseUrl);
 
     // Create the base URI and set the _baseUri property
     Uri uri;
