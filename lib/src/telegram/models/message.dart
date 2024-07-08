@@ -358,192 +358,179 @@ class Message implements MaybeInaccessibleMessage, WithUser {
   factory Message.fromJson(Map<String, dynamic> json) {
     return Message(
       messageId: json['message_id'],
-      from: json['from'] == null ? null : User.fromJson(json['from']),
-      senderChat: json['sender_chat'] == null
-          ? null
-          : Chat.fromJson(json['sender_chat']),
+      from: _parseJson<User>(json['from'], User.fromJson),
+      senderChat: _parseJson<Chat>(json['sender_chat'], Chat.fromJson),
       date: json['date'],
       chat: Chat.fromJson(json['chat']),
-      replyToMessage: json['reply_to_message'] == null
-          ? null
-          : Message.fromJson(json['reply_to_message']),
-      viaBot: json['via_bot'] == null ? null : User.fromJson(json['via_bot']),
+      replyToMessage:
+          _parseJson<Message>(json['reply_to_message'], Message.fromJson),
+      viaBot: _parseJson<User>(json['via_bot'], User.fromJson),
       editDate: json['edit_date'],
       mediaGroupId: json['media_group_id'],
       authorSignature: json['author_signature'],
       text: json['text'],
-      entities: (json['entities'] as List<dynamic>?)
-          ?.map((e) => MessageEntity.fromJson(e))
-          .toList(),
-      animation: json['animation'] == null
-          ? null
-          : Animation.fromJson(json['animation']),
-      audio: json['audio'] == null ? null : Audio.fromJson(json['audio']),
-      document:
-          json['document'] == null ? null : Document.fromJson(json['document']),
-      photo: (json['photo'] as List<dynamic>?)
-          ?.map((e) => PhotoSize.fromJson(e))
-          .toList(),
-      sticker:
-          json['sticker'] == null ? null : Sticker.fromJson(json['sticker']),
-      video: json['video'] == null ? null : Video.fromJson(json['video']),
-      videoNote: json['video_note'] == null
-          ? null
-          : VideoNote.fromJson(json['video_note']),
-      voice: json['voice'] == null ? null : Voice.fromJson(json['voice']),
+      entities:
+          _parseList<MessageEntity>(json['entities'], MessageEntity.fromJson),
+      animation: _parseJson<Animation>(json['animation'], Animation.fromJson),
+      audio: _parseJson<Audio>(json['audio'], Audio.fromJson),
+      document: _parseJson<Document>(json['document'], Document.fromJson),
+      photo: _parseList<PhotoSize>(json['photo'], PhotoSize.fromJson),
+      sticker: _parseJson<Sticker>(json['sticker'], Sticker.fromJson),
+      video: _parseJson<Video>(json['video'], Video.fromJson),
+      videoNote: _parseJson<VideoNote>(json['video_note'], VideoNote.fromJson),
+      voice: _parseJson<Voice>(json['voice'], Voice.fromJson),
       caption: json['caption'],
-      captionEntities: (json['caption_entities'] as List<dynamic>?)
-          ?.map((e) => MessageEntity.fromJson(e))
-          .toList(),
-      contact:
-          json['contact'] == null ? null : Contact.fromJson(json['contact']),
-      dice: json['dice'] == null ? null : Dice.fromJson(json['dice']),
-      game: json['game'] == null ? null : Game.fromJson(json['game']),
-      poll: json['poll'] == null ? null : Poll.fromJson(json['poll']),
-      venue: json['venue'] == null ? null : Venue.fromJson(json['venue']),
-      location:
-          json['location'] == null ? null : Location.fromJson(json['location']),
-      newChatMembers: (json['new_chat_members'] as List<dynamic>?)
-          ?.map((e) => User.fromJson(e))
-          .toList(),
-      leftChatMember: json['left_chat_member'] == null
-          ? null
-          : User.fromJson(json['left_chat_member']),
+      captionEntities: _parseList<MessageEntity>(
+        json['caption_entities'],
+        MessageEntity.fromJson,
+      ),
+      contact: _parseJson<Contact>(json['contact'], Contact.fromJson),
+      dice: _parseJson<Dice>(json['dice'], Dice.fromJson),
+      game: _parseJson<Game>(json['game'], Game.fromJson),
+      poll: _parseJson<Poll>(json['poll'], Poll.fromJson),
+      venue: _parseJson<Venue>(json['venue'], Venue.fromJson),
+      location: _parseJson<Location>(json['location'], Location.fromJson),
+      newChatMembers: _parseList<User>(json['new_chat_members'], User.fromJson),
+      leftChatMember: _parseJson<User>(json['left_chat_member'], User.fromJson),
       newChatTitle: json['new_chat_title'],
-      newChatPhoto: (json['new_chat_photo'] as List<dynamic>?)
-          ?.map((e) => PhotoSize.fromJson(e))
-          .toList(),
+      newChatPhoto:
+          _parseList<PhotoSize>(json['new_chat_photo'], PhotoSize.fromJson),
       deleteChatPhoto: json['delete_chat_photo'],
       groupChatCreated: json['group_chat_created'],
       supergroupChatCreated: json['supergroup_chat_created'],
       channelChatCreated: json['channel_chat_created'],
-      messageAutoDeleteTimerChanged:
-          json['message_auto_delete_timer_changed'] == null
-              ? null
-              : MessageAutoDeleteTimerChanged.fromJson(
-                  json['message_auto_delete_timer_changed'],
-                ),
+      messageAutoDeleteTimerChanged: _parseJson<MessageAutoDeleteTimerChanged>(
+        json['message_auto_delete_timer_changed'],
+        MessageAutoDeleteTimerChanged.fromJson,
+      ),
       migrateToChatId: json['migrate_to_chat_id'],
       migrateFromChatId: json['migrate_from_chat_id'],
-      pinnedMessage: json['pinned_message'] == null
-          ? null
-          : Message.fromJson(json['pinned_message']),
-      invoice:
-          json['invoice'] == null ? null : Invoice.fromJson(json['invoice']),
-      successfulPayment: json['successful_payment'] == null
-          ? null
-          : SuccessfulPayment.fromJson(json['successful_payment']),
+      pinnedMessage:
+          _parseJson<Message>(json['pinned_message'], Message.fromJson),
+      invoice: _parseJson<Invoice>(json['invoice'], Invoice.fromJson),
+      successfulPayment: _parseJson<SuccessfulPayment>(
+        json['successful_payment'],
+        SuccessfulPayment.fromJson,
+      ),
       connectedWebsite: json['connected_website'],
-      passportData: json['passport_data'] == null
-          ? null
-          : PassportData.fromJson(json['passport_data']),
-      proximityAlertTriggered: json['proximity_alert_triggered'] == null
-          ? null
-          : ProximityAlertTriggered.fromJson(json['proximity_alert_triggered']),
-      replyMarkup: json['reply_markup'] == null
-          ? null
-          : InlineKeyboardMarkup.fromJson(json['reply_markup']),
+      passportData: _parseJson<PassportData>(
+        json['passport_data'],
+        PassportData.fromJson,
+      ),
+      proximityAlertTriggered: _parseJson<ProximityAlertTriggered>(
+        json['proximity_alert_triggered'],
+        ProximityAlertTriggered.fromJson,
+      ),
+      replyMarkup: _parseJson<InlineKeyboardMarkup>(
+        json['reply_markup'],
+        InlineKeyboardMarkup.fromJson,
+      ),
       isAutomaticForward: json['is_automatic_forward'],
-      webAppData: json['web_app_data'] == null
-          ? null
-          : WebAppData.fromJson(json['web_app_data']),
-      videoChatEnded: json['video_chat_ended'] == null
-          ? null
-          : VideoChatEnded.fromJson(json['video_chat_ended']),
-      videoChatStarted: json['video_chat_started'] == null
-          ? null
-          : VideoChatStarted.fromJson(json['video_chat_started']),
-      videoChatParticipantsInvited:
-          json['video_chat_participants_invited'] == null
-              ? null
-              : VideoChatParticipantsInvited.fromJson(
-                  json['video_chat_participants_invited'],
-                ),
-      videoChatScheduled: json['video_chat_scheduled'] == null
-          ? null
-          : VideoChatScheduled.fromJson(json['video_chat_scheduled']),
-      forumTopicClosed: json['forum_topic_closed'] == null
-          ? null
-          : ForumTopicClosed.fromJson(json['forum_topic_closed']),
-      forumTopicCreated: json['forum_topic_created'] == null
-          ? null
-          : ForumTopicCreated.fromJson(json['forum_topic_created']),
-      forumTopicReopened: json['forum_topic_reopened'] == null
-          ? null
-          : ForumTopicReopened.fromJson(json['forum_topic_reopened']),
+      webAppData:
+          _parseJson<WebAppData>(json['web_app_data'], WebAppData.fromJson),
+      videoChatEnded: _parseJson<VideoChatEnded>(
+        json['video_chat_ended'],
+        VideoChatEnded.fromJson,
+      ),
+      videoChatStarted: _parseJson<VideoChatStarted>(
+        json['video_chat_started'],
+        VideoChatStarted.fromJson,
+      ),
+      videoChatParticipantsInvited: _parseJson<VideoChatParticipantsInvited>(
+        json['video_chat_participants_invited'],
+        VideoChatParticipantsInvited.fromJson,
+      ),
+      videoChatScheduled: _parseJson<VideoChatScheduled>(
+        json['video_chat_scheduled'],
+        VideoChatScheduled.fromJson,
+      ),
+      forumTopicClosed: _parseJson<ForumTopicClosed>(
+        json['forum_topic_closed'],
+        ForumTopicClosed.fromJson,
+      ),
+      forumTopicCreated: _parseJson<ForumTopicCreated>(
+        json['forum_topic_created'],
+        ForumTopicCreated.fromJson,
+      ),
+      forumTopicReopened: _parseJson<ForumTopicReopened>(
+        json['forum_topic_reopened'],
+        ForumTopicReopened.fromJson,
+      ),
       hasProtectedContent: json['has_protected_content'],
       isTopicMessage: json['is_topic_message'],
       messageThreadId: json['message_thread_id'],
-      usersShared: json['users_shared'] == null
-          ? null
-          : UsersShared.fromJson(json['user_shared']),
-      chatShared: json['chat_shared'] == null
-          ? null
-          : ChatShared.fromJson(json['chat_shared']),
+      usersShared:
+          _parseJson<UsersShared>(json['users_shared'], UsersShared.fromJson),
+      chatShared:
+          _parseJson<ChatShared>(json['chat_shared'], ChatShared.fromJson),
       hasMediaSpoiler: json['has_media_spoiler'],
-      forumTopicEdited: json['forum_topic_edited'] == null
-          ? null
-          : ForumTopicEdited.fromJson(json['forum_topic_edited']),
-      generalForumTopicHidden: json['general_forum_topic_hidden'] == null
-          ? null
-          : GeneralForumTopicHidden.fromJson(
-              json['general_forum_topic_hidden'],
-            ),
-      generalForumTopicUnhidden: json['general_forum_topic_unhidden'] == null
-          ? null
-          : GeneralForumTopicUnhidden.fromJson(
-              json['general_forum_topic_unhidden'],
-            ),
-      writeAccessAllowed: json['write_access_allowed'] == null
-          ? null
-          : WriteAccessAllowed.fromJson(json['write_access_allowed']),
-      story: json['story'] == null ? null : Story.fromJson(json['story']),
-      externalReply: json['external_reply'] == null
-          ? null
-          : ExternalReplyInfo.fromJson(json['external_reply']),
-      quote: json['quote'] == null ? null : TextQuote.fromJson(json['quote']),
-      linkPreviewOptions: json['link_preview_options'] == null
-          ? null
-          : LinkPreviewOptions.fromJson(json['link_preview_options']),
-      giveaway:
-          json['giveaway'] == null ? null : Giveaway.fromJson(json['giveaway']),
-      giveawayCreated: json['giveaway_created'] == null
-          ? null
-          : GiveawayCreated.fromJson(json['giveaway_created']),
-      giveawayWinners: json['giveaway_winners'] == null
-          ? null
-          : GiveawayWinners.fromJson(json['giveaway_winners']),
-      giveawayCompleted: json['giveaway_completed'] == null
-          ? null
-          : GiveawayCompleted.fromJson(json['giveaway_completed']),
-      forwardOrigin: json['forward_origin'] == null
-          ? null
-          : MessageOrigin.fromJson(json['forward_origin']),
-      boostAdded: json["boost_added"] != null
-          ? ChatBoostAdded.fromJson(
-              json["boost_added"],
-            )
-          : null,
+      forumTopicEdited: _parseJson<ForumTopicEdited>(
+        json['forum_topic_edited'],
+        ForumTopicEdited.fromJson,
+      ),
+      generalForumTopicHidden: _parseJson<GeneralForumTopicHidden>(
+        json['general_forum_topic_hidden'],
+        GeneralForumTopicHidden.fromJson,
+      ),
+      generalForumTopicUnhidden: _parseJson<GeneralForumTopicUnhidden>(
+        json['general_forum_topic_unhidden'],
+        GeneralForumTopicUnhidden.fromJson,
+      ),
+      writeAccessAllowed: _parseJson<WriteAccessAllowed>(
+        json['write_access_allowed'],
+        WriteAccessAllowed.fromJson,
+      ),
+      story: _parseJson<Story>(json['story'], Story.fromJson),
+      externalReply: _parseJson<ExternalReplyInfo>(
+        json['external_reply'],
+        ExternalReplyInfo.fromJson,
+      ),
+      quote: _parseJson<TextQuote>(json['quote'], TextQuote.fromJson),
+      linkPreviewOptions: _parseJson<LinkPreviewOptions>(
+        json['link_preview_options'],
+        LinkPreviewOptions.fromJson,
+      ),
+      giveaway: _parseJson<Giveaway>(json['giveaway'], Giveaway.fromJson),
+      giveawayCreated: _parseJson<GiveawayCreated>(
+        json['giveaway_created'],
+        GiveawayCreated.fromJson,
+      ),
+      giveawayWinners: _parseJson<GiveawayWinners>(
+        json['giveaway_winners'],
+        GiveawayWinners.fromJson,
+      ),
+      giveawayCompleted: _parseJson<GiveawayCompleted>(
+        json['giveaway_completed'],
+        GiveawayCompleted.fromJson,
+      ),
+      forwardOrigin: _parseJson<MessageOrigin>(
+        json['forward_origin'],
+        MessageOrigin.fromJson,
+      ),
+      boostAdded: _parseJson<ChatBoostAdded>(
+        json['boost_added'],
+        ChatBoostAdded.fromJson,
+      ),
       senderBoostCount: json["sender_boost_count"],
-      replyToStory: json["reply_to_story"] != null
-          ? Story.fromJson(json["reply_to_story"])
-          : null,
+      replyToStory: _parseJson<Story>(json["reply_to_story"], Story.fromJson),
       businessConnectionId: json["business_connection_id"],
-      senderBusinessBot: json["sender_business_bot"] != null
-          ? User.fromJson(json["sender_business_bot"])
-          : null,
+      senderBusinessBot:
+          _parseJson<User>(json["sender_business_bot"], User.fromJson),
       isFromOffline: json["is_from_offline"],
-      chatBackgroundSet: json["chat_background_set"] != null
-          ? ChatBackground.fromJson(json["chat_background_set"])
-          : null,
+      chatBackgroundSet: _parseJson<ChatBackground>(
+        json["chat_background_set"],
+        ChatBackground.fromJson,
+      ),
       effectId: json["effect_id"],
       showCaptionAboveMedia: json["show_caption_above_media"],
-      paidMedia: json['paid_media'] != null
-          ? PaidMediaInfo.fromJson(json['paid_media'])
-          : null,
-      refundedPayment: json['refunded_payment'] != null
-          ? RefundedPayment.fromJson(json['refunded_payment'])
-          : null,
+      paidMedia: _parseJson<PaidMediaInfo>(
+        json['paid_media'],
+        PaidMediaInfo.fromJson,
+      ),
+      refundedPayment: _parseJson<RefundedPayment>(
+        json['refunded_payment'],
+        RefundedPayment.fromJson,
+      ),
     );
   }
 
