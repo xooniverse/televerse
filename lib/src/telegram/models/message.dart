@@ -262,6 +262,9 @@ class Message implements MaybeInaccessibleMessage, WithUser {
   /// Optional. Message contains paid media; information about the paid media
   final PaidMediaInfo? paidMedia;
 
+  /// Optional. Message is a service message about a refunded payment, information about the payment. More about payments »
+  final RefundedPayment? refundedPayment;
+
   /// Creates a Message object.
   const Message({
     this.from,
@@ -348,6 +351,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
     this.effectId,
     this.showCaptionAboveMedia,
     this.paidMedia,
+    this.refundedPayment,
   });
 
   /// Creates a [Message] object from json map.
@@ -537,6 +541,9 @@ class Message implements MaybeInaccessibleMessage, WithUser {
       paidMedia: json['paid_media'] != null
           ? PaidMediaInfo.fromJson(json['paid_media'])
           : null,
+      refundedPayment: json['refunded_payment'] != null
+          ? RefundedPayment.fromJson(json['refunded_payment'])
+          : null,
     );
   }
 
@@ -629,6 +636,7 @@ class Message implements MaybeInaccessibleMessage, WithUser {
       'effect_id': effectId,
       'show_caption_above_media': showCaptionAboveMedia,
       'paid_media': paidMedia?.toJson(),
+      'refunded_payment': refundedPayment?.toJson(),
     }..removeWhere(_nullFilter);
   }
 
