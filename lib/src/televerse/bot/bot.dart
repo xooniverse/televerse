@@ -156,7 +156,6 @@ class Bot<CTX extends Context> {
         isLocal = baseURL != RawAPI.defaultBase,
         _loggerOptions = loggerOptions,
         _scheme = scheme,
-        _api = RawAPI(token, loggerOptions: loggerOptions, timeout: timeout),
         fetcher = fetcher ?? LongPolling<CTX>() {
     // Set the default error handler
     onError(_defaultErrorHandler);
@@ -239,7 +238,7 @@ class Bot<CTX extends Context> {
   /// Initializes the bot with common setup logic.
   Future<void> _initializeBot() async {
     // Create Fetcher and assign the RawAPI instance
-    fetcher.setApi(_api!);
+    fetcher.setApi(api);
 
     // Perform initial /getMe request
     try {
