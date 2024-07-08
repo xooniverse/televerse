@@ -105,6 +105,7 @@ class Bot<CTX extends Context> {
       return _api!;
     }
     if (isLocal) {
+      print('local api called');
       _api = RawAPI.local(
         token,
         baseUrl: _baseURL,
