@@ -35,10 +35,7 @@ class RawAPI {
         _httpClient = _HttpClient(
           loggerOptions,
           timeout: timeout,
-        ) {
-    print('$_baseUrl From Private Constructor');
-    print('$baseUrl From Private Constructor Parameter');
-  }
+        );
 
   /// `RawAPI` gives you access to all methods of Telegram Bot API.
   ///
@@ -54,6 +51,7 @@ class RawAPI {
     LoggerOptions? loggerOptions,
     Duration? timeout,
   }) {
+    print('not local');
     return RawAPI._(
       token,
       loggerOptions: loggerOptions,
@@ -71,6 +69,7 @@ class RawAPI {
     LoggerOptions? loggerOptions,
     Duration? timeout,
   }) {
+    print('local');
     return RawAPI._(
       token,
       baseUrl: baseUrl,
