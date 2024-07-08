@@ -81,26 +81,21 @@ Now, you can start listening for updates such as messages, commands, etc. To
 start polling updates from Telegram servers, simply call:
 
 ```dart
-bot.start();
+await bot.start();
 ```
 
 That's it! Your bot is now ready to receive updates from Telegram.
+
+> [!NOTE]
+> Remember to await the `bot.start()` call! This call initializes the bot and
+> fetches details like its username. Starting the bot without awaiting could
+> lead to unexpected behavior if initialization fails.
 
 If you want to handle a specific command, such as the `/start` command, you can
 use the `bot.command` method. For example:
 
 ```dart
 bot.command('start', (ctx) async {
-  await ctx.reply('Hello, World!');
-});
-```
-
-Starting from Televerse 1.3.1, you can use the `bot.start` method to start
-listening for updates and also set up a command listener for the `/start`
-command. That means you can simplify the code above like this:
-
-```dart
-bot.start((ctx) async {
   await ctx.reply('Hello, World!');
 });
 ```
@@ -225,7 +220,7 @@ Easily create Keyboard Reply Markup and Inline Keyboard Markup with Televerse's
 intuitive utility classes. Easy as it sounds.
 
 ```dart
-bot.start((ctx) async {
+bot.command('keyboard', (ctx) async {
   final keyboard = Keyboard()
     .text("Account")
     .text("Referral")
@@ -311,7 +306,7 @@ final bot = Bot(
 // Create the Conversation API instance
 final conv = Conversation(bot);
 
-bot.start((ctx) async {
+bot.command('start', (ctx) async {
   await ctx.reply("Hello, I am ${ctx.me.firstName}. What should I call you?");
 
   // Now wait you can wait for the user's reply message. Easy, right?
@@ -343,7 +338,7 @@ final menu = KeyboardMenu()
 bot.attachMenu(menu);
 
 // Start bot
-bot.start((ctx) async {
+bot.command('start', (ctx) async {
   await ctx.reply(
     "Hello, I am ${ctx.me.firstName}. Let's start.",
     replyMarkup: menu,
