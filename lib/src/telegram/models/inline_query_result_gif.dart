@@ -71,7 +71,7 @@ class InlineQueryResultGif implements InlineQueryResult {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'type': type,
+      'type': type.value,
       'id': id,
       'gif_url': gifUrl,
       'gif_width': gifWidth,
