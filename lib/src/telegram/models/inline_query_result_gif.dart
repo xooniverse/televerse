@@ -81,7 +81,7 @@ class InlineQueryResultGif implements InlineQueryResult {
       'thumbnail_mime_type': thumbnailMimeType,
       'title': title,
       'caption': caption,
-      'parse_mode': parseMode,
+      'parse_mode': parseMode?.value,
       'caption_entities': captionEntities,
       'reply_markup': replyMarkup,
       'input_message_content': inputMessageContent,
