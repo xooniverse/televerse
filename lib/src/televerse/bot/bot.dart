@@ -573,6 +573,14 @@ class Bot<CTX extends Context> {
   /// use Update.fromJson(json) to convert the json to an update.
   void handleUpdate(Update update) => _onUpdate(update);
 
+  /// Initialize the bot.
+  ///
+  /// This method simply initalizes the bot - performs the initial getMe request
+  /// to fill the `bot.me` property.
+  Future<void> init() async {
+    await _initializeBot();
+  }
+
   /// Start polling or webhook listener for fetching updates.
   ///
   /// Note: This method must be awaited.
@@ -584,12 +592,12 @@ class Bot<CTX extends Context> {
           onDone: _onStop,
         );
     try {
-      fetcher.start();
+      await fetcher.start();
     } catch (err, stack) {
-      fetcher.stop();
+      await fetcher.stop();
       final botErr = BotError<CTX>(err, stack);
       await _onError(botErr);
-      return fetcher.start();
+      return await fetcher.start();
     }
   }
 
