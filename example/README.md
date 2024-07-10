@@ -17,11 +17,8 @@ void main() async {
   /// Listen to commands
   bot.command("hello", (ctx) async => await ctx.reply("Hello!"));
 
-  /// Since v1.3.1 you can listen for `/start`, `/help` and `/settings` commands
-  /// in an easier way.
-  ///
-  /// Don't forget that calling bot.start will also start listening to updates.
-  bot.start((ctx) async => await ctx.reply("Hello!"));
+  /// Setup the /start command handler
+  bot.command('start', (ctx) async => await ctx.reply("Hello!"));
 
   /// Sets up the /settings command listener
   bot.settings((ctx) async => await ctx.reply("Settings"));
@@ -73,10 +70,7 @@ void main() async {
   /// So with the [Bot.on] method you can listen for particular updates. Yeah, that indeed means
   /// that you can listen for all commands simply by listening for the [TeleverseEvent.command] event.
   bot.on(TeleverseEvent.command, (ctx) async {
-    await ctx.reply("This will be executed for every command");
-    await ctx.reply(
-      "That really includes /start, /help and /settings and all other commands you define.",
-    );
+    await ctx.reply("This will be executed for every command unhandled");
 
     // Do your logic here
     if (ctx.message?.text == "/televerse") {
@@ -91,11 +85,36 @@ void main() async {
       "${ctx.message?.getEntityText(MessageEntityType.mention)} was mentioned!",
     );
   });
+
+  /// Finally start the bot
+  await bot.start();
 }
 ```
 
 ## Learn More
 
-Well we know that this is probably just the tip of the iceberg. So if you want to learn more about the Televerse library, you can check out the [API documentation](https://pub.dev/documentation/televerse/latest/televerse/televerse-library.html).
+If you want to see a specific example, please see the table below.
 
-Or you can check out the dedicated [examples repository here](https://github.com/xooniverse/TeleverseExamples).
+| Example | Description | 
+| --- | --- |
+| [Basic Bot](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/basic_bot.dart) | Get Started example. You'll learn to build a very simple bot with basic command and text handling |
+| [Letter Counter](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/letter_counter.dart) | A very basic bot that counts the letters in the sent message |
+| [Favourite Avenger Bot](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/favorite_avenger_bot.dart) | This is a simple bot outlining the usage of `bot.hear` method, and hence to use the `Context.matches` |
+| [Conversation Example](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/conversation_example.dart) | This bot outlines how to use the Conversation API to wait for the user's message |
+| [File Download Example](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/file_download.dart) | Outlines the Televerse File methods - such as `File.download` with a simple example |
+| [Inline Query Example](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/inline_queries_bot.dart) | Introduction to inline queries. Handling inline query is easier than ever with the `InlineQueryResultBuilder`. This example covers just that |
+| [Keyboard Menu Bot](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/keyboard_menu_bot.dart) | This example will walk you through the usage of `KeyboardMenu` - a advanced technique to simply create menus in your bot |
+| [Parse Mode Usage](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/markup_test.dart) | A simple example covering the usage of parse mode |
+| [Inline Menu Bot](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/menu_bot.dart) | This bot outlines implementation and usage of Inline Menu |
+| [Moderator Bot](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/mod_helper.dart) | This example shows a basic group manager bot which listens to `/ban` command. |
+| [Referral Bot](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/referral_bot.dart) | This example shows the implementation of a bot with referral enabled. Uses `Context.args` property to retrieve the start argument |
+| [Middleware Example](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/middleware_example.dart) | If you're interested in building middlewares for Televerse, this will be the best startng point |
+| [Transformer Example](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/transformer_example.dart) | Another plugin example. Transformers lets you fundamentally change or modify API requests. In this example we build a `AutoReplyEnforcer` which automatically adds the `ForceReply` markup with any send method |
+| [Webhook Bot](https://github.com/xooniverse/TeleverseExamples/blob/main/lib/webhook_example.dart) | This is an example implementation for a bot using the Webhook as update fetcher |
+
+
+Well we know that this is probably just the tip of the iceberg. So if you want
+to learn more about the Televerse library, you can check out the
+[API documentation](https://pub.dev/documentation/televerse/latest/televerse/televerse-library.html).
+
+All the above mentioned code can be found on the official [examples repository here](https://github.com/xooniverse/TeleverseExamples).
