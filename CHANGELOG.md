@@ -1,3 +1,9 @@
+# 1.22.1
+
+- Fixed an issue with the `InlineQueryResultGif` class
+- Made the bot initalization method public with `Bot.init` method.
+- Updated the examples page
+
 # 1.22.0
 
 - 🤖 Bot API 7.7
