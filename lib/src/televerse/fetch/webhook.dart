@@ -315,13 +315,11 @@ class Webhook extends Fetcher {
 
   @override
   Future<void> pause() async {
-    _requestSubscription?.pause();
     _updateSubscription?.pause();
   }
 
   @override
   Future<void> resume() async {
-    _requestSubscription?.resume();
     _updateSubscription?.pause();
   }
 }
