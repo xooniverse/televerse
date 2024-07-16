@@ -33,6 +33,15 @@ sealed class Fetcher<CTX extends Context> {
   /// Stops fetching updates.
   Future<void> stop();
 
+  /// Update Stream Subscription
+  StreamSubscription<Update>? _updateSubscription;
+
+  /// Pause the stream
+  Future<void> pause();
+
+  /// Resume the stream
+  Future<void> resume();
+
   /// Raw API instance.
   late final RawAPI api;
 

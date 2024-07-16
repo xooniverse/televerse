@@ -585,19 +585,21 @@ class Bot<CTX extends Context> {
   ///
   /// Note: This method must be awaited.
   Future<void> start() async {
-    await _initializeBot();
+    if (!initialized) {
+      await _initializeBot();
+    }
 
-    fetcher.onUpdate().listen(
+    fetcher._updateSubscription = fetcher.onUpdate().listen(
           _onUpdate,
           onDone: _onStop,
         );
     try {
       await fetcher.start();
     } catch (err, stack) {
-      await fetcher.stop();
+      await fetcher.pause();
       final botErr = BotError<CTX>(err, stack);
       await _onError(botErr);
-      return await fetcher.start();
+      await fetcher.resume();
     }
   }
 
@@ -609,6 +611,16 @@ class Bot<CTX extends Context> {
       api.closeClient();
     }
     return fetcher.stop();
+  }
+
+  /// Pause listening of updates.
+  Future<void> pause() {
+    return fetcher.pause();
+  }
+
+  /// Resume listening of updates.
+  Future<void> resume() {
+    return fetcher.resume();
   }
 
   /// Stream of [Update] objects.

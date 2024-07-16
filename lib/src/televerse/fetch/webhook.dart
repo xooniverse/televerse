@@ -240,6 +240,8 @@ class Webhook extends Fetcher {
     );
   }
 
+  StreamSubscription<io.HttpRequest>? _requestSubscription;
+
   /// Starts the webhook fetcher.
   ///
   /// It sets the webhook and listens to the server.
@@ -248,7 +250,7 @@ class Webhook extends Fetcher {
     final webhookSet = shouldSetWebhook ? await setWebhook() : true;
     if (webhookSet) {
       _isActive = true;
-      server.listen(_handleRequest);
+      _requestSubscription = server.listen(_handleRequest);
     } else {
       throw WebhookException.failedToSetWebhook;
     }
@@ -308,4 +310,16 @@ class Webhook extends Fetcher {
   /// Flag to check if the webhook is running.
   @override
   bool get isActive => _isActive;
+
+  @override
+  Future<void> pause() async {
+    _isActive = false;
+    _requestSubscription?.pause();
+  }
+
+  @override
+  Future<void> resume() {
+    _requestSubscription?.resume();
+    return start();
+  }
 }

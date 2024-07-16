@@ -159,4 +159,16 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
   /// Flag to check if the long polling is active.
   @override
   bool get isActive => _isPolling;
+
+  @override
+  Future<void> pause() async {
+    _isPolling = false;
+    _updateSubscription?.pause();
+  }
+
+  @override
+  Future<void> resume() async {
+    _updateSubscription?.resume();
+    return start();
+  }
 }
