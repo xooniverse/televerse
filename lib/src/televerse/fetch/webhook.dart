@@ -302,6 +302,8 @@ class Webhook extends Fetcher {
   @override
   Future<void> stop({bool dropPendingUpdates = false}) async {
     _updateStreamController.close();
+    _requestSubscription?.cancel();
+    _updateSubscription?.cancel();
     await api.deleteWebhook(dropPendingUpdates: dropPendingUpdates);
     _isActive = false;
     return server.close(force: true);
@@ -313,13 +315,13 @@ class Webhook extends Fetcher {
 
   @override
   Future<void> pause() async {
-    _isActive = false;
     _requestSubscription?.pause();
+    _updateSubscription?.pause();
   }
 
   @override
-  Future<void> resume() {
+  Future<void> resume() async {
     _requestSubscription?.resume();
-    return start();
+    _updateSubscription?.pause();
   }
 }

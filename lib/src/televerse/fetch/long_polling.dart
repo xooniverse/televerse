@@ -72,6 +72,7 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
   Future<void> stop() async {
     _isPolling = false;
     _updateStreamController.close();
+    _updateSubscription?.cancel();
   }
 
   /// Polls the Telegram API for updates.
