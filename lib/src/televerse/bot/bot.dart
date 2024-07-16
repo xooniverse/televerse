@@ -589,10 +589,12 @@ class Bot<CTX extends Context> {
       await _initializeBot();
     }
 
+    fetcher._updateStreamController = StreamController<Update>.broadcast();
     fetcher._updateSubscription = fetcher.onUpdate().listen(
           _onUpdate,
           onDone: _onStop,
         );
+
     try {
       await fetcher.start();
     } catch (err, stack) {

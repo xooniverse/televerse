@@ -61,6 +61,7 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
   @override
   Future<void> start() async {
     if (_isPolling) throw LongPollingException.alreadyPolling;
+    api._init();
     _isPolling = true;
     while (_isPolling) {
       await _poll();
@@ -71,8 +72,8 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
   @override
   Future<void> stop() async {
     _isPolling = false;
-    _updateStreamController.close();
-    _updateSubscription?.cancel();
+    await _updateStreamController?.close();
+    await _updateSubscription?.cancel();
   }
 
   /// Polls the Telegram API for updates.
@@ -88,7 +89,7 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
       addUpdates(updates);
       int len = updates.length;
       for (int i = 0; i < len; i++) {
-        if (_updateStreamController.isClosed) {
+        if (_updateStreamController?.isClosed ?? false) {
           return;
         }
         addUpdate(updates[i]);

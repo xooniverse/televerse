@@ -35,7 +35,7 @@ class RawAPI {
     );
   }
 
-  /// Check if the client is initialized
+  /// Initializes the client if it has been closed
   void _init() {
     if (!_closed) {
       return;
@@ -300,7 +300,6 @@ class RawAPI {
     APIMethod method, {
     Payload? payload,
   }) async {
-    _init();
     payload ??= Payload();
 
     APICaller call = (APIMethod method, Payload payload) async {

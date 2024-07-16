@@ -301,7 +301,7 @@ class Webhook extends Fetcher {
   /// Stops the webhook fetcher.
   @override
   Future<void> stop({bool dropPendingUpdates = false}) async {
-    _updateStreamController.close();
+    _updateStreamController?.close();
     _requestSubscription?.cancel();
     _updateSubscription?.cancel();
     await api.deleteWebhook(dropPendingUpdates: dropPendingUpdates);
