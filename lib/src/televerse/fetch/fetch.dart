@@ -1,20 +1,4 @@
-/// Televerse Fetcher
-///
-/// This library contains the fetcher classes. Fetchers are used to fetch updates from the Telegram API. Currently, there are two fetchers: [LongPolling] and [Webhook].
-///
-/// [LongPolling] - This fetcher uses the `getUpdates` method to fetch updates. It is the default fetcher.
-///
-/// [Webhook] - This fetcher uses the `setWebhook` method to set a webhook. It is used when you want to host your bot on a server.
-library;
-
-import 'dart:async';
-import 'dart:convert';
-import 'dart:io' as io;
-import 'package:televerse/telegram.dart';
-import 'package:televerse/televerse.dart';
-
-part 'long_polling.dart';
-part 'webhook.dart';
+part of '../../../televerse.dart';
 
 /// **Fetcher** - This is the base class for all fetchers. It is used to fetch updates from the Telegram API.
 /// You can use this class to create your own fetcher. Currently, there are two fetchers: [LongPolling] and [Webhook].

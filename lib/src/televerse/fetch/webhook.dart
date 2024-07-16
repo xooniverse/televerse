@@ -1,4 +1,4 @@
-part of 'fetch.dart';
+part of '../../../televerse.dart';
 
 /// A fetcher class that handles incoming updates from the Telegram Bot API via a webhook.
 ///
