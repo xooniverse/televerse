@@ -1,3 +1,9 @@
+# 1.22.2
+
+- Fixes [#281](https://github.com/HeySreelal/televerse/issues/281) (Thanks to [@IsD4n73](https://github.com/IsD4n73) for raising the issue)
+- Added `Bot.pause` and `Bot.resume` for pausing and resuming the update streaming respectively.
+- Fetchers are moved to be part of televerse library.
+
 # 1.22.1
 
 - Fixed an issue with the `InlineQueryResultGif` class
