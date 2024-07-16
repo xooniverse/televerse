@@ -301,7 +301,9 @@ class Webhook extends Fetcher {
   /// Stops the webhook fetcher.
   @override
   Future<void> stop({bool dropPendingUpdates = false}) async {
-    _updateStreamController.close();
+    _updateStreamController?.close();
+    _requestSubscription?.cancel();
+    _updateSubscription?.cancel();
     await api.deleteWebhook(dropPendingUpdates: dropPendingUpdates);
     _isActive = false;
     return server.close(force: true);
@@ -310,16 +312,4 @@ class Webhook extends Fetcher {
   /// Flag to check if the webhook is running.
   @override
   bool get isActive => _isActive;
-
-  @override
-  Future<void> pause() async {
-    _isActive = false;
-    _requestSubscription?.pause();
-  }
-
-  @override
-  Future<void> resume() {
-    _requestSubscription?.resume();
-    return start();
-  }
 }

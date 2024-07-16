@@ -61,6 +61,7 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
   @override
   Future<void> start() async {
     if (_isPolling) throw LongPollingException.alreadyPolling;
+    api._init();
     _isPolling = true;
     while (_isPolling) {
       await _poll();
@@ -71,7 +72,8 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
   @override
   Future<void> stop() async {
     _isPolling = false;
-    _updateStreamController.close();
+    await _updateStreamController?.close();
+    await _updateSubscription?.cancel();
   }
 
   /// Polls the Telegram API for updates.
@@ -87,7 +89,7 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
       addUpdates(updates);
       int len = updates.length;
       for (int i = 0; i < len; i++) {
-        if (_updateStreamController.isClosed) {
+        if (_updateStreamController?.isClosed ?? false) {
           return;
         }
         addUpdate(updates[i]);
@@ -156,19 +158,26 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
     );
   }
 
+  /// [LongPolling] with all updates but except [types] list.
+  static LongPolling allExcept(
+    List<UpdateType> types, {
+    int offset = 0,
+    int timeout = 30,
+    int limit = 100,
+    Duration delayDuration = const Duration(milliseconds: 200),
+  }) {
+    final list = UpdateType.values;
+    list.removeWhere((e) => types.contains(e));
+    return LongPolling(
+      allowedUpdates: list,
+      offset: offset,
+      timeout: timeout,
+      limit: limit,
+      delayDuration: delayDuration,
+    );
+  }
+
   /// Flag to check if the long polling is active.
   @override
   bool get isActive => _isPolling;
-
-  @override
-  Future<void> pause() async {
-    _isPolling = false;
-    _updateSubscription?.pause();
-  }
-
-  @override
-  Future<void> resume() async {
-    _updateSubscription?.resume();
-    return start();
-  }
 }

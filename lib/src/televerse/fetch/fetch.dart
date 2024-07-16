@@ -4,28 +4,26 @@ part of '../../../televerse.dart';
 /// You can use this class to create your own fetcher. Currently, there are two fetchers: [LongPolling] and [Webhook].
 sealed class Fetcher<CTX extends Context> {
   /// The stream controller that emits new updates.
-  final StreamController<Update> _updateStreamController;
+  StreamController<Update>? _updateStreamController;
 
   /// The stream controller that emits new updates.
-  final StreamController<List<Update>> _updatesStreamController;
+  StreamController<List<Update>>? _updatesStreamController;
 
   /// Creates a new fetcher.
-  Fetcher()
-      : _updateStreamController = StreamController.broadcast(),
-        _updatesStreamController = StreamController.broadcast();
+  Fetcher();
 
   /// Emit new update into the stream.
-  void addUpdate(Update update) => _updateStreamController.add(update);
+  void addUpdate(Update update) => _updateStreamController?.add(update);
 
   /// Emit new update into the stream.
   void addUpdates(List<Update> updates) =>
-      _updatesStreamController.add(updates);
+      _updatesStreamController?.add(updates);
 
   /// Handler for new updates.
-  Stream<Update> onUpdate() => _updateStreamController.stream;
+  Stream<Update> onUpdate() => _updateStreamController!.stream;
 
   /// Handler for new updates.
-  Stream<List<Update>> onUpdates() => _updatesStreamController.stream;
+  Stream<List<Update>> onUpdates() => _updatesStreamController!.stream;
 
   /// Starts fetching updates.
   Future<void> start();
@@ -35,12 +33,6 @@ sealed class Fetcher<CTX extends Context> {
 
   /// Update Stream Subscription
   StreamSubscription<Update>? _updateSubscription;
-
-  /// Pause the stream
-  Future<void> pause();
-
-  /// Resume the stream
-  Future<void> resume();
 
   /// Raw API instance.
   late final RawAPI api;

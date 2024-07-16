@@ -1,8 +1,12 @@
-# 1.22.2
+# 1.22.3
 
 - Fixes [#281](https://github.com/HeySreelal/televerse/issues/281) (Thanks to [@IsD4n73](https://github.com/IsD4n73) for raising the issue)
-- Added `Bot.pause` and `Bot.resume` for pausing and resuming the update streaming respectively.
-- Fetchers are moved to be part of televerse library.
+- Updated the `Bot.start` and `Bot.stop` logic
+- Added `LongPolling.allExcept`
+
+# 1.22.2
+
+- Retracted
 
 # 1.22.1
 

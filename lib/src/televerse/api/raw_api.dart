@@ -20,7 +20,32 @@ class RawAPI {
   final String token;
 
   /// Http client
-  final _HttpClient _httpClient;
+  _HttpClient _httpClient;
+
+  /// A flag to indicate whether the client has been closed
+  bool _closed = false;
+
+  static _HttpClient _initializeHttpClient({
+    LoggerOptions? loggerOptions,
+    Duration? timeout,
+  }) {
+    return _HttpClient(
+      loggerOptions,
+      timeout: timeout,
+    );
+  }
+
+  /// Initializes the client if it has been closed
+  void _init() {
+    if (!_closed) {
+      return;
+    }
+    _httpClient = _initializeHttpClient(
+      loggerOptions: _httpClient.loggerOptions,
+      timeout: timeout,
+    );
+    _closed = false;
+  }
 
   /// The Raw API.
   RawAPI._(
@@ -32,8 +57,8 @@ class RawAPI {
   })  : _baseUrl = baseUrl ?? defaultBase,
         _isLocal = baseUrl != defaultBase,
         _scheme = scheme ?? APIScheme.https,
-        _httpClient = _HttpClient(
-          loggerOptions,
+        _httpClient = _initializeHttpClient(
+          loggerOptions: loggerOptions,
           timeout: timeout,
         );
 
@@ -155,6 +180,7 @@ class RawAPI {
   /// Close the HTTP client.
   void closeClient() {
     _httpClient.close();
+    _closed = true;
   }
 
   /// (Internal) The Context object, which actually invokes the RawAPI method
