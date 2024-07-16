@@ -31,7 +31,6 @@ import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 
 export 'src/televerse/extensions/extensions.dart';
-export 'src/televerse/fetch/fetch.dart';
 export 'src/televerse/links/links.dart';
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
@@ -54,6 +53,10 @@ part 'src/televerse/models/multipart_helper.dart';
 part 'src/utils/date.dart';
 part 'src/utils/http.dart';
 part 'src/utils/utils.dart';
+
+part 'src/televerse/fetch/fetch.dart';
+part 'src/televerse/fetch/long_polling.dart';
+part 'src/televerse/fetch/webhook.dart';
 
 /// Conversation API
 part 'src/televerse/conversation/conversation.dart';
