@@ -158,6 +158,25 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
     );
   }
 
+  /// [LongPolling] with all updates allowed.
+  static LongPolling allExcept(
+    List<UpdateType> types, {
+    int offset = 0,
+    int timeout = 30,
+    int limit = 100,
+    Duration delayDuration = const Duration(milliseconds: 200),
+  }) {
+    final list = UpdateType.values;
+    list.removeWhere((e) => types.contains(e));
+    return LongPolling(
+      allowedUpdates: list,
+      offset: offset,
+      timeout: timeout,
+      limit: limit,
+      delayDuration: delayDuration,
+    );
+  }
+
   /// Flag to check if the long polling is active.
   @override
   bool get isActive => _isPolling;
