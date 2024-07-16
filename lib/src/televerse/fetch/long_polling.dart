@@ -158,7 +158,7 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
     );
   }
 
-  /// [LongPolling] with all updates allowed.
+  /// [LongPolling] with all updates but except [types] list.
   static LongPolling allExcept(
     List<UpdateType> types, {
     int offset = 0,
