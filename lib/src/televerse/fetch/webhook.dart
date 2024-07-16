@@ -312,14 +312,4 @@ class Webhook extends Fetcher {
   /// Flag to check if the webhook is running.
   @override
   bool get isActive => _isActive;
-
-  @override
-  Future<void> pause() async {
-    _updateSubscription?.pause();
-  }
-
-  @override
-  Future<void> resume() async {
-    _updateSubscription?.pause();
-  }
 }
