@@ -162,13 +162,11 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
 
   @override
   Future<void> pause() async {
-    _isPolling = false;
     _updateSubscription?.pause();
   }
 
   @override
   Future<void> resume() async {
     _updateSubscription?.resume();
-    return start();
   }
 }
