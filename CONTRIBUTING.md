@@ -53,12 +53,12 @@ That's it! We'll take care of the rest. You can go and grab a cup of coffee ☕.
 
 ## What if I have a question?
 
-If you have a question, you can create a [discussion](https://github.com/HeySreelal/televerse/discussions) on the main repository. We'll try to answer your question as soon as possible.
+If you have a question, you can create a [discussion](https://github.com/xooniverse/televerse/discussions) on the main repository. We'll try to answer your question as soon as possible.
 
 You can also join our [Telegram Group](https://t.me/televersedart) and ask your question there. We'll be more than happy to help you.
 
 ## What if I have a suggestion?
 
-Just like questions, you can create a [discussion](https://github.com/HeySreelal/televerse/discussions) on the main repository or join our [Telegram Group](https://t.me/televersedart) and suggest your idea. We'll try to implement your idea as soon as possible.
+Just like questions, you can create a [discussion](https://github.com/xooniverse/televerse/discussions) on the main repository or join our [Telegram Group](https://t.me/televersedart) and suggest your idea. We'll try to implement your idea as soon as possible.
 
 # Thanks again for your interest in contributing to Televerse. ❤️

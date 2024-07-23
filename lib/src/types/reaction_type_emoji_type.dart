@@ -26,7 +26,7 @@ enum ReactionTypeType {
         throw TeleverseException(
           "Unknown value: $value",
           description:
-              "ReactionType.type got an unknown value. For now ReactionTypeType only supports emoji and custom_emoji.\n\nIf you're sure this is a valid value, please let us know by creating an issue at https://github.com/HeySreelal/televerse/issues",
+              "ReactionType.type got an unknown value. For now ReactionTypeType only supports emoji and custom_emoji.\n\nIf you're sure this is a valid value, please let us know by creating an issue at https://github.com/xooniverse/televerse/issues",
           type: TeleverseExceptionType.invalidParameter,
         );
     }
