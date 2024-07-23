@@ -1,3 +1,7 @@
+# 1.22.4
+
+- Just a re-release to move the repo to [@Xooniverse](https://github.com/xooniverse)
+
 # 1.22.3
 
 - Fixes [#281](https://github.com/xooniverse/televerse/issues/281) (Thanks to [@IsD4n73](https://github.com/IsD4n73) for raising the issue)
