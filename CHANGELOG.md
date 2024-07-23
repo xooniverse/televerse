@@ -1,6 +1,10 @@
-# 1.22.4
+# 1.22.5
 
 - Just a re-release to move the repo to [@Xooniverse](https://github.com/xooniverse)
+
+# 1.22.4
+
+- Retracted :)
 
 # 1.22.3
 
