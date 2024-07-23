@@ -56,7 +56,7 @@ class Bot<CTX extends Context> {
       "from the crash logs before sharing. For additional help, join our discussion\n"
       "on Telegram or GitHub.\n\n"
       "Telegram: https://t.me/televersedart\n"
-      "GitHub: https://github.com/HeySreelal/televerse/issues",
+      "GitHub: https://github.com/xooniverse/televerse/issues",
     );
   }
 

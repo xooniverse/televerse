@@ -1,6 +1,10 @@
+# 1.22.4
+
+- Just a re-release to move the repo to [@Xooniverse](https://github.com/xooniverse)
+
 # 1.22.3
 
-- Fixes [#281](https://github.com/HeySreelal/televerse/issues/281) (Thanks to [@IsD4n73](https://github.com/IsD4n73) for raising the issue)
+- Fixes [#281](https://github.com/xooniverse/televerse/issues/281) (Thanks to [@IsD4n73](https://github.com/IsD4n73) for raising the issue)
 - Updated the `Bot.start` and `Bot.stop` logic
 - Added `LongPolling.allExcept`
 
@@ -25,11 +29,11 @@
 - All thanks to [@im-trisha](https://github.com/im-trisha)
 - Fixed an issue that caused Bot to listen to the official Bot API even though
   created with `Bot.local` -
-  [#275](https://github.com/HeySreelal/televerse/issues/275) (Thanks to
+  [#275](https://github.com/xooniverse/televerse/issues/275) (Thanks to
   [@devdocs](https://github.com/devsdocs) for reporting)
-- Fixed [#274](https://github.com/HeySreelal/televerse/issues/274)
-- Fix [#277](https://github.com/HeySreelal/televerse/issues/277)
-- Fix [#104](https://github.com/HeySreelal/televerse/issues/104)
+- Fixed [#274](https://github.com/xooniverse/televerse/issues/274)
+- Fix [#277](https://github.com/xooniverse/televerse/issues/277)
+- Fix [#104](https://github.com/xooniverse/televerse/issues/104)
 - Fixed more typing issues.
 - `Bot.start` now accepts zero parameters.
 - Added `Context.maybeId` a nullable ID instance
@@ -113,7 +117,7 @@
 - Added `Context.middlewareStorage` as a `Map<String, dynamic>` to store any
   output from middleware functions.
 - ✍️ `Bot.onStop` method can now be asynchronous.
-  [#257](https://github.com/HeySreelal/televerse/pull/257) (Thanks to @devsdocs)
+  [#257](https://github.com/xooniverse/televerse/pull/257) (Thanks to @devsdocs)
 - ⚠️ Type of `Webhook.certificate` is changed to InputFile as described by the
   official documentation.
 - Added examples for
@@ -254,7 +258,7 @@
 # 1.15.1
 
 - Fix an issue with the `RawAPI.banChatMember` (Thanks to @Sominemo for
-  [#223](https://github.com/HeySreelal/televerse/pull/223))
+  [#223](https://github.com/xooniverse/televerse/pull/223))
 
 # 1.15.0
 
@@ -291,7 +295,7 @@
 
 # 1.13.3
 
-- Fix [#212](https://github.com/HeySreelal/televerse/issues/212) -
+- Fix [#212](https://github.com/xooniverse/televerse/issues/212) -
   `setChatMenuButton` required `ID` instance where it should be optional.
 - Thanks to [@Sominemo](https://github.com/Sominemo) for raising this issue.
 
@@ -355,7 +359,7 @@
 
 - Fixed an issue with the `InlineKeyboardButton` class that caused a crash when
   `webAppInfo` parameter is set.
-  ([#190](https://github.com/HeySreelal/televerse/issues/190))
+  ([#190](https://github.com/xooniverse/televerse/issues/190))
 
 # 1.12.0
 
@@ -450,7 +454,7 @@
 # 1.11.3
 
 - Added [Televerse.onSuccessfulPayment] method to listen to successful payments
-  service messages [#158](https://github.com/HeySreelal/televerse/issues/158`)`,
+  service messages [#158](https://github.com/xooniverse/televerse/issues/158`)`,
   thanks to [@Defuera](https://github.com/Defuera) for the suggestion and
   [@GiuseppeFn](github.com/GiuseppeFn) for the contribution.
 
@@ -479,13 +483,13 @@
 
 - Using `LoggerOptions` unknowingly caused the bot to crash. This is now fixed.
 - Thanks to [@iamcosmin](https://github.com/iamcosmin) for raising
-  [#148](https://github.com/HeySreelal/televerse/issues/148).
+  [#148](https://github.com/xooniverse/televerse/issues/148).
 - Fixed an issue with the Http client that caused the bot to crash when an
   exception is received from the Telegram Bot API.
 - Thanks to [@OttomanDeveloper](https://github.com/OttomanDeveloper) for raising
-  [#151](https://github.com/HeySreelal/televerse/issues/151).
+  [#151](https://github.com/xooniverse/televerse/issues/151).
 - Added `Televerse.onCommand` method to listen to all commands -
-  [#150](https://github.com/HeySreelal/televerse/issues/150) by
+  [#150](https://github.com/xooniverse/televerse/issues/150) by
   [@Defuera](https://github.com/Defuera).
 
 # 1.10.10
@@ -523,7 +527,7 @@
 
 # 1.10.6
 
-- Fix [#135](https://github.com/HeySreelal/televerse/issues/135) - Methods in
+- Fix [#135](https://github.com/xooniverse/televerse/issues/135) - Methods in
   `MessageContext` failed to work when message is in a General Topic of a Forum.
 - Improved error handling.
 - All exceptions thrown inside handler methods will now be caught and passed to
@@ -535,10 +539,10 @@
 
 # 1.10.4
 
-- Fix [#130](https://github.com/HeySreelal/televerse/issues/130) -
+- Fix [#130](https://github.com/xooniverse/televerse/issues/130) -
   `RawAPI.editMessageMedia` method now works as expected.
 - Added callback data to `InlineMenu` -
-  [#129](https://github.com/HeySreelal/televerse/pull/129) (Thanks to
+  [#129](https://github.com/xooniverse/televerse/pull/129) (Thanks to
   [@devsdocs](https://github.com/devsdocs)).
 - Now all `RawAPI` methods uses HTTP `POST` / `Multipart POST` requests instead
   of `GET` requests.
@@ -553,7 +557,7 @@
 - Usage of `Televerse Menu` is demonstrated in
   [/example/menu_bot.dart](./example/menu_bot.dart).
 - Fixed an issue with the `MessageContext` and `MessageMixin`-
-  [#124](https://github.com/HeySreelal/televerse/issues/124)
+  [#124](https://github.com/xooniverse/televerse/issues/124)
 - Improved code quality.
 - Fixed the incorrect type of `messagThreadId` parameter in multiple methods.
 - Updated `ChatMemberUpdatedContext` class to support both `chat_member` and
@@ -568,9 +572,9 @@
 - Fixed issue that might cause a crash when `LongPolling.allUpdates` is used.
 - Rectified the `MessageContext.args` getter. Thanks to
   [@devsdocs](https://github.com/devsdocs) for
-  [PR #121](https://github.com/HeySreelal/televerse/pull/121).
+  [PR #121](https://github.com/xooniverse/televerse/pull/121).
 - More code improvements. Thanks to [@aaxxios](https://github.com/aaxxios) for
-  [PR #122](https://github.com/HeySreelal/televerse/pull/122)
+  [PR #122](https://github.com/xooniverse/televerse/pull/122)
 
 # 1.10.1
 
@@ -596,7 +600,7 @@
   [/example/conversation_example.dart](./example/conversation_example.dart).
 - Added `MessageContext.args` getter to get the arguments passed to the command.
   Thanks to [@GiuseppeFn](https://github.com/GiuseppeFn) for the contribution.
-  [#115](https://github.com/HeySreelal/televerse/pull/115)
+  [#115](https://github.com/xooniverse/televerse/pull/115)
 - Removed `MessageContext.startParameter` getter as it's no longer needed.
 - Refactored examples to make it easier to understand.
 
@@ -628,31 +632,31 @@
 - Fixes the issue which caused the crash of bots when a `ChatJoinRequest` update
   is received.
 - Thanks to @iamcosmin for taking effort to fix this issue.
-  [#109](https://github.com/HeySreelal/televerse/pull/109)
+  [#109](https://github.com/xooniverse/televerse/pull/109)
 - The `messageThreadId` parameter noww be defaulted to the `messageThreadId`
   parameter in the incoming `Context` object on `reply` method.
 - This is to make it easier to reply to a message when the discussion is on a
   Forum Topic. (Fixes
-  [#110](https://github.com/HeySreelal/televerse/issues/110))
+  [#110](https://github.com/xooniverse/televerse/issues/110))
 
 # 1.9.11
 
 - Fixes an issue that caused none of `onEditedMessage`, `onChannelPost`,
   `onEditedChannelPost`, and `myChatMember` to work.
 - Thanks to [@GiuseppeFn] for rasing
-  [#107](https://github.com/HeySreelal/televerse/pull/106)
-- Merged [#106](https://github.com/HeySreelal/televerse/pull/106)
+  [#107](https://github.com/xooniverse/televerse/pull/106)
+- Merged [#106](https://github.com/xooniverse/televerse/pull/106)
 
 # 1.9.10
 
-- Fix [#104](https://github.com/HeySreelal/televerse/issues/104)
+- Fix [#104](https://github.com/xooniverse/televerse/issues/104)
 - When `onMessage` listener is attached it stopped all other listeners from
   working. This is now fixed.
 - Updated README (some typos).
 
 # 1.9.9
 
-- Fix [#102](https://github.com/HeySreelal/televerse/issues/102)
+- Fix [#102](https://github.com/xooniverse/televerse/issues/102)
 - Commands that tagged with `@botname` will now be matched.
 - Minor changes on README & Session example.
 
@@ -663,7 +667,7 @@
 - This can be useful when you want to run bot on a serverless environment like
   AWS Lambda or Google Cloud Functions.
 - Thanks to [@rohitsangwan01](https://github.com/rohitsangwan01) for the
-  contribution. [#99](https://github.com/HeySreelal/televerse/pull/99)
+  contribution. [#99](https://github.com/xooniverse/televerse/pull/99)
 - `onError` can now catch errors on the Long Polling.
 - Replaced all `Exception` with `TelegramException` in the library.
 - Replaced the `Televerse.on` logic to an extension on `Televerse` class.
@@ -675,7 +679,7 @@
 # 1.9.6
 
 - Added `Televerse.onStop` to listen when the bot is stopped. (Fix
-  [#95](https://github.com/HeySreelal/televerse/issues/95))
+  [#95](https://github.com/xooniverse/televerse/issues/95))
 - Added `delayDuration` parameter to `LongPolling` class to set the delay
   duration between each long polling request.
 - Moved all methods in `SessionFileExtension` and `SessionsSaver` to `Session`
@@ -718,7 +722,7 @@
 - All the methods in the `Televerse` class now uses the `HandlerScope` class to
   register handlers.
 - This is to fix the issue
-  [#84](https://github.com/HeySreelal/televerse/issues/84) and to make it
+  [#84](https://github.com/xooniverse/televerse/issues/84) and to make it
   efficient to handle updates.
 - Completely removed the `Event` class and related methods and getters.
 - The `on` method is now Deprecated. Use the other methods in the library to
@@ -738,7 +742,7 @@
   - This was because the `Televerse.command` method used `String.startsWith` to
     match the command.
   - Thanks to [GiuseppeFn](https://github.com/GiuseppeFn) for raising the
-    [Issue #85](https://github.com/HeySreelal/televerse/issues/85)
+    [Issue #85](https://github.com/xooniverse/televerse/issues/85)
 - The `HttpException` class is now renamed to `TelegramException`.
 - This is to include the `ResponseParameters` object in the exception hence to
   make it easier to handle and retry if needed.
@@ -842,7 +846,7 @@
 # 1.7.0
 
 - 🤖 Bot API 6.7 is added!
-- [Read more here](https://github.com/HeySreelal/televerse/issues/65).
+- [Read more here](https://github.com/xooniverse/televerse/issues/65).
 - [BREAKING] 👨🏻‍🔧 - The `answerInlineQuery` will no longer accept
   `switchPmParameter` or `switchPmText` parameters.
 - The example files are updated with dartdoc comments.
@@ -878,7 +882,7 @@
 - There were some `thumb` parameters even though they were changed to
   `thumbnail` in the API documentation. Fixed that.
 - Fixed an issue with sending media group using local files. More info on
-  [#56](https://github.com/HeySreelal/televerse/issues/56)
+  [#56](https://github.com/xooniverse/televerse/issues/56)
 - Completely removed the class `MessageOrBoolean` as it was not needed. All
   methods that return either a `Message` or a `bool` now split into two methods.
   One for `Message` and one for `bool`.
@@ -888,10 +892,10 @@
 - Similarly, updated the `ForceReply` class to reflect auto set the
   `force_reply` parameter to `true` when the `ForceReply` class is created.
 - Fixed an issue with `addStickerToSet` method which caused it to fail. More
-  info on [#57](https://github.com/HeySreelal/televerse/issues/57).
+  info on [#57](https://github.com/xooniverse/televerse/issues/57).
 - Tested all methods related to Stickers.
 - Fixed an issue with `createNewStickerSet` method which caused it to fail. More
-  info on [#58](https://github.com/HeySreelal/televerse/issues/58).
+  info on [#58](https://github.com/xooniverse/televerse/issues/58).
 
 # 1.5.3
 
@@ -1046,7 +1050,7 @@
 - Fixed an issue with the `on` method that it's not getting called on any
   filters.
 - Made official
-  [Televerse Wiki available at the GitHub repo.](https://github.com/HeySreelal/televerse/wiki)
+  [Televerse Wiki available at the GitHub repo.](https://github.com/xooniverse/televerse/wiki)
 
 # 1.2.0
 

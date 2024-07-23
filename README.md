@@ -2,7 +2,7 @@
   <h1> Televerse </h1>
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
-![GitHub](https://img.shields.io/github/license/HeySreelal/televerse?color=green)
+![GitHub](https://img.shields.io/github/license/xooniverse/televerse?color=green)
 ![](https://shields.io/badge/Latest-Bot%20API%207.7-blue)
 
 <a href="https://telegram.me/TeleverseDart">
@@ -240,18 +240,18 @@ bot.command('keyboard', (ctx) async {
 Televerse offers a wide array of listener methods to cater to your bot's needs,
 including:
 
-| Method              | Description                                                                                                                              |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `bot.command`       | For listening commands                                                                                                                   |
-| `bot.hears`         | For listening to specified Regular Expression                                                                                            |
-| `bot.inlineQuery`   | For listening to inline query with specified query text                                                                                  |
-| `bot.text`          | For listening to message with specified text                                                                                             |
-| `bot.callbackQuery` | For listening to specified callback data                                                                                                 |
-| `bot.onDocument`    | For listening to messages that contain a document                                                                                        |
-| `bot.onPhoto`       | For listening to photo messages                                                                                                          |
-| `bot.chatType`      | This method can be used to listen to messages/updates coming from a specific type of chat such as Super Group or Channel or Private Chat |
-| `bot.entity`        | Sets up handler method for messages that contains specified entity type                                                                  |
-| `bot.myChatMember`  | Listens to change in Bot's chat member status - such as bot is added to a channel or kicked from a group etc.                            |
+| Method              | Description                                                                                                      |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `bot.command`       | For listening commands                                                                                           |
+| `bot.hears`         | For listening to specified Regular Expression                                                                    |
+| `bot.inlineQuery`   | For listening to inline query with specified query text                                                          |
+| `bot.text`          | For listening to message with specified text                                                                     |
+| `bot.callbackQuery` | For listening to specified callback data                                                                         |
+| `bot.onDocument`    | For listening to messages that contain a document                                                                |
+| `bot.onPhoto`       | For listening to photo messages                                                                                  |
+| `bot.chatType`      | For filtering updates on specific type of chat such as Super Group or Channel or Private Chat                    |
+| `bot.entity`        | Sets up handler method for messages that contains specified entity type                                          |
+| `bot.myChatMember`  | Listens to change in Bot's chat member status - such as bot is added to a channel or kicked from a group etc.    |
 
 - And much much more :)
 
@@ -405,7 +405,6 @@ class AutoReplyEnforcer implements Transformer {
   }
 }
 
-
 // Usage
 bot.use(AutoReplyEnforcer());
 ```
@@ -415,7 +414,7 @@ bot.use(AutoReplyEnforcer());
 ## 🌟 Shoot a Star
 
 If you find Televerse helpful, please consider shooting a star on our
-[Github repository](https://github.com/HeySreelal/televerse). This helps us to
+[Github repository](https://github.com/xooniverse/televerse). This helps us to
 know that our work is appreciated and motivates us to continue improving
 Televerse.
 
@@ -425,7 +424,7 @@ We have an active Telegram group where you can discuss Televerse and get help
 from other users and developers.
 
 <a href="https://telegram.me/TeleverseDart">
-  <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/></a> <a href="https://github.com/HeySreelal/televerse/">
+  <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/></a> <a href="https://github.com/xooniverse/televerse/">
   <img src="https://img.shields.io/badge/GitHub%20Discussions-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </a>
 
