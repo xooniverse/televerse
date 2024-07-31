@@ -1,3 +1,9 @@
+# 1.23.0
+
+- 🤖 Bot API 7.8
+- Added `User.hasMainWebApp`
+- Support for managing pinned messages on behalf of user (Business Bots)
+
 # 1.22.5
 
 - Just a re-release to move the repo to [@Xooniverse](https://github.com/xooniverse)
