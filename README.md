@@ -3,7 +3,7 @@
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/xooniverse/televerse?color=green)
-![](https://shields.io/badge/Latest-Bot%20API%207.7-blue)
+![](https://shields.io/badge/Latest-Bot%20API%207.8-blue)
 
 <a href="https://telegram.me/TeleverseDart">
     <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/>
@@ -13,7 +13,7 @@
 
 ---
 
-🤖 `Bot API version: Bot API 7.7 (July 7, 2024)`
+🤖 `Bot API version: Bot API 7.8 (July 31, 2024)`
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot
 framework built with Dart programming language. It provides a complete and
@@ -23,13 +23,14 @@ public interface, making it easy for developers to write strictly typed code.
 
 ## 🔥 What's latest?
 
-### 🤖 Bot API 7.7
+### 🤖 Bot API 7.8
 
-(🗓️ July 8, 2024)
+(🗓️ July 31, 2024)
 
-Simply, this change brings support for Refunds of Payment.
+Simply, this change brings support for ability to manage pinned messages on behalf of a Business. 
+Much more updates on Mini apps.
 
-Checkout [changelog](https://core.telegram.org/bots/api#july-7-2024) for more
+Checkout [changelog](https://core.telegram.org/bots/api#july-31-2024) for more
 details! 🚀
 
 ### 🎉 Support for Custom Contexts!
@@ -46,7 +47,8 @@ Televerse now lets you build even more powerful bots with custom contexts!
 With the new `Bot.contextBuilder` method, you can define specialized context
 constructors to create context objects with personalized behaviors and
 capabilities. This update allows you to tailor your bot's responses, handle
-complex workflows, and integrate additional features seamlessly.
+complex workflows, and integrate additional features seamlessly. 
+[Read more here.](https://televerse.xooniverse.com/doc/custom-context)
 
 <hr>
 

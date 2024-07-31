@@ -39,6 +39,9 @@ class User implements WithID {
   /// Optional. True, if the bot can be connected to a Telegram Business account to receive its messages. Returned only in getMe.
   final bool? canConnectToBusiness;
 
+  /// Optional. True, if the bot has a main Web App. Returned only in getMe.
+  final bool? hasMainWebApp;
+
   /// Constructs a [User] object
   const User({
     required this.id,
@@ -53,6 +56,7 @@ class User implements WithID {
     this.canReadAllGroupMessages,
     this.supportsInlineQueries,
     this.canConnectToBusiness,
+    this.hasMainWebApp,
   });
 
   /// Creates a [User] object from JSON object
@@ -70,6 +74,7 @@ class User implements WithID {
       canReadAllGroupMessages: json['can_read_all_group_messages'],
       supportsInlineQueries: json['supports_inline_queries'],
       canConnectToBusiness: json['can_connect_to_business'],
+      hasMainWebApp: json['has_main_web_app'],
     );
   }
 
@@ -88,6 +93,7 @@ class User implements WithID {
       'can_read_all_group_messages': canReadAllGroupMessages,
       'supports_inline_queries': supportsInlineQueries,
       'can_connect_to_business': canConnectToBusiness,
+      'has_main_web_app': hasMainWebApp,
     }..removeWhere(_nullFilter);
   }
 }
