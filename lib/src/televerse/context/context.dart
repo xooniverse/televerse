@@ -96,6 +96,11 @@ class Context {
         msg?.sticker?.fileId;
   }
 
+  /// The File ID if the incoming message contains a File of any kind.
+  ///
+  /// This includes Photo, Animation, Audio, Document, Video, Video Note, Voice, or Sticker
+  String? get fileId => _fileId;
+
   /// The Chat ID for internal use
   int? get _chatId {
     return chat?.id;
@@ -109,11 +114,19 @@ class Context {
         callbackQuery?.message?.messageId;
   }
 
+  /// The Message ID of the incoming message.
+  int? get messageId => _msgId;
+
   /// Internal getter for inline message id
   String? get _inlineMsgId {
     return callbackQuery?.inlineMessageId ??
         chosenInlineResult?.inlineMessageId;
   }
+
+  /// Inline Message ID from the incoming update.
+  ///
+  /// This can be Inline Message ID from a Callback Query generated from an inline message or Chosen Inline Result.
+  String? get inlineMessageId => _inlineMsgId;
 
   /// Executes the middleware on the current context
   Future<void> use(MiddlewareBase middleware) async {
