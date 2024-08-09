@@ -67,4 +67,13 @@ class TelegramException implements Exception {
       stackTrace: stackTrace,
     );
   }
+
+  /// Returns the JSON encodable Map
+  Map<String, dynamic> toJson() {
+    return {
+      "error_code": code,
+      "description": description,
+      "parameters": parameters?.toJson(),
+    }..removeWhere((_, v) => v != null);
+  }
 }

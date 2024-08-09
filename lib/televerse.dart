@@ -35,25 +35,35 @@ export 'src/televerse/links/links.dart';
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
 
+// Bot & API
 part 'src/televerse/api/raw_api.dart';
 part 'src/televerse/bot/bot.dart';
+
+// Context
 part 'src/televerse/context/constructor.dart';
 part 'src/televerse/context/context.dart';
 part 'src/televerse/context/methods.dart';
 part 'src/televerse/context/properties.dart';
+
+// The On Method
 part 'src/televerse/filters/filters.dart';
 part 'src/televerse/filters/on.dart';
+
+// Keyboards & Menus
 part 'src/televerse/markups/inline_keyboard.dart';
 part 'src/televerse/markups/inline_menu.dart';
 part 'src/televerse/markups/keyboard.dart';
 part 'src/televerse/markups/keyboard_menu.dart';
 part 'src/televerse/markups/menu.dart';
+
+// Other utilities
 part 'src/televerse/models/logger_options.dart';
 part 'src/televerse/models/multipart_helper.dart';
 part 'src/utils/date.dart';
 part 'src/utils/http.dart';
 part 'src/utils/utils.dart';
 
+// Fetchers
 part 'src/televerse/fetch/fetch.dart';
 part 'src/televerse/fetch/long_polling.dart';
 part 'src/televerse/fetch/webhook.dart';
