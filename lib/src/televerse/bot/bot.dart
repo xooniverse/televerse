@@ -31,6 +31,7 @@ class Bot<CTX extends Context> {
   /// Options to configure the logger.
   final LoggerOptions? _loggerOptions;
 
+  /// Acts as the dfault error handler
   void _defaultErrorHandler(BotError<CTX> err) {
     print("‼️ An error occurred while processing the update.");
     if (err.sourceIsMiddleware) {
@@ -48,6 +49,7 @@ class Bot<CTX extends Context> {
     _report();
   }
 
+  /// Prints the issue reporting statement
   static void _report() {
     print("---------------------");
     print(
@@ -402,6 +404,11 @@ class Bot<CTX extends Context> {
       }
     }
   }
+
+  /// Additional infomration on the bot
+  ///
+  /// This space can be used for plugins or any other utilities to improve user experience
+  final Map<String, dynamic> additionalInfo = {};
 
   /// List of Handler Scopes
   final List<HandlerScope<CTX>> _handlerScopes = [];
