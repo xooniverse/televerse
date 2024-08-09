@@ -1,3 +1,9 @@
+# 1.23.1
+
+- Exposed couple of more properties in Context
+- Added `Bot.additionalInfo`
+- Documentation website is up.
+
 # 1.23.0
 
 - 🤖 Bot API 7.8
