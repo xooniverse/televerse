@@ -71,7 +71,7 @@
 
 - 🥳 Support for Custom Context
 - Added detailed
-  [usage documentation for custom context here](https://televerse.web.app/doc/custom-context).
+  [usage documentation for custom context here](https://televerse.xooniverse.com/advanced/custom-context.html).
 - The custom context feature allows you to extend the base functionality of your
   bot by using your own custom context classes.
 - Added `Bot.contextBuilder` method

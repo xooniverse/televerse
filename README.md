@@ -48,7 +48,7 @@ With the new `Bot.contextBuilder` method, you can define specialized context
 constructors to create context objects with personalized behaviors and
 capabilities. This update allows you to tailor your bot's responses, handle
 complex workflows, and integrate additional features seamlessly. 
-[Read more here.](https://televerse.xooniverse.com/doc/custom-context)
+[Read more here.](https://televerse.xooniverse.com/advanced/custom-context.html)
 
 <hr>
 

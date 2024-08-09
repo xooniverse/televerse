@@ -162,7 +162,7 @@ class Bot<CTX extends Context> {
   }
 
   /// Handles the error in initial `getMe` call
-  Future<void> _thenHandleGetMeError(Object err, StackTrace st) async {
+  Future<void> _handleTheGetMeError(Object err, StackTrace st) async {
     if (err is DioException) {
       if (err.type == DioExceptionType.connectionTimeout ||
           err.type == DioExceptionType.receiveTimeout ||
@@ -244,7 +244,7 @@ class Bot<CTX extends Context> {
     try {
       await getMe();
     } catch (err, st) {
-      _thenHandleGetMeError(err, st);
+      _handleTheGetMeError(err, st);
     }
     // Set instance variable
     _instance = this;
@@ -485,7 +485,7 @@ class Bot<CTX extends Context> {
   /// bot.contextBuilder(MyCustomContext.new);
   /// ```
   ///
-  /// For detailed usage instructions and examples, visit the [Custom Context Documentation](https://televerse.web.app/doc/custom-context).
+  /// For detailed usage instructions and examples, visit the [Custom Context Documentation](https://televerse.xooniverse.com/advanced/custom-context.html).
   void contextBuilder(ContextConstructor<CTX> constructor) {
     _usingCustomContext = true;
     _contextConstructor = constructor;
@@ -550,7 +550,7 @@ class Bot<CTX extends Context> {
           "If you still encounter issues, make sure that your custom context class extends `Context` "
           "and its constructor matches the required parameters:\n\n"
           "  MyContext({required super.api, required super.me, required super.update});\n"
-          "📖 Check out the complete usage documentation here: https://televerse.web.app/doc/custom-context\n",
+          "📖 Check out the complete usage documentation here: https://televerse.xooniverse.com/advanced/custom-context.html \n",
         );
       }
 
@@ -578,7 +578,9 @@ class Bot<CTX extends Context> {
   /// This method simply initalizes the bot - performs the initial getMe request
   /// to fill the `bot.me` property.
   Future<void> init() async {
-    await _initializeBot();
+    if (!initialized) {
+      await _initializeBot();
+    }
   }
 
   /// Start polling or webhook listener for fetching updates.
