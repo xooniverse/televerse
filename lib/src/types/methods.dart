@@ -379,6 +379,12 @@ enum APIMethod {
 
   /// Sends paid media
   sendPaidMedia._("sendPaidMedia"),
+
+  /// Use this method to create a subscription invite link for a channel chat
+  createChatSubscriptionInviteLink._("createChatSubscriptionInviteLink"),
+
+  /// Use this method to edit a subscription invite link created by the bot.
+  editChatSubscriptionInviteLink._("editChatSubscriptionInviteLink"),
   ;
 
   /// The name of the method.

@@ -11,10 +11,14 @@ class TransactionPartnerUser extends TransactionPartner {
   /// Bot-specified invoice payload.
   final String? invoicePayload;
 
+  /// Optional. Information about the paid media bought by the user
+  final List<PaidMedia>? paidMedia;
+
   /// Constructs a [TransactionPartnerUser] object.
   const TransactionPartnerUser({
     required this.user,
     this.invoicePayload,
+    this.paidMedia,
   });
 
   /// Creates a [TransactionPartnerUser] object from JSON.
@@ -22,6 +26,13 @@ class TransactionPartnerUser extends TransactionPartner {
     return TransactionPartnerUser(
       user: User.fromJson(json['user']),
       invoicePayload: json['invoice_payload'],
+      paidMedia: json['paid_media'] != null
+          ? List<PaidMedia>.from(
+              (json['paid_media'] as List).map(
+                (e) => PaidMedia.fromJson(e),
+              ),
+            )
+          : null,
     );
   }
 
@@ -32,6 +43,7 @@ class TransactionPartnerUser extends TransactionPartner {
       'type': type.toJson(),
       'user': user.toJson(),
       'invoice_payload': invoicePayload,
+      'paid_media': paidMedia?.map((e) => e.toJson()).toList(),
     }..removeWhere(_nullFilter);
   }
 }
