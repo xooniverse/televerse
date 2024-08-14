@@ -1,3 +1,9 @@
+# 1.24.0
+
+- 🤖 Bot API 7.9
+- Added new methods
+- Published Televerse Documentation website (https://televerse.xooniverse.com)
+
 # 1.23.1
 
 - Exposed couple of more properties in Context
