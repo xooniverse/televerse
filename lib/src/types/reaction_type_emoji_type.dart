@@ -7,6 +7,9 @@ enum ReactionTypeType {
 
   /// Represents a custom emoji.
   customEmoji._("custom_emoji"),
+
+  /// Paid reaction
+  paid._("paid"),
   ;
 
   /// The inner value of this enum entry.
@@ -22,6 +25,8 @@ enum ReactionTypeType {
         return emoji;
       case "custom_emoji":
         return customEmoji;
+      case "paid":
+        return paid;
       default:
         throw TeleverseException(
           "Unknown value: $value",

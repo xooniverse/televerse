@@ -3983,6 +3983,7 @@ class RawAPI {
     bool? protectContent,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -3995,6 +3996,7 @@ class RawAPI {
       "protect_content": protectContent,
       "reply_parameters": replyParameters?.toJson(),
       "reply_markup": replyMarkup?.toJson(),
+      "business_connection_id": businessConnectionId,
     };
 
     List<_MultipartHelper> helpers = [];
@@ -4016,5 +4018,47 @@ class RawAPI {
     );
 
     return Message.fromJson(response);
+  }
+
+  /// Use this method to create a subscription invite link for a channel chat. The bot must have the can_invite_users administrator rights. The link can be edited using the method editChatSubscriptionInviteLink or revoked using the method revokeChatInviteLink. Returns the new invite link as a ChatInviteLink object.
+  Future<ChatInviteLink> createChatSubscriptionInviteLink({
+    required ID chatId,
+    String? name,
+    required int subscriptionPeriod,
+    required int subscriptionPrice,
+  }) async {
+    final params = {
+      "chat_id": chatId.id,
+      "name": name,
+      "subscription_period": subscriptionPeriod,
+      "subscription_price": subscriptionPrice,
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.createChatSubscriptionInviteLink,
+      payload: Payload(params),
+    );
+
+    return ChatInviteLink.fromJson(response);
+  }
+
+  /// Use this method to edit a subscription invite link created by the bot. The bot must have the can_invite_users administrator rights. Returns the edited invite link as a ChatInviteLink object.
+  Future<ChatInviteLink> editChatSubscriptionInviteLink({
+    required ID chatId,
+    required String inviteLink,
+    String? name,
+  }) async {
+    final params = {
+      "chat_id": chatId.id,
+      "name": name,
+      "invite_link": inviteLink,
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.editChatSubscriptionInviteLink,
+      payload: Payload(params),
+    );
+
+    return ChatInviteLink.fromJson(response);
   }
 }

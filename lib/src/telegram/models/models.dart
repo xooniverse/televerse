@@ -268,3 +268,6 @@ part 'transaction_partner_telegram_ads.dart';
 
 // Bot API 7.7
 part 'refunded_payment.dart';
+
+// Bot API 7.9
+part 'reaction_type_paid.dart';

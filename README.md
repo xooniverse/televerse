@@ -3,7 +3,7 @@
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/xooniverse/televerse?color=green)
-![](https://shields.io/badge/Latest-Bot%20API%207.8-blue)
+![](https://shields.io/badge/Latest-Bot%20API%207.9-blue)
 
 <a href="https://telegram.me/TeleverseDart">
     <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/>
@@ -13,7 +13,7 @@
 
 ---
 
-🤖 `Bot API version: Bot API 7.8 (July 31, 2024)`
+🤖 `Bot API version: Bot API 7.9 (August 14, 2024)`
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot
 framework built with Dart programming language. It provides a complete and
@@ -23,14 +23,13 @@ public interface, making it easy for developers to write strictly typed code.
 
 ## 🔥 What's latest?
 
-### 🤖 Bot API 7.8
+### 🤖 Bot API 7.9
 
-(🗓️ July 31, 2024)
+(🗓️ August 14, 2024)
 
-Simply, this change brings support for ability to manage pinned messages on behalf of a Business. 
-Much more updates on Mini apps.
+In a nutshell, this update brigngs support for channel subscription, and support for Paid Media across all chats.
 
-Checkout [changelog](https://core.telegram.org/bots/api#july-31-2024) for more
+Checkout [changelog](https://core.telegram.org/bots/api-changelog#august-14-2024) for more
 details! 🚀
 
 ### 🎉 Support for Custom Contexts!
