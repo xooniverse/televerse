@@ -160,6 +160,72 @@ class Context {
       );
     }
   }
+
+  /// Determine whether the update is a text message
+  bool hasText() => msg?.text != null;
+
+  /// Determine whether the update contains a photo
+  bool hasPhoto() => msg?.photo != null;
+
+  /// Determine whether the update contains a video
+  bool hasVideo() => msg?.video != null;
+
+  /// Determine whether the update contains a document
+  bool hasDocument() => msg?.document != null;
+
+  /// Determine whether the update contains a location
+  bool hasLocation() => msg?.location != null;
+
+  /// Determine whether the update contains a live location
+  bool hasLiveLocation() => msg?.location?.livePeriod != null;
+
+  /// Determine whether the update contains a GIF/Animation
+  bool hasAnimation() => msg?.animation != null;
+
+  /// Determine whether the update is part of media group
+  bool hasMediaGroup() => msg?.mediaGroupId != null;
+
+  /// Determine whether the incoming message has a message effect added to it
+  bool hasEffect() => msg?.hasEffect == true;
+
+  /// Determine whether the update contains a paid media
+  bool hasPaidMedia() => msg?.paidMedia != null;
+
+  /// Determine whether the update contains a contact
+  bool hasContact() => msg?.contact != null;
+
+  /// Determine whether the update is a service message
+  bool isServiceMessage() {
+    return msg?.leftChatMember != null ||
+        msg?.newChatTitle != null ||
+        msg?.newChatPhoto != null ||
+        msg?.deleteChatPhoto == true ||
+        msg?.groupChatCreated == true ||
+        msg?.supergroupChatCreated == true ||
+        msg?.channelChatCreated == true ||
+        msg?.messageAutoDeleteTimerChanged != null ||
+        msg?.successfulPayment != null ||
+        msg?.refundedPayment != null ||
+        msg?.usersShared != null ||
+        msg?.chatShared != null ||
+        msg?.writeAccessAllowed != null ||
+        msg?.proximityAlertTriggered != null ||
+        msg?.boostAdded != null ||
+        msg?.chatBackgroundSet != null ||
+        msg?.forumTopicCreated != null ||
+        msg?.forumTopicEdited != null ||
+        msg?.forumTopicClosed != null ||
+        msg?.forumTopicReopened != null ||
+        msg?.generalForumTopicHidden != null ||
+        msg?.generalForumTopicUnhidden != null ||
+        msg?.giveawayCreated != null ||
+        msg?.giveawayCompleted != null ||
+        msg?.videoChatScheduled != null ||
+        msg?.videoChatStarted != null ||
+        msg?.videoChatEnded != null ||
+        msg?.videoChatParticipantsInvited != null ||
+        msg?.webAppData != null;
+  }
 }
 
 /// Base handler
