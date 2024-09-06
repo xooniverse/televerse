@@ -2653,4 +2653,14 @@ class Bot<CTX extends Context> {
       options: options,
     );
   }
+
+  /// Registers a callback to be fired when a user purchases paid media sent by the bot
+  void onPaidMediaPurchase(
+    Handler<CTX> callback,
+  ) {
+    return _acceptAll(
+      callback,
+      [UpdateType.purchasedPaidMedia],
+    );
+  }
 }
