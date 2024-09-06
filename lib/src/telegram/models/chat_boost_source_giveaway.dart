@@ -15,11 +15,15 @@ class ChatBoostSourceGiveaway implements ChatBoostSource {
   /// Optional. True, if the giveaway was completed, but there was no user to win the prize
   final bool? isUnclaimed;
 
+  /// Optional. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only
+  final int? prizeStarCount;
+
   /// Creates a source of a chat boost.
   const ChatBoostSourceGiveaway({
     this.user,
     this.isUnclaimed,
     this.giveawayMessageId = 0,
+    this.prizeStarCount,
   });
 
   /// Converts the `ChatBoostSourceGiveaway` object to a JSON object.
@@ -30,6 +34,7 @@ class ChatBoostSourceGiveaway implements ChatBoostSource {
       'user': user?.toJson(),
       'is_unclaimed': isUnclaimed,
       'giveaway_message_id': giveawayMessageId,
+      'prize_star_count': prizeStarCount,
     }..removeWhere(_nullFilter);
   }
 
@@ -39,6 +44,7 @@ class ChatBoostSourceGiveaway implements ChatBoostSource {
       user: User.fromJson(json['user']),
       isUnclaimed: json['is_unclaimed'],
       giveawayMessageId: json['giveaway_message_id'],
+      prizeStarCount: json['prize_star_count'],
     );
   }
 }

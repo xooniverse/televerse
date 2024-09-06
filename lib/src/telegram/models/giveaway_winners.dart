@@ -35,6 +35,9 @@ class GiveawayWinners {
   /// Description of additional giveaway prize
   final String? prizeDescription;
 
+  /// Optional. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only
+  final int? prizeStarCount;
+
   /// Constructor
   const GiveawayWinners({
     required this.chat,
@@ -48,6 +51,7 @@ class GiveawayWinners {
     this.onlyNewMembers,
     this.wasRefunded,
     this.prizeDescription,
+    this.prizeStarCount,
   });
 
   /// Constructor from JSON data
@@ -65,6 +69,7 @@ class GiveawayWinners {
       onlyNewMembers: json['only_new_members'],
       wasRefunded: json['was_refunded'],
       prizeDescription: json['prize_description'],
+      prizeStarCount: json['prize_star_count'],
     );
   }
 
@@ -82,6 +87,7 @@ class GiveawayWinners {
       'only_new_members': onlyNewMembers,
       'was_refunded': wasRefunded,
       'prize_description': prizeDescription,
+      'prize_star_count': prizeStarCount,
     }..removeWhere(_nullFilter);
   }
 }
