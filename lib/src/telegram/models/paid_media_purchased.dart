@@ -1,8 +1,9 @@
 part of 'models.dart';
 
 /// Represents a paid media purchase made by a user.
-class PaidMediaPurchased {
+class PaidMediaPurchased implements WithUser {
   /// The user who purchased the media.
+  @override
   final User from;
 
   /// A bot-specified payload related to the paid media.
