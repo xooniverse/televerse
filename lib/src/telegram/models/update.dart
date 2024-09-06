@@ -73,6 +73,9 @@ class Update {
   /// Optional. Messages were deleted from a connected business account
   final BusinessMessagesDeleted? deletedBusinessMessages;
 
+  /// Optional. A user purchased paid media with a non-empty payload sent by the bot in a non-channel chat
+  final PaidMediaPurchased? purchasedPaidMedia;
+
   /// Update Constructor
   const Update({
     required this.updateId,
@@ -98,6 +101,7 @@ class Update {
     this.businessMessage,
     this.editedBusinessMessage,
     this.deletedBusinessMessages,
+    this.purchasedPaidMedia,
   });
 
   /// Creates a [Update] from json [Map].
@@ -169,6 +173,9 @@ class Update {
       deletedBusinessMessages: json['deleted_business_messages'] != null
           ? BusinessMessagesDeleted.fromJson(json['deleted_business_messages'])
           : null,
+      purchasedPaidMedia: json['purchased_paid_media'] != null
+          ? PaidMediaPurchased.fromJson(json['purchased_paid_media'])
+          : null,
     );
   }
 
@@ -198,6 +205,7 @@ class Update {
       'business_message': businessMessage?.toJson(),
       'edited_business_message': editedBusinessMessage?.toJson(),
       'deleted_business_messages': deletedBusinessMessages?.toJson(),
+      'purchased_paid_media': purchasedPaidMedia?.toJson(),
     }..removeWhere(_nullFilter);
   }
 
@@ -250,6 +258,8 @@ class Update {
       return UpdateType.editedBusinessMessage;
     } else if (deletedBusinessMessages != null) {
       return UpdateType.deletedBusinessMessages;
+    } else if (purchasedPaidMedia != null) {
+      return UpdateType.purchasedPaidMedia;
     } else {
       throw TeleverseException(
         "The update type is unknown",
