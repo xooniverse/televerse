@@ -1,3 +1,9 @@
+# 1.25.0
+
+- 🤖 Bot API 7.10
+- Added `Bot.onPaidMediaPurchase` for listening to [PaidMediaPurchased](https://core.telegram.org/bots/api#paidmediapurchased) updates.
+- Added much more helper methods on `Context`
+
 # 1.24.0
 
 - 🤖 Bot API 7.9
