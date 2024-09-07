@@ -68,7 +68,8 @@ extension FromAndChatExt on Update {
             myChatMember ??
             chatMember ??
             chatJoinRequest ??
-            businessConnection)
+            businessConnection ??
+            purchasedPaidMedia)
         ?.from;
     if (callbackQuery?.message is Message) {
       x ??= (callbackQuery?.message as Message).from;

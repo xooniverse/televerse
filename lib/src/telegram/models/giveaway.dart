@@ -26,6 +26,9 @@ class Giveaway {
   /// The number of months the Telegram Premium subscription won from the giveaway will be active for
   final int? premiumSubscriptionMonthCount;
 
+  /// Optional. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only
+  final int? prizeStarCount;
+
   /// Constructor
   const Giveaway({
     required this.chats,
@@ -36,6 +39,7 @@ class Giveaway {
     this.prizeDescription,
     this.countryCodes,
     this.premiumSubscriptionMonthCount,
+    this.prizeStarCount,
   });
 
   /// Constructor from JSON data
@@ -50,6 +54,7 @@ class Giveaway {
       prizeDescription: json['prize_description'],
       countryCodes: json['country_codes']?.cast<String>(),
       premiumSubscriptionMonthCount: json['premium_subscription_month_count'],
+      prizeStarCount: json['prize_star_count'],
     );
   }
 
@@ -64,6 +69,7 @@ class Giveaway {
       'prize_description': prizeDescription,
       'country_codes': countryCodes,
       'premium_subscription_month_count': premiumSubscriptionMonthCount,
+      'prize_star_count': prizeStarCount,
     }..removeWhere(_nullFilter);
   }
 }

@@ -271,3 +271,6 @@ part 'refunded_payment.dart';
 
 // Bot API 7.9
 part 'reaction_type_paid.dart';
+
+// Bot API 7.10
+part 'paid_media_purchased.dart';

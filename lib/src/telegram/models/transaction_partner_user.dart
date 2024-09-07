@@ -14,11 +14,15 @@ class TransactionPartnerUser extends TransactionPartner {
   /// Optional. Information about the paid media bought by the user
   final List<PaidMedia>? paidMedia;
 
+  /// Optional. Bot-specified paid media payload
+  final String? paidMediaPayload;
+
   /// Constructs a [TransactionPartnerUser] object.
   const TransactionPartnerUser({
     required this.user,
     this.invoicePayload,
     this.paidMedia,
+    this.paidMediaPayload,
   });
 
   /// Creates a [TransactionPartnerUser] object from JSON.
@@ -33,6 +37,7 @@ class TransactionPartnerUser extends TransactionPartner {
               ),
             )
           : null,
+      paidMediaPayload: json['paid_media_payload'],
     );
   }
 
@@ -44,6 +49,7 @@ class TransactionPartnerUser extends TransactionPartner {
       'user': user.toJson(),
       'invoice_payload': invoicePayload,
       'paid_media': paidMedia?.map((e) => e.toJson()).toList(),
+      'paid_media_payload': paidMediaPayload,
     }..removeWhere(_nullFilter);
   }
 }

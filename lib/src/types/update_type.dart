@@ -67,6 +67,9 @@ enum UpdateType {
 
   /// Messages were deleted from a connected business account
   deletedBusinessMessages("deleted_business_messages"),
+
+  /// Updates about purchased paid media
+  purchasedPaidMedia("purchased_paid_media"),
   ;
 
   /// The value of this enum.

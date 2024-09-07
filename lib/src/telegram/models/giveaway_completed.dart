@@ -11,11 +11,15 @@ class GiveawayCompleted {
   /// Message with the giveaway that was completed, if it wasn't deleted
   final Message? giveawayMessage;
 
+  /// Optional. True, if the giveaway is a Telegram Star giveaway. Otherwise, currently, the giveaway is a Telegram Premium giveaway.
+  final bool? isStarGiveaway;
+
   /// Constructor
   const GiveawayCompleted({
     required this.winnerCount,
     this.unclaimedPrizeCount,
     this.giveawayMessage,
+    this.isStarGiveaway,
   });
 
   /// Constructor from JSON data
@@ -26,6 +30,7 @@ class GiveawayCompleted {
       giveawayMessage: json['giveaway_message'] != null
           ? Message.fromJson(json['giveaway_message'])
           : null,
+      isStarGiveaway: json['is_star_giveaway'],
     );
   }
 
@@ -35,6 +40,7 @@ class GiveawayCompleted {
       'winner_count': winnerCount,
       'unclaimed_prize_count': unclaimedPrizeCount,
       'giveaway_message': giveawayMessage?.toJson(),
+      'is_star_giveaway': isStarGiveaway,
     }..removeWhere(_nullFilter);
   }
 }
