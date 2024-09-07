@@ -3984,6 +3984,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
+    String? payload,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -3997,6 +3998,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "reply_markup": replyMarkup?.toJson(),
       "business_connection_id": businessConnectionId,
+      "payload": payload,
     };
 
     List<_MultipartHelper> helpers = [];

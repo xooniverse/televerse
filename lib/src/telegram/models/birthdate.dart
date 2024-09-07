@@ -33,6 +33,6 @@ class Birthdate {
       'day': day,
       'month': month,
       'year': year,
-    };
+    }..removeWhere(_nullFilter);
   }
 }
