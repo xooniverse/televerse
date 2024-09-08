@@ -26,6 +26,6 @@ typedef NextFunction = FutureOr<void> Function();
 /// - `Future<Map<String, dynamic>>`: A future that completes with the result
 ///   of the API call.
 typedef APICaller = Future<Map<String, dynamic>> Function(
-  APIMethod method,
-  Payload payload,
-);
+  APIMethod method, [
+  Payload? payload,
+]);

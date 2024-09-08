@@ -1,3 +1,9 @@
+# 1.26.0
+
+- [⚠️ Breaking | Plugins] Updated the `Transformer` class
+- Made the `payload` parameter for the `Transformer.transform` method optional-positional argument.
+- Added `RawAPI.call` method for independently calling the Telegram Bot API methods.
+
 # 1.25.0
 
 - 🤖 Bot API 7.10

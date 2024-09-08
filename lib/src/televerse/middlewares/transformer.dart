@@ -82,9 +82,9 @@ abstract interface class Transformer implements MiddlewareBase {
   /// actual API method with the modified payload.
   Future<Map<String, dynamic>> transform(
     APICaller call,
-    APIMethod method,
-    Payload payload,
-  );
+    APIMethod method, [
+    Payload? payload,
+  ]);
 
   /// Constructs a `Transformer` instance.
   const Transformer();

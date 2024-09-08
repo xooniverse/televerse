@@ -259,9 +259,47 @@ class RawAPI {
   /// multiple transformers into a single API caller function, which processes
   /// the payload through each transformer in sequence before making the API call.
   APICaller _combineTransformer(APICaller prev, Transformer transformer) {
-    return (APIMethod method, Payload payload) async {
+    return (method, [payload]) async {
       return await transformer.transform(prev, method, payload);
     };
+  }
+
+  /// Independent API Caller.
+  ///
+  /// This method allows you to directly call any Telegram Bot API method without the interference of Transformers.
+  /// It's ideal for situations where you need full control over the request or want to bypass automatic transformations.
+  ///
+  /// The data to be sent must be a JSON-serializable `Map`, wrapped within a `Payload` class.
+  /// Ensure that all fields of the JSON strictly adhere to the Telegram Bot API documentation for correct execution.
+  ///
+  /// ### Example:
+  /// You can use this method to invoke the `sendMessage` API method like this:
+  ///
+  /// ```dart
+  /// void main() async {
+  ///   final api = RawAPI(Platform.environment["BOT_TOKEN"]!);
+  ///
+  ///   final data = {
+  ///     "chat_id": 12345,
+  ///     "text": "Hello World!",
+  ///   };
+  ///
+  ///   await api(APIMethod.sendMessage, Payload(data));
+  /// }
+  /// ```
+  ///
+  /// This gives you the flexibility to directly interact with Telegram's API while maintaining a simple and clean implementation.
+  Future<Map<String, dynamic>> call(
+    APIMethod method, [
+    Payload? payload,
+  ]) async {
+    final uri = _buildUri(method);
+    payload?.params.removeWhere(_nullFilter);
+    final result = await _httpClient._makeApiCall<Map<String, dynamic>>(
+      uri,
+      payload: payload,
+    );
+    return result;
   }
 
   /// Executes an API call, applying any attached transformers.
@@ -300,27 +338,16 @@ class RawAPI {
     APIMethod method, {
     Payload? payload,
   }) async {
-    payload ??= Payload();
-
-    APICaller call = (APIMethod method, Payload payload) async {
-      final uri = _buildUri(method);
-      payload.params.removeWhere(_nullFilter);
-      final result = await _httpClient._makeApiCall(
-        uri,
-        payload: payload,
-      );
-      return result;
-    };
-
+    APICaller caller = call;
     final transformers = [..._transformers, ...(_context?._transformers ?? [])];
 
     // Combine transformers
     for (final transformer in transformers.reversed) {
-      call = _combineTransformer(call, transformer);
+      caller = _combineTransformer(caller, transformer);
     }
 
     // Execute the combined call
-    final result = await call(method, payload);
+    final result = await caller(method, payload);
 
     return result["result"] as T;
   }
