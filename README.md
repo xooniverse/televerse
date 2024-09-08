@@ -391,14 +391,14 @@ class AutoReplyEnforcer implements Transformer {
   @override
   Future<Map<String, dynamic>> transform(
     APICaller call,
-    APIMethod method,
-    Payload payload,
-  ) async {
+    APIMethod method, [
+    Payload? payload,
+  ]) async {
     final isSendMethod = APIMethod.sendMethods.contains(method);
     final isNotChatAction = method != APIMethod.sendChatAction;
 
     if (isSendMethod && isNotChatAction) {
-      payload.params["reply_markup"] = ForceReply().toJson();
+      payload!.params["reply_markup"] = ForceReply().toJson();
     }
 
     return await call(method, payload);
