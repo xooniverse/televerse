@@ -1,3 +1,8 @@
+# 1.26.1
+
+- Fix [#294](https://github.com/xooniverse/televerse/issues/294).
+- Updated the Bot.init method to initalize the update streams as well.
+
 # 1.26.0
 
 - [⚠️ Breaking | Plugins] Updated the `Transformer` class
