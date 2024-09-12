@@ -248,6 +248,17 @@ class Bot<CTX extends Context> {
     } catch (err, st) {
       _handleTheGetMeError(err, st);
     }
+
+    // Set stream controllers
+    if (fetcher._updateStreamController == null ||
+        fetcher._updateStreamController?.isClosed == true) {
+      fetcher._updateStreamController = StreamController<Update>.broadcast();
+    }
+    if (fetcher._updatesStreamController == null ||
+        fetcher._updatesStreamController?.isClosed == true) {
+      fetcher._updatesStreamController =
+          StreamController<List<Update>>.broadcast();
+    }
     // Set instance variable
     _instance = this;
   }
@@ -598,7 +609,6 @@ class Bot<CTX extends Context> {
       await _initializeBot();
     }
 
-    fetcher._updateStreamController = StreamController<Update>.broadcast();
     fetcher._updateSubscription = fetcher.onUpdate().listen(
           _onUpdate,
           onDone: _onStop,
