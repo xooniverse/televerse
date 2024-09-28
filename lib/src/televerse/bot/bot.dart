@@ -16,20 +16,11 @@ part of '../../../televerse.dart';
 /// ```
 ///
 class Bot<CTX extends Context> {
-  /// API Scheme
-  final APIScheme _scheme;
-
   /// The current bot instance.
   static late Bot _instance;
 
-  /// Base URL of the Telegram Bot API.
-  final String _baseURL;
-
   /// A flag that indicates whether the Bot API is running locally or not.
   final bool isLocal;
-
-  /// Options to configure the logger.
-  final LoggerOptions? _loggerOptions;
 
   /// Acts as the dfault error handler
   void _defaultErrorHandler(BotError<CTX> err) {
@@ -91,7 +82,34 @@ class Bot<CTX extends Context> {
   }
 
   /// Raw API instance associated with this bot instance (internal)
-  RawAPI? _api;
+  RawAPI _api;
+
+  /// This method actually sets the RawAPI instance.
+  ///
+  /// This is called right at the moment of the Bot construction.
+  static RawAPI _constructRawAPI(
+    String token, {
+    String baseURL = RawAPI.defaultBase,
+    APIScheme scheme = APIScheme.https,
+    LoggerOptions? loggerOptions,
+    Duration? timeout,
+  }) {
+    final isLocal = baseURL == RawAPI.defaultBase;
+    if (isLocal) {
+      return RawAPI.local(
+        token,
+        baseUrl: baseURL,
+        scheme: scheme,
+        loggerOptions: loggerOptions,
+        timeout: timeout,
+      );
+    }
+    return RawAPI(
+      token,
+      loggerOptions: loggerOptions,
+      timeout: timeout,
+    );
+  }
 
   /// Raw API - gives you access to all the methods of Telegram Bot API.
   ///
@@ -101,27 +119,8 @@ class Bot<CTX extends Context> {
   /// ```dart
   /// bot.api.sendMessage(ChatID(123456789), "Hello World!");
   /// ```
-  ///
   RawAPI get api {
-    if (_api != null) {
-      return _api!;
-    }
-    if (isLocal) {
-      _api = RawAPI.local(
-        token,
-        baseUrl: _baseURL,
-        scheme: _scheme,
-        loggerOptions: _loggerOptions,
-        timeout: timeout,
-      );
-      return _api!;
-    }
-    _api = RawAPI(
-      token,
-      loggerOptions: _loggerOptions,
-      timeout: timeout,
-    );
-    return _api!;
+    return _api;
   }
 
   /// The fetcher - used to fetch updates from the Telegram servers.
@@ -154,11 +153,15 @@ class Bot<CTX extends Context> {
     APIScheme scheme = APIScheme.https,
     LoggerOptions? loggerOptions,
     this.timeout,
-  })  : _baseURL = _cookBaseUrlString(baseURL),
-        isLocal = baseURL != RawAPI.defaultBase,
-        _loggerOptions = loggerOptions,
-        _scheme = scheme,
-        fetcher = fetcher ?? LongPolling<CTX>() {
+  })  : isLocal = baseURL != RawAPI.defaultBase,
+        fetcher = fetcher ?? LongPolling<CTX>(),
+        _api = _constructRawAPI(
+          token,
+          baseURL: _cookBaseUrlString(baseURL),
+          scheme: scheme,
+          loggerOptions: loggerOptions,
+          timeout: timeout,
+        ) {
     // Set the default error handler
     onError(_defaultErrorHandler);
   }
@@ -227,10 +230,7 @@ class Bot<CTX extends Context> {
     RawAPI api, {
     Fetcher<CTX>? fetcher,
   })  : _api = api,
-        _baseURL = api._baseUrl,
         isLocal = api._baseUrl != RawAPI.defaultBase,
-        _loggerOptions = api._httpClient.loggerOptions,
-        _scheme = api._scheme,
         timeout = api.timeout,
         token = api.token,
         fetcher = fetcher ?? LongPolling<CTX>() {
@@ -468,7 +468,7 @@ class Bot<CTX extends Context> {
         _middlewares.add(middleware);
         break;
       case Transformer():
-        _api?.use(middleware);
+        api.use(middleware);
         break;
     }
   }

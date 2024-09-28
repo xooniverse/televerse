@@ -70,23 +70,56 @@ class Context {
     return msg?.text?.clean.split(' ').sublist(1) ?? [];
   }
 
+  /// (Internal) Arbitary message getter
+  ///
+  /// Populated when `msg` is first accessed.
+  Message? __msg;
+
   /// The thread id
   int? _threadId([int? id]) {
     bool isInTopic = msg?.isTopicMessage ?? false;
     return id ?? (isInTopic ? msg?.messageThreadId : null);
   }
 
+  /// (Internal) Chat Instance.
+  ///
+  /// Will be populated when `ctx.chat` is first accessed.
+  Chat? _chat;
+
   /// A shorthand getter for the [Chat] instance from the update.
   ///
   /// This can be any of `msg.chat` or `myChatMember.chat` or `chatMember.chat` or `chatJoinRequest.chat` or `messageReaction.chat` or `messageReactionCount.chat` or `chatBoost.chat` or `removedChatBoost.chat`.
-  Chat? get chat => update.chat;
+  Chat? get chat {
+    if (_chat != null) {
+      return _chat!;
+    }
+    _chat = update.chat;
+    return _chat;
+  }
+
+  /// (Internal) The user isntance from the udpate.
+  ///
+  /// Populated when `from` is first accessed.
+  User? _from;
 
   /// A shorthand getter for the [User] instance from the update.
-  User? get from => update.from;
+  User? get from {
+    if (_from != null) return _from;
+    _from = update.from;
+    return _from;
+  }
+
+  /// (Internal) The File ID.
+  ///
+  /// Populated when the `fileId` is initially accessed.
+  String? __fileId;
 
   /// Internal getter for the file id
   String? get _fileId {
-    return msg?.photo?.last.fileId ??
+    if (__fileId != null) {
+      return __fileId;
+    }
+    __fileId = msg?.photo?.last.fileId ??
         msg?.animation?.fileId ??
         msg?.audio?.fileId ??
         msg?.document?.fileId ??
@@ -94,6 +127,7 @@ class Context {
         msg?.videoNote?.fileId ??
         msg?.voice?.fileId ??
         msg?.sticker?.fileId;
+    return __fileId;
   }
 
   /// The File ID if the incoming message contains a File of any kind.
@@ -106,21 +140,37 @@ class Context {
     return chat?.id;
   }
 
+  /// (Internal) Message ID.
+  ///
+  /// Populated when the `messageId` is first accessed.
+  int? __msgId;
+
   /// The message id for internal use
   int? get _msgId {
-    return msg?.messageId ??
+    if (__msgId != null) return __msgId;
+
+    __msgId = msg?.messageId ??
         messageReaction?.messageId ??
         messageReactionCount?.messageId ??
         callbackQuery?.message?.messageId;
+    return __msgId;
   }
 
   /// The Message ID of the incoming message.
   int? get messageId => _msgId;
 
+  /// (Internal) Inline Message ID
+  ///
+  /// Populated when `inlineMessageId` is first accessed.
+  String? __inlineMsgId;
+
   /// Internal getter for inline message id
   String? get _inlineMsgId {
-    return callbackQuery?.inlineMessageId ??
-        chosenInlineResult?.inlineMessageId;
+    if (__inlineMsgId != null) return __inlineMsgId;
+
+    __inlineMsgId =
+        callbackQuery?.inlineMessageId ?? chosenInlineResult?.inlineMessageId;
+    return __inlineMsgId;
   }
 
   /// Inline Message ID from the incoming update.
@@ -225,6 +275,16 @@ class Context {
         msg?.videoChatEnded != null ||
         msg?.videoChatParticipantsInvited != null ||
         msg?.webAppData != null;
+  }
+
+  /// Whether the incoming context has an inline query
+  bool hasInlineQuery() {
+    return update.inlineQuery != null;
+  }
+
+  /// Whether the incoming context has a callback query
+  bool hasCallbackQuery() {
+    return update.inlineQuery != null;
   }
 }
 

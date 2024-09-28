@@ -1,3 +1,14 @@
+# 1.26.2
+
+- Added way too many internal changes.
+- Added separate method for `RawAPI` construction in `Bot`
+- `RawAPI` instance will be created along with `Bot` instance.
+- 🐞 Not having above caused transformers to not work. So obviously, fixed that.
+- Added more `Context` helper methods.
+- (Internal) `Bot._api` is now non-nullable.
+- (Internal) Properties `_loggerOptions`, `_baseURL`, and `_scheme` has been removed from `Bot`. They now solely belong to `RawAPI`.
+- (Internal) Expensive calls are cached in `Context`, such as `chat`, `msg` are now cached for better performance in recurring access.
+
 # 1.26.1
 
 - Fix [#294](https://github.com/xooniverse/televerse/issues/294).

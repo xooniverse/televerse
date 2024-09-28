@@ -5,7 +5,11 @@ extension ContextUpdateMerger on Context {
   /// This is a shorthand getter for the [Message] recieved in the current context
   ///
   /// This can either be `Message` or `Channel Post` or `Edited Message` or `Edited Channel Post` or `Callback Query Message`.
-  Message? get msg => update.msg;
+  Message? get msg {
+    if (__msg != null) return __msg;
+    __msg = update.msg;
+    return __msg;
+  }
 
   /// The incoming message.
   Message? get message => update.message;

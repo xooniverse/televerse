@@ -259,9 +259,10 @@ class RawAPI {
   /// multiple transformers into a single API caller function, which processes
   /// the payload through each transformer in sequence before making the API call.
   APICaller _combineTransformer(APICaller prev, Transformer transformer) {
-    return (method, [payload]) async {
-      return await transformer.transform(prev, method, payload);
-    };
+    apply(APIMethod method, [Payload? payload]) async =>
+        await transformer.transform(prev, method, payload);
+
+    return apply;
   }
 
   /// Independent API Caller.
