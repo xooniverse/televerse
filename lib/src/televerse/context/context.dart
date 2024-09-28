@@ -276,6 +276,16 @@ class Context {
         msg?.videoChatParticipantsInvited != null ||
         msg?.webAppData != null;
   }
+
+  /// Whether the incoming context has an inline query
+  bool hasInlineQuery() {
+    return update.inlineQuery != null;
+  }
+
+  /// Whether the incoming context has a callback query
+  bool hasCallbackQuery() {
+    return update.inlineQuery != null;
+  }
 }
 
 /// Base handler
