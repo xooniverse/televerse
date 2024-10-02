@@ -282,9 +282,18 @@ class Webhook extends Fetcher {
           utf8.decoder,
         )
         .join();
-    final update = Update.fromJson(jsonDecode(body));
-    addUpdate(update);
-    _sendResponse(request, 200, {'ok': true, 'result': update.toRawJson()});
+    try {
+      final update = Update.fromJson(jsonDecode(body));
+      addUpdate(update);
+      _sendResponse(request, 200, {'ok': true, 'result': update.toRawJson()});
+    } catch (err) {
+      final response = {
+        'ok': false,
+        'error_code': 400,
+        'description': "Bad Request: Invalid Body present in the request.",
+      };
+      _sendResponse(request, 400, response);
+    }
   }
 
   /// Sends a response to the client.
