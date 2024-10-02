@@ -1,3 +1,7 @@
+# 1.26.3
+
+- 🐞 Fix: Webhook Bots crashed when an invalid body was present in the request.
+
 # 1.26.2
 
 - Added way too many internal changes.
