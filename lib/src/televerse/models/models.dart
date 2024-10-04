@@ -7,7 +7,7 @@ import 'dart:async';
 import 'dart:io' as io;
 import 'dart:typed_data';
 
-import 'package:dio/dio.dart' show DioException, MultipartFile;
+import 'package:dio/dio.dart' show DioException;
 
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart' hide HandlerScope;
@@ -24,3 +24,4 @@ part 'payload.dart';
 part 'telegram_exception.dart';
 part 'televerse_exception.dart';
 part 'webhook_exception.dart';
+part 'local_file.dart';

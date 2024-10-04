@@ -101,7 +101,9 @@ class _HttpClient {
     final filesMap = payload.files!.expand((element) => element.entries);
     final formData = FormData()
       ..fields.addAll(parameters)
-      ..files.addAll(filesMap);
+      ..files.addAll(
+        filesMap.map((e) => MapEntry(e.key, _toMultipartFile(e.value))),
+      );
 
     try {
       final req = await _dio.postUri(
@@ -137,5 +139,20 @@ class _HttpClient {
   /// Close the client
   void close() {
     _dio.close();
+  }
+
+  /// Converts the [LocalFile] into a MultipartFile for sending along with the request.
+  /// Converts the file into a `MultipartFile` instance
+  MultipartFile _toMultipartFile(LocalFile file) {
+    return MultipartFile.fromBytes(
+      file.bytes,
+      filename: file.fileName,
+      contentType: file.contentType != null
+          ? DioMediaType.parse(
+              file.contentType!,
+            )
+          : null,
+      headers: file.headers,
+    );
   }
 }

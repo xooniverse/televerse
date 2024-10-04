@@ -3,9 +3,9 @@ part of 'models.dart';
 /// Represents a list of maps containing key-value pairs for multipart files.
 ///
 /// Each map associates a field key (a `String`) with its corresponding
-/// `MultipartFile` object. This type is used to represent a collection
+/// `LocalFile` object. This type is used to represent a collection
 /// of files to be uploaded in a multipart request.
-typedef PayloadFiles = List<Map<String, MultipartFile>>;
+typedef PayloadFiles = List<Map<String, LocalFile>>;
 
 /// Represents a payload object used for making API calls.
 ///
@@ -20,7 +20,7 @@ typedef PayloadFiles = List<Map<String, MultipartFile>>;
 ///   request to the API.
 /// * [files]: A list of maps containing key-value pairs for multipart files.
 ///   Each map associates a field key (a `String`) with its corresponding
-///   `MultipartFile` object. This type is typically used to represent a collection
+///   `LocalFile` object. This type is typically used to represent a collection
 ///   of files to be uploaded in a multipart request.
 ///
 class Payload {
@@ -34,7 +34,7 @@ class Payload {
   /// Represents a list of maps containing key-value pairs for multipart files.
   ///
   /// Each map associates a field key (a `String`) with its corresponding
-  /// `MultipartFile` object. This type is used to represent a collection
+  /// `LocalFile` object. This type is used to represent a collection
   /// of files to be uploaded in a multipart request.
   PayloadFiles? files;
 
@@ -51,7 +51,7 @@ class Payload {
   ///   request to the API. (See [Payload.params] for details)
   /// * [files]: A list of maps containing key-value pairs for multipart files.
   ///   Each map associates a field key (a `String`) with its corresponding
-  ///   `MultipartFile` object. This type is typically used to represent a collection
+  ///   `LocalFile` object. This type is typically used to represent a collection
   ///   of files to be uploaded in a multipart request. (See [Payload.files] for details)
   Payload([Map<String, dynamic>? params, this.files]) : params = params ?? {};
 
