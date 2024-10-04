@@ -163,14 +163,14 @@ class RawAPI {
   ///
   /// A new list of maps representing multipart files. The list will be empty if
   /// no matching elements are found in the input list.
-  List<Map<String, MultipartFile>> _getFiles(List<_MultipartHelper> list) {
-    List<Map<String, MultipartFile>> files = list.where((el) {
+  List<Map<String, LocalFile>> _getFiles(List<_MultipartHelper> list) {
+    List<Map<String, LocalFile>> files = list.where((el) {
       return el.type == InputFileType.bytes;
     }).map((e) {
       return {
-        e.field: MultipartFile.fromBytes(
+        e.field: LocalFile(
           e.file.getBytes(),
-          filename: e.name,
+          fileName: e.name,
         ),
       };
     }).toList();
@@ -3034,7 +3034,7 @@ class RawAPI {
       "format": format.value,
     };
 
-    List<Map<String, MultipartFile>>? files;
+    List<Map<String, LocalFile>>? files;
 
     if (thumbnail != null) {
       files = _getFiles([

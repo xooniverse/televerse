@@ -1,3 +1,8 @@
+# 1.26.4
+
+- Added `LocalFile` class.
+- Redefined `Payload.files` parameter with the `LocalFile` objects instead of `MultipartFile` from Dio.
+
 # 1.26.3
 
 - 🐞 Fix: Webhook Bots crashed when an invalid body was present in the request.
