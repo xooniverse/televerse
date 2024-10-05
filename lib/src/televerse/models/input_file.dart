@@ -35,18 +35,28 @@ class InputFile {
   /// The bytes of the file.
   final Uint8List? bytes;
 
+  /// Mime Type of the File
+  final String? mimeType;
+
+  /// Additional headers
+  final Map<String, List<String>>? headers;
+
   /// Private constructor for [InputFile].
   const InputFile._({
     this.fileId,
     this.url,
     this.bytes,
     this.name,
+    this.headers,
+    this.mimeType,
   });
 
   /// Creates a new [InputFile] using a local file.
   factory InputFile.fromFile(
     io.File file, {
     String? name,
+    String? mimeType,
+    Map<String, List<String>>? headers,
   }) {
     if (!file.existsSync()) {
       throw TeleverseException.fileDoesNotExist(file.path);
@@ -54,6 +64,8 @@ class InputFile {
     return InputFile._(
       bytes: file.readAsBytesSync(),
       name: name ?? file.filename,
+      mimeType: mimeType,
+      headers: headers,
     );
   }
 
@@ -70,9 +82,17 @@ class InputFile {
       );
 
   /// Creates a new [InputFile] using the bytes of the file.
-  factory InputFile.fromBytes(Uint8List bytes, {String? name}) => InputFile._(
+  factory InputFile.fromBytes(
+    Uint8List bytes, {
+    String? name,
+    String? mimeType,
+    Map<String, List<String>>? headers,
+  }) =>
+      InputFile._(
         bytes: bytes,
         name: name,
+        mimeType: mimeType,
+        headers: headers,
       );
 
   /// Returns the type of the [InputFile].

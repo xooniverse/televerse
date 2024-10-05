@@ -171,6 +171,8 @@ class RawAPI {
         e.field: LocalFile(
           e.file.getBytes(),
           fileName: e.name,
+          headers: e.file.headers,
+          contentType: e.file.mimeType,
         ),
       };
     }).toList();
