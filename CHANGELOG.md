@@ -1,3 +1,7 @@
+# 1.26.5
+
+- Fixed in `ReactionTypeCustomEmoji.customEmojiId`
+
 # 1.26.4
 
 - Added `LocalFile` class.
