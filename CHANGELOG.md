@@ -1,3 +1,7 @@
+# 1.26.6
+
+- Check `Webhook.secretToken` with the header `X-Telegram-Bot-Api-Secret-Token` before processing the incoming webhook update.
+
 # 1.26.5
 
 - Fixed in `ReactionTypeCustomEmoji.customEmojiId`

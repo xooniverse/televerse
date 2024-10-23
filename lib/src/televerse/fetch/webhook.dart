@@ -258,6 +258,7 @@ class Webhook extends Fetcher {
 
   /// Handles incoming HTTP requests.
   Future<void> _handleRequest(io.HttpRequest request) async {
+    const secretTokenHeader = "X-Telegram-Bot-Api-Secret-Token";
     final Map<String, dynamic> error = {
       'ok': false,
       'error_code': 404,
@@ -272,6 +273,14 @@ class Webhook extends Fetcher {
     if (request.method == "GET") {
       error["description"] = "GET Requests are not supported";
       error["error_code"] = 418;
+      _sendResponse(request, error["error_code"], error);
+      return;
+    }
+
+    if (secretToken != null &&
+        request.headers.value(secretTokenHeader) != secretToken) {
+      error["description"] = "Unauthorized request";
+      error["error_code"] = 401;
       _sendResponse(request, error["error_code"], error);
       return;
     }
