@@ -7,11 +7,11 @@ class ReactionTypeCustomEmoji implements ReactionType {
   final ReactionTypeType type = ReactionTypeType.customEmoji;
 
   /// Custom emoji identifier
-  final String customEmoji;
+  final String customEmojiId;
 
   /// Constructs a [ReactionTypeCustomEmoji] object
   const ReactionTypeCustomEmoji({
-    required this.customEmoji,
+    required this.customEmojiId,
   });
 
   /// Converts a [ReactionTypeCustomEmoji] object to JSON object
@@ -19,14 +19,14 @@ class ReactionTypeCustomEmoji implements ReactionType {
   Map<String, dynamic> toJson() {
     return {
       'type': type.value,
-      'custom_emoji': customEmoji,
+      'custom_emoji_id': customEmojiId,
     };
   }
 
   /// Creates a [ReactionTypeCustomEmoji] object from JSON object
   factory ReactionTypeCustomEmoji.fromJson(Map<String, dynamic> json) {
     return ReactionTypeCustomEmoji(
-      customEmoji: json['custom_emoji']!,
+      customEmojiId: json['custom_emoji_id']!,
     );
   }
 }
