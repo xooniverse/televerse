@@ -16,7 +16,7 @@ class CopyTextButton {
   }
 
   /// Creates the [CopyTextButton] from JSON map
-  factory CopyTextButton.fromJson(Map<String, dynamic> map) {
-    return CopyTextButton(text: map['text']);
+  factory CopyTextButton.fromJson(Map<String, dynamic> json) {
+    return CopyTextButton(text: json['text']);
   }
 }

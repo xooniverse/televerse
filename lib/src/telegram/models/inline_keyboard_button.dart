@@ -87,6 +87,9 @@ class InlineKeyboardButton {
                   json['switch_inline_query_chosen_chat'],
                 )
               : null,
+      copyText: json['copy_text'] != null
+          ? CopyTextButton.fromJson(json['copy_text'])
+          : null,
     );
   }
 
@@ -103,6 +106,7 @@ class InlineKeyboardButton {
       'pay': pay,
       'web_app': webApp?.toJson(),
       'switch_inline_query_chosen_chat': switchInlineQueryChosenChat?.toJson(),
+      'copy_text': copyText?.toJson(),
     }..removeWhere(_nullFilter);
   }
 }

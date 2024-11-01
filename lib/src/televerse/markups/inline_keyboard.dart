@@ -206,4 +206,20 @@ class InlineKeyboard extends InlineKeyboardMarkup {
     );
     return this;
   }
+
+  /// Adds a button which when pressed copies an arbitrary text specified by [copyText]
+  InlineKeyboard copyText(
+    String text, {
+    required String copyText,
+  }) {
+    inlineKeyboard.last.add(
+      InlineKeyboardButton(
+        text: text,
+        copyText: CopyTextButton(
+          text: copyText,
+        ),
+      ),
+    );
+    return this;
+  }
 }
