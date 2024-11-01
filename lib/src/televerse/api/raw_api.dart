@@ -529,6 +529,7 @@ class RawAPI {
     LinkPreviewOptions? linkPreviewOptions,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -543,6 +544,7 @@ class RawAPI {
       "link_preview_options": linkPreviewOptions?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
 
     final response = await _makeApiJsonCall(
@@ -613,6 +615,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     bool? showCaptionAboveMedia,
+    bool? allowPaidBroadcast,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -627,6 +630,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "show_caption_above_media": showCaptionAboveMedia,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     final response = await _makeApiJsonCall(
       APIMethod.copyMessage,
@@ -651,6 +655,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? showCaptionAboveMedia,
+    bool? allowPaidBroadcast,
   }) async {
     const field = "photo";
     final params = {
@@ -667,6 +672,7 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
       "show_caption_above_media": showCaptionAboveMedia,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     params[field] = photo.getValue(field);
     final files = _getFiles([_MultipartHelper(photo, field)]);
@@ -698,6 +704,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     const field = "audio";
     final params = {
@@ -715,6 +722,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     params[field] = audio.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
@@ -749,6 +757,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     const field = "document";
     final params = {
@@ -764,6 +773,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
 
     params[field] = document.getValue(field);
@@ -800,6 +810,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? showCaptionAboveMedia,
+    bool? allowPaidBroadcast,
   }) async {
     final field = "video";
     final params = {
@@ -820,6 +831,7 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
       "show_caption_above_media": showCaptionAboveMedia,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     params[field] = video.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
@@ -855,6 +867,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? showCaptionAboveMedia,
+    bool? allowPaidBroadcast,
   }) async {
     const field = "animation";
     final params = {
@@ -874,6 +887,7 @@ class RawAPI {
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
       "show_caption_above_media": showCaptionAboveMedia,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     params[field] = animation.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
@@ -904,6 +918,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     const field = "voice";
     final params = {
@@ -919,6 +934,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     params[field] = voice.getValue(field);
 
@@ -947,6 +963,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     const field = "video_note";
     final params = {
@@ -961,6 +978,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     params[field] = videoNote.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
@@ -986,6 +1004,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     if (media.length > 10) {
       throw TeleverseException(
@@ -1022,6 +1041,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
 
     List<_MultipartHelper> helpers = [];
@@ -1061,6 +1081,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1077,6 +1098,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     final response = await _makeApiJsonCall(
       APIMethod.sendLocation,
@@ -1276,6 +1298,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1294,6 +1317,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     final response = await _makeApiJsonCall(
       APIMethod.sendVenue,
@@ -1316,6 +1340,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1330,6 +1355,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     final response = await _makeApiJsonCall(
       APIMethod.sendContact,
@@ -1362,6 +1388,7 @@ class RawAPI {
     ParseMode? questionParseMode,
     List<MessageEntity>? questionEntities,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     if (options.length < 2 || options.length > 10) {
       throw TeleverseException(
@@ -1440,6 +1467,7 @@ class RawAPI {
       "question_entities": questionEntities?.map((e) => e.toJson()).toList(),
       "question_parse_mode": questionParseMode?.value,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     final response = await _makeApiJsonCall(
       APIMethod.sendPoll,
@@ -1468,6 +1496,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1479,6 +1508,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     final response = await _makeApiJsonCall(
       APIMethod.sendDice,
@@ -2699,7 +2729,7 @@ class RawAPI {
     return response;
   }
 
-  /// Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+  /// Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited message is not an inline message, the edited [Message] is returned.
   ///
   /// IMPORTANT:
   /// * This method is only for editing messages. This won't work for inline messages.
@@ -2877,6 +2907,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     const field = "sticker";
     final params = {
@@ -2889,6 +2920,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     params[field] = sticker.getValue(field);
 
@@ -3147,6 +3179,7 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -3177,6 +3210,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
 
     final response = await _makeApiJsonCall(
@@ -3364,6 +3398,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -3375,6 +3410,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "business_connection_id": businessConnectionId,
       "message_effect_id": messageEffectId,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
 
     final response = await _makeApiJsonCall(
@@ -3870,6 +3906,7 @@ class RawAPI {
     bool? protectContent,
     bool? removeCaption,
     bool? showCaptionAboveMedia,
+    bool? allowPaidBroadcast,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -3880,6 +3917,7 @@ class RawAPI {
       "protect_content": protectContent,
       "remove_caption": removeCaption,
       "show_caption_above_media": showCaptionAboveMedia,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
 
     final response = await _makeApiCall<List>(
@@ -4015,6 +4053,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
     String? payload,
+    bool? allowPaidBroadcast,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -4029,6 +4068,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "business_connection_id": businessConnectionId,
       "payload": payload,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
 
     List<_MultipartHelper> helpers = [];

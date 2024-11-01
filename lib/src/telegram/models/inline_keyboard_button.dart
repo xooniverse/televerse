@@ -42,6 +42,11 @@ class InlineKeyboardButton {
   /// Since Bot API 6.7
   final SwitchInlineQueryChosenChat? switchInlineQueryChosenChat;
 
+  /// Optional. Description of the button that copies the specified text to the clipboard.
+  ///
+  /// Since Bot API 7.11
+  final CopyTextButton? copyText;
+
   /// This object represents one button of an inline keyboard.
   ///
   /// The inline keyboard consists of a row of buttons, each represented by an [InlineKeyboardButton] object. You can use the various fields to specify the behavior of the button.
@@ -56,6 +61,7 @@ class InlineKeyboardButton {
     this.pay,
     this.webApp,
     this.switchInlineQueryChosenChat,
+    this.copyText,
   });
 
   /// Creates an [InlineKeyboardButton] from JSON object
@@ -81,6 +87,9 @@ class InlineKeyboardButton {
                   json['switch_inline_query_chosen_chat'],
                 )
               : null,
+      copyText: json['copy_text'] != null
+          ? CopyTextButton.fromJson(json['copy_text'])
+          : null,
     );
   }
 
@@ -97,6 +106,7 @@ class InlineKeyboardButton {
       'pay': pay,
       'web_app': webApp?.toJson(),
       'switch_inline_query_chosen_chat': switchInlineQueryChosenChat?.toJson(),
+      'copy_text': copyText?.toJson(),
     }..removeWhere(_nullFilter);
   }
 }

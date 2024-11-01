@@ -156,6 +156,19 @@ class _InlineMenuPayButton<CTX extends Context> extends _TMenuButton<CTX> {
   }
 }
 
+class _InlineMenuCopyTextButton<CTX extends Context> extends _TMenuButton<CTX> {
+  final String copyText;
+  const _InlineMenuCopyTextButton(super.text, this.copyText);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'copy_text': CopyTextButton(text: copyText).toJson(),
+    };
+  }
+}
+
 /// This object represents a Inline Keyboard with the action to be done.
 class InlineMenu<CTX extends Context>
     implements InlineKeyboardMarkup, TeleverseMenu<CTX> {
@@ -332,6 +345,17 @@ class InlineMenu<CTX extends Context>
   InlineMenu<CTX> pay(String text) {
     if (_buttons.isEmpty) _buttons.add([]);
     _buttons.last.add(_InlineMenuPayButton<CTX>(text));
+    inlineKeyboard = TeleverseMenu._makeInlineKeyboard<CTX>(_buttons);
+    return this;
+  }
+
+  /// Creates a button when tappd copies the arbitary text
+  InlineMenu<CTX> copyText(
+    String text, {
+    required String copyText,
+  }) {
+    if (_buttons.isEmpty) _buttons.add([]);
+    _buttons.last.add(_InlineMenuCopyTextButton<CTX>(text, copyText));
     inlineKeyboard = TeleverseMenu._makeInlineKeyboard<CTX>(_buttons);
     return this;
   }

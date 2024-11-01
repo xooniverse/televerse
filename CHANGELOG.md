@@ -1,3 +1,11 @@
+# 1.27.0
+
+- 🤖 Bot API 7.11 🎃
+
+# 1.26.7
+
+- Fix in `Context.hasCallbackQuery`
+
 # 1.26.6
 
 - Check `Webhook.secretToken` with the header `X-Telegram-Bot-Api-Secret-Token` before processing the incoming webhook update.

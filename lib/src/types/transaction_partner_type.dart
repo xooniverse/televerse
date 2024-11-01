@@ -11,6 +11,9 @@ enum TransactionPartnerType {
   /// Represents a withdrawal transaction to the Telegram Ads platform.
   telegramAds("telegram_ads"),
 
+  /// Represents transaction with payment for paid broadcasting.
+  telegramApi("telegram_api"),
+
   /// Represents a transaction with an unknown source or recipient.
   other("other"),
   ;

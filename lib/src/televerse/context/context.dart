@@ -284,7 +284,7 @@ class Context {
 
   /// Whether the incoming context has a callback query
   bool hasCallbackQuery() {
-    return update.inlineQuery != null;
+    return update.callbackQuery != null;
   }
 }
 
