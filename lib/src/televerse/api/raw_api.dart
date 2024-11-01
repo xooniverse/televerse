@@ -615,6 +615,7 @@ class RawAPI {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     bool? showCaptionAboveMedia,
+    bool? allowPaidBroadcast,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -629,6 +630,7 @@ class RawAPI {
       "reply_markup": replyMarkup?.toJson(),
       "reply_parameters": replyParameters?.toJson(),
       "show_caption_above_media": showCaptionAboveMedia,
+      "allow_paid_broadcast": allowPaidBroadcast,
     };
     final response = await _makeApiJsonCall(
       APIMethod.copyMessage,

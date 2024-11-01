@@ -15,6 +15,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendMessage);
@@ -31,6 +32,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -57,6 +59,7 @@ extension ContextAwareMethods on Context {
     String? businessConnectionId,
     String? messageEffectId,
     bool? showCaptionAboveMedia,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendPhoto);
@@ -74,6 +77,7 @@ extension ContextAwareMethods on Context {
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
       showCaptionAboveMedia: showCaptionAboveMedia,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -97,6 +101,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendAudio);
@@ -117,6 +122,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -138,6 +144,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendDocument);
@@ -156,6 +163,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -182,6 +190,7 @@ extension ContextAwareMethods on Context {
     String? businessConnectionId,
     String? messageEffectId,
     bool? showCaptionAboveMedia,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendVideo);
@@ -205,6 +214,7 @@ extension ContextAwareMethods on Context {
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
       showCaptionAboveMedia: showCaptionAboveMedia,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -224,6 +234,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendVideoNote);
@@ -240,6 +251,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -260,6 +272,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendVoice);
@@ -277,6 +290,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -292,6 +306,7 @@ extension ContextAwareMethods on Context {
     ReplyParameters? replyParameters,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendMediaGroup);
@@ -304,6 +319,7 @@ extension ContextAwareMethods on Context {
       replyParameters: replyParameters,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -324,6 +340,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendLocation);
@@ -342,6 +359,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -364,6 +382,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendVenue);
@@ -384,6 +403,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -402,6 +422,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendContact);
@@ -418,6 +439,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -444,6 +466,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendPoll);
@@ -468,6 +491,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -483,6 +507,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendDice);
@@ -496,6 +521,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -529,6 +555,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendGame);
@@ -542,6 +569,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -566,6 +594,7 @@ extension ContextAwareMethods on Context {
     String? businessConnectionId,
     String? messageEffectId,
     bool? showCaptionAboveMedia,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendAnimation);
@@ -588,6 +617,7 @@ extension ContextAwareMethods on Context {
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
       showCaptionAboveMedia: showCaptionAboveMedia,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -603,6 +633,7 @@ extension ContextAwareMethods on Context {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendSticker);
@@ -616,6 +647,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -1004,6 +1036,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     bool? showCaptionAboveMedia,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId, _msgId], APIMethod.copyMessage);
@@ -1020,6 +1053,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
       showCaptionAboveMedia: showCaptionAboveMedia,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -1700,6 +1734,7 @@ extension ContextAwareMethods on Context {
     InlineKeyboardMarkup? replyMarkup,
     ReplyParameters? replyParameters,
     String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendInvoice);
@@ -1732,6 +1767,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
       messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
