@@ -3,7 +3,7 @@
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/xooniverse/televerse?color=green)
-![](https://shields.io/badge/Latest-Bot%20API%207.10-blue)
+![](https://shields.io/badge/Latest-Bot%20API%207.11-blue)
 
   <a href="https://telegram.me/TeleverseDart">
     <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/>
@@ -12,7 +12,7 @@
 
 ---
 
-🤖 `Bot API version: Bot API 7.10 (September 6, 2024)`
+🤖 `Bot API version: Bot API 7.11 (October 31, 2024)` 🎃
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot
 framework built with Dart programming language. It provides a complete and
@@ -22,13 +22,13 @@ public interface, making it easy for developers to write strictly typed code.
 
 ## 🔥 What's latest?
 
-### 🤖 Bot API 7.10
+### 🤖 Bot API 7.11 🎃
 
-(🗓️ September 6, 2024)
+(🗓️ October 31, 2024)
 
-In a nutshell, this update brigngs support for Telegram Star giveaway, new Update type for paid media purchases.
+In a nutshell, this update brigngs support for broadcasting upto 1000 Messages per second. New Copy Text Inline Button, and more.
 
-Checkout [changelog](https://core.telegram.org/bots/api-changelog#september-6-2024) for more
+Checkout [changelog](https://core.telegram.org/bots/api-changelog#october-31-2024) for more
 details! 🚀
 
 ### 🎉 Support for Custom Contexts!
