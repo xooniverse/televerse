@@ -1,3 +1,7 @@
+# 1.27.0
+
+- 🤖 Bot API 7.11 🎃
+
 # 1.26.7
 
 - Fix in `Context.hasCallbackQuery`
