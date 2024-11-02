@@ -17,4 +17,7 @@ sealed class InputPaidMedia {
 
   /// Converts an [InputPaidMedia] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson();
+
+  /// Converts [InputPaidMedia] to a [Map] for JSON encoding
+  Map<String, dynamic> getValue([String? field, String? thumb]);
 }

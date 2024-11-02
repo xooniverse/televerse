@@ -4076,9 +4076,11 @@ class RawAPI {
     final length = media.length;
 
     for (int i = 0; i < length; i++) {
+      final id = "media$i";
+      final thumb = "$_thumb$i";
       final m = media[i];
-      mediaList.add(m.toJson());
-      helpers.add(_MultipartHelper(m.media, "media$i"));
+      mediaList.add(m.getValue(id, thumb));
+      helpers.add(_MultipartHelper(m.media, id));
     }
 
     final files = _getFiles(helpers);
