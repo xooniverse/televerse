@@ -50,4 +50,18 @@ class InputPaidMediaVideo implements InputPaidMedia {
       'supports_streaming': supportsStreaming,
     }..removeWhere(_nullFilter);
   }
+
+  /// Converts a [InputPaidMediaVideo] object to JSON.
+  @override
+  Map<String, dynamic> getValue([String? field, String? thumb]) {
+    return {
+      'type': type.value,
+      'media': media.getValue(field),
+      'thumbnail': thumbnail?.getValue(thumb),
+      'width': width,
+      'height': height,
+      'duration': duration,
+      'supports_streaming': supportsStreaming,
+    }..removeWhere(_nullFilter);
+  }
 }

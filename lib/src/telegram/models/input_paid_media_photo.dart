@@ -25,4 +25,12 @@ class InputPaidMediaPhoto implements InputPaidMedia {
       'media': media.getValue('media'),
     };
   }
+
+  @override
+  Map<String, dynamic> getValue([String? field, String? thumb]) {
+    return {
+      'type': type.value,
+      'media': media.getValue(field),
+    };
+  }
 }
