@@ -16,7 +16,7 @@
 
 # 1.26.5
 
-- Fixed in `ReactionTypeCustomEmoji.customEmojiId`
+- Fix typo in `ReactionTypeCustomEmoji.customEmojiId`
 
 # 1.26.4
 
