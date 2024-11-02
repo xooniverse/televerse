@@ -1,3 +1,7 @@
+# 1.27.1
+
+- Fix `RawAPI.sendPaidMedia` crashes while sending local file using `InputFile.fromFile`
+
 # 1.27.0
 
 - 🤖 Bot API 7.11 🎃
