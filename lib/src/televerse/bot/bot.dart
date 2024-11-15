@@ -94,7 +94,7 @@ class Bot<CTX extends Context> {
     LoggerOptions? loggerOptions,
     Duration? timeout,
   }) {
-    final isLocal = baseURL == RawAPI.defaultBase;
+    final isLocal = baseURL != RawAPI.defaultBase;
     if (isLocal) {
       return RawAPI.local(
         token,
