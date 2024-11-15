@@ -90,16 +90,14 @@ class Bot<CTX extends Context> {
   static RawAPI _constructRawAPI(
     String token, {
     String baseURL = RawAPI.defaultBase,
-    APIScheme scheme = APIScheme.https,
     LoggerOptions? loggerOptions,
     Duration? timeout,
   }) {
-    final isLocal = baseURL == RawAPI.defaultBase;
+    final isLocal = baseURL != RawAPI.defaultBase;
     if (isLocal) {
       return RawAPI.local(
         token,
         baseUrl: baseURL,
-        scheme: scheme,
         loggerOptions: loggerOptions,
         timeout: timeout,
       );
@@ -145,12 +143,10 @@ class Bot<CTX extends Context> {
   /// You can use the [Bot] class to create a bot instance that listens to a local Bot API server. Use the [Bot.local] constructor to create a bot instance that listens to a local Bot API server.
   ///
   /// You can pass the [baseURL] parameter to the constructor to specify the base URL of the Telegram Bot API. By default, the base URL is `api.telegram.org`. This parameter will be used to create the [RawAPI] instance that points to your local Bot API server.
-  /// If you're running the Bot API server locally, you should pass the [baseURL] and the [scheme] parameters to the constructor.
   Bot(
     this.token, {
     Fetcher<CTX>? fetcher,
     String baseURL = RawAPI.defaultBase,
-    APIScheme scheme = APIScheme.https,
     LoggerOptions? loggerOptions,
     this.timeout,
   })  : isLocal = baseURL != RawAPI.defaultBase,
@@ -158,7 +154,6 @@ class Bot<CTX extends Context> {
         _api = _constructRawAPI(
           token,
           baseURL: _cookBaseUrlString(baseURL),
-          scheme: scheme,
           loggerOptions: loggerOptions,
           timeout: timeout,
         ) {
@@ -187,8 +182,6 @@ class Bot<CTX extends Context> {
   ///
   /// [fetcher] - The fetcher - used to fetch updates from the Telegram servers. By default, the bot uses long polling to fetch updates. You can also use webhooks to fetch updates.
   ///
-  /// [scheme] - The scheme of the Telegram Bot API. By default, the scheme is `APIScheme.http`.
-  ///
   /// ## Note
   /// The Bot API server source code is available at [telegram-bot-api](https://github.com/tdlib/telegram-bot-api). You can run it locally and send the requests to your own server instead of ```https://api.telegram.org```.
   ///
@@ -206,8 +199,7 @@ class Bot<CTX extends Context> {
   factory Bot.local(
     String token, {
     Fetcher<CTX>? fetcher,
-    String baseURL = "localhost:8081",
-    APIScheme scheme = APIScheme.http,
+    String baseURL = "http://localhost:8081",
     LoggerOptions? loggerOptions,
     Duration? timeout,
   }) {
@@ -216,7 +208,6 @@ class Bot<CTX extends Context> {
       token,
       fetcher: fetcher,
       baseURL: baseURL,
-      scheme: scheme,
       loggerOptions: loggerOptions,
       timeout: timeout,
     );

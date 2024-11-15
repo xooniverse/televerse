@@ -20,7 +20,6 @@ part 'message_entity_type.dart';
 part 'parse_mode.dart';
 part 'chat_action.dart';
 part 'sticker_format.dart';
-part 'scheme.dart';
 part 'methods.dart';
 part 'passport_type.dart';
 part 'reaction_type_emoji_type.dart';
