@@ -13,9 +13,6 @@ class RawAPI {
   /// Default base URL for the Telegram API.
   static const String defaultBase = "api.telegram.org";
 
-  /// Status of the RawAPI, true if it is local, false otherwise.
-  final bool _isLocal;
-
   /// The Bot Token.
   final String token;
 
@@ -55,7 +52,6 @@ class RawAPI {
     LoggerOptions? loggerOptions,
     this.timeout,
   })  : _baseUrl = baseUrl ?? defaultBase,
-        _isLocal = baseUrl != defaultBase,
         _scheme = scheme ?? APIScheme.https,
         _httpClient = _initializeHttpClient(
           loggerOptions: loggerOptions,
@@ -113,32 +109,20 @@ class RawAPI {
 
   /// Build the URI for the Telegram API.
   Uri _buildUri(APIMethod method) {
-    // If Base URI is already set, just tweak the method part and return
     if (_baseUri != null) {
       return _baseUri!.replace(path: "${_baseUri?.path}/$method");
     }
 
-    // Create the base URI and set the _baseUri property
-    Uri uri;
-    if (_isLocal) {
-      RegExp https = RegExp(r'^(https?://)');
-      if (https.hasMatch(_baseUrl)) {
-        final authority = _baseUrl.replaceFirst(https, "");
-        uri = Uri.http(authority, "/bot$token");
-      } else {
-        uri = Uri.http(_baseUrl, "/bot$token");
-      }
-      if (_scheme == APIScheme.https) {
-        uri = uri.replace(scheme: "https");
-      }
-    } else {
-      uri = Uri.https(_baseUrl, "/bot$token");
-    }
+    final baseUri = Uri.parse(_baseUrl);
 
-    // Set the _baseUri property for future calls
+    final uri = Uri(
+      scheme: _scheme == APIScheme.https ? 'https' : baseUri.scheme,
+      host: baseUri.host,
+      port: baseUri.port,
+      path: '${baseUri.path}/bot$token',
+    );
+
     _baseUri = uri;
-
-    // Return the full URI with the method
     return uri.replace(path: "${uri.path}/$method");
   }
 
