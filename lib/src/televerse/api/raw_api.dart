@@ -7,9 +7,6 @@ class RawAPI {
   /// When the timeout is reached, the API request will be cancelled and the client will throw an exception.
   final Duration? timeout;
 
-  /// API Scheme
-  final APIScheme _scheme;
-
   /// Default base URL for the Telegram API.
   static const String defaultBase = "api.telegram.org";
 
@@ -48,11 +45,9 @@ class RawAPI {
   RawAPI._(
     this.token, {
     String? baseUrl,
-    APIScheme? scheme,
     LoggerOptions? loggerOptions,
     this.timeout,
   })  : _baseUrl = baseUrl ?? defaultBase,
-        _scheme = scheme ?? APIScheme.https,
         _httpClient = _initializeHttpClient(
           loggerOptions: loggerOptions,
           timeout: timeout,
@@ -85,14 +80,12 @@ class RawAPI {
   factory RawAPI.local(
     String token, {
     String baseUrl = "localhost:8081",
-    APIScheme scheme = APIScheme.http,
     LoggerOptions? loggerOptions,
     Duration? timeout,
   }) {
     return RawAPI._(
       token,
       baseUrl: baseUrl,
-      scheme: scheme,
       loggerOptions: loggerOptions,
       timeout: timeout,
     );
@@ -110,19 +103,20 @@ class RawAPI {
   /// Build the URI for the Telegram API.
   Uri _buildUri(APIMethod method) {
     if (_baseUri != null) {
-      return _baseUri!.replace(path: "${_baseUri?.path}/$method");
+      return _baseUri!.replace(path: "${_baseUri!.path}/$method");
     }
 
-    final baseUri = Uri.parse(_baseUrl);
+    // Ensure the base URL includes "https" if no scheme is provided
+    String baseUrl = _baseUrl;
+    if (!baseUrl.startsWith('http')) {
+      baseUrl = 'http://$baseUrl';
+    }
 
-    final uri = Uri(
-      scheme: _scheme == APIScheme.https ? 'https' : baseUri.scheme,
-      host: baseUri.host,
-      port: baseUri.port,
-      path: '${baseUri.path}/bot$token',
-    );
-
+    // Create the base URI with the token
+    Uri uri = Uri.parse("$baseUrl/bot$token");
     _baseUri = uri;
+
+    // Return the full URI with the method appended
     return uri.replace(path: "${uri.path}/$method");
   }
 
