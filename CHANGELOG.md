@@ -3,6 +3,7 @@
 - Fix: Base URL wasn't even being considered. 
 - Thanks to [@itsmhmd for reporting](https://t.me/televersedart/1668)
 - Updated Request URI construction logic
+- ⚠️ Breaking! Removed `APIScheme`. Now the scheme must be added to the `baseURL` itself.
 
 # 1.27.1
 
