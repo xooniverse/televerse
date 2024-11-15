@@ -8,7 +8,7 @@ class RawAPI {
   final Duration? timeout;
 
   /// Default base URL for the Telegram API.
-  static const String defaultBase = "api.telegram.org";
+  static const String defaultBase = "https://api.telegram.org";
 
   /// The Bot Token.
   final String token;
