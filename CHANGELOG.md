@@ -4,6 +4,7 @@
 - Thanks to [@itsmhmd for reporting](https://t.me/televersedart/1668)
 - Updated Request URI construction logic
 - ⚠️ Breaking! Removed `APIScheme`. Now the scheme must be added to the `baseURL` itself.
+- If you weren't using the local bot API, this change won't affect you.
 
 # 1.27.1
 
