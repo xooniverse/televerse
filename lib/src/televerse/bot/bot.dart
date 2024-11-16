@@ -135,15 +135,8 @@ class Bot<CTX extends Context> {
     return str;
   }
 
-  /// Create a new bot instance.
-  ///
-  /// To create a new bot instance, you need to pass the bot token. You can also pass a [fetcher] to the constructor. The fetcher is used to fetch updates from the Telegram servers. By default, the bot uses long polling to fetch updates. You can also use webhooks to fetch updates.
-  ///
-  /// ## Using Local Bot API Server
-  /// You can use the [Bot] class to create a bot instance that listens to a local Bot API server. Use the [Bot.local] constructor to create a bot instance that listens to a local Bot API server.
-  ///
-  /// You can pass the [baseURL] parameter to the constructor to specify the base URL of the Telegram Bot API. By default, the base URL is `api.telegram.org`. This parameter will be used to create the [RawAPI] instance that points to your local Bot API server.
-  Bot(
+  /// Private Constructor!
+  Bot._(
     this.token, {
     Fetcher<CTX>? fetcher,
     String baseURL = RawAPI.defaultBase,
@@ -159,6 +152,26 @@ class Bot<CTX extends Context> {
         ) {
     // Set the default error handler
     onError(_defaultErrorHandler);
+  }
+
+  /// Create a new bot instance.
+  ///
+  /// To create a new bot instance, you need to pass the bot token. You can also pass a [fetcher] to the constructor. The fetcher is used to fetch updates from the Telegram servers. By default, the bot uses long polling to fetch updates. You can also use webhooks to fetch updates.
+  ///
+  /// ## Using Local Bot API Server
+  /// You can use the [Bot] class to create a bot instance that listens to a local Bot API server. Use the [Bot.local] constructor to create a bot instance that listens to a local Bot API server.
+  factory Bot(
+    String token, {
+    Fetcher<CTX>? fetcher,
+    LoggerOptions? loggerOptions,
+    Duration? timeout,
+  }) {
+    return Bot._(
+      token,
+      fetcher: fetcher,
+      loggerOptions: loggerOptions,
+      timeout: timeout,
+    );
   }
 
   /// Handles the error in initial `getMe` call
@@ -178,7 +191,7 @@ class Bot<CTX extends Context> {
   ///
   /// [token] - Bot token.
   ///
-  /// [baseURL] - Base URL of the Telegram Bot API. By default, the base URL is `localhost:8081`. This parameter will be used to create the [RawAPI] instance that points to your local Bot API server.
+  /// [baseURL] - Base URL of the Telegram Bot API. By default, the base URL is `http://localhost:8081`. This parameter will be used to create the [RawAPI] instance that points to your local Bot API server.
   ///
   /// [fetcher] - The fetcher - used to fetch updates from the Telegram servers. By default, the bot uses long polling to fetch updates. You can also use webhooks to fetch updates.
   ///
@@ -199,12 +212,12 @@ class Bot<CTX extends Context> {
   factory Bot.local(
     String token, {
     Fetcher<CTX>? fetcher,
-    String baseURL = "http://localhost:8081",
+    String baseURL = RawAPI.defaultLocalBase,
     LoggerOptions? loggerOptions,
     Duration? timeout,
   }) {
-    print('Using local Bot API server at $baseURL');
-    return Bot(
+    print('🌐 [Televerse] Using local Bot API server at $baseURL');
+    return Bot._(
       token,
       fetcher: fetcher,
       baseURL: baseURL,
