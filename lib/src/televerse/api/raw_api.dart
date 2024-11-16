@@ -10,6 +10,9 @@ class RawAPI {
   /// Default base URL for the Telegram API.
   static const String defaultBase = "https://api.telegram.org";
 
+  /// Default local base URL
+  static const String defaultLocalBase = "http://localhost:8081";
+
   /// The Bot Token.
   final String token;
 
@@ -79,7 +82,7 @@ class RawAPI {
   /// When using `RawAPI.local`, the [baseUrl] is set to `localhost:8081` by default.
   factory RawAPI.local(
     String token, {
-    String baseUrl = "localhost:8081",
+    String baseUrl = RawAPI.defaultLocalBase,
     LoggerOptions? loggerOptions,
     Duration? timeout,
   }) {
