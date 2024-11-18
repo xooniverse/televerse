@@ -4233,22 +4233,20 @@ class RawAPI {
     required int userId,
     required String giftId,
     String? text,
-    String? textParseMode,
+    ParseMode? textParseMode,
     List<MessageEntity>? textEntities,
   }) async {
     final params = {
       "user_id": userId,
       "gift_id": giftId,
       "text": text,
-      "text_parse_mode": textParseMode,
+      "text_parse_mode": textParseMode?.value,
       "text_entities": textEntities?.map((e) => e.toJson()).toList(),
     };
 
-    final response = await _makeApiJsonCall(
+    return await _makeApiBoolCall(
       APIMethod.sendGift,
       payload: Payload(params),
     );
-
-    return response == true;
   }
 }
