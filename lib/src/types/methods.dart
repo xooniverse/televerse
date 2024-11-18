@@ -385,6 +385,9 @@ enum APIMethod {
 
   /// Use this method to edit a subscription invite link created by the bot.
   editChatSubscriptionInviteLink._("editChatSubscriptionInviteLink"),
+
+  /// Edit user's star subscription
+  editUserStarSubscription._("editUserStarSubscription"),
   ;
 
   /// The name of the method.

@@ -23,6 +23,12 @@ class SuccessfulPayment {
   /// Provider payment identifier
   final String providerPaymentChargeId;
 
+  /// Optional. True, if the payment is a recurring payment for a subscription
+  final bool? isRecurring;
+
+  /// Optional. True, if the payment is the first payment for a subscription
+  final bool? isFirstRecurring;
+
   /// Constructs a [SuccessfulPayment] object
   const SuccessfulPayment({
     required this.currency,
@@ -32,6 +38,8 @@ class SuccessfulPayment {
     this.orderInfo,
     required this.telegramPaymentChargeId,
     required this.providerPaymentChargeId,
+    this.isRecurring,
+    this.isFirstRecurring,
   });
 
   /// Converts a [SuccessfulPayment] object to a JSON object
@@ -44,6 +52,8 @@ class SuccessfulPayment {
       'order_info': orderInfo?.toJson(),
       'telegram_payment_charge_id': telegramPaymentChargeId,
       'provider_payment_charge_id': providerPaymentChargeId,
+      'is_recurring': isRecurring,
+      'is_first_recurring': isFirstRecurring,
     }..removeWhere(_nullFilter);
   }
 
@@ -59,6 +69,8 @@ class SuccessfulPayment {
           : null,
       telegramPaymentChargeId: json['telegram_payment_charge_id']!,
       providerPaymentChargeId: json['provider_payment_charge_id']!,
+      isRecurring: json['is_recurring'],
+      isFirstRecurring: json['is_first_recurring'],
     );
   }
 }

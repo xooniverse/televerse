@@ -4120,4 +4120,30 @@ class RawAPI {
 
     return ChatInviteLink.fromJson(response);
   }
+
+  /// Allows the bot to cancel or re-enable extension of a subscription paid in Telegram Stars.
+  /// Returns `true` on success.
+  ///
+  /// Parameters:
+  /// - [userId] (int, required): Identifier of the user whose subscription will be edited.
+  /// - [telegramPaymentChargeId] (String, required): Telegram payment identifier for the subscription.
+  /// - [isCanceled] (bool, required): Pass `true` to cancel the extension of the user subscription; the subscription must
+  ///   be active until the end of the current subscription period. Pass `false` to allow the user to re-enable a subscription
+  ///   that was previously canceled by the bot.
+  Future<bool> editUserStarSubscription({
+    required int userId,
+    required String telegramPaymentChargeId,
+    required bool isCanceled,
+  }) async {
+    final params = {
+      "user_id": userId,
+      "telegram_payment_charge_id": telegramPaymentChargeId,
+      "is_canceled": isCanceled,
+    };
+
+    return await _makeApiBoolCall(
+      APIMethod.editUserStarSubscription,
+      payload: Payload(params),
+    );
+  }
 }
