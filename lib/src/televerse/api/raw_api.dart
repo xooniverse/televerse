@@ -3241,6 +3241,8 @@ class RawAPI {
     bool? sendPhoneNumberToProvider,
     bool? sendEmailToProvider,
     bool? isFlexible,
+    int? subscriptionPeriod,
+    String? businessConnectionId,
   }) async {
     final params = {
       "title": title,
@@ -3263,6 +3265,8 @@ class RawAPI {
       "send_phone_number_to_provider": sendPhoneNumberToProvider,
       "send_email_to_provider": sendEmailToProvider,
       "is_flexible": isFlexible,
+      "subscription_period": subscriptionPeriod,
+      "business_connection_id": businessConnectionId,
     };
 
     final response = await _makeApiCall<String>(
