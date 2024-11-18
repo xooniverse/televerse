@@ -281,3 +281,5 @@ part 'transaction_partner_telegram_api.dart';
 
 // Bot API 8.0
 part 'prepared_inline_message.dart';
+part 'gift.dart';
+part 'gifts.dart';

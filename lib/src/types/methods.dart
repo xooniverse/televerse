@@ -394,6 +394,12 @@ enum APIMethod {
 
   /// Stores a message that can be sent by a user of a Mini App
   savePreparedInlineMessage._("savePreparedInlineMessage"),
+
+  /// Returns the list of gifts that can be sent by the bot to users
+  getAvailableGifts._("getAvailableGifts"),
+
+  /// Sends a gift to the given user.
+  sendGift._("sendGift"),
   ;
 
   /// The name of the method.

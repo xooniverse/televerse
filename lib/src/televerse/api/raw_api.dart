@@ -4207,4 +4207,48 @@ class RawAPI {
 
     return PreparedInlineMessage.fromJson(response);
   }
+
+  /// Returns the list of gifts that can be sent by the bot to users.
+  /// Requires no parameters. Returns a [Gifts] object.
+  Future<Gifts> getAvailableGifts() async {
+    final response = await _makeApiJsonCall(
+      APIMethod.getAvailableGifts,
+    );
+
+    return Gifts.fromJson(response);
+  }
+
+  /// Sends a gift to the given user. The gift can't be converted to Telegram Stars by the user.
+  /// Returns `true` on success.
+  ///
+  /// Parameters:
+  /// - [userId] (int, required): Unique identifier of the target user that will receive the gift.
+  /// - [giftId] (String, required): Identifier of the gift.
+  /// - [text] (String, optional): Text that will be shown along with the gift; 0-255 characters.
+  /// - [textParseMode] (String, optional): Mode for parsing entities in the text. Entities other than
+  ///   “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, and “custom_emoji” are ignored.
+  /// - [textEntities] (List<MessageEntity>, optional): A JSON-serialized list of special entities
+  ///   that appear in the gift text. Can be specified instead of `textParseMode`.
+  Future<bool> sendGift({
+    required int userId,
+    required String giftId,
+    String? text,
+    String? textParseMode,
+    List<MessageEntity>? textEntities,
+  }) async {
+    final params = {
+      "user_id": userId,
+      "gift_id": giftId,
+      "text": text,
+      "text_parse_mode": textParseMode,
+      "text_entities": textEntities?.map((e) => e.toJson()).toList(),
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.sendGift,
+      payload: Payload(params),
+    );
+
+    return response == true;
+  }
 }
