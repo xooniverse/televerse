@@ -1,3 +1,11 @@
+# 1.28.0
+
+- 🤖 Bot API 8.0
+- Updated `RawAPI.createInvoiceLink` to the docs.
+- Updated `SuccessfulPayment`, `TransactionPartnerUser` to reflect the new Star Subscription features.
+- 🆕 Added new API Methods - `editUserStarSubscription`, `setUserEmojiStatus`, `savePreparedInlineMessage`, `getAvailableGifts`, `sendGift`.
+- 🆕 Added new classes - `PreparedInlineMessage`, `Gift`, `Gifts`.
+
 # 1.27.3
 
 - ⚠️ Removed `baseURL` from `Bot` primary constructor. 

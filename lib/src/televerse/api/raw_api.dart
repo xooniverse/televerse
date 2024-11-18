@@ -3241,6 +3241,8 @@ class RawAPI {
     bool? sendPhoneNumberToProvider,
     bool? sendEmailToProvider,
     bool? isFlexible,
+    int? subscriptionPeriod,
+    String? businessConnectionId,
   }) async {
     final params = {
       "title": title,
@@ -3263,6 +3265,8 @@ class RawAPI {
       "send_phone_number_to_provider": sendPhoneNumberToProvider,
       "send_email_to_provider": sendEmailToProvider,
       "is_flexible": isFlexible,
+      "subscription_period": subscriptionPeriod,
+      "business_connection_id": businessConnectionId,
     };
 
     final response = await _makeApiCall<String>(
@@ -4115,5 +4119,134 @@ class RawAPI {
     );
 
     return ChatInviteLink.fromJson(response);
+  }
+
+  /// Allows the bot to cancel or re-enable extension of a subscription paid in Telegram Stars.
+  /// Returns `true` on success.
+  ///
+  /// Parameters:
+  /// - [userId] (int, required): Identifier of the user whose subscription will be edited.
+  /// - [telegramPaymentChargeId] (String, required): Telegram payment identifier for the subscription.
+  /// - [isCanceled] (bool, required): Pass `true` to cancel the extension of the user subscription; the subscription must
+  ///   be active until the end of the current subscription period. Pass `false` to allow the user to re-enable a subscription
+  ///   that was previously canceled by the bot.
+  Future<bool> editUserStarSubscription({
+    required int userId,
+    required String telegramPaymentChargeId,
+    required bool isCanceled,
+  }) async {
+    final params = {
+      "user_id": userId,
+      "telegram_payment_charge_id": telegramPaymentChargeId,
+      "is_canceled": isCanceled,
+    };
+
+    return await _makeApiBoolCall(
+      APIMethod.editUserStarSubscription,
+      payload: Payload(params),
+    );
+  }
+
+  /// Changes the emoji status for a given user who previously allowed the bot to manage their emoji status via the Mini App method requestEmojiStatusAccess.
+  /// Returns `true` on success.
+  ///
+  /// Parameters:
+  /// - [userId] (int, required): Unique identifier of the target user.
+  /// - [emojiStatusCustomEmojiId] (String, optional): Custom emoji identifier of the emoji status to set. Pass an empty string to remove the status.
+  /// - [emojiStatusExpirationDate] (int, optional): Expiration date of the emoji status, in Unix time, if any.
+  Future<bool> setUserEmojiStatus({
+    required int userId,
+    String? emojiStatusCustomEmojiId,
+    int? emojiStatusExpirationDate,
+  }) async {
+    final params = {
+      "user_id": userId,
+      "emoji_status_custom_emoji_id": emojiStatusCustomEmojiId,
+      "emoji_status_expiration_date": emojiStatusExpirationDate,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setUserEmojiStatus,
+      payload: Payload(params),
+    );
+
+    return response == true;
+  }
+
+  /// Stores a message that can be sent by a user of a Mini App.
+  /// Returns a [PreparedInlineMessage] object.
+  ///
+  /// Parameters:
+  /// - [userId] (int, required): Unique identifier of the target user that can use the prepared message.
+  /// - [result] (InlineQueryResult, required): A JSON-serialized object describing the message to be sent.
+  /// - [allowUserChats] (bool, optional): Pass `true` if the message can be sent to private chats with users.
+  /// - [allowBotChats] (bool, optional): Pass `true` if the message can be sent to private chats with bots.
+  /// - [allowGroupChats] (bool, optional): Pass `true` if the message can be sent to group and supergroup chats.
+  /// - [allowChannelChats] (bool, optional): Pass `true` if the message can be sent to channel chats.
+  Future<PreparedInlineMessage> savePreparedInlineMessage({
+    required int userId,
+    required InlineQueryResult result,
+    bool? allowUserChats,
+    bool? allowBotChats,
+    bool? allowGroupChats,
+    bool? allowChannelChats,
+  }) async {
+    final params = {
+      "user_id": userId,
+      "result": result.toJson(),
+      "allow_user_chats": allowUserChats,
+      "allow_bot_chats": allowBotChats,
+      "allow_group_chats": allowGroupChats,
+      "allow_channel_chats": allowChannelChats,
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.savePreparedInlineMessage,
+      payload: Payload(params),
+    );
+
+    return PreparedInlineMessage.fromJson(response);
+  }
+
+  /// Returns the list of gifts that can be sent by the bot to users.
+  /// Requires no parameters. Returns a [Gifts] object.
+  Future<Gifts> getAvailableGifts() async {
+    final response = await _makeApiJsonCall(
+      APIMethod.getAvailableGifts,
+    );
+
+    return Gifts.fromJson(response);
+  }
+
+  /// Sends a gift to the given user. The gift can't be converted to Telegram Stars by the user.
+  /// Returns `true` on success.
+  ///
+  /// Parameters:
+  /// - [userId] (int, required): Unique identifier of the target user that will receive the gift.
+  /// - [giftId] (String, required): Identifier of the gift.
+  /// - [text] (String, optional): Text that will be shown along with the gift; 0-255 characters.
+  /// - [textParseMode] (String, optional): Mode for parsing entities in the text. Entities other than
+  ///   “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, and “custom_emoji” are ignored.
+  /// - [textEntities] (List<MessageEntity>, optional): A JSON-serialized list of special entities
+  ///   that appear in the gift text. Can be specified instead of `textParseMode`.
+  Future<bool> sendGift({
+    required int userId,
+    required String giftId,
+    String? text,
+    ParseMode? textParseMode,
+    List<MessageEntity>? textEntities,
+  }) async {
+    final params = {
+      "user_id": userId,
+      "gift_id": giftId,
+      "text": text,
+      "text_parse_mode": textParseMode?.value,
+      "text_entities": textEntities?.map((e) => e.toJson()).toList(),
+    };
+
+    return await _makeApiBoolCall(
+      APIMethod.sendGift,
+      payload: Payload(params),
+    );
   }
 }

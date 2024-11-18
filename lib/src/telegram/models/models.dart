@@ -278,3 +278,8 @@ part 'paid_media_purchased.dart';
 // Bot API 7.11
 part 'copy_text_button.dart';
 part 'transaction_partner_telegram_api.dart';
+
+// Bot API 8.0
+part 'prepared_inline_message.dart';
+part 'gift.dart';
+part 'gifts.dart';

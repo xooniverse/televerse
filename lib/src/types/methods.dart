@@ -385,6 +385,21 @@ enum APIMethod {
 
   /// Use this method to edit a subscription invite link created by the bot.
   editChatSubscriptionInviteLink._("editChatSubscriptionInviteLink"),
+
+  /// Edit user's star subscription
+  editUserStarSubscription._("editUserStarSubscription"),
+
+  /// Changes the emoji status for a given user
+  setUserEmojiStatus._("setUserEmojiStatus"),
+
+  /// Stores a message that can be sent by a user of a Mini App
+  savePreparedInlineMessage._("savePreparedInlineMessage"),
+
+  /// Returns the list of gifts that can be sent by the bot to users
+  getAvailableGifts._("getAvailableGifts"),
+
+  /// Sends a gift to the given user.
+  sendGift._("sendGift"),
   ;
 
   /// The name of the method.

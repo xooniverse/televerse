@@ -1918,4 +1918,31 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
     );
   }
+
+  /// Context Aware method for sending a gift to the author of the message.
+  ///
+  /// This method depends on the `from` parameter of the incoming update.
+  Future<bool> sendGift(
+    String giftId, {
+    String? text,
+    ParseMode? textParseMode,
+    List<MessageEntity>? textEntities,
+  }) async {
+    api._addContext(this);
+    _verifyInfo([_from?.id], APIMethod.sendGift);
+
+    return api.sendGift(
+      userId: _from!.id,
+      giftId: giftId,
+      text: text,
+      textParseMode: textParseMode,
+      textEntities: textEntities,
+    );
+  }
+
+  /// Get the available gifts for the user
+  Future<Gifts> getAvailableGifts() async {
+    api._addContext(this);
+    return api.getAvailableGifts();
+  }
 }
