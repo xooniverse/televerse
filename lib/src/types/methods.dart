@@ -391,6 +391,9 @@ enum APIMethod {
 
   /// Changes the emoji status for a given user
   setUserEmojiStatus._("setUserEmojiStatus"),
+
+  /// Stores a message that can be sent by a user of a Mini App
+  savePreparedInlineMessage._("savePreparedInlineMessage"),
   ;
 
   /// The name of the method.

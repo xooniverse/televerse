@@ -4172,4 +4172,39 @@ class RawAPI {
 
     return response == true;
   }
+
+  /// Stores a message that can be sent by a user of a Mini App.
+  /// Returns a [PreparedInlineMessage] object.
+  ///
+  /// Parameters:
+  /// - [userId] (int, required): Unique identifier of the target user that can use the prepared message.
+  /// - [result] (InlineQueryResult, required): A JSON-serialized object describing the message to be sent.
+  /// - [allowUserChats] (bool, optional): Pass `true` if the message can be sent to private chats with users.
+  /// - [allowBotChats] (bool, optional): Pass `true` if the message can be sent to private chats with bots.
+  /// - [allowGroupChats] (bool, optional): Pass `true` if the message can be sent to group and supergroup chats.
+  /// - [allowChannelChats] (bool, optional): Pass `true` if the message can be sent to channel chats.
+  Future<PreparedInlineMessage> savePreparedInlineMessage({
+    required int userId,
+    required InlineQueryResult result,
+    bool? allowUserChats,
+    bool? allowBotChats,
+    bool? allowGroupChats,
+    bool? allowChannelChats,
+  }) async {
+    final params = {
+      "user_id": userId,
+      "result": result.toJson(),
+      "allow_user_chats": allowUserChats,
+      "allow_bot_chats": allowBotChats,
+      "allow_group_chats": allowGroupChats,
+      "allow_channel_chats": allowChannelChats,
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.savePreparedInlineMessage,
+      payload: Payload(params),
+    );
+
+    return PreparedInlineMessage.fromJson(response);
+  }
 }
