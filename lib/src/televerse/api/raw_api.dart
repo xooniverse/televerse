@@ -4146,4 +4146,30 @@ class RawAPI {
       payload: Payload(params),
     );
   }
+
+  /// Changes the emoji status for a given user who previously allowed the bot to manage their emoji status via the Mini App method requestEmojiStatusAccess.
+  /// Returns `true` on success.
+  ///
+  /// Parameters:
+  /// - [userId] (int, required): Unique identifier of the target user.
+  /// - [emojiStatusCustomEmojiId] (String, optional): Custom emoji identifier of the emoji status to set. Pass an empty string to remove the status.
+  /// - [emojiStatusExpirationDate] (int, optional): Expiration date of the emoji status, in Unix time, if any.
+  Future<bool> setUserEmojiStatus({
+    required int userId,
+    String? emojiStatusCustomEmojiId,
+    int? emojiStatusExpirationDate,
+  }) async {
+    final params = {
+      "user_id": userId,
+      "emoji_status_custom_emoji_id": emojiStatusCustomEmojiId,
+      "emoji_status_expiration_date": emojiStatusExpirationDate,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setUserEmojiStatus,
+      payload: Payload(params),
+    );
+
+    return response == true;
+  }
 }

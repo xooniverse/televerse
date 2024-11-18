@@ -388,6 +388,9 @@ enum APIMethod {
 
   /// Edit user's star subscription
   editUserStarSubscription._("editUserStarSubscription"),
+
+  /// Changes the emoji status for a given user
+  setUserEmojiStatus._("setUserEmojiStatus"),
   ;
 
   /// The name of the method.
