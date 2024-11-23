@@ -385,7 +385,6 @@ class Bot<CTX extends Context> {
     for (int i = 0; i < sub.length; i++) {
       final passing = sub[i].predicate(context);
       if (!passing) continue;
-      print("Testing");
 
       if (sub[i].hasCustomPredicate) {
         try {
@@ -401,7 +400,6 @@ class Bot<CTX extends Context> {
       }
 
       if (sub[i].isConversation) {
-        print("Ah, conversation! Skipped!");
         break;
       }
 
