@@ -258,11 +258,6 @@ class Bot<CTX extends Context> {
         fetcher._updateStreamController?.isClosed == true) {
       fetcher._updateStreamController = StreamController<Update>.broadcast();
     }
-    if (fetcher._updatesStreamController == null ||
-        fetcher._updatesStreamController?.isClosed == true) {
-      fetcher._updatesStreamController =
-          StreamController<List<Update>>.broadcast();
-    }
     // Set instance variable
     _instance = this;
   }
@@ -360,7 +355,7 @@ class Bot<CTX extends Context> {
   ///
   /// This method creates the Context instance for the update and resolves the
   /// Handler Scopes and proceeds to process the update.
-  void _onUpdate(Update update) async {
+  Future<void> _onUpdate(Update update) async {
     // Find matching scopes
     bool matchScopes(HandlerScope<CTX> scope) {
       return scope.types.contains(update.type);
@@ -389,8 +384,10 @@ class Bot<CTX extends Context> {
     // Finds and processes the handler scopes.
     for (int i = 0; i < sub.length; i++) {
       final passing = sub[i].predicate(context);
+      if (!passing) continue;
+      print("Testing");
 
-      if (passing && sub[i].hasCustomPredicate) {
+      if (sub[i].hasCustomPredicate) {
         try {
           final customPass = await sub[i].options!.customPredicate!.call(
                 context,
@@ -403,7 +400,8 @@ class Bot<CTX extends Context> {
         }
       }
 
-      if (sub[i].isConversation && passing) {
+      if (sub[i].isConversation) {
+        print("Ah, conversation! Skipped!");
         break;
       }
 
@@ -411,12 +409,10 @@ class Bot<CTX extends Context> {
 
       _preProcess(sub[i], context);
 
-      if (passing) {
-        await _applyMiddlewares(context, () async {
-          await _processUpdate(sub[i], context);
-        });
-        break;
-      }
+      await _applyMiddlewares(context, () async {
+        await _processUpdate(sub[i], context);
+      });
+      break;
     }
   }
 
@@ -593,7 +589,7 @@ class Bot<CTX extends Context> {
   /// This method is useful when you want to use a custom webhook server instead of the default one provided by Televerse,
   /// or to use in a cloud function.
   /// use Update.fromJson(json) to convert the json to an update.
-  void handleUpdate(Update update) => _onUpdate(update);
+  Future<void> handleUpdate(Update update) => _onUpdate(update);
 
   /// Initialize the bot.
   ///

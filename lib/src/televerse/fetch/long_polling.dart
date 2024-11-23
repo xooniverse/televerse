@@ -86,7 +86,6 @@ class LongPolling<CTX extends Context> extends Fetcher<CTX> {
         timeout: timeout,
         allowedUpdates: allowedUpdates?.map((e) => e.type).toList(),
       );
-      addUpdates(updates);
       int len = updates.length;
       for (int i = 0; i < len; i++) {
         if (_updateStreamController?.isClosed ?? false) {
