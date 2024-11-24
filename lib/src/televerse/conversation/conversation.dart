@@ -122,9 +122,10 @@ class Conversation<CTX extends Context> {
   ///
   /// [name] is optional and will be auto-generated if not provided
   Conversation(
-    this._bot, {
+    Bot<CTX> bot, {
     String? name,
-  }) : _name = name ?? 'conv-${_generateId(5)}';
+  })  : _bot = bot,
+        _name = name ?? 'conv-${_generateId(5)}';
 
   /// Waits for a specific update that matches the given filter criteria
   ///

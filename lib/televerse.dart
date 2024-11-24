@@ -38,6 +38,8 @@ export 'src/types/types.dart';
 // Bot & API
 part 'src/televerse/api/raw_api.dart';
 part 'src/televerse/bot/bot.dart';
+part 'src/televerse/bot/listeners.dart';
+part 'src/televerse/bot/extras.dart';
 
 // Context
 part 'src/televerse/context/constructor.dart';
