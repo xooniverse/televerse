@@ -74,7 +74,7 @@ typedef ConversationFilter<CTX extends Context> = bool Function(CTX ctx);
 ///
 /// This is a sealed class that can either be a [ConversationSuccess]
 /// or [ConversationFailure].
-sealed class ConversationResult<T> {
+sealed class ConversationResult<CTX extends Context> {
   /// The final state of the conversation
   final ConversationState state;
 
@@ -84,24 +84,25 @@ sealed class ConversationResult<T> {
 
 /// Represents a successful conversation result
 ///
-/// Contains the data retrieved from the successful conversation.
-class ConversationSuccess<T> extends ConversationResult<T> {
+/// Contains the Context retrieved from the successful conversation.
+class ConversationSuccess<CTX extends Context> extends ConversationResult<CTX> {
   /// The data obtained from the successful conversation
-  final T data;
+  final CTX data;
 
   /// Creates a new successful conversation result with the obtained data
-  ConversationSuccess(this.data) : super(ConversationState.completed);
+  const ConversationSuccess(this.data) : super(ConversationState.completed);
 }
 
 /// Represents a failed conversation result
 ///
 /// Contains information about why the conversation failed.
-class ConversationFailure<T> extends ConversationResult<T> {
+class ConversationFailure<CTX extends Context> extends ConversationResult<CTX> {
   /// Description of what caused the conversation to fail
   final String message;
 
   /// Creates a new failed conversation result with an error message and state
-  ConversationFailure(this.message, ConversationState state) : super(state);
+  const ConversationFailure(this.message, ConversationState state)
+      : super(state);
 }
 
 /// Main class for managing conversations in a bot context
@@ -125,7 +126,7 @@ class Conversation<CTX extends Context> {
     Bot<CTX> bot, {
     String? name,
   })  : _bot = bot,
-        _name = name ?? 'conv-${_generateId(5)}';
+        _name = name ?? 'conv-${_generateId()}';
 
   /// Waits for a specific update that matches the given filter criteria
   ///
@@ -368,7 +369,7 @@ class Conversation<CTX extends Context> {
     return sameChat;
   }
 
-  static String _generateId([int length = 10]) {
+  static String _generateId() {
     // Implement your random ID generation here
     return DateTime.now().millisecondsSinceEpoch.toString();
   }
@@ -674,10 +675,10 @@ class Conversation<CTX extends Context> {
   }
 }
 
-class _ConversationSubscription<T> {
+class _ConversationSubscription<CTX extends Context> {
   final StreamSubscription<Update> subscription;
-  final Future<ConversationResult<T>> future;
-  final Completer<ConversationResult<T>> completer;
+  final Future<ConversationResult<CTX>> future;
+  final Completer<ConversationResult<CTX>> completer;
 
   _ConversationSubscription({
     required this.subscription,
