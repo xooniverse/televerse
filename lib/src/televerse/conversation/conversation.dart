@@ -1,609 +1,686 @@
 part of '../../../televerse.dart';
 
-/// ## Televerse Conversation
+/// Represents different states a conversation can be in
 ///
-/// The `Conversation` class provides a streamlined way to manage interactions
-/// between a Telegram bot and its users, simplifying the creation of conversational
-/// flows. This class is part of the Televerse library, which is designed to ease the
-/// development of Telegram bots by handling state management and message listening.
+/// Possible states are:
+/// * [active] - The conversation is currently ongoing
+/// * [completed] - The conversation has successfully completed
+/// * [cancelled] - The conversation was cancelled before completion
+/// * [timedOut] - The conversation exceeded its timeout duration
+enum ConversationState {
+  /// The conversation is currently ongoing
+  active,
+
+  /// The conversation has successfully completed
+  completed,
+
+  /// The conversation was cancelled before completion
+  cancelled,
+
+  /// The conversation exceeded its timeout duration
+  timedOut,
+}
+
+/// Configuration options for managing conversation behavior
 ///
-/// ### Overview
+/// This class provides various settings to customize how a conversation behaves,
+/// including timeout settings and cleanup behavior.
+class ConversationConfig {
+  /// The maximum duration to wait for a response before timing out.
+  /// If null, the conversation will never timeout.
+  final Duration? timeout;
+
+  /// Whether to clear any unfulfilled conversations before starting a new one.
+  /// Defaults to true.
+  final bool clearUnfulfilled;
+
+  /// Optional name for the conversation scope.
+  /// If not provided, a random name will be generated.
+  final String? name;
+
+  /// Creates a new conversation configuration.
+  ///
+  /// All parameters are optional:
+  /// * [timeout] - Duration after which the conversation will timeout
+  /// * [clearUnfulfilled] - Whether to clear pending conversations (defaults to true)
+  /// * [name] - Custom name for the conversation scope
+  const ConversationConfig({
+    this.timeout,
+    this.clearUnfulfilled = true,
+    this.name,
+  });
+
+  /// Copies the the current config with specified values.
+  ConversationConfig copyWith({
+    Duration? timeout,
+    bool? clearUnfulfilled,
+    String? name,
+  }) {
+    return ConversationConfig(
+      timeout: timeout ?? this.timeout,
+      clearUnfulfilled: clearUnfulfilled ?? this.clearUnfulfilled,
+      name: name ?? this.name,
+    );
+  }
+}
+
+/// Function type definition for filtering conversation updates
 ///
-/// When developing a Telegram bot, it's common to require interactions that involve
-/// multiple steps. For example, asking a user for their name and then responding
-/// based on their input. Traditionally, this involves managing states and ensuring
-/// the bot knows what to expect at each step. The `Conversation` class abstracts
-/// this complexity by allowing developers to wait for specific types of messages
-/// without manually handling state transitions.
+/// Takes a context object and returns a boolean indicating whether
+/// the update matches the desired criteria.
+typedef ConversationFilter<CTX extends Context> = bool Function(CTX ctx);
+
+/// Base class representing the result of a conversation
 ///
-/// ### Features
+/// This is a sealed class that can either be a [ConversationSuccess]
+/// or [ConversationFailure].
+sealed class ConversationResult<T> {
+  /// The final state of the conversation
+  final ConversationState state;
+
+  /// Creates a new conversation result with the specified state
+  const ConversationResult(this.state);
+}
+
+/// Represents a successful conversation result
 ///
-/// - **Message Filtering**: Wait for specific types of messages, such as text, photo, video, etc.
-/// - **Timeouts**: Define timeouts for waiting messages to prevent hanging listeners.
-/// - **Clear Unfulfilled Listeners**: Optionally clear previous unfulfilled listeners to avoid conflicts.
+/// Contains the data retrieved from the successful conversation.
+class ConversationSuccess<T> extends ConversationResult<T> {
+  /// The data obtained from the successful conversation
+  final T data;
+
+  /// Creates a new successful conversation result with the obtained data
+  ConversationSuccess(this.data) : super(ConversationState.completed);
+}
+
+/// Represents a failed conversation result
 ///
-/// ### Example Usage
+/// Contains information about why the conversation failed.
+class ConversationFailure<T> extends ConversationResult<T> {
+  /// Description of what caused the conversation to fail
+  final String message;
+
+  /// Creates a new failed conversation result with an error message and state
+  ConversationFailure(this.message, ConversationState state) : super(state);
+}
+
+/// Main class for managing conversations in a bot context
 ///
-/// ```dart
-/// // Create the Bot Instance
-/// final bot = Bot(Platform.environment["BOT_TOKEN"]!);
-///
-/// // Now create a conversation
-/// final conv = Conversation(bot);
-///
-/// void main(List<String> args) {
-///   bot.command('start', (ctx) async {
-///     await ctx.reply("Hello, what's your name?");
-///
-///     // ✨ Magic happens here, you can simply wait for the user's response.
-///     final nameCtx = await conv.waitForTextMessage(chatId: ctx.id);
-///     await nameCtx?.reply("Well, hello ${nameCtx?.message?.text}");
-///   });
-///
-///   bot.start();
-/// }
-/// ```
-///
-/// ### Creating a Conversation
-///
-/// To create a conversation, instantiate the `Conversation` class with a bot instance.
-/// You can optionally provide a custom name for the conversation:
-///
-/// ```dart
-/// final conv = Conversation(bot, name: "my_conversation");
-/// ```
-///
-/// ### Waiting for Messages
-///
-/// The `Conversation` class provides several methods to wait for different types of messages:
-///
-/// ```dart
-/// // Wait for a text message
-/// final textCtx = await conv.waitForTextMessage(chatId: ctx.id);
-///
-/// // Wait for a photo message
-/// final photoCtx = await conv.waitForPhotoMessage(chatId: ctx.id);
-/// ```
-///
-/// Each method returns a `Future` that completes with a `Context` object containing the incoming update.
-///
-/// ### Handling Timeouts
-///
-/// You can specify a timeout for each wait method to prevent hanging listeners:
-///
-/// ```dart
-/// final textCtx = await conv.waitForTextMessage(
-///   chatId: ctx.id,
-///   timeout: Duration(seconds: 30),
-/// );
-/// ```
-///
-/// If the timeout is reached, the `Future` completes with an error.
-///
-/// ### Clearing Listeners
-///
-/// You can clear all conversation listeners for a specific chat or all listeners:
-///
-/// ```dart
-/// // Clear all listeners for a specific chat
-/// await conv.clear(ctx.id);
-///
-/// // Clear all listeners for all chats
-/// await conv.clearAll();
-/// ```
-///
-/// The `Conversation` class simplifies managing user interactions in Telegram bots, allowing you to create complex conversational flows with minimal effort.
+/// Provides methods for waiting for specific updates and managing conversation state.
 class Conversation<CTX extends Context> {
-  /// A list of subscriptions.
-  final List<_ISubHelper<CTX>> _subscriptionsList = [];
-
-  /// Name of the conversation.
-  final String name;
-
-  /// The bot that this conversation belongs to.
   final Bot<CTX> _bot;
 
-  /// Creates a new conversation instance.
+  final String _name;
+  final _activeSubscriptions = <String, _ConversationSubscription>{};
+
+  /// Unique name identifier for the conversation
   ///
-  /// This constructor initializes a new [Conversation] object associated with a
-  /// specific bot. You can optionally provide a custom name for the conversation;
-  /// otherwise, a default name will be generated.
+  /// If not provided in constructor, generates a random name with 'conv-' prefix
+  String get name => _name;
+
+  /// Creates a new conversation instance
   ///
-  /// ### Parameters:
-  /// - [bot]: The bot instance that this conversation belongs to. This is required
-  ///   and allows the conversation to interact with the bot.
-  /// - [name]: An optional parameter to specify a custom name for the conversation.
-  ///   If not provided, a default name in the format "conv-xxxxx" will be generated
-  ///   where "xxxxx" is a random 5-character string.
-  ///
-  /// ### Example:
-  /// ```dart
-  /// // Create a new conversation with the bot
-  /// final bot = Bot(Platform.environment["BOT_TOKEN"]!);
-  /// final conversation = Conversation(bot, name: "myCustomConversation");
-  ///
-  /// // Create a new conversation with a default name
-  /// final defaultConversation = Conversation(bot);
-  /// ```
+  /// [name] is optional and will be auto-generated if not provided
   Conversation(
-    Bot<CTX> bot, {
+    this._bot, {
     String? name,
-  })  : _bot = bot,
-        name = name ?? "conv-${_getRandomID(5)}";
+  }) : _name = name ?? 'conv-${_generateId(5)}';
 
-  /// Wait for a text message from the user.
+  /// Waits for a specific update that matches the given filter criteria
   ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, , returns a [Context] object with the incoming update.
-  Future<CTX?> waitForTextMessage({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      timeout: timeout,
-      filter: (up) => up.message?.text != null,
-      handlerName: "text",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a photo message from the user.
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor
+  /// * [filter] - Function to determine if an update matches desired criteria
+  /// * [config] - Optional configuration for the conversation behavior
   ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForPhotoMessage({
+  /// Returns a [ConversationResult] indicating success or failure
+  Future<ConversationResult<CTX>> waitFor({
     required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
+    required ConversationFilter filter,
+    ConversationConfig config = const ConversationConfig(),
   }) async {
-    return await waitFor(
-      chatId: chatId,
-      timeout: timeout,
-      filter: (up) => up.message?.photo != null,
-      handlerName: "photo",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
+    final scopeName = _generateScopeName(config.name);
 
-  /// Wait for a video message from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForVideoMessage({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      timeout: timeout,
-      filter: (up) => up.message?.video != null,
-      handlerName: "video",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a voice message from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForVoiceMessage({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      timeout: timeout,
-      filter: (up) => up.message?.voice != null,
-      handlerName: "voice",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a document message from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForDocumentMessage({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      timeout: timeout,
-      filter: (up) => up.message?.document != null,
-      handlerName: "document",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a contact message from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForContactMessage({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      timeout: timeout,
-      filter: (up) => up.message?.contact != null,
-      handlerName: "contact",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a location message from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForLocationMessage({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      timeout: timeout,
-      filter: (up) => up.message?.location != null,
-      handlerName: "location",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a venue message from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForVenueMessage({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      timeout: timeout,
-      filter: (up) => up.message?.venue != null,
-      handlerName: "venue",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a poll message from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForPollMessage({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      timeout: timeout,
-      filter: (up) => up.poll != null,
-      handlerName: "poll",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a dice message from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForDiceMessage({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      timeout: timeout,
-      filter: (up) => up.message?.dice != null,
-      handlerName: "dice",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a game message from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForGameMessage({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      timeout: timeout,
-      filter: (up) => up.message?.game != null,
-      handlerName: "game",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a sticker message from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForStickerMessage({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      filter: (up) => up.message?.sticker != null,
-      timeout: timeout,
-      handlerName: "sticker",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a video note message from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForVideoNoteMessage({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      filter: (up) => up.message?.videoNote != null,
-      timeout: timeout,
-      handlerName: "videoNote",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a video chat to start.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitToStartVideoChat({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      filter: (up) => up.message?.videoChatStarted != null,
-      timeout: timeout,
-      handlerName: "videoChatStarted",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a video chat to end.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitToEndVideoChat({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      filter: (up) => up.message?.videoChatEnded != null,
-      timeout: timeout,
-      handlerName: "videoChatEnded",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Wait for a callback query from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForCallbackQuery({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
-      chatId: chatId,
-      filter: (up) => up.callbackQuery != null,
-      timeout: timeout,
-      handlerName: "callbackQuery",
-      clearUnfulfilled: clearUnfulfilled,
-    );
-  }
-
-  /// Internal method to check if the chat is the same.
-  bool _isSameChat(Update update, ID chatId) {
-    bool sameChat =
-        update.chat?.id == chatId.id || update.from?.id == chatId.id;
-    if (chatId is ChannelID || chatId is SupergroupID) {
-      sameChat = sameChat || update.chat?.username == chatId.id;
-    }
-    return sameChat;
-  }
-
-  /// Wait for any message from the user.
-  ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitFor({
-    required ID chatId,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-    required bool Function(Update update) filter,
-    String? handlerName,
-  }) async {
-    final scopeName =
-        handlerName == null ? "$name+${_getRandomID()}" : "$name+$handlerName";
-
-    if (clearUnfulfilled) {
+    if (config.clearUnfulfilled) {
       await clear(chatId);
     }
 
-    // Check if there's a listener already with the same name.
-    if (_bot._handlerScopes.any((scope) {
-      return scope.name == scopeName && scope.chatId == chatId;
-    })) {
-      // Cancel the previous listener.
-      final prev = _subscriptionsList.firstWhere(
-        (sub) => sub.scope == scopeName,
-      );
-      await prev.cancel();
-      _subscriptionsList.remove(prev);
-      _bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
-      print('[Televerse] Warning: Conversation listener with the same name '
-          'already exists. It has been removed.');
-    }
-
-    final completer = Completer<CTX?>();
-    StreamSubscription<Update>? subscription;
-
-    subscription = _bot.updatesStream.listen((update) {
-      final sameChat = _isSameChat(update, chatId);
-      if (sameChat && filter(update)) {
-        completer.complete(
-          _bot._contextConstructor(
-            api: _bot.api,
-            me: _bot.me,
-            update: update,
-          ),
-        );
-      }
-    });
-
-    _subscriptionsList.add(
-      _ISubHelper<CTX>(subscription, scopeName, completer),
+    // Create subscription
+    final subscription = await _createSubscription(
+      chatId: chatId,
+      scopeName: scopeName,
+      filter: filter,
+      timeout: config.timeout,
     );
 
+    try {
+      final result = await subscription.future;
+      return result;
+    } finally {
+      await _cleanup(scopeName, chatId);
+    }
+  }
+
+  /// Creates and manages a conversation subscription
+  Future<_ConversationSubscription<CTX>> _createSubscription({
+    required ID chatId,
+    required String scopeName,
+    required ConversationFilter filter,
+    Duration? timeout,
+  }) async {
+    // Cancel existing subscription if any
+    await _cancelExistingSubscription(scopeName);
+
+    final completer = Completer<ConversationResult<CTX>>();
+    final subscription = _bot.updatesStream.listen(
+      (update) => _handleUpdate(update, chatId, filter, completer),
+      onError: (error) {
+        if (!completer.isCompleted) {
+          completer.complete(
+            ConversationFailure(
+              error.toString(),
+              ConversationState.cancelled,
+            ),
+          );
+        }
+      },
+    );
+
+    final conversationSub = _ConversationSubscription(
+      subscription: subscription,
+      future: completer.future,
+      completer: completer,
+    );
+
+    _activeSubscriptions[scopeName] = conversationSub;
+
+    // Setup timeout if specified
+    if (timeout != null) {
+      _setupTimeout(timeout, scopeName, completer);
+    }
+
+    // Register handler scope
     _bot._handlerScopes.add(
       HandlerScope(
         isConversation: true,
         options: ScopeOptions(name: scopeName),
-        predicate: (ctx) =>
-            _isSameChat(ctx.update, chatId) && filter(ctx.update),
+        predicate: (ctx) => _isSameChat(ctx, chatId) && filter(ctx),
         types: UpdateType.values,
         chatId: chatId,
       ),
     );
 
-    if (timeout != null) {
-      Future.delayed(timeout, () {
-        if (!completer.isCompleted) {
-          completer.completeError(
-            ConversationException(
-              "Conversation request timed out.",
-              ConversationExceptionType.timeout,
-            ),
-          );
-
-          subscription?.cancel();
-          _bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
-        }
-      });
-    }
-
-    final ctx = await completer.future;
-
-    final s = _subscriptionsList.firstWhere(
-      (sub) => sub.scope == scopeName,
-    );
-    _subscriptionsList.remove(s);
-    subscription.cancel();
-    _bot._handlerScopes.removeWhere((scope) => scope.name == scopeName);
-
-    return ctx;
+    return conversationSub;
   }
 
-  /// Removes all the conversation listeners for the given chat.
-  Future<void> clear(ID id) async {
+  void _handleUpdate(
+    Update update,
+    ID chatId,
+    ConversationFilter filter,
+    Completer<ConversationResult<CTX>> completer,
+  ) async {
+    final ctx = await _bot._contextConstructor(
+      api: _bot.api,
+      me: _bot.me,
+      update: update,
+    );
+
+    if (!completer.isCompleted && _isSameChat(ctx, chatId) && filter(ctx)) {
+      try {
+        completer.complete(ConversationSuccess(ctx));
+      } catch (e) {
+        completer.complete(
+          ConversationFailure(
+            e.toString(),
+            ConversationState.cancelled,
+          ),
+        );
+      }
+    }
+  }
+
+  void _setupTimeout(
+    Duration timeout,
+    String scopeName,
+    Completer<ConversationResult<CTX>> completer,
+  ) {
+    Timer(timeout, () {
+      if (!completer.isCompleted) {
+        completer.complete(
+          ConversationFailure(
+            'Conversation timed out',
+            ConversationState.timedOut,
+          ),
+        );
+        _cleanup(scopeName, null);
+      }
+    });
+  }
+
+  /// Waits for any text message in the specified chat
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor
+  /// * [config] - Optional configuration for the conversation behavior
+  ///
+  /// Returns a [ConversationResult] containing the context with the text message
+  Future<ConversationResult<CTX>> waitForTextMessage({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.text != null,
+      config: config,
+    );
+  }
+
+  /// Waits for a message matching a specific pattern
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor
+  /// * [pattern] - String or RegExp pattern to match against message text
+  /// * [config] - Optional configuration for the conversation behavior
+  ///
+  /// Returns a [ConversationResult] containing the context with the matching message
+  Future<ConversationResult<CTX>> waitForPattern({
+    required ID chatId,
+    required Pattern pattern,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) {
+        final text = up.msg?.text ?? '';
+        if (pattern is String) return text.contains(pattern);
+        if (pattern is RegExp) return pattern.hasMatch(text);
+        return false;
+      },
+      config: config,
+    );
+  }
+
+  /// Clears all active conversations for a specific chat
+  ///
+  /// [chatId] - The ID of the chat whose conversations should be cleared
+  Future<void> clear(ID chatId) async {
+    final scopesToRemove = _bot._handlerScopes
+        .where(
+          (scope) =>
+              scope.isConversation &&
+              scope.name?.startsWith(_name) == true &&
+              scope.chatId == chatId,
+        )
+        .toList();
+
+    for (final scope in scopesToRemove) {
+      await _cleanup(scope.name!, chatId);
+    }
+  }
+
+  /// Clears all active conversations across all chats.
+  Future<void> clearAll() async {
+    final allScopes = _activeSubscriptions.keys.toList();
+    for (final scope in allScopes) {
+      await _cleanup(scope, null);
+    }
+  }
+
+  // Helper methods
+  Future<void> _cleanup(String scopeName, ID? chatId) async {
+    final subscription = _activeSubscriptions.remove(scopeName);
+    await subscription?.subscription.cancel();
+
     _bot._handlerScopes.removeWhere(
       (scope) =>
           scope.isConversation &&
-          (scope.name?.startsWith(name) ?? false) &&
-          scope.chatId == id,
+          scope.name == scopeName &&
+          (chatId == null || scope.chatId == chatId),
     );
-
-    final subsToCancel =
-        _subscriptionsList.where((sub) => sub.scope.startsWith(name));
-    await Future.wait(subsToCancel.map((sub) => sub.cancel()));
-    _subscriptionsList.removeWhere((sub) => sub.scope.startsWith(name));
   }
 
-  /// Clear all the conversation listeners.
-  Future<void> clearAll() async {
-    _bot._handlerScopes.removeWhere(
-      (scope) => scope.isConversation && scope.name?.startsWith(name) == true,
-    );
-
-    await Future.wait(_subscriptionsList.map((sub) => sub.cancel()));
-    _subscriptionsList.clear();
+  Future<void> _cancelExistingSubscription(String scopeName) async {
+    final existing = _activeSubscriptions[scopeName];
+    if (existing != null) {
+      await existing.subscription.cancel();
+      if (!existing.completer.isCompleted) {
+        existing.completer.complete(
+          ConversationFailure(
+            'Conversation cancelled',
+            ConversationState.cancelled,
+          ),
+        );
+      }
+      _activeSubscriptions.remove(scopeName);
+    }
   }
 
-  /// Wait for pattern from the user.
+  String _generateScopeName(String? handlerName) =>
+      handlerName ?? '$_name+${_generateId()}';
+
+  bool _isSameChat(CTX ctx, ID chatId) {
+    bool sameChat = ctx.chat?.id == chatId.id || ctx.from?.id == chatId.id;
+
+    if (chatId is ChannelID || chatId is SupergroupID) {
+      sameChat = sameChat || ctx.chat?.username == chatId.id;
+    }
+    return sameChat;
+  }
+
+  static String _generateId([int length = 10]) {
+    // Implement your random ID generation here
+    return DateTime.now().millisecondsSinceEpoch.toString();
+  }
+
+  /// Waits for a photo message from the user.
   ///
-  /// Possibly returns `null` if the listener has been cancelled before
-  /// it completes. Otherwise, returns a [Context] object with the incoming update.
-  Future<CTX?> waitForPattern({
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the photo message
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the photo
+  /// message if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForPhotoMessage({
     required ID chatId,
-    required Pattern pattern,
-    Duration? timeout,
-    bool clearUnfulfilled = true,
-  }) async {
-    return await waitFor(
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
       chatId: chatId,
-      timeout: timeout,
-      clearUnfulfilled: clearUnfulfilled,
-      filter: (up) {
-        if (pattern is String) {
-          return up.msg?.text?.contains(pattern) == true;
-        } else if (pattern is RegExp) {
-          return pattern.hasMatch(up.msg?.text ?? "");
-        } else {
-          return false;
-        }
-      },
+      filter: (up) => up.msg?.photo != null,
+      config: config.copyWith(name: 'photo'),
+    );
+  }
+
+  /// Waits for a video message from the user.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the video message
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the video
+  /// message if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForVideoMessage({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.video != null,
+      config: config.copyWith(name: 'video'),
+    );
+  }
+
+  /// Waits for a voice message from the user.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the voice message
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the voice
+  /// message if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForVoiceMessage({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.voice != null,
+      config: config.copyWith(name: 'voice'),
+    );
+  }
+
+  /// Waits for a document message from the user.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the document message
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the document
+  /// message if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForDocumentMessage({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.document != null,
+      config: config.copyWith(name: 'document'),
+    );
+  }
+
+  /// Waits for a contact message from the user.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the contact message
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the contact
+  /// message if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForContactMessage({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.contact != null,
+      config: config.copyWith(name: 'contact'),
+    );
+  }
+
+  /// Waits for a location message from the user.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the location message
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the location
+  /// message if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForLocationMessage({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.location != null,
+      config: config.copyWith(name: 'location'),
+    );
+  }
+
+  /// Waits for a venue message from the user.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the venue message
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the venue
+  /// message if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForVenueMessage({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.venue != null,
+      config: config.copyWith(name: 'venue'),
+    );
+  }
+
+  /// Waits for a poll message from the user.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the poll message
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the poll
+  /// message if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForPollMessage({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.poll != null,
+      config: config.copyWith(name: 'poll'),
+    );
+  }
+
+  /// Waits for a dice message from the user.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the dice message
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the dice
+  /// message if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForDiceMessage({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.dice != null,
+      config: config.copyWith(name: 'dice'),
+    );
+  }
+
+  /// Waits for a game message from the user.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the game message
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the game
+  /// message if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForGameMessage({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.game != null,
+      config: config.copyWith(name: 'game'),
+    );
+  }
+
+  /// Waits for a sticker message from the user.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the sticker message
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the sticker
+  /// message if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForStickerMessage({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.sticker != null,
+      config: config.copyWith(name: 'sticker'),
+    );
+  }
+
+  /// Waits for a video note message from the user.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the video note message
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the video note
+  /// message if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForVideoNoteMessage({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.videoNote != null,
+      config: config.copyWith(name: 'videoNote'),
+    );
+  }
+
+  /// Waits for a video chat to start.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the video chat start event
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the video chat
+  /// start event if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitToStartVideoChat({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.videoChatStarted != null,
+      config: config.copyWith(name: 'videoChatStarted'),
+    );
+  }
+
+  /// Waits for a video chat to end.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the video chat end event
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the video chat
+  /// end event if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitToEndVideoChat({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.msg?.videoChatEnded != null,
+      config: config.copyWith(name: 'videoChatEnded'),
+    );
+  }
+
+  /// Waits for a callback query from the user.
+  ///
+  /// Parameters:
+  /// * [chatId] - The ID of the chat to monitor for the callback query
+  /// * [config] - Optional configuration for the conversation behavior including
+  ///   timeout and cleanup settings
+  ///
+  /// Returns a [ConversationResult] that may contain the context with the callback
+  /// query if successful, or error details if the conversation failed or timed out.
+  Future<ConversationResult<CTX>> waitForCallbackQuery({
+    required ID chatId,
+    ConversationConfig config = const ConversationConfig(),
+  }) {
+    return waitFor(
+      chatId: chatId,
+      filter: (up) => up.callbackQuery != null,
+      config: config.copyWith(name: 'callbackQuery'),
     );
   }
 }
 
-/// Internal helper class to store the subscription and the scope name.
-///
-/// This class is used internally by the [Conversation] class to manage
-/// the state of subscriptions and their corresponding scope names.
-class _ISubHelper<CTX extends Context> {
-  /// The subscription to the bot's update stream.
+class _ConversationSubscription<T> {
   final StreamSubscription<Update> subscription;
+  final Future<ConversationResult<T>> future;
+  final Completer<ConversationResult<T>> completer;
 
-  /// The scope name associated with this subscription.
-  final String scope;
-
-  /// A completer that will be completed when the subscription is fulfilled or cancelled.
-  final Completer<CTX?> completer;
-
-  /// Creates a new instance of [_ISubHelper].
-  ///
-  /// ### Parameters:
-  /// - [subscription]: The subscription to the bot's update stream.
-  /// - [scope]: The scope name associated with this subscription.
-  /// - [completer]: The completer that will be completed when the subscription
-  ///   is fulfilled or cancelled.
-  const _ISubHelper(this.subscription, this.scope, this.completer);
-
-  /// Cancels the subscription.
-  ///
-  /// If the completer has not been completed yet, it will complete with `null`.
-  /// This method returns a [Future] that completes when the subscription is cancelled.
-  Future<void> cancel() {
-    if (!completer.isCompleted) {
-      completer.complete(null);
-    }
-    return subscription.cancel();
-  }
+  _ConversationSubscription({
+    required this.subscription,
+    required this.future,
+    required this.completer,
+  });
 }

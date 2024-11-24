@@ -53,6 +53,9 @@ class Bot<CTX extends Context> {
     );
   }
 
+  /// A flag to enable debug logs
+  final bool enableLogs;
+
   /// Handler for unexpected errors.
   late FutureOr<void> Function(BotError<CTX> error) _onError;
 
@@ -142,6 +145,7 @@ class Bot<CTX extends Context> {
     String baseURL = RawAPI.defaultBase,
     LoggerOptions? loggerOptions,
     this.timeout,
+    this.enableLogs = false,
   })  : isLocal = baseURL != RawAPI.defaultBase,
         fetcher = fetcher ?? LongPolling<CTX>(),
         _api = _constructRawAPI(
@@ -215,6 +219,7 @@ class Bot<CTX extends Context> {
     String baseURL = RawAPI.defaultLocalBase,
     LoggerOptions? loggerOptions,
     Duration? timeout,
+    bool? enableLogs,
   }) {
     print('🌐 [Televerse] Using local Bot API server at $baseURL');
     return Bot._(
@@ -223,6 +228,7 @@ class Bot<CTX extends Context> {
       baseURL: baseURL,
       loggerOptions: loggerOptions,
       timeout: timeout,
+      enableLogs: enableLogs ?? false,
     );
   }
 
@@ -233,11 +239,13 @@ class Bot<CTX extends Context> {
   Bot.fromAPI(
     RawAPI api, {
     Fetcher<CTX>? fetcher,
+    bool? enableLogs,
   })  : _api = api,
         isLocal = api._baseUrl != RawAPI.defaultBase,
         timeout = api.timeout,
         token = api.token,
-        fetcher = fetcher ?? LongPolling<CTX>() {
+        fetcher = fetcher ?? LongPolling<CTX>(),
+        enableLogs = enableLogs ?? false {
     onError(_defaultErrorHandler);
   }
 
@@ -351,67 +359,89 @@ class Bot<CTX extends Context> {
     }
   }
 
-  /// Handles the update
-  ///
-  /// This method creates the Context instance for the update and resolves the
-  /// Handler Scopes and proceeds to process the update.
+  /// Handles an incoming update by creating a context and processing it through
+  /// appropriate handler scopes.
   Future<void> _onUpdate(Update update) async {
-    // Find matching scopes
-    bool matchScopes(HandlerScope<CTX> scope) {
-      return scope.types.contains(update.type);
+    final context = await _createContext(update);
+
+    final matchingScopes = await _findMatchingScope(context);
+    if (matchingScopes.isEmpty) {
+      return;
     }
 
-    // Gets the sublist of Handler Scopes that is apt for the recieved Update
-    final sub = _handlerScopes.where(matchScopes).toList();
+    final len = matchingScopes.length;
+    for (int i = 0; i < len; i++) {
+      final considerNext = await _processMatchingScope(
+        matchingScopes.elementAt(i),
+        context,
+      );
 
-    // Sorter helper method that brings handler scopes that has custom predicate to front
-    int bringCustomChecksFirst(HandlerScope<CTX> a, HandlerScope<CTX> b) {
-      return "${b.hasCustomPredicate}".compareTo("${a.hasCustomPredicate}");
+      if (!considerNext) break;
     }
+  }
 
-    // If any Handler Scope has custom predicate attached, we'll sort the handlers
-    if (sub.any((el) => el.hasCustomPredicate)) {
-      sub.sort(bringCustomChecksFirst);
-    }
-
-    // Creates the context instance for the update
-    final context = await _contextConstructor(
+  /// Creates a context for the given update
+  Future<CTX> _createContext(Update update) async {
+    return _contextConstructor(
       api: api,
       me: !initialized ? await _getMeRequest! : me,
       update: update,
     );
+  }
 
-    // Finds and processes the handler scopes.
-    for (int i = 0; i < sub.length; i++) {
-      final passing = sub[i].predicate(context);
-      if (!passing) continue;
+  /// Finds the first matching handler scope for an update
+  Future<Iterable<HandlerScope<CTX>>> _findMatchingScope(CTX ctx) async {
+    // Get scopes matching the update type
+    final matchingScopes = _handlerScopes
+        .where((scope) => scope.types.contains(ctx.update.type))
+        .toList();
 
-      if (sub[i].hasCustomPredicate) {
-        try {
-          final customPass = await sub[i].options!.customPredicate!.call(
-                context,
-              );
-          if (!customPass) continue;
-        } catch (err, stack) {
-          final botErr = BotError<CTX>(err, stack);
-          await _onError(botErr);
-          continue;
-        }
-      }
+    if (matchingScopes.isEmpty) return [];
 
-      if (sub[i].isConversation) {
-        break;
-      }
-
-      if (sub[i].handler == null) continue;
-
-      _preProcess(sub[i], context);
-
-      await _applyMiddlewares(context, () async {
-        await _processUpdate(sub[i], context);
-      });
-      break;
+    // Sort scopes with custom predicates first
+    if (matchingScopes.any((scope) => scope.hasCustomPredicate)) {
+      matchingScopes.sort(
+        (a, b) => b.hasCustomPredicate || b.isConversation ? 1 : -1,
+      );
     }
+
+    final candidates = matchingScopes.where(
+      (scope) => scope.predicate(ctx),
+    );
+
+    final hasConversation = candidates.any((e) {
+      return e.isConversation;
+    });
+
+    if (hasConversation) {
+      return [];
+    }
+
+    return candidates;
+  }
+
+  /// Processes a matching scope with the given context
+  Future<bool> _processMatchingScope(
+    HandlerScope<CTX> scope,
+    CTX context,
+  ) async {
+    if (scope.handler == null) return true;
+    if (scope.hasCustomPredicate) {
+      try {
+        final customPass = await scope.options!.customPredicate!(context);
+        if (!customPass) return true;
+      } catch (err, stack) {
+        await _onError(BotError<CTX>(err, stack));
+        return false;
+      }
+    }
+
+    _preProcess(scope, context);
+
+    await _applyMiddlewares(context, () async {
+      await _processUpdate(scope, context);
+    });
+    return false;
   }
 
   /// Additional infomration on the bot
@@ -571,7 +601,6 @@ class Bot<CTX extends Context> {
       }
 
       _report();
-      print("");
     }
 
     try {
