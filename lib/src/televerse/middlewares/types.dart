@@ -30,43 +30,34 @@ typedef APICaller = Future<Map<String, dynamic>> Function(
   Payload? payload,
 ]);
 
-/// A function type representing a middleware in the bot framework.
+/// A function that processes an update before it reaches the handler.
 ///
-/// A middleware function is invoked as part of a chain of handlers
-/// and can perform custom logic, modify the context, or decide whether
-/// to allow subsequent middlewares in the chain to execute. If the
-/// middleware determines that the chain should proceed, it must invoke
-/// the [next] function. If [next] is not called, the chain halts, and
-/// subsequent middlewares or the final handler will not be executed.
+/// [ctx] The context object containing information about the current update.
+/// [next] A function that should be called to continue to the next middleware
+/// or the final handler.
+///
+/// Middleware functions can:
+/// - Modify the context before it reaches the handler
+/// - Perform checks and validations
+/// - Stop the middleware chain by not calling [next]
+/// - Execute code before and after the handler by placing code before/after the [next] call
 ///
 /// Example usage:
 /// ```dart
-/// Future<void> banCheck(Context ctx, NextFunction next) async {
-///   if (ctx.user?.isBanned ?? false) {
-///     await ctx.reply("You are banned!");
-///     return; // Stops further execution
+/// MiddlewareFunction<Context> loggerMiddleware = (ctx, next) async {
+///   print('Received update: ${ctx.update.updateId}');
+///   await next();
+///   print('Finished processing update: ${ctx.update.updateId}');
+/// };
+///
+/// MiddlewareFunction<Context> adminCheck = (ctx, next) async {
+///   if (ctx.from?.id == ADMIN_ID) {
+///     await next();
+///   } else {
+///     await ctx.reply('Only admins can use this command!');
 ///   }
-///   await next(); // Proceeds to the next middleware
-/// }
+/// };
 /// ```
-///
-/// The final handler in the chain does not need to call [next].
-///
-/// Example with multiple middlewares:
-/// ```dart
-/// bot.command("stats", [banCheck, adminCheck], (ctx) async {
-///   await ctx.reply("Statistics data...");
-/// });
-/// ```
-///
-/// - [CTX]: The type of context passed to the middleware, typically extending
-///   the [Context] class.
-/// - [ctx]: The context object for the current message or event.
-/// - [next]: A function that, when invoked, moves execution to the next
-///   middleware in the chain or the final handler.
-///
-/// If an error occurs in a middleware, it is recommended to handle it
-/// gracefully to avoid breaking the chain.
 typedef MiddlewareFunction<CTX extends Context> = FutureOr<void> Function(
   CTX ctx,
   NextFunction next,

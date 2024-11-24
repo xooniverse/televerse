@@ -23,7 +23,26 @@ class ScopeOptions<CTX extends Context> {
   /// Otherwise, treated as `false` evaluation and skips the current handler.
   final FutureOr<bool> Function(CTX ctx)? customPredicate;
 
-  /// List of middlewares applied for this particular scope
+  /// A list of middleware functions to be executed before the handler for this scope.
+  ///
+  /// When provided, these middlewares will be executed in order before the handler.
+  /// Each middleware can modify the context, perform checks, or stop the execution chain.
+  /// Scope-specific middlewares are executed before global middlewares.
+  ///
+  /// Example:
+  /// ```dart
+  /// bot.command(
+  ///   'admin',
+  ///   adminHandler,
+  ///   options: ScopeOptions.chain(
+  ///     middlewares: [
+  ///       loggerMiddleware,
+  ///       adminCheck,
+  ///       rateLimiter,
+  ///     ],
+  ///   ),
+  /// );
+  /// ```
   final List<MiddlewareFunction<CTX>>? middlewares;
 
   /// Constructs a `ScopeOption`.
@@ -35,8 +54,26 @@ class ScopeOptions<CTX extends Context> {
     this.middlewares,
   });
 
-  /// Bind middlewares to the current scope.
-  const ScopeOptions.bind(
+  /// Creates a [ScopeOptions] instance with bound middleware functions.
+  ///
+  /// This constructor provides a convenient way to bind a list of middlewares
+  /// to a scope without needing to specify them in named parameters.
+  ///
+  /// [middlewares] The list of middleware functions to be executed.
+  /// [customPredicate] Optional predicate function for additional update filtering.
+  /// [name] Optional name identifier for the scope.
+  ///
+  /// Example:
+  /// ```dart
+  /// final adminScope = ScopeOptions.chain(
+  ///   [loggerMiddleware, adminCheck],
+  ///   customPredicate: (ctx) => ctx.chat?.type == 'private',
+  /// );
+  ///
+  /// bot.command('stats', statsHandler, options: adminScope);
+  /// bot.command('config', configHandler, options: adminScope);
+  /// ```
+  const ScopeOptions.chain(
     List<MiddlewareFunction> this.middlewares, {
     this.customPredicate,
     this.name,
