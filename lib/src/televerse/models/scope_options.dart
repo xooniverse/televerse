@@ -23,16 +23,27 @@ class ScopeOptions<CTX extends Context> {
   /// Otherwise, treated as `false` evaluation and skips the current handler.
   final FutureOr<bool> Function(CTX ctx)? customPredicate;
 
+  /// List of middlewares applied for this particular scope
+  final List<MiddlewareFunction<CTX>>? middlewares;
+
   /// Constructs a `ScopeOption`.
   ///
   /// - [name] - Name of the Handler Scope. This can be used to remove the scope later.
   const ScopeOptions({
     this.name,
     this.customPredicate,
+    this.middlewares,
+  });
+
+  /// Bind middlewares to the current scope.
+  const ScopeOptions.bind(
+    List<MiddlewareFunction> this.middlewares, {
+    this.customPredicate,
+    this.name,
   });
 
   /// Creates a copy of this [ScopeOptions] object with potentially modified properties.
-
+  ///
   /// Provides options to override the following properties:
   ///
   /// * [name]: The name of the scope. If not provided, it will be inherited from the original object.
@@ -46,10 +57,12 @@ class ScopeOptions<CTX extends Context> {
   ScopeOptions<CTX> copyWith({
     String? name,
     FutureOr<bool> Function(CTX ctx)? customPredicate,
+    List<MiddlewareFunction<CTX>>? middlewares,
   }) {
     return ScopeOptions<CTX>(
       name: name ?? this.name,
       customPredicate: customPredicate ?? this.customPredicate,
+      middlewares: middlewares ?? this.middlewares,
     );
   }
 
@@ -58,17 +71,20 @@ class ScopeOptions<CTX extends Context> {
     ScopeOptions<CTX>? options, {
     String? name,
     FutureOr<bool> Function(CTX ctx)? customPredicate,
+    List<MiddlewareFunction<CTX>>? middlewares,
   }) {
     if (options != null) {
       return options.copyWith(
         name: name,
         customPredicate: customPredicate,
+        middlewares: middlewares,
       );
     }
 
     return ScopeOptions<CTX>(
       name: name,
       customPredicate: customPredicate,
+      middlewares: middlewares,
     );
   }
 }

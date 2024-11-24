@@ -396,10 +396,46 @@ class Bot<CTX extends Context> {
 
     _preProcess(scope, context);
 
-    await _applyMiddlewares(context, () async {
-      await _processUpdate(scope, context);
-    });
+    await _applyScopeMiddlewares(
+      context,
+      scope.options?.middlewares ?? [],
+      () async {
+        await _processUpdate(scope, context);
+      },
+    );
+
     return false;
+  }
+
+  /// Applies the scope specific middlewares on the context.
+  Future<void> _applyScopeMiddlewares(
+    CTX ctx,
+    List<MiddlewareFunction<CTX>> middlewares,
+    Future<void> Function() handler,
+  ) async {
+    int index = -1;
+
+    Future<void> next() async {
+      index++;
+
+      if (index < middlewares.length) {
+        try {
+          await middlewares[index](ctx, next);
+        } catch (err, stack) {
+          final botErr = BotError<CTX>(
+            err,
+            stack,
+            sourceIsMiddleware: true,
+          );
+          _onError(botErr);
+        }
+      } else {
+        // After all middlewares, apply global middlewares and then the handler
+        await _applyMiddlewares(ctx, handler);
+      }
+    }
+
+    await next();
   }
 
   /// Additional infomration on the bot
