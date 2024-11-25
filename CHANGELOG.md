@@ -1,4 +1,4 @@
-# 2.0.1
+# 2.0.2
 
 - 🆕 Supports Middleware chaining for each handler.
 - ⚠️ Updated Conversation API definitions.
@@ -6,7 +6,11 @@
 - Updated `Fetcher` implementations. 
 - Improved error wordings.
 - Refactored `bot.dart`
-- ⚠️ Removed `Bot.on` method.
+- ⚠️ Removed `Bot.on` method & `TeleverseEvent` enum.
+
+# 2.0.1
+
+- [Retracted]
 
 # 2.0.0
 
