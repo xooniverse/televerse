@@ -31,7 +31,7 @@ class Context {
   ///
   /// Note: On `poll`, and `unknown` updates, this will throw a [TeleverseException].
   /// This is because these updates do not have a chat.
-  ID get id {
+  ChatID get id {
     if (chat == null) {
       throw TeleverseException(
         "The update type is ${update.type}, which does not have a chat.",
