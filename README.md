@@ -429,7 +429,7 @@ bot.command(
   },
   options: ScopeOptions.chain([adminCheck]),
 );
-
+```
 ---
 
 ## 🌟 Shoot a Star
