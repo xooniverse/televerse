@@ -1,10 +1,15 @@
-# 2.0.0
+# 2.0.1
 
 - 🆕 Supports Middleware chaining for each handler.
 - ⚠️ Updated Conversation API definitions.
 - Updated `Fetcher` implementations. 
-- Improved wordings.
+- Improved error wordings.
 - Refactored `bot.dart`
+- ⚠️ Removed `Bot.on` method.
+
+# 2.0.0
+
+- [Retracted]
 
 # 1.28.0
 

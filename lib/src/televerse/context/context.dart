@@ -57,7 +57,7 @@ class Context {
   ///
   /// Contains the matches of the regular expression.
   ///
-  /// This will be automatically set when you use the [BotListeners.hears] method.
+  /// This will be automatically set when you use the [Bot.hears] method.
   List<RegExpMatch>? get matches => _matches;
 
   /// If the message is a command, the list will be filled with the command arguments.
