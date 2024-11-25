@@ -285,12 +285,7 @@ class Webhook extends Fetcher {
       return;
     }
 
-    final body = await request
-        .cast<List<int>>()
-        .transform(
-          utf8.decoder,
-        )
-        .join();
+    final body = await request.cast<List<int>>().transform(utf8.decoder).join();
     try {
       final update = Update.fromJson(jsonDecode(body));
       addUpdate(update);

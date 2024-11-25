@@ -2,28 +2,15 @@ part of '../../../televerse.dart';
 
 /// **Fetcher** - This is the base class for all fetchers. It is used to fetch updates from the Telegram API.
 /// You can use this class to create your own fetcher. Currently, there are two fetchers: [LongPolling] and [Webhook].
-sealed class Fetcher<CTX extends Context> {
+abstract class Fetcher<CTX extends Context> {
   /// The stream controller that emits new updates.
   StreamController<Update>? _updateStreamController;
-
-  /// The stream controller that emits new updates.
-  StreamController<List<Update>>? _updatesStreamController;
-
-  /// Creates a new fetcher.
-  Fetcher();
 
   /// Emit new update into the stream.
   void addUpdate(Update update) => _updateStreamController?.add(update);
 
-  /// Emit new update into the stream.
-  void addUpdates(List<Update> updates) =>
-      _updatesStreamController?.add(updates);
-
   /// Handler for new updates.
   Stream<Update> onUpdate() => _updateStreamController!.stream;
-
-  /// Handler for new updates.
-  Stream<List<Update>> onUpdates() => _updatesStreamController!.stream;
 
   /// Starts fetching updates.
   Future<void> start();

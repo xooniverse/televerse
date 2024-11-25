@@ -74,8 +74,11 @@ class TeleverseException implements Exception {
   static TeleverseException getMeRequestFailed(Object err, StackTrace stack) =>
       TeleverseException(
         "RawAPI/getMe Request Failed",
-        description:
-            "The request to getMe failed. Please check your internet connection and try again. \n\nError: $err",
+        description: "The request to /getMe failed.\n\n"
+            "Error: $err \n\n"
+            "Here are a few things you can try:\n"
+            "  1. Make sure the bot token passed is correct.\n"
+            "  2. Make sure you have a stable internet connection.\n",
         stackTrace: stack,
         type: TeleverseExceptionType.requestFailed,
       );

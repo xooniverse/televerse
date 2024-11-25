@@ -1,3 +1,11 @@
+# 2.0.0
+
+- 🆕 Supports Middleware chaining for each handler.
+- ⚠️ Updated Conversation API definitions.
+- Updated `Fetcher` implementations. 
+- Improved wordings.
+- Refactored `bot.dart`
+
 # 1.28.0
 
 - 🤖 Bot API 8.0

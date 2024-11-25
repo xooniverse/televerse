@@ -29,3 +29,36 @@ typedef APICaller = Future<Map<String, dynamic>> Function(
   APIMethod method, [
   Payload? payload,
 ]);
+
+/// A function that processes an update before it reaches the handler.
+///
+/// [ctx] The context object containing information about the current update.
+/// [next] A function that should be called to continue to the next middleware
+/// or the final handler.
+///
+/// Middleware functions can:
+/// - Modify the context before it reaches the handler
+/// - Perform checks and validations
+/// - Stop the middleware chain by not calling [next]
+/// - Execute code before and after the handler by placing code before/after the [next] call
+///
+/// Example usage:
+/// ```dart
+/// MiddlewareFunction<Context> loggerMiddleware = (ctx, next) async {
+///   print('Received update: ${ctx.update.updateId}');
+///   await next();
+///   print('Finished processing update: ${ctx.update.updateId}');
+/// };
+///
+/// MiddlewareFunction<Context> adminCheck = (ctx, next) async {
+///   if (ctx.from?.id == ADMIN_ID) {
+///     await next();
+///   } else {
+///     await ctx.reply('Only admins can use this command!');
+///   }
+/// };
+/// ```
+typedef MiddlewareFunction<CTX extends Context> = FutureOr<void> Function(
+  CTX ctx,
+  NextFunction next,
+);

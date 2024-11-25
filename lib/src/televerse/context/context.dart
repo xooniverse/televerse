@@ -31,7 +31,7 @@ class Context {
   ///
   /// Note: On `poll`, and `unknown` updates, this will throw a [TeleverseException].
   /// This is because these updates do not have a chat.
-  ID get id {
+  ChatID get id {
     if (chat == null) {
       throw TeleverseException(
         "The update type is ${update.type}, which does not have a chat.",
@@ -57,7 +57,7 @@ class Context {
   ///
   /// Contains the matches of the regular expression.
   ///
-  /// This will be automatically set when you use the [Bot.hears] method.
+  /// This will be automatically set when you use the [BotListeners.hears] method.
   List<RegExpMatch>? get matches => _matches;
 
   /// If the message is a command, the list will be filled with the command arguments.

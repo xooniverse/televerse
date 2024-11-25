@@ -409,6 +409,27 @@ class AutoReplyEnforcer implements Transformer {
 bot.use(AutoReplyEnforcer());
 ```
 
+### 14. 🔗 Scope-Level Middleware Chaining
+
+Chain multiple middlewares directly to specific commands or handlers using `ScopeOptions.chain`. This allows for granular control over middleware execution at the scope level, perfect for implementing features like command or scope specific authentication or rate limiting.
+
+```dart
+// Define middleware functions
+final admins = [12345, 67890];
+MiddlewareFunction adminCheck = (ctx, next) async {
+  if (!admins.contains(ctx.id.id)) return;
+  return next();
+};
+
+// Apply middleware chain to specific commands
+bot.command(
+  'admin',
+  (ctx) async {
+    await ctx.reply("Hello Admin!");
+  },
+  options: ScopeOptions.chain([adminCheck]),
+);
+```
 ---
 
 ## 🌟 Shoot a Star
