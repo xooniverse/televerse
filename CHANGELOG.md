@@ -2,6 +2,7 @@
 
 - 🆕 Supports Middleware chaining for each handler.
 - ⚠️ Updated Conversation API definitions.
+- 📖 [Conversation API migration guide is available at website](https://televerse.xooniverse.com/extras/migration-v1-v2.html).
 - Updated `Fetcher` implementations. 
 - Improved error wordings.
 - Refactored `bot.dart`
