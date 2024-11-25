@@ -67,17 +67,6 @@ void main() async {
     await ctx.reply("Oh wow, this is a big photo!");
   });
 
-  /// So with the [Bot.on] method you can listen for particular updates. Yeah, that indeed means
-  /// that you can listen for all commands simply by listening for the [TeleverseEvent.command] event.
-  bot.on(TeleverseEvent.command, (ctx) async {
-    await ctx.reply("This will be executed for every command unhandled");
-
-    // Do your logic here
-    if (ctx.message?.text == "/televerse") {
-      await ctx.reply("Much love from Televerse! ❤️");
-    }
-  });
-
   /// You can also listen for particular message entities.
   bot.entity(MessageEntityType.mention, (ctx) async {
     // And use the `Message.geteEntityText` method to extract the value.

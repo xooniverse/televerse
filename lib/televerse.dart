@@ -45,9 +45,6 @@ part 'src/televerse/context/context.dart';
 part 'src/televerse/context/methods.dart';
 part 'src/televerse/context/properties.dart';
 
-// The On Method
-part 'src/televerse/filters/filters.dart';
-
 // Keyboards & Menus
 part 'src/televerse/markups/inline_keyboard.dart';
 part 'src/televerse/markups/inline_menu.dart';
