@@ -21,10 +21,14 @@ class StarTransaction {
   /// Fragment for a withdrawal). Only for outgoing transactions.
   final TransactionPartner? receiver;
 
+  /// Optional. The number of 1/1000000000 shares of Telegram Stars transferred by the transaction; from 0 to 999999999
+  final int nanostarAmount;
+
   /// Creates a new [StarTransaction] object.
   const StarTransaction({
     required this.id,
     required this.amount,
+    required this.nanostarAmount,
     required this.date,
     this.source,
     this.receiver,
@@ -42,6 +46,7 @@ class StarTransaction {
       receiver: json['receiver'] != null
           ? TransactionPartner.fromJson(json['receiver'])
           : null,
+      nanostarAmount: json['nanostar_amount'] as int,
     );
   }
 
