@@ -3,7 +3,7 @@
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/xooniverse/televerse?color=green)
-![](https://shields.io/badge/Latest-Bot%20API%208.0-blue)
+![](https://shields.io/badge/Latest-Bot%20API%208.1-blue)
 
   <a href="https://telegram.me/TeleverseDart">
     <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/>
@@ -12,7 +12,7 @@
 
 ---
 
-🤖 `Bot API version: Bot API 8.0 (November 17, 2024)` 🎃
+🤖 `Bot API version: Bot API 8.1 (December 4, 2024)` 🎃
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot
 framework built with Dart programming language. It provides a complete and
@@ -22,31 +22,14 @@ public interface, making it easy for developers to write strictly typed code.
 
 ## 🔥 What's latest?
 
-### 🤖 Bot API 8.0 🎃
+### 🤖 Bot API 8.1 🎃
 
-(🗓️ November 17, 2024)
+(🗓️ December 4, 2024)
 
-In a nutshell, this update majorly is about Telegram Mini Apps, though we have a few new methods for Bot API including `editUserStarSubscription`, `getAvailableGifts` etc. Being said that, now Bots can send Gifts to the user. 🎁
+In a nutshell, Bots can now detect commissions and affiliate transactions!
 
-Checkout [changelog](https://core.telegram.org/bots/api-changelog#november-17-2024) for more
+Checkout [changelog](https://core.telegram.org/bots/api-changelog#december-4-2024) for more
 details! 🚀
-
-### 🎉 Support for Custom Contexts!
-
-(🗓️ June 28, 2024)
-
-Televerse now lets you build even more powerful bots with custom contexts!
-
-- Design custom context classes to store information specific to your bot's
-  needs.
-- Keep your bot's logic organized with private context members and methods.
-- Add features like localization by integrating mixins.
-
-With the new `Bot.contextBuilder` method, you can define specialized context
-constructors to create context objects with personalized behaviors and
-capabilities. This update allows you to tailor your bot's responses, handle
-complex workflows, and integrate additional features seamlessly. 
-[Read more here.](https://televerse.xooniverse.com/advanced/custom-context.html)
 
 <hr>
 
