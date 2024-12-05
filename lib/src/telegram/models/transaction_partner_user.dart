@@ -23,6 +23,9 @@ class TransactionPartnerUser extends TransactionPartner {
   /// Optional. The gift sent to the user by the bot.
   final Gift? gift;
 
+  /// Optional. Information about the affiliate that received a commission via this transaction
+  final AffiliateInfo? affiliate;
+
   /// Constructs a [TransactionPartnerUser] object.
   const TransactionPartnerUser({
     required this.user,
@@ -31,6 +34,7 @@ class TransactionPartnerUser extends TransactionPartner {
     this.paidMediaPayload,
     this.subscriptionPeriod,
     this.gift,
+    this.affiliate,
   });
 
   /// Creates a [TransactionPartnerUser] object from JSON.
@@ -48,6 +52,9 @@ class TransactionPartnerUser extends TransactionPartner {
       paidMediaPayload: json['paid_media_payload'],
       subscriptionPeriod: json['subscription_period'],
       gift: json['gift'] != null ? Gift.fromJson(json['gift']) : null,
+      affiliate: json['affiliate'] != null
+          ? AffiliateInfo.fromJson(json['affiliate'])
+          : null,
     );
   }
 
@@ -62,6 +69,7 @@ class TransactionPartnerUser extends TransactionPartner {
       'paid_media_payload': paidMediaPayload,
       'subscription_period': subscriptionPeriod,
       'gift': gift?.toJson(),
+      'affiliate': affiliate?.toJson(),
     }..removeWhere(_nullFilter);
   }
 }

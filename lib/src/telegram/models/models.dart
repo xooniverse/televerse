@@ -283,3 +283,7 @@ part 'transaction_partner_telegram_api.dart';
 part 'prepared_inline_message.dart';
 part 'gift.dart';
 part 'gifts.dart';
+
+// Bot API 8.1
+part 'transaction_partner_affiliate_program.dart';
+part 'affiliate_info.dart';

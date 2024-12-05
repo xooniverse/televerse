@@ -1,3 +1,8 @@
+# 2.1.0
+
+- 🤖 Bot API 8.1
+- Added class `AffiliateInfo` and reflected all the changes from Bot API 8.1
+
 # 2.0.2
 
 - 🆕 Supports Middleware chaining for each handler.

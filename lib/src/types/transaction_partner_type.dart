@@ -16,6 +16,9 @@ enum TransactionPartnerType {
 
   /// Represents a transaction with an unknown source or recipient.
   other("other"),
+
+  /// Describes the affiliate program that issued the affiliate commission received via this transaction
+  affiliateProgram("affiliate_program"),
   ;
 
   /// The value of this enum.
