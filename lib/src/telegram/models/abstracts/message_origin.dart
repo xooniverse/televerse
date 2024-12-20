@@ -21,23 +21,12 @@ abstract class MessageOrigin {
 
   /// Creates a new [MessageOrigin] instance from a JSON object.
   factory MessageOrigin.fromJson(Map<String, dynamic> json) {
-    switch (json['type']) {
-      case 'user':
-        return MessageOriginUser.fromJson(json);
-      case 'hidden_user':
-        return MessageOriginHiddenUser.fromJson(json);
-      case 'chat':
-        return MessageOriginChat.fromJson(json);
-      case 'channel':
-        return MessageOriginChannel.fromJson(json);
-      default:
-        throw TeleverseException(
-          "Unknown message origin type",
-          description:
-              "The given JSON object does not match any MessageOrigin type.",
-          type: TeleverseExceptionType.invalidParameter,
-        );
-    }
+    return switch (MessageOriginType.from(json['type'])) {
+      MessageOriginType.user => MessageOriginUser.fromJson(json),
+      MessageOriginType.hiddenUser => MessageOriginHiddenUser.fromJson(json),
+      MessageOriginType.chat => MessageOriginChat.fromJson(json),
+      MessageOriginType.channel => MessageOriginChannel.fromJson(json),
+    };
   }
 
   /// Converts [MessageOrigin] instance to a JSON object.

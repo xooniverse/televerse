@@ -1,3 +1,8 @@
+# 2.1.1
+
+- Updated switch statements to Switch expressions.
+- Fix: `BackgroundTypeType.chatTheme` typo
+
 # 2.1.0
 
 - 🤖 Bot API 8.1

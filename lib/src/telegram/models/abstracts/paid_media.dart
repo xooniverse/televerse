@@ -9,11 +9,10 @@ abstract class PaidMedia {
   /// Creates a new [PaidMedia] object.
   /// This method decides which [PaidMedia] subclass to use based on the [type] field.
   static PaidMedia fromJson(Map<String, dynamic> json) {
-    return switch (json['type']) {
-      'preview' => PaidMediaPreview.fromJson(json),
-      'photo' => PaidMediaPhoto.fromJson(json),
-      'video' => PaidMediaVideo.fromJson(json),
-      _ => throw ArgumentError('Invalid paid media type')
+    return switch (PaidMediaType.fromJson(json['type'])) {
+      PaidMediaType.preview => PaidMediaPreview.fromJson(json),
+      PaidMediaType.photo => PaidMediaPhoto.fromJson(json),
+      PaidMediaType.video => PaidMediaVideo.fromJson(json),
     };
   }
 
