@@ -10,10 +10,10 @@ abstract class MenuButton {
   /// Creates a new [MenuButton] object.
   /// This method decides which [MenuButton] subclass to use based on the [type] field.
   static MenuButton create(Map<String, dynamic> json) {
-    return switch (json['type']) {
-      'commands' => MenuButtonCommands.fromJson(json),
-      'web_app' => MenuButtonWebApp.fromJson(json),
-      _ => MenuButtonDefault.fromJson(json),
+    return switch (MenuButtonType.fromJson(json['type'])) {
+      MenuButtonType.commands => MenuButtonCommands.fromJson(json),
+      MenuButtonType.webApp => MenuButtonWebApp.fromJson(json),
+      MenuButtonType.defaultButton => MenuButtonDefault.fromJson(json),
     };
   }
 

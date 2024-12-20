@@ -21,26 +21,14 @@ abstract class ChatMember implements WithUser {
   /// Creates a new [ChatMember] object from a JSON object.
   /// This method decides which [ChatMember] subclass to use based on the [status] field.
   static ChatMember fromJson(Map<String, dynamic> json) {
-    switch (json['status'] as String) {
-      case 'creator':
-        return ChatMemberOwner.fromJson(json);
-      case 'administrator':
-        return ChatMemberAdministrator.fromJson(json);
-      case 'member':
-        return ChatMemberMember.fromJson(json);
-      case 'restricted':
-        return ChatMemberRestricted.fromJson(json);
-      case 'left':
-        return ChatMemberLeft.fromJson(json);
-      case 'kicked':
-        return ChatMemberBanned.fromJson(json);
-      default:
-        throw TeleverseException(
-          'Unknown ChatMember status: ${json['status']}',
-          description: 'The given status does not match any ChatMemberStatus.',
-          type: TeleverseExceptionType.invalidParameter,
-        );
-    }
+    return switch (ChatMemberStatus.fromJson(json['status'])) {
+      ChatMemberStatus.creator => ChatMemberOwner.fromJson(json),
+      ChatMemberStatus.administrator => ChatMemberAdministrator.fromJson(json),
+      ChatMemberStatus.member => ChatMemberMember.fromJson(json),
+      ChatMemberStatus.restricted => ChatMemberRestricted.fromJson(json),
+      ChatMemberStatus.left => ChatMemberLeft.fromJson(json),
+      ChatMemberStatus.kicked => ChatMemberBanned.fromJson(json),
+    };
   }
 
   /// Converts a [ChatMember] to a [Map] for JSON encoding.

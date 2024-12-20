@@ -12,7 +12,7 @@ enum BackgroundTypeType {
   pattern("pattern"),
 
   /// The background is taken directly from a built-in chat theme.
-  chatTheme("chatTheme"),
+  chatTheme("chat_theme"),
   ;
 
   /// The value of this enum.
@@ -20,4 +20,11 @@ enum BackgroundTypeType {
 
   /// Constructs a new [BackgroundFillType].
   const BackgroundTypeType(this.value);
+
+  /// Creates the type object from passed type string.
+  static BackgroundTypeType fromJson(String json) {
+    return values.firstWhere((e) {
+      return e.value == json;
+    });
+  }
 }

@@ -9,7 +9,7 @@ enum BackgroundFillType {
   gradient("gradient"),
 
   /// The background is a freeform gradient that rotates after every message in the chat.
-  freeformGradient("freeformGradient"),
+  freeformGradient("freeform_gradient"),
   ;
 
   /// The value of this enum.
@@ -18,16 +18,7 @@ enum BackgroundFillType {
   /// Constructs a new [BackgroundFillType].
   const BackgroundFillType(this.value);
 
-  factory BackgroundFillType.fromString(String val) {
-    switch (val) {
-      case "solid":
-        return solid;
-      case "gradient":
-        return gradient;
-      case "freeform_gradient":
-        return freeformGradient;
-      default:
-        throw ArgumentError("That's not a possible value");
-    }
+  factory BackgroundFillType.fromJson(String json) {
+    return values.singleWhere((e) => e.value == json);
   }
 }

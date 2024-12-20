@@ -9,16 +9,14 @@ abstract class RevenueWithdrawalState {
   /// Creates a new [RevenueWithdrawalState] object.
   /// This method decides which [RevenueWithdrawalState] subclass to use based on the [type] field.
   static RevenueWithdrawalState fromJson(Map<String, dynamic> json) {
-    switch (RevenueWithdrawalStateType.fromJson(json['type'])) {
-      case RevenueWithdrawalStateType.pending:
-        return RevenueWithdrawalStatePending.fromJson(json);
-      case RevenueWithdrawalStateType.succeeded:
-        return RevenueWithdrawalStateSucceeded.fromJson(json);
-      case RevenueWithdrawalStateType.failed:
-        return RevenueWithdrawalStateFailed.fromJson(json);
-      default:
-        throw ArgumentError('Invalid revenue withdrawal state type');
-    }
+    return switch (RevenueWithdrawalStateType.fromJson(json['type'])) {
+      RevenueWithdrawalStateType.pending =>
+        RevenueWithdrawalStatePending.fromJson(json),
+      RevenueWithdrawalStateType.succeeded =>
+        RevenueWithdrawalStateSucceeded.fromJson(json),
+      RevenueWithdrawalStateType.failed =>
+        RevenueWithdrawalStateFailed.fromJson(json),
+    };
   }
 
   /// Creates a new [RevenueWithdrawalState] object from JSON.

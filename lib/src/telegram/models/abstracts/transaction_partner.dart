@@ -9,12 +9,17 @@ abstract class TransactionPartner {
   /// Creates a new [TransactionPartner] object.
   /// This method decides which [TransactionPartner] subclass to use based on the [type] field.
   static TransactionPartner fromJson(Map<String, dynamic> json) {
-    return switch (json['type']) {
-      'fragment' => TransactionPartnerFragment.fromJson(json),
-      'user' => TransactionPartnerUser.fromJson(json),
-      'other' => TransactionPartnerOther.fromJson(json),
-      'telegram_ads' => TransactionPartnerTelegramAds.fromJson(json),
-      _ => throw ArgumentError('Invalid transaction partner type')
+    return switch (TransactionPartnerType.fromJson(json['type'])) {
+      TransactionPartnerType.fragment =>
+        TransactionPartnerFragment.fromJson(json),
+      TransactionPartnerType.user => TransactionPartnerUser.fromJson(json),
+      TransactionPartnerType.other => TransactionPartnerOther.fromJson(json),
+      TransactionPartnerType.telegramAds =>
+        TransactionPartnerTelegramAds.fromJson(json),
+      TransactionPartnerType.affiliateProgram =>
+        TransactionPartnerAffiliateProgram.fromJson(json),
+      TransactionPartnerType.telegramApi =>
+        TransactionPartnerTelegramApi.fromJson(json),
     };
   }
 

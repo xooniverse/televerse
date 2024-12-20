@@ -8,18 +8,12 @@ abstract class BackgroundType {
   /// Creates a new [BackgroundType] object.
   /// This method decides which [BackgroundType] subclass to use based on the [type] field.
   static BackgroundType create(Map<String, dynamic> json) {
-    switch (json['type']) {
-      case 'fill':
-        return BackgroundTypeFill.fromJson(json);
-      case 'wallpaper':
-        return BackgroundTypeWallpaper.fromJson(json);
-      case 'pattern':
-        return BackgroundTypePattern.fromJson(json);
-      case 'chat_theme':
-        return BackgroundTypeChatTheme.fromJson(json);
-      default:
-        throw ArgumentError('Invalid background type');
-    }
+    return switch (BackgroundTypeType.fromJson(json['type'])) {
+      BackgroundTypeType.fill => BackgroundTypeFill.fromJson(json),
+      BackgroundTypeType.wallpaper => BackgroundTypeWallpaper.fromJson(json),
+      BackgroundTypeType.pattern => BackgroundTypePattern.fromJson(json),
+      BackgroundTypeType.chatTheme => BackgroundTypeChatTheme.fromJson(json),
+    };
   }
 
   /// Creates a new [BackgroundType] object from JSON.

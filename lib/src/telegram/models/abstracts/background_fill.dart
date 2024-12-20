@@ -8,16 +8,12 @@ abstract class BackgroundFill {
   /// Creates a new [BackgroundFill] object.
   /// This method decides which [BackgroundFill] subclass to use based on the [type] field.
   factory BackgroundFill.fromJson(Map<String, dynamic> json) {
-    switch (json['type']) {
-      case 'solid':
-        return BackgroundFillSolid.fromJson(json);
-      case 'gradient':
-        return BackgroundFillGradient.fromJson(json);
-      case 'freeform_gradient':
-        return BackgroundFillFreeformGradient.fromJson(json);
-      default:
-        throw ArgumentError('Invalid background fill type');
-    }
+    return switch (BackgroundFillType.fromJson(json['type'])) {
+      BackgroundFillType.solid => BackgroundFillSolid.fromJson(json),
+      BackgroundFillType.gradient => BackgroundFillGradient.fromJson(json),
+      BackgroundFillType.freeformGradient =>
+        BackgroundFillFreeformGradient.fromJson(json),
+    };
   }
 
   /// Creates a new [BackgroundFill] object from JSON.
