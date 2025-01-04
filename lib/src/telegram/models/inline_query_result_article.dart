@@ -18,9 +18,6 @@ class InlineQueryResultArticle implements InlineQueryResult {
   /// Optional. URL of the result
   final String? url;
 
-  /// Optional. Pass True if you don't want the URL to be shown in the message
-  final bool? hideUrl;
-
   /// Optional. Short description of the result
   final String? description;
 
@@ -40,7 +37,6 @@ class InlineQueryResultArticle implements InlineQueryResult {
     required this.inputMessageContent,
     this.replyMarkup,
     this.url,
-    this.hideUrl,
     this.description,
     this.thumbnailUrl,
     this.thumbnailWidth,
@@ -57,7 +53,6 @@ class InlineQueryResultArticle implements InlineQueryResult {
       'input_message_content': inputMessageContent.toJson(),
       'reply_markup': replyMarkup?.toJson(),
       'url': url,
-      'hide_url': hideUrl,
       'description': description,
       'thumbnail_url': thumbnailUrl,
       'thumbnail_width': thumbnailWidth,
@@ -79,7 +74,6 @@ class InlineQueryResultArticle implements InlineQueryResult {
               json['reply_markup'] as Map<String, dynamic>,
             ),
       url: json['url'] as String?,
-      hideUrl: json['hide_url'] as bool?,
       description: json['description'] as String?,
       thumbnailUrl: json['thumbnail_url'] as String?,
       thumbnailWidth: json['thumbnail_width'] as int?,
@@ -108,7 +102,6 @@ class InlineQueryResultArticle implements InlineQueryResult {
       inputMessageContent: inputMessageContent ?? this.inputMessageContent,
       replyMarkup: replyMarkup ?? this.replyMarkup,
       url: url ?? this.url,
-      hideUrl: hideUrl ?? this.hideUrl,
       description: description ?? this.description,
       thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
       thumbnailWidth: thumbnailWidth ?? this.thumbnailWidth,
