@@ -4249,4 +4249,100 @@ class RawAPI {
       payload: Payload(params),
     );
   }
+
+  /// Verifies a user on behalf of the organization which is represented by
+  /// the bot. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [userId] (int, required): Unique identifier of the target user.
+  /// - [customDescription] (String, optional): Custom description for
+  /// the verification; 0-70 characters. Must be empty if the organization
+  /// isn't allowed to provide a custom verification description.
+  Future<bool> verifyUser({
+    required int userId,
+    String? customDescription,
+  }) async {
+    final params = {
+      "user_id": userId,
+      "custom_description": customDescription,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.verifyUser,
+      payload: Payload(params),
+    );
+
+    return response;
+  }
+
+  /// Verifies a chat on behalf of the organization which is represented by
+  /// the bot. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [chatId] (ID, required): Unique identifier for the target chat or
+  /// username of the target channel (in the format @channelusername)
+  /// - [customDescription] (String, optional): Custom description for
+  /// the verification; 0-70 characters. Must be empty if the organization
+  /// isn't allowed to provide a custom verification description.
+  Future<bool> verifyChat({
+    required ID chatId,
+    String? customDescription,
+  }) async {
+    final params = {
+      "chat_id": chatId.id,
+      "custom_description": customDescription,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.verifyChat,
+      payload: Payload(params),
+    );
+
+    return response;
+  }
+
+  /// Removes verification from a user who is currently verified on behalf
+  /// of the organization represented by the bot.
+  ///
+  /// Returns True on success.
+  ///
+  /// Parameters:
+  /// - [userId] - Unique identifier of the target user
+  Future<bool> removeUserVerification({
+    required int userId,
+  }) async {
+    final params = {
+      "user_id": userId,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.removeUserVerification,
+      payload: Payload(params),
+    );
+
+    return response;
+  }
+
+  /// Removes verification from a chat that is currently verified on behalf of
+  /// the organization represented by the bot. Returns True on success.
+  ///
+  /// Returns True on success.
+  ///
+  /// Parameters:
+  /// - [chatId] - Unique identifier for the target chat or username of the
+  /// target channel (in the format @channelusername)
+  Future<bool> removeChatVerification({
+    required ID chatId,
+  }) async {
+    final params = {
+      "chat_id": chatId.id,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.removeChatVerification,
+      payload: Payload(params),
+    );
+
+    return response;
+  }
 }
