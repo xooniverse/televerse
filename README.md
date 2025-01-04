@@ -22,7 +22,7 @@ public interface, making it easy for developers to write strictly typed code.
 
 ## 🔥 What's latest?
 
-### 🤖 Bot API 8.1 🎃
+### 🤖 Bot API 8.2
 
 (🗓️ January 1, 2025)
 
