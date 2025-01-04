@@ -4229,12 +4229,15 @@ class RawAPI {
   ///   “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, and “custom_emoji” are ignored.
   /// - [textEntities] (List<MessageEntity>, optional): A JSON-serialized list of special entities
   ///   that appear in the gift text. Can be specified instead of `textParseMode`.
+  /// - [payForUpgrade] - Pass True to pay for the gift upgrade from the bot's
+  /// balance, thereby making the upgrade free for the receiver
   Future<bool> sendGift({
     required int userId,
     required String giftId,
     String? text,
     ParseMode? textParseMode,
     List<MessageEntity>? textEntities,
+    bool? payForUpgrade,
   }) async {
     final params = {
       "user_id": userId,
@@ -4242,6 +4245,7 @@ class RawAPI {
       "text": text,
       "text_parse_mode": textParseMode?.value,
       "text_entities": textEntities?.map((e) => e.toJson()).toList(),
+      "pay_for_upgrade": payForUpgrade,
     };
 
     return await _makeApiBoolCall(
