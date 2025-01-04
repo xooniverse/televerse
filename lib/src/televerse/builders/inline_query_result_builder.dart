@@ -29,7 +29,6 @@ class InlineQueryResultBuilder {
   /// - [contentGenerator] is a function that generates the content of the article.
   /// - [replyMarkup] is an optional inline keyboard attached to the message.
   /// - [url] is an optional URL of the result.
-  /// - [hideUrl] hides the URL in the message when set to true.
   /// - [description] is an optional short description of the result.
   /// - [thumbnailUrl] is an optional URL of the thumbnail for the result.
   /// - [thumbnailWidth] is the optional width of the thumbnail.
@@ -42,7 +41,6 @@ class InlineQueryResultBuilder {
     ) contentGenerator, {
     InlineKeyboardMarkup? replyMarkup,
     String? url,
-    bool? hideUrl,
     String? description,
     String? thumbnailUrl,
     int? thumbnailWidth,
@@ -57,7 +55,6 @@ class InlineQueryResultBuilder {
         ),
         replyMarkup: replyMarkup,
         url: url,
-        hideUrl: hideUrl,
         description: description,
         thumbnailHeight: thumbnailHeight,
         thumbnailUrl: thumbnailUrl,

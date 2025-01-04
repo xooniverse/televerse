@@ -400,6 +400,20 @@ enum APIMethod {
 
   /// Sends a gift to the given user.
   sendGift._("sendGift"),
+
+  /// Verifies a user on behalf of the organization which is represented by the bot.
+  verifyUser._("verifyUser"),
+
+  /// Verifies a chat on behalf of the organization which is represented by the bot.
+  verifyChat._("verifyChat"),
+
+  /// Removes verification from a user who is currently verified on behalf of
+  /// the organization represented by the bot.
+  removeUserVerification._("removeUserVerification"),
+
+  /// Removes verification from a chat that is currently verified on behalf of
+  /// the organization represented by the bot.
+  removeChatVerification._("removeChatVerification"),
   ;
 
   /// The name of the method.

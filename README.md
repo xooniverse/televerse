@@ -3,7 +3,7 @@
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/xooniverse/televerse?color=green)
-![](https://shields.io/badge/Latest-Bot%20API%208.1-blue)
+![](https://shields.io/badge/Latest-Bot%20API%208.2-blue)
 
   <a href="https://telegram.me/TeleverseDart">
     <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/>
@@ -12,7 +12,7 @@
 
 ---
 
-🤖 `Bot API version: Bot API 8.1 (December 4, 2024)` 🎃
+🤖 `Bot API version: Bot API 8.2 (January 1, 2025)`
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot
 framework built with Dart programming language. It provides a complete and
@@ -24,11 +24,11 @@ public interface, making it easy for developers to write strictly typed code.
 
 ### 🤖 Bot API 8.1 🎃
 
-(🗓️ December 4, 2024)
+(🗓️ January 1, 2025)
 
-In a nutshell, Bots can now detect commissions and affiliate transactions!
+In a nutshell, Bots can now verify chats and users on behalf of an organization! Includes minor Gifts related changes as well.
 
-Checkout [changelog](https://core.telegram.org/bots/api-changelog#december-4-2024) for more
+Checkout [changelog](https://core.telegram.org/bots/api-changelog#january-1-2025) for more
 details! 🚀
 
 <hr>

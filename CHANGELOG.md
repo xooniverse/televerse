@@ -1,3 +1,11 @@
+# 2.2.0
+
+- 🤖 Bot API 8.2
+- Added the methods `verifyUser`, `verifyChat`, `removeUserVerification`, and `removeChatVerification`, allowing bots to manage verifications on behalf of an organization.
+- Added the field `upgrade_star_count` to the class `Gift`.
+- Added the parameter `pay_for_upgrade` to the method `sendGift`.
+- Removed the field `hide_url` from the class `InlineQueryResultArticle`. Pass an empty string as `url` instead.
+
 # 2.1.1
 
 - Updated switch statements to Switch expressions.
