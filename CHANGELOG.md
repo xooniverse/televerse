@@ -1,3 +1,8 @@
+# 2.3.0
+
+- 🤖 Bot API 8.3
+- Check the [Telegram Bot API changelog for detailled change info](https://core.telegram.org/bots/api-changelog#february-12-2025).
+
 # 2.2.0
 
 - 🤖 Bot API 8.2

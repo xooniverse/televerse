@@ -20,6 +20,7 @@ abstract class TransactionPartner {
         TransactionPartnerAffiliateProgram.fromJson(json),
       TransactionPartnerType.telegramApi =>
         TransactionPartnerTelegramApi.fromJson(json),
+      TransactionPartnerType.chat => TransactionPartnerChat.fromJson(json),
     };
   }
 

@@ -36,6 +36,12 @@ class InputMediaVideo extends InputMedia {
   /// Optional. True, if the caption must be shown above the message media
   final bool? showCaptionAboveMedia;
 
+  /// Optional. Timestamp in seconds from which the video will play in the message
+  final int? startTimestamp;
+
+  /// Optional. Cover for the video in the message.
+  final InputFile? cover;
+
   /// Constructs an [InputMediaVideo] object
   const InputMediaVideo({
     required super.media,
@@ -49,6 +55,8 @@ class InputMediaVideo extends InputMedia {
     this.supportsStreaming,
     this.hasSpoiler,
     this.showCaptionAboveMedia,
+    this.startTimestamp,
+    this.cover,
   });
 
   /// Converts an [InputMediaVideo] object to a JSON object
@@ -67,6 +75,8 @@ class InputMediaVideo extends InputMedia {
       'supports_streaming': supportsStreaming,
       'has_spoiler': hasSpoiler,
       'show_caption_above_media': showCaptionAboveMedia,
+      'start_timestamp': startTimestamp,
+      'cover': cover?.getValue('${field}_cover'),
     }..removeWhere(_nullFilter);
   }
 }

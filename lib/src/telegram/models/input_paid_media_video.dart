@@ -27,6 +27,12 @@ class InputPaidMediaVideo implements InputPaidMedia {
   /// Optional. Pass True if the uploaded video is suitable for streaming.
   final bool? supportsStreaming;
 
+  /// Optional. Timestamp in seconds from which the video will play in the message
+  final int? startTimestamp;
+
+  /// Optional. Cover for the video in the message.
+  final InputFile? cover;
+
   /// Constructs a [InputPaidMediaVideo] object.
   const InputPaidMediaVideo({
     required this.media,
@@ -35,6 +41,8 @@ class InputPaidMediaVideo implements InputPaidMedia {
     this.height,
     this.duration,
     this.supportsStreaming,
+    this.startTimestamp,
+    this.cover,
   });
 
   /// Converts a [InputPaidMediaVideo] object to JSON.
@@ -48,6 +56,8 @@ class InputPaidMediaVideo implements InputPaidMedia {
       'height': height,
       'duration': duration,
       'supports_streaming': supportsStreaming,
+      'start_timestamp': startTimestamp,
+      'cover': cover?.getValue('cover'),
     }..removeWhere(_nullFilter);
   }
 
@@ -62,6 +72,8 @@ class InputPaidMediaVideo implements InputPaidMedia {
       'height': height,
       'duration': duration,
       'supports_streaming': supportsStreaming,
+      'start_timestamp': startTimestamp,
+      'cover': cover?.getValue('${field}_cover'),
     }..removeWhere(_nullFilter);
   }
 }

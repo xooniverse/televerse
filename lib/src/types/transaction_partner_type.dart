@@ -19,6 +19,9 @@ enum TransactionPartnerType {
 
   /// Describes the affiliate program that issued the affiliate commission received via this transaction
   affiliateProgram("affiliate_program"),
+
+  /// Describes a transaction with a chat.
+  chat("chat"),
   ;
 
   /// The value of this enum.

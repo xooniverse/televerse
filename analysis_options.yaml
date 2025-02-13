@@ -5,7 +5,6 @@ linter:
     - camel_case_types
     - comment_references
     - dangling_library_doc_comments
-    - package_api_docs
     - public_member_api_docs
     - slash_for_doc_comments
     - unnecessary_library_directive
