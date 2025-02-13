@@ -287,3 +287,6 @@ part 'gifts.dart';
 // Bot API 8.1
 part 'transaction_partner_affiliate_program.dart';
 part 'affiliate_info.dart';
+
+// Bot API 8.2
+part 'transaction_partner_chat.dart';

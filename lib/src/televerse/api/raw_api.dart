@@ -566,6 +566,7 @@ class RawAPI {
     bool? disableNotification,
     int? messageThreadId,
     bool? protectContent,
+    int? videoStartTimestamp,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -574,6 +575,7 @@ class RawAPI {
       "disable_notification": disableNotification,
       "message_thread_id": messageThreadId,
       "protect_content": protectContent,
+      "video_start_timestamp": videoStartTimestamp,
     };
     final response = await _makeApiJsonCall(
       APIMethod.forwardMessage,
@@ -597,6 +599,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
+    int? videoStartTimestamp,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -612,6 +615,7 @@ class RawAPI {
       "reply_parameters": replyParameters?.toJson(),
       "show_caption_above_media": showCaptionAboveMedia,
       "allow_paid_broadcast": allowPaidBroadcast,
+      "video_start_timestamp": videoStartTimestamp,
     };
     final response = await _makeApiJsonCall(
       APIMethod.copyMessage,
@@ -792,8 +796,11 @@ class RawAPI {
     String? messageEffectId,
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
+    InputFile? cover,
+    int? startTimestamp,
   }) async {
-    final field = "video";
+    const field = "video";
+    const coverField = "cover";
     final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
@@ -813,12 +820,15 @@ class RawAPI {
       "message_effect_id": messageEffectId,
       "show_caption_above_media": showCaptionAboveMedia,
       "allow_paid_broadcast": allowPaidBroadcast,
+      "start_timestamp": startTimestamp,
     };
     params[field] = video.getValue(field);
     params[_thumb] = thumbnail?.getValue(_thumb);
+    params[coverField] = cover?.getValue(coverField);
 
     final l = [_MultipartHelper(video, field)];
     if (thumbnail != null) l.add(_MultipartHelper(thumbnail, _thumb));
+    if (cover != null) l.add(_MultipartHelper(cover, coverField));
     final files = _getFiles(l);
 
     final response = await _makeApiJsonCall(
@@ -4222,8 +4232,9 @@ class RawAPI {
   /// Returns `true` on success.
   ///
   /// Parameters:
-  /// - [userId] (int, required): Unique identifier of the target user that will receive the gift.
   /// - [giftId] (String, required): Identifier of the gift.
+  /// - [userId] (int): Unique identifier of the target user that will receive the gift.
+  /// - [chatId] (ID): Required if user_id is not specified. Unique identifier for the chat or username of the channel (in the format @channelusername) that will receive the gift.
   /// - [text] (String, optional): Text that will be shown along with the gift; 0-255 characters.
   /// - [textParseMode] (String, optional): Mode for parsing entities in the text. Entities other than
   ///   “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, and “custom_emoji” are ignored.
@@ -4232,8 +4243,9 @@ class RawAPI {
   /// - [payForUpgrade] - Pass True to pay for the gift upgrade from the bot's
   /// balance, thereby making the upgrade free for the receiver
   Future<bool> sendGift({
-    required int userId,
     required String giftId,
+    int? userId,
+    ID? chatId,
     String? text,
     ParseMode? textParseMode,
     List<MessageEntity>? textEntities,
@@ -4241,6 +4253,7 @@ class RawAPI {
   }) async {
     final params = {
       "user_id": userId,
+      "chat_id": chatId?.id,
       "gift_id": giftId,
       "text": text,
       "text_parse_mode": textParseMode?.value,
