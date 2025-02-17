@@ -1,27 +1,18 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'input_paid_media_type.g.dart';
 
 /// This object represents the type of the input paid media.
+@JsonEnum(alwaysCreate: true)
 enum InputPaidMediaType {
   /// Represents a photo paid media.
-  photo("photo"),
+  @JsonValue("photo")
+  photo,
 
   /// Represents a video paid media.
-  video("video"),
+  @JsonValue("video")
+  video,
   ;
 
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [InputPaidMediaType].
-  const InputPaidMediaType(this.value);
-
-  /// Constructs a new [InputPaidMediaType] from a [String].
-  static InputPaidMediaType fromJson(String value) {
-    return InputPaidMediaType.values.firstWhere((e) => e.value == value);
-  }
-
-  /// Converts this [InputPaidMediaType] to a [String].
-  String toJson() {
-    return value;
-  }
+  /// Converts the [InputPaidMediaType] to its corresponding JSON value.
+  String toJson() => _$InputPaidMediaTypeEnumMap[this]!;
 }

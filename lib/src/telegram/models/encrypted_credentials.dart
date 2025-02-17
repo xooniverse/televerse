@@ -1,38 +1,29 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// Describes data required for decrypting and authenticating EncryptedPassportElement. See the Telegram Passport Documentation for a complete description of the data decryption and authentication processes.
-class EncryptedCredentials {
-  /// Base64-encoded encrypted JSON-serialized data with unique user's payload, data hashes and secrets required for EncryptedPassportElement decryption and authentication
-  final String data;
+part 'encrypted_credentials.freezed.dart';
+part 'encrypted_credentials.g.dart';
 
-  /// Base64-encoded data hash for data authentication
-  final String hash;
-
-  /// Base64-encoded secret, encrypted with the bot's public RSA key, required for data decryption
-  final String secret;
-
+/// Describes data required for decrypting and authenticating
+/// EncryptedPassportElement. See the Telegram Passport Documentation for a
+/// complete description of the data decryption and authentication processes.
+@freezed
+class EncryptedCredentials with _$EncryptedCredentials {
   /// Creates a new [EncryptedCredentials] object.
-  const EncryptedCredentials({
-    required this.data,
-    required this.hash,
-    required this.secret,
-  });
+  const factory EncryptedCredentials({
+    /// Base64-encoded encrypted JSON-serialized data with unique user's
+    /// payload, data hashes, and secrets required for EncryptedPassportElement
+    /// decryption and authentication
+    required String data,
+
+    /// Base64-encoded data hash for data authentication
+    required String hash,
+
+    /// Base64-encoded secret, encrypted with the bot's public RSA key, required
+    /// for data decryption
+    required String secret,
+  }) = _EncryptedCredentials;
 
   /// Creates a new [EncryptedCredentials] object from json.
-  Map<String, dynamic> toJson() {
-    return {
-      'data': data,
-      'hash': hash,
-      'secret': secret,
-    };
-  }
-
-  /// Creates a new [EncryptedCredentials] object from json.
-  factory EncryptedCredentials.fromJson(Map<String, dynamic> json) {
-    return EncryptedCredentials(
-      data: json['data']!,
-      hash: json['hash']!,
-      secret: json['secret']!,
-    );
-  }
+  factory EncryptedCredentials.fromJson(Map<String, dynamic> json) =>
+      _$EncryptedCredentialsFromJson(json);
 }

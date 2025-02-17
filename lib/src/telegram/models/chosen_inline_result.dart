@@ -1,53 +1,36 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/abstractions.dart';
+import 'package:televerse/src/telegram/models/location.dart';
+import 'package:televerse/src/telegram/models/user.dart';
 
-/// Represents a result of an inline query that was chosen by the user and sent to their chat partner.
-class ChosenInlineResult implements WithUser {
-  /// The unique identifier for the result that was chosen
-  final String resultId;
+part 'chosen_inline_result.freezed.dart';
+part 'chosen_inline_result.g.dart';
 
-  /// The user that chose the result
-  @override
-  final User from;
-
-  /// Optional. Sender location, only for bots that require user location
-  final Location? location;
-
-  /// Optional. Identifier of the sent inline message. Available only if there is an inline keyboard attached to the message. Will be also received in callback queries and can be used to edit the message.
-  final String? inlineMessageId;
-
-  /// The query that was used to obtain the result
-  final String query;
-
+/// Represents a result of an inline query that was chosen by the user and sent
+/// to their chat partner.
+@freezed
+class ChosenInlineResult with _$ChosenInlineResult implements WithUser {
   /// Creates a new [ChosenInlineResult] object.
-  const ChosenInlineResult({
-    required this.resultId,
-    required this.from,
-    this.location,
-    this.inlineMessageId,
-    required this.query,
-  });
+  const factory ChosenInlineResult({
+    /// The unique identifier for the result that was chosen
+    @JsonKey(name: 'result_id') required String resultId,
 
-  /// Converts a [ChosenInlineResult] to a [Map] for JSON encoding.
-  Map<String, dynamic> toJson() {
-    return {
-      'result_id': resultId,
-      'from': from.toJson(),
-      'location': location?.toJson(),
-      'inline_message_id': inlineMessageId,
-      'query': query,
-    }..removeWhere(_nullFilter);
-  }
+    /// The user that chose the result
+    required User from,
+
+    /// Optional. Sender location, only for bots that require user location
+    Location? location,
+
+    /// Optional. Identifier of the sent inline message. Available only if there
+    /// is an inline keyboard attached to the message. Will be also received in
+    /// callback queries and can be used to edit the message.
+    @JsonKey(name: 'inline_message_id') String? inlineMessageId,
+
+    /// The query that was used to obtain the result
+    required String query,
+  }) = _ChosenInlineResult;
 
   /// Creates a new [ChosenInlineResult] object from json.
-  factory ChosenInlineResult.fromJson(Map<String, dynamic> json) {
-    return ChosenInlineResult(
-      resultId: json['result_id'] as String,
-      from: User.fromJson(json['from'] as Map<String, dynamic>),
-      location: json['location'] == null
-          ? null
-          : Location.fromJson(json['location'] as Map<String, dynamic>),
-      inlineMessageId: json['inline_message_id'] as String?,
-      query: json['query'] as String,
-    );
-  }
+  factory ChosenInlineResult.fromJson(Map<String, dynamic> json) =>
+      _$ChosenInlineResultFromJson(json);
 }

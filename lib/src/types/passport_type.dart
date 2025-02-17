@@ -1,57 +1,62 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'passport_type.g.dart';
 
 /// This object represents a Telegram Passport element containing the user's personal details.
+@JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)
 enum PassportType {
   /// Passport of the user
-  passport("passport"),
+  @JsonValue('passport')
+  passport,
 
   /// Driver's license of the user
-  driverLicense("driver_license"),
+  @JsonValue('driver_license')
+  driverLicense,
 
   /// Identity card of the user
-  identityCard("identity_card"),
+  @JsonValue('identity_card')
+  identityCard,
 
   /// Internal passport of the user
-  internalPassport("internal_passport"),
+  @JsonValue('internal_passport')
+  internalPassport,
 
   /// Address of the user
-  address("address"),
+  @JsonValue('address')
+  address,
 
   /// Utility bill of the user
-  utilityBill("utility_bill"),
+  @JsonValue('utility_bill')
+  utilityBill,
 
   /// Bank statement of the user
-  bankStatement("bank_statement"),
+  @JsonValue('bank_statement')
+  bankStatement,
 
   /// Rental agreement of the user
-  rentalAgreement("rental_agreement"),
+  @JsonValue('rental_agreement')
+  rentalAgreement,
 
   /// Passport registration page of the user
-  passportRegistration("passport_registration"),
+  @JsonValue('passport_registration')
+  passportRegistration,
 
   /// Temporary registration page of the user
-  temporaryRegistration("temporary_registration"),
+  @JsonValue('temporary_registration')
+  temporaryRegistration,
 
   /// Phone number of the user
-  phoneNumber("phone_number"),
+  @JsonValue('phone_number')
+  phoneNumber,
 
   /// Email of the user
-  email("email"),
+  @JsonValue('email')
+  email,
 
   /// Personal Details of the user
-  personalDetails("personal_details");
+  @JsonValue('personal_details')
+  personalDetails;
 
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [PassportType].
-  const PassportType(this.value);
-
-  /// Constructs a new [PassportType] from a [String].
-  static PassportType fromJson(String value) {
-    return PassportType.values.firstWhere((e) => e.value == value);
-  }
-
-  /// Converts this [PassportType] to a [String].
-  String toJson() => value;
+  /// Converts the [PassportType] to its corresponding JSON value.
+  String toJson() => _$PassportTypeEnumMap[this]!;
 }

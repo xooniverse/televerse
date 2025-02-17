@@ -1,30 +1,17 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// This object represents the type of the paid media.
+/// The type of a `PaidMedia`
+@JsonEnum(fieldRename: FieldRename.snake)
 enum PaidMediaType {
-  /// Represents a preview of paid media.
-  preview("preview"),
+  /// Preview of paid media
+  @JsonValue('preview')
+  preview,
 
-  /// Represents a photo paid media.
-  photo("photo"),
+  /// Photo paid media
+  @JsonValue('photo')
+  photo,
 
-  /// Represents a video paid media.
-  video("video"),
-  ;
-
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [PaidMediaType].
-  const PaidMediaType(this.value);
-
-  /// Constructs a new [PaidMediaType] from a [String].
-  static PaidMediaType fromJson(String value) {
-    return PaidMediaType.values.firstWhere((e) => e.value == value);
-  }
-
-  /// Converts this [PaidMediaType] to a [String].
-  String toJson() {
-    return value;
-  }
+  /// Video paid media
+  @JsonValue('video')
+  video;
 }

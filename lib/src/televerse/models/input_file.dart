@@ -112,15 +112,20 @@ class InputFile {
   }
 
   /// Returns the file name of the [InputFile].
-  String getValue([String? field]) {
+  String getValue() {
     switch (type) {
       case InputFileType.fileId:
         return fileId!;
       case InputFileType.url:
         return url!.toString();
       case InputFileType.bytes:
-        return "attach://${field ?? 'file'}";
+        return "attach://file$hashCode";
     }
+  }
+
+  /// Returns the file attach name
+  String getAttachName() {
+    return "file$hashCode";
   }
 
   /// Get bytes of either the file or the bytes itself.
@@ -133,5 +138,46 @@ class InputFile {
         type: TeleverseExceptionType.invalidParameter,
       );
     }
+  }
+
+  @override
+  bool operator ==(covariant InputFile other) {
+    if (identical(this, other)) return true;
+    final mapEquals = const DeepCollectionEquality().equals;
+
+    return other.name == name &&
+        other.fileId == fileId &&
+        other.url == url &&
+        other.bytes == bytes &&
+        other.mimeType == mimeType &&
+        mapEquals(other.headers, headers);
+  }
+
+  @override
+  int get hashCode {
+    return name.hashCode ^
+        fileId.hashCode ^
+        url.hashCode ^
+        bytes.hashCode ^
+        mimeType.hashCode ^
+        headers.hashCode;
+  }
+}
+
+/// Converter for InputFile
+class InputFileConverter implements JsonConverter<InputFile, String> {
+  /// Constructs the InputFile converter
+  const InputFileConverter();
+
+  /// Placeholder - do not use.
+  @override
+  InputFile fromJson(String json) {
+    throw Exception("Can't do fromJson on InputFile");
+  }
+
+  /// Gets the value of the InputFile
+  @override
+  String toJson(InputFile data) {
+    return data.getValue();
   }
 }

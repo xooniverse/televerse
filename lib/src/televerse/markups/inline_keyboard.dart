@@ -1,111 +1,90 @@
-part of 'package:televerse/televerse.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/telegram.dart';
 
-/// Represents an inline keyboard that appears right next to the message it belongs to. This is a shortcut for [InlineKeyboardMarkup].
+part 'inline_keyboard.freezed.dart';
+part 'inline_keyboard.g.dart';
+
+/// Represents an inline keyboard that appears right next to the message it
+/// belongs to. This is a shortcut for [InlineKeyboardMarkup].
 ///
-/// With `InlineKeyboard` you can create a keyboard with buttons that can be pressed inline. This is useful for things like inline menus.
-/// For example, you can create a button that will open a URL when pressed or a button that will send a callback query to your bot.
+/// With `InlineKeyboard` you can create a keyboard with buttons that can be
+/// pressed inline. This is useful for things like inline menus. For example,
+/// you can create a button that will open a URL when pressed or a button that
+/// will send a callback query to your bot.
 ///
 /// ```dart
 /// // Create a new inline keyboard.
-/// var keyboard = InlineKeyboard();
-///
-/// // Add a button with the text "Open Google" and the URL "https://google.com".
-/// keyboard.addUrl("Open Google", "https://google.com");
-///
-/// // Add a button with the text "Send a callback query" and the data "callback_query".
-/// keyboard.add("Send a callback query", "callback_query");
+/// var keyboard = InlineKeyboard()
+///   ..addUrl("Open Google", "https://google.com")
+///   ..row()
+///   ..add("Send a callback query", "callback_query");
 ///
 /// // Send the keyboard with the message "Hello World!".
 /// ctx.api.sendMessage(ctx.id, "Hello World!", replyMarkup: keyboard);
 /// ```
-///
-/// You can also add multiple rows to the keyboard. This is useful if you want to create a menu with multiple pages. Simply use the [InlineKeyboard.row] method to add a new row.
-/// ```dart
-/// // Create a new inline keyboard.
-/// var keyboard = InlineKeyboard();
-///
-/// // Add a button with the text "Open Google" and the URL "https://google.com".
-/// keyboard.addUrl("Open Google", "https://google.com");
-///
-/// // Add a new row.
-/// keyboard.row();
-///
-/// // Add a button with the text "Send a callback query" and the data "callback_query".
-/// keyboard.add("Send a callback query", "callback_query");
-///
-/// // Send the keyboard with the message "Hello World!".
-/// ctx.api.sendMessage(ctx.id, "Hello World!", replyMarkup: keyboard);
-/// ```
-///
-/// Additionally, you can also add - web apps by using the [InlineKeyboard.addWebApp] method,
-class InlineKeyboard extends InlineKeyboardMarkup {
+@freezed
+class InlineKeyboard with _$InlineKeyboard implements InlineKeyboardMarkup {
   /// Creates a new [InlineKeyboard].
   ///
-  /// Inline Keyboard is an easy way to create a keyboard with buttons that can be pressed inline. This is useful for things like inline menus.
-  ///
-  /// Televerse provides a shortcut for [InlineKeyboardMarkup] called [InlineKeyboard]. This is a wrapper around [InlineKeyboardMarkup] that provides a more convenient way to create inline keyboards.
-  ///
-  /// Telegram supports multiple types of inline buttons. For each of them, Televerse provides a method to add them to the keyboard. These methods are:
-  /// - [InlineKeyboard.add] - Adds a button with given the `text` and `data`. When the button is pressed, a callback query with the given `data` will be sent to your bot.
-  /// - [InlineKeyboard.addUrl] - Adds a button with given the `text` and `url`. When the button is pressed, the given `url` will be opened.
-  /// - [InlineKeyboard.addWebApp] - Adds a button with given the `text` and `url`. When the button is pressed, the given `url` will be opened as a web app.
-  ///
-  /// You can also add multiple rows to the keyboard. This is useful if you want to create a menu with multiple pages. Simply use the [InlineKeyboard.row] method to add a new row.
-  ///
-  /// Simply you can create a inline keyboard as follows:
-  /// ```dart
-  /// // Create a new inline keyboard.
-  /// var keyboard = InlineKeyboard()
-  ///   .addUrl("Open Google", "https://google.com")
-  ///   .row()
-  ///   .add("Send a callback query", "callback_query");
-  ///
-  /// // Send the keyboard with the message "Hello World!".
-  /// ctx.api.sendMessage(ctx.id, "Hello World!", replyMarkup: keyboard);
-  /// ```
-  InlineKeyboard() : super(inlineKeyboard: [[]]);
+  /// Inline Keyboard is an easy way to create a keyboard with buttons that can
+  /// be pressed inline. This is useful for things like inline menus.
+  factory InlineKeyboard({
+    @Default([<InlineKeyboardButton>[]])
+    @JsonKey(name: 'inline_keyboard')
+    List<List<InlineKeyboardButton>> inlineKeyboard,
+  }) = _InlineKeyboard;
+
+  InlineKeyboard._();
 
   /// Adds a new row to the current keyboard.
   InlineKeyboard row() {
     if (inlineKeyboard.last.isEmpty) return this;
-    inlineKeyboard.add([]);
-    return this;
+    return InlineKeyboard(inlineKeyboard: [...inlineKeyboard, []]);
   }
 
-  /// Adds a Inline Keyboard Button with given [text] and [data] to the current row.
+  /// Adds a Inline Keyboard Button with given [text] and [data] to the current
+  /// row.
   InlineKeyboard add(String text, String data) {
-    inlineKeyboard.last.add(
+    final newKeyboard = [...inlineKeyboard];
+    newKeyboard.last = [
+      ...newKeyboard.last,
       InlineKeyboardButton(
         text: text,
         callbackData: data,
       ),
-    );
-    return this;
+    ];
+    return InlineKeyboard(inlineKeyboard: newKeyboard);
   }
 
-  /// Adds a button with a URL to your web app that will be launched when the button is pressed.
+  /// Adds a button with a URL to your web app that will be launched when the
+  /// button is pressed.
   InlineKeyboard addWebApp(String text, String url) {
-    inlineKeyboard.last.add(
+    final newKeyboard = [...inlineKeyboard];
+    newKeyboard.last = [
+      ...newKeyboard.last,
       InlineKeyboardButton(
         text: text,
         webApp: WebAppInfo(url: url),
       ),
-    );
-    return this;
+    ];
+    return InlineKeyboard(inlineKeyboard: newKeyboard);
   }
 
-  /// Adds a button with given [text] and [url]. When tapped the given URL is opened.
+  /// Adds a button with given [text] and [url]. When tapped the given URL is
+  /// opened.
   InlineKeyboard addUrl(String text, String url) {
-    inlineKeyboard.last.add(
+    final newKeyboard = [...inlineKeyboard];
+    newKeyboard.last = [
+      ...newKeyboard.last,
       InlineKeyboardButton(
         text: text,
         url: url,
       ),
-    );
-    return this;
+    ];
+    return InlineKeyboard(inlineKeyboard: newKeyboard);
   }
 
-  /// Adds a button withgiven [text] and login url ([url])
+  /// Adds a button with given [text] and login url ([url])
   InlineKeyboard addLogin(
     String text,
     String url, {
@@ -113,7 +92,9 @@ class InlineKeyboard extends InlineKeyboardMarkup {
     String? botUsername,
     bool? requestWriteAccess,
   }) {
-    inlineKeyboard.last.add(
+    final newKeyboard = [...inlineKeyboard];
+    newKeyboard.last = [
+      ...newKeyboard.last,
       InlineKeyboardButton(
         text: text,
         loginUrl: LoginURL(
@@ -123,39 +104,47 @@ class InlineKeyboard extends InlineKeyboardMarkup {
           requestWriteAccess: requestWriteAccess,
         ),
       ),
-    );
-    return this;
+    ];
+    return InlineKeyboard(inlineKeyboard: newKeyboard);
   }
 
-  /// Adds a button with the given [text] label when tapped prompts user to prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline [query] in the input field
-  InlineKeyboard switchInlineQuery(
-    String text, [
-    String query = "",
-  ]) {
-    inlineKeyboard.last.add(
+  /// Adds a button with the given [text] label when tapped prompts user to
+  /// prompt the user to select one of their chats, open that chat and insert
+  /// the bot's username and the specified inline [query] in the input field
+  InlineKeyboard switchInlineQuery(String text, [String query = ""]) {
+    final newKeyboard = [...inlineKeyboard];
+    newKeyboard.last = [
+      ...newKeyboard.last,
       InlineKeyboardButton(
         text: text,
         switchInlineQuery: query,
       ),
-    );
-    return this;
+    ];
+    return InlineKeyboard(inlineKeyboard: newKeyboard);
   }
 
-  /// Adds a button with the given [text] label when tapped the button will insert the bot's username and the specified inline [query] in the current chat's input field.
+  /// Adds a button with the given [text] label when tapped the button will
+  /// insert the bot's username and the specified inline [query] in the current
+  /// chat's input field.
   InlineKeyboard switchInlineQueryCurrentChat(
     String text, [
     String query = "",
   ]) {
-    inlineKeyboard.last.add(
+    final newKeyboard = [...inlineKeyboard];
+    newKeyboard.last = [
+      ...newKeyboard.last,
       InlineKeyboardButton(
         text: text,
         switchInlineQueryCurrentChat: query,
       ),
-    );
-    return this;
+    ];
+    return InlineKeyboard(inlineKeyboard: newKeyboard);
   }
 
-  /// Adds a button with the given [text] label when tapped the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field.
+  /// Adds a button with the given [text] label when tapped the button will
+  /// prompt the user to select one of their chats of the specified type, open
+  /// that chat and insert the bot's username and the specified inline query in
+  /// the input field.
   InlineKeyboard switchInlineQueryChosenChat(
     String text, {
     String query = "",
@@ -164,7 +153,9 @@ class InlineKeyboard extends InlineKeyboardMarkup {
     bool? allowGroupChats,
     bool? allowChannelChats,
   }) {
-    inlineKeyboard.last.add(
+    final newKeyboard = [...inlineKeyboard];
+    newKeyboard.last = [
+      ...newKeyboard.last,
       InlineKeyboardButton(
         text: text,
         switchInlineQueryChosenChat: SwitchInlineQueryChosenChat(
@@ -175,51 +166,75 @@ class InlineKeyboard extends InlineKeyboardMarkup {
           allowChannelChats: allowChannelChats,
         ),
       ),
-    );
-    return this;
+    ];
+    return InlineKeyboard(inlineKeyboard: newKeyboard);
   }
 
   /// Adds a callback game button to the keyboard
-  InlineKeyboard game(
-    String text, {
-    CallbackGame game = const CallbackGame(),
-  }) {
-    inlineKeyboard.last.add(
+  InlineKeyboard game(String text, {CallbackGame game = const CallbackGame()}) {
+    final newKeyboard = [...inlineKeyboard];
+    newKeyboard.last = [
+      ...newKeyboard.last,
       InlineKeyboardButton(
         text: text,
         callbackGame: game,
       ),
-    );
-    return this;
+    ];
+    return InlineKeyboard(inlineKeyboard: newKeyboard);
   }
 
-  /// Adds a [Pay Button](https://core.telegram.org/bots/api#payments) to the keyboard
-  InlineKeyboard pay(
-    String text, {
-    bool pay = true,
-  }) {
-    inlineKeyboard.last.add(
+  /// Adds a [Pay Button](https://core.telegram.org/bots/api#payments) to the
+  /// keyboard
+  InlineKeyboard pay(String text, {bool pay = true}) {
+    final newKeyboard = [...inlineKeyboard];
+    newKeyboard.last = [
+      ...newKeyboard.last,
       InlineKeyboardButton(
         text: text,
         pay: pay,
       ),
-    );
-    return this;
+    ];
+    return InlineKeyboard(inlineKeyboard: newKeyboard);
   }
 
-  /// Adds a button which when pressed copies an arbitrary text specified by [copyText]
-  InlineKeyboard copyText(
-    String text, {
-    required String copyText,
-  }) {
-    inlineKeyboard.last.add(
+  /// Adds a button which when pressed copies an arbitrary text specified by
+  /// [copyText]
+  InlineKeyboard copyText(String text, {required String copyText}) {
+    final newKeyboard = [...inlineKeyboard];
+    newKeyboard.last = [
+      ...newKeyboard.last,
       InlineKeyboardButton(
         text: text,
         copyText: CopyTextButton(
           text: copyText,
         ),
       ),
-    );
-    return this;
+    ];
+    return InlineKeyboard(inlineKeyboard: newKeyboard);
+  }
+
+  /// Creates an InlineKeyboard from JSON
+  factory InlineKeyboard.fromJson(Map<String, dynamic> json) => InlineKeyboard(
+        inlineKeyboard: (json['inline_keyboard'] as List)
+            .map(
+              (row) => (row as List)
+                  .map(
+                    (button) => InlineKeyboardButton.fromJson(
+                      button as Map<String, dynamic>,
+                    ),
+                  )
+                  .toList(),
+            )
+            .toList(),
+      );
+
+  /// Converts the InlineKeyboard to JSON
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'inline_keyboard': inlineKeyboard
+          .map((row) => row.map((button) => button.toJson()).toList())
+          .toList(),
+    };
   }
 }

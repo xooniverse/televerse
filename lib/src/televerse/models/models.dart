@@ -8,6 +8,7 @@ import 'dart:io' as io;
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart' show DioException;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart' hide HandlerScope;

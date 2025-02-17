@@ -1,45 +1,27 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/telegram.dart';
+part 'chat_boost_removed.freezed.dart';
+part 'chat_boost_removed.g.dart';
 
 /// This object represents a boost removed from a chat.
-class ChatBoostRemoved implements WithChat {
-  /// Chat which was boosted
-  @override
-  final Chat chat;
-
-  /// Unique identifier of the boost
-  final String boostId;
-
-  /// Point in time (Unix timestamp) when the boost was removed
-  final int removeDate;
-
-  /// Source of the removed boost
-  final ChatBoostSource source;
-
+@freezed
+class ChatBoostRemoved with _$ChatBoostRemoved implements WithChat {
   /// Creates a `ChatBoostRemoved` object.
-  const ChatBoostRemoved({
-    required this.chat,
-    required this.boostId,
-    required this.removeDate,
-    required this.source,
-  });
+  const factory ChatBoostRemoved({
+    /// Chat which was boosted
+    required final Chat chat,
 
-  /// Converts the `ChatBoostRemoved` object to a JSON object.
-  Map<String, dynamic> toJson() {
-    return {
-      'chat': chat.toJson(),
-      'boost_id': boostId,
-      'remove_date': removeDate,
-      'source': source.toJson(),
-    };
-  }
+    /// Unique identifier of the boost
+    @JsonKey(name: 'boost_id') required final String boostId,
+
+    /// Point in time (Unix timestamp) when the boost was removed
+    @JsonKey(name: 'remove_date') required final int removeDate,
+
+    /// Source of the removed boost
+    required final ChatBoostSource source,
+  }) = _ChatBoostRemoved;
 
   /// Creates a `ChatBoostRemoved` object from a JSON object.
-  factory ChatBoostRemoved.fromJson(Map<String, dynamic> json) {
-    return ChatBoostRemoved(
-      chat: Chat.fromJson(json['chat']),
-      boostId: json['boost_id'],
-      removeDate: json['remove_date'],
-      source: ChatBoostSource.fromJson(json['source']),
-    );
-  }
+  factory ChatBoostRemoved.fromJson(Map<String, dynamic> json) =>
+      _$ChatBoostRemovedFromJson(json);
 }

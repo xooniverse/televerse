@@ -1,44 +1,27 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'forum_topic.freezed.dart';
+part 'forum_topic.g.dart';
 
 /// This object represents a forum topic.
-class ForumTopic {
-  /// Unique identifier of the forum topic
-  final String messageThreadId;
-
-  /// Name of the topic
-  final String name;
-
-  /// Color of the topic icon in RGB format
-  final int iconColor;
-
-  /// Optional. Unique identifier of the custom emoji shown as the topic icon
-  final String? iconCustomEmojiId;
-
+@freezed
+class ForumTopic with _$ForumTopic {
   /// Creates a new [ForumTopic] object.
-  const ForumTopic({
-    required this.messageThreadId,
-    required this.name,
-    required this.iconColor,
-    this.iconCustomEmojiId,
-  });
+  const factory ForumTopic({
+    /// Unique identifier of the forum topic
+    @JsonKey(name: 'message_thread_id') required String messageThreadId,
+
+    /// Name of the topic
+    @JsonKey(name: 'name') required String name,
+
+    /// Color of the topic icon in RGB format
+    @JsonKey(name: 'icon_color') required int iconColor,
+
+    /// Optional. Unique identifier of the custom emoji shown as the topic icon
+    @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+  }) = _ForumTopic;
 
   /// Creates a new [ForumTopic] object from json.
-  factory ForumTopic.fromJson(Map<String, dynamic> json) {
-    return ForumTopic(
-      messageThreadId: json['message_thread_id'] as String,
-      name: json['name'] as String,
-      iconColor: json['icon_color'] as int,
-      iconCustomEmojiId: json['icon_custom_emoji_id'] as String?,
-    );
-  }
-
-  /// Converts a [ForumTopic] object to json.
-  Map<String, dynamic> toJson() {
-    return {
-      'message_thread_id': messageThreadId,
-      'name': name,
-      'icon_color': iconColor,
-      'icon_custom_emoji_id': iconCustomEmojiId,
-    }..removeWhere(_nullFilter);
-  }
+  factory ForumTopic.fromJson(Map<String, dynamic> json) =>
+      _$ForumTopicFromJson(json);
 }

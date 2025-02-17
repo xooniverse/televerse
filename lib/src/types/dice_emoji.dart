@@ -1,38 +1,34 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'dice_emoji.g.dart';
 
 /// This object represents dice emoji.
+@JsonEnum(alwaysCreate: true)
 enum DiceEmoji {
   /// 🎲
-  dice("🎲"),
+  @JsonValue("🎲")
+  dice,
 
   /// 🎯
-  dart("🎯"),
+  @JsonValue("🎯")
+  dart,
 
   /// 🏀
-  basketball("🏀"),
+  @JsonValue("🏀")
+  basketball,
 
   /// ⚽
-  football("⚽"),
+  @JsonValue("⚽")
+  football,
 
   /// 🎳
-  bowling("🎳"),
+  @JsonValue("🎳")
+  bowling,
 
   /// 🎰
-  slotMachine("🎰");
+  @JsonValue("🎰")
+  slotMachine;
 
-  /// The value of this enum.
-  const DiceEmoji(this.emoji);
-
-  /// The emoji of this enum.
-  final String emoji;
-
-  /// Constructs a new [DiceEmoji] from a [String].
-  factory DiceEmoji.fromJson(String emoji) {
-    return DiceEmoji.values.firstWhere((e) => e.emoji == emoji);
-  }
-
-  /// Converts this [DiceEmoji] to a [String].
-  factory DiceEmoji.fromEmoji(String emoji) {
-    return DiceEmoji.values.firstWhere((e) => e.emoji == emoji);
-  }
+  /// Converts the [DiceEmoji] to its corresponding JSON value.
+  String toJson() => _$DiceEmojiEnumMap[this]!;
 }

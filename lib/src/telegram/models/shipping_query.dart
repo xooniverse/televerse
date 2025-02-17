@@ -1,45 +1,31 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/abstractions.dart';
+
+import 'user.dart';
+import 'shipping_address.dart';
+
+part 'shipping_query.freezed.dart';
+part 'shipping_query.g.dart';
 
 /// This object contains information about an incoming shipping query.
-class ShippingQuery implements WithUser {
-  /// Unique query identifier
-  final String id;
-
-  /// User who sent the query
-  @override
-  final User from;
-
-  /// Bot specified invoice payload
-  final String invoicePayload;
-
-  /// User specified shipping address
-  final ShippingAddress shippingAddress;
-
+@freezed
+class ShippingQuery with _$ShippingQuery implements WithUser {
   /// Constructs a [ShippingQuery] object
-  const ShippingQuery({
-    required this.id,
-    required this.from,
-    required this.invoicePayload,
-    required this.shippingAddress,
-  });
+  const factory ShippingQuery({
+    /// Unique query identifier
+    required String id,
 
-  /// Converts a [ShippingQuery] object to a JSON object
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'from': from.toJson(),
-      'invoice_payload': invoicePayload,
-      'shipping_address': shippingAddress.toJson(),
-    };
-  }
+    /// User who sent the query
+    required User from,
+
+    /// Bot specified invoice payload
+    @JsonKey(name: 'invoice_payload') required String invoicePayload,
+
+    /// User specified shipping address
+    @JsonKey(name: 'shipping_address') required ShippingAddress shippingAddress,
+  }) = _ShippingQuery;
 
   /// Creates a [ShippingQuery] object from a JSON object
-  factory ShippingQuery.fromJson(Map<String, dynamic> json) {
-    return ShippingQuery(
-      id: json['id']!,
-      from: User.fromJson(json['from']!),
-      invoicePayload: json['invoice_payload']!,
-      shippingAddress: ShippingAddress.fromJson(json['shipping_address']!),
-    );
-  }
+  factory ShippingQuery.fromJson(Map<String, dynamic> json) =>
+      _$ShippingQueryFromJson(json);
 }

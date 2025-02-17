@@ -175,7 +175,7 @@ void main() {
       InputFile.fromFileId(stickerFileID),
     );
     expect(message.sticker != null, true, reason: "Sticker is null");
-    expect(message.sticker?.runtimeType, Sticker, reason: "Sticker is null");
+    expect(message.sticker, isA<Sticker>(), reason: "Sticker is null");
   });
 
   test("Delete Message", () async {

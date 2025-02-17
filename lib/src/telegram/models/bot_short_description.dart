@@ -1,26 +1,18 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'bot_short_description.freezed.dart';
+part 'bot_short_description.g.dart';
 
 /// This object represents the bot's short description.
-class BotShortDescription {
-  /// Bot's short description.
-  final String shortDescription;
-
+@freezed
+class BotShortDescription with _$BotShortDescription {
   /// Creates the Bot Short Description object.
-  const BotShortDescription({
-    required this.shortDescription,
-  });
+  const factory BotShortDescription({
+    /// Bot's short description.
+    @JsonKey(name: 'short_description') required String shortDescription,
+  }) = _BotShortDescription;
 
   /// Creates the Bot Short Description object from a JSON object.
-  factory BotShortDescription.fromJson(Map<String, dynamic> json) {
-    return BotShortDescription(
-      shortDescription: json['short_description'] as String,
-    );
-  }
-
-  /// Creates a JSON object from the Bot Short Description object.
-  Map<String, dynamic> toJson() {
-    return {
-      'short_description': shortDescription,
-    };
-  }
+  factory BotShortDescription.fromJson(Map<String, dynamic> json) =>
+      _$BotShortDescriptionFromJson(json);
 }

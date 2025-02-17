@@ -1,38 +1,25 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// This object represents a service message about a new forum topic created in the chat.
-class ForumTopicCreated {
-  /// Name of the topic
-  final String name;
+part 'forum_topic_created.freezed.dart';
+part 'forum_topic_created.g.dart';
 
-  /// Color of the topic icon in RGB format
-  final int color;
-
-  /// Optional. Unique identifier of the custom emoji shown as the topic icon
-  final String? iconCustomEmojiId;
-
+/// This object represents a service message about a new forum topic created in
+/// the chat.
+@freezed
+class ForumTopicCreated with _$ForumTopicCreated {
   /// Creates a new [ForumTopicCreated] object.
-  const ForumTopicCreated({
-    required this.name,
-    required this.color,
-    this.iconCustomEmojiId,
-  });
+  const factory ForumTopicCreated({
+    /// Name of the topic
+    required String name,
+
+    /// Color of the topic icon in RGB format
+    @JsonKey(name: 'icon_color') required int color,
+
+    /// Optional. Unique identifier of the custom emoji shown as the topic icon
+    @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+  }) = _ForumTopicCreated;
 
   /// Creates a new [ForumTopicCreated] object from json.
-  factory ForumTopicCreated.fromJson(Map<String, dynamic> json) {
-    return ForumTopicCreated(
-      name: json['name'],
-      color: json['icon_color'],
-      iconCustomEmojiId: json['icon_custom_emoji_id'],
-    );
-  }
-
-  /// Converts a [ForumTopicCreated] object to json.
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'color': color,
-      'icon_custom_emoji_id': iconCustomEmojiId,
-    }..removeWhere(_nullFilter);
-  }
+  factory ForumTopicCreated.fromJson(Map<String, dynamic> json) =>
+      _$ForumTopicCreatedFromJson(json);
 }

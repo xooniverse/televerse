@@ -1,7 +1,7 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 /// This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported:
-/// - [BotCommandScopeType.defaultScope] : The default scope. Default commands are used if no commands with a narrower scope are specified for the user.
+/// - [BotCommandScopeType.default_] : The default scope. Default commands are used if no commands with a narrower scope are specified for the user.
 /// - [BotCommandScopeType.allPrivateChats] : All private chats.
 /// - [BotCommandScopeType.allGroupChats] : All group and supergroup chats.
 /// - [BotCommandScopeType.allChatAdministrators] : All group and supergroup chat administrators.
@@ -10,37 +10,30 @@ part of 'types.dart';
 /// - [BotCommandScopeType.chatMember] : A specific member of a group or supergroup chat.
 enum BotCommandScopeType {
   /// The default scope. Default commands are used if no commands with a narrower scope are specified for the user.
-  defaultScope("default"),
+  @JsonValue("default")
+  default_,
 
   /// All private chats.
-  allPrivateChats("all_private_chats"),
+  @JsonValue("all_private_chats")
+  allPrivateChats,
 
   /// All group and supergroup chats.
-  allGroupChats("all_group_chats"),
+  @JsonValue("all_group_chats")
+  allGroupChats,
 
   /// All group and supergroup chat administrators.
-  allChatAdministrators("all_chat_administrators"),
+  @JsonValue("all_chat_administrators")
+  allChatAdministrators,
 
   /// A specific chat.
-  chat("chat"),
+  @JsonValue("chat")
+  chat,
 
   /// All administrators of a specific group or supergroup chat.
-  chatAdministrators("chat_administrators"),
+  @JsonValue("chat_administrators")
+  chatAdministrators,
 
   /// A specific member of a group or supergroup chat.
-  chatMember("chat_member");
-
-  /// The value of this enum.
-  final String type;
-
-  /// Constructs a new [BotCommandScopeType].
-  const BotCommandScopeType(this.type);
-
-  /// Constructs a new [BotCommandScopeType] from a [String].
-  factory BotCommandScopeType.fromJson(String type) {
-    return BotCommandScopeType.values.firstWhere((e) => e.type == type);
-  }
-
-  /// Converts this [BotCommandScopeType] to a [String].
-  String toJson() => type;
+  @JsonValue("chat_member")
+  chatMember,
 }

@@ -1,44 +1,53 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'chat_action.g.dart';
 
 /// This object represents a chat action.
+@JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)
 enum ChatAction {
   /// Typing
-  typing._('typing'),
+  @JsonValue('typing')
+  typing,
 
   /// Upload photo
-  uploadPhoto._('upload_photo'),
+  @JsonValue('upload_photo')
+  uploadPhoto,
 
   /// Record video
-  recordVideo._('record_video'),
+  @JsonValue('record_video')
+  recordVideo,
 
   /// Upload video
-  uploadVideo._('upload_video'),
+  @JsonValue('upload_video')
+  uploadVideo,
 
   /// Record audio
-  recordVoice._('record_voice'),
+  @JsonValue('record_voice')
+  recordVoice,
 
   /// Upload audio
-  uploadVoice._('upload_voice'),
+  @JsonValue('upload_voice')
+  uploadVoice,
 
   /// Upload document
-  uploadDocument._('upload_document'),
+  @JsonValue('upload_document')
+  uploadDocument,
 
   /// Find location
-  chooseSticker._('choose_sticker'),
+  @JsonValue('choose_sticker')
+  chooseSticker,
 
   /// Find location
-  findLocation._('find_location'),
+  @JsonValue('find_location')
+  findLocation,
 
   /// Record video note
-  recordVideoNote._('record_video_note'),
+  @JsonValue('record_video_note')
+  recordVideoNote,
 
   /// Upload video note
-  uploadVideoNote._('upload_video_note'),
-  ;
+  @JsonValue('upload_video_note')
+  uploadVideoNote;
 
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [ChatAction].
-  const ChatAction._(this.value);
+  /// Converts the [ChatAction] to its corresponding JSON value.
+  String toJson() => _$ChatActionEnumMap[this]!;
 }

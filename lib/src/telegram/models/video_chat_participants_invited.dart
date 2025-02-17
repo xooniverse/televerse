@@ -1,30 +1,20 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'user.dart';
 
-/// This object represents a service message about new members invited to a video chat.
-class VideoChatParticipantsInvited {
-  /// New members that were invited to the video chat
-  final List<User> users;
+part 'video_chat_participants_invited.freezed.dart';
+part 'video_chat_participants_invited.g.dart';
 
-  /// Constructs a [VideoChatParticipantsInvited] object
-  const VideoChatParticipantsInvited({
-    required this.users,
-  });
+/// This object represents a service message about new members invited to a
+/// video chat.
+@freezed
+class VideoChatParticipantsInvited with _$VideoChatParticipantsInvited {
+  /// Constructs a [VideoChatParticipantsInvited] object.
+  const factory VideoChatParticipantsInvited({
+    /// New members that were invited to the video chat.
+    required List<User> users,
+  }) = _VideoChatParticipantsInvited;
 
-  /// Creates a [VideoChatParticipantsInvited] object from JSON object
-  factory VideoChatParticipantsInvited.fromJson(Map<String, dynamic> json) {
-    return VideoChatParticipantsInvited(
-      users: List<User>.from(
-        (json['users'] as List<dynamic>).map(
-          (x) => User.fromJson(x),
-        ),
-      ),
-    );
-  }
-
-  /// Converts a [VideoChatParticipantsInvited] object to JSON object
-  Map<String, dynamic> toJson() {
-    return {
-      'users': List<dynamic>.from(users.map((x) => x.toJson())),
-    }..removeWhere(_nullFilter);
-  }
+  /// Creates a [VideoChatParticipantsInvited] object from JSON object.
+  factory VideoChatParticipantsInvited.fromJson(Map<String, dynamic> json) =>
+      _$VideoChatParticipantsInvitedFromJson(json);
 }

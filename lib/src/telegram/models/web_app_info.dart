@@ -1,26 +1,19 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'web_app_info.freezed.dart';
+part 'web_app_info.g.dart';
 
 /// Describes a Web App.
-class WebAppInfo {
-  /// An HTTPS URL of a Web App to be opened with additional data as specified in Initializing Web Apps
-  final String url;
-
+@freezed
+class WebAppInfo with _$WebAppInfo {
   /// Constructs a [WebAppInfo] object
-  const WebAppInfo({
-    required this.url,
-  });
+  const factory WebAppInfo({
+    /// An HTTPS URL of a Web App to be opened with additional data as specified
+    /// in Initializing Web Apps
+    required String url,
+  }) = _WebAppInfo;
 
   /// Creates a [WebAppInfo] object from JSON object
-  factory WebAppInfo.fromJson(Map<String, dynamic> json) {
-    return WebAppInfo(
-      url: json['url'],
-    );
-  }
-
-  /// Converts a [WebAppInfo] object to JSON object
-  Map<String, dynamic> toJson() {
-    return {
-      'url': url,
-    };
-  }
+  factory WebAppInfo.fromJson(Map<String, dynamic> json) =>
+      _$WebAppInfoFromJson(json);
 }

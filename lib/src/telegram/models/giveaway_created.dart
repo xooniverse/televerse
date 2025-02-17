@@ -1,26 +1,20 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// This object represents a service message about the creation of a scheduled giveaway. Currently holds no information.
-class GiveawayCreated {
-  /// Optional. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only
-  final int? prizeStarCount;
+part 'giveaway_created.freezed.dart';
+part 'giveaway_created.g.dart';
 
+/// This object represents a service message about the creation of a scheduled
+/// giveaway. Currently holds no information.
+@freezed
+class GiveawayCreated with _$GiveawayCreated {
   /// Creates a `GiveawayCreated` object.
-  const GiveawayCreated({
-    this.prizeStarCount,
-  });
+  const factory GiveawayCreated({
+    /// Optional. The number of Telegram Stars to be split between giveaway
+    /// winners; for Telegram Star giveaways only
+    @JsonKey(name: 'prize_star_count') int? prizeStarCount,
+  }) = _GiveawayCreated;
 
   /// Creates a `GiveawayCreated` object from a JSON object.
-  factory GiveawayCreated.fromJson(Map<String, dynamic> json) {
-    return GiveawayCreated(
-      prizeStarCount: json['prize_star_count'],
-    );
-  }
-
-  /// Converts the `GiveawayCreated` object to a JSON object.
-  Map<String, dynamic> toJson() {
-    return {
-      'prize_star_count': prizeStarCount,
-    }..removeWhere(_nullFilter);
-  }
+  factory GiveawayCreated.fromJson(Map<String, dynamic> json) =>
+      _$GiveawayCreatedFromJson(json);
 }

@@ -1,44 +1,34 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/televerse.dart';
 
-/// This object describes the position on faces where a mask should be placed by default.
-class MaskPosition {
-  /// The part of the face relative to which the mask should be placed. One of “forehead”, “eyes”, “mouth”, or “chin”.
-  final MaskPositionPoint point;
+part 'mask_position.freezed.dart';
+part 'mask_position.g.dart';
 
-  /// Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. For example, choosing -1.0 will place mask just to the left of the default mask position.
-  final double xShift;
-
-  /// Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. For example, 1.0 will place the mask just below the default mask position.
-  final double yShift;
-
-  /// Mask scaling coefficient. For example, 2.0 means double size.
-  final double scale;
-
+/// This object describes the position on faces where a mask should be placed by
+/// default.
+@freezed
+class MaskPosition with _$MaskPosition {
   /// Constructs a [MaskPosition] object
-  const MaskPosition({
-    required this.point,
-    required this.xShift,
-    required this.yShift,
-    required this.scale,
-  });
+  const factory MaskPosition({
+    /// The part of the face relative to which the mask should be placed. One of
+    /// "forehead", "eyes", "mouth", or "chin".
+    required MaskPositionPoint point,
+
+    /// Shift by X-axis measured in widths of the mask scaled to the face size,
+    /// from left to right. For example, choosing -1.0 will place mask just to
+    /// the left of the default mask position.
+    @JsonKey(name: 'x_shift') required double xShift,
+
+    /// Shift by Y-axis measured in heights of the mask scaled to the face size,
+    /// from top to bottom. For example, 1.0 will place the mask just below the
+    /// default mask position.
+    @JsonKey(name: 'y_shift') required double yShift,
+
+    /// Mask scaling coefficient. For example, 2.0 means double size.
+    required double scale,
+  }) = _MaskPosition;
 
   /// Creates a [MaskPosition] object from a JSON map
-  factory MaskPosition.fromJson(Map<String, dynamic> json) {
-    return MaskPosition(
-      point: MaskPositionPoint.fromJson(json['point']),
-      xShift: json['x_shift'] as double,
-      yShift: json['y_shift'] as double,
-      scale: json['scale'] as double,
-    );
-  }
-
-  /// Converts a [MaskPosition] object to a JSON map
-  Map<String, dynamic> toJson() {
-    return {
-      'point': point.toJson(),
-      'x_shift': xShift,
-      'y_shift': yShift,
-      'scale': scale,
-    };
-  }
+  factory MaskPosition.fromJson(Map<String, dynamic> json) =>
+      _$MaskPositionFromJson(json);
 }

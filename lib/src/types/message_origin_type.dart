@@ -1,42 +1,25 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'message_origin_type.g.dart';
 
-/// The type of a `MessageOrigin
+/// The type of a `MessageOrigin`
+@JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)
 enum MessageOriginType {
   /// User
-  user._('user'),
+  @JsonValue('user')
+  user,
 
   /// Hidden User
-  hiddenUser._('hidden_user'),
+  @JsonValue('hidden_user')
+  hiddenUser,
 
   /// Chat
-  chat._('chat'),
+  @JsonValue('chat')
+  chat,
 
   /// Channel
-  channel._('channel');
+  @JsonValue('channel')
+  channel;
 
-  /// The value of this [MessageOriginType].
-  final String value;
-
-  /// Private constructor [MessageOriginType].
-  const MessageOriginType._(this.value);
-
-  /// Returns a [MessageOriginType] based on the [value].
-  static MessageOriginType from(String value) {
-    switch (value) {
-      case 'user':
-        return user;
-      case 'hidden_user':
-        return hiddenUser;
-      case 'chat':
-        return chat;
-      case 'channel':
-        return channel;
-      default:
-        throw TeleverseException(
-          'Invalid MessageOriginType value.',
-          description: 'The given value does not match any MessageOriginType.',
-          type: TeleverseExceptionType.invalidParameter,
-        );
-    }
-  }
+  /// Converts the [MessageOriginType] to its corresponding JSON value.
+  String toJson() => _$MessageOriginTypeEnumMap[this]!;
 }

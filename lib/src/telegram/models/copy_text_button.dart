@@ -1,22 +1,20 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// This object represents an inline keyboard button that copies specified text to the clipboard.
-class CopyTextButton {
-  /// The text to be copied to the clipboard; 1-256 characters
-  final String text;
+part 'copy_text_button.freezed.dart';
+part 'copy_text_button.g.dart';
 
-  /// This object represents an inline keyboard button that copies specified text to the clipboard.
-  const CopyTextButton({
-    required this.text,
-  });
-
-  /// Converts the instance to JSON parsable map
-  Map<String, dynamic> toJson() {
-    return {'text': text};
-  }
+/// This object represents an inline keyboard button that copies specified text
+/// to the clipboard.
+@freezed
+class CopyTextButton with _$CopyTextButton {
+  /// This object represents an inline keyboard button that copies specified
+  /// text to the clipboard.
+  const factory CopyTextButton({
+    /// The text to be copied to the clipboard; 1-256 characters
+    required String text,
+  }) = _CopyTextButton;
 
   /// Creates the [CopyTextButton] from JSON map
-  factory CopyTextButton.fromJson(Map<String, dynamic> json) {
-    return CopyTextButton(text: json['text']);
-  }
+  factory CopyTextButton.fromJson(Map<String, dynamic> json) =>
+      _$CopyTextButtonFromJson(json);
 }

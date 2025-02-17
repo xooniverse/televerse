@@ -1,109 +1,119 @@
-part of '../../../televerse.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/telegram.dart';
 
-/// The [Keyboard] class can be used to represent a [ReplyKeyboardMarkup]. This is an easy method to show a keyboard to the user.
-class Keyboard extends ReplyKeyboardMarkup {
-  /// Creates a `Keyboard` object with no buttons. You can add buttons using the [add] method.
-  ///
-  /// ```dart
-  /// // Create a new keyboard.
-  /// var keyboard = Keyboard();
-  ///
-  /// // Add a button with the text "Hello World!".
-  /// keyboard.addText("Hello World!");
-  ///
-  /// // Send the keyboard with the message "Hello World!".
-  /// ctx.api.sendMessage(ctx.id, "Hello World!", replyMarkup: keyboard);
-  /// ```
-  Keyboard() : super(keyboard: [[]]);
+part 'keyboard.freezed.dart';
+part 'keyboard.g.dart';
 
-  /// Adds a Row of [KeyboardButton] to the keyboard.
-  Keyboard addRow(List<KeyboardButton> row) {
-    keyboard.add(row);
-    return this;
+/// Represents a keyboard that appears below the message it belongs to.
+/// This is a shortcut for [ReplyKeyboardMarkup].
+///
+/// With `Keyboard` you can create a keyboard with buttons that will be shown
+/// to the user below the message. This is useful for creating custom keyboards
+/// that users can interact with.
+///
+/// ```dart
+/// // Create a new keyboard
+/// var keyboard = Keyboard()
+///   ..addText("Hello World!")
+///   ..row()
+///   ..requestLocation("Send Location");
+///
+/// // Send the keyboard with a message
+/// ctx.api.sendMessage(ctx.id, "Choose an option:", replyMarkup: keyboard);
+/// ```
+@freezed
+class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
+  /// Creates a new [Keyboard].
+  ///
+  /// Keyboard is an easy way to create a custom keyboard that will be shown
+  /// to the user below the message.
+  factory Keyboard({
+    /// Array of button rows, each represented by an Array of KeyboardButton objects
+    @Default([<KeyboardButton>[]])
+    @JsonKey(name: 'keyboard')
+    List<List<KeyboardButton>> keyboard,
+
+    /// Optional. Requests clients to resize the keyboard vertically for optimal fit
+    @JsonKey(name: 'resize_keyboard') bool? resizeKeyboard,
+
+    /// Optional. Requests clients to hide the keyboard as soon as it's been used.
+    @JsonKey(name: 'one_time_keyboard') bool? oneTimeKeyboard,
+
+    /// Optional. The placeholder to be shown in the input field when the keyboard is active
+    @JsonKey(name: 'input_field_placeholder') String? inputFieldPlaceholder,
+
+    /// Optional. Use this parameter if you want to show the keyboard to specific users only
+    @JsonKey(name: 'selective') bool? selective,
+
+    /// Optional. Requests clients to always show the keyboard when the regular keyboard is hidden.
+    @JsonKey(name: 'is_persistent') bool? isPersistent,
+  }) = _Keyboard;
+
+  Keyboard._();
+
+  /// Adds a new row to the keyboard.
+  Keyboard row() {
+    if (keyboard.last.isEmpty) return this;
+    return copyWith(keyboard: [...keyboard, []]);
   }
 
-  /// Adds a [KeyboardButton] to show
+  /// Adds a new [KeyboardButton] to the current row.
   Keyboard add(KeyboardButton button) {
-    keyboard.last.add(button);
-    return this;
+    final newKeyboard = [...keyboard];
+    newKeyboard.last = [...newKeyboard.last, button];
+    return copyWith(keyboard: newKeyboard);
   }
 
-  /// This method adds a new [KeyboardButton] with the passed [text] to the end of the row.
-  ///
-  /// There's a `text` method that does the same.
+  /// Adds a text button to the current row.
   Keyboard addText(String text) {
     return add(KeyboardButton(text: text));
   }
 
-  /// Shorthand method to add a text button to the end row. This is the same as `addText` call.
-  Keyboard text(String text) {
-    return add(KeyboardButton(text: text));
-  }
+  /// Shorthand method to add a text button. Same as [addText].
+  Keyboard text(String text) => addText(text);
 
   /// Adds multiple text buttons to the current row.
   Keyboard texts(List<String> texts) {
-    return addRow(texts.map((e) => KeyboardButton(text: e)).toList());
+    final newKeyboard = [...keyboard];
+    newKeyboard.last = [
+      ...newKeyboard.last,
+      ...texts.map((text) => KeyboardButton(text: text))
+    ];
+    return copyWith(keyboard: newKeyboard);
   }
 
-  /// Adds a new [KeyboardButton] tapping which the user's contact is requested with the specified [text] on it.
+  /// Adds a row of [KeyboardButton]s to the keyboard.
+  Keyboard addRow(List<KeyboardButton> row) {
+    return copyWith(keyboard: [...keyboard, row]);
+  }
+
+  /// Adds a button that requests the user's contact information.
   Keyboard requestContact(String text) {
     return add(KeyboardButton(text: text, requestContact: true));
   }
 
-  /// Makes the current [Keyboard] resized.
-  Keyboard resized() {
-    resizeKeyboard = true;
-    return this;
-  }
-
-  /// Makes the current [Keyboard] one time only
-  Keyboard oneTime() {
-    oneTimeKeyboard = true;
-    return this;
-  }
-
-  /// Makes the current keyboard persistent - always shown to the user
-  Keyboard persistent() {
-    isPersistent = true;
-    return this;
-  }
-
-  /// Makes the current keyboard selective.
-  ///
-  /// That is the keyboard will be presented to specific users in a group.
-  ///
-  /// Read more here: https://core.telegram.org/bots/api#replykeyboardmarkup
-  Keyboard makeSelective() {
-    selective = true;
-    return this;
-  }
-
-  /// Adds a placeholder value in input field
-  Keyboard addPlaceholder(String placeholder) {
-    inputFieldPlaceholder = placeholder;
-    return this;
-  }
-
-  /// Adds a button with given [text] which requests user's location when tapped.
+  /// Adds a button that requests the user's location.
   Keyboard requestLocation(String text) {
     return add(KeyboardButton(text: text, requestLocation: true));
   }
 
-  /// Adds a new row to the current keyboard.
-  Keyboard row() {
-    keyboard.add([]);
-    return this;
-  }
+  /// Makes the keyboard resize to fit the screen.
+  Keyboard resized() => copyWith(resizeKeyboard: true);
 
-  /// Requests the user to select a user from the list.
-  ///
-  /// [text] is the text to show on the button.
-  ///
-  /// [requestId] is the signed 32-bit identifier of the request.
-  ///
-  /// [userIsBot] is an optional parameter. Pass True to request a bot, pass False to request a regular user. If not specified, no additional restrictions are applied.
-  ///
-  /// [userIsPremium] is an optional parameter. Pass True to request a premium user, pass False to request a non-premium user. If not specified, no additional restrictions are applied.
+  /// Makes the keyboard appear only once.
+  Keyboard oneTime() => copyWith(oneTimeKeyboard: true);
+
+  /// Makes the keyboard persistent.
+  Keyboard persistent() => copyWith(isPersistent: true);
+
+  /// Makes the keyboard selective to specific users.
+  Keyboard makeSelective() => copyWith(selective: true);
+
+  /// Adds a placeholder text to the input field.
+  Keyboard addPlaceholder(String placeholder) =>
+      copyWith(inputFieldPlaceholder: placeholder);
+
+  /// Adds a button that requests the user to select a user.
   Keyboard requestUser({
     required String text,
     required int requestId,
@@ -122,23 +132,7 @@ class Keyboard extends ReplyKeyboardMarkup {
     );
   }
 
-  /// Requests the user to select a chat from the list.
-  ///
-  /// [text] is the text to show on the button.
-  ///
-  /// [requestId] is the signed 32-bit identifier of the request.
-  ///
-  /// [chatIsChannel] Pass True to request a channel chat, pass False to request a group or a supergroup chat.
-  ///
-  /// [chatHasUsername] Optional. Pass True to request a supergroup or a channel with a username, pass False to request a chat without a username. If not specified, no additional restrictions are applied.
-  ///
-  /// [chatIsCreated] Optional. Pass True to request a chat owned by the user. Otherwise, no additional restrictions are applied.
-  ///
-  /// [userAdministratorRights] Optional. A JSON-serialized object listing the required administrator rights of the user in the chat. If not specified, no additional restrictions are applied.
-  ///
-  /// [botAdministratorRights] Optional. A JSON-serialized object listing the required administrator rights of the bot in the chat. The rights must be a subset of user_administrator_rights. If not specified, no additional restrictions are applied.
-  ///
-  /// [botIsMember] Optional. Pass True to request a chat with the bot as a member. Otherwise, no additional restrictions are applied.
+  /// Adds a button that requests the user to select a chat.
   Keyboard requestChat({
     required String text,
     required int requestId,
@@ -167,8 +161,11 @@ class Keyboard extends ReplyKeyboardMarkup {
     );
   }
 
-  /// This method can be used to remove the Keyboard that is already attached.
-  static ReplyKeyboardRemove remove({bool? selective}) {
-    return ReplyKeyboardRemove(selective: selective);
-  }
+  /// Creates a keyboard from JSON.
+  factory Keyboard.fromJson(Map<String, dynamic> json) =>
+      _$KeyboardFromJson(json);
+
+  /// Removes the current keyboard and shows the default keyboard.
+  static ReplyKeyboardRemove remove({bool? selective}) =>
+      ReplyKeyboardRemove(selective: selective);
 }

@@ -1,112 +1,52 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/inline_query_result.dart';
+import 'package:televerse/src/telegram/models/input_message_content.dart';
+import 'package:televerse/src/telegram/models/reply_markup.dart';
+import 'package:televerse/televerse.dart';
+
+part 'inline_query_result_article.freezed.dart';
+part 'inline_query_result_article.g.dart';
 
 /// Represents a link to an article or web page.
-class InlineQueryResultArticle implements InlineQueryResult {
-  /// Type of the result, always [InlineQueryResultType.article]
-  @override
-  InlineQueryResultType get type => InlineQueryResultType.article;
+@freezed
+class InlineQueryResultArticle
+    with _$InlineQueryResultArticle
+    implements InlineQueryResult {
+  /// This object represents a link to an article or web page.
+  const factory InlineQueryResultArticle({
+    /// Unique identifier for this result
+    required String id,
 
-  /// Title of the result
-  final String title;
+    /// Title of the result
+    required String title,
 
-  /// Content of the message to be sent
-  final InputMessageContent inputMessageContent;
+    /// Content of the message to be sent
+    @InputMessageContentConverter()
+    required InputMessageContent inputMessageContent,
 
-  /// Optional. Inline keyboard attached to the message
-  final InlineKeyboardMarkup? replyMarkup;
+    /// Optional. Inline keyboard attached to the message
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
 
-  /// Optional. URL of the result
-  final String? url;
-
-  /// Optional. Short description of the result
-  final String? description;
-
-  /// Optional. Url of the thumbnail for the result
-  final String? thumbnailUrl;
-
-  /// Optional. Thumbnail width
-  final int? thumbnailWidth;
-
-  /// Optional. Thumbnail height
-  final int? thumbnailHeight;
-
-  /// This object represents a link to an article or web page.A
-  const InlineQueryResultArticle({
-    required this.id,
-    required this.title,
-    required this.inputMessageContent,
-    this.replyMarkup,
-    this.url,
-    this.description,
-    this.thumbnailUrl,
-    this.thumbnailWidth,
-    this.thumbnailHeight,
-  });
-
-  /// Converts an [InlineQueryResultArticle] object to a JSON map
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'type': type.toString(),
-      'id': id,
-      'title': title,
-      'input_message_content': inputMessageContent.toJson(),
-      'reply_markup': replyMarkup?.toJson(),
-      'url': url,
-      'description': description,
-      'thumbnail_url': thumbnailUrl,
-      'thumbnail_width': thumbnailWidth,
-      'thumbnail_height': thumbnailHeight,
-    }..removeWhere(_nullFilter);
-  }
-
-  /// De-serializes a [InlineQueryResultArticle] object from a JSON map
-  factory InlineQueryResultArticle.fromJson(Map<String, dynamic> json) {
-    return InlineQueryResultArticle(
-      title: json['title'] as String,
-      inputMessageContent: InputMessageContent.fromJson(
-        json['input_message_content'] as Map<String, dynamic>,
-      ),
-      id: json['id'] as String,
-      replyMarkup: json['reply_markup'] == null
-          ? null
-          : InlineKeyboardMarkup.fromJson(
-              json['reply_markup'] as Map<String, dynamic>,
-            ),
-      url: json['url'] as String?,
-      description: json['description'] as String?,
-      thumbnailUrl: json['thumbnail_url'] as String?,
-      thumbnailWidth: json['thumbnail_width'] as int?,
-      thumbnailHeight: json['thumbnail_height'] as int?,
-    );
-  }
-
-  @override
-  final String id;
-
-  /// Copy method
-  InlineQueryResultArticle copyWith({
-    String? title,
-    InputMessageContent? inputMessageContent,
-    InlineKeyboardMarkup? replyMarkup,
+    /// Optional. URL of the result
     String? url,
-    bool? hideUrl,
+
+    /// Optional. Short description of the result
     String? description,
-    String? thumbnailUrl,
-    int? thumbnailWidth,
-    int? thumbnailHeight,
-    String? id,
-  }) {
-    return InlineQueryResultArticle(
-      title: title ?? this.title,
-      inputMessageContent: inputMessageContent ?? this.inputMessageContent,
-      replyMarkup: replyMarkup ?? this.replyMarkup,
-      url: url ?? this.url,
-      description: description ?? this.description,
-      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
-      thumbnailWidth: thumbnailWidth ?? this.thumbnailWidth,
-      thumbnailHeight: thumbnailHeight ?? this.thumbnailHeight,
-      id: id ?? this.id,
-    );
-  }
+
+    /// Optional. Url of the thumbnail for the result
+    @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
+
+    /// Optional. Thumbnail width
+    @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
+
+    /// Optional. Thumbnail height
+    @JsonKey(name: 'thumbnail_height') int? thumbnailHeight,
+
+    /// Type of the result, always [InlineQueryResultType.article]
+    @Default(InlineQueryResultType.article) InlineQueryResultType type,
+  }) = _InlineQueryResultArticle;
+
+  /// Creates an instance of [InlineQueryResultArticle] from JSON data
+  factory InlineQueryResultArticle.fromJson(Map<String, dynamic> json) =>
+      _$InlineQueryResultArticleFromJson(json);
 }

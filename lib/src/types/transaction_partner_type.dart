@@ -1,42 +1,34 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// This object represents the type of the transaction partner.
+/// The type of a `TransactionPartner`
+@JsonEnum(fieldRename: FieldRename.snake)
 enum TransactionPartnerType {
   /// Represents a withdrawal transaction with Fragment.
-  fragment("fragment"),
+  @JsonValue('fragment')
+  fragment,
 
   /// Represents a transaction with a user.
-  user("user"),
+  @JsonValue('user')
+  user,
 
   /// Represents a withdrawal transaction to the Telegram Ads platform.
-  telegramAds("telegram_ads"),
+  @JsonValue('telegram_ads')
+  telegramAds,
 
   /// Represents transaction with payment for paid broadcasting.
-  telegramApi("telegram_api"),
+  @JsonValue('telegram_api')
+  telegramApi,
 
   /// Represents a transaction with an unknown source or recipient.
-  other("other"),
+  @JsonValue('other')
+  other,
 
-  /// Describes the affiliate program that issued the affiliate commission received via this transaction
-  affiliateProgram("affiliate_program"),
+  /// Describes the affiliate program that issued the affiliate commission
+  /// received via this transaction.
+  @JsonValue('affiliate_program')
+  affiliateProgram,
 
   /// Describes a transaction with a chat.
-  chat("chat"),
-  ;
-
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [TransactionPartnerType].
-  const TransactionPartnerType(this.value);
-
-  /// Constructs a new [TransactionPartnerType] from a [String].
-  static TransactionPartnerType fromJson(String value) {
-    return TransactionPartnerType.values.firstWhere((e) => e.value == value);
-  }
-
-  /// Converts this [TransactionPartnerType] to a [String].
-  String toJson() {
-    return value;
-  }
+  @JsonValue('chat')
+  chat;
 }

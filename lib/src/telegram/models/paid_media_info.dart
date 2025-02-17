@@ -1,34 +1,23 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/paid_media.dart';
+
+part 'paid_media_info.freezed.dart';
+part 'paid_media_info.g.dart';
 
 /// Describes the paid media added to a message.
-class PaidMediaInfo {
-  /// The number of Telegram Stars that must be paid to buy access to the media.
-  final int starCount;
-
-  /// Information about the paid media.
-  final List<PaidMedia> paidMedia;
-
+@freezed
+class PaidMediaInfo with _$PaidMediaInfo {
   /// Constructs a [PaidMediaInfo] object.
-  const PaidMediaInfo({
-    required this.starCount,
-    required this.paidMedia,
-  });
+  const factory PaidMediaInfo({
+    /// The number of Telegram Stars that must be paid to buy access to the
+    /// media.
+    @JsonKey(name: 'star_count') required int starCount,
+
+    /// Information about the paid media.
+    @JsonKey(name: 'paid_media') required List<PaidMedia> paidMedia,
+  }) = _PaidMediaInfo;
 
   /// Creates a [PaidMediaInfo] object from JSON.
-  factory PaidMediaInfo.fromJson(Map<String, dynamic> json) {
-    return PaidMediaInfo(
-      starCount: json['star_count'],
-      paidMedia: (json['paid_media'] as List)
-          .map((item) => PaidMedia.fromJson(item))
-          .toList(),
-    );
-  }
-
-  /// Converts a [PaidMediaInfo] object to JSON.
-  Map<String, dynamic> toJson() {
-    return {
-      'star_count': starCount,
-      'paid_media': paidMedia.map((item) => item.toJson()).toList(),
-    };
-  }
+  factory PaidMediaInfo.fromJson(Map<String, dynamic> json) =>
+      _$PaidMediaInfoFromJson(json);
 }

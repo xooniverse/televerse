@@ -1,40 +1,36 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'chat_member_status.g.dart';
 
-/// This object represents the status of a member in a chat.
+/// Represents different types of chat member statuses in a chat.
+///
+/// Currently, the following 6 types of chat members are supported:
+/// - creator: Chat owner
+/// - administrator: Member with additional privileges
+/// - member: Regular chat member
+/// - restricted: Member with restrictions
+/// - left: Former member
+/// - kicked: Banned member
+@JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)
 enum ChatMemberStatus {
-  /// Creator of the chat
-  creator("creator"),
+  /// Represents the chat creator (owner)
+  creator,
 
-  /// Administrator of the chat
-  administrator("administrator"),
+  /// Represents an administrator with additional privileges
+  administrator,
 
-  /// Member of the chat
-  member("member"),
+  /// Represents a regular chat member
+  member,
 
-  /// Restricted member of the chat
-  restricted("restricted"),
+  /// Represents a restricted member in supergroups
+  restricted,
 
-  /// Member who left the chat
-  left("left"),
+  /// Represents a user who left the chat
+  left,
 
-  /// Member who was kicked from the chat
-  kicked("kicked");
+  /// Represents a banned user
+  kicked,
+  ;
 
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [ChatMemberStatus].
-  const ChatMemberStatus(this.value);
-
-  /// Constructs a new [ChatMemberStatus] from a [String].
-  factory ChatMemberStatus.fromJson(String value) {
-    return ChatMemberStatus.values.firstWhere((e) => e.value == value);
-  }
-
-  /// Converts this [ChatMemberStatus] to a [String].
-  Map<String, dynamic> toJson() {
-    return {
-      'value': value,
-    };
-  }
+  /// Converts the [ChatMemberStatus] to its corresponding JSON value.
+  String toJson() => _$ChatMemberStatusEnumMap[this]!;
 }

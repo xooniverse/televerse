@@ -1,54 +1,63 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'inline_query_result_type.g.dart';
 
 /// This object represents the type of a result of an inline query.
+@JsonEnum(alwaysCreate: true, fieldRename: FieldRename.snake)
 enum InlineQueryResultType {
   /// Represents a link to an article or web page.
-  article("article"),
+  @JsonValue('article')
+  article,
 
   /// Represents a link to a photo.
-  photo("photo"),
+  @JsonValue('photo')
+  photo,
 
   /// Represents an animated GIF file.
-  gif("gif"),
+  @JsonValue('gif')
+  gif,
 
   /// Represents a video animation (H.264/MPEG-4 AVC video without sound).
-  mpeg4Gif("mpeg4_gif"),
+  @JsonValue('mpeg4_gif')
+  mpeg4Gif,
 
   /// Represents a video file.
-  video("video"),
+  @JsonValue('video')
+  video,
 
   /// Represents an MP3 audio file.
-  audio("audio"),
+  @JsonValue('audio')
+  audio,
 
   /// Represents a voice recording in an .ogg container encoded with OPUS.
-  voice("voice"),
+  @JsonValue('voice')
+  voice,
 
   /// Represents a file.
-  document("document"),
+  @JsonValue('document')
+  document,
 
   /// Represents a location on a map.
-  location("location"),
+  @JsonValue('location')
+  location,
 
   /// Represents a venue.
-  venue("venue"),
+  @JsonValue('venue')
+  venue,
 
   /// Represents a contact with a phone number.
-  contact("contact"),
+  @JsonValue('contact')
+  contact,
 
   /// Represents a game.
-  game("game"),
+  @JsonValue('game')
+  game,
 
   /// Represents a native poll.
-  sticker("sticker"),
+  @JsonValue('sticker')
+  sticker,
   ;
 
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [InlineQueryResultType].
-  const InlineQueryResultType(this.value);
-
-  /// Stringifies the enum.
-  @override
-  String toString() => value;
+  /// Converts the [InlineQueryResultType] to its corresponding JSON value.
+  String toJson() => _$InlineQueryResultTypeEnumMap[this]!;
 }

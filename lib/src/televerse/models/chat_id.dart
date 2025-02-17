@@ -44,6 +44,13 @@ abstract class ID {
     );
   }
 
+  /// Creates the ID object from JSON map.
+  ///
+  /// Telegram only always returns chat_id as int, so this will always create `ChatID` instance
+  factory ID.fromJson(Map<String, dynamic> json) {
+    return ChatID(json['chat_id']);
+  }
+
   /// Returns the id as a string or an integer.
   dynamic toJson() {
     return id;
@@ -63,7 +70,7 @@ abstract class ID {
   int get hashCode => id.hashCode;
 
   /// Returns the [Chat] object of the chat.
-  Future<Chat> get() => Bot.instance.api.getChat(this);
+  Future<ChatFullInfo> get() => Bot.instance.api.getChat(this);
 }
 
 /// This class is used to represent a chat id. It is a subclass of [ID].
@@ -131,4 +138,26 @@ class SupergroupID extends ID {
   /// The ID getter, returns the actual String value
   @override
   String get id => super.id;
+}
+
+/// Converts the ID to JSON
+class IDConverter implements JsonConverter<ID, dynamic> {
+  /// Creates the instance of the converter
+  const IDConverter();
+
+  /// Creates ID from the passed JSON
+  @override
+  ID fromJson(dynamic json) {
+    if (json is Map && json['chat_id'] != null) {
+      return ChatID(json['chat_id']);
+    }
+    if (json is int) return ChatID(json);
+    if (json is String) return ChannelID(json);
+
+    throw Exception("Could not read Chat ID");
+  }
+
+  /// Converts the ID into its underlying value
+  @override
+  toJson(ID data) => data.toJson();
 }

@@ -1,33 +1,24 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/abstractions.dart';
+import 'chat.dart';
+import 'chat_boost.dart';
+
+part 'chat_boost_updated.freezed.dart';
+part 'chat_boost_updated.g.dart';
 
 /// This object represents a boost added to a chat or changed.
-class ChatBoostUpdated implements WithChat {
-  /// Chat which was boosted
-  @override
-  final Chat chat;
-
-  /// Information about the chat boost
-  final ChatBoost boost;
-
+@freezed
+class ChatBoostUpdated with _$ChatBoostUpdated implements WithChat {
   /// Creates a ChatBoostUpdated object.
-  const ChatBoostUpdated({
-    required this.chat,
-    required this.boost,
-  });
+  const factory ChatBoostUpdated({
+    /// Chat which was boosted
+    required final Chat chat,
 
-  /// Converts the `ChatBoostUpdated` object to a JSON object.
-  Map<String, dynamic> toJson() {
-    return {
-      'chat': chat.toJson(),
-      'boost': boost.toJson(),
-    };
-  }
+    /// Information about the chat boost
+    required final ChatBoost boost,
+  }) = _ChatBoostUpdated;
 
   /// Creates a `ChatBoostUpdated` object from a JSON object.
-  factory ChatBoostUpdated.fromJson(Map<String, dynamic> json) {
-    return ChatBoostUpdated(
-      chat: Chat.fromJson(json['chat']),
-      boost: ChatBoost.fromJson(json['boost']),
-    );
-  }
+  factory ChatBoostUpdated.fromJson(Map<String, dynamic> json) =>
+      _$ChatBoostUpdatedFromJson(json);
 }

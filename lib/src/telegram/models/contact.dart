@@ -1,50 +1,31 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'contact.freezed.dart';
+part 'contact.g.dart';
 
 /// This object represents a phone contact.
-class Contact {
-  /// Contact's phone number
-  final String phoneNumber;
-
-  /// Contact's first name
-  final String firstName;
-
-  /// Optional. Contact's last name
-  final String? lastName;
-
-  /// Optional. Contact's user identifier in Telegram
-  final int? userId;
-
-  /// Optional. Additional data about the contact in the form of a [vCard](https://en.wikipedia.org/wiki/VCard)
-  final String? vcard;
-
+@freezed
+class Contact with _$Contact {
   /// Constructs a [Contact] object.
-  const Contact({
-    required this.phoneNumber,
-    required this.firstName,
-    this.lastName,
-    this.userId,
-    this.vcard,
-  });
+  const factory Contact({
+    /// Contact's phone number
+    @JsonKey(name: 'phone_number') required String phoneNumber,
+
+    /// Contact's first name
+    @JsonKey(name: 'first_name') required String firstName,
+
+    /// Optional. Contact's last name
+    @JsonKey(name: 'last_name') String? lastName,
+
+    /// Optional. Contact's user identifier in Telegram
+    @JsonKey(name: 'user_id') int? userId,
+
+    /// Optional. Additional data about the contact in the form of a
+    /// [vCard](https://en.wikipedia.org/wiki/VCard)
+    String? vcard,
+  }) = _Contact;
 
   /// Creates a [Contact] object from json.
-  factory Contact.fromJson(Map<String, dynamic> json) {
-    return Contact(
-      phoneNumber: json['phone_number']!,
-      firstName: json['first_name']!,
-      lastName: json['last_name'],
-      userId: json['user_id'],
-      vcard: json['vcard'],
-    );
-  }
-
-  /// Converts a [Contact] object to json.
-  Map<String, dynamic> toJson() {
-    return {
-      'phone_number': phoneNumber,
-      'first_name': firstName,
-      'last_name': lastName,
-      'user_id': userId,
-      'vcard': vcard,
-    }..removeWhere(_nullFilter);
-  }
+  factory Contact.fromJson(Map<String, dynamic> json) =>
+      _$ContactFromJson(json);
 }

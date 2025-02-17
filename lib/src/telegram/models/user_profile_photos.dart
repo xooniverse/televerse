@@ -1,44 +1,22 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'photo_size.dart';
+
+part 'user_profile_photos.freezed.dart';
+part 'user_profile_photos.g.dart';
 
 /// This object represent a user's profile pictures.
-class UserProfilePhotos {
-  /// Total number of profile pictures the target user has
-  final int totalCount;
-
-  /// Requested profile pictures (in up to 4 sizes each)
-  final List<List<PhotoSize>> photos;
-
+@freezed
+class UserProfilePhotos with _$UserProfilePhotos {
   /// Constructs a [UserProfilePhotos] object
-  const UserProfilePhotos({
-    required this.totalCount,
-    required this.photos,
-  });
+  const factory UserProfilePhotos({
+    /// Total number of profile pictures the target user has
+    @JsonKey(name: 'total_count') required int totalCount,
+
+    /// Requested profile pictures (in up to 4 sizes each)
+    required List<List<PhotoSize>> photos,
+  }) = _UserProfilePhotos;
 
   /// Creates a [UserProfilePhotos] object from JSON object
-  factory UserProfilePhotos.fromJson(Map<String, dynamic> json) {
-    return UserProfilePhotos(
-      totalCount: json['total_count'],
-      photos: List<List<PhotoSize>>.from(
-        json['photos'].map(
-          (x) => List<PhotoSize>.from(x.map((x) => PhotoSize.fromJson(x))),
-        ),
-      ),
-    );
-  }
-
-  /// Converts a [UserProfilePhotos] object to JSON object
-  Map<String, dynamic> toJson() {
-    return {
-      'total_count': totalCount,
-      'photos': List<dynamic>.from(
-        photos.map(
-          (x) => List<dynamic>.from(
-            x.map(
-              (x) => x.toJson(),
-            ),
-          ),
-        ),
-      ),
-    };
-  }
+  factory UserProfilePhotos.fromJson(Map<String, dynamic> json) =>
+      _$UserProfilePhotosFromJson(json);
 }

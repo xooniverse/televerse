@@ -1,63 +1,42 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'transaction_partner.dart';
+
+part 'star_transaction.freezed.dart';
+part 'star_transaction.g.dart';
 
 /// This object describes a Telegram Star transaction.
-class StarTransaction {
-  /// Unique identifier of the transaction.
-  /// Coincides with the identifier of the original transaction for refund transactions.
-  /// Coincides with [SuccessfulPayment.telegramPaymentChargeId] for successful incoming payments from users.
-  final String id;
-
-  /// Number of Telegram Stars transferred by the transaction.
-  final int amount;
-
-  /// Date the transaction was created in Unix time.
-  final int date;
-
-  /// Optional. Source of an incoming transaction (e.g., a user purchasing goods or services,
-  /// Fragment refunding a failed withdrawal). Only for incoming transactions.
-  final TransactionPartner? source;
-
-  /// Optional. Receiver of an outgoing transaction (e.g., a user for a purchase refund,
-  /// Fragment for a withdrawal). Only for outgoing transactions.
-  final TransactionPartner? receiver;
-
-  /// Optional. The number of 1/1000000000 shares of Telegram Stars transferred by the transaction; from 0 to 999999999
-  final int nanostarAmount;
-
+@freezed
+class StarTransaction with _$StarTransaction {
   /// Creates a new [StarTransaction] object.
-  const StarTransaction({
-    required this.id,
-    required this.amount,
-    required this.nanostarAmount,
-    required this.date,
-    this.source,
-    this.receiver,
-  });
+  const factory StarTransaction({
+    /// Unique identifier of the transaction. Coincides with the identifier of
+    /// the original transaction for refund transactions. Coincides with
+    /// [SuccessfulPayment.telegramPaymentChargeId] for successful incoming
+    /// payments from users.
+    required String id,
+
+    /// Number of Telegram Stars transferred by the transaction.
+    required int amount,
+
+    /// Date the transaction was created in Unix time.
+    required int date,
+
+    /// Optional. Source of an incoming transaction (e.g., a user purchasing
+    /// goods or services, Fragment refunding a failed withdrawal). Only for
+    /// incoming transactions.
+    TransactionPartner? source,
+
+    /// Optional. Receiver of an outgoing transaction (e.g., a user for a
+    /// purchase refund, Fragment for a withdrawal). Only for outgoing
+    /// transactions.
+    TransactionPartner? receiver,
+
+    /// Optional. The number of 1/1000000000 shares of Telegram Stars
+    /// transferred by the transaction; from 0 to 999999999
+    @JsonKey(name: 'nanostar_amount') int? nanostarAmount,
+  }) = _StarTransaction;
 
   /// Creates a new [StarTransaction] object from json.
-  factory StarTransaction.fromJson(Map<String, dynamic> json) {
-    return StarTransaction(
-      id: json['id'],
-      amount: json['amount'],
-      date: json['date'],
-      source: json['source'] != null
-          ? TransactionPartner.fromJson(json['source'])
-          : null,
-      receiver: json['receiver'] != null
-          ? TransactionPartner.fromJson(json['receiver'])
-          : null,
-      nanostarAmount: json['nanostar_amount'] as int,
-    );
-  }
-
-  /// Converts a [StarTransaction] object to json.
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'amount': amount,
-      'date': date,
-      'source': source?.toJson(),
-      'receiver': receiver?.toJson(),
-    };
-  }
+  factory StarTransaction.fromJson(Map<String, dynamic> json) =>
+      _$StarTransactionFromJson(json);
 }

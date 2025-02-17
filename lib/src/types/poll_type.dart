@@ -1,24 +1,18 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'poll_type.g.dart';
 
 /// This object contains information about a poll. Currently supported poll types are `regular` and `quiz`.
+@JsonEnum(alwaysCreate: true)
 enum PollType {
   /// Regular poll
-  regular("regular"),
+  @JsonValue("regular")
+  regular,
 
   /// Quiz poll
-  quiz("quiz");
+  @JsonValue("quiz")
+  quiz;
 
-  /// The value of this enum.
-  final String type;
-
-  /// Constructs a new [PollType].
-  const PollType(this.type);
-
-  /// Constructs a new [PollType] from a [String].
-  factory PollType.fromJson(String type) {
-    return PollType.values.firstWhere((e) => e.type == type);
-  }
-
-  /// Converts this [PollType] to a [String].
-  String toJson() => type;
+  /// Converts the [PollType] to its corresponding JSON value.
+  String toJson() => _$PollTypeEnumMap[this]!;
 }

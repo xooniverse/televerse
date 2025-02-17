@@ -1,38 +1,27 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// This object represents the content of a service message, sent whenever a user in the chat triggers a proximity alert set by another user.
-class ProximityAlertTriggered {
-  /// User that triggered the alert
-  final User traveler;
+import 'user.dart';
 
-  /// User that set the alert
-  final User watcher;
+part 'proximity_alert_triggered.freezed.dart';
+part 'proximity_alert_triggered.g.dart';
 
-  /// The distance between the users
-  final int distance;
-
+/// This object represents the content of a service message, sent whenever a user
+/// in the chat triggers a proximity alert set by another user.
+@freezed
+class ProximityAlertTriggered with _$ProximityAlertTriggered {
   /// Constructs a [ProximityAlertTriggered] object
-  const ProximityAlertTriggered({
-    required this.traveler,
-    required this.watcher,
-    required this.distance,
-  });
+  const factory ProximityAlertTriggered({
+    /// User that triggered the alert
+    required User traveler,
+
+    /// User that set the alert
+    required User watcher,
+
+    /// The distance between the users
+    required int distance,
+  }) = _ProximityAlertTriggered;
 
   /// Creates a [ProximityAlertTriggered] object from JSON object
-  factory ProximityAlertTriggered.fromJson(Map<String, dynamic> json) {
-    return ProximityAlertTriggered(
-      traveler: User.fromJson(json['traveler']!),
-      watcher: User.fromJson(json['watcher']!),
-      distance: json['distance']!,
-    );
-  }
-
-  /// Converts a [ProximityAlertTriggered] object to JSON object
-  Map<String, dynamic> toJson() {
-    return {
-      'traveler': traveler.toJson(),
-      'watcher': watcher.toJson(),
-      'distance': distance,
-    }..removeWhere(_nullFilter);
-  }
+  factory ProximityAlertTriggered.fromJson(Map<String, dynamic> json) =>
+      _$ProximityAlertTriggeredFromJson(json);
 }

@@ -1,48 +1,34 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'message_entity.dart';
 
-/// Contains information about the quoted part of a message that is replied to by the given message.
-class TextQuote {
-  /// Text of the quoted part of a message that is replied to by the given message.
-  final String text;
+part 'text_quote.freezed.dart';
+part 'text_quote.g.dart';
 
-  /// Special entities that appear in the quote. Currently, only bold, italic, underline, strikethrough, spoiler, and custom_emoji entities are kept in quotes.
-  final List<MessageEntity>? entities;
-
-  /// Approximate quote position in the original message in UTF-16 code units as specified by the sender.
-  final int position;
-
-  /// True, if the quote was chosen manually by the message sender. Otherwise, the quote was added automatically by the server.
-  final bool? isManual;
-
+/// Contains information about the quoted part of a message that is replied to
+/// by the given message.
+@freezed
+class TextQuote with _$TextQuote {
   /// Constructs a `TextQuote`.
-  const TextQuote({
-    required this.text,
-    this.entities,
-    required this.position,
-    this.isManual,
-  });
+  const factory TextQuote({
+    /// Text of the quoted part of a message that is replied to by the given
+    /// message.
+    required String text,
 
-  /// Converts the `TextQuote` object to a JSON object.
-  Map<String, dynamic> toJson() {
-    return {
-      'text': text,
-      'entities': entities?.map((e) => e.toJson()).toList(),
-      'position': position,
-      'is_manual': isManual,
-    }..removeWhere(_nullFilter);
-  }
+    /// Special entities that appear in the quote. Currently, only bold, italic,
+    /// underline, strikethrough, spoiler, and custom_emoji entities are kept in
+    /// quotes.
+    List<MessageEntity>? entities,
+
+    /// Approximate quote position in the original message in UTF-16 code units
+    /// as specified by the sender.
+    required int position,
+
+    /// True, if the quote was chosen manually by the message sender. Otherwise,
+    /// the quote was added automatically by the server.
+    @JsonKey(name: 'is_manual') bool? isManual,
+  }) = _TextQuote;
 
   /// Creates a `TextQuote` object from a JSON object.
-  factory TextQuote.fromJson(Map<String, dynamic> json) {
-    return TextQuote(
-      text: json['text'],
-      entities: json['entities'] != null
-          ? (json['entities'] as List)
-              .map((e) => MessageEntity.fromJson(e))
-              .toList()
-          : null,
-      position: json['position'],
-      isManual: json['is_manual'],
-    );
-  }
+  factory TextQuote.fromJson(Map<String, dynamic> json) =>
+      _$TextQuoteFromJson(json);
 }

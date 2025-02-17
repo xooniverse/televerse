@@ -1,29 +1,25 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// This object represents a service message about a video chat ended in the chat.
-class VideoChatEnded {
-  /// Video chat duration in seconds
-  ///
-  /// [Duration] object is available as [durationTime] getter
-  final int duration;
+part 'video_chat_ended.freezed.dart';
+part 'video_chat_ended.g.dart';
 
-  /// Constructs a [VideoChatEnded] object
-  const VideoChatEnded({required this.duration});
+/// This object represents a service message about a video chat ended in the
+/// chat.
+@freezed
+class VideoChatEnded with _$VideoChatEnded {
+  /// Constructs a new `VideoChatEnded` instance
+  const factory VideoChatEnded({
+    /// Video chat duration in seconds
+    required int duration,
+  }) = _VideoChatEnded;
 
   /// Creates a [VideoChatEnded] object from JSON object
-  factory VideoChatEnded.fromJson(Map<String, dynamic> json) {
-    return VideoChatEnded(
-      duration: json['duration'],
-    );
-  }
+  factory VideoChatEnded.fromJson(Map<String, dynamic> json) =>
+      _$VideoChatEndedFromJson(json);
+}
 
-  /// Converts a [VideoChatEnded] object to JSON object
-  Map<String, dynamic> toJson() {
-    return {
-      'duration': duration,
-    }..removeWhere(_nullFilter);
-  }
-
+/// Extension over the VideoChatEnded
+extension VideoChatEndedExt on VideoChatEnded {
   /// [Duration] object of [duration] field
   Duration get durationTime => Duration(seconds: duration);
 }

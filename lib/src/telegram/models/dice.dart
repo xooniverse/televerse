@@ -1,32 +1,27 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/televerse.dart';
+
+part 'dice.freezed.dart';
+part 'dice.g.dart';
 
 /// This object represents an animated emoji that displays a random value.
-class Dice {
-  /// Emoji on which the dice throw animation is based
-  final DiceEmoji emoji;
+@freezed
+class Dice with _$Dice {
+  /// Creates an animated emoji with a random value
+  ///
+  /// [emoji] Emoji on which the dice throw animation is based [value] Value of
+  /// the dice
+  const factory Dice({
+    /// Emoji on which the dice throw animation is based
+    required DiceEmoji emoji,
 
-  /// Value of the dice, 1-6 for “🎲”, “🎯” and “🎳” base emoji, 1-5 for “🏀” and “⚽” base emoji, 1-64 for “🎰” base emoji
-  final int value;
+    /// Value of the dice.
+    ///
+    /// 1-6 for "🎲", "🎯" and "🎳" base emoji, 1-5 for "🏀" and "⚽" base
+    /// emoji, 1-64 for "🎰" base emoji
+    required int value,
+  }) = _Dice;
 
-  /// Creates a new [Dice] object.
-  const Dice({
-    required this.emoji,
-    required this.value,
-  });
-
-  /// Creates a new [Dice] object from json.
-  factory Dice.fromJson(Map<String, dynamic> json) {
-    return Dice(
-      emoji: DiceEmoji.fromJson(json['emoji']!),
-      value: json['value']!,
-    );
-  }
-
-  /// Converts a [Dice] object to json.
-  Map<String, dynamic> toJson() {
-    return {
-      'emoji': emoji.emoji,
-      'value': value,
-    };
-  }
+  /// Creates a [Dice] from a JSON map
+  factory Dice.fromJson(Map<String, dynamic> json) => _$DiceFromJson(json);
 }

@@ -1,4 +1,4 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 /// This object represents type of a chat. Currently, the following 5 types are supported:
 /// - [ChatType.private] : For a private chat with a user
@@ -6,35 +6,27 @@ part of 'types.dart';
 /// - [ChatType.supergroup] : For a supergroup chat
 /// - [ChatType.channel] : For a channel chat
 /// - [ChatType.sender] : For a private chat with the inline query sender
+@JsonEnum()
 enum ChatType {
   /// For a private chat with a user
-  private("private"),
+  @JsonValue("private")
+  private,
 
   /// For a group chat
-  group("group"),
+  @JsonValue("group")
+  group,
 
   /// For a supergroup chat
-  supergroup("supergroup"),
+  @JsonValue("supergroup")
+  supergroup,
 
   /// For a channel chat
-  channel("channel"),
+  @JsonValue("channel")
+  channel,
 
   /// For a private chat with the inline query sender
   ///
   /// Note: Only For Inline Query
-  sender("sender");
-
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [ChatType].
-  const ChatType(this.value);
-
-  /// Constructs a new [ChatType] from a [String].
-  factory ChatType.fromJson(String type) {
-    return ChatType.values.firstWhere((e) => e.value == type);
-  }
-
-  /// Converts this [ChatType] to a [String].
-  String toJson() => value;
+  @JsonValue("sender")
+  sender;
 }

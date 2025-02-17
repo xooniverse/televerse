@@ -1,63 +1,38 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/abstractions.dart';
+import 'package:televerse/televerse.dart';
+
+part 'chat.freezed.dart';
+part 'chat.g.dart';
 
 /// This object represents a chat.
-class Chat implements WithID {
-  /// Unique identifier for this chat.
-  @override
-  final int id;
-
-  /// Type of the chat, can be either "private", "group", "supergroup" or "channel".
-  final ChatType type;
-
-  /// Title, for supergroups, channels, and group chats.
-  final String? title;
-
-  /// Username, for private chats, supergroups, and channels if available.
-  final String? username;
-
-  /// First name of the other party in a private chat.
-  final String? firstName;
-
-  /// Last name of the other party in a private chat.
-  final String? lastName;
-
-  /// True, if the supergroup chat is a forum (has topics enabled).
-  final bool? isForum;
-
+@freezed
+class Chat with _$Chat implements WithID {
   /// Constructs a [Chat] object.
-  const Chat({
-    required this.id,
-    required this.type,
-    this.title,
-    this.username,
-    this.firstName,
-    this.lastName,
-    this.isForum,
-  });
+  const factory Chat({
+    /// Unique identifier for this chat.
+    required int id,
+
+    /// Type of the chat, can be either "private", "group", "supergroup" or
+    /// "channel".
+    required ChatType type,
+
+    /// Title, for supergroups, channels, and group chats.
+    String? title,
+
+    /// Username, for private chats, supergroups, and channels if available.
+    String? username,
+
+    /// First name of the other party in a private chat.
+    @JsonKey(name: 'first_name') String? firstName,
+
+    /// Last name of the other party in a private chat.
+    @JsonKey(name: 'last_name') String? lastName,
+
+    /// True, if the supergroup chat is a forum (has topics enabled).
+    @JsonKey(name: 'is_forum') bool? isForum,
+  }) = _Chat;
 
   /// Creates a [Chat] object from JSON.
-  factory Chat.fromJson(Map<String, dynamic> json) {
-    return Chat(
-      id: json['id'],
-      type: ChatType.fromJson(json['type'] as String),
-      title: json['title'],
-      username: json['username'],
-      firstName: json['first_name'],
-      lastName: json['last_name'],
-      isForum: json['is_forum'] ?? false,
-    );
-  }
-
-  /// Converts a [Chat] object to JSON.
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'type': type.value,
-      'title': title,
-      'username': username,
-      'first_name': firstName,
-      'last_name': lastName,
-      'is_forum': isForum,
-    };
-  }
+  factory Chat.fromJson(Map<String, dynamic> json) => _$ChatFromJson(json);
 }

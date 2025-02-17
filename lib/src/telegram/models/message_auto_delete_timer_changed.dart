@@ -1,31 +1,33 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// This object represents a service message about a change in auto-delete timer settings.
-class MessageAutoDeleteTimerChanged {
-  /// New auto-delete time for messages in the chat; in seconds
+part 'message_auto_delete_timer_changed.freezed.dart';
+part 'message_auto_delete_timer_changed.g.dart';
+
+/// This object represents a service message about a change in auto-delete timer
+/// settings.
+@freezed
+class MessageAutoDeleteTimerChanged with _$MessageAutoDeleteTimerChanged {
+  /// Creates a service message about auto-delete timer change
   ///
-  /// Note: you can also use the getter [timeInDuration] to get the time in [Duration] object
-  final int messageAutoDeleteTime;
+  /// [messageAutoDeleteTime] New auto-delete time for messages in the chat in
+  /// seconds
+  const factory MessageAutoDeleteTimerChanged({
+    /// New auto-delete time for messages in the chat; in seconds
+    ///
+    /// Note: you can also use the getter [timeInDuration] to get the time in
+    /// [Duration] object
+    @JsonKey(name: 'message_auto_delete_time')
+    required int messageAutoDeleteTime,
+  }) = _MessageAutoDeleteTimerChanged;
 
-  /// Constructs a [MessageAutoDeleteTimerChanged] object
-  const MessageAutoDeleteTimerChanged({
-    required this.messageAutoDeleteTime,
-  });
+  /// Creates a [MessageAutoDeleteTimerChanged] from a JSON map
+  factory MessageAutoDeleteTimerChanged.fromJson(Map<String, dynamic> json) =>
+      _$MessageAutoDeleteTimerChangedFromJson(json);
+}
 
-  /// Creates a [MessageAutoDeleteTimerChanged] object from JSON object
-  factory MessageAutoDeleteTimerChanged.fromJson(Map<String, dynamic> json) {
-    return MessageAutoDeleteTimerChanged(
-      messageAutoDeleteTime: json['message_auto_delete_time']!,
-    );
-  }
-
-  /// Converts a [MessageAutoDeleteTimerChanged] object to JSON object
-  Map<String, dynamic> toJson() {
-    return {
-      'message_auto_delete_time': messageAutoDeleteTime,
-    };
-  }
-
+/// Extension over `MessageAutoDeleteTimerChanged` model
+extension MessageAutoDeleteTimerChangedDurationExt
+    on MessageAutoDeleteTimerChanged {
   /// Returns the time in [Duration] object
   Duration get timeInDuration => Duration(seconds: messageAutoDeleteTime);
 }

@@ -1,34 +1,24 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/encrypted_credentials.dart';
+import 'package:televerse/src/telegram/models/encrypted_passport_element.dart';
+
+part 'passport_data.freezed.dart';
+part 'passport_data.g.dart';
 
 /// Describes Telegram Passport data shared with the bot by the user.
-class PassportData {
-  /// Array with information about documents and other Telegram Passport elements that was shared with the bot
-  final List<EncryptedPassportElement> data;
-
-  /// Encrypted credentials required to decrypt the data
-  final EncryptedCredentials credentials;
-
+@freezed
+class PassportData with _$PassportData {
   /// Constructs a [PassportData] object
-  const PassportData({
-    required this.data,
-    required this.credentials,
-  });
+  const factory PassportData({
+    /// Array with information about documents and other Telegram Passport
+    /// elements that was shared with the bot
+    required List<EncryptedPassportElement> data,
 
-  /// Converts a [PassportData] object to JSON object
-  Map<String, dynamic> toJson() {
-    return {
-      'data': data.map((e) => e.toJson()).toList(),
-      'credentials': credentials.toJson(),
-    };
-  }
+    /// Encrypted credentials required to decrypt the data
+    required EncryptedCredentials credentials,
+  }) = _PassportData;
 
   /// Creates a [PassportData] object from JSON object
-  factory PassportData.fromJson(Map<String, dynamic> json) {
-    return PassportData(
-      data: (json['data'] as List<dynamic>)
-          .map((e) => EncryptedPassportElement.fromJson(e))
-          .toList(),
-      credentials: EncryptedCredentials.fromJson(json['credentials']!),
-    );
-  }
+  factory PassportData.fromJson(Map<String, dynamic> json) =>
+      _$PassportDataFromJson(json);
 }
