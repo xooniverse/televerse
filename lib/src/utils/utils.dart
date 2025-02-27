@@ -94,19 +94,6 @@ extension FromAndChatExt on Update {
   }
 }
 
-/// (Internal) Current status of the initial `Bot.getMe` call
-enum _GetMeStatus {
-  /// Completed
-  completed,
-
-  /// Pending
-  pending,
-
-  /// Not Initiated
-  notInitiated,
-  ;
-}
-
 /// Extension on `Chat` to create ID of the chat
 extension GetChatID on Chat {
   /// Returns the `ChatID` of the chat.

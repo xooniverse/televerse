@@ -224,7 +224,9 @@ class Bot<CTX extends Context> {
         fetcher._updateStreamController?.isClosed == true) {
       fetcher._updateStreamController = StreamController<Update>.broadcast();
     }
+
     // Set instance variable
+    _initialized = true;
     _instance = this;
   }
 
@@ -233,11 +235,11 @@ class Bot<CTX extends Context> {
   /// In other words, initial getMe request :)
   Future<User>? _getMeRequest;
 
-  /// Whether _me is filled or not
-  _GetMeStatus _getMeStatus = _GetMeStatus.notInitiated;
+  /// Whether the bot has been  is filled or not
+  bool _initialized = false;
 
   /// Whether the `Bot.me` is filled
-  bool get initialized => _getMeStatus == _GetMeStatus.completed;
+  bool get initialized => _initialized;
 
   /// Information about the bot.
   User? _me;
@@ -267,11 +269,7 @@ class Bot<CTX extends Context> {
     try {
       if (_me != null) return _me!;
 
-      _getMeStatus = _GetMeStatus.pending;
-      _me = await api.getMe();
-      _getMeStatus = _GetMeStatus.completed;
-
-      return _me!;
+      return _me = await api.getMe();
     } catch (err, stack) {
       final exception = TeleverseException.getMeRequestFailed(err, stack);
       throw exception;
