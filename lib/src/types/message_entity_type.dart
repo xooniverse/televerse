@@ -1,90 +1,98 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// Type of the entity. Currently, can be: one of
+/// Type of the entity. Currently, can be one of:
 /// - [mention] - (@username)
-/// - [hashtag] - (#hashtag),
-/// - [cashtag] - ($USD),
-/// - [botCommand] - (/start@jobs_bot),
-/// - [url] - (https://telegram.org),
-/// - [email] - (do-not-reply@telegram.org),
-/// - [phoneNumber] - (+1-212-555-0123),
-/// - [bold] - (bold text),
-/// - [italic] - (italic text),
-/// - [underline] - (underlined text),
-/// - [strikethrough] - (strikethrough text),
-/// - [spoiler] - (spoiler message),
-/// - [code] - (monowidth string),
-/// - [pre] - (monowidth block),
-/// - [textLink] - (for clickable text URLs),
-/// - [textMention] - (for users without usernames),
+/// - [hashtag] - (#hashtag)
+/// - [cashtag] - ($USD)
+/// - [botCommand] - (/start@jobs_bot)
+/// - [url] - (https://telegram.org)
+/// - [email] - (do-not-reply@telegram.org)
+/// - [phoneNumber] - (+1-212-555-0123)
+/// - [bold] - (bold text)
+/// - [italic] - (italic text)
+/// - [underline] - (underlined text)
+/// - [strikethrough] - (strikethrough text)
+/// - [spoiler] - (spoiler message)
+/// - [code] - (monowidth string)
+/// - [pre] - (monowidth block)
+/// - [textLink] - (for clickable text URLs)
+/// - [textMention] - (for users without usernames)
 /// - [customEmoji] - (for inline custom emoji stickers)
+@JsonEnum(fieldRename: FieldRename.snake)
 enum MessageEntityType {
   /// Mention - (@username)
-  mention("mention"),
+  @JsonValue('mention')
+  mention,
 
-  /// Hashtag - (#hashtag),
-  hashtag("hashtag"),
+  /// Hashtag - (#hashtag)
+  @JsonValue('hashtag')
+  hashtag,
 
-  /// Cashtag - ($USD),
-  cashtag("cashtag"),
+  /// Cashtag - ($USD)
+  @JsonValue('cashtag')
+  cashtag,
 
-  /// Bot command - (/start@jobs_bot),
-  botCommand("bot_command"),
+  /// Bot command - (/start@jobs_bot)
+  @JsonValue('bot_command')
+  botCommand,
 
   /// URL - https://telegram.org
-  url("url"),
+  @JsonValue('url')
+  url,
 
   /// Email - do-not-reply@telegram.org
-  email("email"),
+  @JsonValue('email')
+  email,
 
   /// Phone number - +1-212-555-0123
-  phoneNumber("phone_number"),
+  @JsonValue('phone_number')
+  phoneNumber,
 
   /// Bold text - **bold** text
-  bold("bold"),
+  @JsonValue('bold')
+  bold,
 
   /// Italic text - *italic* text
-  italic("italic"),
+  @JsonValue('italic')
+  italic,
 
   /// Underlined text - __underlined__ text
-  underline("underline"),
+  @JsonValue('underline')
+  underline,
 
   /// Strikethrough text - ~strikethrough~ text
-  strikethrough("strikethrough"),
+  @JsonValue('strikethrough')
+  strikethrough,
 
   /// Spoiler message - ||spoiler||
-  spoiler("spoiler"),
+  @JsonValue('spoiler')
+  spoiler,
 
   /// Monowidth string - `monowidth string`
-  code("code"),
+  @JsonValue('code')
+  code,
 
   /// Monowidth block - ```monowidth block```
-  pre("pre"),
+  @JsonValue('pre')
+  pre,
 
   /// For clickable text URLs
-  textLink("text_link"),
+  @JsonValue('text_link')
+  textLink,
 
   /// For users without usernames
-  textMention("text_mention"),
+  @JsonValue('text_mention')
+  textMention,
 
   /// For inline custom emoji stickers
-  customEmoji("custom_emoji"),
+  @JsonValue('custom_emoji')
+  customEmoji,
 
   /// Block quotation
-  blockquote("blockquote"),
+  @JsonValue('blockquote')
+  blockquote,
 
   /// Expandable Block Quote
-  expandableBlockquote("expandable_blockquote"),
-  ;
-
-  /// The value of this enum.
-  final String type;
-
-  /// Constructs a new [MessageEntityType].
-  const MessageEntityType(this.type);
-
-  /// Constructs a [MessageEntityType] from a [type].
-  factory MessageEntityType.fromJson(String type) {
-    return MessageEntityType.values.firstWhere((e) => e.type == type);
-  }
+  @JsonValue('expandable_blockquote')
+  expandableBlockquote;
 }

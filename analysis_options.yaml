@@ -2,14 +2,17 @@ include: package:lints/recommended.yaml
 
 linter:
   rules:
-    - camel_case_types
-    - comment_references
-    - dangling_library_doc_comments
-    - public_member_api_docs
-    - slash_for_doc_comments
-    - unnecessary_library_directive
-    - require_trailing_commas
+    - camel_case_types: true
+    - comment_references: true
+    - dangling_library_doc_comments: true
+    - public_member_api_docs: true
+    - slash_for_doc_comments: true
+    - unnecessary_library_directive: true
 
 analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
   errors:
     invalid_annotation_target: ignore
+  

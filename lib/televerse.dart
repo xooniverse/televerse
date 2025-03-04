@@ -34,6 +34,8 @@ export 'src/televerse/extensions/extensions.dart';
 export 'src/televerse/links/links.dart';
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
+export 'src/televerse/markups/inline_keyboard.dart';
+export 'src/televerse/markups/keyboard.dart';
 
 // Bot & API
 part 'src/televerse/api/raw_api.dart';
@@ -46,9 +48,7 @@ part 'src/televerse/context/methods.dart';
 part 'src/televerse/context/properties.dart';
 
 // Keyboards & Menus
-part 'src/televerse/markups/inline_keyboard.dart';
 part 'src/televerse/markups/inline_menu.dart';
-part 'src/televerse/markups/keyboard.dart';
 part 'src/televerse/markups/keyboard_menu.dart';
 part 'src/televerse/markups/menu.dart';
 

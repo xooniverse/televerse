@@ -5,11 +5,8 @@ class _MultipartHelper {
   /// The file to be uploaded
   final InputFile file;
 
-  /// The field name of the file
-  final String field;
-
   /// Creates a new multipart helper
-  const _MultipartHelper(this.file, this.field);
+  const _MultipartHelper(this.file);
 
   /// The InputFile Type
   InputFileType get type => file.type;

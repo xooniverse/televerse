@@ -1,33 +1,22 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'location.dart';
+
+part 'business_location.freezed.dart';
+part 'business_location.g.dart';
 
 /// Represents the location of a business.
-class BusinessLocation {
-  /// Address of the business.
-  final String address;
-
-  /// Optional. Location of the business.
-  final Location? location;
-
+@freezed
+class BusinessLocation with _$BusinessLocation {
   /// Creates a [BusinessLocation] object.
-  const BusinessLocation({
-    required this.address,
-    this.location,
-  });
+  const factory BusinessLocation({
+    /// Address of the business.
+    @JsonKey(name: 'address') required String address,
+
+    /// Optional. Location of the business.
+    @JsonKey(name: 'location') Location? location,
+  }) = _BusinessLocation;
 
   /// Creates a [BusinessLocation] object from a JSON map.
-  factory BusinessLocation.fromJson(Map<String, dynamic> json) {
-    return BusinessLocation(
-      address: json['address'],
-      location:
-          json['location'] != null ? Location.fromJson(json['location']) : null,
-    );
-  }
-
-  /// Converts this object to a JSON map.
-  Map<String, dynamic> toJson() {
-    return {
-      'address': address,
-      'location': location?.toJson(),
-    };
-  }
+  factory BusinessLocation.fromJson(Map<String, dynamic> json) =>
+      _$BusinessLocationFromJson(json);
 }

@@ -1,17 +1,16 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// This object represents a service message about a forum topic closed in the chat. Currently holds no information.
-class ForumTopicClosed {
+part 'forum_topic_closed.freezed.dart';
+part 'forum_topic_closed.g.dart';
+
+/// This object represents a service message about a forum topic closed in the
+/// chat. Currently holds no information.
+@freezed
+class ForumTopicClosed with _$ForumTopicClosed {
   /// Creates a new [ForumTopicClosed] object.
-  const ForumTopicClosed();
+  const factory ForumTopicClosed() = _ForumTopicClosed;
 
   /// Creates a new [ForumTopicClosed] object from json.
-  factory ForumTopicClosed.fromJson(Map<String, dynamic> json) {
-    return ForumTopicClosed();
-  }
-
-  /// Converts a [ForumTopicClosed] object to json.
-  Map<String, dynamic> toJson() {
-    return {};
-  }
+  factory ForumTopicClosed.fromJson(Map<String, dynamic> json) =>
+      _$ForumTopicClosedFromJson(json);
 }

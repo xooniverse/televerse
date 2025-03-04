@@ -1,4 +1,4 @@
-part of 'types.dart';
+import 'package:televerse/televerse.dart';
 
 /// This object represents the type of a file to send.
 /// Currently, the following 3 types are supported:

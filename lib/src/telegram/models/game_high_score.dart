@@ -1,39 +1,25 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'user.dart';
+
+part 'game_high_score.freezed.dart';
+part 'game_high_score.g.dart';
 
 /// This object represents one row of the high scores table for a game.
-class GameHighScore {
-  /// Position in high score table for the game
-  final int position;
-
-  /// User
-  final User user;
-
-  /// Score
-  final int score;
-
+@freezed
+class GameHighScore with _$GameHighScore {
   /// Constructs a [GameHighScore] object
-  const GameHighScore({
-    required this.position,
-    required this.user,
-    required this.score,
-  });
+  const factory GameHighScore({
+    /// Position in high score table for the game
+    @JsonKey(name: 'position') required int position,
+
+    /// User
+    @JsonKey(name: 'user') required User user,
+
+    /// Score
+    @JsonKey(name: 'score') required int score,
+  }) = _GameHighScore;
 
   /// De-serializes a [GameHighScore] object from a JSON map
-  factory GameHighScore.fromJson(Map<String, dynamic> json) {
-    return GameHighScore(
-      position: json['position'] as int,
-      user: User.fromJson(json['user'] as Map<String, dynamic>),
-      score: json['score'] as int,
-    );
-  }
-
-  /// Serializes a [GameHighScore] object to a JSON map
-  /// Returns a [Map<String, dynamic>] containing the serialized object
-  Map<String, dynamic> toJson() {
-    return {
-      'position': position,
-      'user': user.toJson(),
-      'score': score,
-    };
-  }
+  factory GameHighScore.fromJson(Map<String, dynamic> json) =>
+      _$GameHighScoreFromJson(json);
 }

@@ -1,76 +1,51 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'order_info.dart';
+
+part 'successful_payment.freezed.dart';
+part 'successful_payment.g.dart';
 
 /// This object contains basic information about a successful payment.
-class SuccessfulPayment {
-  /// Three-letter ISO 4217 currency code
-  final String currency;
-
-  /// Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in [currencies.json](https://core.telegram.org/bots/payments/currencies.json), it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).
-  final int totalAmount;
-
-  /// Bot specified invoice payload
-  final String invoicePayload;
-
-  /// Optional. Identifier of the shipping option chosen by the user
-  final String? shippingOptionId;
-
-  /// Optional. Order info provided by the user
-  final OrderInfo? orderInfo;
-
-  /// Telegram payment identifier
-  final String telegramPaymentChargeId;
-
-  /// Provider payment identifier
-  final String providerPaymentChargeId;
-
-  /// Optional. True, if the payment is a recurring payment for a subscription
-  final bool? isRecurring;
-
-  /// Optional. True, if the payment is the first payment for a subscription
-  final bool? isFirstRecurring;
-
+@freezed
+class SuccessfulPayment with _$SuccessfulPayment {
   /// Constructs a [SuccessfulPayment] object
-  const SuccessfulPayment({
-    required this.currency,
-    required this.totalAmount,
-    required this.invoicePayload,
-    this.shippingOptionId,
-    this.orderInfo,
-    required this.telegramPaymentChargeId,
-    required this.providerPaymentChargeId,
-    this.isRecurring,
-    this.isFirstRecurring,
-  });
+  const factory SuccessfulPayment({
+    /// Three-letter ISO 4217 currency code
+    @JsonKey(name: 'currency') required String currency,
 
-  /// Converts a [SuccessfulPayment] object to a JSON object
-  Map<String, dynamic> toJson() {
-    return {
-      'currency': currency,
-      'total_amount': totalAmount,
-      'invoice_payload': invoicePayload,
-      'shipping_option_id': shippingOptionId,
-      'order_info': orderInfo?.toJson(),
-      'telegram_payment_charge_id': telegramPaymentChargeId,
-      'provider_payment_charge_id': providerPaymentChargeId,
-      'is_recurring': isRecurring,
-      'is_first_recurring': isFirstRecurring,
-    }..removeWhere(_nullFilter);
-  }
+    /// Total price in the smallest units of the currency (integer, not
+    /// float/double). For example, for a price of US$ 1.45 pass amount = 145.
+    /// See the exp parameter in
+    /// [currencies.json](https://core.telegram.org/bots/payments/currencies.json),
+    /// it shows the number of digits past the decimal point for each currency
+    /// (2 for the majority of currencies).
+    @JsonKey(name: 'total_amount') required int totalAmount,
+
+    /// Bot specified invoice payload
+    @JsonKey(name: 'invoice_payload') required String invoicePayload,
+
+    /// Optional. Identifier of the shipping option chosen by the user
+    @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
+
+    /// Optional. Order info provided by the user
+    @JsonKey(name: 'order_info') OrderInfo? orderInfo,
+
+    /// Telegram payment identifier
+    @JsonKey(name: 'telegram_payment_charge_id')
+    required String telegramPaymentChargeId,
+
+    /// Provider payment identifier
+    @JsonKey(name: 'provider_payment_charge_id')
+    required String providerPaymentChargeId,
+
+    /// Optional. True, if the payment is a recurring payment for a subscription
+    @JsonKey(name: 'is_recurring') bool? isRecurring,
+
+    /// Optional. True, if the payment is the first payment for a subscription
+    @JsonKey(name: 'is_first_recurring') bool? isFirstRecurring,
+  }) = _SuccessfulPayment;
 
   /// Creates a [SuccessfulPayment] object from a JSON object
-  factory SuccessfulPayment.fromJson(Map<String, dynamic> json) {
-    return SuccessfulPayment(
-      currency: json['currency']!,
-      totalAmount: json['total_amount']!,
-      invoicePayload: json['invoice_payload']!,
-      shippingOptionId: json['shipping_option_id'],
-      orderInfo: json['order_info'] != null
-          ? OrderInfo.fromJson(json['order_info']!)
-          : null,
-      telegramPaymentChargeId: json['telegram_payment_charge_id']!,
-      providerPaymentChargeId: json['provider_payment_charge_id']!,
-      isRecurring: json['is_recurring'],
-      isFirstRecurring: json['is_first_recurring'],
-    );
-  }
+  factory SuccessfulPayment.fromJson(Map<String, dynamic> json) =>
+      _$SuccessfulPaymentFromJson(json);
 }

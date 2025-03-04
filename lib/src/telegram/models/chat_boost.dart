@@ -1,44 +1,28 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'chat_boost_source.dart';
+
+part 'chat_boost.freezed.dart';
+part 'chat_boost.g.dart';
 
 /// This object contains information about a chat boost.
-class ChatBoost {
-  /// Unique identifier of the boost
-  final String boostId;
-
-  /// Point in time (Unix timestamp) when the chat was boosted
-  final int addDate;
-
-  /// Point in time (Unix timestamp) when the boost will automatically expire, unless the booster's Telegram Premium subscription is prolonged
-  final int expirationDate;
-
-  /// Source of the added boost
-  final ChatBoostSource source;
-
+@freezed
+class ChatBoost with _$ChatBoost {
   /// Creates a chat boost.
-  const ChatBoost({
-    required this.boostId,
-    required this.addDate,
-    required this.expirationDate,
-    required this.source,
-  });
+  const factory ChatBoost({
+    /// Unique identifier of the boost
+    @JsonKey(name: 'boost_id') required final String boostId,
 
-  /// Converts the `ChatBoost` object to a JSON object.
-  Map<String, dynamic> toJson() {
-    return {
-      'boost_id': boostId,
-      'add_date': addDate,
-      'expiration_date': expirationDate,
-      'source': source.toJson(),
-    };
-  }
+    /// Point in time (Unix timestamp) when the chat was boosted
+    @JsonKey(name: 'add_date') required final int addDate,
+
+    /// Point in time (Unix timestamp) when the boost will automatically expire, unless the booster's Telegram Premium subscription is prolonged
+    @JsonKey(name: 'expiration_date') required final int expirationDate,
+
+    /// Source of the added boost
+    @JsonKey(name: 'source') required final ChatBoostSource source,
+  }) = _ChatBoost;
 
   /// Creates a `ChatBoost` object from a JSON object.
-  factory ChatBoost.fromJson(Map<String, dynamic> json) {
-    return ChatBoost(
-      boostId: json['boost_id'],
-      addDate: json['add_date'],
-      expirationDate: json['expiration_date'],
-      source: ChatBoostSource.fromJson(json['source']),
-    );
-  }
+  factory ChatBoost.fromJson(Map<String, dynamic> json) =>
+      _$ChatBoostFromJson(json);
 }

@@ -1,35 +1,23 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'business_opening_hours_interval.dart';
+
+part 'business_opening_hours.freezed.dart';
+part 'business_opening_hours.g.dart';
 
 /// Represents the opening hours of a business.
-class BusinessOpeningHours {
-  /// Unique name of the time zone for which the opening hours are defined.
-  final String timeZoneName;
-
-  /// Opening hours intervals for the business.
-  final List<BusinessOpeningHoursInterval> openingHours;
-
+@freezed
+class BusinessOpeningHours with _$BusinessOpeningHours {
   /// Creates a [BusinessOpeningHours] object.
-  const BusinessOpeningHours({
-    required this.timeZoneName,
-    required this.openingHours,
-  });
+  const factory BusinessOpeningHours({
+    /// Unique name of the time zone for which the opening hours are defined.
+    @JsonKey(name: 'time_zone_name') required String timeZoneName,
+
+    /// Opening hours intervals for the business.
+    @JsonKey(name: 'opening_hours')
+    required List<BusinessOpeningHoursInterval> openingHours,
+  }) = _BusinessOpeningHours;
 
   /// Creates a [BusinessOpeningHours] object from a JSON map.
-  factory BusinessOpeningHours.fromJson(Map<String, dynamic> json) {
-    return BusinessOpeningHours(
-      timeZoneName: json['time_zone_name'],
-      openingHours: (json['opening_hours'] as List<dynamic>)
-          .map((e) => BusinessOpeningHoursInterval.fromJson(e))
-          .toList(),
-    );
-  }
-
-  /// Converts this object to a JSON map.
-  Map<String, dynamic> toJson() {
-    return {
-      'time_zone_name': timeZoneName,
-      'opening_hours':
-          openingHours.map((interval) => interval.toJson()).toList(),
-    };
-  }
+  factory BusinessOpeningHours.fromJson(Map<String, dynamic> json) =>
+      _$BusinessOpeningHoursFromJson(json);
 }

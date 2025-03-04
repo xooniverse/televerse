@@ -1,58 +1,47 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'photo_size.dart';
 
-/// This object represents a general file (as opposed to photos, voice messages and audio files).
-class Document {
-  /// Identifier for this file, which can be used to download or reuse the file
-  final String fileId;
+part 'document.freezed.dart';
+part 'document.g.dart';
 
-  /// Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-  final String fileUniqueId;
+/// This object represents a general file (as opposed to photos, voice messages
+/// and audio files).
+@freezed
+class Document with _$Document {
+  /// Creates a general file
+  ///
+  /// [fileId] Identifier for this file, which can be used to download or reuse
+  /// the file [fileUniqueId] Unique identifier for this file [thumbnail]
+  /// Thumbnail of the album cover to which the music file belongs [fileName]
+  /// Original filename as defined by sender [mimeType] MIME type of the file as
+  /// defined by sender [fileSize] File size in bytes
+  const factory Document({
+    /// Identifier for this file, which can be used to download or reuse the
+    /// file
+    @JsonKey(name: 'file_id') required String fileId,
 
-  /// Optional. Thumbnail of the album cover to which the music file belongs
-  final PhotoSize? thumbnail;
+    /// Unique identifier for this file, which is supposed to be the same over
+    /// time and for different bots. Can't be used to download or reuse the
+    /// file.
+    @JsonKey(name: 'file_unique_id') required String fileUniqueId,
 
-  /// Optional. Original filename as defined by sender
-  final String? fileName;
+    /// Optional. Thumbnail of the album cover to which the music file belongs
+    @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
 
-  /// Optional. MIME type of the file as defined by sender
-  final String? mimeType;
+    /// Optional. Original filename as defined by sender
+    @JsonKey(name: 'file_name') String? fileName,
 
-  /// Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
-  final int? fileSize;
+    /// Optional. MIME type of the file as defined by sender
+    @JsonKey(name: 'mime_type') String? mimeType,
 
-  /// Creates a new [Document] object.
-  const Document({
-    required this.fileId,
-    required this.fileUniqueId,
-    this.thumbnail,
-    this.fileName,
-    this.mimeType,
-    this.fileSize,
-  });
+    /// Optional. File size in bytes. It can be bigger than 2^31 and some
+    /// programming languages may have difficulty/silent defects in interpreting
+    /// it. But it has at most 52 significant bits, so a signed 64-bit integer
+    /// or double-precision float type are safe for storing this value.
+    @JsonKey(name: 'file_size') int? fileSize,
+  }) = _Document;
 
-  /// Creates a new [Document] object from json.
-  factory Document.fromJson(Map<String, dynamic> json) {
-    return Document(
-      fileId: json['file_id']!,
-      fileUniqueId: json['file_unique_id']!,
-      thumbnail: json['thumbnail'] != null
-          ? PhotoSize.fromJson(json['thumbnail']!)
-          : null,
-      fileName: json['file_name'],
-      mimeType: json['mime_type'],
-      fileSize: json['file_size'],
-    );
-  }
-
-  /// Converts a [Document] to a [Map] for JSON encoding.
-  Map<String, dynamic> toJson() {
-    return {
-      'file_id': fileId,
-      'file_unique_id': fileUniqueId,
-      'thumbnail': thumbnail?.toJson(),
-      'file_name': fileName,
-      'mime_type': mimeType,
-      'file_size': fileSize,
-    }..removeWhere(_nullFilter);
-  }
+  /// Creates a [Document] from a JSON map
+  factory Document.fromJson(Map<String, dynamic> json) =>
+      _$DocumentFromJson(json);
 }

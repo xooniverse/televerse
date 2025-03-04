@@ -1,32 +1,23 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'reaction_type.dart';
 
-/// Represents a reaction added to a message along with the number of times it was added.
-class ReactionCount {
-  /// Type of the reaction.
-  final ReactionType type;
+part 'reaction_count.freezed.dart';
+part 'reaction_count.g.dart';
 
-  /// Number of times the reaction was added.
-  final int totalCount;
-
+/// Represents a reaction added to a message along with the number of times it
+/// was added.
+@freezed
+class ReactionCount with _$ReactionCount {
   /// Creates a new instance of [ReactionCount].
-  const ReactionCount({
-    required this.type,
-    required this.totalCount,
-  });
+  const factory ReactionCount({
+    /// Type of the reaction.
+    @JsonKey(name: 'type') required ReactionType type,
 
-  /// Converts a [ReactionCount] object to JSON object.
-  Map<String, dynamic> toJson() {
-    return {
-      'type': type.toJson(),
-      'total_count': totalCount,
-    };
-  }
+    /// Number of times the reaction was added.
+    @JsonKey(name: 'total_count') required int totalCount,
+  }) = _ReactionCount;
 
   /// Creates a [ReactionCount] object from JSON object.
-  factory ReactionCount.fromJson(Map<String, dynamic> json) {
-    return ReactionCount(
-      type: ReactionType.fromJson(json['type']),
-      totalCount: json['total_count'],
-    );
-  }
+  factory ReactionCount.fromJson(Map<String, dynamic> json) =>
+      _$ReactionCountFromJson(json);
 }

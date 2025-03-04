@@ -1,38 +1,24 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'birthdate.freezed.dart';
+part 'birthdate.g.dart';
 
 /// Represents a user's birthdate.
-class Birthdate {
-  /// Day of the user's birth; 1-31.
-  final int day;
-
-  /// Month of the user's birth; 1-12.
-  final int month;
-
-  /// Optional. Year of the user's birth.
-  final int? year;
-
+@freezed
+class Birthdate with _$Birthdate {
   /// Creates a [Birthdate] object.
-  const Birthdate({
-    required this.day,
-    required this.month,
-    this.year,
-  });
+  const factory Birthdate({
+    /// Day of the user's birth; 1-31.
+    @JsonKey(name: 'day') required int day,
+
+    /// Month of the user's birth; 1-12.
+    @JsonKey(name: 'month') required int month,
+
+    /// Optional. Year of the user's birth.
+    @JsonKey(name: 'year') int? year,
+  }) = _Birthdate;
 
   /// Creates a [Birthdate] object from a JSON map.
-  factory Birthdate.fromJson(Map<String, dynamic> json) {
-    return Birthdate(
-      day: json['day'],
-      month: json['month'],
-      year: json['year'],
-    );
-  }
-
-  /// Converts this object to a JSON map.
-  Map<String, dynamic> toJson() {
-    return {
-      'day': day,
-      'month': month,
-      'year': year,
-    }..removeWhere(_nullFilter);
-  }
+  factory Birthdate.fromJson(Map<String, dynamic> json) =>
+      _$BirthdateFromJson(json);
 }

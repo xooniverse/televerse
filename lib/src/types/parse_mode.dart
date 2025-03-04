@@ -1,37 +1,24 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// This object represents the [ParseMode] of a message. See the [Telegram API docs](https://core.telegram.org/bots/api#formatting-options) for more information.
+part 'parse_mode.g.dart';
+
+/// This object represents the [ParseMode] of a message.
+///
+/// See the [Telegram API docs](https://core.telegram.org/bots/api#formatting-options) for more information.
+@JsonEnum(alwaysCreate: true)
 enum ParseMode {
   /// Markdown
-  markdown._('Markdown'),
+  @JsonValue('Markdown')
+  markdown,
 
   /// HTML
-  html._('HTML'),
+  @JsonValue('HTML')
+  html,
 
   /// MarkdownV2
-  markdownV2._('MarkdownV2');
+  @JsonValue('MarkdownV2')
+  markdownV2;
 
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [ParseMode].
-  const ParseMode._(this.value);
-
-  /// Constructs a new [ParseMode] from a [String].
-  factory ParseMode.fromJson(String value) {
-    switch (value) {
-      case 'Markdown':
-        return markdown;
-      case 'HTML':
-        return html;
-      case 'MarkdownV2':
-        return markdownV2;
-      default:
-        throw TeleverseException(
-          'Invalid ParseMode value: $value',
-          description: 'The given value does not match any ParseMode.',
-          type: TeleverseExceptionType.invalidParameter,
-        );
-    }
-  }
+  /// Converts the [ParseMode] to its corresponding JSON value.
+  String toJson() => _$ParseModeEnumMap[this]!;
 }

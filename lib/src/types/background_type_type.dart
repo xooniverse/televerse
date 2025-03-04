@@ -1,30 +1,27 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'background_type_type.g.dart';
 
-/// This object represents the type of a background.
+/// Represents the type of the Background
+@JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)
 enum BackgroundTypeType {
   /// The background is automatically filled based on the selected colors.
-  fill("fill"),
+  @JsonValue("fill")
+  fill,
 
   /// The background is a wallpaper in the JPEG format.
-  wallpaper("wallpaper"),
+  @JsonValue("wallpaper")
+  wallpaper,
 
-  /// The background is a PNG or TGV pattern to be combined with the background fill chosen by the user.
-  pattern("pattern"),
+  /// The background is a PNG or TGV pattern to be combined with the background
+  /// fill chosen by the user.
+  @JsonValue("pattern")
+  pattern,
 
   /// The background is taken directly from a built-in chat theme.
-  chatTheme("chat_theme"),
+  @JsonValue("chat_theme")
+  chatTheme,
   ;
 
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [BackgroundFillType].
-  const BackgroundTypeType(this.value);
-
-  /// Creates the type object from passed type string.
-  static BackgroundTypeType fromJson(String json) {
-    return values.firstWhere((e) {
-      return e.value == json;
-    });
-  }
+  /// Converts the [BackgroundTypeType] to its corresponding JSON value.
+  String toJson() => _$BackgroundTypeTypeEnumMap[this]!;
 }

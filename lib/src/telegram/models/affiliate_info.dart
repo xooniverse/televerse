@@ -1,59 +1,38 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'user.dart';
+import 'chat.dart';
 
-/// Contains information about the affiliate that received a commission
-/// via this transaction.
-class AffiliateInfo {
-  /// The bot or the user that received an affiliate commission if it was
-  /// received by a bot or a user.
-  final User? affiliateUser;
+part 'affiliate_info.freezed.dart';
+part 'affiliate_info.g.dart';
 
-  /// The chat that received an affiliate commission if it was received by a chat.
-  final Chat? affiliateChat;
-
-  /// The number of Telegram Stars received by the affiliate for each 1000
-  /// Telegram Stars received by the bot from referred users.
-  final int commissionPerMille;
-
-  /// Integer amount of Telegram Stars received by the affiliate from the transaction,
-  /// rounded to 0; can be negative for refunds.
-  final int amount;
-
-  /// The number of 1/1000000000 shares of Telegram Stars received by the affiliate;
-  /// from -999999999 to 999999999; can be negative for refunds.
-  final int? nanostarAmount;
-
+/// Contains information about the affiliate that received a commission via this
+/// transaction.
+@freezed
+class AffiliateInfo with _$AffiliateInfo {
   /// Constructs an [AffiliateInfo] object.
-  const AffiliateInfo({
-    this.affiliateUser,
-    this.affiliateChat,
-    required this.commissionPerMille,
-    required this.amount,
-    this.nanostarAmount,
-  });
+  const factory AffiliateInfo({
+    /// The bot or the user that received an affiliate commission if it was
+    /// received by a bot or a user.
+    @JsonKey(name: 'affiliate_user') User? affiliateUser,
+
+    /// The chat that received an affiliate commission if it was received by a
+    /// chat.
+    @JsonKey(name: 'affiliate_chat') Chat? affiliateChat,
+
+    /// The number of Telegram Stars received by the affiliate for each 1000
+    /// Telegram Stars received by the bot from referred users.
+    @JsonKey(name: 'commission_per_mille') required int commissionPerMille,
+
+    /// Integer amount of Telegram Stars received by the affiliate from the
+    /// transaction, rounded to 0; can be negative for refunds.
+    @JsonKey(name: 'amount') required int amount,
+
+    /// The number of 1/1000000000 shares of Telegram Stars received by the
+    /// affiliate; from -999999999 to 999999999; can be negative for refunds.
+    @JsonKey(name: 'nanostar_amount') int? nanostarAmount,
+  }) = _AffiliateInfo;
 
   /// Creates an [AffiliateInfo] object from JSON.
-  factory AffiliateInfo.fromJson(Map<String, dynamic> json) {
-    return AffiliateInfo(
-      affiliateUser: json['affiliate_user'] != null
-          ? User.fromJson(json['affiliate_user'])
-          : null,
-      affiliateChat: json['affiliate_chat'] != null
-          ? Chat.fromJson(json['affiliate_chat'])
-          : null,
-      commissionPerMille: json['commission_per_mille'],
-      amount: json['amount'],
-      nanostarAmount: json['nanostar_amount'],
-    );
-  }
-
-  /// Converts an [AffiliateInfo] object to JSON.
-  Map<String, dynamic> toJson() {
-    return {
-      'affiliate_user': affiliateUser?.toJson(),
-      'affiliate_chat': affiliateChat?.toJson(),
-      'commission_per_mille': commissionPerMille,
-      'amount': amount,
-      'nanostar_amount': nanostarAmount,
-    }..removeWhere(_nullFilter);
-  }
+  factory AffiliateInfo.fromJson(Map<String, dynamic> json) =>
+      _$AffiliateInfoFromJson(json);
 }

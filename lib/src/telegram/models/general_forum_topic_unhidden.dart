@@ -1,17 +1,16 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// This object represents a service message about General forum topic unhidden in the chat. Currently holds no information.
-class GeneralForumTopicUnhidden {
-  /// Constructs a [GeneralForumTopicUnhidden] object
-  const GeneralForumTopicUnhidden();
+part 'general_forum_topic_unhidden.freezed.dart';
+part 'general_forum_topic_unhidden.g.dart';
 
-  /// Converts a [GeneralForumTopicUnhidden] object to a JSON map
-  Map<String, dynamic> toJson() {
-    return {};
-  }
+/// This object represents a service message about General forum topic unhidden
+/// in the chat. Currently holds no information.
+@freezed
+class GeneralForumTopicUnhidden with _$GeneralForumTopicUnhidden {
+  /// Constructs a [GeneralForumTopicUnhidden] object.
+  const factory GeneralForumTopicUnhidden() = _GeneralForumTopicUnhidden;
 
-  /// Creates a [GeneralForumTopicUnhidden] object from a JSON map
-  factory GeneralForumTopicUnhidden.fromJson(Map<String, dynamic> json) {
-    return GeneralForumTopicUnhidden();
-  }
+  /// De-serializes a [GeneralForumTopicUnhidden] object from a JSON map.
+  factory GeneralForumTopicUnhidden.fromJson(Map<String, dynamic> json) =>
+      _$GeneralForumTopicUnhiddenFromJson(json);
 }
