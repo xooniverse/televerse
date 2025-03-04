@@ -1,30 +1,22 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// This object represents the Menu Button Type. Read about the [Menu Button](https://core.telegram.org/bots/api#menubutton) here.
+part 'menu_button_type.g.dart';
+
+/// Represents the type of the MenuButton.
+@JsonEnum(alwaysCreate: true, fieldRename: FieldRename.snake)
 enum MenuButtonType {
-  /// Menu Button shows a list of commands
-  commands("commands"),
+  /// Represents a default menu button
+  @JsonValue('default')
+  defaultButton,
 
-  /// Menu Button opens a web app
-  webApp("web_app"),
+  /// Represents web app menu button
+  @JsonValue('web_app')
+  webApp,
 
-  /// The default button
-  defaultButton("default"),
-  ;
+  /// Represents Menu Button Command
+  @JsonValue('commands')
+  commands;
 
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [MenuButtonType].
-  const MenuButtonType(this.value);
-
-  /// Constructs a new [MenuButtonType] from a [String].
-  static MenuButtonType fromJson(String value) {
-    return MenuButtonType.values.firstWhere((e) => e.value == value);
-  }
-
-  /// Converts this [MenuButtonType] to a [String].
-  String toJson() {
-    return value;
-  }
+  /// Gets the JSON value of the [MenuButtonType].
+  String get value => _$MenuButtonTypeEnumMap[this]!;
 }

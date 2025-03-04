@@ -1466,7 +1466,7 @@ extension ContextAwareMethods on Context {
   }
 
   /// Get information about the chat.
-  Future<Chat> getChat() async {
+  Future<ChatFullInfo> getChat() async {
     _verifyInfo([_chatId], APIMethod.getChat);
     return api.getChat(id);
   }

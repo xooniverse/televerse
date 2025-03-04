@@ -1,26 +1,18 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'bot_name.freezed.dart';
+part 'bot_name.g.dart';
 
 /// This object represents the bot's name.
-class BotName {
-  /// The bot's name
-  final String name;
+@freezed
+class BotName with _$BotName {
+  /// Creates a new [BotName] object.
+  const factory BotName({
+    /// The bot's name
+    @JsonKey(name: 'name') required String name,
+  }) = _BotName;
 
-  /// Creates a new BotName object
-  const BotName({
-    required this.name,
-  });
-
-  /// Constructs [BotName] from JSON
-  factory BotName.fromJson(Map<String, dynamic> json) {
-    return BotName(
-      name: json['name'],
-    );
-  }
-
-  /// Converts [BotName] to JSON
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-    };
-  }
+  /// Constructs [BotName] from JSON.
+  factory BotName.fromJson(Map<String, dynamic> json) =>
+      _$BotNameFromJson(json);
 }

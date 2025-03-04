@@ -373,6 +373,6 @@ class InlineMenu<CTX extends Context>
           return button.toJson();
         }).toList();
       }).toList(),
-    }..removeWhere(_nullFilter);
+    };
   }
 }

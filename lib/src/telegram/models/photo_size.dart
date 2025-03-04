@@ -1,50 +1,33 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'photo_size.freezed.dart';
+part 'photo_size.g.dart';
 
 /// This object represents one size of a photo or a file / sticker thumbnail.
-class PhotoSize {
-  /// Identifier for this file, which can be used to download or reuse the file
-  final String fileId;
-
-  /// Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-  final String fileUniqueId;
-
-  /// Photo width
-  final int width;
-
-  /// Photo height
-  final int height;
-
-  /// Optional. File size in bytes
-  final int? fileSize;
-
+@freezed
+class PhotoSize with _$PhotoSize {
   /// Constructs a [PhotoSize] object
-  const PhotoSize({
-    required this.fileId,
-    required this.fileUniqueId,
-    required this.width,
-    required this.height,
-    this.fileSize,
-  });
+  const factory PhotoSize({
+    /// Identifier for this file, which can be used to download or reuse the
+    /// file
+    @JsonKey(name: 'file_id') required String fileId,
+
+    /// Unique identifier for this file, which is supposed to be the same over
+    /// time and for different bots. Can't be used to download or reuse the
+    /// file.
+    @JsonKey(name: 'file_unique_id') required String fileUniqueId,
+
+    /// Photo width
+    @JsonKey(name: 'width') required int width,
+
+    /// Photo height
+    @JsonKey(name: 'height') required int height,
+
+    /// Optional. File size in bytes
+    @JsonKey(name: 'file_size') int? fileSize,
+  }) = _PhotoSize;
 
   /// Creates a [PhotoSize] object from JSON object
-  factory PhotoSize.fromJson(Map<String, dynamic> json) {
-    return PhotoSize(
-      fileId: json['file_id'],
-      fileUniqueId: json['file_unique_id'],
-      width: json['width'],
-      height: json['height'],
-      fileSize: json['file_size'],
-    );
-  }
-
-  /// Converts a [PhotoSize] object to JSON object
-  Map<String, dynamic> toJson() {
-    return {
-      'file_id': fileId,
-      'file_unique_id': fileUniqueId,
-      'width': width,
-      'height': height,
-      'file_size': fileSize,
-    }..removeWhere(_nullFilter);
-  }
+  factory PhotoSize.fromJson(Map<String, dynamic> json) =>
+      _$PhotoSizeFromJson(json);
 }

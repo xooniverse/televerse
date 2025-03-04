@@ -1,17 +1,16 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-/// A placeholder, currently holds no information. Use BotFather to set up your game.
-class CallbackGame {
+part 'callback_game.freezed.dart';
+part 'callback_game.g.dart';
+
+/// A placeholder, currently holds no information. Use BotFather to set up your
+/// game.
+@freezed
+class CallbackGame with _$CallbackGame {
   /// Creates a new [CallbackGame] object.
-  const CallbackGame();
+  const factory CallbackGame() = _CallbackGame;
 
-  /// Creates a new [CallbackGame] object from json.
-  factory CallbackGame.fromJson(Map<String, dynamic> json) {
-    return CallbackGame();
-  }
-
-  /// Converts a [CallbackGame] to a [Map] for JSON encoding.
-  Map<String, dynamic> toJson() {
-    return {};
-  }
+  /// Creates a [CallbackGame] object from JSON object.
+  factory CallbackGame.fromJson(Map<String, dynamic> json) =>
+      _$CallbackGameFromJson(json);
 }

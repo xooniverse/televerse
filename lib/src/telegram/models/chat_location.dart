@@ -1,32 +1,22 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/location.dart';
+
+part 'chat_location.freezed.dart';
+part 'chat_location.g.dart';
 
 /// Represents a location to which a chat is connected.
-class ChatLocation {
-  /// The location to which the supergroup is connected.
-  final Location location;
-
-  /// Location address; 1-64 characters, as defined by the chat owner
-  final String address;
-
+@freezed
+class ChatLocation with _$ChatLocation {
   /// Creates a new [ChatLocation] object.
-  const ChatLocation({
-    required this.location,
-    required this.address,
-  });
+  const factory ChatLocation({
+    /// The location to which the supergroup is connected.
+    @JsonKey(name: 'location') required Location location,
+
+    /// Location address; 1-64 characters, as defined by the chat owner
+    @JsonKey(name: 'address') required String address,
+  }) = _ChatLocation;
 
   /// Creates a new [ChatLocation] object from json.
-  factory ChatLocation.fromJson(Map<String, dynamic> json) {
-    return ChatLocation(
-      location: Location.fromJson(json['location'] as Map<String, dynamic>),
-      address: json['address'] as String,
-    );
-  }
-
-  /// Converts a [ChatLocation] to a [Map] for JSON encoding.
-  Map<String, dynamic> toJson() {
-    return {
-      'location': location.toJson(),
-      'address': address,
-    };
-  }
+  factory ChatLocation.fromJson(Map<String, dynamic> json) =>
+      _$ChatLocationFromJson(json);
 }

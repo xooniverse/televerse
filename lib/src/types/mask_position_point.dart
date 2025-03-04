@@ -1,29 +1,25 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'mask_position_point.g.dart';
 
 /// This object represents the position on faces where a mask should be placed by default.
+@JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)
 enum MaskPositionPoint {
   /// The mask should be placed relatively to the forehead.
-  forehead("forehead"),
+  @JsonValue('forehead')
+  forehead,
 
   /// The mask should be placed relatively to the eyes.
-  eyes("eyes"),
+  @JsonValue('eyes')
+  eyes,
 
   /// The mask should be placed relatively to the mouth.
-  mouth("mouth"),
+  @JsonValue('mouth')
+  mouth,
 
   /// The mask should be placed relatively to the chin.
-  chin("chin");
+  @JsonValue('chin')
+  chin;
 
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [MaskPositionPoint].
-  const MaskPositionPoint(this.value);
-
-  /// Constructs a new [MaskPositionPoint] from a [String].
-  factory MaskPositionPoint.fromJson(String value) =>
-      MaskPositionPoint.values.firstWhere((e) => e.value == value);
-
-  /// Converts this [MaskPositionPoint] to a [String].
-  String toJson() => value;
+  /// Converts the [MaskPositionPoint] to its corresponding JSON value.
+  String toJson() => _$MaskPositionPointEnumMap[this]!;
 }

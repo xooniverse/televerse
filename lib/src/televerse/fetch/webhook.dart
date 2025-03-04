@@ -289,7 +289,7 @@ class Webhook extends Fetcher {
     try {
       final update = Update.fromJson(jsonDecode(body));
       addUpdate(update);
-      _sendResponse(request, 200, {'ok': true, 'result': update.toRawJson()});
+      _sendResponse(request, 200, {'ok': true, 'result': update.toJson()});
     } catch (err) {
       final response = {
         'ok': false,

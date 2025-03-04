@@ -11,3 +11,6 @@ pubspec.lock
 
 # IntelliJ IDEA files.
 /.idea/*
+
+# macOS system files
+.DS_Store

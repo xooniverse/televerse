@@ -1,26 +1,22 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'sent_web_app_message.freezed.dart';
+part 'sent_web_app_message.g.dart';
 
 /// Describes an inline message sent by a Web App on behalf of a user.
-class SentWebAppMessage {
-  /// Optional. Identifier of the sent inline message. Available only if there is an inline keyboard attached to the message.
-  final String? inlineMessageId;
+@freezed
+class SentWebAppMessage with _$SentWebAppMessage {
+  /// Creates an inline message sent by a Web App
+  ///
+  /// [inlineMessageId] Identifier of the sent inline message. Available only if
+  /// there is an inline keyboard attached to the message.
+  const factory SentWebAppMessage({
+    /// Optional. Identifier of the sent inline message. Available only if there
+    /// is an inline keyboard attached to the message.
+    @JsonKey(name: 'inline_message_id') String? inlineMessageId,
+  }) = _SentWebAppMessage;
 
-  /// Constructs a [SentWebAppMessage] object
-  const SentWebAppMessage({
-    this.inlineMessageId,
-  });
-
-  /// Creates a [SentWebAppMessage] object from JSON object
-  Map<String, dynamic> toJson() {
-    return {
-      'inline_message_id': inlineMessageId,
-    }..removeWhere(_nullFilter);
-  }
-
-  /// Creates a [SentWebAppMessage] object from JSON object
-  factory SentWebAppMessage.fromJson(Map<String, dynamic> json) {
-    return SentWebAppMessage(
-      inlineMessageId: json['inline_message_id'] as String?,
-    );
-  }
+  /// Creates a [SentWebAppMessage] from a JSON map
+  factory SentWebAppMessage.fromJson(Map<String, dynamic> json) =>
+      _$SentWebAppMessageFromJson(json);
 }

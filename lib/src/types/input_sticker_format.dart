@@ -1,37 +1,21 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'input_sticker_format.g.dart';
 
-/// This object describes a sticker to be added to a sticker set.
+/// Type of the sticker to be added to a sticker set.
+@JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)
 enum InputStickerFormat {
   /// For a .WEBP or .PNG image
-  static._('static'),
+  @JsonValue("static")
+  static,
 
   /// For a .TGS animation
-  animated._('animated'),
+  @JsonValue("animated")
+  animated,
 
   /// For a WEBM video
-  video._('video');
+  @JsonValue("video")
+  video;
 
-  /// The value of this enum.
-  final String value;
-
-  /// Constructs a new [InputStickerFormat].
-  const InputStickerFormat._(this.value);
-
-  /// Constructs a new [InputStickerFormat] from a [String].
-  factory InputStickerFormat.fromJson(String value) {
-    switch (value) {
-      case 'static':
-        return static;
-      case 'animated':
-        return animated;
-      case 'video':
-        return video;
-      default:
-        throw TeleverseException(
-          'Invalid InputStickerFormat value: $value',
-          description: 'The given value does not match any InputStickerFormat.',
-          type: TeleverseExceptionType.invalidParameter,
-        );
-    }
-  }
+  /// Converts the [InputStickerFormat] to its corresponding JSON value.
+  String toJson() => _$InputStickerFormatEnumMap[this]!;
 }

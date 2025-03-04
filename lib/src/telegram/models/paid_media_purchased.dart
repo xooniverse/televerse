@@ -1,37 +1,23 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/abstractions.dart';
+import 'user.dart';
+
+part 'paid_media_purchased.freezed.dart';
+part 'paid_media_purchased.g.dart';
 
 /// Represents a paid media purchase made by a user.
-class PaidMediaPurchased implements WithUser {
-  /// The user who purchased the media.
-  @override
-  final User from;
-
-  /// A bot-specified payload related to the paid media.
-  final String paidMediaPayload;
-
+@freezed
+class PaidMediaPurchased with _$PaidMediaPurchased implements WithUser {
   /// Creates a [PaidMediaPurchased] object.
-  const PaidMediaPurchased({
-    required this.from,
-    required this.paidMediaPayload,
-  });
+  const factory PaidMediaPurchased({
+    /// The user who purchased the media.
+    @JsonKey(name: 'from') required User from,
+
+    /// A bot-specified payload related to the paid media.
+    @JsonKey(name: 'paid_media_payload') required String paidMediaPayload,
+  }) = _PaidMediaPurchased;
 
   /// Creates a [PaidMediaPurchased] object from a JSON map.
-  ///
-  /// The JSON map should contain `from` and `paid_media_payload` fields.
-  factory PaidMediaPurchased.fromJson(Map<String, dynamic> json) {
-    return PaidMediaPurchased(
-      from: User.fromJson(json['from']),
-      paidMediaPayload: json['paid_media_payload'],
-    );
-  }
-
-  /// Converts this object to a JSON map.
-  ///
-  /// Returns a map with `from` and `paid_media_payload` fields.
-  Map<String, dynamic> toJson() {
-    return {
-      'from': from.toJson(),
-      'paid_media_payload': paidMediaPayload,
-    };
-  }
+  factory PaidMediaPurchased.fromJson(Map<String, dynamic> json) =>
+      _$PaidMediaPurchasedFromJson(json);
 }

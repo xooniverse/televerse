@@ -1,294 +1,171 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/birthdate.dart';
+import 'package:televerse/src/telegram/models/business_intro.dart';
+import 'package:televerse/src/telegram/models/business_location.dart';
+import 'package:televerse/src/telegram/models/business_opening_hours.dart';
+import 'package:televerse/src/telegram/models/chat.dart';
+import 'package:televerse/src/telegram/models/chat_location.dart';
+import 'package:televerse/src/telegram/models/chat_permissions.dart';
+import 'package:televerse/src/telegram/models/chat_photo.dart';
+import 'package:televerse/src/telegram/models/message.dart';
+import 'package:televerse/src/telegram/models/reaction_type.dart';
+import 'package:televerse/televerse.dart';
 
-/// This object represents a chat.
-class ChatFullInfo extends Chat implements WithID {
-  /// Optional. Chat photo.
-  final ChatPhoto? photo;
+part 'chat_full_info.freezed.dart';
+part 'chat_full_info.g.dart';
 
-  /// Optional. If non-empty, the list of all active chat usernames; for private chats, supergroups and channels.
-  final List<String>? activeUsernames;
+/// This object represents a chat with full information.
+@freezed
+class ChatFullInfo with _$ChatFullInfo {
+  /// Constructs a [ChatFullInfo] object.
+  const factory ChatFullInfo({
+    /// Unique identifier for this chat.
+    @JsonKey(name: 'id') required final int id,
 
-  /// Optional. Bio of the other party in a private chat.
-  final String? bio;
+    /// Type of the chat.
+    @JsonKey(name: 'type') required final ChatType type,
 
-  /// Optional. True, if privacy settings of the other party in the private chat allows to use tg://user?id=<user_id> links only in chats with the user.
-  final bool? hasPrivateForwards;
+    /// Optional. Title of the chat.
+    @JsonKey(name: 'title') final String? title,
 
-  /// Optional. True, if the privacy settings of the other party restrict sending voice and video note messages in the private chat.
-  final bool? hasRestrictedVoiceAndVideoMessages;
+    /// Optional. Username of the chat.
+    @JsonKey(name: 'username') final String? username,
 
-  /// Optional. True, if users need to join the supergroup before they can send messages.
-  final bool? joinToSendMessages;
+    /// Optional. First name in private chats.
+    @JsonKey(name: 'first_name') final String? firstName,
 
-  /// Optional. True, if all users directly joining the supergroup need to be approved by supergroup administrators.
-  final bool? joinByRequest;
+    /// Optional. Last name in private chats.
+    @JsonKey(name: 'last_name') final String? lastName,
 
-  /// Optional. Description, for groups, supergroups and channel chats.
-  final String? description;
+    /// Optional. True if the chat is a forum.
+    @JsonKey(name: 'is_forum') final bool? isForum,
 
-  /// Optional. Primary invite link, for groups, supergroups and channel chats.
-  final String? inviteLink;
+    /// Optional. Chat photo.
+    @JsonKey(name: 'photo') final ChatPhoto? photo,
 
-  /// Optional. The most recent pinned message (by sending date).
-  final Message? pinnedMessage;
+    /// Optional. If non-empty, the list of all active chat usernames.
+    @JsonKey(name: 'active_usernames') final List<String>? activeUsernames,
 
-  /// Optional. Default chat member permissions, for groups and supergroups.
-  final ChatPermissions? permissions;
+    /// Optional. Bio of the other party in a private chat.
+    @JsonKey(name: 'bio') final String? bio,
 
-  /// Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unpriviledged user; in seconds.
-  final int? slowModeDelay;
+    /// Optional. True if privacy settings restrict forwarding.
+    @JsonKey(name: 'has_private_forwards') final bool? hasPrivateForwards,
 
-  /// Optional. The time after which all messages sent to the chat will be automatically deleted; in seconds.
-  final int? messageAutoDeleteTime;
+    /// Optional. True if voice and video note messages are restricted.
+    @JsonKey(name: 'has_restricted_voice_and_video_messages')
+    final bool? hasRestrictedVoiceAndVideoMessages,
 
-  /// Optional. True, if messages from the chat can't be forwarded to other chats.
-  final bool? hasProtectedContent;
+    /// Optional. True if users need to join before sending messages.
+    @JsonKey(name: 'join_to_send_messages') final bool? joinToSendMessages,
 
-  /// Optional. For supergroups, name of group sticker set.
-  final String? stickerSetName;
+    /// Optional. True if joining requires administrator approval.
+    @JsonKey(name: 'join_by_request') final bool? joinByRequest,
 
-  /// Optional. True, if the bot can change the group sticker set.
-  final bool? canSetStickerSet;
+    /// Optional. Description for groups, supergroups, and channels.
+    @JsonKey(name: 'description') final String? description,
 
-  /// Optional. Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats. This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
-  final int? linkedChatId;
+    /// Optional. Primary invite link.
+    @JsonKey(name: 'invite_link') final String? inviteLink,
 
-  /// Optional. For supergroups, the location to which the supergroup is connected.
-  final ChatLocation? location;
+    /// Optional. The most recent pinned message.
+    @JsonKey(name: 'pinned_message') final Message? pinnedMessage,
 
-  /// Optional. True, if non-administrators can only get the list of bots and administrators in the chat.
-  final bool? hasHiddenMembers;
+    /// Optional. Default chat member permissions.
+    @JsonKey(name: 'permissions') final ChatPermissions? permissions,
 
-  /// Optional. True, if aggressive anti-spam checks are enabled in the supergroup. The field is only available to chat administrators.
-  final bool? hasAggressiveAntiSpamEnabled;
+    /// Optional. Minimum delay between messages in supergroups.
+    @JsonKey(name: 'slow_mode_delay') final int? slowModeDelay,
 
-  /// Optional. Expiration date of the emoji status of the other party in a private chat, if any.
-  final int? emojiStatusExpirationDate;
+    /// Optional. Time after which messages are automatically deleted.
+    @JsonKey(name: 'message_auto_delete_time') final int? messageAutoDeleteTime,
 
-  /// Optional. Expiration date of the emoji status of the chat or the other party in a private chat, in Unix time, if any.
-  final List<ReactionType>? availableReactions;
+    /// Optional. True if messages can't be forwarded.
+    @JsonKey(name: 'has_protected_content') final bool? hasProtectedContent,
 
-  /// Optional. Custom emoji identifier of the emoji status of the chat or the other party in a private chat.
-  final String? emojiStatusCustomEmojiId;
+    /// Optional. Name of group sticker set.
+    @JsonKey(name: 'sticker_set_name') final String? stickerSetName,
 
-  /// Optional. Identifier of the accent color for the chat name and backgrounds of the chat photo, reply header, and link preview. See [accent colors](https://core.telegram.org/bots/api#accent-colors) for more details. Always returned in [getChat](https://core.telegram.org/bots/api#getchat)
-  final int? accentColorId;
+    /// Optional. True if the bot can change the group sticker set.
+    @JsonKey(name: 'can_set_sticker_set') final bool? canSetStickerSet,
 
-  /// Optional. Custom emoji identifier of emoji chosen by the chat for the reply header and link preview background.
-  final String? backgroundCustomEmojiId;
+    /// Optional. Unique identifier for the linked chat.
+    @JsonKey(name: 'linked_chat_id') final int? linkedChatId,
 
-  /// Optional. Identifier of the accent color for the chat's profile background. See profile accent colors for more details.
-  final int? profileAccentColorId;
+    /// Optional. Location for supergroups.
+    @JsonKey(name: 'location') final ChatLocation? location,
 
-  /// Optional. Custom emoji identifier of the emoji chosen by the chat for its profile background.
-  final String? profileBackgroundCustomEmojiId;
+    /// Optional. True if non-administrators can only see bots and admins.
+    @JsonKey(name: 'has_hidden_members') final bool? hasHiddenMembers,
 
-  /// Optional. True, if new chat members will have access to old messages; available only to chat administrators.
-  final bool? hasVisibleHistory;
+    /// Optional. True if aggressive anti-spam is enabled.
+    @JsonKey(name: 'has_aggressive_anti_spam_enabled')
+    final bool? hasAggressiveAntiSpamEnabled,
 
-  /// Optional. For supergroups, the minimum number of boosts that a non-administrator user needs to add in order to ignore slow mode and chat permissions.
-  final int? unrestrictBoostCount;
+    /// Optional. Expiration date of emoji status.
+    @JsonKey(name: 'emoji_status_expiration_date')
+    final int? emojiStatusExpirationDate,
 
-  /// Optional. For supergroups, the name of the group's custom emoji sticker set. Custom emoji from this set can be used by all users and bots in the group.
-  final String? customEmojiStickerSetName;
+    /// Optional. Available reaction types.
+    @JsonKey(name: 'available_reactions')
+    final List<ReactionType>? availableReactions,
 
-  /// Optional. For private chats with business accounts, the intro of the business.
-  final BusinessIntro? businessIntro;
+    /// Optional. Custom emoji identifier for emoji status.
+    @JsonKey(name: 'emoji_status_custom_emoji_id')
+    final String? emojiStatusCustomEmojiId,
 
-  /// Optional. For private chats with business accounts, the location of the business.
-  final BusinessLocation? businessLocation;
+    /// Optional. Identifier for accent color.
+    @JsonKey(name: 'accent_color_id') final int? accentColorId,
 
-  /// Optional. For private chats with business accounts, the opening hours of the business.
-  final BusinessOpeningHours? businessOpeningHours;
+    /// Optional. Custom emoji identifier for background.
+    @JsonKey(name: 'background_custom_emoji_id')
+    final String? backgroundCustomEmojiId,
 
-  /// Optional. For private chats, the personal channel of the user.
-  final Chat? personalChat;
+    /// Optional. Identifier for profile accent color.
+    @JsonKey(name: 'profile_accent_color_id') int? profileAccentColorId,
 
-  /// Optional. For private chats, the date of birth of the user.
-  final Birthdate? birthdate;
+    /// Optional. Custom emoji identifier for profile background.
+    @JsonKey(name: 'profile_background_custom_emoji_id')
+    final String? profileBackgroundCustomEmojiId,
 
-  /// The maximum number of reactions that can be set on a message in the chat
-  final int maxReactionCount;
+    /// Optional. True if new members can see old messages.
+    @JsonKey(name: 'has_visible_history') final bool? hasVisibleHistory,
 
-  /// Optional. True, if paid media messages can be sent or forwarded to the channel chat. The field is available only for channel chats.
-  final bool? canSendPaidMedia;
+    /// Optional. Minimum boost count to ignore restrictions.
+    @JsonKey(name: 'unrestrict_boost_count') final int? unrestrictBoostCount,
 
-  /// Optional. True, if gifts can be sent to the chat
-  final bool? canSendGift;
+    /// Optional. Name of custom emoji sticker set.
+    @JsonKey(name: 'custom_emoji_sticker_set_name')
+    final String? customEmojiStickerSetName,
 
-  /// Constructs a [Chat] object.
-  const ChatFullInfo({
-    required super.id,
-    required super.type,
-    super.title,
-    super.username,
-    super.firstName,
-    super.lastName,
-    super.isForum,
-    this.photo,
-    this.activeUsernames,
-    this.bio,
-    this.hasPrivateForwards,
-    this.hasRestrictedVoiceAndVideoMessages,
-    this.joinToSendMessages,
-    this.joinByRequest,
-    this.description,
-    this.inviteLink,
-    this.pinnedMessage,
-    this.permissions,
-    this.slowModeDelay,
-    this.messageAutoDeleteTime,
-    this.hasProtectedContent,
-    this.stickerSetName,
-    this.canSetStickerSet,
-    this.linkedChatId,
-    this.location,
-    this.hasHiddenMembers,
-    this.hasAggressiveAntiSpamEnabled,
-    this.emojiStatusExpirationDate,
-    this.availableReactions,
-    this.emojiStatusCustomEmojiId,
-    this.accentColorId,
-    this.backgroundCustomEmojiId,
-    this.profileAccentColorId,
-    this.profileBackgroundCustomEmojiId,
-    this.hasVisibleHistory,
-    this.unrestrictBoostCount,
-    this.customEmojiStickerSetName,
-    this.businessIntro,
-    this.businessLocation,
-    this.businessOpeningHours,
-    this.personalChat,
-    this.birthdate,
-    this.maxReactionCount = 0,
-    this.canSendPaidMedia,
-    this.canSendGift,
-  });
+    /// Optional. Business intro for business accounts.
+    @JsonKey(name: 'business_intro') final BusinessIntro? businessIntro,
 
-  /// Creates a [Chat] object from json.
-  factory ChatFullInfo.fromJson(Map<String, dynamic> json) {
-    return ChatFullInfo(
-      id: json['id'] as int,
-      type: ChatType.fromJson(json['type'] as String),
-      title: json['title'],
-      username: json['username'],
-      firstName: json['first_name'],
-      lastName: json['last_name'],
-      isForum: json['is_forum'],
-      photo: json['photo'] == null ? null : ChatPhoto.fromJson(json['photo']),
-      activeUsernames: (json['active_usernames'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      bio: json['bio'],
-      hasPrivateForwards: json['has_private_forwards'],
-      hasRestrictedVoiceAndVideoMessages:
-          json['has_restricted_voice_and_video_messages'],
-      joinToSendMessages: json['join_to_send_messages'],
-      joinByRequest: json['join_by_request'],
-      description: json['description'],
-      inviteLink: json['invite_link'],
-      pinnedMessage: json['pinned_message'] == null
-          ? null
-          : Message.fromJson(json['pinned_message']),
-      permissions: json['permissions'] == null
-          ? null
-          : ChatPermissions.fromJson(json['permissions']),
-      slowModeDelay: json['slow_mode_delay'],
-      messageAutoDeleteTime: json['message_auto_delete_time'],
-      hasProtectedContent: json['has_protected_content'],
-      stickerSetName: json['sticker_set_name'],
-      canSetStickerSet: json['can_set_sticker_set'],
-      linkedChatId: json['linked_chat_id'],
-      location: json['location'] == null
-          ? null
-          : ChatLocation.fromJson(json['location']),
-      hasHiddenMembers: json['has_hidden_members'],
-      hasAggressiveAntiSpamEnabled: json['has_aggressive_anti_spam_enabled'],
-      emojiStatusExpirationDate: json['emoji_status_expiration_date'],
-      availableReactions: (json['available_reactions'] as List<dynamic>?)
-          ?.map((e) => ReactionType.fromJson(e))
-          .toList(),
-      emojiStatusCustomEmojiId: json['emoji_status_custom_emoji_id'],
-      accentColorId: json['accent_color_id'],
-      backgroundCustomEmojiId: json['background_custom_emoji_id'],
-      profileAccentColorId: json['profile_accent_color_id'],
-      profileBackgroundCustomEmojiId:
-          json['profile_background_custom_emoji_id'],
-      hasVisibleHistory: json['has_visible_history'],
-      unrestrictBoostCount: json['unrestrict_boost_count'],
-      customEmojiStickerSetName: json['custom_emoji_sticker_set_name'],
-      businessIntro: json['business_intro'] == null
-          ? null
-          : BusinessIntro.fromJson(json['business_intro']),
-      businessLocation: json['business_location'] == null
-          ? null
-          : BusinessLocation.fromJson(json['business_location']),
-      businessOpeningHours: json['business_opening_hours'] == null
-          ? null
-          : BusinessOpeningHours.fromJson(json['business_opening_hours']),
-      personalChat: json['personal_chat'] == null
-          ? null
-          : Chat.fromJson(json['personal_chat']),
-      birthdate: json['birthdate'] == null
-          ? null
-          : Birthdate.fromJson(json['birthdate']),
-      maxReactionCount: json["max_reaction_count"],
-      canSendPaidMedia: json["can_send_paid_media"],
-      canSendGift: json['can_send_gift'],
-    );
-  }
+    /// Optional. Business location for business accounts.
+    @JsonKey(name: 'business_location')
+    final BusinessLocation? businessLocation,
 
-  /// Converts a [ChatFullInfo] object to json.
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'type': type.toJson(),
-      'title': title,
-      'username': username,
-      'first_name': firstName,
-      'last_name': lastName,
-      'is_forum': isForum,
-      'photo': photo?.toJson(),
-      'active_usernames': activeUsernames,
-      'bio': bio,
-      'has_private_forwards': hasPrivateForwards,
-      'has_restricted_voice_and_video_messages':
-          hasRestrictedVoiceAndVideoMessages,
-      'join_to_send_messages': joinToSendMessages,
-      'join_by_request': joinByRequest,
-      'description': description,
-      'invite_link': inviteLink,
-      'pinned_message': pinnedMessage?.toJson(),
-      'permissions': permissions?.toJson(),
-      'slow_mode_delay': slowModeDelay,
-      'message_auto_delete_time': messageAutoDeleteTime,
-      'has_protected_content': hasProtectedContent,
-      'sticker_set_name': stickerSetName,
-      'can_set_sticker_set': canSetStickerSet,
-      'linked_chat_id': linkedChatId,
-      'location': location?.toJson(),
-      'has_hidden_members': hasHiddenMembers,
-      'has_aggressive_anti_spam_enabled': hasAggressiveAntiSpamEnabled,
-      'emoji_status_expiration_date': emojiStatusExpirationDate,
-      'available_reactions': availableReactions?.map((e) {
-        return e.toJson();
-      }).toList(),
-      'emoji_status_custom_emoji_id': emojiStatusCustomEmojiId,
-      'accent_color_id': accentColorId,
-      'background_custom_emoji_id': backgroundCustomEmojiId,
-      'profile_accent_color_id': profileAccentColorId,
-      'profile_background_custom_emoji_id': profileBackgroundCustomEmojiId,
-      'has_visible_history': hasVisibleHistory,
-      'unrestrict_boost_count': unrestrictBoostCount,
-      'custom_emoji_sticker_set_name': customEmojiStickerSetName,
-      'business_intro': businessIntro?.toJson(),
-      'business_location': businessLocation?.toJson(),
-      'business_opening_hours': businessOpeningHours?.toJson(),
-      'personal_chat': personalChat?.toJson(),
-      'birthdate': birthdate?.toJson(),
-      'can_send_paid_media': canSendPaidMedia,
-      'can_send_gift': canSendGift,
-    }..removeWhere(_nullFilter);
-  }
+    /// Optional. Business opening hours.
+    @JsonKey(name: 'business_opening_hours')
+    final BusinessOpeningHours? businessOpeningHours,
+
+    /// Optional. Personal channel for private chats.
+    @JsonKey(name: 'personal_chat') final Chat? personalChat,
+
+    /// Optional. Date of birth for private chats.
+    @JsonKey(name: 'birthdate') final Birthdate? birthdate,
+
+    /// Maximum number of reactions allowed.
+    @JsonKey(name: 'max_reaction_count') @Default(0) final int maxReactionCount,
+
+    /// Optional. True if paid media can be sent.
+    @JsonKey(name: 'can_send_paid_media') final bool? canSendPaidMedia,
+
+    /// Optional. True if gifts can be sent.
+    @JsonKey(name: 'can_send_gift') final bool? canSendGift,
+  }) = _ChatFullInfo;
+
+  /// Creates a [ChatFullInfo] object from a JSON map.
+  factory ChatFullInfo.fromJson(Map<String, dynamic> json) =>
+      _$ChatFullInfoFromJson(json);
 }

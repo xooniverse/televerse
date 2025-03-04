@@ -1,47 +1,32 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/abstractions.dart';
+import 'chat.dart';
+import 'reaction_count.dart';
+
+part 'message_reaction_count_updated.freezed.dart';
+part 'message_reaction_count_updated.g.dart';
 
 /// Represents reaction changes on a message with anonymous reactions.
-class MessageReactionCountUpdated implements WithChat {
-  /// The chat containing the message.
-  @override
-  final Chat chat;
-
-  /// Unique message identifier inside the chat.
-  final int messageId;
-
-  /// Date of the change in Unix time.
-  final int date;
-
-  /// List of reactions that are present on the message.
-  final List<ReactionCount> reactions;
-
+@freezed
+class MessageReactionCountUpdated
+    with _$MessageReactionCountUpdated
+    implements WithChat {
   /// Creates a new instance of [MessageReactionCountUpdated].
-  const MessageReactionCountUpdated({
-    required this.chat,
-    required this.messageId,
-    required this.date,
-    required this.reactions,
-  });
+  const factory MessageReactionCountUpdated({
+    /// The chat containing the message.
+    @JsonKey(name: 'chat') required Chat chat,
 
-  /// Converts a [MessageReactionCountUpdated] object to JSON object.
-  Map<String, dynamic> toJson() {
-    return {
-      'chat': chat.toJson(),
-      'message_id': messageId,
-      'date': date,
-      'reactions': reactions.map((e) => e.toJson()).toList(),
-    };
-  }
+    /// Unique message identifier inside the chat.
+    @JsonKey(name: 'message_id') required int messageId,
+
+    /// Date of the change in Unix time.
+    @JsonKey(name: 'date') required int date,
+
+    /// List of reactions that are present on the message.
+    @JsonKey(name: 'reactions') required List<ReactionCount> reactions,
+  }) = _MessageReactionCountUpdated;
 
   /// Creates a [MessageReactionCountUpdated] object from JSON object.
-  factory MessageReactionCountUpdated.fromJson(Map<String, dynamic> json) {
-    return MessageReactionCountUpdated(
-      chat: Chat.fromJson(json['chat']),
-      messageId: json['message_id'],
-      date: json['date'],
-      reactions: (json['reactions'] as List)
-          .map((e) => ReactionCount.fromJson(e))
-          .toList(),
-    );
-  }
+  factory MessageReactionCountUpdated.fromJson(Map<String, dynamic> json) =>
+      _$MessageReactionCountUpdatedFromJson(json);
 }

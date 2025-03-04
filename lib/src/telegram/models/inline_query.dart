@@ -1,61 +1,49 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/abstractions.dart';
+import 'package:televerse/televerse.dart';
+import 'user.dart';
+import 'location.dart';
 
-/// This object represents an incoming inline query. When the user sends an empty query, your bot could return some default or trending results.
-class InlineQuery implements WithUser {
-  /// Unique identifier for this query
-  final String id;
+part 'inline_query.freezed.dart';
+part 'inline_query.g.dart';
 
-  /// Sender
-  @override
-  final User from;
+/// This object represents an incoming inline query. When the user sends an empty query,
+/// your bot could return some default or trending results.
+@freezed
+class InlineQuery with _$InlineQuery implements WithUser {
+  /// Creates an incoming inline query
+  ///
+  /// [id] Unique identifier for this query
+  /// [from] Sender
+  /// [query] Text of the query (up to 256 characters)
+  /// [offset] Offset of the results to be returned, can be controlled by the bot
+  /// [chatType] Type of the chat from which the inline query was sent
+  /// [location] Sender location, only for bots that request user location
+  const factory InlineQuery({
+    /// Unique identifier for this query
+    @JsonKey(name: 'id') required String id,
 
-  /// Text of the query (up to 256 characters)
-  final String query;
+    /// Sender
+    @JsonKey(name: 'from') required User from,
 
-  /// Offset of the results to be returned, can be controlled by the bot
-  final String offset;
+    /// Text of the query (up to 256 characters)
+    @JsonKey(name: 'query') required String query,
 
-  /// Optional. Type of the chat from which the inline query was sent. Can be either “sender” for a private chat with the inline query sender, “private”, “group”, “supergroup”, or “channel”. The chat type should be always known for requests sent from official clients and most third-party clients, unless the request was sent from a secret chat
-  final ChatType? chatType;
+    /// Offset of the results to be returned, can be controlled by the bot
+    @JsonKey(name: 'offset') required String offset,
 
-  /// Optional. Sender location, only for bots that request user location
-  final Location? location;
+    /// Optional. Type of the chat from which the inline query was sent.
+    /// Can be either "sender" for a private chat with the inline query sender,
+    /// "private", "group", "supergroup", or "channel". The chat type should be
+    /// always known for requests sent from official clients and most third-party
+    /// clients, unless the request was sent from a secret chat
+    @JsonKey(name: 'chat_type') ChatType? chatType,
 
-  /// Constructs an [InlineQuery] object
-  const InlineQuery({
-    required this.id,
-    required this.from,
-    required this.query,
-    required this.offset,
-    this.chatType,
-    this.location,
-  });
+    /// Optional. Sender location, only for bots that request user location
+    Location? location,
+  }) = _InlineQuery;
 
-  /// Creates an [InlineQuery] object from JSON object
-  factory InlineQuery.fromJson(Map<String, dynamic> json) {
-    return InlineQuery(
-      id: json['id'] as String,
-      from: User.fromJson(json['from'] as Map<String, dynamic>),
-      query: json['query'] as String,
-      offset: json['offset'] as String,
-      chatType: json['chat_type'] == null
-          ? null
-          : ChatType.fromJson(json['chat_type']),
-      location: json['location'] == null
-          ? null
-          : Location.fromJson(json['location'] as Map<String, dynamic>),
-    );
-  }
-
-  /// Converts an [InlineQuery] object to JSON object
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'from': from.toJson(),
-      'query': query,
-      'offset': offset,
-      'chat_type': chatType?.value,
-      'location': location?.toJson(),
-    }..removeWhere(_nullFilter);
-  }
+  /// Creates an [InlineQuery] from a JSON map
+  factory InlineQuery.fromJson(Map<String, dynamic> json) =>
+      _$InlineQueryFromJson(json);
 }

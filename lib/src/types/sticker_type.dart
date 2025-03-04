@@ -1,4 +1,5 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'sticker_type.g.dart';
 
 /// A class that represents the type of a sticker.
 ///
@@ -6,42 +7,20 @@ part of 'types.dart';
 /// - Regular stickers
 /// - Mask stickers
 /// - Custom emoji stickers
+@JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)
 enum StickerType {
   /// A regular sticker.
-  regular("regular"),
+  @JsonValue("regular")
+  regular,
 
   /// A sticker that is meant to be used as a mask.
-  mask("mask"),
+  @JsonValue("mask")
+  mask,
 
   /// A sticker that is meant to be used as a custom emoji.
-  customEmoji("custom_emoji");
+  @JsonValue("custom_emoji")
+  customEmoji;
 
-  /// The value of this enum.
-  final String type;
-
-  /// Constructs a new [StickerType].
-  const StickerType(this.type);
-
-  /// Constructs a new [StickerType] from a [String].
-  static StickerType fromJson(String type) {
-    switch (type) {
-      case "regular":
-        return StickerType.regular;
-      case "mask":
-        return StickerType.mask;
-      case "custom_emoji":
-        return StickerType.customEmoji;
-      default:
-        throw TeleverseException(
-          "Unknown StickerType: $type",
-          description: "The given value does not match any StickerType.",
-          type: TeleverseExceptionType.invalidParameter,
-        );
-    }
-  }
-
-  /// Converts this [StickerType] to a [String].
-  String toJson() {
-    return type;
-  }
+  /// Converts the [StickerType] to its corresponding JSON value.
+  String toJson() => _$StickerTypeEnumMap[this]!;
 }

@@ -1,28 +1,19 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'star_transaction.dart';
+
+part 'star_transactions.freezed.dart';
+part 'star_transactions.g.dart';
 
 /// This object represents a list of Telegram Star transactions.
-class StarTransactions {
-  /// The list of transactions.
-  final List<StarTransaction> transactions;
-
+@freezed
+class StarTransactions with _$StarTransactions {
   /// Creates a new [StarTransactions] object.
-  const StarTransactions({
-    required this.transactions,
-  });
+  const factory StarTransactions({
+    /// The list of transactions.
+    @JsonKey(name: 'transactions') required List<StarTransaction> transactions,
+  }) = _StarTransactions;
 
   /// Creates a new [StarTransactions] object from json.
-  factory StarTransactions.fromJson(Map<String, dynamic> json) {
-    return StarTransactions(
-      transactions: (json['transactions'] as List)
-          .map((item) => StarTransaction.fromJson(item))
-          .toList(),
-    );
-  }
-
-  /// Converts a [StarTransactions] object to json.
-  Map<String, dynamic> toJson() {
-    return {
-      'transactions': transactions.map((item) => item.toJson()).toList(),
-    };
-  }
+  factory StarTransactions.fromJson(Map<String, dynamic> json) =>
+      _$StarTransactionsFromJson(json);
 }

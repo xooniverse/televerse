@@ -1,26 +1,18 @@
-part of 'models.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'bot_description.freezed.dart';
+part 'bot_description.g.dart';
 
 /// This object represents the bot's description.
-class BotDescription {
-  /// Bot's description.
-  final String description;
-
+@freezed
+class BotDescription with _$BotDescription {
   /// Creates the Bot Description object.
-  const BotDescription({
-    required this.description,
-  });
+  const factory BotDescription({
+    /// Bot's description.
+    @JsonKey(name: 'description') required String description,
+  }) = _BotDescription;
 
   /// Creates the Bot Description object from a JSON object.
-  factory BotDescription.fromJson(Map<String, dynamic> json) {
-    return BotDescription(
-      description: json['description'] as String,
-    );
-  }
-
-  /// Creates a JSON object from the Bot Description object.
-  Map<String, dynamic> toJson() {
-    return {
-      'description': description,
-    };
-  }
+  factory BotDescription.fromJson(Map<String, dynamic> json) =>
+      _$BotDescriptionFromJson(json);
 }

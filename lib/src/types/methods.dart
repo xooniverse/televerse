@@ -1,5 +1,3 @@
-part of 'types.dart';
-
 /// Method - these are the available methods in the Telegram Bot API.
 enum APIMethod {
   /// Get Updates - returns the updates

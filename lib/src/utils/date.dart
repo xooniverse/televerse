@@ -13,5 +13,8 @@ extension IntDate on int {
   /// The [DateTime] object of this integer.
   ///
   /// This method is used to convert an integer to a [DateTime] object. The integer is assumed to be unix time and is converted to a [DateTime] object.
-  DateTime toDateTime() => DateTime.fromMillisecondsSinceEpoch(this * 1000);
+  DateTime toDateTime() => DateTime.fromMillisecondsSinceEpoch(
+        this * 1000,
+        isUtc: true,
+      );
 }

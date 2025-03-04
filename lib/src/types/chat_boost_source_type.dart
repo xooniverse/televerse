@@ -1,39 +1,22 @@
-part of 'types.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'chat_boost_source_type.g.dart';
 
 /// Type of the chat boost source.
+@JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)
 enum ChatBoostSourceType {
   /// The chat was boosted by the user's Telegram Premium subscription.
-  premium._('premium'),
+  @JsonValue('premium')
+  premium,
 
   /// The chat was boosted using a gift code.
-  giftCode._('gift_code'),
+  @JsonValue('gift_code')
+  giftCode,
 
   /// The chat was boosted using a giveaway.
-  giveaway._('giveaway'),
+  @JsonValue('giveaway')
+  giveaway,
   ;
 
-  /// Value of the source type.
-  final String value;
-
-  /// Creates a source type.
-  const ChatBoostSourceType._(this.value);
-
-  /// Creates a source type from a [json] object.
-  factory ChatBoostSourceType.fromJson(String json) {
-    switch (json) {
-      case 'premium':
-        return premium;
-      case 'gift_code':
-        return giftCode;
-      case 'giveaway':
-        return giveaway;
-      default:
-        throw TeleverseException(
-          "Invalid value '$json' for ChatBoostSourceType.",
-          description:
-              'The given value does not match any ChatBoostSourceType.',
-          type: TeleverseExceptionType.invalidParameter,
-        );
-    }
-  }
+  /// Converts the [ChatBoostSourceType] to its corresponding JSON value.
+  String toJson() => _$ChatBoostSourceTypeEnumMap[this]!;
 }
