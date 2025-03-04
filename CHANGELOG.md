@@ -1,3 +1,7 @@
+# 2.4.0-dev.1
+
+- Minor lint supression - excluded generated files being anlyzed.
+
 # 2.4.0-dev.0
 
 - All Telegram Models are now built with Freezed.
