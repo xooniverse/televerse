@@ -22,23 +22,25 @@ class InlineQueryResultCachedDocument
   /// Constructs an [InlineQueryResultCachedDocument] object
   const factory InlineQueryResultCachedDocument({
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Type of the result, always [InlineQueryResultType.document]
-    @Default(InlineQueryResultType.document) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.document)
+    InlineQueryResultType type,
 
     /// A valid file identifier for the file
     @JsonKey(name: 'document_file_id') required String documentFileId,
 
     /// Title for the result
-    required String title,
+    @JsonKey(name: 'title') required String title,
 
     /// Optional. Short description of the result
-    String? description,
+    @JsonKey(name: 'description') String? description,
 
     /// Optional. Caption of the document to be sent, 0-1024 characters after
     /// entities parsing
-    String? caption,
+    @JsonKey(name: 'caption') String? caption,
 
     /// Optional. Mode for parsing entities in the document caption. See
     /// formatting options for more details.

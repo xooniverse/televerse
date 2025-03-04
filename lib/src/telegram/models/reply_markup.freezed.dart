@@ -43,7 +43,7 @@ class _$ForceReplyImpl extends ForceReply {
   const _$ForceReplyImpl(
       {@JsonKey(name: 'force_reply') this.forceReply = true,
       @JsonKey(name: 'input_field_placeholder') this.inputFieldPlaceholder,
-      this.selective,
+      @JsonKey(name: 'selective') this.selective,
       final String? $type})
       : $type = $type ?? 'forceReply',
         super._();
@@ -68,6 +68,7 @@ class _$ForceReplyImpl extends ForceReply {
   /// Message object; 2) if the bot's message is a reply (has
   /// reply_to_message_id), sender of the original message.
   @override
+  @JsonKey(name: 'selective')
   final bool? selective;
 
   @JsonKey(name: 'runtimeType')
@@ -91,7 +92,7 @@ abstract class ForceReply extends ReplyMarkup {
       {@JsonKey(name: 'force_reply') final bool forceReply,
       @JsonKey(name: 'input_field_placeholder')
       final String? inputFieldPlaceholder,
-      final bool? selective}) = _$ForceReplyImpl;
+      @JsonKey(name: 'selective') final bool? selective}) = _$ForceReplyImpl;
   const ForceReply._() : super._();
 
   factory ForceReply.fromJson(Map<String, dynamic> json) =
@@ -111,6 +112,7 @@ abstract class ForceReply extends ReplyMarkup {
   /// users only. Targets: 1) users that are @mentioned in the text of the
   /// Message object; 2) if the bot's message is a reply (has
   /// reply_to_message_id), sender of the original message.
+  @JsonKey(name: 'selective')
   bool? get selective;
 }
 
@@ -180,12 +182,13 @@ abstract class InlineKeyboardMarkup extends ReplyMarkup {
 @JsonSerializable()
 class _$ReplyKeyboardMarkupImpl extends ReplyKeyboardMarkup {
   const _$ReplyKeyboardMarkupImpl(
-      {required final List<List<KeyboardButton>> keyboard,
-      this.resizeKeyboard,
-      this.oneTimeKeyboard,
-      this.inputFieldPlaceholder,
-      this.selective,
-      this.isPersistent,
+      {@JsonKey(name: 'keyboard')
+      required final List<List<KeyboardButton>> keyboard,
+      @JsonKey(name: 'resize_keyboard') this.resizeKeyboard,
+      @JsonKey(name: 'one_time_keyboard') this.oneTimeKeyboard,
+      @JsonKey(name: 'input_field_placeholder') this.inputFieldPlaceholder,
+      @JsonKey(name: 'selective') this.selective,
+      @JsonKey(name: 'is_persistent') this.isPersistent,
       final String? $type})
       : _keyboard = keyboard,
         $type = $type ?? 'keyboard',
@@ -201,6 +204,7 @@ class _$ReplyKeyboardMarkupImpl extends ReplyKeyboardMarkup {
   /// Array of button rows, each represented by an Array of [KeyboardButton]
   /// objects
   @override
+  @JsonKey(name: 'keyboard')
   List<List<KeyboardButton>> get keyboard {
     if (_keyboard is EqualUnmodifiableListView) return _keyboard;
     // ignore: implicit_dynamic_type
@@ -212,6 +216,7 @@ class _$ReplyKeyboardMarkupImpl extends ReplyKeyboardMarkup {
   /// buttons). Defaults to false, in which case the custom keyboard is always
   /// of the same height as the app's standard keyboard.
   @override
+  @JsonKey(name: 'resize_keyboard')
   final bool? resizeKeyboard;
 
   /// Optional. Requests clients to hide the keyboard as soon as it's been
@@ -220,11 +225,13 @@ class _$ReplyKeyboardMarkupImpl extends ReplyKeyboardMarkup {
   /// can press a special button in the input field to see the custom keyboard
   /// again. Defaults to false.
   @override
+  @JsonKey(name: 'one_time_keyboard')
   final bool? oneTimeKeyboard;
 
   /// Optional. The placeholder to be shown in the input field when the
   /// keyboard is active; 1-64 characters
   @override
+  @JsonKey(name: 'input_field_placeholder')
   final String? inputFieldPlaceholder;
 
   /// Optional. Use this parameter if you want to show the keyboard to
@@ -236,12 +243,14 @@ class _$ReplyKeyboardMarkupImpl extends ReplyKeyboardMarkup {
   ///      select the new language. Other users in the group don't see the
   ///      keyboard.
   @override
+  @JsonKey(name: 'selective')
   final bool? selective;
 
   /// Optional. Requests clients to always show the keyboard when the regular
   /// keyboard is hidden. Defaults to false, in which case the custom keyboard
   /// can be hidden and opened with a keyboard icon.
   @override
+  @JsonKey(name: 'is_persistent')
   final bool? isPersistent;
 
   @JsonKey(name: 'runtimeType')
@@ -262,12 +271,15 @@ class _$ReplyKeyboardMarkupImpl extends ReplyKeyboardMarkup {
 
 abstract class ReplyKeyboardMarkup extends ReplyMarkup {
   const factory ReplyKeyboardMarkup(
-      {required final List<List<KeyboardButton>> keyboard,
-      final bool? resizeKeyboard,
-      final bool? oneTimeKeyboard,
-      final String? inputFieldPlaceholder,
-      final bool? selective,
-      final bool? isPersistent}) = _$ReplyKeyboardMarkupImpl;
+          {@JsonKey(name: 'keyboard')
+          required final List<List<KeyboardButton>> keyboard,
+          @JsonKey(name: 'resize_keyboard') final bool? resizeKeyboard,
+          @JsonKey(name: 'one_time_keyboard') final bool? oneTimeKeyboard,
+          @JsonKey(name: 'input_field_placeholder')
+          final String? inputFieldPlaceholder,
+          @JsonKey(name: 'selective') final bool? selective,
+          @JsonKey(name: 'is_persistent') final bool? isPersistent}) =
+      _$ReplyKeyboardMarkupImpl;
   const ReplyKeyboardMarkup._() : super._();
 
   factory ReplyKeyboardMarkup.fromJson(Map<String, dynamic> json) =
@@ -275,12 +287,14 @@ abstract class ReplyKeyboardMarkup extends ReplyMarkup {
 
   /// Array of button rows, each represented by an Array of [KeyboardButton]
   /// objects
+  @JsonKey(name: 'keyboard')
   List<List<KeyboardButton>> get keyboard;
 
   /// Optional. Requests clients to resize the keyboard vertically for optimal
   /// fit (e.g., make the keyboard smaller if there are just two rows of
   /// buttons). Defaults to false, in which case the custom keyboard is always
   /// of the same height as the app's standard keyboard.
+  @JsonKey(name: 'resize_keyboard')
   bool? get resizeKeyboard;
 
   /// Optional. Requests clients to hide the keyboard as soon as it's been
@@ -288,10 +302,12 @@ abstract class ReplyKeyboardMarkup extends ReplyMarkup {
   /// automatically display the usual letter-keyboard in the chat – the user
   /// can press a special button in the input field to see the custom keyboard
   /// again. Defaults to false.
+  @JsonKey(name: 'one_time_keyboard')
   bool? get oneTimeKeyboard;
 
   /// Optional. The placeholder to be shown in the input field when the
   /// keyboard is active; 1-64 characters
+  @JsonKey(name: 'input_field_placeholder')
   String? get inputFieldPlaceholder;
 
   /// Optional. Use this parameter if you want to show the keyboard to
@@ -302,11 +318,13 @@ abstract class ReplyKeyboardMarkup extends ReplyMarkup {
   ///      the bot's language, bot replies to the request with a keyboard to
   ///      select the new language. Other users in the group don't see the
   ///      keyboard.
+  @JsonKey(name: 'selective')
   bool? get selective;
 
   /// Optional. Requests clients to always show the keyboard when the regular
   /// keyboard is hidden. Defaults to false, in which case the custom keyboard
   /// can be hidden and opened with a keyboard icon.
+  @JsonKey(name: 'is_persistent')
   bool? get isPersistent;
 }
 
@@ -315,7 +333,7 @@ abstract class ReplyKeyboardMarkup extends ReplyMarkup {
 class _$ReplyKeyboardRemoveImpl extends ReplyKeyboardRemove {
   const _$ReplyKeyboardRemoveImpl(
       {@JsonKey(name: 'remove_keyboard') this.removeKeyboard = true,
-      this.selective,
+      @JsonKey(name: 'selective') this.selective,
       final String? $type})
       : $type = $type ?? 'keyboardRemove',
         super._();
@@ -340,6 +358,7 @@ class _$ReplyKeyboardRemoveImpl extends ReplyKeyboardRemove {
   /// reply to the vote and removes the keyboard for that user, while still
   /// showing the keyboard with poll options to users who haven't voted yet.
   @override
+  @JsonKey(name: 'selective')
   final bool? selective;
 
   @JsonKey(name: 'runtimeType')
@@ -360,8 +379,9 @@ class _$ReplyKeyboardRemoveImpl extends ReplyKeyboardRemove {
 
 abstract class ReplyKeyboardRemove extends ReplyMarkup {
   const factory ReplyKeyboardRemove(
-      {@JsonKey(name: 'remove_keyboard') final bool removeKeyboard,
-      final bool? selective}) = _$ReplyKeyboardRemoveImpl;
+          {@JsonKey(name: 'remove_keyboard') final bool removeKeyboard,
+          @JsonKey(name: 'selective') final bool? selective}) =
+      _$ReplyKeyboardRemoveImpl;
   const ReplyKeyboardRemove._() : super._();
 
   factory ReplyKeyboardRemove.fromJson(Map<String, dynamic> json) =
@@ -382,5 +402,6 @@ abstract class ReplyKeyboardRemove extends ReplyMarkup {
   /// Example: A user votes in a poll, bot returns confirmation message in
   /// reply to the vote and removes the keyboard for that user, while still
   /// showing the keyboard with poll options to users who haven't voted yet.
+  @JsonKey(name: 'selective')
   bool? get selective;
 }

@@ -21,6 +21,7 @@ VideoChatEnded _$VideoChatEndedFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$VideoChatEnded {
   /// Video chat duration in seconds
+  @JsonKey(name: 'duration')
   int get duration => throw _privateConstructorUsedError;
 
   /// Serializes this VideoChatEnded to a JSON map.
@@ -39,7 +40,7 @@ abstract class $VideoChatEndedCopyWith<$Res> {
           VideoChatEnded value, $Res Function(VideoChatEnded) then) =
       _$VideoChatEndedCopyWithImpl<$Res, VideoChatEnded>;
   @useResult
-  $Res call({int duration});
+  $Res call({@JsonKey(name: 'duration') int duration});
 }
 
 /// @nodoc
@@ -76,7 +77,7 @@ abstract class _$$VideoChatEndedImplCopyWith<$Res>
       __$$VideoChatEndedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int duration});
+  $Res call({@JsonKey(name: 'duration') int duration});
 }
 
 /// @nodoc
@@ -106,13 +107,15 @@ class __$$VideoChatEndedImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$VideoChatEndedImpl implements _VideoChatEnded {
-  const _$VideoChatEndedImpl({required this.duration});
+  const _$VideoChatEndedImpl(
+      {@JsonKey(name: 'duration') required this.duration});
 
   factory _$VideoChatEndedImpl.fromJson(Map<String, dynamic> json) =>
       _$$VideoChatEndedImplFromJson(json);
 
   /// Video chat duration in seconds
   @override
+  @JsonKey(name: 'duration')
   final int duration;
 
   @override
@@ -138,7 +141,8 @@ class _$VideoChatEndedImpl implements _VideoChatEnded {
 }
 
 abstract class _VideoChatEnded implements VideoChatEnded {
-  const factory _VideoChatEnded({required final int duration}) =
+  const factory _VideoChatEnded(
+          {@JsonKey(name: 'duration') required final int duration}) =
       _$VideoChatEndedImpl;
 
   factory _VideoChatEnded.fromJson(Map<String, dynamic> json) =
@@ -146,6 +150,7 @@ abstract class _VideoChatEnded implements VideoChatEnded {
 
   /// Video chat duration in seconds
   @override
+  @JsonKey(name: 'duration')
   int get duration;
 
   /// Create a copy of VideoChatEnded

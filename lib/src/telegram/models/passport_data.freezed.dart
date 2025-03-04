@@ -22,9 +22,11 @@ PassportData _$PassportDataFromJson(Map<String, dynamic> json) {
 mixin _$PassportData {
   /// Array with information about documents and other Telegram Passport
   /// elements that was shared with the bot
+  @JsonKey(name: 'data')
   List<EncryptedPassportElement> get data => throw _privateConstructorUsedError;
 
   /// Encrypted credentials required to decrypt the data
+  @JsonKey(name: 'credentials')
   EncryptedCredentials get credentials => throw _privateConstructorUsedError;
 
   /// Serializes this PassportData to a JSON map.
@@ -44,7 +46,8 @@ abstract class $PassportDataCopyWith<$Res> {
       _$PassportDataCopyWithImpl<$Res, PassportData>;
   @useResult
   $Res call(
-      {List<EncryptedPassportElement> data, EncryptedCredentials credentials});
+      {@JsonKey(name: 'data') List<EncryptedPassportElement> data,
+      @JsonKey(name: 'credentials') EncryptedCredentials credentials});
 
   $EncryptedCredentialsCopyWith<$Res> get credentials;
 }
@@ -99,7 +102,8 @@ abstract class _$$PassportDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<EncryptedPassportElement> data, EncryptedCredentials credentials});
+      {@JsonKey(name: 'data') List<EncryptedPassportElement> data,
+      @JsonKey(name: 'credentials') EncryptedCredentials credentials});
 
   @override
   $EncryptedCredentialsCopyWith<$Res> get credentials;
@@ -138,8 +142,9 @@ class __$$PassportDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PassportDataImpl implements _PassportData {
   const _$PassportDataImpl(
-      {required final List<EncryptedPassportElement> data,
-      required this.credentials})
+      {@JsonKey(name: 'data')
+      required final List<EncryptedPassportElement> data,
+      @JsonKey(name: 'credentials') required this.credentials})
       : _data = data;
 
   factory _$PassportDataImpl.fromJson(Map<String, dynamic> json) =>
@@ -152,6 +157,7 @@ class _$PassportDataImpl implements _PassportData {
   /// Array with information about documents and other Telegram Passport
   /// elements that was shared with the bot
   @override
+  @JsonKey(name: 'data')
   List<EncryptedPassportElement> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
@@ -160,6 +166,7 @@ class _$PassportDataImpl implements _PassportData {
 
   /// Encrypted credentials required to decrypt the data
   @override
+  @JsonKey(name: 'credentials')
   final EncryptedCredentials credentials;
 
   @override
@@ -185,7 +192,9 @@ class _$PassportDataImpl implements _PassportData {
 
 abstract class _PassportData implements PassportData {
   const factory _PassportData(
-      {required final List<EncryptedPassportElement> data,
+      {@JsonKey(name: 'data')
+      required final List<EncryptedPassportElement> data,
+      @JsonKey(name: 'credentials')
       required final EncryptedCredentials credentials}) = _$PassportDataImpl;
 
   factory _PassportData.fromJson(Map<String, dynamic> json) =
@@ -194,10 +203,12 @@ abstract class _PassportData implements PassportData {
   /// Array with information about documents and other Telegram Passport
   /// elements that was shared with the bot
   @override
+  @JsonKey(name: 'data')
   List<EncryptedPassportElement> get data;
 
   /// Encrypted credentials required to decrypt the data
   @override
+  @JsonKey(name: 'credentials')
   EncryptedCredentials get credentials;
 
   /// Create a copy of PassportData

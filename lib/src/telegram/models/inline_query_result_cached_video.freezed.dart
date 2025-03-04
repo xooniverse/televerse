@@ -22,6 +22,7 @@ InlineQueryResultCachedVideo _$InlineQueryResultCachedVideoFromJson(
 /// @nodoc
 mixin _$InlineQueryResultCachedVideo {
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// A valid file identifier for the video file
@@ -29,13 +30,16 @@ mixin _$InlineQueryResultCachedVideo {
   String get videoFileId => throw _privateConstructorUsedError;
 
   /// Title for the result
+  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
 
   /// Optional. Short description of the result
+  @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
 
   /// Optional. Caption of the video to be sent, 0-1024 characters after
   /// entities parsing
+  @JsonKey(name: 'caption')
   String? get caption => throw _privateConstructorUsedError;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting
@@ -64,6 +68,7 @@ mixin _$InlineQueryResultCachedVideo {
   bool? get showCaptionAboveMedia => throw _privateConstructorUsedError;
 
   /// Type of the result, always [InlineQueryResultType.video]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Serializes this InlineQueryResultCachedVideo to a JSON map.
@@ -85,11 +90,11 @@ abstract class $InlineQueryResultCachedVideoCopyWith<$Res> {
           InlineQueryResultCachedVideo>;
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'video_file_id') String videoFileId,
-      String title,
-      String? description,
-      String? caption,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -97,7 +102,7 @@ abstract class $InlineQueryResultCachedVideoCopyWith<$Res> {
       @InputMessageContentConverter()
       InputMessageContent? inputMessageContent,
       @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
-      InlineQueryResultType type});
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -204,11 +209,11 @@ abstract class _$$InlineQueryResultCachedVideoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'video_file_id') String videoFileId,
-      String title,
-      String? description,
-      String? caption,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -216,7 +221,7 @@ abstract class _$$InlineQueryResultCachedVideoImplCopyWith<$Res>
       @InputMessageContentConverter()
       InputMessageContent? inputMessageContent,
       @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
-      InlineQueryResultType type});
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -303,11 +308,11 @@ class __$$InlineQueryResultCachedVideoImplCopyWithImpl<$Res>
 class _$InlineQueryResultCachedVideoImpl
     implements _InlineQueryResultCachedVideo {
   const _$InlineQueryResultCachedVideoImpl(
-      {required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'video_file_id') required this.videoFileId,
-      required this.title,
-      this.description,
-      this.caption,
+      @JsonKey(name: 'title') required this.title,
+      @JsonKey(name: 'description') this.description,
+      @JsonKey(name: 'caption') this.caption,
       @JsonKey(name: 'parse_mode') this.parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -316,7 +321,7 @@ class _$InlineQueryResultCachedVideoImpl
       @InputMessageContentConverter()
       this.inputMessageContent,
       @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
-      this.type = InlineQueryResultType.video})
+      @JsonKey(name: 'type') this.type = InlineQueryResultType.video})
       : _captionEntities = captionEntities;
 
   factory _$InlineQueryResultCachedVideoImpl.fromJson(
@@ -325,6 +330,7 @@ class _$InlineQueryResultCachedVideoImpl
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// A valid file identifier for the video file
@@ -334,15 +340,18 @@ class _$InlineQueryResultCachedVideoImpl
 
   /// Title for the result
   @override
+  @JsonKey(name: 'title')
   final String title;
 
   /// Optional. Short description of the result
   @override
+  @JsonKey(name: 'description')
   final String? description;
 
   /// Optional. Caption of the video to be sent, 0-1024 characters after
   /// entities parsing
   @override
+  @JsonKey(name: 'caption')
   final String? caption;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting
@@ -385,7 +394,7 @@ class _$InlineQueryResultCachedVideoImpl
 
   /// Type of the result, always [InlineQueryResultType.video]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   @override
@@ -414,11 +423,11 @@ class _$InlineQueryResultCachedVideoImpl
 abstract class _InlineQueryResultCachedVideo
     implements InlineQueryResultCachedVideo {
   const factory _InlineQueryResultCachedVideo(
-      {required final String id,
+      {@JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'video_file_id') required final String videoFileId,
-      required final String title,
-      final String? description,
-      final String? caption,
+      @JsonKey(name: 'title') required final String title,
+      @JsonKey(name: 'description') final String? description,
+      @JsonKey(name: 'caption') final String? caption,
       @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -428,6 +437,7 @@ abstract class _InlineQueryResultCachedVideo
       final InputMessageContent? inputMessageContent,
       @JsonKey(name: 'show_caption_above_media')
       final bool? showCaptionAboveMedia,
+      @JsonKey(name: 'type')
       final InlineQueryResultType type}) = _$InlineQueryResultCachedVideoImpl;
 
   factory _InlineQueryResultCachedVideo.fromJson(Map<String, dynamic> json) =
@@ -435,6 +445,7 @@ abstract class _InlineQueryResultCachedVideo
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// A valid file identifier for the video file
@@ -444,15 +455,18 @@ abstract class _InlineQueryResultCachedVideo
 
   /// Title for the result
   @override
+  @JsonKey(name: 'title')
   String get title;
 
   /// Optional. Short description of the result
   @override
+  @JsonKey(name: 'description')
   String? get description;
 
   /// Optional. Caption of the video to be sent, 0-1024 characters after
   /// entities parsing
   @override
+  @JsonKey(name: 'caption')
   String? get caption;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting
@@ -485,6 +499,7 @@ abstract class _InlineQueryResultCachedVideo
 
   /// Type of the result, always [InlineQueryResultType.video]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Create a copy of InlineQueryResultCachedVideo

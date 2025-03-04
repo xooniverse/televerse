@@ -22,9 +22,11 @@ InlineQueryResultVideo _$InlineQueryResultVideoFromJson(
 /// @nodoc
 mixin _$InlineQueryResultVideo {
   /// Type of the result, always [InlineQueryResultType.video]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// A valid URL for the embedded video player or video file
@@ -40,10 +42,12 @@ mixin _$InlineQueryResultVideo {
   String get thumbnailUrl => throw _privateConstructorUsedError;
 
   /// Title for the result
+  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
 
   /// Optional. Caption of the video to be sent, 0-1024 characters after
   /// entities parsing
+  @JsonKey(name: 'caption')
   String? get caption => throw _privateConstructorUsedError;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting
@@ -70,6 +74,7 @@ mixin _$InlineQueryResultVideo {
   int? get videoDuration => throw _privateConstructorUsedError;
 
   /// Optional. Short description of the result
+  @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
 
   /// Optional. Inline keyboard attached to the message
@@ -105,19 +110,19 @@ abstract class $InlineQueryResultVideoCopyWith<$Res> {
       _$InlineQueryResultVideoCopyWithImpl<$Res, InlineQueryResultVideo>;
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
       @JsonKey(name: 'video_url') String videoUrl,
       @JsonKey(name: 'mime_type') String mimeType,
       @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
-      String title,
-      String? caption,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'video_width') int? videoWidth,
       @JsonKey(name: 'video_height') int? videoHeight,
       @JsonKey(name: 'video_duration') int? videoDuration,
-      String? description,
+      @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
@@ -254,19 +259,19 @@ abstract class _$$InlineQueryResultVideoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
       @JsonKey(name: 'video_url') String videoUrl,
       @JsonKey(name: 'mime_type') String mimeType,
       @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
-      String title,
-      String? caption,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'video_width') int? videoWidth,
       @JsonKey(name: 'video_height') int? videoHeight,
       @JsonKey(name: 'video_duration') int? videoDuration,
-      String? description,
+      @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
@@ -382,20 +387,20 @@ class __$$InlineQueryResultVideoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultVideoImpl extends _InlineQueryResultVideo {
   const _$InlineQueryResultVideoImpl(
-      {this.type = InlineQueryResultType.video,
-      required this.id,
+      {@JsonKey(name: 'type') this.type = InlineQueryResultType.video,
+      @JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'video_url') required this.videoUrl,
       @JsonKey(name: 'mime_type') required this.mimeType,
       @JsonKey(name: 'thumbnail_url') required this.thumbnailUrl,
-      required this.title,
-      this.caption,
+      @JsonKey(name: 'title') required this.title,
+      @JsonKey(name: 'caption') this.caption,
       @JsonKey(name: 'parse_mode') this.parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
       @JsonKey(name: 'video_width') this.videoWidth,
       @JsonKey(name: 'video_height') this.videoHeight,
       @JsonKey(name: 'video_duration') this.videoDuration,
-      this.description,
+      @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'reply_markup') this.replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
@@ -409,11 +414,12 @@ class _$InlineQueryResultVideoImpl extends _InlineQueryResultVideo {
 
   /// Type of the result, always [InlineQueryResultType.video]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// A valid URL for the embedded video player or video file
@@ -433,11 +439,13 @@ class _$InlineQueryResultVideoImpl extends _InlineQueryResultVideo {
 
   /// Title for the result
   @override
+  @JsonKey(name: 'title')
   final String title;
 
   /// Optional. Caption of the video to be sent, 0-1024 characters after
   /// entities parsing
   @override
+  @JsonKey(name: 'caption')
   final String? caption;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting
@@ -479,6 +487,7 @@ class _$InlineQueryResultVideoImpl extends _InlineQueryResultVideo {
 
   /// Optional. Short description of the result
   @override
+  @JsonKey(name: 'description')
   final String? description;
 
   /// Optional. Inline keyboard attached to the message
@@ -523,20 +532,20 @@ class _$InlineQueryResultVideoImpl extends _InlineQueryResultVideo {
 
 abstract class _InlineQueryResultVideo extends InlineQueryResultVideo {
   const factory _InlineQueryResultVideo(
-      {final InlineQueryResultType type,
-      required final String id,
+      {@JsonKey(name: 'type') final InlineQueryResultType type,
+      @JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'video_url') required final String videoUrl,
       @JsonKey(name: 'mime_type') required final String mimeType,
       @JsonKey(name: 'thumbnail_url') required final String thumbnailUrl,
-      required final String title,
-      final String? caption,
+      @JsonKey(name: 'title') required final String title,
+      @JsonKey(name: 'caption') final String? caption,
       @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
       @JsonKey(name: 'video_width') final int? videoWidth,
       @JsonKey(name: 'video_height') final int? videoHeight,
       @JsonKey(name: 'video_duration') final int? videoDuration,
-      final String? description,
+      @JsonKey(name: 'description') final String? description,
       @JsonKey(name: 'reply_markup') final InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
@@ -550,10 +559,12 @@ abstract class _InlineQueryResultVideo extends InlineQueryResultVideo {
 
   /// Type of the result, always [InlineQueryResultType.video]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// A valid URL for the embedded video player or video file
@@ -573,11 +584,13 @@ abstract class _InlineQueryResultVideo extends InlineQueryResultVideo {
 
   /// Title for the result
   @override
+  @JsonKey(name: 'title')
   String get title;
 
   /// Optional. Caption of the video to be sent, 0-1024 characters after
   /// entities parsing
   @override
+  @JsonKey(name: 'caption')
   String? get caption;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting
@@ -609,6 +622,7 @@ abstract class _InlineQueryResultVideo extends InlineQueryResultVideo {
 
   /// Optional. Short description of the result
   @override
+  @JsonKey(name: 'description')
   String? get description;
 
   /// Optional. Inline keyboard attached to the message

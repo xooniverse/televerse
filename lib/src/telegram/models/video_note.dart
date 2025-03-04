@@ -21,15 +21,15 @@ class VideoNote with _$VideoNote {
 
     /// Video width and height (diameter of the video message) as defined by
     /// sender
-    required int length,
+    @JsonKey(name: 'length') required int length,
 
     /// Duration of the video in seconds as defined by sender
     ///
     /// A handy [Duration] getter is available as [durationTime]
-    required int duration,
+    @JsonKey(name: 'duration') required int duration,
 
     /// Optional. Animation thumbnail as defined by sender
-    PhotoSize? thumbnail,
+    @JsonKey(name: 'thumb') PhotoSize? thumbnail,
 
     /// Optional. File size in bytes. It can be bigger than 2^31 and some
     /// programming languages may have difficulty/silent defects in interpreting

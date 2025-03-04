@@ -21,16 +21,20 @@ Chat _$ChatFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Chat {
   /// Unique identifier for this chat.
+  @JsonKey(name: 'id')
   int get id => throw _privateConstructorUsedError;
 
   /// Type of the chat, can be either "private", "group", "supergroup" or
   /// "channel".
+  @JsonKey(name: 'type')
   ChatType get type => throw _privateConstructorUsedError;
 
   /// Title, for supergroups, channels, and group chats.
+  @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
 
   /// Username, for private chats, supergroups, and channels if available.
+  @JsonKey(name: 'username')
   String? get username => throw _privateConstructorUsedError;
 
   /// First name of the other party in a private chat.
@@ -60,10 +64,10 @@ abstract class $ChatCopyWith<$Res> {
       _$ChatCopyWithImpl<$Res, Chat>;
   @useResult
   $Res call(
-      {int id,
-      ChatType type,
-      String? title,
-      String? username,
+      {@JsonKey(name: 'id') int id,
+      @JsonKey(name: 'type') ChatType type,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'username') String? username,
       @JsonKey(name: 'first_name') String? firstName,
       @JsonKey(name: 'last_name') String? lastName,
       @JsonKey(name: 'is_forum') bool? isForum});
@@ -133,10 +137,10 @@ abstract class _$$ChatImplCopyWith<$Res> implements $ChatCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      ChatType type,
-      String? title,
-      String? username,
+      {@JsonKey(name: 'id') int id,
+      @JsonKey(name: 'type') ChatType type,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'username') String? username,
       @JsonKey(name: 'first_name') String? firstName,
       @JsonKey(name: 'last_name') String? lastName,
       @JsonKey(name: 'is_forum') bool? isForum});
@@ -199,10 +203,10 @@ class __$$ChatImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatImpl implements _Chat {
   const _$ChatImpl(
-      {required this.id,
-      required this.type,
-      this.title,
-      this.username,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'username') this.username,
       @JsonKey(name: 'first_name') this.firstName,
       @JsonKey(name: 'last_name') this.lastName,
       @JsonKey(name: 'is_forum') this.isForum});
@@ -212,19 +216,23 @@ class _$ChatImpl implements _Chat {
 
   /// Unique identifier for this chat.
   @override
+  @JsonKey(name: 'id')
   final int id;
 
   /// Type of the chat, can be either "private", "group", "supergroup" or
   /// "channel".
   @override
+  @JsonKey(name: 'type')
   final ChatType type;
 
   /// Title, for supergroups, channels, and group chats.
   @override
+  @JsonKey(name: 'title')
   final String? title;
 
   /// Username, for private chats, supergroups, and channels if available.
   @override
+  @JsonKey(name: 'username')
   final String? username;
 
   /// First name of the other party in a private chat.
@@ -265,10 +273,10 @@ class _$ChatImpl implements _Chat {
 
 abstract class _Chat implements Chat {
   const factory _Chat(
-      {required final int id,
-      required final ChatType type,
-      final String? title,
-      final String? username,
+      {@JsonKey(name: 'id') required final int id,
+      @JsonKey(name: 'type') required final ChatType type,
+      @JsonKey(name: 'title') final String? title,
+      @JsonKey(name: 'username') final String? username,
       @JsonKey(name: 'first_name') final String? firstName,
       @JsonKey(name: 'last_name') final String? lastName,
       @JsonKey(name: 'is_forum') final bool? isForum}) = _$ChatImpl;
@@ -277,19 +285,23 @@ abstract class _Chat implements Chat {
 
   /// Unique identifier for this chat.
   @override
+  @JsonKey(name: 'id')
   int get id;
 
   /// Type of the chat, can be either "private", "group", "supergroup" or
   /// "channel".
   @override
+  @JsonKey(name: 'type')
   ChatType get type;
 
   /// Title, for supergroups, channels, and group chats.
   @override
+  @JsonKey(name: 'title')
   String? get title;
 
   /// Username, for private chats, supergroups, and channels if available.
   @override
+  @JsonKey(name: 'username')
   String? get username;
 
   /// First name of the other party in a private chat.

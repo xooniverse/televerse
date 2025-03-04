@@ -21,9 +21,11 @@ Gift _$GiftFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Gift {
   /// Unique identifier of the gift.
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// The sticker that represents the gift.
+  @JsonKey(name: 'sticker')
   Sticker get sticker => throw _privateConstructorUsedError;
 
   /// The number of Telegram Stars that must be paid to send the sticker.
@@ -60,8 +62,8 @@ abstract class $GiftCopyWith<$Res> {
       _$GiftCopyWithImpl<$Res, Gift>;
   @useResult
   $Res call(
-      {String id,
-      Sticker sticker,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'sticker') Sticker sticker,
       @JsonKey(name: 'star_count') int starCount,
       @JsonKey(name: 'total_count') int? totalCount,
       @JsonKey(name: 'remaining_count') int? remainingCount,
@@ -139,8 +141,8 @@ abstract class _$$GiftImplCopyWith<$Res> implements $GiftCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      Sticker sticker,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'sticker') Sticker sticker,
       @JsonKey(name: 'star_count') int starCount,
       @JsonKey(name: 'total_count') int? totalCount,
       @JsonKey(name: 'remaining_count') int? remainingCount,
@@ -202,8 +204,8 @@ class __$$GiftImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GiftImpl implements _Gift {
   const _$GiftImpl(
-      {required this.id,
-      required this.sticker,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'sticker') required this.sticker,
       @JsonKey(name: 'star_count') required this.starCount,
       @JsonKey(name: 'total_count') this.totalCount,
       @JsonKey(name: 'remaining_count') this.remainingCount,
@@ -214,10 +216,12 @@ class _$GiftImpl implements _Gift {
 
   /// Unique identifier of the gift.
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// The sticker that represents the gift.
   @override
+  @JsonKey(name: 'sticker')
   final Sticker sticker;
 
   /// The number of Telegram Stars that must be paid to send the sticker.
@@ -266,8 +270,8 @@ class _$GiftImpl implements _Gift {
 
 abstract class _Gift implements Gift {
   const factory _Gift(
-          {required final String id,
-          required final Sticker sticker,
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'sticker') required final Sticker sticker,
           @JsonKey(name: 'star_count') required final int starCount,
           @JsonKey(name: 'total_count') final int? totalCount,
           @JsonKey(name: 'remaining_count') final int? remainingCount,
@@ -278,10 +282,12 @@ abstract class _Gift implements Gift {
 
   /// Unique identifier of the gift.
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// The sticker that represents the gift.
   @override
+  @JsonKey(name: 'sticker')
   Sticker get sticker;
 
   /// The number of Telegram Stars that must be paid to send the sticker.

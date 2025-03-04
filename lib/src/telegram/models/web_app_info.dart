@@ -10,7 +10,7 @@ class WebAppInfo with _$WebAppInfo {
   const factory WebAppInfo({
     /// An HTTPS URL of a Web App to be opened with additional data as specified
     /// in Initializing Web Apps
-    required String url,
+    @JsonKey(name: 'url') required String url,
   }) = _WebAppInfo;
 
   /// Creates a [WebAppInfo] object from JSON object

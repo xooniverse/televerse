@@ -21,6 +21,7 @@ ChatMemberUpdated _$ChatMemberUpdatedFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ChatMemberUpdated {
   /// Chat the user belongs to
+  @JsonKey(name: 'chat')
   Chat get chat => throw _privateConstructorUsedError;
 
   /// Performer of the action, which resulted in the change
@@ -28,6 +29,7 @@ mixin _$ChatMemberUpdated {
   User get from => throw _privateConstructorUsedError;
 
   /// Date the change was done in Unix time
+  @JsonKey(name: 'date')
   int get date => throw _privateConstructorUsedError;
 
   /// Previous information about the chat member
@@ -67,9 +69,9 @@ abstract class $ChatMemberUpdatedCopyWith<$Res> {
       _$ChatMemberUpdatedCopyWithImpl<$Res, ChatMemberUpdated>;
   @useResult
   $Res call(
-      {Chat chat,
+      {@JsonKey(name: 'chat') Chat chat,
       @JsonKey(name: 'from') User from,
-      int date,
+      @JsonKey(name: 'date') int date,
       @JsonKey(name: 'old_chat_member') ChatMember oldChatMember,
       @JsonKey(name: 'new_chat_member') ChatMember newChatMember,
       @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,
@@ -208,9 +210,9 @@ abstract class _$$ChatMemberUpdatedImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Chat chat,
+      {@JsonKey(name: 'chat') Chat chat,
       @JsonKey(name: 'from') User from,
-      int date,
+      @JsonKey(name: 'date') int date,
       @JsonKey(name: 'old_chat_member') ChatMember oldChatMember,
       @JsonKey(name: 'new_chat_member') ChatMember newChatMember,
       @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,
@@ -293,9 +295,9 @@ class __$$ChatMemberUpdatedImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatMemberUpdatedImpl implements _ChatMemberUpdated {
   const _$ChatMemberUpdatedImpl(
-      {required this.chat,
+      {@JsonKey(name: 'chat') required this.chat,
       @JsonKey(name: 'from') required this.from,
-      required this.date,
+      @JsonKey(name: 'date') required this.date,
       @JsonKey(name: 'old_chat_member') required this.oldChatMember,
       @JsonKey(name: 'new_chat_member') required this.newChatMember,
       @JsonKey(name: 'invite_link') this.inviteLink,
@@ -308,6 +310,7 @@ class _$ChatMemberUpdatedImpl implements _ChatMemberUpdated {
 
   /// Chat the user belongs to
   @override
+  @JsonKey(name: 'chat')
   final Chat chat;
 
   /// Performer of the action, which resulted in the change
@@ -317,6 +320,7 @@ class _$ChatMemberUpdatedImpl implements _ChatMemberUpdated {
 
   /// Date the change was done in Unix time
   @override
+  @JsonKey(name: 'date')
   final int date;
 
   /// Previous information about the chat member
@@ -368,9 +372,9 @@ class _$ChatMemberUpdatedImpl implements _ChatMemberUpdated {
 
 abstract class _ChatMemberUpdated implements ChatMemberUpdated {
   const factory _ChatMemberUpdated(
-      {required final Chat chat,
+      {@JsonKey(name: 'chat') required final Chat chat,
       @JsonKey(name: 'from') required final User from,
-      required final int date,
+      @JsonKey(name: 'date') required final int date,
       @JsonKey(name: 'old_chat_member') required final ChatMember oldChatMember,
       @JsonKey(name: 'new_chat_member') required final ChatMember newChatMember,
       @JsonKey(name: 'invite_link') final ChatInviteLink? inviteLink,
@@ -384,6 +388,7 @@ abstract class _ChatMemberUpdated implements ChatMemberUpdated {
 
   /// Chat the user belongs to
   @override
+  @JsonKey(name: 'chat')
   Chat get chat;
 
   /// Performer of the action, which resulted in the change
@@ -393,6 +398,7 @@ abstract class _ChatMemberUpdated implements ChatMemberUpdated {
 
   /// Date the change was done in Unix time
   @override
+  @JsonKey(name: 'date')
   int get date;
 
   /// Previous information about the chat member

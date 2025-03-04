@@ -33,14 +33,17 @@ mixin _$VideoNote {
 
   /// Video width and height (diameter of the video message) as defined by
   /// sender
+  @JsonKey(name: 'length')
   int get length => throw _privateConstructorUsedError;
 
   /// Duration of the video in seconds as defined by sender
   ///
   /// A handy [Duration] getter is available as [durationTime]
+  @JsonKey(name: 'duration')
   int get duration => throw _privateConstructorUsedError;
 
   /// Optional. Animation thumbnail as defined by sender
+  @JsonKey(name: 'thumb')
   PhotoSize? get thumbnail => throw _privateConstructorUsedError;
 
   /// Optional. File size in bytes. It can be bigger than 2^31 and some
@@ -68,9 +71,9 @@ abstract class $VideoNoteCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'file_id') String fileId,
       @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      int length,
-      int duration,
-      PhotoSize? thumbnail,
+      @JsonKey(name: 'length') int length,
+      @JsonKey(name: 'duration') int duration,
+      @JsonKey(name: 'thumb') PhotoSize? thumbnail,
       @JsonKey(name: 'file_size') int? fileSize});
 
   $PhotoSizeCopyWith<$Res>? get thumbnail;
@@ -152,9 +155,9 @@ abstract class _$$VideoNoteImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'file_id') String fileId,
       @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      int length,
-      int duration,
-      PhotoSize? thumbnail,
+      @JsonKey(name: 'length') int length,
+      @JsonKey(name: 'duration') int duration,
+      @JsonKey(name: 'thumb') PhotoSize? thumbnail,
       @JsonKey(name: 'file_size') int? fileSize});
 
   @override
@@ -216,9 +219,9 @@ class _$VideoNoteImpl implements _VideoNote {
   const _$VideoNoteImpl(
       {@JsonKey(name: 'file_id') required this.fileId,
       @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
-      required this.length,
-      required this.duration,
-      this.thumbnail,
+      @JsonKey(name: 'length') required this.length,
+      @JsonKey(name: 'duration') required this.duration,
+      @JsonKey(name: 'thumb') this.thumbnail,
       @JsonKey(name: 'file_size') this.fileSize});
 
   factory _$VideoNoteImpl.fromJson(Map<String, dynamic> json) =>
@@ -240,16 +243,19 @@ class _$VideoNoteImpl implements _VideoNote {
   /// Video width and height (diameter of the video message) as defined by
   /// sender
   @override
+  @JsonKey(name: 'length')
   final int length;
 
   /// Duration of the video in seconds as defined by sender
   ///
   /// A handy [Duration] getter is available as [durationTime]
   @override
+  @JsonKey(name: 'duration')
   final int duration;
 
   /// Optional. Animation thumbnail as defined by sender
   @override
+  @JsonKey(name: 'thumb')
   final PhotoSize? thumbnail;
 
   /// Optional. File size in bytes. It can be bigger than 2^31 and some
@@ -285,9 +291,9 @@ abstract class _VideoNote implements VideoNote {
   const factory _VideoNote(
       {@JsonKey(name: 'file_id') required final String fileId,
       @JsonKey(name: 'file_unique_id') required final String fileUniqueId,
-      required final int length,
-      required final int duration,
-      final PhotoSize? thumbnail,
+      @JsonKey(name: 'length') required final int length,
+      @JsonKey(name: 'duration') required final int duration,
+      @JsonKey(name: 'thumb') final PhotoSize? thumbnail,
       @JsonKey(name: 'file_size') final int? fileSize}) = _$VideoNoteImpl;
 
   factory _VideoNote.fromJson(Map<String, dynamic> json) =
@@ -309,16 +315,19 @@ abstract class _VideoNote implements VideoNote {
   /// Video width and height (diameter of the video message) as defined by
   /// sender
   @override
+  @JsonKey(name: 'length')
   int get length;
 
   /// Duration of the video in seconds as defined by sender
   ///
   /// A handy [Duration] getter is available as [durationTime]
   @override
+  @JsonKey(name: 'duration')
   int get duration;
 
   /// Optional. Animation thumbnail as defined by sender
   @override
+  @JsonKey(name: 'thumb')
   PhotoSize? get thumbnail;
 
   /// Optional. File size in bytes. It can be bigger than 2^31 and some

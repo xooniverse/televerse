@@ -24,7 +24,7 @@ class LoginURL with _$LoginURL {
     /// NOTE: You must always check the hash of the received data to verify the
     /// authentication and the integrity of the data as described in Checking
     /// authorization.
-    required String url,
+    @JsonKey(name: 'url') required String url,
 
     /// Optional. New text of the button in forwarded messages.
     @JsonKey(name: 'forward_text') String? forwardText,

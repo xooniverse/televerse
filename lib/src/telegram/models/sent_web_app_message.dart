@@ -13,7 +13,7 @@ class SentWebAppMessage with _$SentWebAppMessage {
   const factory SentWebAppMessage({
     /// Optional. Identifier of the sent inline message. Available only if there
     /// is an inline keyboard attached to the message.
-    String? inlineMessageId,
+    @JsonKey(name: 'inline_message_id') String? inlineMessageId,
   }) = _SentWebAppMessage;
 
   /// Creates a [SentWebAppMessage] from a JSON map

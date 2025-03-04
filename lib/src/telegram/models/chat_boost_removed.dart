@@ -9,7 +9,7 @@ class ChatBoostRemoved with _$ChatBoostRemoved implements WithChat {
   /// Creates a `ChatBoostRemoved` object.
   const factory ChatBoostRemoved({
     /// Chat which was boosted
-    required final Chat chat,
+    @JsonKey(name: 'chat') required final Chat chat,
 
     /// Unique identifier of the boost
     @JsonKey(name: 'boost_id') required final String boostId,

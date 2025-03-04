@@ -40,6 +40,7 @@ BotCommandScope _$BotCommandScopeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BotCommandScope {
   /// Scope type, always be [BotCommandScopeType.default_]
+  @JsonKey(name: 'type')
   BotCommandScopeType get type => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -100,7 +101,7 @@ abstract class $BotCommandScopeCopyWith<$Res> {
           BotCommandScope value, $Res Function(BotCommandScope) then) =
       _$BotCommandScopeCopyWithImpl<$Res, BotCommandScope>;
   @useResult
-  $Res call({BotCommandScopeType type});
+  $Res call({@JsonKey(name: 'type') BotCommandScopeType type});
 }
 
 /// @nodoc
@@ -138,7 +139,7 @@ abstract class _$$BotCommandScopeDefaultImplCopyWith<$Res>
       __$$BotCommandScopeDefaultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BotCommandScopeType type});
+  $Res call({@JsonKey(name: 'type') BotCommandScopeType type});
 }
 
 /// @nodoc
@@ -170,14 +171,14 @@ class __$$BotCommandScopeDefaultImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BotCommandScopeDefaultImpl implements BotCommandScopeDefault {
   const _$BotCommandScopeDefaultImpl(
-      {this.type = BotCommandScopeType.default_});
+      {@JsonKey(name: 'type') this.type = BotCommandScopeType.default_});
 
   factory _$BotCommandScopeDefaultImpl.fromJson(Map<String, dynamic> json) =>
       _$$BotCommandScopeDefaultImplFromJson(json);
 
   /// Scope type, always be [BotCommandScopeType.default_]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BotCommandScopeType type;
 
   @override
@@ -256,7 +257,8 @@ class _$BotCommandScopeDefaultImpl implements BotCommandScopeDefault {
 }
 
 abstract class BotCommandScopeDefault implements BotCommandScope {
-  const factory BotCommandScopeDefault({final BotCommandScopeType type}) =
+  const factory BotCommandScopeDefault(
+          {@JsonKey(name: 'type') final BotCommandScopeType type}) =
       _$BotCommandScopeDefaultImpl;
 
   factory BotCommandScopeDefault.fromJson(Map<String, dynamic> json) =
@@ -264,6 +266,7 @@ abstract class BotCommandScopeDefault implements BotCommandScope {
 
   /// Scope type, always be [BotCommandScopeType.default_]
   @override
+  @JsonKey(name: 'type')
   BotCommandScopeType get type;
 
   /// Create a copy of BotCommandScope
@@ -283,7 +286,7 @@ abstract class _$$BotCommandScopeAllPrivateChatsImplCopyWith<$Res>
       __$$BotCommandScopeAllPrivateChatsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BotCommandScopeType type});
+  $Res call({@JsonKey(name: 'type') BotCommandScopeType type});
 }
 
 /// @nodoc
@@ -317,7 +320,7 @@ class __$$BotCommandScopeAllPrivateChatsImplCopyWithImpl<$Res>
 class _$BotCommandScopeAllPrivateChatsImpl
     implements BotCommandScopeAllPrivateChats {
   const _$BotCommandScopeAllPrivateChatsImpl(
-      {this.type = BotCommandScopeType.allPrivateChats});
+      {@JsonKey(name: 'type') this.type = BotCommandScopeType.allPrivateChats});
 
   factory _$BotCommandScopeAllPrivateChatsImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -325,7 +328,7 @@ class _$BotCommandScopeAllPrivateChatsImpl
 
   /// Scope type, always be [BotCommandScopeType.allPrivateChats]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BotCommandScopeType type;
 
   @override
@@ -406,13 +409,15 @@ class _$BotCommandScopeAllPrivateChatsImpl
 
 abstract class BotCommandScopeAllPrivateChats implements BotCommandScope {
   const factory BotCommandScopeAllPrivateChats(
-      {final BotCommandScopeType type}) = _$BotCommandScopeAllPrivateChatsImpl;
+          {@JsonKey(name: 'type') final BotCommandScopeType type}) =
+      _$BotCommandScopeAllPrivateChatsImpl;
 
   factory BotCommandScopeAllPrivateChats.fromJson(Map<String, dynamic> json) =
       _$BotCommandScopeAllPrivateChatsImpl.fromJson;
 
   /// Scope type, always be [BotCommandScopeType.allPrivateChats]
   @override
+  @JsonKey(name: 'type')
   BotCommandScopeType get type;
 
   /// Create a copy of BotCommandScope
@@ -583,7 +588,7 @@ abstract class _$$BotCommandScopeAllChatAdministratorsImplCopyWith<$Res>
       __$$BotCommandScopeAllChatAdministratorsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BotCommandScopeType type});
+  $Res call({@JsonKey(name: 'type') BotCommandScopeType type});
 }
 
 /// @nodoc
@@ -617,7 +622,8 @@ class __$$BotCommandScopeAllChatAdministratorsImplCopyWithImpl<$Res>
 class _$BotCommandScopeAllChatAdministratorsImpl
     implements BotCommandScopeAllChatAdministrators {
   const _$BotCommandScopeAllChatAdministratorsImpl(
-      {this.type = BotCommandScopeType.allChatAdministrators});
+      {@JsonKey(name: 'type')
+      this.type = BotCommandScopeType.allChatAdministrators});
 
   factory _$BotCommandScopeAllChatAdministratorsImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -625,7 +631,7 @@ class _$BotCommandScopeAllChatAdministratorsImpl
 
   /// Scope type, always be [BotCommandScopeType.allChatAdministrators]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BotCommandScopeType type;
 
   @override
@@ -706,7 +712,7 @@ class _$BotCommandScopeAllChatAdministratorsImpl
 
 abstract class BotCommandScopeAllChatAdministrators implements BotCommandScope {
   const factory BotCommandScopeAllChatAdministrators(
-          {final BotCommandScopeType type}) =
+          {@JsonKey(name: 'type') final BotCommandScopeType type}) =
       _$BotCommandScopeAllChatAdministratorsImpl;
 
   factory BotCommandScopeAllChatAdministrators.fromJson(
@@ -715,6 +721,7 @@ abstract class BotCommandScopeAllChatAdministrators implements BotCommandScope {
 
   /// Scope type, always be [BotCommandScopeType.allChatAdministrators]
   @override
+  @JsonKey(name: 'type')
   BotCommandScopeType get type;
 
   /// Create a copy of BotCommandScope
@@ -735,7 +742,7 @@ abstract class _$$BotCommandScopeChatImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BotCommandScopeType type,
+      {@JsonKey(name: 'type') BotCommandScopeType type,
       @JsonKey(name: 'chat_id') @IDConverter() ID chatId});
 }
 
@@ -772,7 +779,7 @@ class __$$BotCommandScopeChatImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BotCommandScopeChatImpl implements BotCommandScopeChat {
   const _$BotCommandScopeChatImpl(
-      {this.type = BotCommandScopeType.chat,
+      {@JsonKey(name: 'type') this.type = BotCommandScopeType.chat,
       @JsonKey(name: 'chat_id') @IDConverter() required this.chatId});
 
   factory _$BotCommandScopeChatImpl.fromJson(Map<String, dynamic> json) =>
@@ -780,7 +787,7 @@ class _$BotCommandScopeChatImpl implements BotCommandScopeChat {
 
   /// Scope type, always be [BotCommandScopeType.chat]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BotCommandScopeType type;
 
   /// Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
@@ -866,7 +873,7 @@ class _$BotCommandScopeChatImpl implements BotCommandScopeChat {
 
 abstract class BotCommandScopeChat implements BotCommandScope {
   const factory BotCommandScopeChat(
-          {final BotCommandScopeType type,
+          {@JsonKey(name: 'type') final BotCommandScopeType type,
           @JsonKey(name: 'chat_id') @IDConverter() required final ID chatId}) =
       _$BotCommandScopeChatImpl;
 
@@ -875,6 +882,7 @@ abstract class BotCommandScopeChat implements BotCommandScope {
 
   /// Scope type, always be [BotCommandScopeType.chat]
   @override
+  @JsonKey(name: 'type')
   BotCommandScopeType get type;
 
   /// Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
@@ -900,7 +908,7 @@ abstract class _$$BotCommandScopeChatAdministratorsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BotCommandScopeType type,
+      {@JsonKey(name: 'type') BotCommandScopeType type,
       @JsonKey(name: 'chat_id') @IDConverter() ID chatId});
 }
 
@@ -940,7 +948,8 @@ class __$$BotCommandScopeChatAdministratorsImplCopyWithImpl<$Res>
 class _$BotCommandScopeChatAdministratorsImpl
     implements BotCommandScopeChatAdministrators {
   const _$BotCommandScopeChatAdministratorsImpl(
-      {this.type = BotCommandScopeType.chatAdministrators,
+      {@JsonKey(name: 'type')
+      this.type = BotCommandScopeType.chatAdministrators,
       @JsonKey(name: 'chat_id') @IDConverter() required this.chatId});
 
   factory _$BotCommandScopeChatAdministratorsImpl.fromJson(
@@ -949,7 +958,7 @@ class _$BotCommandScopeChatAdministratorsImpl
 
   /// Scope type, always be [BotCommandScopeType.chatAdministrators]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BotCommandScopeType type;
 
   /// Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
@@ -1036,7 +1045,7 @@ class _$BotCommandScopeChatAdministratorsImpl
 
 abstract class BotCommandScopeChatAdministrators implements BotCommandScope {
   const factory BotCommandScopeChatAdministrators(
-          {final BotCommandScopeType type,
+          {@JsonKey(name: 'type') final BotCommandScopeType type,
           @JsonKey(name: 'chat_id') @IDConverter() required final ID chatId}) =
       _$BotCommandScopeChatAdministratorsImpl;
 
@@ -1046,6 +1055,7 @@ abstract class BotCommandScopeChatAdministrators implements BotCommandScope {
 
   /// Scope type, always be [BotCommandScopeType.chatAdministrators]
   @override
+  @JsonKey(name: 'type')
   BotCommandScopeType get type;
 
   /// Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
@@ -1072,7 +1082,7 @@ abstract class _$$BotCommandScopeChatMemberImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BotCommandScopeType type,
+      {@JsonKey(name: 'type') BotCommandScopeType type,
       @JsonKey(name: 'chat_id') @IDConverter() ID chatId,
       @JsonKey(name: 'user_id') int userId});
 }
@@ -1116,7 +1126,7 @@ class __$$BotCommandScopeChatMemberImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BotCommandScopeChatMemberImpl implements BotCommandScopeChatMember {
   const _$BotCommandScopeChatMemberImpl(
-      {this.type = BotCommandScopeType.chatMember,
+      {@JsonKey(name: 'type') this.type = BotCommandScopeType.chatMember,
       @JsonKey(name: 'chat_id') @IDConverter() required this.chatId,
       @JsonKey(name: 'user_id') required this.userId});
 
@@ -1125,7 +1135,7 @@ class _$BotCommandScopeChatMemberImpl implements BotCommandScopeChatMember {
 
   /// Scope type, always be [BotCommandScopeType.chatMember]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BotCommandScopeType type;
 
   /// Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
@@ -1216,7 +1226,7 @@ class _$BotCommandScopeChatMemberImpl implements BotCommandScopeChatMember {
 
 abstract class BotCommandScopeChatMember implements BotCommandScope {
   const factory BotCommandScopeChatMember(
-          {final BotCommandScopeType type,
+          {@JsonKey(name: 'type') final BotCommandScopeType type,
           @JsonKey(name: 'chat_id') @IDConverter() required final ID chatId,
           @JsonKey(name: 'user_id') required final int userId}) =
       _$BotCommandScopeChatMemberImpl;
@@ -1226,6 +1236,7 @@ abstract class BotCommandScopeChatMember implements BotCommandScope {
 
   /// Scope type, always be [BotCommandScopeType.chatMember]
   @override
+  @JsonKey(name: 'type')
   BotCommandScopeType get type;
 
   /// Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)

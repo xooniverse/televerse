@@ -22,15 +22,18 @@ TextQuote _$TextQuoteFromJson(Map<String, dynamic> json) {
 mixin _$TextQuote {
   /// Text of the quoted part of a message that is replied to by the given
   /// message.
+  @JsonKey(name: 'text')
   String get text => throw _privateConstructorUsedError;
 
   /// Special entities that appear in the quote. Currently, only bold, italic,
   /// underline, strikethrough, spoiler, and custom_emoji entities are kept in
   /// quotes.
+  @JsonKey(name: 'entities')
   List<MessageEntity>? get entities => throw _privateConstructorUsedError;
 
   /// Approximate quote position in the original message in UTF-16 code units
   /// as specified by the sender.
+  @JsonKey(name: 'position')
   int get position => throw _privateConstructorUsedError;
 
   /// True, if the quote was chosen manually by the message sender. Otherwise,
@@ -54,9 +57,9 @@ abstract class $TextQuoteCopyWith<$Res> {
       _$TextQuoteCopyWithImpl<$Res, TextQuote>;
   @useResult
   $Res call(
-      {String text,
-      List<MessageEntity>? entities,
-      int position,
+      {@JsonKey(name: 'text') String text,
+      @JsonKey(name: 'entities') List<MessageEntity>? entities,
+      @JsonKey(name: 'position') int position,
       @JsonKey(name: 'is_manual') bool? isManual});
 }
 
@@ -110,9 +113,9 @@ abstract class _$$TextQuoteImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String text,
-      List<MessageEntity>? entities,
-      int position,
+      {@JsonKey(name: 'text') String text,
+      @JsonKey(name: 'entities') List<MessageEntity>? entities,
+      @JsonKey(name: 'position') int position,
       @JsonKey(name: 'is_manual') bool? isManual});
 }
 
@@ -159,9 +162,9 @@ class __$$TextQuoteImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TextQuoteImpl implements _TextQuote {
   const _$TextQuoteImpl(
-      {required this.text,
-      final List<MessageEntity>? entities,
-      required this.position,
+      {@JsonKey(name: 'text') required this.text,
+      @JsonKey(name: 'entities') final List<MessageEntity>? entities,
+      @JsonKey(name: 'position') required this.position,
       @JsonKey(name: 'is_manual') this.isManual})
       : _entities = entities;
 
@@ -171,6 +174,7 @@ class _$TextQuoteImpl implements _TextQuote {
   /// Text of the quoted part of a message that is replied to by the given
   /// message.
   @override
+  @JsonKey(name: 'text')
   final String text;
 
   /// Special entities that appear in the quote. Currently, only bold, italic,
@@ -182,6 +186,7 @@ class _$TextQuoteImpl implements _TextQuote {
   /// underline, strikethrough, spoiler, and custom_emoji entities are kept in
   /// quotes.
   @override
+  @JsonKey(name: 'entities')
   List<MessageEntity>? get entities {
     final value = _entities;
     if (value == null) return null;
@@ -193,6 +198,7 @@ class _$TextQuoteImpl implements _TextQuote {
   /// Approximate quote position in the original message in UTF-16 code units
   /// as specified by the sender.
   @override
+  @JsonKey(name: 'position')
   final int position;
 
   /// True, if the quote was chosen manually by the message sender. Otherwise,
@@ -224,9 +230,9 @@ class _$TextQuoteImpl implements _TextQuote {
 
 abstract class _TextQuote implements TextQuote {
   const factory _TextQuote(
-      {required final String text,
-      final List<MessageEntity>? entities,
-      required final int position,
+      {@JsonKey(name: 'text') required final String text,
+      @JsonKey(name: 'entities') final List<MessageEntity>? entities,
+      @JsonKey(name: 'position') required final int position,
       @JsonKey(name: 'is_manual') final bool? isManual}) = _$TextQuoteImpl;
 
   factory _TextQuote.fromJson(Map<String, dynamic> json) =
@@ -235,17 +241,20 @@ abstract class _TextQuote implements TextQuote {
   /// Text of the quoted part of a message that is replied to by the given
   /// message.
   @override
+  @JsonKey(name: 'text')
   String get text;
 
   /// Special entities that appear in the quote. Currently, only bold, italic,
   /// underline, strikethrough, spoiler, and custom_emoji entities are kept in
   /// quotes.
   @override
+  @JsonKey(name: 'entities')
   List<MessageEntity>? get entities;
 
   /// Approximate quote position in the original message in UTF-16 code units
   /// as specified by the sender.
   @override
+  @JsonKey(name: 'position')
   int get position;
 
   /// True, if the quote was chosen manually by the message sender. Otherwise,

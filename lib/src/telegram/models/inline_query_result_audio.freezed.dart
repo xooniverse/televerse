@@ -22,6 +22,7 @@ InlineQueryResultAudio _$InlineQueryResultAudioFromJson(
 /// @nodoc
 mixin _$InlineQueryResultAudio {
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// A valid URL for the audio file
@@ -29,9 +30,11 @@ mixin _$InlineQueryResultAudio {
   String get audioUrl => throw _privateConstructorUsedError;
 
   /// Title
+  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
 
   /// Optional. Caption, 0-1024 characters after entities parsing
+  @JsonKey(name: 'caption')
   String? get caption => throw _privateConstructorUsedError;
 
   /// Optional. Mode for parsing entities in the audio caption. See formatting
@@ -46,6 +49,7 @@ mixin _$InlineQueryResultAudio {
       throw _privateConstructorUsedError;
 
   /// Optional. Performer
+  @JsonKey(name: 'performer')
   String? get performer => throw _privateConstructorUsedError;
 
   /// Optional. Audio duration in seconds
@@ -63,6 +67,7 @@ mixin _$InlineQueryResultAudio {
       throw _privateConstructorUsedError;
 
   /// Type of the result, always [InlineQueryResultType.audio]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Serializes this InlineQueryResultAudio to a JSON map.
@@ -82,19 +87,19 @@ abstract class $InlineQueryResultAudioCopyWith<$Res> {
       _$InlineQueryResultAudioCopyWithImpl<$Res, InlineQueryResultAudio>;
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'audio_url') String audioUrl,
-      String title,
-      String? caption,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      String? performer,
+      @JsonKey(name: 'performer') String? performer,
       @JsonKey(name: 'audio_duration') int? audioDuration,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       InputMessageContent? inputMessageContent,
-      InlineQueryResultType type});
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -201,19 +206,19 @@ abstract class _$$InlineQueryResultAudioImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'audio_url') String audioUrl,
-      String title,
-      String? caption,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      String? performer,
+      @JsonKey(name: 'performer') String? performer,
       @JsonKey(name: 'audio_duration') int? audioDuration,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       InputMessageContent? inputMessageContent,
-      InlineQueryResultType type});
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -299,20 +304,20 @@ class __$$InlineQueryResultAudioImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultAudioImpl implements _InlineQueryResultAudio {
   const _$InlineQueryResultAudioImpl(
-      {required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'audio_url') required this.audioUrl,
-      required this.title,
-      this.caption,
+      @JsonKey(name: 'title') required this.title,
+      @JsonKey(name: 'caption') this.caption,
       @JsonKey(name: 'parse_mode') this.parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
-      this.performer,
+      @JsonKey(name: 'performer') this.performer,
       @JsonKey(name: 'audio_duration') this.audioDuration,
       @JsonKey(name: 'reply_markup') this.replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       this.inputMessageContent,
-      this.type = InlineQueryResultType.audio})
+      @JsonKey(name: 'type') this.type = InlineQueryResultType.audio})
       : _captionEntities = captionEntities;
 
   factory _$InlineQueryResultAudioImpl.fromJson(Map<String, dynamic> json) =>
@@ -320,6 +325,7 @@ class _$InlineQueryResultAudioImpl implements _InlineQueryResultAudio {
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// A valid URL for the audio file
@@ -329,10 +335,12 @@ class _$InlineQueryResultAudioImpl implements _InlineQueryResultAudio {
 
   /// Title
   @override
+  @JsonKey(name: 'title')
   final String title;
 
   /// Optional. Caption, 0-1024 characters after entities parsing
   @override
+  @JsonKey(name: 'caption')
   final String? caption;
 
   /// Optional. Mode for parsing entities in the audio caption. See formatting
@@ -359,6 +367,7 @@ class _$InlineQueryResultAudioImpl implements _InlineQueryResultAudio {
 
   /// Optional. Performer
   @override
+  @JsonKey(name: 'performer')
   final String? performer;
 
   /// Optional. Audio duration in seconds
@@ -379,7 +388,7 @@ class _$InlineQueryResultAudioImpl implements _InlineQueryResultAudio {
 
   /// Type of the result, always [InlineQueryResultType.audio]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   @override
@@ -406,19 +415,20 @@ class _$InlineQueryResultAudioImpl implements _InlineQueryResultAudio {
 
 abstract class _InlineQueryResultAudio implements InlineQueryResultAudio {
   const factory _InlineQueryResultAudio(
-      {required final String id,
+      {@JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'audio_url') required final String audioUrl,
-      required final String title,
-      final String? caption,
+      @JsonKey(name: 'title') required final String title,
+      @JsonKey(name: 'caption') final String? caption,
       @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
-      final String? performer,
+      @JsonKey(name: 'performer') final String? performer,
       @JsonKey(name: 'audio_duration') final int? audioDuration,
       @JsonKey(name: 'reply_markup') final InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       final InputMessageContent? inputMessageContent,
+      @JsonKey(name: 'type')
       final InlineQueryResultType type}) = _$InlineQueryResultAudioImpl;
 
   factory _InlineQueryResultAudio.fromJson(Map<String, dynamic> json) =
@@ -426,6 +436,7 @@ abstract class _InlineQueryResultAudio implements InlineQueryResultAudio {
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// A valid URL for the audio file
@@ -435,10 +446,12 @@ abstract class _InlineQueryResultAudio implements InlineQueryResultAudio {
 
   /// Title
   @override
+  @JsonKey(name: 'title')
   String get title;
 
   /// Optional. Caption, 0-1024 characters after entities parsing
   @override
+  @JsonKey(name: 'caption')
   String? get caption;
 
   /// Optional. Mode for parsing entities in the audio caption. See formatting
@@ -455,6 +468,7 @@ abstract class _InlineQueryResultAudio implements InlineQueryResultAudio {
 
   /// Optional. Performer
   @override
+  @JsonKey(name: 'performer')
   String? get performer;
 
   /// Optional. Audio duration in seconds
@@ -475,6 +489,7 @@ abstract class _InlineQueryResultAudio implements InlineQueryResultAudio {
 
   /// Type of the result, always [InlineQueryResultType.audio]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Create a copy of InlineQueryResultAudio

@@ -22,6 +22,7 @@ VideoChatParticipantsInvited _$VideoChatParticipantsInvitedFromJson(
 /// @nodoc
 mixin _$VideoChatParticipantsInvited {
   /// New members that were invited to the video chat.
+  @JsonKey(name: 'users')
   List<User> get users => throw _privateConstructorUsedError;
 
   /// Serializes this VideoChatParticipantsInvited to a JSON map.
@@ -42,7 +43,7 @@ abstract class $VideoChatParticipantsInvitedCopyWith<$Res> {
       _$VideoChatParticipantsInvitedCopyWithImpl<$Res,
           VideoChatParticipantsInvited>;
   @useResult
-  $Res call({List<User> users});
+  $Res call({@JsonKey(name: 'users') List<User> users});
 }
 
 /// @nodoc
@@ -81,7 +82,7 @@ abstract class _$$VideoChatParticipantsInvitedImplCopyWith<$Res>
       __$$VideoChatParticipantsInvitedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<User> users});
+  $Res call({@JsonKey(name: 'users') List<User> users});
 }
 
 /// @nodoc
@@ -114,7 +115,8 @@ class __$$VideoChatParticipantsInvitedImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$VideoChatParticipantsInvitedImpl
     implements _VideoChatParticipantsInvited {
-  const _$VideoChatParticipantsInvitedImpl({required final List<User> users})
+  const _$VideoChatParticipantsInvitedImpl(
+      {@JsonKey(name: 'users') required final List<User> users})
       : _users = users;
 
   factory _$VideoChatParticipantsInvitedImpl.fromJson(
@@ -126,6 +128,7 @@ class _$VideoChatParticipantsInvitedImpl
 
   /// New members that were invited to the video chat.
   @override
+  @JsonKey(name: 'users')
   List<User> get users {
     if (_users is EqualUnmodifiableListView) return _users;
     // ignore: implicit_dynamic_type
@@ -158,13 +161,15 @@ class _$VideoChatParticipantsInvitedImpl
 abstract class _VideoChatParticipantsInvited
     implements VideoChatParticipantsInvited {
   const factory _VideoChatParticipantsInvited(
-      {required final List<User> users}) = _$VideoChatParticipantsInvitedImpl;
+          {@JsonKey(name: 'users') required final List<User> users}) =
+      _$VideoChatParticipantsInvitedImpl;
 
   factory _VideoChatParticipantsInvited.fromJson(Map<String, dynamic> json) =
       _$VideoChatParticipantsInvitedImpl.fromJson;
 
   /// New members that were invited to the video chat.
   @override
+  @JsonKey(name: 'users')
   List<User> get users;
 
   /// Create a copy of VideoChatParticipantsInvited

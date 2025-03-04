@@ -29,6 +29,7 @@ mixin _$LoginURL {
   /// NOTE: You must always check the hash of the received data to verify the
   /// authentication and the integrity of the data as described in Checking
   /// authorization.
+  @JsonKey(name: 'url')
   String get url => throw _privateConstructorUsedError;
 
   /// Optional. New text of the button in forwarded messages.
@@ -64,7 +65,7 @@ abstract class $LoginURLCopyWith<$Res> {
       _$LoginURLCopyWithImpl<$Res, LoginURL>;
   @useResult
   $Res call(
-      {String url,
+      {@JsonKey(name: 'url') String url,
       @JsonKey(name: 'forward_text') String? forwardText,
       @JsonKey(name: 'bot_username') String? botUsername,
       @JsonKey(name: 'request_write_access') bool? requestWriteAccess});
@@ -120,7 +121,7 @@ abstract class _$$LoginURLImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String url,
+      {@JsonKey(name: 'url') String url,
       @JsonKey(name: 'forward_text') String? forwardText,
       @JsonKey(name: 'bot_username') String? botUsername,
       @JsonKey(name: 'request_write_access') bool? requestWriteAccess});
@@ -169,7 +170,7 @@ class __$$LoginURLImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LoginURLImpl implements _LoginURL {
   const _$LoginURLImpl(
-      {required this.url,
+      {@JsonKey(name: 'url') required this.url,
       @JsonKey(name: 'forward_text') this.forwardText,
       @JsonKey(name: 'bot_username') this.botUsername,
       @JsonKey(name: 'request_write_access') this.requestWriteAccess});
@@ -187,6 +188,7 @@ class _$LoginURLImpl implements _LoginURL {
   /// authentication and the integrity of the data as described in Checking
   /// authorization.
   @override
+  @JsonKey(name: 'url')
   final String url;
 
   /// Optional. New text of the button in forwarded messages.
@@ -232,7 +234,7 @@ class _$LoginURLImpl implements _LoginURL {
 
 abstract class _LoginURL implements LoginURL {
   const factory _LoginURL(
-      {required final String url,
+      {@JsonKey(name: 'url') required final String url,
       @JsonKey(name: 'forward_text') final String? forwardText,
       @JsonKey(name: 'bot_username') final String? botUsername,
       @JsonKey(name: 'request_write_access')
@@ -251,6 +253,7 @@ abstract class _LoginURL implements LoginURL {
   /// authentication and the integrity of the data as described in Checking
   /// authorization.
   @override
+  @JsonKey(name: 'url')
   String get url;
 
   /// Optional. New text of the button in forwarded messages.

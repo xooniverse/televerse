@@ -10,13 +10,16 @@ sealed class BotCommandScope with _$BotCommandScope {
   /// Represents the scope of bot commands, covering all private chats.
   const factory BotCommandScope.default_({
     /// Scope type, always be [BotCommandScopeType.default_]
-    @Default(BotCommandScopeType.default_) final BotCommandScopeType type,
+    @JsonKey(name: 'type')
+    @Default(BotCommandScopeType.default_)
+    final BotCommandScopeType type,
   }) = BotCommandScopeDefault;
 
   /// Represents the scope of bot commands, covering all private chats.
   const factory BotCommandScope.allPrivateChats({
     /// Scope type, always be [BotCommandScopeType.allPrivateChats]
     @Default(BotCommandScopeType.allPrivateChats)
+    @JsonKey(name: 'type')
     final BotCommandScopeType type,
   }) = BotCommandScopeAllPrivateChats;
 
@@ -30,13 +33,16 @@ sealed class BotCommandScope with _$BotCommandScope {
   const factory BotCommandScope.allChatAdministrators({
     /// Scope type, always be [BotCommandScopeType.allChatAdministrators]
     @Default(BotCommandScopeType.allChatAdministrators)
+    @JsonKey(name: 'type')
     final BotCommandScopeType type,
   }) = BotCommandScopeAllChatAdministrators;
 
   /// Represents the scope of bot commands, covering a specific chat.
   const factory BotCommandScope.chat({
     /// Scope type, always be [BotCommandScopeType.chat]
-    @Default(BotCommandScopeType.chat) final BotCommandScopeType type,
+    @JsonKey(name: 'type')
+    @Default(BotCommandScopeType.chat)
+    final BotCommandScopeType type,
 
     /// Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
     @JsonKey(name: 'chat_id') @IDConverter() required final ID chatId,
@@ -46,6 +52,7 @@ sealed class BotCommandScope with _$BotCommandScope {
   const factory BotCommandScope.chatAdministrators({
     /// Scope type, always be [BotCommandScopeType.chatAdministrators]
     @Default(BotCommandScopeType.chatAdministrators)
+    @JsonKey(name: 'type')
     final BotCommandScopeType type,
 
     /// Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
@@ -55,7 +62,9 @@ sealed class BotCommandScope with _$BotCommandScope {
   /// Represents the scope of bot commands, covering a specific member of a group or supergroup chat.
   const factory BotCommandScope.chatMember({
     /// Scope type, always be [BotCommandScopeType.chatMember]
-    @Default(BotCommandScopeType.chatMember) final BotCommandScopeType type,
+    @JsonKey(name: 'type')
+    @Default(BotCommandScopeType.chatMember)
+    final BotCommandScopeType type,
 
     /// Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
     @JsonKey(name: 'chat_id') @IDConverter() required final ID chatId,

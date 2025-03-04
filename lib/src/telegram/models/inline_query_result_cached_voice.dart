@@ -22,19 +22,21 @@ class InlineQueryResultCachedVoice
   /// Constructs an [InlineQueryResultCachedVoice] object
   const factory InlineQueryResultCachedVoice({
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Type of the result, always [InlineQueryResultType.voice]
-    @Default(InlineQueryResultType.voice) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.voice)
+    InlineQueryResultType type,
 
     /// A valid file identifier for the voice message
     @JsonKey(name: 'voice_file_id') required String voiceFileId,
 
     /// Voice message title
-    required String title,
+    @JsonKey(name: 'title') required String title,
 
     /// Optional. Caption, 0-1024 characters after entities parsing
-    String? caption,
+    @JsonKey(name: 'caption') String? caption,
 
     /// Optional. Mode for parsing entities in the video caption. See formatting
     /// options for more details.

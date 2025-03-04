@@ -12,9 +12,9 @@ _$VideoNoteImpl _$$VideoNoteImplFromJson(Map<String, dynamic> json) =>
       fileUniqueId: json['file_unique_id'] as String,
       length: (json['length'] as num).toInt(),
       duration: (json['duration'] as num).toInt(),
-      thumbnail: json['thumbnail'] == null
+      thumbnail: json['thumb'] == null
           ? null
-          : PhotoSize.fromJson(json['thumbnail'] as Map<String, dynamic>),
+          : PhotoSize.fromJson(json['thumb'] as Map<String, dynamic>),
       fileSize: (json['file_size'] as num?)?.toInt(),
     );
 
@@ -24,6 +24,6 @@ Map<String, dynamic> _$$VideoNoteImplToJson(_$VideoNoteImpl instance) =>
       'file_unique_id': instance.fileUniqueId,
       'length': instance.length,
       'duration': instance.duration,
-      if (instance.thumbnail case final value?) 'thumbnail': value,
+      if (instance.thumbnail case final value?) 'thumb': value,
       if (instance.fileSize case final value?) 'file_size': value,
     };

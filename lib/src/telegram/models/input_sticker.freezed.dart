@@ -21,11 +21,13 @@ mixin _$InputSticker {
   /// Telegram to get a file from the Internet, or upload a new one using
   /// multipart/form-data. Animated and video stickers can't be uploaded via
   /// HTTP URL. More information on Sending Files »
+  @JsonKey(name: 'sticker')
   @InputFileConverter()
   InputFile get sticker => throw _privateConstructorUsedError;
 
   /// Format of the added sticker, must be one of "static" for a .WEBP or .PNG
   /// image, "animated" for a .TGS animation, "video" for a WEBM video
+  @JsonKey(name: 'format')
   InputStickerFormat get format => throw _privateConstructorUsedError;
 
   /// List of 1-20 emoji associated with the sticker
@@ -39,6 +41,7 @@ mixin _$InputSticker {
 
   /// Optional. List of 0-20 search keywords for the sticker with total length
   /// of up to 64 characters. For "regular" and "custom_emoji" stickers only.
+  @JsonKey(name: 'keywords')
   List<String>? get keywords => throw _privateConstructorUsedError;
 
   /// Serializes this InputSticker to a JSON map.
@@ -58,11 +61,11 @@ abstract class $InputStickerCopyWith<$Res> {
       _$InputStickerCopyWithImpl<$Res, InputSticker>;
   @useResult
   $Res call(
-      {@InputFileConverter() InputFile sticker,
-      InputStickerFormat format,
+      {@JsonKey(name: 'sticker') @InputFileConverter() InputFile sticker,
+      @JsonKey(name: 'format') InputStickerFormat format,
       @JsonKey(name: 'emoji_list') List<String> emojiList,
       @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
-      List<String>? keywords});
+      @JsonKey(name: 'keywords') List<String>? keywords});
 
   $MaskPositionCopyWith<$Res>? get maskPosition;
 }
@@ -136,11 +139,11 @@ abstract class _$$InputStickerImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@InputFileConverter() InputFile sticker,
-      InputStickerFormat format,
+      {@JsonKey(name: 'sticker') @InputFileConverter() InputFile sticker,
+      @JsonKey(name: 'format') InputStickerFormat format,
       @JsonKey(name: 'emoji_list') List<String> emojiList,
       @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
-      List<String>? keywords});
+      @JsonKey(name: 'keywords') List<String>? keywords});
 
   @override
   $MaskPositionCopyWith<$Res>? get maskPosition;
@@ -194,11 +197,11 @@ class __$$InputStickerImplCopyWithImpl<$Res>
 @JsonSerializable(createFactory: false)
 class _$InputStickerImpl implements _InputSticker {
   const _$InputStickerImpl(
-      {@InputFileConverter() required this.sticker,
-      required this.format,
+      {@JsonKey(name: 'sticker') @InputFileConverter() required this.sticker,
+      @JsonKey(name: 'format') required this.format,
       @JsonKey(name: 'emoji_list') required final List<String> emojiList,
       @JsonKey(name: 'mask_position') this.maskPosition,
-      final List<String>? keywords})
+      @JsonKey(name: 'keywords') final List<String>? keywords})
       : _emojiList = emojiList,
         _keywords = keywords;
 
@@ -208,12 +211,14 @@ class _$InputStickerImpl implements _InputSticker {
   /// multipart/form-data. Animated and video stickers can't be uploaded via
   /// HTTP URL. More information on Sending Files »
   @override
+  @JsonKey(name: 'sticker')
   @InputFileConverter()
   final InputFile sticker;
 
   /// Format of the added sticker, must be one of "static" for a .WEBP or .PNG
   /// image, "animated" for a .TGS animation, "video" for a WEBM video
   @override
+  @JsonKey(name: 'format')
   final InputStickerFormat format;
 
   /// List of 1-20 emoji associated with the sticker
@@ -241,6 +246,7 @@ class _$InputStickerImpl implements _InputSticker {
   /// Optional. List of 0-20 search keywords for the sticker with total length
   /// of up to 64 characters. For "regular" and "custom_emoji" stickers only.
   @override
+  @JsonKey(name: 'keywords')
   List<String>? get keywords {
     final value = _keywords;
     if (value == null) return null;
@@ -272,11 +278,14 @@ class _$InputStickerImpl implements _InputSticker {
 
 abstract class _InputSticker implements InputSticker {
   const factory _InputSticker(
-      {@InputFileConverter() required final InputFile sticker,
-      required final InputStickerFormat format,
-      @JsonKey(name: 'emoji_list') required final List<String> emojiList,
-      @JsonKey(name: 'mask_position') final MaskPosition? maskPosition,
-      final List<String>? keywords}) = _$InputStickerImpl;
+          {@JsonKey(name: 'sticker')
+          @InputFileConverter()
+          required final InputFile sticker,
+          @JsonKey(name: 'format') required final InputStickerFormat format,
+          @JsonKey(name: 'emoji_list') required final List<String> emojiList,
+          @JsonKey(name: 'mask_position') final MaskPosition? maskPosition,
+          @JsonKey(name: 'keywords') final List<String>? keywords}) =
+      _$InputStickerImpl;
 
   /// The added sticker. Pass a file_id as a String to send a file that
   /// already exists on the Telegram servers, pass an HTTP URL as a String for
@@ -284,12 +293,14 @@ abstract class _InputSticker implements InputSticker {
   /// multipart/form-data. Animated and video stickers can't be uploaded via
   /// HTTP URL. More information on Sending Files »
   @override
+  @JsonKey(name: 'sticker')
   @InputFileConverter()
   InputFile get sticker;
 
   /// Format of the added sticker, must be one of "static" for a .WEBP or .PNG
   /// image, "animated" for a .TGS animation, "video" for a WEBM video
   @override
+  @JsonKey(name: 'format')
   InputStickerFormat get format;
 
   /// List of 1-20 emoji associated with the sticker
@@ -306,6 +317,7 @@ abstract class _InputSticker implements InputSticker {
   /// Optional. List of 0-20 search keywords for the sticker with total length
   /// of up to 64 characters. For "regular" and "custom_emoji" stickers only.
   @override
+  @JsonKey(name: 'keywords')
   List<String>? get keywords;
 
   /// Create a copy of InputSticker

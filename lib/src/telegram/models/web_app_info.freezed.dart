@@ -22,6 +22,7 @@ WebAppInfo _$WebAppInfoFromJson(Map<String, dynamic> json) {
 mixin _$WebAppInfo {
   /// An HTTPS URL of a Web App to be opened with additional data as specified
   /// in Initializing Web Apps
+  @JsonKey(name: 'url')
   String get url => throw _privateConstructorUsedError;
 
   /// Serializes this WebAppInfo to a JSON map.
@@ -40,7 +41,7 @@ abstract class $WebAppInfoCopyWith<$Res> {
           WebAppInfo value, $Res Function(WebAppInfo) then) =
       _$WebAppInfoCopyWithImpl<$Res, WebAppInfo>;
   @useResult
-  $Res call({String url});
+  $Res call({@JsonKey(name: 'url') String url});
 }
 
 /// @nodoc
@@ -77,7 +78,7 @@ abstract class _$$WebAppInfoImplCopyWith<$Res>
       __$$WebAppInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String url});
+  $Res call({@JsonKey(name: 'url') String url});
 }
 
 /// @nodoc
@@ -107,7 +108,7 @@ class __$$WebAppInfoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$WebAppInfoImpl implements _WebAppInfo {
-  const _$WebAppInfoImpl({required this.url});
+  const _$WebAppInfoImpl({@JsonKey(name: 'url') required this.url});
 
   factory _$WebAppInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$WebAppInfoImplFromJson(json);
@@ -115,6 +116,7 @@ class _$WebAppInfoImpl implements _WebAppInfo {
   /// An HTTPS URL of a Web App to be opened with additional data as specified
   /// in Initializing Web Apps
   @override
+  @JsonKey(name: 'url')
   final String url;
 
   @override
@@ -139,7 +141,8 @@ class _$WebAppInfoImpl implements _WebAppInfo {
 }
 
 abstract class _WebAppInfo implements WebAppInfo {
-  const factory _WebAppInfo({required final String url}) = _$WebAppInfoImpl;
+  const factory _WebAppInfo({@JsonKey(name: 'url') required final String url}) =
+      _$WebAppInfoImpl;
 
   factory _WebAppInfo.fromJson(Map<String, dynamic> json) =
       _$WebAppInfoImpl.fromJson;
@@ -147,6 +150,7 @@ abstract class _WebAppInfo implements WebAppInfo {
   /// An HTTPS URL of a Web App to be opened with additional data as specified
   /// in Initializing Web Apps
   @override
+  @JsonKey(name: 'url')
   String get url;
 
   /// Create a copy of WebAppInfo

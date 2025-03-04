@@ -21,9 +21,11 @@ BotCommand _$BotCommandFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BotCommand {
   /// Text of the command, 1-32 characters. Can contain only lowercase English letters, digits and underscores.
+  @JsonKey(name: 'command')
   String get command => throw _privateConstructorUsedError;
 
   /// Description of the command, 3-256 characters.
+  @JsonKey(name: 'description')
   String get description => throw _privateConstructorUsedError;
 
   /// Serializes this BotCommand to a JSON map.
@@ -42,7 +44,9 @@ abstract class $BotCommandCopyWith<$Res> {
           BotCommand value, $Res Function(BotCommand) then) =
       _$BotCommandCopyWithImpl<$Res, BotCommand>;
   @useResult
-  $Res call({String command, String description});
+  $Res call(
+      {@JsonKey(name: 'command') String command,
+      @JsonKey(name: 'description') String description});
 }
 
 /// @nodoc
@@ -84,7 +88,9 @@ abstract class _$$BotCommandImplCopyWith<$Res>
       __$$BotCommandImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String command, String description});
+  $Res call(
+      {@JsonKey(name: 'command') String command,
+      @JsonKey(name: 'description') String description});
 }
 
 /// @nodoc
@@ -119,17 +125,21 @@ class __$$BotCommandImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BotCommandImpl implements _BotCommand {
-  const _$BotCommandImpl({required this.command, required this.description});
+  const _$BotCommandImpl(
+      {@JsonKey(name: 'command') required this.command,
+      @JsonKey(name: 'description') required this.description});
 
   factory _$BotCommandImpl.fromJson(Map<String, dynamic> json) =>
       _$$BotCommandImplFromJson(json);
 
   /// Text of the command, 1-32 characters. Can contain only lowercase English letters, digits and underscores.
   @override
+  @JsonKey(name: 'command')
   final String command;
 
   /// Description of the command, 3-256 characters.
   @override
+  @JsonKey(name: 'description')
   final String description;
 
   @override
@@ -155,18 +165,21 @@ class _$BotCommandImpl implements _BotCommand {
 
 abstract class _BotCommand implements BotCommand {
   const factory _BotCommand(
-      {required final String command,
-      required final String description}) = _$BotCommandImpl;
+          {@JsonKey(name: 'command') required final String command,
+          @JsonKey(name: 'description') required final String description}) =
+      _$BotCommandImpl;
 
   factory _BotCommand.fromJson(Map<String, dynamic> json) =
       _$BotCommandImpl.fromJson;
 
   /// Text of the command, 1-32 characters. Can contain only lowercase English letters, digits and underscores.
   @override
+  @JsonKey(name: 'command')
   String get command;
 
   /// Description of the command, 3-256 characters.
   @override
+  @JsonKey(name: 'description')
   String get description;
 
   /// Create a copy of BotCommand

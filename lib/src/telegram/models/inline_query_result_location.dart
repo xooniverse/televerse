@@ -15,10 +15,12 @@ class InlineQueryResultLocation
   /// Constructs an [InlineQueryResultLocation] object
   const factory InlineQueryResultLocation({
     /// Type of the result, always [InlineQueryResultType.location]
-    @Default(InlineQueryResultType.location) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.location)
+    InlineQueryResultType type,
 
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Location latitude in degrees
     @JsonKey(name: 'latitude') required double latitude,

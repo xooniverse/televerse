@@ -22,6 +22,7 @@ InlineQueryResultCachedSticker _$InlineQueryResultCachedStickerFromJson(
 /// @nodoc
 mixin _$InlineQueryResultCachedSticker {
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// A valid file identifier of the sticker
@@ -39,6 +40,7 @@ mixin _$InlineQueryResultCachedSticker {
       throw _privateConstructorUsedError;
 
   /// Type of the result, always [InlineQueryResultType.sticker]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Serializes this InlineQueryResultCachedSticker to a JSON map.
@@ -60,13 +62,13 @@ abstract class $InlineQueryResultCachedStickerCopyWith<$Res> {
           InlineQueryResultCachedSticker>;
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'sticker_file_id') String stickerFileId,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       InputMessageContent? inputMessageContent,
-      InlineQueryResultType type});
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -143,13 +145,13 @@ abstract class _$$InlineQueryResultCachedStickerImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'sticker_file_id') String stickerFileId,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       InputMessageContent? inputMessageContent,
-      InlineQueryResultType type});
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -206,13 +208,13 @@ class __$$InlineQueryResultCachedStickerImplCopyWithImpl<$Res>
 class _$InlineQueryResultCachedStickerImpl
     implements _InlineQueryResultCachedSticker {
   const _$InlineQueryResultCachedStickerImpl(
-      {required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'sticker_file_id') required this.stickerFileId,
       @JsonKey(name: 'reply_markup') this.replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       this.inputMessageContent,
-      this.type = InlineQueryResultType.sticker});
+      @JsonKey(name: 'type') this.type = InlineQueryResultType.sticker});
 
   factory _$InlineQueryResultCachedStickerImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -220,6 +222,7 @@ class _$InlineQueryResultCachedStickerImpl
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// A valid file identifier of the sticker
@@ -240,7 +243,7 @@ class _$InlineQueryResultCachedStickerImpl
 
   /// Type of the result, always [InlineQueryResultType.sticker]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   @override
@@ -269,12 +272,13 @@ class _$InlineQueryResultCachedStickerImpl
 abstract class _InlineQueryResultCachedSticker
     implements InlineQueryResultCachedSticker {
   const factory _InlineQueryResultCachedSticker(
-      {required final String id,
+      {@JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'sticker_file_id') required final String stickerFileId,
       @JsonKey(name: 'reply_markup') final InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       final InputMessageContent? inputMessageContent,
+      @JsonKey(name: 'type')
       final InlineQueryResultType type}) = _$InlineQueryResultCachedStickerImpl;
 
   factory _InlineQueryResultCachedSticker.fromJson(Map<String, dynamic> json) =
@@ -282,6 +286,7 @@ abstract class _InlineQueryResultCachedSticker
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// A valid file identifier of the sticker
@@ -302,6 +307,7 @@ abstract class _InlineQueryResultCachedSticker
 
   /// Type of the result, always [InlineQueryResultType.sticker]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Create a copy of InlineQueryResultCachedSticker

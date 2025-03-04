@@ -38,22 +38,28 @@ mixin _$MessageEntity {
   /// - textLink - (for clickable text URLs),
   /// - textMention - (for users without usernames),
   /// - customEmoji - (for inline custom emoji stickers)
+  @JsonKey(name: 'type')
   MessageEntityType get type => throw _privateConstructorUsedError;
 
   /// Offset in UTF-16 code units to the start of the entity
+  @JsonKey(name: 'offset')
   int get offset => throw _privateConstructorUsedError;
 
   /// Length of the entity in UTF-16 code units
+  @JsonKey(name: 'length')
   int get length => throw _privateConstructorUsedError;
 
   /// Optional. For "text_link" only, URL that will be opened after user taps
   /// on the text
+  @JsonKey(name: 'url')
   String? get url => throw _privateConstructorUsedError;
 
   /// Optional. For "text_mention" only, the mentioned user
+  @JsonKey(name: 'user')
   User? get user => throw _privateConstructorUsedError;
 
   /// Optional. For "pre" only, the programming language of the entity text
+  @JsonKey(name: 'language')
   String? get language => throw _privateConstructorUsedError;
 
   /// Optional. For "custom_emoji" only, unique identifier of the custom
@@ -79,12 +85,12 @@ abstract class $MessageEntityCopyWith<$Res> {
       _$MessageEntityCopyWithImpl<$Res, MessageEntity>;
   @useResult
   $Res call(
-      {MessageEntityType type,
-      int offset,
-      int length,
-      String? url,
-      User? user,
-      String? language,
+      {@JsonKey(name: 'type') MessageEntityType type,
+      @JsonKey(name: 'offset') int offset,
+      @JsonKey(name: 'length') int length,
+      @JsonKey(name: 'url') String? url,
+      @JsonKey(name: 'user') User? user,
+      @JsonKey(name: 'language') String? language,
       @JsonKey(name: 'custom_emoji_id') String? customEmojiId});
 
   $UserCopyWith<$Res>? get user;
@@ -169,12 +175,12 @@ abstract class _$$MessageEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {MessageEntityType type,
-      int offset,
-      int length,
-      String? url,
-      User? user,
-      String? language,
+      {@JsonKey(name: 'type') MessageEntityType type,
+      @JsonKey(name: 'offset') int offset,
+      @JsonKey(name: 'length') int length,
+      @JsonKey(name: 'url') String? url,
+      @JsonKey(name: 'user') User? user,
+      @JsonKey(name: 'language') String? language,
       @JsonKey(name: 'custom_emoji_id') String? customEmojiId});
 
   @override
@@ -239,12 +245,12 @@ class __$$MessageEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MessageEntityImpl implements _MessageEntity {
   const _$MessageEntityImpl(
-      {required this.type,
-      required this.offset,
-      required this.length,
-      this.url,
-      this.user,
-      this.language,
+      {@JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'offset') required this.offset,
+      @JsonKey(name: 'length') required this.length,
+      @JsonKey(name: 'url') this.url,
+      @JsonKey(name: 'user') this.user,
+      @JsonKey(name: 'language') this.language,
       @JsonKey(name: 'custom_emoji_id') this.customEmojiId});
 
   factory _$MessageEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -269,27 +275,33 @@ class _$MessageEntityImpl implements _MessageEntity {
   /// - textMention - (for users without usernames),
   /// - customEmoji - (for inline custom emoji stickers)
   @override
+  @JsonKey(name: 'type')
   final MessageEntityType type;
 
   /// Offset in UTF-16 code units to the start of the entity
   @override
+  @JsonKey(name: 'offset')
   final int offset;
 
   /// Length of the entity in UTF-16 code units
   @override
+  @JsonKey(name: 'length')
   final int length;
 
   /// Optional. For "text_link" only, URL that will be opened after user taps
   /// on the text
   @override
+  @JsonKey(name: 'url')
   final String? url;
 
   /// Optional. For "text_mention" only, the mentioned user
   @override
+  @JsonKey(name: 'user')
   final User? user;
 
   /// Optional. For "pre" only, the programming language of the entity text
   @override
+  @JsonKey(name: 'language')
   final String? language;
 
   /// Optional. For "custom_emoji" only, unique identifier of the custom
@@ -322,12 +334,12 @@ class _$MessageEntityImpl implements _MessageEntity {
 
 abstract class _MessageEntity implements MessageEntity {
   const factory _MessageEntity(
-          {required final MessageEntityType type,
-          required final int offset,
-          required final int length,
-          final String? url,
-          final User? user,
-          final String? language,
+          {@JsonKey(name: 'type') required final MessageEntityType type,
+          @JsonKey(name: 'offset') required final int offset,
+          @JsonKey(name: 'length') required final int length,
+          @JsonKey(name: 'url') final String? url,
+          @JsonKey(name: 'user') final User? user,
+          @JsonKey(name: 'language') final String? language,
           @JsonKey(name: 'custom_emoji_id') final String? customEmojiId}) =
       _$MessageEntityImpl;
 
@@ -353,27 +365,33 @@ abstract class _MessageEntity implements MessageEntity {
   /// - textMention - (for users without usernames),
   /// - customEmoji - (for inline custom emoji stickers)
   @override
+  @JsonKey(name: 'type')
   MessageEntityType get type;
 
   /// Offset in UTF-16 code units to the start of the entity
   @override
+  @JsonKey(name: 'offset')
   int get offset;
 
   /// Length of the entity in UTF-16 code units
   @override
+  @JsonKey(name: 'length')
   int get length;
 
   /// Optional. For "text_link" only, URL that will be opened after user taps
   /// on the text
   @override
+  @JsonKey(name: 'url')
   String? get url;
 
   /// Optional. For "text_mention" only, the mentioned user
   @override
+  @JsonKey(name: 'user')
   User? get user;
 
   /// Optional. For "pre" only, the programming language of the entity text
   @override
+  @JsonKey(name: 'language')
   String? get language;
 
   /// Optional. For "custom_emoji" only, unique identifier of the custom

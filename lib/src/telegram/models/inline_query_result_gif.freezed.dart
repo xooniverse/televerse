@@ -21,9 +21,11 @@ InlineQueryResultGif _$InlineQueryResultGifFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$InlineQueryResultGif {
   /// Type of the result, always [InlineQueryResultType.gif]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// A valid URL for the GIF file. File size must not exceed 1MB
@@ -51,9 +53,11 @@ mixin _$InlineQueryResultGif {
   String? get thumbnailMimeType => throw _privateConstructorUsedError;
 
   /// Optional. Title for the result
+  @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
 
   /// Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing
+  @JsonKey(name: 'caption')
   String? get caption => throw _privateConstructorUsedError;
 
   /// Optional. Mode for parsing entities in the caption. See formatting options for more details.
@@ -96,16 +100,16 @@ abstract class $InlineQueryResultGifCopyWith<$Res> {
       _$InlineQueryResultGifCopyWithImpl<$Res, InlineQueryResultGif>;
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
       @JsonKey(name: 'gif_url') String gifUrl,
       @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
       @JsonKey(name: 'gif_width') int? gifWidth,
       @JsonKey(name: 'gif_height') int? gifHeight,
       @JsonKey(name: 'gif_duration') int? gifDuration,
       @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
-      String? title,
-      String? caption,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -238,16 +242,16 @@ abstract class _$$InlineQueryResultGifImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
       @JsonKey(name: 'gif_url') String gifUrl,
       @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
       @JsonKey(name: 'gif_width') int? gifWidth,
       @JsonKey(name: 'gif_height') int? gifHeight,
       @JsonKey(name: 'gif_duration') int? gifDuration,
       @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
-      String? title,
-      String? caption,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -358,16 +362,16 @@ class __$$InlineQueryResultGifImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultGifImpl implements _InlineQueryResultGif {
   const _$InlineQueryResultGifImpl(
-      {this.type = InlineQueryResultType.gif,
-      required this.id,
+      {@JsonKey(name: 'type') this.type = InlineQueryResultType.gif,
+      @JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'gif_url') required this.gifUrl,
       @JsonKey(name: 'thumbnail_url') required this.thumbnailUrl,
       @JsonKey(name: 'gif_width') this.gifWidth,
       @JsonKey(name: 'gif_height') this.gifHeight,
       @JsonKey(name: 'gif_duration') this.gifDuration,
       @JsonKey(name: 'thumbnail_mime_type') this.thumbnailMimeType,
-      this.title,
-      this.caption,
+      @JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'caption') this.caption,
       @JsonKey(name: 'parse_mode') this.parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -383,11 +387,12 @@ class _$InlineQueryResultGifImpl implements _InlineQueryResultGif {
 
   /// Type of the result, always [InlineQueryResultType.gif]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// A valid URL for the GIF file. File size must not exceed 1MB
@@ -422,10 +427,12 @@ class _$InlineQueryResultGifImpl implements _InlineQueryResultGif {
 
   /// Optional. Title for the result
   @override
+  @JsonKey(name: 'title')
   final String? title;
 
   /// Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing
   @override
+  @JsonKey(name: 'caption')
   final String? caption;
 
   /// Optional. Mode for parsing entities in the caption. See formatting options for more details.
@@ -488,16 +495,16 @@ class _$InlineQueryResultGifImpl implements _InlineQueryResultGif {
 
 abstract class _InlineQueryResultGif implements InlineQueryResultGif {
   const factory _InlineQueryResultGif(
-      {final InlineQueryResultType type,
-      required final String id,
+      {@JsonKey(name: 'type') final InlineQueryResultType type,
+      @JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'gif_url') required final String gifUrl,
       @JsonKey(name: 'thumbnail_url') required final String thumbnailUrl,
       @JsonKey(name: 'gif_width') final int? gifWidth,
       @JsonKey(name: 'gif_height') final int? gifHeight,
       @JsonKey(name: 'gif_duration') final int? gifDuration,
       @JsonKey(name: 'thumbnail_mime_type') final String? thumbnailMimeType,
-      final String? title,
-      final String? caption,
+      @JsonKey(name: 'title') final String? title,
+      @JsonKey(name: 'caption') final String? caption,
       @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -513,10 +520,12 @@ abstract class _InlineQueryResultGif implements InlineQueryResultGif {
 
   /// Type of the result, always [InlineQueryResultType.gif]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// A valid URL for the GIF file. File size must not exceed 1MB
@@ -551,10 +560,12 @@ abstract class _InlineQueryResultGif implements InlineQueryResultGif {
 
   /// Optional. Title for the result
   @override
+  @JsonKey(name: 'title')
   String? get title;
 
   /// Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing
   @override
+  @JsonKey(name: 'caption')
   String? get caption;
 
   /// Optional. Mode for parsing entities in the caption. See formatting options for more details.

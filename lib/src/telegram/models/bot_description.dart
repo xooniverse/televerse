@@ -9,7 +9,7 @@ class BotDescription with _$BotDescription {
   /// Creates the Bot Description object.
   const factory BotDescription({
     /// Bot's description.
-    required String description,
+    @JsonKey(name: 'description') required String description,
   }) = _BotDescription;
 
   /// Creates the Bot Description object from a JSON object.

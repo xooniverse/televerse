@@ -24,13 +24,13 @@ class Sticker with _$Sticker {
     /// Type of the sticker, currently one of "regular", "mask", "custom_emoji".
     /// The type of the sticker is independent from its format, which is
     /// determined by the fields is_animated and is_video.
-    required StickerType type,
+    @JsonKey(name: 'type') required StickerType type,
 
     /// Sticker width
-    required int width,
+    @JsonKey(name: 'width') required int width,
 
     /// Sticker height
-    required int height,
+    @JsonKey(name: 'height') required int height,
 
     /// True, if the sticker is animated
     @JsonKey(name: 'is_animated') required bool isAnimated,
@@ -39,10 +39,10 @@ class Sticker with _$Sticker {
     @JsonKey(name: 'is_video') required bool isVideo,
 
     /// Optional. Sticker thumbnail in the .WEBP or .JPG format
-    PhotoSize? thumbnail,
+    @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
 
     /// Optional. Emoji associated with the sticker
-    String? emoji,
+    @JsonKey(name: 'emoji') String? emoji,
 
     /// Optional. Name of the sticker set to which the sticker belongs
     @JsonKey(name: 'set_name') String? setName,

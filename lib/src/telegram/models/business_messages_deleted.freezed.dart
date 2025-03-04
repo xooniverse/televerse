@@ -27,6 +27,7 @@ mixin _$BusinessMessagesDeleted {
 
   /// Information about a chat in the business account. The bot may not have
   /// access to the chat or the corresponding user.
+  @JsonKey(name: 'chat')
   Chat get chat => throw _privateConstructorUsedError;
 
   /// A JSON-serialized list of identifiers of deleted messages in the chat of
@@ -52,7 +53,7 @@ abstract class $BusinessMessagesDeletedCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'business_connection_id') String businessConnectionId,
-      Chat chat,
+      @JsonKey(name: 'chat') Chat chat,
       @JsonKey(name: 'message_ids') List<int> messageIds});
 
   $ChatCopyWith<$Res> get chat;
@@ -116,7 +117,7 @@ abstract class _$$BusinessMessagesDeletedImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'business_connection_id') String businessConnectionId,
-      Chat chat,
+      @JsonKey(name: 'chat') Chat chat,
       @JsonKey(name: 'message_ids') List<int> messageIds});
 
   @override
@@ -165,7 +166,7 @@ class _$BusinessMessagesDeletedImpl implements _BusinessMessagesDeleted {
   const _$BusinessMessagesDeletedImpl(
       {@JsonKey(name: 'business_connection_id')
       required this.businessConnectionId,
-      required this.chat,
+      @JsonKey(name: 'chat') required this.chat,
       @JsonKey(name: 'message_ids') required final List<int> messageIds})
       : _messageIds = messageIds;
 
@@ -180,6 +181,7 @@ class _$BusinessMessagesDeletedImpl implements _BusinessMessagesDeleted {
   /// Information about a chat in the business account. The bot may not have
   /// access to the chat or the corresponding user.
   @override
+  @JsonKey(name: 'chat')
   final Chat chat;
 
   /// A JSON-serialized list of identifiers of deleted messages in the chat of
@@ -222,7 +224,7 @@ abstract class _BusinessMessagesDeleted implements BusinessMessagesDeleted {
   const factory _BusinessMessagesDeleted(
           {@JsonKey(name: 'business_connection_id')
           required final String businessConnectionId,
-          required final Chat chat,
+          @JsonKey(name: 'chat') required final Chat chat,
           @JsonKey(name: 'message_ids') required final List<int> messageIds}) =
       _$BusinessMessagesDeletedImpl;
 
@@ -237,6 +239,7 @@ abstract class _BusinessMessagesDeleted implements BusinessMessagesDeleted {
   /// Information about a chat in the business account. The bot may not have
   /// access to the chat or the corresponding user.
   @override
+  @JsonKey(name: 'chat')
   Chat get chat;
 
   /// A JSON-serialized list of identifiers of deleted messages in the chat of

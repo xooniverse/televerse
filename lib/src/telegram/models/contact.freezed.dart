@@ -38,6 +38,7 @@ mixin _$Contact {
 
   /// Optional. Additional data about the contact in the form of a
   /// [vCard](https://en.wikipedia.org/wiki/VCard)
+  @JsonKey(name: 'vcard')
   String? get vcard => throw _privateConstructorUsedError;
 
   /// Serializes this Contact to a JSON map.
@@ -59,7 +60,7 @@ abstract class $ContactCopyWith<$Res> {
       @JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String? lastName,
       @JsonKey(name: 'user_id') int? userId,
-      String? vcard});
+      @JsonKey(name: 'vcard') String? vcard});
 }
 
 /// @nodoc
@@ -120,7 +121,7 @@ abstract class _$$ContactImplCopyWith<$Res> implements $ContactCopyWith<$Res> {
       @JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String? lastName,
       @JsonKey(name: 'user_id') int? userId,
-      String? vcard});
+      @JsonKey(name: 'vcard') String? vcard});
 }
 
 /// @nodoc
@@ -175,7 +176,7 @@ class _$ContactImpl implements _Contact {
       @JsonKey(name: 'first_name') required this.firstName,
       @JsonKey(name: 'last_name') this.lastName,
       @JsonKey(name: 'user_id') this.userId,
-      this.vcard});
+      @JsonKey(name: 'vcard') this.vcard});
 
   factory _$ContactImpl.fromJson(Map<String, dynamic> json) =>
       _$$ContactImplFromJson(json);
@@ -203,6 +204,7 @@ class _$ContactImpl implements _Contact {
   /// Optional. Additional data about the contact in the form of a
   /// [vCard](https://en.wikipedia.org/wiki/VCard)
   @override
+  @JsonKey(name: 'vcard')
   final String? vcard;
 
   @override
@@ -232,7 +234,7 @@ abstract class _Contact implements Contact {
       @JsonKey(name: 'first_name') required final String firstName,
       @JsonKey(name: 'last_name') final String? lastName,
       @JsonKey(name: 'user_id') final int? userId,
-      final String? vcard}) = _$ContactImpl;
+      @JsonKey(name: 'vcard') final String? vcard}) = _$ContactImpl;
 
   factory _Contact.fromJson(Map<String, dynamic> json) = _$ContactImpl.fromJson;
 
@@ -259,6 +261,7 @@ abstract class _Contact implements Contact {
   /// Optional. Additional data about the contact in the form of a
   /// [vCard](https://en.wikipedia.org/wiki/VCard)
   @override
+  @JsonKey(name: 'vcard')
   String? get vcard;
 
   /// Create a copy of Contact

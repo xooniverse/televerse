@@ -40,10 +40,12 @@ mixin _$SharedUser {
 
   /// Optional. Username of the user, if the username was requested by the
   /// bot.
+  @JsonKey(name: 'username')
   String? get username => throw _privateConstructorUsedError;
 
   /// Optional. Available sizes of the chat photo, if the photo was requested
   /// by the bot.
+  @JsonKey(name: 'photo')
   List<PhotoSize>? get photo => throw _privateConstructorUsedError;
 
   /// Serializes this SharedUser to a JSON map.
@@ -66,8 +68,8 @@ abstract class $SharedUserCopyWith<$Res> {
       {@JsonKey(name: 'user_id') int userId,
       @JsonKey(name: 'first_name') String? firstName,
       @JsonKey(name: 'last_name') String? lastName,
-      String? username,
-      List<PhotoSize>? photo});
+      @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'photo') List<PhotoSize>? photo});
 }
 
 /// @nodoc
@@ -128,8 +130,8 @@ abstract class _$$SharedUserImplCopyWith<$Res>
       {@JsonKey(name: 'user_id') int userId,
       @JsonKey(name: 'first_name') String? firstName,
       @JsonKey(name: 'last_name') String? lastName,
-      String? username,
-      List<PhotoSize>? photo});
+      @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'photo') List<PhotoSize>? photo});
 }
 
 /// @nodoc
@@ -183,8 +185,8 @@ class _$SharedUserImpl implements _SharedUser {
       {@JsonKey(name: 'user_id') required this.userId,
       @JsonKey(name: 'first_name') this.firstName,
       @JsonKey(name: 'last_name') this.lastName,
-      this.username,
-      final List<PhotoSize>? photo})
+      @JsonKey(name: 'username') this.username,
+      @JsonKey(name: 'photo') final List<PhotoSize>? photo})
       : _photo = photo;
 
   factory _$SharedUserImpl.fromJson(Map<String, dynamic> json) =>
@@ -214,6 +216,7 @@ class _$SharedUserImpl implements _SharedUser {
   /// Optional. Username of the user, if the username was requested by the
   /// bot.
   @override
+  @JsonKey(name: 'username')
   final String? username;
 
   /// Optional. Available sizes of the chat photo, if the photo was requested
@@ -223,6 +226,7 @@ class _$SharedUserImpl implements _SharedUser {
   /// Optional. Available sizes of the chat photo, if the photo was requested
   /// by the bot.
   @override
+  @JsonKey(name: 'photo')
   List<PhotoSize>? get photo {
     final value = _photo;
     if (value == null) return null;
@@ -257,8 +261,8 @@ abstract class _SharedUser implements SharedUser {
       {@JsonKey(name: 'user_id') required final int userId,
       @JsonKey(name: 'first_name') final String? firstName,
       @JsonKey(name: 'last_name') final String? lastName,
-      final String? username,
-      final List<PhotoSize>? photo}) = _$SharedUserImpl;
+      @JsonKey(name: 'username') final String? username,
+      @JsonKey(name: 'photo') final List<PhotoSize>? photo}) = _$SharedUserImpl;
 
   factory _SharedUser.fromJson(Map<String, dynamic> json) =
       _$SharedUserImpl.fromJson;
@@ -287,11 +291,13 @@ abstract class _SharedUser implements SharedUser {
   /// Optional. Username of the user, if the username was requested by the
   /// bot.
   @override
+  @JsonKey(name: 'username')
   String? get username;
 
   /// Optional. Available sizes of the chat photo, if the photo was requested
   /// by the bot.
   @override
+  @JsonKey(name: 'photo')
   List<PhotoSize>? get photo;
 
   /// Create a copy of SharedUser

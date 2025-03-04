@@ -15,11 +15,11 @@ class InputSticker with _$InputSticker {
     /// Telegram to get a file from the Internet, or upload a new one using
     /// multipart/form-data. Animated and video stickers can't be uploaded via
     /// HTTP URL. More information on Sending Files »
-    @InputFileConverter() required InputFile sticker,
+    @JsonKey(name: 'sticker') @InputFileConverter() required InputFile sticker,
 
     /// Format of the added sticker, must be one of "static" for a .WEBP or .PNG
     /// image, "animated" for a .TGS animation, "video" for a WEBM video
-    required InputStickerFormat format,
+    @JsonKey(name: 'format') required InputStickerFormat format,
 
     /// List of 1-20 emoji associated with the sticker
     @JsonKey(name: 'emoji_list') required List<String> emojiList,
@@ -30,11 +30,11 @@ class InputSticker with _$InputSticker {
 
     /// Optional. List of 0-20 search keywords for the sticker with total length
     /// of up to 64 characters. For "regular" and "custom_emoji" stickers only.
-    List<String>? keywords,
+    @JsonKey(name: 'keywords') List<String>? keywords,
   }) = _InputSticker;
 
   /// Placeholder. Do not use.
   factory InputSticker.fromJson(String json) {
-    throw Exception("Can't do fromJson on InputFile");
+    throw Exception("Can't do fromJson on InputSticker");
   }
 }

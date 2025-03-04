@@ -1429,7 +1429,9 @@ abstract class _$$ChatMemberLeftImplCopyWith<$Res>
       __$$ChatMemberLeftImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ChatMemberStatus status, User user});
+  $Res call(
+      {@JsonKey(name: 'status') ChatMemberStatus status,
+      @JsonKey(name: 'user') User user});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -1468,18 +1470,20 @@ class __$$ChatMemberLeftImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatMemberLeftImpl implements ChatMemberLeft {
   const _$ChatMemberLeftImpl(
-      {this.status = ChatMemberStatus.left, required this.user});
+      {@JsonKey(name: 'status') this.status = ChatMemberStatus.left,
+      @JsonKey(name: 'user') required this.user});
 
   factory _$ChatMemberLeftImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatMemberLeftImplFromJson(json);
 
   /// The member's status in the chat
   @override
-  @JsonKey()
+  @JsonKey(name: 'status')
   final ChatMemberStatus status;
 
   /// Information about the user
   @override
+  @JsonKey(name: 'user')
   final User user;
 
   @override
@@ -1549,18 +1553,20 @@ class _$ChatMemberLeftImpl implements ChatMemberLeft {
 
 abstract class ChatMemberLeft implements ChatMember {
   const factory ChatMemberLeft(
-      {final ChatMemberStatus status,
-      required final User user}) = _$ChatMemberLeftImpl;
+      {@JsonKey(name: 'status') final ChatMemberStatus status,
+      @JsonKey(name: 'user') required final User user}) = _$ChatMemberLeftImpl;
 
   factory ChatMemberLeft.fromJson(Map<String, dynamic> json) =
       _$ChatMemberLeftImpl.fromJson;
 
   /// The member's status in the chat
   @override
+  @JsonKey(name: 'status')
   ChatMemberStatus get status;
 
   /// Information about the user
   @override
+  @JsonKey(name: 'user')
   User get user;
 
   /// Create a copy of ChatMember

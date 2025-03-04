@@ -27,11 +27,11 @@ class SharedUser with _$SharedUser {
 
     /// Optional. Username of the user, if the username was requested by the
     /// bot.
-    String? username,
+    @JsonKey(name: 'username') String? username,
 
     /// Optional. Available sizes of the chat photo, if the photo was requested
     /// by the bot.
-    List<PhotoSize>? photo,
+    @JsonKey(name: 'photo') List<PhotoSize>? photo,
   }) = _SharedUser;
 
   /// Creates a [SharedUser] object from a JSON map.

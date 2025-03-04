@@ -22,6 +22,7 @@ SentWebAppMessage _$SentWebAppMessageFromJson(Map<String, dynamic> json) {
 mixin _$SentWebAppMessage {
   /// Optional. Identifier of the sent inline message. Available only if there
   /// is an inline keyboard attached to the message.
+  @JsonKey(name: 'inline_message_id')
   String? get inlineMessageId => throw _privateConstructorUsedError;
 
   /// Serializes this SentWebAppMessage to a JSON map.
@@ -40,7 +41,7 @@ abstract class $SentWebAppMessageCopyWith<$Res> {
           SentWebAppMessage value, $Res Function(SentWebAppMessage) then) =
       _$SentWebAppMessageCopyWithImpl<$Res, SentWebAppMessage>;
   @useResult
-  $Res call({String? inlineMessageId});
+  $Res call({@JsonKey(name: 'inline_message_id') String? inlineMessageId});
 }
 
 /// @nodoc
@@ -77,7 +78,7 @@ abstract class _$$SentWebAppMessageImplCopyWith<$Res>
       __$$SentWebAppMessageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? inlineMessageId});
+  $Res call({@JsonKey(name: 'inline_message_id') String? inlineMessageId});
 }
 
 /// @nodoc
@@ -107,7 +108,8 @@ class __$$SentWebAppMessageImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SentWebAppMessageImpl implements _SentWebAppMessage {
-  const _$SentWebAppMessageImpl({this.inlineMessageId});
+  const _$SentWebAppMessageImpl(
+      {@JsonKey(name: 'inline_message_id') this.inlineMessageId});
 
   factory _$SentWebAppMessageImpl.fromJson(Map<String, dynamic> json) =>
       _$$SentWebAppMessageImplFromJson(json);
@@ -115,6 +117,7 @@ class _$SentWebAppMessageImpl implements _SentWebAppMessage {
   /// Optional. Identifier of the sent inline message. Available only if there
   /// is an inline keyboard attached to the message.
   @override
+  @JsonKey(name: 'inline_message_id')
   final String? inlineMessageId;
 
   @override
@@ -140,7 +143,8 @@ class _$SentWebAppMessageImpl implements _SentWebAppMessage {
 }
 
 abstract class _SentWebAppMessage implements SentWebAppMessage {
-  const factory _SentWebAppMessage({final String? inlineMessageId}) =
+  const factory _SentWebAppMessage(
+          {@JsonKey(name: 'inline_message_id') final String? inlineMessageId}) =
       _$SentWebAppMessageImpl;
 
   factory _SentWebAppMessage.fromJson(Map<String, dynamic> json) =
@@ -149,6 +153,7 @@ abstract class _SentWebAppMessage implements SentWebAppMessage {
   /// Optional. Identifier of the sent inline message. Available only if there
   /// is an inline keyboard attached to the message.
   @override
+  @JsonKey(name: 'inline_message_id')
   String? get inlineMessageId;
 
   /// Create a copy of SentWebAppMessage

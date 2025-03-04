@@ -21,6 +21,7 @@ GiveawayWinners _$GiveawayWinnersFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GiveawayWinners {
   /// The chat that created the giveaway
+  @JsonKey(name: 'chat')
   Chat get chat => throw _privateConstructorUsedError;
 
   /// Identifier of the messsage with the giveaway in the chat
@@ -37,6 +38,7 @@ mixin _$GiveawayWinners {
   int get winnerCount => throw _privateConstructorUsedError;
 
   /// List of up to 100 winners of the giveaway
+  @JsonKey(name: 'winners')
   List<User> get winners => throw _privateConstructorUsedError;
 
   /// The number of other chats the user had to join in order to be eligible
@@ -89,11 +91,11 @@ abstract class $GiveawayWinnersCopyWith<$Res> {
       _$GiveawayWinnersCopyWithImpl<$Res, GiveawayWinners>;
   @useResult
   $Res call(
-      {Chat chat,
+      {@JsonKey(name: 'chat') Chat chat,
       @JsonKey(name: 'giveaway_message_id') int giveawayMessageId,
       @JsonKey(name: 'winners_selection_date') int winnersSelectionDate,
       @JsonKey(name: 'winner_count') int winnerCount,
-      List<User> winners,
+      @JsonKey(name: 'winners') List<User> winners,
       @JsonKey(name: 'additional_chat_count') int? additionalChatCount,
       @JsonKey(name: 'premium_subscription_month_count')
       int? premiumSubscriptionMonthCount,
@@ -206,11 +208,11 @@ abstract class _$$GiveawayWinnersImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Chat chat,
+      {@JsonKey(name: 'chat') Chat chat,
       @JsonKey(name: 'giveaway_message_id') int giveawayMessageId,
       @JsonKey(name: 'winners_selection_date') int winnersSelectionDate,
       @JsonKey(name: 'winner_count') int winnerCount,
-      List<User> winners,
+      @JsonKey(name: 'winners') List<User> winners,
       @JsonKey(name: 'additional_chat_count') int? additionalChatCount,
       @JsonKey(name: 'premium_subscription_month_count')
       int? premiumSubscriptionMonthCount,
@@ -307,12 +309,12 @@ class __$$GiveawayWinnersImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GiveawayWinnersImpl implements _GiveawayWinners {
   const _$GiveawayWinnersImpl(
-      {required this.chat,
+      {@JsonKey(name: 'chat') required this.chat,
       @JsonKey(name: 'giveaway_message_id') required this.giveawayMessageId,
       @JsonKey(name: 'winners_selection_date')
       required this.winnersSelectionDate,
       @JsonKey(name: 'winner_count') required this.winnerCount,
-      required final List<User> winners,
+      @JsonKey(name: 'winners') required final List<User> winners,
       @JsonKey(name: 'additional_chat_count') this.additionalChatCount,
       @JsonKey(name: 'premium_subscription_month_count')
       this.premiumSubscriptionMonthCount,
@@ -328,6 +330,7 @@ class _$GiveawayWinnersImpl implements _GiveawayWinners {
 
   /// The chat that created the giveaway
   @override
+  @JsonKey(name: 'chat')
   final Chat chat;
 
   /// Identifier of the messsage with the giveaway in the chat
@@ -351,6 +354,7 @@ class _$GiveawayWinnersImpl implements _GiveawayWinners {
 
   /// List of up to 100 winners of the giveaway
   @override
+  @JsonKey(name: 'winners')
   List<User> get winners {
     if (_winners is EqualUnmodifiableListView) return _winners;
     // ignore: implicit_dynamic_type
@@ -421,13 +425,13 @@ class _$GiveawayWinnersImpl implements _GiveawayWinners {
 
 abstract class _GiveawayWinners implements GiveawayWinners {
   const factory _GiveawayWinners(
-      {required final Chat chat,
+      {@JsonKey(name: 'chat') required final Chat chat,
       @JsonKey(name: 'giveaway_message_id')
       required final int giveawayMessageId,
       @JsonKey(name: 'winners_selection_date')
       required final int winnersSelectionDate,
       @JsonKey(name: 'winner_count') required final int winnerCount,
-      required final List<User> winners,
+      @JsonKey(name: 'winners') required final List<User> winners,
       @JsonKey(name: 'additional_chat_count') final int? additionalChatCount,
       @JsonKey(name: 'premium_subscription_month_count')
       final int? premiumSubscriptionMonthCount,
@@ -443,6 +447,7 @@ abstract class _GiveawayWinners implements GiveawayWinners {
 
   /// The chat that created the giveaway
   @override
+  @JsonKey(name: 'chat')
   Chat get chat;
 
   /// Identifier of the messsage with the giveaway in the chat
@@ -463,6 +468,7 @@ abstract class _GiveawayWinners implements GiveawayWinners {
 
   /// List of up to 100 winners of the giveaway
   @override
+  @JsonKey(name: 'winners')
   List<User> get winners;
 
   /// The number of other chats the user had to join in order to be eligible

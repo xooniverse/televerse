@@ -35,14 +35,17 @@ mixin _$ChatShared {
   int get chatId => throw _privateConstructorUsedError;
 
   /// Optional. Title of the chat, if the title was requested by the bot.
+  @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
 
   /// Optional. Username of the chat, if the username was requested by the bot
   /// and available.
+  @JsonKey(name: 'username')
   String? get username => throw _privateConstructorUsedError;
 
   /// Optional. Available sizes of the chat photo, if the photo was requested
   /// by the bot
+  @JsonKey(name: 'photo')
   List<PhotoSize>? get photo => throw _privateConstructorUsedError;
 
   /// Serializes this ChatShared to a JSON map.
@@ -64,9 +67,9 @@ abstract class $ChatSharedCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'request_id') int requestId,
       @JsonKey(name: 'chat_id') int chatId,
-      String? title,
-      String? username,
-      List<PhotoSize>? photo});
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'photo') List<PhotoSize>? photo});
 }
 
 /// @nodoc
@@ -126,9 +129,9 @@ abstract class _$$ChatSharedImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'request_id') int requestId,
       @JsonKey(name: 'chat_id') int chatId,
-      String? title,
-      String? username,
-      List<PhotoSize>? photo});
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'photo') List<PhotoSize>? photo});
 }
 
 /// @nodoc
@@ -181,9 +184,9 @@ class _$ChatSharedImpl implements _ChatShared {
   const _$ChatSharedImpl(
       {@JsonKey(name: 'request_id') required this.requestId,
       @JsonKey(name: 'chat_id') required this.chatId,
-      this.title,
-      this.username,
-      final List<PhotoSize>? photo})
+      @JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'username') this.username,
+      @JsonKey(name: 'photo') final List<PhotoSize>? photo})
       : _photo = photo;
 
   factory _$ChatSharedImpl.fromJson(Map<String, dynamic> json) =>
@@ -207,11 +210,13 @@ class _$ChatSharedImpl implements _ChatShared {
 
   /// Optional. Title of the chat, if the title was requested by the bot.
   @override
+  @JsonKey(name: 'title')
   final String? title;
 
   /// Optional. Username of the chat, if the username was requested by the bot
   /// and available.
   @override
+  @JsonKey(name: 'username')
   final String? username;
 
   /// Optional. Available sizes of the chat photo, if the photo was requested
@@ -221,6 +226,7 @@ class _$ChatSharedImpl implements _ChatShared {
   /// Optional. Available sizes of the chat photo, if the photo was requested
   /// by the bot
   @override
+  @JsonKey(name: 'photo')
   List<PhotoSize>? get photo {
     final value = _photo;
     if (value == null) return null;
@@ -254,9 +260,9 @@ abstract class _ChatShared implements ChatShared {
   const factory _ChatShared(
       {@JsonKey(name: 'request_id') required final int requestId,
       @JsonKey(name: 'chat_id') required final int chatId,
-      final String? title,
-      final String? username,
-      final List<PhotoSize>? photo}) = _$ChatSharedImpl;
+      @JsonKey(name: 'title') final String? title,
+      @JsonKey(name: 'username') final String? username,
+      @JsonKey(name: 'photo') final List<PhotoSize>? photo}) = _$ChatSharedImpl;
 
   factory _ChatShared.fromJson(Map<String, dynamic> json) =
       _$ChatSharedImpl.fromJson;
@@ -279,16 +285,19 @@ abstract class _ChatShared implements ChatShared {
 
   /// Optional. Title of the chat, if the title was requested by the bot.
   @override
+  @JsonKey(name: 'title')
   String? get title;
 
   /// Optional. Username of the chat, if the username was requested by the bot
   /// and available.
   @override
+  @JsonKey(name: 'username')
   String? get username;
 
   /// Optional. Available sizes of the chat photo, if the photo was requested
   /// by the bot
   @override
+  @JsonKey(name: 'photo')
   List<PhotoSize>? get photo;
 
   /// Create a copy of ChatShared

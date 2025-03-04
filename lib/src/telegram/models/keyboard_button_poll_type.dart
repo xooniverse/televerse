@@ -13,7 +13,7 @@ class KeyboardButtonPollType with _$KeyboardButtonPollType {
     /// polls in the quiz mode. If regular is passed, only regular polls will be
     /// allowed. Otherwise, the user will be allowed to create a poll of any
     /// type.
-    PollType? type,
+    @JsonKey(name: 'type') PollType? type,
   }) = _KeyboardButtonPollType;
 
   /// Creates a [KeyboardButtonPollType] object from JSON object

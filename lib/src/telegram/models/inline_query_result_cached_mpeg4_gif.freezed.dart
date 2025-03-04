@@ -22,6 +22,7 @@ InlineQueryResultCachedMpeg4Gif _$InlineQueryResultCachedMpeg4GifFromJson(
 /// @nodoc
 mixin _$InlineQueryResultCachedMpeg4Gif {
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// A valid file identifier for the MPEG4 file
@@ -29,13 +30,16 @@ mixin _$InlineQueryResultCachedMpeg4Gif {
   String get mpeg4FileId => throw _privateConstructorUsedError;
 
   /// Type of the result, always [InlineQueryResultType.mpeg4Gif]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Optional. Title for the result
+  @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
 
   /// Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after
   /// entities parsing
+  @JsonKey(name: 'caption')
   String? get caption => throw _privateConstructorUsedError;
 
   /// Optional. Mode for parsing entities in the caption. See formatting
@@ -83,11 +87,11 @@ abstract class $InlineQueryResultCachedMpeg4GifCopyWith<$Res> {
           InlineQueryResultCachedMpeg4Gif>;
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'mpeg4_file_id') String mpeg4FileId,
-      InlineQueryResultType type,
-      String? title,
-      String? caption,
+      @JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -196,11 +200,11 @@ abstract class _$$InlineQueryResultCachedMpeg4GifImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'mpeg4_file_id') String mpeg4FileId,
-      InlineQueryResultType type,
-      String? title,
-      String? caption,
+      @JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -289,11 +293,11 @@ class __$$InlineQueryResultCachedMpeg4GifImplCopyWithImpl<$Res>
 class _$InlineQueryResultCachedMpeg4GifImpl
     implements _InlineQueryResultCachedMpeg4Gif {
   const _$InlineQueryResultCachedMpeg4GifImpl(
-      {required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'mpeg4_file_id') required this.mpeg4FileId,
-      this.type = InlineQueryResultType.mpeg4Gif,
-      this.title,
-      this.caption,
+      @JsonKey(name: 'type') this.type = InlineQueryResultType.mpeg4Gif,
+      @JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'caption') this.caption,
       @JsonKey(name: 'parse_mode') this.parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -310,6 +314,7 @@ class _$InlineQueryResultCachedMpeg4GifImpl
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// A valid file identifier for the MPEG4 file
@@ -319,16 +324,18 @@ class _$InlineQueryResultCachedMpeg4GifImpl
 
   /// Type of the result, always [InlineQueryResultType.mpeg4Gif]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   /// Optional. Title for the result
   @override
+  @JsonKey(name: 'title')
   final String? title;
 
   /// Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after
   /// entities parsing
   @override
+  @JsonKey(name: 'caption')
   final String? caption;
 
   /// Optional. Mode for parsing entities in the caption. See formatting
@@ -396,11 +403,11 @@ class _$InlineQueryResultCachedMpeg4GifImpl
 abstract class _InlineQueryResultCachedMpeg4Gif
     implements InlineQueryResultCachedMpeg4Gif {
   const factory _InlineQueryResultCachedMpeg4Gif(
-      {required final String id,
+      {@JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'mpeg4_file_id') required final String mpeg4FileId,
-      final InlineQueryResultType type,
-      final String? title,
-      final String? caption,
+      @JsonKey(name: 'type') final InlineQueryResultType type,
+      @JsonKey(name: 'title') final String? title,
+      @JsonKey(name: 'caption') final String? caption,
       @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -417,6 +424,7 @@ abstract class _InlineQueryResultCachedMpeg4Gif
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// A valid file identifier for the MPEG4 file
@@ -426,15 +434,18 @@ abstract class _InlineQueryResultCachedMpeg4Gif
 
   /// Type of the result, always [InlineQueryResultType.mpeg4Gif]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Optional. Title for the result
   @override
+  @JsonKey(name: 'title')
   String? get title;
 
   /// Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after
   /// entities parsing
   @override
+  @JsonKey(name: 'caption')
   String? get caption;
 
   /// Optional. Mode for parsing entities in the caption. See formatting

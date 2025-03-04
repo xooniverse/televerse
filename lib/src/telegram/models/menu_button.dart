@@ -22,16 +22,18 @@ class MenuButton with _$MenuButton implements _MenuButtonImpl {
   /// Describes that no specific value for the menu button was set.
   const factory MenuButton({
     /// Type of the menu button
-    @Default(MenuButtonType.defaultButton) MenuButtonType type,
+    @JsonKey(name: 'type')
+    @Default(MenuButtonType.defaultButton)
+    MenuButtonType type,
   }) = MenuButtonDefault;
 
   /// Represents a menu button, which launches a Web App.
   const factory MenuButton.webApp({
     /// Type of the menu button
-    @Default(MenuButtonType.webApp) MenuButtonType type,
+    @JsonKey(name: 'type') @Default(MenuButtonType.webApp) MenuButtonType type,
 
     /// Text on the button
-    required String text,
+    @JsonKey(name: 'text') required String text,
 
     /// Description of the Web App that will be launched when the user presses
     /// the button. The Web App will be able to send an arbitrary message on
@@ -46,7 +48,9 @@ class MenuButton with _$MenuButton implements _MenuButtonImpl {
   /// Represents a menu button, which opens the bot's list of commands.
   const factory MenuButton.commands({
     /// Type of the menu button
-    @Default(MenuButtonType.commands) MenuButtonType type,
+    @JsonKey(name: 'type')
+    @Default(MenuButtonType.commands)
+    MenuButtonType type,
   }) = MenuButtonCommands;
 
   /// Creates a new [MenuButton] object. This method decides which [MenuButton]

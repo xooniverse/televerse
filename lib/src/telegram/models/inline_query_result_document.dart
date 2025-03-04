@@ -22,13 +22,15 @@ class InlineQueryResultDocument
   /// Constructs an [InlineQueryResultDocument] object
   const factory InlineQueryResultDocument({
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Type of the result, always [InlineQueryResultType.document]
-    @Default(InlineQueryResultType.document) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.document)
+    InlineQueryResultType type,
 
     /// Title for the result
-    required String title,
+    @JsonKey(name: 'title') required String title,
 
     /// A valid URL for the file
     @JsonKey(name: 'document_url') required String documentUrl,
@@ -39,7 +41,7 @@ class InlineQueryResultDocument
 
     /// Optional. Caption of the document to be sent, 0-1024 characters after
     /// entities parsing
-    String? caption,
+    @JsonKey(name: 'caption') String? caption,
 
     /// Optional. Mode for parsing entities in the document caption. See
     /// formatting options for more details.
@@ -50,7 +52,7 @@ class InlineQueryResultDocument
     @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
 
     /// Optional. Short description of the result
-    String? description,
+    @JsonKey(name: 'description') String? description,
 
     /// Optional. Inline keyboard attached to the message
     @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,

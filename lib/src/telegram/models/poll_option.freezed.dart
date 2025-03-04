@@ -21,6 +21,7 @@ PollOption _$PollOptionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PollOption {
   /// Option text, 1-100 characters
+  @JsonKey(name: 'text')
   String get text => throw _privateConstructorUsedError;
 
   /// Number of users that voted for this option
@@ -49,7 +50,7 @@ abstract class $PollOptionCopyWith<$Res> {
       _$PollOptionCopyWithImpl<$Res, PollOption>;
   @useResult
   $Res call(
-      {String text,
+      {@JsonKey(name: 'text') String text,
       @JsonKey(name: 'voter_count') int voterCount,
       @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities});
 }
@@ -99,7 +100,7 @@ abstract class _$$PollOptionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String text,
+      {@JsonKey(name: 'text') String text,
       @JsonKey(name: 'voter_count') int voterCount,
       @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities});
 }
@@ -142,7 +143,7 @@ class __$$PollOptionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PollOptionImpl implements _PollOption {
   const _$PollOptionImpl(
-      {required this.text,
+      {@JsonKey(name: 'text') required this.text,
       @JsonKey(name: 'voter_count') required this.voterCount,
       @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities})
       : _textEntities = textEntities;
@@ -152,6 +153,7 @@ class _$PollOptionImpl implements _PollOption {
 
   /// Option text, 1-100 characters
   @override
+  @JsonKey(name: 'text')
   final String text;
 
   /// Number of users that voted for this option
@@ -198,7 +200,7 @@ class _$PollOptionImpl implements _PollOption {
 
 abstract class _PollOption implements PollOption {
   const factory _PollOption(
-      {required final String text,
+      {@JsonKey(name: 'text') required final String text,
       @JsonKey(name: 'voter_count') required final int voterCount,
       @JsonKey(name: 'text_entities')
       final List<MessageEntity>? textEntities}) = _$PollOptionImpl;
@@ -208,6 +210,7 @@ abstract class _PollOption implements PollOption {
 
   /// Option text, 1-100 characters
   @override
+  @JsonKey(name: 'text')
   String get text;
 
   /// Number of users that voted for this option

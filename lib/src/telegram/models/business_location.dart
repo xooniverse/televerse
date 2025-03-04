@@ -10,10 +10,10 @@ class BusinessLocation with _$BusinessLocation {
   /// Creates a [BusinessLocation] object.
   const factory BusinessLocation({
     /// Address of the business.
-    required String address,
+    @JsonKey(name: 'address') required String address,
 
     /// Optional. Location of the business.
-    Location? location,
+    @JsonKey(name: 'location') Location? location,
   }) = _BusinessLocation;
 
   /// Creates a [BusinessLocation] object from a JSON map.

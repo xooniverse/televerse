@@ -21,17 +21,21 @@ ChatJoinRequest _$ChatJoinRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ChatJoinRequest {
   /// Chat to which the request was sent
+  @JsonKey(name: 'chat')
   Chat get chat => throw _privateConstructorUsedError;
 
   /// User that sent the join request
+  @JsonKey(name: 'from')
   User get from => throw _privateConstructorUsedError;
 
   /// Date the request was sent in Unix time
   ///
   /// You can use the [dateTime] getter to get a [DateTime] object
+  @JsonKey(name: 'date')
   int get date => throw _privateConstructorUsedError;
 
   /// Optional. Bio of the user.
+  @JsonKey(name: 'bio')
   String? get bio => throw _privateConstructorUsedError;
 
   /// Optional. Chat invite link that was used by the user to send the join request
@@ -61,10 +65,10 @@ abstract class $ChatJoinRequestCopyWith<$Res> {
       _$ChatJoinRequestCopyWithImpl<$Res, ChatJoinRequest>;
   @useResult
   $Res call(
-      {Chat chat,
-      User from,
-      int date,
-      String? bio,
+      {@JsonKey(name: 'chat') Chat chat,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'date') int date,
+      @JsonKey(name: 'bio') String? bio,
       @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,
       @JsonKey(name: 'user_chat_id') int userChatId});
 
@@ -167,10 +171,10 @@ abstract class _$$ChatJoinRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Chat chat,
-      User from,
-      int date,
-      String? bio,
+      {@JsonKey(name: 'chat') Chat chat,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'date') int date,
+      @JsonKey(name: 'bio') String? bio,
       @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,
       @JsonKey(name: 'user_chat_id') int userChatId});
 
@@ -235,10 +239,10 @@ class __$$ChatJoinRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatJoinRequestImpl implements _ChatJoinRequest {
   const _$ChatJoinRequestImpl(
-      {required this.chat,
-      required this.from,
-      required this.date,
-      this.bio,
+      {@JsonKey(name: 'chat') required this.chat,
+      @JsonKey(name: 'from') required this.from,
+      @JsonKey(name: 'date') required this.date,
+      @JsonKey(name: 'bio') this.bio,
       @JsonKey(name: 'invite_link') this.inviteLink,
       @JsonKey(name: 'user_chat_id') required this.userChatId});
 
@@ -247,20 +251,24 @@ class _$ChatJoinRequestImpl implements _ChatJoinRequest {
 
   /// Chat to which the request was sent
   @override
+  @JsonKey(name: 'chat')
   final Chat chat;
 
   /// User that sent the join request
   @override
+  @JsonKey(name: 'from')
   final User from;
 
   /// Date the request was sent in Unix time
   ///
   /// You can use the [dateTime] getter to get a [DateTime] object
   @override
+  @JsonKey(name: 'date')
   final int date;
 
   /// Optional. Bio of the user.
   @override
+  @JsonKey(name: 'bio')
   final String? bio;
 
   /// Optional. Chat invite link that was used by the user to send the join request
@@ -299,10 +307,10 @@ class _$ChatJoinRequestImpl implements _ChatJoinRequest {
 
 abstract class _ChatJoinRequest implements ChatJoinRequest {
   const factory _ChatJoinRequest(
-          {required final Chat chat,
-          required final User from,
-          required final int date,
-          final String? bio,
+          {@JsonKey(name: 'chat') required final Chat chat,
+          @JsonKey(name: 'from') required final User from,
+          @JsonKey(name: 'date') required final int date,
+          @JsonKey(name: 'bio') final String? bio,
           @JsonKey(name: 'invite_link') final ChatInviteLink? inviteLink,
           @JsonKey(name: 'user_chat_id') required final int userChatId}) =
       _$ChatJoinRequestImpl;
@@ -312,20 +320,24 @@ abstract class _ChatJoinRequest implements ChatJoinRequest {
 
   /// Chat to which the request was sent
   @override
+  @JsonKey(name: 'chat')
   Chat get chat;
 
   /// User that sent the join request
   @override
+  @JsonKey(name: 'from')
   User get from;
 
   /// Date the request was sent in Unix time
   ///
   /// You can use the [dateTime] getter to get a [DateTime] object
   @override
+  @JsonKey(name: 'date')
   int get date;
 
   /// Optional. Bio of the user.
   @override
+  @JsonKey(name: 'bio')
   String? get bio;
 
   /// Optional. Chat invite link that was used by the user to send the join request

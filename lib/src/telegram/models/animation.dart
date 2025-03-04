@@ -20,18 +20,18 @@ class Animation with _$Animation {
     @JsonKey(name: 'file_unique_id') required String fileUniqueId,
 
     /// Video width as defined by sender
-    required int width,
+    @JsonKey(name: 'width') required int width,
 
     /// Video height as defined by sender
-    required int height,
+    @JsonKey(name: 'height') required int height,
 
     /// Duration of the video in seconds as defined by sender
     ///
     /// A handy [Duration] getter is available as [durationTime]
-    required int duration,
+    @JsonKey(name: 'duration') required int duration,
 
     /// Optional. Animation thumbnail as defined by sender
-    PhotoSize? thumbnail,
+    @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
 
     /// Optional. Original animation filename as defined by sender
     @JsonKey(name: 'file_name') String? fileName,

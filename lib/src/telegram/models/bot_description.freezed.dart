@@ -21,6 +21,7 @@ BotDescription _$BotDescriptionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BotDescription {
   /// Bot's description.
+  @JsonKey(name: 'description')
   String get description => throw _privateConstructorUsedError;
 
   /// Serializes this BotDescription to a JSON map.
@@ -39,7 +40,7 @@ abstract class $BotDescriptionCopyWith<$Res> {
           BotDescription value, $Res Function(BotDescription) then) =
       _$BotDescriptionCopyWithImpl<$Res, BotDescription>;
   @useResult
-  $Res call({String description});
+  $Res call({@JsonKey(name: 'description') String description});
 }
 
 /// @nodoc
@@ -76,7 +77,7 @@ abstract class _$$BotDescriptionImplCopyWith<$Res>
       __$$BotDescriptionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String description});
+  $Res call({@JsonKey(name: 'description') String description});
 }
 
 /// @nodoc
@@ -106,13 +107,15 @@ class __$$BotDescriptionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BotDescriptionImpl implements _BotDescription {
-  const _$BotDescriptionImpl({required this.description});
+  const _$BotDescriptionImpl(
+      {@JsonKey(name: 'description') required this.description});
 
   factory _$BotDescriptionImpl.fromJson(Map<String, dynamic> json) =>
       _$$BotDescriptionImplFromJson(json);
 
   /// Bot's description.
   @override
+  @JsonKey(name: 'description')
   final String description;
 
   @override
@@ -138,7 +141,8 @@ class _$BotDescriptionImpl implements _BotDescription {
 }
 
 abstract class _BotDescription implements BotDescription {
-  const factory _BotDescription({required final String description}) =
+  const factory _BotDescription(
+          {@JsonKey(name: 'description') required final String description}) =
       _$BotDescriptionImpl;
 
   factory _BotDescription.fromJson(Map<String, dynamic> json) =
@@ -146,6 +150,7 @@ abstract class _BotDescription implements BotDescription {
 
   /// Bot's description.
   @override
+  @JsonKey(name: 'description')
   String get description;
 
   /// Create a copy of BotDescription

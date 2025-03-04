@@ -21,12 +21,15 @@ ShippingOption _$ShippingOptionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ShippingOption {
   /// Shipping option identifier
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Option title
+  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
 
   /// List of price portions
+  @JsonKey(name: 'prices')
   List<LabeledPrice> get prices => throw _privateConstructorUsedError;
 
   /// Serializes this ShippingOption to a JSON map.
@@ -45,7 +48,10 @@ abstract class $ShippingOptionCopyWith<$Res> {
           ShippingOption value, $Res Function(ShippingOption) then) =
       _$ShippingOptionCopyWithImpl<$Res, ShippingOption>;
   @useResult
-  $Res call({String id, String title, List<LabeledPrice> prices});
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'prices') List<LabeledPrice> prices});
 }
 
 /// @nodoc
@@ -92,7 +98,10 @@ abstract class _$$ShippingOptionImplCopyWith<$Res>
       __$$ShippingOptionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, List<LabeledPrice> prices});
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'prices') List<LabeledPrice> prices});
 }
 
 /// @nodoc
@@ -133,9 +142,9 @@ class __$$ShippingOptionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ShippingOptionImpl implements _ShippingOption {
   const _$ShippingOptionImpl(
-      {required this.id,
-      required this.title,
-      required final List<LabeledPrice> prices})
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'title') required this.title,
+      @JsonKey(name: 'prices') required final List<LabeledPrice> prices})
       : _prices = prices;
 
   factory _$ShippingOptionImpl.fromJson(Map<String, dynamic> json) =>
@@ -143,10 +152,12 @@ class _$ShippingOptionImpl implements _ShippingOption {
 
   /// Shipping option identifier
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Option title
   @override
+  @JsonKey(name: 'title')
   final String title;
 
   /// List of price portions
@@ -154,6 +165,7 @@ class _$ShippingOptionImpl implements _ShippingOption {
 
   /// List of price portions
   @override
+  @JsonKey(name: 'prices')
   List<LabeledPrice> get prices {
     if (_prices is EqualUnmodifiableListView) return _prices;
     // ignore: implicit_dynamic_type
@@ -184,23 +196,27 @@ class _$ShippingOptionImpl implements _ShippingOption {
 
 abstract class _ShippingOption implements ShippingOption {
   const factory _ShippingOption(
-      {required final String id,
-      required final String title,
-      required final List<LabeledPrice> prices}) = _$ShippingOptionImpl;
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'title') required final String title,
+          @JsonKey(name: 'prices') required final List<LabeledPrice> prices}) =
+      _$ShippingOptionImpl;
 
   factory _ShippingOption.fromJson(Map<String, dynamic> json) =
       _$ShippingOptionImpl.fromJson;
 
   /// Shipping option identifier
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Option title
   @override
+  @JsonKey(name: 'title')
   String get title;
 
   /// List of price portions
   @override
+  @JsonKey(name: 'prices')
   List<LabeledPrice> get prices;
 
   /// Create a copy of ShippingOption

@@ -25,6 +25,7 @@ mixin _$PollAnswer {
   String get pollId => throw _privateConstructorUsedError;
 
   /// The user, who changed the answer to the poll
+  @JsonKey(name: 'user')
   User? get user => throw _privateConstructorUsedError;
 
   /// 0-based identifiers of answer options, chosen by the user. May be empty
@@ -55,7 +56,7 @@ abstract class $PollAnswerCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'poll_id') String pollId,
-      User? user,
+      @JsonKey(name: 'user') User? user,
       @JsonKey(name: 'option_ids') List<int> optionIds,
       @JsonKey(name: 'voter_chat') Chat? voterChat});
 
@@ -142,7 +143,7 @@ abstract class _$$PollAnswerImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'poll_id') String pollId,
-      User? user,
+      @JsonKey(name: 'user') User? user,
       @JsonKey(name: 'option_ids') List<int> optionIds,
       @JsonKey(name: 'voter_chat') Chat? voterChat});
 
@@ -196,7 +197,7 @@ class __$$PollAnswerImplCopyWithImpl<$Res>
 class _$PollAnswerImpl implements _PollAnswer {
   const _$PollAnswerImpl(
       {@JsonKey(name: 'poll_id') required this.pollId,
-      this.user,
+      @JsonKey(name: 'user') this.user,
       @JsonKey(name: 'option_ids') required final List<int> optionIds,
       @JsonKey(name: 'voter_chat') this.voterChat})
       : _optionIds = optionIds;
@@ -211,6 +212,7 @@ class _$PollAnswerImpl implements _PollAnswer {
 
   /// The user, who changed the answer to the poll
   @override
+  @JsonKey(name: 'user')
   final User? user;
 
   /// 0-based identifiers of answer options, chosen by the user. May be empty
@@ -257,7 +259,7 @@ class _$PollAnswerImpl implements _PollAnswer {
 abstract class _PollAnswer implements PollAnswer {
   const factory _PollAnswer(
       {@JsonKey(name: 'poll_id') required final String pollId,
-      final User? user,
+      @JsonKey(name: 'user') final User? user,
       @JsonKey(name: 'option_ids') required final List<int> optionIds,
       @JsonKey(name: 'voter_chat') final Chat? voterChat}) = _$PollAnswerImpl;
 
@@ -271,6 +273,7 @@ abstract class _PollAnswer implements PollAnswer {
 
   /// The user, who changed the answer to the poll
   @override
+  @JsonKey(name: 'user')
   User? get user;
 
   /// 0-based identifiers of answer options, chosen by the user. May be empty

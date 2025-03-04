@@ -110,7 +110,7 @@ abstract class _$$ReactionTypeEmojiImplCopyWith<$Res>
       __$$ReactionTypeEmojiImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ReactionTypeType type, String emoji});
+  $Res call({ReactionTypeType type, @JsonKey(name: 'emoji') String emoji});
 }
 
 /// @nodoc
@@ -146,7 +146,8 @@ class __$$ReactionTypeEmojiImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ReactionTypeEmojiImpl implements ReactionTypeEmoji {
   const _$ReactionTypeEmojiImpl(
-      {this.type = ReactionTypeType.emoji, required this.emoji})
+      {this.type = ReactionTypeType.emoji,
+      @JsonKey(name: 'emoji') required this.emoji})
       : assert(type == ReactionTypeType.emoji,
             'type must be ReactionTypeType.emoji');
 
@@ -168,6 +169,7 @@ class _$ReactionTypeEmojiImpl implements ReactionTypeEmoji {
   /// "🎅", "🎄", "☃", "💅", "🤪", "🗿", "🆒", "💘", "🙉", "🦄", "😘", "💊",
   /// "🙊", "😎", "👾", "🤷‍♂", "🤷", "🤷‍♀", "😡"
   @override
+  @JsonKey(name: 'emoji')
   final String emoji;
 
   @override
@@ -228,8 +230,9 @@ class _$ReactionTypeEmojiImpl implements ReactionTypeEmoji {
 
 abstract class ReactionTypeEmoji implements ReactionType {
   const factory ReactionTypeEmoji(
-      {final ReactionTypeType type,
-      required final String emoji}) = _$ReactionTypeEmojiImpl;
+          {final ReactionTypeType type,
+          @JsonKey(name: 'emoji') required final String emoji}) =
+      _$ReactionTypeEmojiImpl;
 
   factory ReactionTypeEmoji.fromJson(Map<String, dynamic> json) =
       _$ReactionTypeEmojiImpl.fromJson;
@@ -247,6 +250,7 @@ abstract class ReactionTypeEmoji implements ReactionType {
   /// "👻", "👨‍💻", "👀", "🎃", "🙈", "😇", "😨", "🤝", "✍", "🤗", "🫡",
   /// "🎅", "🎄", "☃", "💅", "🤪", "🗿", "🆒", "💘", "🙉", "🦄", "😘", "💊",
   /// "🙊", "😎", "👾", "🤷‍♂", "🤷", "🤷‍♀", "😡"
+  @JsonKey(name: 'emoji')
   String get emoji;
 
   /// Create a copy of ReactionType
@@ -267,7 +271,7 @@ abstract class _$$ReactionTypeCustomEmojiImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ReactionTypeType type,
+      {@JsonKey(name: 'type') ReactionTypeType type,
       @JsonKey(name: 'custom_emoji_id') String customEmojiId});
 }
 
@@ -305,7 +309,7 @@ class __$$ReactionTypeCustomEmojiImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ReactionTypeCustomEmojiImpl implements ReactionTypeCustomEmoji {
   const _$ReactionTypeCustomEmojiImpl(
-      {this.type = ReactionTypeType.customEmoji,
+      {@JsonKey(name: 'type') this.type = ReactionTypeType.customEmoji,
       @JsonKey(name: 'custom_emoji_id') required this.customEmojiId})
       : assert(type == ReactionTypeType.customEmoji,
             'type must be ReactionTypeType.customEmoji');
@@ -315,7 +319,7 @@ class _$ReactionTypeCustomEmojiImpl implements ReactionTypeCustomEmoji {
 
   /// Type of the reaction, must be "custom_emoji"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final ReactionTypeType type;
 
   /// Custom emoji identifier
@@ -381,7 +385,7 @@ class _$ReactionTypeCustomEmojiImpl implements ReactionTypeCustomEmoji {
 
 abstract class ReactionTypeCustomEmoji implements ReactionType {
   const factory ReactionTypeCustomEmoji(
-      {final ReactionTypeType type,
+      {@JsonKey(name: 'type') final ReactionTypeType type,
       @JsonKey(name: 'custom_emoji_id')
       required final String customEmojiId}) = _$ReactionTypeCustomEmojiImpl;
 
@@ -390,6 +394,7 @@ abstract class ReactionTypeCustomEmoji implements ReactionType {
 
   /// Type of the reaction, must be "custom_emoji"
   @override
+  @JsonKey(name: 'type')
   ReactionTypeType get type;
 
   /// Custom emoji identifier
@@ -412,7 +417,7 @@ abstract class _$$ReactionTypePaidImplCopyWith<$Res>
       __$$ReactionTypePaidImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ReactionTypeType type});
+  $Res call({@JsonKey(name: 'type') ReactionTypeType type});
 }
 
 /// @nodoc
@@ -442,7 +447,8 @@ class __$$ReactionTypePaidImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ReactionTypePaidImpl implements ReactionTypePaid {
-  const _$ReactionTypePaidImpl({this.type = ReactionTypeType.paid})
+  const _$ReactionTypePaidImpl(
+      {@JsonKey(name: 'type') this.type = ReactionTypeType.paid})
       : assert(type == ReactionTypeType.paid,
             'type must be ReactionTypeType.paid');
 
@@ -451,7 +457,7 @@ class _$ReactionTypePaidImpl implements ReactionTypePaid {
 
   /// Type of the reaction, must be "paid"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final ReactionTypeType type;
 
   @override
@@ -511,7 +517,8 @@ class _$ReactionTypePaidImpl implements ReactionTypePaid {
 }
 
 abstract class ReactionTypePaid implements ReactionType {
-  const factory ReactionTypePaid({final ReactionTypeType type}) =
+  const factory ReactionTypePaid(
+          {@JsonKey(name: 'type') final ReactionTypeType type}) =
       _$ReactionTypePaidImpl;
 
   factory ReactionTypePaid.fromJson(Map<String, dynamic> json) =
@@ -519,6 +526,7 @@ abstract class ReactionTypePaid implements ReactionType {
 
   /// Type of the reaction, must be "paid"
   @override
+  @JsonKey(name: 'type')
   ReactionTypeType get type;
 
   /// Create a copy of ReactionType

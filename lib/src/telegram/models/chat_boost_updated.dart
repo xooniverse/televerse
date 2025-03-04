@@ -12,10 +12,10 @@ class ChatBoostUpdated with _$ChatBoostUpdated implements WithChat {
   /// Creates a ChatBoostUpdated object.
   const factory ChatBoostUpdated({
     /// Chat which was boosted
-    required final Chat chat,
+    @JsonKey(name: 'chat') required final Chat chat,
 
     /// Information about the chat boost
-    required final ChatBoost boost,
+    @JsonKey(name: 'boost') required final ChatBoost boost,
   }) = _ChatBoostUpdated;
 
   /// Creates a `ChatBoostUpdated` object from a JSON object.

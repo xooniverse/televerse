@@ -22,10 +22,12 @@ class InlineQueryResultVideo
   /// Creates an instance of [InlineQueryResultVideo].
   const factory InlineQueryResultVideo({
     /// Type of the result, always [InlineQueryResultType.video]
-    @Default(InlineQueryResultType.video) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.video)
+    InlineQueryResultType type,
 
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// A valid URL for the embedded video player or video file
     @JsonKey(name: 'video_url') required String videoUrl,
@@ -37,11 +39,11 @@ class InlineQueryResultVideo
     @JsonKey(name: 'thumbnail_url') required String thumbnailUrl,
 
     /// Title for the result
-    required String title,
+    @JsonKey(name: 'title') required String title,
 
     /// Optional. Caption of the video to be sent, 0-1024 characters after
     /// entities parsing
-    String? caption,
+    @JsonKey(name: 'caption') String? caption,
 
     /// Optional. Mode for parsing entities in the video caption. See formatting
     /// options for more details.
@@ -61,7 +63,7 @@ class InlineQueryResultVideo
     @JsonKey(name: 'video_duration') int? videoDuration,
 
     /// Optional. Short description of the result
-    String? description,
+    @JsonKey(name: 'description') String? description,
 
     /// Optional. Inline keyboard attached to the message
     @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,

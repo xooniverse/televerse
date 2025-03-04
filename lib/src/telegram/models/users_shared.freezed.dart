@@ -31,6 +31,7 @@ mixin _$UsersShared {
   /// safe for storing these identifiers. The bot may not have access to the
   /// users and could be unable to use these identifiers, unless the users are
   /// already known to the bot by some other means.
+  @JsonKey(name: 'users')
   List<SharedUser> get users => throw _privateConstructorUsedError;
 
   /// Serializes this UsersShared to a JSON map.
@@ -50,7 +51,8 @@ abstract class $UsersSharedCopyWith<$Res> {
       _$UsersSharedCopyWithImpl<$Res, UsersShared>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'request_id') int requestId, List<SharedUser> users});
+      {@JsonKey(name: 'request_id') int requestId,
+      @JsonKey(name: 'users') List<SharedUser> users});
 }
 
 /// @nodoc
@@ -93,7 +95,8 @@ abstract class _$$UsersSharedImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'request_id') int requestId, List<SharedUser> users});
+      {@JsonKey(name: 'request_id') int requestId,
+      @JsonKey(name: 'users') List<SharedUser> users});
 }
 
 /// @nodoc
@@ -130,7 +133,7 @@ class __$$UsersSharedImplCopyWithImpl<$Res>
 class _$UsersSharedImpl implements _UsersShared {
   const _$UsersSharedImpl(
       {@JsonKey(name: 'request_id') required this.requestId,
-      required final List<SharedUser> users})
+      @JsonKey(name: 'users') required final List<SharedUser> users})
       : _users = users;
 
   factory _$UsersSharedImpl.fromJson(Map<String, dynamic> json) =>
@@ -158,6 +161,7 @@ class _$UsersSharedImpl implements _UsersShared {
   /// users and could be unable to use these identifiers, unless the users are
   /// already known to the bot by some other means.
   @override
+  @JsonKey(name: 'users')
   List<SharedUser> get users {
     if (_users is EqualUnmodifiableListView) return _users;
     // ignore: implicit_dynamic_type
@@ -187,8 +191,9 @@ class _$UsersSharedImpl implements _UsersShared {
 
 abstract class _UsersShared implements UsersShared {
   const factory _UsersShared(
-      {@JsonKey(name: 'request_id') required final int requestId,
-      required final List<SharedUser> users}) = _$UsersSharedImpl;
+          {@JsonKey(name: 'request_id') required final int requestId,
+          @JsonKey(name: 'users') required final List<SharedUser> users}) =
+      _$UsersSharedImpl;
 
   factory _UsersShared.fromJson(Map<String, dynamic> json) =
       _$UsersSharedImpl.fromJson;
@@ -206,6 +211,7 @@ abstract class _UsersShared implements UsersShared {
   /// users and could be unable to use these identifiers, unless the users are
   /// already known to the bot by some other means.
   @override
+  @JsonKey(name: 'users')
   List<SharedUser> get users;
 
   /// Create a copy of UsersShared

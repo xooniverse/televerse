@@ -15,13 +15,13 @@ class ChatMemberUpdated with _$ChatMemberUpdated implements WithChat, WithUser {
   /// Creates a new [ChatMemberUpdated] object.
   const factory ChatMemberUpdated({
     /// Chat the user belongs to
-    required Chat chat,
+    @JsonKey(name: 'chat') required Chat chat,
 
     /// Performer of the action, which resulted in the change
     @JsonKey(name: 'from') required User from,
 
     /// Date the change was done in Unix time
-    required int date,
+    @JsonKey(name: 'date') required int date,
 
     /// Previous information about the chat member
     @JsonKey(name: 'old_chat_member') required ChatMember oldChatMember,

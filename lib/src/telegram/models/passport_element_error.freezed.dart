@@ -395,9 +395,9 @@ abstract class _$$PassportElementErrorFrontSideImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PassportElementErrorSource source,
-      PassportType type,
-      String message,
+      {@JsonKey(name: 'source') PassportElementErrorSource source,
+      @JsonKey(name: 'type') PassportType type,
+      @JsonKey(name: 'message') String message,
       @JsonKey(name: 'file_hash') String fileHash});
 }
 
@@ -447,9 +447,10 @@ class __$$PassportElementErrorFrontSideImplCopyWithImpl<$Res>
 class _$PassportElementErrorFrontSideImpl
     implements PassportElementErrorFrontSide {
   const _$PassportElementErrorFrontSideImpl(
-      {this.source = PassportElementErrorSource.frontSide,
-      required this.type,
-      required this.message,
+      {@JsonKey(name: 'source')
+      this.source = PassportElementErrorSource.frontSide,
+      @JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'message') required this.message,
       @JsonKey(name: 'file_hash') required this.fileHash})
       : assert(source == PassportElementErrorSource.frontSide,
             'source must be PassportElementErrorSource.frontSide');
@@ -460,15 +461,17 @@ class _$PassportElementErrorFrontSideImpl
 
   /// Error source, must be "front_side"
   @override
-  @JsonKey()
+  @JsonKey(name: 'source')
   final PassportElementErrorSource source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   final PassportType type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   final String message;
 
   /// Base64-encoded hash of the file with the front side of the document
@@ -561,9 +564,9 @@ class _$PassportElementErrorFrontSideImpl
 
 abstract class PassportElementErrorFrontSide implements PassportElementError {
   const factory PassportElementErrorFrontSide(
-          {final PassportElementErrorSource source,
-          required final PassportType type,
-          required final String message,
+          {@JsonKey(name: 'source') final PassportElementErrorSource source,
+          @JsonKey(name: 'type') required final PassportType type,
+          @JsonKey(name: 'message') required final String message,
           @JsonKey(name: 'file_hash') required final String fileHash}) =
       _$PassportElementErrorFrontSideImpl;
 
@@ -572,14 +575,17 @@ abstract class PassportElementErrorFrontSide implements PassportElementError {
 
   /// Error source, must be "front_side"
   @override
+  @JsonKey(name: 'source')
   PassportElementErrorSource get source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   PassportType get type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   String get message;
 
   /// Base64-encoded hash of the file with the front side of the document
@@ -605,9 +611,9 @@ abstract class _$$PassportElementErrorReverseSideImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PassportElementErrorSource source,
-      PassportType type,
-      String message,
+      {@JsonKey(name: 'source') PassportElementErrorSource source,
+      @JsonKey(name: 'type') PassportType type,
+      @JsonKey(name: 'message') String message,
       @JsonKey(name: 'file_hash') String fileHash});
 }
 
@@ -657,9 +663,10 @@ class __$$PassportElementErrorReverseSideImplCopyWithImpl<$Res>
 class _$PassportElementErrorReverseSideImpl
     implements PassportElementErrorReverseSide {
   const _$PassportElementErrorReverseSideImpl(
-      {this.source = PassportElementErrorSource.reverseSide,
-      required this.type,
-      required this.message,
+      {@JsonKey(name: 'source')
+      this.source = PassportElementErrorSource.reverseSide,
+      @JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'message') required this.message,
       @JsonKey(name: 'file_hash') required this.fileHash})
       : assert(source == PassportElementErrorSource.reverseSide,
             'source must be PassportElementErrorSource.reverseSide');
@@ -670,15 +677,17 @@ class _$PassportElementErrorReverseSideImpl
 
   /// Error source, must be "reverse_side"
   @override
-  @JsonKey()
+  @JsonKey(name: 'source')
   final PassportElementErrorSource source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   final PassportType type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   final String message;
 
   /// Base64-encoded hash of the file with the reverse side of the document
@@ -771,9 +780,9 @@ class _$PassportElementErrorReverseSideImpl
 
 abstract class PassportElementErrorReverseSide implements PassportElementError {
   const factory PassportElementErrorReverseSide(
-          {final PassportElementErrorSource source,
-          required final PassportType type,
-          required final String message,
+          {@JsonKey(name: 'source') final PassportElementErrorSource source,
+          @JsonKey(name: 'type') required final PassportType type,
+          @JsonKey(name: 'message') required final String message,
           @JsonKey(name: 'file_hash') required final String fileHash}) =
       _$PassportElementErrorReverseSideImpl;
 
@@ -782,14 +791,17 @@ abstract class PassportElementErrorReverseSide implements PassportElementError {
 
   /// Error source, must be "reverse_side"
   @override
+  @JsonKey(name: 'source')
   PassportElementErrorSource get source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   PassportType get type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   String get message;
 
   /// Base64-encoded hash of the file with the reverse side of the document
@@ -815,9 +827,9 @@ abstract class _$$PassportElementErrorSelfieImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PassportElementErrorSource source,
-      PassportType type,
-      String message,
+      {@JsonKey(name: 'source') PassportElementErrorSource source,
+      @JsonKey(name: 'type') PassportType type,
+      @JsonKey(name: 'message') String message,
       @JsonKey(name: 'file_hash') String fileHash});
 }
 
@@ -866,9 +878,9 @@ class __$$PassportElementErrorSelfieImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PassportElementErrorSelfieImpl implements PassportElementErrorSelfie {
   const _$PassportElementErrorSelfieImpl(
-      {this.source = PassportElementErrorSource.selfie,
-      required this.type,
-      required this.message,
+      {@JsonKey(name: 'source') this.source = PassportElementErrorSource.selfie,
+      @JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'message') required this.message,
       @JsonKey(name: 'file_hash') required this.fileHash})
       : assert(source == PassportElementErrorSource.selfie,
             'source must be PassportElementErrorSource.selfie');
@@ -879,15 +891,17 @@ class _$PassportElementErrorSelfieImpl implements PassportElementErrorSelfie {
 
   /// Error source, must be "selfie"
   @override
-  @JsonKey()
+  @JsonKey(name: 'source')
   final PassportElementErrorSource source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   final PassportType type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   final String message;
 
   /// Base64-encoded hash of the file with the selfie
@@ -979,9 +993,9 @@ class _$PassportElementErrorSelfieImpl implements PassportElementErrorSelfie {
 
 abstract class PassportElementErrorSelfie implements PassportElementError {
   const factory PassportElementErrorSelfie(
-          {final PassportElementErrorSource source,
-          required final PassportType type,
-          required final String message,
+          {@JsonKey(name: 'source') final PassportElementErrorSource source,
+          @JsonKey(name: 'type') required final PassportType type,
+          @JsonKey(name: 'message') required final String message,
           @JsonKey(name: 'file_hash') required final String fileHash}) =
       _$PassportElementErrorSelfieImpl;
 
@@ -990,14 +1004,17 @@ abstract class PassportElementErrorSelfie implements PassportElementError {
 
   /// Error source, must be "selfie"
   @override
+  @JsonKey(name: 'source')
   PassportElementErrorSource get source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   PassportType get type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   String get message;
 
   /// Base64-encoded hash of the file with the selfie
@@ -1022,9 +1039,9 @@ abstract class _$$PassportElementErrorFileImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PassportElementErrorSource source,
-      PassportType type,
-      String message,
+      {@JsonKey(name: 'source') PassportElementErrorSource source,
+      @JsonKey(name: 'type') PassportType type,
+      @JsonKey(name: 'message') String message,
       @JsonKey(name: 'file_hash') String fileHash});
 }
 
@@ -1073,9 +1090,9 @@ class __$$PassportElementErrorFileImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PassportElementErrorFileImpl implements PassportElementErrorFile {
   const _$PassportElementErrorFileImpl(
-      {this.source = PassportElementErrorSource.file,
-      required this.type,
-      required this.message,
+      {@JsonKey(name: 'source') this.source = PassportElementErrorSource.file,
+      @JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'message') required this.message,
       @JsonKey(name: 'file_hash') required this.fileHash})
       : assert(source == PassportElementErrorSource.file,
             'source must be PassportElementErrorSource.file');
@@ -1085,15 +1102,17 @@ class _$PassportElementErrorFileImpl implements PassportElementErrorFile {
 
   /// Error source, must be "file"
   @override
-  @JsonKey()
+  @JsonKey(name: 'source')
   final PassportElementErrorSource source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   final PassportType type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   final String message;
 
   /// Base64-encoded file hash
@@ -1185,9 +1204,9 @@ class _$PassportElementErrorFileImpl implements PassportElementErrorFile {
 
 abstract class PassportElementErrorFile implements PassportElementError {
   const factory PassportElementErrorFile(
-          {final PassportElementErrorSource source,
-          required final PassportType type,
-          required final String message,
+          {@JsonKey(name: 'source') final PassportElementErrorSource source,
+          @JsonKey(name: 'type') required final PassportType type,
+          @JsonKey(name: 'message') required final String message,
           @JsonKey(name: 'file_hash') required final String fileHash}) =
       _$PassportElementErrorFileImpl;
 
@@ -1196,14 +1215,17 @@ abstract class PassportElementErrorFile implements PassportElementError {
 
   /// Error source, must be "file"
   @override
+  @JsonKey(name: 'source')
   PassportElementErrorSource get source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   PassportType get type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   String get message;
 
   /// Base64-encoded file hash
@@ -1228,9 +1250,9 @@ abstract class _$$PassportElementErrorFilesImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PassportElementErrorSource source,
-      PassportType type,
-      String message,
+      {@JsonKey(name: 'source') PassportElementErrorSource source,
+      @JsonKey(name: 'type') PassportType type,
+      @JsonKey(name: 'message') String message,
       @JsonKey(name: 'file_hashes') List<String> fileHashes});
 }
 
@@ -1279,9 +1301,9 @@ class __$$PassportElementErrorFilesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PassportElementErrorFilesImpl implements PassportElementErrorFiles {
   const _$PassportElementErrorFilesImpl(
-      {this.source = PassportElementErrorSource.files,
-      required this.type,
-      required this.message,
+      {@JsonKey(name: 'source') this.source = PassportElementErrorSource.files,
+      @JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'message') required this.message,
       @JsonKey(name: 'file_hashes') required final List<String> fileHashes})
       : assert(source == PassportElementErrorSource.files,
             'source must be PassportElementErrorSource.files'),
@@ -1292,15 +1314,17 @@ class _$PassportElementErrorFilesImpl implements PassportElementErrorFiles {
 
   /// Error source, must be "files"
   @override
-  @JsonKey()
+  @JsonKey(name: 'source')
   final PassportElementErrorSource source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   final PassportType type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   final String message;
 
   /// List of base64-encoded file hashes
@@ -1399,9 +1423,9 @@ class _$PassportElementErrorFilesImpl implements PassportElementErrorFiles {
 
 abstract class PassportElementErrorFiles implements PassportElementError {
   const factory PassportElementErrorFiles(
-          {final PassportElementErrorSource source,
-          required final PassportType type,
-          required final String message,
+          {@JsonKey(name: 'source') final PassportElementErrorSource source,
+          @JsonKey(name: 'type') required final PassportType type,
+          @JsonKey(name: 'message') required final String message,
           @JsonKey(name: 'file_hashes')
           required final List<String> fileHashes}) =
       _$PassportElementErrorFilesImpl;
@@ -1411,14 +1435,17 @@ abstract class PassportElementErrorFiles implements PassportElementError {
 
   /// Error source, must be "files"
   @override
+  @JsonKey(name: 'source')
   PassportElementErrorSource get source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   PassportType get type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   String get message;
 
   /// List of base64-encoded file hashes
@@ -1443,9 +1470,9 @@ abstract class _$$PassportElementErrorTranslationFileImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PassportElementErrorSource source,
-      PassportType type,
-      String message,
+      {@JsonKey(name: 'source') PassportElementErrorSource source,
+      @JsonKey(name: 'type') PassportType type,
+      @JsonKey(name: 'message') String message,
       @JsonKey(name: 'file_hash') String fileHash});
 }
 
@@ -1495,9 +1522,10 @@ class __$$PassportElementErrorTranslationFileImplCopyWithImpl<$Res>
 class _$PassportElementErrorTranslationFileImpl
     implements PassportElementErrorTranslationFile {
   const _$PassportElementErrorTranslationFileImpl(
-      {this.source = PassportElementErrorSource.translationFile,
-      required this.type,
-      required this.message,
+      {@JsonKey(name: 'source')
+      this.source = PassportElementErrorSource.translationFile,
+      @JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'message') required this.message,
       @JsonKey(name: 'file_hash') required this.fileHash})
       : assert(source == PassportElementErrorSource.translationFile,
             'source must be PassportElementErrorSource.translationFile');
@@ -1508,15 +1536,17 @@ class _$PassportElementErrorTranslationFileImpl
 
   /// Error source, must be "translation_file"
   @override
-  @JsonKey()
+  @JsonKey(name: 'source')
   final PassportElementErrorSource source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   final PassportType type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   final String message;
 
   /// Base64-encoded file hash
@@ -1610,9 +1640,9 @@ class _$PassportElementErrorTranslationFileImpl
 abstract class PassportElementErrorTranslationFile
     implements PassportElementError {
   const factory PassportElementErrorTranslationFile(
-          {final PassportElementErrorSource source,
-          required final PassportType type,
-          required final String message,
+          {@JsonKey(name: 'source') final PassportElementErrorSource source,
+          @JsonKey(name: 'type') required final PassportType type,
+          @JsonKey(name: 'message') required final String message,
           @JsonKey(name: 'file_hash') required final String fileHash}) =
       _$PassportElementErrorTranslationFileImpl;
 
@@ -1622,14 +1652,17 @@ abstract class PassportElementErrorTranslationFile
 
   /// Error source, must be "translation_file"
   @override
+  @JsonKey(name: 'source')
   PassportElementErrorSource get source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   PassportType get type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   String get message;
 
   /// Base64-encoded file hash
@@ -1655,9 +1688,9 @@ abstract class _$$PassportElementErrorTranslationFilesImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PassportElementErrorSource source,
-      PassportType type,
-      String message,
+      {@JsonKey(name: 'source') PassportElementErrorSource source,
+      @JsonKey(name: 'type') PassportType type,
+      @JsonKey(name: 'message') String message,
       @JsonKey(name: 'file_hashes') List<String> fileHashes});
 }
 
@@ -1707,9 +1740,10 @@ class __$$PassportElementErrorTranslationFilesImplCopyWithImpl<$Res>
 class _$PassportElementErrorTranslationFilesImpl
     implements PassportElementErrorTranslationFiles {
   const _$PassportElementErrorTranslationFilesImpl(
-      {this.source = PassportElementErrorSource.translationFiles,
-      required this.type,
-      required this.message,
+      {@JsonKey(name: 'source')
+      this.source = PassportElementErrorSource.translationFiles,
+      @JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'message') required this.message,
       @JsonKey(name: 'file_hashes') required final List<String> fileHashes})
       : assert(source == PassportElementErrorSource.translationFiles,
             'source must be PassportElementErrorSource.translationFiles'),
@@ -1721,15 +1755,17 @@ class _$PassportElementErrorTranslationFilesImpl
 
   /// Error source, must be "translation_files"
   @override
-  @JsonKey()
+  @JsonKey(name: 'source')
   final PassportElementErrorSource source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   final PassportType type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   final String message;
 
   /// List of base64-encoded file hashes
@@ -1830,9 +1866,9 @@ class _$PassportElementErrorTranslationFilesImpl
 abstract class PassportElementErrorTranslationFiles
     implements PassportElementError {
   const factory PassportElementErrorTranslationFiles(
-          {final PassportElementErrorSource source,
-          required final PassportType type,
-          required final String message,
+          {@JsonKey(name: 'source') final PassportElementErrorSource source,
+          @JsonKey(name: 'type') required final PassportType type,
+          @JsonKey(name: 'message') required final String message,
           @JsonKey(name: 'file_hashes')
           required final List<String> fileHashes}) =
       _$PassportElementErrorTranslationFilesImpl;
@@ -1843,14 +1879,17 @@ abstract class PassportElementErrorTranslationFiles
 
   /// Error source, must be "translation_files"
   @override
+  @JsonKey(name: 'source')
   PassportElementErrorSource get source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   PassportType get type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   String get message;
 
   /// List of base64-encoded file hashes
@@ -1876,9 +1915,9 @@ abstract class _$$PassportElementErrorUnspecifiedImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PassportElementErrorSource source,
-      PassportType type,
-      String message,
+      {@JsonKey(name: 'source') PassportElementErrorSource source,
+      @JsonKey(name: 'type') PassportType type,
+      @JsonKey(name: 'message') String message,
       @JsonKey(name: 'element_hash') String elementHash});
 }
 
@@ -1928,9 +1967,10 @@ class __$$PassportElementErrorUnspecifiedImplCopyWithImpl<$Res>
 class _$PassportElementErrorUnspecifiedImpl
     implements PassportElementErrorUnspecified {
   const _$PassportElementErrorUnspecifiedImpl(
-      {this.source = PassportElementErrorSource.unspecified,
-      required this.type,
-      required this.message,
+      {@JsonKey(name: 'source')
+      this.source = PassportElementErrorSource.unspecified,
+      @JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'message') required this.message,
       @JsonKey(name: 'element_hash') required this.elementHash})
       : assert(source == PassportElementErrorSource.unspecified,
             'source must be PassportElementErrorSource.unspecified');
@@ -1941,15 +1981,17 @@ class _$PassportElementErrorUnspecifiedImpl
 
   /// Error source, must be "unspecified"
   @override
-  @JsonKey()
+  @JsonKey(name: 'source')
   final PassportElementErrorSource source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   final PassportType type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   final String message;
 
   /// Base64-encoded element hash
@@ -2042,9 +2084,9 @@ class _$PassportElementErrorUnspecifiedImpl
 
 abstract class PassportElementErrorUnspecified implements PassportElementError {
   const factory PassportElementErrorUnspecified(
-          {final PassportElementErrorSource source,
-          required final PassportType type,
-          required final String message,
+          {@JsonKey(name: 'source') final PassportElementErrorSource source,
+          @JsonKey(name: 'type') required final PassportType type,
+          @JsonKey(name: 'message') required final String message,
           @JsonKey(name: 'element_hash') required final String elementHash}) =
       _$PassportElementErrorUnspecifiedImpl;
 
@@ -2053,14 +2095,17 @@ abstract class PassportElementErrorUnspecified implements PassportElementError {
 
   /// Error source, must be "unspecified"
   @override
+  @JsonKey(name: 'source')
   PassportElementErrorSource get source;
 
   /// The section of the user's Telegram Passport which has the error
   @override
+  @JsonKey(name: 'type')
   PassportType get type;
 
   /// Error message
   @override
+  @JsonKey(name: 'message')
   String get message;
 
   /// Base64-encoded element hash

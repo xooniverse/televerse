@@ -21,13 +21,16 @@ CallbackQuery _$CallbackQueryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CallbackQuery {
   /// Unique identifier for this query
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Sender
+  @JsonKey(name: 'from')
   User get from => throw _privateConstructorUsedError;
 
   /// Optional. Message sent by the bot with the callback button that
   /// originated the query
+  @JsonKey(name: 'message')
   MaybeInaccessibleMessage? get message => throw _privateConstructorUsedError;
 
   /// Optional. Identifier of the message sent via the bot in inline mode,
@@ -44,6 +47,7 @@ mixin _$CallbackQuery {
   /// Optional. Data associated with the callback button. Be aware that the
   /// message originated the query can contain no callback buttons with this
   /// data.
+  @JsonKey(name: 'data')
   String? get data => throw _privateConstructorUsedError;
 
   /// Optional. Short name of a Game to be returned, serves as the unique
@@ -68,12 +72,12 @@ abstract class $CallbackQueryCopyWith<$Res> {
       _$CallbackQueryCopyWithImpl<$Res, CallbackQuery>;
   @useResult
   $Res call(
-      {String id,
-      User from,
-      MaybeInaccessibleMessage? message,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'message') MaybeInaccessibleMessage? message,
       @JsonKey(name: 'inline_message_id') String? inlineMessageId,
       @JsonKey(name: 'chat_instance') String chatInstance,
-      String? data,
+      @JsonKey(name: 'data') String? data,
       @JsonKey(name: 'game_short_name') String? gameShortName});
 
   $UserCopyWith<$Res> get from;
@@ -154,12 +158,12 @@ abstract class _$$CallbackQueryImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      User from,
-      MaybeInaccessibleMessage? message,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'message') MaybeInaccessibleMessage? message,
       @JsonKey(name: 'inline_message_id') String? inlineMessageId,
       @JsonKey(name: 'chat_instance') String chatInstance,
-      String? data,
+      @JsonKey(name: 'data') String? data,
       @JsonKey(name: 'game_short_name') String? gameShortName});
 
   @override
@@ -224,12 +228,12 @@ class __$$CallbackQueryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CallbackQueryImpl implements _CallbackQuery {
   const _$CallbackQueryImpl(
-      {required this.id,
-      required this.from,
-      this.message,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'from') required this.from,
+      @JsonKey(name: 'message') this.message,
       @JsonKey(name: 'inline_message_id') this.inlineMessageId,
       @JsonKey(name: 'chat_instance') required this.chatInstance,
-      this.data,
+      @JsonKey(name: 'data') this.data,
       @JsonKey(name: 'game_short_name') this.gameShortName});
 
   factory _$CallbackQueryImpl.fromJson(Map<String, dynamic> json) =>
@@ -237,15 +241,18 @@ class _$CallbackQueryImpl implements _CallbackQuery {
 
   /// Unique identifier for this query
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Sender
   @override
+  @JsonKey(name: 'from')
   final User from;
 
   /// Optional. Message sent by the bot with the callback button that
   /// originated the query
   @override
+  @JsonKey(name: 'message')
   final MaybeInaccessibleMessage? message;
 
   /// Optional. Identifier of the message sent via the bot in inline mode,
@@ -265,6 +272,7 @@ class _$CallbackQueryImpl implements _CallbackQuery {
   /// message originated the query can contain no callback buttons with this
   /// data.
   @override
+  @JsonKey(name: 'data')
   final String? data;
 
   /// Optional. Short name of a Game to be returned, serves as the unique
@@ -296,12 +304,12 @@ class _$CallbackQueryImpl implements _CallbackQuery {
 
 abstract class _CallbackQuery implements CallbackQuery {
   const factory _CallbackQuery(
-          {required final String id,
-          required final User from,
-          final MaybeInaccessibleMessage? message,
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'from') required final User from,
+          @JsonKey(name: 'message') final MaybeInaccessibleMessage? message,
           @JsonKey(name: 'inline_message_id') final String? inlineMessageId,
           @JsonKey(name: 'chat_instance') required final String chatInstance,
-          final String? data,
+          @JsonKey(name: 'data') final String? data,
           @JsonKey(name: 'game_short_name') final String? gameShortName}) =
       _$CallbackQueryImpl;
 
@@ -310,15 +318,18 @@ abstract class _CallbackQuery implements CallbackQuery {
 
   /// Unique identifier for this query
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Sender
   @override
+  @JsonKey(name: 'from')
   User get from;
 
   /// Optional. Message sent by the bot with the callback button that
   /// originated the query
   @override
+  @JsonKey(name: 'message')
   MaybeInaccessibleMessage? get message;
 
   /// Optional. Identifier of the message sent via the bot in inline mode,
@@ -338,6 +349,7 @@ abstract class _CallbackQuery implements CallbackQuery {
   /// message originated the query can contain no callback buttons with this
   /// data.
   @override
+  @JsonKey(name: 'data')
   String? get data;
 
   /// Optional. Short name of a Game to be returned, serves as the unique

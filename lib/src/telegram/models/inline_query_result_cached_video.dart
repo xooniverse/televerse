@@ -19,20 +19,20 @@ class InlineQueryResultCachedVideo
   /// Constructs an [InlineQueryResultCachedVideo] object
   const factory InlineQueryResultCachedVideo({
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// A valid file identifier for the video file
     @JsonKey(name: 'video_file_id') required String videoFileId,
 
     /// Title for the result
-    required String title,
+    @JsonKey(name: 'title') required String title,
 
     /// Optional. Short description of the result
-    String? description,
+    @JsonKey(name: 'description') String? description,
 
     /// Optional. Caption of the video to be sent, 0-1024 characters after
     /// entities parsing
-    String? caption,
+    @JsonKey(name: 'caption') String? caption,
 
     /// Optional. Mode for parsing entities in the video caption. See formatting
     /// options for more details.
@@ -54,7 +54,9 @@ class InlineQueryResultCachedVideo
     @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
 
     /// Type of the result, always [InlineQueryResultType.video]
-    @Default(InlineQueryResultType.video) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.video)
+    InlineQueryResultType type,
   }) = _InlineQueryResultCachedVideo;
 
   /// Creates an [InlineQueryResultCachedVideo] from JSON data

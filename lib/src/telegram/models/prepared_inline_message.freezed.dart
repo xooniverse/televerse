@@ -22,6 +22,7 @@ PreparedInlineMessage _$PreparedInlineMessageFromJson(
 /// @nodoc
 mixin _$PreparedInlineMessage {
   /// Unique identifier of the prepared message.
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Expiration date of the prepared message, in Unix time. Expired prepared
@@ -45,7 +46,9 @@ abstract class $PreparedInlineMessageCopyWith<$Res> {
           $Res Function(PreparedInlineMessage) then) =
       _$PreparedInlineMessageCopyWithImpl<$Res, PreparedInlineMessage>;
   @useResult
-  $Res call({String id, @JsonKey(name: 'expiration_date') int expirationDate});
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'expiration_date') int expirationDate});
 }
 
 /// @nodoc
@@ -89,7 +92,9 @@ abstract class _$$PreparedInlineMessageImplCopyWith<$Res>
       __$$PreparedInlineMessageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, @JsonKey(name: 'expiration_date') int expirationDate});
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'expiration_date') int expirationDate});
 }
 
 /// @nodoc
@@ -126,7 +131,7 @@ class __$$PreparedInlineMessageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PreparedInlineMessageImpl implements _PreparedInlineMessage {
   const _$PreparedInlineMessageImpl(
-      {required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'expiration_date') required this.expirationDate});
 
   factory _$PreparedInlineMessageImpl.fromJson(Map<String, dynamic> json) =>
@@ -134,6 +139,7 @@ class _$PreparedInlineMessageImpl implements _PreparedInlineMessage {
 
   /// Unique identifier of the prepared message.
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Expiration date of the prepared message, in Unix time. Expired prepared
@@ -166,7 +172,7 @@ class _$PreparedInlineMessageImpl implements _PreparedInlineMessage {
 
 abstract class _PreparedInlineMessage implements PreparedInlineMessage {
   const factory _PreparedInlineMessage(
-      {required final String id,
+      {@JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'expiration_date')
       required final int expirationDate}) = _$PreparedInlineMessageImpl;
 
@@ -175,6 +181,7 @@ abstract class _PreparedInlineMessage implements PreparedInlineMessage {
 
   /// Unique identifier of the prepared message.
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Expiration date of the prepared message, in Unix time. Expired prepared

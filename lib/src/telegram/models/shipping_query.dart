@@ -13,10 +13,10 @@ class ShippingQuery with _$ShippingQuery implements WithUser {
   /// Constructs a [ShippingQuery] object
   const factory ShippingQuery({
     /// Unique query identifier
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// User who sent the query
-    required User from,
+    @JsonKey(name: 'from') required User from,
 
     /// Bot specified invoice payload
     @JsonKey(name: 'invoice_payload') required String invoicePayload,

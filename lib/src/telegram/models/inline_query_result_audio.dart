@@ -21,16 +21,16 @@ class InlineQueryResultAudio
   /// Constructs an [InlineQueryResultAudio] object
   const factory InlineQueryResultAudio({
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// A valid URL for the audio file
     @JsonKey(name: 'audio_url') required String audioUrl,
 
     /// Title
-    required String title,
+    @JsonKey(name: 'title') required String title,
 
     /// Optional. Caption, 0-1024 characters after entities parsing
-    String? caption,
+    @JsonKey(name: 'caption') String? caption,
 
     /// Optional. Mode for parsing entities in the audio caption. See formatting
     /// options for more details.
@@ -41,7 +41,7 @@ class InlineQueryResultAudio
     @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
 
     /// Optional. Performer
-    String? performer,
+    @JsonKey(name: 'performer') String? performer,
 
     /// Optional. Audio duration in seconds
     @JsonKey(name: 'audio_duration') int? audioDuration,
@@ -55,7 +55,9 @@ class InlineQueryResultAudio
     InputMessageContent? inputMessageContent,
 
     /// Type of the result, always [InlineQueryResultType.audio]
-    @Default(InlineQueryResultType.audio) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.audio)
+    InlineQueryResultType type,
   }) = _InlineQueryResultAudio;
 
   /// Creates an [InlineQueryResultAudio] object from JSON

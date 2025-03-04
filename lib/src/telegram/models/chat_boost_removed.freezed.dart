@@ -21,6 +21,7 @@ ChatBoostRemoved _$ChatBoostRemovedFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ChatBoostRemoved {
   /// Chat which was boosted
+  @JsonKey(name: 'chat')
   Chat get chat => throw _privateConstructorUsedError;
 
   /// Unique identifier of the boost
@@ -51,7 +52,7 @@ abstract class $ChatBoostRemovedCopyWith<$Res> {
       _$ChatBoostRemovedCopyWithImpl<$Res, ChatBoostRemoved>;
   @useResult
   $Res call(
-      {Chat chat,
+      {@JsonKey(name: 'chat') Chat chat,
       @JsonKey(name: 'boost_id') String boostId,
       @JsonKey(name: 'remove_date') int removeDate,
       ChatBoostSource source});
@@ -130,7 +131,7 @@ abstract class _$$ChatBoostRemovedImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Chat chat,
+      {@JsonKey(name: 'chat') Chat chat,
       @JsonKey(name: 'boost_id') String boostId,
       @JsonKey(name: 'remove_date') int removeDate,
       ChatBoostSource source});
@@ -184,7 +185,7 @@ class __$$ChatBoostRemovedImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatBoostRemovedImpl implements _ChatBoostRemoved {
   const _$ChatBoostRemovedImpl(
-      {required this.chat,
+      {@JsonKey(name: 'chat') required this.chat,
       @JsonKey(name: 'boost_id') required this.boostId,
       @JsonKey(name: 'remove_date') required this.removeDate,
       required this.source});
@@ -194,6 +195,7 @@ class _$ChatBoostRemovedImpl implements _ChatBoostRemoved {
 
   /// Chat which was boosted
   @override
+  @JsonKey(name: 'chat')
   final Chat chat;
 
   /// Unique identifier of the boost
@@ -234,7 +236,7 @@ class _$ChatBoostRemovedImpl implements _ChatBoostRemoved {
 
 abstract class _ChatBoostRemoved implements ChatBoostRemoved {
   const factory _ChatBoostRemoved(
-      {required final Chat chat,
+      {@JsonKey(name: 'chat') required final Chat chat,
       @JsonKey(name: 'boost_id') required final String boostId,
       @JsonKey(name: 'remove_date') required final int removeDate,
       required final ChatBoostSource source}) = _$ChatBoostRemovedImpl;
@@ -244,6 +246,7 @@ abstract class _ChatBoostRemoved implements ChatBoostRemoved {
 
   /// Chat which was boosted
   @override
+  @JsonKey(name: 'chat')
   Chat get chat;
 
   /// Unique identifier of the boost

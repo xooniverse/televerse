@@ -20,20 +20,22 @@ class InlineQueryResultCachedMpeg4Gif
   /// Creates an [InlineQueryResultCachedMpeg4Gif] object
   const factory InlineQueryResultCachedMpeg4Gif({
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// A valid file identifier for the MPEG4 file
     @JsonKey(name: 'mpeg4_file_id') required String mpeg4FileId,
 
     /// Type of the result, always [InlineQueryResultType.mpeg4Gif]
-    @Default(InlineQueryResultType.mpeg4Gif) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.mpeg4Gif)
+    InlineQueryResultType type,
 
     /// Optional. Title for the result
-    String? title,
+    @JsonKey(name: 'title') String? title,
 
     /// Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after
     /// entities parsing
-    String? caption,
+    @JsonKey(name: 'caption') String? caption,
 
     /// Optional. Mode for parsing entities in the caption. See formatting
     /// options for more details.

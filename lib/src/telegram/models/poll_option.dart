@@ -10,7 +10,7 @@ class PollOption with _$PollOption {
   /// Constructs a [PollOption] object.
   const factory PollOption({
     /// Option text, 1-100 characters
-    required String text,
+    @JsonKey(name: 'text') required String text,
 
     /// Number of users that voted for this option
     @JsonKey(name: 'voter_count') required int voterCount,

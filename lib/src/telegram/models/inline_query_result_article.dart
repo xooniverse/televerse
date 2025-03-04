@@ -15,10 +15,10 @@ class InlineQueryResultArticle
   /// This object represents a link to an article or web page.
   const factory InlineQueryResultArticle({
     /// Unique identifier for this result
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Title of the result
-    required String title,
+    @JsonKey(name: 'title') required String title,
 
     /// Content of the message to be sent
     @InputMessageContentConverter()
@@ -28,10 +28,10 @@ class InlineQueryResultArticle
     @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
 
     /// Optional. URL of the result
-    String? url,
+    @JsonKey(name: 'url') String? url,
 
     /// Optional. Short description of the result
-    String? description,
+    @JsonKey(name: 'description') String? description,
 
     /// Optional. Url of the thumbnail for the result
     @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
@@ -43,7 +43,9 @@ class InlineQueryResultArticle
     @JsonKey(name: 'thumbnail_height') int? thumbnailHeight,
 
     /// Type of the result, always [InlineQueryResultType.article]
-    @Default(InlineQueryResultType.article) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.article)
+    InlineQueryResultType type,
   }) = _InlineQueryResultArticle;
 
   /// Creates an instance of [InlineQueryResultArticle] from JSON data

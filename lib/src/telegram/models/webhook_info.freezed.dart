@@ -21,6 +21,7 @@ WebhookInfo _$WebhookInfoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$WebhookInfo {
   /// Webhook URL, may be empty if webhook is not set up
+  @JsonKey(name: 'url')
   String get url => throw _privateConstructorUsedError;
 
   /// True, if a custom certificate was provided for webhook certificate
@@ -78,7 +79,7 @@ abstract class $WebhookInfoCopyWith<$Res> {
       _$WebhookInfoCopyWithImpl<$Res, WebhookInfo>;
   @useResult
   $Res call(
-      {String url,
+      {@JsonKey(name: 'url') String url,
       @JsonKey(name: 'has_custom_certificate') bool hasCustomCertificate,
       @JsonKey(name: 'pending_update_count') int pendingUpdateCount,
       @JsonKey(name: 'ip_address') String? ipAddress,
@@ -164,7 +165,7 @@ abstract class _$$WebhookInfoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String url,
+      {@JsonKey(name: 'url') String url,
       @JsonKey(name: 'has_custom_certificate') bool hasCustomCertificate,
       @JsonKey(name: 'pending_update_count') int pendingUpdateCount,
       @JsonKey(name: 'ip_address') String? ipAddress,
@@ -243,7 +244,7 @@ class __$$WebhookInfoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WebhookInfoImpl implements _WebhookInfo {
   const _$WebhookInfoImpl(
-      {required this.url,
+      {@JsonKey(name: 'url') required this.url,
       @JsonKey(name: 'has_custom_certificate')
       required this.hasCustomCertificate,
       @JsonKey(name: 'pending_update_count') required this.pendingUpdateCount,
@@ -260,6 +261,7 @@ class _$WebhookInfoImpl implements _WebhookInfo {
 
   /// Webhook URL, may be empty if webhook is not set up
   @override
+  @JsonKey(name: 'url')
   final String url;
 
   /// True, if a custom certificate was provided for webhook certificate
@@ -341,7 +343,7 @@ class _$WebhookInfoImpl implements _WebhookInfo {
 
 abstract class _WebhookInfo implements WebhookInfo {
   const factory _WebhookInfo(
-      {required final String url,
+      {@JsonKey(name: 'url') required final String url,
       @JsonKey(name: 'has_custom_certificate')
       required final bool hasCustomCertificate,
       @JsonKey(name: 'pending_update_count')
@@ -359,6 +361,7 @@ abstract class _WebhookInfo implements WebhookInfo {
 
   /// Webhook URL, may be empty if webhook is not set up
   @override
+  @JsonKey(name: 'url')
   String get url;
 
   /// True, if a custom certificate was provided for webhook certificate

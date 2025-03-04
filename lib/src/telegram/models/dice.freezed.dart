@@ -21,12 +21,14 @@ Dice _$DiceFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Dice {
   /// Emoji on which the dice throw animation is based
+  @JsonKey(name: 'emoji')
   DiceEmoji get emoji => throw _privateConstructorUsedError;
 
   /// Value of the dice.
   ///
   /// 1-6 for "🎲", "🎯" and "🎳" base emoji, 1-5 for "🏀" and "⚽" base
   /// emoji, 1-64 for "🎰" base emoji
+  @JsonKey(name: 'value')
   int get value => throw _privateConstructorUsedError;
 
   /// Serializes this Dice to a JSON map.
@@ -43,7 +45,9 @@ abstract class $DiceCopyWith<$Res> {
   factory $DiceCopyWith(Dice value, $Res Function(Dice) then) =
       _$DiceCopyWithImpl<$Res, Dice>;
   @useResult
-  $Res call({DiceEmoji emoji, int value});
+  $Res call(
+      {@JsonKey(name: 'emoji') DiceEmoji emoji,
+      @JsonKey(name: 'value') int value});
 }
 
 /// @nodoc
@@ -84,7 +88,9 @@ abstract class _$$DiceImplCopyWith<$Res> implements $DiceCopyWith<$Res> {
       __$$DiceImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DiceEmoji emoji, int value});
+  $Res call(
+      {@JsonKey(name: 'emoji') DiceEmoji emoji,
+      @JsonKey(name: 'value') int value});
 }
 
 /// @nodoc
@@ -118,13 +124,16 @@ class __$$DiceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DiceImpl implements _Dice {
-  const _$DiceImpl({required this.emoji, required this.value});
+  const _$DiceImpl(
+      {@JsonKey(name: 'emoji') required this.emoji,
+      @JsonKey(name: 'value') required this.value});
 
   factory _$DiceImpl.fromJson(Map<String, dynamic> json) =>
       _$$DiceImplFromJson(json);
 
   /// Emoji on which the dice throw animation is based
   @override
+  @JsonKey(name: 'emoji')
   final DiceEmoji emoji;
 
   /// Value of the dice.
@@ -132,6 +141,7 @@ class _$DiceImpl implements _Dice {
   /// 1-6 for "🎲", "🎯" and "🎳" base emoji, 1-5 for "🏀" and "⚽" base
   /// emoji, 1-64 for "🎰" base emoji
   @override
+  @JsonKey(name: 'value')
   final int value;
 
   @override
@@ -157,12 +167,14 @@ class _$DiceImpl implements _Dice {
 
 abstract class _Dice implements Dice {
   const factory _Dice(
-      {required final DiceEmoji emoji, required final int value}) = _$DiceImpl;
+      {@JsonKey(name: 'emoji') required final DiceEmoji emoji,
+      @JsonKey(name: 'value') required final int value}) = _$DiceImpl;
 
   factory _Dice.fromJson(Map<String, dynamic> json) = _$DiceImpl.fromJson;
 
   /// Emoji on which the dice throw animation is based
   @override
+  @JsonKey(name: 'emoji')
   DiceEmoji get emoji;
 
   /// Value of the dice.
@@ -170,6 +182,7 @@ abstract class _Dice implements Dice {
   /// 1-6 for "🎲", "🎯" and "🎳" base emoji, 1-5 for "🏀" and "⚽" base
   /// emoji, 1-64 for "🎰" base emoji
   @override
+  @JsonKey(name: 'value')
   int get value;
 
   /// Create a copy of Dice

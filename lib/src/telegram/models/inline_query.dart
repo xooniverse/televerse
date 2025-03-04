@@ -21,16 +21,16 @@ class InlineQuery with _$InlineQuery implements WithUser {
   /// [location] Sender location, only for bots that request user location
   const factory InlineQuery({
     /// Unique identifier for this query
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Sender
-    required User from,
+    @JsonKey(name: 'from') required User from,
 
     /// Text of the query (up to 256 characters)
-    required String query,
+    @JsonKey(name: 'query') required String query,
 
     /// Offset of the results to be returned, can be controlled by the bot
-    required String offset,
+    @JsonKey(name: 'offset') required String offset,
 
     /// Optional. Type of the chat from which the inline query was sent.
     /// Can be either "sender" for a private chat with the inline query sender,

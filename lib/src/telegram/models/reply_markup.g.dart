@@ -51,11 +51,11 @@ _$ReplyKeyboardMarkupImpl _$$ReplyKeyboardMarkupImplFromJson(
               .map((e) => KeyboardButton.fromJson(e as Map<String, dynamic>))
               .toList())
           .toList(),
-      resizeKeyboard: json['resizeKeyboard'] as bool?,
-      oneTimeKeyboard: json['oneTimeKeyboard'] as bool?,
-      inputFieldPlaceholder: json['inputFieldPlaceholder'] as String?,
+      resizeKeyboard: json['resize_keyboard'] as bool?,
+      oneTimeKeyboard: json['one_time_keyboard'] as bool?,
+      inputFieldPlaceholder: json['input_field_placeholder'] as String?,
       selective: json['selective'] as bool?,
-      isPersistent: json['isPersistent'] as bool?,
+      isPersistent: json['is_persistent'] as bool?,
       $type: json['runtimeType'] as String?,
     );
 
@@ -63,12 +63,13 @@ Map<String, dynamic> _$$ReplyKeyboardMarkupImplToJson(
         _$ReplyKeyboardMarkupImpl instance) =>
     <String, dynamic>{
       'keyboard': instance.keyboard,
-      if (instance.resizeKeyboard case final value?) 'resizeKeyboard': value,
-      if (instance.oneTimeKeyboard case final value?) 'oneTimeKeyboard': value,
+      if (instance.resizeKeyboard case final value?) 'resize_keyboard': value,
+      if (instance.oneTimeKeyboard case final value?)
+        'one_time_keyboard': value,
       if (instance.inputFieldPlaceholder case final value?)
-        'inputFieldPlaceholder': value,
+        'input_field_placeholder': value,
       if (instance.selective case final value?) 'selective': value,
-      if (instance.isPersistent case final value?) 'isPersistent': value,
+      if (instance.isPersistent case final value?) 'is_persistent': value,
       'runtimeType': instance.$type,
     };
 

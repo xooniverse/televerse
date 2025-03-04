@@ -22,6 +22,7 @@ WebAppData _$WebAppDataFromJson(Map<String, dynamic> json) {
 mixin _$WebAppData {
   /// The data. Be aware that a bad client can send arbitrary data in this
   /// field.
+  @JsonKey(name: 'data')
   String get data => throw _privateConstructorUsedError;
 
   /// Text of the web_app keyboard button from which the Web App was opened.
@@ -45,7 +46,9 @@ abstract class $WebAppDataCopyWith<$Res> {
           WebAppData value, $Res Function(WebAppData) then) =
       _$WebAppDataCopyWithImpl<$Res, WebAppData>;
   @useResult
-  $Res call({String data, @JsonKey(name: 'button_text') String buttonText});
+  $Res call(
+      {@JsonKey(name: 'data') String data,
+      @JsonKey(name: 'button_text') String buttonText});
 }
 
 /// @nodoc
@@ -87,7 +90,9 @@ abstract class _$$WebAppDataImplCopyWith<$Res>
       __$$WebAppDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String data, @JsonKey(name: 'button_text') String buttonText});
+  $Res call(
+      {@JsonKey(name: 'data') String data,
+      @JsonKey(name: 'button_text') String buttonText});
 }
 
 /// @nodoc
@@ -123,7 +128,7 @@ class __$$WebAppDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WebAppDataImpl implements _WebAppData {
   const _$WebAppDataImpl(
-      {required this.data,
+      {@JsonKey(name: 'data') required this.data,
       @JsonKey(name: 'button_text') required this.buttonText});
 
   factory _$WebAppDataImpl.fromJson(Map<String, dynamic> json) =>
@@ -132,6 +137,7 @@ class _$WebAppDataImpl implements _WebAppData {
   /// The data. Be aware that a bad client can send arbitrary data in this
   /// field.
   @override
+  @JsonKey(name: 'data')
   final String data;
 
   /// Text of the web_app keyboard button from which the Web App was opened.
@@ -163,7 +169,7 @@ class _$WebAppDataImpl implements _WebAppData {
 
 abstract class _WebAppData implements WebAppData {
   const factory _WebAppData(
-          {required final String data,
+          {@JsonKey(name: 'data') required final String data,
           @JsonKey(name: 'button_text') required final String buttonText}) =
       _$WebAppDataImpl;
 
@@ -173,6 +179,7 @@ abstract class _WebAppData implements WebAppData {
   /// The data. Be aware that a bad client can send arbitrary data in this
   /// field.
   @override
+  @JsonKey(name: 'data')
   String get data;
 
   /// Text of the web_app keyboard button from which the Web App was opened.

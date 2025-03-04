@@ -22,9 +22,11 @@ InlineQueryResultArticle _$InlineQueryResultArticleFromJson(
 /// @nodoc
 mixin _$InlineQueryResultArticle {
   /// Unique identifier for this result
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Title of the result
+  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
 
   /// Content of the message to be sent
@@ -37,9 +39,11 @@ mixin _$InlineQueryResultArticle {
   InlineKeyboardMarkup? get replyMarkup => throw _privateConstructorUsedError;
 
   /// Optional. URL of the result
+  @JsonKey(name: 'url')
   String? get url => throw _privateConstructorUsedError;
 
   /// Optional. Short description of the result
+  @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
 
   /// Optional. Url of the thumbnail for the result
@@ -55,6 +59,7 @@ mixin _$InlineQueryResultArticle {
   int? get thumbnailHeight => throw _privateConstructorUsedError;
 
   /// Type of the result, always [InlineQueryResultType.article]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Serializes this InlineQueryResultArticle to a JSON map.
@@ -74,16 +79,16 @@ abstract class $InlineQueryResultArticleCopyWith<$Res> {
       _$InlineQueryResultArticleCopyWithImpl<$Res, InlineQueryResultArticle>;
   @useResult
   $Res call(
-      {String id,
-      String title,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'title') String title,
       @InputMessageContentConverter() InputMessageContent inputMessageContent,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      String? url,
-      String? description,
+      @JsonKey(name: 'url') String? url,
+      @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
       @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
       @JsonKey(name: 'thumbnail_height') int? thumbnailHeight,
-      InlineQueryResultType type});
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
   $InputMessageContentCopyWith<$Res> get inputMessageContent;
 }
@@ -181,16 +186,16 @@ abstract class _$$InlineQueryResultArticleImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String title,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'title') String title,
       @InputMessageContentConverter() InputMessageContent inputMessageContent,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      String? url,
-      String? description,
+      @JsonKey(name: 'url') String? url,
+      @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
       @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
       @JsonKey(name: 'thumbnail_height') int? thumbnailHeight,
-      InlineQueryResultType type});
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
   @override
   $InputMessageContentCopyWith<$Res> get inputMessageContent;
@@ -271,26 +276,28 @@ class __$$InlineQueryResultArticleImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultArticleImpl implements _InlineQueryResultArticle {
   const _$InlineQueryResultArticleImpl(
-      {required this.id,
-      required this.title,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'title') required this.title,
       @InputMessageContentConverter() required this.inputMessageContent,
       @JsonKey(name: 'reply_markup') this.replyMarkup,
-      this.url,
-      this.description,
+      @JsonKey(name: 'url') this.url,
+      @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'thumbnail_url') this.thumbnailUrl,
       @JsonKey(name: 'thumbnail_width') this.thumbnailWidth,
       @JsonKey(name: 'thumbnail_height') this.thumbnailHeight,
-      this.type = InlineQueryResultType.article});
+      @JsonKey(name: 'type') this.type = InlineQueryResultType.article});
 
   factory _$InlineQueryResultArticleImpl.fromJson(Map<String, dynamic> json) =>
       _$$InlineQueryResultArticleImplFromJson(json);
 
   /// Unique identifier for this result
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Title of the result
   @override
+  @JsonKey(name: 'title')
   final String title;
 
   /// Content of the message to be sent
@@ -305,10 +312,12 @@ class _$InlineQueryResultArticleImpl implements _InlineQueryResultArticle {
 
   /// Optional. URL of the result
   @override
+  @JsonKey(name: 'url')
   final String? url;
 
   /// Optional. Short description of the result
   @override
+  @JsonKey(name: 'description')
   final String? description;
 
   /// Optional. Url of the thumbnail for the result
@@ -328,7 +337,7 @@ class _$InlineQueryResultArticleImpl implements _InlineQueryResultArticle {
 
   /// Type of the result, always [InlineQueryResultType.article]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   @override
@@ -355,16 +364,17 @@ class _$InlineQueryResultArticleImpl implements _InlineQueryResultArticle {
 
 abstract class _InlineQueryResultArticle implements InlineQueryResultArticle {
   const factory _InlineQueryResultArticle(
-      {required final String id,
-      required final String title,
+      {@JsonKey(name: 'id') required final String id,
+      @JsonKey(name: 'title') required final String title,
       @InputMessageContentConverter()
       required final InputMessageContent inputMessageContent,
       @JsonKey(name: 'reply_markup') final InlineKeyboardMarkup? replyMarkup,
-      final String? url,
-      final String? description,
+      @JsonKey(name: 'url') final String? url,
+      @JsonKey(name: 'description') final String? description,
       @JsonKey(name: 'thumbnail_url') final String? thumbnailUrl,
       @JsonKey(name: 'thumbnail_width') final int? thumbnailWidth,
       @JsonKey(name: 'thumbnail_height') final int? thumbnailHeight,
+      @JsonKey(name: 'type')
       final InlineQueryResultType type}) = _$InlineQueryResultArticleImpl;
 
   factory _InlineQueryResultArticle.fromJson(Map<String, dynamic> json) =
@@ -372,10 +382,12 @@ abstract class _InlineQueryResultArticle implements InlineQueryResultArticle {
 
   /// Unique identifier for this result
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Title of the result
   @override
+  @JsonKey(name: 'title')
   String get title;
 
   /// Content of the message to be sent
@@ -390,10 +402,12 @@ abstract class _InlineQueryResultArticle implements InlineQueryResultArticle {
 
   /// Optional. URL of the result
   @override
+  @JsonKey(name: 'url')
   String? get url;
 
   /// Optional. Short description of the result
   @override
+  @JsonKey(name: 'description')
   String? get description;
 
   /// Optional. Url of the thumbnail for the result
@@ -413,6 +427,7 @@ abstract class _InlineQueryResultArticle implements InlineQueryResultArticle {
 
   /// Type of the result, always [InlineQueryResultType.article]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Create a copy of InlineQueryResultArticle

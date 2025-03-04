@@ -19,23 +19,25 @@ class InlineQueryResultCachedPhoto
   /// Constructs an [InlineQueryResultCachedPhoto] object
   const factory InlineQueryResultCachedPhoto({
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// A valid file identifier of the photo
     @JsonKey(name: 'photo_file_id') required String photoFileId,
 
     /// Type of the result, always [InlineQueryResultType.photo]
-    @Default(InlineQueryResultType.photo) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.photo)
+    InlineQueryResultType type,
 
     /// Optional. Title for the result
-    String? title,
+    @JsonKey(name: 'title') String? title,
 
     /// Optional. Short description of the result
-    String? description,
+    @JsonKey(name: 'description') String? description,
 
     /// Optional. Caption of the photo to be sent, 0-1024 characters after
     /// entities parsing
-    String? caption,
+    @JsonKey(name: 'caption') String? caption,
 
     /// Optional. Mode for parsing entities in the photo caption. See formatting
     /// options for more details.

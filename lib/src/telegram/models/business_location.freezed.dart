@@ -21,9 +21,11 @@ BusinessLocation _$BusinessLocationFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BusinessLocation {
   /// Address of the business.
+  @JsonKey(name: 'address')
   String get address => throw _privateConstructorUsedError;
 
   /// Optional. Location of the business.
+  @JsonKey(name: 'location')
   Location? get location => throw _privateConstructorUsedError;
 
   /// Serializes this BusinessLocation to a JSON map.
@@ -42,7 +44,9 @@ abstract class $BusinessLocationCopyWith<$Res> {
           BusinessLocation value, $Res Function(BusinessLocation) then) =
       _$BusinessLocationCopyWithImpl<$Res, BusinessLocation>;
   @useResult
-  $Res call({String address, Location? location});
+  $Res call(
+      {@JsonKey(name: 'address') String address,
+      @JsonKey(name: 'location') Location? location});
 
   $LocationCopyWith<$Res>? get location;
 }
@@ -100,7 +104,9 @@ abstract class _$$BusinessLocationImplCopyWith<$Res>
       __$$BusinessLocationImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String address, Location? location});
+  $Res call(
+      {@JsonKey(name: 'address') String address,
+      @JsonKey(name: 'location') Location? location});
 
   @override
   $LocationCopyWith<$Res>? get location;
@@ -138,17 +144,21 @@ class __$$BusinessLocationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BusinessLocationImpl implements _BusinessLocation {
-  const _$BusinessLocationImpl({required this.address, this.location});
+  const _$BusinessLocationImpl(
+      {@JsonKey(name: 'address') required this.address,
+      @JsonKey(name: 'location') this.location});
 
   factory _$BusinessLocationImpl.fromJson(Map<String, dynamic> json) =>
       _$$BusinessLocationImplFromJson(json);
 
   /// Address of the business.
   @override
+  @JsonKey(name: 'address')
   final String address;
 
   /// Optional. Location of the business.
   @override
+  @JsonKey(name: 'location')
   final Location? location;
 
   @override
@@ -175,18 +185,21 @@ class _$BusinessLocationImpl implements _BusinessLocation {
 
 abstract class _BusinessLocation implements BusinessLocation {
   const factory _BusinessLocation(
-      {required final String address,
-      final Location? location}) = _$BusinessLocationImpl;
+          {@JsonKey(name: 'address') required final String address,
+          @JsonKey(name: 'location') final Location? location}) =
+      _$BusinessLocationImpl;
 
   factory _BusinessLocation.fromJson(Map<String, dynamic> json) =
       _$BusinessLocationImpl.fromJson;
 
   /// Address of the business.
   @override
+  @JsonKey(name: 'address')
   String get address;
 
   /// Optional. Location of the business.
   @override
+  @JsonKey(name: 'location')
   Location? get location;
 
   /// Create a copy of BusinessLocation

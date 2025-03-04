@@ -210,10 +210,12 @@ sealed class ChatMember with _$ChatMember implements _ChatMemberImpl {
   /// The status of this member is always "left".
   const factory ChatMember.left({
     /// The member's status in the chat
-    @Default(ChatMemberStatus.left) ChatMemberStatus status,
+    @JsonKey(name: 'status')
+    @Default(ChatMemberStatus.left)
+    ChatMemberStatus status,
 
     /// Information about the user
-    required User user,
+    @JsonKey(name: 'user') required User user,
   }) = ChatMemberLeft;
 
   /// Represents a chat member that was banned in the chat and can't return to

@@ -30,7 +30,7 @@ class User with _$User implements WithID {
     /// difficulty/silent defects in interpreting it. But it has at most 52
     /// significant bits, so a 64-bit integer or double-precision float type are
     /// safe for storing this identifier.
-    required int id,
+    @JsonKey(name: 'id') required int id,
 
     /// True, if this user is a bot
     @JsonKey(name: 'is_bot') required bool isBot,
@@ -42,7 +42,7 @@ class User with _$User implements WithID {
     @JsonKey(name: 'last_name') String? lastName,
 
     /// Optional. User's or bot's username
-    String? username,
+    @JsonKey(name: 'username') String? username,
 
     /// Optional. IETF language tag of the user's language
     @JsonKey(name: 'language_code') String? languageCode,

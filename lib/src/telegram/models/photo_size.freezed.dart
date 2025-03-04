@@ -32,9 +32,11 @@ mixin _$PhotoSize {
   String get fileUniqueId => throw _privateConstructorUsedError;
 
   /// Photo width
+  @JsonKey(name: 'width')
   int get width => throw _privateConstructorUsedError;
 
   /// Photo height
+  @JsonKey(name: 'height')
   int get height => throw _privateConstructorUsedError;
 
   /// Optional. File size in bytes
@@ -59,8 +61,8 @@ abstract class $PhotoSizeCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'file_id') String fileId,
       @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      int width,
-      int height,
+      @JsonKey(name: 'width') int width,
+      @JsonKey(name: 'height') int height,
       @JsonKey(name: 'file_size') int? fileSize});
 }
 
@@ -121,8 +123,8 @@ abstract class _$$PhotoSizeImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'file_id') String fileId,
       @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      int width,
-      int height,
+      @JsonKey(name: 'width') int width,
+      @JsonKey(name: 'height') int height,
       @JsonKey(name: 'file_size') int? fileSize});
 }
 
@@ -176,8 +178,8 @@ class _$PhotoSizeImpl implements _PhotoSize {
   const _$PhotoSizeImpl(
       {@JsonKey(name: 'file_id') required this.fileId,
       @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
-      required this.width,
-      required this.height,
+      @JsonKey(name: 'width') required this.width,
+      @JsonKey(name: 'height') required this.height,
       @JsonKey(name: 'file_size') this.fileSize});
 
   factory _$PhotoSizeImpl.fromJson(Map<String, dynamic> json) =>
@@ -198,10 +200,12 @@ class _$PhotoSizeImpl implements _PhotoSize {
 
   /// Photo width
   @override
+  @JsonKey(name: 'width')
   final int width;
 
   /// Photo height
   @override
+  @JsonKey(name: 'height')
   final int height;
 
   /// Optional. File size in bytes
@@ -234,8 +238,8 @@ abstract class _PhotoSize implements PhotoSize {
   const factory _PhotoSize(
       {@JsonKey(name: 'file_id') required final String fileId,
       @JsonKey(name: 'file_unique_id') required final String fileUniqueId,
-      required final int width,
-      required final int height,
+      @JsonKey(name: 'width') required final int width,
+      @JsonKey(name: 'height') required final int height,
       @JsonKey(name: 'file_size') final int? fileSize}) = _$PhotoSizeImpl;
 
   factory _PhotoSize.fromJson(Map<String, dynamic> json) =
@@ -256,10 +260,12 @@ abstract class _PhotoSize implements PhotoSize {
 
   /// Photo width
   @override
+  @JsonKey(name: 'width')
   int get width;
 
   /// Photo height
   @override
+  @JsonKey(name: 'height')
   int get height;
 
   /// Optional. File size in bytes

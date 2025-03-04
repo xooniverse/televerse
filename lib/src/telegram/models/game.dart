@@ -13,22 +13,22 @@ class Game with _$Game {
   /// Constructs a [Game] object.
   const factory Game({
     /// Title of the game
-    required String title,
+    @JsonKey(name: 'title') required String title,
 
     /// Description of the game
-    required String description,
+    @JsonKey(name: 'description') required String description,
 
     /// Photo that will be displayed in the game message in chats.
-    required List<PhotoSize> photo,
+    @JsonKey(name: 'photo') required List<PhotoSize> photo,
 
     /// Optional. Brief description of the game or high scores included in the game message.
-    String? text,
+    @JsonKey(name: 'text') String? text,
 
     /// Optional. Special entities that appear in text, such as usernames, URLs, bot commands, etc.
     @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
 
     /// Optional. Animation that will be displayed in the game message in chats.
-    Animation? animation,
+    @JsonKey(name: 'animation') Animation? animation,
   }) = _Game;
 
   /// Creates a [Game] object from JSON object.

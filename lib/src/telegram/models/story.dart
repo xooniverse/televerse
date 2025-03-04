@@ -10,10 +10,10 @@ class Story with _$Story {
   /// Constructs an instance of [Story].
   const factory Story({
     /// Chat that posted the story
-    required Chat chat,
+    @JsonKey(name: 'chat') required Chat chat,
 
     /// Unique identifier for the story in the chat
-    required int id,
+    @JsonKey(name: 'id') required int id,
   }) = _Story;
 
   /// Constructs an instance of [Story] from a JSON map.

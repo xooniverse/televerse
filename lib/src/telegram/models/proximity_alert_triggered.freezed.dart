@@ -22,12 +22,15 @@ ProximityAlertTriggered _$ProximityAlertTriggeredFromJson(
 /// @nodoc
 mixin _$ProximityAlertTriggered {
   /// User that triggered the alert
+  @JsonKey(name: 'traveler')
   User get traveler => throw _privateConstructorUsedError;
 
   /// User that set the alert
+  @JsonKey(name: 'watcher')
   User get watcher => throw _privateConstructorUsedError;
 
   /// The distance between the users
+  @JsonKey(name: 'distance')
   int get distance => throw _privateConstructorUsedError;
 
   /// Serializes this ProximityAlertTriggered to a JSON map.
@@ -46,7 +49,10 @@ abstract class $ProximityAlertTriggeredCopyWith<$Res> {
           $Res Function(ProximityAlertTriggered) then) =
       _$ProximityAlertTriggeredCopyWithImpl<$Res, ProximityAlertTriggered>;
   @useResult
-  $Res call({User traveler, User watcher, int distance});
+  $Res call(
+      {@JsonKey(name: 'traveler') User traveler,
+      @JsonKey(name: 'watcher') User watcher,
+      @JsonKey(name: 'distance') int distance});
 
   $UserCopyWith<$Res> get traveler;
   $UserCopyWith<$Res> get watcher;
@@ -118,7 +124,10 @@ abstract class _$$ProximityAlertTriggeredImplCopyWith<$Res>
       __$$ProximityAlertTriggeredImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User traveler, User watcher, int distance});
+  $Res call(
+      {@JsonKey(name: 'traveler') User traveler,
+      @JsonKey(name: 'watcher') User watcher,
+      @JsonKey(name: 'distance') int distance});
 
   @override
   $UserCopyWith<$Res> get traveler;
@@ -166,21 +175,26 @@ class __$$ProximityAlertTriggeredImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProximityAlertTriggeredImpl implements _ProximityAlertTriggered {
   const _$ProximityAlertTriggeredImpl(
-      {required this.traveler, required this.watcher, required this.distance});
+      {@JsonKey(name: 'traveler') required this.traveler,
+      @JsonKey(name: 'watcher') required this.watcher,
+      @JsonKey(name: 'distance') required this.distance});
 
   factory _$ProximityAlertTriggeredImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProximityAlertTriggeredImplFromJson(json);
 
   /// User that triggered the alert
   @override
+  @JsonKey(name: 'traveler')
   final User traveler;
 
   /// User that set the alert
   @override
+  @JsonKey(name: 'watcher')
   final User watcher;
 
   /// The distance between the users
   @override
+  @JsonKey(name: 'distance')
   final int distance;
 
   @override
@@ -207,23 +221,27 @@ class _$ProximityAlertTriggeredImpl implements _ProximityAlertTriggered {
 
 abstract class _ProximityAlertTriggered implements ProximityAlertTriggered {
   const factory _ProximityAlertTriggered(
-      {required final User traveler,
-      required final User watcher,
-      required final int distance}) = _$ProximityAlertTriggeredImpl;
+          {@JsonKey(name: 'traveler') required final User traveler,
+          @JsonKey(name: 'watcher') required final User watcher,
+          @JsonKey(name: 'distance') required final int distance}) =
+      _$ProximityAlertTriggeredImpl;
 
   factory _ProximityAlertTriggered.fromJson(Map<String, dynamic> json) =
       _$ProximityAlertTriggeredImpl.fromJson;
 
   /// User that triggered the alert
   @override
+  @JsonKey(name: 'traveler')
   User get traveler;
 
   /// User that set the alert
   @override
+  @JsonKey(name: 'watcher')
   User get watcher;
 
   /// The distance between the users
   @override
+  @JsonKey(name: 'distance')
   int get distance;
 
   /// Create a copy of ProximityAlertTriggered

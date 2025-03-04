@@ -13,14 +13,14 @@ class EncryptedCredentials with _$EncryptedCredentials {
     /// Base64-encoded encrypted JSON-serialized data with unique user's
     /// payload, data hashes, and secrets required for EncryptedPassportElement
     /// decryption and authentication
-    required String data,
+    @JsonKey(name: 'data') required String data,
 
     /// Base64-encoded data hash for data authentication
-    required String hash,
+    @JsonKey(name: 'hash') required String hash,
 
     /// Base64-encoded secret, encrypted with the bot's public RSA key, required
     /// for data decryption
-    required String secret,
+    @JsonKey(name: 'secret') required String secret,
   }) = _EncryptedCredentials;
 
   /// Creates a new [EncryptedCredentials] object from json.

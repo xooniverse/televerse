@@ -10,10 +10,10 @@ class ChatLocation with _$ChatLocation {
   /// Creates a new [ChatLocation] object.
   const factory ChatLocation({
     /// The location to which the supergroup is connected.
-    required Location location,
+    @JsonKey(name: 'location') required Location location,
 
     /// Location address; 1-64 characters, as defined by the chat owner
-    required String address,
+    @JsonKey(name: 'address') required String address,
   }) = _ChatLocation;
 
   /// Creates a new [ChatLocation] object from json.

@@ -12,10 +12,10 @@ class PassportData with _$PassportData {
   const factory PassportData({
     /// Array with information about documents and other Telegram Passport
     /// elements that was shared with the bot
-    required List<EncryptedPassportElement> data,
+    @JsonKey(name: 'data') required List<EncryptedPassportElement> data,
 
     /// Encrypted credentials required to decrypt the data
-    required EncryptedCredentials credentials,
+    @JsonKey(name: 'credentials') required EncryptedCredentials credentials,
   }) = _PassportData;
 
   /// Creates a [PassportData] object from JSON object

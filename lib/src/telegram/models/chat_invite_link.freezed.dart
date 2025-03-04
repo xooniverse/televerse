@@ -25,6 +25,7 @@ mixin _$ChatInviteLink {
   String get inviteLink => throw _privateConstructorUsedError;
 
   /// Creator of the link
+  @JsonKey(name: 'creator')
   User? get creator => throw _privateConstructorUsedError;
 
   /// True, if users joining the chat via the link need to be approved by chat administrators
@@ -40,6 +41,7 @@ mixin _$ChatInviteLink {
   bool? get isRevoked => throw _privateConstructorUsedError;
 
   /// Optional. Invite link name
+  @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
 
   /// Optional. Point in time (Unix timestamp) when the link will expire or has been expired
@@ -74,11 +76,11 @@ abstract class $ChatInviteLinkCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'invite_link') String inviteLink,
-      User? creator,
+      @JsonKey(name: 'creator') User? creator,
       @JsonKey(name: 'creates_join_request') bool? createsJoinRequest,
       @JsonKey(name: 'is_primary') bool? isPrimary,
       @JsonKey(name: 'is_revoked') bool? isRevoked,
-      String? name,
+      @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'expire_date') int? expireDate,
       @JsonKey(name: 'member_limit') int? memberLimit,
       @JsonKey(name: 'pending_member_count') int? pendingMemberCount});
@@ -176,11 +178,11 @@ abstract class _$$ChatInviteLinkImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'invite_link') String inviteLink,
-      User? creator,
+      @JsonKey(name: 'creator') User? creator,
       @JsonKey(name: 'creates_join_request') bool? createsJoinRequest,
       @JsonKey(name: 'is_primary') bool? isPrimary,
       @JsonKey(name: 'is_revoked') bool? isRevoked,
-      String? name,
+      @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'expire_date') int? expireDate,
       @JsonKey(name: 'member_limit') int? memberLimit,
       @JsonKey(name: 'pending_member_count') int? pendingMemberCount});
@@ -258,11 +260,11 @@ class __$$ChatInviteLinkImplCopyWithImpl<$Res>
 class _$ChatInviteLinkImpl implements _ChatInviteLink {
   const _$ChatInviteLinkImpl(
       {@JsonKey(name: 'invite_link') required this.inviteLink,
-      this.creator,
+      @JsonKey(name: 'creator') this.creator,
       @JsonKey(name: 'creates_join_request') this.createsJoinRequest,
       @JsonKey(name: 'is_primary') this.isPrimary,
       @JsonKey(name: 'is_revoked') this.isRevoked,
-      this.name,
+      @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'expire_date') this.expireDate,
       @JsonKey(name: 'member_limit') this.memberLimit,
       @JsonKey(name: 'pending_member_count') this.pendingMemberCount});
@@ -277,6 +279,7 @@ class _$ChatInviteLinkImpl implements _ChatInviteLink {
 
   /// Creator of the link
   @override
+  @JsonKey(name: 'creator')
   final User? creator;
 
   /// True, if users joining the chat via the link need to be approved by chat administrators
@@ -296,6 +299,7 @@ class _$ChatInviteLinkImpl implements _ChatInviteLink {
 
   /// Optional. Invite link name
   @override
+  @JsonKey(name: 'name')
   final String? name;
 
   /// Optional. Point in time (Unix timestamp) when the link will expire or has been expired
@@ -340,11 +344,11 @@ class _$ChatInviteLinkImpl implements _ChatInviteLink {
 abstract class _ChatInviteLink implements ChatInviteLink {
   const factory _ChatInviteLink(
       {@JsonKey(name: 'invite_link') required final String inviteLink,
-      final User? creator,
+      @JsonKey(name: 'creator') final User? creator,
       @JsonKey(name: 'creates_join_request') final bool? createsJoinRequest,
       @JsonKey(name: 'is_primary') final bool? isPrimary,
       @JsonKey(name: 'is_revoked') final bool? isRevoked,
-      final String? name,
+      @JsonKey(name: 'name') final String? name,
       @JsonKey(name: 'expire_date') final int? expireDate,
       @JsonKey(name: 'member_limit') final int? memberLimit,
       @JsonKey(name: 'pending_member_count')
@@ -360,6 +364,7 @@ abstract class _ChatInviteLink implements ChatInviteLink {
 
   /// Creator of the link
   @override
+  @JsonKey(name: 'creator')
   User? get creator;
 
   /// True, if users joining the chat via the link need to be approved by chat administrators
@@ -379,6 +384,7 @@ abstract class _ChatInviteLink implements ChatInviteLink {
 
   /// Optional. Invite link name
   @override
+  @JsonKey(name: 'name')
   String? get name;
 
   /// Optional. Point in time (Unix timestamp) when the link will expire or has been expired

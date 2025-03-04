@@ -40,6 +40,7 @@ TransactionPartner _$TransactionPartnerFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TransactionPartner {
   /// Type of the transaction partner, must be "fragment"
+  @JsonKey(name: 'type')
   TransactionPartnerType get type => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -96,7 +97,7 @@ abstract class $TransactionPartnerCopyWith<$Res> {
           TransactionPartner value, $Res Function(TransactionPartner) then) =
       _$TransactionPartnerCopyWithImpl<$Res, TransactionPartner>;
   @useResult
-  $Res call({TransactionPartnerType type});
+  $Res call({@JsonKey(name: 'type') TransactionPartnerType type});
 }
 
 /// @nodoc
@@ -135,7 +136,7 @@ abstract class _$$TransactionPartnerFragmentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {TransactionPartnerType type,
+      {@JsonKey(name: 'type') TransactionPartnerType type,
       @JsonKey(name: 'withdrawal_state')
       RevenueWithdrawalState? withdrawalState});
 
@@ -192,7 +193,7 @@ class __$$TransactionPartnerFragmentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TransactionPartnerFragmentImpl implements TransactionPartnerFragment {
   const _$TransactionPartnerFragmentImpl(
-      {this.type = TransactionPartnerType.fragment,
+      {@JsonKey(name: 'type') this.type = TransactionPartnerType.fragment,
       @JsonKey(name: 'withdrawal_state') this.withdrawalState})
       : assert(type == TransactionPartnerType.fragment,
             'type must be TransactionPartnerType.fragment');
@@ -203,7 +204,7 @@ class _$TransactionPartnerFragmentImpl implements TransactionPartnerFragment {
 
   /// Type of the transaction partner, must be "fragment"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final TransactionPartnerType type;
 
   /// State of the transaction if the transaction is outgoing.
@@ -284,7 +285,7 @@ class _$TransactionPartnerFragmentImpl implements TransactionPartnerFragment {
 
 abstract class TransactionPartnerFragment implements TransactionPartner {
   const factory TransactionPartnerFragment(
-          {final TransactionPartnerType type,
+          {@JsonKey(name: 'type') final TransactionPartnerType type,
           @JsonKey(name: 'withdrawal_state')
           final RevenueWithdrawalState? withdrawalState}) =
       _$TransactionPartnerFragmentImpl;
@@ -294,6 +295,7 @@ abstract class TransactionPartnerFragment implements TransactionPartner {
 
   /// Type of the transaction partner, must be "fragment"
   @override
+  @JsonKey(name: 'type')
   TransactionPartnerType get type;
 
   /// State of the transaction if the transaction is outgoing.
@@ -318,14 +320,14 @@ abstract class _$$TransactionPartnerUserImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {TransactionPartnerType type,
-      User user,
+      {@JsonKey(name: 'type') TransactionPartnerType type,
+      @JsonKey(name: 'user') User user,
       @JsonKey(name: 'invoice_payload') String? invoicePayload,
       @JsonKey(name: 'paid_media') List<PaidMedia>? paidMedia,
       @JsonKey(name: 'paid_media_payload') String? paidMediaPayload,
       @JsonKey(name: 'subscription_period') int? subscriptionPeriod,
-      Gift? gift,
-      AffiliateInfo? affiliate});
+      @JsonKey(name: 'gift') Gift? gift,
+      @JsonKey(name: 'affiliate') AffiliateInfo? affiliate});
 
   $UserCopyWith<$Res> get user;
   $GiftCopyWith<$Res>? get gift;
@@ -434,14 +436,14 @@ class __$$TransactionPartnerUserImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TransactionPartnerUserImpl implements TransactionPartnerUser {
   const _$TransactionPartnerUserImpl(
-      {this.type = TransactionPartnerType.user,
-      required this.user,
+      {@JsonKey(name: 'type') this.type = TransactionPartnerType.user,
+      @JsonKey(name: 'user') required this.user,
       @JsonKey(name: 'invoice_payload') this.invoicePayload,
       @JsonKey(name: 'paid_media') final List<PaidMedia>? paidMedia,
       @JsonKey(name: 'paid_media_payload') this.paidMediaPayload,
       @JsonKey(name: 'subscription_period') this.subscriptionPeriod,
-      this.gift,
-      this.affiliate})
+      @JsonKey(name: 'gift') this.gift,
+      @JsonKey(name: 'affiliate') this.affiliate})
       : assert(type == TransactionPartnerType.user,
             'type must be TransactionPartnerType.user'),
         _paidMedia = paidMedia;
@@ -451,11 +453,12 @@ class _$TransactionPartnerUserImpl implements TransactionPartnerUser {
 
   /// Type of the transaction partner, must be "user"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final TransactionPartnerType type;
 
   /// Information about the user.
   @override
+  @JsonKey(name: 'user')
   final User user;
 
   /// Bot-specified invoice payload.
@@ -489,11 +492,13 @@ class _$TransactionPartnerUserImpl implements TransactionPartnerUser {
 
   /// Optional. The gift sent to the user by the bot.
   @override
+  @JsonKey(name: 'gift')
   final Gift? gift;
 
   /// Optional. Information about the affiliate that received a commission via
   /// this transaction
   @override
+  @JsonKey(name: 'affiliate')
   final AffiliateInfo? affiliate;
 
   @override
@@ -569,23 +574,26 @@ class _$TransactionPartnerUserImpl implements TransactionPartnerUser {
 
 abstract class TransactionPartnerUser implements TransactionPartner {
   const factory TransactionPartnerUser(
-      {final TransactionPartnerType type,
-      required final User user,
-      @JsonKey(name: 'invoice_payload') final String? invoicePayload,
-      @JsonKey(name: 'paid_media') final List<PaidMedia>? paidMedia,
-      @JsonKey(name: 'paid_media_payload') final String? paidMediaPayload,
-      @JsonKey(name: 'subscription_period') final int? subscriptionPeriod,
-      final Gift? gift,
-      final AffiliateInfo? affiliate}) = _$TransactionPartnerUserImpl;
+          {@JsonKey(name: 'type') final TransactionPartnerType type,
+          @JsonKey(name: 'user') required final User user,
+          @JsonKey(name: 'invoice_payload') final String? invoicePayload,
+          @JsonKey(name: 'paid_media') final List<PaidMedia>? paidMedia,
+          @JsonKey(name: 'paid_media_payload') final String? paidMediaPayload,
+          @JsonKey(name: 'subscription_period') final int? subscriptionPeriod,
+          @JsonKey(name: 'gift') final Gift? gift,
+          @JsonKey(name: 'affiliate') final AffiliateInfo? affiliate}) =
+      _$TransactionPartnerUserImpl;
 
   factory TransactionPartnerUser.fromJson(Map<String, dynamic> json) =
       _$TransactionPartnerUserImpl.fromJson;
 
   /// Type of the transaction partner, must be "user"
   @override
+  @JsonKey(name: 'type')
   TransactionPartnerType get type;
 
   /// Information about the user.
+  @JsonKey(name: 'user')
   User get user;
 
   /// Bot-specified invoice payload.
@@ -605,10 +613,12 @@ abstract class TransactionPartnerUser implements TransactionPartner {
   int? get subscriptionPeriod;
 
   /// Optional. The gift sent to the user by the bot.
+  @JsonKey(name: 'gift')
   Gift? get gift;
 
   /// Optional. Information about the affiliate that received a commission via
   /// this transaction
+  @JsonKey(name: 'affiliate')
   AffiliateInfo? get affiliate;
 
   /// Create a copy of TransactionPartner
@@ -628,7 +638,7 @@ abstract class _$$TransactionPartnerTelegramAdsImplCopyWith<$Res>
       __$$TransactionPartnerTelegramAdsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TransactionPartnerType type});
+  $Res call({@JsonKey(name: 'type') TransactionPartnerType type});
 }
 
 /// @nodoc
@@ -662,7 +672,7 @@ class __$$TransactionPartnerTelegramAdsImplCopyWithImpl<$Res>
 class _$TransactionPartnerTelegramAdsImpl
     implements TransactionPartnerTelegramAds {
   const _$TransactionPartnerTelegramAdsImpl(
-      {this.type = TransactionPartnerType.telegramAds})
+      {@JsonKey(name: 'type') this.type = TransactionPartnerType.telegramAds})
       : assert(type == TransactionPartnerType.telegramAds,
             'type must be TransactionPartnerType.telegramAds');
 
@@ -672,7 +682,7 @@ class _$TransactionPartnerTelegramAdsImpl
 
   /// Type of the transaction partner, must be "telegram_ads"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final TransactionPartnerType type;
 
   @override
@@ -749,7 +759,7 @@ class _$TransactionPartnerTelegramAdsImpl
 
 abstract class TransactionPartnerTelegramAds implements TransactionPartner {
   const factory TransactionPartnerTelegramAds(
-          {final TransactionPartnerType type}) =
+          {@JsonKey(name: 'type') final TransactionPartnerType type}) =
       _$TransactionPartnerTelegramAdsImpl;
 
   factory TransactionPartnerTelegramAds.fromJson(Map<String, dynamic> json) =
@@ -757,6 +767,7 @@ abstract class TransactionPartnerTelegramAds implements TransactionPartner {
 
   /// Type of the transaction partner, must be "telegram_ads"
   @override
+  @JsonKey(name: 'type')
   TransactionPartnerType get type;
 
   /// Create a copy of TransactionPartner
@@ -778,7 +789,7 @@ abstract class _$$TransactionPartnerTelegramApiImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {TransactionPartnerType type,
+      {@JsonKey(name: 'type') TransactionPartnerType type,
       @JsonKey(name: 'request_count') int? requestCount});
 }
 
@@ -818,7 +829,7 @@ class __$$TransactionPartnerTelegramApiImplCopyWithImpl<$Res>
 class _$TransactionPartnerTelegramApiImpl
     implements TransactionPartnerTelegramApi {
   const _$TransactionPartnerTelegramApiImpl(
-      {this.type = TransactionPartnerType.telegramApi,
+      {@JsonKey(name: 'type') this.type = TransactionPartnerType.telegramApi,
       @JsonKey(name: 'request_count') this.requestCount})
       : assert(type == TransactionPartnerType.telegramApi,
             'type must be TransactionPartnerType.telegramApi');
@@ -829,7 +840,7 @@ class _$TransactionPartnerTelegramApiImpl
 
   /// Type of the transaction partner, must be "telegram_api"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final TransactionPartnerType type;
 
   /// The number of successful requests that exceeded regular limits and were
@@ -912,7 +923,7 @@ class _$TransactionPartnerTelegramApiImpl
 
 abstract class TransactionPartnerTelegramApi implements TransactionPartner {
   const factory TransactionPartnerTelegramApi(
-          {final TransactionPartnerType type,
+          {@JsonKey(name: 'type') final TransactionPartnerType type,
           @JsonKey(name: 'request_count') final int? requestCount}) =
       _$TransactionPartnerTelegramApiImpl;
 
@@ -921,6 +932,7 @@ abstract class TransactionPartnerTelegramApi implements TransactionPartner {
 
   /// Type of the transaction partner, must be "telegram_api"
   @override
+  @JsonKey(name: 'type')
   TransactionPartnerType get type;
 
   /// The number of successful requests that exceeded regular limits and were
@@ -946,7 +958,7 @@ abstract class _$$TransactionPartnerOtherImplCopyWith<$Res>
       __$$TransactionPartnerOtherImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TransactionPartnerType type});
+  $Res call({@JsonKey(name: 'type') TransactionPartnerType type});
 }
 
 /// @nodoc
@@ -979,7 +991,7 @@ class __$$TransactionPartnerOtherImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TransactionPartnerOtherImpl implements TransactionPartnerOther {
   const _$TransactionPartnerOtherImpl(
-      {this.type = TransactionPartnerType.other})
+      {@JsonKey(name: 'type') this.type = TransactionPartnerType.other})
       : assert(type == TransactionPartnerType.other,
             'type must be TransactionPartnerType.other');
 
@@ -988,7 +1000,7 @@ class _$TransactionPartnerOtherImpl implements TransactionPartnerOther {
 
   /// Type of the transaction partner, must be "other"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final TransactionPartnerType type;
 
   @override
@@ -1063,7 +1075,8 @@ class _$TransactionPartnerOtherImpl implements TransactionPartnerOther {
 }
 
 abstract class TransactionPartnerOther implements TransactionPartner {
-  const factory TransactionPartnerOther({final TransactionPartnerType type}) =
+  const factory TransactionPartnerOther(
+          {@JsonKey(name: 'type') final TransactionPartnerType type}) =
       _$TransactionPartnerOtherImpl;
 
   factory TransactionPartnerOther.fromJson(Map<String, dynamic> json) =
@@ -1071,6 +1084,7 @@ abstract class TransactionPartnerOther implements TransactionPartner {
 
   /// Type of the transaction partner, must be "other"
   @override
+  @JsonKey(name: 'type')
   TransactionPartnerType get type;
 
   /// Create a copy of TransactionPartner
@@ -1091,7 +1105,7 @@ abstract class _$$TransactionPartnerAffiliateProgramImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {TransactionPartnerType type,
+      {@JsonKey(name: 'type') TransactionPartnerType type,
       @JsonKey(name: 'sponsor_user') User? sponsorUser,
       @JsonKey(name: 'commission_per_mille') int commissionPerMille});
 
@@ -1153,7 +1167,8 @@ class __$$TransactionPartnerAffiliateProgramImplCopyWithImpl<$Res>
 class _$TransactionPartnerAffiliateProgramImpl
     implements TransactionPartnerAffiliateProgram {
   const _$TransactionPartnerAffiliateProgramImpl(
-      {this.type = TransactionPartnerType.affiliateProgram,
+      {@JsonKey(name: 'type')
+      this.type = TransactionPartnerType.affiliateProgram,
       @JsonKey(name: 'sponsor_user') this.sponsorUser,
       @JsonKey(name: 'commission_per_mille') required this.commissionPerMille})
       : assert(type == TransactionPartnerType.affiliateProgram,
@@ -1165,7 +1180,7 @@ class _$TransactionPartnerAffiliateProgramImpl
 
   /// Type of the transaction partner, must be "affiliate_program"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final TransactionPartnerType type;
 
   /// Information about the bot that sponsored the affiliate program.
@@ -1254,7 +1269,7 @@ class _$TransactionPartnerAffiliateProgramImpl
 abstract class TransactionPartnerAffiliateProgram
     implements TransactionPartner {
   const factory TransactionPartnerAffiliateProgram(
-          {final TransactionPartnerType type,
+          {@JsonKey(name: 'type') final TransactionPartnerType type,
           @JsonKey(name: 'sponsor_user') final User? sponsorUser,
           @JsonKey(name: 'commission_per_mille')
           required final int commissionPerMille}) =
@@ -1266,6 +1281,7 @@ abstract class TransactionPartnerAffiliateProgram
 
   /// Type of the transaction partner, must be "affiliate_program"
   @override
+  @JsonKey(name: 'type')
   TransactionPartnerType get type;
 
   /// Information about the bot that sponsored the affiliate program.
@@ -1295,7 +1311,10 @@ abstract class _$$TransactionPartnerChatImplCopyWith<$Res>
       __$$TransactionPartnerChatImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TransactionPartnerType type, Chat chat, Gift? gift});
+  $Res call(
+      {@JsonKey(name: 'type') TransactionPartnerType type,
+      @JsonKey(name: 'chat') Chat chat,
+      @JsonKey(name: 'gift') Gift? gift});
 
   $ChatCopyWith<$Res> get chat;
   $GiftCopyWith<$Res>? get gift;
@@ -1364,7 +1383,9 @@ class __$$TransactionPartnerChatImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TransactionPartnerChatImpl implements TransactionPartnerChat {
   const _$TransactionPartnerChatImpl(
-      {this.type = TransactionPartnerType.chat, required this.chat, this.gift})
+      {@JsonKey(name: 'type') this.type = TransactionPartnerType.chat,
+      @JsonKey(name: 'chat') required this.chat,
+      @JsonKey(name: 'gift') this.gift})
       : assert(type == TransactionPartnerType.chat,
             'type must be TransactionPartnerType.chat');
 
@@ -1373,15 +1394,17 @@ class _$TransactionPartnerChatImpl implements TransactionPartnerChat {
 
   /// Type of the transaction partner, must be "chat"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final TransactionPartnerType type;
 
   /// Information about the chat.
   @override
+  @JsonKey(name: 'chat')
   final Chat chat;
 
   /// The gift sent to the chat by the bot.
   @override
+  @JsonKey(name: 'gift')
   final Gift? gift;
 
   @override
@@ -1457,21 +1480,24 @@ class _$TransactionPartnerChatImpl implements TransactionPartnerChat {
 
 abstract class TransactionPartnerChat implements TransactionPartner {
   const factory TransactionPartnerChat(
-      {final TransactionPartnerType type,
-      required final Chat chat,
-      final Gift? gift}) = _$TransactionPartnerChatImpl;
+      {@JsonKey(name: 'type') final TransactionPartnerType type,
+      @JsonKey(name: 'chat') required final Chat chat,
+      @JsonKey(name: 'gift') final Gift? gift}) = _$TransactionPartnerChatImpl;
 
   factory TransactionPartnerChat.fromJson(Map<String, dynamic> json) =
       _$TransactionPartnerChatImpl.fromJson;
 
   /// Type of the transaction partner, must be "chat"
   @override
+  @JsonKey(name: 'type')
   TransactionPartnerType get type;
 
   /// Information about the chat.
+  @JsonKey(name: 'chat')
   Chat get chat;
 
   /// The gift sent to the chat by the bot.
+  @JsonKey(name: 'gift')
   Gift? get gift;
 
   /// Create a copy of TransactionPartner

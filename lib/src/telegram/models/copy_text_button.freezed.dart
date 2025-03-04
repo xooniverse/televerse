@@ -21,6 +21,7 @@ CopyTextButton _$CopyTextButtonFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CopyTextButton {
   /// The text to be copied to the clipboard; 1-256 characters
+  @JsonKey(name: 'text')
   String get text => throw _privateConstructorUsedError;
 
   /// Serializes this CopyTextButton to a JSON map.
@@ -39,7 +40,7 @@ abstract class $CopyTextButtonCopyWith<$Res> {
           CopyTextButton value, $Res Function(CopyTextButton) then) =
       _$CopyTextButtonCopyWithImpl<$Res, CopyTextButton>;
   @useResult
-  $Res call({String text});
+  $Res call({@JsonKey(name: 'text') String text});
 }
 
 /// @nodoc
@@ -76,7 +77,7 @@ abstract class _$$CopyTextButtonImplCopyWith<$Res>
       __$$CopyTextButtonImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String text});
+  $Res call({@JsonKey(name: 'text') String text});
 }
 
 /// @nodoc
@@ -106,13 +107,14 @@ class __$$CopyTextButtonImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CopyTextButtonImpl implements _CopyTextButton {
-  const _$CopyTextButtonImpl({required this.text});
+  const _$CopyTextButtonImpl({@JsonKey(name: 'text') required this.text});
 
   factory _$CopyTextButtonImpl.fromJson(Map<String, dynamic> json) =>
       _$$CopyTextButtonImplFromJson(json);
 
   /// The text to be copied to the clipboard; 1-256 characters
   @override
+  @JsonKey(name: 'text')
   final String text;
 
   @override
@@ -138,7 +140,8 @@ class _$CopyTextButtonImpl implements _CopyTextButton {
 }
 
 abstract class _CopyTextButton implements CopyTextButton {
-  const factory _CopyTextButton({required final String text}) =
+  const factory _CopyTextButton(
+          {@JsonKey(name: 'text') required final String text}) =
       _$CopyTextButtonImpl;
 
   factory _CopyTextButton.fromJson(Map<String, dynamic> json) =
@@ -146,6 +149,7 @@ abstract class _CopyTextButton implements CopyTextButton {
 
   /// The text to be copied to the clipboard; 1-256 characters
   @override
+  @JsonKey(name: 'text')
   String get text;
 
   /// Create a copy of CopyTextButton

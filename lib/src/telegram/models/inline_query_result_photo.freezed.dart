@@ -22,13 +22,14 @@ InlineQueryResultPhoto _$InlineQueryResultPhotoFromJson(
 /// @nodoc
 mixin _$InlineQueryResultPhoto {
   /// Type of the result, always [InlineQueryResultType.photo]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
-  /// A valid URL of the photo. Photo must be in JPEG format. Photo size must
-  /// not exceed 5MB
+  /// A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB
   @JsonKey(name: 'photo_url')
   String get photoUrl => throw _privateConstructorUsedError;
 
@@ -45,22 +46,22 @@ mixin _$InlineQueryResultPhoto {
   int? get photoHeight => throw _privateConstructorUsedError;
 
   /// Optional. Title for the result
+  @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
 
   /// Optional. Short description of the result
+  @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
 
-  /// Optional. Caption of the photo to be sent, 0-1024 characters after
-  /// entities parsing
+  /// Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
+  @JsonKey(name: 'caption')
   String? get caption => throw _privateConstructorUsedError;
 
-  /// Optional. Mode for parsing entities in the photo caption. See formatting
-  /// options for more details.
+  /// Optional. Mode for parsing entities in the photo caption. See formatting options for more details.
   @JsonKey(name: 'parse_mode')
   ParseMode? get parseMode => throw _privateConstructorUsedError;
 
-  /// Optional. List of special entities that appear in the caption, which can
-  /// be specified instead of parse_mode
+  /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
   @JsonKey(name: 'caption_entities')
   List<MessageEntity>? get captionEntities =>
       throw _privateConstructorUsedError;
@@ -96,15 +97,15 @@ abstract class $InlineQueryResultPhotoCopyWith<$Res> {
       _$InlineQueryResultPhotoCopyWithImpl<$Res, InlineQueryResultPhoto>;
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
       @JsonKey(name: 'photo_url') String photoUrl,
       @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
       @JsonKey(name: 'photo_width') int? photoWidth,
       @JsonKey(name: 'photo_height') int? photoHeight,
-      String? title,
-      String? description,
-      String? caption,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -233,15 +234,15 @@ abstract class _$$InlineQueryResultPhotoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
       @JsonKey(name: 'photo_url') String photoUrl,
       @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
       @JsonKey(name: 'photo_width') int? photoWidth,
       @JsonKey(name: 'photo_height') int? photoHeight,
-      String? title,
-      String? description,
-      String? caption,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -349,15 +350,15 @@ class __$$InlineQueryResultPhotoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultPhotoImpl implements _InlineQueryResultPhoto {
   const _$InlineQueryResultPhotoImpl(
-      {this.type = InlineQueryResultType.photo,
-      required this.id,
+      {@JsonKey(name: 'type') this.type = InlineQueryResultType.photo,
+      @JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'photo_url') required this.photoUrl,
       @JsonKey(name: 'thumbnail_url') required this.thumbnailUrl,
       @JsonKey(name: 'photo_width') this.photoWidth,
       @JsonKey(name: 'photo_height') this.photoHeight,
-      this.title,
-      this.description,
-      this.caption,
+      @JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'description') this.description,
+      @JsonKey(name: 'caption') this.caption,
       @JsonKey(name: 'parse_mode') this.parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -373,15 +374,15 @@ class _$InlineQueryResultPhotoImpl implements _InlineQueryResultPhoto {
 
   /// Type of the result, always [InlineQueryResultType.photo]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
-  /// A valid URL of the photo. Photo must be in JPEG format. Photo size must
-  /// not exceed 5MB
+  /// A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB
   @override
   @JsonKey(name: 'photo_url')
   final String photoUrl;
@@ -403,29 +404,28 @@ class _$InlineQueryResultPhotoImpl implements _InlineQueryResultPhoto {
 
   /// Optional. Title for the result
   @override
+  @JsonKey(name: 'title')
   final String? title;
 
   /// Optional. Short description of the result
   @override
+  @JsonKey(name: 'description')
   final String? description;
 
-  /// Optional. Caption of the photo to be sent, 0-1024 characters after
-  /// entities parsing
+  /// Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
   @override
+  @JsonKey(name: 'caption')
   final String? caption;
 
-  /// Optional. Mode for parsing entities in the photo caption. See formatting
-  /// options for more details.
+  /// Optional. Mode for parsing entities in the photo caption. See formatting options for more details.
   @override
   @JsonKey(name: 'parse_mode')
   final ParseMode? parseMode;
 
-  /// Optional. List of special entities that appear in the caption, which can
-  /// be specified instead of parse_mode
+  /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
   final List<MessageEntity>? _captionEntities;
 
-  /// Optional. List of special entities that appear in the caption, which can
-  /// be specified instead of parse_mode
+  /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
   @override
   @JsonKey(name: 'caption_entities')
   List<MessageEntity>? get captionEntities {
@@ -476,15 +476,15 @@ class _$InlineQueryResultPhotoImpl implements _InlineQueryResultPhoto {
 
 abstract class _InlineQueryResultPhoto implements InlineQueryResultPhoto {
   const factory _InlineQueryResultPhoto(
-      {final InlineQueryResultType type,
-      required final String id,
+      {@JsonKey(name: 'type') final InlineQueryResultType type,
+      @JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'photo_url') required final String photoUrl,
       @JsonKey(name: 'thumbnail_url') required final String thumbnailUrl,
       @JsonKey(name: 'photo_width') final int? photoWidth,
       @JsonKey(name: 'photo_height') final int? photoHeight,
-      final String? title,
-      final String? description,
-      final String? caption,
+      @JsonKey(name: 'title') final String? title,
+      @JsonKey(name: 'description') final String? description,
+      @JsonKey(name: 'caption') final String? caption,
       @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -500,14 +500,15 @@ abstract class _InlineQueryResultPhoto implements InlineQueryResultPhoto {
 
   /// Type of the result, always [InlineQueryResultType.photo]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
-  /// A valid URL of the photo. Photo must be in JPEG format. Photo size must
-  /// not exceed 5MB
+  /// A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB
   @override
   @JsonKey(name: 'photo_url')
   String get photoUrl;
@@ -529,25 +530,25 @@ abstract class _InlineQueryResultPhoto implements InlineQueryResultPhoto {
 
   /// Optional. Title for the result
   @override
+  @JsonKey(name: 'title')
   String? get title;
 
   /// Optional. Short description of the result
   @override
+  @JsonKey(name: 'description')
   String? get description;
 
-  /// Optional. Caption of the photo to be sent, 0-1024 characters after
-  /// entities parsing
+  /// Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
   @override
+  @JsonKey(name: 'caption')
   String? get caption;
 
-  /// Optional. Mode for parsing entities in the photo caption. See formatting
-  /// options for more details.
+  /// Optional. Mode for parsing entities in the photo caption. See formatting options for more details.
   @override
   @JsonKey(name: 'parse_mode')
   ParseMode? get parseMode;
 
-  /// Optional. List of special entities that appear in the caption, which can
-  /// be specified instead of parse_mode
+  /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
   @override
   @JsonKey(name: 'caption_entities')
   List<MessageEntity>? get captionEntities;

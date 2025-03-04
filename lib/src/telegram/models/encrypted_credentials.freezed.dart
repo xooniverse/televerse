@@ -23,13 +23,16 @@ mixin _$EncryptedCredentials {
   /// Base64-encoded encrypted JSON-serialized data with unique user's
   /// payload, data hashes, and secrets required for EncryptedPassportElement
   /// decryption and authentication
+  @JsonKey(name: 'data')
   String get data => throw _privateConstructorUsedError;
 
   /// Base64-encoded data hash for data authentication
+  @JsonKey(name: 'hash')
   String get hash => throw _privateConstructorUsedError;
 
   /// Base64-encoded secret, encrypted with the bot's public RSA key, required
   /// for data decryption
+  @JsonKey(name: 'secret')
   String get secret => throw _privateConstructorUsedError;
 
   /// Serializes this EncryptedCredentials to a JSON map.
@@ -48,7 +51,10 @@ abstract class $EncryptedCredentialsCopyWith<$Res> {
           $Res Function(EncryptedCredentials) then) =
       _$EncryptedCredentialsCopyWithImpl<$Res, EncryptedCredentials>;
   @useResult
-  $Res call({String data, String hash, String secret});
+  $Res call(
+      {@JsonKey(name: 'data') String data,
+      @JsonKey(name: 'hash') String hash,
+      @JsonKey(name: 'secret') String secret});
 }
 
 /// @nodoc
@@ -96,7 +102,10 @@ abstract class _$$EncryptedCredentialsImplCopyWith<$Res>
       __$$EncryptedCredentialsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String data, String hash, String secret});
+  $Res call(
+      {@JsonKey(name: 'data') String data,
+      @JsonKey(name: 'hash') String hash,
+      @JsonKey(name: 'secret') String secret});
 }
 
 /// @nodoc
@@ -137,7 +146,9 @@ class __$$EncryptedCredentialsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$EncryptedCredentialsImpl implements _EncryptedCredentials {
   const _$EncryptedCredentialsImpl(
-      {required this.data, required this.hash, required this.secret});
+      {@JsonKey(name: 'data') required this.data,
+      @JsonKey(name: 'hash') required this.hash,
+      @JsonKey(name: 'secret') required this.secret});
 
   factory _$EncryptedCredentialsImpl.fromJson(Map<String, dynamic> json) =>
       _$$EncryptedCredentialsImplFromJson(json);
@@ -146,15 +157,18 @@ class _$EncryptedCredentialsImpl implements _EncryptedCredentials {
   /// payload, data hashes, and secrets required for EncryptedPassportElement
   /// decryption and authentication
   @override
+  @JsonKey(name: 'data')
   final String data;
 
   /// Base64-encoded data hash for data authentication
   @override
+  @JsonKey(name: 'hash')
   final String hash;
 
   /// Base64-encoded secret, encrypted with the bot's public RSA key, required
   /// for data decryption
   @override
+  @JsonKey(name: 'secret')
   final String secret;
 
   @override
@@ -182,9 +196,10 @@ class _$EncryptedCredentialsImpl implements _EncryptedCredentials {
 
 abstract class _EncryptedCredentials implements EncryptedCredentials {
   const factory _EncryptedCredentials(
-      {required final String data,
-      required final String hash,
-      required final String secret}) = _$EncryptedCredentialsImpl;
+          {@JsonKey(name: 'data') required final String data,
+          @JsonKey(name: 'hash') required final String hash,
+          @JsonKey(name: 'secret') required final String secret}) =
+      _$EncryptedCredentialsImpl;
 
   factory _EncryptedCredentials.fromJson(Map<String, dynamic> json) =
       _$EncryptedCredentialsImpl.fromJson;
@@ -193,15 +208,18 @@ abstract class _EncryptedCredentials implements EncryptedCredentials {
   /// payload, data hashes, and secrets required for EncryptedPassportElement
   /// decryption and authentication
   @override
+  @JsonKey(name: 'data')
   String get data;
 
   /// Base64-encoded data hash for data authentication
   @override
+  @JsonKey(name: 'hash')
   String get hash;
 
   /// Base64-encoded secret, encrypted with the bot's public RSA key, required
   /// for data decryption
   @override
+  @JsonKey(name: 'secret')
   String get secret;
 
   /// Create a copy of EncryptedCredentials

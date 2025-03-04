@@ -22,13 +22,13 @@ class Audio with _$Audio {
     /// Duration of the video in seconds as defined by sender
     ///
     /// A handy [Duration] getter is available as [durationTime]
-    required int duration,
+    @JsonKey(name: 'duration') required int duration,
 
     /// Optional. Performer of the audio as defined by sender or by audio tags
-    String? performer,
+    @JsonKey(name: 'performer') String? performer,
 
     /// Optional. Title of the audio as defined by sender or by audio tags
-    String? title,
+    @JsonKey(name: 'title') String? title,
 
     /// Optional. Original filename as defined by sender
     @JsonKey(name: 'file_name') String? fileName,
@@ -43,7 +43,7 @@ class Audio with _$Audio {
     @JsonKey(name: 'file_size') int? fileSize,
 
     /// Optional. Thumbnail of the album cover to which the music file belongs
-    PhotoSize? thumbnail,
+    @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
   }) = _Audio;
 
   /// Creates a new [Audio] object from a JSON [Map].

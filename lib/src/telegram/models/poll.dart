@@ -12,13 +12,13 @@ class Poll with _$Poll {
   /// Constructs a [Poll] object
   const factory Poll({
     /// Unique poll identifier
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Poll question, 1-300 characters
-    required String question,
+    @JsonKey(name: 'question') required String question,
 
     /// List of poll options
-    required List<PollOption> options,
+    @JsonKey(name: 'options') required List<PollOption> options,
 
     /// Total number of users that voted in the poll
     @JsonKey(name: 'total_voter_count') required int totalVoterCount,
@@ -30,7 +30,7 @@ class Poll with _$Poll {
     @JsonKey(name: 'is_anonymous') required bool isAnonymous,
 
     /// Poll type, currently can be "regular" or "quiz"
-    required PollType type,
+    @JsonKey(name: 'type') required PollType type,
 
     /// True, if the poll allows multiple answers
     @JsonKey(name: 'allows_multiple_answers')
@@ -43,7 +43,7 @@ class Poll with _$Poll {
 
     /// Optional. Text that is shown when a user chooses an incorrect answer or
     /// taps on the lamp icon in a quiz-style poll, 0-200 characters
-    String? explanation,
+    @JsonKey(name: 'explanation') String? explanation,
 
     /// Optional. Special entities like usernames, URLs, bot commands, etc. that
     /// appear in the explanation

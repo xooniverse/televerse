@@ -13,7 +13,7 @@ class UserProfilePhotos with _$UserProfilePhotos {
     @JsonKey(name: 'total_count') required int totalCount,
 
     /// Requested profile pictures (in up to 4 sizes each)
-    required List<List<PhotoSize>> photos,
+    @JsonKey(name: 'photos') required List<List<PhotoSize>> photos,
   }) = _UserProfilePhotos;
 
   /// Creates a [UserProfilePhotos] object from JSON object

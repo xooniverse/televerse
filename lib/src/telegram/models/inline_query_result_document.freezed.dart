@@ -22,12 +22,15 @@ InlineQueryResultDocument _$InlineQueryResultDocumentFromJson(
 /// @nodoc
 mixin _$InlineQueryResultDocument {
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Type of the result, always [InlineQueryResultType.document]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Title for the result
+  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
 
   /// A valid URL for the file
@@ -41,6 +44,7 @@ mixin _$InlineQueryResultDocument {
 
   /// Optional. Caption of the document to be sent, 0-1024 characters after
   /// entities parsing
+  @JsonKey(name: 'caption')
   String? get caption => throw _privateConstructorUsedError;
 
   /// Optional. Mode for parsing entities in the document caption. See
@@ -55,6 +59,7 @@ mixin _$InlineQueryResultDocument {
       throw _privateConstructorUsedError;
 
   /// Optional. Short description of the result
+  @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
 
   /// Optional. Inline keyboard attached to the message
@@ -96,15 +101,15 @@ abstract class $InlineQueryResultDocumentCopyWith<$Res> {
       _$InlineQueryResultDocumentCopyWithImpl<$Res, InlineQueryResultDocument>;
   @useResult
   $Res call(
-      {String id,
-      InlineQueryResultType type,
-      String title,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'title') String title,
       @JsonKey(name: 'document_url') String documentUrl,
       @JsonKey(name: 'mime_type') String mimeType,
-      String? caption,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      String? description,
+      @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
@@ -233,15 +238,15 @@ abstract class _$$InlineQueryResultDocumentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      InlineQueryResultType type,
-      String title,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'title') String title,
       @JsonKey(name: 'document_url') String documentUrl,
       @JsonKey(name: 'mime_type') String mimeType,
-      String? caption,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      String? description,
+      @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
@@ -349,16 +354,16 @@ class __$$InlineQueryResultDocumentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultDocumentImpl implements _InlineQueryResultDocument {
   const _$InlineQueryResultDocumentImpl(
-      {required this.id,
-      this.type = InlineQueryResultType.document,
-      required this.title,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'type') this.type = InlineQueryResultType.document,
+      @JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'document_url') required this.documentUrl,
       @JsonKey(name: 'mime_type') required this.mimeType,
-      this.caption,
+      @JsonKey(name: 'caption') this.caption,
       @JsonKey(name: 'parse_mode') this.parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
-      this.description,
+      @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'reply_markup') this.replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
@@ -373,15 +378,17 @@ class _$InlineQueryResultDocumentImpl implements _InlineQueryResultDocument {
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Type of the result, always [InlineQueryResultType.document]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   /// Title for the result
   @override
+  @JsonKey(name: 'title')
   final String title;
 
   /// A valid URL for the file
@@ -398,6 +405,7 @@ class _$InlineQueryResultDocumentImpl implements _InlineQueryResultDocument {
   /// Optional. Caption of the document to be sent, 0-1024 characters after
   /// entities parsing
   @override
+  @JsonKey(name: 'caption')
   final String? caption;
 
   /// Optional. Mode for parsing entities in the document caption. See
@@ -424,6 +432,7 @@ class _$InlineQueryResultDocumentImpl implements _InlineQueryResultDocument {
 
   /// Optional. Short description of the result
   @override
+  @JsonKey(name: 'description')
   final String? description;
 
   /// Optional. Inline keyboard attached to the message
@@ -476,16 +485,16 @@ class _$InlineQueryResultDocumentImpl implements _InlineQueryResultDocument {
 
 abstract class _InlineQueryResultDocument implements InlineQueryResultDocument {
   const factory _InlineQueryResultDocument(
-      {required final String id,
-      final InlineQueryResultType type,
-      required final String title,
+      {@JsonKey(name: 'id') required final String id,
+      @JsonKey(name: 'type') final InlineQueryResultType type,
+      @JsonKey(name: 'title') required final String title,
       @JsonKey(name: 'document_url') required final String documentUrl,
       @JsonKey(name: 'mime_type') required final String mimeType,
-      final String? caption,
+      @JsonKey(name: 'caption') final String? caption,
       @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
-      final String? description,
+      @JsonKey(name: 'description') final String? description,
       @JsonKey(name: 'reply_markup') final InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
@@ -500,14 +509,17 @@ abstract class _InlineQueryResultDocument implements InlineQueryResultDocument {
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Type of the result, always [InlineQueryResultType.document]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Title for the result
   @override
+  @JsonKey(name: 'title')
   String get title;
 
   /// A valid URL for the file
@@ -524,6 +536,7 @@ abstract class _InlineQueryResultDocument implements InlineQueryResultDocument {
   /// Optional. Caption of the document to be sent, 0-1024 characters after
   /// entities parsing
   @override
+  @JsonKey(name: 'caption')
   String? get caption;
 
   /// Optional. Mode for parsing entities in the document caption. See
@@ -540,6 +553,7 @@ abstract class _InlineQueryResultDocument implements InlineQueryResultDocument {
 
   /// Optional. Short description of the result
   @override
+  @JsonKey(name: 'description')
   String? get description;
 
   /// Optional. Inline keyboard attached to the message

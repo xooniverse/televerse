@@ -21,9 +21,11 @@ ChatLocation _$ChatLocationFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ChatLocation {
   /// The location to which the supergroup is connected.
+  @JsonKey(name: 'location')
   Location get location => throw _privateConstructorUsedError;
 
   /// Location address; 1-64 characters, as defined by the chat owner
+  @JsonKey(name: 'address')
   String get address => throw _privateConstructorUsedError;
 
   /// Serializes this ChatLocation to a JSON map.
@@ -42,7 +44,9 @@ abstract class $ChatLocationCopyWith<$Res> {
           ChatLocation value, $Res Function(ChatLocation) then) =
       _$ChatLocationCopyWithImpl<$Res, ChatLocation>;
   @useResult
-  $Res call({Location location, String address});
+  $Res call(
+      {@JsonKey(name: 'location') Location location,
+      @JsonKey(name: 'address') String address});
 
   $LocationCopyWith<$Res> get location;
 }
@@ -96,7 +100,9 @@ abstract class _$$ChatLocationImplCopyWith<$Res>
       __$$ChatLocationImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Location location, String address});
+  $Res call(
+      {@JsonKey(name: 'location') Location location,
+      @JsonKey(name: 'address') String address});
 
   @override
   $LocationCopyWith<$Res> get location;
@@ -134,17 +140,21 @@ class __$$ChatLocationImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ChatLocationImpl implements _ChatLocation {
-  const _$ChatLocationImpl({required this.location, required this.address});
+  const _$ChatLocationImpl(
+      {@JsonKey(name: 'location') required this.location,
+      @JsonKey(name: 'address') required this.address});
 
   factory _$ChatLocationImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatLocationImplFromJson(json);
 
   /// The location to which the supergroup is connected.
   @override
+  @JsonKey(name: 'location')
   final Location location;
 
   /// Location address; 1-64 characters, as defined by the chat owner
   @override
+  @JsonKey(name: 'address')
   final String address;
 
   @override
@@ -170,18 +180,21 @@ class _$ChatLocationImpl implements _ChatLocation {
 
 abstract class _ChatLocation implements ChatLocation {
   const factory _ChatLocation(
-      {required final Location location,
-      required final String address}) = _$ChatLocationImpl;
+          {@JsonKey(name: 'location') required final Location location,
+          @JsonKey(name: 'address') required final String address}) =
+      _$ChatLocationImpl;
 
   factory _ChatLocation.fromJson(Map<String, dynamic> json) =
       _$ChatLocationImpl.fromJson;
 
   /// The location to which the supergroup is connected.
   @override
+  @JsonKey(name: 'location')
   Location get location;
 
   /// Location address; 1-64 characters, as defined by the chat owner
   @override
+  @JsonKey(name: 'address')
   String get address;
 
   /// Create a copy of ChatLocation

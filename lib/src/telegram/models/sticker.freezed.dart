@@ -34,12 +34,15 @@ mixin _$Sticker {
   /// Type of the sticker, currently one of "regular", "mask", "custom_emoji".
   /// The type of the sticker is independent from its format, which is
   /// determined by the fields is_animated and is_video.
+  @JsonKey(name: 'type')
   StickerType get type => throw _privateConstructorUsedError;
 
   /// Sticker width
+  @JsonKey(name: 'width')
   int get width => throw _privateConstructorUsedError;
 
   /// Sticker height
+  @JsonKey(name: 'height')
   int get height => throw _privateConstructorUsedError;
 
   /// True, if the sticker is animated
@@ -51,9 +54,11 @@ mixin _$Sticker {
   bool get isVideo => throw _privateConstructorUsedError;
 
   /// Optional. Sticker thumbnail in the .WEBP or .JPG format
+  @JsonKey(name: 'thumbnail')
   PhotoSize? get thumbnail => throw _privateConstructorUsedError;
 
   /// Optional. Emoji associated with the sticker
+  @JsonKey(name: 'emoji')
   String? get emoji => throw _privateConstructorUsedError;
 
   /// Optional. Name of the sticker set to which the sticker belongs
@@ -102,13 +107,13 @@ abstract class $StickerCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'file_id') String fileId,
       @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      StickerType type,
-      int width,
-      int height,
+      @JsonKey(name: 'type') StickerType type,
+      @JsonKey(name: 'width') int width,
+      @JsonKey(name: 'height') int height,
       @JsonKey(name: 'is_animated') bool isAnimated,
       @JsonKey(name: 'is_video') bool isVideo,
-      PhotoSize? thumbnail,
-      String? emoji,
+      @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
+      @JsonKey(name: 'emoji') String? emoji,
       @JsonKey(name: 'set_name') String? setName,
       @JsonKey(name: 'premium_animation') File? premiumAnimation,
       @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
@@ -269,13 +274,13 @@ abstract class _$$StickerImplCopyWith<$Res> implements $StickerCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'file_id') String fileId,
       @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      StickerType type,
-      int width,
-      int height,
+      @JsonKey(name: 'type') StickerType type,
+      @JsonKey(name: 'width') int width,
+      @JsonKey(name: 'height') int height,
       @JsonKey(name: 'is_animated') bool isAnimated,
       @JsonKey(name: 'is_video') bool isVideo,
-      PhotoSize? thumbnail,
-      String? emoji,
+      @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
+      @JsonKey(name: 'emoji') String? emoji,
       @JsonKey(name: 'set_name') String? setName,
       @JsonKey(name: 'premium_animation') File? premiumAnimation,
       @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
@@ -391,13 +396,13 @@ class _$StickerImpl implements _Sticker {
   const _$StickerImpl(
       {@JsonKey(name: 'file_id') required this.fileId,
       @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
-      required this.type,
-      required this.width,
-      required this.height,
+      @JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'width') required this.width,
+      @JsonKey(name: 'height') required this.height,
       @JsonKey(name: 'is_animated') required this.isAnimated,
       @JsonKey(name: 'is_video') required this.isVideo,
-      this.thumbnail,
-      this.emoji,
+      @JsonKey(name: 'thumbnail') this.thumbnail,
+      @JsonKey(name: 'emoji') this.emoji,
       @JsonKey(name: 'set_name') this.setName,
       @JsonKey(name: 'premium_animation') this.premiumAnimation,
       @JsonKey(name: 'mask_position') this.maskPosition,
@@ -425,14 +430,17 @@ class _$StickerImpl implements _Sticker {
   /// The type of the sticker is independent from its format, which is
   /// determined by the fields is_animated and is_video.
   @override
+  @JsonKey(name: 'type')
   final StickerType type;
 
   /// Sticker width
   @override
+  @JsonKey(name: 'width')
   final int width;
 
   /// Sticker height
   @override
+  @JsonKey(name: 'height')
   final int height;
 
   /// True, if the sticker is animated
@@ -447,10 +455,12 @@ class _$StickerImpl implements _Sticker {
 
   /// Optional. Sticker thumbnail in the .WEBP or .JPG format
   @override
+  @JsonKey(name: 'thumbnail')
   final PhotoSize? thumbnail;
 
   /// Optional. Emoji associated with the sticker
   @override
+  @JsonKey(name: 'emoji')
   final String? emoji;
 
   /// Optional. Name of the sticker set to which the sticker belongs
@@ -513,13 +523,13 @@ abstract class _Sticker implements Sticker {
   const factory _Sticker(
           {@JsonKey(name: 'file_id') required final String fileId,
           @JsonKey(name: 'file_unique_id') required final String fileUniqueId,
-          required final StickerType type,
-          required final int width,
-          required final int height,
+          @JsonKey(name: 'type') required final StickerType type,
+          @JsonKey(name: 'width') required final int width,
+          @JsonKey(name: 'height') required final int height,
           @JsonKey(name: 'is_animated') required final bool isAnimated,
           @JsonKey(name: 'is_video') required final bool isVideo,
-          final PhotoSize? thumbnail,
-          final String? emoji,
+          @JsonKey(name: 'thumbnail') final PhotoSize? thumbnail,
+          @JsonKey(name: 'emoji') final String? emoji,
           @JsonKey(name: 'set_name') final String? setName,
           @JsonKey(name: 'premium_animation') final File? premiumAnimation,
           @JsonKey(name: 'mask_position') final MaskPosition? maskPosition,
@@ -547,14 +557,17 @@ abstract class _Sticker implements Sticker {
   /// The type of the sticker is independent from its format, which is
   /// determined by the fields is_animated and is_video.
   @override
+  @JsonKey(name: 'type')
   StickerType get type;
 
   /// Sticker width
   @override
+  @JsonKey(name: 'width')
   int get width;
 
   /// Sticker height
   @override
+  @JsonKey(name: 'height')
   int get height;
 
   /// True, if the sticker is animated
@@ -569,10 +582,12 @@ abstract class _Sticker implements Sticker {
 
   /// Optional. Sticker thumbnail in the .WEBP or .JPG format
   @override
+  @JsonKey(name: 'thumbnail')
   PhotoSize? get thumbnail;
 
   /// Optional. Emoji associated with the sticker
   @override
+  @JsonKey(name: 'emoji')
   String? get emoji;
 
   /// Optional. Name of the sticker set to which the sticker belongs

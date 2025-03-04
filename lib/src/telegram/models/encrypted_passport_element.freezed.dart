@@ -22,6 +22,7 @@ EncryptedPassportElement _$EncryptedPassportElementFromJson(
 /// @nodoc
 mixin _$EncryptedPassportElement {
   /// Type of Telegram Passport element
+  @JsonKey(name: 'type')
   PassportType get type => throw _privateConstructorUsedError;
 
   /// Optional. Base64-encoded encrypted Telegram Passport element data
@@ -29,6 +30,7 @@ mixin _$EncryptedPassportElement {
   /// “driver_license”, “identity_card”, “internal_passport” and “address”
   /// types. Can be decrypted and verified using the accompanying
   /// EncryptedCredentials.
+  @JsonKey(name: 'data')
   String? get data => throw _privateConstructorUsedError;
 
   /// Optional. User's verified phone number, available only for
@@ -37,12 +39,14 @@ mixin _$EncryptedPassportElement {
   String? get phoneNumber => throw _privateConstructorUsedError;
 
   /// Optional. User's verified email address, available only for “email” type
+  @JsonKey(name: 'email')
   String? get email => throw _privateConstructorUsedError;
 
   /// Optional. Array of encrypted files with documents provided by the user,
   /// available for “utility_bill”, “bank_statement”, “rental_agreement”,
   /// “passport_registration” and “temporary_registration” types. Files can be
   /// decrypted and verified using the accompanying EncryptedCredentials.
+  @JsonKey(name: 'files')
   List<PassportFile>? get files => throw _privateConstructorUsedError;
 
   /// Optional. Encrypted file with the front side of the document, provided
@@ -63,6 +67,7 @@ mixin _$EncryptedPassportElement {
   /// provided by the user; available for “passport”, “driver_license”,
   /// “identity_card” and “internal_passport”. The file can be decrypted and
   /// verified using the accompanying EncryptedCredentials.
+  @JsonKey(name: 'selfie')
   PassportFile? get selfie => throw _privateConstructorUsedError;
 
   /// Optional. Array of encrypted files with translated versions of documents
@@ -71,9 +76,11 @@ mixin _$EncryptedPassportElement {
   /// “bank_statement”, “rental_agreement”, “passport_registration” and
   /// “temporary_registration” types. Files can be decrypted and verified
   /// using the accompanying EncryptedCredentials.
+  @JsonKey(name: 'translation')
   List<PassportFile>? get translation => throw _privateConstructorUsedError;
 
   /// Base64-encoded element hash for using in PassportElementErrorUnspecified
+  @JsonKey(name: 'hash')
   String get hash => throw _privateConstructorUsedError;
 
   /// Serializes this EncryptedPassportElement to a JSON map.
@@ -93,16 +100,16 @@ abstract class $EncryptedPassportElementCopyWith<$Res> {
       _$EncryptedPassportElementCopyWithImpl<$Res, EncryptedPassportElement>;
   @useResult
   $Res call(
-      {PassportType type,
-      String? data,
+      {@JsonKey(name: 'type') PassportType type,
+      @JsonKey(name: 'data') String? data,
       @JsonKey(name: 'phone_number') String? phoneNumber,
-      String? email,
-      List<PassportFile>? files,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'files') List<PassportFile>? files,
       @JsonKey(name: 'front_side') PassportFile? frontSide,
       @JsonKey(name: 'reverse_side') PassportFile? reverseSide,
-      PassportFile? selfie,
-      List<PassportFile>? translation,
-      String hash});
+      @JsonKey(name: 'selfie') PassportFile? selfie,
+      @JsonKey(name: 'translation') List<PassportFile>? translation,
+      @JsonKey(name: 'hash') String hash});
 
   $PassportFileCopyWith<$Res>? get frontSide;
   $PassportFileCopyWith<$Res>? get reverseSide;
@@ -233,16 +240,16 @@ abstract class _$$EncryptedPassportElementImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PassportType type,
-      String? data,
+      {@JsonKey(name: 'type') PassportType type,
+      @JsonKey(name: 'data') String? data,
       @JsonKey(name: 'phone_number') String? phoneNumber,
-      String? email,
-      List<PassportFile>? files,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'files') List<PassportFile>? files,
       @JsonKey(name: 'front_side') PassportFile? frontSide,
       @JsonKey(name: 'reverse_side') PassportFile? reverseSide,
-      PassportFile? selfie,
-      List<PassportFile>? translation,
-      String hash});
+      @JsonKey(name: 'selfie') PassportFile? selfie,
+      @JsonKey(name: 'translation') List<PassportFile>? translation,
+      @JsonKey(name: 'hash') String hash});
 
   @override
   $PassportFileCopyWith<$Res>? get frontSide;
@@ -327,16 +334,16 @@ class __$$EncryptedPassportElementImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$EncryptedPassportElementImpl implements _EncryptedPassportElement {
   const _$EncryptedPassportElementImpl(
-      {required this.type,
-      this.data,
+      {@JsonKey(name: 'type') required this.type,
+      @JsonKey(name: 'data') this.data,
       @JsonKey(name: 'phone_number') this.phoneNumber,
-      this.email,
-      final List<PassportFile>? files,
+      @JsonKey(name: 'email') this.email,
+      @JsonKey(name: 'files') final List<PassportFile>? files,
       @JsonKey(name: 'front_side') this.frontSide,
       @JsonKey(name: 'reverse_side') this.reverseSide,
-      this.selfie,
-      final List<PassportFile>? translation,
-      required this.hash})
+      @JsonKey(name: 'selfie') this.selfie,
+      @JsonKey(name: 'translation') final List<PassportFile>? translation,
+      @JsonKey(name: 'hash') required this.hash})
       : _files = files,
         _translation = translation;
 
@@ -345,6 +352,7 @@ class _$EncryptedPassportElementImpl implements _EncryptedPassportElement {
 
   /// Type of Telegram Passport element
   @override
+  @JsonKey(name: 'type')
   final PassportType type;
 
   /// Optional. Base64-encoded encrypted Telegram Passport element data
@@ -353,6 +361,7 @@ class _$EncryptedPassportElementImpl implements _EncryptedPassportElement {
   /// types. Can be decrypted and verified using the accompanying
   /// EncryptedCredentials.
   @override
+  @JsonKey(name: 'data')
   final String? data;
 
   /// Optional. User's verified phone number, available only for
@@ -363,6 +372,7 @@ class _$EncryptedPassportElementImpl implements _EncryptedPassportElement {
 
   /// Optional. User's verified email address, available only for “email” type
   @override
+  @JsonKey(name: 'email')
   final String? email;
 
   /// Optional. Array of encrypted files with documents provided by the user,
@@ -376,6 +386,7 @@ class _$EncryptedPassportElementImpl implements _EncryptedPassportElement {
   /// “passport_registration” and “temporary_registration” types. Files can be
   /// decrypted and verified using the accompanying EncryptedCredentials.
   @override
+  @JsonKey(name: 'files')
   List<PassportFile>? get files {
     final value = _files;
     if (value == null) return null;
@@ -405,6 +416,7 @@ class _$EncryptedPassportElementImpl implements _EncryptedPassportElement {
   /// “identity_card” and “internal_passport”. The file can be decrypted and
   /// verified using the accompanying EncryptedCredentials.
   @override
+  @JsonKey(name: 'selfie')
   final PassportFile? selfie;
 
   /// Optional. Array of encrypted files with translated versions of documents
@@ -422,6 +434,7 @@ class _$EncryptedPassportElementImpl implements _EncryptedPassportElement {
   /// “temporary_registration” types. Files can be decrypted and verified
   /// using the accompanying EncryptedCredentials.
   @override
+  @JsonKey(name: 'translation')
   List<PassportFile>? get translation {
     final value = _translation;
     if (value == null) return null;
@@ -432,6 +445,7 @@ class _$EncryptedPassportElementImpl implements _EncryptedPassportElement {
 
   /// Base64-encoded element hash for using in PassportElementErrorUnspecified
   @override
+  @JsonKey(name: 'hash')
   final String hash;
 
   @override
@@ -458,22 +472,24 @@ class _$EncryptedPassportElementImpl implements _EncryptedPassportElement {
 
 abstract class _EncryptedPassportElement implements EncryptedPassportElement {
   const factory _EncryptedPassportElement(
-      {required final PassportType type,
-      final String? data,
-      @JsonKey(name: 'phone_number') final String? phoneNumber,
-      final String? email,
-      final List<PassportFile>? files,
-      @JsonKey(name: 'front_side') final PassportFile? frontSide,
-      @JsonKey(name: 'reverse_side') final PassportFile? reverseSide,
-      final PassportFile? selfie,
-      final List<PassportFile>? translation,
-      required final String hash}) = _$EncryptedPassportElementImpl;
+          {@JsonKey(name: 'type') required final PassportType type,
+          @JsonKey(name: 'data') final String? data,
+          @JsonKey(name: 'phone_number') final String? phoneNumber,
+          @JsonKey(name: 'email') final String? email,
+          @JsonKey(name: 'files') final List<PassportFile>? files,
+          @JsonKey(name: 'front_side') final PassportFile? frontSide,
+          @JsonKey(name: 'reverse_side') final PassportFile? reverseSide,
+          @JsonKey(name: 'selfie') final PassportFile? selfie,
+          @JsonKey(name: 'translation') final List<PassportFile>? translation,
+          @JsonKey(name: 'hash') required final String hash}) =
+      _$EncryptedPassportElementImpl;
 
   factory _EncryptedPassportElement.fromJson(Map<String, dynamic> json) =
       _$EncryptedPassportElementImpl.fromJson;
 
   /// Type of Telegram Passport element
   @override
+  @JsonKey(name: 'type')
   PassportType get type;
 
   /// Optional. Base64-encoded encrypted Telegram Passport element data
@@ -482,6 +498,7 @@ abstract class _EncryptedPassportElement implements EncryptedPassportElement {
   /// types. Can be decrypted and verified using the accompanying
   /// EncryptedCredentials.
   @override
+  @JsonKey(name: 'data')
   String? get data;
 
   /// Optional. User's verified phone number, available only for
@@ -492,6 +509,7 @@ abstract class _EncryptedPassportElement implements EncryptedPassportElement {
 
   /// Optional. User's verified email address, available only for “email” type
   @override
+  @JsonKey(name: 'email')
   String? get email;
 
   /// Optional. Array of encrypted files with documents provided by the user,
@@ -499,6 +517,7 @@ abstract class _EncryptedPassportElement implements EncryptedPassportElement {
   /// “passport_registration” and “temporary_registration” types. Files can be
   /// decrypted and verified using the accompanying EncryptedCredentials.
   @override
+  @JsonKey(name: 'files')
   List<PassportFile>? get files;
 
   /// Optional. Encrypted file with the front side of the document, provided
@@ -522,6 +541,7 @@ abstract class _EncryptedPassportElement implements EncryptedPassportElement {
   /// “identity_card” and “internal_passport”. The file can be decrypted and
   /// verified using the accompanying EncryptedCredentials.
   @override
+  @JsonKey(name: 'selfie')
   PassportFile? get selfie;
 
   /// Optional. Array of encrypted files with translated versions of documents
@@ -531,10 +551,12 @@ abstract class _EncryptedPassportElement implements EncryptedPassportElement {
   /// “temporary_registration” types. Files can be decrypted and verified
   /// using the accompanying EncryptedCredentials.
   @override
+  @JsonKey(name: 'translation')
   List<PassportFile>? get translation;
 
   /// Base64-encoded element hash for using in PassportElementErrorUnspecified
   @override
+  @JsonKey(name: 'hash')
   String get hash;
 
   /// Create a copy of EncryptedPassportElement

@@ -9,7 +9,7 @@ class WebhookInfo with _$WebhookInfo {
   /// Constructs a WebhookInfo object.
   const factory WebhookInfo({
     /// Webhook URL, may be empty if webhook is not set up
-    required String url,
+    @JsonKey(name: 'url') required String url,
 
     /// True, if a custom certificate was provided for webhook certificate
     /// checks

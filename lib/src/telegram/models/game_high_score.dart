@@ -10,13 +10,13 @@ class GameHighScore with _$GameHighScore {
   /// Constructs a [GameHighScore] object
   const factory GameHighScore({
     /// Position in high score table for the game
-    required int position,
+    @JsonKey(name: 'position') required int position,
 
     /// User
-    required User user,
+    @JsonKey(name: 'user') required User user,
 
     /// Score
-    required int score,
+    @JsonKey(name: 'score') required int score,
   }) = _GameHighScore;
 
   /// De-serializes a [GameHighScore] object from a JSON map

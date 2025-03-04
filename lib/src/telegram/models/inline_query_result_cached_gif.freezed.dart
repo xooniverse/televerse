@@ -22,6 +22,7 @@ InlineQueryResultCachedGif _$InlineQueryResultCachedGifFromJson(
 /// @nodoc
 mixin _$InlineQueryResultCachedGif {
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// A valid file identifier for the GIF file
@@ -29,10 +30,12 @@ mixin _$InlineQueryResultCachedGif {
   String get gifFileId => throw _privateConstructorUsedError;
 
   /// Optional. Title for the result
+  @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
 
   /// Optional. Caption of the GIF file to be sent, 0-1024 characters after
   /// entities parsing
+  @JsonKey(name: 'caption')
   String? get caption => throw _privateConstructorUsedError;
 
   /// Optional. Mode for parsing entities in the caption. See formatting
@@ -61,6 +64,7 @@ mixin _$InlineQueryResultCachedGif {
   bool? get showCaptionAboveMedia => throw _privateConstructorUsedError;
 
   /// Type of the result, always [InlineQueryResultType.gif]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Serializes this InlineQueryResultCachedGif to a JSON map.
@@ -81,10 +85,10 @@ abstract class $InlineQueryResultCachedGifCopyWith<$Res> {
           InlineQueryResultCachedGif>;
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'gif_file_id') String gifFileId,
-      String? title,
-      String? caption,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -92,7 +96,7 @@ abstract class $InlineQueryResultCachedGifCopyWith<$Res> {
       @InputMessageContentConverter()
       InputMessageContent? inputMessageContent,
       @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
-      InlineQueryResultType type});
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -194,10 +198,10 @@ abstract class _$$InlineQueryResultCachedGifImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'gif_file_id') String gifFileId,
-      String? title,
-      String? caption,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -205,7 +209,7 @@ abstract class _$$InlineQueryResultCachedGifImplCopyWith<$Res>
       @InputMessageContentConverter()
       InputMessageContent? inputMessageContent,
       @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
-      InlineQueryResultType type});
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -286,10 +290,10 @@ class __$$InlineQueryResultCachedGifImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultCachedGifImpl implements _InlineQueryResultCachedGif {
   const _$InlineQueryResultCachedGifImpl(
-      {required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'gif_file_id') required this.gifFileId,
-      this.title,
-      this.caption,
+      @JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'caption') this.caption,
       @JsonKey(name: 'parse_mode') this.parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -298,7 +302,7 @@ class _$InlineQueryResultCachedGifImpl implements _InlineQueryResultCachedGif {
       @InputMessageContentConverter()
       this.inputMessageContent,
       @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
-      this.type = InlineQueryResultType.gif})
+      @JsonKey(name: 'type') this.type = InlineQueryResultType.gif})
       : _captionEntities = captionEntities;
 
   factory _$InlineQueryResultCachedGifImpl.fromJson(
@@ -307,6 +311,7 @@ class _$InlineQueryResultCachedGifImpl implements _InlineQueryResultCachedGif {
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// A valid file identifier for the GIF file
@@ -316,11 +321,13 @@ class _$InlineQueryResultCachedGifImpl implements _InlineQueryResultCachedGif {
 
   /// Optional. Title for the result
   @override
+  @JsonKey(name: 'title')
   final String? title;
 
   /// Optional. Caption of the GIF file to be sent, 0-1024 characters after
   /// entities parsing
   @override
+  @JsonKey(name: 'caption')
   final String? caption;
 
   /// Optional. Mode for parsing entities in the caption. See formatting
@@ -363,7 +370,7 @@ class _$InlineQueryResultCachedGifImpl implements _InlineQueryResultCachedGif {
 
   /// Type of the result, always [InlineQueryResultType.gif]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   @override
@@ -391,10 +398,10 @@ class _$InlineQueryResultCachedGifImpl implements _InlineQueryResultCachedGif {
 abstract class _InlineQueryResultCachedGif
     implements InlineQueryResultCachedGif {
   const factory _InlineQueryResultCachedGif(
-      {required final String id,
+      {@JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'gif_file_id') required final String gifFileId,
-      final String? title,
-      final String? caption,
+      @JsonKey(name: 'title') final String? title,
+      @JsonKey(name: 'caption') final String? caption,
       @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -404,6 +411,7 @@ abstract class _InlineQueryResultCachedGif
       final InputMessageContent? inputMessageContent,
       @JsonKey(name: 'show_caption_above_media')
       final bool? showCaptionAboveMedia,
+      @JsonKey(name: 'type')
       final InlineQueryResultType type}) = _$InlineQueryResultCachedGifImpl;
 
   factory _InlineQueryResultCachedGif.fromJson(Map<String, dynamic> json) =
@@ -411,6 +419,7 @@ abstract class _InlineQueryResultCachedGif
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// A valid file identifier for the GIF file
@@ -420,11 +429,13 @@ abstract class _InlineQueryResultCachedGif
 
   /// Optional. Title for the result
   @override
+  @JsonKey(name: 'title')
   String? get title;
 
   /// Optional. Caption of the GIF file to be sent, 0-1024 characters after
   /// entities parsing
   @override
+  @JsonKey(name: 'caption')
   String? get caption;
 
   /// Optional. Mode for parsing entities in the caption. See formatting
@@ -457,6 +468,7 @@ abstract class _InlineQueryResultCachedGif
 
   /// Type of the result, always [InlineQueryResultType.gif]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Create a copy of InlineQueryResultCachedGif

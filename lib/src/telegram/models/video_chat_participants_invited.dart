@@ -11,7 +11,7 @@ class VideoChatParticipantsInvited with _$VideoChatParticipantsInvited {
   /// Constructs a [VideoChatParticipantsInvited] object.
   const factory VideoChatParticipantsInvited({
     /// New members that were invited to the video chat.
-    required List<User> users,
+    @JsonKey(name: 'users') required List<User> users,
   }) = _VideoChatParticipantsInvited;
 
   /// Creates a [VideoChatParticipantsInvited] object from JSON object.

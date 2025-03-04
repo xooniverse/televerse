@@ -28,6 +28,7 @@ mixin _$OrderInfo {
   String? get phoneNumber => throw _privateConstructorUsedError;
 
   /// User email
+  @JsonKey(name: 'email')
   String? get email => throw _privateConstructorUsedError;
 
   /// User shipping address
@@ -52,7 +53,7 @@ abstract class $OrderInfoCopyWith<$Res> {
   $Res call(
       {String? name,
       @JsonKey(name: 'phone_number') String? phoneNumber,
-      String? email,
+      @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'shipping_address') ShippingAddress? shippingAddress});
 
   $ShippingAddressCopyWith<$Res>? get shippingAddress;
@@ -124,7 +125,7 @@ abstract class _$$OrderInfoImplCopyWith<$Res>
   $Res call(
       {String? name,
       @JsonKey(name: 'phone_number') String? phoneNumber,
-      String? email,
+      @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'shipping_address') ShippingAddress? shippingAddress});
 
   @override
@@ -176,7 +177,7 @@ class _$OrderInfoImpl implements _OrderInfo {
   const _$OrderInfoImpl(
       {this.name,
       @JsonKey(name: 'phone_number') this.phoneNumber,
-      this.email,
+      @JsonKey(name: 'email') this.email,
       @JsonKey(name: 'shipping_address') this.shippingAddress});
 
   factory _$OrderInfoImpl.fromJson(Map<String, dynamic> json) =>
@@ -193,6 +194,7 @@ class _$OrderInfoImpl implements _OrderInfo {
 
   /// User email
   @override
+  @JsonKey(name: 'email')
   final String? email;
 
   /// User shipping address
@@ -225,7 +227,7 @@ abstract class _OrderInfo implements OrderInfo {
   const factory _OrderInfo(
       {final String? name,
       @JsonKey(name: 'phone_number') final String? phoneNumber,
-      final String? email,
+      @JsonKey(name: 'email') final String? email,
       @JsonKey(name: 'shipping_address')
       final ShippingAddress? shippingAddress}) = _$OrderInfoImpl;
 
@@ -243,6 +245,7 @@ abstract class _OrderInfo implements OrderInfo {
 
   /// User email
   @override
+  @JsonKey(name: 'email')
   String? get email;
 
   /// User shipping address

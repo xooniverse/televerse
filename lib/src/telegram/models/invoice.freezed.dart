@@ -21,9 +21,11 @@ Invoice _$InvoiceFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Invoice {
   /// Product name
+  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
 
   /// Product description
+  @JsonKey(name: 'description')
   String get description => throw _privateConstructorUsedError;
 
   /// Unique bot deep-linking parameter that can be used to generate this
@@ -32,6 +34,7 @@ mixin _$Invoice {
   String get startParameter => throw _privateConstructorUsedError;
 
   /// Three-letter ISO 4217 currency code
+  @JsonKey(name: 'currency')
   String get currency => throw _privateConstructorUsedError;
 
   /// Total price in the smallest units of the currency (integer, not
@@ -57,10 +60,10 @@ abstract class $InvoiceCopyWith<$Res> {
       _$InvoiceCopyWithImpl<$Res, Invoice>;
   @useResult
   $Res call(
-      {String title,
-      String description,
+      {@JsonKey(name: 'title') String title,
+      @JsonKey(name: 'description') String description,
       @JsonKey(name: 'start_parameter') String startParameter,
-      String currency,
+      @JsonKey(name: 'currency') String currency,
       @JsonKey(name: 'total_amount') int totalAmount});
 }
 
@@ -118,10 +121,10 @@ abstract class _$$InvoiceImplCopyWith<$Res> implements $InvoiceCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String title,
-      String description,
+      {@JsonKey(name: 'title') String title,
+      @JsonKey(name: 'description') String description,
       @JsonKey(name: 'start_parameter') String startParameter,
-      String currency,
+      @JsonKey(name: 'currency') String currency,
       @JsonKey(name: 'total_amount') int totalAmount});
 }
 
@@ -173,10 +176,10 @@ class __$$InvoiceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InvoiceImpl implements _Invoice {
   const _$InvoiceImpl(
-      {required this.title,
-      required this.description,
+      {@JsonKey(name: 'title') required this.title,
+      @JsonKey(name: 'description') required this.description,
       @JsonKey(name: 'start_parameter') required this.startParameter,
-      required this.currency,
+      @JsonKey(name: 'currency') required this.currency,
       @JsonKey(name: 'total_amount') required this.totalAmount});
 
   factory _$InvoiceImpl.fromJson(Map<String, dynamic> json) =>
@@ -184,10 +187,12 @@ class _$InvoiceImpl implements _Invoice {
 
   /// Product name
   @override
+  @JsonKey(name: 'title')
   final String title;
 
   /// Product description
   @override
+  @JsonKey(name: 'description')
   final String description;
 
   /// Unique bot deep-linking parameter that can be used to generate this
@@ -198,6 +203,7 @@ class _$InvoiceImpl implements _Invoice {
 
   /// Three-letter ISO 4217 currency code
   @override
+  @JsonKey(name: 'currency')
   final String currency;
 
   /// Total price in the smallest units of the currency (integer, not
@@ -232,10 +238,10 @@ class _$InvoiceImpl implements _Invoice {
 
 abstract class _Invoice implements Invoice {
   const factory _Invoice(
-      {required final String title,
-      required final String description,
+      {@JsonKey(name: 'title') required final String title,
+      @JsonKey(name: 'description') required final String description,
       @JsonKey(name: 'start_parameter') required final String startParameter,
-      required final String currency,
+      @JsonKey(name: 'currency') required final String currency,
       @JsonKey(name: 'total_amount')
       required final int totalAmount}) = _$InvoiceImpl;
 
@@ -243,10 +249,12 @@ abstract class _Invoice implements Invoice {
 
   /// Product name
   @override
+  @JsonKey(name: 'title')
   String get title;
 
   /// Product description
   @override
+  @JsonKey(name: 'description')
   String get description;
 
   /// Unique bot deep-linking parameter that can be used to generate this
@@ -257,6 +265,7 @@ abstract class _Invoice implements Invoice {
 
   /// Three-letter ISO 4217 currency code
   @override
+  @JsonKey(name: 'currency')
   String get currency;
 
   /// Total price in the smallest units of the currency (integer, not

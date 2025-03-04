@@ -30,7 +30,7 @@ class ReplyParameters with _$ReplyParameters {
     /// be replied to, including bold, italic, underline, strikethrough,
     /// spoiler, and custom_emoji entities. The message will fail to send if the
     /// quote isn't found in the original message.
-    String? quote,
+    @JsonKey(name: 'quote') String? quote,
 
     /// Mode for parsing entities in the quote. See formatting options for more
     /// details.

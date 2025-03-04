@@ -22,9 +22,11 @@ InlineQueryResultGame _$InlineQueryResultGameFromJson(
 /// @nodoc
 mixin _$InlineQueryResultGame {
   /// Type of the result, always [InlineQueryResultType.game]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Short name of the game
@@ -52,8 +54,8 @@ abstract class $InlineQueryResultGameCopyWith<$Res> {
       _$InlineQueryResultGameCopyWithImpl<$Res, InlineQueryResultGame>;
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
       @JsonKey(name: 'game_short_name') String gameShortName,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup});
 }
@@ -110,8 +112,8 @@ abstract class _$$InlineQueryResultGameImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
       @JsonKey(name: 'game_short_name') String gameShortName,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup});
 }
@@ -160,8 +162,8 @@ class __$$InlineQueryResultGameImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultGameImpl implements _InlineQueryResultGame {
   const _$InlineQueryResultGameImpl(
-      {this.type = InlineQueryResultType.game,
-      required this.id,
+      {@JsonKey(name: 'type') this.type = InlineQueryResultType.game,
+      @JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'game_short_name') required this.gameShortName,
       @JsonKey(name: 'reply_markup') this.replyMarkup});
 
@@ -170,11 +172,12 @@ class _$InlineQueryResultGameImpl implements _InlineQueryResultGame {
 
   /// Type of the result, always [InlineQueryResultType.game]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Short name of the game
@@ -211,8 +214,8 @@ class _$InlineQueryResultGameImpl implements _InlineQueryResultGame {
 
 abstract class _InlineQueryResultGame implements InlineQueryResultGame {
   const factory _InlineQueryResultGame(
-      {final InlineQueryResultType type,
-      required final String id,
+      {@JsonKey(name: 'type') final InlineQueryResultType type,
+      @JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'game_short_name') required final String gameShortName,
       @JsonKey(name: 'reply_markup')
       final InlineKeyboardMarkup? replyMarkup}) = _$InlineQueryResultGameImpl;
@@ -222,10 +225,12 @@ abstract class _InlineQueryResultGame implements InlineQueryResultGame {
 
   /// Type of the result, always [InlineQueryResultType.game]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Short name of the game

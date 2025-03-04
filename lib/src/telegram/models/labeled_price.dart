@@ -9,7 +9,7 @@ class LabeledPrice with _$LabeledPrice {
   /// Constructs a [LabeledPrice] object
   const factory LabeledPrice({
     /// Portion label
-    required String label,
+    @JsonKey(name: 'label') required String label,
 
     /// Price of the product in the smallest units of the currency (integer, not
     /// float/double).
@@ -19,7 +19,7 @@ class LabeledPrice with _$LabeledPrice {
     /// [currencies.json](https://core.telegram.org/bots/payments/currencies.json),
     /// it shows the number of digits past the decimal point for each currency
     /// (2 for the majority of currencies).
-    required int amount,
+    @JsonKey(name: 'amount') required int amount,
   }) = _LabeledPrice;
 
   /// Converts a JSON object to a [LabeledPrice] object

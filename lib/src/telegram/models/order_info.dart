@@ -16,7 +16,7 @@ class OrderInfo with _$OrderInfo {
     @JsonKey(name: 'phone_number') String? phoneNumber,
 
     /// User email
-    String? email,
+    @JsonKey(name: 'email') String? email,
 
     /// User shipping address
     @JsonKey(name: 'shipping_address') ShippingAddress? shippingAddress,

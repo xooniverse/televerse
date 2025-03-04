@@ -22,9 +22,11 @@ InlineQueryResultCachedVoice _$InlineQueryResultCachedVoiceFromJson(
 /// @nodoc
 mixin _$InlineQueryResultCachedVoice {
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Type of the result, always [InlineQueryResultType.voice]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// A valid file identifier for the voice message
@@ -32,9 +34,11 @@ mixin _$InlineQueryResultCachedVoice {
   String get voiceFileId => throw _privateConstructorUsedError;
 
   /// Voice message title
+  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
 
   /// Optional. Caption, 0-1024 characters after entities parsing
+  @JsonKey(name: 'caption')
   String? get caption => throw _privateConstructorUsedError;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting
@@ -77,11 +81,11 @@ abstract class $InlineQueryResultCachedVoiceCopyWith<$Res> {
           InlineQueryResultCachedVoice>;
   @useResult
   $Res call(
-      {String id,
-      InlineQueryResultType type,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'type') InlineQueryResultType type,
       @JsonKey(name: 'voice_file_id') String voiceFileId,
-      String title,
-      String? caption,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -184,11 +188,11 @@ abstract class _$$InlineQueryResultCachedVoiceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      InlineQueryResultType type,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'type') InlineQueryResultType type,
       @JsonKey(name: 'voice_file_id') String voiceFileId,
-      String title,
-      String? caption,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -271,11 +275,11 @@ class __$$InlineQueryResultCachedVoiceImplCopyWithImpl<$Res>
 class _$InlineQueryResultCachedVoiceImpl
     implements _InlineQueryResultCachedVoice {
   const _$InlineQueryResultCachedVoiceImpl(
-      {required this.id,
-      this.type = InlineQueryResultType.voice,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'type') this.type = InlineQueryResultType.voice,
       @JsonKey(name: 'voice_file_id') required this.voiceFileId,
-      required this.title,
-      this.caption,
+      @JsonKey(name: 'title') required this.title,
+      @JsonKey(name: 'caption') this.caption,
       @JsonKey(name: 'parse_mode') this.parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -291,11 +295,12 @@ class _$InlineQueryResultCachedVoiceImpl
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Type of the result, always [InlineQueryResultType.voice]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   /// A valid file identifier for the voice message
@@ -305,10 +310,12 @@ class _$InlineQueryResultCachedVoiceImpl
 
   /// Voice message title
   @override
+  @JsonKey(name: 'title')
   final String title;
 
   /// Optional. Caption, 0-1024 characters after entities parsing
   @override
+  @JsonKey(name: 'caption')
   final String? caption;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting
@@ -370,11 +377,11 @@ class _$InlineQueryResultCachedVoiceImpl
 abstract class _InlineQueryResultCachedVoice
     implements InlineQueryResultCachedVoice {
   const factory _InlineQueryResultCachedVoice(
-      {required final String id,
-      final InlineQueryResultType type,
+      {@JsonKey(name: 'id') required final String id,
+      @JsonKey(name: 'type') final InlineQueryResultType type,
       @JsonKey(name: 'voice_file_id') required final String voiceFileId,
-      required final String title,
-      final String? caption,
+      @JsonKey(name: 'title') required final String title,
+      @JsonKey(name: 'caption') final String? caption,
       @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -389,10 +396,12 @@ abstract class _InlineQueryResultCachedVoice
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Type of the result, always [InlineQueryResultType.voice]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// A valid file identifier for the voice message
@@ -402,10 +411,12 @@ abstract class _InlineQueryResultCachedVoice
 
   /// Voice message title
   @override
+  @JsonKey(name: 'title')
   String get title;
 
   /// Optional. Caption, 0-1024 characters after entities parsing
   @override
+  @JsonKey(name: 'caption')
   String? get caption;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting

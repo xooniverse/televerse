@@ -32,6 +32,7 @@ BackgroundFill _$BackgroundFillFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BackgroundFill {
   /// Type of the background fill - always `solid`
+  @JsonKey(name: 'type')
   BackgroundFillType get type => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -74,7 +75,7 @@ abstract class $BackgroundFillCopyWith<$Res> {
           BackgroundFill value, $Res Function(BackgroundFill) then) =
       _$BackgroundFillCopyWithImpl<$Res, BackgroundFill>;
   @useResult
-  $Res call({BackgroundFillType type});
+  $Res call({@JsonKey(name: 'type') BackgroundFillType type});
 }
 
 /// @nodoc
@@ -111,7 +112,9 @@ abstract class _$$BackgroundFillSolidImplCopyWith<$Res>
       __$$BackgroundFillSolidImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BackgroundFillType type, int color});
+  $Res call(
+      {@JsonKey(name: 'type') BackgroundFillType type,
+      @JsonKey(name: 'color') int color});
 }
 
 /// @nodoc
@@ -147,16 +150,18 @@ class __$$BackgroundFillSolidImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BackgroundFillSolidImpl implements BackgroundFillSolid {
   const _$BackgroundFillSolidImpl(
-      {this.type = BackgroundFillType.solid, required this.color});
+      {@JsonKey(name: 'type') this.type = BackgroundFillType.solid,
+      @JsonKey(name: 'color') required this.color});
 
   factory _$BackgroundFillSolidImpl.fromJson(Map<String, dynamic> json) =>
       _$$BackgroundFillSolidImplFromJson(json);
 
   /// Type of the background fill - always `solid`
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BackgroundFillType type;
   @override
+  @JsonKey(name: 'color')
   final int color;
 
   @override
@@ -218,15 +223,18 @@ class _$BackgroundFillSolidImpl implements BackgroundFillSolid {
 
 abstract class BackgroundFillSolid implements BackgroundFill {
   const factory BackgroundFillSolid(
-      {final BackgroundFillType type,
-      required final int color}) = _$BackgroundFillSolidImpl;
+          {@JsonKey(name: 'type') final BackgroundFillType type,
+          @JsonKey(name: 'color') required final int color}) =
+      _$BackgroundFillSolidImpl;
 
   factory BackgroundFillSolid.fromJson(Map<String, dynamic> json) =
       _$BackgroundFillSolidImpl.fromJson;
 
   /// Type of the background fill - always `solid`
   @override
+  @JsonKey(name: 'type')
   BackgroundFillType get type;
+  @JsonKey(name: 'color')
   int get color;
 
   /// Create a copy of BackgroundFill
@@ -247,7 +255,7 @@ abstract class _$$BackgroundFillGradientImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BackgroundFillType type,
+      {@JsonKey(name: 'type') BackgroundFillType type,
       @JsonKey(name: 'top_color') int topColor,
       @JsonKey(name: 'bottom_color') int bottomColor,
       @JsonKey(name: 'rotation_angle') int rotationAngle});
@@ -297,7 +305,7 @@ class __$$BackgroundFillGradientImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BackgroundFillGradientImpl implements BackgroundFillGradient {
   const _$BackgroundFillGradientImpl(
-      {this.type = BackgroundFillType.gradient,
+      {@JsonKey(name: 'type') this.type = BackgroundFillType.gradient,
       @JsonKey(name: 'top_color') required this.topColor,
       @JsonKey(name: 'bottom_color') required this.bottomColor,
       @JsonKey(name: 'rotation_angle') required this.rotationAngle});
@@ -307,7 +315,7 @@ class _$BackgroundFillGradientImpl implements BackgroundFillGradient {
 
   /// Type of the background fill - always `gradient`
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BackgroundFillType type;
 
   /// Top color of the gradient in the RGB24 format.
@@ -384,7 +392,7 @@ class _$BackgroundFillGradientImpl implements BackgroundFillGradient {
 
 abstract class BackgroundFillGradient implements BackgroundFill {
   const factory BackgroundFillGradient(
-          {final BackgroundFillType type,
+          {@JsonKey(name: 'type') final BackgroundFillType type,
           @JsonKey(name: 'top_color') required final int topColor,
           @JsonKey(name: 'bottom_color') required final int bottomColor,
           @JsonKey(name: 'rotation_angle') required final int rotationAngle}) =
@@ -395,6 +403,7 @@ abstract class BackgroundFillGradient implements BackgroundFill {
 
   /// Type of the background fill - always `gradient`
   @override
+  @JsonKey(name: 'type')
   BackgroundFillType get type;
 
   /// Top color of the gradient in the RGB24 format.
@@ -426,7 +435,9 @@ abstract class _$$BackgroundFillFreeformGradientImplCopyWith<$Res>
       __$$BackgroundFillFreeformGradientImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BackgroundFillType type, List<int> colors});
+  $Res call(
+      {@JsonKey(name: 'type') BackgroundFillType type,
+      @JsonKey(name: 'colors') List<int> colors});
 }
 
 /// @nodoc
@@ -465,8 +476,8 @@ class __$$BackgroundFillFreeformGradientImplCopyWithImpl<$Res>
 class _$BackgroundFillFreeformGradientImpl
     implements BackgroundFillFreeformGradient {
   const _$BackgroundFillFreeformGradientImpl(
-      {this.type = BackgroundFillType.freeformGradient,
-      required final List<int> colors})
+      {@JsonKey(name: 'type') this.type = BackgroundFillType.freeformGradient,
+      @JsonKey(name: 'colors') required final List<int> colors})
       : _colors = colors;
 
   factory _$BackgroundFillFreeformGradientImpl.fromJson(
@@ -475,7 +486,7 @@ class _$BackgroundFillFreeformGradientImpl
 
   /// Type of the background fill - always `freeform_gradient`
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BackgroundFillType type;
 
   /// A list of the 3 or 4 base colors that are used to generate the freeform
@@ -485,6 +496,7 @@ class _$BackgroundFillFreeformGradientImpl
   /// A list of the 3 or 4 base colors that are used to generate the freeform
   /// gradient in the RGB24 format.
   @override
+  @JsonKey(name: 'colors')
   List<int> get colors {
     if (_colors is EqualUnmodifiableListView) return _colors;
     // ignore: implicit_dynamic_type
@@ -551,18 +563,21 @@ class _$BackgroundFillFreeformGradientImpl
 
 abstract class BackgroundFillFreeformGradient implements BackgroundFill {
   const factory BackgroundFillFreeformGradient(
-      {final BackgroundFillType type,
-      required final List<int> colors}) = _$BackgroundFillFreeformGradientImpl;
+          {@JsonKey(name: 'type') final BackgroundFillType type,
+          @JsonKey(name: 'colors') required final List<int> colors}) =
+      _$BackgroundFillFreeformGradientImpl;
 
   factory BackgroundFillFreeformGradient.fromJson(Map<String, dynamic> json) =
       _$BackgroundFillFreeformGradientImpl.fromJson;
 
   /// Type of the background fill - always `freeform_gradient`
   @override
+  @JsonKey(name: 'type')
   BackgroundFillType get type;
 
   /// A list of the 3 or 4 base colors that are used to generate the freeform
   /// gradient in the RGB24 format.
+  @JsonKey(name: 'colors')
   List<int> get colors;
 
   /// Create a copy of BackgroundFill

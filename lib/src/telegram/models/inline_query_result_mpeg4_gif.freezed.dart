@@ -22,17 +22,18 @@ InlineQueryResultMpeg4Gif _$InlineQueryResultMpeg4GifFromJson(
 /// @nodoc
 mixin _$InlineQueryResultMpeg4Gif {
   /// Type of the result, always [InlineQueryResultType.mpeg4Gif]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// A valid URL for the MPEG4 file. File size must not exceed 1MB
   @JsonKey(name: 'mpeg4_url')
   String get mpeg4Url => throw _privateConstructorUsedError;
 
-  /// URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the
-  /// result
+  /// URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
   @JsonKey(name: 'thumbnail_url')
   String get thumbnailUrl => throw _privateConstructorUsedError;
 
@@ -48,25 +49,23 @@ mixin _$InlineQueryResultMpeg4Gif {
   @JsonKey(name: 'mpeg4_duration')
   int? get mpeg4Duration => throw _privateConstructorUsedError;
 
-  /// Optional. MIME type of the thumbnail, must be one of "image/jpeg",
-  /// "image/gif", or "video/mp4". Defaults to "image/jpeg"
+  /// Optional. MIME type of the thumbnail, must be one of "image/jpeg", "image/gif", or "video/mp4". Defaults to "image/jpeg"
   @JsonKey(name: 'thumbnail_mime_type')
   String? get thumbnailMimeType => throw _privateConstructorUsedError;
 
   /// Optional. Title for the result
+  @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
 
-  /// Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after
-  /// entities parsing
+  /// Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities parsing
+  @JsonKey(name: 'caption')
   String? get caption => throw _privateConstructorUsedError;
 
-  /// Optional. Mode for parsing entities in the caption. See formatting
-  /// options for more details.
+  /// Optional. Mode for parsing entities in the caption. See formatting options for more details.
   @JsonKey(name: 'parse_mode')
   ParseMode? get parseMode => throw _privateConstructorUsedError;
 
-  /// Optional. List of special entities that appear in the caption, which can
-  /// be specified instead of parse_mode
+  /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
   @JsonKey(name: 'caption_entities')
   List<MessageEntity>? get captionEntities =>
       throw _privateConstructorUsedError;
@@ -75,8 +74,7 @@ mixin _$InlineQueryResultMpeg4Gif {
   @JsonKey(name: 'reply_markup')
   InlineKeyboardMarkup? get replyMarkup => throw _privateConstructorUsedError;
 
-  /// Optional. Content of the message to be sent instead of the video
-  /// animation
+  /// Optional. Content of the message to be sent instead of the video animation
   @JsonKey(name: 'input_message_content')
   @InputMessageContentConverter()
   InputMessageContent? get inputMessageContent =>
@@ -103,16 +101,16 @@ abstract class $InlineQueryResultMpeg4GifCopyWith<$Res> {
       _$InlineQueryResultMpeg4GifCopyWithImpl<$Res, InlineQueryResultMpeg4Gif>;
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
       @JsonKey(name: 'mpeg4_url') String mpeg4Url,
       @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
       @JsonKey(name: 'mpeg4_width') int? mpeg4Width,
       @JsonKey(name: 'mpeg4_height') int? mpeg4Height,
       @JsonKey(name: 'mpeg4_duration') int? mpeg4Duration,
       @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
-      String? title,
-      String? caption,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -246,16 +244,16 @@ abstract class _$$InlineQueryResultMpeg4GifImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
       @JsonKey(name: 'mpeg4_url') String mpeg4Url,
       @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
       @JsonKey(name: 'mpeg4_width') int? mpeg4Width,
       @JsonKey(name: 'mpeg4_height') int? mpeg4Height,
       @JsonKey(name: 'mpeg4_duration') int? mpeg4Duration,
       @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
-      String? title,
-      String? caption,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
@@ -368,16 +366,16 @@ class __$$InlineQueryResultMpeg4GifImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultMpeg4GifImpl implements _InlineQueryResultMpeg4Gif {
   const _$InlineQueryResultMpeg4GifImpl(
-      {this.type = InlineQueryResultType.mpeg4Gif,
-      required this.id,
+      {@JsonKey(name: 'type') this.type = InlineQueryResultType.mpeg4Gif,
+      @JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'mpeg4_url') required this.mpeg4Url,
       @JsonKey(name: 'thumbnail_url') required this.thumbnailUrl,
       @JsonKey(name: 'mpeg4_width') this.mpeg4Width,
       @JsonKey(name: 'mpeg4_height') this.mpeg4Height,
       @JsonKey(name: 'mpeg4_duration') this.mpeg4Duration,
       @JsonKey(name: 'thumbnail_mime_type') this.thumbnailMimeType,
-      this.title,
-      this.caption,
+      @JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'caption') this.caption,
       @JsonKey(name: 'parse_mode') this.parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -393,11 +391,12 @@ class _$InlineQueryResultMpeg4GifImpl implements _InlineQueryResultMpeg4Gif {
 
   /// Type of the result, always [InlineQueryResultType.mpeg4Gif]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// A valid URL for the MPEG4 file. File size must not exceed 1MB
@@ -405,8 +404,7 @@ class _$InlineQueryResultMpeg4GifImpl implements _InlineQueryResultMpeg4Gif {
   @JsonKey(name: 'mpeg4_url')
   final String mpeg4Url;
 
-  /// URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the
-  /// result
+  /// URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
   @override
   @JsonKey(name: 'thumbnail_url')
   final String thumbnailUrl;
@@ -426,33 +424,30 @@ class _$InlineQueryResultMpeg4GifImpl implements _InlineQueryResultMpeg4Gif {
   @JsonKey(name: 'mpeg4_duration')
   final int? mpeg4Duration;
 
-  /// Optional. MIME type of the thumbnail, must be one of "image/jpeg",
-  /// "image/gif", or "video/mp4". Defaults to "image/jpeg"
+  /// Optional. MIME type of the thumbnail, must be one of "image/jpeg", "image/gif", or "video/mp4". Defaults to "image/jpeg"
   @override
   @JsonKey(name: 'thumbnail_mime_type')
   final String? thumbnailMimeType;
 
   /// Optional. Title for the result
   @override
+  @JsonKey(name: 'title')
   final String? title;
 
-  /// Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after
-  /// entities parsing
+  /// Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities parsing
   @override
+  @JsonKey(name: 'caption')
   final String? caption;
 
-  /// Optional. Mode for parsing entities in the caption. See formatting
-  /// options for more details.
+  /// Optional. Mode for parsing entities in the caption. See formatting options for more details.
   @override
   @JsonKey(name: 'parse_mode')
   final ParseMode? parseMode;
 
-  /// Optional. List of special entities that appear in the caption, which can
-  /// be specified instead of parse_mode
+  /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
   final List<MessageEntity>? _captionEntities;
 
-  /// Optional. List of special entities that appear in the caption, which can
-  /// be specified instead of parse_mode
+  /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
   @override
   @JsonKey(name: 'caption_entities')
   List<MessageEntity>? get captionEntities {
@@ -468,8 +463,7 @@ class _$InlineQueryResultMpeg4GifImpl implements _InlineQueryResultMpeg4Gif {
   @JsonKey(name: 'reply_markup')
   final InlineKeyboardMarkup? replyMarkup;
 
-  /// Optional. Content of the message to be sent instead of the video
-  /// animation
+  /// Optional. Content of the message to be sent instead of the video animation
   @override
   @JsonKey(name: 'input_message_content')
   @InputMessageContentConverter()
@@ -504,16 +498,16 @@ class _$InlineQueryResultMpeg4GifImpl implements _InlineQueryResultMpeg4Gif {
 
 abstract class _InlineQueryResultMpeg4Gif implements InlineQueryResultMpeg4Gif {
   const factory _InlineQueryResultMpeg4Gif(
-      {final InlineQueryResultType type,
-      required final String id,
+      {@JsonKey(name: 'type') final InlineQueryResultType type,
+      @JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'mpeg4_url') required final String mpeg4Url,
       @JsonKey(name: 'thumbnail_url') required final String thumbnailUrl,
       @JsonKey(name: 'mpeg4_width') final int? mpeg4Width,
       @JsonKey(name: 'mpeg4_height') final int? mpeg4Height,
       @JsonKey(name: 'mpeg4_duration') final int? mpeg4Duration,
       @JsonKey(name: 'thumbnail_mime_type') final String? thumbnailMimeType,
-      final String? title,
-      final String? caption,
+      @JsonKey(name: 'title') final String? title,
+      @JsonKey(name: 'caption') final String? caption,
       @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -529,10 +523,12 @@ abstract class _InlineQueryResultMpeg4Gif implements InlineQueryResultMpeg4Gif {
 
   /// Type of the result, always [InlineQueryResultType.mpeg4Gif]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// A valid URL for the MPEG4 file. File size must not exceed 1MB
@@ -540,8 +536,7 @@ abstract class _InlineQueryResultMpeg4Gif implements InlineQueryResultMpeg4Gif {
   @JsonKey(name: 'mpeg4_url')
   String get mpeg4Url;
 
-  /// URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the
-  /// result
+  /// URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
   @override
   @JsonKey(name: 'thumbnail_url')
   String get thumbnailUrl;
@@ -561,29 +556,27 @@ abstract class _InlineQueryResultMpeg4Gif implements InlineQueryResultMpeg4Gif {
   @JsonKey(name: 'mpeg4_duration')
   int? get mpeg4Duration;
 
-  /// Optional. MIME type of the thumbnail, must be one of "image/jpeg",
-  /// "image/gif", or "video/mp4". Defaults to "image/jpeg"
+  /// Optional. MIME type of the thumbnail, must be one of "image/jpeg", "image/gif", or "video/mp4". Defaults to "image/jpeg"
   @override
   @JsonKey(name: 'thumbnail_mime_type')
   String? get thumbnailMimeType;
 
   /// Optional. Title for the result
   @override
+  @JsonKey(name: 'title')
   String? get title;
 
-  /// Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after
-  /// entities parsing
+  /// Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities parsing
   @override
+  @JsonKey(name: 'caption')
   String? get caption;
 
-  /// Optional. Mode for parsing entities in the caption. See formatting
-  /// options for more details.
+  /// Optional. Mode for parsing entities in the caption. See formatting options for more details.
   @override
   @JsonKey(name: 'parse_mode')
   ParseMode? get parseMode;
 
-  /// Optional. List of special entities that appear in the caption, which can
-  /// be specified instead of parse_mode
+  /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
   @override
   @JsonKey(name: 'caption_entities')
   List<MessageEntity>? get captionEntities;
@@ -593,8 +586,7 @@ abstract class _InlineQueryResultMpeg4Gif implements InlineQueryResultMpeg4Gif {
   @JsonKey(name: 'reply_markup')
   InlineKeyboardMarkup? get replyMarkup;
 
-  /// Optional. Content of the message to be sent instead of the video
-  /// animation
+  /// Optional. Content of the message to be sent instead of the video animation
   @override
   @JsonKey(name: 'input_message_content')
   @InputMessageContentConverter()

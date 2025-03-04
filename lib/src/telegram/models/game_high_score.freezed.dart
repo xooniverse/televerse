@@ -21,12 +21,15 @@ GameHighScore _$GameHighScoreFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GameHighScore {
   /// Position in high score table for the game
+  @JsonKey(name: 'position')
   int get position => throw _privateConstructorUsedError;
 
   /// User
+  @JsonKey(name: 'user')
   User get user => throw _privateConstructorUsedError;
 
   /// Score
+  @JsonKey(name: 'score')
   int get score => throw _privateConstructorUsedError;
 
   /// Serializes this GameHighScore to a JSON map.
@@ -45,7 +48,10 @@ abstract class $GameHighScoreCopyWith<$Res> {
           GameHighScore value, $Res Function(GameHighScore) then) =
       _$GameHighScoreCopyWithImpl<$Res, GameHighScore>;
   @useResult
-  $Res call({int position, User user, int score});
+  $Res call(
+      {@JsonKey(name: 'position') int position,
+      @JsonKey(name: 'user') User user,
+      @JsonKey(name: 'score') int score});
 
   $UserCopyWith<$Res> get user;
 }
@@ -104,7 +110,10 @@ abstract class _$$GameHighScoreImplCopyWith<$Res>
       __$$GameHighScoreImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int position, User user, int score});
+  $Res call(
+      {@JsonKey(name: 'position') int position,
+      @JsonKey(name: 'user') User user,
+      @JsonKey(name: 'score') int score});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -148,21 +157,26 @@ class __$$GameHighScoreImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GameHighScoreImpl implements _GameHighScore {
   const _$GameHighScoreImpl(
-      {required this.position, required this.user, required this.score});
+      {@JsonKey(name: 'position') required this.position,
+      @JsonKey(name: 'user') required this.user,
+      @JsonKey(name: 'score') required this.score});
 
   factory _$GameHighScoreImpl.fromJson(Map<String, dynamic> json) =>
       _$$GameHighScoreImplFromJson(json);
 
   /// Position in high score table for the game
   @override
+  @JsonKey(name: 'position')
   final int position;
 
   /// User
   @override
+  @JsonKey(name: 'user')
   final User user;
 
   /// Score
   @override
+  @JsonKey(name: 'score')
   final int score;
 
   @override
@@ -188,23 +202,26 @@ class _$GameHighScoreImpl implements _GameHighScore {
 
 abstract class _GameHighScore implements GameHighScore {
   const factory _GameHighScore(
-      {required final int position,
-      required final User user,
-      required final int score}) = _$GameHighScoreImpl;
+      {@JsonKey(name: 'position') required final int position,
+      @JsonKey(name: 'user') required final User user,
+      @JsonKey(name: 'score') required final int score}) = _$GameHighScoreImpl;
 
   factory _GameHighScore.fromJson(Map<String, dynamic> json) =
       _$GameHighScoreImpl.fromJson;
 
   /// Position in high score table for the game
   @override
+  @JsonKey(name: 'position')
   int get position;
 
   /// User
   @override
+  @JsonKey(name: 'user')
   User get user;
 
   /// Score
   @override
+  @JsonKey(name: 'score')
   int get score;
 
   /// Create a copy of GameHighScore

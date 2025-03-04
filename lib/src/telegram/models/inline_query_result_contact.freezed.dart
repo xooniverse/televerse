@@ -22,9 +22,11 @@ InlineQueryResultContact _$InlineQueryResultContactFromJson(
 /// @nodoc
 mixin _$InlineQueryResultContact {
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Type of the result, always [InlineQueryResultType.contact]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Contact's phone number
@@ -40,6 +42,7 @@ mixin _$InlineQueryResultContact {
   String? get lastName => throw _privateConstructorUsedError;
 
   /// Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
+  @JsonKey(name: 'vcard')
   String? get vcard => throw _privateConstructorUsedError;
 
   /// Optional. Inline keyboard attached to the message
@@ -81,12 +84,12 @@ abstract class $InlineQueryResultContactCopyWith<$Res> {
       _$InlineQueryResultContactCopyWithImpl<$Res, InlineQueryResultContact>;
   @useResult
   $Res call(
-      {String id,
-      InlineQueryResultType type,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'type') InlineQueryResultType type,
       @JsonKey(name: 'phone_number') String phoneNumber,
       @JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String? lastName,
-      String? vcard,
+      @JsonKey(name: 'vcard') String? vcard,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
@@ -200,12 +203,12 @@ abstract class _$$InlineQueryResultContactImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      InlineQueryResultType type,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'type') InlineQueryResultType type,
       @JsonKey(name: 'phone_number') String phoneNumber,
       @JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String? lastName,
-      String? vcard,
+      @JsonKey(name: 'vcard') String? vcard,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
@@ -298,12 +301,12 @@ class __$$InlineQueryResultContactImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultContactImpl implements _InlineQueryResultContact {
   const _$InlineQueryResultContactImpl(
-      {required this.id,
-      this.type = InlineQueryResultType.contact,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'type') this.type = InlineQueryResultType.contact,
       @JsonKey(name: 'phone_number') required this.phoneNumber,
       @JsonKey(name: 'first_name') required this.firstName,
       @JsonKey(name: 'last_name') this.lastName,
-      this.vcard,
+      @JsonKey(name: 'vcard') this.vcard,
       @JsonKey(name: 'reply_markup') this.replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
@@ -317,11 +320,12 @@ class _$InlineQueryResultContactImpl implements _InlineQueryResultContact {
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Type of the result, always [InlineQueryResultType.contact]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   /// Contact's phone number
@@ -341,6 +345,7 @@ class _$InlineQueryResultContactImpl implements _InlineQueryResultContact {
 
   /// Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
   @override
+  @JsonKey(name: 'vcard')
   final String? vcard;
 
   /// Optional. Inline keyboard attached to the message
@@ -393,12 +398,12 @@ class _$InlineQueryResultContactImpl implements _InlineQueryResultContact {
 
 abstract class _InlineQueryResultContact implements InlineQueryResultContact {
   const factory _InlineQueryResultContact(
-      {required final String id,
-      final InlineQueryResultType type,
+      {@JsonKey(name: 'id') required final String id,
+      @JsonKey(name: 'type') final InlineQueryResultType type,
       @JsonKey(name: 'phone_number') required final String phoneNumber,
       @JsonKey(name: 'first_name') required final String firstName,
       @JsonKey(name: 'last_name') final String? lastName,
-      final String? vcard,
+      @JsonKey(name: 'vcard') final String? vcard,
       @JsonKey(name: 'reply_markup') final InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
@@ -413,10 +418,12 @@ abstract class _InlineQueryResultContact implements InlineQueryResultContact {
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Type of the result, always [InlineQueryResultType.contact]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Contact's phone number
@@ -436,6 +443,7 @@ abstract class _InlineQueryResultContact implements InlineQueryResultContact {
 
   /// Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
   @override
+  @JsonKey(name: 'vcard')
   String? get vcard;
 
   /// Optional. Inline keyboard attached to the message

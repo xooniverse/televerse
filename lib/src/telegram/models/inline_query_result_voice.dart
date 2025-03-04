@@ -23,7 +23,9 @@ class InlineQueryResultVoice
   /// Constructs the `InlineQueryResultVoice`
   const factory InlineQueryResultVoice({
     /// Type of the result, always [InlineQueryResultType.voice]
-    @Default(InlineQueryResultType.voice) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.voice)
+    InlineQueryResultType type,
 
     /// Unique identifier for this result, 1-64 Bytes
     @JsonKey(name: 'id') required String id,

@@ -19,7 +19,7 @@ class BusinessMessagesDeleted
 
     /// Information about a chat in the business account. The bot may not have
     /// access to the chat or the corresponding user.
-    required Chat chat,
+    @JsonKey(name: 'chat') required Chat chat,
 
     /// A JSON-serialized list of identifiers of deleted messages in the chat of
     /// the business account.

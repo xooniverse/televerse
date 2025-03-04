@@ -38,7 +38,7 @@ sealed class ReactionType with _$ReactionType implements _ReactionTypeImpl {
     /// "👻", "👨‍💻", "👀", "🎃", "🙈", "😇", "😨", "🤝", "✍", "🤗", "🫡",
     /// "🎅", "🎄", "☃", "💅", "🤪", "🗿", "🆒", "💘", "🙉", "🦄", "😘", "💊",
     /// "🙊", "😎", "👾", "🤷‍♂", "🤷", "🤷‍♀", "😡"
-    required final String emoji,
+    @JsonKey(name: 'emoji') required final String emoji,
   }) = ReactionTypeEmoji;
 
   /// Custom emoji reaction
@@ -48,7 +48,9 @@ sealed class ReactionType with _$ReactionType implements _ReactionTypeImpl {
   )
   const factory ReactionType.customEmoji({
     /// Type of the reaction, must be "custom_emoji"
-    @Default(ReactionTypeType.customEmoji) ReactionTypeType type,
+    @JsonKey(name: 'type')
+    @Default(ReactionTypeType.customEmoji)
+    ReactionTypeType type,
 
     /// Custom emoji identifier
     @JsonKey(name: 'custom_emoji_id') required final String customEmojiId,
@@ -61,7 +63,9 @@ sealed class ReactionType with _$ReactionType implements _ReactionTypeImpl {
   )
   const factory ReactionType.paid({
     /// Type of the reaction, must be "paid"
-    @Default(ReactionTypeType.paid) ReactionTypeType type,
+    @JsonKey(name: 'type')
+    @Default(ReactionTypeType.paid)
+    ReactionTypeType type,
   }) = ReactionTypePaid;
 
   factory ReactionType.fromJson(Map<String, Object?> json) =>

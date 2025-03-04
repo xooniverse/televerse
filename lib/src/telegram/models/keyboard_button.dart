@@ -36,7 +36,7 @@ class KeyboardButton with _$KeyboardButton {
   const factory KeyboardButton({
     /// Text of the button. If none of the optional fields are used, it will be
     /// sent as a message when the button is pressed
-    required String text,
+    @JsonKey(name: 'text') required String text,
 
     /// Optional. If True, the user's phone number will be sent as a contact
     /// when the button is pressed. Available in private chats only

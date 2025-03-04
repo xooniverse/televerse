@@ -10,7 +10,7 @@ class VideoChatEnded with _$VideoChatEnded {
   /// Constructs a new `VideoChatEnded` instance
   const factory VideoChatEnded({
     /// Video chat duration in seconds
-    required int duration,
+    @JsonKey(name: 'duration') required int duration,
   }) = _VideoChatEnded;
 
   /// Creates a [VideoChatEnded] object from JSON object

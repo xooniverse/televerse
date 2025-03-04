@@ -17,10 +17,12 @@ class InlineQueryResultContact
   /// Constructs an [InlineQueryResultContact] object
   const factory InlineQueryResultContact({
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Type of the result, always [InlineQueryResultType.contact]
-    @Default(InlineQueryResultType.contact) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.contact)
+    InlineQueryResultType type,
 
     /// Contact's phone number
     @JsonKey(name: 'phone_number') required String phoneNumber,
@@ -32,7 +34,7 @@ class InlineQueryResultContact
     @JsonKey(name: 'last_name') String? lastName,
 
     /// Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
-    String? vcard,
+    @JsonKey(name: 'vcard') String? vcard,
 
     /// Optional. Inline keyboard attached to the message
     @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,

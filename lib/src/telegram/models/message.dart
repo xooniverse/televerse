@@ -119,14 +119,14 @@ class Message with _$Message implements MaybeInaccessibleMessage, WithUser {
   /// Creates a Message object.
   const factory Message({
     /// Chat the message belonged to
-    required Chat chat,
+    @JsonKey(name: "chat") required Chat chat,
 
     /// Unique message identifier inside the chat
     @JsonKey(name: "message_id") required int messageId,
 
     /// Date the message was sent in Unix time. It is always a positive number,
     /// representing a valid date.
-    required int date,
+    @JsonKey(name: "date") required int date,
 
     /// Optional. Unique identifier of a message thread to which the message
     /// belongs; for supergroups only
@@ -135,7 +135,7 @@ class Message with _$Message implements MaybeInaccessibleMessage, WithUser {
     /// Optional. Sender of the message; empty for messages sent to channels.
     /// For backward compatibility, the field contains a fake sender user in
     /// non-channel chats, if the message was sent on behalf of a chat.
-    User? from,
+    @JsonKey(name: 'from') User? from,
 
     /// Optional. Sender of the message, sent on behalf of a chat. For example,
     /// the channel itself for channel posts, the supergroup itself for messages
@@ -180,66 +180,66 @@ class Message with _$Message implements MaybeInaccessibleMessage, WithUser {
     @JsonKey(name: 'author_signature') String? authorSignature,
 
     /// Optional. For text messages, the actual UTF-8 text of the message
-    String? text,
+    @JsonKey(name: 'text') String? text,
 
     /// Optional. For text messages, special entities like usernames, URLs, bot
     /// commands, etc. that appear in the text
-    List<MessageEntity>? entities,
+    @JsonKey(name: 'entities') List<MessageEntity>? entities,
 
     /// Optional. Message is an animation, information about the animation. For
     /// backward compatibility, when this field is set, the document field will
     /// also be set
-    Animation? animation,
+    @JsonKey(name: 'animation') Animation? animation,
 
     /// Optional. Message is an audio file, information about the file
-    Audio? audio,
+    @JsonKey(name: 'audio') Audio? audio,
 
     /// Optional. Message is a general file, information about the file
-    Document? document,
+    @JsonKey(name: 'document') Document? document,
 
     /// Optional. Message is a photo, available sizes of the photo
-    List<PhotoSize>? photo,
+    @JsonKey(name: 'photo') List<PhotoSize>? photo,
 
     /// Optional. Message is a sticker, information about the sticker
-    Sticker? sticker,
+    @JsonKey(name: 'sticker') Sticker? sticker,
 
     /// Optional. Message is a video, information about the video
-    Video? video,
+    @JsonKey(name: 'video') Video? video,
 
     /// Optional. Message is a video note, information about the video message
     @JsonKey(name: 'video_note') VideoNote? videoNote,
 
     /// Optional. Message is a voice message, information about the file
-    Voice? voice,
+    @JsonKey(name: 'voice') Voice? voice,
 
     /// Optional. Caption for the animation, audio, document, photo, video or
     /// voice
-    String? caption,
+    @JsonKey(name: 'caption') String? caption,
 
     /// Optional. For messages with a caption, special entities like usernames,
     /// URLs, bot commands, etc. that appear in the caption
     @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
 
     /// Optional. Message is a shared contact, information about the contact
-    Contact? contact,
+    @JsonKey(name: 'contact') Contact? contact,
 
     /// Optional. Message is a dice with random value
-    Dice? dice,
+    @JsonKey(name: 'dice') Dice? dice,
 
     /// Optional. Message is a game, information about the game. More about
     /// games »
-    Game? game,
+    @JsonKey(name: 'game') Game? game,
 
     /// Optional. Message is a native poll, information about the poll
-    Poll? poll,
+    @JsonKey(name: 'poll') Poll? poll,
 
     /// Optional. Message is a venue, information about the venue. For backward
     /// compatibility, when this field is set, the location field will also be
     /// set
-    Venue? venue,
+    @JsonKey(name: 'venue') Venue? venue,
 
     /// Optional. Message is a shared location, information about the location
-    Location? location,
+    @JsonKey(name: 'location') Location? location,
 
     /// Optional. New members that were added to the group or supergroup and
     /// information about them (the bot itself may be one of these members)
@@ -283,8 +283,9 @@ class Message with _$Message implements MaybeInaccessibleMessage, WithUser {
     /// Optional. The group has been migrated to a supergroup with the specified
     /// identifier. This number may have more than 32 significant bits and some
     /// programming languages may have difficulty/silent defects in interpreting
-    /// it. But it has at most 52 significant bits, so a signed 64-bit integer
-    /// or double-precision float type are safe for storing this identifier.
+    /// it. But it has at most 52 significant bits, so a signed
+    /// 64-bit integer or double-precision float type are safe for storing this
+    /// identifier.
     @JsonKey(name: 'migrate_to_chat_id') int? migrateToChatId,
 
     /// Optional. The supergroup has been migrated from a group with the
@@ -302,7 +303,7 @@ class Message with _$Message implements MaybeInaccessibleMessage, WithUser {
 
     /// Optional. Message is an invoice for a payment, information about the
     /// invoice. More about payments »
-    Invoice? invoice,
+    @JsonKey(name: 'invoice') Invoice? invoice,
 
     /// Optional. Message is a service message about a successful payment,
     /// information about the payment. More about payments »
@@ -377,7 +378,7 @@ class Message with _$Message implements MaybeInaccessibleMessage, WithUser {
     WriteAccessAllowed? writeAccessAllowed,
 
     /// Optional. Message is a forwarded story
-    Story? story,
+    @JsonKey(name: 'story') Story? story,
 
     /// Optional. Information about the message that is being replied to, which
     /// may come from another chat or forum topic
@@ -385,7 +386,7 @@ class Message with _$Message implements MaybeInaccessibleMessage, WithUser {
 
     /// Optional. For replies that quote part of the original message, the
     /// quoted part of the message
-    TextQuote? quote,
+    @JsonKey(name: 'quote') TextQuote? quote,
 
     /// Optional. Options used for link preview generation for the message, if
     /// it is a text message and link preview options were changed
@@ -393,7 +394,7 @@ class Message with _$Message implements MaybeInaccessibleMessage, WithUser {
     LinkPreviewOptions? linkPreviewOptions,
 
     /// Optional. The message is a scheduled giveaway message
-    Giveaway? giveaway,
+    @JsonKey(name: 'giveaway') Giveaway? giveaway,
 
     /// Optional. Service message: a scheduled giveaway was created
     @JsonKey(name: 'giveaway_created') GiveawayCreated? giveawayCreated,

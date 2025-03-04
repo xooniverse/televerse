@@ -32,17 +32,21 @@ mixin _$Animation {
   String get fileUniqueId => throw _privateConstructorUsedError;
 
   /// Video width as defined by sender
+  @JsonKey(name: 'width')
   int get width => throw _privateConstructorUsedError;
 
   /// Video height as defined by sender
+  @JsonKey(name: 'height')
   int get height => throw _privateConstructorUsedError;
 
   /// Duration of the video in seconds as defined by sender
   ///
   /// A handy [Duration] getter is available as [durationTime]
+  @JsonKey(name: 'duration')
   int get duration => throw _privateConstructorUsedError;
 
   /// Optional. Animation thumbnail as defined by sender
+  @JsonKey(name: 'thumbnail')
   PhotoSize? get thumbnail => throw _privateConstructorUsedError;
 
   /// Optional. Original animation filename as defined by sender
@@ -78,10 +82,10 @@ abstract class $AnimationCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'file_id') String fileId,
       @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      int width,
-      int height,
-      int duration,
-      PhotoSize? thumbnail,
+      @JsonKey(name: 'width') int width,
+      @JsonKey(name: 'height') int height,
+      @JsonKey(name: 'duration') int duration,
+      @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
       @JsonKey(name: 'file_name') String? fileName,
       @JsonKey(name: 'mime_type') String? mimeType,
       @JsonKey(name: 'file_size') int? fileSize});
@@ -180,10 +184,10 @@ abstract class _$$AnimationImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'file_id') String fileId,
       @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      int width,
-      int height,
-      int duration,
-      PhotoSize? thumbnail,
+      @JsonKey(name: 'width') int width,
+      @JsonKey(name: 'height') int height,
+      @JsonKey(name: 'duration') int duration,
+      @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
       @JsonKey(name: 'file_name') String? fileName,
       @JsonKey(name: 'mime_type') String? mimeType,
       @JsonKey(name: 'file_size') int? fileSize});
@@ -262,10 +266,10 @@ class _$AnimationImpl implements _Animation {
   const _$AnimationImpl(
       {@JsonKey(name: 'file_id') required this.fileId,
       @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
-      required this.width,
-      required this.height,
-      required this.duration,
-      this.thumbnail,
+      @JsonKey(name: 'width') required this.width,
+      @JsonKey(name: 'height') required this.height,
+      @JsonKey(name: 'duration') required this.duration,
+      @JsonKey(name: 'thumbnail') this.thumbnail,
       @JsonKey(name: 'file_name') this.fileName,
       @JsonKey(name: 'mime_type') this.mimeType,
       @JsonKey(name: 'file_size') this.fileSize});
@@ -288,20 +292,24 @@ class _$AnimationImpl implements _Animation {
 
   /// Video width as defined by sender
   @override
+  @JsonKey(name: 'width')
   final int width;
 
   /// Video height as defined by sender
   @override
+  @JsonKey(name: 'height')
   final int height;
 
   /// Duration of the video in seconds as defined by sender
   ///
   /// A handy [Duration] getter is available as [durationTime]
   @override
+  @JsonKey(name: 'duration')
   final int duration;
 
   /// Optional. Animation thumbnail as defined by sender
   @override
+  @JsonKey(name: 'thumbnail')
   final PhotoSize? thumbnail;
 
   /// Optional. Original animation filename as defined by sender
@@ -347,10 +355,10 @@ abstract class _Animation implements Animation {
   const factory _Animation(
       {@JsonKey(name: 'file_id') required final String fileId,
       @JsonKey(name: 'file_unique_id') required final String fileUniqueId,
-      required final int width,
-      required final int height,
-      required final int duration,
-      final PhotoSize? thumbnail,
+      @JsonKey(name: 'width') required final int width,
+      @JsonKey(name: 'height') required final int height,
+      @JsonKey(name: 'duration') required final int duration,
+      @JsonKey(name: 'thumbnail') final PhotoSize? thumbnail,
       @JsonKey(name: 'file_name') final String? fileName,
       @JsonKey(name: 'mime_type') final String? mimeType,
       @JsonKey(name: 'file_size') final int? fileSize}) = _$AnimationImpl;
@@ -373,20 +381,24 @@ abstract class _Animation implements Animation {
 
   /// Video width as defined by sender
   @override
+  @JsonKey(name: 'width')
   int get width;
 
   /// Video height as defined by sender
   @override
+  @JsonKey(name: 'height')
   int get height;
 
   /// Duration of the video in seconds as defined by sender
   ///
   /// A handy [Duration] getter is available as [durationTime]
   @override
+  @JsonKey(name: 'duration')
   int get duration;
 
   /// Optional. Animation thumbnail as defined by sender
   @override
+  @JsonKey(name: 'thumbnail')
   PhotoSize? get thumbnail;
 
   /// Optional. Original animation filename as defined by sender

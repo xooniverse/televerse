@@ -14,10 +14,10 @@ class BusinessConnection with _$BusinessConnection implements WithUser {
   /// Constructs a new BusinessConnection instance with the provided parameters.
   const factory BusinessConnection({
     /// Unique identifier of the business connection.
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Business account user that created the business connection.
-    required User user,
+    @JsonKey(name: 'user') required User user,
 
     /// Identifier of a private chat with the user who created the business
     /// connection. This number may have more than 32 significant bits and some
@@ -27,7 +27,7 @@ class BusinessConnection with _$BusinessConnection implements WithUser {
     @JsonKey(name: 'user_chat_id') required int userChatId,
 
     /// Date the connection was established in Unix time.
-    required int date,
+    @JsonKey(name: 'date') required int date,
 
     /// Indicates whether the bot can act on behalf of the business account in
     /// chats that were active in the last 24 hours.

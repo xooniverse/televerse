@@ -10,7 +10,7 @@ _$ForumTopicCreatedImpl _$$ForumTopicCreatedImplFromJson(
         Map<String, dynamic> json) =>
     _$ForumTopicCreatedImpl(
       name: json['name'] as String,
-      color: (json['icon_color'] as num).toInt(),
+      iconColor: (json['icon_color'] as num).toInt(),
       iconCustomEmojiId: json['icon_custom_emoji_id'] as String?,
     );
 
@@ -18,7 +18,7 @@ Map<String, dynamic> _$$ForumTopicCreatedImplToJson(
         _$ForumTopicCreatedImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'icon_color': instance.color,
+      'icon_color': instance.iconColor,
       if (instance.iconCustomEmojiId case final value?)
         'icon_custom_emoji_id': value,
     };

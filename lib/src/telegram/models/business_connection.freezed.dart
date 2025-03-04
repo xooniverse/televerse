@@ -21,9 +21,11 @@ BusinessConnection _$BusinessConnectionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BusinessConnection {
   /// Unique identifier of the business connection.
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Business account user that created the business connection.
+  @JsonKey(name: 'user')
   User get user => throw _privateConstructorUsedError;
 
   /// Identifier of a private chat with the user who created the business
@@ -35,6 +37,7 @@ mixin _$BusinessConnection {
   int get userChatId => throw _privateConstructorUsedError;
 
   /// Date the connection was established in Unix time.
+  @JsonKey(name: 'date')
   int get date => throw _privateConstructorUsedError;
 
   /// Indicates whether the bot can act on behalf of the business account in
@@ -63,10 +66,10 @@ abstract class $BusinessConnectionCopyWith<$Res> {
       _$BusinessConnectionCopyWithImpl<$Res, BusinessConnection>;
   @useResult
   $Res call(
-      {String id,
-      User user,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'user') User user,
       @JsonKey(name: 'user_chat_id') int userChatId,
-      int date,
+      @JsonKey(name: 'date') int date,
       @JsonKey(name: 'can_reply') bool canReply,
       @JsonKey(name: 'is_enabled') bool isEnabled});
 
@@ -143,10 +146,10 @@ abstract class _$$BusinessConnectionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      User user,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'user') User user,
       @JsonKey(name: 'user_chat_id') int userChatId,
-      int date,
+      @JsonKey(name: 'date') int date,
       @JsonKey(name: 'can_reply') bool canReply,
       @JsonKey(name: 'is_enabled') bool isEnabled});
 
@@ -207,10 +210,10 @@ class __$$BusinessConnectionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BusinessConnectionImpl extends _BusinessConnection {
   const _$BusinessConnectionImpl(
-      {required this.id,
-      required this.user,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'user') required this.user,
       @JsonKey(name: 'user_chat_id') required this.userChatId,
-      required this.date,
+      @JsonKey(name: 'date') required this.date,
       @JsonKey(name: 'can_reply') required this.canReply,
       @JsonKey(name: 'is_enabled') required this.isEnabled})
       : super._();
@@ -220,10 +223,12 @@ class _$BusinessConnectionImpl extends _BusinessConnection {
 
   /// Unique identifier of the business connection.
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Business account user that created the business connection.
   @override
+  @JsonKey(name: 'user')
   final User user;
 
   /// Identifier of a private chat with the user who created the business
@@ -237,6 +242,7 @@ class _$BusinessConnectionImpl extends _BusinessConnection {
 
   /// Date the connection was established in Unix time.
   @override
+  @JsonKey(name: 'date')
   final int date;
 
   /// Indicates whether the bot can act on behalf of the business account in
@@ -274,10 +280,10 @@ class _$BusinessConnectionImpl extends _BusinessConnection {
 
 abstract class _BusinessConnection extends BusinessConnection {
   const factory _BusinessConnection(
-          {required final String id,
-          required final User user,
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'user') required final User user,
           @JsonKey(name: 'user_chat_id') required final int userChatId,
-          required final int date,
+          @JsonKey(name: 'date') required final int date,
           @JsonKey(name: 'can_reply') required final bool canReply,
           @JsonKey(name: 'is_enabled') required final bool isEnabled}) =
       _$BusinessConnectionImpl;
@@ -288,10 +294,12 @@ abstract class _BusinessConnection extends BusinessConnection {
 
   /// Unique identifier of the business connection.
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Business account user that created the business connection.
   @override
+  @JsonKey(name: 'user')
   User get user;
 
   /// Identifier of a private chat with the user who created the business
@@ -305,6 +313,7 @@ abstract class _BusinessConnection extends BusinessConnection {
 
   /// Date the connection was established in Unix time.
   @override
+  @JsonKey(name: 'date')
   int get date;
 
   /// Indicates whether the bot can act on behalf of the business account in

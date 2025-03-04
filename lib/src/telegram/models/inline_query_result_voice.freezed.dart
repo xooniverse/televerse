@@ -22,6 +22,7 @@ InlineQueryResultVoice _$InlineQueryResultVoiceFromJson(
 /// @nodoc
 mixin _$InlineQueryResultVoice {
   /// Type of the result, always [InlineQueryResultType.voice]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Unique identifier for this result, 1-64 Bytes
@@ -83,7 +84,7 @@ abstract class $InlineQueryResultVoiceCopyWith<$Res> {
       _$InlineQueryResultVoiceCopyWithImpl<$Res, InlineQueryResultVoice>;
   @useResult
   $Res call(
-      {InlineQueryResultType type,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
       @JsonKey(name: 'id') String id,
       @JsonKey(name: 'voice_url') String voiceUrl,
       @JsonKey(name: 'title') String title,
@@ -196,7 +197,7 @@ abstract class _$$InlineQueryResultVoiceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {InlineQueryResultType type,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
       @JsonKey(name: 'id') String id,
       @JsonKey(name: 'voice_url') String voiceUrl,
       @JsonKey(name: 'title') String title,
@@ -288,7 +289,7 @@ class __$$InlineQueryResultVoiceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultVoiceImpl implements _InlineQueryResultVoice {
   const _$InlineQueryResultVoiceImpl(
-      {this.type = InlineQueryResultType.voice,
+      {@JsonKey(name: 'type') this.type = InlineQueryResultType.voice,
       @JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'voice_url') required this.voiceUrl,
       @JsonKey(name: 'title') required this.title,
@@ -308,7 +309,7 @@ class _$InlineQueryResultVoiceImpl implements _InlineQueryResultVoice {
 
   /// Type of the result, always [InlineQueryResultType.voice]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   /// Unique identifier for this result, 1-64 Bytes
@@ -394,7 +395,7 @@ class _$InlineQueryResultVoiceImpl implements _InlineQueryResultVoice {
 
 abstract class _InlineQueryResultVoice implements InlineQueryResultVoice {
   const factory _InlineQueryResultVoice(
-      {final InlineQueryResultType type,
+      {@JsonKey(name: 'type') final InlineQueryResultType type,
       @JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'voice_url') required final String voiceUrl,
       @JsonKey(name: 'title') required final String title,
@@ -414,6 +415,7 @@ abstract class _InlineQueryResultVoice implements InlineQueryResultVoice {
 
   /// Type of the result, always [InlineQueryResultType.voice]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Unique identifier for this result, 1-64 Bytes

@@ -11,7 +11,7 @@ class SuccessfulPayment with _$SuccessfulPayment {
   /// Constructs a [SuccessfulPayment] object
   const factory SuccessfulPayment({
     /// Three-letter ISO 4217 currency code
-    required String currency,
+    @JsonKey(name: 'currency') required String currency,
 
     /// Total price in the smallest units of the currency (integer, not
     /// float/double). For example, for a price of US$ 1.45 pass amount = 145.

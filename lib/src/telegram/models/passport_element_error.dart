@@ -63,13 +63,14 @@ sealed class PassportElementError
   const factory PassportElementError.frontSide({
     /// Error source, must be "front_side"
     @Default(PassportElementErrorSource.frontSide)
+    @JsonKey(name: 'source')
     PassportElementErrorSource source,
 
     /// The section of the user's Telegram Passport which has the error
-    required final PassportType type,
+    @JsonKey(name: 'type') required final PassportType type,
 
     /// Error message
-    required final String message,
+    @JsonKey(name: 'message') required final String message,
 
     /// Base64-encoded hash of the file with the front side of the document
     @JsonKey(name: 'file_hash') required final String fileHash,
@@ -82,14 +83,15 @@ sealed class PassportElementError
   )
   const factory PassportElementError.reverseSide({
     /// Error source, must be "reverse_side"
+    @JsonKey(name: 'source')
     @Default(PassportElementErrorSource.reverseSide)
     PassportElementErrorSource source,
 
     /// The section of the user's Telegram Passport which has the error
-    required final PassportType type,
+    @JsonKey(name: 'type') required final PassportType type,
 
     /// Error message
-    required final String message,
+    @JsonKey(name: 'message') required final String message,
 
     /// Base64-encoded hash of the file with the reverse side of the document
     @JsonKey(name: 'file_hash') required final String fileHash,
@@ -102,14 +104,15 @@ sealed class PassportElementError
   )
   const factory PassportElementError.selfie({
     /// Error source, must be "selfie"
+    @JsonKey(name: 'source')
     @Default(PassportElementErrorSource.selfie)
     PassportElementErrorSource source,
 
     /// The section of the user's Telegram Passport which has the error
-    required final PassportType type,
+    @JsonKey(name: 'type') required final PassportType type,
 
     /// Error message
-    required final String message,
+    @JsonKey(name: 'message') required final String message,
 
     /// Base64-encoded hash of the file with the selfie
     @JsonKey(name: 'file_hash') required final String fileHash,
@@ -122,13 +125,15 @@ sealed class PassportElementError
   )
   const factory PassportElementError.file({
     /// Error source, must be "file"
-    @Default(PassportElementErrorSource.file) PassportElementErrorSource source,
+    @JsonKey(name: 'source')
+    @Default(PassportElementErrorSource.file)
+    PassportElementErrorSource source,
 
     /// The section of the user's Telegram Passport which has the error
-    required final PassportType type,
+    @JsonKey(name: 'type') required final PassportType type,
 
     /// Error message
-    required final String message,
+    @JsonKey(name: 'message') required final String message,
 
     /// Base64-encoded file hash
     @JsonKey(name: 'file_hash') required final String fileHash,
@@ -141,14 +146,15 @@ sealed class PassportElementError
   )
   const factory PassportElementError.files({
     /// Error source, must be "files"
+    @JsonKey(name: 'source')
     @Default(PassportElementErrorSource.files)
     PassportElementErrorSource source,
 
     /// The section of the user's Telegram Passport which has the error
-    required final PassportType type,
+    @JsonKey(name: 'type') required final PassportType type,
 
     /// Error message
-    required final String message,
+    @JsonKey(name: 'message') required final String message,
 
     /// List of base64-encoded file hashes
     @JsonKey(name: 'file_hashes') required final List<String> fileHashes,
@@ -162,14 +168,15 @@ sealed class PassportElementError
   )
   const factory PassportElementError.translationFile({
     /// Error source, must be "translation_file"
+    @JsonKey(name: 'source')
     @Default(PassportElementErrorSource.translationFile)
     PassportElementErrorSource source,
 
     /// The section of the user's Telegram Passport which has the error
-    required final PassportType type,
+    @JsonKey(name: 'type') required final PassportType type,
 
     /// Error message
-    required final String message,
+    @JsonKey(name: 'message') required final String message,
 
     /// Base64-encoded file hash
     @JsonKey(name: 'file_hash') required final String fileHash,
@@ -182,14 +189,15 @@ sealed class PassportElementError
   )
   const factory PassportElementError.translationFiles({
     /// Error source, must be "translation_files"
+    @JsonKey(name: 'source')
     @Default(PassportElementErrorSource.translationFiles)
     PassportElementErrorSource source,
 
     /// The section of the user's Telegram Passport which has the error
-    required final PassportType type,
+    @JsonKey(name: 'type') required final PassportType type,
 
     /// Error message
-    required final String message,
+    @JsonKey(name: 'message') required final String message,
 
     /// List of base64-encoded file hashes
     @JsonKey(name: 'file_hashes') required final List<String> fileHashes,
@@ -202,14 +210,15 @@ sealed class PassportElementError
   )
   const factory PassportElementError.unspecified({
     /// Error source, must be "unspecified"
+    @JsonKey(name: 'source')
     @Default(PassportElementErrorSource.unspecified)
     PassportElementErrorSource source,
 
     /// The section of the user's Telegram Passport which has the error
-    required final PassportType type,
+    @JsonKey(name: 'type') required final PassportType type,
 
     /// Error message
-    required final String message,
+    @JsonKey(name: 'message') required final String message,
 
     /// Base64-encoded element hash
     @JsonKey(name: 'element_hash') required final String elementHash,
@@ -218,44 +227,4 @@ sealed class PassportElementError
   /// Creates a new instance of [PassportElementError] from a JSON object.
   factory PassportElementError.fromJson(Map<String, dynamic> json) =>
       _$PassportElementErrorFromJson(json);
-}
-
-/// The source of a `PassportElementError`
-@JsonEnum(fieldRename: FieldRename.snake)
-enum PassportElementErrorSource {
-  /// Data field error source
-  @JsonValue('data')
-  data,
-
-  /// Front side error source
-  @JsonValue('front_side')
-  frontSide,
-
-  /// Reverse side error source
-  @JsonValue('reverse_side')
-  reverseSide,
-
-  /// Selfie error source
-  @JsonValue('selfie')
-  selfie,
-
-  /// File error source
-  @JsonValue('file')
-  file,
-
-  /// Files error source
-  @JsonValue('files')
-  files,
-
-  /// Translation file error source
-  @JsonValue('translation_file')
-  translationFile,
-
-  /// Translation files error source
-  @JsonValue('translation_files')
-  translationFiles,
-
-  /// Unspecified error source
-  @JsonValue('unspecified')
-  unspecified;
 }

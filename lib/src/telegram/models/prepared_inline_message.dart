@@ -9,7 +9,7 @@ class PreparedInlineMessage with _$PreparedInlineMessage {
   /// Creates a [PreparedInlineMessage] object.
   const factory PreparedInlineMessage({
     /// Unique identifier of the prepared message.
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Expiration date of the prepared message, in Unix time. Expired prepared
     /// messages can no longer be used.

@@ -13,7 +13,7 @@ class GiveawayWinners with _$GiveawayWinners implements WithChat {
   /// Constructor
   const factory GiveawayWinners({
     /// The chat that created the giveaway
-    required Chat chat,
+    @JsonKey(name: 'chat') required Chat chat,
 
     /// Identifier of the messsage with the giveaway in the chat
     @JsonKey(name: 'giveaway_message_id') required int giveawayMessageId,
@@ -26,7 +26,7 @@ class GiveawayWinners with _$GiveawayWinners implements WithChat {
     @JsonKey(name: 'winner_count') required int winnerCount,
 
     /// List of up to 100 winners of the giveaway
-    required List<User> winners,
+    @JsonKey(name: 'winners') required List<User> winners,
 
     /// The number of other chats the user had to join in order to be eligible
     /// for the giveaway

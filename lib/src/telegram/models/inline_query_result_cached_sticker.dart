@@ -22,7 +22,7 @@ class InlineQueryResultCachedSticker
   /// Constructs an [InlineQueryResultCachedSticker] object
   const factory InlineQueryResultCachedSticker({
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// A valid file identifier of the sticker
     @JsonKey(name: 'sticker_file_id') required String stickerFileId,
@@ -36,7 +36,9 @@ class InlineQueryResultCachedSticker
     InputMessageContent? inputMessageContent,
 
     /// Type of the result, always [InlineQueryResultType.sticker]
-    @Default(InlineQueryResultType.sticker) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.sticker)
+    InlineQueryResultType type,
   }) = _InlineQueryResultCachedSticker;
 
   /// Constructs an [InlineQueryResultCachedSticker] object from a JSON map

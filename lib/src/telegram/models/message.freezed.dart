@@ -102,6 +102,7 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Message {
   /// Chat the message belonged to
+  @JsonKey(name: "chat")
   Chat get chat => throw _privateConstructorUsedError;
 
   /// Unique message identifier inside the chat
@@ -110,6 +111,7 @@ mixin _$Message {
 
   /// Date the message was sent in Unix time. It is always a positive number,
   /// representing a valid date.
+  @JsonKey(name: "date")
   int get date => throw _privateConstructorUsedError;
 
   /// Optional. Unique identifier of a message thread to which the message
@@ -120,6 +122,7 @@ mixin _$Message {
   /// Optional. Sender of the message; empty for messages sent to channels.
   /// For backward compatibility, the field contains a fake sender user in
   /// non-channel chats, if the message was sent on behalf of a chat.
+  @JsonKey(name: 'from')
   User? get from => throw _privateConstructorUsedError;
 
   /// Optional. Sender of the message, sent on behalf of a chat. For example,
@@ -175,30 +178,38 @@ mixin _$Message {
   String? get authorSignature => throw _privateConstructorUsedError;
 
   /// Optional. For text messages, the actual UTF-8 text of the message
+  @JsonKey(name: 'text')
   String? get text => throw _privateConstructorUsedError;
 
   /// Optional. For text messages, special entities like usernames, URLs, bot
   /// commands, etc. that appear in the text
+  @JsonKey(name: 'entities')
   List<MessageEntity>? get entities => throw _privateConstructorUsedError;
 
   /// Optional. Message is an animation, information about the animation. For
   /// backward compatibility, when this field is set, the document field will
   /// also be set
+  @JsonKey(name: 'animation')
   Animation? get animation => throw _privateConstructorUsedError;
 
   /// Optional. Message is an audio file, information about the file
+  @JsonKey(name: 'audio')
   Audio? get audio => throw _privateConstructorUsedError;
 
   /// Optional. Message is a general file, information about the file
+  @JsonKey(name: 'document')
   Document? get document => throw _privateConstructorUsedError;
 
   /// Optional. Message is a photo, available sizes of the photo
+  @JsonKey(name: 'photo')
   List<PhotoSize>? get photo => throw _privateConstructorUsedError;
 
   /// Optional. Message is a sticker, information about the sticker
+  @JsonKey(name: 'sticker')
   Sticker? get sticker => throw _privateConstructorUsedError;
 
   /// Optional. Message is a video, information about the video
+  @JsonKey(name: 'video')
   Video? get video => throw _privateConstructorUsedError;
 
   /// Optional. Message is a video note, information about the video message
@@ -206,10 +217,12 @@ mixin _$Message {
   VideoNote? get videoNote => throw _privateConstructorUsedError;
 
   /// Optional. Message is a voice message, information about the file
+  @JsonKey(name: 'voice')
   Voice? get voice => throw _privateConstructorUsedError;
 
   /// Optional. Caption for the animation, audio, document, photo, video or
   /// voice
+  @JsonKey(name: 'caption')
   String? get caption => throw _privateConstructorUsedError;
 
   /// Optional. For messages with a caption, special entities like usernames,
@@ -219,24 +232,30 @@ mixin _$Message {
       throw _privateConstructorUsedError;
 
   /// Optional. Message is a shared contact, information about the contact
+  @JsonKey(name: 'contact')
   Contact? get contact => throw _privateConstructorUsedError;
 
   /// Optional. Message is a dice with random value
+  @JsonKey(name: 'dice')
   Dice? get dice => throw _privateConstructorUsedError;
 
   /// Optional. Message is a game, information about the game. More about
   /// games »
+  @JsonKey(name: 'game')
   Game? get game => throw _privateConstructorUsedError;
 
   /// Optional. Message is a native poll, information about the poll
+  @JsonKey(name: 'poll')
   Poll? get poll => throw _privateConstructorUsedError;
 
   /// Optional. Message is a venue, information about the venue. For backward
   /// compatibility, when this field is set, the location field will also be
   /// set
+  @JsonKey(name: 'venue')
   Venue? get venue => throw _privateConstructorUsedError;
 
   /// Optional. Message is a shared location, information about the location
+  @JsonKey(name: 'location')
   Location? get location => throw _privateConstructorUsedError;
 
   /// Optional. New members that were added to the group or supergroup and
@@ -290,8 +309,9 @@ mixin _$Message {
   /// Optional. The group has been migrated to a supergroup with the specified
   /// identifier. This number may have more than 32 significant bits and some
   /// programming languages may have difficulty/silent defects in interpreting
-  /// it. But it has at most 52 significant bits, so a signed 64-bit integer
-  /// or double-precision float type are safe for storing this identifier.
+  /// it. But it has at most 52 significant bits, so a signed
+  /// 64-bit integer or double-precision float type are safe for storing this
+  /// identifier.
   @JsonKey(name: 'migrate_to_chat_id')
   int? get migrateToChatId => throw _privateConstructorUsedError;
 
@@ -312,6 +332,7 @@ mixin _$Message {
 
   /// Optional. Message is an invoice for a payment, information about the
   /// invoice. More about payments »
+  @JsonKey(name: 'invoice')
   Invoice? get invoice => throw _privateConstructorUsedError;
 
   /// Optional. Message is a service message about a successful payment,
@@ -409,6 +430,7 @@ mixin _$Message {
       throw _privateConstructorUsedError;
 
   /// Optional. Message is a forwarded story
+  @JsonKey(name: 'story')
   Story? get story => throw _privateConstructorUsedError;
 
   /// Optional. Information about the message that is being replied to, which
@@ -418,6 +440,7 @@ mixin _$Message {
 
   /// Optional. For replies that quote part of the original message, the
   /// quoted part of the message
+  @JsonKey(name: 'quote')
   TextQuote? get quote => throw _privateConstructorUsedError;
 
   /// Optional. Options used for link preview generation for the message, if
@@ -427,6 +450,7 @@ mixin _$Message {
       throw _privateConstructorUsedError;
 
   /// Optional. The message is a scheduled giveaway message
+  @JsonKey(name: 'giveaway')
   Giveaway? get giveaway => throw _privateConstructorUsedError;
 
   /// Optional. Service message: a scheduled giveaway was created
@@ -504,11 +528,11 @@ mixin _$Message {
 @JsonSerializable()
 class _$MessageImpl implements _Message {
   const _$MessageImpl(
-      {required this.chat,
+      {@JsonKey(name: "chat") required this.chat,
       @JsonKey(name: "message_id") required this.messageId,
-      required this.date,
+      @JsonKey(name: "date") required this.date,
       @JsonKey(name: 'message_thread_id') this.messageThreadId,
-      this.from,
+      @JsonKey(name: 'from') this.from,
       @JsonKey(name: 'sender_chat') this.senderChat,
       @JsonKey(name: 'forward_origin') this.forwardOrigin,
       @JsonKey(name: 'is_topic_message') this.isTopicMessage,
@@ -519,25 +543,25 @@ class _$MessageImpl implements _Message {
       @JsonKey(name: 'has_protected_content') this.hasProtectedContent,
       @JsonKey(name: 'media_group_id') this.mediaGroupId,
       @JsonKey(name: 'author_signature') this.authorSignature,
-      this.text,
-      final List<MessageEntity>? entities,
-      this.animation,
-      this.audio,
-      this.document,
-      final List<PhotoSize>? photo,
-      this.sticker,
-      this.video,
+      @JsonKey(name: 'text') this.text,
+      @JsonKey(name: 'entities') final List<MessageEntity>? entities,
+      @JsonKey(name: 'animation') this.animation,
+      @JsonKey(name: 'audio') this.audio,
+      @JsonKey(name: 'document') this.document,
+      @JsonKey(name: 'photo') final List<PhotoSize>? photo,
+      @JsonKey(name: 'sticker') this.sticker,
+      @JsonKey(name: 'video') this.video,
       @JsonKey(name: 'video_note') this.videoNote,
-      this.voice,
-      this.caption,
+      @JsonKey(name: 'voice') this.voice,
+      @JsonKey(name: 'caption') this.caption,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
-      this.contact,
-      this.dice,
-      this.game,
-      this.poll,
-      this.venue,
-      this.location,
+      @JsonKey(name: 'contact') this.contact,
+      @JsonKey(name: 'dice') this.dice,
+      @JsonKey(name: 'game') this.game,
+      @JsonKey(name: 'poll') this.poll,
+      @JsonKey(name: 'venue') this.venue,
+      @JsonKey(name: 'location') this.location,
       @JsonKey(name: 'new_chat_members') final List<User>? newChatMembers,
       @JsonKey(name: 'left_chat_member') this.leftChatMember,
       @JsonKey(name: 'new_chat_title') this.newChatTitle,
@@ -551,7 +575,7 @@ class _$MessageImpl implements _Message {
       @JsonKey(name: 'migrate_to_chat_id') this.migrateToChatId,
       @JsonKey(name: 'migrate_from_chat_id') this.migrateFromChatId,
       @JsonKey(name: 'pinned_message') this.pinnedMessage,
-      this.invoice,
+      @JsonKey(name: 'invoice') this.invoice,
       @JsonKey(name: 'successful_payment') this.successfulPayment,
       @JsonKey(name: 'connected_website') this.connectedWebsite,
       @JsonKey(name: 'passport_data') this.passportData,
@@ -574,11 +598,11 @@ class _$MessageImpl implements _Message {
       @JsonKey(name: 'general_forum_topic_unhidden')
       this.generalForumTopicUnhidden,
       @JsonKey(name: 'write_access_allowed') this.writeAccessAllowed,
-      this.story,
+      @JsonKey(name: 'story') this.story,
       @JsonKey(name: 'external_reply') this.externalReply,
-      this.quote,
+      @JsonKey(name: 'quote') this.quote,
       @JsonKey(name: 'link_preview_options') this.linkPreviewOptions,
-      this.giveaway,
+      @JsonKey(name: 'giveaway') this.giveaway,
       @JsonKey(name: 'giveaway_created') this.giveawayCreated,
       @JsonKey(name: 'giveaway_winners') this.giveawayWinners,
       @JsonKey(name: 'giveaway_completed') this.giveawayCompleted,
@@ -604,6 +628,7 @@ class _$MessageImpl implements _Message {
 
   /// Chat the message belonged to
   @override
+  @JsonKey(name: "chat")
   final Chat chat;
 
   /// Unique message identifier inside the chat
@@ -614,6 +639,7 @@ class _$MessageImpl implements _Message {
   /// Date the message was sent in Unix time. It is always a positive number,
   /// representing a valid date.
   @override
+  @JsonKey(name: "date")
   final int date;
 
   /// Optional. Unique identifier of a message thread to which the message
@@ -626,6 +652,7 @@ class _$MessageImpl implements _Message {
   /// For backward compatibility, the field contains a fake sender user in
   /// non-channel chats, if the message was sent on behalf of a chat.
   @override
+  @JsonKey(name: 'from')
   final User? from;
 
   /// Optional. Sender of the message, sent on behalf of a chat. For example,
@@ -692,6 +719,7 @@ class _$MessageImpl implements _Message {
 
   /// Optional. For text messages, the actual UTF-8 text of the message
   @override
+  @JsonKey(name: 'text')
   final String? text;
 
   /// Optional. For text messages, special entities like usernames, URLs, bot
@@ -701,6 +729,7 @@ class _$MessageImpl implements _Message {
   /// Optional. For text messages, special entities like usernames, URLs, bot
   /// commands, etc. that appear in the text
   @override
+  @JsonKey(name: 'entities')
   List<MessageEntity>? get entities {
     final value = _entities;
     if (value == null) return null;
@@ -713,14 +742,17 @@ class _$MessageImpl implements _Message {
   /// backward compatibility, when this field is set, the document field will
   /// also be set
   @override
+  @JsonKey(name: 'animation')
   final Animation? animation;
 
   /// Optional. Message is an audio file, information about the file
   @override
+  @JsonKey(name: 'audio')
   final Audio? audio;
 
   /// Optional. Message is a general file, information about the file
   @override
+  @JsonKey(name: 'document')
   final Document? document;
 
   /// Optional. Message is a photo, available sizes of the photo
@@ -728,6 +760,7 @@ class _$MessageImpl implements _Message {
 
   /// Optional. Message is a photo, available sizes of the photo
   @override
+  @JsonKey(name: 'photo')
   List<PhotoSize>? get photo {
     final value = _photo;
     if (value == null) return null;
@@ -738,10 +771,12 @@ class _$MessageImpl implements _Message {
 
   /// Optional. Message is a sticker, information about the sticker
   @override
+  @JsonKey(name: 'sticker')
   final Sticker? sticker;
 
   /// Optional. Message is a video, information about the video
   @override
+  @JsonKey(name: 'video')
   final Video? video;
 
   /// Optional. Message is a video note, information about the video message
@@ -751,11 +786,13 @@ class _$MessageImpl implements _Message {
 
   /// Optional. Message is a voice message, information about the file
   @override
+  @JsonKey(name: 'voice')
   final Voice? voice;
 
   /// Optional. Caption for the animation, audio, document, photo, video or
   /// voice
   @override
+  @JsonKey(name: 'caption')
   final String? caption;
 
   /// Optional. For messages with a caption, special entities like usernames,
@@ -776,29 +813,35 @@ class _$MessageImpl implements _Message {
 
   /// Optional. Message is a shared contact, information about the contact
   @override
+  @JsonKey(name: 'contact')
   final Contact? contact;
 
   /// Optional. Message is a dice with random value
   @override
+  @JsonKey(name: 'dice')
   final Dice? dice;
 
   /// Optional. Message is a game, information about the game. More about
   /// games »
   @override
+  @JsonKey(name: 'game')
   final Game? game;
 
   /// Optional. Message is a native poll, information about the poll
   @override
+  @JsonKey(name: 'poll')
   final Poll? poll;
 
   /// Optional. Message is a venue, information about the venue. For backward
   /// compatibility, when this field is set, the location field will also be
   /// set
   @override
+  @JsonKey(name: 'venue')
   final Venue? venue;
 
   /// Optional. Message is a shared location, information about the location
   @override
+  @JsonKey(name: 'location')
   final Location? location;
 
   /// Optional. New members that were added to the group or supergroup and
@@ -879,8 +922,9 @@ class _$MessageImpl implements _Message {
   /// Optional. The group has been migrated to a supergroup with the specified
   /// identifier. This number may have more than 32 significant bits and some
   /// programming languages may have difficulty/silent defects in interpreting
-  /// it. But it has at most 52 significant bits, so a signed 64-bit integer
-  /// or double-precision float type are safe for storing this identifier.
+  /// it. But it has at most 52 significant bits, so a signed
+  /// 64-bit integer or double-precision float type are safe for storing this
+  /// identifier.
   @override
   @JsonKey(name: 'migrate_to_chat_id')
   final int? migrateToChatId;
@@ -905,6 +949,7 @@ class _$MessageImpl implements _Message {
   /// Optional. Message is an invoice for a payment, information about the
   /// invoice. More about payments »
   @override
+  @JsonKey(name: 'invoice')
   final Invoice? invoice;
 
   /// Optional. Message is a service message about a successful payment,
@@ -1014,6 +1059,7 @@ class _$MessageImpl implements _Message {
 
   /// Optional. Message is a forwarded story
   @override
+  @JsonKey(name: 'story')
   final Story? story;
 
   /// Optional. Information about the message that is being replied to, which
@@ -1025,6 +1071,7 @@ class _$MessageImpl implements _Message {
   /// Optional. For replies that quote part of the original message, the
   /// quoted part of the message
   @override
+  @JsonKey(name: 'quote')
   final TextQuote? quote;
 
   /// Optional. Options used for link preview generation for the message, if
@@ -1035,6 +1082,7 @@ class _$MessageImpl implements _Message {
 
   /// Optional. The message is a scheduled giveaway message
   @override
+  @JsonKey(name: 'giveaway')
   final Giveaway? giveaway;
 
   /// Optional. Service message: a scheduled giveaway was created
@@ -1132,11 +1180,11 @@ class _$MessageImpl implements _Message {
 
 abstract class _Message implements Message {
   const factory _Message(
-      {required final Chat chat,
+      {@JsonKey(name: "chat") required final Chat chat,
       @JsonKey(name: "message_id") required final int messageId,
-      required final int date,
+      @JsonKey(name: "date") required final int date,
       @JsonKey(name: 'message_thread_id') final int? messageThreadId,
-      final User? from,
+      @JsonKey(name: 'from') final User? from,
       @JsonKey(name: 'sender_chat') final Chat? senderChat,
       @JsonKey(name: 'forward_origin') final MessageOrigin? forwardOrigin,
       @JsonKey(name: 'is_topic_message') final bool? isTopicMessage,
@@ -1147,25 +1195,25 @@ abstract class _Message implements Message {
       @JsonKey(name: 'has_protected_content') final bool? hasProtectedContent,
       @JsonKey(name: 'media_group_id') final String? mediaGroupId,
       @JsonKey(name: 'author_signature') final String? authorSignature,
-      final String? text,
-      final List<MessageEntity>? entities,
-      final Animation? animation,
-      final Audio? audio,
-      final Document? document,
-      final List<PhotoSize>? photo,
-      final Sticker? sticker,
-      final Video? video,
+      @JsonKey(name: 'text') final String? text,
+      @JsonKey(name: 'entities') final List<MessageEntity>? entities,
+      @JsonKey(name: 'animation') final Animation? animation,
+      @JsonKey(name: 'audio') final Audio? audio,
+      @JsonKey(name: 'document') final Document? document,
+      @JsonKey(name: 'photo') final List<PhotoSize>? photo,
+      @JsonKey(name: 'sticker') final Sticker? sticker,
+      @JsonKey(name: 'video') final Video? video,
       @JsonKey(name: 'video_note') final VideoNote? videoNote,
-      final Voice? voice,
-      final String? caption,
+      @JsonKey(name: 'voice') final Voice? voice,
+      @JsonKey(name: 'caption') final String? caption,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
-      final Contact? contact,
-      final Dice? dice,
-      final Game? game,
-      final Poll? poll,
-      final Venue? venue,
-      final Location? location,
+      @JsonKey(name: 'contact') final Contact? contact,
+      @JsonKey(name: 'dice') final Dice? dice,
+      @JsonKey(name: 'game') final Game? game,
+      @JsonKey(name: 'poll') final Poll? poll,
+      @JsonKey(name: 'venue') final Venue? venue,
+      @JsonKey(name: 'location') final Location? location,
       @JsonKey(name: 'new_chat_members') final List<User>? newChatMembers,
       @JsonKey(name: 'left_chat_member') final User? leftChatMember,
       @JsonKey(name: 'new_chat_title') final String? newChatTitle,
@@ -1180,7 +1228,7 @@ abstract class _Message implements Message {
       @JsonKey(name: 'migrate_to_chat_id') final int? migrateToChatId,
       @JsonKey(name: 'migrate_from_chat_id') final int? migrateFromChatId,
       @JsonKey(name: 'pinned_message') final Message? pinnedMessage,
-      final Invoice? invoice,
+      @JsonKey(name: 'invoice') final Invoice? invoice,
       @JsonKey(name: 'successful_payment')
       final SuccessfulPayment? successfulPayment,
       @JsonKey(name: 'connected_website') final String? connectedWebsite,
@@ -1213,12 +1261,12 @@ abstract class _Message implements Message {
       final GeneralForumTopicUnhidden? generalForumTopicUnhidden,
       @JsonKey(name: 'write_access_allowed')
       final WriteAccessAllowed? writeAccessAllowed,
-      final Story? story,
+      @JsonKey(name: 'story') final Story? story,
       @JsonKey(name: 'external_reply') final ExternalReplyInfo? externalReply,
-      final TextQuote? quote,
+      @JsonKey(name: 'quote') final TextQuote? quote,
       @JsonKey(name: 'link_preview_options')
       final LinkPreviewOptions? linkPreviewOptions,
-      final Giveaway? giveaway,
+      @JsonKey(name: 'giveaway') final Giveaway? giveaway,
       @JsonKey(name: 'giveaway_created') final GiveawayCreated? giveawayCreated,
       @JsonKey(name: 'giveaway_winners') final GiveawayWinners? giveawayWinners,
       @JsonKey(name: 'giveaway_completed')
@@ -1243,6 +1291,7 @@ abstract class _Message implements Message {
 
   /// Chat the message belonged to
   @override
+  @JsonKey(name: "chat")
   Chat get chat;
 
   /// Unique message identifier inside the chat
@@ -1253,6 +1302,7 @@ abstract class _Message implements Message {
   /// Date the message was sent in Unix time. It is always a positive number,
   /// representing a valid date.
   @override
+  @JsonKey(name: "date")
   int get date;
 
   /// Optional. Unique identifier of a message thread to which the message
@@ -1265,6 +1315,7 @@ abstract class _Message implements Message {
   /// For backward compatibility, the field contains a fake sender user in
   /// non-channel chats, if the message was sent on behalf of a chat.
   @override
+  @JsonKey(name: 'from')
   User? get from;
 
   /// Optional. Sender of the message, sent on behalf of a chat. For example,
@@ -1331,37 +1382,45 @@ abstract class _Message implements Message {
 
   /// Optional. For text messages, the actual UTF-8 text of the message
   @override
+  @JsonKey(name: 'text')
   String? get text;
 
   /// Optional. For text messages, special entities like usernames, URLs, bot
   /// commands, etc. that appear in the text
   @override
+  @JsonKey(name: 'entities')
   List<MessageEntity>? get entities;
 
   /// Optional. Message is an animation, information about the animation. For
   /// backward compatibility, when this field is set, the document field will
   /// also be set
   @override
+  @JsonKey(name: 'animation')
   Animation? get animation;
 
   /// Optional. Message is an audio file, information about the file
   @override
+  @JsonKey(name: 'audio')
   Audio? get audio;
 
   /// Optional. Message is a general file, information about the file
   @override
+  @JsonKey(name: 'document')
   Document? get document;
 
   /// Optional. Message is a photo, available sizes of the photo
   @override
+  @JsonKey(name: 'photo')
   List<PhotoSize>? get photo;
 
   /// Optional. Message is a sticker, information about the sticker
   @override
+  @JsonKey(name: 'sticker')
   Sticker? get sticker;
 
   /// Optional. Message is a video, information about the video
   @override
+  @JsonKey(name: 'video')
   Video? get video;
 
   /// Optional. Message is a video note, information about the video message
@@ -1371,11 +1430,13 @@ abstract class _Message implements Message {
 
   /// Optional. Message is a voice message, information about the file
   @override
+  @JsonKey(name: 'voice')
   Voice? get voice;
 
   /// Optional. Caption for the animation, audio, document, photo, video or
   /// voice
   @override
+  @JsonKey(name: 'caption')
   String? get caption;
 
   /// Optional. For messages with a caption, special entities like usernames,
@@ -1386,29 +1447,35 @@ abstract class _Message implements Message {
 
   /// Optional. Message is a shared contact, information about the contact
   @override
+  @JsonKey(name: 'contact')
   Contact? get contact;
 
   /// Optional. Message is a dice with random value
   @override
+  @JsonKey(name: 'dice')
   Dice? get dice;
 
   /// Optional. Message is a game, information about the game. More about
   /// games »
   @override
+  @JsonKey(name: 'game')
   Game? get game;
 
   /// Optional. Message is a native poll, information about the poll
   @override
+  @JsonKey(name: 'poll')
   Poll? get poll;
 
   /// Optional. Message is a venue, information about the venue. For backward
   /// compatibility, when this field is set, the location field will also be
   /// set
   @override
+  @JsonKey(name: 'venue')
   Venue? get venue;
 
   /// Optional. Message is a shared location, information about the location
   @override
+  @JsonKey(name: 'location')
   Location? get location;
 
   /// Optional. New members that were added to the group or supergroup and
@@ -1470,8 +1537,9 @@ abstract class _Message implements Message {
   /// Optional. The group has been migrated to a supergroup with the specified
   /// identifier. This number may have more than 32 significant bits and some
   /// programming languages may have difficulty/silent defects in interpreting
-  /// it. But it has at most 52 significant bits, so a signed 64-bit integer
-  /// or double-precision float type are safe for storing this identifier.
+  /// it. But it has at most 52 significant bits, so a signed
+  /// 64-bit integer or double-precision float type are safe for storing this
+  /// identifier.
   @override
   @JsonKey(name: 'migrate_to_chat_id')
   int? get migrateToChatId;
@@ -1496,6 +1564,7 @@ abstract class _Message implements Message {
   /// Optional. Message is an invoice for a payment, information about the
   /// invoice. More about payments »
   @override
+  @JsonKey(name: 'invoice')
   Invoice? get invoice;
 
   /// Optional. Message is a service message about a successful payment,
@@ -1605,6 +1674,7 @@ abstract class _Message implements Message {
 
   /// Optional. Message is a forwarded story
   @override
+  @JsonKey(name: 'story')
   Story? get story;
 
   /// Optional. Information about the message that is being replied to, which
@@ -1616,6 +1686,7 @@ abstract class _Message implements Message {
   /// Optional. For replies that quote part of the original message, the
   /// quoted part of the message
   @override
+  @JsonKey(name: 'quote')
   TextQuote? get quote;
 
   /// Optional. Options used for link preview generation for the message, if
@@ -1626,6 +1697,7 @@ abstract class _Message implements Message {
 
   /// Optional. The message is a scheduled giveaway message
   @override
+  @JsonKey(name: 'giveaway')
   Giveaway? get giveaway;
 
   /// Optional. Service message: a scheduled giveaway was created

@@ -29,6 +29,7 @@ sealed class RevenueWithdrawalState
   )
   const factory RevenueWithdrawalState.pending({
     /// Type of the revenue withdrawal state, must be "pending"
+    @JsonKey(name: 'type')
     @Default(RevenueWithdrawalStateType.pending)
     RevenueWithdrawalStateType type,
   }) = RevenueWithdrawalStatePending;
@@ -40,14 +41,15 @@ sealed class RevenueWithdrawalState
   )
   const factory RevenueWithdrawalState.succeeded({
     /// Type of the revenue withdrawal state, must be "succeeded"
+    @JsonKey(name: 'type')
     @Default(RevenueWithdrawalStateType.succeeded)
     RevenueWithdrawalStateType type,
 
     /// Date the withdrawal was completed in Unix time.
-    required final int date,
+    @JsonKey(name: 'date') required final int date,
 
     /// An HTTPS URL that can be used to see transaction details.
-    required final String url,
+    @JsonKey(name: 'url') required final String url,
   }) = RevenueWithdrawalStateSucceeded;
 
   /// The withdrawal failed and the transaction was refunded
@@ -57,7 +59,9 @@ sealed class RevenueWithdrawalState
   )
   const factory RevenueWithdrawalState.failed({
     /// Type of the revenue withdrawal state, must be "failed"
-    @Default(RevenueWithdrawalStateType.failed) RevenueWithdrawalStateType type,
+    @JsonKey(name: 'type')
+    @Default(RevenueWithdrawalStateType.failed)
+    RevenueWithdrawalStateType type,
   }) = RevenueWithdrawalStateFailed;
 
   /// Creates the RevenueWithdrawalState instance from JSON

@@ -25,9 +25,11 @@ mixin _$ChosenInlineResult {
   String get resultId => throw _privateConstructorUsedError;
 
   /// The user that chose the result
+  @JsonKey(name: 'from')
   User get from => throw _privateConstructorUsedError;
 
   /// Optional. Sender location, only for bots that require user location
+  @JsonKey(name: 'location')
   Location? get location => throw _privateConstructorUsedError;
 
   /// Optional. Identifier of the sent inline message. Available only if there
@@ -37,6 +39,7 @@ mixin _$ChosenInlineResult {
   String? get inlineMessageId => throw _privateConstructorUsedError;
 
   /// The query that was used to obtain the result
+  @JsonKey(name: 'query')
   String get query => throw _privateConstructorUsedError;
 
   /// Serializes this ChosenInlineResult to a JSON map.
@@ -57,10 +60,10 @@ abstract class $ChosenInlineResultCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'result_id') String resultId,
-      User from,
-      Location? location,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'location') Location? location,
       @JsonKey(name: 'inline_message_id') String? inlineMessageId,
-      String query});
+      @JsonKey(name: 'query') String query});
 
   $UserCopyWith<$Res> get from;
   $LocationCopyWith<$Res>? get location;
@@ -146,10 +149,10 @@ abstract class _$$ChosenInlineResultImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'result_id') String resultId,
-      User from,
-      Location? location,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'location') Location? location,
       @JsonKey(name: 'inline_message_id') String? inlineMessageId,
-      String query});
+      @JsonKey(name: 'query') String query});
 
   @override
   $UserCopyWith<$Res> get from;
@@ -206,10 +209,10 @@ class __$$ChosenInlineResultImplCopyWithImpl<$Res>
 class _$ChosenInlineResultImpl implements _ChosenInlineResult {
   const _$ChosenInlineResultImpl(
       {@JsonKey(name: 'result_id') required this.resultId,
-      required this.from,
-      this.location,
+      @JsonKey(name: 'from') required this.from,
+      @JsonKey(name: 'location') this.location,
       @JsonKey(name: 'inline_message_id') this.inlineMessageId,
-      required this.query});
+      @JsonKey(name: 'query') required this.query});
 
   factory _$ChosenInlineResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChosenInlineResultImplFromJson(json);
@@ -221,10 +224,12 @@ class _$ChosenInlineResultImpl implements _ChosenInlineResult {
 
   /// The user that chose the result
   @override
+  @JsonKey(name: 'from')
   final User from;
 
   /// Optional. Sender location, only for bots that require user location
   @override
+  @JsonKey(name: 'location')
   final Location? location;
 
   /// Optional. Identifier of the sent inline message. Available only if there
@@ -236,6 +241,7 @@ class _$ChosenInlineResultImpl implements _ChosenInlineResult {
 
   /// The query that was used to obtain the result
   @override
+  @JsonKey(name: 'query')
   final String query;
 
   @override
@@ -262,11 +268,12 @@ class _$ChosenInlineResultImpl implements _ChosenInlineResult {
 
 abstract class _ChosenInlineResult implements ChosenInlineResult {
   const factory _ChosenInlineResult(
-      {@JsonKey(name: 'result_id') required final String resultId,
-      required final User from,
-      final Location? location,
-      @JsonKey(name: 'inline_message_id') final String? inlineMessageId,
-      required final String query}) = _$ChosenInlineResultImpl;
+          {@JsonKey(name: 'result_id') required final String resultId,
+          @JsonKey(name: 'from') required final User from,
+          @JsonKey(name: 'location') final Location? location,
+          @JsonKey(name: 'inline_message_id') final String? inlineMessageId,
+          @JsonKey(name: 'query') required final String query}) =
+      _$ChosenInlineResultImpl;
 
   factory _ChosenInlineResult.fromJson(Map<String, dynamic> json) =
       _$ChosenInlineResultImpl.fromJson;
@@ -278,10 +285,12 @@ abstract class _ChosenInlineResult implements ChosenInlineResult {
 
   /// The user that chose the result
   @override
+  @JsonKey(name: 'from')
   User get from;
 
   /// Optional. Sender location, only for bots that require user location
   @override
+  @JsonKey(name: 'location')
   Location? get location;
 
   /// Optional. Identifier of the sent inline message. Available only if there
@@ -293,6 +302,7 @@ abstract class _ChosenInlineResult implements ChosenInlineResult {
 
   /// The query that was used to obtain the result
   @override
+  @JsonKey(name: 'query')
   String get query;
 
   /// Create a copy of ChosenInlineResult

@@ -21,9 +21,11 @@ InlineKeyboardButton _$InlineKeyboardButtonFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$InlineKeyboardButton {
   /// Label text on the button
+  @JsonKey(name: 'text')
   String get text => throw _privateConstructorUsedError;
 
   /// Optional. HTTP or tg:// url to be opened when button is pressed
+  @JsonKey(name: 'url')
   String? get url => throw _privateConstructorUsedError;
 
   /// Optional. An HTTP URL used to automatically authorize the user. Can be
@@ -71,6 +73,7 @@ mixin _$InlineKeyboardButton {
   ///
   /// NOTE: This type of button must always be the first button in the first
   /// row.
+  @JsonKey(name: 'pay')
   bool? get pay => throw _privateConstructorUsedError;
 
   /// Optional. Description of the Web App that will be launched when the user
@@ -113,15 +116,15 @@ abstract class $InlineKeyboardButtonCopyWith<$Res> {
       _$InlineKeyboardButtonCopyWithImpl<$Res, InlineKeyboardButton>;
   @useResult
   $Res call(
-      {String text,
-      String? url,
+      {@JsonKey(name: 'text') String text,
+      @JsonKey(name: 'url') String? url,
       @JsonKey(name: 'login_url') LoginURL? loginUrl,
       @JsonKey(name: 'callback_data') String? callbackData,
       @JsonKey(name: 'switch_inline_query') String? switchInlineQuery,
       @JsonKey(name: 'switch_inline_query_current_chat')
       String? switchInlineQueryCurrentChat,
       @JsonKey(name: 'callback_game') CallbackGame? callbackGame,
-      bool? pay,
+      @JsonKey(name: 'pay') bool? pay,
       @JsonKey(name: 'web_app') WebAppInfo? webApp,
       @JsonKey(name: 'switch_inline_query_chosen_chat')
       SwitchInlineQueryChosenChat? switchInlineQueryChosenChat,
@@ -291,15 +294,15 @@ abstract class _$$InlineKeyboardButtonImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String text,
-      String? url,
+      {@JsonKey(name: 'text') String text,
+      @JsonKey(name: 'url') String? url,
       @JsonKey(name: 'login_url') LoginURL? loginUrl,
       @JsonKey(name: 'callback_data') String? callbackData,
       @JsonKey(name: 'switch_inline_query') String? switchInlineQuery,
       @JsonKey(name: 'switch_inline_query_current_chat')
       String? switchInlineQueryCurrentChat,
       @JsonKey(name: 'callback_game') CallbackGame? callbackGame,
-      bool? pay,
+      @JsonKey(name: 'pay') bool? pay,
       @JsonKey(name: 'web_app') WebAppInfo? webApp,
       @JsonKey(name: 'switch_inline_query_chosen_chat')
       SwitchInlineQueryChosenChat? switchInlineQueryChosenChat,
@@ -395,15 +398,15 @@ class __$$InlineKeyboardButtonImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineKeyboardButtonImpl implements _InlineKeyboardButton {
   const _$InlineKeyboardButtonImpl(
-      {required this.text,
-      this.url,
+      {@JsonKey(name: 'text') required this.text,
+      @JsonKey(name: 'url') this.url,
       @JsonKey(name: 'login_url') this.loginUrl,
       @JsonKey(name: 'callback_data') this.callbackData,
       @JsonKey(name: 'switch_inline_query') this.switchInlineQuery,
       @JsonKey(name: 'switch_inline_query_current_chat')
       this.switchInlineQueryCurrentChat,
       @JsonKey(name: 'callback_game') this.callbackGame,
-      this.pay,
+      @JsonKey(name: 'pay') this.pay,
       @JsonKey(name: 'web_app') this.webApp,
       @JsonKey(name: 'switch_inline_query_chosen_chat')
       this.switchInlineQueryChosenChat,
@@ -414,10 +417,12 @@ class _$InlineKeyboardButtonImpl implements _InlineKeyboardButton {
 
   /// Label text on the button
   @override
+  @JsonKey(name: 'text')
   final String text;
 
   /// Optional. HTTP or tg:// url to be opened when button is pressed
   @override
+  @JsonKey(name: 'url')
   final String? url;
 
   /// Optional. An HTTP URL used to automatically authorize the user. Can be
@@ -470,6 +475,7 @@ class _$InlineKeyboardButtonImpl implements _InlineKeyboardButton {
   /// NOTE: This type of button must always be the first button in the first
   /// row.
   @override
+  @JsonKey(name: 'pay')
   final bool? pay;
 
   /// Optional. Description of the Web App that will be launched when the user
@@ -522,15 +528,15 @@ class _$InlineKeyboardButtonImpl implements _InlineKeyboardButton {
 
 abstract class _InlineKeyboardButton implements InlineKeyboardButton {
   const factory _InlineKeyboardButton(
-          {required final String text,
-          final String? url,
+          {@JsonKey(name: 'text') required final String text,
+          @JsonKey(name: 'url') final String? url,
           @JsonKey(name: 'login_url') final LoginURL? loginUrl,
           @JsonKey(name: 'callback_data') final String? callbackData,
           @JsonKey(name: 'switch_inline_query') final String? switchInlineQuery,
           @JsonKey(name: 'switch_inline_query_current_chat')
           final String? switchInlineQueryCurrentChat,
           @JsonKey(name: 'callback_game') final CallbackGame? callbackGame,
-          final bool? pay,
+          @JsonKey(name: 'pay') final bool? pay,
           @JsonKey(name: 'web_app') final WebAppInfo? webApp,
           @JsonKey(name: 'switch_inline_query_chosen_chat')
           final SwitchInlineQueryChosenChat? switchInlineQueryChosenChat,
@@ -542,10 +548,12 @@ abstract class _InlineKeyboardButton implements InlineKeyboardButton {
 
   /// Label text on the button
   @override
+  @JsonKey(name: 'text')
   String get text;
 
   /// Optional. HTTP or tg:// url to be opened when button is pressed
   @override
+  @JsonKey(name: 'url')
   String? get url;
 
   /// Optional. An HTTP URL used to automatically authorize the user. Can be
@@ -598,6 +606,7 @@ abstract class _InlineKeyboardButton implements InlineKeyboardButton {
   /// NOTE: This type of button must always be the first button in the first
   /// row.
   @override
+  @JsonKey(name: 'pay')
   bool? get pay;
 
   /// Optional. Description of the Web App that will be launched when the user

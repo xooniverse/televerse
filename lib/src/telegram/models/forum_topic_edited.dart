@@ -9,7 +9,7 @@ class ForumTopicEdited with _$ForumTopicEdited {
   /// Creates a new [ForumTopicEdited] object.
   const factory ForumTopicEdited({
     /// Optional. New name of the topic, if it was edited
-    String? name,
+    @JsonKey(name: 'name') String? name,
 
     /// Optional. New identifier of the custom emoji shown as the topic icon,
     /// if it was edited; an empty string if the icon was removed

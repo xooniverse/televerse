@@ -22,9 +22,11 @@ InlineQueryResultLocation _$InlineQueryResultLocationFromJson(
 /// @nodoc
 mixin _$InlineQueryResultLocation {
   /// Type of the result, always [InlineQueryResultType.location]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Location latitude in degrees
@@ -94,8 +96,8 @@ abstract class $InlineQueryResultLocationCopyWith<$Res> {
       _$InlineQueryResultLocationCopyWithImpl<$Res, InlineQueryResultLocation>;
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
       @JsonKey(name: 'latitude') double latitude,
       @JsonKey(name: 'longitude') double longitude,
       @JsonKey(name: 'title') String title,
@@ -231,8 +233,8 @@ abstract class _$$InlineQueryResultLocationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
       @JsonKey(name: 'latitude') double latitude,
       @JsonKey(name: 'longitude') double longitude,
       @JsonKey(name: 'title') String title,
@@ -347,8 +349,8 @@ class __$$InlineQueryResultLocationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultLocationImpl extends _InlineQueryResultLocation {
   const _$InlineQueryResultLocationImpl(
-      {this.type = InlineQueryResultType.location,
-      required this.id,
+      {@JsonKey(name: 'type') this.type = InlineQueryResultType.location,
+      @JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'latitude') required this.latitude,
       @JsonKey(name: 'longitude') required this.longitude,
       @JsonKey(name: 'title') required this.title,
@@ -370,11 +372,12 @@ class _$InlineQueryResultLocationImpl extends _InlineQueryResultLocation {
 
   /// Type of the result, always [InlineQueryResultType.location]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Location latitude in degrees
@@ -462,8 +465,8 @@ class _$InlineQueryResultLocationImpl extends _InlineQueryResultLocation {
 
 abstract class _InlineQueryResultLocation extends InlineQueryResultLocation {
   const factory _InlineQueryResultLocation(
-      {final InlineQueryResultType type,
-      required final String id,
+      {@JsonKey(name: 'type') final InlineQueryResultType type,
+      @JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'latitude') required final double latitude,
       @JsonKey(name: 'longitude') required final double longitude,
       @JsonKey(name: 'title') required final String title,
@@ -486,10 +489,12 @@ abstract class _InlineQueryResultLocation extends InlineQueryResultLocation {
 
   /// Type of the result, always [InlineQueryResultType.location]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Location latitude in degrees

@@ -13,13 +13,13 @@ class Dice with _$Dice {
   /// the dice
   const factory Dice({
     /// Emoji on which the dice throw animation is based
-    required DiceEmoji emoji,
+    @JsonKey(name: 'emoji') required DiceEmoji emoji,
 
     /// Value of the dice.
     ///
     /// 1-6 for "🎲", "🎯" and "🎳" base emoji, 1-5 for "🏀" and "⚽" base
     /// emoji, 1-64 for "🎰" base emoji
-    required int value,
+    @JsonKey(name: 'value') required int value,
   }) = _Dice;
 
   /// Creates a [Dice] from a JSON map

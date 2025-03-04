@@ -34,12 +34,15 @@ mixin _$Audio {
   /// Duration of the video in seconds as defined by sender
   ///
   /// A handy [Duration] getter is available as [durationTime]
+  @JsonKey(name: 'duration')
   int get duration => throw _privateConstructorUsedError;
 
   /// Optional. Performer of the audio as defined by sender or by audio tags
+  @JsonKey(name: 'performer')
   String? get performer => throw _privateConstructorUsedError;
 
   /// Optional. Title of the audio as defined by sender or by audio tags
+  @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
 
   /// Optional. Original filename as defined by sender
@@ -58,6 +61,7 @@ mixin _$Audio {
   int? get fileSize => throw _privateConstructorUsedError;
 
   /// Optional. Thumbnail of the album cover to which the music file belongs
+  @JsonKey(name: 'thumbnail')
   PhotoSize? get thumbnail => throw _privateConstructorUsedError;
 
   /// Serializes this Audio to a JSON map.
@@ -77,13 +81,13 @@ abstract class $AudioCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'file_id') String fileId,
       @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      int duration,
-      String? performer,
-      String? title,
+      @JsonKey(name: 'duration') int duration,
+      @JsonKey(name: 'performer') String? performer,
+      @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'file_name') String? fileName,
       @JsonKey(name: 'mime_type') String? mimeType,
       @JsonKey(name: 'file_size') int? fileSize,
-      PhotoSize? thumbnail});
+      @JsonKey(name: 'thumbnail') PhotoSize? thumbnail});
 
   $PhotoSizeCopyWith<$Res>? get thumbnail;
 }
@@ -178,13 +182,13 @@ abstract class _$$AudioImplCopyWith<$Res> implements $AudioCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'file_id') String fileId,
       @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      int duration,
-      String? performer,
-      String? title,
+      @JsonKey(name: 'duration') int duration,
+      @JsonKey(name: 'performer') String? performer,
+      @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'file_name') String? fileName,
       @JsonKey(name: 'mime_type') String? mimeType,
       @JsonKey(name: 'file_size') int? fileSize,
-      PhotoSize? thumbnail});
+      @JsonKey(name: 'thumbnail') PhotoSize? thumbnail});
 
   @override
   $PhotoSizeCopyWith<$Res>? get thumbnail;
@@ -260,13 +264,13 @@ class _$AudioImpl implements _Audio {
   const _$AudioImpl(
       {@JsonKey(name: 'file_id') required this.fileId,
       @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
-      required this.duration,
-      this.performer,
-      this.title,
+      @JsonKey(name: 'duration') required this.duration,
+      @JsonKey(name: 'performer') this.performer,
+      @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'file_name') this.fileName,
       @JsonKey(name: 'mime_type') this.mimeType,
       @JsonKey(name: 'file_size') this.fileSize,
-      this.thumbnail});
+      @JsonKey(name: 'thumbnail') this.thumbnail});
 
   factory _$AudioImpl.fromJson(Map<String, dynamic> json) =>
       _$$AudioImplFromJson(json);
@@ -288,14 +292,17 @@ class _$AudioImpl implements _Audio {
   ///
   /// A handy [Duration] getter is available as [durationTime]
   @override
+  @JsonKey(name: 'duration')
   final int duration;
 
   /// Optional. Performer of the audio as defined by sender or by audio tags
   @override
+  @JsonKey(name: 'performer')
   final String? performer;
 
   /// Optional. Title of the audio as defined by sender or by audio tags
   @override
+  @JsonKey(name: 'title')
   final String? title;
 
   /// Optional. Original filename as defined by sender
@@ -318,6 +325,7 @@ class _$AudioImpl implements _Audio {
 
   /// Optional. Thumbnail of the album cover to which the music file belongs
   @override
+  @JsonKey(name: 'thumbnail')
   final PhotoSize? thumbnail;
 
   @override
@@ -345,13 +353,13 @@ abstract class _Audio implements Audio {
   const factory _Audio(
       {@JsonKey(name: 'file_id') required final String fileId,
       @JsonKey(name: 'file_unique_id') required final String fileUniqueId,
-      required final int duration,
-      final String? performer,
-      final String? title,
+      @JsonKey(name: 'duration') required final int duration,
+      @JsonKey(name: 'performer') final String? performer,
+      @JsonKey(name: 'title') final String? title,
       @JsonKey(name: 'file_name') final String? fileName,
       @JsonKey(name: 'mime_type') final String? mimeType,
       @JsonKey(name: 'file_size') final int? fileSize,
-      final PhotoSize? thumbnail}) = _$AudioImpl;
+      @JsonKey(name: 'thumbnail') final PhotoSize? thumbnail}) = _$AudioImpl;
 
   factory _Audio.fromJson(Map<String, dynamic> json) = _$AudioImpl.fromJson;
 
@@ -372,14 +380,17 @@ abstract class _Audio implements Audio {
   ///
   /// A handy [Duration] getter is available as [durationTime]
   @override
+  @JsonKey(name: 'duration')
   int get duration;
 
   /// Optional. Performer of the audio as defined by sender or by audio tags
   @override
+  @JsonKey(name: 'performer')
   String? get performer;
 
   /// Optional. Title of the audio as defined by sender or by audio tags
   @override
+  @JsonKey(name: 'title')
   String? get title;
 
   /// Optional. Original filename as defined by sender
@@ -402,6 +413,7 @@ abstract class _Audio implements Audio {
 
   /// Optional. Thumbnail of the album cover to which the music file belongs
   @override
+  @JsonKey(name: 'thumbnail')
   PhotoSize? get thumbnail;
 
   /// Create a copy of Audio

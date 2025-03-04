@@ -9,10 +9,10 @@ class BotCommand with _$BotCommand {
   /// Constructs a [BotCommand] object.
   const factory BotCommand({
     /// Text of the command, 1-32 characters. Can contain only lowercase English letters, digits and underscores.
-    required String command,
+    @JsonKey(name: 'command') required String command,
 
     /// Description of the command, 3-256 characters.
-    required String description,
+    @JsonKey(name: 'description') required String description,
   }) = _BotCommand;
 
   /// Creates a [BotCommand] object from JSON object.

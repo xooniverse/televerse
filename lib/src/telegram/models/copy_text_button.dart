@@ -11,7 +11,7 @@ class CopyTextButton with _$CopyTextButton {
   /// text to the clipboard.
   const factory CopyTextButton({
     /// The text to be copied to the clipboard; 1-256 characters
-    required String text,
+    @JsonKey(name: 'text') required String text,
   }) = _CopyTextButton;
 
   /// Creates the [CopyTextButton] from JSON map

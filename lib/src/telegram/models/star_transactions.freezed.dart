@@ -21,6 +21,7 @@ StarTransactions _$StarTransactionsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$StarTransactions {
   /// The list of transactions.
+  @JsonKey(name: 'transactions')
   List<StarTransaction> get transactions => throw _privateConstructorUsedError;
 
   /// Serializes this StarTransactions to a JSON map.
@@ -39,7 +40,8 @@ abstract class $StarTransactionsCopyWith<$Res> {
           StarTransactions value, $Res Function(StarTransactions) then) =
       _$StarTransactionsCopyWithImpl<$Res, StarTransactions>;
   @useResult
-  $Res call({List<StarTransaction> transactions});
+  $Res call(
+      {@JsonKey(name: 'transactions') List<StarTransaction> transactions});
 }
 
 /// @nodoc
@@ -76,7 +78,8 @@ abstract class _$$StarTransactionsImplCopyWith<$Res>
       __$$StarTransactionsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<StarTransaction> transactions});
+  $Res call(
+      {@JsonKey(name: 'transactions') List<StarTransaction> transactions});
 }
 
 /// @nodoc
@@ -107,7 +110,8 @@ class __$$StarTransactionsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StarTransactionsImpl implements _StarTransactions {
   const _$StarTransactionsImpl(
-      {required final List<StarTransaction> transactions})
+      {@JsonKey(name: 'transactions')
+      required final List<StarTransaction> transactions})
       : _transactions = transactions;
 
   factory _$StarTransactionsImpl.fromJson(Map<String, dynamic> json) =>
@@ -118,6 +122,7 @@ class _$StarTransactionsImpl implements _StarTransactions {
 
   /// The list of transactions.
   @override
+  @JsonKey(name: 'transactions')
   List<StarTransaction> get transactions {
     if (_transactions is EqualUnmodifiableListView) return _transactions;
     // ignore: implicit_dynamic_type
@@ -148,7 +153,8 @@ class _$StarTransactionsImpl implements _StarTransactions {
 
 abstract class _StarTransactions implements StarTransactions {
   const factory _StarTransactions(
-          {required final List<StarTransaction> transactions}) =
+          {@JsonKey(name: 'transactions')
+          required final List<StarTransaction> transactions}) =
       _$StarTransactionsImpl;
 
   factory _StarTransactions.fromJson(Map<String, dynamic> json) =
@@ -156,6 +162,7 @@ abstract class _StarTransactions implements StarTransactions {
 
   /// The list of transactions.
   @override
+  @JsonKey(name: 'transactions')
   List<StarTransaction> get transactions;
 
   /// Create a copy of StarTransactions

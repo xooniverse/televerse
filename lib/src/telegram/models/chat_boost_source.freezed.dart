@@ -32,9 +32,11 @@ ChatBoostSource _$ChatBoostSourceFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ChatBoostSource {
   /// Source of the boost, always "premium"
+  @JsonKey(name: 'source')
   ChatBoostSourceType get source => throw _privateConstructorUsedError;
 
   /// User that boosted the chat
+  @JsonKey(name: 'user')
   User? get user => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -76,7 +78,9 @@ abstract class $ChatBoostSourceCopyWith<$Res> {
           ChatBoostSource value, $Res Function(ChatBoostSource) then) =
       _$ChatBoostSourceCopyWithImpl<$Res, ChatBoostSource>;
   @useResult
-  $Res call({ChatBoostSourceType source, User user});
+  $Res call(
+      {@JsonKey(name: 'source') ChatBoostSourceType source,
+      @JsonKey(name: 'user') User user});
 
   $UserCopyWith<$Res>? get user;
 }
@@ -135,7 +139,9 @@ abstract class _$$ChatBoostSourcePremiumImplCopyWith<$Res>
       __$$ChatBoostSourcePremiumImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ChatBoostSourceType source, User user});
+  $Res call(
+      {@JsonKey(name: 'source') ChatBoostSourceType source,
+      @JsonKey(name: 'user') User user});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -185,18 +191,20 @@ class __$$ChatBoostSourcePremiumImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatBoostSourcePremiumImpl implements ChatBoostSourcePremium {
   const _$ChatBoostSourcePremiumImpl(
-      {this.source = ChatBoostSourceType.premium, required this.user});
+      {@JsonKey(name: 'source') this.source = ChatBoostSourceType.premium,
+      @JsonKey(name: 'user') required this.user});
 
   factory _$ChatBoostSourcePremiumImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatBoostSourcePremiumImplFromJson(json);
 
   /// Source of the boost, always "premium"
   @override
-  @JsonKey()
+  @JsonKey(name: 'source')
   final ChatBoostSourceType source;
 
   /// User that boosted the chat
   @override
+  @JsonKey(name: 'user')
   final User user;
 
   @override
@@ -257,18 +265,21 @@ class _$ChatBoostSourcePremiumImpl implements ChatBoostSourcePremium {
 
 abstract class ChatBoostSourcePremium implements ChatBoostSource {
   const factory ChatBoostSourcePremium(
-      {final ChatBoostSourceType source,
-      required final User user}) = _$ChatBoostSourcePremiumImpl;
+          {@JsonKey(name: 'source') final ChatBoostSourceType source,
+          @JsonKey(name: 'user') required final User user}) =
+      _$ChatBoostSourcePremiumImpl;
 
   factory ChatBoostSourcePremium.fromJson(Map<String, dynamic> json) =
       _$ChatBoostSourcePremiumImpl.fromJson;
 
   /// Source of the boost, always "premium"
   @override
+  @JsonKey(name: 'source')
   ChatBoostSourceType get source;
 
   /// User that boosted the chat
   @override
+  @JsonKey(name: 'user')
   User get user;
 
   /// Create a copy of ChatBoostSource
@@ -288,7 +299,9 @@ abstract class _$$ChatBoostSourceGiftCodeImplCopyWith<$Res>
       __$$ChatBoostSourceGiftCodeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ChatBoostSourceType source, User user});
+  $Res call(
+      {@JsonKey(name: 'source') ChatBoostSourceType source,
+      @JsonKey(name: 'user') User user});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -338,18 +351,20 @@ class __$$ChatBoostSourceGiftCodeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatBoostSourceGiftCodeImpl implements ChatBoostSourceGiftCode {
   const _$ChatBoostSourceGiftCodeImpl(
-      {this.source = ChatBoostSourceType.giftCode, required this.user});
+      {@JsonKey(name: 'source') this.source = ChatBoostSourceType.giftCode,
+      @JsonKey(name: 'user') required this.user});
 
   factory _$ChatBoostSourceGiftCodeImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatBoostSourceGiftCodeImplFromJson(json);
 
   /// Source of the boost, always "gift_code"
   @override
-  @JsonKey()
+  @JsonKey(name: 'source')
   final ChatBoostSourceType source;
 
   /// User for which the gift code was created
   @override
+  @JsonKey(name: 'user')
   final User user;
 
   @override
@@ -410,18 +425,21 @@ class _$ChatBoostSourceGiftCodeImpl implements ChatBoostSourceGiftCode {
 
 abstract class ChatBoostSourceGiftCode implements ChatBoostSource {
   const factory ChatBoostSourceGiftCode(
-      {final ChatBoostSourceType source,
-      required final User user}) = _$ChatBoostSourceGiftCodeImpl;
+          {@JsonKey(name: 'source') final ChatBoostSourceType source,
+          @JsonKey(name: 'user') required final User user}) =
+      _$ChatBoostSourceGiftCodeImpl;
 
   factory ChatBoostSourceGiftCode.fromJson(Map<String, dynamic> json) =
       _$ChatBoostSourceGiftCodeImpl.fromJson;
 
   /// Source of the boost, always "gift_code"
   @override
+  @JsonKey(name: 'source')
   ChatBoostSourceType get source;
 
   /// User for which the gift code was created
   @override
+  @JsonKey(name: 'user')
   User get user;
 
   /// Create a copy of ChatBoostSource
@@ -442,9 +460,9 @@ abstract class _$$ChatBoostSourceGiveawayImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ChatBoostSourceType source,
+      {@JsonKey(name: 'source') ChatBoostSourceType source,
       @JsonKey(name: 'giveaway_message_id') int giveawayMessageId,
-      User? user,
+      @JsonKey(name: 'user') User? user,
       @JsonKey(name: 'prize_star_count') int? prizeStarCount,
       @JsonKey(name: 'is_unclaimed') bool? isUnclaimed});
 
@@ -501,9 +519,9 @@ class __$$ChatBoostSourceGiveawayImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatBoostSourceGiveawayImpl implements ChatBoostSourceGiveaway {
   const _$ChatBoostSourceGiveawayImpl(
-      {this.source = ChatBoostSourceType.giveaway,
+      {@JsonKey(name: 'source') this.source = ChatBoostSourceType.giveaway,
       @JsonKey(name: 'giveaway_message_id') required this.giveawayMessageId,
-      this.user,
+      @JsonKey(name: 'user') this.user,
       @JsonKey(name: 'prize_star_count') this.prizeStarCount,
       @JsonKey(name: 'is_unclaimed') this.isUnclaimed});
 
@@ -512,7 +530,7 @@ class _$ChatBoostSourceGiveawayImpl implements ChatBoostSourceGiveaway {
 
   /// Source of the boost, always "giveaway"
   @override
-  @JsonKey()
+  @JsonKey(name: 'source')
   final ChatBoostSourceType source;
 
   /// Identifier of a message in the chat with the giveaway; the message could
@@ -524,6 +542,7 @@ class _$ChatBoostSourceGiveawayImpl implements ChatBoostSourceGiveaway {
   /// User that won the prize in the giveaway if any; for Telegram Premium
   /// giveaways only
   @override
+  @JsonKey(name: 'user')
   final User? user;
 
   /// The number of Telegram Stars to be split between giveaway winners; for
@@ -596,10 +615,10 @@ class _$ChatBoostSourceGiveawayImpl implements ChatBoostSourceGiveaway {
 
 abstract class ChatBoostSourceGiveaway implements ChatBoostSource {
   const factory ChatBoostSourceGiveaway(
-          {final ChatBoostSourceType source,
+          {@JsonKey(name: 'source') final ChatBoostSourceType source,
           @JsonKey(name: 'giveaway_message_id')
           required final int giveawayMessageId,
-          final User? user,
+          @JsonKey(name: 'user') final User? user,
           @JsonKey(name: 'prize_star_count') final int? prizeStarCount,
           @JsonKey(name: 'is_unclaimed') final bool? isUnclaimed}) =
       _$ChatBoostSourceGiveawayImpl;
@@ -609,6 +628,7 @@ abstract class ChatBoostSourceGiveaway implements ChatBoostSource {
 
   /// Source of the boost, always "giveaway"
   @override
+  @JsonKey(name: 'source')
   ChatBoostSourceType get source;
 
   /// Identifier of a message in the chat with the giveaway; the message could
@@ -619,6 +639,7 @@ abstract class ChatBoostSourceGiveaway implements ChatBoostSource {
   /// User that won the prize in the giveaway if any; for Telegram Premium
   /// giveaways only
   @override
+  @JsonKey(name: 'user')
   User? get user;
 
   /// The number of Telegram Stars to be split between giveaway winners; for

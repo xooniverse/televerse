@@ -23,6 +23,7 @@ export 'message_origin_type.dart';
 export 'methods.dart';
 export 'paid_media_type.dart';
 export 'parse_mode.dart';
+export 'passport_element_error_source_type.dart';
 export 'passport_type.dart';
 export 'poll_type.dart';
 export 'reaction_type_type.dart';

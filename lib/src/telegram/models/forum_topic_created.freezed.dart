@@ -21,11 +21,12 @@ ForumTopicCreated _$ForumTopicCreatedFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ForumTopicCreated {
   /// Name of the topic
+  @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
 
   /// Color of the topic icon in RGB format
   @JsonKey(name: 'icon_color')
-  int get color => throw _privateConstructorUsedError;
+  int get iconColor => throw _privateConstructorUsedError;
 
   /// Optional. Unique identifier of the custom emoji shown as the topic icon
   @JsonKey(name: 'icon_custom_emoji_id')
@@ -48,8 +49,8 @@ abstract class $ForumTopicCreatedCopyWith<$Res> {
       _$ForumTopicCreatedCopyWithImpl<$Res, ForumTopicCreated>;
   @useResult
   $Res call(
-      {String name,
-      @JsonKey(name: 'icon_color') int color,
+      {@JsonKey(name: 'name') String name,
+      @JsonKey(name: 'icon_color') int iconColor,
       @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
 }
 
@@ -69,7 +70,7 @@ class _$ForumTopicCreatedCopyWithImpl<$Res, $Val extends ForumTopicCreated>
   @override
   $Res call({
     Object? name = null,
-    Object? color = null,
+    Object? iconColor = null,
     Object? iconCustomEmojiId = freezed,
   }) {
     return _then(_value.copyWith(
@@ -77,9 +78,9 @@ class _$ForumTopicCreatedCopyWithImpl<$Res, $Val extends ForumTopicCreated>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      iconColor: null == iconColor
+          ? _value.iconColor
+          : iconColor // ignore: cast_nullable_to_non_nullable
               as int,
       iconCustomEmojiId: freezed == iconCustomEmojiId
           ? _value.iconCustomEmojiId
@@ -98,8 +99,8 @@ abstract class _$$ForumTopicCreatedImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      @JsonKey(name: 'icon_color') int color,
+      {@JsonKey(name: 'name') String name,
+      @JsonKey(name: 'icon_color') int iconColor,
       @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
 }
 
@@ -117,7 +118,7 @@ class __$$ForumTopicCreatedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? color = null,
+    Object? iconColor = null,
     Object? iconCustomEmojiId = freezed,
   }) {
     return _then(_$ForumTopicCreatedImpl(
@@ -125,9 +126,9 @@ class __$$ForumTopicCreatedImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      iconColor: null == iconColor
+          ? _value.iconColor
+          : iconColor // ignore: cast_nullable_to_non_nullable
               as int,
       iconCustomEmojiId: freezed == iconCustomEmojiId
           ? _value.iconCustomEmojiId
@@ -141,8 +142,8 @@ class __$$ForumTopicCreatedImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ForumTopicCreatedImpl implements _ForumTopicCreated {
   const _$ForumTopicCreatedImpl(
-      {required this.name,
-      @JsonKey(name: 'icon_color') required this.color,
+      {@JsonKey(name: 'name') required this.name,
+      @JsonKey(name: 'icon_color') required this.iconColor,
       @JsonKey(name: 'icon_custom_emoji_id') this.iconCustomEmojiId});
 
   factory _$ForumTopicCreatedImpl.fromJson(Map<String, dynamic> json) =>
@@ -150,12 +151,13 @@ class _$ForumTopicCreatedImpl implements _ForumTopicCreated {
 
   /// Name of the topic
   @override
+  @JsonKey(name: 'name')
   final String name;
 
   /// Color of the topic icon in RGB format
   @override
   @JsonKey(name: 'icon_color')
-  final int color;
+  final int iconColor;
 
   /// Optional. Unique identifier of the custom emoji shown as the topic icon
   @override
@@ -164,7 +166,7 @@ class _$ForumTopicCreatedImpl implements _ForumTopicCreated {
 
   @override
   String toString() {
-    return 'ForumTopicCreated(name: $name, color: $color, iconCustomEmojiId: $iconCustomEmojiId)';
+    return 'ForumTopicCreated(name: $name, iconColor: $iconColor, iconCustomEmojiId: $iconCustomEmojiId)';
   }
 
   /// Create a copy of ForumTopicCreated
@@ -186,8 +188,8 @@ class _$ForumTopicCreatedImpl implements _ForumTopicCreated {
 
 abstract class _ForumTopicCreated implements ForumTopicCreated {
   const factory _ForumTopicCreated(
-      {required final String name,
-      @JsonKey(name: 'icon_color') required final int color,
+      {@JsonKey(name: 'name') required final String name,
+      @JsonKey(name: 'icon_color') required final int iconColor,
       @JsonKey(name: 'icon_custom_emoji_id')
       final String? iconCustomEmojiId}) = _$ForumTopicCreatedImpl;
 
@@ -196,12 +198,13 @@ abstract class _ForumTopicCreated implements ForumTopicCreated {
 
   /// Name of the topic
   @override
+  @JsonKey(name: 'name')
   String get name;
 
   /// Color of the topic icon in RGB format
   @override
   @JsonKey(name: 'icon_color')
-  int get color;
+  int get iconColor;
 
   /// Optional. Unique identifier of the custom emoji shown as the topic icon
   @override

@@ -21,6 +21,7 @@ LabeledPrice _$LabeledPriceFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$LabeledPrice {
   /// Portion label
+  @JsonKey(name: 'label')
   String get label => throw _privateConstructorUsedError;
 
   /// Price of the product in the smallest units of the currency (integer, not
@@ -31,6 +32,7 @@ mixin _$LabeledPrice {
   /// [currencies.json](https://core.telegram.org/bots/payments/currencies.json),
   /// it shows the number of digits past the decimal point for each currency
   /// (2 for the majority of currencies).
+  @JsonKey(name: 'amount')
   int get amount => throw _privateConstructorUsedError;
 
   /// Serializes this LabeledPrice to a JSON map.
@@ -49,7 +51,9 @@ abstract class $LabeledPriceCopyWith<$Res> {
           LabeledPrice value, $Res Function(LabeledPrice) then) =
       _$LabeledPriceCopyWithImpl<$Res, LabeledPrice>;
   @useResult
-  $Res call({String label, int amount});
+  $Res call(
+      {@JsonKey(name: 'label') String label,
+      @JsonKey(name: 'amount') int amount});
 }
 
 /// @nodoc
@@ -91,7 +95,9 @@ abstract class _$$LabeledPriceImplCopyWith<$Res>
       __$$LabeledPriceImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String label, int amount});
+  $Res call(
+      {@JsonKey(name: 'label') String label,
+      @JsonKey(name: 'amount') int amount});
 }
 
 /// @nodoc
@@ -126,13 +132,16 @@ class __$$LabeledPriceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LabeledPriceImpl implements _LabeledPrice {
-  const _$LabeledPriceImpl({required this.label, required this.amount});
+  const _$LabeledPriceImpl(
+      {@JsonKey(name: 'label') required this.label,
+      @JsonKey(name: 'amount') required this.amount});
 
   factory _$LabeledPriceImpl.fromJson(Map<String, dynamic> json) =>
       _$$LabeledPriceImplFromJson(json);
 
   /// Portion label
   @override
+  @JsonKey(name: 'label')
   final String label;
 
   /// Price of the product in the smallest units of the currency (integer, not
@@ -144,6 +153,7 @@ class _$LabeledPriceImpl implements _LabeledPrice {
   /// it shows the number of digits past the decimal point for each currency
   /// (2 for the majority of currencies).
   @override
+  @JsonKey(name: 'amount')
   final int amount;
 
   @override
@@ -169,14 +179,15 @@ class _$LabeledPriceImpl implements _LabeledPrice {
 
 abstract class _LabeledPrice implements LabeledPrice {
   const factory _LabeledPrice(
-      {required final String label,
-      required final int amount}) = _$LabeledPriceImpl;
+      {@JsonKey(name: 'label') required final String label,
+      @JsonKey(name: 'amount') required final int amount}) = _$LabeledPriceImpl;
 
   factory _LabeledPrice.fromJson(Map<String, dynamic> json) =
       _$LabeledPriceImpl.fromJson;
 
   /// Portion label
   @override
+  @JsonKey(name: 'label')
   String get label;
 
   /// Price of the product in the smallest units of the currency (integer, not
@@ -188,6 +199,7 @@ abstract class _LabeledPrice implements LabeledPrice {
   /// it shows the number of digits past the decimal point for each currency
   /// (2 for the majority of currencies).
   @override
+  @JsonKey(name: 'amount')
   int get amount;
 
   /// Create a copy of LabeledPrice

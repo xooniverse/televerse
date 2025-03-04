@@ -25,15 +25,15 @@ class ChatShared with _$ChatShared {
     @JsonKey(name: 'chat_id') required int chatId,
 
     /// Optional. Title of the chat, if the title was requested by the bot.
-    String? title,
+    @JsonKey(name: 'title') String? title,
 
     /// Optional. Username of the chat, if the username was requested by the bot
     /// and available.
-    String? username,
+    @JsonKey(name: 'username') String? username,
 
     /// Optional. Available sizes of the chat photo, if the photo was requested
     /// by the bot
-    List<PhotoSize>? photo,
+    @JsonKey(name: 'photo') List<PhotoSize>? photo,
   }) = _ChatShared;
 
   /// Creates a new [ChatShared] object from json.

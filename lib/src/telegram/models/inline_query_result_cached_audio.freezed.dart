@@ -22,6 +22,7 @@ InlineQueryResultCachedAudio _$InlineQueryResultCachedAudioFromJson(
 /// @nodoc
 mixin _$InlineQueryResultCachedAudio {
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// A valid file identifier for the audio file
@@ -29,6 +30,7 @@ mixin _$InlineQueryResultCachedAudio {
   String get audioFileId => throw _privateConstructorUsedError;
 
   /// Optional. Caption, 0-1024 characters after entities parsing
+  @JsonKey(name: 'caption')
   String? get caption => throw _privateConstructorUsedError;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting
@@ -53,6 +55,7 @@ mixin _$InlineQueryResultCachedAudio {
       throw _privateConstructorUsedError;
 
   /// Type of the result, always [InlineQueryResultType.audio]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Serializes this InlineQueryResultCachedAudio to a JSON map.
@@ -74,16 +77,16 @@ abstract class $InlineQueryResultCachedAudioCopyWith<$Res> {
           InlineQueryResultCachedAudio>;
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'audio_file_id') String audioFileId,
-      String? caption,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       InputMessageContent? inputMessageContent,
-      InlineQueryResultType type});
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -175,16 +178,16 @@ abstract class _$$InlineQueryResultCachedAudioImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'audio_file_id') String audioFileId,
-      String? caption,
+      @JsonKey(name: 'caption') String? caption,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       InputMessageContent? inputMessageContent,
-      InlineQueryResultType type});
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -256,9 +259,9 @@ class __$$InlineQueryResultCachedAudioImplCopyWithImpl<$Res>
 class _$InlineQueryResultCachedAudioImpl
     implements _InlineQueryResultCachedAudio {
   const _$InlineQueryResultCachedAudioImpl(
-      {required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'audio_file_id') required this.audioFileId,
-      this.caption,
+      @JsonKey(name: 'caption') this.caption,
       @JsonKey(name: 'parse_mode') this.parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -266,7 +269,7 @@ class _$InlineQueryResultCachedAudioImpl
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       this.inputMessageContent,
-      this.type = InlineQueryResultType.audio})
+      @JsonKey(name: 'type') this.type = InlineQueryResultType.audio})
       : _captionEntities = captionEntities;
 
   factory _$InlineQueryResultCachedAudioImpl.fromJson(
@@ -275,6 +278,7 @@ class _$InlineQueryResultCachedAudioImpl
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// A valid file identifier for the audio file
@@ -284,6 +288,7 @@ class _$InlineQueryResultCachedAudioImpl
 
   /// Optional. Caption, 0-1024 characters after entities parsing
   @override
+  @JsonKey(name: 'caption')
   final String? caption;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting
@@ -321,7 +326,7 @@ class _$InlineQueryResultCachedAudioImpl
 
   /// Type of the result, always [InlineQueryResultType.audio]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   @override
@@ -350,9 +355,9 @@ class _$InlineQueryResultCachedAudioImpl
 abstract class _InlineQueryResultCachedAudio
     implements InlineQueryResultCachedAudio {
   const factory _InlineQueryResultCachedAudio(
-      {required final String id,
+      {@JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'audio_file_id') required final String audioFileId,
-      final String? caption,
+      @JsonKey(name: 'caption') final String? caption,
       @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
       @JsonKey(name: 'caption_entities')
       final List<MessageEntity>? captionEntities,
@@ -360,6 +365,7 @@ abstract class _InlineQueryResultCachedAudio
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       final InputMessageContent? inputMessageContent,
+      @JsonKey(name: 'type')
       final InlineQueryResultType type}) = _$InlineQueryResultCachedAudioImpl;
 
   factory _InlineQueryResultCachedAudio.fromJson(Map<String, dynamic> json) =
@@ -367,6 +373,7 @@ abstract class _InlineQueryResultCachedAudio
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// A valid file identifier for the audio file
@@ -376,6 +383,7 @@ abstract class _InlineQueryResultCachedAudio
 
   /// Optional. Caption, 0-1024 characters after entities parsing
   @override
+  @JsonKey(name: 'caption')
   String? get caption;
 
   /// Optional. Mode for parsing entities in the video caption. See formatting
@@ -403,6 +411,7 @@ abstract class _InlineQueryResultCachedAudio
 
   /// Type of the result, always [InlineQueryResultType.audio]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Create a copy of InlineQueryResultCachedAudio

@@ -21,12 +21,15 @@ Poll _$PollFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Poll {
   /// Unique poll identifier
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Poll question, 1-300 characters
+  @JsonKey(name: 'question')
   String get question => throw _privateConstructorUsedError;
 
   /// List of poll options
+  @JsonKey(name: 'options')
   List<PollOption> get options => throw _privateConstructorUsedError;
 
   /// Total number of users that voted in the poll
@@ -42,6 +45,7 @@ mixin _$Poll {
   bool get isAnonymous => throw _privateConstructorUsedError;
 
   /// Poll type, currently can be "regular" or "quiz"
+  @JsonKey(name: 'type')
   PollType get type => throw _privateConstructorUsedError;
 
   /// True, if the poll allows multiple answers
@@ -56,6 +60,7 @@ mixin _$Poll {
 
   /// Optional. Text that is shown when a user chooses an incorrect answer or
   /// taps on the lamp icon in a quiz-style poll, 0-200 characters
+  @JsonKey(name: 'explanation')
   String? get explanation => throw _privateConstructorUsedError;
 
   /// Optional. Special entities like usernames, URLs, bot commands, etc. that
@@ -99,16 +104,16 @@ abstract class $PollCopyWith<$Res> {
       _$PollCopyWithImpl<$Res, Poll>;
   @useResult
   $Res call(
-      {String id,
-      String question,
-      List<PollOption> options,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'question') String question,
+      @JsonKey(name: 'options') List<PollOption> options,
       @JsonKey(name: 'total_voter_count') int totalVoterCount,
       @JsonKey(name: 'is_closed') bool isClosed,
       @JsonKey(name: 'is_anonymous') bool isAnonymous,
-      PollType type,
+      @JsonKey(name: 'type') PollType type,
       @JsonKey(name: 'allows_multiple_answers') bool allowsMultipleAnswers,
       @JsonKey(name: 'correct_option_id') int? correctOptionId,
-      String? explanation,
+      @JsonKey(name: 'explanation') String? explanation,
       @JsonKey(name: 'explanation_entities')
       List<MessageEntity>? explanationEntities,
       @JsonKey(name: 'open_period') int? openPeriod,
@@ -216,16 +221,16 @@ abstract class _$$PollImplCopyWith<$Res> implements $PollCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      String question,
-      List<PollOption> options,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'question') String question,
+      @JsonKey(name: 'options') List<PollOption> options,
       @JsonKey(name: 'total_voter_count') int totalVoterCount,
       @JsonKey(name: 'is_closed') bool isClosed,
       @JsonKey(name: 'is_anonymous') bool isAnonymous,
-      PollType type,
+      @JsonKey(name: 'type') PollType type,
       @JsonKey(name: 'allows_multiple_answers') bool allowsMultipleAnswers,
       @JsonKey(name: 'correct_option_id') int? correctOptionId,
-      String? explanation,
+      @JsonKey(name: 'explanation') String? explanation,
       @JsonKey(name: 'explanation_entities')
       List<MessageEntity>? explanationEntities,
       @JsonKey(name: 'open_period') int? openPeriod,
@@ -326,17 +331,17 @@ class __$$PollImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PollImpl implements _Poll {
   const _$PollImpl(
-      {required this.id,
-      required this.question,
-      required final List<PollOption> options,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'question') required this.question,
+      @JsonKey(name: 'options') required final List<PollOption> options,
       @JsonKey(name: 'total_voter_count') required this.totalVoterCount,
       @JsonKey(name: 'is_closed') required this.isClosed,
       @JsonKey(name: 'is_anonymous') required this.isAnonymous,
-      required this.type,
+      @JsonKey(name: 'type') required this.type,
       @JsonKey(name: 'allows_multiple_answers')
       required this.allowsMultipleAnswers,
       @JsonKey(name: 'correct_option_id') this.correctOptionId,
-      this.explanation,
+      @JsonKey(name: 'explanation') this.explanation,
       @JsonKey(name: 'explanation_entities')
       final List<MessageEntity>? explanationEntities,
       @JsonKey(name: 'open_period') this.openPeriod,
@@ -352,10 +357,12 @@ class _$PollImpl implements _Poll {
 
   /// Unique poll identifier
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Poll question, 1-300 characters
   @override
+  @JsonKey(name: 'question')
   final String question;
 
   /// List of poll options
@@ -363,6 +370,7 @@ class _$PollImpl implements _Poll {
 
   /// List of poll options
   @override
+  @JsonKey(name: 'options')
   List<PollOption> get options {
     if (_options is EqualUnmodifiableListView) return _options;
     // ignore: implicit_dynamic_type
@@ -386,6 +394,7 @@ class _$PollImpl implements _Poll {
 
   /// Poll type, currently can be "regular" or "quiz"
   @override
+  @JsonKey(name: 'type')
   final PollType type;
 
   /// True, if the poll allows multiple answers
@@ -403,6 +412,7 @@ class _$PollImpl implements _Poll {
   /// Optional. Text that is shown when a user chooses an incorrect answer or
   /// taps on the lamp icon in a quiz-style poll, 0-200 characters
   @override
+  @JsonKey(name: 'explanation')
   final String? explanation;
 
   /// Optional. Special entities like usernames, URLs, bot commands, etc. that
@@ -478,17 +488,17 @@ class _$PollImpl implements _Poll {
 
 abstract class _Poll implements Poll {
   const factory _Poll(
-      {required final String id,
-      required final String question,
-      required final List<PollOption> options,
+      {@JsonKey(name: 'id') required final String id,
+      @JsonKey(name: 'question') required final String question,
+      @JsonKey(name: 'options') required final List<PollOption> options,
       @JsonKey(name: 'total_voter_count') required final int totalVoterCount,
       @JsonKey(name: 'is_closed') required final bool isClosed,
       @JsonKey(name: 'is_anonymous') required final bool isAnonymous,
-      required final PollType type,
+      @JsonKey(name: 'type') required final PollType type,
       @JsonKey(name: 'allows_multiple_answers')
       required final bool allowsMultipleAnswers,
       @JsonKey(name: 'correct_option_id') final int? correctOptionId,
-      final String? explanation,
+      @JsonKey(name: 'explanation') final String? explanation,
       @JsonKey(name: 'explanation_entities')
       final List<MessageEntity>? explanationEntities,
       @JsonKey(name: 'open_period') final int? openPeriod,
@@ -500,14 +510,17 @@ abstract class _Poll implements Poll {
 
   /// Unique poll identifier
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Poll question, 1-300 characters
   @override
+  @JsonKey(name: 'question')
   String get question;
 
   /// List of poll options
   @override
+  @JsonKey(name: 'options')
   List<PollOption> get options;
 
   /// Total number of users that voted in the poll
@@ -527,6 +540,7 @@ abstract class _Poll implements Poll {
 
   /// Poll type, currently can be "regular" or "quiz"
   @override
+  @JsonKey(name: 'type')
   PollType get type;
 
   /// True, if the poll allows multiple answers
@@ -544,6 +558,7 @@ abstract class _Poll implements Poll {
   /// Optional. Text that is shown when a user chooses an incorrect answer or
   /// taps on the lamp icon in a quiz-style poll, 0-200 characters
   @override
+  @JsonKey(name: 'explanation')
   String? get explanation;
 
   /// Optional. Special entities like usernames, URLs, bot commands, etc. that

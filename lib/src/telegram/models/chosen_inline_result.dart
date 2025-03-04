@@ -16,10 +16,10 @@ class ChosenInlineResult with _$ChosenInlineResult implements WithUser {
     @JsonKey(name: 'result_id') required String resultId,
 
     /// The user that chose the result
-    required User from,
+    @JsonKey(name: 'from') required User from,
 
     /// Optional. Sender location, only for bots that require user location
-    Location? location,
+    @JsonKey(name: 'location') Location? location,
 
     /// Optional. Identifier of the sent inline message. Available only if there
     /// is an inline keyboard attached to the message. Will be also received in
@@ -27,7 +27,7 @@ class ChosenInlineResult with _$ChosenInlineResult implements WithUser {
     @JsonKey(name: 'inline_message_id') String? inlineMessageId,
 
     /// The query that was used to obtain the result
-    required String query,
+    @JsonKey(name: 'query') required String query,
   }) = _ChosenInlineResult;
 
   /// Creates a new [ChosenInlineResult] object from json.

@@ -22,6 +22,7 @@ MaskPosition _$MaskPositionFromJson(Map<String, dynamic> json) {
 mixin _$MaskPosition {
   /// The part of the face relative to which the mask should be placed. One of
   /// "forehead", "eyes", "mouth", or "chin".
+  @JsonKey(name: 'point')
   MaskPositionPoint get point => throw _privateConstructorUsedError;
 
   /// Shift by X-axis measured in widths of the mask scaled to the face size,
@@ -37,6 +38,7 @@ mixin _$MaskPosition {
   double get yShift => throw _privateConstructorUsedError;
 
   /// Mask scaling coefficient. For example, 2.0 means double size.
+  @JsonKey(name: 'scale')
   double get scale => throw _privateConstructorUsedError;
 
   /// Serializes this MaskPosition to a JSON map.
@@ -56,10 +58,10 @@ abstract class $MaskPositionCopyWith<$Res> {
       _$MaskPositionCopyWithImpl<$Res, MaskPosition>;
   @useResult
   $Res call(
-      {MaskPositionPoint point,
+      {@JsonKey(name: 'point') MaskPositionPoint point,
       @JsonKey(name: 'x_shift') double xShift,
       @JsonKey(name: 'y_shift') double yShift,
-      double scale});
+      @JsonKey(name: 'scale') double scale});
 }
 
 /// @nodoc
@@ -112,10 +114,10 @@ abstract class _$$MaskPositionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {MaskPositionPoint point,
+      {@JsonKey(name: 'point') MaskPositionPoint point,
       @JsonKey(name: 'x_shift') double xShift,
       @JsonKey(name: 'y_shift') double yShift,
-      double scale});
+      @JsonKey(name: 'scale') double scale});
 }
 
 /// @nodoc
@@ -161,10 +163,10 @@ class __$$MaskPositionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MaskPositionImpl implements _MaskPosition {
   const _$MaskPositionImpl(
-      {required this.point,
+      {@JsonKey(name: 'point') required this.point,
       @JsonKey(name: 'x_shift') required this.xShift,
       @JsonKey(name: 'y_shift') required this.yShift,
-      required this.scale});
+      @JsonKey(name: 'scale') required this.scale});
 
   factory _$MaskPositionImpl.fromJson(Map<String, dynamic> json) =>
       _$$MaskPositionImplFromJson(json);
@@ -172,6 +174,7 @@ class _$MaskPositionImpl implements _MaskPosition {
   /// The part of the face relative to which the mask should be placed. One of
   /// "forehead", "eyes", "mouth", or "chin".
   @override
+  @JsonKey(name: 'point')
   final MaskPositionPoint point;
 
   /// Shift by X-axis measured in widths of the mask scaled to the face size,
@@ -190,6 +193,7 @@ class _$MaskPositionImpl implements _MaskPosition {
 
   /// Mask scaling coefficient. For example, 2.0 means double size.
   @override
+  @JsonKey(name: 'scale')
   final double scale;
 
   @override
@@ -215,10 +219,11 @@ class _$MaskPositionImpl implements _MaskPosition {
 
 abstract class _MaskPosition implements MaskPosition {
   const factory _MaskPosition(
-      {required final MaskPositionPoint point,
-      @JsonKey(name: 'x_shift') required final double xShift,
-      @JsonKey(name: 'y_shift') required final double yShift,
-      required final double scale}) = _$MaskPositionImpl;
+          {@JsonKey(name: 'point') required final MaskPositionPoint point,
+          @JsonKey(name: 'x_shift') required final double xShift,
+          @JsonKey(name: 'y_shift') required final double yShift,
+          @JsonKey(name: 'scale') required final double scale}) =
+      _$MaskPositionImpl;
 
   factory _MaskPosition.fromJson(Map<String, dynamic> json) =
       _$MaskPositionImpl.fromJson;
@@ -226,6 +231,7 @@ abstract class _MaskPosition implements MaskPosition {
   /// The part of the face relative to which the mask should be placed. One of
   /// "forehead", "eyes", "mouth", or "chin".
   @override
+  @JsonKey(name: 'point')
   MaskPositionPoint get point;
 
   /// Shift by X-axis measured in widths of the mask scaled to the face size,
@@ -244,6 +250,7 @@ abstract class _MaskPosition implements MaskPosition {
 
   /// Mask scaling coefficient. For example, 2.0 means double size.
   @override
+  @JsonKey(name: 'scale')
   double get scale;
 
   /// Create a copy of MaskPosition

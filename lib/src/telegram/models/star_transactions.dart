@@ -10,7 +10,7 @@ class StarTransactions with _$StarTransactions {
   /// Creates a new [StarTransactions] object.
   const factory StarTransactions({
     /// The list of transactions.
-    required List<StarTransaction> transactions,
+    @JsonKey(name: 'transactions') required List<StarTransaction> transactions,
   }) = _StarTransactions;
 
   /// Creates a new [StarTransactions] object from json.

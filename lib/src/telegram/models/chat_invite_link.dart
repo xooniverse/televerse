@@ -13,7 +13,7 @@ class ChatInviteLink with _$ChatInviteLink {
     @JsonKey(name: 'invite_link') required String inviteLink,
 
     /// Creator of the link
-    User? creator,
+    @JsonKey(name: 'creator') User? creator,
 
     /// True, if users joining the chat via the link need to be approved by chat administrators
     @JsonKey(name: 'creates_join_request') bool? createsJoinRequest,
@@ -25,7 +25,7 @@ class ChatInviteLink with _$ChatInviteLink {
     @JsonKey(name: 'is_revoked') bool? isRevoked,
 
     /// Optional. Invite link name
-    String? name,
+    @JsonKey(name: 'name') String? name,
 
     /// Optional. Point in time (Unix timestamp) when the link will expire or has been expired
     ///

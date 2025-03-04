@@ -21,9 +21,11 @@ Story _$StoryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Story {
   /// Chat that posted the story
+  @JsonKey(name: 'chat')
   Chat get chat => throw _privateConstructorUsedError;
 
   /// Unique identifier for the story in the chat
+  @JsonKey(name: 'id')
   int get id => throw _privateConstructorUsedError;
 
   /// Serializes this Story to a JSON map.
@@ -40,7 +42,7 @@ abstract class $StoryCopyWith<$Res> {
   factory $StoryCopyWith(Story value, $Res Function(Story) then) =
       _$StoryCopyWithImpl<$Res, Story>;
   @useResult
-  $Res call({Chat chat, int id});
+  $Res call({@JsonKey(name: 'chat') Chat chat, @JsonKey(name: 'id') int id});
 
   $ChatCopyWith<$Res> get chat;
 }
@@ -93,7 +95,7 @@ abstract class _$$StoryImplCopyWith<$Res> implements $StoryCopyWith<$Res> {
       __$$StoryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Chat chat, int id});
+  $Res call({@JsonKey(name: 'chat') Chat chat, @JsonKey(name: 'id') int id});
 
   @override
   $ChatCopyWith<$Res> get chat;
@@ -131,17 +133,21 @@ class __$$StoryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StoryImpl implements _Story {
-  const _$StoryImpl({required this.chat, required this.id});
+  const _$StoryImpl(
+      {@JsonKey(name: 'chat') required this.chat,
+      @JsonKey(name: 'id') required this.id});
 
   factory _$StoryImpl.fromJson(Map<String, dynamic> json) =>
       _$$StoryImplFromJson(json);
 
   /// Chat that posted the story
   @override
+  @JsonKey(name: 'chat')
   final Chat chat;
 
   /// Unique identifier for the story in the chat
   @override
+  @JsonKey(name: 'id')
   final int id;
 
   @override
@@ -166,17 +172,20 @@ class _$StoryImpl implements _Story {
 }
 
 abstract class _Story implements Story {
-  const factory _Story({required final Chat chat, required final int id}) =
-      _$StoryImpl;
+  const factory _Story(
+      {@JsonKey(name: 'chat') required final Chat chat,
+      @JsonKey(name: 'id') required final int id}) = _$StoryImpl;
 
   factory _Story.fromJson(Map<String, dynamic> json) = _$StoryImpl.fromJson;
 
   /// Chat that posted the story
   @override
+  @JsonKey(name: 'chat')
   Chat get chat;
 
   /// Unique identifier for the story in the chat
   @override
+  @JsonKey(name: 'id')
   int get id;
 
   /// Create a copy of Story

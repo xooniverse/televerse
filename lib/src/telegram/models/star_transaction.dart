@@ -11,25 +11,25 @@ class StarTransaction with _$StarTransaction {
   const factory StarTransaction({
     /// Unique identifier of the transaction. Coincides with the identifier of
     /// the original transaction for refund transactions. Coincides with
-    /// [SuccessfulPayment.telegramPaymentChargeId] for successful incoming
+    /// `SuccessfulPayment` for successful incoming
     /// payments from users.
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Number of Telegram Stars transferred by the transaction.
-    required int amount,
+    @JsonKey(name: 'amount') required int amount,
 
     /// Date the transaction was created in Unix time.
-    required int date,
+    @JsonKey(name: 'date') required int date,
 
     /// Optional. Source of an incoming transaction (e.g., a user purchasing
     /// goods or services, Fragment refunding a failed withdrawal). Only for
     /// incoming transactions.
-    TransactionPartner? source,
+    @JsonKey(name: 'source') TransactionPartner? source,
 
     /// Optional. Receiver of an outgoing transaction (e.g., a user for a
     /// purchase refund, Fragment for a withdrawal). Only for outgoing
     /// transactions.
-    TransactionPartner? receiver,
+    @JsonKey(name: 'receiver') TransactionPartner? receiver,
 
     /// Optional. The number of 1/1000000000 shares of Telegram Stars
     /// transferred by the transaction; from 0 to 999999999

@@ -14,18 +14,18 @@ class ChatJoinRequest with _$ChatJoinRequest implements WithChat, WithUser {
   /// Creates a new [ChatJoinRequest] object.
   const factory ChatJoinRequest({
     /// Chat to which the request was sent
-    required Chat chat,
+    @JsonKey(name: 'chat') required Chat chat,
 
     /// User that sent the join request
-    required User from,
+    @JsonKey(name: 'from') required User from,
 
     /// Date the request was sent in Unix time
     ///
     /// You can use the [dateTime] getter to get a [DateTime] object
-    required int date,
+    @JsonKey(name: 'date') required int date,
 
     /// Optional. Bio of the user.
-    String? bio,
+    @JsonKey(name: 'bio') String? bio,
 
     /// Optional. Chat invite link that was used by the user to send the join request
     @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,

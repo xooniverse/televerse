@@ -32,6 +32,7 @@ PaidMedia _$PaidMediaFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PaidMedia {
   /// Type of the paid media, must be "preview"
+  @JsonKey(name: 'type')
   PaidMediaType get type => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -72,7 +73,7 @@ abstract class $PaidMediaCopyWith<$Res> {
   factory $PaidMediaCopyWith(PaidMedia value, $Res Function(PaidMedia) then) =
       _$PaidMediaCopyWithImpl<$Res, PaidMedia>;
   @useResult
-  $Res call({PaidMediaType type});
+  $Res call({@JsonKey(name: 'type') PaidMediaType type});
 }
 
 /// @nodoc
@@ -109,7 +110,11 @@ abstract class _$$PaidMediaPreviewImplCopyWith<$Res>
       __$$PaidMediaPreviewImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PaidMediaType type, int? width, int? height, int? duration});
+  $Res call(
+      {@JsonKey(name: 'type') PaidMediaType type,
+      @JsonKey(name: 'width') int? width,
+      @JsonKey(name: 'height') int? height,
+      @JsonKey(name: 'duration') int? duration});
 }
 
 /// @nodoc
@@ -155,10 +160,10 @@ class __$$PaidMediaPreviewImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PaidMediaPreviewImpl implements PaidMediaPreview {
   const _$PaidMediaPreviewImpl(
-      {this.type = PaidMediaType.preview,
-      this.width,
-      this.height,
-      this.duration})
+      {@JsonKey(name: 'type') this.type = PaidMediaType.preview,
+      @JsonKey(name: 'width') this.width,
+      @JsonKey(name: 'height') this.height,
+      @JsonKey(name: 'duration') this.duration})
       : assert(type == PaidMediaType.preview,
             'type must be PaidMediaType.preview');
 
@@ -167,19 +172,22 @@ class _$PaidMediaPreviewImpl implements PaidMediaPreview {
 
   /// Type of the paid media, must be "preview"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final PaidMediaType type;
 
   /// Optional. Media width as defined by the sender.
   @override
+  @JsonKey(name: 'width')
   final int? width;
 
   /// Optional. Media height as defined by the sender.
   @override
+  @JsonKey(name: 'height')
   final int? height;
 
   /// Optional. Duration of the media in seconds as defined by the sender.
   @override
+  @JsonKey(name: 'duration')
   final int? duration;
 
   @override
@@ -240,25 +248,29 @@ class _$PaidMediaPreviewImpl implements PaidMediaPreview {
 
 abstract class PaidMediaPreview implements PaidMedia {
   const factory PaidMediaPreview(
-      {final PaidMediaType type,
-      final int? width,
-      final int? height,
-      final int? duration}) = _$PaidMediaPreviewImpl;
+      {@JsonKey(name: 'type') final PaidMediaType type,
+      @JsonKey(name: 'width') final int? width,
+      @JsonKey(name: 'height') final int? height,
+      @JsonKey(name: 'duration') final int? duration}) = _$PaidMediaPreviewImpl;
 
   factory PaidMediaPreview.fromJson(Map<String, dynamic> json) =
       _$PaidMediaPreviewImpl.fromJson;
 
   /// Type of the paid media, must be "preview"
   @override
+  @JsonKey(name: 'type')
   PaidMediaType get type;
 
   /// Optional. Media width as defined by the sender.
+  @JsonKey(name: 'width')
   int? get width;
 
   /// Optional. Media height as defined by the sender.
+  @JsonKey(name: 'height')
   int? get height;
 
   /// Optional. Duration of the media in seconds as defined by the sender.
+  @JsonKey(name: 'duration')
   int? get duration;
 
   /// Create a copy of PaidMedia
@@ -277,7 +289,9 @@ abstract class _$$PaidMediaPhotoImplCopyWith<$Res>
       __$$PaidMediaPhotoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PaidMediaType type, List<PhotoSize> photo});
+  $Res call(
+      {@JsonKey(name: 'type') PaidMediaType type,
+      @JsonKey(name: 'photo') List<PhotoSize> photo});
 }
 
 /// @nodoc
@@ -313,7 +327,8 @@ class __$$PaidMediaPhotoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PaidMediaPhotoImpl implements PaidMediaPhoto {
   const _$PaidMediaPhotoImpl(
-      {this.type = PaidMediaType.photo, required final List<PhotoSize> photo})
+      {@JsonKey(name: 'type') this.type = PaidMediaType.photo,
+      @JsonKey(name: 'photo') required final List<PhotoSize> photo})
       : assert(type == PaidMediaType.photo, 'type must be PaidMediaType.photo'),
         _photo = photo;
 
@@ -322,7 +337,7 @@ class _$PaidMediaPhotoImpl implements PaidMediaPhoto {
 
   /// Type of the paid media, must be "photo"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final PaidMediaType type;
 
   /// The photo.
@@ -330,6 +345,7 @@ class _$PaidMediaPhotoImpl implements PaidMediaPhoto {
 
   /// The photo.
   @override
+  @JsonKey(name: 'photo')
   List<PhotoSize> get photo {
     if (_photo is EqualUnmodifiableListView) return _photo;
     // ignore: implicit_dynamic_type
@@ -394,17 +410,20 @@ class _$PaidMediaPhotoImpl implements PaidMediaPhoto {
 
 abstract class PaidMediaPhoto implements PaidMedia {
   const factory PaidMediaPhoto(
-      {final PaidMediaType type,
-      required final List<PhotoSize> photo}) = _$PaidMediaPhotoImpl;
+          {@JsonKey(name: 'type') final PaidMediaType type,
+          @JsonKey(name: 'photo') required final List<PhotoSize> photo}) =
+      _$PaidMediaPhotoImpl;
 
   factory PaidMediaPhoto.fromJson(Map<String, dynamic> json) =
       _$PaidMediaPhotoImpl.fromJson;
 
   /// Type of the paid media, must be "photo"
   @override
+  @JsonKey(name: 'type')
   PaidMediaType get type;
 
   /// The photo.
+  @JsonKey(name: 'photo')
   List<PhotoSize> get photo;
 
   /// Create a copy of PaidMedia
@@ -423,7 +442,9 @@ abstract class _$$PaidMediaVideoImplCopyWith<$Res>
       __$$PaidMediaVideoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PaidMediaType type, Video video});
+  $Res call(
+      {@JsonKey(name: 'type') PaidMediaType type,
+      @JsonKey(name: 'video') Video video});
 
   $VideoCopyWith<$Res> get video;
 }
@@ -471,7 +492,8 @@ class __$$PaidMediaVideoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PaidMediaVideoImpl implements PaidMediaVideo {
   const _$PaidMediaVideoImpl(
-      {this.type = PaidMediaType.video, required this.video})
+      {@JsonKey(name: 'type') this.type = PaidMediaType.video,
+      @JsonKey(name: 'video') required this.video})
       : assert(type == PaidMediaType.video, 'type must be PaidMediaType.video');
 
   factory _$PaidMediaVideoImpl.fromJson(Map<String, dynamic> json) =>
@@ -479,11 +501,12 @@ class _$PaidMediaVideoImpl implements PaidMediaVideo {
 
   /// Type of the paid media, must be "video"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final PaidMediaType type;
 
   /// The video.
   @override
+  @JsonKey(name: 'video')
   final Video video;
 
   @override
@@ -544,17 +567,20 @@ class _$PaidMediaVideoImpl implements PaidMediaVideo {
 
 abstract class PaidMediaVideo implements PaidMedia {
   const factory PaidMediaVideo(
-      {final PaidMediaType type,
-      required final Video video}) = _$PaidMediaVideoImpl;
+          {@JsonKey(name: 'type') final PaidMediaType type,
+          @JsonKey(name: 'video') required final Video video}) =
+      _$PaidMediaVideoImpl;
 
   factory PaidMediaVideo.fromJson(Map<String, dynamic> json) =
       _$PaidMediaVideoImpl.fromJson;
 
   /// Type of the paid media, must be "video"
   @override
+  @JsonKey(name: 'type')
   PaidMediaType get type;
 
   /// The video.
+  @JsonKey(name: 'video')
   Video get video;
 
   /// Create a copy of PaidMedia

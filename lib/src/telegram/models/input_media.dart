@@ -14,28 +14,37 @@ abstract interface class _InputMediaImp {
   InputFile get media;
 }
 
-/// This object represents the content of a media message to be sent. It should be one of
+/// This object represents the content of a media message to be sent. It should
+/// be one of
 @Freezed(fromJson: false, toJson: true)
 sealed class InputMedia with _$InputMedia implements _InputMediaImp {
-  @Assert("type == InputMediaType.photo", "`type` must be InputMedia.photo")
+  /// Represents a photo to be sent.
   const factory InputMedia.photo({
     /// Type of input media.
-    @Default(InputMediaType.photo) final InputMediaType type,
+    @JsonKey(name: 'type')
+    @Default(InputMediaType.photo)
+    final InputMediaType type,
 
     /// The file to send
-    @InputFileConverter() required final InputFile media,
+    @JsonKey(name: 'media')
+    @InputFileConverter()
+    required final InputFile media,
 
-    /// Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
-    final String? caption,
+    /// Optional. Caption of the photo to be sent, 0-1024 characters after
+    /// entities parsing
+    @JsonKey(name: 'caption') final String? caption,
 
-    /// Optional. Mode for parsing entities in the photo caption. See formatting options for more details.
+    /// Optional. Mode for parsing entities in the photo caption. See formatting
+    /// options for more details.
     @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
 
-    /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
+    /// Optional. List of special entities that appear in the caption, which can
+    /// be specified instead of parse_mode
     @JsonKey(name: 'caption_entities')
     final List<MessageEntity>? captionEntities,
 
-    /// Optional. Pass True if the photo needs to be covered with a spoiler animation
+    /// Optional. Pass True if the photo needs to be covered with a spoiler
+    /// animation
     @JsonKey(name: 'has_spoiler') final bool? hasSpoiler,
 
     /// Optional. True, if the caption must be shown above the message media
@@ -43,66 +52,85 @@ sealed class InputMedia with _$InputMedia implements _InputMediaImp {
     final bool? showCaptionAboveMedia,
   }) = InputMediaPhoto;
 
-  @Assert("type != InputMediaType.document", "`type` must be InputMedia.photo")
+  /// Represents a document to be sent.
   const factory InputMedia.document({
     /// Type of input media.
-    @Default(InputMediaType.document) final InputMediaType type,
+    @JsonKey(name: 'type')
+    @Default(InputMediaType.document)
+    final InputMediaType type,
 
     /// The file to send
-    @InputFileConverter() required final InputFile media,
+    @JsonKey(name: 'media')
+    @InputFileConverter()
+    required final InputFile media,
 
-    /// Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side.
-    @InputFileConverter() final InputFile? thumbnail,
+    /// Optional. Thumbnail of the file sent; can be ignored if thumbnail
+    /// generation for the file is supported server-side.
+    @JsonKey(name: 'thumbnail')
+    @InputFileConverter()
+    final InputFile? thumbnail,
 
-    /// Optional. Caption of the document to be sent, 0-1024 characters after entities parsing
-    final String? caption,
+    /// Optional. Caption of the document to be sent, 0-1024 characters after
+    /// entities parsing
+    @JsonKey(name: 'caption') final String? caption,
 
-    /// Optional. Mode for parsing entities in the document caption. See formatting options for more details.
+    /// Optional. Mode for parsing entities in the document caption. See
+    /// formatting options for more details.
     @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
 
-    /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
+    /// Optional. List of special entities that appear in the caption, which can
+    /// be specified instead of parse_mode
     @JsonKey(name: 'caption_entities')
     final List<MessageEntity>? captionEntities,
 
-    /// Optional. Disables automatic server-side content type detection for files uploaded using multipart/form-data. Always True, if the document is sent as part of an album.
+    /// Optional. Disables automatic server-side content type detection for
+    /// files uploaded using multipart/form-data. Always True, if the document
+    /// is sent as part of an album.
     @JsonKey(name: 'disable_content_type_detection')
     final bool? disableContentTypeDetection,
   }) = InputMediaDocument;
 
-  @Assert(
-    "type == InputMediaType.animation",
-    "`type` must be InputMedia.animation",
-  )
+  /// Represents an animation to be sent
   const factory InputMedia.animation({
     /// Type of input media.
-    @Default(InputMediaType.animation) final InputMediaType type,
+    @JsonKey(name: 'type')
+    @Default(InputMediaType.animation)
+    final InputMediaType type,
 
     /// The file to send
-    @InputFileConverter() required final InputFile media,
+    @JsonKey(name: 'media')
+    @InputFileConverter()
+    required final InputFile media,
 
     /// Optional. Thumbnail of the file sent.
-    @InputFileConverter() final InputFile? thumbnail,
+    @JsonKey(name: 'thumbnail')
+    @InputFileConverter()
+    final InputFile? thumbnail,
 
-    /// Optional. Caption of the video to be sent, 0-1024 characters after entities parsing
-    final String? caption,
+    /// Optional. Caption of the video to be sent, 0-1024 characters after
+    /// entities parsing
+    @JsonKey(name: 'caption') final String? caption,
 
-    /// Optional. Mode for parsing entities in the video caption. See formatting options for more details.
+    /// Optional. Mode for parsing entities in the video caption. See formatting
+    /// options for more details.
     @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
 
-    /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
+    /// Optional. List of special entities that appear in the caption, which can
+    /// be specified instead of parse_mode
     @JsonKey(name: 'caption_entities')
     final List<MessageEntity>? captionEntities,
 
     /// Optional. Animation width
-    final int? width,
+    @JsonKey(name: 'width') final int? width,
 
     /// Optional. Animation height
-    final int? height,
+    @JsonKey(name: 'height') final int? height,
 
     /// Optional. Animation duration in seconds
-    final int? duration,
+    @JsonKey(name: 'duration') final int? duration,
 
-    /// Optional. Pass True if the animation needs to be covered with a spoiler animation
+    /// Optional. Pass True if the animation needs to be covered with a spoiler
+    /// animation
     @JsonKey(name: 'has_spoiler') final bool? hasSpoiler,
 
     /// Optional. True, if the caption must be shown above the message media
@@ -110,82 +138,102 @@ sealed class InputMedia with _$InputMedia implements _InputMediaImp {
     final bool? showCaptionAboveMedia,
   }) = InputMediaAnimation;
 
-  @Assert("type == InputMediaType.audio", "`type` must be InputMedia.audio")
+  /// Represents an audio file to be treated as music to be sent.
   const factory InputMedia.audio({
     /// Type of input media.
-    @Default(InputMediaType.audio) final InputMediaType type,
+    @JsonKey(name: 'type')
+    @Default(InputMediaType.audio)
+    final InputMediaType type,
 
     /// The file to send
-    @InputFileConverter() required final InputFile media,
+    @JsonKey(name: 'media')
+    @InputFileConverter()
+    required final InputFile media,
 
     /// Optional. Thumbnail of the file sent.
-    @InputFileConverter() final InputFile? thumbnail,
+    @JsonKey(name: 'thumbnail')
+    @InputFileConverter()
+    final InputFile? thumbnail,
 
-    /// Optional. Caption of the audio to be sent, 0-1024 characters after entities parsing
-    final String? caption,
+    /// Optional. Caption of the audio to be sent, 0-1024 characters after
+    /// entities parsing
+    @JsonKey(name: 'caption') final String? caption,
 
-    /// Optional. Mode for parsing entities in the audio caption. See formatting options for more details.
+    /// Optional. Mode for parsing entities in the audio caption. See formatting
+    /// options for more details.
     @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
 
-    /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
+    /// Optional. List of special entities that appear in the caption, which can
+    /// be specified instead of parse_mode
     @JsonKey(name: 'caption_entities')
     final List<MessageEntity>? captionEntities,
 
     /// Optional. Duration of the audio in seconds
-    final int? duration,
+    @JsonKey(name: 'duration') final int? duration,
 
     /// Optional. Performer of the audio
-    final String? performer,
+    @JsonKey(name: 'performer') final String? performer,
 
     /// Optional. Title of the audio
-    final String? title,
+    @JsonKey(name: 'title') final String? title,
   }) = InputMediaAudio;
 
-  @Assert("type == InputMediaType.video", "`type` must be InputMedia.video")
+  /// Represents a video to be sent.
   const factory InputMedia.video({
     /// Type of input media.
-    @Default(InputMediaType.video) final InputMediaType type,
+    @JsonKey(name: 'type')
+    @Default(InputMediaType.video)
+    final InputMediaType type,
 
     /// The file to send
-    @InputFileConverter() required final InputFile media,
+    @JsonKey(name: 'media')
+    @InputFileConverter()
+    required final InputFile media,
 
     /// Optional. Thumbnail of the file sent.
-    @InputFileConverter() final InputFile? thumbnail,
+    @JsonKey(name: 'thumbnail')
+    @InputFileConverter()
+    final InputFile? thumbnail,
 
-    /// Optional. Caption of the video to be sent, 0-1024 characters after entities parsing
-    final String? caption,
+    /// Optional. Caption of the video to be sent, 0-1024 characters after
+    /// entities parsing
+    @JsonKey(name: 'caption') final String? caption,
 
-    /// Optional. Mode for parsing entities in the video caption. See formatting options for more details.
+    /// Optional. Mode for parsing entities in the video caption. See formatting
+    /// options for more details.
     @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
 
-    /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
+    /// Optional. List of special entities that appear in the caption, which can
+    /// be specified instead of parse_mode
     @JsonKey(name: 'caption_entities')
     final List<MessageEntity>? captionEntities,
 
     /// Optional. Video width
-    final int? width,
+    @JsonKey(name: 'width') final int? width,
 
     /// Optional. Video height
-    final int? height,
+    @JsonKey(name: 'height') final int? height,
 
     /// Optional. Video duration in seconds
-    final int? duration,
+    @JsonKey(name: 'duration') final int? duration,
 
     /// Optional. Pass True if the uploaded video is suitable for streaming
     @JsonKey(name: 'supports_streaming') final bool? supportsStreaming,
 
-    /// Optional. Pass True if the video needs to be covered with a spoiler animation
+    /// Optional. Pass True if the video needs to be covered with a spoiler
+    /// animation
     @JsonKey(name: 'has_spoiler') final bool? hasSpoiler,
 
     /// Optional. True, if the caption must be shown above the message media
     @JsonKey(name: 'show_caption_above_media')
     final bool? showCaptionAboveMedia,
 
-    /// Optional. Timestamp in seconds from which the video will play in the message
+    /// Optional. Timestamp in seconds from which the video will play in the
+    /// message
     @JsonKey(name: 'start_timestamp') final int? startTimestamp,
 
     /// Optional. Cover for the video in the message.
-    @InputFileConverter() final InputFile? cover,
+    @JsonKey(name: 'cover') @InputFileConverter() final InputFile? cover,
   }) = InputMediaVideo;
 
   factory InputMedia.fromJson(Map<String, Object?> json) =>

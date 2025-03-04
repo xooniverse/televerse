@@ -12,7 +12,7 @@ class MaskPosition with _$MaskPosition {
   const factory MaskPosition({
     /// The part of the face relative to which the mask should be placed. One of
     /// "forehead", "eyes", "mouth", or "chin".
-    required MaskPositionPoint point,
+    @JsonKey(name: 'point') required MaskPositionPoint point,
 
     /// Shift by X-axis measured in widths of the mask scaled to the face size,
     /// from left to right. For example, choosing -1.0 will place mask just to
@@ -25,7 +25,7 @@ class MaskPosition with _$MaskPosition {
     @JsonKey(name: 'y_shift') required double yShift,
 
     /// Mask scaling coefficient. For example, 2.0 means double size.
-    required double scale,
+    @JsonKey(name: 'scale') required double scale,
   }) = _MaskPosition;
 
   /// Creates a [MaskPosition] object from a JSON map

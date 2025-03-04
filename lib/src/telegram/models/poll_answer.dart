@@ -14,7 +14,7 @@ class PollAnswer with _$PollAnswer {
     @JsonKey(name: 'poll_id') required String pollId,
 
     /// The user, who changed the answer to the poll
-    User? user,
+    @JsonKey(name: 'user') User? user,
 
     /// 0-based identifiers of answer options, chosen by the user. May be empty
     /// if the user retracted their vote.

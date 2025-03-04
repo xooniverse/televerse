@@ -20,29 +20,31 @@ class InlineQueryResultVenue
   /// Constructs an [InlineQueryResultVenue] object
   const factory InlineQueryResultVenue({
     /// Type of the result, always [InlineQueryResultType.venue]
-    @Default(InlineQueryResultType.venue) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.venue)
+    InlineQueryResultType type,
 
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Latitude of the venue location in degrees
-    required double latitude,
+    @JsonKey(name: 'latitude') required double latitude,
 
     /// Longitude of the venue location in degrees
-    required double longitude,
+    @JsonKey(name: 'longitude') required double longitude,
 
     /// Title of the venue
-    required String title,
+    @JsonKey(name: 'title') required String title,
 
     /// Address of the venue
-    required String address,
+    @JsonKey(name: 'address') required String address,
 
     /// Optional. Foursquare identifier of the venue if known
     @JsonKey(name: 'foursquare_id') String? foursquareId,
 
-    /// Optional. Foursquare type of the venue, if known. (For example,
-    /// "arts_entertainment/default", "arts_entertainment/aquarium" or
-    /// "food/icecream".)
+    /// Optional. Foursquare type of the venue, if known.
+    ///
+    /// (For example, "arts_entertainment/default", "arts_entertainment/aquarium" or "food/icecream".)
     @JsonKey(name: 'foursquare_type') String? foursquareType,
 
     /// Optional. Google Places identifier of the venue
@@ -59,7 +61,7 @@ class InlineQueryResultVenue
     @InputMessageContentConverter()
     InputMessageContent? inputMessageContent,
 
-    /// Optional. Url of the thumbnail for the result
+    /// Optional. URL of the thumbnail for the result
     @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
 
     /// Optional. Thumbnail width

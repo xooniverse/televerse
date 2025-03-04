@@ -19,17 +19,17 @@ class InlineQueryResultCachedGif
   /// Constructs an [InlineQueryResultCachedGif] object
   const factory InlineQueryResultCachedGif({
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// A valid file identifier for the GIF file
     @JsonKey(name: 'gif_file_id') required String gifFileId,
 
     /// Optional. Title for the result
-    String? title,
+    @JsonKey(name: 'title') String? title,
 
     /// Optional. Caption of the GIF file to be sent, 0-1024 characters after
     /// entities parsing
-    String? caption,
+    @JsonKey(name: 'caption') String? caption,
 
     /// Optional. Mode for parsing entities in the caption. See formatting
     /// options for more details.
@@ -51,7 +51,9 @@ class InlineQueryResultCachedGif
     @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
 
     /// Type of the result, always [InlineQueryResultType.gif]
-    @Default(InlineQueryResultType.gif) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.gif)
+    InlineQueryResultType type,
   }) = _InlineQueryResultCachedGif;
 
   /// Creates an instance of [InlineQueryResultCachedGif] from a JSON map

@@ -10,10 +10,10 @@ class ForumTopicCreated with _$ForumTopicCreated {
   /// Creates a new [ForumTopicCreated] object.
   const factory ForumTopicCreated({
     /// Name of the topic
-    required String name,
+    @JsonKey(name: 'name') required String name,
 
     /// Color of the topic icon in RGB format
-    @JsonKey(name: 'icon_color') required int color,
+    @JsonKey(name: 'icon_color') required int iconColor,
 
     /// Optional. Unique identifier of the custom emoji shown as the topic icon
     @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,

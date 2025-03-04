@@ -29,16 +29,16 @@ sealed class PaidMedia with _$PaidMedia implements _PaidMediaImpl {
   )
   const factory PaidMedia.preview({
     /// Type of the paid media, must be "preview"
-    @Default(PaidMediaType.preview) PaidMediaType type,
+    @Default(PaidMediaType.preview) @JsonKey(name: 'type') PaidMediaType type,
 
     /// Optional. Media width as defined by the sender.
-    final int? width,
+    @JsonKey(name: 'width') final int? width,
 
     /// Optional. Media height as defined by the sender.
-    final int? height,
+    @JsonKey(name: 'height') final int? height,
 
     /// Optional. Duration of the media in seconds as defined by the sender.
-    final int? duration,
+    @JsonKey(name: 'duration') final int? duration,
   }) = PaidMediaPreview;
 
   /// Photo paid media
@@ -48,10 +48,10 @@ sealed class PaidMedia with _$PaidMedia implements _PaidMediaImpl {
   )
   const factory PaidMedia.photo({
     /// Type of the paid media, must be "photo"
-    @Default(PaidMediaType.photo) PaidMediaType type,
+    @Default(PaidMediaType.photo) @JsonKey(name: 'type') PaidMediaType type,
 
     /// The photo.
-    required final List<PhotoSize> photo,
+    @JsonKey(name: 'photo') required final List<PhotoSize> photo,
   }) = PaidMediaPhoto;
 
   /// Video paid media
@@ -61,10 +61,10 @@ sealed class PaidMedia with _$PaidMedia implements _PaidMediaImpl {
   )
   const factory PaidMedia.video({
     /// Type of the paid media, must be "video"
-    @Default(PaidMediaType.video) PaidMediaType type,
+    @Default(PaidMediaType.video) @JsonKey(name: 'type') PaidMediaType type,
 
     /// The video.
-    required final Video video,
+    @JsonKey(name: 'video') required final Video video,
   }) = PaidMediaVideo;
 
   /// Creates Paid Media from JSON

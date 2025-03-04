@@ -43,6 +43,7 @@ mixin _$ReplyParameters {
   /// be replied to, including bold, italic, underline, strikethrough,
   /// spoiler, and custom_emoji entities. The message will fail to send if the
   /// quote isn't found in the original message.
+  @JsonKey(name: 'quote')
   String? get quote => throw _privateConstructorUsedError;
 
   /// Mode for parsing entities in the quote. See formatting options for more
@@ -80,7 +81,7 @@ abstract class $ReplyParametersCopyWith<$Res> {
       @IDConverter() @JsonKey(name: 'chat_id') ID? chatId,
       @JsonKey(name: 'allow_sending_without_reply')
       bool? allowSendingWithoutReply,
-      String? quote,
+      @JsonKey(name: 'quote') String? quote,
       @JsonKey(name: 'quote_parse_mode') String? quoteParseMode,
       @JsonKey(name: 'quote_entities') List<MessageEntity>? quoteEntities,
       @JsonKey(name: 'quote_position') int? quotePosition});
@@ -155,7 +156,7 @@ abstract class _$$ReplyParametersImplCopyWith<$Res>
       @IDConverter() @JsonKey(name: 'chat_id') ID? chatId,
       @JsonKey(name: 'allow_sending_without_reply')
       bool? allowSendingWithoutReply,
-      String? quote,
+      @JsonKey(name: 'quote') String? quote,
       @JsonKey(name: 'quote_parse_mode') String? quoteParseMode,
       @JsonKey(name: 'quote_entities') List<MessageEntity>? quoteEntities,
       @JsonKey(name: 'quote_position') int? quotePosition});
@@ -223,7 +224,7 @@ class _$ReplyParametersImpl implements _ReplyParameters {
       @IDConverter() @JsonKey(name: 'chat_id') this.chatId,
       @JsonKey(name: 'allow_sending_without_reply')
       this.allowSendingWithoutReply,
-      this.quote,
+      @JsonKey(name: 'quote') this.quote,
       @JsonKey(name: 'quote_parse_mode') this.quoteParseMode,
       @JsonKey(name: 'quote_entities') final List<MessageEntity>? quoteEntities,
       @JsonKey(name: 'quote_position') this.quotePosition})
@@ -259,6 +260,7 @@ class _$ReplyParametersImpl implements _ReplyParameters {
   /// spoiler, and custom_emoji entities. The message will fail to send if the
   /// quote isn't found in the original message.
   @override
+  @JsonKey(name: 'quote')
   final String? quote;
 
   /// Mode for parsing entities in the quote. See formatting options for more
@@ -316,7 +318,7 @@ abstract class _ReplyParameters implements ReplyParameters {
       @IDConverter() @JsonKey(name: 'chat_id') final ID? chatId,
       @JsonKey(name: 'allow_sending_without_reply')
       final bool? allowSendingWithoutReply,
-      final String? quote,
+      @JsonKey(name: 'quote') final String? quote,
       @JsonKey(name: 'quote_parse_mode') final String? quoteParseMode,
       @JsonKey(name: 'quote_entities') final List<MessageEntity>? quoteEntities,
       @JsonKey(name: 'quote_position')
@@ -352,6 +354,7 @@ abstract class _ReplyParameters implements ReplyParameters {
   /// spoiler, and custom_emoji entities. The message will fail to send if the
   /// quote isn't found in the original message.
   @override
+  @JsonKey(name: 'quote')
   String? get quote;
 
   /// Mode for parsing entities in the quote. See formatting options for more

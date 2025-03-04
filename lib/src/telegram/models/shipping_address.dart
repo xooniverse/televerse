@@ -12,10 +12,10 @@ class ShippingAddress with _$ShippingAddress {
     @JsonKey(name: 'country_code') required String countryCode,
 
     /// State, if applicable
-    required String state,
+    @JsonKey(name: 'state') required String state,
 
     /// City
-    required String city,
+    @JsonKey(name: 'city') required String city,
 
     /// First line for the address
     @JsonKey(name: 'street_line1') required String streetLine1,

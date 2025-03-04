@@ -22,24 +22,29 @@ StarTransaction _$StarTransactionFromJson(Map<String, dynamic> json) {
 mixin _$StarTransaction {
   /// Unique identifier of the transaction. Coincides with the identifier of
   /// the original transaction for refund transactions. Coincides with
-  /// [SuccessfulPayment.telegramPaymentChargeId] for successful incoming
+  /// `SuccessfulPayment` for successful incoming
   /// payments from users.
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Number of Telegram Stars transferred by the transaction.
+  @JsonKey(name: 'amount')
   int get amount => throw _privateConstructorUsedError;
 
   /// Date the transaction was created in Unix time.
+  @JsonKey(name: 'date')
   int get date => throw _privateConstructorUsedError;
 
   /// Optional. Source of an incoming transaction (e.g., a user purchasing
   /// goods or services, Fragment refunding a failed withdrawal). Only for
   /// incoming transactions.
+  @JsonKey(name: 'source')
   TransactionPartner? get source => throw _privateConstructorUsedError;
 
   /// Optional. Receiver of an outgoing transaction (e.g., a user for a
   /// purchase refund, Fragment for a withdrawal). Only for outgoing
   /// transactions.
+  @JsonKey(name: 'receiver')
   TransactionPartner? get receiver => throw _privateConstructorUsedError;
 
   /// Optional. The number of 1/1000000000 shares of Telegram Stars
@@ -64,11 +69,11 @@ abstract class $StarTransactionCopyWith<$Res> {
       _$StarTransactionCopyWithImpl<$Res, StarTransaction>;
   @useResult
   $Res call(
-      {String id,
-      int amount,
-      int date,
-      TransactionPartner? source,
-      TransactionPartner? receiver,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'amount') int amount,
+      @JsonKey(name: 'date') int date,
+      @JsonKey(name: 'source') TransactionPartner? source,
+      @JsonKey(name: 'receiver') TransactionPartner? receiver,
       @JsonKey(name: 'nanostar_amount') int? nanostarAmount});
 
   $TransactionPartnerCopyWith<$Res>? get source;
@@ -163,11 +168,11 @@ abstract class _$$StarTransactionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      int amount,
-      int date,
-      TransactionPartner? source,
-      TransactionPartner? receiver,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'amount') int amount,
+      @JsonKey(name: 'date') int date,
+      @JsonKey(name: 'source') TransactionPartner? source,
+      @JsonKey(name: 'receiver') TransactionPartner? receiver,
       @JsonKey(name: 'nanostar_amount') int? nanostarAmount});
 
   @override
@@ -229,11 +234,11 @@ class __$$StarTransactionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StarTransactionImpl implements _StarTransaction {
   const _$StarTransactionImpl(
-      {required this.id,
-      required this.amount,
-      required this.date,
-      this.source,
-      this.receiver,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'amount') required this.amount,
+      @JsonKey(name: 'date') required this.date,
+      @JsonKey(name: 'source') this.source,
+      @JsonKey(name: 'receiver') this.receiver,
       @JsonKey(name: 'nanostar_amount') this.nanostarAmount});
 
   factory _$StarTransactionImpl.fromJson(Map<String, dynamic> json) =>
@@ -241,29 +246,34 @@ class _$StarTransactionImpl implements _StarTransaction {
 
   /// Unique identifier of the transaction. Coincides with the identifier of
   /// the original transaction for refund transactions. Coincides with
-  /// [SuccessfulPayment.telegramPaymentChargeId] for successful incoming
+  /// `SuccessfulPayment` for successful incoming
   /// payments from users.
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Number of Telegram Stars transferred by the transaction.
   @override
+  @JsonKey(name: 'amount')
   final int amount;
 
   /// Date the transaction was created in Unix time.
   @override
+  @JsonKey(name: 'date')
   final int date;
 
   /// Optional. Source of an incoming transaction (e.g., a user purchasing
   /// goods or services, Fragment refunding a failed withdrawal). Only for
   /// incoming transactions.
   @override
+  @JsonKey(name: 'source')
   final TransactionPartner? source;
 
   /// Optional. Receiver of an outgoing transaction (e.g., a user for a
   /// purchase refund, Fragment for a withdrawal). Only for outgoing
   /// transactions.
   @override
+  @JsonKey(name: 'receiver')
   final TransactionPartner? receiver;
 
   /// Optional. The number of 1/1000000000 shares of Telegram Stars
@@ -296,11 +306,11 @@ class _$StarTransactionImpl implements _StarTransaction {
 
 abstract class _StarTransaction implements StarTransaction {
   const factory _StarTransaction(
-          {required final String id,
-          required final int amount,
-          required final int date,
-          final TransactionPartner? source,
-          final TransactionPartner? receiver,
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'amount') required final int amount,
+          @JsonKey(name: 'date') required final int date,
+          @JsonKey(name: 'source') final TransactionPartner? source,
+          @JsonKey(name: 'receiver') final TransactionPartner? receiver,
           @JsonKey(name: 'nanostar_amount') final int? nanostarAmount}) =
       _$StarTransactionImpl;
 
@@ -309,29 +319,34 @@ abstract class _StarTransaction implements StarTransaction {
 
   /// Unique identifier of the transaction. Coincides with the identifier of
   /// the original transaction for refund transactions. Coincides with
-  /// [SuccessfulPayment.telegramPaymentChargeId] for successful incoming
+  /// `SuccessfulPayment` for successful incoming
   /// payments from users.
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Number of Telegram Stars transferred by the transaction.
   @override
+  @JsonKey(name: 'amount')
   int get amount;
 
   /// Date the transaction was created in Unix time.
   @override
+  @JsonKey(name: 'date')
   int get date;
 
   /// Optional. Source of an incoming transaction (e.g., a user purchasing
   /// goods or services, Fragment refunding a failed withdrawal). Only for
   /// incoming transactions.
   @override
+  @JsonKey(name: 'source')
   TransactionPartner? get source;
 
   /// Optional. Receiver of an outgoing transaction (e.g., a user for a
   /// purchase refund, Fragment for a withdrawal). Only for outgoing
   /// transactions.
   @override
+  @JsonKey(name: 'receiver')
   TransactionPartner? get receiver;
 
   /// Optional. The number of 1/1000000000 shares of Telegram Stars

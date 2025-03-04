@@ -22,6 +22,7 @@ RefundedPayment _$RefundedPaymentFromJson(Map<String, dynamic> json) {
 mixin _$RefundedPayment {
   /// Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram
   /// Stars. Currently, always “XTR”.
+  @JsonKey(name: 'currency')
   String get currency => throw _privateConstructorUsedError;
 
   /// Total refunded price in the smallest units of the currency (integer, not
@@ -58,7 +59,7 @@ abstract class $RefundedPaymentCopyWith<$Res> {
       _$RefundedPaymentCopyWithImpl<$Res, RefundedPayment>;
   @useResult
   $Res call(
-      {String currency,
+      {@JsonKey(name: 'currency') String currency,
       @JsonKey(name: 'total_amount') int totalAmount,
       @JsonKey(name: 'invoice_payload') String invoicePayload,
       @JsonKey(name: 'telegram_payment_charge_id')
@@ -122,7 +123,7 @@ abstract class _$$RefundedPaymentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String currency,
+      {@JsonKey(name: 'currency') String currency,
       @JsonKey(name: 'total_amount') int totalAmount,
       @JsonKey(name: 'invoice_payload') String invoicePayload,
       @JsonKey(name: 'telegram_payment_charge_id')
@@ -179,7 +180,7 @@ class __$$RefundedPaymentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RefundedPaymentImpl implements _RefundedPayment {
   const _$RefundedPaymentImpl(
-      {required this.currency,
+      {@JsonKey(name: 'currency') required this.currency,
       @JsonKey(name: 'total_amount') required this.totalAmount,
       @JsonKey(name: 'invoice_payload') required this.invoicePayload,
       @JsonKey(name: 'telegram_payment_charge_id')
@@ -193,6 +194,7 @@ class _$RefundedPaymentImpl implements _RefundedPayment {
   /// Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram
   /// Stars. Currently, always “XTR”.
   @override
+  @JsonKey(name: 'currency')
   final String currency;
 
   /// Total refunded price in the smallest units of the currency (integer, not
@@ -240,7 +242,7 @@ class _$RefundedPaymentImpl implements _RefundedPayment {
 
 abstract class _RefundedPayment implements RefundedPayment {
   const factory _RefundedPayment(
-      {required final String currency,
+      {@JsonKey(name: 'currency') required final String currency,
       @JsonKey(name: 'total_amount') required final int totalAmount,
       @JsonKey(name: 'invoice_payload') required final String invoicePayload,
       @JsonKey(name: 'telegram_payment_charge_id')
@@ -254,6 +256,7 @@ abstract class _RefundedPayment implements RefundedPayment {
   /// Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram
   /// Stars. Currently, always “XTR”.
   @override
+  @JsonKey(name: 'currency')
   String get currency;
 
   /// Total refunded price in the smallest units of the currency (integer, not

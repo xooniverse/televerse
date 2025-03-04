@@ -22,30 +22,36 @@ InlineQueryResultVenue _$InlineQueryResultVenueFromJson(
 /// @nodoc
 mixin _$InlineQueryResultVenue {
   /// Type of the result, always [InlineQueryResultType.venue]
+  @JsonKey(name: 'type')
   InlineQueryResultType get type => throw _privateConstructorUsedError;
 
   /// Unique identifier for this result, 1-64 Bytes
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Latitude of the venue location in degrees
+  @JsonKey(name: 'latitude')
   double get latitude => throw _privateConstructorUsedError;
 
   /// Longitude of the venue location in degrees
+  @JsonKey(name: 'longitude')
   double get longitude => throw _privateConstructorUsedError;
 
   /// Title of the venue
+  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
 
   /// Address of the venue
+  @JsonKey(name: 'address')
   String get address => throw _privateConstructorUsedError;
 
   /// Optional. Foursquare identifier of the venue if known
   @JsonKey(name: 'foursquare_id')
   String? get foursquareId => throw _privateConstructorUsedError;
 
-  /// Optional. Foursquare type of the venue, if known. (For example,
-  /// "arts_entertainment/default", "arts_entertainment/aquarium" or
-  /// "food/icecream".)
+  /// Optional. Foursquare type of the venue, if known.
+  ///
+  /// (For example, "arts_entertainment/default", "arts_entertainment/aquarium" or "food/icecream".)
   @JsonKey(name: 'foursquare_type')
   String? get foursquareType => throw _privateConstructorUsedError;
 
@@ -67,7 +73,7 @@ mixin _$InlineQueryResultVenue {
   InputMessageContent? get inputMessageContent =>
       throw _privateConstructorUsedError;
 
-  /// Optional. Url of the thumbnail for the result
+  /// Optional. URL of the thumbnail for the result
   @JsonKey(name: 'thumbnail_url')
   String? get thumbnailUrl => throw _privateConstructorUsedError;
 
@@ -96,12 +102,12 @@ abstract class $InlineQueryResultVenueCopyWith<$Res> {
       _$InlineQueryResultVenueCopyWithImpl<$Res, InlineQueryResultVenue>;
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
-      double latitude,
-      double longitude,
-      String title,
-      String address,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
+      @JsonKey(name: 'latitude') double latitude,
+      @JsonKey(name: 'longitude') double longitude,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'address') String address,
       @JsonKey(name: 'foursquare_id') String? foursquareId,
       @JsonKey(name: 'foursquare_type') String? foursquareType,
       @JsonKey(name: 'google_place_id') String? googlePlaceId,
@@ -239,12 +245,12 @@ abstract class _$$InlineQueryResultVenueImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {InlineQueryResultType type,
-      String id,
-      double latitude,
-      double longitude,
-      String title,
-      String address,
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
+      @JsonKey(name: 'latitude') double latitude,
+      @JsonKey(name: 'longitude') double longitude,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'address') String address,
       @JsonKey(name: 'foursquare_id') String? foursquareId,
       @JsonKey(name: 'foursquare_type') String? foursquareType,
       @JsonKey(name: 'google_place_id') String? googlePlaceId,
@@ -361,12 +367,12 @@ class __$$InlineQueryResultVenueImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryResultVenueImpl extends _InlineQueryResultVenue {
   const _$InlineQueryResultVenueImpl(
-      {this.type = InlineQueryResultType.venue,
-      required this.id,
-      required this.latitude,
-      required this.longitude,
-      required this.title,
-      required this.address,
+      {@JsonKey(name: 'type') this.type = InlineQueryResultType.venue,
+      @JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'latitude') required this.latitude,
+      @JsonKey(name: 'longitude') required this.longitude,
+      @JsonKey(name: 'title') required this.title,
+      @JsonKey(name: 'address') required this.address,
       @JsonKey(name: 'foursquare_id') this.foursquareId,
       @JsonKey(name: 'foursquare_type') this.foursquareType,
       @JsonKey(name: 'google_place_id') this.googlePlaceId,
@@ -385,27 +391,32 @@ class _$InlineQueryResultVenueImpl extends _InlineQueryResultVenue {
 
   /// Type of the result, always [InlineQueryResultType.venue]
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Latitude of the venue location in degrees
   @override
+  @JsonKey(name: 'latitude')
   final double latitude;
 
   /// Longitude of the venue location in degrees
   @override
+  @JsonKey(name: 'longitude')
   final double longitude;
 
   /// Title of the venue
   @override
+  @JsonKey(name: 'title')
   final String title;
 
   /// Address of the venue
   @override
+  @JsonKey(name: 'address')
   final String address;
 
   /// Optional. Foursquare identifier of the venue if known
@@ -413,9 +424,9 @@ class _$InlineQueryResultVenueImpl extends _InlineQueryResultVenue {
   @JsonKey(name: 'foursquare_id')
   final String? foursquareId;
 
-  /// Optional. Foursquare type of the venue, if known. (For example,
-  /// "arts_entertainment/default", "arts_entertainment/aquarium" or
-  /// "food/icecream".)
+  /// Optional. Foursquare type of the venue, if known.
+  ///
+  /// (For example, "arts_entertainment/default", "arts_entertainment/aquarium" or "food/icecream".)
   @override
   @JsonKey(name: 'foursquare_type')
   final String? foursquareType;
@@ -441,7 +452,7 @@ class _$InlineQueryResultVenueImpl extends _InlineQueryResultVenue {
   @InputMessageContentConverter()
   final InputMessageContent? inputMessageContent;
 
-  /// Optional. Url of the thumbnail for the result
+  /// Optional. URL of the thumbnail for the result
   @override
   @JsonKey(name: 'thumbnail_url')
   final String? thumbnailUrl;
@@ -480,12 +491,12 @@ class _$InlineQueryResultVenueImpl extends _InlineQueryResultVenue {
 
 abstract class _InlineQueryResultVenue extends InlineQueryResultVenue {
   const factory _InlineQueryResultVenue(
-      {final InlineQueryResultType type,
-      required final String id,
-      required final double latitude,
-      required final double longitude,
-      required final String title,
-      required final String address,
+      {@JsonKey(name: 'type') final InlineQueryResultType type,
+      @JsonKey(name: 'id') required final String id,
+      @JsonKey(name: 'latitude') required final double latitude,
+      @JsonKey(name: 'longitude') required final double longitude,
+      @JsonKey(name: 'title') required final String title,
+      @JsonKey(name: 'address') required final String address,
       @JsonKey(name: 'foursquare_id') final String? foursquareId,
       @JsonKey(name: 'foursquare_type') final String? foursquareType,
       @JsonKey(name: 'google_place_id') final String? googlePlaceId,
@@ -505,26 +516,32 @@ abstract class _InlineQueryResultVenue extends InlineQueryResultVenue {
 
   /// Type of the result, always [InlineQueryResultType.venue]
   @override
+  @JsonKey(name: 'type')
   InlineQueryResultType get type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Latitude of the venue location in degrees
   @override
+  @JsonKey(name: 'latitude')
   double get latitude;
 
   /// Longitude of the venue location in degrees
   @override
+  @JsonKey(name: 'longitude')
   double get longitude;
 
   /// Title of the venue
   @override
+  @JsonKey(name: 'title')
   String get title;
 
   /// Address of the venue
   @override
+  @JsonKey(name: 'address')
   String get address;
 
   /// Optional. Foursquare identifier of the venue if known
@@ -532,9 +549,9 @@ abstract class _InlineQueryResultVenue extends InlineQueryResultVenue {
   @JsonKey(name: 'foursquare_id')
   String? get foursquareId;
 
-  /// Optional. Foursquare type of the venue, if known. (For example,
-  /// "arts_entertainment/default", "arts_entertainment/aquarium" or
-  /// "food/icecream".)
+  /// Optional. Foursquare type of the venue, if known.
+  ///
+  /// (For example, "arts_entertainment/default", "arts_entertainment/aquarium" or "food/icecream".)
   @override
   @JsonKey(name: 'foursquare_type')
   String? get foursquareType;
@@ -560,7 +577,7 @@ abstract class _InlineQueryResultVenue extends InlineQueryResultVenue {
   @InputMessageContentConverter()
   InputMessageContent? get inputMessageContent;
 
-  /// Optional. Url of the thumbnail for the result
+  /// Optional. URL of the thumbnail for the result
   @override
   @JsonKey(name: 'thumbnail_url')
   String? get thumbnailUrl;

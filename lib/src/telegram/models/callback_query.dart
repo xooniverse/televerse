@@ -33,14 +33,14 @@ class CallbackQuery with _$CallbackQuery implements WithUser {
   /// - [gameShortName] Short name of a Game to be returned
   const factory CallbackQuery({
     /// Unique identifier for this query
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Sender
-    required User from,
+    @JsonKey(name: 'from') required User from,
 
     /// Optional. Message sent by the bot with the callback button that
     /// originated the query
-    MaybeInaccessibleMessage? message,
+    @JsonKey(name: 'message') MaybeInaccessibleMessage? message,
 
     /// Optional. Identifier of the message sent via the bot in inline mode,
     /// that originated the query.
@@ -54,7 +54,7 @@ class CallbackQuery with _$CallbackQuery implements WithUser {
     /// Optional. Data associated with the callback button. Be aware that the
     /// message originated the query can contain no callback buttons with this
     /// data.
-    String? data,
+    @JsonKey(name: 'data') String? data,
 
     /// Optional. Short name of a Game to be returned, serves as the unique
     /// identifier for the game

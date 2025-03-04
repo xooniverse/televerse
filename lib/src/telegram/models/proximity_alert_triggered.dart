@@ -12,13 +12,13 @@ class ProximityAlertTriggered with _$ProximityAlertTriggered {
   /// Constructs a [ProximityAlertTriggered] object
   const factory ProximityAlertTriggered({
     /// User that triggered the alert
-    required User traveler,
+    @JsonKey(name: 'traveler') required User traveler,
 
     /// User that set the alert
-    required User watcher,
+    @JsonKey(name: 'watcher') required User watcher,
 
     /// The distance between the users
-    required int distance,
+    @JsonKey(name: 'distance') required int distance,
   }) = _ProximityAlertTriggered;
 
   /// Creates a [ProximityAlertTriggered] object from JSON object

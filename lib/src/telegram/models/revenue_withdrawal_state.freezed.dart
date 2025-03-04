@@ -33,6 +33,7 @@ RevenueWithdrawalState _$RevenueWithdrawalStateFromJson(
 /// @nodoc
 mixin _$RevenueWithdrawalState {
   /// Type of the revenue withdrawal state, must be "pending"
+  @JsonKey(name: 'type')
   RevenueWithdrawalStateType get type => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -74,7 +75,7 @@ abstract class $RevenueWithdrawalStateCopyWith<$Res> {
           $Res Function(RevenueWithdrawalState) then) =
       _$RevenueWithdrawalStateCopyWithImpl<$Res, RevenueWithdrawalState>;
   @useResult
-  $Res call({RevenueWithdrawalStateType type});
+  $Res call({@JsonKey(name: 'type') RevenueWithdrawalStateType type});
 }
 
 /// @nodoc
@@ -113,7 +114,7 @@ abstract class _$$RevenueWithdrawalStatePendingImplCopyWith<$Res>
       __$$RevenueWithdrawalStatePendingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RevenueWithdrawalStateType type});
+  $Res call({@JsonKey(name: 'type') RevenueWithdrawalStateType type});
 }
 
 /// @nodoc
@@ -147,7 +148,7 @@ class __$$RevenueWithdrawalStatePendingImplCopyWithImpl<$Res>
 class _$RevenueWithdrawalStatePendingImpl
     implements RevenueWithdrawalStatePending {
   const _$RevenueWithdrawalStatePendingImpl(
-      {this.type = RevenueWithdrawalStateType.pending})
+      {@JsonKey(name: 'type') this.type = RevenueWithdrawalStateType.pending})
       : assert(type == RevenueWithdrawalStateType.pending,
             'type must be RevenueWithdrawalStateType.pending');
 
@@ -157,7 +158,7 @@ class _$RevenueWithdrawalStatePendingImpl
 
   /// Type of the revenue withdrawal state, must be "pending"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final RevenueWithdrawalStateType type;
 
   @override
@@ -219,7 +220,7 @@ class _$RevenueWithdrawalStatePendingImpl
 
 abstract class RevenueWithdrawalStatePending implements RevenueWithdrawalState {
   const factory RevenueWithdrawalStatePending(
-          {final RevenueWithdrawalStateType type}) =
+          {@JsonKey(name: 'type') final RevenueWithdrawalStateType type}) =
       _$RevenueWithdrawalStatePendingImpl;
 
   factory RevenueWithdrawalStatePending.fromJson(Map<String, dynamic> json) =
@@ -227,6 +228,7 @@ abstract class RevenueWithdrawalStatePending implements RevenueWithdrawalState {
 
   /// Type of the revenue withdrawal state, must be "pending"
   @override
+  @JsonKey(name: 'type')
   RevenueWithdrawalStateType get type;
 
   /// Create a copy of RevenueWithdrawalState
@@ -247,7 +249,10 @@ abstract class _$$RevenueWithdrawalStateSucceededImplCopyWith<$Res>
       __$$RevenueWithdrawalStateSucceededImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RevenueWithdrawalStateType type, int date, String url});
+  $Res call(
+      {@JsonKey(name: 'type') RevenueWithdrawalStateType type,
+      @JsonKey(name: 'date') int date,
+      @JsonKey(name: 'url') String url});
 }
 
 /// @nodoc
@@ -291,9 +296,9 @@ class __$$RevenueWithdrawalStateSucceededImplCopyWithImpl<$Res>
 class _$RevenueWithdrawalStateSucceededImpl
     implements RevenueWithdrawalStateSucceeded {
   const _$RevenueWithdrawalStateSucceededImpl(
-      {this.type = RevenueWithdrawalStateType.succeeded,
-      required this.date,
-      required this.url})
+      {@JsonKey(name: 'type') this.type = RevenueWithdrawalStateType.succeeded,
+      @JsonKey(name: 'date') required this.date,
+      @JsonKey(name: 'url') required this.url})
       : assert(type == RevenueWithdrawalStateType.succeeded,
             'type must be RevenueWithdrawalStateType.succeeded');
 
@@ -303,15 +308,17 @@ class _$RevenueWithdrawalStateSucceededImpl
 
   /// Type of the revenue withdrawal state, must be "succeeded"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final RevenueWithdrawalStateType type;
 
   /// Date the withdrawal was completed in Unix time.
   @override
+  @JsonKey(name: 'date')
   final int date;
 
   /// An HTTPS URL that can be used to see transaction details.
   @override
+  @JsonKey(name: 'url')
   final String url;
 
   @override
@@ -374,21 +381,25 @@ class _$RevenueWithdrawalStateSucceededImpl
 abstract class RevenueWithdrawalStateSucceeded
     implements RevenueWithdrawalState {
   const factory RevenueWithdrawalStateSucceeded(
-      {final RevenueWithdrawalStateType type,
-      required final int date,
-      required final String url}) = _$RevenueWithdrawalStateSucceededImpl;
+          {@JsonKey(name: 'type') final RevenueWithdrawalStateType type,
+          @JsonKey(name: 'date') required final int date,
+          @JsonKey(name: 'url') required final String url}) =
+      _$RevenueWithdrawalStateSucceededImpl;
 
   factory RevenueWithdrawalStateSucceeded.fromJson(Map<String, dynamic> json) =
       _$RevenueWithdrawalStateSucceededImpl.fromJson;
 
   /// Type of the revenue withdrawal state, must be "succeeded"
   @override
+  @JsonKey(name: 'type')
   RevenueWithdrawalStateType get type;
 
   /// Date the withdrawal was completed in Unix time.
+  @JsonKey(name: 'date')
   int get date;
 
   /// An HTTPS URL that can be used to see transaction details.
+  @JsonKey(name: 'url')
   String get url;
 
   /// Create a copy of RevenueWithdrawalState
@@ -409,7 +420,7 @@ abstract class _$$RevenueWithdrawalStateFailedImplCopyWith<$Res>
       __$$RevenueWithdrawalStateFailedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RevenueWithdrawalStateType type});
+  $Res call({@JsonKey(name: 'type') RevenueWithdrawalStateType type});
 }
 
 /// @nodoc
@@ -443,7 +454,7 @@ class __$$RevenueWithdrawalStateFailedImplCopyWithImpl<$Res>
 class _$RevenueWithdrawalStateFailedImpl
     implements RevenueWithdrawalStateFailed {
   const _$RevenueWithdrawalStateFailedImpl(
-      {this.type = RevenueWithdrawalStateType.failed})
+      {@JsonKey(name: 'type') this.type = RevenueWithdrawalStateType.failed})
       : assert(type == RevenueWithdrawalStateType.failed,
             'type must be RevenueWithdrawalStateType.failed');
 
@@ -453,7 +464,7 @@ class _$RevenueWithdrawalStateFailedImpl
 
   /// Type of the revenue withdrawal state, must be "failed"
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final RevenueWithdrawalStateType type;
 
   @override
@@ -515,7 +526,7 @@ class _$RevenueWithdrawalStateFailedImpl
 
 abstract class RevenueWithdrawalStateFailed implements RevenueWithdrawalState {
   const factory RevenueWithdrawalStateFailed(
-          {final RevenueWithdrawalStateType type}) =
+          {@JsonKey(name: 'type') final RevenueWithdrawalStateType type}) =
       _$RevenueWithdrawalStateFailedImpl;
 
   factory RevenueWithdrawalStateFailed.fromJson(Map<String, dynamic> json) =
@@ -523,6 +534,7 @@ abstract class RevenueWithdrawalStateFailed implements RevenueWithdrawalState {
 
   /// Type of the revenue withdrawal state, must be "failed"
   @override
+  @JsonKey(name: 'type')
   RevenueWithdrawalStateType get type;
 
   /// Create a copy of RevenueWithdrawalState

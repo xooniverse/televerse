@@ -22,13 +22,13 @@ class InlineQueryResultCachedAudio
   /// Constructs an [InlineQueryResultCachedAudio] object
   const factory InlineQueryResultCachedAudio({
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// A valid file identifier for the audio file
     @JsonKey(name: 'audio_file_id') required String audioFileId,
 
     /// Optional. Caption, 0-1024 characters after entities parsing
-    String? caption,
+    @JsonKey(name: 'caption') String? caption,
 
     /// Optional. Mode for parsing entities in the video caption. See formatting
     /// options for more details.
@@ -47,7 +47,9 @@ class InlineQueryResultCachedAudio
     InputMessageContent? inputMessageContent,
 
     /// Type of the result, always [InlineQueryResultType.audio]
-    @Default(InlineQueryResultType.audio) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.audio)
+    InlineQueryResultType type,
   }) = _InlineQueryResultCachedAudio;
 
   /// Creates an [InlineQueryResultCachedAudio] object from a JSON map

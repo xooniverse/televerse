@@ -10,13 +10,13 @@ class ShippingOption with _$ShippingOption {
   /// Constructs a [ShippingOption] object
   const factory ShippingOption({
     /// Shipping option identifier
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Option title
-    required String title,
+    @JsonKey(name: 'title') required String title,
 
     /// List of price portions
-    required List<LabeledPrice> prices,
+    @JsonKey(name: 'prices') required List<LabeledPrice> prices,
   }) = _ShippingOption;
 
   /// Creates a [ShippingOption] object from JSON object

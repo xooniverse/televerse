@@ -16,10 +16,12 @@ class InlineQueryResultGif
   /// Creates an [InlineQueryResultGif] object
   const factory InlineQueryResultGif({
     /// Type of the result, always [InlineQueryResultType.gif]
-    @Default(InlineQueryResultType.gif) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.gif)
+    InlineQueryResultType type,
 
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// A valid URL for the GIF file. File size must not exceed 1MB
     @JsonKey(name: 'gif_url') required String gifUrl,
@@ -40,10 +42,10 @@ class InlineQueryResultGif
     @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
 
     /// Optional. Title for the result
-    String? title,
+    @JsonKey(name: 'title') String? title,
 
     /// Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing
-    String? caption,
+    @JsonKey(name: 'caption') String? caption,
 
     /// Optional. Mode for parsing entities in the caption. See formatting options for more details.
     @JsonKey(name: 'parse_mode') ParseMode? parseMode,

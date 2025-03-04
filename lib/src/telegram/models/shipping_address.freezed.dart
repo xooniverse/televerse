@@ -25,9 +25,11 @@ mixin _$ShippingAddress {
   String get countryCode => throw _privateConstructorUsedError;
 
   /// State, if applicable
+  @JsonKey(name: 'state')
   String get state => throw _privateConstructorUsedError;
 
   /// City
+  @JsonKey(name: 'city')
   String get city => throw _privateConstructorUsedError;
 
   /// First line for the address
@@ -60,8 +62,8 @@ abstract class $ShippingAddressCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'country_code') String countryCode,
-      String state,
-      String city,
+      @JsonKey(name: 'state') String state,
+      @JsonKey(name: 'city') String city,
       @JsonKey(name: 'street_line1') String streetLine1,
       @JsonKey(name: 'street_line2') String streetLine2,
       @JsonKey(name: 'post_code') String postCode});
@@ -128,8 +130,8 @@ abstract class _$$ShippingAddressImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'country_code') String countryCode,
-      String state,
-      String city,
+      @JsonKey(name: 'state') String state,
+      @JsonKey(name: 'city') String city,
       @JsonKey(name: 'street_line1') String streetLine1,
       @JsonKey(name: 'street_line2') String streetLine2,
       @JsonKey(name: 'post_code') String postCode});
@@ -189,8 +191,8 @@ class __$$ShippingAddressImplCopyWithImpl<$Res>
 class _$ShippingAddressImpl implements _ShippingAddress {
   const _$ShippingAddressImpl(
       {@JsonKey(name: 'country_code') required this.countryCode,
-      required this.state,
-      required this.city,
+      @JsonKey(name: 'state') required this.state,
+      @JsonKey(name: 'city') required this.city,
       @JsonKey(name: 'street_line1') required this.streetLine1,
       @JsonKey(name: 'street_line2') required this.streetLine2,
       @JsonKey(name: 'post_code') required this.postCode});
@@ -205,10 +207,12 @@ class _$ShippingAddressImpl implements _ShippingAddress {
 
   /// State, if applicable
   @override
+  @JsonKey(name: 'state')
   final String state;
 
   /// City
   @override
+  @JsonKey(name: 'city')
   final String city;
 
   /// First line for the address
@@ -251,8 +255,8 @@ class _$ShippingAddressImpl implements _ShippingAddress {
 abstract class _ShippingAddress implements ShippingAddress {
   const factory _ShippingAddress(
           {@JsonKey(name: 'country_code') required final String countryCode,
-          required final String state,
-          required final String city,
+          @JsonKey(name: 'state') required final String state,
+          @JsonKey(name: 'city') required final String city,
           @JsonKey(name: 'street_line1') required final String streetLine1,
           @JsonKey(name: 'street_line2') required final String streetLine2,
           @JsonKey(name: 'post_code') required final String postCode}) =
@@ -268,10 +272,12 @@ abstract class _ShippingAddress implements ShippingAddress {
 
   /// State, if applicable
   @override
+  @JsonKey(name: 'state')
   String get state;
 
   /// City
   @override
+  @JsonKey(name: 'city')
   String get city;
 
   /// First line for the address

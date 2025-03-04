@@ -24,7 +24,7 @@ class UsersShared with _$UsersShared {
     /// safe for storing these identifiers. The bot may not have access to the
     /// users and could be unable to use these identifiers, unless the users are
     /// already known to the bot by some other means.
-    required List<SharedUser> users,
+    @JsonKey(name: 'users') required List<SharedUser> users,
   }) = _UsersShared;
 
   /// Creates a [UsersShared] object from JSON object

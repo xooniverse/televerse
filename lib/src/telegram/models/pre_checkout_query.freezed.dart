@@ -21,12 +21,15 @@ PreCheckoutQuery _$PreCheckoutQueryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PreCheckoutQuery {
   /// Unique query identifier
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// User who sent the query
+  @JsonKey(name: 'from')
   User get from => throw _privateConstructorUsedError;
 
   /// Three-letter ISO 4217 currency code
+  @JsonKey(name: 'currency')
   String get currency => throw _privateConstructorUsedError;
 
   /// Total price in the smallest units of the currency (integer, not
@@ -66,9 +69,9 @@ abstract class $PreCheckoutQueryCopyWith<$Res> {
       _$PreCheckoutQueryCopyWithImpl<$Res, PreCheckoutQuery>;
   @useResult
   $Res call(
-      {String id,
-      User from,
-      String currency,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'currency') String currency,
       @JsonKey(name: 'total_amount') int totalAmount,
       @JsonKey(name: 'invoice_payload') String invoicePayload,
       @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
@@ -167,9 +170,9 @@ abstract class _$$PreCheckoutQueryImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      User from,
-      String currency,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'currency') String currency,
       @JsonKey(name: 'total_amount') int totalAmount,
       @JsonKey(name: 'invoice_payload') String invoicePayload,
       @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
@@ -239,9 +242,9 @@ class __$$PreCheckoutQueryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PreCheckoutQueryImpl implements _PreCheckoutQuery {
   const _$PreCheckoutQueryImpl(
-      {required this.id,
-      required this.from,
-      required this.currency,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'from') required this.from,
+      @JsonKey(name: 'currency') required this.currency,
       @JsonKey(name: 'total_amount') required this.totalAmount,
       @JsonKey(name: 'invoice_payload') required this.invoicePayload,
       @JsonKey(name: 'shipping_option_id') this.shippingOptionId,
@@ -252,14 +255,17 @@ class _$PreCheckoutQueryImpl implements _PreCheckoutQuery {
 
   /// Unique query identifier
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// User who sent the query
   @override
+  @JsonKey(name: 'from')
   final User from;
 
   /// Three-letter ISO 4217 currency code
   @override
+  @JsonKey(name: 'currency')
   final String currency;
 
   /// Total price in the smallest units of the currency (integer, not
@@ -310,9 +316,9 @@ class _$PreCheckoutQueryImpl implements _PreCheckoutQuery {
 
 abstract class _PreCheckoutQuery implements PreCheckoutQuery {
   const factory _PreCheckoutQuery(
-      {required final String id,
-      required final User from,
-      required final String currency,
+      {@JsonKey(name: 'id') required final String id,
+      @JsonKey(name: 'from') required final User from,
+      @JsonKey(name: 'currency') required final String currency,
       @JsonKey(name: 'total_amount') required final int totalAmount,
       @JsonKey(name: 'invoice_payload') required final String invoicePayload,
       @JsonKey(name: 'shipping_option_id') final String? shippingOptionId,
@@ -324,14 +330,17 @@ abstract class _PreCheckoutQuery implements PreCheckoutQuery {
 
   /// Unique query identifier
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// User who sent the query
   @override
+  @JsonKey(name: 'from')
   User get from;
 
   /// Three-letter ISO 4217 currency code
   @override
+  @JsonKey(name: 'currency')
   String get currency;
 
   /// Total price in the smallest units of the currency (integer, not

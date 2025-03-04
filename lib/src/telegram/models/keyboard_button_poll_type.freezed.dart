@@ -25,6 +25,7 @@ mixin _$KeyboardButtonPollType {
   /// polls in the quiz mode. If regular is passed, only regular polls will be
   /// allowed. Otherwise, the user will be allowed to create a poll of any
   /// type.
+  @JsonKey(name: 'type')
   PollType? get type => throw _privateConstructorUsedError;
 
   /// Serializes this KeyboardButtonPollType to a JSON map.
@@ -43,7 +44,7 @@ abstract class $KeyboardButtonPollTypeCopyWith<$Res> {
           $Res Function(KeyboardButtonPollType) then) =
       _$KeyboardButtonPollTypeCopyWithImpl<$Res, KeyboardButtonPollType>;
   @useResult
-  $Res call({PollType? type});
+  $Res call({@JsonKey(name: 'type') PollType? type});
 }
 
 /// @nodoc
@@ -82,7 +83,7 @@ abstract class _$$KeyboardButtonPollTypeImplCopyWith<$Res>
       __$$KeyboardButtonPollTypeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PollType? type});
+  $Res call({@JsonKey(name: 'type') PollType? type});
 }
 
 /// @nodoc
@@ -114,7 +115,7 @@ class __$$KeyboardButtonPollTypeImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$KeyboardButtonPollTypeImpl implements _KeyboardButtonPollType {
-  const _$KeyboardButtonPollTypeImpl({this.type});
+  const _$KeyboardButtonPollTypeImpl({@JsonKey(name: 'type') this.type});
 
   factory _$KeyboardButtonPollTypeImpl.fromJson(Map<String, dynamic> json) =>
       _$$KeyboardButtonPollTypeImplFromJson(json);
@@ -124,6 +125,7 @@ class _$KeyboardButtonPollTypeImpl implements _KeyboardButtonPollType {
   /// allowed. Otherwise, the user will be allowed to create a poll of any
   /// type.
   @override
+  @JsonKey(name: 'type')
   final PollType? type;
 
   @override
@@ -149,7 +151,8 @@ class _$KeyboardButtonPollTypeImpl implements _KeyboardButtonPollType {
 }
 
 abstract class _KeyboardButtonPollType implements KeyboardButtonPollType {
-  const factory _KeyboardButtonPollType({final PollType? type}) =
+  const factory _KeyboardButtonPollType(
+          {@JsonKey(name: 'type') final PollType? type}) =
       _$KeyboardButtonPollTypeImpl;
 
   factory _KeyboardButtonPollType.fromJson(Map<String, dynamic> json) =
@@ -160,6 +163,7 @@ abstract class _KeyboardButtonPollType implements KeyboardButtonPollType {
   /// allowed. Otherwise, the user will be allowed to create a poll of any
   /// type.
   @override
+  @JsonKey(name: 'type')
   PollType? get type;
 
   /// Create a copy of KeyboardButtonPollType

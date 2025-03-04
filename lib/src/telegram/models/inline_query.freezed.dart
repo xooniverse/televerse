@@ -21,15 +21,19 @@ InlineQuery _$InlineQueryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$InlineQuery {
   /// Unique identifier for this query
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// Sender
+  @JsonKey(name: 'from')
   User get from => throw _privateConstructorUsedError;
 
   /// Text of the query (up to 256 characters)
+  @JsonKey(name: 'query')
   String get query => throw _privateConstructorUsedError;
 
   /// Offset of the results to be returned, can be controlled by the bot
+  @JsonKey(name: 'offset')
   String get offset => throw _privateConstructorUsedError;
 
   /// Optional. Type of the chat from which the inline query was sent.
@@ -60,10 +64,10 @@ abstract class $InlineQueryCopyWith<$Res> {
       _$InlineQueryCopyWithImpl<$Res, InlineQuery>;
   @useResult
   $Res call(
-      {String id,
-      User from,
-      String query,
-      String offset,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'query') String query,
+      @JsonKey(name: 'offset') String offset,
       @JsonKey(name: 'chat_type') ChatType? chatType,
       Location? location});
 
@@ -155,10 +159,10 @@ abstract class _$$InlineQueryImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      User from,
-      String query,
-      String offset,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'query') String query,
+      @JsonKey(name: 'offset') String offset,
       @JsonKey(name: 'chat_type') ChatType? chatType,
       Location? location});
 
@@ -221,10 +225,10 @@ class __$$InlineQueryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InlineQueryImpl implements _InlineQuery {
   const _$InlineQueryImpl(
-      {required this.id,
-      required this.from,
-      required this.query,
-      required this.offset,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'from') required this.from,
+      @JsonKey(name: 'query') required this.query,
+      @JsonKey(name: 'offset') required this.offset,
       @JsonKey(name: 'chat_type') this.chatType,
       this.location});
 
@@ -233,18 +237,22 @@ class _$InlineQueryImpl implements _InlineQuery {
 
   /// Unique identifier for this query
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// Sender
   @override
+  @JsonKey(name: 'from')
   final User from;
 
   /// Text of the query (up to 256 characters)
   @override
+  @JsonKey(name: 'query')
   final String query;
 
   /// Offset of the results to be returned, can be controlled by the bot
   @override
+  @JsonKey(name: 'offset')
   final String offset;
 
   /// Optional. Type of the chat from which the inline query was sent.
@@ -283,10 +291,10 @@ class _$InlineQueryImpl implements _InlineQuery {
 
 abstract class _InlineQuery implements InlineQuery {
   const factory _InlineQuery(
-      {required final String id,
-      required final User from,
-      required final String query,
-      required final String offset,
+      {@JsonKey(name: 'id') required final String id,
+      @JsonKey(name: 'from') required final User from,
+      @JsonKey(name: 'query') required final String query,
+      @JsonKey(name: 'offset') required final String offset,
       @JsonKey(name: 'chat_type') final ChatType? chatType,
       final Location? location}) = _$InlineQueryImpl;
 
@@ -295,18 +303,22 @@ abstract class _InlineQuery implements InlineQuery {
 
   /// Unique identifier for this query
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// Sender
   @override
+  @JsonKey(name: 'from')
   User get from;
 
   /// Text of the query (up to 256 characters)
   @override
+  @JsonKey(name: 'query')
   String get query;
 
   /// Offset of the results to be returned, can be controlled by the bot
   @override
+  @JsonKey(name: 'offset')
   String get offset;
 
   /// Optional. Type of the chat from which the inline query was sent.

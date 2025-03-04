@@ -26,6 +26,7 @@ mixin _$LinkPreviewOptions {
 
   /// Optional. URL to use for the link preview. If empty, then the first URL
   /// found in the message text will be used
+  @JsonKey(name: 'url')
   String? get url => throw _privateConstructorUsedError;
 
   /// Optional. True, if the media in the link preview is supposed to be
@@ -63,7 +64,7 @@ abstract class $LinkPreviewOptionsCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'is_disabled') bool? isDisabled,
-      String? url,
+      @JsonKey(name: 'url') String? url,
       @JsonKey(name: 'prefer_small_media') bool? preferSmallMedia,
       @JsonKey(name: 'prefer_large_media') bool? preferLargeMedia,
       @JsonKey(name: 'show_above_text') bool? showAboveText});
@@ -125,7 +126,7 @@ abstract class _$$LinkPreviewOptionsImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'is_disabled') bool? isDisabled,
-      String? url,
+      @JsonKey(name: 'url') String? url,
       @JsonKey(name: 'prefer_small_media') bool? preferSmallMedia,
       @JsonKey(name: 'prefer_large_media') bool? preferLargeMedia,
       @JsonKey(name: 'show_above_text') bool? showAboveText});
@@ -180,7 +181,7 @@ class __$$LinkPreviewOptionsImplCopyWithImpl<$Res>
 class _$LinkPreviewOptionsImpl implements _LinkPreviewOptions {
   const _$LinkPreviewOptionsImpl(
       {@JsonKey(name: 'is_disabled') this.isDisabled,
-      this.url,
+      @JsonKey(name: 'url') this.url,
       @JsonKey(name: 'prefer_small_media') this.preferSmallMedia,
       @JsonKey(name: 'prefer_large_media') this.preferLargeMedia,
       @JsonKey(name: 'show_above_text') this.showAboveText});
@@ -196,6 +197,7 @@ class _$LinkPreviewOptionsImpl implements _LinkPreviewOptions {
   /// Optional. URL to use for the link preview. If empty, then the first URL
   /// found in the message text will be used
   @override
+  @JsonKey(name: 'url')
   final String? url;
 
   /// Optional. True, if the media in the link preview is supposed to be
@@ -243,7 +245,7 @@ class _$LinkPreviewOptionsImpl implements _LinkPreviewOptions {
 abstract class _LinkPreviewOptions implements LinkPreviewOptions {
   const factory _LinkPreviewOptions(
           {@JsonKey(name: 'is_disabled') final bool? isDisabled,
-          final String? url,
+          @JsonKey(name: 'url') final String? url,
           @JsonKey(name: 'prefer_small_media') final bool? preferSmallMedia,
           @JsonKey(name: 'prefer_large_media') final bool? preferLargeMedia,
           @JsonKey(name: 'show_above_text') final bool? showAboveText}) =
@@ -260,6 +262,7 @@ abstract class _LinkPreviewOptions implements LinkPreviewOptions {
   /// Optional. URL to use for the link preview. If empty, then the first URL
   /// found in the message text will be used
   @override
+  @JsonKey(name: 'url')
   String? get url;
 
   /// Optional. True, if the media in the link preview is supposed to be

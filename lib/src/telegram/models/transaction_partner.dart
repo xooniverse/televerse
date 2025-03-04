@@ -39,7 +39,9 @@ sealed class TransactionPartner
   )
   const factory TransactionPartner.fragment({
     /// Type of the transaction partner, must be "fragment"
-    @Default(TransactionPartnerType.fragment) TransactionPartnerType type,
+    @JsonKey(name: 'type')
+    @Default(TransactionPartnerType.fragment)
+    TransactionPartnerType type,
 
     /// State of the transaction if the transaction is outgoing.
     @JsonKey(name: 'withdrawal_state')
@@ -53,10 +55,12 @@ sealed class TransactionPartner
   )
   const factory TransactionPartner.user({
     /// Type of the transaction partner, must be "user"
-    @Default(TransactionPartnerType.user) TransactionPartnerType type,
+    @JsonKey(name: 'type')
+    @Default(TransactionPartnerType.user)
+    TransactionPartnerType type,
 
     /// Information about the user.
-    required final User user,
+    @JsonKey(name: 'user') required final User user,
 
     /// Bot-specified invoice payload.
     @JsonKey(name: 'invoice_payload') final String? invoicePayload,
@@ -71,11 +75,11 @@ sealed class TransactionPartner
     @JsonKey(name: 'subscription_period') final int? subscriptionPeriod,
 
     /// Optional. The gift sent to the user by the bot.
-    final Gift? gift,
+    @JsonKey(name: 'gift') final Gift? gift,
 
     /// Optional. Information about the affiliate that received a commission via
     /// this transaction
-    final AffiliateInfo? affiliate,
+    @JsonKey(name: 'affiliate') final AffiliateInfo? affiliate,
   }) = TransactionPartnerUser;
 
   /// Represents a withdrawal transaction to the Telegram Ads platform
@@ -85,7 +89,9 @@ sealed class TransactionPartner
   )
   const factory TransactionPartner.telegramAds({
     /// Type of the transaction partner, must be "telegram_ads"
-    @Default(TransactionPartnerType.telegramAds) TransactionPartnerType type,
+    @JsonKey(name: 'type')
+    @Default(TransactionPartnerType.telegramAds)
+    TransactionPartnerType type,
   }) = TransactionPartnerTelegramAds;
 
   /// Represents transaction with payment for paid broadcasting
@@ -95,7 +101,9 @@ sealed class TransactionPartner
   )
   const factory TransactionPartner.telegramApi({
     /// Type of the transaction partner, must be "telegram_api"
-    @Default(TransactionPartnerType.telegramApi) TransactionPartnerType type,
+    @JsonKey(name: 'type')
+    @Default(TransactionPartnerType.telegramApi)
+    TransactionPartnerType type,
 
     /// The number of successful requests that exceeded regular limits and were
     /// therefore billed.
@@ -109,7 +117,9 @@ sealed class TransactionPartner
   )
   const factory TransactionPartner.other({
     /// Type of the transaction partner, must be "other"
-    @Default(TransactionPartnerType.other) TransactionPartnerType type,
+    @JsonKey(name: 'type')
+    @Default(TransactionPartnerType.other)
+    TransactionPartnerType type,
   }) = TransactionPartnerOther;
 
   /// Describes the affiliate program that issued the affiliate commission
@@ -120,6 +130,7 @@ sealed class TransactionPartner
   )
   const factory TransactionPartner.affiliateProgram({
     /// Type of the transaction partner, must be "affiliate_program"
+    @JsonKey(name: 'type')
     @Default(TransactionPartnerType.affiliateProgram)
     TransactionPartnerType type,
 
@@ -139,13 +150,15 @@ sealed class TransactionPartner
   )
   const factory TransactionPartner.chat({
     /// Type of the transaction partner, must be "chat"
-    @Default(TransactionPartnerType.chat) TransactionPartnerType type,
+    @JsonKey(name: 'type')
+    @Default(TransactionPartnerType.chat)
+    TransactionPartnerType type,
 
     /// Information about the chat.
-    required final Chat chat,
+    @JsonKey(name: 'chat') required final Chat chat,
 
     /// The gift sent to the chat by the bot.
-    final Gift? gift,
+    @JsonKey(name: 'gift') final Gift? gift,
   }) = TransactionPartnerChat;
 
   /// Creates the TransactionPartner instance from JSON

@@ -22,7 +22,7 @@ class Contact with _$Contact {
 
     /// Optional. Additional data about the contact in the form of a
     /// [vCard](https://en.wikipedia.org/wiki/VCard)
-    String? vcard,
+    @JsonKey(name: 'vcard') String? vcard,
   }) = _Contact;
 
   /// Creates a [Contact] object from json.

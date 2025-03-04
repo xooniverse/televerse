@@ -34,6 +34,7 @@ BackgroundType _$BackgroundTypeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BackgroundType {
   /// Type of the background - always fill
+  @JsonKey(name: 'type')
   BackgroundTypeType get type => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -78,7 +79,7 @@ abstract class $BackgroundTypeCopyWith<$Res> {
           BackgroundType value, $Res Function(BackgroundType) then) =
       _$BackgroundTypeCopyWithImpl<$Res, BackgroundType>;
   @useResult
-  $Res call({BackgroundTypeType type});
+  $Res call({@JsonKey(name: 'type') BackgroundTypeType type});
 }
 
 /// @nodoc
@@ -116,8 +117,8 @@ abstract class _$$BackgroundTypeFillImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BackgroundTypeType type,
-      BackgroundFill fill,
+      {@JsonKey(name: 'type') BackgroundTypeType type,
+      @JsonKey(name: 'fill') BackgroundFill fill,
       @JsonKey(name: 'dark_theme_dimming') int darkThemeDimming});
 
   $BackgroundFillCopyWith<$Res> get fill;
@@ -171,8 +172,8 @@ class __$$BackgroundTypeFillImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BackgroundTypeFillImpl implements BackgroundTypeFill {
   const _$BackgroundTypeFillImpl(
-      {this.type = BackgroundTypeType.fill,
-      required this.fill,
+      {@JsonKey(name: 'type') this.type = BackgroundTypeType.fill,
+      @JsonKey(name: 'fill') required this.fill,
       @JsonKey(name: 'dark_theme_dimming') this.darkThemeDimming = 0});
 
   factory _$BackgroundTypeFillImpl.fromJson(Map<String, dynamic> json) =>
@@ -180,11 +181,12 @@ class _$BackgroundTypeFillImpl implements BackgroundTypeFill {
 
   /// Type of the background - always fill
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BackgroundTypeType type;
 
   /// The background fill.
   @override
+  @JsonKey(name: 'fill')
   final BackgroundFill fill;
 
   /// Dimming of the background in dark themes, as a percentage; 0-100.
@@ -253,8 +255,8 @@ class _$BackgroundTypeFillImpl implements BackgroundTypeFill {
 
 abstract class BackgroundTypeFill implements BackgroundType {
   const factory BackgroundTypeFill(
-          {final BackgroundTypeType type,
-          required final BackgroundFill fill,
+          {@JsonKey(name: 'type') final BackgroundTypeType type,
+          @JsonKey(name: 'fill') required final BackgroundFill fill,
           @JsonKey(name: 'dark_theme_dimming') final int darkThemeDimming}) =
       _$BackgroundTypeFillImpl;
 
@@ -263,9 +265,11 @@ abstract class BackgroundTypeFill implements BackgroundType {
 
   /// Type of the background - always fill
   @override
+  @JsonKey(name: 'type')
   BackgroundTypeType get type;
 
   /// The background fill.
+  @JsonKey(name: 'fill')
   BackgroundFill get fill;
 
   /// Dimming of the background in dark themes, as a percentage; 0-100.
@@ -290,8 +294,8 @@ abstract class _$$BackgroundTypeWallpaperImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BackgroundTypeType type,
-      Document document,
+      {@JsonKey(name: 'type') BackgroundTypeType type,
+      @JsonKey(name: 'document') Document document,
       @JsonKey(name: "dark_theme_dimming") int darkThemeDimming,
       @JsonKey(name: "is_blurred") bool? isBlurred,
       @JsonKey(name: "is_moving") bool? isMoving});
@@ -358,8 +362,8 @@ class __$$BackgroundTypeWallpaperImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BackgroundTypeWallpaperImpl implements BackgroundTypeWallpaper {
   const _$BackgroundTypeWallpaperImpl(
-      {this.type = BackgroundTypeType.wallpaper,
-      required this.document,
+      {@JsonKey(name: 'type') this.type = BackgroundTypeType.wallpaper,
+      @JsonKey(name: 'document') required this.document,
       @JsonKey(name: "dark_theme_dimming") this.darkThemeDimming = 0,
       @JsonKey(name: "is_blurred") this.isBlurred,
       @JsonKey(name: "is_moving") this.isMoving});
@@ -369,11 +373,12 @@ class _$BackgroundTypeWallpaperImpl implements BackgroundTypeWallpaper {
 
   /// Type of the background - always `wallpaper`
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BackgroundTypeType type;
 
   /// Document with the wallpaper.
   @override
+  @JsonKey(name: 'document')
   final Document document;
 
   /// Dimming of the background in dark themes, as a percentage; 0-100.
@@ -453,8 +458,8 @@ class _$BackgroundTypeWallpaperImpl implements BackgroundTypeWallpaper {
 
 abstract class BackgroundTypeWallpaper implements BackgroundType {
   const factory BackgroundTypeWallpaper(
-          {final BackgroundTypeType type,
-          required final Document document,
+          {@JsonKey(name: 'type') final BackgroundTypeType type,
+          @JsonKey(name: 'document') required final Document document,
           @JsonKey(name: "dark_theme_dimming") final int darkThemeDimming,
           @JsonKey(name: "is_blurred") final bool? isBlurred,
           @JsonKey(name: "is_moving") final bool? isMoving}) =
@@ -465,9 +470,11 @@ abstract class BackgroundTypeWallpaper implements BackgroundType {
 
   /// Type of the background - always `wallpaper`
   @override
+  @JsonKey(name: 'type')
   BackgroundTypeType get type;
 
   /// Document with the wallpaper.
+  @JsonKey(name: 'document')
   Document get document;
 
   /// Dimming of the background in dark themes, as a percentage; 0-100.
@@ -501,10 +508,10 @@ abstract class _$$BackgroundTypePatternImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BackgroundTypeType type,
-      Document document,
-      BackgroundFill fill,
-      int intensity,
+      {@JsonKey(name: 'type') BackgroundTypeType type,
+      @JsonKey(name: 'document') Document document,
+      @JsonKey(name: 'fill') BackgroundFill fill,
+      @JsonKey(name: 'intensity') int intensity,
       @JsonKey(name: "is_inverted") bool? isInverted,
       @JsonKey(name: "is_moving") bool? isMoving});
 
@@ -585,10 +592,10 @@ class __$$BackgroundTypePatternImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BackgroundTypePatternImpl implements BackgroundTypePattern {
   const _$BackgroundTypePatternImpl(
-      {this.type = BackgroundTypeType.pattern,
-      required this.document,
-      required this.fill,
-      this.intensity = 0,
+      {@JsonKey(name: 'type') this.type = BackgroundTypeType.pattern,
+      @JsonKey(name: 'document') required this.document,
+      @JsonKey(name: 'fill') required this.fill,
+      @JsonKey(name: 'intensity') this.intensity = 0,
       @JsonKey(name: "is_inverted") this.isInverted,
       @JsonKey(name: "is_moving") this.isMoving});
 
@@ -597,21 +604,23 @@ class _$BackgroundTypePatternImpl implements BackgroundTypePattern {
 
   /// Type of the background - always `pattern`
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BackgroundTypeType type;
 
   /// Document with the wallpaper.
   @override
+  @JsonKey(name: 'document')
   final Document document;
 
   /// The background fill that is combined with the pattern.
   @override
+  @JsonKey(name: 'fill')
   final BackgroundFill fill;
 
   /// Intensity of the pattern when it is shown above the filled background;
   /// 0-100.
   @override
-  @JsonKey()
+  @JsonKey(name: 'intensity')
   final int intensity;
 
   /// True, if the background fill must be applied only to the pattern itself.
@@ -686,10 +695,10 @@ class _$BackgroundTypePatternImpl implements BackgroundTypePattern {
 
 abstract class BackgroundTypePattern implements BackgroundType {
   const factory BackgroundTypePattern(
-          {final BackgroundTypeType type,
-          required final Document document,
-          required final BackgroundFill fill,
-          final int intensity,
+          {@JsonKey(name: 'type') final BackgroundTypeType type,
+          @JsonKey(name: 'document') required final Document document,
+          @JsonKey(name: 'fill') required final BackgroundFill fill,
+          @JsonKey(name: 'intensity') final int intensity,
           @JsonKey(name: "is_inverted") final bool? isInverted,
           @JsonKey(name: "is_moving") final bool? isMoving}) =
       _$BackgroundTypePatternImpl;
@@ -699,16 +708,20 @@ abstract class BackgroundTypePattern implements BackgroundType {
 
   /// Type of the background - always `pattern`
   @override
+  @JsonKey(name: 'type')
   BackgroundTypeType get type;
 
   /// Document with the wallpaper.
+  @JsonKey(name: 'document')
   Document get document;
 
   /// The background fill that is combined with the pattern.
+  @JsonKey(name: 'fill')
   BackgroundFill get fill;
 
   /// Intensity of the pattern when it is shown above the filled background;
   /// 0-100.
+  @JsonKey(name: 'intensity')
   int get intensity;
 
   /// True, if the background fill must be applied only to the pattern itself.
@@ -738,7 +751,8 @@ abstract class _$$BackgroundTypeChatThemeImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BackgroundTypeType type, @JsonKey(name: 'theme_name') String themeName});
+      {@JsonKey(name: 'type') BackgroundTypeType type,
+      @JsonKey(name: 'theme_name') String themeName});
 }
 
 /// @nodoc
@@ -775,7 +789,7 @@ class __$$BackgroundTypeChatThemeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BackgroundTypeChatThemeImpl implements BackgroundTypeChatTheme {
   const _$BackgroundTypeChatThemeImpl(
-      {this.type = BackgroundTypeType.chatTheme,
+      {@JsonKey(name: 'type') this.type = BackgroundTypeType.chatTheme,
       @JsonKey(name: 'theme_name') required this.themeName});
 
   factory _$BackgroundTypeChatThemeImpl.fromJson(Map<String, dynamic> json) =>
@@ -783,7 +797,7 @@ class _$BackgroundTypeChatThemeImpl implements BackgroundTypeChatTheme {
 
   /// Type of the background - always fill
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final BackgroundTypeType type;
 
   /// Name of the chat theme, which is usually an emoji
@@ -852,7 +866,7 @@ class _$BackgroundTypeChatThemeImpl implements BackgroundTypeChatTheme {
 
 abstract class BackgroundTypeChatTheme implements BackgroundType {
   const factory BackgroundTypeChatTheme(
-          {final BackgroundTypeType type,
+          {@JsonKey(name: 'type') final BackgroundTypeType type,
           @JsonKey(name: 'theme_name') required final String themeName}) =
       _$BackgroundTypeChatThemeImpl;
 
@@ -861,6 +875,7 @@ abstract class BackgroundTypeChatTheme implements BackgroundType {
 
   /// Type of the background - always fill
   @override
+  @JsonKey(name: 'type')
   BackgroundTypeType get type;
 
   /// Name of the chat theme, which is usually an emoji

@@ -10,10 +10,10 @@ class Gift with _$Gift {
   /// Creates a [Gift] object.
   const factory Gift({
     /// Unique identifier of the gift.
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// The sticker that represents the gift.
-    required Sticker sticker,
+    @JsonKey(name: 'sticker') required Sticker sticker,
 
     /// The number of Telegram Stars that must be paid to send the sticker.
     @JsonKey(name: 'star_count') required int starCount,

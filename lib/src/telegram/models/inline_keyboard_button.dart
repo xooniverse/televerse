@@ -19,10 +19,10 @@ class InlineKeyboardButton with _$InlineKeyboardButton {
   /// the behavior of the button.
   const factory InlineKeyboardButton({
     /// Label text on the button
-    required String text,
+    @JsonKey(name: 'text') required String text,
 
     /// Optional. HTTP or tg:// url to be opened when button is pressed
-    String? url,
+    @JsonKey(name: 'url') String? url,
 
     /// Optional. An HTTP URL used to automatically authorize the user. Can be
     /// used as a replacement for the Telegram Login Widget.
@@ -64,7 +64,7 @@ class InlineKeyboardButton with _$InlineKeyboardButton {
     ///
     /// NOTE: This type of button must always be the first button in the first
     /// row.
-    bool? pay,
+    @JsonKey(name: 'pay') bool? pay,
 
     /// Optional. Description of the Web App that will be launched when the user
     /// presses the button. The Web App will be able to send an arbitrary

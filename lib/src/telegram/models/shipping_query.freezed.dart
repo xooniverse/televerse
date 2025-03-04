@@ -21,9 +21,11 @@ ShippingQuery _$ShippingQueryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ShippingQuery {
   /// Unique query identifier
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// User who sent the query
+  @JsonKey(name: 'from')
   User get from => throw _privateConstructorUsedError;
 
   /// Bot specified invoice payload
@@ -51,8 +53,8 @@ abstract class $ShippingQueryCopyWith<$Res> {
       _$ShippingQueryCopyWithImpl<$Res, ShippingQuery>;
   @useResult
   $Res call(
-      {String id,
-      User from,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'from') User from,
       @JsonKey(name: 'invoice_payload') String invoicePayload,
       @JsonKey(name: 'shipping_address') ShippingAddress shippingAddress});
 
@@ -130,8 +132,8 @@ abstract class _$$ShippingQueryImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      User from,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'from') User from,
       @JsonKey(name: 'invoice_payload') String invoicePayload,
       @JsonKey(name: 'shipping_address') ShippingAddress shippingAddress});
 
@@ -184,8 +186,8 @@ class __$$ShippingQueryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ShippingQueryImpl implements _ShippingQuery {
   const _$ShippingQueryImpl(
-      {required this.id,
-      required this.from,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'from') required this.from,
       @JsonKey(name: 'invoice_payload') required this.invoicePayload,
       @JsonKey(name: 'shipping_address') required this.shippingAddress});
 
@@ -194,10 +196,12 @@ class _$ShippingQueryImpl implements _ShippingQuery {
 
   /// Unique query identifier
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// User who sent the query
   @override
+  @JsonKey(name: 'from')
   final User from;
 
   /// Bot specified invoice payload
@@ -233,8 +237,8 @@ class _$ShippingQueryImpl implements _ShippingQuery {
 
 abstract class _ShippingQuery implements ShippingQuery {
   const factory _ShippingQuery(
-      {required final String id,
-      required final User from,
+      {@JsonKey(name: 'id') required final String id,
+      @JsonKey(name: 'from') required final User from,
       @JsonKey(name: 'invoice_payload') required final String invoicePayload,
       @JsonKey(name: 'shipping_address')
       required final ShippingAddress shippingAddress}) = _$ShippingQueryImpl;
@@ -244,10 +248,12 @@ abstract class _ShippingQuery implements ShippingQuery {
 
   /// Unique query identifier
   @override
+  @JsonKey(name: 'id')
   String get id;
 
   /// User who sent the query
   @override
+  @JsonKey(name: 'from')
   User get from;
 
   /// Bot specified invoice payload

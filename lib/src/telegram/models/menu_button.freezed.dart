@@ -32,6 +32,7 @@ MenuButton _$MenuButtonFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MenuButton {
   /// Type of the menu button
+  @JsonKey(name: 'type')
   MenuButtonType get type => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -73,7 +74,7 @@ abstract class $MenuButtonCopyWith<$Res> {
           MenuButton value, $Res Function(MenuButton) then) =
       _$MenuButtonCopyWithImpl<$Res, MenuButton>;
   @useResult
-  $Res call({MenuButtonType type});
+  $Res call({@JsonKey(name: 'type') MenuButtonType type});
 }
 
 /// @nodoc
@@ -110,7 +111,7 @@ abstract class _$$MenuButtonDefaultImplCopyWith<$Res>
       __$$MenuButtonDefaultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({MenuButtonType type});
+  $Res call({@JsonKey(name: 'type') MenuButtonType type});
 }
 
 /// @nodoc
@@ -140,14 +141,15 @@ class __$$MenuButtonDefaultImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MenuButtonDefaultImpl implements MenuButtonDefault {
-  const _$MenuButtonDefaultImpl({this.type = MenuButtonType.defaultButton});
+  const _$MenuButtonDefaultImpl(
+      {@JsonKey(name: 'type') this.type = MenuButtonType.defaultButton});
 
   factory _$MenuButtonDefaultImpl.fromJson(Map<String, dynamic> json) =>
       _$$MenuButtonDefaultImplFromJson(json);
 
   /// Type of the menu button
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final MenuButtonType type;
 
   @override
@@ -207,7 +209,8 @@ class _$MenuButtonDefaultImpl implements MenuButtonDefault {
 }
 
 abstract class MenuButtonDefault implements MenuButton {
-  const factory MenuButtonDefault({final MenuButtonType type}) =
+  const factory MenuButtonDefault(
+          {@JsonKey(name: 'type') final MenuButtonType type}) =
       _$MenuButtonDefaultImpl;
 
   factory MenuButtonDefault.fromJson(Map<String, dynamic> json) =
@@ -215,6 +218,7 @@ abstract class MenuButtonDefault implements MenuButton {
 
   /// Type of the menu button
   @override
+  @JsonKey(name: 'type')
   MenuButtonType get type;
 
   /// Create a copy of MenuButton
@@ -234,8 +238,8 @@ abstract class _$$MenuButtonWebAppImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {MenuButtonType type,
-      String text,
+      {@JsonKey(name: 'type') MenuButtonType type,
+      @JsonKey(name: 'text') String text,
       @JsonKey(name: 'web_app') WebAppInfo webApp});
 
   $WebAppInfoCopyWith<$Res> get webApp;
@@ -289,8 +293,8 @@ class __$$MenuButtonWebAppImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MenuButtonWebAppImpl implements MenuButtonWebApp {
   const _$MenuButtonWebAppImpl(
-      {this.type = MenuButtonType.webApp,
-      required this.text,
+      {@JsonKey(name: 'type') this.type = MenuButtonType.webApp,
+      @JsonKey(name: 'text') required this.text,
       @JsonKey(name: 'web_app') required this.webApp});
 
   factory _$MenuButtonWebAppImpl.fromJson(Map<String, dynamic> json) =>
@@ -298,11 +302,12 @@ class _$MenuButtonWebAppImpl implements MenuButtonWebApp {
 
   /// Type of the menu button
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final MenuButtonType type;
 
   /// Text on the button
   @override
+  @JsonKey(name: 'text')
   final String text;
 
   /// Description of the Web App that will be launched when the user presses
@@ -374,8 +379,8 @@ class _$MenuButtonWebAppImpl implements MenuButtonWebApp {
 
 abstract class MenuButtonWebApp implements MenuButton {
   const factory MenuButtonWebApp(
-          {final MenuButtonType type,
-          required final String text,
+          {@JsonKey(name: 'type') final MenuButtonType type,
+          @JsonKey(name: 'text') required final String text,
           @JsonKey(name: 'web_app') required final WebAppInfo webApp}) =
       _$MenuButtonWebAppImpl;
 
@@ -384,9 +389,11 @@ abstract class MenuButtonWebApp implements MenuButton {
 
   /// Type of the menu button
   @override
+  @JsonKey(name: 'type')
   MenuButtonType get type;
 
   /// Text on the button
+  @JsonKey(name: 'text')
   String get text;
 
   /// Description of the Web App that will be launched when the user presses
@@ -415,7 +422,7 @@ abstract class _$$MenuButtonCommandsImplCopyWith<$Res>
       __$$MenuButtonCommandsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({MenuButtonType type});
+  $Res call({@JsonKey(name: 'type') MenuButtonType type});
 }
 
 /// @nodoc
@@ -445,14 +452,15 @@ class __$$MenuButtonCommandsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MenuButtonCommandsImpl implements MenuButtonCommands {
-  const _$MenuButtonCommandsImpl({this.type = MenuButtonType.commands});
+  const _$MenuButtonCommandsImpl(
+      {@JsonKey(name: 'type') this.type = MenuButtonType.commands});
 
   factory _$MenuButtonCommandsImpl.fromJson(Map<String, dynamic> json) =>
       _$$MenuButtonCommandsImplFromJson(json);
 
   /// Type of the menu button
   @override
-  @JsonKey()
+  @JsonKey(name: 'type')
   final MenuButtonType type;
 
   @override
@@ -512,7 +520,8 @@ class _$MenuButtonCommandsImpl implements MenuButtonCommands {
 }
 
 abstract class MenuButtonCommands implements MenuButton {
-  const factory MenuButtonCommands({final MenuButtonType type}) =
+  const factory MenuButtonCommands(
+          {@JsonKey(name: 'type') final MenuButtonType type}) =
       _$MenuButtonCommandsImpl;
 
   factory MenuButtonCommands.fromJson(Map<String, dynamic> json) =
@@ -520,6 +529,7 @@ abstract class MenuButtonCommands implements MenuButton {
 
   /// Type of the menu button
   @override
+  @JsonKey(name: 'type')
   MenuButtonType get type;
 
   /// Create a copy of MenuButton

@@ -13,13 +13,13 @@ class PreCheckoutQuery with _$PreCheckoutQuery implements WithUser {
   /// Constructs a [PreCheckoutQuery] object
   const factory PreCheckoutQuery({
     /// Unique query identifier
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// User who sent the query
-    required User from,
+    @JsonKey(name: 'from') required User from,
 
     /// Three-letter ISO 4217 currency code
-    required String currency,
+    @JsonKey(name: 'currency') required String currency,
 
     /// Total price in the smallest units of the currency (integer, not
     /// float/double). For example, for a price of US$ 1.45 pass amount = 145.

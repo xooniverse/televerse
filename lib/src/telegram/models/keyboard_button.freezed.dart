@@ -22,6 +22,7 @@ KeyboardButton _$KeyboardButtonFromJson(Map<String, dynamic> json) {
 mixin _$KeyboardButton {
   /// Text of the button. If none of the optional fields are used, it will be
   /// sent as a message when the button is pressed
+  @JsonKey(name: 'text')
   String get text => throw _privateConstructorUsedError;
 
   /// Optional. If True, the user's phone number will be sent as a contact
@@ -91,7 +92,7 @@ abstract class $KeyboardButtonCopyWith<$Res> {
       _$KeyboardButtonCopyWithImpl<$Res, KeyboardButton>;
   @useResult
   $Res call(
-      {String text,
+      {@JsonKey(name: 'text') String text,
       @JsonKey(name: 'request_contact') bool? requestContact,
       @JsonKey(name: 'request_location') bool? requestLocation,
       @JsonKey(name: 'request_poll') KeyboardButtonPollType? requestPoll,
@@ -228,7 +229,7 @@ abstract class _$$KeyboardButtonImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String text,
+      {@JsonKey(name: 'text') String text,
       @JsonKey(name: 'request_contact') bool? requestContact,
       @JsonKey(name: 'request_location') bool? requestLocation,
       @JsonKey(name: 'request_poll') KeyboardButtonPollType? requestPoll,
@@ -304,7 +305,7 @@ class __$$KeyboardButtonImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$KeyboardButtonImpl implements _KeyboardButton {
   const _$KeyboardButtonImpl(
-      {required this.text,
+      {@JsonKey(name: 'text') required this.text,
       @JsonKey(name: 'request_contact') this.requestContact,
       @JsonKey(name: 'request_location') this.requestLocation,
       @JsonKey(name: 'request_poll') this.requestPoll,
@@ -318,6 +319,7 @@ class _$KeyboardButtonImpl implements _KeyboardButton {
   /// Text of the button. If none of the optional fields are used, it will be
   /// sent as a message when the button is pressed
   @override
+  @JsonKey(name: 'text')
   final String text;
 
   /// Optional. If True, the user's phone number will be sent as a contact
@@ -398,7 +400,7 @@ class _$KeyboardButtonImpl implements _KeyboardButton {
 
 abstract class _KeyboardButton implements KeyboardButton {
   const factory _KeyboardButton(
-      {required final String text,
+      {@JsonKey(name: 'text') required final String text,
       @JsonKey(name: 'request_contact') final bool? requestContact,
       @JsonKey(name: 'request_location') final bool? requestLocation,
       @JsonKey(name: 'request_poll') final KeyboardButtonPollType? requestPoll,
@@ -414,6 +416,7 @@ abstract class _KeyboardButton implements KeyboardButton {
   /// Text of the button. If none of the optional fields are used, it will be
   /// sent as a message when the button is pressed
   @override
+  @JsonKey(name: 'text')
   String get text;
 
   /// Optional. If True, the user's phone number will be sent as a contact

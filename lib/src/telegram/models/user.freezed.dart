@@ -25,6 +25,7 @@ mixin _$User {
   /// difficulty/silent defects in interpreting it. But it has at most 52
   /// significant bits, so a 64-bit integer or double-precision float type are
   /// safe for storing this identifier.
+  @JsonKey(name: 'id')
   int get id => throw _privateConstructorUsedError;
 
   /// True, if this user is a bot
@@ -40,6 +41,7 @@ mixin _$User {
   String? get lastName => throw _privateConstructorUsedError;
 
   /// Optional. User's or bot's username
+  @JsonKey(name: 'username')
   String? get username => throw _privateConstructorUsedError;
 
   /// Optional. IETF language tag of the user's language
@@ -93,11 +95,11 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {int id,
+      {@JsonKey(name: 'id') int id,
       @JsonKey(name: 'is_bot') bool isBot,
       @JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String? lastName,
-      String? username,
+      @JsonKey(name: 'username') String? username,
       @JsonKey(name: 'language_code') String? languageCode,
       @JsonKey(name: 'is_premium') bool? isPremium,
       @JsonKey(name: 'added_to_attachment_menu') bool? addedToAttachmentMenu,
@@ -203,11 +205,11 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
+      {@JsonKey(name: 'id') int id,
       @JsonKey(name: 'is_bot') bool isBot,
       @JsonKey(name: 'first_name') String firstName,
       @JsonKey(name: 'last_name') String? lastName,
-      String? username,
+      @JsonKey(name: 'username') String? username,
       @JsonKey(name: 'language_code') String? languageCode,
       @JsonKey(name: 'is_premium') bool? isPremium,
       @JsonKey(name: 'added_to_attachment_menu') bool? addedToAttachmentMenu,
@@ -306,11 +308,11 @@ class __$$UserImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserImpl implements _User {
   const _$UserImpl(
-      {required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'is_bot') required this.isBot,
       @JsonKey(name: 'first_name') required this.firstName,
       @JsonKey(name: 'last_name') this.lastName,
-      this.username,
+      @JsonKey(name: 'username') this.username,
       @JsonKey(name: 'language_code') this.languageCode,
       @JsonKey(name: 'is_premium') this.isPremium,
       @JsonKey(name: 'added_to_attachment_menu') this.addedToAttachmentMenu,
@@ -330,6 +332,7 @@ class _$UserImpl implements _User {
   /// significant bits, so a 64-bit integer or double-precision float type are
   /// safe for storing this identifier.
   @override
+  @JsonKey(name: 'id')
   final int id;
 
   /// True, if this user is a bot
@@ -349,6 +352,7 @@ class _$UserImpl implements _User {
 
   /// Optional. User's or bot's username
   @override
+  @JsonKey(name: 'username')
   final String? username;
 
   /// Optional. IETF language tag of the user's language
@@ -418,11 +422,11 @@ class _$UserImpl implements _User {
 
 abstract class _User implements User {
   const factory _User(
-          {required final int id,
+          {@JsonKey(name: 'id') required final int id,
           @JsonKey(name: 'is_bot') required final bool isBot,
           @JsonKey(name: 'first_name') required final String firstName,
           @JsonKey(name: 'last_name') final String? lastName,
-          final String? username,
+          @JsonKey(name: 'username') final String? username,
           @JsonKey(name: 'language_code') final String? languageCode,
           @JsonKey(name: 'is_premium') final bool? isPremium,
           @JsonKey(name: 'added_to_attachment_menu')
@@ -445,6 +449,7 @@ abstract class _User implements User {
   /// significant bits, so a 64-bit integer or double-precision float type are
   /// safe for storing this identifier.
   @override
+  @JsonKey(name: 'id')
   int get id;
 
   /// True, if this user is a bot
@@ -464,6 +469,7 @@ abstract class _User implements User {
 
   /// Optional. User's or bot's username
   @override
+  @JsonKey(name: 'username')
   String? get username;
 
   /// Optional. IETF language tag of the user's language

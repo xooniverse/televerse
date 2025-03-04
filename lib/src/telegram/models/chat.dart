@@ -11,17 +11,17 @@ class Chat with _$Chat implements WithID {
   /// Constructs a [Chat] object.
   const factory Chat({
     /// Unique identifier for this chat.
-    required int id,
+    @JsonKey(name: 'id') required int id,
 
     /// Type of the chat, can be either "private", "group", "supergroup" or
     /// "channel".
-    required ChatType type,
+    @JsonKey(name: 'type') required ChatType type,
 
     /// Title, for supergroups, channels, and group chats.
-    String? title,
+    @JsonKey(name: 'title') String? title,
 
     /// Username, for private chats, supergroups, and channels if available.
-    String? username,
+    @JsonKey(name: 'username') String? username,
 
     /// First name of the other party in a private chat.
     @JsonKey(name: 'first_name') String? firstName,

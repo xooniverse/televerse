@@ -14,10 +14,12 @@ class InlineQueryResultGame
   /// Constructs an [InlineQueryResultGame] object
   const factory InlineQueryResultGame({
     /// Type of the result, always [InlineQueryResultType.game]
-    @Default(InlineQueryResultType.game) InlineQueryResultType type,
+    @JsonKey(name: 'type')
+    @Default(InlineQueryResultType.game)
+    InlineQueryResultType type,
 
     /// Unique identifier for this result, 1-64 Bytes
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// Short name of the game
     @JsonKey(name: 'game_short_name') required String gameShortName,

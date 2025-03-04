@@ -21,15 +21,19 @@ Game _$GameFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Game {
   /// Title of the game
+  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
 
   /// Description of the game
+  @JsonKey(name: 'description')
   String get description => throw _privateConstructorUsedError;
 
   /// Photo that will be displayed in the game message in chats.
+  @JsonKey(name: 'photo')
   List<PhotoSize> get photo => throw _privateConstructorUsedError;
 
   /// Optional. Brief description of the game or high scores included in the game message.
+  @JsonKey(name: 'text')
   String? get text => throw _privateConstructorUsedError;
 
   /// Optional. Special entities that appear in text, such as usernames, URLs, bot commands, etc.
@@ -37,6 +41,7 @@ mixin _$Game {
   List<MessageEntity>? get textEntities => throw _privateConstructorUsedError;
 
   /// Optional. Animation that will be displayed in the game message in chats.
+  @JsonKey(name: 'animation')
   Animation? get animation => throw _privateConstructorUsedError;
 
   /// Serializes this Game to a JSON map.
@@ -54,12 +59,12 @@ abstract class $GameCopyWith<$Res> {
       _$GameCopyWithImpl<$Res, Game>;
   @useResult
   $Res call(
-      {String title,
-      String description,
-      List<PhotoSize> photo,
-      String? text,
+      {@JsonKey(name: 'title') String title,
+      @JsonKey(name: 'description') String description,
+      @JsonKey(name: 'photo') List<PhotoSize> photo,
+      @JsonKey(name: 'text') String? text,
       @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
-      Animation? animation});
+      @JsonKey(name: 'animation') Animation? animation});
 
   $AnimationCopyWith<$Res>? get animation;
 }
@@ -137,12 +142,12 @@ abstract class _$$GameImplCopyWith<$Res> implements $GameCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String title,
-      String description,
-      List<PhotoSize> photo,
-      String? text,
+      {@JsonKey(name: 'title') String title,
+      @JsonKey(name: 'description') String description,
+      @JsonKey(name: 'photo') List<PhotoSize> photo,
+      @JsonKey(name: 'text') String? text,
       @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
-      Animation? animation});
+      @JsonKey(name: 'animation') Animation? animation});
 
   @override
   $AnimationCopyWith<$Res>? get animation;
@@ -200,12 +205,12 @@ class __$$GameImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GameImpl implements _Game {
   const _$GameImpl(
-      {required this.title,
-      required this.description,
-      required final List<PhotoSize> photo,
-      this.text,
+      {@JsonKey(name: 'title') required this.title,
+      @JsonKey(name: 'description') required this.description,
+      @JsonKey(name: 'photo') required final List<PhotoSize> photo,
+      @JsonKey(name: 'text') this.text,
       @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities,
-      this.animation})
+      @JsonKey(name: 'animation') this.animation})
       : _photo = photo,
         _textEntities = textEntities;
 
@@ -214,10 +219,12 @@ class _$GameImpl implements _Game {
 
   /// Title of the game
   @override
+  @JsonKey(name: 'title')
   final String title;
 
   /// Description of the game
   @override
+  @JsonKey(name: 'description')
   final String description;
 
   /// Photo that will be displayed in the game message in chats.
@@ -225,6 +232,7 @@ class _$GameImpl implements _Game {
 
   /// Photo that will be displayed in the game message in chats.
   @override
+  @JsonKey(name: 'photo')
   List<PhotoSize> get photo {
     if (_photo is EqualUnmodifiableListView) return _photo;
     // ignore: implicit_dynamic_type
@@ -233,6 +241,7 @@ class _$GameImpl implements _Game {
 
   /// Optional. Brief description of the game or high scores included in the game message.
   @override
+  @JsonKey(name: 'text')
   final String? text;
 
   /// Optional. Special entities that appear in text, such as usernames, URLs, bot commands, etc.
@@ -251,6 +260,7 @@ class _$GameImpl implements _Game {
 
   /// Optional. Animation that will be displayed in the game message in chats.
   @override
+  @JsonKey(name: 'animation')
   final Animation? animation;
 
   @override
@@ -276,29 +286,33 @@ class _$GameImpl implements _Game {
 
 abstract class _Game implements Game {
   const factory _Game(
-      {required final String title,
-      required final String description,
-      required final List<PhotoSize> photo,
-      final String? text,
+      {@JsonKey(name: 'title') required final String title,
+      @JsonKey(name: 'description') required final String description,
+      @JsonKey(name: 'photo') required final List<PhotoSize> photo,
+      @JsonKey(name: 'text') final String? text,
       @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities,
-      final Animation? animation}) = _$GameImpl;
+      @JsonKey(name: 'animation') final Animation? animation}) = _$GameImpl;
 
   factory _Game.fromJson(Map<String, dynamic> json) = _$GameImpl.fromJson;
 
   /// Title of the game
   @override
+  @JsonKey(name: 'title')
   String get title;
 
   /// Description of the game
   @override
+  @JsonKey(name: 'description')
   String get description;
 
   /// Photo that will be displayed in the game message in chats.
   @override
+  @JsonKey(name: 'photo')
   List<PhotoSize> get photo;
 
   /// Optional. Brief description of the game or high scores included in the game message.
   @override
+  @JsonKey(name: 'text')
   String? get text;
 
   /// Optional. Special entities that appear in text, such as usernames, URLs, bot commands, etc.
@@ -308,6 +322,7 @@ abstract class _Game implements Game {
 
   /// Optional. Animation that will be displayed in the game message in chats.
   @override
+  @JsonKey(name: 'animation')
   Animation? get animation;
 
   /// Create a copy of Game

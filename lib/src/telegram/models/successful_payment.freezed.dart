@@ -21,6 +21,7 @@ SuccessfulPayment _$SuccessfulPaymentFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SuccessfulPayment {
   /// Three-letter ISO 4217 currency code
+  @JsonKey(name: 'currency')
   String get currency => throw _privateConstructorUsedError;
 
   /// Total price in the smallest units of the currency (integer, not
@@ -77,7 +78,7 @@ abstract class $SuccessfulPaymentCopyWith<$Res> {
       _$SuccessfulPaymentCopyWithImpl<$Res, SuccessfulPayment>;
   @useResult
   $Res call(
-      {String currency,
+      {@JsonKey(name: 'currency') String currency,
       @JsonKey(name: 'total_amount') int totalAmount,
       @JsonKey(name: 'invoice_payload') String invoicePayload,
       @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
@@ -181,7 +182,7 @@ abstract class _$$SuccessfulPaymentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String currency,
+      {@JsonKey(name: 'currency') String currency,
       @JsonKey(name: 'total_amount') int totalAmount,
       @JsonKey(name: 'invoice_payload') String invoicePayload,
       @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
@@ -265,7 +266,7 @@ class __$$SuccessfulPaymentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SuccessfulPaymentImpl implements _SuccessfulPayment {
   const _$SuccessfulPaymentImpl(
-      {required this.currency,
+      {@JsonKey(name: 'currency') required this.currency,
       @JsonKey(name: 'total_amount') required this.totalAmount,
       @JsonKey(name: 'invoice_payload') required this.invoicePayload,
       @JsonKey(name: 'shipping_option_id') this.shippingOptionId,
@@ -282,6 +283,7 @@ class _$SuccessfulPaymentImpl implements _SuccessfulPayment {
 
   /// Three-letter ISO 4217 currency code
   @override
+  @JsonKey(name: 'currency')
   final String currency;
 
   /// Total price in the smallest units of the currency (integer, not
@@ -353,7 +355,7 @@ class _$SuccessfulPaymentImpl implements _SuccessfulPayment {
 
 abstract class _SuccessfulPayment implements SuccessfulPayment {
   const factory _SuccessfulPayment(
-      {required final String currency,
+      {@JsonKey(name: 'currency') required final String currency,
       @JsonKey(name: 'total_amount') required final int totalAmount,
       @JsonKey(name: 'invoice_payload') required final String invoicePayload,
       @JsonKey(name: 'shipping_option_id') final String? shippingOptionId,
@@ -371,6 +373,7 @@ abstract class _SuccessfulPayment implements SuccessfulPayment {
 
   /// Three-letter ISO 4217 currency code
   @override
+  @JsonKey(name: 'currency')
   String get currency;
 
   /// Total price in the smallest units of the currency (integer, not

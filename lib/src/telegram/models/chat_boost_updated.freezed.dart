@@ -21,9 +21,11 @@ ChatBoostUpdated _$ChatBoostUpdatedFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ChatBoostUpdated {
   /// Chat which was boosted
+  @JsonKey(name: 'chat')
   Chat get chat => throw _privateConstructorUsedError;
 
   /// Information about the chat boost
+  @JsonKey(name: 'boost')
   ChatBoost get boost => throw _privateConstructorUsedError;
 
   /// Serializes this ChatBoostUpdated to a JSON map.
@@ -42,7 +44,9 @@ abstract class $ChatBoostUpdatedCopyWith<$Res> {
           ChatBoostUpdated value, $Res Function(ChatBoostUpdated) then) =
       _$ChatBoostUpdatedCopyWithImpl<$Res, ChatBoostUpdated>;
   @useResult
-  $Res call({Chat chat, ChatBoost boost});
+  $Res call(
+      {@JsonKey(name: 'chat') Chat chat,
+      @JsonKey(name: 'boost') ChatBoost boost});
 
   $ChatCopyWith<$Res> get chat;
   $ChatBoostCopyWith<$Res> get boost;
@@ -107,7 +111,9 @@ abstract class _$$ChatBoostUpdatedImplCopyWith<$Res>
       __$$ChatBoostUpdatedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Chat chat, ChatBoost boost});
+  $Res call(
+      {@JsonKey(name: 'chat') Chat chat,
+      @JsonKey(name: 'boost') ChatBoost boost});
 
   @override
   $ChatCopyWith<$Res> get chat;
@@ -147,17 +153,21 @@ class __$$ChatBoostUpdatedImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ChatBoostUpdatedImpl implements _ChatBoostUpdated {
-  const _$ChatBoostUpdatedImpl({required this.chat, required this.boost});
+  const _$ChatBoostUpdatedImpl(
+      {@JsonKey(name: 'chat') required this.chat,
+      @JsonKey(name: 'boost') required this.boost});
 
   factory _$ChatBoostUpdatedImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatBoostUpdatedImplFromJson(json);
 
   /// Chat which was boosted
   @override
+  @JsonKey(name: 'chat')
   final Chat chat;
 
   /// Information about the chat boost
   @override
+  @JsonKey(name: 'boost')
   final ChatBoost boost;
 
   @override
@@ -184,18 +194,21 @@ class _$ChatBoostUpdatedImpl implements _ChatBoostUpdated {
 
 abstract class _ChatBoostUpdated implements ChatBoostUpdated {
   const factory _ChatBoostUpdated(
-      {required final Chat chat,
-      required final ChatBoost boost}) = _$ChatBoostUpdatedImpl;
+          {@JsonKey(name: 'chat') required final Chat chat,
+          @JsonKey(name: 'boost') required final ChatBoost boost}) =
+      _$ChatBoostUpdatedImpl;
 
   factory _ChatBoostUpdated.fromJson(Map<String, dynamic> json) =
       _$ChatBoostUpdatedImpl.fromJson;
 
   /// Chat which was boosted
   @override
+  @JsonKey(name: 'chat')
   Chat get chat;
 
   /// Information about the chat boost
   @override
+  @JsonKey(name: 'boost')
   ChatBoost get boost;
 
   /// Create a copy of ChatBoostUpdated

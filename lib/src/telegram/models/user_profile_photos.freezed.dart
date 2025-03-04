@@ -25,6 +25,7 @@ mixin _$UserProfilePhotos {
   int get totalCount => throw _privateConstructorUsedError;
 
   /// Requested profile pictures (in up to 4 sizes each)
+  @JsonKey(name: 'photos')
   List<List<PhotoSize>> get photos => throw _privateConstructorUsedError;
 
   /// Serializes this UserProfilePhotos to a JSON map.
@@ -45,7 +46,7 @@ abstract class $UserProfilePhotosCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'total_count') int totalCount,
-      List<List<PhotoSize>> photos});
+      @JsonKey(name: 'photos') List<List<PhotoSize>> photos});
 }
 
 /// @nodoc
@@ -89,7 +90,7 @@ abstract class _$$UserProfilePhotosImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'total_count') int totalCount,
-      List<List<PhotoSize>> photos});
+      @JsonKey(name: 'photos') List<List<PhotoSize>> photos});
 }
 
 /// @nodoc
@@ -126,7 +127,7 @@ class __$$UserProfilePhotosImplCopyWithImpl<$Res>
 class _$UserProfilePhotosImpl implements _UserProfilePhotos {
   const _$UserProfilePhotosImpl(
       {@JsonKey(name: 'total_count') required this.totalCount,
-      required final List<List<PhotoSize>> photos})
+      @JsonKey(name: 'photos') required final List<List<PhotoSize>> photos})
       : _photos = photos;
 
   factory _$UserProfilePhotosImpl.fromJson(Map<String, dynamic> json) =>
@@ -142,6 +143,7 @@ class _$UserProfilePhotosImpl implements _UserProfilePhotos {
 
   /// Requested profile pictures (in up to 4 sizes each)
   @override
+  @JsonKey(name: 'photos')
   List<List<PhotoSize>> get photos {
     if (_photos is EqualUnmodifiableListView) return _photos;
     // ignore: implicit_dynamic_type
@@ -173,6 +175,7 @@ class _$UserProfilePhotosImpl implements _UserProfilePhotos {
 abstract class _UserProfilePhotos implements UserProfilePhotos {
   const factory _UserProfilePhotos(
       {@JsonKey(name: 'total_count') required final int totalCount,
+      @JsonKey(name: 'photos')
       required final List<List<PhotoSize>> photos}) = _$UserProfilePhotosImpl;
 
   factory _UserProfilePhotos.fromJson(Map<String, dynamic> json) =
@@ -185,6 +188,7 @@ abstract class _UserProfilePhotos implements UserProfilePhotos {
 
   /// Requested profile pictures (in up to 4 sizes each)
   @override
+  @JsonKey(name: 'photos')
   List<List<PhotoSize>> get photos;
 
   /// Create a copy of UserProfilePhotos

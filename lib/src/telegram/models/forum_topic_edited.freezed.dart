@@ -21,6 +21,7 @@ ForumTopicEdited _$ForumTopicEditedFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ForumTopicEdited {
   /// Optional. New name of the topic, if it was edited
+  @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
 
   /// Optional. New identifier of the custom emoji shown as the topic icon,
@@ -45,7 +46,7 @@ abstract class $ForumTopicEditedCopyWith<$Res> {
       _$ForumTopicEditedCopyWithImpl<$Res, ForumTopicEdited>;
   @useResult
   $Res call(
-      {String? name,
+      {@JsonKey(name: 'name') String? name,
       @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
 }
 
@@ -89,7 +90,7 @@ abstract class _$$ForumTopicEditedImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? name,
+      {@JsonKey(name: 'name') String? name,
       @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
 }
 
@@ -126,7 +127,7 @@ class __$$ForumTopicEditedImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ForumTopicEditedImpl implements _ForumTopicEdited {
   const _$ForumTopicEditedImpl(
-      {this.name,
+      {@JsonKey(name: 'name') this.name,
       @JsonKey(name: 'icon_custom_emoji_id') this.iconCustomEmojiId});
 
   factory _$ForumTopicEditedImpl.fromJson(Map<String, dynamic> json) =>
@@ -134,6 +135,7 @@ class _$ForumTopicEditedImpl implements _ForumTopicEdited {
 
   /// Optional. New name of the topic, if it was edited
   @override
+  @JsonKey(name: 'name')
   final String? name;
 
   /// Optional. New identifier of the custom emoji shown as the topic icon,
@@ -166,7 +168,7 @@ class _$ForumTopicEditedImpl implements _ForumTopicEdited {
 
 abstract class _ForumTopicEdited implements ForumTopicEdited {
   const factory _ForumTopicEdited(
-      {final String? name,
+      {@JsonKey(name: 'name') final String? name,
       @JsonKey(name: 'icon_custom_emoji_id')
       final String? iconCustomEmojiId}) = _$ForumTopicEditedImpl;
 
@@ -175,6 +177,7 @@ abstract class _ForumTopicEdited implements ForumTopicEdited {
 
   /// Optional. New name of the topic, if it was edited
   @override
+  @JsonKey(name: 'name')
   String? get name;
 
   /// Optional. New identifier of the custom emoji shown as the topic icon,

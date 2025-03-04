@@ -12,10 +12,12 @@ sealed class BackgroundType with _$BackgroundType {
   /// The background is automatically filled based on the selected colors.
   const factory BackgroundType.fill({
     /// Type of the background - always fill
-    @Default(BackgroundTypeType.fill) BackgroundTypeType type,
+    @JsonKey(name: 'type')
+    @Default(BackgroundTypeType.fill)
+    BackgroundTypeType type,
 
     /// The background fill.
-    required final BackgroundFill fill,
+    @JsonKey(name: 'fill') required final BackgroundFill fill,
 
     /// Dimming of the background in dark themes, as a percentage; 0-100.
     @JsonKey(name: 'dark_theme_dimming') @Default(0) final int darkThemeDimming,
@@ -24,10 +26,12 @@ sealed class BackgroundType with _$BackgroundType {
   /// The background is automatically filled based on the selected colors.
   const factory BackgroundType.wallpaper({
     /// Type of the background - always `wallpaper`
-    @Default(BackgroundTypeType.wallpaper) BackgroundTypeType type,
+    @JsonKey(name: 'type')
+    @Default(BackgroundTypeType.wallpaper)
+    BackgroundTypeType type,
 
     /// Document with the wallpaper.
-    required final Document document,
+    @JsonKey(name: 'document') required final Document document,
 
     /// Dimming of the background in dark themes, as a percentage; 0-100.
     @JsonKey(name: "dark_theme_dimming") @Default(0) final int darkThemeDimming,
@@ -45,17 +49,19 @@ sealed class BackgroundType with _$BackgroundType {
   /// fill chosen by the user.
   const factory BackgroundType.pattern({
     /// Type of the background - always `pattern`
-    @Default(BackgroundTypeType.pattern) BackgroundTypeType type,
+    @JsonKey(name: 'type')
+    @Default(BackgroundTypeType.pattern)
+    BackgroundTypeType type,
 
     /// Document with the wallpaper.
-    required final Document document,
+    @JsonKey(name: 'document') required final Document document,
 
     /// The background fill that is combined with the pattern.
-    required final BackgroundFill fill,
+    @JsonKey(name: 'fill') required final BackgroundFill fill,
 
     /// Intensity of the pattern when it is shown above the filled background;
     /// 0-100.
-    @Default(0) final int intensity,
+    @JsonKey(name: 'intensity') @Default(0) final int intensity,
 
     /// True, if the background fill must be applied only to the pattern itself.
     /// All other pixels are black in this case. For dark themes only.
@@ -68,7 +74,9 @@ sealed class BackgroundType with _$BackgroundType {
   /// The background is taken directly from a built-in chat theme.
   const factory BackgroundType.chatTheme({
     /// Type of the background - always fill
-    @Default(BackgroundTypeType.chatTheme) BackgroundTypeType type,
+    @JsonKey(name: 'type')
+    @Default(BackgroundTypeType.chatTheme)
+    BackgroundTypeType type,
 
     /// Name of the chat theme, which is usually an emoji
     @JsonKey(name: 'theme_name') required final String themeName,

@@ -21,12 +21,15 @@ BusinessIntro _$BusinessIntroFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BusinessIntro {
   /// Optional. Title text of the business intro.
+  @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
 
   /// Optional. Message text of the business intro.
+  @JsonKey(name: 'message')
   String? get message => throw _privateConstructorUsedError;
 
   /// Optional. Sticker of the business intro.
+  @JsonKey(name: 'sticker')
   Sticker? get sticker => throw _privateConstructorUsedError;
 
   /// Serializes this BusinessIntro to a JSON map.
@@ -45,7 +48,10 @@ abstract class $BusinessIntroCopyWith<$Res> {
           BusinessIntro value, $Res Function(BusinessIntro) then) =
       _$BusinessIntroCopyWithImpl<$Res, BusinessIntro>;
   @useResult
-  $Res call({String? title, String? message, Sticker? sticker});
+  $Res call(
+      {@JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'sticker') Sticker? sticker});
 
   $StickerCopyWith<$Res>? get sticker;
 }
@@ -108,7 +114,10 @@ abstract class _$$BusinessIntroImplCopyWith<$Res>
       __$$BusinessIntroImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? title, String? message, Sticker? sticker});
+  $Res call(
+      {@JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'sticker') Sticker? sticker});
 
   @override
   $StickerCopyWith<$Res>? get sticker;
@@ -151,21 +160,27 @@ class __$$BusinessIntroImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BusinessIntroImpl implements _BusinessIntro {
-  const _$BusinessIntroImpl({this.title, this.message, this.sticker});
+  const _$BusinessIntroImpl(
+      {@JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'sticker') this.sticker});
 
   factory _$BusinessIntroImpl.fromJson(Map<String, dynamic> json) =>
       _$$BusinessIntroImplFromJson(json);
 
   /// Optional. Title text of the business intro.
   @override
+  @JsonKey(name: 'title')
   final String? title;
 
   /// Optional. Message text of the business intro.
   @override
+  @JsonKey(name: 'message')
   final String? message;
 
   /// Optional. Sticker of the business intro.
   @override
+  @JsonKey(name: 'sticker')
   final Sticker? sticker;
 
   @override
@@ -191,23 +206,26 @@ class _$BusinessIntroImpl implements _BusinessIntro {
 
 abstract class _BusinessIntro implements BusinessIntro {
   const factory _BusinessIntro(
-      {final String? title,
-      final String? message,
-      final Sticker? sticker}) = _$BusinessIntroImpl;
+      {@JsonKey(name: 'title') final String? title,
+      @JsonKey(name: 'message') final String? message,
+      @JsonKey(name: 'sticker') final Sticker? sticker}) = _$BusinessIntroImpl;
 
   factory _BusinessIntro.fromJson(Map<String, dynamic> json) =
       _$BusinessIntroImpl.fromJson;
 
   /// Optional. Title text of the business intro.
   @override
+  @JsonKey(name: 'title')
   String? get title;
 
   /// Optional. Message text of the business intro.
   @override
+  @JsonKey(name: 'message')
   String? get message;
 
   /// Optional. Sticker of the business intro.
   @override
+  @JsonKey(name: 'sticker')
   Sticker? get sticker;
 
   /// Create a copy of BusinessIntro

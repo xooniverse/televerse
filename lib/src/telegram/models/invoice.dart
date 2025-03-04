@@ -9,17 +9,17 @@ class Invoice with _$Invoice {
   /// Constructs an [Invoice] object
   const factory Invoice({
     /// Product name
-    required String title,
+    @JsonKey(name: 'title') required String title,
 
     /// Product description
-    required String description,
+    @JsonKey(name: 'description') required String description,
 
     /// Unique bot deep-linking parameter that can be used to generate this
     /// invoice
     @JsonKey(name: 'start_parameter') required String startParameter,
 
     /// Three-letter ISO 4217 currency code
-    required String currency,
+    @JsonKey(name: 'currency') required String currency,
 
     /// Total price in the smallest units of the currency (integer, not
     /// float/double). For example, for a price of US$ 1.45 pass amount = 145.

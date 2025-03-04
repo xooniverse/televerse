@@ -18,10 +18,10 @@ class PhotoSize with _$PhotoSize {
     @JsonKey(name: 'file_unique_id') required String fileUniqueId,
 
     /// Photo width
-    required int width,
+    @JsonKey(name: 'width') required int width,
 
     /// Photo height
-    required int height,
+    @JsonKey(name: 'height') required int height,
 
     /// Optional. File size in bytes
     @JsonKey(name: 'file_size') int? fileSize,
