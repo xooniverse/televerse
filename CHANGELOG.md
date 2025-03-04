@@ -1,3 +1,8 @@
+# 2.4.0-dev.2
+
+- fix: bot.init ([#320](https://github.com/xooniverse/televerse/pull/320))
+- updated `analysis_options.yaml` 
+
 # 2.4.0-dev.1
 
 - Minor lint supression - excluded generated files being anlyzed.
