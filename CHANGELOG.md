@@ -1,4 +1,4 @@
-# 2.4.0
+# 2.4.0-dev.0
 
 - All Telegram Models are now built with Freezed.
 - Breaking: `Keyboard` & `InlineKeyboard` usage. [Check this PR comment for details](https://github.com/xooniverse/televerse/pull/318#issuecomment-2662189756).
