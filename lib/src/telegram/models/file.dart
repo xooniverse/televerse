@@ -1,3 +1,4 @@
+// ignore_for_file: invalid_annotation_target
 import 'dart:io' as io;
 import 'dart:typed_data';
 
@@ -10,7 +11,7 @@ part 'file.g.dart';
 
 /// This object represents a file ready to be downloaded. The file can be
 /// downloaded via the link
-/// https://api.telegram.org/file/bot<token>/<file_path>. It is guaranteed that
+/// https://api.telegram.org/file/BOT_TOKEN/FILE_PATH. It is guaranteed that
 /// the link will be valid for at least 1 hour. When the link expires, a new one
 /// can be requested by calling getFile.
 @freezed
@@ -30,7 +31,7 @@ class File with _$File {
     /// File size, if known
     @JsonKey(name: 'file_size') int? fileSize,
 
-    /// File path. Use https://api.telegram.org/file/bot<token>/<file_path> to
+    /// File path. Use https://api.telegram.org/file/bottoken/file_path to
     /// get the file.
     @JsonKey(name: 'file_path') String? filePath,
   }) = _File;

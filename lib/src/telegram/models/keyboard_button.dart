@@ -1,3 +1,4 @@
+// ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'keyboard_button_poll_type.dart';
 import 'web_app_info.dart';

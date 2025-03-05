@@ -990,7 +990,7 @@ class Bot<CTX extends Context> {
   /// });
   /// ```
   ///
-  /// This will reply "Hello, <name>!" to any message that contains a text that
+  /// This will reply "Hello, {name}!" to any message that contains a text that
   /// matches the regular expression `Hello, (.*)!`.
   void hears(
     RegExp exp,

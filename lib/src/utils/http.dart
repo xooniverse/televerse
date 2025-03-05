@@ -125,7 +125,7 @@ class _HttpClient {
     }
   }
 
-  /// Convert the MapEntry to MapEntry<String, String>.
+  /// Convert the `MapEntry` to `MapEntry<String, String>`.
   MapEntry<String, String> _getEntry(String k, dynamic v) {
     if (v is List) {
       return MapEntry(k, jsonEncode(v));
