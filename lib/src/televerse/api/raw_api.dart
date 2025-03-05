@@ -1642,7 +1642,7 @@ class RawAPI {
   /// downloading. For the moment, bots can download files of up to 20MB in
   /// size. On success, a File object is returned. The file can then be
   /// downloaded via the link
-  /// https://api.telegram.org/file/bot<token>/<file_path>, where <file_path> is
+  /// https://api.telegram.org/file/BOT_TOKEN/FILE_PATH, where FILE_PATH is
   /// taken from the response. It is guaranteed that the link will be valid for
   /// at least 1 hour. When the link expires, a new one can be requested by
   /// calling getFile again.
@@ -3924,7 +3924,7 @@ class RawAPI {
   /// - [name] - Short name of sticker set, to be used in t.me/addstickers/ URLs
   ///   (e.g., animals). Can contain only English letters, digits and
   ///   underscores. Must begin with a letter, can't contain consecutive
-  ///   underscores and must end in "_by_<bot_username>". <bot_username> is case
+  ///   underscores and must end in "_by_BOT_USERNAME". Where BOT_USERNAME is case
   ///   insensitive. 1-64 characters.
   /// - [title] - Sticker set title, 1-64 characters
   /// - [stickers] - List of stickers to be added to the set
@@ -4649,7 +4649,7 @@ class RawAPI {
   /// - [textParseMode] (String, optional): Mode for parsing entities in the
   ///   text. Entities other than “bold”, “italic”, “underline”,
   ///   “strikethrough”, “spoiler”, and “custom_emoji” are ignored.
-  /// - [textEntities] (List<MessageEntity>, optional): A JSON-serialized list
+  /// - [textEntities] (`List<MessageEntity>`, optional): A JSON-serialized list
   ///   of special entities that appear in the gift text. Can be specified
   ///   instead of `textParseMode`.
   /// - [payForUpgrade] - Pass True to pay for the gift upgrade from the bot's

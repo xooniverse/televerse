@@ -55,7 +55,7 @@ class BotLink extends Deeplink {
 /// This class represents a Telegram group deeplink.
 ///
 /// Used to add bots to groups or channels.
-/// First of all, check that the <bot_username> indeed links to a bot.
+/// First of all, check that the `bot_username` indeed links to a bot.
 ///
 /// The t.me link will be in the format: `t.me/<bot_username>?startgroup=<parameter>&admin=<permissions>`
 /// Or `t.me/<bot_username>?startgroup&admin=<permissions>`

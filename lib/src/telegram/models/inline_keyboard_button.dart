@@ -1,3 +1,4 @@
+// ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:televerse/src/telegram/models/callback_game.dart';
 import 'package:televerse/src/telegram/models/copy_text_button.dart';

@@ -1,3 +1,8 @@
+# 2.4.0-dev.3
+
+- Surpress all the `invalid_annotation_target` warnings
+- Fix other linter issues.
+
 # 2.4.0-dev.2
 
 - fix: bot.init ([#320](https://github.com/xooniverse/televerse/pull/320))

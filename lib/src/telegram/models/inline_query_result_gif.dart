@@ -1,3 +1,4 @@
+// ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:televerse/src/telegram/models/inline_query_result.dart';
 import 'package:televerse/src/telegram/models/message_entity.dart';
