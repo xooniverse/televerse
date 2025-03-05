@@ -34,7 +34,7 @@ mixin _$File {
   @JsonKey(name: 'file_size')
   int? get fileSize => throw _privateConstructorUsedError;
 
-  /// File path. Use https://api.telegram.org/file/BOT_TOKEN/FILE_PATH to
+  /// File path. Use https://api.telegram.org/file/bottoken/file_path to
   /// get the file.
   @JsonKey(name: 'file_path')
   String? get filePath => throw _privateConstructorUsedError;
@@ -183,7 +183,7 @@ class _$FileImpl extends _File {
   @JsonKey(name: 'file_size')
   final int? fileSize;
 
-  /// File path. Use https://api.telegram.org/file/BOT_TOKEN/FILE_PATH to
+  /// File path. Use https://api.telegram.org/file/bottoken/file_path to
   /// get the file.
   @override
   @JsonKey(name: 'file_path')
@@ -237,7 +237,7 @@ abstract class _File extends File {
   @JsonKey(name: 'file_size')
   int? get fileSize;
 
-  /// File path. Use https://api.telegram.org/file/BOT_TOKEN/FILE_PATH to
+  /// File path. Use https://api.telegram.org/file/bottoken/file_path to
   /// get the file.
   @override
   @JsonKey(name: 'file_path')
