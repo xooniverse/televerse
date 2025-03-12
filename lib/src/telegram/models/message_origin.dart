@@ -101,7 +101,7 @@ sealed class MessageOrigin with _$MessageOrigin implements _MessageOriginImpl {
     @JsonKey(name: 'date', required: true) required int date,
 
     /// Channel chat to which the message was originally sent
-    @JsonKey(name: 'sender_chat') required Chat chat,
+    @JsonKey(name: 'chat') required Chat chat,
 
     /// Unique message identifier inside the chat
     @JsonKey(name: 'message_id') required int messageId,

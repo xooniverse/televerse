@@ -687,7 +687,7 @@ abstract class _$$MessageOriginChannelImplCopyWith<$Res>
       {@JsonKey(name: 'type', defaultValue: MessageOriginType.channel)
       MessageOriginType type,
       @JsonKey(name: 'date', required: true) int date,
-      @JsonKey(name: 'sender_chat') Chat chat,
+      @JsonKey(name: 'chat') Chat chat,
       @JsonKey(name: 'message_id') int messageId,
       @JsonKey(name: 'author_signature') String? authorSignature});
 
@@ -755,7 +755,7 @@ class _$MessageOriginChannelImpl implements MessageOriginChannel {
       {@JsonKey(name: 'type', defaultValue: MessageOriginType.channel)
       this.type = MessageOriginType.channel,
       @JsonKey(name: 'date', required: true) required this.date,
-      @JsonKey(name: 'sender_chat') required this.chat,
+      @JsonKey(name: 'chat') required this.chat,
       @JsonKey(name: 'message_id') required this.messageId,
       @JsonKey(name: 'author_signature') this.authorSignature})
       : assert(type == MessageOriginType.channel,
@@ -776,7 +776,7 @@ class _$MessageOriginChannelImpl implements MessageOriginChannel {
 
   /// Channel chat to which the message was originally sent
   @override
-  @JsonKey(name: 'sender_chat')
+  @JsonKey(name: 'chat')
   final Chat chat;
 
   /// Unique message identifier inside the chat
@@ -854,7 +854,7 @@ abstract class MessageOriginChannel implements MessageOrigin {
           {@JsonKey(name: 'type', defaultValue: MessageOriginType.channel)
           final MessageOriginType type,
           @JsonKey(name: 'date', required: true) required final int date,
-          @JsonKey(name: 'sender_chat') required final Chat chat,
+          @JsonKey(name: 'chat') required final Chat chat,
           @JsonKey(name: 'message_id') required final int messageId,
           @JsonKey(name: 'author_signature') final String? authorSignature}) =
       _$MessageOriginChannelImpl;
@@ -873,7 +873,7 @@ abstract class MessageOriginChannel implements MessageOrigin {
   int get date;
 
   /// Channel chat to which the message was originally sent
-  @JsonKey(name: 'sender_chat')
+  @JsonKey(name: 'chat')
   Chat get chat;
 
   /// Unique message identifier inside the chat

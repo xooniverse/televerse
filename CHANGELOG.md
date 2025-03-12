@@ -1,8 +1,11 @@
+# 2.4.1
+
+- Fix typo in `MessageOriginChannel`
+
 # 2.4.0
 
 - All Telegram models are now re-written with Freezed
 - Breaking: `Keyboard` & `InlineKeyboard` usage. [Check this PR comment for details](https://github.com/xooniverse/televerse/pull/318#issuecomment-2662189756).
-
 
 # 2.4.0-dev.3
 

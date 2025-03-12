@@ -91,7 +91,7 @@ _$MessageOriginChannelImpl _$$MessageOriginChannelImplFromJson(
     type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
         MessageOriginType.channel,
     date: (json['date'] as num).toInt(),
-    chat: Chat.fromJson(json['sender_chat'] as Map<String, dynamic>),
+    chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
     messageId: (json['message_id'] as num).toInt(),
     authorSignature: json['author_signature'] as String?,
   );
@@ -102,7 +102,7 @@ Map<String, dynamic> _$$MessageOriginChannelImplToJson(
     <String, dynamic>{
       'type': instance.type,
       'date': instance.date,
-      'sender_chat': instance.chat,
+      'chat': instance.chat,
       'message_id': instance.messageId,
       if (instance.authorSignature case final value?) 'author_signature': value,
     };
