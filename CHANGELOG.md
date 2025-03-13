@@ -1,3 +1,9 @@
+# 2.4.2
+
+- Added missing @JsonKey annotations for `InputMessageContent` in `InlineQueryResultArticle`
+- Added missing @JsonKey annotation for `LinkPreviewOptions` in `InputTextMessageContent`
+- Thanks to [@otopba](https://github.com/otopba) for [#327](https://github.com/xooniverse/televerse/pull/327)
+
 # 2.4.1
 
 - Fix typo in `MessageOriginChannel`
