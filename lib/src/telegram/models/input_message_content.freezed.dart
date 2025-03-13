@@ -100,7 +100,7 @@ abstract class _$$InputTextMessageContentImplCopyWith<$Res> {
       {@JsonKey(name: 'message_text') String messageText,
       @JsonKey(name: 'parse_mode') ParseMode? parseMode,
       @JsonKey(name: 'entities') List<MessageEntity>? entities,
-      @JsonKey(name: 'disable_web_page_preview')
+      @JsonKey(name: 'link_preview_options')
       LinkPreviewOptions? linkPreviewOptions});
 
   $LinkPreviewOptionsCopyWith<$Res>? get linkPreviewOptions;
@@ -169,7 +169,7 @@ class _$InputTextMessageContentImpl implements InputTextMessageContent {
       {@JsonKey(name: 'message_text') required this.messageText,
       @JsonKey(name: 'parse_mode') this.parseMode,
       @JsonKey(name: 'entities') final List<MessageEntity>? entities,
-      @JsonKey(name: 'disable_web_page_preview') this.linkPreviewOptions,
+      @JsonKey(name: 'link_preview_options') this.linkPreviewOptions,
       final String? $type})
       : _entities = entities,
         $type = $type ?? 'text';
@@ -204,9 +204,9 @@ class _$InputTextMessageContentImpl implements InputTextMessageContent {
     return EqualUnmodifiableListView(value);
   }
 
-  /// Optional. Disables link previews for links in the sent message
+  /// Optional. Link preview generation options for the message
   @override
-  @JsonKey(name: 'disable_web_page_preview')
+  @JsonKey(name: 'link_preview_options')
   final LinkPreviewOptions? linkPreviewOptions;
 
   @JsonKey(name: 'runtimeType')
@@ -279,7 +279,7 @@ abstract class InputTextMessageContent implements InputMessageContent {
           {@JsonKey(name: 'message_text') required final String messageText,
           @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
           @JsonKey(name: 'entities') final List<MessageEntity>? entities,
-          @JsonKey(name: 'disable_web_page_preview')
+          @JsonKey(name: 'link_preview_options')
           final LinkPreviewOptions? linkPreviewOptions}) =
       _$InputTextMessageContentImpl;
 
@@ -300,8 +300,8 @@ abstract class InputTextMessageContent implements InputMessageContent {
   @JsonKey(name: 'entities')
   List<MessageEntity>? get entities;
 
-  /// Optional. Disables link previews for links in the sent message
-  @JsonKey(name: 'disable_web_page_preview')
+  /// Optional. Link preview generation options for the message
+  @JsonKey(name: 'link_preview_options')
   LinkPreviewOptions? get linkPreviewOptions;
 
   /// Create a copy of InputMessageContent

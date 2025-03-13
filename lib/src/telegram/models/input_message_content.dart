@@ -32,8 +32,8 @@ sealed class InputMessageContent with _$InputMessageContent {
     /// can be specified instead of parse_mode
     @JsonKey(name: 'entities') final List<MessageEntity>? entities,
 
-    /// Optional. Disables link previews for links in the sent message
-    @JsonKey(name: 'disable_web_page_preview')
+    /// Optional. Link preview generation options for the message
+    @JsonKey(name: 'link_preview_options')
     final LinkPreviewOptions? linkPreviewOptions,
   }) = InputTextMessageContent;
 
