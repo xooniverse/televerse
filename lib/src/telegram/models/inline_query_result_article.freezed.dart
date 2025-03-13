@@ -30,6 +30,7 @@ mixin _$InlineQueryResultArticle {
   String get title => throw _privateConstructorUsedError;
 
   /// Content of the message to be sent
+  @JsonKey(name: 'input_message_content')
   @InputMessageContentConverter()
   InputMessageContent get inputMessageContent =>
       throw _privateConstructorUsedError;
@@ -81,7 +82,9 @@ abstract class $InlineQueryResultArticleCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'title') String title,
-      @InputMessageContentConverter() InputMessageContent inputMessageContent,
+      @JsonKey(name: 'input_message_content')
+      @InputMessageContentConverter()
+      InputMessageContent inputMessageContent,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'url') String? url,
       @JsonKey(name: 'description') String? description,
@@ -188,7 +191,9 @@ abstract class _$$InlineQueryResultArticleImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'title') String title,
-      @InputMessageContentConverter() InputMessageContent inputMessageContent,
+      @JsonKey(name: 'input_message_content')
+      @InputMessageContentConverter()
+      InputMessageContent inputMessageContent,
       @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'url') String? url,
       @JsonKey(name: 'description') String? description,
@@ -278,7 +283,9 @@ class _$InlineQueryResultArticleImpl implements _InlineQueryResultArticle {
   const _$InlineQueryResultArticleImpl(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'title') required this.title,
-      @InputMessageContentConverter() required this.inputMessageContent,
+      @JsonKey(name: 'input_message_content')
+      @InputMessageContentConverter()
+      required this.inputMessageContent,
       @JsonKey(name: 'reply_markup') this.replyMarkup,
       @JsonKey(name: 'url') this.url,
       @JsonKey(name: 'description') this.description,
@@ -302,6 +309,7 @@ class _$InlineQueryResultArticleImpl implements _InlineQueryResultArticle {
 
   /// Content of the message to be sent
   @override
+  @JsonKey(name: 'input_message_content')
   @InputMessageContentConverter()
   final InputMessageContent inputMessageContent;
 
@@ -366,6 +374,7 @@ abstract class _InlineQueryResultArticle implements InlineQueryResultArticle {
   const factory _InlineQueryResultArticle(
       {@JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'title') required final String title,
+      @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
       required final InputMessageContent inputMessageContent,
       @JsonKey(name: 'reply_markup') final InlineKeyboardMarkup? replyMarkup,
@@ -392,6 +401,7 @@ abstract class _InlineQueryResultArticle implements InlineQueryResultArticle {
 
   /// Content of the message to be sent
   @override
+  @JsonKey(name: 'input_message_content')
   @InputMessageContentConverter()
   InputMessageContent get inputMessageContent;
 
