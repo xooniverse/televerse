@@ -14,10 +14,10 @@ _$InputTextMessageContentImpl _$$InputTextMessageContentImplFromJson(
       entities: (json['entities'] as List<dynamic>?)
           ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
-      linkPreviewOptions: json['disable_web_page_preview'] == null
+      linkPreviewOptions: json['link_preview_options'] == null
           ? null
           : LinkPreviewOptions.fromJson(
-              json['disable_web_page_preview'] as Map<String, dynamic>),
+              json['link_preview_options'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 
@@ -28,7 +28,7 @@ Map<String, dynamic> _$$InputTextMessageContentImplToJson(
       if (instance.parseMode case final value?) 'parse_mode': value,
       if (instance.entities case final value?) 'entities': value,
       if (instance.linkPreviewOptions case final value?)
-        'disable_web_page_preview': value,
+        'link_preview_options': value,
       'runtimeType': instance.$type,
     };
 

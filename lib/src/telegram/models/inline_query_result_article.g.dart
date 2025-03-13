@@ -12,7 +12,7 @@ _$InlineQueryResultArticleImpl _$$InlineQueryResultArticleImplFromJson(
       id: json['id'] as String,
       title: json['title'] as String,
       inputMessageContent: const InputMessageContentConverter()
-          .fromJson(json['inputMessageContent'] as Map<String, Object>),
+          .fromJson(json['input_message_content'] as Map<String, Object>),
       replyMarkup: json['reply_markup'] == null
           ? null
           : InlineKeyboardMarkup.fromJson(
@@ -31,7 +31,7 @@ Map<String, dynamic> _$$InlineQueryResultArticleImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'inputMessageContent': const InputMessageContentConverter()
+      'input_message_content': const InputMessageContentConverter()
           .toJson(instance.inputMessageContent),
       if (instance.replyMarkup case final value?) 'reply_markup': value,
       if (instance.url case final value?) 'url': value,

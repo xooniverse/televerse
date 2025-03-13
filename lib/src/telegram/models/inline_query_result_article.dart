@@ -22,6 +22,7 @@ class InlineQueryResultArticle
     @JsonKey(name: 'title') required String title,
 
     /// Content of the message to be sent
+    @JsonKey(name: 'input_message_content')
     @InputMessageContentConverter()
     required InputMessageContent inputMessageContent,
 
