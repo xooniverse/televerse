@@ -1,3 +1,7 @@
+# 2.4.3
+
+- Fixed: `ChatMemberBanned` is now correctly represented as `ChatMember.kicked` instead of `ChatMember.banned`.
+
 # 2.4.2
 
 - Added missing @JsonKey annotations for `InputMessageContent` in `InlineQueryResultArticle`

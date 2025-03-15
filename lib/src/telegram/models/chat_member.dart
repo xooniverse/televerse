@@ -223,7 +223,7 @@ sealed class ChatMember with _$ChatMember implements _ChatMemberImpl {
   /// the chat or view chat messages.
   ///
   /// The status of this member is always "kicked".
-  const factory ChatMember.banned({
+  const factory ChatMember.kicked({
     /// The member's status in the chat
     @Default(ChatMemberStatus.kicked)
     @JsonKey(name: 'status')
