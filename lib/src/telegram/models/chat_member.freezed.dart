@@ -26,7 +26,7 @@ ChatMember _$ChatMemberFromJson(Map<String, dynamic> json) {
       return ChatMemberRestricted.fromJson(json);
     case 'left':
       return ChatMemberLeft.fromJson(json);
-    case 'banned':
+    case 'kicked':
       return ChatMemberBanned.fromJson(json);
 
     default:
@@ -52,7 +52,7 @@ mixin _$ChatMember {
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
     required TResult Function(ChatMemberLeft value) left,
-    required TResult Function(ChatMemberBanned value) banned,
+    required TResult Function(ChatMemberBanned value) kicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +62,7 @@ mixin _$ChatMember {
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
     TResult? Function(ChatMemberLeft value)? left,
-    TResult? Function(ChatMemberBanned value)? banned,
+    TResult? Function(ChatMemberBanned value)? kicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,7 +72,7 @@ mixin _$ChatMember {
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
     TResult Function(ChatMemberLeft value)? left,
-    TResult Function(ChatMemberBanned value)? banned,
+    TResult Function(ChatMemberBanned value)? kicked,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -252,7 +252,7 @@ class _$ChatMemberOwnerImpl implements ChatMemberOwner {
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
     required TResult Function(ChatMemberLeft value) left,
-    required TResult Function(ChatMemberBanned value) banned,
+    required TResult Function(ChatMemberBanned value) kicked,
   }) {
     return owner(this);
   }
@@ -265,7 +265,7 @@ class _$ChatMemberOwnerImpl implements ChatMemberOwner {
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
     TResult? Function(ChatMemberLeft value)? left,
-    TResult? Function(ChatMemberBanned value)? banned,
+    TResult? Function(ChatMemberBanned value)? kicked,
   }) {
     return owner?.call(this);
   }
@@ -278,7 +278,7 @@ class _$ChatMemberOwnerImpl implements ChatMemberOwner {
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
     TResult Function(ChatMemberLeft value)? left,
-    TResult Function(ChatMemberBanned value)? banned,
+    TResult Function(ChatMemberBanned value)? kicked,
     required TResult orElse(),
   }) {
     if (owner != null) {
@@ -635,7 +635,7 @@ class _$ChatMemberAdministratorImpl implements ChatMemberAdministrator {
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
     required TResult Function(ChatMemberLeft value) left,
-    required TResult Function(ChatMemberBanned value) banned,
+    required TResult Function(ChatMemberBanned value) kicked,
   }) {
     return administrator(this);
   }
@@ -648,7 +648,7 @@ class _$ChatMemberAdministratorImpl implements ChatMemberAdministrator {
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
     TResult? Function(ChatMemberLeft value)? left,
-    TResult? Function(ChatMemberBanned value)? banned,
+    TResult? Function(ChatMemberBanned value)? kicked,
   }) {
     return administrator?.call(this);
   }
@@ -661,7 +661,7 @@ class _$ChatMemberAdministratorImpl implements ChatMemberAdministrator {
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
     TResult Function(ChatMemberLeft value)? left,
-    TResult Function(ChatMemberBanned value)? banned,
+    TResult Function(ChatMemberBanned value)? kicked,
     required TResult orElse(),
   }) {
     if (administrator != null) {
@@ -902,7 +902,7 @@ class _$ChatMemberMemberImpl implements ChatMemberMember {
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
     required TResult Function(ChatMemberLeft value) left,
-    required TResult Function(ChatMemberBanned value) banned,
+    required TResult Function(ChatMemberBanned value) kicked,
   }) {
     return member(this);
   }
@@ -915,7 +915,7 @@ class _$ChatMemberMemberImpl implements ChatMemberMember {
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
     TResult? Function(ChatMemberLeft value)? left,
-    TResult? Function(ChatMemberBanned value)? banned,
+    TResult? Function(ChatMemberBanned value)? kicked,
   }) {
     return member?.call(this);
   }
@@ -928,7 +928,7 @@ class _$ChatMemberMemberImpl implements ChatMemberMember {
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
     TResult Function(ChatMemberLeft value)? left,
-    TResult Function(ChatMemberBanned value)? banned,
+    TResult Function(ChatMemberBanned value)? kicked,
     required TResult orElse(),
   }) {
     if (member != null) {
@@ -1263,7 +1263,7 @@ class _$ChatMemberRestrictedImpl implements ChatMemberRestricted {
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
     required TResult Function(ChatMemberLeft value) left,
-    required TResult Function(ChatMemberBanned value) banned,
+    required TResult Function(ChatMemberBanned value) kicked,
   }) {
     return restricted(this);
   }
@@ -1276,7 +1276,7 @@ class _$ChatMemberRestrictedImpl implements ChatMemberRestricted {
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
     TResult? Function(ChatMemberLeft value)? left,
-    TResult? Function(ChatMemberBanned value)? banned,
+    TResult? Function(ChatMemberBanned value)? kicked,
   }) {
     return restricted?.call(this);
   }
@@ -1289,7 +1289,7 @@ class _$ChatMemberRestrictedImpl implements ChatMemberRestricted {
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
     TResult Function(ChatMemberLeft value)? left,
-    TResult Function(ChatMemberBanned value)? banned,
+    TResult Function(ChatMemberBanned value)? kicked,
     required TResult orElse(),
   }) {
     if (restricted != null) {
@@ -1508,7 +1508,7 @@ class _$ChatMemberLeftImpl implements ChatMemberLeft {
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
     required TResult Function(ChatMemberLeft value) left,
-    required TResult Function(ChatMemberBanned value) banned,
+    required TResult Function(ChatMemberBanned value) kicked,
   }) {
     return left(this);
   }
@@ -1521,7 +1521,7 @@ class _$ChatMemberLeftImpl implements ChatMemberLeft {
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
     TResult? Function(ChatMemberLeft value)? left,
-    TResult? Function(ChatMemberBanned value)? banned,
+    TResult? Function(ChatMemberBanned value)? kicked,
   }) {
     return left?.call(this);
   }
@@ -1534,7 +1534,7 @@ class _$ChatMemberLeftImpl implements ChatMemberLeft {
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
     TResult Function(ChatMemberLeft value)? left,
-    TResult Function(ChatMemberBanned value)? banned,
+    TResult Function(ChatMemberBanned value)? kicked,
     required TResult orElse(),
   }) {
     if (left != null) {
@@ -1657,7 +1657,7 @@ class _$ChatMemberBannedImpl implements ChatMemberBanned {
 
   @override
   String toString() {
-    return 'ChatMember.banned(status: $status, user: $user, untilDate: $untilDate)';
+    return 'ChatMember.kicked(status: $status, user: $user, untilDate: $untilDate)';
   }
 
   /// Create a copy of ChatMember
@@ -1677,9 +1677,9 @@ class _$ChatMemberBannedImpl implements ChatMemberBanned {
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
     required TResult Function(ChatMemberLeft value) left,
-    required TResult Function(ChatMemberBanned value) banned,
+    required TResult Function(ChatMemberBanned value) kicked,
   }) {
-    return banned(this);
+    return kicked(this);
   }
 
   @override
@@ -1690,9 +1690,9 @@ class _$ChatMemberBannedImpl implements ChatMemberBanned {
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
     TResult? Function(ChatMemberLeft value)? left,
-    TResult? Function(ChatMemberBanned value)? banned,
+    TResult? Function(ChatMemberBanned value)? kicked,
   }) {
-    return banned?.call(this);
+    return kicked?.call(this);
   }
 
   @override
@@ -1703,11 +1703,11 @@ class _$ChatMemberBannedImpl implements ChatMemberBanned {
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
     TResult Function(ChatMemberLeft value)? left,
-    TResult Function(ChatMemberBanned value)? banned,
+    TResult Function(ChatMemberBanned value)? kicked,
     required TResult orElse(),
   }) {
-    if (banned != null) {
-      return banned(this);
+    if (kicked != null) {
+      return kicked(this);
     }
     return orElse();
   }
