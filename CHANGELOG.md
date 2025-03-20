@@ -1,3 +1,7 @@
+# 2.4.4
+
+- Fixed: `ChatMemberOwner` is now correctly represented as `ChatMember.creator` instead of `ChatMember.owner`.
+
 # 2.4.3
 
 - Fixed: `ChatMemberBanned` is now correctly represented as `ChatMember.kicked` instead of `ChatMember.banned`.

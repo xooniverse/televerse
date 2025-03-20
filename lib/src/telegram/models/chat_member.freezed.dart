@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 ChatMember _$ChatMemberFromJson(Map<String, dynamic> json) {
   switch (json['status']) {
-    case 'owner':
+    case 'creator':
       return ChatMemberOwner.fromJson(json);
     case 'administrator':
       return ChatMemberAdministrator.fromJson(json);
@@ -47,7 +47,7 @@ mixin _$ChatMember {
 
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChatMemberOwner value) owner,
+    required TResult Function(ChatMemberOwner value) creator,
     required TResult Function(ChatMemberAdministrator value) administrator,
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
@@ -57,7 +57,7 @@ mixin _$ChatMember {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChatMemberOwner value)? owner,
+    TResult? Function(ChatMemberOwner value)? creator,
     TResult? Function(ChatMemberAdministrator value)? administrator,
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
@@ -67,7 +67,7 @@ mixin _$ChatMember {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChatMemberOwner value)? owner,
+    TResult Function(ChatMemberOwner value)? creator,
     TResult Function(ChatMemberAdministrator value)? administrator,
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
@@ -232,7 +232,7 @@ class _$ChatMemberOwnerImpl implements ChatMemberOwner {
 
   @override
   String toString() {
-    return 'ChatMember.owner(status: $status, user: $user, isAnonymous: $isAnonymous, customTitle: $customTitle)';
+    return 'ChatMember.creator(status: $status, user: $user, isAnonymous: $isAnonymous, customTitle: $customTitle)';
   }
 
   /// Create a copy of ChatMember
@@ -247,33 +247,33 @@ class _$ChatMemberOwnerImpl implements ChatMemberOwner {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChatMemberOwner value) owner,
+    required TResult Function(ChatMemberOwner value) creator,
     required TResult Function(ChatMemberAdministrator value) administrator,
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
     required TResult Function(ChatMemberLeft value) left,
     required TResult Function(ChatMemberBanned value) kicked,
   }) {
-    return owner(this);
+    return creator(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChatMemberOwner value)? owner,
+    TResult? Function(ChatMemberOwner value)? creator,
     TResult? Function(ChatMemberAdministrator value)? administrator,
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
     TResult? Function(ChatMemberLeft value)? left,
     TResult? Function(ChatMemberBanned value)? kicked,
   }) {
-    return owner?.call(this);
+    return creator?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChatMemberOwner value)? owner,
+    TResult Function(ChatMemberOwner value)? creator,
     TResult Function(ChatMemberAdministrator value)? administrator,
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
@@ -281,8 +281,8 @@ class _$ChatMemberOwnerImpl implements ChatMemberOwner {
     TResult Function(ChatMemberBanned value)? kicked,
     required TResult orElse(),
   }) {
-    if (owner != null) {
-      return owner(this);
+    if (creator != null) {
+      return creator(this);
     }
     return orElse();
   }
@@ -630,7 +630,7 @@ class _$ChatMemberAdministratorImpl implements ChatMemberAdministrator {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChatMemberOwner value) owner,
+    required TResult Function(ChatMemberOwner value) creator,
     required TResult Function(ChatMemberAdministrator value) administrator,
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
@@ -643,7 +643,7 @@ class _$ChatMemberAdministratorImpl implements ChatMemberAdministrator {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChatMemberOwner value)? owner,
+    TResult? Function(ChatMemberOwner value)? creator,
     TResult? Function(ChatMemberAdministrator value)? administrator,
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
@@ -656,7 +656,7 @@ class _$ChatMemberAdministratorImpl implements ChatMemberAdministrator {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChatMemberOwner value)? owner,
+    TResult Function(ChatMemberOwner value)? creator,
     TResult Function(ChatMemberAdministrator value)? administrator,
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
@@ -897,7 +897,7 @@ class _$ChatMemberMemberImpl implements ChatMemberMember {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChatMemberOwner value) owner,
+    required TResult Function(ChatMemberOwner value) creator,
     required TResult Function(ChatMemberAdministrator value) administrator,
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
@@ -910,7 +910,7 @@ class _$ChatMemberMemberImpl implements ChatMemberMember {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChatMemberOwner value)? owner,
+    TResult? Function(ChatMemberOwner value)? creator,
     TResult? Function(ChatMemberAdministrator value)? administrator,
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
@@ -923,7 +923,7 @@ class _$ChatMemberMemberImpl implements ChatMemberMember {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChatMemberOwner value)? owner,
+    TResult Function(ChatMemberOwner value)? creator,
     TResult Function(ChatMemberAdministrator value)? administrator,
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
@@ -1258,7 +1258,7 @@ class _$ChatMemberRestrictedImpl implements ChatMemberRestricted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChatMemberOwner value) owner,
+    required TResult Function(ChatMemberOwner value) creator,
     required TResult Function(ChatMemberAdministrator value) administrator,
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
@@ -1271,7 +1271,7 @@ class _$ChatMemberRestrictedImpl implements ChatMemberRestricted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChatMemberOwner value)? owner,
+    TResult? Function(ChatMemberOwner value)? creator,
     TResult? Function(ChatMemberAdministrator value)? administrator,
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
@@ -1284,7 +1284,7 @@ class _$ChatMemberRestrictedImpl implements ChatMemberRestricted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChatMemberOwner value)? owner,
+    TResult Function(ChatMemberOwner value)? creator,
     TResult Function(ChatMemberAdministrator value)? administrator,
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
@@ -1503,7 +1503,7 @@ class _$ChatMemberLeftImpl implements ChatMemberLeft {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChatMemberOwner value) owner,
+    required TResult Function(ChatMemberOwner value) creator,
     required TResult Function(ChatMemberAdministrator value) administrator,
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
@@ -1516,7 +1516,7 @@ class _$ChatMemberLeftImpl implements ChatMemberLeft {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChatMemberOwner value)? owner,
+    TResult? Function(ChatMemberOwner value)? creator,
     TResult? Function(ChatMemberAdministrator value)? administrator,
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
@@ -1529,7 +1529,7 @@ class _$ChatMemberLeftImpl implements ChatMemberLeft {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChatMemberOwner value)? owner,
+    TResult Function(ChatMemberOwner value)? creator,
     TResult Function(ChatMemberAdministrator value)? administrator,
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,
@@ -1672,7 +1672,7 @@ class _$ChatMemberBannedImpl implements ChatMemberBanned {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChatMemberOwner value) owner,
+    required TResult Function(ChatMemberOwner value) creator,
     required TResult Function(ChatMemberAdministrator value) administrator,
     required TResult Function(ChatMemberMember value) member,
     required TResult Function(ChatMemberRestricted value) restricted,
@@ -1685,7 +1685,7 @@ class _$ChatMemberBannedImpl implements ChatMemberBanned {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChatMemberOwner value)? owner,
+    TResult? Function(ChatMemberOwner value)? creator,
     TResult? Function(ChatMemberAdministrator value)? administrator,
     TResult? Function(ChatMemberMember value)? member,
     TResult? Function(ChatMemberRestricted value)? restricted,
@@ -1698,7 +1698,7 @@ class _$ChatMemberBannedImpl implements ChatMemberBanned {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChatMemberOwner value)? owner,
+    TResult Function(ChatMemberOwner value)? creator,
     TResult Function(ChatMemberAdministrator value)? administrator,
     TResult Function(ChatMemberMember value)? member,
     TResult Function(ChatMemberRestricted value)? restricted,

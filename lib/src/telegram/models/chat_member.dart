@@ -31,7 +31,7 @@ sealed class ChatMember with _$ChatMember implements _ChatMemberImpl {
   /// privileges.
   ///
   /// The status of this member is always "creator".
-  const factory ChatMember.owner({
+  const factory ChatMember.creator({
     /// The member's status in the chat
     @Default(ChatMemberStatus.creator)
     @JsonKey(name: 'status')
