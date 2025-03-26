@@ -110,6 +110,8 @@ class _InlineKeyboard extends InlineKeyboard {
   String toString() {
     return 'InlineKeyboard(inlineKeyboard: $inlineKeyboard)';
   }
+
+  String get $type => runtimeType.toString();
 }
 
 /// @nodoc
