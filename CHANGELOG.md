@@ -1,3 +1,7 @@
+# 2.4.5
+
+- Migrated to Freezed 3.x.x
+
 # 2.4.4
 
 - Fixed: `ChatMemberOwner` is now correctly represented as `ChatMember.creator` instead of `ChatMember.owner`.
