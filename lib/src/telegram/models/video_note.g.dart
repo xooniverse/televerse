@@ -6,8 +6,7 @@ part of 'video_note.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VideoNoteImpl _$$VideoNoteImplFromJson(Map<String, dynamic> json) =>
-    _$VideoNoteImpl(
+_VideoNote _$VideoNoteFromJson(Map<String, dynamic> json) => _VideoNote(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
       length: (json['length'] as num).toInt(),
@@ -18,7 +17,7 @@ _$VideoNoteImpl _$$VideoNoteImplFromJson(Map<String, dynamic> json) =>
       fileSize: (json['file_size'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$VideoNoteImplToJson(_$VideoNoteImpl instance) =>
+Map<String, dynamic> _$VideoNoteToJson(_VideoNote instance) =>
     <String, dynamic>{
       'file_id': instance.fileId,
       'file_unique_id': instance.fileUniqueId,

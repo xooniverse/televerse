@@ -19,7 +19,7 @@ abstract interface class _MenuButtonImpl {
 /// then it is applied in the chat. Otherwise, the default menu button is
 /// applied. By default, the menu button opens the list of bot commands.
 @Freezed(unionKey: 'type', unionValueCase: FreezedUnionCase.snake)
-class MenuButton with _$MenuButton implements _MenuButtonImpl {
+abstract class MenuButton with _$MenuButton implements _MenuButtonImpl {
   /// Describes that no specific value for the menu button was set.
   const factory MenuButton({
     /// Type of the menu button

@@ -10,7 +10,7 @@ part 'sticker.g.dart';
 
 /// This object represents a sticker.
 @freezed
-class Sticker with _$Sticker {
+abstract class Sticker with _$Sticker {
   /// Constructs a [Sticker] object
   const factory Sticker({
     /// Identifier for this file, which can be used to download or reuse the

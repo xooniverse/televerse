@@ -6,7 +6,7 @@ part 'labeled_price.g.dart';
 
 /// This object represents a portion of the price for goods or services.
 @freezed
-class LabeledPrice with _$LabeledPrice {
+abstract class LabeledPrice with _$LabeledPrice {
   /// Constructs a [LabeledPrice] object
   const factory LabeledPrice({
     /// Portion label

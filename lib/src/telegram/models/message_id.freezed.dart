@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,81 +12,42 @@ part of 'message_id.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-MessageId _$MessageIdFromJson(Map<String, dynamic> json) {
-  return _MessageId.fromJson(json);
-}
-
 /// @nodoc
 mixin _$MessageId {
   /// Unique message identifier
   @JsonKey(name: 'message_id')
-  int get messageId => throw _privateConstructorUsedError;
-
-  /// Serializes this MessageId to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get messageId;
 
   /// Create a copy of MessageId
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $MessageIdCopyWith<MessageId> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MessageIdCopyWith<$Res> {
-  factory $MessageIdCopyWith(MessageId value, $Res Function(MessageId) then) =
-      _$MessageIdCopyWithImpl<$Res, MessageId>;
-  @useResult
-  $Res call({@JsonKey(name: 'message_id') int messageId});
-}
-
-/// @nodoc
-class _$MessageIdCopyWithImpl<$Res, $Val extends MessageId>
-    implements $MessageIdCopyWith<$Res> {
-  _$MessageIdCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of MessageId
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $MessageIdCopyWith<MessageId> get copyWith =>
+      _$MessageIdCopyWithImpl<MessageId>(this as MessageId, _$identity);
+
+  /// Serializes this MessageId to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? messageId = null,
-  }) {
-    return _then(_value.copyWith(
-      messageId: null == messageId
-          ? _value.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  String toString() {
+    return 'MessageId(messageId: $messageId)';
   }
 }
 
 /// @nodoc
-abstract class _$$MessageIdImplCopyWith<$Res>
-    implements $MessageIdCopyWith<$Res> {
-  factory _$$MessageIdImplCopyWith(
-          _$MessageIdImpl value, $Res Function(_$MessageIdImpl) then) =
-      __$$MessageIdImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $MessageIdCopyWith<$Res> {
+  factory $MessageIdCopyWith(MessageId value, $Res Function(MessageId) _then) =
+      _$MessageIdCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'message_id') int messageId});
 }
 
 /// @nodoc
-class __$$MessageIdImplCopyWithImpl<$Res>
-    extends _$MessageIdCopyWithImpl<$Res, _$MessageIdImpl>
-    implements _$$MessageIdImplCopyWith<$Res> {
-  __$$MessageIdImplCopyWithImpl(
-      _$MessageIdImpl _value, $Res Function(_$MessageIdImpl) _then)
-      : super(_value, _then);
+class _$MessageIdCopyWithImpl<$Res> implements $MessageIdCopyWith<$Res> {
+  _$MessageIdCopyWithImpl(this._self, this._then);
+
+  final MessageId _self;
+  final $Res Function(MessageId) _then;
 
   /// Create a copy of MessageId
   /// with the given fields replaced by the non-null parameter values.
@@ -94,9 +56,9 @@ class __$$MessageIdImplCopyWithImpl<$Res>
   $Res call({
     Object? messageId = null,
   }) {
-    return _then(_$MessageIdImpl(
+    return _then(_self.copyWith(
       messageId: null == messageId
-          ? _value.messageId
+          ? _self.messageId
           : messageId // ignore: cast_nullable_to_non_nullable
               as int,
     ));
@@ -105,55 +67,67 @@ class __$$MessageIdImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$MessageIdImpl implements _MessageId {
-  const _$MessageIdImpl({@JsonKey(name: 'message_id') required this.messageId});
-
-  factory _$MessageIdImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MessageIdImplFromJson(json);
+class _MessageId implements MessageId {
+  const _MessageId({@JsonKey(name: 'message_id') required this.messageId});
+  factory _MessageId.fromJson(Map<String, dynamic> json) =>
+      _$MessageIdFromJson(json);
 
   /// Unique message identifier
   @override
   @JsonKey(name: 'message_id')
   final int messageId;
 
+  /// Create a copy of MessageId
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MessageIdCopyWith<_MessageId> get copyWith =>
+      __$MessageIdCopyWithImpl<_MessageId>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MessageIdToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'MessageId(messageId: $messageId)';
   }
-
-  /// Create a copy of MessageId
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MessageIdImplCopyWith<_$MessageIdImpl> get copyWith =>
-      __$$MessageIdImplCopyWithImpl<_$MessageIdImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MessageIdImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _MessageId implements MessageId {
-  const factory _MessageId(
-          {@JsonKey(name: 'message_id') required final int messageId}) =
-      _$MessageIdImpl;
-
-  factory _MessageId.fromJson(Map<String, dynamic> json) =
-      _$MessageIdImpl.fromJson;
-
-  /// Unique message identifier
+/// @nodoc
+abstract mixin class _$MessageIdCopyWith<$Res>
+    implements $MessageIdCopyWith<$Res> {
+  factory _$MessageIdCopyWith(
+          _MessageId value, $Res Function(_MessageId) _then) =
+      __$MessageIdCopyWithImpl;
   @override
-  @JsonKey(name: 'message_id')
-  int get messageId;
+  @useResult
+  $Res call({@JsonKey(name: 'message_id') int messageId});
+}
+
+/// @nodoc
+class __$MessageIdCopyWithImpl<$Res> implements _$MessageIdCopyWith<$Res> {
+  __$MessageIdCopyWithImpl(this._self, this._then);
+
+  final _MessageId _self;
+  final $Res Function(_MessageId) _then;
 
   /// Create a copy of MessageId
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MessageIdImplCopyWith<_$MessageIdImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? messageId = null,
+  }) {
+    return _then(_MessageId(
+      messageId: null == messageId
+          ? _self.messageId
+          : messageId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }

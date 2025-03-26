@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,49 +12,48 @@ part of 'message_reaction_count_updated.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-MessageReactionCountUpdated _$MessageReactionCountUpdatedFromJson(
-    Map<String, dynamic> json) {
-  return _MessageReactionCountUpdated.fromJson(json);
-}
-
 /// @nodoc
 mixin _$MessageReactionCountUpdated {
   /// The chat containing the message.
   @JsonKey(name: 'chat')
-  Chat get chat => throw _privateConstructorUsedError;
+  Chat get chat;
 
   /// Unique message identifier inside the chat.
   @JsonKey(name: 'message_id')
-  int get messageId => throw _privateConstructorUsedError;
+  int get messageId;
 
   /// Date of the change in Unix time.
   @JsonKey(name: 'date')
-  int get date => throw _privateConstructorUsedError;
+  int get date;
 
   /// List of reactions that are present on the message.
   @JsonKey(name: 'reactions')
-  List<ReactionCount> get reactions => throw _privateConstructorUsedError;
-
-  /// Serializes this MessageReactionCountUpdated to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<ReactionCount> get reactions;
 
   /// Create a copy of MessageReactionCountUpdated
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $MessageReactionCountUpdatedCopyWith<MessageReactionCountUpdated>
-      get copyWith => throw _privateConstructorUsedError;
+      get copyWith => _$MessageReactionCountUpdatedCopyWithImpl<
+              MessageReactionCountUpdated>(
+          this as MessageReactionCountUpdated, _$identity);
+
+  /// Serializes this MessageReactionCountUpdated to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'MessageReactionCountUpdated(chat: $chat, messageId: $messageId, date: $date, reactions: $reactions)';
+  }
 }
 
 /// @nodoc
-abstract class $MessageReactionCountUpdatedCopyWith<$Res> {
+abstract mixin class $MessageReactionCountUpdatedCopyWith<$Res> {
   factory $MessageReactionCountUpdatedCopyWith(
           MessageReactionCountUpdated value,
-          $Res Function(MessageReactionCountUpdated) then) =
-      _$MessageReactionCountUpdatedCopyWithImpl<$Res,
-          MessageReactionCountUpdated>;
+          $Res Function(MessageReactionCountUpdated) _then) =
+      _$MessageReactionCountUpdatedCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'chat') Chat chat,
@@ -65,15 +65,12 @@ abstract class $MessageReactionCountUpdatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MessageReactionCountUpdatedCopyWithImpl<$Res,
-        $Val extends MessageReactionCountUpdated>
+class _$MessageReactionCountUpdatedCopyWithImpl<$Res>
     implements $MessageReactionCountUpdatedCopyWith<$Res> {
-  _$MessageReactionCountUpdatedCopyWithImpl(this._value, this._then);
+  _$MessageReactionCountUpdatedCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final MessageReactionCountUpdated _self;
+  final $Res Function(MessageReactionCountUpdated) _then;
 
   /// Create a copy of MessageReactionCountUpdated
   /// with the given fields replaced by the non-null parameter values.
@@ -85,24 +82,24 @@ class _$MessageReactionCountUpdatedCopyWithImpl<$Res,
     Object? date = null,
     Object? reactions = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       chat: null == chat
-          ? _value.chat
+          ? _self.chat
           : chat // ignore: cast_nullable_to_non_nullable
               as Chat,
       messageId: null == messageId
-          ? _value.messageId
+          ? _self.messageId
           : messageId // ignore: cast_nullable_to_non_nullable
               as int,
       date: null == date
-          ? _value.date
+          ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
               as int,
       reactions: null == reactions
-          ? _value.reactions
+          ? _self.reactions
           : reactions // ignore: cast_nullable_to_non_nullable
               as List<ReactionCount>,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of MessageReactionCountUpdated
@@ -110,86 +107,23 @@ class _$MessageReactionCountUpdatedCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $ChatCopyWith<$Res> get chat {
-    return $ChatCopyWith<$Res>(_value.chat, (value) {
-      return _then(_value.copyWith(chat: value) as $Val);
+    return $ChatCopyWith<$Res>(_self.chat, (value) {
+      return _then(_self.copyWith(chat: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$MessageReactionCountUpdatedImplCopyWith<$Res>
-    implements $MessageReactionCountUpdatedCopyWith<$Res> {
-  factory _$$MessageReactionCountUpdatedImplCopyWith(
-          _$MessageReactionCountUpdatedImpl value,
-          $Res Function(_$MessageReactionCountUpdatedImpl) then) =
-      __$$MessageReactionCountUpdatedImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'message_id') int messageId,
-      @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'reactions') List<ReactionCount> reactions});
-
-  @override
-  $ChatCopyWith<$Res> get chat;
-}
-
-/// @nodoc
-class __$$MessageReactionCountUpdatedImplCopyWithImpl<$Res>
-    extends _$MessageReactionCountUpdatedCopyWithImpl<$Res,
-        _$MessageReactionCountUpdatedImpl>
-    implements _$$MessageReactionCountUpdatedImplCopyWith<$Res> {
-  __$$MessageReactionCountUpdatedImplCopyWithImpl(
-      _$MessageReactionCountUpdatedImpl _value,
-      $Res Function(_$MessageReactionCountUpdatedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of MessageReactionCountUpdated
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? chat = null,
-    Object? messageId = null,
-    Object? date = null,
-    Object? reactions = null,
-  }) {
-    return _then(_$MessageReactionCountUpdatedImpl(
-      chat: null == chat
-          ? _value.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      messageId: null == messageId
-          ? _value.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      reactions: null == reactions
-          ? _value._reactions
-          : reactions // ignore: cast_nullable_to_non_nullable
-              as List<ReactionCount>,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$MessageReactionCountUpdatedImpl
-    implements _MessageReactionCountUpdated {
-  const _$MessageReactionCountUpdatedImpl(
+class _MessageReactionCountUpdated implements MessageReactionCountUpdated {
+  const _MessageReactionCountUpdated(
       {@JsonKey(name: 'chat') required this.chat,
       @JsonKey(name: 'message_id') required this.messageId,
       @JsonKey(name: 'date') required this.date,
       @JsonKey(name: 'reactions') required final List<ReactionCount> reactions})
       : _reactions = reactions;
-
-  factory _$MessageReactionCountUpdatedImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$MessageReactionCountUpdatedImplFromJson(json);
+  factory _MessageReactionCountUpdated.fromJson(Map<String, dynamic> json) =>
+      _$MessageReactionCountUpdatedFromJson(json);
 
   /// The chat containing the message.
   @override
@@ -218,65 +152,92 @@ class _$MessageReactionCountUpdatedImpl
     return EqualUnmodifiableListView(_reactions);
   }
 
+  /// Create a copy of MessageReactionCountUpdated
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MessageReactionCountUpdatedCopyWith<_MessageReactionCountUpdated>
+      get copyWith => __$MessageReactionCountUpdatedCopyWithImpl<
+          _MessageReactionCountUpdated>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MessageReactionCountUpdatedToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'MessageReactionCountUpdated(chat: $chat, messageId: $messageId, date: $date, reactions: $reactions)';
   }
-
-  /// Create a copy of MessageReactionCountUpdated
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MessageReactionCountUpdatedImplCopyWith<_$MessageReactionCountUpdatedImpl>
-      get copyWith => __$$MessageReactionCountUpdatedImplCopyWithImpl<
-          _$MessageReactionCountUpdatedImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MessageReactionCountUpdatedImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _MessageReactionCountUpdated
-    implements MessageReactionCountUpdated {
-  const factory _MessageReactionCountUpdated(
-          {@JsonKey(name: 'chat') required final Chat chat,
-          @JsonKey(name: 'message_id') required final int messageId,
-          @JsonKey(name: 'date') required final int date,
-          @JsonKey(name: 'reactions')
-          required final List<ReactionCount> reactions}) =
-      _$MessageReactionCountUpdatedImpl;
-
-  factory _MessageReactionCountUpdated.fromJson(Map<String, dynamic> json) =
-      _$MessageReactionCountUpdatedImpl.fromJson;
-
-  /// The chat containing the message.
+/// @nodoc
+abstract mixin class _$MessageReactionCountUpdatedCopyWith<$Res>
+    implements $MessageReactionCountUpdatedCopyWith<$Res> {
+  factory _$MessageReactionCountUpdatedCopyWith(
+          _MessageReactionCountUpdated value,
+          $Res Function(_MessageReactionCountUpdated) _then) =
+      __$MessageReactionCountUpdatedCopyWithImpl;
   @override
-  @JsonKey(name: 'chat')
-  Chat get chat;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'chat') Chat chat,
+      @JsonKey(name: 'message_id') int messageId,
+      @JsonKey(name: 'date') int date,
+      @JsonKey(name: 'reactions') List<ReactionCount> reactions});
 
-  /// Unique message identifier inside the chat.
   @override
-  @JsonKey(name: 'message_id')
-  int get messageId;
+  $ChatCopyWith<$Res> get chat;
+}
 
-  /// Date of the change in Unix time.
-  @override
-  @JsonKey(name: 'date')
-  int get date;
+/// @nodoc
+class __$MessageReactionCountUpdatedCopyWithImpl<$Res>
+    implements _$MessageReactionCountUpdatedCopyWith<$Res> {
+  __$MessageReactionCountUpdatedCopyWithImpl(this._self, this._then);
 
-  /// List of reactions that are present on the message.
-  @override
-  @JsonKey(name: 'reactions')
-  List<ReactionCount> get reactions;
+  final _MessageReactionCountUpdated _self;
+  final $Res Function(_MessageReactionCountUpdated) _then;
 
   /// Create a copy of MessageReactionCountUpdated
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MessageReactionCountUpdatedImplCopyWith<_$MessageReactionCountUpdatedImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? chat = null,
+    Object? messageId = null,
+    Object? date = null,
+    Object? reactions = null,
+  }) {
+    return _then(_MessageReactionCountUpdated(
+      chat: null == chat
+          ? _self.chat
+          : chat // ignore: cast_nullable_to_non_nullable
+              as Chat,
+      messageId: null == messageId
+          ? _self.messageId
+          : messageId // ignore: cast_nullable_to_non_nullable
+              as int,
+      date: null == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as int,
+      reactions: null == reactions
+          ? _self._reactions
+          : reactions // ignore: cast_nullable_to_non_nullable
+              as List<ReactionCount>,
+    ));
+  }
+
+  /// Create a copy of MessageReactionCountUpdated
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res> get chat {
+    return $ChatCopyWith<$Res>(_self.chat, (value) {
+      return _then(_self.copyWith(chat: value));
+    });
+  }
 }

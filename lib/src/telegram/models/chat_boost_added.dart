@@ -6,7 +6,7 @@ part 'chat_boost_added.g.dart';
 
 /// This object represents a service message about a user boosting a chat.
 @freezed
-class ChatBoostAdded with _$ChatBoostAdded {
+abstract class ChatBoostAdded with _$ChatBoostAdded {
   /// Chat Boost Added constructor
   @JsonSerializable(explicitToJson: true)
   const factory ChatBoostAdded({

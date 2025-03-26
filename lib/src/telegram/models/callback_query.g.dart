@@ -6,8 +6,8 @@ part of 'callback_query.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CallbackQueryImpl _$$CallbackQueryImplFromJson(Map<String, dynamic> json) =>
-    _$CallbackQueryImpl(
+_CallbackQuery _$CallbackQueryFromJson(Map<String, dynamic> json) =>
+    _CallbackQuery(
       id: json['id'] as String,
       from: User.fromJson(json['from'] as Map<String, dynamic>),
       message: json['message'] == null
@@ -20,7 +20,7 @@ _$CallbackQueryImpl _$$CallbackQueryImplFromJson(Map<String, dynamic> json) =>
       gameShortName: json['game_short_name'] as String?,
     );
 
-Map<String, dynamic> _$$CallbackQueryImplToJson(_$CallbackQueryImpl instance) =>
+Map<String, dynamic> _$CallbackQueryToJson(_CallbackQuery instance) =>
     <String, dynamic>{
       'id': instance.id,
       'from': instance.from,

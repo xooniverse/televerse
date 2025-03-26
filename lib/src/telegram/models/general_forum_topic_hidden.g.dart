@@ -6,10 +6,10 @@ part of 'general_forum_topic_hidden.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GeneralForumTopicHiddenImpl _$$GeneralForumTopicHiddenImplFromJson(
+_GeneralForumTopicHidden _$GeneralForumTopicHiddenFromJson(
         Map<String, dynamic> json) =>
-    _$GeneralForumTopicHiddenImpl();
+    _GeneralForumTopicHidden();
 
-Map<String, dynamic> _$$GeneralForumTopicHiddenImplToJson(
-        _$GeneralForumTopicHiddenImpl instance) =>
+Map<String, dynamic> _$GeneralForumTopicHiddenToJson(
+        _GeneralForumTopicHidden instance) =>
     <String, dynamic>{};

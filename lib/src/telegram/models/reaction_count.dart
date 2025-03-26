@@ -8,7 +8,7 @@ part 'reaction_count.g.dart';
 /// Represents a reaction added to a message along with the number of times it
 /// was added.
 @freezed
-class ReactionCount with _$ReactionCount {
+abstract class ReactionCount with _$ReactionCount {
   /// Creates a new instance of [ReactionCount].
   const factory ReactionCount({
     /// Type of the reaction.

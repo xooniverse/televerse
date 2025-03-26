@@ -8,7 +8,7 @@ part 'poll_answer.g.dart';
 
 /// This object represents an answer of a user in a non-anonymous poll.
 @freezed
-class PollAnswer with _$PollAnswer {
+abstract class PollAnswer with _$PollAnswer {
   /// Constructs a [PollAnswer] object
   const factory PollAnswer({
     /// Unique poll identifier

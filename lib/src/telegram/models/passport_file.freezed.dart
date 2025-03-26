@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,106 +12,50 @@ part of 'passport_file.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-PassportFile _$PassportFileFromJson(Map<String, dynamic> json) {
-  return _PassportFile.fromJson(json);
-}
-
 /// @nodoc
 mixin _$PassportFile {
   /// Unique identifier for this file
   @JsonKey(name: 'file_id')
-  String get fileId => throw _privateConstructorUsedError;
+  String get fileId;
 
   /// Unique identifier for this file, which is supposed to be the same over
   /// time and for different bots. Can't be used to download or reuse the
   /// file.
   @JsonKey(name: 'file_unique_id')
-  String get fileUniqueId => throw _privateConstructorUsedError;
+  String get fileUniqueId;
 
   /// File size
   @JsonKey(name: 'file_size')
-  int get fileSize => throw _privateConstructorUsedError;
+  int get fileSize;
 
   /// Unix time when the file was uploaded
   ///
   /// You can get the [DateTime] object as [fileDateTime] getter.
   @JsonKey(name: 'file_date')
-  int get fileDate => throw _privateConstructorUsedError;
-
-  /// Serializes this PassportFile to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get fileDate;
 
   /// Create a copy of PassportFile
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PassportFileCopyWith<PassportFile> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PassportFileCopyWith<$Res> {
-  factory $PassportFileCopyWith(
-          PassportFile value, $Res Function(PassportFile) then) =
-      _$PassportFileCopyWithImpl<$Res, PassportFile>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'file_size') int fileSize,
-      @JsonKey(name: 'file_date') int fileDate});
-}
-
-/// @nodoc
-class _$PassportFileCopyWithImpl<$Res, $Val extends PassportFile>
-    implements $PassportFileCopyWith<$Res> {
-  _$PassportFileCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of PassportFile
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $PassportFileCopyWith<PassportFile> get copyWith =>
+      _$PassportFileCopyWithImpl<PassportFile>(
+          this as PassportFile, _$identity);
+
+  /// Serializes this PassportFile to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? fileId = null,
-    Object? fileUniqueId = null,
-    Object? fileSize = null,
-    Object? fileDate = null,
-  }) {
-    return _then(_value.copyWith(
-      fileId: null == fileId
-          ? _value.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _value.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileSize: null == fileSize
-          ? _value.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int,
-      fileDate: null == fileDate
-          ? _value.fileDate
-          : fileDate // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  String toString() {
+    return 'PassportFile(fileId: $fileId, fileUniqueId: $fileUniqueId, fileSize: $fileSize, fileDate: $fileDate)';
   }
 }
 
 /// @nodoc
-abstract class _$$PassportFileImplCopyWith<$Res>
-    implements $PassportFileCopyWith<$Res> {
-  factory _$$PassportFileImplCopyWith(
-          _$PassportFileImpl value, $Res Function(_$PassportFileImpl) then) =
-      __$$PassportFileImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $PassportFileCopyWith<$Res> {
+  factory $PassportFileCopyWith(
+          PassportFile value, $Res Function(PassportFile) _then) =
+      _$PassportFileCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'file_id') String fileId,
@@ -120,12 +65,11 @@ abstract class _$$PassportFileImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PassportFileImplCopyWithImpl<$Res>
-    extends _$PassportFileCopyWithImpl<$Res, _$PassportFileImpl>
-    implements _$$PassportFileImplCopyWith<$Res> {
-  __$$PassportFileImplCopyWithImpl(
-      _$PassportFileImpl _value, $Res Function(_$PassportFileImpl) _then)
-      : super(_value, _then);
+class _$PassportFileCopyWithImpl<$Res> implements $PassportFileCopyWith<$Res> {
+  _$PassportFileCopyWithImpl(this._self, this._then);
+
+  final PassportFile _self;
+  final $Res Function(PassportFile) _then;
 
   /// Create a copy of PassportFile
   /// with the given fields replaced by the non-null parameter values.
@@ -137,21 +81,21 @@ class __$$PassportFileImplCopyWithImpl<$Res>
     Object? fileSize = null,
     Object? fileDate = null,
   }) {
-    return _then(_$PassportFileImpl(
+    return _then(_self.copyWith(
       fileId: null == fileId
-          ? _value.fileId
+          ? _self.fileId
           : fileId // ignore: cast_nullable_to_non_nullable
               as String,
       fileUniqueId: null == fileUniqueId
-          ? _value.fileUniqueId
+          ? _self.fileUniqueId
           : fileUniqueId // ignore: cast_nullable_to_non_nullable
               as String,
       fileSize: null == fileSize
-          ? _value.fileSize
+          ? _self.fileSize
           : fileSize // ignore: cast_nullable_to_non_nullable
               as int,
       fileDate: null == fileDate
-          ? _value.fileDate
+          ? _self.fileDate
           : fileDate // ignore: cast_nullable_to_non_nullable
               as int,
     ));
@@ -160,15 +104,14 @@ class __$$PassportFileImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PassportFileImpl implements _PassportFile {
-  const _$PassportFileImpl(
+class _PassportFile implements PassportFile {
+  const _PassportFile(
       {@JsonKey(name: 'file_id') required this.fileId,
       @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
       @JsonKey(name: 'file_size') required this.fileSize,
       @JsonKey(name: 'file_date') required this.fileDate});
-
-  factory _$PassportFileImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PassportFileImplFromJson(json);
+  factory _PassportFile.fromJson(Map<String, dynamic> json) =>
+      _$PassportFileFromJson(json);
 
   /// Unique identifier for this file
   @override
@@ -194,66 +137,77 @@ class _$PassportFileImpl implements _PassportFile {
   @JsonKey(name: 'file_date')
   final int fileDate;
 
+  /// Create a copy of PassportFile
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PassportFileCopyWith<_PassportFile> get copyWith =>
+      __$PassportFileCopyWithImpl<_PassportFile>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PassportFileToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'PassportFile(fileId: $fileId, fileUniqueId: $fileUniqueId, fileSize: $fileSize, fileDate: $fileDate)';
   }
-
-  /// Create a copy of PassportFile
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PassportFileImplCopyWith<_$PassportFileImpl> get copyWith =>
-      __$$PassportFileImplCopyWithImpl<_$PassportFileImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PassportFileImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _PassportFile implements PassportFile {
-  const factory _PassportFile(
-          {@JsonKey(name: 'file_id') required final String fileId,
-          @JsonKey(name: 'file_unique_id') required final String fileUniqueId,
-          @JsonKey(name: 'file_size') required final int fileSize,
-          @JsonKey(name: 'file_date') required final int fileDate}) =
-      _$PassportFileImpl;
-
-  factory _PassportFile.fromJson(Map<String, dynamic> json) =
-      _$PassportFileImpl.fromJson;
-
-  /// Unique identifier for this file
+/// @nodoc
+abstract mixin class _$PassportFileCopyWith<$Res>
+    implements $PassportFileCopyWith<$Res> {
+  factory _$PassportFileCopyWith(
+          _PassportFile value, $Res Function(_PassportFile) _then) =
+      __$PassportFileCopyWithImpl;
   @override
-  @JsonKey(name: 'file_id')
-  String get fileId;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'file_id') String fileId,
+      @JsonKey(name: 'file_unique_id') String fileUniqueId,
+      @JsonKey(name: 'file_size') int fileSize,
+      @JsonKey(name: 'file_date') int fileDate});
+}
 
-  /// Unique identifier for this file, which is supposed to be the same over
-  /// time and for different bots. Can't be used to download or reuse the
-  /// file.
-  @override
-  @JsonKey(name: 'file_unique_id')
-  String get fileUniqueId;
+/// @nodoc
+class __$PassportFileCopyWithImpl<$Res>
+    implements _$PassportFileCopyWith<$Res> {
+  __$PassportFileCopyWithImpl(this._self, this._then);
 
-  /// File size
-  @override
-  @JsonKey(name: 'file_size')
-  int get fileSize;
-
-  /// Unix time when the file was uploaded
-  ///
-  /// You can get the [DateTime] object as [fileDateTime] getter.
-  @override
-  @JsonKey(name: 'file_date')
-  int get fileDate;
+  final _PassportFile _self;
+  final $Res Function(_PassportFile) _then;
 
   /// Create a copy of PassportFile
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PassportFileImplCopyWith<_$PassportFileImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? fileId = null,
+    Object? fileUniqueId = null,
+    Object? fileSize = null,
+    Object? fileDate = null,
+  }) {
+    return _then(_PassportFile(
+      fileId: null == fileId
+          ? _self.fileId
+          : fileId // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileUniqueId: null == fileUniqueId
+          ? _self.fileUniqueId
+          : fileUniqueId // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileSize: null == fileSize
+          ? _self.fileSize
+          : fileSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      fileDate: null == fileDate
+          ? _self.fileDate
+          : fileDate // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }

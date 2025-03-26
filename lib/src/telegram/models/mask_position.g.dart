@@ -6,15 +6,15 @@ part of 'mask_position.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MaskPositionImpl _$$MaskPositionImplFromJson(Map<String, dynamic> json) =>
-    _$MaskPositionImpl(
+_MaskPosition _$MaskPositionFromJson(Map<String, dynamic> json) =>
+    _MaskPosition(
       point: $enumDecode(_$MaskPositionPointEnumMap, json['point']),
       xShift: (json['x_shift'] as num).toDouble(),
       yShift: (json['y_shift'] as num).toDouble(),
       scale: (json['scale'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$MaskPositionImplToJson(_$MaskPositionImpl instance) =>
+Map<String, dynamic> _$MaskPositionToJson(_MaskPosition instance) =>
     <String, dynamic>{
       'point': instance.point,
       'x_shift': instance.xShift,

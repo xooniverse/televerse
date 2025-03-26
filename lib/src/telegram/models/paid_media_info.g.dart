@@ -6,15 +6,15 @@ part of 'paid_media_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PaidMediaInfoImpl _$$PaidMediaInfoImplFromJson(Map<String, dynamic> json) =>
-    _$PaidMediaInfoImpl(
+_PaidMediaInfo _$PaidMediaInfoFromJson(Map<String, dynamic> json) =>
+    _PaidMediaInfo(
       starCount: (json['star_count'] as num).toInt(),
       paidMedia: (json['paid_media'] as List<dynamic>)
           .map((e) => PaidMedia.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$PaidMediaInfoImplToJson(_$PaidMediaInfoImpl instance) =>
+Map<String, dynamic> _$PaidMediaInfoToJson(_PaidMediaInfo instance) =>
     <String, dynamic>{
       'star_count': instance.starCount,
       'paid_media': instance.paidMedia,

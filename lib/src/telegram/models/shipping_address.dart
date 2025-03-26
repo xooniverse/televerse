@@ -6,7 +6,7 @@ part 'shipping_address.g.dart';
 
 /// This object represents a shipping address.
 @freezed
-class ShippingAddress with _$ShippingAddress {
+abstract class ShippingAddress with _$ShippingAddress {
   /// Constructs a [ShippingAddress] object
   const factory ShippingAddress({
     /// ISO 3166-1 alpha-2 country code

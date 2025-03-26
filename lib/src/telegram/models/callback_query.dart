@@ -22,7 +22,7 @@ part 'callback_query.g.dart';
 /// even if no notification to the user is needed (e.g., without specifying any
 /// of the optional parameters).
 @freezed
-class CallbackQuery with _$CallbackQuery implements WithUser {
+abstract class CallbackQuery with _$CallbackQuery implements WithUser {
   /// Creates an incoming callback query
   ///
   /// - [id] Unique identifier for this query [from] Sender [message] Message

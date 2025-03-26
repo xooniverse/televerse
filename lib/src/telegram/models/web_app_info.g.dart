@@ -6,12 +6,11 @@ part of 'web_app_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$WebAppInfoImpl _$$WebAppInfoImplFromJson(Map<String, dynamic> json) =>
-    _$WebAppInfoImpl(
+_WebAppInfo _$WebAppInfoFromJson(Map<String, dynamic> json) => _WebAppInfo(
       url: json['url'] as String,
     );
 
-Map<String, dynamic> _$$WebAppInfoImplToJson(_$WebAppInfoImpl instance) =>
+Map<String, dynamic> _$WebAppInfoToJson(_WebAppInfo instance) =>
     <String, dynamic>{
       'url': instance.url,
     };

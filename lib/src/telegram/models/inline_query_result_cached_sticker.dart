@@ -17,7 +17,7 @@ part 'inline_query_result_cached_sticker.g.dart';
 /// for static stickers and after 06 July, 2019 for animated stickers. Older
 /// clients will ignore them.
 @freezed
-class InlineQueryResultCachedSticker
+abstract class InlineQueryResultCachedSticker
     with _$InlineQueryResultCachedSticker
     implements InlineQueryResult {
   /// Constructs an [InlineQueryResultCachedSticker] object

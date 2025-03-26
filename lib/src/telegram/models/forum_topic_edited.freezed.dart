@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,83 +12,39 @@ part of 'forum_topic_edited.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ForumTopicEdited _$ForumTopicEditedFromJson(Map<String, dynamic> json) {
-  return _ForumTopicEdited.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ForumTopicEdited {
   /// Optional. New name of the topic, if it was edited
   @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
 
   /// Optional. New identifier of the custom emoji shown as the topic icon,
   /// if it was edited; an empty string if the icon was removed
   @JsonKey(name: 'icon_custom_emoji_id')
-  String? get iconCustomEmojiId => throw _privateConstructorUsedError;
-
-  /// Serializes this ForumTopicEdited to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get iconCustomEmojiId;
 
   /// Create a copy of ForumTopicEdited
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ForumTopicEditedCopyWith<ForumTopicEdited> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ForumTopicEditedCopyWith<$Res> {
-  factory $ForumTopicEditedCopyWith(
-          ForumTopicEdited value, $Res Function(ForumTopicEdited) then) =
-      _$ForumTopicEditedCopyWithImpl<$Res, ForumTopicEdited>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
-}
-
-/// @nodoc
-class _$ForumTopicEditedCopyWithImpl<$Res, $Val extends ForumTopicEdited>
-    implements $ForumTopicEditedCopyWith<$Res> {
-  _$ForumTopicEditedCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ForumTopicEdited
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ForumTopicEditedCopyWith<ForumTopicEdited> get copyWith =>
+      _$ForumTopicEditedCopyWithImpl<ForumTopicEdited>(
+          this as ForumTopicEdited, _$identity);
+
+  /// Serializes this ForumTopicEdited to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? name = freezed,
-    Object? iconCustomEmojiId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iconCustomEmojiId: freezed == iconCustomEmojiId
-          ? _value.iconCustomEmojiId
-          : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  String toString() {
+    return 'ForumTopicEdited(name: $name, iconCustomEmojiId: $iconCustomEmojiId)';
   }
 }
 
 /// @nodoc
-abstract class _$$ForumTopicEditedImplCopyWith<$Res>
-    implements $ForumTopicEditedCopyWith<$Res> {
-  factory _$$ForumTopicEditedImplCopyWith(_$ForumTopicEditedImpl value,
-          $Res Function(_$ForumTopicEditedImpl) then) =
-      __$$ForumTopicEditedImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ForumTopicEditedCopyWith<$Res> {
+  factory $ForumTopicEditedCopyWith(
+          ForumTopicEdited value, $Res Function(ForumTopicEdited) _then) =
+      _$ForumTopicEditedCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'name') String? name,
@@ -95,12 +52,12 @@ abstract class _$$ForumTopicEditedImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ForumTopicEditedImplCopyWithImpl<$Res>
-    extends _$ForumTopicEditedCopyWithImpl<$Res, _$ForumTopicEditedImpl>
-    implements _$$ForumTopicEditedImplCopyWith<$Res> {
-  __$$ForumTopicEditedImplCopyWithImpl(_$ForumTopicEditedImpl _value,
-      $Res Function(_$ForumTopicEditedImpl) _then)
-      : super(_value, _then);
+class _$ForumTopicEditedCopyWithImpl<$Res>
+    implements $ForumTopicEditedCopyWith<$Res> {
+  _$ForumTopicEditedCopyWithImpl(this._self, this._then);
+
+  final ForumTopicEdited _self;
+  final $Res Function(ForumTopicEdited) _then;
 
   /// Create a copy of ForumTopicEdited
   /// with the given fields replaced by the non-null parameter values.
@@ -110,13 +67,13 @@ class __$$ForumTopicEditedImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? iconCustomEmojiId = freezed,
   }) {
-    return _then(_$ForumTopicEditedImpl(
+    return _then(_self.copyWith(
       name: freezed == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
       iconCustomEmojiId: freezed == iconCustomEmojiId
-          ? _value.iconCustomEmojiId
+          ? _self.iconCustomEmojiId
           : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -125,13 +82,12 @@ class __$$ForumTopicEditedImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ForumTopicEditedImpl implements _ForumTopicEdited {
-  const _$ForumTopicEditedImpl(
+class _ForumTopicEdited implements ForumTopicEdited {
+  const _ForumTopicEdited(
       {@JsonKey(name: 'name') this.name,
       @JsonKey(name: 'icon_custom_emoji_id') this.iconCustomEmojiId});
-
-  factory _$ForumTopicEditedImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ForumTopicEditedImplFromJson(json);
+  factory _ForumTopicEdited.fromJson(Map<String, dynamic> json) =>
+      _$ForumTopicEditedFromJson(json);
 
   /// Optional. New name of the topic, if it was edited
   @override
@@ -144,52 +100,65 @@ class _$ForumTopicEditedImpl implements _ForumTopicEdited {
   @JsonKey(name: 'icon_custom_emoji_id')
   final String? iconCustomEmojiId;
 
+  /// Create a copy of ForumTopicEdited
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ForumTopicEditedCopyWith<_ForumTopicEdited> get copyWith =>
+      __$ForumTopicEditedCopyWithImpl<_ForumTopicEdited>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ForumTopicEditedToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'ForumTopicEdited(name: $name, iconCustomEmojiId: $iconCustomEmojiId)';
   }
-
-  /// Create a copy of ForumTopicEdited
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ForumTopicEditedImplCopyWith<_$ForumTopicEditedImpl> get copyWith =>
-      __$$ForumTopicEditedImplCopyWithImpl<_$ForumTopicEditedImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ForumTopicEditedImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _ForumTopicEdited implements ForumTopicEdited {
-  const factory _ForumTopicEdited(
-      {@JsonKey(name: 'name') final String? name,
-      @JsonKey(name: 'icon_custom_emoji_id')
-      final String? iconCustomEmojiId}) = _$ForumTopicEditedImpl;
-
-  factory _ForumTopicEdited.fromJson(Map<String, dynamic> json) =
-      _$ForumTopicEditedImpl.fromJson;
-
-  /// Optional. New name of the topic, if it was edited
+/// @nodoc
+abstract mixin class _$ForumTopicEditedCopyWith<$Res>
+    implements $ForumTopicEditedCopyWith<$Res> {
+  factory _$ForumTopicEditedCopyWith(
+          _ForumTopicEdited value, $Res Function(_ForumTopicEdited) _then) =
+      __$ForumTopicEditedCopyWithImpl;
   @override
-  @JsonKey(name: 'name')
-  String? get name;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
+}
 
-  /// Optional. New identifier of the custom emoji shown as the topic icon,
-  /// if it was edited; an empty string if the icon was removed
-  @override
-  @JsonKey(name: 'icon_custom_emoji_id')
-  String? get iconCustomEmojiId;
+/// @nodoc
+class __$ForumTopicEditedCopyWithImpl<$Res>
+    implements _$ForumTopicEditedCopyWith<$Res> {
+  __$ForumTopicEditedCopyWithImpl(this._self, this._then);
+
+  final _ForumTopicEdited _self;
+  final $Res Function(_ForumTopicEdited) _then;
 
   /// Create a copy of ForumTopicEdited
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ForumTopicEditedImplCopyWith<_$ForumTopicEditedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? name = freezed,
+    Object? iconCustomEmojiId = freezed,
+  }) {
+    return _then(_ForumTopicEdited(
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      iconCustomEmojiId: freezed == iconCustomEmojiId
+          ? _self.iconCustomEmojiId
+          : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }

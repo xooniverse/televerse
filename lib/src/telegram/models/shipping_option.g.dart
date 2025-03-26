@@ -6,8 +6,8 @@ part of 'shipping_option.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ShippingOptionImpl _$$ShippingOptionImplFromJson(Map<String, dynamic> json) =>
-    _$ShippingOptionImpl(
+_ShippingOption _$ShippingOptionFromJson(Map<String, dynamic> json) =>
+    _ShippingOption(
       id: json['id'] as String,
       title: json['title'] as String,
       prices: (json['prices'] as List<dynamic>)
@@ -15,8 +15,7 @@ _$ShippingOptionImpl _$$ShippingOptionImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$ShippingOptionImplToJson(
-        _$ShippingOptionImpl instance) =>
+Map<String, dynamic> _$ShippingOptionToJson(_ShippingOption instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

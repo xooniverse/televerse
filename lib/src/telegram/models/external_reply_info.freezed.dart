@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,127 +12,126 @@ part of 'external_reply_info.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ExternalReplyInfo _$ExternalReplyInfoFromJson(Map<String, dynamic> json) {
-  return _ExternalReplyInfo.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ExternalReplyInfo {
   /// Origin of the message replied to by the given message
   @JsonKey(name: 'origin')
-  MessageOrigin get origin => throw _privateConstructorUsedError;
+  MessageOrigin get origin;
 
   /// Optional. Chat the original message belongs to. Available only if the chat is a supergroup or a channel.
   @JsonKey(name: 'chat')
-  Chat? get chat => throw _privateConstructorUsedError;
+  Chat? get chat;
 
   /// Optional. Unique message identifier inside the original chat. Available only if the original chat is a supergroup or a channel.
   @JsonKey(name: 'message_id')
-  int? get messageId => throw _privateConstructorUsedError;
+  int? get messageId;
 
   /// Optional. Options used for link preview generation for the original message, if it is a text message
   @JsonKey(name: 'link_preview_options')
-  LinkPreviewOptions? get linkPreviewOptions =>
-      throw _privateConstructorUsedError;
+  LinkPreviewOptions? get linkPreviewOptions;
 
   /// Optional. Message is an animation, information about the animation
   @JsonKey(name: 'animation')
-  Animation? get animation => throw _privateConstructorUsedError;
+  Animation? get animation;
 
   /// Optional. Message is an audio file, information about the file
   @JsonKey(name: 'audio')
-  Audio? get audio => throw _privateConstructorUsedError;
+  Audio? get audio;
 
   /// Optional. Message is a general file, information about the file
   @JsonKey(name: 'document')
-  Document? get document => throw _privateConstructorUsedError;
+  Document? get document;
 
   /// Optional. Message is a photo, available sizes of the photo
   @JsonKey(name: 'photo')
-  List<PhotoSize>? get photo => throw _privateConstructorUsedError;
+  List<PhotoSize>? get photo;
 
   /// Optional. Message is a sticker, information about the sticker
   @JsonKey(name: 'sticker')
-  Sticker? get sticker => throw _privateConstructorUsedError;
+  Sticker? get sticker;
 
   /// Optional. Message is a forwarded story
   @JsonKey(name: 'story')
-  Story? get story => throw _privateConstructorUsedError;
+  Story? get story;
 
   /// Optional. Message is a video, information about the video
   @JsonKey(name: 'video')
-  Video? get video => throw _privateConstructorUsedError;
+  Video? get video;
 
   /// Optional. Message is a video note, information about the video message
   @JsonKey(name: 'video_note')
-  VideoNote? get videoNote => throw _privateConstructorUsedError;
+  VideoNote? get videoNote;
 
   /// Optional. Message is a voice message, information about the file
   @JsonKey(name: 'voice')
-  Voice? get voice => throw _privateConstructorUsedError;
+  Voice? get voice;
 
   /// Optional. True, if the message media is covered by a spoiler animation
   @JsonKey(name: 'has_media_spoiler')
-  bool? get hasMediaSpoiler => throw _privateConstructorUsedError;
+  bool? get hasMediaSpoiler;
 
   /// Optional. Message is a shared contact, information about the contact
   @JsonKey(name: 'contact')
-  Contact? get contact => throw _privateConstructorUsedError;
+  Contact? get contact;
 
   /// Optional. Message is a dice with random value
   @JsonKey(name: 'dice')
-  Dice? get dice => throw _privateConstructorUsedError;
+  Dice? get dice;
 
   /// Optional. Message is a game, information about the game
   @JsonKey(name: 'game')
-  Game? get game => throw _privateConstructorUsedError;
+  Game? get game;
 
   /// Optional. Message is a scheduled giveaway, information about the giveaway
   @JsonKey(name: 'giveaway')
-  Giveaway? get giveaway => throw _privateConstructorUsedError;
+  Giveaway? get giveaway;
 
   /// Optional. A giveaway with public winners was completed
   @JsonKey(name: 'giveaway_winners')
-  GiveawayWinners? get giveawayWinners => throw _privateConstructorUsedError;
+  GiveawayWinners? get giveawayWinners;
 
   /// Optional. Message is an invoice for a payment, information about the invoice
   @JsonKey(name: 'invoice')
-  Invoice? get invoice => throw _privateConstructorUsedError;
+  Invoice? get invoice;
 
   /// Optional. Message is a shared location, information about the location
   @JsonKey(name: 'location')
-  Location? get location => throw _privateConstructorUsedError;
+  Location? get location;
 
   /// Optional. Message is a native poll, information about the poll
   @JsonKey(name: 'poll')
-  Poll? get poll => throw _privateConstructorUsedError;
+  Poll? get poll;
 
   /// Optional. Message is a venue, information about the venue
   @JsonKey(name: 'venue')
-  Venue? get venue => throw _privateConstructorUsedError;
+  Venue? get venue;
 
   /// Optional. Message contains paid media; information about the paid media
   @JsonKey(name: 'paid_media')
-  PaidMediaInfo? get paidMedia => throw _privateConstructorUsedError;
-
-  /// Serializes this ExternalReplyInfo to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  PaidMediaInfo? get paidMedia;
 
   /// Create a copy of ExternalReplyInfo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ExternalReplyInfoCopyWith<ExternalReplyInfo> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ExternalReplyInfoCopyWithImpl<ExternalReplyInfo>(
+          this as ExternalReplyInfo, _$identity);
+
+  /// Serializes this ExternalReplyInfo to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'ExternalReplyInfo(origin: $origin, chat: $chat, messageId: $messageId, linkPreviewOptions: $linkPreviewOptions, animation: $animation, audio: $audio, document: $document, photo: $photo, sticker: $sticker, story: $story, video: $video, videoNote: $videoNote, voice: $voice, hasMediaSpoiler: $hasMediaSpoiler, contact: $contact, dice: $dice, game: $game, giveaway: $giveaway, giveawayWinners: $giveawayWinners, invoice: $invoice, location: $location, poll: $poll, venue: $venue, paidMedia: $paidMedia)';
+  }
 }
 
 /// @nodoc
-abstract class $ExternalReplyInfoCopyWith<$Res> {
+abstract mixin class $ExternalReplyInfoCopyWith<$Res> {
   factory $ExternalReplyInfoCopyWith(
-          ExternalReplyInfo value, $Res Function(ExternalReplyInfo) then) =
-      _$ExternalReplyInfoCopyWithImpl<$Res, ExternalReplyInfo>;
+          ExternalReplyInfo value, $Res Function(ExternalReplyInfo) _then) =
+      _$ExternalReplyInfoCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'origin') MessageOrigin origin,
@@ -184,14 +184,12 @@ abstract class $ExternalReplyInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
+class _$ExternalReplyInfoCopyWithImpl<$Res>
     implements $ExternalReplyInfoCopyWith<$Res> {
-  _$ExternalReplyInfoCopyWithImpl(this._value, this._then);
+  _$ExternalReplyInfoCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ExternalReplyInfo _self;
+  final $Res Function(ExternalReplyInfo) _then;
 
   /// Create a copy of ExternalReplyInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -223,104 +221,104 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
     Object? venue = freezed,
     Object? paidMedia = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       origin: null == origin
-          ? _value.origin
+          ? _self.origin
           : origin // ignore: cast_nullable_to_non_nullable
               as MessageOrigin,
       chat: freezed == chat
-          ? _value.chat
+          ? _self.chat
           : chat // ignore: cast_nullable_to_non_nullable
               as Chat?,
       messageId: freezed == messageId
-          ? _value.messageId
+          ? _self.messageId
           : messageId // ignore: cast_nullable_to_non_nullable
               as int?,
       linkPreviewOptions: freezed == linkPreviewOptions
-          ? _value.linkPreviewOptions
+          ? _self.linkPreviewOptions
           : linkPreviewOptions // ignore: cast_nullable_to_non_nullable
               as LinkPreviewOptions?,
       animation: freezed == animation
-          ? _value.animation
+          ? _self.animation
           : animation // ignore: cast_nullable_to_non_nullable
               as Animation?,
       audio: freezed == audio
-          ? _value.audio
+          ? _self.audio
           : audio // ignore: cast_nullable_to_non_nullable
               as Audio?,
       document: freezed == document
-          ? _value.document
+          ? _self.document
           : document // ignore: cast_nullable_to_non_nullable
               as Document?,
       photo: freezed == photo
-          ? _value.photo
+          ? _self.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as List<PhotoSize>?,
       sticker: freezed == sticker
-          ? _value.sticker
+          ? _self.sticker
           : sticker // ignore: cast_nullable_to_non_nullable
               as Sticker?,
       story: freezed == story
-          ? _value.story
+          ? _self.story
           : story // ignore: cast_nullable_to_non_nullable
               as Story?,
       video: freezed == video
-          ? _value.video
+          ? _self.video
           : video // ignore: cast_nullable_to_non_nullable
               as Video?,
       videoNote: freezed == videoNote
-          ? _value.videoNote
+          ? _self.videoNote
           : videoNote // ignore: cast_nullable_to_non_nullable
               as VideoNote?,
       voice: freezed == voice
-          ? _value.voice
+          ? _self.voice
           : voice // ignore: cast_nullable_to_non_nullable
               as Voice?,
       hasMediaSpoiler: freezed == hasMediaSpoiler
-          ? _value.hasMediaSpoiler
+          ? _self.hasMediaSpoiler
           : hasMediaSpoiler // ignore: cast_nullable_to_non_nullable
               as bool?,
       contact: freezed == contact
-          ? _value.contact
+          ? _self.contact
           : contact // ignore: cast_nullable_to_non_nullable
               as Contact?,
       dice: freezed == dice
-          ? _value.dice
+          ? _self.dice
           : dice // ignore: cast_nullable_to_non_nullable
               as Dice?,
       game: freezed == game
-          ? _value.game
+          ? _self.game
           : game // ignore: cast_nullable_to_non_nullable
               as Game?,
       giveaway: freezed == giveaway
-          ? _value.giveaway
+          ? _self.giveaway
           : giveaway // ignore: cast_nullable_to_non_nullable
               as Giveaway?,
       giveawayWinners: freezed == giveawayWinners
-          ? _value.giveawayWinners
+          ? _self.giveawayWinners
           : giveawayWinners // ignore: cast_nullable_to_non_nullable
               as GiveawayWinners?,
       invoice: freezed == invoice
-          ? _value.invoice
+          ? _self.invoice
           : invoice // ignore: cast_nullable_to_non_nullable
               as Invoice?,
       location: freezed == location
-          ? _value.location
+          ? _self.location
           : location // ignore: cast_nullable_to_non_nullable
               as Location?,
       poll: freezed == poll
-          ? _value.poll
+          ? _self.poll
           : poll // ignore: cast_nullable_to_non_nullable
               as Poll?,
       venue: freezed == venue
-          ? _value.venue
+          ? _self.venue
           : venue // ignore: cast_nullable_to_non_nullable
               as Venue?,
       paidMedia: freezed == paidMedia
-          ? _value.paidMedia
+          ? _self.paidMedia
           : paidMedia // ignore: cast_nullable_to_non_nullable
               as PaidMediaInfo?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ExternalReplyInfo
@@ -328,8 +326,8 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $MessageOriginCopyWith<$Res> get origin {
-    return $MessageOriginCopyWith<$Res>(_value.origin, (value) {
-      return _then(_value.copyWith(origin: value) as $Val);
+    return $MessageOriginCopyWith<$Res>(_self.origin, (value) {
+      return _then(_self.copyWith(origin: value));
     });
   }
 
@@ -338,12 +336,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $ChatCopyWith<$Res>? get chat {
-    if (_value.chat == null) {
+    if (_self.chat == null) {
       return null;
     }
 
-    return $ChatCopyWith<$Res>(_value.chat!, (value) {
-      return _then(_value.copyWith(chat: value) as $Val);
+    return $ChatCopyWith<$Res>(_self.chat!, (value) {
+      return _then(_self.copyWith(chat: value));
     });
   }
 
@@ -352,13 +350,13 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $LinkPreviewOptionsCopyWith<$Res>? get linkPreviewOptions {
-    if (_value.linkPreviewOptions == null) {
+    if (_self.linkPreviewOptions == null) {
       return null;
     }
 
-    return $LinkPreviewOptionsCopyWith<$Res>(_value.linkPreviewOptions!,
+    return $LinkPreviewOptionsCopyWith<$Res>(_self.linkPreviewOptions!,
         (value) {
-      return _then(_value.copyWith(linkPreviewOptions: value) as $Val);
+      return _then(_self.copyWith(linkPreviewOptions: value));
     });
   }
 
@@ -367,12 +365,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $AnimationCopyWith<$Res>? get animation {
-    if (_value.animation == null) {
+    if (_self.animation == null) {
       return null;
     }
 
-    return $AnimationCopyWith<$Res>(_value.animation!, (value) {
-      return _then(_value.copyWith(animation: value) as $Val);
+    return $AnimationCopyWith<$Res>(_self.animation!, (value) {
+      return _then(_self.copyWith(animation: value));
     });
   }
 
@@ -381,12 +379,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $AudioCopyWith<$Res>? get audio {
-    if (_value.audio == null) {
+    if (_self.audio == null) {
       return null;
     }
 
-    return $AudioCopyWith<$Res>(_value.audio!, (value) {
-      return _then(_value.copyWith(audio: value) as $Val);
+    return $AudioCopyWith<$Res>(_self.audio!, (value) {
+      return _then(_self.copyWith(audio: value));
     });
   }
 
@@ -395,12 +393,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $DocumentCopyWith<$Res>? get document {
-    if (_value.document == null) {
+    if (_self.document == null) {
       return null;
     }
 
-    return $DocumentCopyWith<$Res>(_value.document!, (value) {
-      return _then(_value.copyWith(document: value) as $Val);
+    return $DocumentCopyWith<$Res>(_self.document!, (value) {
+      return _then(_self.copyWith(document: value));
     });
   }
 
@@ -409,12 +407,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $StickerCopyWith<$Res>? get sticker {
-    if (_value.sticker == null) {
+    if (_self.sticker == null) {
       return null;
     }
 
-    return $StickerCopyWith<$Res>(_value.sticker!, (value) {
-      return _then(_value.copyWith(sticker: value) as $Val);
+    return $StickerCopyWith<$Res>(_self.sticker!, (value) {
+      return _then(_self.copyWith(sticker: value));
     });
   }
 
@@ -423,12 +421,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $StoryCopyWith<$Res>? get story {
-    if (_value.story == null) {
+    if (_self.story == null) {
       return null;
     }
 
-    return $StoryCopyWith<$Res>(_value.story!, (value) {
-      return _then(_value.copyWith(story: value) as $Val);
+    return $StoryCopyWith<$Res>(_self.story!, (value) {
+      return _then(_self.copyWith(story: value));
     });
   }
 
@@ -437,12 +435,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $VideoCopyWith<$Res>? get video {
-    if (_value.video == null) {
+    if (_self.video == null) {
       return null;
     }
 
-    return $VideoCopyWith<$Res>(_value.video!, (value) {
-      return _then(_value.copyWith(video: value) as $Val);
+    return $VideoCopyWith<$Res>(_self.video!, (value) {
+      return _then(_self.copyWith(video: value));
     });
   }
 
@@ -451,12 +449,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $VideoNoteCopyWith<$Res>? get videoNote {
-    if (_value.videoNote == null) {
+    if (_self.videoNote == null) {
       return null;
     }
 
-    return $VideoNoteCopyWith<$Res>(_value.videoNote!, (value) {
-      return _then(_value.copyWith(videoNote: value) as $Val);
+    return $VideoNoteCopyWith<$Res>(_self.videoNote!, (value) {
+      return _then(_self.copyWith(videoNote: value));
     });
   }
 
@@ -465,12 +463,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $VoiceCopyWith<$Res>? get voice {
-    if (_value.voice == null) {
+    if (_self.voice == null) {
       return null;
     }
 
-    return $VoiceCopyWith<$Res>(_value.voice!, (value) {
-      return _then(_value.copyWith(voice: value) as $Val);
+    return $VoiceCopyWith<$Res>(_self.voice!, (value) {
+      return _then(_self.copyWith(voice: value));
     });
   }
 
@@ -479,12 +477,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $ContactCopyWith<$Res>? get contact {
-    if (_value.contact == null) {
+    if (_self.contact == null) {
       return null;
     }
 
-    return $ContactCopyWith<$Res>(_value.contact!, (value) {
-      return _then(_value.copyWith(contact: value) as $Val);
+    return $ContactCopyWith<$Res>(_self.contact!, (value) {
+      return _then(_self.copyWith(contact: value));
     });
   }
 
@@ -493,12 +491,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $DiceCopyWith<$Res>? get dice {
-    if (_value.dice == null) {
+    if (_self.dice == null) {
       return null;
     }
 
-    return $DiceCopyWith<$Res>(_value.dice!, (value) {
-      return _then(_value.copyWith(dice: value) as $Val);
+    return $DiceCopyWith<$Res>(_self.dice!, (value) {
+      return _then(_self.copyWith(dice: value));
     });
   }
 
@@ -507,12 +505,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $GameCopyWith<$Res>? get game {
-    if (_value.game == null) {
+    if (_self.game == null) {
       return null;
     }
 
-    return $GameCopyWith<$Res>(_value.game!, (value) {
-      return _then(_value.copyWith(game: value) as $Val);
+    return $GameCopyWith<$Res>(_self.game!, (value) {
+      return _then(_self.copyWith(game: value));
     });
   }
 
@@ -521,12 +519,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $GiveawayCopyWith<$Res>? get giveaway {
-    if (_value.giveaway == null) {
+    if (_self.giveaway == null) {
       return null;
     }
 
-    return $GiveawayCopyWith<$Res>(_value.giveaway!, (value) {
-      return _then(_value.copyWith(giveaway: value) as $Val);
+    return $GiveawayCopyWith<$Res>(_self.giveaway!, (value) {
+      return _then(_self.copyWith(giveaway: value));
     });
   }
 
@@ -535,12 +533,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $GiveawayWinnersCopyWith<$Res>? get giveawayWinners {
-    if (_value.giveawayWinners == null) {
+    if (_self.giveawayWinners == null) {
       return null;
     }
 
-    return $GiveawayWinnersCopyWith<$Res>(_value.giveawayWinners!, (value) {
-      return _then(_value.copyWith(giveawayWinners: value) as $Val);
+    return $GiveawayWinnersCopyWith<$Res>(_self.giveawayWinners!, (value) {
+      return _then(_self.copyWith(giveawayWinners: value));
     });
   }
 
@@ -549,12 +547,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $InvoiceCopyWith<$Res>? get invoice {
-    if (_value.invoice == null) {
+    if (_self.invoice == null) {
       return null;
     }
 
-    return $InvoiceCopyWith<$Res>(_value.invoice!, (value) {
-      return _then(_value.copyWith(invoice: value) as $Val);
+    return $InvoiceCopyWith<$Res>(_self.invoice!, (value) {
+      return _then(_self.copyWith(invoice: value));
     });
   }
 
@@ -563,12 +561,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $LocationCopyWith<$Res>? get location {
-    if (_value.location == null) {
+    if (_self.location == null) {
       return null;
     }
 
-    return $LocationCopyWith<$Res>(_value.location!, (value) {
-      return _then(_value.copyWith(location: value) as $Val);
+    return $LocationCopyWith<$Res>(_self.location!, (value) {
+      return _then(_self.copyWith(location: value));
     });
   }
 
@@ -577,12 +575,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $PollCopyWith<$Res>? get poll {
-    if (_value.poll == null) {
+    if (_self.poll == null) {
       return null;
     }
 
-    return $PollCopyWith<$Res>(_value.poll!, (value) {
-      return _then(_value.copyWith(poll: value) as $Val);
+    return $PollCopyWith<$Res>(_self.poll!, (value) {
+      return _then(_self.copyWith(poll: value));
     });
   }
 
@@ -591,12 +589,12 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $VenueCopyWith<$Res>? get venue {
-    if (_value.venue == null) {
+    if (_self.venue == null) {
       return null;
     }
 
-    return $VenueCopyWith<$Res>(_value.venue!, (value) {
-      return _then(_value.copyWith(venue: value) as $Val);
+    return $VenueCopyWith<$Res>(_self.venue!, (value) {
+      return _then(_self.copyWith(venue: value));
     });
   }
 
@@ -605,238 +603,20 @@ class _$ExternalReplyInfoCopyWithImpl<$Res, $Val extends ExternalReplyInfo>
   @override
   @pragma('vm:prefer-inline')
   $PaidMediaInfoCopyWith<$Res>? get paidMedia {
-    if (_value.paidMedia == null) {
+    if (_self.paidMedia == null) {
       return null;
     }
 
-    return $PaidMediaInfoCopyWith<$Res>(_value.paidMedia!, (value) {
-      return _then(_value.copyWith(paidMedia: value) as $Val);
+    return $PaidMediaInfoCopyWith<$Res>(_self.paidMedia!, (value) {
+      return _then(_self.copyWith(paidMedia: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ExternalReplyInfoImplCopyWith<$Res>
-    implements $ExternalReplyInfoCopyWith<$Res> {
-  factory _$$ExternalReplyInfoImplCopyWith(_$ExternalReplyInfoImpl value,
-          $Res Function(_$ExternalReplyInfoImpl) then) =
-      __$$ExternalReplyInfoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'origin') MessageOrigin origin,
-      @JsonKey(name: 'chat') Chat? chat,
-      @JsonKey(name: 'message_id') int? messageId,
-      @JsonKey(name: 'link_preview_options')
-      LinkPreviewOptions? linkPreviewOptions,
-      @JsonKey(name: 'animation') Animation? animation,
-      @JsonKey(name: 'audio') Audio? audio,
-      @JsonKey(name: 'document') Document? document,
-      @JsonKey(name: 'photo') List<PhotoSize>? photo,
-      @JsonKey(name: 'sticker') Sticker? sticker,
-      @JsonKey(name: 'story') Story? story,
-      @JsonKey(name: 'video') Video? video,
-      @JsonKey(name: 'video_note') VideoNote? videoNote,
-      @JsonKey(name: 'voice') Voice? voice,
-      @JsonKey(name: 'has_media_spoiler') bool? hasMediaSpoiler,
-      @JsonKey(name: 'contact') Contact? contact,
-      @JsonKey(name: 'dice') Dice? dice,
-      @JsonKey(name: 'game') Game? game,
-      @JsonKey(name: 'giveaway') Giveaway? giveaway,
-      @JsonKey(name: 'giveaway_winners') GiveawayWinners? giveawayWinners,
-      @JsonKey(name: 'invoice') Invoice? invoice,
-      @JsonKey(name: 'location') Location? location,
-      @JsonKey(name: 'poll') Poll? poll,
-      @JsonKey(name: 'venue') Venue? venue,
-      @JsonKey(name: 'paid_media') PaidMediaInfo? paidMedia});
-
-  @override
-  $MessageOriginCopyWith<$Res> get origin;
-  @override
-  $ChatCopyWith<$Res>? get chat;
-  @override
-  $LinkPreviewOptionsCopyWith<$Res>? get linkPreviewOptions;
-  @override
-  $AnimationCopyWith<$Res>? get animation;
-  @override
-  $AudioCopyWith<$Res>? get audio;
-  @override
-  $DocumentCopyWith<$Res>? get document;
-  @override
-  $StickerCopyWith<$Res>? get sticker;
-  @override
-  $StoryCopyWith<$Res>? get story;
-  @override
-  $VideoCopyWith<$Res>? get video;
-  @override
-  $VideoNoteCopyWith<$Res>? get videoNote;
-  @override
-  $VoiceCopyWith<$Res>? get voice;
-  @override
-  $ContactCopyWith<$Res>? get contact;
-  @override
-  $DiceCopyWith<$Res>? get dice;
-  @override
-  $GameCopyWith<$Res>? get game;
-  @override
-  $GiveawayCopyWith<$Res>? get giveaway;
-  @override
-  $GiveawayWinnersCopyWith<$Res>? get giveawayWinners;
-  @override
-  $InvoiceCopyWith<$Res>? get invoice;
-  @override
-  $LocationCopyWith<$Res>? get location;
-  @override
-  $PollCopyWith<$Res>? get poll;
-  @override
-  $VenueCopyWith<$Res>? get venue;
-  @override
-  $PaidMediaInfoCopyWith<$Res>? get paidMedia;
-}
-
-/// @nodoc
-class __$$ExternalReplyInfoImplCopyWithImpl<$Res>
-    extends _$ExternalReplyInfoCopyWithImpl<$Res, _$ExternalReplyInfoImpl>
-    implements _$$ExternalReplyInfoImplCopyWith<$Res> {
-  __$$ExternalReplyInfoImplCopyWithImpl(_$ExternalReplyInfoImpl _value,
-      $Res Function(_$ExternalReplyInfoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ExternalReplyInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? origin = null,
-    Object? chat = freezed,
-    Object? messageId = freezed,
-    Object? linkPreviewOptions = freezed,
-    Object? animation = freezed,
-    Object? audio = freezed,
-    Object? document = freezed,
-    Object? photo = freezed,
-    Object? sticker = freezed,
-    Object? story = freezed,
-    Object? video = freezed,
-    Object? videoNote = freezed,
-    Object? voice = freezed,
-    Object? hasMediaSpoiler = freezed,
-    Object? contact = freezed,
-    Object? dice = freezed,
-    Object? game = freezed,
-    Object? giveaway = freezed,
-    Object? giveawayWinners = freezed,
-    Object? invoice = freezed,
-    Object? location = freezed,
-    Object? poll = freezed,
-    Object? venue = freezed,
-    Object? paidMedia = freezed,
-  }) {
-    return _then(_$ExternalReplyInfoImpl(
-      origin: null == origin
-          ? _value.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as MessageOrigin,
-      chat: freezed == chat
-          ? _value.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-      messageId: freezed == messageId
-          ? _value.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      linkPreviewOptions: freezed == linkPreviewOptions
-          ? _value.linkPreviewOptions
-          : linkPreviewOptions // ignore: cast_nullable_to_non_nullable
-              as LinkPreviewOptions?,
-      animation: freezed == animation
-          ? _value.animation
-          : animation // ignore: cast_nullable_to_non_nullable
-              as Animation?,
-      audio: freezed == audio
-          ? _value.audio
-          : audio // ignore: cast_nullable_to_non_nullable
-              as Audio?,
-      document: freezed == document
-          ? _value.document
-          : document // ignore: cast_nullable_to_non_nullable
-              as Document?,
-      photo: freezed == photo
-          ? _value._photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as List<PhotoSize>?,
-      sticker: freezed == sticker
-          ? _value.sticker
-          : sticker // ignore: cast_nullable_to_non_nullable
-              as Sticker?,
-      story: freezed == story
-          ? _value.story
-          : story // ignore: cast_nullable_to_non_nullable
-              as Story?,
-      video: freezed == video
-          ? _value.video
-          : video // ignore: cast_nullable_to_non_nullable
-              as Video?,
-      videoNote: freezed == videoNote
-          ? _value.videoNote
-          : videoNote // ignore: cast_nullable_to_non_nullable
-              as VideoNote?,
-      voice: freezed == voice
-          ? _value.voice
-          : voice // ignore: cast_nullable_to_non_nullable
-              as Voice?,
-      hasMediaSpoiler: freezed == hasMediaSpoiler
-          ? _value.hasMediaSpoiler
-          : hasMediaSpoiler // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      contact: freezed == contact
-          ? _value.contact
-          : contact // ignore: cast_nullable_to_non_nullable
-              as Contact?,
-      dice: freezed == dice
-          ? _value.dice
-          : dice // ignore: cast_nullable_to_non_nullable
-              as Dice?,
-      game: freezed == game
-          ? _value.game
-          : game // ignore: cast_nullable_to_non_nullable
-              as Game?,
-      giveaway: freezed == giveaway
-          ? _value.giveaway
-          : giveaway // ignore: cast_nullable_to_non_nullable
-              as Giveaway?,
-      giveawayWinners: freezed == giveawayWinners
-          ? _value.giveawayWinners
-          : giveawayWinners // ignore: cast_nullable_to_non_nullable
-              as GiveawayWinners?,
-      invoice: freezed == invoice
-          ? _value.invoice
-          : invoice // ignore: cast_nullable_to_non_nullable
-              as Invoice?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location?,
-      poll: freezed == poll
-          ? _value.poll
-          : poll // ignore: cast_nullable_to_non_nullable
-              as Poll?,
-      venue: freezed == venue
-          ? _value.venue
-          : venue // ignore: cast_nullable_to_non_nullable
-              as Venue?,
-      paidMedia: freezed == paidMedia
-          ? _value.paidMedia
-          : paidMedia // ignore: cast_nullable_to_non_nullable
-              as PaidMediaInfo?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$ExternalReplyInfoImpl implements _ExternalReplyInfo {
-  const _$ExternalReplyInfoImpl(
+class _ExternalReplyInfo implements ExternalReplyInfo {
+  const _ExternalReplyInfo(
       {@JsonKey(name: 'origin') required this.origin,
       @JsonKey(name: 'chat') this.chat,
       @JsonKey(name: 'message_id') this.messageId,
@@ -862,9 +642,8 @@ class _$ExternalReplyInfoImpl implements _ExternalReplyInfo {
       @JsonKey(name: 'venue') this.venue,
       @JsonKey(name: 'paid_media') this.paidMedia})
       : _photo = photo;
-
-  factory _$ExternalReplyInfoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ExternalReplyInfoImplFromJson(json);
+  factory _ExternalReplyInfo.fromJson(Map<String, dynamic> json) =>
+      _$ExternalReplyInfoFromJson(json);
 
   /// Origin of the message replied to by the given message
   @override
@@ -995,184 +774,532 @@ class _$ExternalReplyInfoImpl implements _ExternalReplyInfo {
   @JsonKey(name: 'paid_media')
   final PaidMediaInfo? paidMedia;
 
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ExternalReplyInfoCopyWith<_ExternalReplyInfo> get copyWith =>
+      __$ExternalReplyInfoCopyWithImpl<_ExternalReplyInfo>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ExternalReplyInfoToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'ExternalReplyInfo(origin: $origin, chat: $chat, messageId: $messageId, linkPreviewOptions: $linkPreviewOptions, animation: $animation, audio: $audio, document: $document, photo: $photo, sticker: $sticker, story: $story, video: $video, videoNote: $videoNote, voice: $voice, hasMediaSpoiler: $hasMediaSpoiler, contact: $contact, dice: $dice, game: $game, giveaway: $giveaway, giveawayWinners: $giveawayWinners, invoice: $invoice, location: $location, poll: $poll, venue: $venue, paidMedia: $paidMedia)';
   }
-
-  /// Create a copy of ExternalReplyInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ExternalReplyInfoImplCopyWith<_$ExternalReplyInfoImpl> get copyWith =>
-      __$$ExternalReplyInfoImplCopyWithImpl<_$ExternalReplyInfoImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ExternalReplyInfoImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _ExternalReplyInfo implements ExternalReplyInfo {
-  const factory _ExternalReplyInfo(
-      {@JsonKey(name: 'origin') required final MessageOrigin origin,
-      @JsonKey(name: 'chat') final Chat? chat,
-      @JsonKey(name: 'message_id') final int? messageId,
+/// @nodoc
+abstract mixin class _$ExternalReplyInfoCopyWith<$Res>
+    implements $ExternalReplyInfoCopyWith<$Res> {
+  factory _$ExternalReplyInfoCopyWith(
+          _ExternalReplyInfo value, $Res Function(_ExternalReplyInfo) _then) =
+      __$ExternalReplyInfoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'origin') MessageOrigin origin,
+      @JsonKey(name: 'chat') Chat? chat,
+      @JsonKey(name: 'message_id') int? messageId,
       @JsonKey(name: 'link_preview_options')
-      final LinkPreviewOptions? linkPreviewOptions,
-      @JsonKey(name: 'animation') final Animation? animation,
-      @JsonKey(name: 'audio') final Audio? audio,
-      @JsonKey(name: 'document') final Document? document,
-      @JsonKey(name: 'photo') final List<PhotoSize>? photo,
-      @JsonKey(name: 'sticker') final Sticker? sticker,
-      @JsonKey(name: 'story') final Story? story,
-      @JsonKey(name: 'video') final Video? video,
-      @JsonKey(name: 'video_note') final VideoNote? videoNote,
-      @JsonKey(name: 'voice') final Voice? voice,
-      @JsonKey(name: 'has_media_spoiler') final bool? hasMediaSpoiler,
-      @JsonKey(name: 'contact') final Contact? contact,
-      @JsonKey(name: 'dice') final Dice? dice,
-      @JsonKey(name: 'game') final Game? game,
-      @JsonKey(name: 'giveaway') final Giveaway? giveaway,
-      @JsonKey(name: 'giveaway_winners') final GiveawayWinners? giveawayWinners,
-      @JsonKey(name: 'invoice') final Invoice? invoice,
-      @JsonKey(name: 'location') final Location? location,
-      @JsonKey(name: 'poll') final Poll? poll,
-      @JsonKey(name: 'venue') final Venue? venue,
-      @JsonKey(name: 'paid_media')
-      final PaidMediaInfo? paidMedia}) = _$ExternalReplyInfoImpl;
+      LinkPreviewOptions? linkPreviewOptions,
+      @JsonKey(name: 'animation') Animation? animation,
+      @JsonKey(name: 'audio') Audio? audio,
+      @JsonKey(name: 'document') Document? document,
+      @JsonKey(name: 'photo') List<PhotoSize>? photo,
+      @JsonKey(name: 'sticker') Sticker? sticker,
+      @JsonKey(name: 'story') Story? story,
+      @JsonKey(name: 'video') Video? video,
+      @JsonKey(name: 'video_note') VideoNote? videoNote,
+      @JsonKey(name: 'voice') Voice? voice,
+      @JsonKey(name: 'has_media_spoiler') bool? hasMediaSpoiler,
+      @JsonKey(name: 'contact') Contact? contact,
+      @JsonKey(name: 'dice') Dice? dice,
+      @JsonKey(name: 'game') Game? game,
+      @JsonKey(name: 'giveaway') Giveaway? giveaway,
+      @JsonKey(name: 'giveaway_winners') GiveawayWinners? giveawayWinners,
+      @JsonKey(name: 'invoice') Invoice? invoice,
+      @JsonKey(name: 'location') Location? location,
+      @JsonKey(name: 'poll') Poll? poll,
+      @JsonKey(name: 'venue') Venue? venue,
+      @JsonKey(name: 'paid_media') PaidMediaInfo? paidMedia});
 
-  factory _ExternalReplyInfo.fromJson(Map<String, dynamic> json) =
-      _$ExternalReplyInfoImpl.fromJson;
-
-  /// Origin of the message replied to by the given message
   @override
-  @JsonKey(name: 'origin')
-  MessageOrigin get origin;
-
-  /// Optional. Chat the original message belongs to. Available only if the chat is a supergroup or a channel.
+  $MessageOriginCopyWith<$Res> get origin;
   @override
-  @JsonKey(name: 'chat')
-  Chat? get chat;
-
-  /// Optional. Unique message identifier inside the original chat. Available only if the original chat is a supergroup or a channel.
+  $ChatCopyWith<$Res>? get chat;
   @override
-  @JsonKey(name: 'message_id')
-  int? get messageId;
-
-  /// Optional. Options used for link preview generation for the original message, if it is a text message
+  $LinkPreviewOptionsCopyWith<$Res>? get linkPreviewOptions;
   @override
-  @JsonKey(name: 'link_preview_options')
-  LinkPreviewOptions? get linkPreviewOptions;
-
-  /// Optional. Message is an animation, information about the animation
+  $AnimationCopyWith<$Res>? get animation;
   @override
-  @JsonKey(name: 'animation')
-  Animation? get animation;
-
-  /// Optional. Message is an audio file, information about the file
+  $AudioCopyWith<$Res>? get audio;
   @override
-  @JsonKey(name: 'audio')
-  Audio? get audio;
-
-  /// Optional. Message is a general file, information about the file
+  $DocumentCopyWith<$Res>? get document;
   @override
-  @JsonKey(name: 'document')
-  Document? get document;
-
-  /// Optional. Message is a photo, available sizes of the photo
+  $StickerCopyWith<$Res>? get sticker;
   @override
-  @JsonKey(name: 'photo')
-  List<PhotoSize>? get photo;
-
-  /// Optional. Message is a sticker, information about the sticker
+  $StoryCopyWith<$Res>? get story;
   @override
-  @JsonKey(name: 'sticker')
-  Sticker? get sticker;
-
-  /// Optional. Message is a forwarded story
+  $VideoCopyWith<$Res>? get video;
   @override
-  @JsonKey(name: 'story')
-  Story? get story;
-
-  /// Optional. Message is a video, information about the video
+  $VideoNoteCopyWith<$Res>? get videoNote;
   @override
-  @JsonKey(name: 'video')
-  Video? get video;
-
-  /// Optional. Message is a video note, information about the video message
+  $VoiceCopyWith<$Res>? get voice;
   @override
-  @JsonKey(name: 'video_note')
-  VideoNote? get videoNote;
-
-  /// Optional. Message is a voice message, information about the file
+  $ContactCopyWith<$Res>? get contact;
   @override
-  @JsonKey(name: 'voice')
-  Voice? get voice;
-
-  /// Optional. True, if the message media is covered by a spoiler animation
+  $DiceCopyWith<$Res>? get dice;
   @override
-  @JsonKey(name: 'has_media_spoiler')
-  bool? get hasMediaSpoiler;
-
-  /// Optional. Message is a shared contact, information about the contact
+  $GameCopyWith<$Res>? get game;
   @override
-  @JsonKey(name: 'contact')
-  Contact? get contact;
-
-  /// Optional. Message is a dice with random value
+  $GiveawayCopyWith<$Res>? get giveaway;
   @override
-  @JsonKey(name: 'dice')
-  Dice? get dice;
-
-  /// Optional. Message is a game, information about the game
+  $GiveawayWinnersCopyWith<$Res>? get giveawayWinners;
   @override
-  @JsonKey(name: 'game')
-  Game? get game;
-
-  /// Optional. Message is a scheduled giveaway, information about the giveaway
+  $InvoiceCopyWith<$Res>? get invoice;
   @override
-  @JsonKey(name: 'giveaway')
-  Giveaway? get giveaway;
-
-  /// Optional. A giveaway with public winners was completed
+  $LocationCopyWith<$Res>? get location;
   @override
-  @JsonKey(name: 'giveaway_winners')
-  GiveawayWinners? get giveawayWinners;
-
-  /// Optional. Message is an invoice for a payment, information about the invoice
+  $PollCopyWith<$Res>? get poll;
   @override
-  @JsonKey(name: 'invoice')
-  Invoice? get invoice;
-
-  /// Optional. Message is a shared location, information about the location
+  $VenueCopyWith<$Res>? get venue;
   @override
-  @JsonKey(name: 'location')
-  Location? get location;
+  $PaidMediaInfoCopyWith<$Res>? get paidMedia;
+}
 
-  /// Optional. Message is a native poll, information about the poll
-  @override
-  @JsonKey(name: 'poll')
-  Poll? get poll;
+/// @nodoc
+class __$ExternalReplyInfoCopyWithImpl<$Res>
+    implements _$ExternalReplyInfoCopyWith<$Res> {
+  __$ExternalReplyInfoCopyWithImpl(this._self, this._then);
 
-  /// Optional. Message is a venue, information about the venue
-  @override
-  @JsonKey(name: 'venue')
-  Venue? get venue;
-
-  /// Optional. Message contains paid media; information about the paid media
-  @override
-  @JsonKey(name: 'paid_media')
-  PaidMediaInfo? get paidMedia;
+  final _ExternalReplyInfo _self;
+  final $Res Function(_ExternalReplyInfo) _then;
 
   /// Create a copy of ExternalReplyInfo
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ExternalReplyInfoImplCopyWith<_$ExternalReplyInfoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? origin = null,
+    Object? chat = freezed,
+    Object? messageId = freezed,
+    Object? linkPreviewOptions = freezed,
+    Object? animation = freezed,
+    Object? audio = freezed,
+    Object? document = freezed,
+    Object? photo = freezed,
+    Object? sticker = freezed,
+    Object? story = freezed,
+    Object? video = freezed,
+    Object? videoNote = freezed,
+    Object? voice = freezed,
+    Object? hasMediaSpoiler = freezed,
+    Object? contact = freezed,
+    Object? dice = freezed,
+    Object? game = freezed,
+    Object? giveaway = freezed,
+    Object? giveawayWinners = freezed,
+    Object? invoice = freezed,
+    Object? location = freezed,
+    Object? poll = freezed,
+    Object? venue = freezed,
+    Object? paidMedia = freezed,
+  }) {
+    return _then(_ExternalReplyInfo(
+      origin: null == origin
+          ? _self.origin
+          : origin // ignore: cast_nullable_to_non_nullable
+              as MessageOrigin,
+      chat: freezed == chat
+          ? _self.chat
+          : chat // ignore: cast_nullable_to_non_nullable
+              as Chat?,
+      messageId: freezed == messageId
+          ? _self.messageId
+          : messageId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      linkPreviewOptions: freezed == linkPreviewOptions
+          ? _self.linkPreviewOptions
+          : linkPreviewOptions // ignore: cast_nullable_to_non_nullable
+              as LinkPreviewOptions?,
+      animation: freezed == animation
+          ? _self.animation
+          : animation // ignore: cast_nullable_to_non_nullable
+              as Animation?,
+      audio: freezed == audio
+          ? _self.audio
+          : audio // ignore: cast_nullable_to_non_nullable
+              as Audio?,
+      document: freezed == document
+          ? _self.document
+          : document // ignore: cast_nullable_to_non_nullable
+              as Document?,
+      photo: freezed == photo
+          ? _self._photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as List<PhotoSize>?,
+      sticker: freezed == sticker
+          ? _self.sticker
+          : sticker // ignore: cast_nullable_to_non_nullable
+              as Sticker?,
+      story: freezed == story
+          ? _self.story
+          : story // ignore: cast_nullable_to_non_nullable
+              as Story?,
+      video: freezed == video
+          ? _self.video
+          : video // ignore: cast_nullable_to_non_nullable
+              as Video?,
+      videoNote: freezed == videoNote
+          ? _self.videoNote
+          : videoNote // ignore: cast_nullable_to_non_nullable
+              as VideoNote?,
+      voice: freezed == voice
+          ? _self.voice
+          : voice // ignore: cast_nullable_to_non_nullable
+              as Voice?,
+      hasMediaSpoiler: freezed == hasMediaSpoiler
+          ? _self.hasMediaSpoiler
+          : hasMediaSpoiler // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      contact: freezed == contact
+          ? _self.contact
+          : contact // ignore: cast_nullable_to_non_nullable
+              as Contact?,
+      dice: freezed == dice
+          ? _self.dice
+          : dice // ignore: cast_nullable_to_non_nullable
+              as Dice?,
+      game: freezed == game
+          ? _self.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as Game?,
+      giveaway: freezed == giveaway
+          ? _self.giveaway
+          : giveaway // ignore: cast_nullable_to_non_nullable
+              as Giveaway?,
+      giveawayWinners: freezed == giveawayWinners
+          ? _self.giveawayWinners
+          : giveawayWinners // ignore: cast_nullable_to_non_nullable
+              as GiveawayWinners?,
+      invoice: freezed == invoice
+          ? _self.invoice
+          : invoice // ignore: cast_nullable_to_non_nullable
+              as Invoice?,
+      location: freezed == location
+          ? _self.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location?,
+      poll: freezed == poll
+          ? _self.poll
+          : poll // ignore: cast_nullable_to_non_nullable
+              as Poll?,
+      venue: freezed == venue
+          ? _self.venue
+          : venue // ignore: cast_nullable_to_non_nullable
+              as Venue?,
+      paidMedia: freezed == paidMedia
+          ? _self.paidMedia
+          : paidMedia // ignore: cast_nullable_to_non_nullable
+              as PaidMediaInfo?,
+    ));
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MessageOriginCopyWith<$Res> get origin {
+    return $MessageOriginCopyWith<$Res>(_self.origin, (value) {
+      return _then(_self.copyWith(origin: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res>? get chat {
+    if (_self.chat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_self.chat!, (value) {
+      return _then(_self.copyWith(chat: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LinkPreviewOptionsCopyWith<$Res>? get linkPreviewOptions {
+    if (_self.linkPreviewOptions == null) {
+      return null;
+    }
+
+    return $LinkPreviewOptionsCopyWith<$Res>(_self.linkPreviewOptions!,
+        (value) {
+      return _then(_self.copyWith(linkPreviewOptions: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AnimationCopyWith<$Res>? get animation {
+    if (_self.animation == null) {
+      return null;
+    }
+
+    return $AnimationCopyWith<$Res>(_self.animation!, (value) {
+      return _then(_self.copyWith(animation: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AudioCopyWith<$Res>? get audio {
+    if (_self.audio == null) {
+      return null;
+    }
+
+    return $AudioCopyWith<$Res>(_self.audio!, (value) {
+      return _then(_self.copyWith(audio: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DocumentCopyWith<$Res>? get document {
+    if (_self.document == null) {
+      return null;
+    }
+
+    return $DocumentCopyWith<$Res>(_self.document!, (value) {
+      return _then(_self.copyWith(document: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $StickerCopyWith<$Res>? get sticker {
+    if (_self.sticker == null) {
+      return null;
+    }
+
+    return $StickerCopyWith<$Res>(_self.sticker!, (value) {
+      return _then(_self.copyWith(sticker: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $StoryCopyWith<$Res>? get story {
+    if (_self.story == null) {
+      return null;
+    }
+
+    return $StoryCopyWith<$Res>(_self.story!, (value) {
+      return _then(_self.copyWith(story: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VideoCopyWith<$Res>? get video {
+    if (_self.video == null) {
+      return null;
+    }
+
+    return $VideoCopyWith<$Res>(_self.video!, (value) {
+      return _then(_self.copyWith(video: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VideoNoteCopyWith<$Res>? get videoNote {
+    if (_self.videoNote == null) {
+      return null;
+    }
+
+    return $VideoNoteCopyWith<$Res>(_self.videoNote!, (value) {
+      return _then(_self.copyWith(videoNote: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VoiceCopyWith<$Res>? get voice {
+    if (_self.voice == null) {
+      return null;
+    }
+
+    return $VoiceCopyWith<$Res>(_self.voice!, (value) {
+      return _then(_self.copyWith(voice: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ContactCopyWith<$Res>? get contact {
+    if (_self.contact == null) {
+      return null;
+    }
+
+    return $ContactCopyWith<$Res>(_self.contact!, (value) {
+      return _then(_self.copyWith(contact: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DiceCopyWith<$Res>? get dice {
+    if (_self.dice == null) {
+      return null;
+    }
+
+    return $DiceCopyWith<$Res>(_self.dice!, (value) {
+      return _then(_self.copyWith(dice: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GameCopyWith<$Res>? get game {
+    if (_self.game == null) {
+      return null;
+    }
+
+    return $GameCopyWith<$Res>(_self.game!, (value) {
+      return _then(_self.copyWith(game: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GiveawayCopyWith<$Res>? get giveaway {
+    if (_self.giveaway == null) {
+      return null;
+    }
+
+    return $GiveawayCopyWith<$Res>(_self.giveaway!, (value) {
+      return _then(_self.copyWith(giveaway: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GiveawayWinnersCopyWith<$Res>? get giveawayWinners {
+    if (_self.giveawayWinners == null) {
+      return null;
+    }
+
+    return $GiveawayWinnersCopyWith<$Res>(_self.giveawayWinners!, (value) {
+      return _then(_self.copyWith(giveawayWinners: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $InvoiceCopyWith<$Res>? get invoice {
+    if (_self.invoice == null) {
+      return null;
+    }
+
+    return $InvoiceCopyWith<$Res>(_self.invoice!, (value) {
+      return _then(_self.copyWith(invoice: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationCopyWith<$Res>? get location {
+    if (_self.location == null) {
+      return null;
+    }
+
+    return $LocationCopyWith<$Res>(_self.location!, (value) {
+      return _then(_self.copyWith(location: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PollCopyWith<$Res>? get poll {
+    if (_self.poll == null) {
+      return null;
+    }
+
+    return $PollCopyWith<$Res>(_self.poll!, (value) {
+      return _then(_self.copyWith(poll: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VenueCopyWith<$Res>? get venue {
+    if (_self.venue == null) {
+      return null;
+    }
+
+    return $VenueCopyWith<$Res>(_self.venue!, (value) {
+      return _then(_self.copyWith(venue: value));
+    });
+  }
+
+  /// Create a copy of ExternalReplyInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PaidMediaInfoCopyWith<$Res>? get paidMedia {
+    if (_self.paidMedia == null) {
+      return null;
+    }
+
+    return $PaidMediaInfoCopyWith<$Res>(_self.paidMedia!, (value) {
+      return _then(_self.copyWith(paidMedia: value));
+    });
+  }
 }

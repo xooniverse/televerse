@@ -12,7 +12,7 @@ part 'users_shared.g.dart';
 ///
 /// https://core.telegram.org/bots/api#usershared
 @freezed
-class UsersShared with _$UsersShared {
+abstract class UsersShared with _$UsersShared {
   /// Constructs a [UsersShared] object
   const factory UsersShared({
     /// Identifier of the request

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,18 +12,11 @@ part of 'users_shared.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-UsersShared _$UsersSharedFromJson(Map<String, dynamic> json) {
-  return _UsersShared.fromJson(json);
-}
-
 /// @nodoc
 mixin _$UsersShared {
   /// Identifier of the request
   @JsonKey(name: 'request_id')
-  int get requestId => throw _privateConstructorUsedError;
+  int get requestId;
 
   /// Identifiers of the shared users. These numbers may have more than 32
   /// significant bits and some programming languages may have
@@ -32,67 +26,29 @@ mixin _$UsersShared {
   /// users and could be unable to use these identifiers, unless the users are
   /// already known to the bot by some other means.
   @JsonKey(name: 'users')
-  List<SharedUser> get users => throw _privateConstructorUsedError;
-
-  /// Serializes this UsersShared to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<SharedUser> get users;
 
   /// Create a copy of UsersShared
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UsersSharedCopyWith<UsersShared> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UsersSharedCopyWith<$Res> {
-  factory $UsersSharedCopyWith(
-          UsersShared value, $Res Function(UsersShared) then) =
-      _$UsersSharedCopyWithImpl<$Res, UsersShared>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'request_id') int requestId,
-      @JsonKey(name: 'users') List<SharedUser> users});
-}
-
-/// @nodoc
-class _$UsersSharedCopyWithImpl<$Res, $Val extends UsersShared>
-    implements $UsersSharedCopyWith<$Res> {
-  _$UsersSharedCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of UsersShared
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $UsersSharedCopyWith<UsersShared> get copyWith =>
+      _$UsersSharedCopyWithImpl<UsersShared>(this as UsersShared, _$identity);
+
+  /// Serializes this UsersShared to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? requestId = null,
-    Object? users = null,
-  }) {
-    return _then(_value.copyWith(
-      requestId: null == requestId
-          ? _value.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as int,
-      users: null == users
-          ? _value.users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<SharedUser>,
-    ) as $Val);
+  String toString() {
+    return 'UsersShared(requestId: $requestId, users: $users)';
   }
 }
 
 /// @nodoc
-abstract class _$$UsersSharedImplCopyWith<$Res>
-    implements $UsersSharedCopyWith<$Res> {
-  factory _$$UsersSharedImplCopyWith(
-          _$UsersSharedImpl value, $Res Function(_$UsersSharedImpl) then) =
-      __$$UsersSharedImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $UsersSharedCopyWith<$Res> {
+  factory $UsersSharedCopyWith(
+          UsersShared value, $Res Function(UsersShared) _then) =
+      _$UsersSharedCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'request_id') int requestId,
@@ -100,12 +56,11 @@ abstract class _$$UsersSharedImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$UsersSharedImplCopyWithImpl<$Res>
-    extends _$UsersSharedCopyWithImpl<$Res, _$UsersSharedImpl>
-    implements _$$UsersSharedImplCopyWith<$Res> {
-  __$$UsersSharedImplCopyWithImpl(
-      _$UsersSharedImpl _value, $Res Function(_$UsersSharedImpl) _then)
-      : super(_value, _then);
+class _$UsersSharedCopyWithImpl<$Res> implements $UsersSharedCopyWith<$Res> {
+  _$UsersSharedCopyWithImpl(this._self, this._then);
+
+  final UsersShared _self;
+  final $Res Function(UsersShared) _then;
 
   /// Create a copy of UsersShared
   /// with the given fields replaced by the non-null parameter values.
@@ -115,13 +70,13 @@ class __$$UsersSharedImplCopyWithImpl<$Res>
     Object? requestId = null,
     Object? users = null,
   }) {
-    return _then(_$UsersSharedImpl(
+    return _then(_self.copyWith(
       requestId: null == requestId
-          ? _value.requestId
+          ? _self.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
               as int,
       users: null == users
-          ? _value._users
+          ? _self.users
           : users // ignore: cast_nullable_to_non_nullable
               as List<SharedUser>,
     ));
@@ -130,14 +85,13 @@ class __$$UsersSharedImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UsersSharedImpl implements _UsersShared {
-  const _$UsersSharedImpl(
+class _UsersShared implements UsersShared {
+  const _UsersShared(
       {@JsonKey(name: 'request_id') required this.requestId,
       @JsonKey(name: 'users') required final List<SharedUser> users})
       : _users = users;
-
-  factory _$UsersSharedImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UsersSharedImplFromJson(json);
+  factory _UsersShared.fromJson(Map<String, dynamic> json) =>
+      _$UsersSharedFromJson(json);
 
   /// Identifier of the request
   @override
@@ -168,56 +122,64 @@ class _$UsersSharedImpl implements _UsersShared {
     return EqualUnmodifiableListView(_users);
   }
 
+  /// Create a copy of UsersShared
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UsersSharedCopyWith<_UsersShared> get copyWith =>
+      __$UsersSharedCopyWithImpl<_UsersShared>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$UsersSharedToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'UsersShared(requestId: $requestId, users: $users)';
   }
-
-  /// Create a copy of UsersShared
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UsersSharedImplCopyWith<_$UsersSharedImpl> get copyWith =>
-      __$$UsersSharedImplCopyWithImpl<_$UsersSharedImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UsersSharedImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _UsersShared implements UsersShared {
-  const factory _UsersShared(
-          {@JsonKey(name: 'request_id') required final int requestId,
-          @JsonKey(name: 'users') required final List<SharedUser> users}) =
-      _$UsersSharedImpl;
-
-  factory _UsersShared.fromJson(Map<String, dynamic> json) =
-      _$UsersSharedImpl.fromJson;
-
-  /// Identifier of the request
+/// @nodoc
+abstract mixin class _$UsersSharedCopyWith<$Res>
+    implements $UsersSharedCopyWith<$Res> {
+  factory _$UsersSharedCopyWith(
+          _UsersShared value, $Res Function(_UsersShared) _then) =
+      __$UsersSharedCopyWithImpl;
   @override
-  @JsonKey(name: 'request_id')
-  int get requestId;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'request_id') int requestId,
+      @JsonKey(name: 'users') List<SharedUser> users});
+}
 
-  /// Identifiers of the shared users. These numbers may have more than 32
-  /// significant bits and some programming languages may have
-  /// difficulty/silent defects in interpreting them. But they have at most 52
-  /// significant bits, so 64-bit integers or double-precision float types are
-  /// safe for storing these identifiers. The bot may not have access to the
-  /// users and could be unable to use these identifiers, unless the users are
-  /// already known to the bot by some other means.
-  @override
-  @JsonKey(name: 'users')
-  List<SharedUser> get users;
+/// @nodoc
+class __$UsersSharedCopyWithImpl<$Res> implements _$UsersSharedCopyWith<$Res> {
+  __$UsersSharedCopyWithImpl(this._self, this._then);
+
+  final _UsersShared _self;
+  final $Res Function(_UsersShared) _then;
 
   /// Create a copy of UsersShared
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UsersSharedImplCopyWith<_$UsersSharedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? requestId = null,
+    Object? users = null,
+  }) {
+    return _then(_UsersShared(
+      requestId: null == requestId
+          ? _self.requestId
+          : requestId // ignore: cast_nullable_to_non_nullable
+              as int,
+      users: null == users
+          ? _self._users
+          : users // ignore: cast_nullable_to_non_nullable
+              as List<SharedUser>,
+    ));
+  }
 }

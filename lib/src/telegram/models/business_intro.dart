@@ -7,7 +7,7 @@ part 'business_intro.g.dart';
 
 /// Represents an introduction to a business.
 @freezed
-class BusinessIntro with _$BusinessIntro {
+abstract class BusinessIntro with _$BusinessIntro {
   /// Creates a [BusinessIntro] object.
   const factory BusinessIntro({
     /// Optional. Title text of the business intro.

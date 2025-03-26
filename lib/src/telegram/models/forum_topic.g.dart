@@ -6,15 +6,14 @@ part of 'forum_topic.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ForumTopicImpl _$$ForumTopicImplFromJson(Map<String, dynamic> json) =>
-    _$ForumTopicImpl(
+_ForumTopic _$ForumTopicFromJson(Map<String, dynamic> json) => _ForumTopic(
       messageThreadId: json['message_thread_id'] as String,
       name: json['name'] as String,
       iconColor: (json['icon_color'] as num).toInt(),
       iconCustomEmojiId: json['icon_custom_emoji_id'] as String?,
     );
 
-Map<String, dynamic> _$$ForumTopicImplToJson(_$ForumTopicImpl instance) =>
+Map<String, dynamic> _$ForumTopicToJson(_ForumTopic instance) =>
     <String, dynamic>{
       'message_thread_id': instance.messageThreadId,
       'name': instance.name,

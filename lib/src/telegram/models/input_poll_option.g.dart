@@ -6,9 +6,8 @@ part of 'input_poll_option.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InputPollOptionImpl _$$InputPollOptionImplFromJson(
-        Map<String, dynamic> json) =>
-    _$InputPollOptionImpl(
+_InputPollOption _$InputPollOptionFromJson(Map<String, dynamic> json) =>
+    _InputPollOption(
       text: json['text'] as String,
       textParseMode:
           $enumDecodeNullable(_$ParseModeEnumMap, json['text_parse_mode']),
@@ -17,8 +16,7 @@ _$InputPollOptionImpl _$$InputPollOptionImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$InputPollOptionImplToJson(
-        _$InputPollOptionImpl instance) =>
+Map<String, dynamic> _$InputPollOptionToJson(_InputPollOption instance) =>
     <String, dynamic>{
       'text': instance.text,
       if (instance.textParseMode case final value?) 'text_parse_mode': value,

@@ -10,7 +10,7 @@ part 'giveaway_winners.g.dart';
 /// This object represents a message about the completion of a giveaway with
 /// public winners.
 @freezed
-class GiveawayWinners with _$GiveawayWinners implements WithChat {
+abstract class GiveawayWinners with _$GiveawayWinners implements WithChat {
   /// Constructor
   const factory GiveawayWinners({
     /// The chat that created the giveaway

@@ -23,7 +23,7 @@ part 'keyboard.g.dart';
 /// ctx.api.sendMessage(ctx.id, "Choose an option:", replyMarkup: keyboard);
 /// ```
 @freezed
-class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
+abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   /// Creates a new [Keyboard].
   ///
   /// Keyboard is an easy way to create a custom keyboard that will be shown

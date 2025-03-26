@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,14 +12,6 @@ part of 'message_auto_delete_timer_changed.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-MessageAutoDeleteTimerChanged _$MessageAutoDeleteTimerChangedFromJson(
-    Map<String, dynamic> json) {
-  return _MessageAutoDeleteTimerChanged.fromJson(json);
-}
-
 /// @nodoc
 mixin _$MessageAutoDeleteTimerChanged {
   /// New auto-delete time for messages in the chat; in seconds
@@ -26,79 +19,44 @@ mixin _$MessageAutoDeleteTimerChanged {
   /// Note: you can also use the getter [timeInDuration] to get the time in
   /// [Duration] object
   @JsonKey(name: 'message_auto_delete_time')
-  int get messageAutoDeleteTime => throw _privateConstructorUsedError;
-
-  /// Serializes this MessageAutoDeleteTimerChanged to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get messageAutoDeleteTime;
 
   /// Create a copy of MessageAutoDeleteTimerChanged
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $MessageAutoDeleteTimerChangedCopyWith<MessageAutoDeleteTimerChanged>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MessageAutoDeleteTimerChangedCopyWith<$Res> {
-  factory $MessageAutoDeleteTimerChangedCopyWith(
-          MessageAutoDeleteTimerChanged value,
-          $Res Function(MessageAutoDeleteTimerChanged) then) =
-      _$MessageAutoDeleteTimerChangedCopyWithImpl<$Res,
-          MessageAutoDeleteTimerChanged>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'message_auto_delete_time') int messageAutoDeleteTime});
-}
-
-/// @nodoc
-class _$MessageAutoDeleteTimerChangedCopyWithImpl<$Res,
-        $Val extends MessageAutoDeleteTimerChanged>
-    implements $MessageAutoDeleteTimerChangedCopyWith<$Res> {
-  _$MessageAutoDeleteTimerChangedCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of MessageAutoDeleteTimerChanged
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $MessageAutoDeleteTimerChangedCopyWith<MessageAutoDeleteTimerChanged>
+      get copyWith => _$MessageAutoDeleteTimerChangedCopyWithImpl<
+              MessageAutoDeleteTimerChanged>(
+          this as MessageAutoDeleteTimerChanged, _$identity);
+
+  /// Serializes this MessageAutoDeleteTimerChanged to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? messageAutoDeleteTime = null,
-  }) {
-    return _then(_value.copyWith(
-      messageAutoDeleteTime: null == messageAutoDeleteTime
-          ? _value.messageAutoDeleteTime
-          : messageAutoDeleteTime // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  String toString() {
+    return 'MessageAutoDeleteTimerChanged(messageAutoDeleteTime: $messageAutoDeleteTime)';
   }
 }
 
 /// @nodoc
-abstract class _$$MessageAutoDeleteTimerChangedImplCopyWith<$Res>
-    implements $MessageAutoDeleteTimerChangedCopyWith<$Res> {
-  factory _$$MessageAutoDeleteTimerChangedImplCopyWith(
-          _$MessageAutoDeleteTimerChangedImpl value,
-          $Res Function(_$MessageAutoDeleteTimerChangedImpl) then) =
-      __$$MessageAutoDeleteTimerChangedImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $MessageAutoDeleteTimerChangedCopyWith<$Res> {
+  factory $MessageAutoDeleteTimerChangedCopyWith(
+          MessageAutoDeleteTimerChanged value,
+          $Res Function(MessageAutoDeleteTimerChanged) _then) =
+      _$MessageAutoDeleteTimerChangedCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'message_auto_delete_time') int messageAutoDeleteTime});
 }
 
 /// @nodoc
-class __$$MessageAutoDeleteTimerChangedImplCopyWithImpl<$Res>
-    extends _$MessageAutoDeleteTimerChangedCopyWithImpl<$Res,
-        _$MessageAutoDeleteTimerChangedImpl>
-    implements _$$MessageAutoDeleteTimerChangedImplCopyWith<$Res> {
-  __$$MessageAutoDeleteTimerChangedImplCopyWithImpl(
-      _$MessageAutoDeleteTimerChangedImpl _value,
-      $Res Function(_$MessageAutoDeleteTimerChangedImpl) _then)
-      : super(_value, _then);
+class _$MessageAutoDeleteTimerChangedCopyWithImpl<$Res>
+    implements $MessageAutoDeleteTimerChangedCopyWith<$Res> {
+  _$MessageAutoDeleteTimerChangedCopyWithImpl(this._self, this._then);
+
+  final MessageAutoDeleteTimerChanged _self;
+  final $Res Function(MessageAutoDeleteTimerChanged) _then;
 
   /// Create a copy of MessageAutoDeleteTimerChanged
   /// with the given fields replaced by the non-null parameter values.
@@ -107,9 +65,9 @@ class __$$MessageAutoDeleteTimerChangedImplCopyWithImpl<$Res>
   $Res call({
     Object? messageAutoDeleteTime = null,
   }) {
-    return _then(_$MessageAutoDeleteTimerChangedImpl(
+    return _then(_self.copyWith(
       messageAutoDeleteTime: null == messageAutoDeleteTime
-          ? _value.messageAutoDeleteTime
+          ? _self.messageAutoDeleteTime
           : messageAutoDeleteTime // ignore: cast_nullable_to_non_nullable
               as int,
     ));
@@ -118,15 +76,12 @@ class __$$MessageAutoDeleteTimerChangedImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$MessageAutoDeleteTimerChangedImpl
-    implements _MessageAutoDeleteTimerChanged {
-  const _$MessageAutoDeleteTimerChangedImpl(
+class _MessageAutoDeleteTimerChanged implements MessageAutoDeleteTimerChanged {
+  const _MessageAutoDeleteTimerChanged(
       {@JsonKey(name: 'message_auto_delete_time')
       required this.messageAutoDeleteTime});
-
-  factory _$MessageAutoDeleteTimerChangedImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$MessageAutoDeleteTimerChangedImplFromJson(json);
+  factory _MessageAutoDeleteTimerChanged.fromJson(Map<String, dynamic> json) =>
+      _$MessageAutoDeleteTimerChangedFromJson(json);
 
   /// New auto-delete time for messages in the chat; in seconds
   ///
@@ -136,52 +91,61 @@ class _$MessageAutoDeleteTimerChangedImpl
   @JsonKey(name: 'message_auto_delete_time')
   final int messageAutoDeleteTime;
 
+  /// Create a copy of MessageAutoDeleteTimerChanged
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MessageAutoDeleteTimerChangedCopyWith<_MessageAutoDeleteTimerChanged>
+      get copyWith => __$MessageAutoDeleteTimerChangedCopyWithImpl<
+          _MessageAutoDeleteTimerChanged>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MessageAutoDeleteTimerChangedToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'MessageAutoDeleteTimerChanged(messageAutoDeleteTime: $messageAutoDeleteTime)';
   }
-
-  /// Create a copy of MessageAutoDeleteTimerChanged
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MessageAutoDeleteTimerChangedImplCopyWith<
-          _$MessageAutoDeleteTimerChangedImpl>
-      get copyWith => __$$MessageAutoDeleteTimerChangedImplCopyWithImpl<
-          _$MessageAutoDeleteTimerChangedImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MessageAutoDeleteTimerChangedImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _MessageAutoDeleteTimerChanged
-    implements MessageAutoDeleteTimerChanged {
-  const factory _MessageAutoDeleteTimerChanged(
-          {@JsonKey(name: 'message_auto_delete_time')
-          required final int messageAutoDeleteTime}) =
-      _$MessageAutoDeleteTimerChangedImpl;
-
-  factory _MessageAutoDeleteTimerChanged.fromJson(Map<String, dynamic> json) =
-      _$MessageAutoDeleteTimerChangedImpl.fromJson;
-
-  /// New auto-delete time for messages in the chat; in seconds
-  ///
-  /// Note: you can also use the getter [timeInDuration] to get the time in
-  /// [Duration] object
+/// @nodoc
+abstract mixin class _$MessageAutoDeleteTimerChangedCopyWith<$Res>
+    implements $MessageAutoDeleteTimerChangedCopyWith<$Res> {
+  factory _$MessageAutoDeleteTimerChangedCopyWith(
+          _MessageAutoDeleteTimerChanged value,
+          $Res Function(_MessageAutoDeleteTimerChanged) _then) =
+      __$MessageAutoDeleteTimerChangedCopyWithImpl;
   @override
-  @JsonKey(name: 'message_auto_delete_time')
-  int get messageAutoDeleteTime;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'message_auto_delete_time') int messageAutoDeleteTime});
+}
+
+/// @nodoc
+class __$MessageAutoDeleteTimerChangedCopyWithImpl<$Res>
+    implements _$MessageAutoDeleteTimerChangedCopyWith<$Res> {
+  __$MessageAutoDeleteTimerChangedCopyWithImpl(this._self, this._then);
+
+  final _MessageAutoDeleteTimerChanged _self;
+  final $Res Function(_MessageAutoDeleteTimerChanged) _then;
 
   /// Create a copy of MessageAutoDeleteTimerChanged
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MessageAutoDeleteTimerChangedImplCopyWith<
-          _$MessageAutoDeleteTimerChangedImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? messageAutoDeleteTime = null,
+  }) {
+    return _then(_MessageAutoDeleteTimerChanged(
+      messageAutoDeleteTime: null == messageAutoDeleteTime
+          ? _self.messageAutoDeleteTime
+          : messageAutoDeleteTime // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }

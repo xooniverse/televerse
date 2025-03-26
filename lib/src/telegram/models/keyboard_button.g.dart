@@ -6,8 +6,8 @@ part of 'keyboard_button.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$KeyboardButtonImpl _$$KeyboardButtonImplFromJson(Map<String, dynamic> json) =>
-    _$KeyboardButtonImpl(
+_KeyboardButton _$KeyboardButtonFromJson(Map<String, dynamic> json) =>
+    _KeyboardButton(
       text: json['text'] as String,
       requestContact: json['request_contact'] as bool?,
       requestLocation: json['request_location'] as bool?,
@@ -28,8 +28,7 @@ _$KeyboardButtonImpl _$$KeyboardButtonImplFromJson(Map<String, dynamic> json) =>
               json['request_chat'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$KeyboardButtonImplToJson(
-        _$KeyboardButtonImpl instance) =>
+Map<String, dynamic> _$KeyboardButtonToJson(_KeyboardButton instance) =>
     <String, dynamic>{
       'text': instance.text,
       if (instance.requestContact case final value?) 'request_contact': value,

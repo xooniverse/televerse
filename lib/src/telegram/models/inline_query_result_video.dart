@@ -17,7 +17,7 @@ part 'inline_query_result_video.g.dart';
 /// If an InlineQueryResultVideo message contains an embedded video (e.g.,
 /// YouTube), you must replace its content using input_message_content.
 @freezed
-class InlineQueryResultVideo
+abstract class InlineQueryResultVideo
     with _$InlineQueryResultVideo
     implements InlineQueryResult {
   /// Creates an instance of [InlineQueryResultVideo].

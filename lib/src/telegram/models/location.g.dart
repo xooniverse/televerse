@@ -6,8 +6,7 @@ part of 'location.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LocationImpl _$$LocationImplFromJson(Map<String, dynamic> json) =>
-    _$LocationImpl(
+_Location _$LocationFromJson(Map<String, dynamic> json) => _Location(
       longitude: (json['longitude'] as num).toDouble(),
       latitude: (json['latitude'] as num).toDouble(),
       horizontalAccuracy: (json['horizontal_accuracy'] as num?)?.toDouble(),
@@ -16,8 +15,7 @@ _$LocationImpl _$$LocationImplFromJson(Map<String, dynamic> json) =>
       proximityAlertRadius: (json['proximity_alert_radius'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$LocationImplToJson(_$LocationImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$LocationToJson(_Location instance) => <String, dynamic>{
       'longitude': instance.longitude,
       'latitude': instance.latitude,
       if (instance.horizontalAccuracy case final value?)

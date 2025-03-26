@@ -6,7 +6,7 @@ part of 'gift.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GiftImpl _$$GiftImplFromJson(Map<String, dynamic> json) => _$GiftImpl(
+_Gift _$GiftFromJson(Map<String, dynamic> json) => _Gift(
       id: json['id'] as String,
       sticker: Sticker.fromJson(json['sticker'] as Map<String, dynamic>),
       starCount: (json['star_count'] as num).toInt(),
@@ -15,8 +15,7 @@ _$GiftImpl _$$GiftImplFromJson(Map<String, dynamic> json) => _$GiftImpl(
       upgradeStarCount: (json['upgrade_star_count'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$GiftImplToJson(_$GiftImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$GiftToJson(_Gift instance) => <String, dynamic>{
       'id': instance.id,
       'sticker': instance.sticker,
       'star_count': instance.starCount,

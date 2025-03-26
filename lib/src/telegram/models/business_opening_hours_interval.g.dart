@@ -6,15 +6,15 @@ part of 'business_opening_hours_interval.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BusinessOpeningHoursIntervalImpl _$$BusinessOpeningHoursIntervalImplFromJson(
+_BusinessOpeningHoursInterval _$BusinessOpeningHoursIntervalFromJson(
         Map<String, dynamic> json) =>
-    _$BusinessOpeningHoursIntervalImpl(
+    _BusinessOpeningHoursInterval(
       openingMinute: (json['opening_minute'] as num).toInt(),
       closingMinute: (json['closing_minute'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$BusinessOpeningHoursIntervalImplToJson(
-        _$BusinessOpeningHoursIntervalImpl instance) =>
+Map<String, dynamic> _$BusinessOpeningHoursIntervalToJson(
+        _BusinessOpeningHoursInterval instance) =>
     <String, dynamic>{
       'opening_minute': instance.openingMinute,
       'closing_minute': instance.closingMinute,

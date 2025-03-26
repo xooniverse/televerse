@@ -6,8 +6,7 @@ part of 'inline_query.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryImpl _$$InlineQueryImplFromJson(Map<String, dynamic> json) =>
-    _$InlineQueryImpl(
+_InlineQuery _$InlineQueryFromJson(Map<String, dynamic> json) => _InlineQuery(
       id: json['id'] as String,
       from: User.fromJson(json['from'] as Map<String, dynamic>),
       query: json['query'] as String,
@@ -18,7 +17,7 @@ _$InlineQueryImpl _$$InlineQueryImplFromJson(Map<String, dynamic> json) =>
           : Location.fromJson(json['location'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$InlineQueryImplToJson(_$InlineQueryImpl instance) =>
+Map<String, dynamic> _$InlineQueryToJson(_InlineQuery instance) =>
     <String, dynamic>{
       'id': instance.id,
       'from': instance.from,

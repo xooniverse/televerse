@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,10 +11,6 @@ part of 'revenue_withdrawal_state.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 RevenueWithdrawalState _$RevenueWithdrawalStateFromJson(
     Map<String, dynamic> json) {
   switch (json['type']) {
@@ -34,98 +31,41 @@ RevenueWithdrawalState _$RevenueWithdrawalStateFromJson(
 mixin _$RevenueWithdrawalState {
   /// Type of the revenue withdrawal state, must be "pending"
   @JsonKey(name: 'type')
-  RevenueWithdrawalStateType get type => throw _privateConstructorUsedError;
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(RevenueWithdrawalStatePending value) pending,
-    required TResult Function(RevenueWithdrawalStateSucceeded value) succeeded,
-    required TResult Function(RevenueWithdrawalStateFailed value) failed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RevenueWithdrawalStatePending value)? pending,
-    TResult? Function(RevenueWithdrawalStateSucceeded value)? succeeded,
-    TResult? Function(RevenueWithdrawalStateFailed value)? failed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(RevenueWithdrawalStatePending value)? pending,
-    TResult Function(RevenueWithdrawalStateSucceeded value)? succeeded,
-    TResult Function(RevenueWithdrawalStateFailed value)? failed,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this RevenueWithdrawalState to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  RevenueWithdrawalStateType get type;
 
   /// Create a copy of RevenueWithdrawalState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $RevenueWithdrawalStateCopyWith<RevenueWithdrawalState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $RevenueWithdrawalStateCopyWith<$Res> {
-  factory $RevenueWithdrawalStateCopyWith(RevenueWithdrawalState value,
-          $Res Function(RevenueWithdrawalState) then) =
-      _$RevenueWithdrawalStateCopyWithImpl<$Res, RevenueWithdrawalState>;
-  @useResult
-  $Res call({@JsonKey(name: 'type') RevenueWithdrawalStateType type});
-}
-
-/// @nodoc
-class _$RevenueWithdrawalStateCopyWithImpl<$Res,
-        $Val extends RevenueWithdrawalState>
-    implements $RevenueWithdrawalStateCopyWith<$Res> {
-  _$RevenueWithdrawalStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of RevenueWithdrawalState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $RevenueWithdrawalStateCopyWith<RevenueWithdrawalState> get copyWith =>
+      _$RevenueWithdrawalStateCopyWithImpl<RevenueWithdrawalState>(
+          this as RevenueWithdrawalState, _$identity);
+
+  /// Serializes this RevenueWithdrawalState to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as RevenueWithdrawalStateType,
-    ) as $Val);
+  String toString() {
+    return 'RevenueWithdrawalState(type: $type)';
   }
 }
 
 /// @nodoc
-abstract class _$$RevenueWithdrawalStatePendingImplCopyWith<$Res>
-    implements $RevenueWithdrawalStateCopyWith<$Res> {
-  factory _$$RevenueWithdrawalStatePendingImplCopyWith(
-          _$RevenueWithdrawalStatePendingImpl value,
-          $Res Function(_$RevenueWithdrawalStatePendingImpl) then) =
-      __$$RevenueWithdrawalStatePendingImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $RevenueWithdrawalStateCopyWith<$Res> {
+  factory $RevenueWithdrawalStateCopyWith(RevenueWithdrawalState value,
+          $Res Function(RevenueWithdrawalState) _then) =
+      _$RevenueWithdrawalStateCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'type') RevenueWithdrawalStateType type});
 }
 
 /// @nodoc
-class __$$RevenueWithdrawalStatePendingImplCopyWithImpl<$Res>
-    extends _$RevenueWithdrawalStateCopyWithImpl<$Res,
-        _$RevenueWithdrawalStatePendingImpl>
-    implements _$$RevenueWithdrawalStatePendingImplCopyWith<$Res> {
-  __$$RevenueWithdrawalStatePendingImplCopyWithImpl(
-      _$RevenueWithdrawalStatePendingImpl _value,
-      $Res Function(_$RevenueWithdrawalStatePendingImpl) _then)
-      : super(_value, _then);
+class _$RevenueWithdrawalStateCopyWithImpl<$Res>
+    implements $RevenueWithdrawalStateCopyWith<$Res> {
+  _$RevenueWithdrawalStateCopyWithImpl(this._self, this._then);
+
+  final RevenueWithdrawalState _self;
+  final $Res Function(RevenueWithdrawalState) _then;
 
   /// Create a copy of RevenueWithdrawalState
   /// with the given fields replaced by the non-null parameter values.
@@ -134,9 +74,9 @@ class __$$RevenueWithdrawalStatePendingImplCopyWithImpl<$Res>
   $Res call({
     Object? type = null,
   }) {
-    return _then(_$RevenueWithdrawalStatePendingImpl(
+    return _then(_self.copyWith(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as RevenueWithdrawalStateType,
     ));
@@ -145,108 +85,131 @@ class __$$RevenueWithdrawalStatePendingImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RevenueWithdrawalStatePendingImpl
-    implements RevenueWithdrawalStatePending {
-  const _$RevenueWithdrawalStatePendingImpl(
+class RevenueWithdrawalStatePending implements RevenueWithdrawalState {
+  const RevenueWithdrawalStatePending(
       {@JsonKey(name: 'type') this.type = RevenueWithdrawalStateType.pending})
       : assert(type == RevenueWithdrawalStateType.pending,
             'type must be RevenueWithdrawalStateType.pending');
-
-  factory _$RevenueWithdrawalStatePendingImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$RevenueWithdrawalStatePendingImplFromJson(json);
+  factory RevenueWithdrawalStatePending.fromJson(Map<String, dynamic> json) =>
+      _$RevenueWithdrawalStatePendingFromJson(json);
 
   /// Type of the revenue withdrawal state, must be "pending"
   @override
   @JsonKey(name: 'type')
   final RevenueWithdrawalStateType type;
 
+  /// Create a copy of RevenueWithdrawalState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $RevenueWithdrawalStatePendingCopyWith<RevenueWithdrawalStatePending>
+      get copyWith => _$RevenueWithdrawalStatePendingCopyWithImpl<
+          RevenueWithdrawalStatePending>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$RevenueWithdrawalStatePendingToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'RevenueWithdrawalState.pending(type: $type)';
   }
-
-  /// Create a copy of RevenueWithdrawalState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RevenueWithdrawalStatePendingImplCopyWith<
-          _$RevenueWithdrawalStatePendingImpl>
-      get copyWith => __$$RevenueWithdrawalStatePendingImplCopyWithImpl<
-          _$RevenueWithdrawalStatePendingImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(RevenueWithdrawalStatePending value) pending,
-    required TResult Function(RevenueWithdrawalStateSucceeded value) succeeded,
-    required TResult Function(RevenueWithdrawalStateFailed value) failed,
-  }) {
-    return pending(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RevenueWithdrawalStatePending value)? pending,
-    TResult? Function(RevenueWithdrawalStateSucceeded value)? succeeded,
-    TResult? Function(RevenueWithdrawalStateFailed value)? failed,
-  }) {
-    return pending?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(RevenueWithdrawalStatePending value)? pending,
-    TResult Function(RevenueWithdrawalStateSucceeded value)? succeeded,
-    TResult Function(RevenueWithdrawalStateFailed value)? failed,
-    required TResult orElse(),
-  }) {
-    if (pending != null) {
-      return pending(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$RevenueWithdrawalStatePendingImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class RevenueWithdrawalStatePending implements RevenueWithdrawalState {
-  const factory RevenueWithdrawalStatePending(
-          {@JsonKey(name: 'type') final RevenueWithdrawalStateType type}) =
-      _$RevenueWithdrawalStatePendingImpl;
-
-  factory RevenueWithdrawalStatePending.fromJson(Map<String, dynamic> json) =
-      _$RevenueWithdrawalStatePendingImpl.fromJson;
-
-  /// Type of the revenue withdrawal state, must be "pending"
-  @override
-  @JsonKey(name: 'type')
-  RevenueWithdrawalStateType get type;
-
-  /// Create a copy of RevenueWithdrawalState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RevenueWithdrawalStatePendingImplCopyWith<
-          _$RevenueWithdrawalStatePendingImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RevenueWithdrawalStateSucceededImplCopyWith<$Res>
+abstract mixin class $RevenueWithdrawalStatePendingCopyWith<$Res>
     implements $RevenueWithdrawalStateCopyWith<$Res> {
-  factory _$$RevenueWithdrawalStateSucceededImplCopyWith(
-          _$RevenueWithdrawalStateSucceededImpl value,
-          $Res Function(_$RevenueWithdrawalStateSucceededImpl) then) =
-      __$$RevenueWithdrawalStateSucceededImplCopyWithImpl<$Res>;
+  factory $RevenueWithdrawalStatePendingCopyWith(
+          RevenueWithdrawalStatePending value,
+          $Res Function(RevenueWithdrawalStatePending) _then) =
+      _$RevenueWithdrawalStatePendingCopyWithImpl;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'type') RevenueWithdrawalStateType type});
+}
+
+/// @nodoc
+class _$RevenueWithdrawalStatePendingCopyWithImpl<$Res>
+    implements $RevenueWithdrawalStatePendingCopyWith<$Res> {
+  _$RevenueWithdrawalStatePendingCopyWithImpl(this._self, this._then);
+
+  final RevenueWithdrawalStatePending _self;
+  final $Res Function(RevenueWithdrawalStatePending) _then;
+
+  /// Create a copy of RevenueWithdrawalState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(RevenueWithdrawalStatePending(
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as RevenueWithdrawalStateType,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class RevenueWithdrawalStateSucceeded implements RevenueWithdrawalState {
+  const RevenueWithdrawalStateSucceeded(
+      {@JsonKey(name: 'type') this.type = RevenueWithdrawalStateType.succeeded,
+      @JsonKey(name: 'date') required this.date,
+      @JsonKey(name: 'url') required this.url})
+      : assert(type == RevenueWithdrawalStateType.succeeded,
+            'type must be RevenueWithdrawalStateType.succeeded');
+  factory RevenueWithdrawalStateSucceeded.fromJson(Map<String, dynamic> json) =>
+      _$RevenueWithdrawalStateSucceededFromJson(json);
+
+  /// Type of the revenue withdrawal state, must be "succeeded"
+  @override
+  @JsonKey(name: 'type')
+  final RevenueWithdrawalStateType type;
+
+  /// Date the withdrawal was completed in Unix time.
+  @JsonKey(name: 'date')
+  final int date;
+
+  /// An HTTPS URL that can be used to see transaction details.
+  @JsonKey(name: 'url')
+  final String url;
+
+  /// Create a copy of RevenueWithdrawalState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $RevenueWithdrawalStateSucceededCopyWith<RevenueWithdrawalStateSucceeded>
+      get copyWith => _$RevenueWithdrawalStateSucceededCopyWithImpl<
+          RevenueWithdrawalStateSucceeded>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$RevenueWithdrawalStateSucceededToJson(
+      this,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'RevenueWithdrawalState.succeeded(type: $type, date: $date, url: $url)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $RevenueWithdrawalStateSucceededCopyWith<$Res>
+    implements $RevenueWithdrawalStateCopyWith<$Res> {
+  factory $RevenueWithdrawalStateSucceededCopyWith(
+          RevenueWithdrawalStateSucceeded value,
+          $Res Function(RevenueWithdrawalStateSucceeded) _then) =
+      _$RevenueWithdrawalStateSucceededCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -256,35 +219,33 @@ abstract class _$$RevenueWithdrawalStateSucceededImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$RevenueWithdrawalStateSucceededImplCopyWithImpl<$Res>
-    extends _$RevenueWithdrawalStateCopyWithImpl<$Res,
-        _$RevenueWithdrawalStateSucceededImpl>
-    implements _$$RevenueWithdrawalStateSucceededImplCopyWith<$Res> {
-  __$$RevenueWithdrawalStateSucceededImplCopyWithImpl(
-      _$RevenueWithdrawalStateSucceededImpl _value,
-      $Res Function(_$RevenueWithdrawalStateSucceededImpl) _then)
-      : super(_value, _then);
+class _$RevenueWithdrawalStateSucceededCopyWithImpl<$Res>
+    implements $RevenueWithdrawalStateSucceededCopyWith<$Res> {
+  _$RevenueWithdrawalStateSucceededCopyWithImpl(this._self, this._then);
+
+  final RevenueWithdrawalStateSucceeded _self;
+  final $Res Function(RevenueWithdrawalStateSucceeded) _then;
 
   /// Create a copy of RevenueWithdrawalState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
     Object? date = null,
     Object? url = null,
   }) {
-    return _then(_$RevenueWithdrawalStateSucceededImpl(
+    return _then(RevenueWithdrawalStateSucceeded(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as RevenueWithdrawalStateType,
       date: null == date
-          ? _value.date
+          ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
               as int,
       url: null == url
-          ? _value.url
+          ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -293,255 +254,73 @@ class __$$RevenueWithdrawalStateSucceededImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RevenueWithdrawalStateSucceededImpl
-    implements RevenueWithdrawalStateSucceeded {
-  const _$RevenueWithdrawalStateSucceededImpl(
-      {@JsonKey(name: 'type') this.type = RevenueWithdrawalStateType.succeeded,
-      @JsonKey(name: 'date') required this.date,
-      @JsonKey(name: 'url') required this.url})
-      : assert(type == RevenueWithdrawalStateType.succeeded,
-            'type must be RevenueWithdrawalStateType.succeeded');
+class RevenueWithdrawalStateFailed implements RevenueWithdrawalState {
+  const RevenueWithdrawalStateFailed(
+      {@JsonKey(name: 'type') this.type = RevenueWithdrawalStateType.failed})
+      : assert(type == RevenueWithdrawalStateType.failed,
+            'type must be RevenueWithdrawalStateType.failed');
+  factory RevenueWithdrawalStateFailed.fromJson(Map<String, dynamic> json) =>
+      _$RevenueWithdrawalStateFailedFromJson(json);
 
-  factory _$RevenueWithdrawalStateSucceededImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$RevenueWithdrawalStateSucceededImplFromJson(json);
-
-  /// Type of the revenue withdrawal state, must be "succeeded"
+  /// Type of the revenue withdrawal state, must be "failed"
   @override
   @JsonKey(name: 'type')
   final RevenueWithdrawalStateType type;
 
-  /// Date the withdrawal was completed in Unix time.
-  @override
-  @JsonKey(name: 'date')
-  final int date;
-
-  /// An HTTPS URL that can be used to see transaction details.
-  @override
-  @JsonKey(name: 'url')
-  final String url;
-
-  @override
-  String toString() {
-    return 'RevenueWithdrawalState.succeeded(type: $type, date: $date, url: $url)';
-  }
-
   /// Create a copy of RevenueWithdrawalState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$RevenueWithdrawalStateSucceededImplCopyWith<
-          _$RevenueWithdrawalStateSucceededImpl>
-      get copyWith => __$$RevenueWithdrawalStateSucceededImplCopyWithImpl<
-          _$RevenueWithdrawalStateSucceededImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(RevenueWithdrawalStatePending value) pending,
-    required TResult Function(RevenueWithdrawalStateSucceeded value) succeeded,
-    required TResult Function(RevenueWithdrawalStateFailed value) failed,
-  }) {
-    return succeeded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RevenueWithdrawalStatePending value)? pending,
-    TResult? Function(RevenueWithdrawalStateSucceeded value)? succeeded,
-    TResult? Function(RevenueWithdrawalStateFailed value)? failed,
-  }) {
-    return succeeded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(RevenueWithdrawalStatePending value)? pending,
-    TResult Function(RevenueWithdrawalStateSucceeded value)? succeeded,
-    TResult Function(RevenueWithdrawalStateFailed value)? failed,
-    required TResult orElse(),
-  }) {
-    if (succeeded != null) {
-      return succeeded(this);
-    }
-    return orElse();
-  }
+  $RevenueWithdrawalStateFailedCopyWith<RevenueWithdrawalStateFailed>
+      get copyWith => _$RevenueWithdrawalStateFailedCopyWithImpl<
+          RevenueWithdrawalStateFailed>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$RevenueWithdrawalStateSucceededImplToJson(
+    return _$RevenueWithdrawalStateFailedToJson(
       this,
     );
   }
-}
 
-abstract class RevenueWithdrawalStateSucceeded
-    implements RevenueWithdrawalState {
-  const factory RevenueWithdrawalStateSucceeded(
-          {@JsonKey(name: 'type') final RevenueWithdrawalStateType type,
-          @JsonKey(name: 'date') required final int date,
-          @JsonKey(name: 'url') required final String url}) =
-      _$RevenueWithdrawalStateSucceededImpl;
-
-  factory RevenueWithdrawalStateSucceeded.fromJson(Map<String, dynamic> json) =
-      _$RevenueWithdrawalStateSucceededImpl.fromJson;
-
-  /// Type of the revenue withdrawal state, must be "succeeded"
   @override
-  @JsonKey(name: 'type')
-  RevenueWithdrawalStateType get type;
-
-  /// Date the withdrawal was completed in Unix time.
-  @JsonKey(name: 'date')
-  int get date;
-
-  /// An HTTPS URL that can be used to see transaction details.
-  @JsonKey(name: 'url')
-  String get url;
-
-  /// Create a copy of RevenueWithdrawalState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RevenueWithdrawalStateSucceededImplCopyWith<
-          _$RevenueWithdrawalStateSucceededImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  String toString() {
+    return 'RevenueWithdrawalState.failed(type: $type)';
+  }
 }
 
 /// @nodoc
-abstract class _$$RevenueWithdrawalStateFailedImplCopyWith<$Res>
+abstract mixin class $RevenueWithdrawalStateFailedCopyWith<$Res>
     implements $RevenueWithdrawalStateCopyWith<$Res> {
-  factory _$$RevenueWithdrawalStateFailedImplCopyWith(
-          _$RevenueWithdrawalStateFailedImpl value,
-          $Res Function(_$RevenueWithdrawalStateFailedImpl) then) =
-      __$$RevenueWithdrawalStateFailedImplCopyWithImpl<$Res>;
+  factory $RevenueWithdrawalStateFailedCopyWith(
+          RevenueWithdrawalStateFailed value,
+          $Res Function(RevenueWithdrawalStateFailed) _then) =
+      _$RevenueWithdrawalStateFailedCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') RevenueWithdrawalStateType type});
 }
 
 /// @nodoc
-class __$$RevenueWithdrawalStateFailedImplCopyWithImpl<$Res>
-    extends _$RevenueWithdrawalStateCopyWithImpl<$Res,
-        _$RevenueWithdrawalStateFailedImpl>
-    implements _$$RevenueWithdrawalStateFailedImplCopyWith<$Res> {
-  __$$RevenueWithdrawalStateFailedImplCopyWithImpl(
-      _$RevenueWithdrawalStateFailedImpl _value,
-      $Res Function(_$RevenueWithdrawalStateFailedImpl) _then)
-      : super(_value, _then);
+class _$RevenueWithdrawalStateFailedCopyWithImpl<$Res>
+    implements $RevenueWithdrawalStateFailedCopyWith<$Res> {
+  _$RevenueWithdrawalStateFailedCopyWithImpl(this._self, this._then);
+
+  final RevenueWithdrawalStateFailed _self;
+  final $Res Function(RevenueWithdrawalStateFailed) _then;
 
   /// Create a copy of RevenueWithdrawalState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
   }) {
-    return _then(_$RevenueWithdrawalStateFailedImpl(
+    return _then(RevenueWithdrawalStateFailed(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as RevenueWithdrawalStateType,
     ));
   }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$RevenueWithdrawalStateFailedImpl
-    implements RevenueWithdrawalStateFailed {
-  const _$RevenueWithdrawalStateFailedImpl(
-      {@JsonKey(name: 'type') this.type = RevenueWithdrawalStateType.failed})
-      : assert(type == RevenueWithdrawalStateType.failed,
-            'type must be RevenueWithdrawalStateType.failed');
-
-  factory _$RevenueWithdrawalStateFailedImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$RevenueWithdrawalStateFailedImplFromJson(json);
-
-  /// Type of the revenue withdrawal state, must be "failed"
-  @override
-  @JsonKey(name: 'type')
-  final RevenueWithdrawalStateType type;
-
-  @override
-  String toString() {
-    return 'RevenueWithdrawalState.failed(type: $type)';
-  }
-
-  /// Create a copy of RevenueWithdrawalState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RevenueWithdrawalStateFailedImplCopyWith<
-          _$RevenueWithdrawalStateFailedImpl>
-      get copyWith => __$$RevenueWithdrawalStateFailedImplCopyWithImpl<
-          _$RevenueWithdrawalStateFailedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(RevenueWithdrawalStatePending value) pending,
-    required TResult Function(RevenueWithdrawalStateSucceeded value) succeeded,
-    required TResult Function(RevenueWithdrawalStateFailed value) failed,
-  }) {
-    return failed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RevenueWithdrawalStatePending value)? pending,
-    TResult? Function(RevenueWithdrawalStateSucceeded value)? succeeded,
-    TResult? Function(RevenueWithdrawalStateFailed value)? failed,
-  }) {
-    return failed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(RevenueWithdrawalStatePending value)? pending,
-    TResult Function(RevenueWithdrawalStateSucceeded value)? succeeded,
-    TResult Function(RevenueWithdrawalStateFailed value)? failed,
-    required TResult orElse(),
-  }) {
-    if (failed != null) {
-      return failed(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$RevenueWithdrawalStateFailedImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class RevenueWithdrawalStateFailed implements RevenueWithdrawalState {
-  const factory RevenueWithdrawalStateFailed(
-          {@JsonKey(name: 'type') final RevenueWithdrawalStateType type}) =
-      _$RevenueWithdrawalStateFailedImpl;
-
-  factory RevenueWithdrawalStateFailed.fromJson(Map<String, dynamic> json) =
-      _$RevenueWithdrawalStateFailedImpl.fromJson;
-
-  /// Type of the revenue withdrawal state, must be "failed"
-  @override
-  @JsonKey(name: 'type')
-  RevenueWithdrawalStateType get type;
-
-  /// Create a copy of RevenueWithdrawalState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RevenueWithdrawalStateFailedImplCopyWith<
-          _$RevenueWithdrawalStateFailedImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }

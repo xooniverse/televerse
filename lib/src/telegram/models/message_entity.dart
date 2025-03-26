@@ -9,7 +9,7 @@ part 'message_entity.g.dart';
 /// This object represents one special entity in a text message. For example,
 /// hashtags, usernames, URLs, etc.
 @freezed
-class MessageEntity with _$MessageEntity {
+abstract class MessageEntity with _$MessageEntity {
   /// Constructs the `MessageEntity` object
   const factory MessageEntity({
     /// Type of the entity. Currently, can be:

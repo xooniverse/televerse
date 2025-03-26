@@ -24,7 +24,9 @@ part 'inline_keyboard.g.dart';
 /// ctx.api.sendMessage(ctx.id, "Hello World!", replyMarkup: keyboard);
 /// ```
 @freezed
-class InlineKeyboard with _$InlineKeyboard implements InlineKeyboardMarkup {
+abstract class InlineKeyboard
+    with _$InlineKeyboard
+    implements InlineKeyboardMarkup {
   /// Creates a new [InlineKeyboard].
   ///
   /// Inline Keyboard is an easy way to create a keyboard with buttons that can

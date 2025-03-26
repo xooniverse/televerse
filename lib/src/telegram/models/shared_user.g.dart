@@ -6,8 +6,7 @@ part of 'shared_user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SharedUserImpl _$$SharedUserImplFromJson(Map<String, dynamic> json) =>
-    _$SharedUserImpl(
+_SharedUser _$SharedUserFromJson(Map<String, dynamic> json) => _SharedUser(
       userId: (json['user_id'] as num).toInt(),
       firstName: json['first_name'] as String?,
       lastName: json['last_name'] as String?,
@@ -17,7 +16,7 @@ _$SharedUserImpl _$$SharedUserImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$SharedUserImplToJson(_$SharedUserImpl instance) =>
+Map<String, dynamic> _$SharedUserToJson(_SharedUser instance) =>
     <String, dynamic>{
       'user_id': instance.userId,
       if (instance.firstName case final value?) 'first_name': value,

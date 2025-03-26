@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,13 +12,6 @@ part of 'user.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
-}
-
 /// @nodoc
 mixin _$User {
   /// Unique identifier for this user or bot. This number may have more than
@@ -26,183 +20,80 @@ mixin _$User {
   /// significant bits, so a 64-bit integer or double-precision float type are
   /// safe for storing this identifier.
   @JsonKey(name: 'id')
-  int get id => throw _privateConstructorUsedError;
+  int get id;
 
   /// True, if this user is a bot
   @JsonKey(name: 'is_bot')
-  bool get isBot => throw _privateConstructorUsedError;
+  bool get isBot;
 
   /// User's or bot's first name
   @JsonKey(name: 'first_name')
-  String get firstName => throw _privateConstructorUsedError;
+  String get firstName;
 
   /// Optional. User's or bot's last name
   @JsonKey(name: 'last_name')
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get lastName;
 
   /// Optional. User's or bot's username
   @JsonKey(name: 'username')
-  String? get username => throw _privateConstructorUsedError;
+  String? get username;
 
   /// Optional. IETF language tag of the user's language
   @JsonKey(name: 'language_code')
-  String? get languageCode => throw _privateConstructorUsedError;
+  String? get languageCode;
 
   /// Optional. True, if this user is a Telegram Premium user
   @JsonKey(name: 'is_premium')
-  bool? get isPremium => throw _privateConstructorUsedError;
+  bool? get isPremium;
 
   /// Optional. True, if this user added the bot to the attachment menu
   @JsonKey(name: 'added_to_attachment_menu')
-  bool? get addedToAttachmentMenu => throw _privateConstructorUsedError;
+  bool? get addedToAttachmentMenu;
 
   /// Optional. True, if the bot can be invited to groups. Returned only in
   /// getMe.
   @JsonKey(name: 'can_join_groups')
-  bool? get canJoinGroups => throw _privateConstructorUsedError;
+  bool? get canJoinGroups;
 
   /// Optional. True, if privacy mode is disabled for the bot. Returned only
   /// in getMe.
   @JsonKey(name: 'can_read_all_group_messages')
-  bool? get canReadAllGroupMessages => throw _privateConstructorUsedError;
+  bool? get canReadAllGroupMessages;
 
   /// Optional. True, if the bot supports inline queries. Returned only in
   /// getMe.
   @JsonKey(name: 'supports_inline_queries')
-  bool? get supportsInlineQueries => throw _privateConstructorUsedError;
+  bool? get supportsInlineQueries;
 
   /// Optional. True, if the bot can be connected to a Telegram Business
   /// account to receive its messages. Returned only in getMe.
   @JsonKey(name: 'can_connect_to_business')
-  bool? get canConnectToBusiness => throw _privateConstructorUsedError;
+  bool? get canConnectToBusiness;
 
   /// Optional. True, if the bot has a main Web App. Returned only in getMe.
   @JsonKey(name: 'has_main_web_app')
-  bool? get hasMainWebApp => throw _privateConstructorUsedError;
-
-  /// Serializes this User to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  bool? get hasMainWebApp;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res, User>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'is_bot') bool isBot,
-      @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'language_code') String? languageCode,
-      @JsonKey(name: 'is_premium') bool? isPremium,
-      @JsonKey(name: 'added_to_attachment_menu') bool? addedToAttachmentMenu,
-      @JsonKey(name: 'can_join_groups') bool? canJoinGroups,
-      @JsonKey(name: 'can_read_all_group_messages')
-      bool? canReadAllGroupMessages,
-      @JsonKey(name: 'supports_inline_queries') bool? supportsInlineQueries,
-      @JsonKey(name: 'can_connect_to_business') bool? canConnectToBusiness,
-      @JsonKey(name: 'has_main_web_app') bool? hasMainWebApp});
-}
-
-/// @nodoc
-class _$UserCopyWithImpl<$Res, $Val extends User>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of User
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $UserCopyWith<User> get copyWith =>
+      _$UserCopyWithImpl<User>(this as User, _$identity);
+
+  /// Serializes this User to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? isBot = null,
-    Object? firstName = null,
-    Object? lastName = freezed,
-    Object? username = freezed,
-    Object? languageCode = freezed,
-    Object? isPremium = freezed,
-    Object? addedToAttachmentMenu = freezed,
-    Object? canJoinGroups = freezed,
-    Object? canReadAllGroupMessages = freezed,
-    Object? supportsInlineQueries = freezed,
-    Object? canConnectToBusiness = freezed,
-    Object? hasMainWebApp = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      isBot: null == isBot
-          ? _value.isBot
-          : isBot // ignore: cast_nullable_to_non_nullable
-              as bool,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: freezed == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      languageCode: freezed == languageCode
-          ? _value.languageCode
-          : languageCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isPremium: freezed == isPremium
-          ? _value.isPremium
-          : isPremium // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      addedToAttachmentMenu: freezed == addedToAttachmentMenu
-          ? _value.addedToAttachmentMenu
-          : addedToAttachmentMenu // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canJoinGroups: freezed == canJoinGroups
-          ? _value.canJoinGroups
-          : canJoinGroups // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canReadAllGroupMessages: freezed == canReadAllGroupMessages
-          ? _value.canReadAllGroupMessages
-          : canReadAllGroupMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      supportsInlineQueries: freezed == supportsInlineQueries
-          ? _value.supportsInlineQueries
-          : supportsInlineQueries // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canConnectToBusiness: freezed == canConnectToBusiness
-          ? _value.canConnectToBusiness
-          : canConnectToBusiness // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      hasMainWebApp: freezed == hasMainWebApp
-          ? _value.hasMainWebApp
-          : hasMainWebApp // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ) as $Val);
+  String toString() {
+    return 'User(id: $id, isBot: $isBot, firstName: $firstName, lastName: $lastName, username: $username, languageCode: $languageCode, isPremium: $isPremium, addedToAttachmentMenu: $addedToAttachmentMenu, canJoinGroups: $canJoinGroups, canReadAllGroupMessages: $canReadAllGroupMessages, supportsInlineQueries: $supportsInlineQueries, canConnectToBusiness: $canConnectToBusiness, hasMainWebApp: $hasMainWebApp)';
   }
 }
 
 /// @nodoc
-abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$UserImplCopyWith(
-          _$UserImpl value, $Res Function(_$UserImpl) then) =
-      __$$UserImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $UserCopyWith<$Res> {
+  factory $UserCopyWith(User value, $Res Function(User) _then) =
+      _$UserCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int id,
@@ -222,11 +113,11 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$UserImplCopyWithImpl<$Res>
-    extends _$UserCopyWithImpl<$Res, _$UserImpl>
-    implements _$$UserImplCopyWith<$Res> {
-  __$$UserImplCopyWithImpl(_$UserImpl _value, $Res Function(_$UserImpl) _then)
-      : super(_value, _then);
+class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
+  _$UserCopyWithImpl(this._self, this._then);
+
+  final User _self;
+  final $Res Function(User) _then;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -247,57 +138,57 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? canConnectToBusiness = freezed,
     Object? hasMainWebApp = freezed,
   }) {
-    return _then(_$UserImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       isBot: null == isBot
-          ? _value.isBot
+          ? _self.isBot
           : isBot // ignore: cast_nullable_to_non_nullable
               as bool,
       firstName: null == firstName
-          ? _value.firstName
+          ? _self.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String,
       lastName: freezed == lastName
-          ? _value.lastName
+          ? _self.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       username: freezed == username
-          ? _value.username
+          ? _self.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
       languageCode: freezed == languageCode
-          ? _value.languageCode
+          ? _self.languageCode
           : languageCode // ignore: cast_nullable_to_non_nullable
               as String?,
       isPremium: freezed == isPremium
-          ? _value.isPremium
+          ? _self.isPremium
           : isPremium // ignore: cast_nullable_to_non_nullable
               as bool?,
       addedToAttachmentMenu: freezed == addedToAttachmentMenu
-          ? _value.addedToAttachmentMenu
+          ? _self.addedToAttachmentMenu
           : addedToAttachmentMenu // ignore: cast_nullable_to_non_nullable
               as bool?,
       canJoinGroups: freezed == canJoinGroups
-          ? _value.canJoinGroups
+          ? _self.canJoinGroups
           : canJoinGroups // ignore: cast_nullable_to_non_nullable
               as bool?,
       canReadAllGroupMessages: freezed == canReadAllGroupMessages
-          ? _value.canReadAllGroupMessages
+          ? _self.canReadAllGroupMessages
           : canReadAllGroupMessages // ignore: cast_nullable_to_non_nullable
               as bool?,
       supportsInlineQueries: freezed == supportsInlineQueries
-          ? _value.supportsInlineQueries
+          ? _self.supportsInlineQueries
           : supportsInlineQueries // ignore: cast_nullable_to_non_nullable
               as bool?,
       canConnectToBusiness: freezed == canConnectToBusiness
-          ? _value.canConnectToBusiness
+          ? _self.canConnectToBusiness
           : canConnectToBusiness // ignore: cast_nullable_to_non_nullable
               as bool?,
       hasMainWebApp: freezed == hasMainWebApp
-          ? _value.hasMainWebApp
+          ? _self.hasMainWebApp
           : hasMainWebApp // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
@@ -306,8 +197,8 @@ class __$$UserImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserImpl implements _User {
-  const _$UserImpl(
+class _User implements User {
+  const _User(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'is_bot') required this.isBot,
       @JsonKey(name: 'first_name') required this.firstName,
@@ -322,9 +213,7 @@ class _$UserImpl implements _User {
       @JsonKey(name: 'supports_inline_queries') this.supportsInlineQueries,
       @JsonKey(name: 'can_connect_to_business') this.canConnectToBusiness,
       @JsonKey(name: 'has_main_web_app') this.hasMainWebApp});
-
-  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserImplFromJson(json);
+  factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   /// Unique identifier for this user or bot. This number may have more than
   /// 32 significant bits and some programming languages may have
@@ -399,127 +288,129 @@ class _$UserImpl implements _User {
   @JsonKey(name: 'has_main_web_app')
   final bool? hasMainWebApp;
 
+  /// Create a copy of User
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UserCopyWith<_User> get copyWith =>
+      __$UserCopyWithImpl<_User>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$UserToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'User(id: $id, isBot: $isBot, firstName: $firstName, lastName: $lastName, username: $username, languageCode: $languageCode, isPremium: $isPremium, addedToAttachmentMenu: $addedToAttachmentMenu, canJoinGroups: $canJoinGroups, canReadAllGroupMessages: $canReadAllGroupMessages, supportsInlineQueries: $supportsInlineQueries, canConnectToBusiness: $canConnectToBusiness, hasMainWebApp: $hasMainWebApp)';
   }
-
-  /// Create a copy of User
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
-      __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _User implements User {
-  const factory _User(
-          {@JsonKey(name: 'id') required final int id,
-          @JsonKey(name: 'is_bot') required final bool isBot,
-          @JsonKey(name: 'first_name') required final String firstName,
-          @JsonKey(name: 'last_name') final String? lastName,
-          @JsonKey(name: 'username') final String? username,
-          @JsonKey(name: 'language_code') final String? languageCode,
-          @JsonKey(name: 'is_premium') final bool? isPremium,
-          @JsonKey(name: 'added_to_attachment_menu')
-          final bool? addedToAttachmentMenu,
-          @JsonKey(name: 'can_join_groups') final bool? canJoinGroups,
-          @JsonKey(name: 'can_read_all_group_messages')
-          final bool? canReadAllGroupMessages,
-          @JsonKey(name: 'supports_inline_queries')
-          final bool? supportsInlineQueries,
-          @JsonKey(name: 'can_connect_to_business')
-          final bool? canConnectToBusiness,
-          @JsonKey(name: 'has_main_web_app') final bool? hasMainWebApp}) =
-      _$UserImpl;
-
-  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
-
-  /// Unique identifier for this user or bot. This number may have more than
-  /// 32 significant bits and some programming languages may have
-  /// difficulty/silent defects in interpreting it. But it has at most 52
-  /// significant bits, so a 64-bit integer or double-precision float type are
-  /// safe for storing this identifier.
+/// @nodoc
+abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
+  factory _$UserCopyWith(_User value, $Res Function(_User) _then) =
+      __$UserCopyWithImpl;
   @override
-  @JsonKey(name: 'id')
-  int get id;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') int id,
+      @JsonKey(name: 'is_bot') bool isBot,
+      @JsonKey(name: 'first_name') String firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'language_code') String? languageCode,
+      @JsonKey(name: 'is_premium') bool? isPremium,
+      @JsonKey(name: 'added_to_attachment_menu') bool? addedToAttachmentMenu,
+      @JsonKey(name: 'can_join_groups') bool? canJoinGroups,
+      @JsonKey(name: 'can_read_all_group_messages')
+      bool? canReadAllGroupMessages,
+      @JsonKey(name: 'supports_inline_queries') bool? supportsInlineQueries,
+      @JsonKey(name: 'can_connect_to_business') bool? canConnectToBusiness,
+      @JsonKey(name: 'has_main_web_app') bool? hasMainWebApp});
+}
 
-  /// True, if this user is a bot
-  @override
-  @JsonKey(name: 'is_bot')
-  bool get isBot;
+/// @nodoc
+class __$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
+  __$UserCopyWithImpl(this._self, this._then);
 
-  /// User's or bot's first name
-  @override
-  @JsonKey(name: 'first_name')
-  String get firstName;
-
-  /// Optional. User's or bot's last name
-  @override
-  @JsonKey(name: 'last_name')
-  String? get lastName;
-
-  /// Optional. User's or bot's username
-  @override
-  @JsonKey(name: 'username')
-  String? get username;
-
-  /// Optional. IETF language tag of the user's language
-  @override
-  @JsonKey(name: 'language_code')
-  String? get languageCode;
-
-  /// Optional. True, if this user is a Telegram Premium user
-  @override
-  @JsonKey(name: 'is_premium')
-  bool? get isPremium;
-
-  /// Optional. True, if this user added the bot to the attachment menu
-  @override
-  @JsonKey(name: 'added_to_attachment_menu')
-  bool? get addedToAttachmentMenu;
-
-  /// Optional. True, if the bot can be invited to groups. Returned only in
-  /// getMe.
-  @override
-  @JsonKey(name: 'can_join_groups')
-  bool? get canJoinGroups;
-
-  /// Optional. True, if privacy mode is disabled for the bot. Returned only
-  /// in getMe.
-  @override
-  @JsonKey(name: 'can_read_all_group_messages')
-  bool? get canReadAllGroupMessages;
-
-  /// Optional. True, if the bot supports inline queries. Returned only in
-  /// getMe.
-  @override
-  @JsonKey(name: 'supports_inline_queries')
-  bool? get supportsInlineQueries;
-
-  /// Optional. True, if the bot can be connected to a Telegram Business
-  /// account to receive its messages. Returned only in getMe.
-  @override
-  @JsonKey(name: 'can_connect_to_business')
-  bool? get canConnectToBusiness;
-
-  /// Optional. True, if the bot has a main Web App. Returned only in getMe.
-  @override
-  @JsonKey(name: 'has_main_web_app')
-  bool? get hasMainWebApp;
+  final _User _self;
+  final $Res Function(_User) _then;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? isBot = null,
+    Object? firstName = null,
+    Object? lastName = freezed,
+    Object? username = freezed,
+    Object? languageCode = freezed,
+    Object? isPremium = freezed,
+    Object? addedToAttachmentMenu = freezed,
+    Object? canJoinGroups = freezed,
+    Object? canReadAllGroupMessages = freezed,
+    Object? supportsInlineQueries = freezed,
+    Object? canConnectToBusiness = freezed,
+    Object? hasMainWebApp = freezed,
+  }) {
+    return _then(_User(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      isBot: null == isBot
+          ? _self.isBot
+          : isBot // ignore: cast_nullable_to_non_nullable
+              as bool,
+      firstName: null == firstName
+          ? _self.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: freezed == lastName
+          ? _self.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      languageCode: freezed == languageCode
+          ? _self.languageCode
+          : languageCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isPremium: freezed == isPremium
+          ? _self.isPremium
+          : isPremium // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      addedToAttachmentMenu: freezed == addedToAttachmentMenu
+          ? _self.addedToAttachmentMenu
+          : addedToAttachmentMenu // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canJoinGroups: freezed == canJoinGroups
+          ? _self.canJoinGroups
+          : canJoinGroups // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canReadAllGroupMessages: freezed == canReadAllGroupMessages
+          ? _self.canReadAllGroupMessages
+          : canReadAllGroupMessages // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      supportsInlineQueries: freezed == supportsInlineQueries
+          ? _self.supportsInlineQueries
+          : supportsInlineQueries // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canConnectToBusiness: freezed == canConnectToBusiness
+          ? _self.canConnectToBusiness
+          : canConnectToBusiness // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasMainWebApp: freezed == hasMainWebApp
+          ? _self.hasMainWebApp
+          : hasMainWebApp // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
 }

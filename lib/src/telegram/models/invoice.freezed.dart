@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,31 +12,24 @@ part of 'invoice.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Invoice _$InvoiceFromJson(Map<String, dynamic> json) {
-  return _Invoice.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Invoice {
   /// Product name
   @JsonKey(name: 'title')
-  String get title => throw _privateConstructorUsedError;
+  String get title;
 
   /// Product description
   @JsonKey(name: 'description')
-  String get description => throw _privateConstructorUsedError;
+  String get description;
 
   /// Unique bot deep-linking parameter that can be used to generate this
   /// invoice
   @JsonKey(name: 'start_parameter')
-  String get startParameter => throw _privateConstructorUsedError;
+  String get startParameter;
 
   /// Three-letter ISO 4217 currency code
   @JsonKey(name: 'currency')
-  String get currency => throw _privateConstructorUsedError;
+  String get currency;
 
   /// Total price in the smallest units of the currency (integer, not
   /// float/double). For example, for a price of US$ 1.45 pass amount = 145.
@@ -43,82 +37,28 @@ mixin _$Invoice {
   /// past the decimal point for each currency (2 for the majority of
   /// currencies).
   @JsonKey(name: 'total_amount')
-  int get totalAmount => throw _privateConstructorUsedError;
-
-  /// Serializes this Invoice to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get totalAmount;
 
   /// Create a copy of Invoice
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $InvoiceCopyWith<Invoice> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $InvoiceCopyWith<$Res> {
-  factory $InvoiceCopyWith(Invoice value, $Res Function(Invoice) then) =
-      _$InvoiceCopyWithImpl<$Res, Invoice>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'description') String description,
-      @JsonKey(name: 'start_parameter') String startParameter,
-      @JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'total_amount') int totalAmount});
-}
-
-/// @nodoc
-class _$InvoiceCopyWithImpl<$Res, $Val extends Invoice>
-    implements $InvoiceCopyWith<$Res> {
-  _$InvoiceCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Invoice
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $InvoiceCopyWith<Invoice> get copyWith =>
+      _$InvoiceCopyWithImpl<Invoice>(this as Invoice, _$identity);
+
+  /// Serializes this Invoice to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? title = null,
-    Object? description = null,
-    Object? startParameter = null,
-    Object? currency = null,
-    Object? totalAmount = null,
-  }) {
-    return _then(_value.copyWith(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      startParameter: null == startParameter
-          ? _value.startParameter
-          : startParameter // ignore: cast_nullable_to_non_nullable
-              as String,
-      currency: null == currency
-          ? _value.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalAmount: null == totalAmount
-          ? _value.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  String toString() {
+    return 'Invoice(title: $title, description: $description, startParameter: $startParameter, currency: $currency, totalAmount: $totalAmount)';
   }
 }
 
 /// @nodoc
-abstract class _$$InvoiceImplCopyWith<$Res> implements $InvoiceCopyWith<$Res> {
-  factory _$$InvoiceImplCopyWith(
-          _$InvoiceImpl value, $Res Function(_$InvoiceImpl) then) =
-      __$$InvoiceImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $InvoiceCopyWith<$Res> {
+  factory $InvoiceCopyWith(Invoice value, $Res Function(Invoice) _then) =
+      _$InvoiceCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'title') String title,
@@ -129,12 +69,11 @@ abstract class _$$InvoiceImplCopyWith<$Res> implements $InvoiceCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$InvoiceImplCopyWithImpl<$Res>
-    extends _$InvoiceCopyWithImpl<$Res, _$InvoiceImpl>
-    implements _$$InvoiceImplCopyWith<$Res> {
-  __$$InvoiceImplCopyWithImpl(
-      _$InvoiceImpl _value, $Res Function(_$InvoiceImpl) _then)
-      : super(_value, _then);
+class _$InvoiceCopyWithImpl<$Res> implements $InvoiceCopyWith<$Res> {
+  _$InvoiceCopyWithImpl(this._self, this._then);
+
+  final Invoice _self;
+  final $Res Function(Invoice) _then;
 
   /// Create a copy of Invoice
   /// with the given fields replaced by the non-null parameter values.
@@ -147,25 +86,25 @@ class __$$InvoiceImplCopyWithImpl<$Res>
     Object? currency = null,
     Object? totalAmount = null,
   }) {
-    return _then(_$InvoiceImpl(
+    return _then(_self.copyWith(
       title: null == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
-          ? _value.description
+          ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
       startParameter: null == startParameter
-          ? _value.startParameter
+          ? _self.startParameter
           : startParameter // ignore: cast_nullable_to_non_nullable
               as String,
       currency: null == currency
-          ? _value.currency
+          ? _self.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
       totalAmount: null == totalAmount
-          ? _value.totalAmount
+          ? _self.totalAmount
           : totalAmount // ignore: cast_nullable_to_non_nullable
               as int,
     ));
@@ -174,16 +113,15 @@ class __$$InvoiceImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$InvoiceImpl implements _Invoice {
-  const _$InvoiceImpl(
+class _Invoice implements Invoice {
+  const _Invoice(
       {@JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'description') required this.description,
       @JsonKey(name: 'start_parameter') required this.startParameter,
       @JsonKey(name: 'currency') required this.currency,
       @JsonKey(name: 'total_amount') required this.totalAmount});
-
-  factory _$InvoiceImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InvoiceImplFromJson(json);
+  factory _Invoice.fromJson(Map<String, dynamic> json) =>
+      _$InvoiceFromJson(json);
 
   /// Product name
   @override
@@ -215,72 +153,80 @@ class _$InvoiceImpl implements _Invoice {
   @JsonKey(name: 'total_amount')
   final int totalAmount;
 
+  /// Create a copy of Invoice
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InvoiceCopyWith<_Invoice> get copyWith =>
+      __$InvoiceCopyWithImpl<_Invoice>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InvoiceToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'Invoice(title: $title, description: $description, startParameter: $startParameter, currency: $currency, totalAmount: $totalAmount)';
   }
-
-  /// Create a copy of Invoice
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InvoiceImplCopyWith<_$InvoiceImpl> get copyWith =>
-      __$$InvoiceImplCopyWithImpl<_$InvoiceImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InvoiceImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _Invoice implements Invoice {
-  const factory _Invoice(
-      {@JsonKey(name: 'title') required final String title,
-      @JsonKey(name: 'description') required final String description,
-      @JsonKey(name: 'start_parameter') required final String startParameter,
-      @JsonKey(name: 'currency') required final String currency,
-      @JsonKey(name: 'total_amount')
-      required final int totalAmount}) = _$InvoiceImpl;
-
-  factory _Invoice.fromJson(Map<String, dynamic> json) = _$InvoiceImpl.fromJson;
-
-  /// Product name
+/// @nodoc
+abstract mixin class _$InvoiceCopyWith<$Res> implements $InvoiceCopyWith<$Res> {
+  factory _$InvoiceCopyWith(_Invoice value, $Res Function(_Invoice) _then) =
+      __$InvoiceCopyWithImpl;
   @override
-  @JsonKey(name: 'title')
-  String get title;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'title') String title,
+      @JsonKey(name: 'description') String description,
+      @JsonKey(name: 'start_parameter') String startParameter,
+      @JsonKey(name: 'currency') String currency,
+      @JsonKey(name: 'total_amount') int totalAmount});
+}
 
-  /// Product description
-  @override
-  @JsonKey(name: 'description')
-  String get description;
+/// @nodoc
+class __$InvoiceCopyWithImpl<$Res> implements _$InvoiceCopyWith<$Res> {
+  __$InvoiceCopyWithImpl(this._self, this._then);
 
-  /// Unique bot deep-linking parameter that can be used to generate this
-  /// invoice
-  @override
-  @JsonKey(name: 'start_parameter')
-  String get startParameter;
-
-  /// Three-letter ISO 4217 currency code
-  @override
-  @JsonKey(name: 'currency')
-  String get currency;
-
-  /// Total price in the smallest units of the currency (integer, not
-  /// float/double). For example, for a price of US$ 1.45 pass amount = 145.
-  /// See the exp parameter in currencies.json, it shows the number of digits
-  /// past the decimal point for each currency (2 for the majority of
-  /// currencies).
-  @override
-  @JsonKey(name: 'total_amount')
-  int get totalAmount;
+  final _Invoice _self;
+  final $Res Function(_Invoice) _then;
 
   /// Create a copy of Invoice
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InvoiceImplCopyWith<_$InvoiceImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? title = null,
+    Object? description = null,
+    Object? startParameter = null,
+    Object? currency = null,
+    Object? totalAmount = null,
+  }) {
+    return _then(_Invoice(
+      title: null == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      startParameter: null == startParameter
+          ? _self.startParameter
+          : startParameter // ignore: cast_nullable_to_non_nullable
+              as String,
+      currency: null == currency
+          ? _self.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalAmount: null == totalAmount
+          ? _self.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }

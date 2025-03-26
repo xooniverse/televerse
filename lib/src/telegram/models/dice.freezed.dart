@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,82 +12,39 @@ part of 'dice.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Dice _$DiceFromJson(Map<String, dynamic> json) {
-  return _Dice.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Dice {
   /// Emoji on which the dice throw animation is based
   @JsonKey(name: 'emoji')
-  DiceEmoji get emoji => throw _privateConstructorUsedError;
+  DiceEmoji get emoji;
 
   /// Value of the dice.
   ///
   /// 1-6 for "🎲", "🎯" and "🎳" base emoji, 1-5 for "🏀" and "⚽" base
   /// emoji, 1-64 for "🎰" base emoji
   @JsonKey(name: 'value')
-  int get value => throw _privateConstructorUsedError;
-
-  /// Serializes this Dice to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get value;
 
   /// Create a copy of Dice
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DiceCopyWith<Dice> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DiceCopyWith<$Res> {
-  factory $DiceCopyWith(Dice value, $Res Function(Dice) then) =
-      _$DiceCopyWithImpl<$Res, Dice>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'emoji') DiceEmoji emoji,
-      @JsonKey(name: 'value') int value});
-}
-
-/// @nodoc
-class _$DiceCopyWithImpl<$Res, $Val extends Dice>
-    implements $DiceCopyWith<$Res> {
-  _$DiceCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Dice
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $DiceCopyWith<Dice> get copyWith =>
+      _$DiceCopyWithImpl<Dice>(this as Dice, _$identity);
+
+  /// Serializes this Dice to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? emoji = null,
-    Object? value = null,
-  }) {
-    return _then(_value.copyWith(
-      emoji: null == emoji
-          ? _value.emoji
-          : emoji // ignore: cast_nullable_to_non_nullable
-              as DiceEmoji,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  String toString() {
+    return 'Dice(emoji: $emoji, value: $value)';
   }
 }
 
 /// @nodoc
-abstract class _$$DiceImplCopyWith<$Res> implements $DiceCopyWith<$Res> {
-  factory _$$DiceImplCopyWith(
-          _$DiceImpl value, $Res Function(_$DiceImpl) then) =
-      __$$DiceImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $DiceCopyWith<$Res> {
+  factory $DiceCopyWith(Dice value, $Res Function(Dice) _then) =
+      _$DiceCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'emoji') DiceEmoji emoji,
@@ -94,11 +52,11 @@ abstract class _$$DiceImplCopyWith<$Res> implements $DiceCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$DiceImplCopyWithImpl<$Res>
-    extends _$DiceCopyWithImpl<$Res, _$DiceImpl>
-    implements _$$DiceImplCopyWith<$Res> {
-  __$$DiceImplCopyWithImpl(_$DiceImpl _value, $Res Function(_$DiceImpl) _then)
-      : super(_value, _then);
+class _$DiceCopyWithImpl<$Res> implements $DiceCopyWith<$Res> {
+  _$DiceCopyWithImpl(this._self, this._then);
+
+  final Dice _self;
+  final $Res Function(Dice) _then;
 
   /// Create a copy of Dice
   /// with the given fields replaced by the non-null parameter values.
@@ -108,13 +66,13 @@ class __$$DiceImplCopyWithImpl<$Res>
     Object? emoji = null,
     Object? value = null,
   }) {
-    return _then(_$DiceImpl(
+    return _then(_self.copyWith(
       emoji: null == emoji
-          ? _value.emoji
+          ? _self.emoji
           : emoji // ignore: cast_nullable_to_non_nullable
               as DiceEmoji,
       value: null == value
-          ? _value.value
+          ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
               as int,
     ));
@@ -123,13 +81,11 @@ class __$$DiceImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$DiceImpl implements _Dice {
-  const _$DiceImpl(
+class _Dice implements Dice {
+  const _Dice(
       {@JsonKey(name: 'emoji') required this.emoji,
       @JsonKey(name: 'value') required this.value});
-
-  factory _$DiceImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DiceImplFromJson(json);
+  factory _Dice.fromJson(Map<String, dynamic> json) => _$DiceFromJson(json);
 
   /// Emoji on which the dice throw animation is based
   @override
@@ -144,51 +100,62 @@ class _$DiceImpl implements _Dice {
   @JsonKey(name: 'value')
   final int value;
 
+  /// Create a copy of Dice
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$DiceCopyWith<_Dice> get copyWith =>
+      __$DiceCopyWithImpl<_Dice>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$DiceToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'Dice(emoji: $emoji, value: $value)';
   }
-
-  /// Create a copy of Dice
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DiceImplCopyWith<_$DiceImpl> get copyWith =>
-      __$$DiceImplCopyWithImpl<_$DiceImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$DiceImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _Dice implements Dice {
-  const factory _Dice(
-      {@JsonKey(name: 'emoji') required final DiceEmoji emoji,
-      @JsonKey(name: 'value') required final int value}) = _$DiceImpl;
-
-  factory _Dice.fromJson(Map<String, dynamic> json) = _$DiceImpl.fromJson;
-
-  /// Emoji on which the dice throw animation is based
+/// @nodoc
+abstract mixin class _$DiceCopyWith<$Res> implements $DiceCopyWith<$Res> {
+  factory _$DiceCopyWith(_Dice value, $Res Function(_Dice) _then) =
+      __$DiceCopyWithImpl;
   @override
-  @JsonKey(name: 'emoji')
-  DiceEmoji get emoji;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'emoji') DiceEmoji emoji,
+      @JsonKey(name: 'value') int value});
+}
 
-  /// Value of the dice.
-  ///
-  /// 1-6 for "🎲", "🎯" and "🎳" base emoji, 1-5 for "🏀" and "⚽" base
-  /// emoji, 1-64 for "🎰" base emoji
-  @override
-  @JsonKey(name: 'value')
-  int get value;
+/// @nodoc
+class __$DiceCopyWithImpl<$Res> implements _$DiceCopyWith<$Res> {
+  __$DiceCopyWithImpl(this._self, this._then);
+
+  final _Dice _self;
+  final $Res Function(_Dice) _then;
 
   /// Create a copy of Dice
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DiceImplCopyWith<_$DiceImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? emoji = null,
+    Object? value = null,
+  }) {
+    return _then(_Dice(
+      emoji: null == emoji
+          ? _self.emoji
+          : emoji // ignore: cast_nullable_to_non_nullable
+              as DiceEmoji,
+      value: null == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }

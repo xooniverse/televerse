@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,10 +11,6 @@ part of 'background_type.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 BackgroundType _$BackgroundTypeFromJson(Map<String, dynamic> json) {
   switch (json['type']) {
     case 'fill':
@@ -35,62 +32,41 @@ BackgroundType _$BackgroundTypeFromJson(Map<String, dynamic> json) {
 mixin _$BackgroundType {
   /// Type of the background - always fill
   @JsonKey(name: 'type')
-  BackgroundTypeType get type => throw _privateConstructorUsedError;
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BackgroundTypeFill value) fill,
-    required TResult Function(BackgroundTypeWallpaper value) wallpaper,
-    required TResult Function(BackgroundTypePattern value) pattern,
-    required TResult Function(BackgroundTypeChatTheme value) chatTheme,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BackgroundTypeFill value)? fill,
-    TResult? Function(BackgroundTypeWallpaper value)? wallpaper,
-    TResult? Function(BackgroundTypePattern value)? pattern,
-    TResult? Function(BackgroundTypeChatTheme value)? chatTheme,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BackgroundTypeFill value)? fill,
-    TResult Function(BackgroundTypeWallpaper value)? wallpaper,
-    TResult Function(BackgroundTypePattern value)? pattern,
-    TResult Function(BackgroundTypeChatTheme value)? chatTheme,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this BackgroundType to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  BackgroundTypeType get type;
 
   /// Create a copy of BackgroundType
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $BackgroundTypeCopyWith<BackgroundType> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$BackgroundTypeCopyWithImpl<BackgroundType>(
+          this as BackgroundType, _$identity);
+
+  /// Serializes this BackgroundType to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'BackgroundType(type: $type)';
+  }
 }
 
 /// @nodoc
-abstract class $BackgroundTypeCopyWith<$Res> {
+abstract mixin class $BackgroundTypeCopyWith<$Res> {
   factory $BackgroundTypeCopyWith(
-          BackgroundType value, $Res Function(BackgroundType) then) =
-      _$BackgroundTypeCopyWithImpl<$Res, BackgroundType>;
+          BackgroundType value, $Res Function(BackgroundType) _then) =
+      _$BackgroundTypeCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'type') BackgroundTypeType type});
 }
 
 /// @nodoc
-class _$BackgroundTypeCopyWithImpl<$Res, $Val extends BackgroundType>
+class _$BackgroundTypeCopyWithImpl<$Res>
     implements $BackgroundTypeCopyWith<$Res> {
-  _$BackgroundTypeCopyWithImpl(this._value, this._then);
+  _$BackgroundTypeCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final BackgroundType _self;
+  final $Res Function(BackgroundType) _then;
 
   /// Create a copy of BackgroundType
   /// with the given fields replaced by the non-null parameter values.
@@ -99,21 +75,65 @@ class _$BackgroundTypeCopyWithImpl<$Res, $Val extends BackgroundType>
   $Res call({
     Object? type = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as BackgroundTypeType,
-    ) as $Val);
+    ));
   }
 }
 
 /// @nodoc
-abstract class _$$BackgroundTypeFillImplCopyWith<$Res>
+@JsonSerializable()
+class BackgroundTypeFill implements BackgroundType {
+  const BackgroundTypeFill(
+      {@JsonKey(name: 'type') this.type = BackgroundTypeType.fill,
+      @JsonKey(name: 'fill') required this.fill,
+      @JsonKey(name: 'dark_theme_dimming') this.darkThemeDimming = 0});
+  factory BackgroundTypeFill.fromJson(Map<String, dynamic> json) =>
+      _$BackgroundTypeFillFromJson(json);
+
+  /// Type of the background - always fill
+  @override
+  @JsonKey(name: 'type')
+  final BackgroundTypeType type;
+
+  /// The background fill.
+  @JsonKey(name: 'fill')
+  final BackgroundFill fill;
+
+  /// Dimming of the background in dark themes, as a percentage; 0-100.
+  @JsonKey(name: 'dark_theme_dimming')
+  final int darkThemeDimming;
+
+  /// Create a copy of BackgroundType
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $BackgroundTypeFillCopyWith<BackgroundTypeFill> get copyWith =>
+      _$BackgroundTypeFillCopyWithImpl<BackgroundTypeFill>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$BackgroundTypeFillToJson(
+      this,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'BackgroundType.fill(type: $type, fill: $fill, darkThemeDimming: $darkThemeDimming)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $BackgroundTypeFillCopyWith<$Res>
     implements $BackgroundTypeCopyWith<$Res> {
-  factory _$$BackgroundTypeFillImplCopyWith(_$BackgroundTypeFillImpl value,
-          $Res Function(_$BackgroundTypeFillImpl) then) =
-      __$$BackgroundTypeFillImplCopyWithImpl<$Res>;
+  factory $BackgroundTypeFillCopyWith(
+          BackgroundTypeFill value, $Res Function(BackgroundTypeFill) _then) =
+      _$BackgroundTypeFillCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -125,33 +145,33 @@ abstract class _$$BackgroundTypeFillImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BackgroundTypeFillImplCopyWithImpl<$Res>
-    extends _$BackgroundTypeCopyWithImpl<$Res, _$BackgroundTypeFillImpl>
-    implements _$$BackgroundTypeFillImplCopyWith<$Res> {
-  __$$BackgroundTypeFillImplCopyWithImpl(_$BackgroundTypeFillImpl _value,
-      $Res Function(_$BackgroundTypeFillImpl) _then)
-      : super(_value, _then);
+class _$BackgroundTypeFillCopyWithImpl<$Res>
+    implements $BackgroundTypeFillCopyWith<$Res> {
+  _$BackgroundTypeFillCopyWithImpl(this._self, this._then);
+
+  final BackgroundTypeFill _self;
+  final $Res Function(BackgroundTypeFill) _then;
 
   /// Create a copy of BackgroundType
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
     Object? fill = null,
     Object? darkThemeDimming = null,
   }) {
-    return _then(_$BackgroundTypeFillImpl(
+    return _then(BackgroundTypeFill(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as BackgroundTypeType,
       fill: null == fill
-          ? _value.fill
+          ? _self.fill
           : fill // ignore: cast_nullable_to_non_nullable
               as BackgroundFill,
       darkThemeDimming: null == darkThemeDimming
-          ? _value.darkThemeDimming
+          ? _self.darkThemeDimming
           : darkThemeDimming // ignore: cast_nullable_to_non_nullable
               as int,
     ));
@@ -162,135 +182,74 @@ class __$$BackgroundTypeFillImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $BackgroundFillCopyWith<$Res> get fill {
-    return $BackgroundFillCopyWith<$Res>(_value.fill, (value) {
-      return _then(_value.copyWith(fill: value));
+    return $BackgroundFillCopyWith<$Res>(_self.fill, (value) {
+      return _then(_self.copyWith(fill: value));
     });
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$BackgroundTypeFillImpl implements BackgroundTypeFill {
-  const _$BackgroundTypeFillImpl(
-      {@JsonKey(name: 'type') this.type = BackgroundTypeType.fill,
-      @JsonKey(name: 'fill') required this.fill,
-      @JsonKey(name: 'dark_theme_dimming') this.darkThemeDimming = 0});
+class BackgroundTypeWallpaper implements BackgroundType {
+  const BackgroundTypeWallpaper(
+      {@JsonKey(name: 'type') this.type = BackgroundTypeType.wallpaper,
+      @JsonKey(name: 'document') required this.document,
+      @JsonKey(name: "dark_theme_dimming") this.darkThemeDimming = 0,
+      @JsonKey(name: "is_blurred") this.isBlurred,
+      @JsonKey(name: "is_moving") this.isMoving});
+  factory BackgroundTypeWallpaper.fromJson(Map<String, dynamic> json) =>
+      _$BackgroundTypeWallpaperFromJson(json);
 
-  factory _$BackgroundTypeFillImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BackgroundTypeFillImplFromJson(json);
-
-  /// Type of the background - always fill
+  /// Type of the background - always `wallpaper`
   @override
   @JsonKey(name: 'type')
   final BackgroundTypeType type;
 
-  /// The background fill.
-  @override
-  @JsonKey(name: 'fill')
-  final BackgroundFill fill;
+  /// Document with the wallpaper.
+  @JsonKey(name: 'document')
+  final Document document;
 
   /// Dimming of the background in dark themes, as a percentage; 0-100.
-  @override
-  @JsonKey(name: 'dark_theme_dimming')
+  @JsonKey(name: "dark_theme_dimming")
   final int darkThemeDimming;
 
-  @override
-  String toString() {
-    return 'BackgroundType.fill(type: $type, fill: $fill, darkThemeDimming: $darkThemeDimming)';
-  }
+  /// True, if the wallpaper is downscaled to fit in a 450x450 square and then
+  /// box-blurred with radius 12.
+  @JsonKey(name: "is_blurred")
+  final bool? isBlurred;
+
+  /// True, if the background moves slightly when the device is tilted.
+  @JsonKey(name: "is_moving")
+  final bool? isMoving;
 
   /// Create a copy of BackgroundType
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$$BackgroundTypeFillImplCopyWith<_$BackgroundTypeFillImpl> get copyWith =>
-      __$$BackgroundTypeFillImplCopyWithImpl<_$BackgroundTypeFillImpl>(
+  $BackgroundTypeWallpaperCopyWith<BackgroundTypeWallpaper> get copyWith =>
+      _$BackgroundTypeWallpaperCopyWithImpl<BackgroundTypeWallpaper>(
           this, _$identity);
 
   @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BackgroundTypeFill value) fill,
-    required TResult Function(BackgroundTypeWallpaper value) wallpaper,
-    required TResult Function(BackgroundTypePattern value) pattern,
-    required TResult Function(BackgroundTypeChatTheme value) chatTheme,
-  }) {
-    return fill(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BackgroundTypeFill value)? fill,
-    TResult? Function(BackgroundTypeWallpaper value)? wallpaper,
-    TResult? Function(BackgroundTypePattern value)? pattern,
-    TResult? Function(BackgroundTypeChatTheme value)? chatTheme,
-  }) {
-    return fill?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BackgroundTypeFill value)? fill,
-    TResult Function(BackgroundTypeWallpaper value)? wallpaper,
-    TResult Function(BackgroundTypePattern value)? pattern,
-    TResult Function(BackgroundTypeChatTheme value)? chatTheme,
-    required TResult orElse(),
-  }) {
-    if (fill != null) {
-      return fill(this);
-    }
-    return orElse();
-  }
-
-  @override
   Map<String, dynamic> toJson() {
-    return _$$BackgroundTypeFillImplToJson(
+    return _$BackgroundTypeWallpaperToJson(
       this,
     );
   }
-}
 
-abstract class BackgroundTypeFill implements BackgroundType {
-  const factory BackgroundTypeFill(
-          {@JsonKey(name: 'type') final BackgroundTypeType type,
-          @JsonKey(name: 'fill') required final BackgroundFill fill,
-          @JsonKey(name: 'dark_theme_dimming') final int darkThemeDimming}) =
-      _$BackgroundTypeFillImpl;
-
-  factory BackgroundTypeFill.fromJson(Map<String, dynamic> json) =
-      _$BackgroundTypeFillImpl.fromJson;
-
-  /// Type of the background - always fill
   @override
-  @JsonKey(name: 'type')
-  BackgroundTypeType get type;
-
-  /// The background fill.
-  @JsonKey(name: 'fill')
-  BackgroundFill get fill;
-
-  /// Dimming of the background in dark themes, as a percentage; 0-100.
-  @JsonKey(name: 'dark_theme_dimming')
-  int get darkThemeDimming;
-
-  /// Create a copy of BackgroundType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BackgroundTypeFillImplCopyWith<_$BackgroundTypeFillImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  String toString() {
+    return 'BackgroundType.wallpaper(type: $type, document: $document, darkThemeDimming: $darkThemeDimming, isBlurred: $isBlurred, isMoving: $isMoving)';
+  }
 }
 
 /// @nodoc
-abstract class _$$BackgroundTypeWallpaperImplCopyWith<$Res>
+abstract mixin class $BackgroundTypeWallpaperCopyWith<$Res>
     implements $BackgroundTypeCopyWith<$Res> {
-  factory _$$BackgroundTypeWallpaperImplCopyWith(
-          _$BackgroundTypeWallpaperImpl value,
-          $Res Function(_$BackgroundTypeWallpaperImpl) then) =
-      __$$BackgroundTypeWallpaperImplCopyWithImpl<$Res>;
+  factory $BackgroundTypeWallpaperCopyWith(BackgroundTypeWallpaper value,
+          $Res Function(BackgroundTypeWallpaper) _then) =
+      _$BackgroundTypeWallpaperCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -304,18 +263,17 @@ abstract class _$$BackgroundTypeWallpaperImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BackgroundTypeWallpaperImplCopyWithImpl<$Res>
-    extends _$BackgroundTypeCopyWithImpl<$Res, _$BackgroundTypeWallpaperImpl>
-    implements _$$BackgroundTypeWallpaperImplCopyWith<$Res> {
-  __$$BackgroundTypeWallpaperImplCopyWithImpl(
-      _$BackgroundTypeWallpaperImpl _value,
-      $Res Function(_$BackgroundTypeWallpaperImpl) _then)
-      : super(_value, _then);
+class _$BackgroundTypeWallpaperCopyWithImpl<$Res>
+    implements $BackgroundTypeWallpaperCopyWith<$Res> {
+  _$BackgroundTypeWallpaperCopyWithImpl(this._self, this._then);
+
+  final BackgroundTypeWallpaper _self;
+  final $Res Function(BackgroundTypeWallpaper) _then;
 
   /// Create a copy of BackgroundType
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
     Object? document = null,
@@ -323,25 +281,25 @@ class __$$BackgroundTypeWallpaperImplCopyWithImpl<$Res>
     Object? isBlurred = freezed,
     Object? isMoving = freezed,
   }) {
-    return _then(_$BackgroundTypeWallpaperImpl(
+    return _then(BackgroundTypeWallpaper(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as BackgroundTypeType,
       document: null == document
-          ? _value.document
+          ? _self.document
           : document // ignore: cast_nullable_to_non_nullable
               as Document,
       darkThemeDimming: null == darkThemeDimming
-          ? _value.darkThemeDimming
+          ? _self.darkThemeDimming
           : darkThemeDimming // ignore: cast_nullable_to_non_nullable
               as int,
       isBlurred: freezed == isBlurred
-          ? _value.isBlurred
+          ? _self.isBlurred
           : isBlurred // ignore: cast_nullable_to_non_nullable
               as bool?,
       isMoving: freezed == isMoving
-          ? _value.isMoving
+          ? _self.isMoving
           : isMoving // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
@@ -352,159 +310,80 @@ class __$$BackgroundTypeWallpaperImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $DocumentCopyWith<$Res> get document {
-    return $DocumentCopyWith<$Res>(_value.document, (value) {
-      return _then(_value.copyWith(document: value));
+    return $DocumentCopyWith<$Res>(_self.document, (value) {
+      return _then(_self.copyWith(document: value));
     });
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$BackgroundTypeWallpaperImpl implements BackgroundTypeWallpaper {
-  const _$BackgroundTypeWallpaperImpl(
-      {@JsonKey(name: 'type') this.type = BackgroundTypeType.wallpaper,
+class BackgroundTypePattern implements BackgroundType {
+  const BackgroundTypePattern(
+      {@JsonKey(name: 'type') this.type = BackgroundTypeType.pattern,
       @JsonKey(name: 'document') required this.document,
-      @JsonKey(name: "dark_theme_dimming") this.darkThemeDimming = 0,
-      @JsonKey(name: "is_blurred") this.isBlurred,
+      @JsonKey(name: 'fill') required this.fill,
+      @JsonKey(name: 'intensity') this.intensity = 0,
+      @JsonKey(name: "is_inverted") this.isInverted,
       @JsonKey(name: "is_moving") this.isMoving});
+  factory BackgroundTypePattern.fromJson(Map<String, dynamic> json) =>
+      _$BackgroundTypePatternFromJson(json);
 
-  factory _$BackgroundTypeWallpaperImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BackgroundTypeWallpaperImplFromJson(json);
-
-  /// Type of the background - always `wallpaper`
+  /// Type of the background - always `pattern`
   @override
   @JsonKey(name: 'type')
   final BackgroundTypeType type;
 
   /// Document with the wallpaper.
-  @override
   @JsonKey(name: 'document')
   final Document document;
 
-  /// Dimming of the background in dark themes, as a percentage; 0-100.
-  @override
-  @JsonKey(name: "dark_theme_dimming")
-  final int darkThemeDimming;
+  /// The background fill that is combined with the pattern.
+  @JsonKey(name: 'fill')
+  final BackgroundFill fill;
 
-  /// True, if the wallpaper is downscaled to fit in a 450x450 square and then
-  /// box-blurred with radius 12.
-  @override
-  @JsonKey(name: "is_blurred")
-  final bool? isBlurred;
+  /// Intensity of the pattern when it is shown above the filled background;
+  /// 0-100.
+  @JsonKey(name: 'intensity')
+  final int intensity;
+
+  /// True, if the background fill must be applied only to the pattern itself.
+  /// All other pixels are black in this case. For dark themes only.
+  @JsonKey(name: "is_inverted")
+  final bool? isInverted;
 
   /// True, if the background moves slightly when the device is tilted.
-  @override
   @JsonKey(name: "is_moving")
   final bool? isMoving;
 
-  @override
-  String toString() {
-    return 'BackgroundType.wallpaper(type: $type, document: $document, darkThemeDimming: $darkThemeDimming, isBlurred: $isBlurred, isMoving: $isMoving)';
-  }
-
   /// Create a copy of BackgroundType
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$BackgroundTypeWallpaperImplCopyWith<_$BackgroundTypeWallpaperImpl>
-      get copyWith => __$$BackgroundTypeWallpaperImplCopyWithImpl<
-          _$BackgroundTypeWallpaperImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BackgroundTypeFill value) fill,
-    required TResult Function(BackgroundTypeWallpaper value) wallpaper,
-    required TResult Function(BackgroundTypePattern value) pattern,
-    required TResult Function(BackgroundTypeChatTheme value) chatTheme,
-  }) {
-    return wallpaper(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BackgroundTypeFill value)? fill,
-    TResult? Function(BackgroundTypeWallpaper value)? wallpaper,
-    TResult? Function(BackgroundTypePattern value)? pattern,
-    TResult? Function(BackgroundTypeChatTheme value)? chatTheme,
-  }) {
-    return wallpaper?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BackgroundTypeFill value)? fill,
-    TResult Function(BackgroundTypeWallpaper value)? wallpaper,
-    TResult Function(BackgroundTypePattern value)? pattern,
-    TResult Function(BackgroundTypeChatTheme value)? chatTheme,
-    required TResult orElse(),
-  }) {
-    if (wallpaper != null) {
-      return wallpaper(this);
-    }
-    return orElse();
-  }
+  $BackgroundTypePatternCopyWith<BackgroundTypePattern> get copyWith =>
+      _$BackgroundTypePatternCopyWithImpl<BackgroundTypePattern>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BackgroundTypeWallpaperImplToJson(
+    return _$BackgroundTypePatternToJson(
       this,
     );
   }
-}
 
-abstract class BackgroundTypeWallpaper implements BackgroundType {
-  const factory BackgroundTypeWallpaper(
-          {@JsonKey(name: 'type') final BackgroundTypeType type,
-          @JsonKey(name: 'document') required final Document document,
-          @JsonKey(name: "dark_theme_dimming") final int darkThemeDimming,
-          @JsonKey(name: "is_blurred") final bool? isBlurred,
-          @JsonKey(name: "is_moving") final bool? isMoving}) =
-      _$BackgroundTypeWallpaperImpl;
-
-  factory BackgroundTypeWallpaper.fromJson(Map<String, dynamic> json) =
-      _$BackgroundTypeWallpaperImpl.fromJson;
-
-  /// Type of the background - always `wallpaper`
   @override
-  @JsonKey(name: 'type')
-  BackgroundTypeType get type;
-
-  /// Document with the wallpaper.
-  @JsonKey(name: 'document')
-  Document get document;
-
-  /// Dimming of the background in dark themes, as a percentage; 0-100.
-  @JsonKey(name: "dark_theme_dimming")
-  int get darkThemeDimming;
-
-  /// True, if the wallpaper is downscaled to fit in a 450x450 square and then
-  /// box-blurred with radius 12.
-  @JsonKey(name: "is_blurred")
-  bool? get isBlurred;
-
-  /// True, if the background moves slightly when the device is tilted.
-  @JsonKey(name: "is_moving")
-  bool? get isMoving;
-
-  /// Create a copy of BackgroundType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BackgroundTypeWallpaperImplCopyWith<_$BackgroundTypeWallpaperImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  String toString() {
+    return 'BackgroundType.pattern(type: $type, document: $document, fill: $fill, intensity: $intensity, isInverted: $isInverted, isMoving: $isMoving)';
+  }
 }
 
 /// @nodoc
-abstract class _$$BackgroundTypePatternImplCopyWith<$Res>
+abstract mixin class $BackgroundTypePatternCopyWith<$Res>
     implements $BackgroundTypeCopyWith<$Res> {
-  factory _$$BackgroundTypePatternImplCopyWith(
-          _$BackgroundTypePatternImpl value,
-          $Res Function(_$BackgroundTypePatternImpl) then) =
-      __$$BackgroundTypePatternImplCopyWithImpl<$Res>;
+  factory $BackgroundTypePatternCopyWith(BackgroundTypePattern value,
+          $Res Function(BackgroundTypePattern) _then) =
+      _$BackgroundTypePatternCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -520,17 +399,17 @@ abstract class _$$BackgroundTypePatternImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BackgroundTypePatternImplCopyWithImpl<$Res>
-    extends _$BackgroundTypeCopyWithImpl<$Res, _$BackgroundTypePatternImpl>
-    implements _$$BackgroundTypePatternImplCopyWith<$Res> {
-  __$$BackgroundTypePatternImplCopyWithImpl(_$BackgroundTypePatternImpl _value,
-      $Res Function(_$BackgroundTypePatternImpl) _then)
-      : super(_value, _then);
+class _$BackgroundTypePatternCopyWithImpl<$Res>
+    implements $BackgroundTypePatternCopyWith<$Res> {
+  _$BackgroundTypePatternCopyWithImpl(this._self, this._then);
+
+  final BackgroundTypePattern _self;
+  final $Res Function(BackgroundTypePattern) _then;
 
   /// Create a copy of BackgroundType
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
     Object? document = null,
@@ -539,29 +418,29 @@ class __$$BackgroundTypePatternImplCopyWithImpl<$Res>
     Object? isInverted = freezed,
     Object? isMoving = freezed,
   }) {
-    return _then(_$BackgroundTypePatternImpl(
+    return _then(BackgroundTypePattern(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as BackgroundTypeType,
       document: null == document
-          ? _value.document
+          ? _self.document
           : document // ignore: cast_nullable_to_non_nullable
               as Document,
       fill: null == fill
-          ? _value.fill
+          ? _self.fill
           : fill // ignore: cast_nullable_to_non_nullable
               as BackgroundFill,
       intensity: null == intensity
-          ? _value.intensity
+          ? _self.intensity
           : intensity // ignore: cast_nullable_to_non_nullable
               as int,
       isInverted: freezed == isInverted
-          ? _value.isInverted
+          ? _self.isInverted
           : isInverted // ignore: cast_nullable_to_non_nullable
               as bool?,
       isMoving: freezed == isMoving
-          ? _value.isMoving
+          ? _self.isMoving
           : isMoving // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
@@ -572,8 +451,8 @@ class __$$BackgroundTypePatternImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $DocumentCopyWith<$Res> get document {
-    return $DocumentCopyWith<$Res>(_value.document, (value) {
-      return _then(_value.copyWith(document: value));
+    return $DocumentCopyWith<$Res>(_self.document, (value) {
+      return _then(_self.copyWith(document: value));
     });
   }
 
@@ -582,172 +461,58 @@ class __$$BackgroundTypePatternImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $BackgroundFillCopyWith<$Res> get fill {
-    return $BackgroundFillCopyWith<$Res>(_value.fill, (value) {
-      return _then(_value.copyWith(fill: value));
+    return $BackgroundFillCopyWith<$Res>(_self.fill, (value) {
+      return _then(_self.copyWith(fill: value));
     });
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$BackgroundTypePatternImpl implements BackgroundTypePattern {
-  const _$BackgroundTypePatternImpl(
-      {@JsonKey(name: 'type') this.type = BackgroundTypeType.pattern,
-      @JsonKey(name: 'document') required this.document,
-      @JsonKey(name: 'fill') required this.fill,
-      @JsonKey(name: 'intensity') this.intensity = 0,
-      @JsonKey(name: "is_inverted") this.isInverted,
-      @JsonKey(name: "is_moving") this.isMoving});
+class BackgroundTypeChatTheme implements BackgroundType {
+  const BackgroundTypeChatTheme(
+      {@JsonKey(name: 'type') this.type = BackgroundTypeType.chatTheme,
+      @JsonKey(name: 'theme_name') required this.themeName});
+  factory BackgroundTypeChatTheme.fromJson(Map<String, dynamic> json) =>
+      _$BackgroundTypeChatThemeFromJson(json);
 
-  factory _$BackgroundTypePatternImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BackgroundTypePatternImplFromJson(json);
-
-  /// Type of the background - always `pattern`
+  /// Type of the background - always fill
   @override
   @JsonKey(name: 'type')
   final BackgroundTypeType type;
 
-  /// Document with the wallpaper.
-  @override
-  @JsonKey(name: 'document')
-  final Document document;
-
-  /// The background fill that is combined with the pattern.
-  @override
-  @JsonKey(name: 'fill')
-  final BackgroundFill fill;
-
-  /// Intensity of the pattern when it is shown above the filled background;
-  /// 0-100.
-  @override
-  @JsonKey(name: 'intensity')
-  final int intensity;
-
-  /// True, if the background fill must be applied only to the pattern itself.
-  /// All other pixels are black in this case. For dark themes only.
-  @override
-  @JsonKey(name: "is_inverted")
-  final bool? isInverted;
-
-  /// True, if the background moves slightly when the device is tilted.
-  @override
-  @JsonKey(name: "is_moving")
-  final bool? isMoving;
-
-  @override
-  String toString() {
-    return 'BackgroundType.pattern(type: $type, document: $document, fill: $fill, intensity: $intensity, isInverted: $isInverted, isMoving: $isMoving)';
-  }
+  /// Name of the chat theme, which is usually an emoji
+  @JsonKey(name: 'theme_name')
+  final String themeName;
 
   /// Create a copy of BackgroundType
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$BackgroundTypePatternImplCopyWith<_$BackgroundTypePatternImpl>
-      get copyWith => __$$BackgroundTypePatternImplCopyWithImpl<
-          _$BackgroundTypePatternImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BackgroundTypeFill value) fill,
-    required TResult Function(BackgroundTypeWallpaper value) wallpaper,
-    required TResult Function(BackgroundTypePattern value) pattern,
-    required TResult Function(BackgroundTypeChatTheme value) chatTheme,
-  }) {
-    return pattern(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BackgroundTypeFill value)? fill,
-    TResult? Function(BackgroundTypeWallpaper value)? wallpaper,
-    TResult? Function(BackgroundTypePattern value)? pattern,
-    TResult? Function(BackgroundTypeChatTheme value)? chatTheme,
-  }) {
-    return pattern?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BackgroundTypeFill value)? fill,
-    TResult Function(BackgroundTypeWallpaper value)? wallpaper,
-    TResult Function(BackgroundTypePattern value)? pattern,
-    TResult Function(BackgroundTypeChatTheme value)? chatTheme,
-    required TResult orElse(),
-  }) {
-    if (pattern != null) {
-      return pattern(this);
-    }
-    return orElse();
-  }
+  $BackgroundTypeChatThemeCopyWith<BackgroundTypeChatTheme> get copyWith =>
+      _$BackgroundTypeChatThemeCopyWithImpl<BackgroundTypeChatTheme>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BackgroundTypePatternImplToJson(
+    return _$BackgroundTypeChatThemeToJson(
       this,
     );
   }
-}
 
-abstract class BackgroundTypePattern implements BackgroundType {
-  const factory BackgroundTypePattern(
-          {@JsonKey(name: 'type') final BackgroundTypeType type,
-          @JsonKey(name: 'document') required final Document document,
-          @JsonKey(name: 'fill') required final BackgroundFill fill,
-          @JsonKey(name: 'intensity') final int intensity,
-          @JsonKey(name: "is_inverted") final bool? isInverted,
-          @JsonKey(name: "is_moving") final bool? isMoving}) =
-      _$BackgroundTypePatternImpl;
-
-  factory BackgroundTypePattern.fromJson(Map<String, dynamic> json) =
-      _$BackgroundTypePatternImpl.fromJson;
-
-  /// Type of the background - always `pattern`
   @override
-  @JsonKey(name: 'type')
-  BackgroundTypeType get type;
-
-  /// Document with the wallpaper.
-  @JsonKey(name: 'document')
-  Document get document;
-
-  /// The background fill that is combined with the pattern.
-  @JsonKey(name: 'fill')
-  BackgroundFill get fill;
-
-  /// Intensity of the pattern when it is shown above the filled background;
-  /// 0-100.
-  @JsonKey(name: 'intensity')
-  int get intensity;
-
-  /// True, if the background fill must be applied only to the pattern itself.
-  /// All other pixels are black in this case. For dark themes only.
-  @JsonKey(name: "is_inverted")
-  bool? get isInverted;
-
-  /// True, if the background moves slightly when the device is tilted.
-  @JsonKey(name: "is_moving")
-  bool? get isMoving;
-
-  /// Create a copy of BackgroundType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BackgroundTypePatternImplCopyWith<_$BackgroundTypePatternImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  String toString() {
+    return 'BackgroundType.chatTheme(type: $type, themeName: $themeName)';
+  }
 }
 
 /// @nodoc
-abstract class _$$BackgroundTypeChatThemeImplCopyWith<$Res>
+abstract mixin class $BackgroundTypeChatThemeCopyWith<$Res>
     implements $BackgroundTypeCopyWith<$Res> {
-  factory _$$BackgroundTypeChatThemeImplCopyWith(
-          _$BackgroundTypeChatThemeImpl value,
-          $Res Function(_$BackgroundTypeChatThemeImpl) then) =
-      __$$BackgroundTypeChatThemeImplCopyWithImpl<$Res>;
+  factory $BackgroundTypeChatThemeCopyWith(BackgroundTypeChatTheme value,
+          $Res Function(BackgroundTypeChatTheme) _then) =
+      _$BackgroundTypeChatThemeCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -756,136 +521,30 @@ abstract class _$$BackgroundTypeChatThemeImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BackgroundTypeChatThemeImplCopyWithImpl<$Res>
-    extends _$BackgroundTypeCopyWithImpl<$Res, _$BackgroundTypeChatThemeImpl>
-    implements _$$BackgroundTypeChatThemeImplCopyWith<$Res> {
-  __$$BackgroundTypeChatThemeImplCopyWithImpl(
-      _$BackgroundTypeChatThemeImpl _value,
-      $Res Function(_$BackgroundTypeChatThemeImpl) _then)
-      : super(_value, _then);
+class _$BackgroundTypeChatThemeCopyWithImpl<$Res>
+    implements $BackgroundTypeChatThemeCopyWith<$Res> {
+  _$BackgroundTypeChatThemeCopyWithImpl(this._self, this._then);
+
+  final BackgroundTypeChatTheme _self;
+  final $Res Function(BackgroundTypeChatTheme) _then;
 
   /// Create a copy of BackgroundType
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
     Object? themeName = null,
   }) {
-    return _then(_$BackgroundTypeChatThemeImpl(
+    return _then(BackgroundTypeChatTheme(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as BackgroundTypeType,
       themeName: null == themeName
-          ? _value.themeName
+          ? _self.themeName
           : themeName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$BackgroundTypeChatThemeImpl implements BackgroundTypeChatTheme {
-  const _$BackgroundTypeChatThemeImpl(
-      {@JsonKey(name: 'type') this.type = BackgroundTypeType.chatTheme,
-      @JsonKey(name: 'theme_name') required this.themeName});
-
-  factory _$BackgroundTypeChatThemeImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BackgroundTypeChatThemeImplFromJson(json);
-
-  /// Type of the background - always fill
-  @override
-  @JsonKey(name: 'type')
-  final BackgroundTypeType type;
-
-  /// Name of the chat theme, which is usually an emoji
-  @override
-  @JsonKey(name: 'theme_name')
-  final String themeName;
-
-  @override
-  String toString() {
-    return 'BackgroundType.chatTheme(type: $type, themeName: $themeName)';
-  }
-
-  /// Create a copy of BackgroundType
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BackgroundTypeChatThemeImplCopyWith<_$BackgroundTypeChatThemeImpl>
-      get copyWith => __$$BackgroundTypeChatThemeImplCopyWithImpl<
-          _$BackgroundTypeChatThemeImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BackgroundTypeFill value) fill,
-    required TResult Function(BackgroundTypeWallpaper value) wallpaper,
-    required TResult Function(BackgroundTypePattern value) pattern,
-    required TResult Function(BackgroundTypeChatTheme value) chatTheme,
-  }) {
-    return chatTheme(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BackgroundTypeFill value)? fill,
-    TResult? Function(BackgroundTypeWallpaper value)? wallpaper,
-    TResult? Function(BackgroundTypePattern value)? pattern,
-    TResult? Function(BackgroundTypeChatTheme value)? chatTheme,
-  }) {
-    return chatTheme?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BackgroundTypeFill value)? fill,
-    TResult Function(BackgroundTypeWallpaper value)? wallpaper,
-    TResult Function(BackgroundTypePattern value)? pattern,
-    TResult Function(BackgroundTypeChatTheme value)? chatTheme,
-    required TResult orElse(),
-  }) {
-    if (chatTheme != null) {
-      return chatTheme(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BackgroundTypeChatThemeImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class BackgroundTypeChatTheme implements BackgroundType {
-  const factory BackgroundTypeChatTheme(
-          {@JsonKey(name: 'type') final BackgroundTypeType type,
-          @JsonKey(name: 'theme_name') required final String themeName}) =
-      _$BackgroundTypeChatThemeImpl;
-
-  factory BackgroundTypeChatTheme.fromJson(Map<String, dynamic> json) =
-      _$BackgroundTypeChatThemeImpl.fromJson;
-
-  /// Type of the background - always fill
-  @override
-  @JsonKey(name: 'type')
-  BackgroundTypeType get type;
-
-  /// Name of the chat theme, which is usually an emoji
-  @JsonKey(name: 'theme_name')
-  String get themeName;
-
-  /// Create a copy of BackgroundType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BackgroundTypeChatThemeImplCopyWith<_$BackgroundTypeChatThemeImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }

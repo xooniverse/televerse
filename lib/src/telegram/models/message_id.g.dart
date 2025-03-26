@@ -6,12 +6,11 @@ part of 'message_id.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MessageIdImpl _$$MessageIdImplFromJson(Map<String, dynamic> json) =>
-    _$MessageIdImpl(
+_MessageId _$MessageIdFromJson(Map<String, dynamic> json) => _MessageId(
       messageId: (json['message_id'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$MessageIdImplToJson(_$MessageIdImpl instance) =>
+Map<String, dynamic> _$MessageIdToJson(_MessageId instance) =>
     <String, dynamic>{
       'message_id': instance.messageId,
     };

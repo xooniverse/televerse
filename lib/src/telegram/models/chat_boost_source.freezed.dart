@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,10 +11,6 @@ part of 'chat_boost_source.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 ChatBoostSource _$ChatBoostSourceFromJson(Map<String, dynamic> json) {
   switch (json['source']) {
     case 'premium':
@@ -33,50 +30,34 @@ ChatBoostSource _$ChatBoostSourceFromJson(Map<String, dynamic> json) {
 mixin _$ChatBoostSource {
   /// Source of the boost, always "premium"
   @JsonKey(name: 'source')
-  ChatBoostSourceType get source => throw _privateConstructorUsedError;
+  ChatBoostSourceType get source;
 
   /// User that boosted the chat
   @JsonKey(name: 'user')
-  User? get user => throw _privateConstructorUsedError;
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ChatBoostSourcePremium value) premium,
-    required TResult Function(ChatBoostSourceGiftCode value) giftCode,
-    required TResult Function(ChatBoostSourceGiveaway value) giveaway,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChatBoostSourcePremium value)? premium,
-    TResult? Function(ChatBoostSourceGiftCode value)? giftCode,
-    TResult? Function(ChatBoostSourceGiveaway value)? giveaway,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChatBoostSourcePremium value)? premium,
-    TResult Function(ChatBoostSourceGiftCode value)? giftCode,
-    TResult Function(ChatBoostSourceGiveaway value)? giveaway,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this ChatBoostSource to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  User? get user;
 
   /// Create a copy of ChatBoostSource
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ChatBoostSourceCopyWith<ChatBoostSource> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ChatBoostSourceCopyWithImpl<ChatBoostSource>(
+          this as ChatBoostSource, _$identity);
+
+  /// Serializes this ChatBoostSource to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'ChatBoostSource(source: $source, user: $user)';
+  }
 }
 
 /// @nodoc
-abstract class $ChatBoostSourceCopyWith<$Res> {
+abstract mixin class $ChatBoostSourceCopyWith<$Res> {
   factory $ChatBoostSourceCopyWith(
-          ChatBoostSource value, $Res Function(ChatBoostSource) then) =
-      _$ChatBoostSourceCopyWithImpl<$Res, ChatBoostSource>;
+          ChatBoostSource value, $Res Function(ChatBoostSource) _then) =
+      _$ChatBoostSourceCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'source') ChatBoostSourceType source,
@@ -86,14 +67,12 @@ abstract class $ChatBoostSourceCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ChatBoostSourceCopyWithImpl<$Res, $Val extends ChatBoostSource>
+class _$ChatBoostSourceCopyWithImpl<$Res>
     implements $ChatBoostSourceCopyWith<$Res> {
-  _$ChatBoostSourceCopyWithImpl(this._value, this._then);
+  _$ChatBoostSourceCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ChatBoostSource _self;
+  final $Res Function(ChatBoostSource) _then;
 
   /// Create a copy of ChatBoostSource
   /// with the given fields replaced by the non-null parameter values.
@@ -103,16 +82,16 @@ class _$ChatBoostSourceCopyWithImpl<$Res, $Val extends ChatBoostSource>
     Object? source = null,
     Object? user = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       source: null == source
-          ? _value.source
+          ? _self.source
           : source // ignore: cast_nullable_to_non_nullable
               as ChatBoostSourceType,
       user: null == user
-          ? _value.user!
+          ? _self.user!
           : user // ignore: cast_nullable_to_non_nullable
               as User,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ChatBoostSource
@@ -120,82 +99,24 @@ class _$ChatBoostSourceCopyWithImpl<$Res, $Val extends ChatBoostSource>
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
+    if (_self.user == null) {
       return null;
     }
 
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$ChatBoostSourcePremiumImplCopyWith<$Res>
-    implements $ChatBoostSourceCopyWith<$Res> {
-  factory _$$ChatBoostSourcePremiumImplCopyWith(
-          _$ChatBoostSourcePremiumImpl value,
-          $Res Function(_$ChatBoostSourcePremiumImpl) then) =
-      __$$ChatBoostSourcePremiumImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'source') ChatBoostSourceType source,
-      @JsonKey(name: 'user') User user});
-
-  @override
-  $UserCopyWith<$Res> get user;
-}
-
-/// @nodoc
-class __$$ChatBoostSourcePremiumImplCopyWithImpl<$Res>
-    extends _$ChatBoostSourceCopyWithImpl<$Res, _$ChatBoostSourcePremiumImpl>
-    implements _$$ChatBoostSourcePremiumImplCopyWith<$Res> {
-  __$$ChatBoostSourcePremiumImplCopyWithImpl(
-      _$ChatBoostSourcePremiumImpl _value,
-      $Res Function(_$ChatBoostSourcePremiumImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ChatBoostSource
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? source = null,
-    Object? user = null,
-  }) {
-    return _then(_$ChatBoostSourcePremiumImpl(
-      source: null == source
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as ChatBoostSourceType,
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
-  }
-
-  /// Create a copy of ChatBoostSource
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
+    return $UserCopyWith<$Res>(_self.user!, (value) {
+      return _then(_self.copyWith(user: value));
     });
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ChatBoostSourcePremiumImpl implements ChatBoostSourcePremium {
-  const _$ChatBoostSourcePremiumImpl(
+class ChatBoostSourcePremium implements ChatBoostSource {
+  const ChatBoostSourcePremium(
       {@JsonKey(name: 'source') this.source = ChatBoostSourceType.premium,
       @JsonKey(name: 'user') required this.user});
-
-  factory _$ChatBoostSourcePremiumImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChatBoostSourcePremiumImplFromJson(json);
+  factory ChatBoostSourcePremium.fromJson(Map<String, dynamic> json) =>
+      _$ChatBoostSourcePremiumFromJson(json);
 
   /// Source of the boost, always "premium"
   @override
@@ -206,97 +127,35 @@ class _$ChatBoostSourcePremiumImpl implements ChatBoostSourcePremium {
   @override
   @JsonKey(name: 'user')
   final User user;
+
+  /// Create a copy of ChatBoostSource
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatBoostSourcePremiumCopyWith<ChatBoostSourcePremium> get copyWith =>
+      _$ChatBoostSourcePremiumCopyWithImpl<ChatBoostSourcePremium>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ChatBoostSourcePremiumToJson(
+      this,
+    );
+  }
 
   @override
   String toString() {
     return 'ChatBoostSource.premium(source: $source, user: $user)';
   }
-
-  /// Create a copy of ChatBoostSource
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChatBoostSourcePremiumImplCopyWith<_$ChatBoostSourcePremiumImpl>
-      get copyWith => __$$ChatBoostSourcePremiumImplCopyWithImpl<
-          _$ChatBoostSourcePremiumImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ChatBoostSourcePremium value) premium,
-    required TResult Function(ChatBoostSourceGiftCode value) giftCode,
-    required TResult Function(ChatBoostSourceGiveaway value) giveaway,
-  }) {
-    return premium(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChatBoostSourcePremium value)? premium,
-    TResult? Function(ChatBoostSourceGiftCode value)? giftCode,
-    TResult? Function(ChatBoostSourceGiveaway value)? giveaway,
-  }) {
-    return premium?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChatBoostSourcePremium value)? premium,
-    TResult Function(ChatBoostSourceGiftCode value)? giftCode,
-    TResult Function(ChatBoostSourceGiveaway value)? giveaway,
-    required TResult orElse(),
-  }) {
-    if (premium != null) {
-      return premium(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChatBoostSourcePremiumImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class ChatBoostSourcePremium implements ChatBoostSource {
-  const factory ChatBoostSourcePremium(
-          {@JsonKey(name: 'source') final ChatBoostSourceType source,
-          @JsonKey(name: 'user') required final User user}) =
-      _$ChatBoostSourcePremiumImpl;
-
-  factory ChatBoostSourcePremium.fromJson(Map<String, dynamic> json) =
-      _$ChatBoostSourcePremiumImpl.fromJson;
-
-  /// Source of the boost, always "premium"
-  @override
-  @JsonKey(name: 'source')
-  ChatBoostSourceType get source;
-
-  /// User that boosted the chat
-  @override
-  @JsonKey(name: 'user')
-  User get user;
-
-  /// Create a copy of ChatBoostSource
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChatBoostSourcePremiumImplCopyWith<_$ChatBoostSourcePremiumImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ChatBoostSourceGiftCodeImplCopyWith<$Res>
+abstract mixin class $ChatBoostSourcePremiumCopyWith<$Res>
     implements $ChatBoostSourceCopyWith<$Res> {
-  factory _$$ChatBoostSourceGiftCodeImplCopyWith(
-          _$ChatBoostSourceGiftCodeImpl value,
-          $Res Function(_$ChatBoostSourceGiftCodeImpl) then) =
-      __$$ChatBoostSourceGiftCodeImplCopyWithImpl<$Res>;
+  factory $ChatBoostSourcePremiumCopyWith(ChatBoostSourcePremium value,
+          $Res Function(ChatBoostSourcePremium) _then) =
+      _$ChatBoostSourcePremiumCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -308,29 +167,28 @@ abstract class _$$ChatBoostSourceGiftCodeImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ChatBoostSourceGiftCodeImplCopyWithImpl<$Res>
-    extends _$ChatBoostSourceCopyWithImpl<$Res, _$ChatBoostSourceGiftCodeImpl>
-    implements _$$ChatBoostSourceGiftCodeImplCopyWith<$Res> {
-  __$$ChatBoostSourceGiftCodeImplCopyWithImpl(
-      _$ChatBoostSourceGiftCodeImpl _value,
-      $Res Function(_$ChatBoostSourceGiftCodeImpl) _then)
-      : super(_value, _then);
+class _$ChatBoostSourcePremiumCopyWithImpl<$Res>
+    implements $ChatBoostSourcePremiumCopyWith<$Res> {
+  _$ChatBoostSourcePremiumCopyWithImpl(this._self, this._then);
+
+  final ChatBoostSourcePremium _self;
+  final $Res Function(ChatBoostSourcePremium) _then;
 
   /// Create a copy of ChatBoostSource
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? source = null,
     Object? user = null,
   }) {
-    return _then(_$ChatBoostSourceGiftCodeImpl(
+    return _then(ChatBoostSourcePremium(
       source: null == source
-          ? _value.source
+          ? _self.source
           : source // ignore: cast_nullable_to_non_nullable
               as ChatBoostSourceType,
       user: null == user
-          ? _value.user
+          ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
     ));
@@ -341,21 +199,20 @@ class __$$ChatBoostSourceGiftCodeImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
+    return $UserCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
     });
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ChatBoostSourceGiftCodeImpl implements ChatBoostSourceGiftCode {
-  const _$ChatBoostSourceGiftCodeImpl(
+class ChatBoostSourceGiftCode implements ChatBoostSource {
+  const ChatBoostSourceGiftCode(
       {@JsonKey(name: 'source') this.source = ChatBoostSourceType.giftCode,
       @JsonKey(name: 'user') required this.user});
-
-  factory _$ChatBoostSourceGiftCodeImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChatBoostSourceGiftCodeImplFromJson(json);
+  factory ChatBoostSourceGiftCode.fromJson(Map<String, dynamic> json) =>
+      _$ChatBoostSourceGiftCodeFromJson(json);
 
   /// Source of the boost, always "gift_code"
   @override
@@ -367,96 +224,149 @@ class _$ChatBoostSourceGiftCodeImpl implements ChatBoostSourceGiftCode {
   @JsonKey(name: 'user')
   final User user;
 
+  /// Create a copy of ChatBoostSource
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatBoostSourceGiftCodeCopyWith<ChatBoostSourceGiftCode> get copyWith =>
+      _$ChatBoostSourceGiftCodeCopyWithImpl<ChatBoostSourceGiftCode>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ChatBoostSourceGiftCodeToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'ChatBoostSource.giftCode(source: $source, user: $user)';
   }
-
-  /// Create a copy of ChatBoostSource
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChatBoostSourceGiftCodeImplCopyWith<_$ChatBoostSourceGiftCodeImpl>
-      get copyWith => __$$ChatBoostSourceGiftCodeImplCopyWithImpl<
-          _$ChatBoostSourceGiftCodeImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ChatBoostSourcePremium value) premium,
-    required TResult Function(ChatBoostSourceGiftCode value) giftCode,
-    required TResult Function(ChatBoostSourceGiveaway value) giveaway,
-  }) {
-    return giftCode(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChatBoostSourcePremium value)? premium,
-    TResult? Function(ChatBoostSourceGiftCode value)? giftCode,
-    TResult? Function(ChatBoostSourceGiveaway value)? giveaway,
-  }) {
-    return giftCode?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChatBoostSourcePremium value)? premium,
-    TResult Function(ChatBoostSourceGiftCode value)? giftCode,
-    TResult Function(ChatBoostSourceGiveaway value)? giveaway,
-    required TResult orElse(),
-  }) {
-    if (giftCode != null) {
-      return giftCode(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChatBoostSourceGiftCodeImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class ChatBoostSourceGiftCode implements ChatBoostSource {
-  const factory ChatBoostSourceGiftCode(
-          {@JsonKey(name: 'source') final ChatBoostSourceType source,
-          @JsonKey(name: 'user') required final User user}) =
-      _$ChatBoostSourceGiftCodeImpl;
-
-  factory ChatBoostSourceGiftCode.fromJson(Map<String, dynamic> json) =
-      _$ChatBoostSourceGiftCodeImpl.fromJson;
-
-  /// Source of the boost, always "gift_code"
-  @override
-  @JsonKey(name: 'source')
-  ChatBoostSourceType get source;
-
-  /// User for which the gift code was created
-  @override
-  @JsonKey(name: 'user')
-  User get user;
-
-  /// Create a copy of ChatBoostSource
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChatBoostSourceGiftCodeImplCopyWith<_$ChatBoostSourceGiftCodeImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ChatBoostSourceGiveawayImplCopyWith<$Res>
+abstract mixin class $ChatBoostSourceGiftCodeCopyWith<$Res>
     implements $ChatBoostSourceCopyWith<$Res> {
-  factory _$$ChatBoostSourceGiveawayImplCopyWith(
-          _$ChatBoostSourceGiveawayImpl value,
-          $Res Function(_$ChatBoostSourceGiveawayImpl) then) =
-      __$$ChatBoostSourceGiveawayImplCopyWithImpl<$Res>;
+  factory $ChatBoostSourceGiftCodeCopyWith(ChatBoostSourceGiftCode value,
+          $Res Function(ChatBoostSourceGiftCode) _then) =
+      _$ChatBoostSourceGiftCodeCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'source') ChatBoostSourceType source,
+      @JsonKey(name: 'user') User user});
+
+  @override
+  $UserCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class _$ChatBoostSourceGiftCodeCopyWithImpl<$Res>
+    implements $ChatBoostSourceGiftCodeCopyWith<$Res> {
+  _$ChatBoostSourceGiftCodeCopyWithImpl(this._self, this._then);
+
+  final ChatBoostSourceGiftCode _self;
+  final $Res Function(ChatBoostSourceGiftCode) _then;
+
+  /// Create a copy of ChatBoostSource
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? source = null,
+    Object? user = null,
+  }) {
+    return _then(ChatBoostSourceGiftCode(
+      source: null == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as ChatBoostSourceType,
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
+
+  /// Create a copy of ChatBoostSource
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class ChatBoostSourceGiveaway implements ChatBoostSource {
+  const ChatBoostSourceGiveaway(
+      {@JsonKey(name: 'source') this.source = ChatBoostSourceType.giveaway,
+      @JsonKey(name: 'giveaway_message_id') required this.giveawayMessageId,
+      @JsonKey(name: 'user') this.user,
+      @JsonKey(name: 'prize_star_count') this.prizeStarCount,
+      @JsonKey(name: 'is_unclaimed') this.isUnclaimed});
+  factory ChatBoostSourceGiveaway.fromJson(Map<String, dynamic> json) =>
+      _$ChatBoostSourceGiveawayFromJson(json);
+
+  /// Source of the boost, always "giveaway"
+  @override
+  @JsonKey(name: 'source')
+  final ChatBoostSourceType source;
+
+  /// Identifier of a message in the chat with the giveaway; the message could
+  /// have been deleted already. May be 0 if the message isn't sent yet.
+  @JsonKey(name: 'giveaway_message_id')
+  final int giveawayMessageId;
+
+  /// User that won the prize in the giveaway if any; for Telegram Premium
+  /// giveaways only
+  @override
+  @JsonKey(name: 'user')
+  final User? user;
+
+  /// The number of Telegram Stars to be split between giveaway winners; for
+  /// Telegram Star giveaways only
+  @JsonKey(name: 'prize_star_count')
+  final int? prizeStarCount;
+
+  /// True, if the giveaway was completed, but there was no user to win the
+  /// prize
+  @JsonKey(name: 'is_unclaimed')
+  final bool? isUnclaimed;
+
+  /// Create a copy of ChatBoostSource
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatBoostSourceGiveawayCopyWith<ChatBoostSourceGiveaway> get copyWith =>
+      _$ChatBoostSourceGiveawayCopyWithImpl<ChatBoostSourceGiveaway>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ChatBoostSourceGiveawayToJson(
+      this,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'ChatBoostSource.giveaway(source: $source, giveawayMessageId: $giveawayMessageId, user: $user, prizeStarCount: $prizeStarCount, isUnclaimed: $isUnclaimed)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatBoostSourceGiveawayCopyWith<$Res>
+    implements $ChatBoostSourceCopyWith<$Res> {
+  factory $ChatBoostSourceGiveawayCopyWith(ChatBoostSourceGiveaway value,
+          $Res Function(ChatBoostSourceGiveaway) _then) =
+      _$ChatBoostSourceGiveawayCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -471,18 +381,17 @@ abstract class _$$ChatBoostSourceGiveawayImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ChatBoostSourceGiveawayImplCopyWithImpl<$Res>
-    extends _$ChatBoostSourceCopyWithImpl<$Res, _$ChatBoostSourceGiveawayImpl>
-    implements _$$ChatBoostSourceGiveawayImplCopyWith<$Res> {
-  __$$ChatBoostSourceGiveawayImplCopyWithImpl(
-      _$ChatBoostSourceGiveawayImpl _value,
-      $Res Function(_$ChatBoostSourceGiveawayImpl) _then)
-      : super(_value, _then);
+class _$ChatBoostSourceGiveawayCopyWithImpl<$Res>
+    implements $ChatBoostSourceGiveawayCopyWith<$Res> {
+  _$ChatBoostSourceGiveawayCopyWithImpl(this._self, this._then);
+
+  final ChatBoostSourceGiveaway _self;
+  final $Res Function(ChatBoostSourceGiveaway) _then;
 
   /// Create a copy of ChatBoostSource
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? source = null,
     Object? giveawayMessageId = null,
@@ -490,172 +399,41 @@ class __$$ChatBoostSourceGiveawayImplCopyWithImpl<$Res>
     Object? prizeStarCount = freezed,
     Object? isUnclaimed = freezed,
   }) {
-    return _then(_$ChatBoostSourceGiveawayImpl(
+    return _then(ChatBoostSourceGiveaway(
       source: null == source
-          ? _value.source
+          ? _self.source
           : source // ignore: cast_nullable_to_non_nullable
               as ChatBoostSourceType,
       giveawayMessageId: null == giveawayMessageId
-          ? _value.giveawayMessageId
+          ? _self.giveawayMessageId
           : giveawayMessageId // ignore: cast_nullable_to_non_nullable
               as int,
       user: freezed == user
-          ? _value.user
+          ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
       prizeStarCount: freezed == prizeStarCount
-          ? _value.prizeStarCount
+          ? _self.prizeStarCount
           : prizeStarCount // ignore: cast_nullable_to_non_nullable
               as int?,
       isUnclaimed: freezed == isUnclaimed
-          ? _value.isUnclaimed
+          ? _self.isUnclaimed
           : isUnclaimed // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ChatBoostSourceGiveawayImpl implements ChatBoostSourceGiveaway {
-  const _$ChatBoostSourceGiveawayImpl(
-      {@JsonKey(name: 'source') this.source = ChatBoostSourceType.giveaway,
-      @JsonKey(name: 'giveaway_message_id') required this.giveawayMessageId,
-      @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'prize_star_count') this.prizeStarCount,
-      @JsonKey(name: 'is_unclaimed') this.isUnclaimed});
-
-  factory _$ChatBoostSourceGiveawayImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChatBoostSourceGiveawayImplFromJson(json);
-
-  /// Source of the boost, always "giveaway"
-  @override
-  @JsonKey(name: 'source')
-  final ChatBoostSourceType source;
-
-  /// Identifier of a message in the chat with the giveaway; the message could
-  /// have been deleted already. May be 0 if the message isn't sent yet.
-  @override
-  @JsonKey(name: 'giveaway_message_id')
-  final int giveawayMessageId;
-
-  /// User that won the prize in the giveaway if any; for Telegram Premium
-  /// giveaways only
-  @override
-  @JsonKey(name: 'user')
-  final User? user;
-
-  /// The number of Telegram Stars to be split between giveaway winners; for
-  /// Telegram Star giveaways only
-  @override
-  @JsonKey(name: 'prize_star_count')
-  final int? prizeStarCount;
-
-  /// True, if the giveaway was completed, but there was no user to win the
-  /// prize
-  @override
-  @JsonKey(name: 'is_unclaimed')
-  final bool? isUnclaimed;
-
-  @override
-  String toString() {
-    return 'ChatBoostSource.giveaway(source: $source, giveawayMessageId: $giveawayMessageId, user: $user, prizeStarCount: $prizeStarCount, isUnclaimed: $isUnclaimed)';
-  }
 
   /// Create a copy of ChatBoostSource
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ChatBoostSourceGiveawayImplCopyWith<_$ChatBoostSourceGiveawayImpl>
-      get copyWith => __$$ChatBoostSourceGiveawayImplCopyWithImpl<
-          _$ChatBoostSourceGiveawayImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ChatBoostSourcePremium value) premium,
-    required TResult Function(ChatBoostSourceGiftCode value) giftCode,
-    required TResult Function(ChatBoostSourceGiveaway value) giveaway,
-  }) {
-    return giveaway(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChatBoostSourcePremium value)? premium,
-    TResult? Function(ChatBoostSourceGiftCode value)? giftCode,
-    TResult? Function(ChatBoostSourceGiveaway value)? giveaway,
-  }) {
-    return giveaway?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChatBoostSourcePremium value)? premium,
-    TResult Function(ChatBoostSourceGiftCode value)? giftCode,
-    TResult Function(ChatBoostSourceGiveaway value)? giveaway,
-    required TResult orElse(),
-  }) {
-    if (giveaway != null) {
-      return giveaway(this);
+  $UserCopyWith<$Res>? get user {
+    if (_self.user == null) {
+      return null;
     }
-    return orElse();
+
+    return $UserCopyWith<$Res>(_self.user!, (value) {
+      return _then(_self.copyWith(user: value));
+    });
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChatBoostSourceGiveawayImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class ChatBoostSourceGiveaway implements ChatBoostSource {
-  const factory ChatBoostSourceGiveaway(
-          {@JsonKey(name: 'source') final ChatBoostSourceType source,
-          @JsonKey(name: 'giveaway_message_id')
-          required final int giveawayMessageId,
-          @JsonKey(name: 'user') final User? user,
-          @JsonKey(name: 'prize_star_count') final int? prizeStarCount,
-          @JsonKey(name: 'is_unclaimed') final bool? isUnclaimed}) =
-      _$ChatBoostSourceGiveawayImpl;
-
-  factory ChatBoostSourceGiveaway.fromJson(Map<String, dynamic> json) =
-      _$ChatBoostSourceGiveawayImpl.fromJson;
-
-  /// Source of the boost, always "giveaway"
-  @override
-  @JsonKey(name: 'source')
-  ChatBoostSourceType get source;
-
-  /// Identifier of a message in the chat with the giveaway; the message could
-  /// have been deleted already. May be 0 if the message isn't sent yet.
-  @JsonKey(name: 'giveaway_message_id')
-  int get giveawayMessageId;
-
-  /// User that won the prize in the giveaway if any; for Telegram Premium
-  /// giveaways only
-  @override
-  @JsonKey(name: 'user')
-  User? get user;
-
-  /// The number of Telegram Stars to be split between giveaway winners; for
-  /// Telegram Star giveaways only
-  @JsonKey(name: 'prize_star_count')
-  int? get prizeStarCount;
-
-  /// True, if the giveaway was completed, but there was no user to win the
-  /// prize
-  @JsonKey(name: 'is_unclaimed')
-  bool? get isUnclaimed;
-
-  /// Create a copy of ChatBoostSource
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChatBoostSourceGiveawayImplCopyWith<_$ChatBoostSourceGiveawayImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }

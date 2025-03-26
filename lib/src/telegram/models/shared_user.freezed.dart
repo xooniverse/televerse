@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,13 +12,6 @@ part of 'shared_user.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-SharedUser _$SharedUserFromJson(Map<String, dynamic> json) {
-  return _SharedUser.fromJson(json);
-}
-
 /// @nodoc
 mixin _$SharedUser {
   /// Identifier of the shared user. This number may have more than 32
@@ -28,103 +22,47 @@ mixin _$SharedUser {
   /// user and could be unable to use this identifier unless the user is
   /// already known to the bot by some other means.
   @JsonKey(name: 'user_id')
-  int get userId => throw _privateConstructorUsedError;
+  int get userId;
 
   /// Optional. First name of the user, if the name was requested by the bot.
   @JsonKey(name: 'first_name')
-  String? get firstName => throw _privateConstructorUsedError;
+  String? get firstName;
 
   /// Optional. Last name of the user, if the name was requested by the bot.
   @JsonKey(name: 'last_name')
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get lastName;
 
   /// Optional. Username of the user, if the username was requested by the
   /// bot.
   @JsonKey(name: 'username')
-  String? get username => throw _privateConstructorUsedError;
+  String? get username;
 
   /// Optional. Available sizes of the chat photo, if the photo was requested
   /// by the bot.
   @JsonKey(name: 'photo')
-  List<PhotoSize>? get photo => throw _privateConstructorUsedError;
-
-  /// Serializes this SharedUser to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<PhotoSize>? get photo;
 
   /// Create a copy of SharedUser
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $SharedUserCopyWith<SharedUser> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SharedUserCopyWith<$Res> {
-  factory $SharedUserCopyWith(
-          SharedUser value, $Res Function(SharedUser) then) =
-      _$SharedUserCopyWithImpl<$Res, SharedUser>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'user_id') int userId,
-      @JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'photo') List<PhotoSize>? photo});
-}
-
-/// @nodoc
-class _$SharedUserCopyWithImpl<$Res, $Val extends SharedUser>
-    implements $SharedUserCopyWith<$Res> {
-  _$SharedUserCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SharedUser
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $SharedUserCopyWith<SharedUser> get copyWith =>
+      _$SharedUserCopyWithImpl<SharedUser>(this as SharedUser, _$identity);
+
+  /// Serializes this SharedUser to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? userId = null,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? username = freezed,
-    Object? photo = freezed,
-  }) {
-    return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photo: freezed == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as List<PhotoSize>?,
-    ) as $Val);
+  String toString() {
+    return 'SharedUser(userId: $userId, firstName: $firstName, lastName: $lastName, username: $username, photo: $photo)';
   }
 }
 
 /// @nodoc
-abstract class _$$SharedUserImplCopyWith<$Res>
-    implements $SharedUserCopyWith<$Res> {
-  factory _$$SharedUserImplCopyWith(
-          _$SharedUserImpl value, $Res Function(_$SharedUserImpl) then) =
-      __$$SharedUserImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $SharedUserCopyWith<$Res> {
+  factory $SharedUserCopyWith(
+          SharedUser value, $Res Function(SharedUser) _then) =
+      _$SharedUserCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'user_id') int userId,
@@ -135,12 +73,11 @@ abstract class _$$SharedUserImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$SharedUserImplCopyWithImpl<$Res>
-    extends _$SharedUserCopyWithImpl<$Res, _$SharedUserImpl>
-    implements _$$SharedUserImplCopyWith<$Res> {
-  __$$SharedUserImplCopyWithImpl(
-      _$SharedUserImpl _value, $Res Function(_$SharedUserImpl) _then)
-      : super(_value, _then);
+class _$SharedUserCopyWithImpl<$Res> implements $SharedUserCopyWith<$Res> {
+  _$SharedUserCopyWithImpl(this._self, this._then);
+
+  final SharedUser _self;
+  final $Res Function(SharedUser) _then;
 
   /// Create a copy of SharedUser
   /// with the given fields replaced by the non-null parameter values.
@@ -153,25 +90,25 @@ class __$$SharedUserImplCopyWithImpl<$Res>
     Object? username = freezed,
     Object? photo = freezed,
   }) {
-    return _then(_$SharedUserImpl(
+    return _then(_self.copyWith(
       userId: null == userId
-          ? _value.userId
+          ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
       firstName: freezed == firstName
-          ? _value.firstName
+          ? _self.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
       lastName: freezed == lastName
-          ? _value.lastName
+          ? _self.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       username: freezed == username
-          ? _value.username
+          ? _self.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
       photo: freezed == photo
-          ? _value._photo
+          ? _self.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as List<PhotoSize>?,
     ));
@@ -180,17 +117,16 @@ class __$$SharedUserImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SharedUserImpl implements _SharedUser {
-  const _$SharedUserImpl(
+class _SharedUser implements SharedUser {
+  const _SharedUser(
       {@JsonKey(name: 'user_id') required this.userId,
       @JsonKey(name: 'first_name') this.firstName,
       @JsonKey(name: 'last_name') this.lastName,
       @JsonKey(name: 'username') this.username,
       @JsonKey(name: 'photo') final List<PhotoSize>? photo})
       : _photo = photo;
-
-  factory _$SharedUserImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SharedUserImplFromJson(json);
+  factory _SharedUser.fromJson(Map<String, dynamic> json) =>
+      _$SharedUserFromJson(json);
 
   /// Identifier of the shared user. This number may have more than 32
   /// significant bits and some programming languages may have
@@ -235,75 +171,82 @@ class _$SharedUserImpl implements _SharedUser {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of SharedUser
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SharedUserCopyWith<_SharedUser> get copyWith =>
+      __$SharedUserCopyWithImpl<_SharedUser>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SharedUserToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'SharedUser(userId: $userId, firstName: $firstName, lastName: $lastName, username: $username, photo: $photo)';
   }
-
-  /// Create a copy of SharedUser
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SharedUserImplCopyWith<_$SharedUserImpl> get copyWith =>
-      __$$SharedUserImplCopyWithImpl<_$SharedUserImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SharedUserImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _SharedUser implements SharedUser {
-  const factory _SharedUser(
-      {@JsonKey(name: 'user_id') required final int userId,
-      @JsonKey(name: 'first_name') final String? firstName,
-      @JsonKey(name: 'last_name') final String? lastName,
-      @JsonKey(name: 'username') final String? username,
-      @JsonKey(name: 'photo') final List<PhotoSize>? photo}) = _$SharedUserImpl;
-
-  factory _SharedUser.fromJson(Map<String, dynamic> json) =
-      _$SharedUserImpl.fromJson;
-
-  /// Identifier of the shared user. This number may have more than 32
-  /// significant bits and some programming languages may have
-  /// difficulty/silent defects in interpreting it. But it has at most 52
-  /// significant bits, so 64-bit integers or double-precision float types are
-  /// safe for storing these identifiers. The bot may not have access to the
-  /// user and could be unable to use this identifier unless the user is
-  /// already known to the bot by some other means.
+/// @nodoc
+abstract mixin class _$SharedUserCopyWith<$Res>
+    implements $SharedUserCopyWith<$Res> {
+  factory _$SharedUserCopyWith(
+          _SharedUser value, $Res Function(_SharedUser) _then) =
+      __$SharedUserCopyWithImpl;
   @override
-  @JsonKey(name: 'user_id')
-  int get userId;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'user_id') int userId,
+      @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'photo') List<PhotoSize>? photo});
+}
 
-  /// Optional. First name of the user, if the name was requested by the bot.
-  @override
-  @JsonKey(name: 'first_name')
-  String? get firstName;
+/// @nodoc
+class __$SharedUserCopyWithImpl<$Res> implements _$SharedUserCopyWith<$Res> {
+  __$SharedUserCopyWithImpl(this._self, this._then);
 
-  /// Optional. Last name of the user, if the name was requested by the bot.
-  @override
-  @JsonKey(name: 'last_name')
-  String? get lastName;
-
-  /// Optional. Username of the user, if the username was requested by the
-  /// bot.
-  @override
-  @JsonKey(name: 'username')
-  String? get username;
-
-  /// Optional. Available sizes of the chat photo, if the photo was requested
-  /// by the bot.
-  @override
-  @JsonKey(name: 'photo')
-  List<PhotoSize>? get photo;
+  final _SharedUser _self;
+  final $Res Function(_SharedUser) _then;
 
   /// Create a copy of SharedUser
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SharedUserImplCopyWith<_$SharedUserImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? username = freezed,
+    Object? photo = freezed,
+  }) {
+    return _then(_SharedUser(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      firstName: freezed == firstName
+          ? _self.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _self.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photo: freezed == photo
+          ? _self._photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as List<PhotoSize>?,
+    ));
+  }
 }

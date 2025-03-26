@@ -6,7 +6,7 @@ part of 'venue.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VenueImpl _$$VenueImplFromJson(Map<String, dynamic> json) => _$VenueImpl(
+_Venue _$VenueFromJson(Map<String, dynamic> json) => _Venue(
       location: Location.fromJson(json['location'] as Map<String, dynamic>),
       title: json['title'] as String,
       address: json['address'] as String,
@@ -16,8 +16,7 @@ _$VenueImpl _$$VenueImplFromJson(Map<String, dynamic> json) => _$VenueImpl(
       googlePlaceType: json['google_place_type'] as String?,
     );
 
-Map<String, dynamic> _$$VenueImplToJson(_$VenueImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$VenueToJson(_Venue instance) => <String, dynamic>{
       'location': instance.location,
       'title': instance.title,
       'address': instance.address,

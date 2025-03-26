@@ -6,7 +6,7 @@ part 'photo_size.g.dart';
 
 /// This object represents one size of a photo or a file / sticker thumbnail.
 @freezed
-class PhotoSize with _$PhotoSize {
+abstract class PhotoSize with _$PhotoSize {
   /// Constructs a [PhotoSize] object
   const factory PhotoSize({
     /// Identifier for this file, which can be used to download or reuse the

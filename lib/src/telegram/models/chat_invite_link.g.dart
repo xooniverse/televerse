@@ -6,8 +6,8 @@ part of 'chat_invite_link.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatInviteLinkImpl _$$ChatInviteLinkImplFromJson(Map<String, dynamic> json) =>
-    _$ChatInviteLinkImpl(
+_ChatInviteLink _$ChatInviteLinkFromJson(Map<String, dynamic> json) =>
+    _ChatInviteLink(
       inviteLink: json['invite_link'] as String,
       creator: json['creator'] == null
           ? null
@@ -21,8 +21,7 @@ _$ChatInviteLinkImpl _$$ChatInviteLinkImplFromJson(Map<String, dynamic> json) =>
       pendingMemberCount: (json['pending_member_count'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$ChatInviteLinkImplToJson(
-        _$ChatInviteLinkImpl instance) =>
+Map<String, dynamic> _$ChatInviteLinkToJson(_ChatInviteLink instance) =>
     <String, dynamic>{
       'invite_link': instance.inviteLink,
       if (instance.creator case final value?) 'creator': value,

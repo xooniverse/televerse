@@ -6,7 +6,7 @@ part 'birthdate.g.dart';
 
 /// Represents a user's birthdate.
 @freezed
-class Birthdate with _$Birthdate {
+abstract class Birthdate with _$Birthdate {
   /// Creates a [Birthdate] object.
   const factory Birthdate({
     /// Day of the user's birth; 1-31.

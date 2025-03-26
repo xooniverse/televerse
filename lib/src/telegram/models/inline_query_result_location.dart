@@ -10,7 +10,7 @@ part 'inline_query_result_location.g.dart';
 
 /// Represents a location on a map. By default, the location will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the location.
 @freezed
-class InlineQueryResultLocation
+abstract class InlineQueryResultLocation
     with _$InlineQueryResultLocation
     implements InlineQueryResult {
   /// Constructs an [InlineQueryResultLocation] object

@@ -11,7 +11,7 @@ part 'inline_query.g.dart';
 /// This object represents an incoming inline query. When the user sends an empty query,
 /// your bot could return some default or trending results.
 @freezed
-class InlineQuery with _$InlineQuery implements WithUser {
+abstract class InlineQuery with _$InlineQuery implements WithUser {
   /// Creates an incoming inline query
   ///
   /// [id] Unique identifier for this query

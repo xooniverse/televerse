@@ -6,9 +6,9 @@ part of 'inline_query_result_venue.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultVenueImpl _$$InlineQueryResultVenueImplFromJson(
+_InlineQueryResultVenue _$InlineQueryResultVenueFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultVenueImpl(
+    _InlineQueryResultVenue(
       type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
           InlineQueryResultType.venue,
       id: json['id'] as String,
@@ -33,8 +33,8 @@ _$InlineQueryResultVenueImpl _$$InlineQueryResultVenueImplFromJson(
       thumbnailHeight: (json['thumbnail_height'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$InlineQueryResultVenueImplToJson(
-        _$InlineQueryResultVenueImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultVenueToJson(
+        _InlineQueryResultVenue instance) =>
     <String, dynamic>{
       'type': instance.type,
       'id': instance.id,

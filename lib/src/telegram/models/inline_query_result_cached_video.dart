@@ -14,7 +14,7 @@ part 'inline_query_result_cached_video.g.dart';
 /// Alternatively, you can use input_message_content to send a message with the
 /// specified content instead of the video.
 @freezed
-class InlineQueryResultCachedVideo
+abstract class InlineQueryResultCachedVideo
     with _$InlineQueryResultCachedVideo
     implements InlineQueryResult {
   /// Constructs an [InlineQueryResultCachedVideo] object

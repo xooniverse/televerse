@@ -6,8 +6,7 @@ part of 'sticker.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$StickerImpl _$$StickerImplFromJson(Map<String, dynamic> json) =>
-    _$StickerImpl(
+_Sticker _$StickerFromJson(Map<String, dynamic> json) => _Sticker(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
       type: $enumDecode(_$StickerTypeEnumMap, json['type']),
@@ -32,8 +31,7 @@ _$StickerImpl _$$StickerImplFromJson(Map<String, dynamic> json) =>
       needsRepainting: json['needs_repainting'] as bool?,
     );
 
-Map<String, dynamic> _$$StickerImplToJson(_$StickerImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$StickerToJson(_Sticker instance) => <String, dynamic>{
       'file_id': instance.fileId,
       'file_unique_id': instance.fileUniqueId,
       'type': instance.type,

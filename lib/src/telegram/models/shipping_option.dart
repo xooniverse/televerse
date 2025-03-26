@@ -7,7 +7,7 @@ part 'shipping_option.g.dart';
 
 /// This object represents one shipping option.
 @freezed
-class ShippingOption with _$ShippingOption {
+abstract class ShippingOption with _$ShippingOption {
   /// Constructs a [ShippingOption] object
   const factory ShippingOption({
     /// Shipping option identifier

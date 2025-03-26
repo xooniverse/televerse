@@ -8,7 +8,7 @@ part 'text_quote.g.dart';
 /// Contains information about the quoted part of a message that is replied to
 /// by the given message.
 @freezed
-class TextQuote with _$TextQuote {
+abstract class TextQuote with _$TextQuote {
   /// Constructs a `TextQuote`.
   const factory TextQuote({
     /// Text of the quoted part of a message that is replied to by the given

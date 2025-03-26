@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,102 +12,45 @@ part of 'forum_topic.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ForumTopic _$ForumTopicFromJson(Map<String, dynamic> json) {
-  return _ForumTopic.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ForumTopic {
   /// Unique identifier of the forum topic
   @JsonKey(name: 'message_thread_id')
-  String get messageThreadId => throw _privateConstructorUsedError;
+  String get messageThreadId;
 
   /// Name of the topic
   @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
+  String get name;
 
   /// Color of the topic icon in RGB format
   @JsonKey(name: 'icon_color')
-  int get iconColor => throw _privateConstructorUsedError;
+  int get iconColor;
 
   /// Optional. Unique identifier of the custom emoji shown as the topic icon
   @JsonKey(name: 'icon_custom_emoji_id')
-  String? get iconCustomEmojiId => throw _privateConstructorUsedError;
-
-  /// Serializes this ForumTopic to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get iconCustomEmojiId;
 
   /// Create a copy of ForumTopic
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ForumTopicCopyWith<ForumTopic> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ForumTopicCopyWith<$Res> {
-  factory $ForumTopicCopyWith(
-          ForumTopic value, $Res Function(ForumTopic) then) =
-      _$ForumTopicCopyWithImpl<$Res, ForumTopic>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'message_thread_id') String messageThreadId,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'icon_color') int iconColor,
-      @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
-}
-
-/// @nodoc
-class _$ForumTopicCopyWithImpl<$Res, $Val extends ForumTopic>
-    implements $ForumTopicCopyWith<$Res> {
-  _$ForumTopicCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ForumTopic
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ForumTopicCopyWith<ForumTopic> get copyWith =>
+      _$ForumTopicCopyWithImpl<ForumTopic>(this as ForumTopic, _$identity);
+
+  /// Serializes this ForumTopic to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? messageThreadId = null,
-    Object? name = null,
-    Object? iconColor = null,
-    Object? iconCustomEmojiId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      messageThreadId: null == messageThreadId
-          ? _value.messageThreadId
-          : messageThreadId // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      iconColor: null == iconColor
-          ? _value.iconColor
-          : iconColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      iconCustomEmojiId: freezed == iconCustomEmojiId
-          ? _value.iconCustomEmojiId
-          : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  String toString() {
+    return 'ForumTopic(messageThreadId: $messageThreadId, name: $name, iconColor: $iconColor, iconCustomEmojiId: $iconCustomEmojiId)';
   }
 }
 
 /// @nodoc
-abstract class _$$ForumTopicImplCopyWith<$Res>
-    implements $ForumTopicCopyWith<$Res> {
-  factory _$$ForumTopicImplCopyWith(
-          _$ForumTopicImpl value, $Res Function(_$ForumTopicImpl) then) =
-      __$$ForumTopicImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ForumTopicCopyWith<$Res> {
+  factory $ForumTopicCopyWith(
+          ForumTopic value, $Res Function(ForumTopic) _then) =
+      _$ForumTopicCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'message_thread_id') String messageThreadId,
@@ -116,12 +60,11 @@ abstract class _$$ForumTopicImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ForumTopicImplCopyWithImpl<$Res>
-    extends _$ForumTopicCopyWithImpl<$Res, _$ForumTopicImpl>
-    implements _$$ForumTopicImplCopyWith<$Res> {
-  __$$ForumTopicImplCopyWithImpl(
-      _$ForumTopicImpl _value, $Res Function(_$ForumTopicImpl) _then)
-      : super(_value, _then);
+class _$ForumTopicCopyWithImpl<$Res> implements $ForumTopicCopyWith<$Res> {
+  _$ForumTopicCopyWithImpl(this._self, this._then);
+
+  final ForumTopic _self;
+  final $Res Function(ForumTopic) _then;
 
   /// Create a copy of ForumTopic
   /// with the given fields replaced by the non-null parameter values.
@@ -133,21 +76,21 @@ class __$$ForumTopicImplCopyWithImpl<$Res>
     Object? iconColor = null,
     Object? iconCustomEmojiId = freezed,
   }) {
-    return _then(_$ForumTopicImpl(
+    return _then(_self.copyWith(
       messageThreadId: null == messageThreadId
-          ? _value.messageThreadId
+          ? _self.messageThreadId
           : messageThreadId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       iconColor: null == iconColor
-          ? _value.iconColor
+          ? _self.iconColor
           : iconColor // ignore: cast_nullable_to_non_nullable
               as int,
       iconCustomEmojiId: freezed == iconCustomEmojiId
-          ? _value.iconCustomEmojiId
+          ? _self.iconCustomEmojiId
           : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -156,15 +99,14 @@ class __$$ForumTopicImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ForumTopicImpl implements _ForumTopic {
-  const _$ForumTopicImpl(
+class _ForumTopic implements ForumTopic {
+  const _ForumTopic(
       {@JsonKey(name: 'message_thread_id') required this.messageThreadId,
       @JsonKey(name: 'name') required this.name,
       @JsonKey(name: 'icon_color') required this.iconColor,
       @JsonKey(name: 'icon_custom_emoji_id') this.iconCustomEmojiId});
-
-  factory _$ForumTopicImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ForumTopicImplFromJson(json);
+  factory _ForumTopic.fromJson(Map<String, dynamic> json) =>
+      _$ForumTopicFromJson(json);
 
   /// Unique identifier of the forum topic
   @override
@@ -186,63 +128,76 @@ class _$ForumTopicImpl implements _ForumTopic {
   @JsonKey(name: 'icon_custom_emoji_id')
   final String? iconCustomEmojiId;
 
+  /// Create a copy of ForumTopic
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ForumTopicCopyWith<_ForumTopic> get copyWith =>
+      __$ForumTopicCopyWithImpl<_ForumTopic>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ForumTopicToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'ForumTopic(messageThreadId: $messageThreadId, name: $name, iconColor: $iconColor, iconCustomEmojiId: $iconCustomEmojiId)';
   }
-
-  /// Create a copy of ForumTopic
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ForumTopicImplCopyWith<_$ForumTopicImpl> get copyWith =>
-      __$$ForumTopicImplCopyWithImpl<_$ForumTopicImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ForumTopicImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _ForumTopic implements ForumTopic {
-  const factory _ForumTopic(
-      {@JsonKey(name: 'message_thread_id')
-      required final String messageThreadId,
-      @JsonKey(name: 'name') required final String name,
-      @JsonKey(name: 'icon_color') required final int iconColor,
-      @JsonKey(name: 'icon_custom_emoji_id')
-      final String? iconCustomEmojiId}) = _$ForumTopicImpl;
-
-  factory _ForumTopic.fromJson(Map<String, dynamic> json) =
-      _$ForumTopicImpl.fromJson;
-
-  /// Unique identifier of the forum topic
+/// @nodoc
+abstract mixin class _$ForumTopicCopyWith<$Res>
+    implements $ForumTopicCopyWith<$Res> {
+  factory _$ForumTopicCopyWith(
+          _ForumTopic value, $Res Function(_ForumTopic) _then) =
+      __$ForumTopicCopyWithImpl;
   @override
-  @JsonKey(name: 'message_thread_id')
-  String get messageThreadId;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'message_thread_id') String messageThreadId,
+      @JsonKey(name: 'name') String name,
+      @JsonKey(name: 'icon_color') int iconColor,
+      @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
+}
 
-  /// Name of the topic
-  @override
-  @JsonKey(name: 'name')
-  String get name;
+/// @nodoc
+class __$ForumTopicCopyWithImpl<$Res> implements _$ForumTopicCopyWith<$Res> {
+  __$ForumTopicCopyWithImpl(this._self, this._then);
 
-  /// Color of the topic icon in RGB format
-  @override
-  @JsonKey(name: 'icon_color')
-  int get iconColor;
-
-  /// Optional. Unique identifier of the custom emoji shown as the topic icon
-  @override
-  @JsonKey(name: 'icon_custom_emoji_id')
-  String? get iconCustomEmojiId;
+  final _ForumTopic _self;
+  final $Res Function(_ForumTopic) _then;
 
   /// Create a copy of ForumTopic
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ForumTopicImplCopyWith<_$ForumTopicImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? messageThreadId = null,
+    Object? name = null,
+    Object? iconColor = null,
+    Object? iconCustomEmojiId = freezed,
+  }) {
+    return _then(_ForumTopic(
+      messageThreadId: null == messageThreadId
+          ? _self.messageThreadId
+          : messageThreadId // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconColor: null == iconColor
+          ? _self.iconColor
+          : iconColor // ignore: cast_nullable_to_non_nullable
+              as int,
+      iconCustomEmojiId: freezed == iconCustomEmojiId
+          ? _self.iconCustomEmojiId
+          : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }

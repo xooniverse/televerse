@@ -6,14 +6,12 @@ part of 'sent_web_app_message.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SentWebAppMessageImpl _$$SentWebAppMessageImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SentWebAppMessageImpl(
+_SentWebAppMessage _$SentWebAppMessageFromJson(Map<String, dynamic> json) =>
+    _SentWebAppMessage(
       inlineMessageId: json['inline_message_id'] as String?,
     );
 
-Map<String, dynamic> _$$SentWebAppMessageImplToJson(
-        _$SentWebAppMessageImpl instance) =>
+Map<String, dynamic> _$SentWebAppMessageToJson(_SentWebAppMessage instance) =>
     <String, dynamic>{
       if (instance.inlineMessageId case final value?)
         'inline_message_id': value,

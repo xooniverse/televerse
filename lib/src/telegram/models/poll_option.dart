@@ -7,7 +7,7 @@ part 'poll_option.g.dart';
 
 /// This object contains information about one answer option in a poll.
 @freezed
-class PollOption with _$PollOption {
+abstract class PollOption with _$PollOption {
   /// Constructs a [PollOption] object.
   const factory PollOption({
     /// Option text, 1-100 characters

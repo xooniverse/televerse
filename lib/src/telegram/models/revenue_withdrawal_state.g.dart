@@ -6,16 +6,16 @@ part of 'revenue_withdrawal_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$RevenueWithdrawalStatePendingImpl
-    _$$RevenueWithdrawalStatePendingImplFromJson(Map<String, dynamic> json) =>
-        _$RevenueWithdrawalStatePendingImpl(
-          type: $enumDecodeNullable(
-                  _$RevenueWithdrawalStateTypeEnumMap, json['type']) ??
-              RevenueWithdrawalStateType.pending,
-        );
+RevenueWithdrawalStatePending _$RevenueWithdrawalStatePendingFromJson(
+        Map<String, dynamic> json) =>
+    RevenueWithdrawalStatePending(
+      type: $enumDecodeNullable(
+              _$RevenueWithdrawalStateTypeEnumMap, json['type']) ??
+          RevenueWithdrawalStateType.pending,
+    );
 
-Map<String, dynamic> _$$RevenueWithdrawalStatePendingImplToJson(
-        _$RevenueWithdrawalStatePendingImpl instance) =>
+Map<String, dynamic> _$RevenueWithdrawalStatePendingToJson(
+        RevenueWithdrawalStatePending instance) =>
     <String, dynamic>{
       'type': _$RevenueWithdrawalStateTypeEnumMap[instance.type]!,
     };
@@ -26,34 +26,34 @@ const _$RevenueWithdrawalStateTypeEnumMap = {
   RevenueWithdrawalStateType.failed: 'failed',
 };
 
-_$RevenueWithdrawalStateSucceededImpl
-    _$$RevenueWithdrawalStateSucceededImplFromJson(Map<String, dynamic> json) =>
-        _$RevenueWithdrawalStateSucceededImpl(
-          type: $enumDecodeNullable(
-                  _$RevenueWithdrawalStateTypeEnumMap, json['type']) ??
-              RevenueWithdrawalStateType.succeeded,
-          date: (json['date'] as num).toInt(),
-          url: json['url'] as String,
-        );
+RevenueWithdrawalStateSucceeded _$RevenueWithdrawalStateSucceededFromJson(
+        Map<String, dynamic> json) =>
+    RevenueWithdrawalStateSucceeded(
+      type: $enumDecodeNullable(
+              _$RevenueWithdrawalStateTypeEnumMap, json['type']) ??
+          RevenueWithdrawalStateType.succeeded,
+      date: (json['date'] as num).toInt(),
+      url: json['url'] as String,
+    );
 
-Map<String, dynamic> _$$RevenueWithdrawalStateSucceededImplToJson(
-        _$RevenueWithdrawalStateSucceededImpl instance) =>
+Map<String, dynamic> _$RevenueWithdrawalStateSucceededToJson(
+        RevenueWithdrawalStateSucceeded instance) =>
     <String, dynamic>{
       'type': _$RevenueWithdrawalStateTypeEnumMap[instance.type]!,
       'date': instance.date,
       'url': instance.url,
     };
 
-_$RevenueWithdrawalStateFailedImpl _$$RevenueWithdrawalStateFailedImplFromJson(
+RevenueWithdrawalStateFailed _$RevenueWithdrawalStateFailedFromJson(
         Map<String, dynamic> json) =>
-    _$RevenueWithdrawalStateFailedImpl(
+    RevenueWithdrawalStateFailed(
       type: $enumDecodeNullable(
               _$RevenueWithdrawalStateTypeEnumMap, json['type']) ??
           RevenueWithdrawalStateType.failed,
     );
 
-Map<String, dynamic> _$$RevenueWithdrawalStateFailedImplToJson(
-        _$RevenueWithdrawalStateFailedImpl instance) =>
+Map<String, dynamic> _$RevenueWithdrawalStateFailedToJson(
+        RevenueWithdrawalStateFailed instance) =>
     <String, dynamic>{
       'type': _$RevenueWithdrawalStateTypeEnumMap[instance.type]!,
     };

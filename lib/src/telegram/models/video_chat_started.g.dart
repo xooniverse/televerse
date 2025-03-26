@@ -6,10 +6,8 @@ part of 'video_chat_started.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VideoChatStartedImpl _$$VideoChatStartedImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VideoChatStartedImpl();
+_VideoChatStarted _$VideoChatStartedFromJson(Map<String, dynamic> json) =>
+    _VideoChatStarted();
 
-Map<String, dynamic> _$$VideoChatStartedImplToJson(
-        _$VideoChatStartedImpl instance) =>
+Map<String, dynamic> _$VideoChatStartedToJson(_VideoChatStarted instance) =>
     <String, dynamic>{};

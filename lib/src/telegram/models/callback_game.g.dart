@@ -6,8 +6,8 @@ part of 'callback_game.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CallbackGameImpl _$$CallbackGameImplFromJson(Map<String, dynamic> json) =>
-    _$CallbackGameImpl();
+_CallbackGame _$CallbackGameFromJson(Map<String, dynamic> json) =>
+    _CallbackGame();
 
-Map<String, dynamic> _$$CallbackGameImplToJson(_$CallbackGameImpl instance) =>
+Map<String, dynamic> _$CallbackGameToJson(_CallbackGame instance) =>
     <String, dynamic>{};

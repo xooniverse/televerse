@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,82 +12,37 @@ part of 'bot_command.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-BotCommand _$BotCommandFromJson(Map<String, dynamic> json) {
-  return _BotCommand.fromJson(json);
-}
-
 /// @nodoc
 mixin _$BotCommand {
   /// Text of the command, 1-32 characters. Can contain only lowercase English letters, digits and underscores.
   @JsonKey(name: 'command')
-  String get command => throw _privateConstructorUsedError;
+  String get command;
 
   /// Description of the command, 3-256 characters.
   @JsonKey(name: 'description')
-  String get description => throw _privateConstructorUsedError;
-
-  /// Serializes this BotCommand to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get description;
 
   /// Create a copy of BotCommand
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $BotCommandCopyWith<BotCommand> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $BotCommandCopyWith<$Res> {
-  factory $BotCommandCopyWith(
-          BotCommand value, $Res Function(BotCommand) then) =
-      _$BotCommandCopyWithImpl<$Res, BotCommand>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'command') String command,
-      @JsonKey(name: 'description') String description});
-}
-
-/// @nodoc
-class _$BotCommandCopyWithImpl<$Res, $Val extends BotCommand>
-    implements $BotCommandCopyWith<$Res> {
-  _$BotCommandCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of BotCommand
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $BotCommandCopyWith<BotCommand> get copyWith =>
+      _$BotCommandCopyWithImpl<BotCommand>(this as BotCommand, _$identity);
+
+  /// Serializes this BotCommand to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? command = null,
-    Object? description = null,
-  }) {
-    return _then(_value.copyWith(
-      command: null == command
-          ? _value.command
-          : command // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'BotCommand(command: $command, description: $description)';
   }
 }
 
 /// @nodoc
-abstract class _$$BotCommandImplCopyWith<$Res>
-    implements $BotCommandCopyWith<$Res> {
-  factory _$$BotCommandImplCopyWith(
-          _$BotCommandImpl value, $Res Function(_$BotCommandImpl) then) =
-      __$$BotCommandImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $BotCommandCopyWith<$Res> {
+  factory $BotCommandCopyWith(
+          BotCommand value, $Res Function(BotCommand) _then) =
+      _$BotCommandCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'command') String command,
@@ -94,12 +50,11 @@ abstract class _$$BotCommandImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BotCommandImplCopyWithImpl<$Res>
-    extends _$BotCommandCopyWithImpl<$Res, _$BotCommandImpl>
-    implements _$$BotCommandImplCopyWith<$Res> {
-  __$$BotCommandImplCopyWithImpl(
-      _$BotCommandImpl _value, $Res Function(_$BotCommandImpl) _then)
-      : super(_value, _then);
+class _$BotCommandCopyWithImpl<$Res> implements $BotCommandCopyWith<$Res> {
+  _$BotCommandCopyWithImpl(this._self, this._then);
+
+  final BotCommand _self;
+  final $Res Function(BotCommand) _then;
 
   /// Create a copy of BotCommand
   /// with the given fields replaced by the non-null parameter values.
@@ -109,13 +64,13 @@ class __$$BotCommandImplCopyWithImpl<$Res>
     Object? command = null,
     Object? description = null,
   }) {
-    return _then(_$BotCommandImpl(
+    return _then(_self.copyWith(
       command: null == command
-          ? _value.command
+          ? _self.command
           : command // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
-          ? _value.description
+          ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -124,13 +79,12 @@ class __$$BotCommandImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BotCommandImpl implements _BotCommand {
-  const _$BotCommandImpl(
+class _BotCommand implements BotCommand {
+  const _BotCommand(
       {@JsonKey(name: 'command') required this.command,
       @JsonKey(name: 'description') required this.description});
-
-  factory _$BotCommandImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BotCommandImplFromJson(json);
+  factory _BotCommand.fromJson(Map<String, dynamic> json) =>
+      _$BotCommandFromJson(json);
 
   /// Text of the command, 1-32 characters. Can contain only lowercase English letters, digits and underscores.
   @override
@@ -142,50 +96,64 @@ class _$BotCommandImpl implements _BotCommand {
   @JsonKey(name: 'description')
   final String description;
 
+  /// Create a copy of BotCommand
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BotCommandCopyWith<_BotCommand> get copyWith =>
+      __$BotCommandCopyWithImpl<_BotCommand>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$BotCommandToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'BotCommand(command: $command, description: $description)';
   }
-
-  /// Create a copy of BotCommand
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BotCommandImplCopyWith<_$BotCommandImpl> get copyWith =>
-      __$$BotCommandImplCopyWithImpl<_$BotCommandImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BotCommandImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _BotCommand implements BotCommand {
-  const factory _BotCommand(
-          {@JsonKey(name: 'command') required final String command,
-          @JsonKey(name: 'description') required final String description}) =
-      _$BotCommandImpl;
-
-  factory _BotCommand.fromJson(Map<String, dynamic> json) =
-      _$BotCommandImpl.fromJson;
-
-  /// Text of the command, 1-32 characters. Can contain only lowercase English letters, digits and underscores.
+/// @nodoc
+abstract mixin class _$BotCommandCopyWith<$Res>
+    implements $BotCommandCopyWith<$Res> {
+  factory _$BotCommandCopyWith(
+          _BotCommand value, $Res Function(_BotCommand) _then) =
+      __$BotCommandCopyWithImpl;
   @override
-  @JsonKey(name: 'command')
-  String get command;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'command') String command,
+      @JsonKey(name: 'description') String description});
+}
 
-  /// Description of the command, 3-256 characters.
-  @override
-  @JsonKey(name: 'description')
-  String get description;
+/// @nodoc
+class __$BotCommandCopyWithImpl<$Res> implements _$BotCommandCopyWith<$Res> {
+  __$BotCommandCopyWithImpl(this._self, this._then);
+
+  final _BotCommand _self;
+  final $Res Function(_BotCommand) _then;
 
   /// Create a copy of BotCommand
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BotCommandImplCopyWith<_$BotCommandImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? command = null,
+    Object? description = null,
+  }) {
+    return _then(_BotCommand(
+      command: null == command
+          ? _self.command
+          : command // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }

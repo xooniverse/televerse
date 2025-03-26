@@ -6,9 +6,9 @@ part of 'inline_query_result_voice.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultVoiceImpl _$$InlineQueryResultVoiceImplFromJson(
+_InlineQueryResultVoice _$InlineQueryResultVoiceFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultVoiceImpl(
+    _InlineQueryResultVoice(
       type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
           InlineQueryResultType.voice,
       id: json['id'] as String,
@@ -30,8 +30,8 @@ _$InlineQueryResultVoiceImpl _$$InlineQueryResultVoiceImplFromJson(
               const InputMessageContentConverter().fromJson),
     );
 
-Map<String, dynamic> _$$InlineQueryResultVoiceImplToJson(
-        _$InlineQueryResultVoiceImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultVoiceToJson(
+        _InlineQueryResultVoice instance) =>
     <String, dynamic>{
       'type': instance.type,
       'id': instance.id,

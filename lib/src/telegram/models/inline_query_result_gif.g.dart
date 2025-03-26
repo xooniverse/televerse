@@ -6,9 +6,9 @@ part of 'inline_query_result_gif.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultGifImpl _$$InlineQueryResultGifImplFromJson(
+_InlineQueryResultGif _$InlineQueryResultGifFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultGifImpl(
+    _InlineQueryResultGif(
       type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
           InlineQueryResultType.gif,
       id: json['id'] as String,
@@ -35,8 +35,8 @@ _$InlineQueryResultGifImpl _$$InlineQueryResultGifImplFromJson(
       showCaptionAboveMedia: json['show_caption_above_media'] as bool?,
     );
 
-Map<String, dynamic> _$$InlineQueryResultGifImplToJson(
-        _$InlineQueryResultGifImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultGifToJson(
+        _InlineQueryResultGif instance) =>
     <String, dynamic>{
       'type': instance.type,
       'id': instance.id,

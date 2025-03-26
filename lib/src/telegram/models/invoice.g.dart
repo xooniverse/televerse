@@ -6,8 +6,7 @@ part of 'invoice.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InvoiceImpl _$$InvoiceImplFromJson(Map<String, dynamic> json) =>
-    _$InvoiceImpl(
+_Invoice _$InvoiceFromJson(Map<String, dynamic> json) => _Invoice(
       title: json['title'] as String,
       description: json['description'] as String,
       startParameter: json['start_parameter'] as String,
@@ -15,8 +14,7 @@ _$InvoiceImpl _$$InvoiceImplFromJson(Map<String, dynamic> json) =>
       totalAmount: (json['total_amount'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$InvoiceImplToJson(_$InvoiceImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$InvoiceToJson(_Invoice instance) => <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
       'start_parameter': instance.startParameter,

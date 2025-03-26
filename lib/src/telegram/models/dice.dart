@@ -7,7 +7,7 @@ part 'dice.g.dart';
 
 /// This object represents an animated emoji that displays a random value.
 @freezed
-class Dice with _$Dice {
+abstract class Dice with _$Dice {
   /// Creates an animated emoji with a random value
   ///
   /// [emoji] Emoji on which the dice throw animation is based [value] Value of

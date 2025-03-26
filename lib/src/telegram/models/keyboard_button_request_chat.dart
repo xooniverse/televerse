@@ -11,7 +11,7 @@ part 'keyboard_button_request_chat.g.dart';
 ///
 /// https://core.telegram.org/bots/api#keyboardbuttonrequestchat
 @freezed
-class KeyboardButtonRequestChat with _$KeyboardButtonRequestChat {
+abstract class KeyboardButtonRequestChat with _$KeyboardButtonRequestChat {
   /// Creates a new [KeyboardButtonRequestChat] object.
   const factory KeyboardButtonRequestChat({
     /// Signed 32-bit identifier of the request.

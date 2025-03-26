@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,73 +12,33 @@ part of 'inline_keyboard.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-InlineKeyboard _$InlineKeyboardFromJson(Map<String, dynamic> json) {
-  return _InlineKeyboard.fromJson(json);
-}
-
 /// @nodoc
 mixin _$InlineKeyboard {
   @JsonKey(name: 'inline_keyboard')
-  List<List<InlineKeyboardButton>> get inlineKeyboard =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this InlineKeyboard to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<List<InlineKeyboardButton>> get inlineKeyboard;
 
   /// Create a copy of InlineKeyboard
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $InlineKeyboardCopyWith<InlineKeyboard> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $InlineKeyboardCopyWith<$Res> {
-  factory $InlineKeyboardCopyWith(
-          InlineKeyboard value, $Res Function(InlineKeyboard) then) =
-      _$InlineKeyboardCopyWithImpl<$Res, InlineKeyboard>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'inline_keyboard')
-      List<List<InlineKeyboardButton>> inlineKeyboard});
-}
-
-/// @nodoc
-class _$InlineKeyboardCopyWithImpl<$Res, $Val extends InlineKeyboard>
-    implements $InlineKeyboardCopyWith<$Res> {
-  _$InlineKeyboardCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of InlineKeyboard
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $InlineKeyboardCopyWith<InlineKeyboard> get copyWith =>
+      _$InlineKeyboardCopyWithImpl<InlineKeyboard>(
+          this as InlineKeyboard, _$identity);
+
+  /// Serializes this InlineKeyboard to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? inlineKeyboard = null,
-  }) {
-    return _then(_value.copyWith(
-      inlineKeyboard: null == inlineKeyboard
-          ? _value.inlineKeyboard
-          : inlineKeyboard // ignore: cast_nullable_to_non_nullable
-              as List<List<InlineKeyboardButton>>,
-    ) as $Val);
+  String toString() {
+    return 'InlineKeyboard(inlineKeyboard: $inlineKeyboard)';
   }
 }
 
 /// @nodoc
-abstract class _$$InlineKeyboardImplCopyWith<$Res>
-    implements $InlineKeyboardCopyWith<$Res> {
-  factory _$$InlineKeyboardImplCopyWith(_$InlineKeyboardImpl value,
-          $Res Function(_$InlineKeyboardImpl) then) =
-      __$$InlineKeyboardImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $InlineKeyboardCopyWith<$Res> {
+  factory $InlineKeyboardCopyWith(
+          InlineKeyboard value, $Res Function(InlineKeyboard) _then) =
+      _$InlineKeyboardCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'inline_keyboard')
@@ -85,12 +46,12 @@ abstract class _$$InlineKeyboardImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$InlineKeyboardImplCopyWithImpl<$Res>
-    extends _$InlineKeyboardCopyWithImpl<$Res, _$InlineKeyboardImpl>
-    implements _$$InlineKeyboardImplCopyWith<$Res> {
-  __$$InlineKeyboardImplCopyWithImpl(
-      _$InlineKeyboardImpl _value, $Res Function(_$InlineKeyboardImpl) _then)
-      : super(_value, _then);
+class _$InlineKeyboardCopyWithImpl<$Res>
+    implements $InlineKeyboardCopyWith<$Res> {
+  _$InlineKeyboardCopyWithImpl(this._self, this._then);
+
+  final InlineKeyboard _self;
+  final $Res Function(InlineKeyboard) _then;
 
   /// Create a copy of InlineKeyboard
   /// with the given fields replaced by the non-null parameter values.
@@ -99,9 +60,9 @@ class __$$InlineKeyboardImplCopyWithImpl<$Res>
   $Res call({
     Object? inlineKeyboard = null,
   }) {
-    return _then(_$InlineKeyboardImpl(
+    return _then(_self.copyWith(
       inlineKeyboard: null == inlineKeyboard
-          ? _value._inlineKeyboard
+          ? _self.inlineKeyboard
           : inlineKeyboard // ignore: cast_nullable_to_non_nullable
               as List<List<InlineKeyboardButton>>,
     ));
@@ -110,17 +71,16 @@ class __$$InlineKeyboardImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$InlineKeyboardImpl extends _InlineKeyboard {
-  _$InlineKeyboardImpl(
+class _InlineKeyboard extends InlineKeyboard {
+  _InlineKeyboard(
       {@JsonKey(name: 'inline_keyboard')
       final List<List<InlineKeyboardButton>> inlineKeyboard = const [
         <InlineKeyboardButton>[]
       ]})
       : _inlineKeyboard = inlineKeyboard,
         super._();
-
-  factory _$InlineKeyboardImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InlineKeyboardImplFromJson(json);
+  factory _InlineKeyboard.fromJson(Map<String, dynamic> json) =>
+      _$InlineKeyboardFromJson(json);
 
   final List<List<InlineKeyboardButton>> _inlineKeyboard;
   @override
@@ -131,46 +91,60 @@ class _$InlineKeyboardImpl extends _InlineKeyboard {
     return EqualUnmodifiableListView(_inlineKeyboard);
   }
 
+  /// Create a copy of InlineKeyboard
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InlineKeyboardCopyWith<_InlineKeyboard> get copyWith =>
+      __$InlineKeyboardCopyWithImpl<_InlineKeyboard>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InlineKeyboardToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'InlineKeyboard(inlineKeyboard: $inlineKeyboard)';
   }
-
-  /// Create a copy of InlineKeyboard
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InlineKeyboardImplCopyWith<_$InlineKeyboardImpl> get copyWith =>
-      __$$InlineKeyboardImplCopyWithImpl<_$InlineKeyboardImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InlineKeyboardImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _InlineKeyboard extends InlineKeyboard {
-  factory _InlineKeyboard(
-          {@JsonKey(name: 'inline_keyboard')
-          final List<List<InlineKeyboardButton>> inlineKeyboard}) =
-      _$InlineKeyboardImpl;
-  _InlineKeyboard._() : super._();
-
-  factory _InlineKeyboard.fromJson(Map<String, dynamic> json) =
-      _$InlineKeyboardImpl.fromJson;
-
+/// @nodoc
+abstract mixin class _$InlineKeyboardCopyWith<$Res>
+    implements $InlineKeyboardCopyWith<$Res> {
+  factory _$InlineKeyboardCopyWith(
+          _InlineKeyboard value, $Res Function(_InlineKeyboard) _then) =
+      __$InlineKeyboardCopyWithImpl;
   @override
-  @JsonKey(name: 'inline_keyboard')
-  List<List<InlineKeyboardButton>> get inlineKeyboard;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'inline_keyboard')
+      List<List<InlineKeyboardButton>> inlineKeyboard});
+}
+
+/// @nodoc
+class __$InlineKeyboardCopyWithImpl<$Res>
+    implements _$InlineKeyboardCopyWith<$Res> {
+  __$InlineKeyboardCopyWithImpl(this._self, this._then);
+
+  final _InlineKeyboard _self;
+  final $Res Function(_InlineKeyboard) _then;
 
   /// Create a copy of InlineKeyboard
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InlineKeyboardImplCopyWith<_$InlineKeyboardImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? inlineKeyboard = null,
+  }) {
+    return _then(_InlineKeyboard(
+      inlineKeyboard: null == inlineKeyboard
+          ? _self._inlineKeyboard
+          : inlineKeyboard // ignore: cast_nullable_to_non_nullable
+              as List<List<InlineKeyboardButton>>,
+    ));
+  }
 }

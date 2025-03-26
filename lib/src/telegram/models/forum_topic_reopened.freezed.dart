@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,83 +12,39 @@ part of 'forum_topic_reopened.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ForumTopicReopened _$ForumTopicReopenedFromJson(Map<String, dynamic> json) {
-  return _ForumTopicReopened.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ForumTopicReopened {
   /// Serializes this ForumTopicReopened to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ForumTopicReopenedCopyWith<$Res> {
-  factory $ForumTopicReopenedCopyWith(
-          ForumTopicReopened value, $Res Function(ForumTopicReopened) then) =
-      _$ForumTopicReopenedCopyWithImpl<$Res, ForumTopicReopened>;
-}
-
-/// @nodoc
-class _$ForumTopicReopenedCopyWithImpl<$Res, $Val extends ForumTopicReopened>
-    implements $ForumTopicReopenedCopyWith<$Res> {
-  _$ForumTopicReopenedCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ForumTopicReopened
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$ForumTopicReopenedImplCopyWith<$Res> {
-  factory _$$ForumTopicReopenedImplCopyWith(_$ForumTopicReopenedImpl value,
-          $Res Function(_$ForumTopicReopenedImpl) then) =
-      __$$ForumTopicReopenedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ForumTopicReopenedImplCopyWithImpl<$Res>
-    extends _$ForumTopicReopenedCopyWithImpl<$Res, _$ForumTopicReopenedImpl>
-    implements _$$ForumTopicReopenedImplCopyWith<$Res> {
-  __$$ForumTopicReopenedImplCopyWithImpl(_$ForumTopicReopenedImpl _value,
-      $Res Function(_$ForumTopicReopenedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ForumTopicReopened
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ForumTopicReopenedImpl implements _ForumTopicReopened {
-  const _$ForumTopicReopenedImpl();
-
-  factory _$ForumTopicReopenedImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ForumTopicReopenedImplFromJson(json);
+  Map<String, dynamic> toJson();
 
   @override
   String toString() {
     return 'ForumTopicReopened()';
   }
+}
+
+/// @nodoc
+class $ForumTopicReopenedCopyWith<$Res> {
+  $ForumTopicReopenedCopyWith(
+      ForumTopicReopened _, $Res Function(ForumTopicReopened) __);
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ForumTopicReopened implements ForumTopicReopened {
+  const _ForumTopicReopened();
+  factory _ForumTopicReopened.fromJson(Map<String, dynamic> json) =>
+      _$ForumTopicReopenedFromJson(json);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ForumTopicReopenedImplToJson(
+    return _$ForumTopicReopenedToJson(
       this,
     );
   }
-}
 
-abstract class _ForumTopicReopened implements ForumTopicReopened {
-  const factory _ForumTopicReopened() = _$ForumTopicReopenedImpl;
-
-  factory _ForumTopicReopened.fromJson(Map<String, dynamic> json) =
-      _$ForumTopicReopenedImpl.fromJson;
+  @override
+  String toString() {
+    return 'ForumTopicReopened()';
+  }
 }

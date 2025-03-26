@@ -7,7 +7,7 @@ part 'gift.g.dart';
 
 /// Represents a gift that can be sent by the bot.
 @freezed
-class Gift with _$Gift {
+abstract class Gift with _$Gift {
   /// Creates a [Gift] object.
   const factory Gift({
     /// Unique identifier of the gift.

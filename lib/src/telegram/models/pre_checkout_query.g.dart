@@ -6,9 +6,8 @@ part of 'pre_checkout_query.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PreCheckoutQueryImpl _$$PreCheckoutQueryImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PreCheckoutQueryImpl(
+_PreCheckoutQuery _$PreCheckoutQueryFromJson(Map<String, dynamic> json) =>
+    _PreCheckoutQuery(
       id: json['id'] as String,
       from: User.fromJson(json['from'] as Map<String, dynamic>),
       currency: json['currency'] as String,
@@ -20,8 +19,7 @@ _$PreCheckoutQueryImpl _$$PreCheckoutQueryImplFromJson(
           : OrderInfo.fromJson(json['order_info'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$PreCheckoutQueryImplToJson(
-        _$PreCheckoutQueryImpl instance) =>
+Map<String, dynamic> _$PreCheckoutQueryToJson(_PreCheckoutQuery instance) =>
     <String, dynamic>{
       'id': instance.id,
       'from': instance.from,

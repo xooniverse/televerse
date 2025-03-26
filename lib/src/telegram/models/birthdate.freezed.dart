@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,91 +12,40 @@ part of 'birthdate.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Birthdate _$BirthdateFromJson(Map<String, dynamic> json) {
-  return _Birthdate.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Birthdate {
   /// Day of the user's birth; 1-31.
   @JsonKey(name: 'day')
-  int get day => throw _privateConstructorUsedError;
+  int get day;
 
   /// Month of the user's birth; 1-12.
   @JsonKey(name: 'month')
-  int get month => throw _privateConstructorUsedError;
+  int get month;
 
   /// Optional. Year of the user's birth.
   @JsonKey(name: 'year')
-  int? get year => throw _privateConstructorUsedError;
-
-  /// Serializes this Birthdate to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int? get year;
 
   /// Create a copy of Birthdate
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $BirthdateCopyWith<Birthdate> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $BirthdateCopyWith<$Res> {
-  factory $BirthdateCopyWith(Birthdate value, $Res Function(Birthdate) then) =
-      _$BirthdateCopyWithImpl<$Res, Birthdate>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'day') int day,
-      @JsonKey(name: 'month') int month,
-      @JsonKey(name: 'year') int? year});
-}
-
-/// @nodoc
-class _$BirthdateCopyWithImpl<$Res, $Val extends Birthdate>
-    implements $BirthdateCopyWith<$Res> {
-  _$BirthdateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Birthdate
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $BirthdateCopyWith<Birthdate> get copyWith =>
+      _$BirthdateCopyWithImpl<Birthdate>(this as Birthdate, _$identity);
+
+  /// Serializes this Birthdate to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? day = null,
-    Object? month = null,
-    Object? year = freezed,
-  }) {
-    return _then(_value.copyWith(
-      day: null == day
-          ? _value.day
-          : day // ignore: cast_nullable_to_non_nullable
-              as int,
-      month: null == month
-          ? _value.month
-          : month // ignore: cast_nullable_to_non_nullable
-              as int,
-      year: freezed == year
-          ? _value.year
-          : year // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
+  String toString() {
+    return 'Birthdate(day: $day, month: $month, year: $year)';
   }
 }
 
 /// @nodoc
-abstract class _$$BirthdateImplCopyWith<$Res>
-    implements $BirthdateCopyWith<$Res> {
-  factory _$$BirthdateImplCopyWith(
-          _$BirthdateImpl value, $Res Function(_$BirthdateImpl) then) =
-      __$$BirthdateImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $BirthdateCopyWith<$Res> {
+  factory $BirthdateCopyWith(Birthdate value, $Res Function(Birthdate) _then) =
+      _$BirthdateCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'day') int day,
@@ -104,12 +54,11 @@ abstract class _$$BirthdateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BirthdateImplCopyWithImpl<$Res>
-    extends _$BirthdateCopyWithImpl<$Res, _$BirthdateImpl>
-    implements _$$BirthdateImplCopyWith<$Res> {
-  __$$BirthdateImplCopyWithImpl(
-      _$BirthdateImpl _value, $Res Function(_$BirthdateImpl) _then)
-      : super(_value, _then);
+class _$BirthdateCopyWithImpl<$Res> implements $BirthdateCopyWith<$Res> {
+  _$BirthdateCopyWithImpl(this._self, this._then);
+
+  final Birthdate _self;
+  final $Res Function(Birthdate) _then;
 
   /// Create a copy of Birthdate
   /// with the given fields replaced by the non-null parameter values.
@@ -120,17 +69,17 @@ class __$$BirthdateImplCopyWithImpl<$Res>
     Object? month = null,
     Object? year = freezed,
   }) {
-    return _then(_$BirthdateImpl(
+    return _then(_self.copyWith(
       day: null == day
-          ? _value.day
+          ? _self.day
           : day // ignore: cast_nullable_to_non_nullable
               as int,
       month: null == month
-          ? _value.month
+          ? _self.month
           : month // ignore: cast_nullable_to_non_nullable
               as int,
       year: freezed == year
-          ? _value.year
+          ? _self.year
           : year // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
@@ -139,14 +88,13 @@ class __$$BirthdateImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BirthdateImpl implements _Birthdate {
-  const _$BirthdateImpl(
+class _Birthdate implements Birthdate {
+  const _Birthdate(
       {@JsonKey(name: 'day') required this.day,
       @JsonKey(name: 'month') required this.month,
       @JsonKey(name: 'year') this.year});
-
-  factory _$BirthdateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BirthdateImplFromJson(json);
+  factory _Birthdate.fromJson(Map<String, dynamic> json) =>
+      _$BirthdateFromJson(json);
 
   /// Day of the user's birth; 1-31.
   @override
@@ -163,55 +111,70 @@ class _$BirthdateImpl implements _Birthdate {
   @JsonKey(name: 'year')
   final int? year;
 
+  /// Create a copy of Birthdate
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BirthdateCopyWith<_Birthdate> get copyWith =>
+      __$BirthdateCopyWithImpl<_Birthdate>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$BirthdateToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'Birthdate(day: $day, month: $month, year: $year)';
   }
-
-  /// Create a copy of Birthdate
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BirthdateImplCopyWith<_$BirthdateImpl> get copyWith =>
-      __$$BirthdateImplCopyWithImpl<_$BirthdateImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BirthdateImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _Birthdate implements Birthdate {
-  const factory _Birthdate(
-      {@JsonKey(name: 'day') required final int day,
-      @JsonKey(name: 'month') required final int month,
-      @JsonKey(name: 'year') final int? year}) = _$BirthdateImpl;
-
-  factory _Birthdate.fromJson(Map<String, dynamic> json) =
-      _$BirthdateImpl.fromJson;
-
-  /// Day of the user's birth; 1-31.
+/// @nodoc
+abstract mixin class _$BirthdateCopyWith<$Res>
+    implements $BirthdateCopyWith<$Res> {
+  factory _$BirthdateCopyWith(
+          _Birthdate value, $Res Function(_Birthdate) _then) =
+      __$BirthdateCopyWithImpl;
   @override
-  @JsonKey(name: 'day')
-  int get day;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'day') int day,
+      @JsonKey(name: 'month') int month,
+      @JsonKey(name: 'year') int? year});
+}
 
-  /// Month of the user's birth; 1-12.
-  @override
-  @JsonKey(name: 'month')
-  int get month;
+/// @nodoc
+class __$BirthdateCopyWithImpl<$Res> implements _$BirthdateCopyWith<$Res> {
+  __$BirthdateCopyWithImpl(this._self, this._then);
 
-  /// Optional. Year of the user's birth.
-  @override
-  @JsonKey(name: 'year')
-  int? get year;
+  final _Birthdate _self;
+  final $Res Function(_Birthdate) _then;
 
   /// Create a copy of Birthdate
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BirthdateImplCopyWith<_$BirthdateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? day = null,
+    Object? month = null,
+    Object? year = freezed,
+  }) {
+    return _then(_Birthdate(
+      day: null == day
+          ? _self.day
+          : day // ignore: cast_nullable_to_non_nullable
+              as int,
+      month: null == month
+          ? _self.month
+          : month // ignore: cast_nullable_to_non_nullable
+              as int,
+      year: freezed == year
+          ? _self.year
+          : year // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
 }

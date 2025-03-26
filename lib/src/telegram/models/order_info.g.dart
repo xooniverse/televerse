@@ -6,8 +6,7 @@ part of 'order_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$OrderInfoImpl _$$OrderInfoImplFromJson(Map<String, dynamic> json) =>
-    _$OrderInfoImpl(
+_OrderInfo _$OrderInfoFromJson(Map<String, dynamic> json) => _OrderInfo(
       name: json['name'] as String?,
       phoneNumber: json['phone_number'] as String?,
       email: json['email'] as String?,
@@ -17,7 +16,7 @@ _$OrderInfoImpl _$$OrderInfoImplFromJson(Map<String, dynamic> json) =>
               json['shipping_address'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$OrderInfoImplToJson(_$OrderInfoImpl instance) =>
+Map<String, dynamic> _$OrderInfoToJson(_OrderInfo instance) =>
     <String, dynamic>{
       if (instance.name case final value?) 'name': value,
       if (instance.phoneNumber case final value?) 'phone_number': value,

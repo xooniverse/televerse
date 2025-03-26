@@ -7,7 +7,7 @@ part 'chat_permissions.g.dart';
 /// Describes actions that a non-administrator user is allowed to take in a
 /// chat.
 @freezed
-class ChatPermissions with _$ChatPermissions {
+abstract class ChatPermissions with _$ChatPermissions {
   /// Creates a new [ChatPermissions] object.
   const factory ChatPermissions({
     /// Optional. True, if the user is allowed to send text messages, contacts,

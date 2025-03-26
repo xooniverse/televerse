@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,78 +12,75 @@ part of 'inline_query_result_cached_gif.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-InlineQueryResultCachedGif _$InlineQueryResultCachedGifFromJson(
-    Map<String, dynamic> json) {
-  return _InlineQueryResultCachedGif.fromJson(json);
-}
-
 /// @nodoc
 mixin _$InlineQueryResultCachedGif {
   /// Unique identifier for this result, 1-64 Bytes
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
 
   /// A valid file identifier for the GIF file
   @JsonKey(name: 'gif_file_id')
-  String get gifFileId => throw _privateConstructorUsedError;
+  String get gifFileId;
 
   /// Optional. Title for the result
   @JsonKey(name: 'title')
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
 
   /// Optional. Caption of the GIF file to be sent, 0-1024 characters after
   /// entities parsing
   @JsonKey(name: 'caption')
-  String? get caption => throw _privateConstructorUsedError;
+  String? get caption;
 
   /// Optional. Mode for parsing entities in the caption. See formatting
   /// options for more details.
   @JsonKey(name: 'parse_mode')
-  ParseMode? get parseMode => throw _privateConstructorUsedError;
+  ParseMode? get parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can
   /// be specified instead of parse_mode
   @JsonKey(name: 'caption_entities')
-  List<MessageEntity>? get captionEntities =>
-      throw _privateConstructorUsedError;
+  List<MessageEntity>? get captionEntities;
 
   /// Optional. Inline keyboard attached to the message
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup? get replyMarkup => throw _privateConstructorUsedError;
+  InlineKeyboardMarkup? get replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the GIF animation
   @JsonKey(name: 'input_message_content')
   @InputMessageContentConverter()
-  InputMessageContent? get inputMessageContent =>
-      throw _privateConstructorUsedError;
+  InputMessageContent? get inputMessageContent;
 
   /// Optional. True, if the caption must be shown above the message media
   @JsonKey(name: 'show_caption_above_media')
-  bool? get showCaptionAboveMedia => throw _privateConstructorUsedError;
+  bool? get showCaptionAboveMedia;
 
   /// Type of the result, always [InlineQueryResultType.gif]
   @JsonKey(name: 'type')
-  InlineQueryResultType get type => throw _privateConstructorUsedError;
-
-  /// Serializes this InlineQueryResultCachedGif to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  InlineQueryResultType get type;
 
   /// Create a copy of InlineQueryResultCachedGif
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $InlineQueryResultCachedGifCopyWith<InlineQueryResultCachedGif>
-      get copyWith => throw _privateConstructorUsedError;
+      get copyWith =>
+          _$InlineQueryResultCachedGifCopyWithImpl<InlineQueryResultCachedGif>(
+              this as InlineQueryResultCachedGif, _$identity);
+
+  /// Serializes this InlineQueryResultCachedGif to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'InlineQueryResultCachedGif(id: $id, gifFileId: $gifFileId, title: $title, caption: $caption, parseMode: $parseMode, captionEntities: $captionEntities, replyMarkup: $replyMarkup, inputMessageContent: $inputMessageContent, showCaptionAboveMedia: $showCaptionAboveMedia, type: $type)';
+  }
 }
 
 /// @nodoc
-abstract class $InlineQueryResultCachedGifCopyWith<$Res> {
+abstract mixin class $InlineQueryResultCachedGifCopyWith<$Res> {
   factory $InlineQueryResultCachedGifCopyWith(InlineQueryResultCachedGif value,
-          $Res Function(InlineQueryResultCachedGif) then) =
-      _$InlineQueryResultCachedGifCopyWithImpl<$Res,
-          InlineQueryResultCachedGif>;
+          $Res Function(InlineQueryResultCachedGif) _then) =
+      _$InlineQueryResultCachedGifCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -102,15 +100,12 @@ abstract class $InlineQueryResultCachedGifCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InlineQueryResultCachedGifCopyWithImpl<$Res,
-        $Val extends InlineQueryResultCachedGif>
+class _$InlineQueryResultCachedGifCopyWithImpl<$Res>
     implements $InlineQueryResultCachedGifCopyWith<$Res> {
-  _$InlineQueryResultCachedGifCopyWithImpl(this._value, this._then);
+  _$InlineQueryResultCachedGifCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final InlineQueryResultCachedGif _self;
+  final $Res Function(InlineQueryResultCachedGif) _then;
 
   /// Create a copy of InlineQueryResultCachedGif
   /// with the given fields replaced by the non-null parameter values.
@@ -128,48 +123,48 @@ class _$InlineQueryResultCachedGifCopyWithImpl<$Res,
     Object? showCaptionAboveMedia = freezed,
     Object? type = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       gifFileId: null == gifFileId
-          ? _value.gifFileId
+          ? _self.gifFileId
           : gifFileId // ignore: cast_nullable_to_non_nullable
               as String,
       title: freezed == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
       caption: freezed == caption
-          ? _value.caption
+          ? _self.caption
           : caption // ignore: cast_nullable_to_non_nullable
               as String?,
       parseMode: freezed == parseMode
-          ? _value.parseMode
+          ? _self.parseMode
           : parseMode // ignore: cast_nullable_to_non_nullable
               as ParseMode?,
       captionEntities: freezed == captionEntities
-          ? _value.captionEntities
+          ? _self.captionEntities
           : captionEntities // ignore: cast_nullable_to_non_nullable
               as List<MessageEntity>?,
       replyMarkup: freezed == replyMarkup
-          ? _value.replyMarkup
+          ? _self.replyMarkup
           : replyMarkup // ignore: cast_nullable_to_non_nullable
               as InlineKeyboardMarkup?,
       inputMessageContent: freezed == inputMessageContent
-          ? _value.inputMessageContent
+          ? _self.inputMessageContent
           : inputMessageContent // ignore: cast_nullable_to_non_nullable
               as InputMessageContent?,
       showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _value.showCaptionAboveMedia
+          ? _self.showCaptionAboveMedia
           : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
               as bool?,
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as InlineQueryResultType,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of InlineQueryResultCachedGif
@@ -177,119 +172,21 @@ class _$InlineQueryResultCachedGifCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $InputMessageContentCopyWith<$Res>? get inputMessageContent {
-    if (_value.inputMessageContent == null) {
+    if (_self.inputMessageContent == null) {
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_value.inputMessageContent!,
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
         (value) {
-      return _then(_value.copyWith(inputMessageContent: value) as $Val);
+      return _then(_self.copyWith(inputMessageContent: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$InlineQueryResultCachedGifImplCopyWith<$Res>
-    implements $InlineQueryResultCachedGifCopyWith<$Res> {
-  factory _$$InlineQueryResultCachedGifImplCopyWith(
-          _$InlineQueryResultCachedGifImpl value,
-          $Res Function(_$InlineQueryResultCachedGifImpl) then) =
-      __$$InlineQueryResultCachedGifImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'gif_file_id') String gifFileId,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
-      @JsonKey(name: 'type') InlineQueryResultType type});
-
-  @override
-  $InputMessageContentCopyWith<$Res>? get inputMessageContent;
-}
-
-/// @nodoc
-class __$$InlineQueryResultCachedGifImplCopyWithImpl<$Res>
-    extends _$InlineQueryResultCachedGifCopyWithImpl<$Res,
-        _$InlineQueryResultCachedGifImpl>
-    implements _$$InlineQueryResultCachedGifImplCopyWith<$Res> {
-  __$$InlineQueryResultCachedGifImplCopyWithImpl(
-      _$InlineQueryResultCachedGifImpl _value,
-      $Res Function(_$InlineQueryResultCachedGifImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InlineQueryResultCachedGif
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? gifFileId = null,
-    Object? title = freezed,
-    Object? caption = freezed,
-    Object? parseMode = freezed,
-    Object? captionEntities = freezed,
-    Object? replyMarkup = freezed,
-    Object? inputMessageContent = freezed,
-    Object? showCaptionAboveMedia = freezed,
-    Object? type = null,
-  }) {
-    return _then(_$InlineQueryResultCachedGifImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      gifFileId: null == gifFileId
-          ? _value.gifFileId
-          : gifFileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      caption: freezed == caption
-          ? _value.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _value.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _value._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      replyMarkup: freezed == replyMarkup
-          ? _value.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _value.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _value.showCaptionAboveMedia
-          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$InlineQueryResultCachedGifImpl implements _InlineQueryResultCachedGif {
-  const _$InlineQueryResultCachedGifImpl(
+class _InlineQueryResultCachedGif implements InlineQueryResultCachedGif {
+  const _InlineQueryResultCachedGif(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'gif_file_id') required this.gifFileId,
       @JsonKey(name: 'title') this.title,
@@ -304,10 +201,8 @@ class _$InlineQueryResultCachedGifImpl implements _InlineQueryResultCachedGif {
       @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
       @JsonKey(name: 'type') this.type = InlineQueryResultType.gif})
       : _captionEntities = captionEntities;
-
-  factory _$InlineQueryResultCachedGifImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$InlineQueryResultCachedGifImplFromJson(json);
+  factory _InlineQueryResultCachedGif.fromJson(Map<String, dynamic> json) =>
+      _$InlineQueryResultCachedGifFromJson(json);
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
@@ -373,108 +268,135 @@ class _$InlineQueryResultCachedGifImpl implements _InlineQueryResultCachedGif {
   @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
+  /// Create a copy of InlineQueryResultCachedGif
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InlineQueryResultCachedGifCopyWith<_InlineQueryResultCachedGif>
+      get copyWith => __$InlineQueryResultCachedGifCopyWithImpl<
+          _InlineQueryResultCachedGif>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InlineQueryResultCachedGifToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'InlineQueryResultCachedGif(id: $id, gifFileId: $gifFileId, title: $title, caption: $caption, parseMode: $parseMode, captionEntities: $captionEntities, replyMarkup: $replyMarkup, inputMessageContent: $inputMessageContent, showCaptionAboveMedia: $showCaptionAboveMedia, type: $type)';
   }
-
-  /// Create a copy of InlineQueryResultCachedGif
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InlineQueryResultCachedGifImplCopyWith<_$InlineQueryResultCachedGifImpl>
-      get copyWith => __$$InlineQueryResultCachedGifImplCopyWithImpl<
-          _$InlineQueryResultCachedGifImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InlineQueryResultCachedGifImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _InlineQueryResultCachedGif
-    implements InlineQueryResultCachedGif {
-  const factory _InlineQueryResultCachedGif(
-      {@JsonKey(name: 'id') required final String id,
-      @JsonKey(name: 'gif_file_id') required final String gifFileId,
-      @JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'caption') final String? caption,
-      @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') final InlineKeyboardMarkup? replyMarkup,
+/// @nodoc
+abstract mixin class _$InlineQueryResultCachedGifCopyWith<$Res>
+    implements $InlineQueryResultCachedGifCopyWith<$Res> {
+  factory _$InlineQueryResultCachedGifCopyWith(
+          _InlineQueryResultCachedGif value,
+          $Res Function(_InlineQueryResultCachedGif) _then) =
+      __$InlineQueryResultCachedGifCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'gif_file_id') String gifFileId,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'caption') String? caption,
+      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
-      final InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media')
-      final bool? showCaptionAboveMedia,
-      @JsonKey(name: 'type')
-      final InlineQueryResultType type}) = _$InlineQueryResultCachedGifImpl;
+      InputMessageContent? inputMessageContent,
+      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
-  factory _InlineQueryResultCachedGif.fromJson(Map<String, dynamic> json) =
-      _$InlineQueryResultCachedGifImpl.fromJson;
-
-  /// Unique identifier for this result, 1-64 Bytes
   @override
-  @JsonKey(name: 'id')
-  String get id;
+  $InputMessageContentCopyWith<$Res>? get inputMessageContent;
+}
 
-  /// A valid file identifier for the GIF file
-  @override
-  @JsonKey(name: 'gif_file_id')
-  String get gifFileId;
+/// @nodoc
+class __$InlineQueryResultCachedGifCopyWithImpl<$Res>
+    implements _$InlineQueryResultCachedGifCopyWith<$Res> {
+  __$InlineQueryResultCachedGifCopyWithImpl(this._self, this._then);
 
-  /// Optional. Title for the result
-  @override
-  @JsonKey(name: 'title')
-  String? get title;
-
-  /// Optional. Caption of the GIF file to be sent, 0-1024 characters after
-  /// entities parsing
-  @override
-  @JsonKey(name: 'caption')
-  String? get caption;
-
-  /// Optional. Mode for parsing entities in the caption. See formatting
-  /// options for more details.
-  @override
-  @JsonKey(name: 'parse_mode')
-  ParseMode? get parseMode;
-
-  /// Optional. List of special entities that appear in the caption, which can
-  /// be specified instead of parse_mode
-  @override
-  @JsonKey(name: 'caption_entities')
-  List<MessageEntity>? get captionEntities;
-
-  /// Optional. Inline keyboard attached to the message
-  @override
-  @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup? get replyMarkup;
-
-  /// Optional. Content of the message to be sent instead of the GIF animation
-  @override
-  @JsonKey(name: 'input_message_content')
-  @InputMessageContentConverter()
-  InputMessageContent? get inputMessageContent;
-
-  /// Optional. True, if the caption must be shown above the message media
-  @override
-  @JsonKey(name: 'show_caption_above_media')
-  bool? get showCaptionAboveMedia;
-
-  /// Type of the result, always [InlineQueryResultType.gif]
-  @override
-  @JsonKey(name: 'type')
-  InlineQueryResultType get type;
+  final _InlineQueryResultCachedGif _self;
+  final $Res Function(_InlineQueryResultCachedGif) _then;
 
   /// Create a copy of InlineQueryResultCachedGif
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InlineQueryResultCachedGifImplCopyWith<_$InlineQueryResultCachedGifImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? gifFileId = null,
+    Object? title = freezed,
+    Object? caption = freezed,
+    Object? parseMode = freezed,
+    Object? captionEntities = freezed,
+    Object? replyMarkup = freezed,
+    Object? inputMessageContent = freezed,
+    Object? showCaptionAboveMedia = freezed,
+    Object? type = null,
+  }) {
+    return _then(_InlineQueryResultCachedGif(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      gifFileId: null == gifFileId
+          ? _self.gifFileId
+          : gifFileId // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      caption: freezed == caption
+          ? _self.caption
+          : caption // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parseMode: freezed == parseMode
+          ? _self.parseMode
+          : parseMode // ignore: cast_nullable_to_non_nullable
+              as ParseMode?,
+      captionEntities: freezed == captionEntities
+          ? _self._captionEntities
+          : captionEntities // ignore: cast_nullable_to_non_nullable
+              as List<MessageEntity>?,
+      replyMarkup: freezed == replyMarkup
+          ? _self.replyMarkup
+          : replyMarkup // ignore: cast_nullable_to_non_nullable
+              as InlineKeyboardMarkup?,
+      inputMessageContent: freezed == inputMessageContent
+          ? _self.inputMessageContent
+          : inputMessageContent // ignore: cast_nullable_to_non_nullable
+              as InputMessageContent?,
+      showCaptionAboveMedia: freezed == showCaptionAboveMedia
+          ? _self.showCaptionAboveMedia
+          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as InlineQueryResultType,
+    ));
+  }
+
+  /// Create a copy of InlineQueryResultCachedGif
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $InputMessageContentCopyWith<$Res>? get inputMessageContent {
+    if (_self.inputMessageContent == null) {
+      return null;
+    }
+
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
+        (value) {
+      return _then(_self.copyWith(inputMessageContent: value));
+    });
+  }
 }

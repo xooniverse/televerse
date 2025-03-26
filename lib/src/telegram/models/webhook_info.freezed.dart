@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,158 +12,71 @@ part of 'webhook_info.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-WebhookInfo _$WebhookInfoFromJson(Map<String, dynamic> json) {
-  return _WebhookInfo.fromJson(json);
-}
-
 /// @nodoc
 mixin _$WebhookInfo {
   /// Webhook URL, may be empty if webhook is not set up
   @JsonKey(name: 'url')
-  String get url => throw _privateConstructorUsedError;
+  String get url;
 
   /// True, if a custom certificate was provided for webhook certificate
   /// checks
   @JsonKey(name: 'has_custom_certificate')
-  bool get hasCustomCertificate => throw _privateConstructorUsedError;
+  bool get hasCustomCertificate;
 
   /// Number of updates awaiting delivery
   @JsonKey(name: 'pending_update_count')
-  int get pendingUpdateCount => throw _privateConstructorUsedError;
+  int get pendingUpdateCount;
 
   /// Optional. Currently used webhook IP address
   @JsonKey(name: 'ip_address')
-  String? get ipAddress => throw _privateConstructorUsedError;
+  String? get ipAddress;
 
   /// Optional. Unix time for the most recent error that happened when trying
   /// to deliver an update via webhook
   @JsonKey(name: 'last_error_date')
-  int? get lastErrorDate => throw _privateConstructorUsedError;
+  int? get lastErrorDate;
 
   /// Optional. Error message in human-readable format for the most recent
   /// error that happened when trying to deliver an update via webhook
   @JsonKey(name: 'last_error_message')
-  String? get lastErrorMessage => throw _privateConstructorUsedError;
+  String? get lastErrorMessage;
 
   /// Optional. Unix time of the most recent error that happened when trying
   /// to synchronize available updates with Telegram datacenters
   @JsonKey(name: 'last_error_network_date')
-  int? get lastErrorNetworkDate => throw _privateConstructorUsedError;
+  int? get lastErrorNetworkDate;
 
   /// Optional. The maximum allowed number of simultaneous HTTPS connections
   /// to the webhook for update delivery
   @JsonKey(name: 'max_connections')
-  int? get maxConnections => throw _privateConstructorUsedError;
+  int? get maxConnections;
 
   /// Optional. A list of update types the bot is subscribed to. Defaults to
   /// all update types except chat_member
   @JsonKey(name: 'allowed_updates')
-  List<String>? get allowedUpdates => throw _privateConstructorUsedError;
-
-  /// Serializes this WebhookInfo to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<String>? get allowedUpdates;
 
   /// Create a copy of WebhookInfo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $WebhookInfoCopyWith<WebhookInfo> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $WebhookInfoCopyWith<$Res> {
-  factory $WebhookInfoCopyWith(
-          WebhookInfo value, $Res Function(WebhookInfo) then) =
-      _$WebhookInfoCopyWithImpl<$Res, WebhookInfo>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'url') String url,
-      @JsonKey(name: 'has_custom_certificate') bool hasCustomCertificate,
-      @JsonKey(name: 'pending_update_count') int pendingUpdateCount,
-      @JsonKey(name: 'ip_address') String? ipAddress,
-      @JsonKey(name: 'last_error_date') int? lastErrorDate,
-      @JsonKey(name: 'last_error_message') String? lastErrorMessage,
-      @JsonKey(name: 'last_error_network_date') int? lastErrorNetworkDate,
-      @JsonKey(name: 'max_connections') int? maxConnections,
-      @JsonKey(name: 'allowed_updates') List<String>? allowedUpdates});
-}
-
-/// @nodoc
-class _$WebhookInfoCopyWithImpl<$Res, $Val extends WebhookInfo>
-    implements $WebhookInfoCopyWith<$Res> {
-  _$WebhookInfoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of WebhookInfo
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $WebhookInfoCopyWith<WebhookInfo> get copyWith =>
+      _$WebhookInfoCopyWithImpl<WebhookInfo>(this as WebhookInfo, _$identity);
+
+  /// Serializes this WebhookInfo to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? url = null,
-    Object? hasCustomCertificate = null,
-    Object? pendingUpdateCount = null,
-    Object? ipAddress = freezed,
-    Object? lastErrorDate = freezed,
-    Object? lastErrorMessage = freezed,
-    Object? lastErrorNetworkDate = freezed,
-    Object? maxConnections = freezed,
-    Object? allowedUpdates = freezed,
-  }) {
-    return _then(_value.copyWith(
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      hasCustomCertificate: null == hasCustomCertificate
-          ? _value.hasCustomCertificate
-          : hasCustomCertificate // ignore: cast_nullable_to_non_nullable
-              as bool,
-      pendingUpdateCount: null == pendingUpdateCount
-          ? _value.pendingUpdateCount
-          : pendingUpdateCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      ipAddress: freezed == ipAddress
-          ? _value.ipAddress
-          : ipAddress // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastErrorDate: freezed == lastErrorDate
-          ? _value.lastErrorDate
-          : lastErrorDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      lastErrorMessage: freezed == lastErrorMessage
-          ? _value.lastErrorMessage
-          : lastErrorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastErrorNetworkDate: freezed == lastErrorNetworkDate
-          ? _value.lastErrorNetworkDate
-          : lastErrorNetworkDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      maxConnections: freezed == maxConnections
-          ? _value.maxConnections
-          : maxConnections // ignore: cast_nullable_to_non_nullable
-              as int?,
-      allowedUpdates: freezed == allowedUpdates
-          ? _value.allowedUpdates
-          : allowedUpdates // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ) as $Val);
+  String toString() {
+    return 'WebhookInfo(url: $url, hasCustomCertificate: $hasCustomCertificate, pendingUpdateCount: $pendingUpdateCount, ipAddress: $ipAddress, lastErrorDate: $lastErrorDate, lastErrorMessage: $lastErrorMessage, lastErrorNetworkDate: $lastErrorNetworkDate, maxConnections: $maxConnections, allowedUpdates: $allowedUpdates)';
   }
 }
 
 /// @nodoc
-abstract class _$$WebhookInfoImplCopyWith<$Res>
-    implements $WebhookInfoCopyWith<$Res> {
-  factory _$$WebhookInfoImplCopyWith(
-          _$WebhookInfoImpl value, $Res Function(_$WebhookInfoImpl) then) =
-      __$$WebhookInfoImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $WebhookInfoCopyWith<$Res> {
+  factory $WebhookInfoCopyWith(
+          WebhookInfo value, $Res Function(WebhookInfo) _then) =
+      _$WebhookInfoCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'url') String url,
@@ -177,12 +91,11 @@ abstract class _$$WebhookInfoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$WebhookInfoImplCopyWithImpl<$Res>
-    extends _$WebhookInfoCopyWithImpl<$Res, _$WebhookInfoImpl>
-    implements _$$WebhookInfoImplCopyWith<$Res> {
-  __$$WebhookInfoImplCopyWithImpl(
-      _$WebhookInfoImpl _value, $Res Function(_$WebhookInfoImpl) _then)
-      : super(_value, _then);
+class _$WebhookInfoCopyWithImpl<$Res> implements $WebhookInfoCopyWith<$Res> {
+  _$WebhookInfoCopyWithImpl(this._self, this._then);
+
+  final WebhookInfo _self;
+  final $Res Function(WebhookInfo) _then;
 
   /// Create a copy of WebhookInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -199,41 +112,41 @@ class __$$WebhookInfoImplCopyWithImpl<$Res>
     Object? maxConnections = freezed,
     Object? allowedUpdates = freezed,
   }) {
-    return _then(_$WebhookInfoImpl(
+    return _then(_self.copyWith(
       url: null == url
-          ? _value.url
+          ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
       hasCustomCertificate: null == hasCustomCertificate
-          ? _value.hasCustomCertificate
+          ? _self.hasCustomCertificate
           : hasCustomCertificate // ignore: cast_nullable_to_non_nullable
               as bool,
       pendingUpdateCount: null == pendingUpdateCount
-          ? _value.pendingUpdateCount
+          ? _self.pendingUpdateCount
           : pendingUpdateCount // ignore: cast_nullable_to_non_nullable
               as int,
       ipAddress: freezed == ipAddress
-          ? _value.ipAddress
+          ? _self.ipAddress
           : ipAddress // ignore: cast_nullable_to_non_nullable
               as String?,
       lastErrorDate: freezed == lastErrorDate
-          ? _value.lastErrorDate
+          ? _self.lastErrorDate
           : lastErrorDate // ignore: cast_nullable_to_non_nullable
               as int?,
       lastErrorMessage: freezed == lastErrorMessage
-          ? _value.lastErrorMessage
+          ? _self.lastErrorMessage
           : lastErrorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
       lastErrorNetworkDate: freezed == lastErrorNetworkDate
-          ? _value.lastErrorNetworkDate
+          ? _self.lastErrorNetworkDate
           : lastErrorNetworkDate // ignore: cast_nullable_to_non_nullable
               as int?,
       maxConnections: freezed == maxConnections
-          ? _value.maxConnections
+          ? _self.maxConnections
           : maxConnections // ignore: cast_nullable_to_non_nullable
               as int?,
       allowedUpdates: freezed == allowedUpdates
-          ? _value._allowedUpdates
+          ? _self.allowedUpdates
           : allowedUpdates // ignore: cast_nullable_to_non_nullable
               as List<String>?,
     ));
@@ -242,8 +155,8 @@ class __$$WebhookInfoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$WebhookInfoImpl implements _WebhookInfo {
-  const _$WebhookInfoImpl(
+class _WebhookInfo implements WebhookInfo {
+  const _WebhookInfo(
       {@JsonKey(name: 'url') required this.url,
       @JsonKey(name: 'has_custom_certificate')
       required this.hasCustomCertificate,
@@ -255,9 +168,8 @@ class _$WebhookInfoImpl implements _WebhookInfo {
       @JsonKey(name: 'max_connections') this.maxConnections,
       @JsonKey(name: 'allowed_updates') final List<String>? allowedUpdates})
       : _allowedUpdates = allowedUpdates;
-
-  factory _$WebhookInfoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WebhookInfoImplFromJson(json);
+  factory _WebhookInfo.fromJson(Map<String, dynamic> json) =>
+      _$WebhookInfoFromJson(json);
 
   /// Webhook URL, may be empty if webhook is not set up
   @override
@@ -320,100 +232,106 @@ class _$WebhookInfoImpl implements _WebhookInfo {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of WebhookInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$WebhookInfoCopyWith<_WebhookInfo> get copyWith =>
+      __$WebhookInfoCopyWithImpl<_WebhookInfo>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$WebhookInfoToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'WebhookInfo(url: $url, hasCustomCertificate: $hasCustomCertificate, pendingUpdateCount: $pendingUpdateCount, ipAddress: $ipAddress, lastErrorDate: $lastErrorDate, lastErrorMessage: $lastErrorMessage, lastErrorNetworkDate: $lastErrorNetworkDate, maxConnections: $maxConnections, allowedUpdates: $allowedUpdates)';
   }
-
-  /// Create a copy of WebhookInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$WebhookInfoImplCopyWith<_$WebhookInfoImpl> get copyWith =>
-      __$$WebhookInfoImplCopyWithImpl<_$WebhookInfoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$WebhookInfoImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _WebhookInfo implements WebhookInfo {
-  const factory _WebhookInfo(
-      {@JsonKey(name: 'url') required final String url,
-      @JsonKey(name: 'has_custom_certificate')
-      required final bool hasCustomCertificate,
-      @JsonKey(name: 'pending_update_count')
-      required final int pendingUpdateCount,
-      @JsonKey(name: 'ip_address') final String? ipAddress,
-      @JsonKey(name: 'last_error_date') final int? lastErrorDate,
-      @JsonKey(name: 'last_error_message') final String? lastErrorMessage,
-      @JsonKey(name: 'last_error_network_date') final int? lastErrorNetworkDate,
-      @JsonKey(name: 'max_connections') final int? maxConnections,
-      @JsonKey(name: 'allowed_updates')
-      final List<String>? allowedUpdates}) = _$WebhookInfoImpl;
-
-  factory _WebhookInfo.fromJson(Map<String, dynamic> json) =
-      _$WebhookInfoImpl.fromJson;
-
-  /// Webhook URL, may be empty if webhook is not set up
+/// @nodoc
+abstract mixin class _$WebhookInfoCopyWith<$Res>
+    implements $WebhookInfoCopyWith<$Res> {
+  factory _$WebhookInfoCopyWith(
+          _WebhookInfo value, $Res Function(_WebhookInfo) _then) =
+      __$WebhookInfoCopyWithImpl;
   @override
-  @JsonKey(name: 'url')
-  String get url;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'url') String url,
+      @JsonKey(name: 'has_custom_certificate') bool hasCustomCertificate,
+      @JsonKey(name: 'pending_update_count') int pendingUpdateCount,
+      @JsonKey(name: 'ip_address') String? ipAddress,
+      @JsonKey(name: 'last_error_date') int? lastErrorDate,
+      @JsonKey(name: 'last_error_message') String? lastErrorMessage,
+      @JsonKey(name: 'last_error_network_date') int? lastErrorNetworkDate,
+      @JsonKey(name: 'max_connections') int? maxConnections,
+      @JsonKey(name: 'allowed_updates') List<String>? allowedUpdates});
+}
 
-  /// True, if a custom certificate was provided for webhook certificate
-  /// checks
-  @override
-  @JsonKey(name: 'has_custom_certificate')
-  bool get hasCustomCertificate;
+/// @nodoc
+class __$WebhookInfoCopyWithImpl<$Res> implements _$WebhookInfoCopyWith<$Res> {
+  __$WebhookInfoCopyWithImpl(this._self, this._then);
 
-  /// Number of updates awaiting delivery
-  @override
-  @JsonKey(name: 'pending_update_count')
-  int get pendingUpdateCount;
-
-  /// Optional. Currently used webhook IP address
-  @override
-  @JsonKey(name: 'ip_address')
-  String? get ipAddress;
-
-  /// Optional. Unix time for the most recent error that happened when trying
-  /// to deliver an update via webhook
-  @override
-  @JsonKey(name: 'last_error_date')
-  int? get lastErrorDate;
-
-  /// Optional. Error message in human-readable format for the most recent
-  /// error that happened when trying to deliver an update via webhook
-  @override
-  @JsonKey(name: 'last_error_message')
-  String? get lastErrorMessage;
-
-  /// Optional. Unix time of the most recent error that happened when trying
-  /// to synchronize available updates with Telegram datacenters
-  @override
-  @JsonKey(name: 'last_error_network_date')
-  int? get lastErrorNetworkDate;
-
-  /// Optional. The maximum allowed number of simultaneous HTTPS connections
-  /// to the webhook for update delivery
-  @override
-  @JsonKey(name: 'max_connections')
-  int? get maxConnections;
-
-  /// Optional. A list of update types the bot is subscribed to. Defaults to
-  /// all update types except chat_member
-  @override
-  @JsonKey(name: 'allowed_updates')
-  List<String>? get allowedUpdates;
+  final _WebhookInfo _self;
+  final $Res Function(_WebhookInfo) _then;
 
   /// Create a copy of WebhookInfo
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WebhookInfoImplCopyWith<_$WebhookInfoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? url = null,
+    Object? hasCustomCertificate = null,
+    Object? pendingUpdateCount = null,
+    Object? ipAddress = freezed,
+    Object? lastErrorDate = freezed,
+    Object? lastErrorMessage = freezed,
+    Object? lastErrorNetworkDate = freezed,
+    Object? maxConnections = freezed,
+    Object? allowedUpdates = freezed,
+  }) {
+    return _then(_WebhookInfo(
+      url: null == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      hasCustomCertificate: null == hasCustomCertificate
+          ? _self.hasCustomCertificate
+          : hasCustomCertificate // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pendingUpdateCount: null == pendingUpdateCount
+          ? _self.pendingUpdateCount
+          : pendingUpdateCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      ipAddress: freezed == ipAddress
+          ? _self.ipAddress
+          : ipAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastErrorDate: freezed == lastErrorDate
+          ? _self.lastErrorDate
+          : lastErrorDate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lastErrorMessage: freezed == lastErrorMessage
+          ? _self.lastErrorMessage
+          : lastErrorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastErrorNetworkDate: freezed == lastErrorNetworkDate
+          ? _self.lastErrorNetworkDate
+          : lastErrorNetworkDate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      maxConnections: freezed == maxConnections
+          ? _self.maxConnections
+          : maxConnections // ignore: cast_nullable_to_non_nullable
+              as int?,
+      allowedUpdates: freezed == allowedUpdates
+          ? _self._allowedUpdates
+          : allowedUpdates // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+    ));
+  }
 }

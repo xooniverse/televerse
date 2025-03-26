@@ -8,7 +8,7 @@ part 'input_sticker.g.dart';
 
 /// This object describes a sticker to be added to a sticker set.
 @Freezed(fromJson: false, toJson: true)
-class InputSticker with _$InputSticker {
+abstract class InputSticker with _$InputSticker {
   /// Creates the Input Sticker object.
   const factory InputSticker({
     /// The added sticker. Pass a file_id as a String to send a file that

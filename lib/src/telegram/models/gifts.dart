@@ -7,7 +7,7 @@ part 'gifts.g.dart';
 
 /// Represents a list of gifts.
 @freezed
-class Gifts with _$Gifts {
+abstract class Gifts with _$Gifts {
   /// Creates a [Gifts] object.
   const factory Gifts({
     /// The list of gifts.

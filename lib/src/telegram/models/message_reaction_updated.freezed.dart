@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,59 +12,58 @@ part of 'message_reaction_updated.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-MessageReactionUpdated _$MessageReactionUpdatedFromJson(
-    Map<String, dynamic> json) {
-  return _MessageReactionUpdated.fromJson(json);
-}
-
 /// @nodoc
 mixin _$MessageReactionUpdated {
   /// The chat containing the message the user reacted to.
   @JsonKey(name: 'chat')
-  Chat get chat => throw _privateConstructorUsedError;
+  Chat get chat;
 
   /// Unique identifier of the message inside the chat.
   @JsonKey(name: 'message_id')
-  int get messageId => throw _privateConstructorUsedError;
+  int get messageId;
 
   /// The user that changed the reaction, if the user isn't anonymous.
   @JsonKey(name: 'user')
-  User? get user => throw _privateConstructorUsedError;
+  User? get user;
 
   /// The chat on behalf of which the reaction was changed, if the user is anonymous.
   @JsonKey(name: 'actor_chat')
-  Chat? get actorChat => throw _privateConstructorUsedError;
+  Chat? get actorChat;
 
   /// Date of the change in Unix time.
   @JsonKey(name: 'date')
-  int get date => throw _privateConstructorUsedError;
+  int get date;
 
   /// Previous list of reaction types that were set by the user.
   @JsonKey(name: 'old_reaction')
-  List<ReactionType> get oldReaction => throw _privateConstructorUsedError;
+  List<ReactionType> get oldReaction;
 
   /// New list of reaction types that have been set by the user.
   @JsonKey(name: 'new_reaction')
-  List<ReactionType> get newReaction => throw _privateConstructorUsedError;
-
-  /// Serializes this MessageReactionUpdated to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<ReactionType> get newReaction;
 
   /// Create a copy of MessageReactionUpdated
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $MessageReactionUpdatedCopyWith<MessageReactionUpdated> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$MessageReactionUpdatedCopyWithImpl<MessageReactionUpdated>(
+          this as MessageReactionUpdated, _$identity);
+
+  /// Serializes this MessageReactionUpdated to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'MessageReactionUpdated(chat: $chat, messageId: $messageId, user: $user, actorChat: $actorChat, date: $date, oldReaction: $oldReaction, newReaction: $newReaction)';
+  }
 }
 
 /// @nodoc
-abstract class $MessageReactionUpdatedCopyWith<$Res> {
+abstract mixin class $MessageReactionUpdatedCopyWith<$Res> {
   factory $MessageReactionUpdatedCopyWith(MessageReactionUpdated value,
-          $Res Function(MessageReactionUpdated) then) =
-      _$MessageReactionUpdatedCopyWithImpl<$Res, MessageReactionUpdated>;
+          $Res Function(MessageReactionUpdated) _then) =
+      _$MessageReactionUpdatedCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'chat') Chat chat,
@@ -80,15 +80,12 @@ abstract class $MessageReactionUpdatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MessageReactionUpdatedCopyWithImpl<$Res,
-        $Val extends MessageReactionUpdated>
+class _$MessageReactionUpdatedCopyWithImpl<$Res>
     implements $MessageReactionUpdatedCopyWith<$Res> {
-  _$MessageReactionUpdatedCopyWithImpl(this._value, this._then);
+  _$MessageReactionUpdatedCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final MessageReactionUpdated _self;
+  final $Res Function(MessageReactionUpdated) _then;
 
   /// Create a copy of MessageReactionUpdated
   /// with the given fields replaced by the non-null parameter values.
@@ -103,36 +100,36 @@ class _$MessageReactionUpdatedCopyWithImpl<$Res,
     Object? oldReaction = null,
     Object? newReaction = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       chat: null == chat
-          ? _value.chat
+          ? _self.chat
           : chat // ignore: cast_nullable_to_non_nullable
               as Chat,
       messageId: null == messageId
-          ? _value.messageId
+          ? _self.messageId
           : messageId // ignore: cast_nullable_to_non_nullable
               as int,
       user: freezed == user
-          ? _value.user
+          ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
       actorChat: freezed == actorChat
-          ? _value.actorChat
+          ? _self.actorChat
           : actorChat // ignore: cast_nullable_to_non_nullable
               as Chat?,
       date: null == date
-          ? _value.date
+          ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
               as int,
       oldReaction: null == oldReaction
-          ? _value.oldReaction
+          ? _self.oldReaction
           : oldReaction // ignore: cast_nullable_to_non_nullable
               as List<ReactionType>,
       newReaction: null == newReaction
-          ? _value.newReaction
+          ? _self.newReaction
           : newReaction // ignore: cast_nullable_to_non_nullable
               as List<ReactionType>,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of MessageReactionUpdated
@@ -140,8 +137,8 @@ class _$MessageReactionUpdatedCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $ChatCopyWith<$Res> get chat {
-    return $ChatCopyWith<$Res>(_value.chat, (value) {
-      return _then(_value.copyWith(chat: value) as $Val);
+    return $ChatCopyWith<$Res>(_self.chat, (value) {
+      return _then(_self.copyWith(chat: value));
     });
   }
 
@@ -150,12 +147,12 @@ class _$MessageReactionUpdatedCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
+    if (_self.user == null) {
       return null;
     }
 
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
+    return $UserCopyWith<$Res>(_self.user!, (value) {
+      return _then(_self.copyWith(user: value));
     });
   }
 
@@ -164,102 +161,20 @@ class _$MessageReactionUpdatedCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $ChatCopyWith<$Res>? get actorChat {
-    if (_value.actorChat == null) {
+    if (_self.actorChat == null) {
       return null;
     }
 
-    return $ChatCopyWith<$Res>(_value.actorChat!, (value) {
-      return _then(_value.copyWith(actorChat: value) as $Val);
+    return $ChatCopyWith<$Res>(_self.actorChat!, (value) {
+      return _then(_self.copyWith(actorChat: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$MessageReactionUpdatedImplCopyWith<$Res>
-    implements $MessageReactionUpdatedCopyWith<$Res> {
-  factory _$$MessageReactionUpdatedImplCopyWith(
-          _$MessageReactionUpdatedImpl value,
-          $Res Function(_$MessageReactionUpdatedImpl) then) =
-      __$$MessageReactionUpdatedImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'message_id') int messageId,
-      @JsonKey(name: 'user') User? user,
-      @JsonKey(name: 'actor_chat') Chat? actorChat,
-      @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'old_reaction') List<ReactionType> oldReaction,
-      @JsonKey(name: 'new_reaction') List<ReactionType> newReaction});
-
-  @override
-  $ChatCopyWith<$Res> get chat;
-  @override
-  $UserCopyWith<$Res>? get user;
-  @override
-  $ChatCopyWith<$Res>? get actorChat;
-}
-
-/// @nodoc
-class __$$MessageReactionUpdatedImplCopyWithImpl<$Res>
-    extends _$MessageReactionUpdatedCopyWithImpl<$Res,
-        _$MessageReactionUpdatedImpl>
-    implements _$$MessageReactionUpdatedImplCopyWith<$Res> {
-  __$$MessageReactionUpdatedImplCopyWithImpl(
-      _$MessageReactionUpdatedImpl _value,
-      $Res Function(_$MessageReactionUpdatedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of MessageReactionUpdated
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? chat = null,
-    Object? messageId = null,
-    Object? user = freezed,
-    Object? actorChat = freezed,
-    Object? date = null,
-    Object? oldReaction = null,
-    Object? newReaction = null,
-  }) {
-    return _then(_$MessageReactionUpdatedImpl(
-      chat: null == chat
-          ? _value.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      messageId: null == messageId
-          ? _value.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as int,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      actorChat: freezed == actorChat
-          ? _value.actorChat
-          : actorChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      oldReaction: null == oldReaction
-          ? _value._oldReaction
-          : oldReaction // ignore: cast_nullable_to_non_nullable
-              as List<ReactionType>,
-      newReaction: null == newReaction
-          ? _value._newReaction
-          : newReaction // ignore: cast_nullable_to_non_nullable
-              as List<ReactionType>,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$MessageReactionUpdatedImpl implements _MessageReactionUpdated {
-  const _$MessageReactionUpdatedImpl(
+class _MessageReactionUpdated implements MessageReactionUpdated {
+  const _MessageReactionUpdated(
       {@JsonKey(name: 'chat') required this.chat,
       @JsonKey(name: 'message_id') required this.messageId,
       @JsonKey(name: 'user') this.user,
@@ -271,9 +186,8 @@ class _$MessageReactionUpdatedImpl implements _MessageReactionUpdated {
       required final List<ReactionType> newReaction})
       : _oldReaction = oldReaction,
         _newReaction = newReaction;
-
-  factory _$MessageReactionUpdatedImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MessageReactionUpdatedImplFromJson(json);
+  factory _MessageReactionUpdated.fromJson(Map<String, dynamic> json) =>
+      _$MessageReactionUpdatedFromJson(json);
 
   /// The chat containing the message the user reacted to.
   @override
@@ -324,83 +238,141 @@ class _$MessageReactionUpdatedImpl implements _MessageReactionUpdated {
     return EqualUnmodifiableListView(_newReaction);
   }
 
+  /// Create a copy of MessageReactionUpdated
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MessageReactionUpdatedCopyWith<_MessageReactionUpdated> get copyWith =>
+      __$MessageReactionUpdatedCopyWithImpl<_MessageReactionUpdated>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MessageReactionUpdatedToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'MessageReactionUpdated(chat: $chat, messageId: $messageId, user: $user, actorChat: $actorChat, date: $date, oldReaction: $oldReaction, newReaction: $newReaction)';
   }
-
-  /// Create a copy of MessageReactionUpdated
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MessageReactionUpdatedImplCopyWith<_$MessageReactionUpdatedImpl>
-      get copyWith => __$$MessageReactionUpdatedImplCopyWithImpl<
-          _$MessageReactionUpdatedImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MessageReactionUpdatedImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _MessageReactionUpdated implements MessageReactionUpdated {
-  const factory _MessageReactionUpdated(
-          {@JsonKey(name: 'chat') required final Chat chat,
-          @JsonKey(name: 'message_id') required final int messageId,
-          @JsonKey(name: 'user') final User? user,
-          @JsonKey(name: 'actor_chat') final Chat? actorChat,
-          @JsonKey(name: 'date') required final int date,
-          @JsonKey(name: 'old_reaction')
-          required final List<ReactionType> oldReaction,
-          @JsonKey(name: 'new_reaction')
-          required final List<ReactionType> newReaction}) =
-      _$MessageReactionUpdatedImpl;
-
-  factory _MessageReactionUpdated.fromJson(Map<String, dynamic> json) =
-      _$MessageReactionUpdatedImpl.fromJson;
-
-  /// The chat containing the message the user reacted to.
+/// @nodoc
+abstract mixin class _$MessageReactionUpdatedCopyWith<$Res>
+    implements $MessageReactionUpdatedCopyWith<$Res> {
+  factory _$MessageReactionUpdatedCopyWith(_MessageReactionUpdated value,
+          $Res Function(_MessageReactionUpdated) _then) =
+      __$MessageReactionUpdatedCopyWithImpl;
   @override
-  @JsonKey(name: 'chat')
-  Chat get chat;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'chat') Chat chat,
+      @JsonKey(name: 'message_id') int messageId,
+      @JsonKey(name: 'user') User? user,
+      @JsonKey(name: 'actor_chat') Chat? actorChat,
+      @JsonKey(name: 'date') int date,
+      @JsonKey(name: 'old_reaction') List<ReactionType> oldReaction,
+      @JsonKey(name: 'new_reaction') List<ReactionType> newReaction});
 
-  /// Unique identifier of the message inside the chat.
   @override
-  @JsonKey(name: 'message_id')
-  int get messageId;
+  $ChatCopyWith<$Res> get chat;
+  @override
+  $UserCopyWith<$Res>? get user;
+  @override
+  $ChatCopyWith<$Res>? get actorChat;
+}
 
-  /// The user that changed the reaction, if the user isn't anonymous.
-  @override
-  @JsonKey(name: 'user')
-  User? get user;
+/// @nodoc
+class __$MessageReactionUpdatedCopyWithImpl<$Res>
+    implements _$MessageReactionUpdatedCopyWith<$Res> {
+  __$MessageReactionUpdatedCopyWithImpl(this._self, this._then);
 
-  /// The chat on behalf of which the reaction was changed, if the user is anonymous.
-  @override
-  @JsonKey(name: 'actor_chat')
-  Chat? get actorChat;
-
-  /// Date of the change in Unix time.
-  @override
-  @JsonKey(name: 'date')
-  int get date;
-
-  /// Previous list of reaction types that were set by the user.
-  @override
-  @JsonKey(name: 'old_reaction')
-  List<ReactionType> get oldReaction;
-
-  /// New list of reaction types that have been set by the user.
-  @override
-  @JsonKey(name: 'new_reaction')
-  List<ReactionType> get newReaction;
+  final _MessageReactionUpdated _self;
+  final $Res Function(_MessageReactionUpdated) _then;
 
   /// Create a copy of MessageReactionUpdated
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MessageReactionUpdatedImplCopyWith<_$MessageReactionUpdatedImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? chat = null,
+    Object? messageId = null,
+    Object? user = freezed,
+    Object? actorChat = freezed,
+    Object? date = null,
+    Object? oldReaction = null,
+    Object? newReaction = null,
+  }) {
+    return _then(_MessageReactionUpdated(
+      chat: null == chat
+          ? _self.chat
+          : chat // ignore: cast_nullable_to_non_nullable
+              as Chat,
+      messageId: null == messageId
+          ? _self.messageId
+          : messageId // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: freezed == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+      actorChat: freezed == actorChat
+          ? _self.actorChat
+          : actorChat // ignore: cast_nullable_to_non_nullable
+              as Chat?,
+      date: null == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as int,
+      oldReaction: null == oldReaction
+          ? _self._oldReaction
+          : oldReaction // ignore: cast_nullable_to_non_nullable
+              as List<ReactionType>,
+      newReaction: null == newReaction
+          ? _self._newReaction
+          : newReaction // ignore: cast_nullable_to_non_nullable
+              as List<ReactionType>,
+    ));
+  }
+
+  /// Create a copy of MessageReactionUpdated
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res> get chat {
+    return $ChatCopyWith<$Res>(_self.chat, (value) {
+      return _then(_self.copyWith(chat: value));
+    });
+  }
+
+  /// Create a copy of MessageReactionUpdated
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get user {
+    if (_self.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_self.user!, (value) {
+      return _then(_self.copyWith(user: value));
+    });
+  }
+
+  /// Create a copy of MessageReactionUpdated
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res>? get actorChat {
+    if (_self.actorChat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_self.actorChat!, (value) {
+      return _then(_self.copyWith(actorChat: value));
+    });
+  }
 }

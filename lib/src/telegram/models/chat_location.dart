@@ -7,7 +7,7 @@ part 'chat_location.g.dart';
 
 /// Represents a location to which a chat is connected.
 @freezed
-class ChatLocation with _$ChatLocation {
+abstract class ChatLocation with _$ChatLocation {
   /// Creates a new [ChatLocation] object.
   const factory ChatLocation({
     /// The location to which the supergroup is connected.

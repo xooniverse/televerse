@@ -7,7 +7,7 @@ part 'forum_topic_created.g.dart';
 /// This object represents a service message about a new forum topic created in
 /// the chat.
 @freezed
-class ForumTopicCreated with _$ForumTopicCreated {
+abstract class ForumTopicCreated with _$ForumTopicCreated {
   /// Creates a new [ForumTopicCreated] object.
   const factory ForumTopicCreated({
     /// Name of the topic

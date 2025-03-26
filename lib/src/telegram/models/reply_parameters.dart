@@ -8,7 +8,7 @@ part 'reply_parameters.g.dart';
 
 /// Describes reply parameters for the message that is being sent.
 @freezed
-class ReplyParameters with _$ReplyParameters {
+abstract class ReplyParameters with _$ReplyParameters {
   /// Constructs a `ReplyParameters`.
   const factory ReplyParameters({
     /// Identifier of the message that will be replied to in the current chat,

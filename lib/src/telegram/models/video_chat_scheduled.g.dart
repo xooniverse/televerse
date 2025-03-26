@@ -6,14 +6,12 @@ part of 'video_chat_scheduled.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VideoChatScheduledImpl _$$VideoChatScheduledImplFromJson(
-        Map<String, dynamic> json) =>
-    _$VideoChatScheduledImpl(
+_VideoChatScheduled _$VideoChatScheduledFromJson(Map<String, dynamic> json) =>
+    _VideoChatScheduled(
       startDate: (json['start_date'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$VideoChatScheduledImplToJson(
-        _$VideoChatScheduledImpl instance) =>
+Map<String, dynamic> _$VideoChatScheduledToJson(_VideoChatScheduled instance) =>
     <String, dynamic>{
       'start_date': instance.startDate,
     };

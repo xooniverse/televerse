@@ -6,7 +6,7 @@ part 'bot_description.g.dart';
 
 /// This object represents the bot's description.
 @freezed
-class BotDescription with _$BotDescription {
+abstract class BotDescription with _$BotDescription {
   /// Creates the Bot Description object.
   const factory BotDescription({
     /// Bot's description.

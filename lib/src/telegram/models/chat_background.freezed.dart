@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,34 +12,34 @@ part of 'chat_background.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ChatBackground _$ChatBackgroundFromJson(Map<String, dynamic> json) {
-  return _ChatBackground.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ChatBackground {
   /// Type of the background.
   @JsonKey(name: 'type')
-  BackgroundType get type => throw _privateConstructorUsedError;
-
-  /// Serializes this ChatBackground to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  BackgroundType get type;
 
   /// Create a copy of ChatBackground
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ChatBackgroundCopyWith<ChatBackground> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ChatBackgroundCopyWithImpl<ChatBackground>(
+          this as ChatBackground, _$identity);
+
+  /// Serializes this ChatBackground to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'ChatBackground(type: $type)';
+  }
 }
 
 /// @nodoc
-abstract class $ChatBackgroundCopyWith<$Res> {
+abstract mixin class $ChatBackgroundCopyWith<$Res> {
   factory $ChatBackgroundCopyWith(
-          ChatBackground value, $Res Function(ChatBackground) then) =
-      _$ChatBackgroundCopyWithImpl<$Res, ChatBackground>;
+          ChatBackground value, $Res Function(ChatBackground) _then) =
+      _$ChatBackgroundCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'type') BackgroundType type});
 
@@ -46,14 +47,12 @@ abstract class $ChatBackgroundCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ChatBackgroundCopyWithImpl<$Res, $Val extends ChatBackground>
+class _$ChatBackgroundCopyWithImpl<$Res>
     implements $ChatBackgroundCopyWith<$Res> {
-  _$ChatBackgroundCopyWithImpl(this._value, this._then);
+  _$ChatBackgroundCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ChatBackground _self;
+  final $Res Function(ChatBackground) _then;
 
   /// Create a copy of ChatBackground
   /// with the given fields replaced by the non-null parameter values.
@@ -62,12 +61,12 @@ class _$ChatBackgroundCopyWithImpl<$Res, $Val extends ChatBackground>
   $Res call({
     Object? type = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as BackgroundType,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ChatBackground
@@ -75,18 +74,51 @@ class _$ChatBackgroundCopyWithImpl<$Res, $Val extends ChatBackground>
   @override
   @pragma('vm:prefer-inline')
   $BackgroundTypeCopyWith<$Res> get type {
-    return $BackgroundTypeCopyWith<$Res>(_value.type, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
+    return $BackgroundTypeCopyWith<$Res>(_self.type, (value) {
+      return _then(_self.copyWith(type: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ChatBackgroundImplCopyWith<$Res>
+@JsonSerializable()
+class _ChatBackground implements ChatBackground {
+  const _ChatBackground({@JsonKey(name: 'type') required this.type});
+  factory _ChatBackground.fromJson(Map<String, dynamic> json) =>
+      _$ChatBackgroundFromJson(json);
+
+  /// Type of the background.
+  @override
+  @JsonKey(name: 'type')
+  final BackgroundType type;
+
+  /// Create a copy of ChatBackground
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ChatBackgroundCopyWith<_ChatBackground> get copyWith =>
+      __$ChatBackgroundCopyWithImpl<_ChatBackground>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ChatBackgroundToJson(
+      this,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'ChatBackground(type: $type)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ChatBackgroundCopyWith<$Res>
     implements $ChatBackgroundCopyWith<$Res> {
-  factory _$$ChatBackgroundImplCopyWith(_$ChatBackgroundImpl value,
-          $Res Function(_$ChatBackgroundImpl) then) =
-      __$$ChatBackgroundImplCopyWithImpl<$Res>;
+  factory _$ChatBackgroundCopyWith(
+          _ChatBackground value, $Res Function(_ChatBackground) _then) =
+      __$ChatBackgroundCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') BackgroundType type});
@@ -96,81 +128,35 @@ abstract class _$$ChatBackgroundImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ChatBackgroundImplCopyWithImpl<$Res>
-    extends _$ChatBackgroundCopyWithImpl<$Res, _$ChatBackgroundImpl>
-    implements _$$ChatBackgroundImplCopyWith<$Res> {
-  __$$ChatBackgroundImplCopyWithImpl(
-      _$ChatBackgroundImpl _value, $Res Function(_$ChatBackgroundImpl) _then)
-      : super(_value, _then);
+class __$ChatBackgroundCopyWithImpl<$Res>
+    implements _$ChatBackgroundCopyWith<$Res> {
+  __$ChatBackgroundCopyWithImpl(this._self, this._then);
+
+  final _ChatBackground _self;
+  final $Res Function(_ChatBackground) _then;
 
   /// Create a copy of ChatBackground
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
   }) {
-    return _then(_$ChatBackgroundImpl(
+    return _then(_ChatBackground(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as BackgroundType,
     ));
   }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ChatBackgroundImpl implements _ChatBackground {
-  const _$ChatBackgroundImpl({@JsonKey(name: 'type') required this.type});
-
-  factory _$ChatBackgroundImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChatBackgroundImplFromJson(json);
-
-  /// Type of the background.
-  @override
-  @JsonKey(name: 'type')
-  final BackgroundType type;
-
-  @override
-  String toString() {
-    return 'ChatBackground(type: $type)';
-  }
 
   /// Create a copy of ChatBackground
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ChatBackgroundImplCopyWith<_$ChatBackgroundImpl> get copyWith =>
-      __$$ChatBackgroundImplCopyWithImpl<_$ChatBackgroundImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChatBackgroundImplToJson(
-      this,
-    );
+  $BackgroundTypeCopyWith<$Res> get type {
+    return $BackgroundTypeCopyWith<$Res>(_self.type, (value) {
+      return _then(_self.copyWith(type: value));
+    });
   }
-}
-
-abstract class _ChatBackground implements ChatBackground {
-  const factory _ChatBackground(
-          {@JsonKey(name: 'type') required final BackgroundType type}) =
-      _$ChatBackgroundImpl;
-
-  factory _ChatBackground.fromJson(Map<String, dynamic> json) =
-      _$ChatBackgroundImpl.fromJson;
-
-  /// Type of the background.
-  @override
-  @JsonKey(name: 'type')
-  BackgroundType get type;
-
-  /// Create a copy of ChatBackground
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChatBackgroundImplCopyWith<_$ChatBackgroundImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }

@@ -9,7 +9,7 @@ part 'passport_file.g.dart';
 /// Telegram Passport files are in JPEG format when decrypted and don't exceed
 /// 10MB.
 @freezed
-class PassportFile with _$PassportFile {
+abstract class PassportFile with _$PassportFile {
   /// Constructs a [PassportFile] object
   const factory PassportFile({
     /// Unique identifier for this file

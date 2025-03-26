@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,73 +12,71 @@ part of 'inline_query_result_article.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-InlineQueryResultArticle _$InlineQueryResultArticleFromJson(
-    Map<String, dynamic> json) {
-  return _InlineQueryResultArticle.fromJson(json);
-}
-
 /// @nodoc
 mixin _$InlineQueryResultArticle {
   /// Unique identifier for this result
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
 
   /// Title of the result
   @JsonKey(name: 'title')
-  String get title => throw _privateConstructorUsedError;
+  String get title;
 
   /// Content of the message to be sent
   @JsonKey(name: 'input_message_content')
   @InputMessageContentConverter()
-  InputMessageContent get inputMessageContent =>
-      throw _privateConstructorUsedError;
+  InputMessageContent get inputMessageContent;
 
   /// Optional. Inline keyboard attached to the message
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup? get replyMarkup => throw _privateConstructorUsedError;
+  InlineKeyboardMarkup? get replyMarkup;
 
   /// Optional. URL of the result
   @JsonKey(name: 'url')
-  String? get url => throw _privateConstructorUsedError;
+  String? get url;
 
   /// Optional. Short description of the result
   @JsonKey(name: 'description')
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
 
   /// Optional. Url of the thumbnail for the result
   @JsonKey(name: 'thumbnail_url')
-  String? get thumbnailUrl => throw _privateConstructorUsedError;
+  String? get thumbnailUrl;
 
   /// Optional. Thumbnail width
   @JsonKey(name: 'thumbnail_width')
-  int? get thumbnailWidth => throw _privateConstructorUsedError;
+  int? get thumbnailWidth;
 
   /// Optional. Thumbnail height
   @JsonKey(name: 'thumbnail_height')
-  int? get thumbnailHeight => throw _privateConstructorUsedError;
+  int? get thumbnailHeight;
 
   /// Type of the result, always [InlineQueryResultType.article]
   @JsonKey(name: 'type')
-  InlineQueryResultType get type => throw _privateConstructorUsedError;
-
-  /// Serializes this InlineQueryResultArticle to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  InlineQueryResultType get type;
 
   /// Create a copy of InlineQueryResultArticle
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $InlineQueryResultArticleCopyWith<InlineQueryResultArticle> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$InlineQueryResultArticleCopyWithImpl<InlineQueryResultArticle>(
+          this as InlineQueryResultArticle, _$identity);
+
+  /// Serializes this InlineQueryResultArticle to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'InlineQueryResultArticle(id: $id, title: $title, inputMessageContent: $inputMessageContent, replyMarkup: $replyMarkup, url: $url, description: $description, thumbnailUrl: $thumbnailUrl, thumbnailWidth: $thumbnailWidth, thumbnailHeight: $thumbnailHeight, type: $type)';
+  }
 }
 
 /// @nodoc
-abstract class $InlineQueryResultArticleCopyWith<$Res> {
+abstract mixin class $InlineQueryResultArticleCopyWith<$Res> {
   factory $InlineQueryResultArticleCopyWith(InlineQueryResultArticle value,
-          $Res Function(InlineQueryResultArticle) then) =
-      _$InlineQueryResultArticleCopyWithImpl<$Res, InlineQueryResultArticle>;
+          $Res Function(InlineQueryResultArticle) _then) =
+      _$InlineQueryResultArticleCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -97,15 +96,12 @@ abstract class $InlineQueryResultArticleCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InlineQueryResultArticleCopyWithImpl<$Res,
-        $Val extends InlineQueryResultArticle>
+class _$InlineQueryResultArticleCopyWithImpl<$Res>
     implements $InlineQueryResultArticleCopyWith<$Res> {
-  _$InlineQueryResultArticleCopyWithImpl(this._value, this._then);
+  _$InlineQueryResultArticleCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final InlineQueryResultArticle _self;
+  final $Res Function(InlineQueryResultArticle) _then;
 
   /// Create a copy of InlineQueryResultArticle
   /// with the given fields replaced by the non-null parameter values.
@@ -123,48 +119,48 @@ class _$InlineQueryResultArticleCopyWithImpl<$Res,
     Object? thumbnailHeight = freezed,
     Object? type = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
       inputMessageContent: null == inputMessageContent
-          ? _value.inputMessageContent
+          ? _self.inputMessageContent
           : inputMessageContent // ignore: cast_nullable_to_non_nullable
               as InputMessageContent,
       replyMarkup: freezed == replyMarkup
-          ? _value.replyMarkup
+          ? _self.replyMarkup
           : replyMarkup // ignore: cast_nullable_to_non_nullable
               as InlineKeyboardMarkup?,
       url: freezed == url
-          ? _value.url
+          ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
       description: freezed == description
-          ? _value.description
+          ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
       thumbnailUrl: freezed == thumbnailUrl
-          ? _value.thumbnailUrl
+          ? _self.thumbnailUrl
           : thumbnailUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       thumbnailWidth: freezed == thumbnailWidth
-          ? _value.thumbnailWidth
+          ? _self.thumbnailWidth
           : thumbnailWidth // ignore: cast_nullable_to_non_nullable
               as int?,
       thumbnailHeight: freezed == thumbnailHeight
-          ? _value.thumbnailHeight
+          ? _self.thumbnailHeight
           : thumbnailHeight // ignore: cast_nullable_to_non_nullable
               as int?,
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as InlineQueryResultType,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of InlineQueryResultArticle
@@ -172,115 +168,17 @@ class _$InlineQueryResultArticleCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $InputMessageContentCopyWith<$Res> get inputMessageContent {
-    return $InputMessageContentCopyWith<$Res>(_value.inputMessageContent,
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent,
         (value) {
-      return _then(_value.copyWith(inputMessageContent: value) as $Val);
+      return _then(_self.copyWith(inputMessageContent: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$InlineQueryResultArticleImplCopyWith<$Res>
-    implements $InlineQueryResultArticleCopyWith<$Res> {
-  factory _$$InlineQueryResultArticleImplCopyWith(
-          _$InlineQueryResultArticleImpl value,
-          $Res Function(_$InlineQueryResultArticleImpl) then) =
-      __$$InlineQueryResultArticleImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent inputMessageContent,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'url') String? url,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height') int? thumbnailHeight,
-      @JsonKey(name: 'type') InlineQueryResultType type});
-
-  @override
-  $InputMessageContentCopyWith<$Res> get inputMessageContent;
-}
-
-/// @nodoc
-class __$$InlineQueryResultArticleImplCopyWithImpl<$Res>
-    extends _$InlineQueryResultArticleCopyWithImpl<$Res,
-        _$InlineQueryResultArticleImpl>
-    implements _$$InlineQueryResultArticleImplCopyWith<$Res> {
-  __$$InlineQueryResultArticleImplCopyWithImpl(
-      _$InlineQueryResultArticleImpl _value,
-      $Res Function(_$InlineQueryResultArticleImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InlineQueryResultArticle
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? inputMessageContent = null,
-    Object? replyMarkup = freezed,
-    Object? url = freezed,
-    Object? description = freezed,
-    Object? thumbnailUrl = freezed,
-    Object? thumbnailWidth = freezed,
-    Object? thumbnailHeight = freezed,
-    Object? type = null,
-  }) {
-    return _then(_$InlineQueryResultArticleImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      inputMessageContent: null == inputMessageContent
-          ? _value.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent,
-      replyMarkup: freezed == replyMarkup
-          ? _value.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailUrl: freezed == thumbnailUrl
-          ? _value.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailWidth: freezed == thumbnailWidth
-          ? _value.thumbnailWidth
-          : thumbnailWidth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnailHeight: freezed == thumbnailHeight
-          ? _value.thumbnailHeight
-          : thumbnailHeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$InlineQueryResultArticleImpl implements _InlineQueryResultArticle {
-  const _$InlineQueryResultArticleImpl(
+class _InlineQueryResultArticle implements InlineQueryResultArticle {
+  const _InlineQueryResultArticle(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'input_message_content')
@@ -293,9 +191,8 @@ class _$InlineQueryResultArticleImpl implements _InlineQueryResultArticle {
       @JsonKey(name: 'thumbnail_width') this.thumbnailWidth,
       @JsonKey(name: 'thumbnail_height') this.thumbnailHeight,
       @JsonKey(name: 'type') this.type = InlineQueryResultType.article});
-
-  factory _$InlineQueryResultArticleImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InlineQueryResultArticleImplFromJson(json);
+  factory _InlineQueryResultArticle.fromJson(Map<String, dynamic> json) =>
+      _$InlineQueryResultArticleFromJson(json);
 
   /// Unique identifier for this result
   @override
@@ -348,102 +245,130 @@ class _$InlineQueryResultArticleImpl implements _InlineQueryResultArticle {
   @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
+  /// Create a copy of InlineQueryResultArticle
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InlineQueryResultArticleCopyWith<_InlineQueryResultArticle> get copyWith =>
+      __$InlineQueryResultArticleCopyWithImpl<_InlineQueryResultArticle>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InlineQueryResultArticleToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'InlineQueryResultArticle(id: $id, title: $title, inputMessageContent: $inputMessageContent, replyMarkup: $replyMarkup, url: $url, description: $description, thumbnailUrl: $thumbnailUrl, thumbnailWidth: $thumbnailWidth, thumbnailHeight: $thumbnailHeight, type: $type)';
   }
-
-  /// Create a copy of InlineQueryResultArticle
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InlineQueryResultArticleImplCopyWith<_$InlineQueryResultArticleImpl>
-      get copyWith => __$$InlineQueryResultArticleImplCopyWithImpl<
-          _$InlineQueryResultArticleImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InlineQueryResultArticleImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _InlineQueryResultArticle implements InlineQueryResultArticle {
-  const factory _InlineQueryResultArticle(
-      {@JsonKey(name: 'id') required final String id,
-      @JsonKey(name: 'title') required final String title,
+/// @nodoc
+abstract mixin class _$InlineQueryResultArticleCopyWith<$Res>
+    implements $InlineQueryResultArticleCopyWith<$Res> {
+  factory _$InlineQueryResultArticleCopyWith(_InlineQueryResultArticle value,
+          $Res Function(_InlineQueryResultArticle) _then) =
+      __$InlineQueryResultArticleCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'title') String title,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
-      required final InputMessageContent inputMessageContent,
-      @JsonKey(name: 'reply_markup') final InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'url') final String? url,
-      @JsonKey(name: 'description') final String? description,
-      @JsonKey(name: 'thumbnail_url') final String? thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') final int? thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height') final int? thumbnailHeight,
-      @JsonKey(name: 'type')
-      final InlineQueryResultType type}) = _$InlineQueryResultArticleImpl;
+      InputMessageContent inputMessageContent,
+      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+      @JsonKey(name: 'url') String? url,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
+      @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
+      @JsonKey(name: 'thumbnail_height') int? thumbnailHeight,
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
-  factory _InlineQueryResultArticle.fromJson(Map<String, dynamic> json) =
-      _$InlineQueryResultArticleImpl.fromJson;
-
-  /// Unique identifier for this result
   @override
-  @JsonKey(name: 'id')
-  String get id;
+  $InputMessageContentCopyWith<$Res> get inputMessageContent;
+}
 
-  /// Title of the result
-  @override
-  @JsonKey(name: 'title')
-  String get title;
+/// @nodoc
+class __$InlineQueryResultArticleCopyWithImpl<$Res>
+    implements _$InlineQueryResultArticleCopyWith<$Res> {
+  __$InlineQueryResultArticleCopyWithImpl(this._self, this._then);
 
-  /// Content of the message to be sent
-  @override
-  @JsonKey(name: 'input_message_content')
-  @InputMessageContentConverter()
-  InputMessageContent get inputMessageContent;
-
-  /// Optional. Inline keyboard attached to the message
-  @override
-  @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup? get replyMarkup;
-
-  /// Optional. URL of the result
-  @override
-  @JsonKey(name: 'url')
-  String? get url;
-
-  /// Optional. Short description of the result
-  @override
-  @JsonKey(name: 'description')
-  String? get description;
-
-  /// Optional. Url of the thumbnail for the result
-  @override
-  @JsonKey(name: 'thumbnail_url')
-  String? get thumbnailUrl;
-
-  /// Optional. Thumbnail width
-  @override
-  @JsonKey(name: 'thumbnail_width')
-  int? get thumbnailWidth;
-
-  /// Optional. Thumbnail height
-  @override
-  @JsonKey(name: 'thumbnail_height')
-  int? get thumbnailHeight;
-
-  /// Type of the result, always [InlineQueryResultType.article]
-  @override
-  @JsonKey(name: 'type')
-  InlineQueryResultType get type;
+  final _InlineQueryResultArticle _self;
+  final $Res Function(_InlineQueryResultArticle) _then;
 
   /// Create a copy of InlineQueryResultArticle
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InlineQueryResultArticleImplCopyWith<_$InlineQueryResultArticleImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? title = null,
+    Object? inputMessageContent = null,
+    Object? replyMarkup = freezed,
+    Object? url = freezed,
+    Object? description = freezed,
+    Object? thumbnailUrl = freezed,
+    Object? thumbnailWidth = freezed,
+    Object? thumbnailHeight = freezed,
+    Object? type = null,
+  }) {
+    return _then(_InlineQueryResultArticle(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      inputMessageContent: null == inputMessageContent
+          ? _self.inputMessageContent
+          : inputMessageContent // ignore: cast_nullable_to_non_nullable
+              as InputMessageContent,
+      replyMarkup: freezed == replyMarkup
+          ? _self.replyMarkup
+          : replyMarkup // ignore: cast_nullable_to_non_nullable
+              as InlineKeyboardMarkup?,
+      url: freezed == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbnailUrl: freezed == thumbnailUrl
+          ? _self.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbnailWidth: freezed == thumbnailWidth
+          ? _self.thumbnailWidth
+          : thumbnailWidth // ignore: cast_nullable_to_non_nullable
+              as int?,
+      thumbnailHeight: freezed == thumbnailHeight
+          ? _self.thumbnailHeight
+          : thumbnailHeight // ignore: cast_nullable_to_non_nullable
+              as int?,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as InlineQueryResultType,
+    ));
+  }
+
+  /// Create a copy of InlineQueryResultArticle
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $InputMessageContentCopyWith<$Res> get inputMessageContent {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent,
+        (value) {
+      return _then(_self.copyWith(inputMessageContent: value));
+    });
+  }
 }

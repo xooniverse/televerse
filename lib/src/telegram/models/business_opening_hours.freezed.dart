@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,85 +12,38 @@ part of 'business_opening_hours.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-BusinessOpeningHours _$BusinessOpeningHoursFromJson(Map<String, dynamic> json) {
-  return _BusinessOpeningHours.fromJson(json);
-}
-
 /// @nodoc
 mixin _$BusinessOpeningHours {
   /// Unique name of the time zone for which the opening hours are defined.
   @JsonKey(name: 'time_zone_name')
-  String get timeZoneName => throw _privateConstructorUsedError;
+  String get timeZoneName;
 
   /// Opening hours intervals for the business.
   @JsonKey(name: 'opening_hours')
-  List<BusinessOpeningHoursInterval> get openingHours =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this BusinessOpeningHours to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<BusinessOpeningHoursInterval> get openingHours;
 
   /// Create a copy of BusinessOpeningHours
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $BusinessOpeningHoursCopyWith<BusinessOpeningHours> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $BusinessOpeningHoursCopyWith<$Res> {
-  factory $BusinessOpeningHoursCopyWith(BusinessOpeningHours value,
-          $Res Function(BusinessOpeningHours) then) =
-      _$BusinessOpeningHoursCopyWithImpl<$Res, BusinessOpeningHours>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'time_zone_name') String timeZoneName,
-      @JsonKey(name: 'opening_hours')
-      List<BusinessOpeningHoursInterval> openingHours});
-}
-
-/// @nodoc
-class _$BusinessOpeningHoursCopyWithImpl<$Res,
-        $Val extends BusinessOpeningHours>
-    implements $BusinessOpeningHoursCopyWith<$Res> {
-  _$BusinessOpeningHoursCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of BusinessOpeningHours
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $BusinessOpeningHoursCopyWith<BusinessOpeningHours> get copyWith =>
+      _$BusinessOpeningHoursCopyWithImpl<BusinessOpeningHours>(
+          this as BusinessOpeningHours, _$identity);
+
+  /// Serializes this BusinessOpeningHours to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? timeZoneName = null,
-    Object? openingHours = null,
-  }) {
-    return _then(_value.copyWith(
-      timeZoneName: null == timeZoneName
-          ? _value.timeZoneName
-          : timeZoneName // ignore: cast_nullable_to_non_nullable
-              as String,
-      openingHours: null == openingHours
-          ? _value.openingHours
-          : openingHours // ignore: cast_nullable_to_non_nullable
-              as List<BusinessOpeningHoursInterval>,
-    ) as $Val);
+  String toString() {
+    return 'BusinessOpeningHours(timeZoneName: $timeZoneName, openingHours: $openingHours)';
   }
 }
 
 /// @nodoc
-abstract class _$$BusinessOpeningHoursImplCopyWith<$Res>
-    implements $BusinessOpeningHoursCopyWith<$Res> {
-  factory _$$BusinessOpeningHoursImplCopyWith(_$BusinessOpeningHoursImpl value,
-          $Res Function(_$BusinessOpeningHoursImpl) then) =
-      __$$BusinessOpeningHoursImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $BusinessOpeningHoursCopyWith<$Res> {
+  factory $BusinessOpeningHoursCopyWith(BusinessOpeningHours value,
+          $Res Function(BusinessOpeningHours) _then) =
+      _$BusinessOpeningHoursCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'time_zone_name') String timeZoneName,
@@ -98,12 +52,12 @@ abstract class _$$BusinessOpeningHoursImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BusinessOpeningHoursImplCopyWithImpl<$Res>
-    extends _$BusinessOpeningHoursCopyWithImpl<$Res, _$BusinessOpeningHoursImpl>
-    implements _$$BusinessOpeningHoursImplCopyWith<$Res> {
-  __$$BusinessOpeningHoursImplCopyWithImpl(_$BusinessOpeningHoursImpl _value,
-      $Res Function(_$BusinessOpeningHoursImpl) _then)
-      : super(_value, _then);
+class _$BusinessOpeningHoursCopyWithImpl<$Res>
+    implements $BusinessOpeningHoursCopyWith<$Res> {
+  _$BusinessOpeningHoursCopyWithImpl(this._self, this._then);
+
+  final BusinessOpeningHours _self;
+  final $Res Function(BusinessOpeningHours) _then;
 
   /// Create a copy of BusinessOpeningHours
   /// with the given fields replaced by the non-null parameter values.
@@ -113,13 +67,13 @@ class __$$BusinessOpeningHoursImplCopyWithImpl<$Res>
     Object? timeZoneName = null,
     Object? openingHours = null,
   }) {
-    return _then(_$BusinessOpeningHoursImpl(
+    return _then(_self.copyWith(
       timeZoneName: null == timeZoneName
-          ? _value.timeZoneName
+          ? _self.timeZoneName
           : timeZoneName // ignore: cast_nullable_to_non_nullable
               as String,
       openingHours: null == openingHours
-          ? _value._openingHours
+          ? _self.openingHours
           : openingHours // ignore: cast_nullable_to_non_nullable
               as List<BusinessOpeningHoursInterval>,
     ));
@@ -128,15 +82,14 @@ class __$$BusinessOpeningHoursImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BusinessOpeningHoursImpl implements _BusinessOpeningHours {
-  const _$BusinessOpeningHoursImpl(
+class _BusinessOpeningHours implements BusinessOpeningHours {
+  const _BusinessOpeningHours(
       {@JsonKey(name: 'time_zone_name') required this.timeZoneName,
       @JsonKey(name: 'opening_hours')
       required final List<BusinessOpeningHoursInterval> openingHours})
       : _openingHours = openingHours;
-
-  factory _$BusinessOpeningHoursImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BusinessOpeningHoursImplFromJson(json);
+  factory _BusinessOpeningHours.fromJson(Map<String, dynamic> json) =>
+      _$BusinessOpeningHoursFromJson(json);
 
   /// Unique name of the time zone for which the opening hours are defined.
   @override
@@ -155,53 +108,67 @@ class _$BusinessOpeningHoursImpl implements _BusinessOpeningHours {
     return EqualUnmodifiableListView(_openingHours);
   }
 
+  /// Create a copy of BusinessOpeningHours
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BusinessOpeningHoursCopyWith<_BusinessOpeningHours> get copyWith =>
+      __$BusinessOpeningHoursCopyWithImpl<_BusinessOpeningHours>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$BusinessOpeningHoursToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'BusinessOpeningHours(timeZoneName: $timeZoneName, openingHours: $openingHours)';
   }
-
-  /// Create a copy of BusinessOpeningHours
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BusinessOpeningHoursImplCopyWith<_$BusinessOpeningHoursImpl>
-      get copyWith =>
-          __$$BusinessOpeningHoursImplCopyWithImpl<_$BusinessOpeningHoursImpl>(
-              this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BusinessOpeningHoursImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _BusinessOpeningHours implements BusinessOpeningHours {
-  const factory _BusinessOpeningHours(
-          {@JsonKey(name: 'time_zone_name') required final String timeZoneName,
-          @JsonKey(name: 'opening_hours')
-          required final List<BusinessOpeningHoursInterval> openingHours}) =
-      _$BusinessOpeningHoursImpl;
-
-  factory _BusinessOpeningHours.fromJson(Map<String, dynamic> json) =
-      _$BusinessOpeningHoursImpl.fromJson;
-
-  /// Unique name of the time zone for which the opening hours are defined.
+/// @nodoc
+abstract mixin class _$BusinessOpeningHoursCopyWith<$Res>
+    implements $BusinessOpeningHoursCopyWith<$Res> {
+  factory _$BusinessOpeningHoursCopyWith(_BusinessOpeningHours value,
+          $Res Function(_BusinessOpeningHours) _then) =
+      __$BusinessOpeningHoursCopyWithImpl;
   @override
-  @JsonKey(name: 'time_zone_name')
-  String get timeZoneName;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'time_zone_name') String timeZoneName,
+      @JsonKey(name: 'opening_hours')
+      List<BusinessOpeningHoursInterval> openingHours});
+}
 
-  /// Opening hours intervals for the business.
-  @override
-  @JsonKey(name: 'opening_hours')
-  List<BusinessOpeningHoursInterval> get openingHours;
+/// @nodoc
+class __$BusinessOpeningHoursCopyWithImpl<$Res>
+    implements _$BusinessOpeningHoursCopyWith<$Res> {
+  __$BusinessOpeningHoursCopyWithImpl(this._self, this._then);
+
+  final _BusinessOpeningHours _self;
+  final $Res Function(_BusinessOpeningHours) _then;
 
   /// Create a copy of BusinessOpeningHours
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BusinessOpeningHoursImplCopyWith<_$BusinessOpeningHoursImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? timeZoneName = null,
+    Object? openingHours = null,
+  }) {
+    return _then(_BusinessOpeningHours(
+      timeZoneName: null == timeZoneName
+          ? _self.timeZoneName
+          : timeZoneName // ignore: cast_nullable_to_non_nullable
+              as String,
+      openingHours: null == openingHours
+          ? _self._openingHours
+          : openingHours // ignore: cast_nullable_to_non_nullable
+              as List<BusinessOpeningHoursInterval>,
+    ));
+  }
 }

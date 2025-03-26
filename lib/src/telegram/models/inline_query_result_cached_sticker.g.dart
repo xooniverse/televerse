@@ -6,26 +6,25 @@ part of 'inline_query_result_cached_sticker.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultCachedStickerImpl
-    _$$InlineQueryResultCachedStickerImplFromJson(Map<String, dynamic> json) =>
-        _$InlineQueryResultCachedStickerImpl(
-          id: json['id'] as String,
-          stickerFileId: json['sticker_file_id'] as String,
-          replyMarkup: json['reply_markup'] == null
-              ? null
-              : InlineKeyboardMarkup.fromJson(
-                  json['reply_markup'] as Map<String, dynamic>),
-          inputMessageContent:
-              _$JsonConverterFromJson<Map<String, Object>, InputMessageContent>(
-                  json['input_message_content'],
-                  const InputMessageContentConverter().fromJson),
-          type: $enumDecodeNullable(
-                  _$InlineQueryResultTypeEnumMap, json['type']) ??
-              InlineQueryResultType.sticker,
-        );
+_InlineQueryResultCachedSticker _$InlineQueryResultCachedStickerFromJson(
+        Map<String, dynamic> json) =>
+    _InlineQueryResultCachedSticker(
+      id: json['id'] as String,
+      stickerFileId: json['sticker_file_id'] as String,
+      replyMarkup: json['reply_markup'] == null
+          ? null
+          : InlineKeyboardMarkup.fromJson(
+              json['reply_markup'] as Map<String, dynamic>),
+      inputMessageContent:
+          _$JsonConverterFromJson<Map<String, Object>, InputMessageContent>(
+              json['input_message_content'],
+              const InputMessageContentConverter().fromJson),
+      type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
+          InlineQueryResultType.sticker,
+    );
 
-Map<String, dynamic> _$$InlineQueryResultCachedStickerImplToJson(
-        _$InlineQueryResultCachedStickerImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultCachedStickerToJson(
+        _InlineQueryResultCachedSticker instance) =>
     <String, dynamic>{
       'id': instance.id,
       'sticker_file_id': instance.stickerFileId,

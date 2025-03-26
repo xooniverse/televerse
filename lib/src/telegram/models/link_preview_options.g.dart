@@ -6,9 +6,8 @@ part of 'link_preview_options.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LinkPreviewOptionsImpl _$$LinkPreviewOptionsImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LinkPreviewOptionsImpl(
+_LinkPreviewOptions _$LinkPreviewOptionsFromJson(Map<String, dynamic> json) =>
+    _LinkPreviewOptions(
       isDisabled: json['is_disabled'] as bool?,
       url: json['url'] as String?,
       preferSmallMedia: json['prefer_small_media'] as bool?,
@@ -16,8 +15,7 @@ _$LinkPreviewOptionsImpl _$$LinkPreviewOptionsImplFromJson(
       showAboveText: json['show_above_text'] as bool?,
     );
 
-Map<String, dynamic> _$$LinkPreviewOptionsImplToJson(
-        _$LinkPreviewOptionsImpl instance) =>
+Map<String, dynamic> _$LinkPreviewOptionsToJson(_LinkPreviewOptions instance) =>
     <String, dynamic>{
       if (instance.isDisabled case final value?) 'is_disabled': value,
       if (instance.url case final value?) 'url': value,

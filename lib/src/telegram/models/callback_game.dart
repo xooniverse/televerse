@@ -7,7 +7,7 @@ part 'callback_game.g.dart';
 /// A placeholder, currently holds no information. Use BotFather to set up your
 /// game.
 @freezed
-class CallbackGame with _$CallbackGame {
+abstract class CallbackGame with _$CallbackGame {
   /// Creates a new [CallbackGame] object.
   const factory CallbackGame() = _CallbackGame;
 

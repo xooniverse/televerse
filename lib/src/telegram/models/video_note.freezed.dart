@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,62 +12,61 @@ part of 'video_note.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-VideoNote _$VideoNoteFromJson(Map<String, dynamic> json) {
-  return _VideoNote.fromJson(json);
-}
-
 /// @nodoc
 mixin _$VideoNote {
   /// Identifier for this file, which can be used to download or reuse the
   /// file
   @JsonKey(name: 'file_id')
-  String get fileId => throw _privateConstructorUsedError;
+  String get fileId;
 
   /// Unique identifier for this file, which is supposed to be the same over
   /// time and for different bots. Can't be used to download or reuse the
   /// file.
   @JsonKey(name: 'file_unique_id')
-  String get fileUniqueId => throw _privateConstructorUsedError;
+  String get fileUniqueId;
 
   /// Video width and height (diameter of the video message) as defined by
   /// sender
   @JsonKey(name: 'length')
-  int get length => throw _privateConstructorUsedError;
+  int get length;
 
   /// Duration of the video in seconds as defined by sender
   ///
   /// A handy [Duration] getter is available as [durationTime]
   @JsonKey(name: 'duration')
-  int get duration => throw _privateConstructorUsedError;
+  int get duration;
 
   /// Optional. Animation thumbnail as defined by sender
   @JsonKey(name: 'thumb')
-  PhotoSize? get thumbnail => throw _privateConstructorUsedError;
+  PhotoSize? get thumbnail;
 
   /// Optional. File size in bytes. It can be bigger than 2^31 and some
   /// programming languages may have difficulty/silent defects in interpreting
   /// it. But it has at most 52 significant bits, so a signed 64-bit integer
   /// or double-precision float type are safe for storing this value.
   @JsonKey(name: 'file_size')
-  int? get fileSize => throw _privateConstructorUsedError;
-
-  /// Serializes this VideoNote to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int? get fileSize;
 
   /// Create a copy of VideoNote
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $VideoNoteCopyWith<VideoNote> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$VideoNoteCopyWithImpl<VideoNote>(this as VideoNote, _$identity);
+
+  /// Serializes this VideoNote to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'VideoNote(fileId: $fileId, fileUniqueId: $fileUniqueId, length: $length, duration: $duration, thumbnail: $thumbnail, fileSize: $fileSize)';
+  }
 }
 
 /// @nodoc
-abstract class $VideoNoteCopyWith<$Res> {
-  factory $VideoNoteCopyWith(VideoNote value, $Res Function(VideoNote) then) =
-      _$VideoNoteCopyWithImpl<$Res, VideoNote>;
+abstract mixin class $VideoNoteCopyWith<$Res> {
+  factory $VideoNoteCopyWith(VideoNote value, $Res Function(VideoNote) _then) =
+      _$VideoNoteCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'file_id') String fileId,
@@ -80,14 +80,11 @@ abstract class $VideoNoteCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$VideoNoteCopyWithImpl<$Res, $Val extends VideoNote>
-    implements $VideoNoteCopyWith<$Res> {
-  _$VideoNoteCopyWithImpl(this._value, this._then);
+class _$VideoNoteCopyWithImpl<$Res> implements $VideoNoteCopyWith<$Res> {
+  _$VideoNoteCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final VideoNote _self;
+  final $Res Function(VideoNote) _then;
 
   /// Create a copy of VideoNote
   /// with the given fields replaced by the non-null parameter values.
@@ -101,32 +98,32 @@ class _$VideoNoteCopyWithImpl<$Res, $Val extends VideoNote>
     Object? thumbnail = freezed,
     Object? fileSize = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       fileId: null == fileId
-          ? _value.fileId
+          ? _self.fileId
           : fileId // ignore: cast_nullable_to_non_nullable
               as String,
       fileUniqueId: null == fileUniqueId
-          ? _value.fileUniqueId
+          ? _self.fileUniqueId
           : fileUniqueId // ignore: cast_nullable_to_non_nullable
               as String,
       length: null == length
-          ? _value.length
+          ? _self.length
           : length // ignore: cast_nullable_to_non_nullable
               as int,
       duration: null == duration
-          ? _value.duration
+          ? _self.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
       thumbnail: freezed == thumbnail
-          ? _value.thumbnail
+          ? _self.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
               as PhotoSize?,
       fileSize: freezed == fileSize
-          ? _value.fileSize
+          ? _self.fileSize
           : fileSize // ignore: cast_nullable_to_non_nullable
               as int?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of VideoNote
@@ -134,98 +131,28 @@ class _$VideoNoteCopyWithImpl<$Res, $Val extends VideoNote>
   @override
   @pragma('vm:prefer-inline')
   $PhotoSizeCopyWith<$Res>? get thumbnail {
-    if (_value.thumbnail == null) {
+    if (_self.thumbnail == null) {
       return null;
     }
 
-    return $PhotoSizeCopyWith<$Res>(_value.thumbnail!, (value) {
-      return _then(_value.copyWith(thumbnail: value) as $Val);
+    return $PhotoSizeCopyWith<$Res>(_self.thumbnail!, (value) {
+      return _then(_self.copyWith(thumbnail: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$VideoNoteImplCopyWith<$Res>
-    implements $VideoNoteCopyWith<$Res> {
-  factory _$$VideoNoteImplCopyWith(
-          _$VideoNoteImpl value, $Res Function(_$VideoNoteImpl) then) =
-      __$$VideoNoteImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'length') int length,
-      @JsonKey(name: 'duration') int duration,
-      @JsonKey(name: 'thumb') PhotoSize? thumbnail,
-      @JsonKey(name: 'file_size') int? fileSize});
-
-  @override
-  $PhotoSizeCopyWith<$Res>? get thumbnail;
-}
-
-/// @nodoc
-class __$$VideoNoteImplCopyWithImpl<$Res>
-    extends _$VideoNoteCopyWithImpl<$Res, _$VideoNoteImpl>
-    implements _$$VideoNoteImplCopyWith<$Res> {
-  __$$VideoNoteImplCopyWithImpl(
-      _$VideoNoteImpl _value, $Res Function(_$VideoNoteImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of VideoNote
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fileId = null,
-    Object? fileUniqueId = null,
-    Object? length = null,
-    Object? duration = null,
-    Object? thumbnail = freezed,
-    Object? fileSize = freezed,
-  }) {
-    return _then(_$VideoNoteImpl(
-      fileId: null == fileId
-          ? _value.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _value.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      length: null == length
-          ? _value.length
-          : length // ignore: cast_nullable_to_non_nullable
-              as int,
-      duration: null == duration
-          ? _value.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int,
-      thumbnail: freezed == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as PhotoSize?,
-      fileSize: freezed == fileSize
-          ? _value.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$VideoNoteImpl implements _VideoNote {
-  const _$VideoNoteImpl(
+class _VideoNote implements VideoNote {
+  const _VideoNote(
       {@JsonKey(name: 'file_id') required this.fileId,
       @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
       @JsonKey(name: 'length') required this.length,
       @JsonKey(name: 'duration') required this.duration,
       @JsonKey(name: 'thumb') this.thumbnail,
       @JsonKey(name: 'file_size') this.fileSize});
-
-  factory _$VideoNoteImpl.fromJson(Map<String, dynamic> json) =>
-      _$$VideoNoteImplFromJson(json);
+  factory _VideoNote.fromJson(Map<String, dynamic> json) =>
+      _$VideoNoteFromJson(json);
 
   /// Identifier for this file, which can be used to download or reuse the
   /// file
@@ -266,82 +193,105 @@ class _$VideoNoteImpl implements _VideoNote {
   @JsonKey(name: 'file_size')
   final int? fileSize;
 
+  /// Create a copy of VideoNote
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$VideoNoteCopyWith<_VideoNote> get copyWith =>
+      __$VideoNoteCopyWithImpl<_VideoNote>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$VideoNoteToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'VideoNote(fileId: $fileId, fileUniqueId: $fileUniqueId, length: $length, duration: $duration, thumbnail: $thumbnail, fileSize: $fileSize)';
   }
-
-  /// Create a copy of VideoNote
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$VideoNoteImplCopyWith<_$VideoNoteImpl> get copyWith =>
-      __$$VideoNoteImplCopyWithImpl<_$VideoNoteImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$VideoNoteImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _VideoNote implements VideoNote {
-  const factory _VideoNote(
-      {@JsonKey(name: 'file_id') required final String fileId,
-      @JsonKey(name: 'file_unique_id') required final String fileUniqueId,
-      @JsonKey(name: 'length') required final int length,
-      @JsonKey(name: 'duration') required final int duration,
-      @JsonKey(name: 'thumb') final PhotoSize? thumbnail,
-      @JsonKey(name: 'file_size') final int? fileSize}) = _$VideoNoteImpl;
-
-  factory _VideoNote.fromJson(Map<String, dynamic> json) =
-      _$VideoNoteImpl.fromJson;
-
-  /// Identifier for this file, which can be used to download or reuse the
-  /// file
+/// @nodoc
+abstract mixin class _$VideoNoteCopyWith<$Res>
+    implements $VideoNoteCopyWith<$Res> {
+  factory _$VideoNoteCopyWith(
+          _VideoNote value, $Res Function(_VideoNote) _then) =
+      __$VideoNoteCopyWithImpl;
   @override
-  @JsonKey(name: 'file_id')
-  String get fileId;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'file_id') String fileId,
+      @JsonKey(name: 'file_unique_id') String fileUniqueId,
+      @JsonKey(name: 'length') int length,
+      @JsonKey(name: 'duration') int duration,
+      @JsonKey(name: 'thumb') PhotoSize? thumbnail,
+      @JsonKey(name: 'file_size') int? fileSize});
 
-  /// Unique identifier for this file, which is supposed to be the same over
-  /// time and for different bots. Can't be used to download or reuse the
-  /// file.
   @override
-  @JsonKey(name: 'file_unique_id')
-  String get fileUniqueId;
+  $PhotoSizeCopyWith<$Res>? get thumbnail;
+}
 
-  /// Video width and height (diameter of the video message) as defined by
-  /// sender
-  @override
-  @JsonKey(name: 'length')
-  int get length;
+/// @nodoc
+class __$VideoNoteCopyWithImpl<$Res> implements _$VideoNoteCopyWith<$Res> {
+  __$VideoNoteCopyWithImpl(this._self, this._then);
 
-  /// Duration of the video in seconds as defined by sender
-  ///
-  /// A handy [Duration] getter is available as [durationTime]
-  @override
-  @JsonKey(name: 'duration')
-  int get duration;
-
-  /// Optional. Animation thumbnail as defined by sender
-  @override
-  @JsonKey(name: 'thumb')
-  PhotoSize? get thumbnail;
-
-  /// Optional. File size in bytes. It can be bigger than 2^31 and some
-  /// programming languages may have difficulty/silent defects in interpreting
-  /// it. But it has at most 52 significant bits, so a signed 64-bit integer
-  /// or double-precision float type are safe for storing this value.
-  @override
-  @JsonKey(name: 'file_size')
-  int? get fileSize;
+  final _VideoNote _self;
+  final $Res Function(_VideoNote) _then;
 
   /// Create a copy of VideoNote
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VideoNoteImplCopyWith<_$VideoNoteImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? fileId = null,
+    Object? fileUniqueId = null,
+    Object? length = null,
+    Object? duration = null,
+    Object? thumbnail = freezed,
+    Object? fileSize = freezed,
+  }) {
+    return _then(_VideoNote(
+      fileId: null == fileId
+          ? _self.fileId
+          : fileId // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileUniqueId: null == fileUniqueId
+          ? _self.fileUniqueId
+          : fileUniqueId // ignore: cast_nullable_to_non_nullable
+              as String,
+      length: null == length
+          ? _self.length
+          : length // ignore: cast_nullable_to_non_nullable
+              as int,
+      duration: null == duration
+          ? _self.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
+      thumbnail: freezed == thumbnail
+          ? _self.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as PhotoSize?,
+      fileSize: freezed == fileSize
+          ? _self.fileSize
+          : fileSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+
+  /// Create a copy of VideoNote
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PhotoSizeCopyWith<$Res>? get thumbnail {
+    if (_self.thumbnail == null) {
+      return null;
+    }
+
+    return $PhotoSizeCopyWith<$Res>(_self.thumbnail!, (value) {
+      return _then(_self.copyWith(thumbnail: value));
+    });
+  }
 }

@@ -7,7 +7,7 @@ part 'paid_media_info.g.dart';
 
 /// Describes the paid media added to a message.
 @freezed
-class PaidMediaInfo with _$PaidMediaInfo {
+abstract class PaidMediaInfo with _$PaidMediaInfo {
   /// Constructs a [PaidMediaInfo] object.
   const factory PaidMediaInfo({
     /// The number of Telegram Stars that must be paid to buy access to the

@@ -6,12 +6,10 @@ part of 'bot_name.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BotNameImpl _$$BotNameImplFromJson(Map<String, dynamic> json) =>
-    _$BotNameImpl(
+_BotName _$BotNameFromJson(Map<String, dynamic> json) => _BotName(
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$BotNameImplToJson(_$BotNameImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$BotNameToJson(_BotName instance) => <String, dynamic>{
       'name': instance.name,
     };

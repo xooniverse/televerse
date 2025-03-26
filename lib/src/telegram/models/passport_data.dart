@@ -8,7 +8,7 @@ part 'passport_data.g.dart';
 
 /// Describes Telegram Passport data shared with the bot by the user.
 @freezed
-class PassportData with _$PassportData {
+abstract class PassportData with _$PassportData {
   /// Constructs a [PassportData] object
   const factory PassportData({
     /// Array with information about documents and other Telegram Passport

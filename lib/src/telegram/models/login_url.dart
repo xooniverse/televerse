@@ -13,7 +13,7 @@ part 'login_url.g.dart';
 ///
 /// Sample bot: @discussbot
 @freezed
-class LoginURL with _$LoginURL {
+abstract class LoginURL with _$LoginURL {
   /// Constructs a [LoginURL] object.
   const factory LoginURL({
     /// An HTTP URL to be opened with user authorization data added to the query

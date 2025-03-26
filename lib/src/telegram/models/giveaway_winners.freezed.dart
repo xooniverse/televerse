@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,84 +12,84 @@ part of 'giveaway_winners.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-GiveawayWinners _$GiveawayWinnersFromJson(Map<String, dynamic> json) {
-  return _GiveawayWinners.fromJson(json);
-}
-
 /// @nodoc
 mixin _$GiveawayWinners {
   /// The chat that created the giveaway
   @JsonKey(name: 'chat')
-  Chat get chat => throw _privateConstructorUsedError;
+  Chat get chat;
 
   /// Identifier of the messsage with the giveaway in the chat
   @JsonKey(name: 'giveaway_message_id')
-  int get giveawayMessageId => throw _privateConstructorUsedError;
+  int get giveawayMessageId;
 
   /// Point in time (Unix timestamp) when winners of the giveaway were
   /// selected
   @JsonKey(name: 'winners_selection_date')
-  int get winnersSelectionDate => throw _privateConstructorUsedError;
+  int get winnersSelectionDate;
 
   /// Total number of winners in the giveaway
   @JsonKey(name: 'winner_count')
-  int get winnerCount => throw _privateConstructorUsedError;
+  int get winnerCount;
 
   /// List of up to 100 winners of the giveaway
   @JsonKey(name: 'winners')
-  List<User> get winners => throw _privateConstructorUsedError;
+  List<User> get winners;
 
   /// The number of other chats the user had to join in order to be eligible
   /// for the giveaway
   @JsonKey(name: 'additional_chat_count')
-  int? get additionalChatCount => throw _privateConstructorUsedError;
+  int? get additionalChatCount;
 
   /// The number of months the Telegram Premium subscription won from the
   /// giveaway will be active for
   @JsonKey(name: 'premium_subscription_month_count')
-  int? get premiumSubscriptionMonthCount => throw _privateConstructorUsedError;
+  int? get premiumSubscriptionMonthCount;
 
   /// Number of undistributed prizes
   @JsonKey(name: 'unclaimed_prize_count')
-  int? get unclaimedPrizeCount => throw _privateConstructorUsedError;
+  int? get unclaimedPrizeCount;
 
   /// True, if only users who had joined the chats after the giveaway started
   /// were eligible to win
   @JsonKey(name: 'only_new_members')
-  bool? get onlyNewMembers => throw _privateConstructorUsedError;
+  bool? get onlyNewMembers;
 
   /// True, if the giveaway was canceled because the payment for it was
   /// refunded
   @JsonKey(name: 'was_refunded')
-  bool? get wasRefunded => throw _privateConstructorUsedError;
+  bool? get wasRefunded;
 
   /// Description of additional giveaway prize
   @JsonKey(name: 'prize_description')
-  String? get prizeDescription => throw _privateConstructorUsedError;
+  String? get prizeDescription;
 
   /// Optional. The number of Telegram Stars to be split between giveaway
   /// winners; for Telegram Star giveaways only
   @JsonKey(name: 'prize_star_count')
-  int? get prizeStarCount => throw _privateConstructorUsedError;
-
-  /// Serializes this GiveawayWinners to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int? get prizeStarCount;
 
   /// Create a copy of GiveawayWinners
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $GiveawayWinnersCopyWith<GiveawayWinners> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$GiveawayWinnersCopyWithImpl<GiveawayWinners>(
+          this as GiveawayWinners, _$identity);
+
+  /// Serializes this GiveawayWinners to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'GiveawayWinners(chat: $chat, giveawayMessageId: $giveawayMessageId, winnersSelectionDate: $winnersSelectionDate, winnerCount: $winnerCount, winners: $winners, additionalChatCount: $additionalChatCount, premiumSubscriptionMonthCount: $premiumSubscriptionMonthCount, unclaimedPrizeCount: $unclaimedPrizeCount, onlyNewMembers: $onlyNewMembers, wasRefunded: $wasRefunded, prizeDescription: $prizeDescription, prizeStarCount: $prizeStarCount)';
+  }
 }
 
 /// @nodoc
-abstract class $GiveawayWinnersCopyWith<$Res> {
+abstract mixin class $GiveawayWinnersCopyWith<$Res> {
   factory $GiveawayWinnersCopyWith(
-          GiveawayWinners value, $Res Function(GiveawayWinners) then) =
-      _$GiveawayWinnersCopyWithImpl<$Res, GiveawayWinners>;
+          GiveawayWinners value, $Res Function(GiveawayWinners) _then) =
+      _$GiveawayWinnersCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'chat') Chat chat,
@@ -109,14 +110,12 @@ abstract class $GiveawayWinnersCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GiveawayWinnersCopyWithImpl<$Res, $Val extends GiveawayWinners>
+class _$GiveawayWinnersCopyWithImpl<$Res>
     implements $GiveawayWinnersCopyWith<$Res> {
-  _$GiveawayWinnersCopyWithImpl(this._value, this._then);
+  _$GiveawayWinnersCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final GiveawayWinners _self;
+  final $Res Function(GiveawayWinners) _then;
 
   /// Create a copy of GiveawayWinners
   /// with the given fields replaced by the non-null parameter values.
@@ -136,56 +135,56 @@ class _$GiveawayWinnersCopyWithImpl<$Res, $Val extends GiveawayWinners>
     Object? prizeDescription = freezed,
     Object? prizeStarCount = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       chat: null == chat
-          ? _value.chat
+          ? _self.chat
           : chat // ignore: cast_nullable_to_non_nullable
               as Chat,
       giveawayMessageId: null == giveawayMessageId
-          ? _value.giveawayMessageId
+          ? _self.giveawayMessageId
           : giveawayMessageId // ignore: cast_nullable_to_non_nullable
               as int,
       winnersSelectionDate: null == winnersSelectionDate
-          ? _value.winnersSelectionDate
+          ? _self.winnersSelectionDate
           : winnersSelectionDate // ignore: cast_nullable_to_non_nullable
               as int,
       winnerCount: null == winnerCount
-          ? _value.winnerCount
+          ? _self.winnerCount
           : winnerCount // ignore: cast_nullable_to_non_nullable
               as int,
       winners: null == winners
-          ? _value.winners
+          ? _self.winners
           : winners // ignore: cast_nullable_to_non_nullable
               as List<User>,
       additionalChatCount: freezed == additionalChatCount
-          ? _value.additionalChatCount
+          ? _self.additionalChatCount
           : additionalChatCount // ignore: cast_nullable_to_non_nullable
               as int?,
       premiumSubscriptionMonthCount: freezed == premiumSubscriptionMonthCount
-          ? _value.premiumSubscriptionMonthCount
+          ? _self.premiumSubscriptionMonthCount
           : premiumSubscriptionMonthCount // ignore: cast_nullable_to_non_nullable
               as int?,
       unclaimedPrizeCount: freezed == unclaimedPrizeCount
-          ? _value.unclaimedPrizeCount
+          ? _self.unclaimedPrizeCount
           : unclaimedPrizeCount // ignore: cast_nullable_to_non_nullable
               as int?,
       onlyNewMembers: freezed == onlyNewMembers
-          ? _value.onlyNewMembers
+          ? _self.onlyNewMembers
           : onlyNewMembers // ignore: cast_nullable_to_non_nullable
               as bool?,
       wasRefunded: freezed == wasRefunded
-          ? _value.wasRefunded
+          ? _self.wasRefunded
           : wasRefunded // ignore: cast_nullable_to_non_nullable
               as bool?,
       prizeDescription: freezed == prizeDescription
-          ? _value.prizeDescription
+          ? _self.prizeDescription
           : prizeDescription // ignore: cast_nullable_to_non_nullable
               as String?,
       prizeStarCount: freezed == prizeStarCount
-          ? _value.prizeStarCount
+          ? _self.prizeStarCount
           : prizeStarCount // ignore: cast_nullable_to_non_nullable
               as int?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of GiveawayWinners
@@ -193,122 +192,16 @@ class _$GiveawayWinnersCopyWithImpl<$Res, $Val extends GiveawayWinners>
   @override
   @pragma('vm:prefer-inline')
   $ChatCopyWith<$Res> get chat {
-    return $ChatCopyWith<$Res>(_value.chat, (value) {
-      return _then(_value.copyWith(chat: value) as $Val);
+    return $ChatCopyWith<$Res>(_self.chat, (value) {
+      return _then(_self.copyWith(chat: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$GiveawayWinnersImplCopyWith<$Res>
-    implements $GiveawayWinnersCopyWith<$Res> {
-  factory _$$GiveawayWinnersImplCopyWith(_$GiveawayWinnersImpl value,
-          $Res Function(_$GiveawayWinnersImpl) then) =
-      __$$GiveawayWinnersImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'giveaway_message_id') int giveawayMessageId,
-      @JsonKey(name: 'winners_selection_date') int winnersSelectionDate,
-      @JsonKey(name: 'winner_count') int winnerCount,
-      @JsonKey(name: 'winners') List<User> winners,
-      @JsonKey(name: 'additional_chat_count') int? additionalChatCount,
-      @JsonKey(name: 'premium_subscription_month_count')
-      int? premiumSubscriptionMonthCount,
-      @JsonKey(name: 'unclaimed_prize_count') int? unclaimedPrizeCount,
-      @JsonKey(name: 'only_new_members') bool? onlyNewMembers,
-      @JsonKey(name: 'was_refunded') bool? wasRefunded,
-      @JsonKey(name: 'prize_description') String? prizeDescription,
-      @JsonKey(name: 'prize_star_count') int? prizeStarCount});
-
-  @override
-  $ChatCopyWith<$Res> get chat;
-}
-
-/// @nodoc
-class __$$GiveawayWinnersImplCopyWithImpl<$Res>
-    extends _$GiveawayWinnersCopyWithImpl<$Res, _$GiveawayWinnersImpl>
-    implements _$$GiveawayWinnersImplCopyWith<$Res> {
-  __$$GiveawayWinnersImplCopyWithImpl(
-      _$GiveawayWinnersImpl _value, $Res Function(_$GiveawayWinnersImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of GiveawayWinners
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? chat = null,
-    Object? giveawayMessageId = null,
-    Object? winnersSelectionDate = null,
-    Object? winnerCount = null,
-    Object? winners = null,
-    Object? additionalChatCount = freezed,
-    Object? premiumSubscriptionMonthCount = freezed,
-    Object? unclaimedPrizeCount = freezed,
-    Object? onlyNewMembers = freezed,
-    Object? wasRefunded = freezed,
-    Object? prizeDescription = freezed,
-    Object? prizeStarCount = freezed,
-  }) {
-    return _then(_$GiveawayWinnersImpl(
-      chat: null == chat
-          ? _value.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      giveawayMessageId: null == giveawayMessageId
-          ? _value.giveawayMessageId
-          : giveawayMessageId // ignore: cast_nullable_to_non_nullable
-              as int,
-      winnersSelectionDate: null == winnersSelectionDate
-          ? _value.winnersSelectionDate
-          : winnersSelectionDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      winnerCount: null == winnerCount
-          ? _value.winnerCount
-          : winnerCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      winners: null == winners
-          ? _value._winners
-          : winners // ignore: cast_nullable_to_non_nullable
-              as List<User>,
-      additionalChatCount: freezed == additionalChatCount
-          ? _value.additionalChatCount
-          : additionalChatCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      premiumSubscriptionMonthCount: freezed == premiumSubscriptionMonthCount
-          ? _value.premiumSubscriptionMonthCount
-          : premiumSubscriptionMonthCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      unclaimedPrizeCount: freezed == unclaimedPrizeCount
-          ? _value.unclaimedPrizeCount
-          : unclaimedPrizeCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      onlyNewMembers: freezed == onlyNewMembers
-          ? _value.onlyNewMembers
-          : onlyNewMembers // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      wasRefunded: freezed == wasRefunded
-          ? _value.wasRefunded
-          : wasRefunded // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      prizeDescription: freezed == prizeDescription
-          ? _value.prizeDescription
-          : prizeDescription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      prizeStarCount: freezed == prizeStarCount
-          ? _value.prizeStarCount
-          : prizeStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$GiveawayWinnersImpl implements _GiveawayWinners {
-  const _$GiveawayWinnersImpl(
+class _GiveawayWinners implements GiveawayWinners {
+  const _GiveawayWinners(
       {@JsonKey(name: 'chat') required this.chat,
       @JsonKey(name: 'giveaway_message_id') required this.giveawayMessageId,
       @JsonKey(name: 'winners_selection_date')
@@ -324,9 +217,8 @@ class _$GiveawayWinnersImpl implements _GiveawayWinners {
       @JsonKey(name: 'prize_description') this.prizeDescription,
       @JsonKey(name: 'prize_star_count') this.prizeStarCount})
       : _winners = winners;
-
-  factory _$GiveawayWinnersImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GiveawayWinnersImplFromJson(json);
+  factory _GiveawayWinners.fromJson(Map<String, dynamic> json) =>
+      _$GiveawayWinnersFromJson(json);
 
   /// The chat that created the giveaway
   @override
@@ -401,120 +293,139 @@ class _$GiveawayWinnersImpl implements _GiveawayWinners {
   @JsonKey(name: 'prize_star_count')
   final int? prizeStarCount;
 
+  /// Create a copy of GiveawayWinners
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$GiveawayWinnersCopyWith<_GiveawayWinners> get copyWith =>
+      __$GiveawayWinnersCopyWithImpl<_GiveawayWinners>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$GiveawayWinnersToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'GiveawayWinners(chat: $chat, giveawayMessageId: $giveawayMessageId, winnersSelectionDate: $winnersSelectionDate, winnerCount: $winnerCount, winners: $winners, additionalChatCount: $additionalChatCount, premiumSubscriptionMonthCount: $premiumSubscriptionMonthCount, unclaimedPrizeCount: $unclaimedPrizeCount, onlyNewMembers: $onlyNewMembers, wasRefunded: $wasRefunded, prizeDescription: $prizeDescription, prizeStarCount: $prizeStarCount)';
   }
-
-  /// Create a copy of GiveawayWinners
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GiveawayWinnersImplCopyWith<_$GiveawayWinnersImpl> get copyWith =>
-      __$$GiveawayWinnersImplCopyWithImpl<_$GiveawayWinnersImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$GiveawayWinnersImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _GiveawayWinners implements GiveawayWinners {
-  const factory _GiveawayWinners(
-      {@JsonKey(name: 'chat') required final Chat chat,
-      @JsonKey(name: 'giveaway_message_id')
-      required final int giveawayMessageId,
-      @JsonKey(name: 'winners_selection_date')
-      required final int winnersSelectionDate,
-      @JsonKey(name: 'winner_count') required final int winnerCount,
-      @JsonKey(name: 'winners') required final List<User> winners,
-      @JsonKey(name: 'additional_chat_count') final int? additionalChatCount,
+/// @nodoc
+abstract mixin class _$GiveawayWinnersCopyWith<$Res>
+    implements $GiveawayWinnersCopyWith<$Res> {
+  factory _$GiveawayWinnersCopyWith(
+          _GiveawayWinners value, $Res Function(_GiveawayWinners) _then) =
+      __$GiveawayWinnersCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'chat') Chat chat,
+      @JsonKey(name: 'giveaway_message_id') int giveawayMessageId,
+      @JsonKey(name: 'winners_selection_date') int winnersSelectionDate,
+      @JsonKey(name: 'winner_count') int winnerCount,
+      @JsonKey(name: 'winners') List<User> winners,
+      @JsonKey(name: 'additional_chat_count') int? additionalChatCount,
       @JsonKey(name: 'premium_subscription_month_count')
-      final int? premiumSubscriptionMonthCount,
-      @JsonKey(name: 'unclaimed_prize_count') final int? unclaimedPrizeCount,
-      @JsonKey(name: 'only_new_members') final bool? onlyNewMembers,
-      @JsonKey(name: 'was_refunded') final bool? wasRefunded,
-      @JsonKey(name: 'prize_description') final String? prizeDescription,
-      @JsonKey(name: 'prize_star_count')
-      final int? prizeStarCount}) = _$GiveawayWinnersImpl;
+      int? premiumSubscriptionMonthCount,
+      @JsonKey(name: 'unclaimed_prize_count') int? unclaimedPrizeCount,
+      @JsonKey(name: 'only_new_members') bool? onlyNewMembers,
+      @JsonKey(name: 'was_refunded') bool? wasRefunded,
+      @JsonKey(name: 'prize_description') String? prizeDescription,
+      @JsonKey(name: 'prize_star_count') int? prizeStarCount});
 
-  factory _GiveawayWinners.fromJson(Map<String, dynamic> json) =
-      _$GiveawayWinnersImpl.fromJson;
-
-  /// The chat that created the giveaway
   @override
-  @JsonKey(name: 'chat')
-  Chat get chat;
+  $ChatCopyWith<$Res> get chat;
+}
 
-  /// Identifier of the messsage with the giveaway in the chat
-  @override
-  @JsonKey(name: 'giveaway_message_id')
-  int get giveawayMessageId;
+/// @nodoc
+class __$GiveawayWinnersCopyWithImpl<$Res>
+    implements _$GiveawayWinnersCopyWith<$Res> {
+  __$GiveawayWinnersCopyWithImpl(this._self, this._then);
 
-  /// Point in time (Unix timestamp) when winners of the giveaway were
-  /// selected
-  @override
-  @JsonKey(name: 'winners_selection_date')
-  int get winnersSelectionDate;
-
-  /// Total number of winners in the giveaway
-  @override
-  @JsonKey(name: 'winner_count')
-  int get winnerCount;
-
-  /// List of up to 100 winners of the giveaway
-  @override
-  @JsonKey(name: 'winners')
-  List<User> get winners;
-
-  /// The number of other chats the user had to join in order to be eligible
-  /// for the giveaway
-  @override
-  @JsonKey(name: 'additional_chat_count')
-  int? get additionalChatCount;
-
-  /// The number of months the Telegram Premium subscription won from the
-  /// giveaway will be active for
-  @override
-  @JsonKey(name: 'premium_subscription_month_count')
-  int? get premiumSubscriptionMonthCount;
-
-  /// Number of undistributed prizes
-  @override
-  @JsonKey(name: 'unclaimed_prize_count')
-  int? get unclaimedPrizeCount;
-
-  /// True, if only users who had joined the chats after the giveaway started
-  /// were eligible to win
-  @override
-  @JsonKey(name: 'only_new_members')
-  bool? get onlyNewMembers;
-
-  /// True, if the giveaway was canceled because the payment for it was
-  /// refunded
-  @override
-  @JsonKey(name: 'was_refunded')
-  bool? get wasRefunded;
-
-  /// Description of additional giveaway prize
-  @override
-  @JsonKey(name: 'prize_description')
-  String? get prizeDescription;
-
-  /// Optional. The number of Telegram Stars to be split between giveaway
-  /// winners; for Telegram Star giveaways only
-  @override
-  @JsonKey(name: 'prize_star_count')
-  int? get prizeStarCount;
+  final _GiveawayWinners _self;
+  final $Res Function(_GiveawayWinners) _then;
 
   /// Create a copy of GiveawayWinners
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GiveawayWinnersImplCopyWith<_$GiveawayWinnersImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? chat = null,
+    Object? giveawayMessageId = null,
+    Object? winnersSelectionDate = null,
+    Object? winnerCount = null,
+    Object? winners = null,
+    Object? additionalChatCount = freezed,
+    Object? premiumSubscriptionMonthCount = freezed,
+    Object? unclaimedPrizeCount = freezed,
+    Object? onlyNewMembers = freezed,
+    Object? wasRefunded = freezed,
+    Object? prizeDescription = freezed,
+    Object? prizeStarCount = freezed,
+  }) {
+    return _then(_GiveawayWinners(
+      chat: null == chat
+          ? _self.chat
+          : chat // ignore: cast_nullable_to_non_nullable
+              as Chat,
+      giveawayMessageId: null == giveawayMessageId
+          ? _self.giveawayMessageId
+          : giveawayMessageId // ignore: cast_nullable_to_non_nullable
+              as int,
+      winnersSelectionDate: null == winnersSelectionDate
+          ? _self.winnersSelectionDate
+          : winnersSelectionDate // ignore: cast_nullable_to_non_nullable
+              as int,
+      winnerCount: null == winnerCount
+          ? _self.winnerCount
+          : winnerCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      winners: null == winners
+          ? _self._winners
+          : winners // ignore: cast_nullable_to_non_nullable
+              as List<User>,
+      additionalChatCount: freezed == additionalChatCount
+          ? _self.additionalChatCount
+          : additionalChatCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      premiumSubscriptionMonthCount: freezed == premiumSubscriptionMonthCount
+          ? _self.premiumSubscriptionMonthCount
+          : premiumSubscriptionMonthCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      unclaimedPrizeCount: freezed == unclaimedPrizeCount
+          ? _self.unclaimedPrizeCount
+          : unclaimedPrizeCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      onlyNewMembers: freezed == onlyNewMembers
+          ? _self.onlyNewMembers
+          : onlyNewMembers // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      wasRefunded: freezed == wasRefunded
+          ? _self.wasRefunded
+          : wasRefunded // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      prizeDescription: freezed == prizeDescription
+          ? _self.prizeDescription
+          : prizeDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
+      prizeStarCount: freezed == prizeStarCount
+          ? _self.prizeStarCount
+          : prizeStarCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+
+  /// Create a copy of GiveawayWinners
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res> get chat {
+    return $ChatCopyWith<$Res>(_self.chat, (value) {
+      return _then(_self.copyWith(chat: value));
+    });
+  }
 }

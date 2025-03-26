@@ -6,9 +6,9 @@ part of 'inline_query_result_audio.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultAudioImpl _$$InlineQueryResultAudioImplFromJson(
+_InlineQueryResultAudio _$InlineQueryResultAudioFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultAudioImpl(
+    _InlineQueryResultAudio(
       id: json['id'] as String,
       audioUrl: json['audio_url'] as String,
       title: json['title'] as String,
@@ -31,8 +31,8 @@ _$InlineQueryResultAudioImpl _$$InlineQueryResultAudioImplFromJson(
           InlineQueryResultType.audio,
     );
 
-Map<String, dynamic> _$$InlineQueryResultAudioImplToJson(
-        _$InlineQueryResultAudioImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultAudioToJson(
+        _InlineQueryResultAudio instance) =>
     <String, dynamic>{
       'id': instance.id,
       'audio_url': instance.audioUrl,

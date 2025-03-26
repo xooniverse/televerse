@@ -7,7 +7,7 @@ part 'business_opening_hours.g.dart';
 
 /// Represents the opening hours of a business.
 @freezed
-class BusinessOpeningHours with _$BusinessOpeningHours {
+abstract class BusinessOpeningHours with _$BusinessOpeningHours {
   /// Creates a [BusinessOpeningHours] object.
   const factory BusinessOpeningHours({
     /// Unique name of the time zone for which the opening hours are defined.

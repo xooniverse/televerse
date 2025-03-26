@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,22 +12,15 @@ part of 'business_connection.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-BusinessConnection _$BusinessConnectionFromJson(Map<String, dynamic> json) {
-  return _BusinessConnection.fromJson(json);
-}
-
 /// @nodoc
 mixin _$BusinessConnection {
   /// Unique identifier of the business connection.
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
 
   /// Business account user that created the business connection.
   @JsonKey(name: 'user')
-  User get user => throw _privateConstructorUsedError;
+  User get user;
 
   /// Identifier of a private chat with the user who created the business
   /// connection. This number may have more than 32 significant bits and some
@@ -34,36 +28,43 @@ mixin _$BusinessConnection {
   /// it. But it has at most 52 significant bits, so a 64-bit integer or
   /// double-precision float type are safe for storing this identifier.
   @JsonKey(name: 'user_chat_id')
-  int get userChatId => throw _privateConstructorUsedError;
+  int get userChatId;
 
   /// Date the connection was established in Unix time.
   @JsonKey(name: 'date')
-  int get date => throw _privateConstructorUsedError;
+  int get date;
 
   /// Indicates whether the bot can act on behalf of the business account in
   /// chats that were active in the last 24 hours.
   @JsonKey(name: 'can_reply')
-  bool get canReply => throw _privateConstructorUsedError;
+  bool get canReply;
 
   /// Indicates whether the connection is active.
   @JsonKey(name: 'is_enabled')
-  bool get isEnabled => throw _privateConstructorUsedError;
-
-  /// Serializes this BusinessConnection to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  bool get isEnabled;
 
   /// Create a copy of BusinessConnection
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $BusinessConnectionCopyWith<BusinessConnection> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$BusinessConnectionCopyWithImpl<BusinessConnection>(
+          this as BusinessConnection, _$identity);
+
+  /// Serializes this BusinessConnection to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'BusinessConnection(id: $id, user: $user, userChatId: $userChatId, date: $date, canReply: $canReply, isEnabled: $isEnabled)';
+  }
 }
 
 /// @nodoc
-abstract class $BusinessConnectionCopyWith<$Res> {
+abstract mixin class $BusinessConnectionCopyWith<$Res> {
   factory $BusinessConnectionCopyWith(
-          BusinessConnection value, $Res Function(BusinessConnection) then) =
-      _$BusinessConnectionCopyWithImpl<$Res, BusinessConnection>;
+          BusinessConnection value, $Res Function(BusinessConnection) _then) =
+      _$BusinessConnectionCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -77,14 +78,12 @@ abstract class $BusinessConnectionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$BusinessConnectionCopyWithImpl<$Res, $Val extends BusinessConnection>
+class _$BusinessConnectionCopyWithImpl<$Res>
     implements $BusinessConnectionCopyWith<$Res> {
-  _$BusinessConnectionCopyWithImpl(this._value, this._then);
+  _$BusinessConnectionCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final BusinessConnection _self;
+  final $Res Function(BusinessConnection) _then;
 
   /// Create a copy of BusinessConnection
   /// with the given fields replaced by the non-null parameter values.
@@ -98,32 +97,32 @@ class _$BusinessConnectionCopyWithImpl<$Res, $Val extends BusinessConnection>
     Object? canReply = null,
     Object? isEnabled = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       user: null == user
-          ? _value.user
+          ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
       userChatId: null == userChatId
-          ? _value.userChatId
+          ? _self.userChatId
           : userChatId // ignore: cast_nullable_to_non_nullable
               as int,
       date: null == date
-          ? _value.date
+          ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
               as int,
       canReply: null == canReply
-          ? _value.canReply
+          ? _self.canReply
           : canReply // ignore: cast_nullable_to_non_nullable
               as bool,
       isEnabled: null == isEnabled
-          ? _value.isEnabled
+          ? _self.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of BusinessConnection
@@ -131,85 +130,16 @@ class _$BusinessConnectionCopyWithImpl<$Res, $Val extends BusinessConnection>
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
+    return $UserCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$BusinessConnectionImplCopyWith<$Res>
-    implements $BusinessConnectionCopyWith<$Res> {
-  factory _$$BusinessConnectionImplCopyWith(_$BusinessConnectionImpl value,
-          $Res Function(_$BusinessConnectionImpl) then) =
-      __$$BusinessConnectionImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'user') User user,
-      @JsonKey(name: 'user_chat_id') int userChatId,
-      @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'can_reply') bool canReply,
-      @JsonKey(name: 'is_enabled') bool isEnabled});
-
-  @override
-  $UserCopyWith<$Res> get user;
-}
-
-/// @nodoc
-class __$$BusinessConnectionImplCopyWithImpl<$Res>
-    extends _$BusinessConnectionCopyWithImpl<$Res, _$BusinessConnectionImpl>
-    implements _$$BusinessConnectionImplCopyWith<$Res> {
-  __$$BusinessConnectionImplCopyWithImpl(_$BusinessConnectionImpl _value,
-      $Res Function(_$BusinessConnectionImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of BusinessConnection
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? user = null,
-    Object? userChatId = null,
-    Object? date = null,
-    Object? canReply = null,
-    Object? isEnabled = null,
-  }) {
-    return _then(_$BusinessConnectionImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      userChatId: null == userChatId
-          ? _value.userChatId
-          : userChatId // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      canReply: null == canReply
-          ? _value.canReply
-          : canReply // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isEnabled: null == isEnabled
-          ? _value.isEnabled
-          : isEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$BusinessConnectionImpl extends _BusinessConnection {
-  const _$BusinessConnectionImpl(
+class _BusinessConnection extends BusinessConnection {
+  const _BusinessConnection(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'user') required this.user,
       @JsonKey(name: 'user_chat_id') required this.userChatId,
@@ -217,9 +147,8 @@ class _$BusinessConnectionImpl extends _BusinessConnection {
       @JsonKey(name: 'can_reply') required this.canReply,
       @JsonKey(name: 'is_enabled') required this.isEnabled})
       : super._();
-
-  factory _$BusinessConnectionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BusinessConnectionImplFromJson(json);
+  factory _BusinessConnection.fromJson(Map<String, dynamic> json) =>
+      _$BusinessConnectionFromJson(json);
 
   /// Unique identifier of the business connection.
   @override
@@ -256,81 +185,102 @@ class _$BusinessConnectionImpl extends _BusinessConnection {
   @JsonKey(name: 'is_enabled')
   final bool isEnabled;
 
+  /// Create a copy of BusinessConnection
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BusinessConnectionCopyWith<_BusinessConnection> get copyWith =>
+      __$BusinessConnectionCopyWithImpl<_BusinessConnection>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$BusinessConnectionToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'BusinessConnection(id: $id, user: $user, userChatId: $userChatId, date: $date, canReply: $canReply, isEnabled: $isEnabled)';
   }
-
-  /// Create a copy of BusinessConnection
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BusinessConnectionImplCopyWith<_$BusinessConnectionImpl> get copyWith =>
-      __$$BusinessConnectionImplCopyWithImpl<_$BusinessConnectionImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BusinessConnectionImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _BusinessConnection extends BusinessConnection {
-  const factory _BusinessConnection(
-          {@JsonKey(name: 'id') required final String id,
-          @JsonKey(name: 'user') required final User user,
-          @JsonKey(name: 'user_chat_id') required final int userChatId,
-          @JsonKey(name: 'date') required final int date,
-          @JsonKey(name: 'can_reply') required final bool canReply,
-          @JsonKey(name: 'is_enabled') required final bool isEnabled}) =
-      _$BusinessConnectionImpl;
-  const _BusinessConnection._() : super._();
-
-  factory _BusinessConnection.fromJson(Map<String, dynamic> json) =
-      _$BusinessConnectionImpl.fromJson;
-
-  /// Unique identifier of the business connection.
+/// @nodoc
+abstract mixin class _$BusinessConnectionCopyWith<$Res>
+    implements $BusinessConnectionCopyWith<$Res> {
+  factory _$BusinessConnectionCopyWith(
+          _BusinessConnection value, $Res Function(_BusinessConnection) _then) =
+      __$BusinessConnectionCopyWithImpl;
   @override
-  @JsonKey(name: 'id')
-  String get id;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'user') User user,
+      @JsonKey(name: 'user_chat_id') int userChatId,
+      @JsonKey(name: 'date') int date,
+      @JsonKey(name: 'can_reply') bool canReply,
+      @JsonKey(name: 'is_enabled') bool isEnabled});
 
-  /// Business account user that created the business connection.
   @override
-  @JsonKey(name: 'user')
-  User get user;
+  $UserCopyWith<$Res> get user;
+}
 
-  /// Identifier of a private chat with the user who created the business
-  /// connection. This number may have more than 32 significant bits and some
-  /// programming languages may have difficulty/silent defects in interpreting
-  /// it. But it has at most 52 significant bits, so a 64-bit integer or
-  /// double-precision float type are safe for storing this identifier.
-  @override
-  @JsonKey(name: 'user_chat_id')
-  int get userChatId;
+/// @nodoc
+class __$BusinessConnectionCopyWithImpl<$Res>
+    implements _$BusinessConnectionCopyWith<$Res> {
+  __$BusinessConnectionCopyWithImpl(this._self, this._then);
 
-  /// Date the connection was established in Unix time.
-  @override
-  @JsonKey(name: 'date')
-  int get date;
-
-  /// Indicates whether the bot can act on behalf of the business account in
-  /// chats that were active in the last 24 hours.
-  @override
-  @JsonKey(name: 'can_reply')
-  bool get canReply;
-
-  /// Indicates whether the connection is active.
-  @override
-  @JsonKey(name: 'is_enabled')
-  bool get isEnabled;
+  final _BusinessConnection _self;
+  final $Res Function(_BusinessConnection) _then;
 
   /// Create a copy of BusinessConnection
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BusinessConnectionImplCopyWith<_$BusinessConnectionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? user = null,
+    Object? userChatId = null,
+    Object? date = null,
+    Object? canReply = null,
+    Object? isEnabled = null,
+  }) {
+    return _then(_BusinessConnection(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+      userChatId: null == userChatId
+          ? _self.userChatId
+          : userChatId // ignore: cast_nullable_to_non_nullable
+              as int,
+      date: null == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as int,
+      canReply: null == canReply
+          ? _self.canReply
+          : canReply // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isEnabled: null == isEnabled
+          ? _self.isEnabled
+          : isEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+
+  /// Create a copy of BusinessConnection
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
+    });
+  }
 }

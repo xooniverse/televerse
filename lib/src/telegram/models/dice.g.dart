@@ -6,13 +6,12 @@ part of 'dice.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DiceImpl _$$DiceImplFromJson(Map<String, dynamic> json) => _$DiceImpl(
+_Dice _$DiceFromJson(Map<String, dynamic> json) => _Dice(
       emoji: $enumDecode(_$DiceEmojiEnumMap, json['emoji']),
       value: (json['value'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$DiceImplToJson(_$DiceImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$DiceToJson(_Dice instance) => <String, dynamic>{
       'emoji': instance.emoji,
       'value': instance.value,
     };

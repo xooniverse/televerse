@@ -15,7 +15,7 @@ part 'inline_query_result_venue.g.dart';
 /// Note: This will only work in Telegram versions released after 9 April, 2016.
 /// Older clients will ignore them.
 @freezed
-class InlineQueryResultVenue
+abstract class InlineQueryResultVenue
     with _$InlineQueryResultVenue
     implements InlineQueryResult {
   /// Constructs an [InlineQueryResultVenue] object

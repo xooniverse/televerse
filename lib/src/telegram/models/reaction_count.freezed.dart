@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,38 +12,38 @@ part of 'reaction_count.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ReactionCount _$ReactionCountFromJson(Map<String, dynamic> json) {
-  return _ReactionCount.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ReactionCount {
   /// Type of the reaction.
   @JsonKey(name: 'type')
-  ReactionType get type => throw _privateConstructorUsedError;
+  ReactionType get type;
 
   /// Number of times the reaction was added.
   @JsonKey(name: 'total_count')
-  int get totalCount => throw _privateConstructorUsedError;
-
-  /// Serializes this ReactionCount to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get totalCount;
 
   /// Create a copy of ReactionCount
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ReactionCountCopyWith<ReactionCount> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ReactionCountCopyWithImpl<ReactionCount>(
+          this as ReactionCount, _$identity);
+
+  /// Serializes this ReactionCount to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'ReactionCount(type: $type, totalCount: $totalCount)';
+  }
 }
 
 /// @nodoc
-abstract class $ReactionCountCopyWith<$Res> {
+abstract mixin class $ReactionCountCopyWith<$Res> {
   factory $ReactionCountCopyWith(
-          ReactionCount value, $Res Function(ReactionCount) then) =
-      _$ReactionCountCopyWithImpl<$Res, ReactionCount>;
+          ReactionCount value, $Res Function(ReactionCount) _then) =
+      _$ReactionCountCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'type') ReactionType type,
@@ -52,14 +53,12 @@ abstract class $ReactionCountCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ReactionCountCopyWithImpl<$Res, $Val extends ReactionCount>
+class _$ReactionCountCopyWithImpl<$Res>
     implements $ReactionCountCopyWith<$Res> {
-  _$ReactionCountCopyWithImpl(this._value, this._then);
+  _$ReactionCountCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ReactionCount _self;
+  final $Res Function(ReactionCount) _then;
 
   /// Create a copy of ReactionCount
   /// with the given fields replaced by the non-null parameter values.
@@ -69,16 +68,16 @@ class _$ReactionCountCopyWithImpl<$Res, $Val extends ReactionCount>
     Object? type = null,
     Object? totalCount = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as ReactionType,
       totalCount: null == totalCount
-          ? _value.totalCount
+          ? _self.totalCount
           : totalCount // ignore: cast_nullable_to_non_nullable
               as int,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ReactionCount
@@ -86,66 +85,20 @@ class _$ReactionCountCopyWithImpl<$Res, $Val extends ReactionCount>
   @override
   @pragma('vm:prefer-inline')
   $ReactionTypeCopyWith<$Res> get type {
-    return $ReactionTypeCopyWith<$Res>(_value.type, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
+    return $ReactionTypeCopyWith<$Res>(_self.type, (value) {
+      return _then(_self.copyWith(type: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ReactionCountImplCopyWith<$Res>
-    implements $ReactionCountCopyWith<$Res> {
-  factory _$$ReactionCountImplCopyWith(
-          _$ReactionCountImpl value, $Res Function(_$ReactionCountImpl) then) =
-      __$$ReactionCountImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'type') ReactionType type,
-      @JsonKey(name: 'total_count') int totalCount});
-
-  @override
-  $ReactionTypeCopyWith<$Res> get type;
-}
-
-/// @nodoc
-class __$$ReactionCountImplCopyWithImpl<$Res>
-    extends _$ReactionCountCopyWithImpl<$Res, _$ReactionCountImpl>
-    implements _$$ReactionCountImplCopyWith<$Res> {
-  __$$ReactionCountImplCopyWithImpl(
-      _$ReactionCountImpl _value, $Res Function(_$ReactionCountImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ReactionCount
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-    Object? totalCount = null,
-  }) {
-    return _then(_$ReactionCountImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ReactionType,
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$ReactionCountImpl implements _ReactionCount {
-  const _$ReactionCountImpl(
+class _ReactionCount implements ReactionCount {
+  const _ReactionCount(
       {@JsonKey(name: 'type') required this.type,
       @JsonKey(name: 'total_count') required this.totalCount});
-
-  factory _$ReactionCountImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ReactionCountImplFromJson(json);
+  factory _ReactionCount.fromJson(Map<String, dynamic> json) =>
+      _$ReactionCountFromJson(json);
 
   /// Type of the reaction.
   @override
@@ -157,50 +110,78 @@ class _$ReactionCountImpl implements _ReactionCount {
   @JsonKey(name: 'total_count')
   final int totalCount;
 
+  /// Create a copy of ReactionCount
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ReactionCountCopyWith<_ReactionCount> get copyWith =>
+      __$ReactionCountCopyWithImpl<_ReactionCount>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ReactionCountToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'ReactionCount(type: $type, totalCount: $totalCount)';
   }
-
-  /// Create a copy of ReactionCount
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ReactionCountImplCopyWith<_$ReactionCountImpl> get copyWith =>
-      __$$ReactionCountImplCopyWithImpl<_$ReactionCountImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ReactionCountImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _ReactionCount implements ReactionCount {
-  const factory _ReactionCount(
-          {@JsonKey(name: 'type') required final ReactionType type,
-          @JsonKey(name: 'total_count') required final int totalCount}) =
-      _$ReactionCountImpl;
-
-  factory _ReactionCount.fromJson(Map<String, dynamic> json) =
-      _$ReactionCountImpl.fromJson;
-
-  /// Type of the reaction.
+/// @nodoc
+abstract mixin class _$ReactionCountCopyWith<$Res>
+    implements $ReactionCountCopyWith<$Res> {
+  factory _$ReactionCountCopyWith(
+          _ReactionCount value, $Res Function(_ReactionCount) _then) =
+      __$ReactionCountCopyWithImpl;
   @override
-  @JsonKey(name: 'type')
-  ReactionType get type;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'type') ReactionType type,
+      @JsonKey(name: 'total_count') int totalCount});
 
-  /// Number of times the reaction was added.
   @override
-  @JsonKey(name: 'total_count')
-  int get totalCount;
+  $ReactionTypeCopyWith<$Res> get type;
+}
+
+/// @nodoc
+class __$ReactionCountCopyWithImpl<$Res>
+    implements _$ReactionCountCopyWith<$Res> {
+  __$ReactionCountCopyWithImpl(this._self, this._then);
+
+  final _ReactionCount _self;
+  final $Res Function(_ReactionCount) _then;
 
   /// Create a copy of ReactionCount
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReactionCountImplCopyWith<_$ReactionCountImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? type = null,
+    Object? totalCount = null,
+  }) {
+    return _then(_ReactionCount(
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ReactionType,
+      totalCount: null == totalCount
+          ? _self.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+
+  /// Create a copy of ReactionCount
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ReactionTypeCopyWith<$Res> get type {
+    return $ReactionTypeCopyWith<$Res>(_self.type, (value) {
+      return _then(_self.copyWith(type: value));
+    });
+  }
 }

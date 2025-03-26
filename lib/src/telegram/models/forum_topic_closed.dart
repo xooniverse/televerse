@@ -7,7 +7,7 @@ part 'forum_topic_closed.g.dart';
 /// This object represents a service message about a forum topic closed in the
 /// chat. Currently holds no information.
 @freezed
-class ForumTopicClosed with _$ForumTopicClosed {
+abstract class ForumTopicClosed with _$ForumTopicClosed {
   /// Creates a new [ForumTopicClosed] object.
   const factory ForumTopicClosed() = _ForumTopicClosed;
 

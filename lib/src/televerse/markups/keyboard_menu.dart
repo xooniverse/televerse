@@ -405,4 +405,7 @@ class KeyboardMenu<CTX extends Context>
     selective = true;
     return this;
   }
+
+  @override
+  String get $type => runtimeType.toString();
 }

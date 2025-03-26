@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,18 +12,11 @@ part of 'successful_payment.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-SuccessfulPayment _$SuccessfulPaymentFromJson(Map<String, dynamic> json) {
-  return _SuccessfulPayment.fromJson(json);
-}
-
 /// @nodoc
 mixin _$SuccessfulPayment {
   /// Three-letter ISO 4217 currency code
   @JsonKey(name: 'currency')
-  String get currency => throw _privateConstructorUsedError;
+  String get currency;
 
   /// Total price in the smallest units of the currency (integer, not
   /// float/double). For example, for a price of US$ 1.45 pass amount = 145.
@@ -31,51 +25,58 @@ mixin _$SuccessfulPayment {
   /// it shows the number of digits past the decimal point for each currency
   /// (2 for the majority of currencies).
   @JsonKey(name: 'total_amount')
-  int get totalAmount => throw _privateConstructorUsedError;
+  int get totalAmount;
 
   /// Bot specified invoice payload
   @JsonKey(name: 'invoice_payload')
-  String get invoicePayload => throw _privateConstructorUsedError;
+  String get invoicePayload;
 
   /// Optional. Identifier of the shipping option chosen by the user
   @JsonKey(name: 'shipping_option_id')
-  String? get shippingOptionId => throw _privateConstructorUsedError;
+  String? get shippingOptionId;
 
   /// Optional. Order info provided by the user
   @JsonKey(name: 'order_info')
-  OrderInfo? get orderInfo => throw _privateConstructorUsedError;
+  OrderInfo? get orderInfo;
 
   /// Telegram payment identifier
   @JsonKey(name: 'telegram_payment_charge_id')
-  String get telegramPaymentChargeId => throw _privateConstructorUsedError;
+  String get telegramPaymentChargeId;
 
   /// Provider payment identifier
   @JsonKey(name: 'provider_payment_charge_id')
-  String get providerPaymentChargeId => throw _privateConstructorUsedError;
+  String get providerPaymentChargeId;
 
   /// Optional. True, if the payment is a recurring payment for a subscription
   @JsonKey(name: 'is_recurring')
-  bool? get isRecurring => throw _privateConstructorUsedError;
+  bool? get isRecurring;
 
   /// Optional. True, if the payment is the first payment for a subscription
   @JsonKey(name: 'is_first_recurring')
-  bool? get isFirstRecurring => throw _privateConstructorUsedError;
-
-  /// Serializes this SuccessfulPayment to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  bool? get isFirstRecurring;
 
   /// Create a copy of SuccessfulPayment
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $SuccessfulPaymentCopyWith<SuccessfulPayment> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$SuccessfulPaymentCopyWithImpl<SuccessfulPayment>(
+          this as SuccessfulPayment, _$identity);
+
+  /// Serializes this SuccessfulPayment to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'SuccessfulPayment(currency: $currency, totalAmount: $totalAmount, invoicePayload: $invoicePayload, shippingOptionId: $shippingOptionId, orderInfo: $orderInfo, telegramPaymentChargeId: $telegramPaymentChargeId, providerPaymentChargeId: $providerPaymentChargeId, isRecurring: $isRecurring, isFirstRecurring: $isFirstRecurring)';
+  }
 }
 
 /// @nodoc
-abstract class $SuccessfulPaymentCopyWith<$Res> {
+abstract mixin class $SuccessfulPaymentCopyWith<$Res> {
   factory $SuccessfulPaymentCopyWith(
-          SuccessfulPayment value, $Res Function(SuccessfulPayment) then) =
-      _$SuccessfulPaymentCopyWithImpl<$Res, SuccessfulPayment>;
+          SuccessfulPayment value, $Res Function(SuccessfulPayment) _then) =
+      _$SuccessfulPaymentCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'currency') String currency,
@@ -94,14 +95,12 @@ abstract class $SuccessfulPaymentCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SuccessfulPaymentCopyWithImpl<$Res, $Val extends SuccessfulPayment>
+class _$SuccessfulPaymentCopyWithImpl<$Res>
     implements $SuccessfulPaymentCopyWith<$Res> {
-  _$SuccessfulPaymentCopyWithImpl(this._value, this._then);
+  _$SuccessfulPaymentCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SuccessfulPayment _self;
+  final $Res Function(SuccessfulPayment) _then;
 
   /// Create a copy of SuccessfulPayment
   /// with the given fields replaced by the non-null parameter values.
@@ -118,44 +117,44 @@ class _$SuccessfulPaymentCopyWithImpl<$Res, $Val extends SuccessfulPayment>
     Object? isRecurring = freezed,
     Object? isFirstRecurring = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       currency: null == currency
-          ? _value.currency
+          ? _self.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
       totalAmount: null == totalAmount
-          ? _value.totalAmount
+          ? _self.totalAmount
           : totalAmount // ignore: cast_nullable_to_non_nullable
               as int,
       invoicePayload: null == invoicePayload
-          ? _value.invoicePayload
+          ? _self.invoicePayload
           : invoicePayload // ignore: cast_nullable_to_non_nullable
               as String,
       shippingOptionId: freezed == shippingOptionId
-          ? _value.shippingOptionId
+          ? _self.shippingOptionId
           : shippingOptionId // ignore: cast_nullable_to_non_nullable
               as String?,
       orderInfo: freezed == orderInfo
-          ? _value.orderInfo
+          ? _self.orderInfo
           : orderInfo // ignore: cast_nullable_to_non_nullable
               as OrderInfo?,
       telegramPaymentChargeId: null == telegramPaymentChargeId
-          ? _value.telegramPaymentChargeId
+          ? _self.telegramPaymentChargeId
           : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
               as String,
       providerPaymentChargeId: null == providerPaymentChargeId
-          ? _value.providerPaymentChargeId
+          ? _self.providerPaymentChargeId
           : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
               as String,
       isRecurring: freezed == isRecurring
-          ? _value.isRecurring
+          ? _self.isRecurring
           : isRecurring // ignore: cast_nullable_to_non_nullable
               as bool?,
       isFirstRecurring: freezed == isFirstRecurring
-          ? _value.isFirstRecurring
+          ? _self.isFirstRecurring
           : isFirstRecurring // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of SuccessfulPayment
@@ -163,109 +162,20 @@ class _$SuccessfulPaymentCopyWithImpl<$Res, $Val extends SuccessfulPayment>
   @override
   @pragma('vm:prefer-inline')
   $OrderInfoCopyWith<$Res>? get orderInfo {
-    if (_value.orderInfo == null) {
+    if (_self.orderInfo == null) {
       return null;
     }
 
-    return $OrderInfoCopyWith<$Res>(_value.orderInfo!, (value) {
-      return _then(_value.copyWith(orderInfo: value) as $Val);
+    return $OrderInfoCopyWith<$Res>(_self.orderInfo!, (value) {
+      return _then(_self.copyWith(orderInfo: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$SuccessfulPaymentImplCopyWith<$Res>
-    implements $SuccessfulPaymentCopyWith<$Res> {
-  factory _$$SuccessfulPaymentImplCopyWith(_$SuccessfulPaymentImpl value,
-          $Res Function(_$SuccessfulPaymentImpl) then) =
-      __$$SuccessfulPaymentImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'total_amount') int totalAmount,
-      @JsonKey(name: 'invoice_payload') String invoicePayload,
-      @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
-      @JsonKey(name: 'order_info') OrderInfo? orderInfo,
-      @JsonKey(name: 'telegram_payment_charge_id')
-      String telegramPaymentChargeId,
-      @JsonKey(name: 'provider_payment_charge_id')
-      String providerPaymentChargeId,
-      @JsonKey(name: 'is_recurring') bool? isRecurring,
-      @JsonKey(name: 'is_first_recurring') bool? isFirstRecurring});
-
-  @override
-  $OrderInfoCopyWith<$Res>? get orderInfo;
-}
-
-/// @nodoc
-class __$$SuccessfulPaymentImplCopyWithImpl<$Res>
-    extends _$SuccessfulPaymentCopyWithImpl<$Res, _$SuccessfulPaymentImpl>
-    implements _$$SuccessfulPaymentImplCopyWith<$Res> {
-  __$$SuccessfulPaymentImplCopyWithImpl(_$SuccessfulPaymentImpl _value,
-      $Res Function(_$SuccessfulPaymentImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SuccessfulPayment
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? currency = null,
-    Object? totalAmount = null,
-    Object? invoicePayload = null,
-    Object? shippingOptionId = freezed,
-    Object? orderInfo = freezed,
-    Object? telegramPaymentChargeId = null,
-    Object? providerPaymentChargeId = null,
-    Object? isRecurring = freezed,
-    Object? isFirstRecurring = freezed,
-  }) {
-    return _then(_$SuccessfulPaymentImpl(
-      currency: null == currency
-          ? _value.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalAmount: null == totalAmount
-          ? _value.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
-      invoicePayload: null == invoicePayload
-          ? _value.invoicePayload
-          : invoicePayload // ignore: cast_nullable_to_non_nullable
-              as String,
-      shippingOptionId: freezed == shippingOptionId
-          ? _value.shippingOptionId
-          : shippingOptionId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      orderInfo: freezed == orderInfo
-          ? _value.orderInfo
-          : orderInfo // ignore: cast_nullable_to_non_nullable
-              as OrderInfo?,
-      telegramPaymentChargeId: null == telegramPaymentChargeId
-          ? _value.telegramPaymentChargeId
-          : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      providerPaymentChargeId: null == providerPaymentChargeId
-          ? _value.providerPaymentChargeId
-          : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      isRecurring: freezed == isRecurring
-          ? _value.isRecurring
-          : isRecurring // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isFirstRecurring: freezed == isFirstRecurring
-          ? _value.isFirstRecurring
-          : isFirstRecurring // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$SuccessfulPaymentImpl implements _SuccessfulPayment {
-  const _$SuccessfulPaymentImpl(
+class _SuccessfulPayment implements SuccessfulPayment {
+  const _SuccessfulPayment(
       {@JsonKey(name: 'currency') required this.currency,
       @JsonKey(name: 'total_amount') required this.totalAmount,
       @JsonKey(name: 'invoice_payload') required this.invoicePayload,
@@ -277,9 +187,8 @@ class _$SuccessfulPaymentImpl implements _SuccessfulPayment {
       required this.providerPaymentChargeId,
       @JsonKey(name: 'is_recurring') this.isRecurring,
       @JsonKey(name: 'is_first_recurring') this.isFirstRecurring});
-
-  factory _$SuccessfulPaymentImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SuccessfulPaymentImplFromJson(json);
+  factory _SuccessfulPayment.fromJson(Map<String, dynamic> json) =>
+      _$SuccessfulPaymentFromJson(json);
 
   /// Three-letter ISO 4217 currency code
   @override
@@ -331,100 +240,126 @@ class _$SuccessfulPaymentImpl implements _SuccessfulPayment {
   @JsonKey(name: 'is_first_recurring')
   final bool? isFirstRecurring;
 
+  /// Create a copy of SuccessfulPayment
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SuccessfulPaymentCopyWith<_SuccessfulPayment> get copyWith =>
+      __$SuccessfulPaymentCopyWithImpl<_SuccessfulPayment>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SuccessfulPaymentToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'SuccessfulPayment(currency: $currency, totalAmount: $totalAmount, invoicePayload: $invoicePayload, shippingOptionId: $shippingOptionId, orderInfo: $orderInfo, telegramPaymentChargeId: $telegramPaymentChargeId, providerPaymentChargeId: $providerPaymentChargeId, isRecurring: $isRecurring, isFirstRecurring: $isFirstRecurring)';
   }
-
-  /// Create a copy of SuccessfulPayment
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SuccessfulPaymentImplCopyWith<_$SuccessfulPaymentImpl> get copyWith =>
-      __$$SuccessfulPaymentImplCopyWithImpl<_$SuccessfulPaymentImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SuccessfulPaymentImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _SuccessfulPayment implements SuccessfulPayment {
-  const factory _SuccessfulPayment(
-      {@JsonKey(name: 'currency') required final String currency,
-      @JsonKey(name: 'total_amount') required final int totalAmount,
-      @JsonKey(name: 'invoice_payload') required final String invoicePayload,
-      @JsonKey(name: 'shipping_option_id') final String? shippingOptionId,
-      @JsonKey(name: 'order_info') final OrderInfo? orderInfo,
+/// @nodoc
+abstract mixin class _$SuccessfulPaymentCopyWith<$Res>
+    implements $SuccessfulPaymentCopyWith<$Res> {
+  factory _$SuccessfulPaymentCopyWith(
+          _SuccessfulPayment value, $Res Function(_SuccessfulPayment) _then) =
+      __$SuccessfulPaymentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'currency') String currency,
+      @JsonKey(name: 'total_amount') int totalAmount,
+      @JsonKey(name: 'invoice_payload') String invoicePayload,
+      @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
+      @JsonKey(name: 'order_info') OrderInfo? orderInfo,
       @JsonKey(name: 'telegram_payment_charge_id')
-      required final String telegramPaymentChargeId,
+      String telegramPaymentChargeId,
       @JsonKey(name: 'provider_payment_charge_id')
-      required final String providerPaymentChargeId,
-      @JsonKey(name: 'is_recurring') final bool? isRecurring,
-      @JsonKey(name: 'is_first_recurring')
-      final bool? isFirstRecurring}) = _$SuccessfulPaymentImpl;
+      String providerPaymentChargeId,
+      @JsonKey(name: 'is_recurring') bool? isRecurring,
+      @JsonKey(name: 'is_first_recurring') bool? isFirstRecurring});
 
-  factory _SuccessfulPayment.fromJson(Map<String, dynamic> json) =
-      _$SuccessfulPaymentImpl.fromJson;
-
-  /// Three-letter ISO 4217 currency code
   @override
-  @JsonKey(name: 'currency')
-  String get currency;
+  $OrderInfoCopyWith<$Res>? get orderInfo;
+}
 
-  /// Total price in the smallest units of the currency (integer, not
-  /// float/double). For example, for a price of US$ 1.45 pass amount = 145.
-  /// See the exp parameter in
-  /// [currencies.json](https://core.telegram.org/bots/payments/currencies.json),
-  /// it shows the number of digits past the decimal point for each currency
-  /// (2 for the majority of currencies).
-  @override
-  @JsonKey(name: 'total_amount')
-  int get totalAmount;
+/// @nodoc
+class __$SuccessfulPaymentCopyWithImpl<$Res>
+    implements _$SuccessfulPaymentCopyWith<$Res> {
+  __$SuccessfulPaymentCopyWithImpl(this._self, this._then);
 
-  /// Bot specified invoice payload
-  @override
-  @JsonKey(name: 'invoice_payload')
-  String get invoicePayload;
-
-  /// Optional. Identifier of the shipping option chosen by the user
-  @override
-  @JsonKey(name: 'shipping_option_id')
-  String? get shippingOptionId;
-
-  /// Optional. Order info provided by the user
-  @override
-  @JsonKey(name: 'order_info')
-  OrderInfo? get orderInfo;
-
-  /// Telegram payment identifier
-  @override
-  @JsonKey(name: 'telegram_payment_charge_id')
-  String get telegramPaymentChargeId;
-
-  /// Provider payment identifier
-  @override
-  @JsonKey(name: 'provider_payment_charge_id')
-  String get providerPaymentChargeId;
-
-  /// Optional. True, if the payment is a recurring payment for a subscription
-  @override
-  @JsonKey(name: 'is_recurring')
-  bool? get isRecurring;
-
-  /// Optional. True, if the payment is the first payment for a subscription
-  @override
-  @JsonKey(name: 'is_first_recurring')
-  bool? get isFirstRecurring;
+  final _SuccessfulPayment _self;
+  final $Res Function(_SuccessfulPayment) _then;
 
   /// Create a copy of SuccessfulPayment
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessfulPaymentImplCopyWith<_$SuccessfulPaymentImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? currency = null,
+    Object? totalAmount = null,
+    Object? invoicePayload = null,
+    Object? shippingOptionId = freezed,
+    Object? orderInfo = freezed,
+    Object? telegramPaymentChargeId = null,
+    Object? providerPaymentChargeId = null,
+    Object? isRecurring = freezed,
+    Object? isFirstRecurring = freezed,
+  }) {
+    return _then(_SuccessfulPayment(
+      currency: null == currency
+          ? _self.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalAmount: null == totalAmount
+          ? _self.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+      invoicePayload: null == invoicePayload
+          ? _self.invoicePayload
+          : invoicePayload // ignore: cast_nullable_to_non_nullable
+              as String,
+      shippingOptionId: freezed == shippingOptionId
+          ? _self.shippingOptionId
+          : shippingOptionId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderInfo: freezed == orderInfo
+          ? _self.orderInfo
+          : orderInfo // ignore: cast_nullable_to_non_nullable
+              as OrderInfo?,
+      telegramPaymentChargeId: null == telegramPaymentChargeId
+          ? _self.telegramPaymentChargeId
+          : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
+              as String,
+      providerPaymentChargeId: null == providerPaymentChargeId
+          ? _self.providerPaymentChargeId
+          : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
+              as String,
+      isRecurring: freezed == isRecurring
+          ? _self.isRecurring
+          : isRecurring // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isFirstRecurring: freezed == isFirstRecurring
+          ? _self.isFirstRecurring
+          : isFirstRecurring // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+
+  /// Create a copy of SuccessfulPayment
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OrderInfoCopyWith<$Res>? get orderInfo {
+    if (_self.orderInfo == null) {
+      return null;
+    }
+
+    return $OrderInfoCopyWith<$Res>(_self.orderInfo!, (value) {
+      return _then(_self.copyWith(orderInfo: value));
+    });
+  }
 }

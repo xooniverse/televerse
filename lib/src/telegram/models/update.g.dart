@@ -6,7 +6,7 @@ part of 'update.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UpdateImpl _$$UpdateImplFromJson(Map<String, dynamic> json) => _$UpdateImpl(
+_Update _$UpdateFromJson(Map<String, dynamic> json) => _Update(
       updateId: (json['update_id'] as num).toInt(),
       message: json['message'] == null
           ? null
@@ -95,8 +95,7 @@ _$UpdateImpl _$$UpdateImplFromJson(Map<String, dynamic> json) => _$UpdateImpl(
               json['purchased_paid_media'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$UpdateImplToJson(_$UpdateImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$UpdateToJson(_Update instance) => <String, dynamic>{
       'update_id': instance.updateId,
       if (instance.message case final value?) 'message': value,
       if (instance.editedMessage case final value?) 'edited_message': value,

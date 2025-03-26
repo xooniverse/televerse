@@ -8,7 +8,7 @@ part 'shared_user.g.dart';
 /// Represents information about a user that was shared with the bot using a
 /// KeyboardButtonRequestUser button.
 @freezed
-class SharedUser with _$SharedUser {
+abstract class SharedUser with _$SharedUser {
   /// Creates a [SharedUser] object.
   const factory SharedUser({
     /// Identifier of the shared user. This number may have more than 32

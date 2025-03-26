@@ -12,8 +12,6 @@ part 'reply_markup.g.dart';
 @Freezed(
   fromJson: true,
   toJson: true,
-  when: FreezedWhenOptions(when: false, whenOrNull: false, maybeWhen: false),
-  map: FreezedMapOptions(map: false, mapOrNull: false, maybeMap: false),
   copyWith: false,
 )
 sealed class ReplyMarkup with _$ReplyMarkup {

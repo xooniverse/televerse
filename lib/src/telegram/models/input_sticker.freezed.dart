@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,9 +12,6 @@ part of 'input_sticker.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$InputSticker {
   /// The added sticker. Pass a file_id as a String to send a file that
@@ -23,42 +21,49 @@ mixin _$InputSticker {
   /// HTTP URL. More information on Sending Files »
   @JsonKey(name: 'sticker')
   @InputFileConverter()
-  InputFile get sticker => throw _privateConstructorUsedError;
+  InputFile get sticker;
 
   /// Format of the added sticker, must be one of "static" for a .WEBP or .PNG
   /// image, "animated" for a .TGS animation, "video" for a WEBM video
   @JsonKey(name: 'format')
-  InputStickerFormat get format => throw _privateConstructorUsedError;
+  InputStickerFormat get format;
 
   /// List of 1-20 emoji associated with the sticker
   @JsonKey(name: 'emoji_list')
-  List<String> get emojiList => throw _privateConstructorUsedError;
+  List<String> get emojiList;
 
   /// Optional. Position where the mask should be placed on faces. For "mask"
   /// stickers only.
   @JsonKey(name: 'mask_position')
-  MaskPosition? get maskPosition => throw _privateConstructorUsedError;
+  MaskPosition? get maskPosition;
 
   /// Optional. List of 0-20 search keywords for the sticker with total length
   /// of up to 64 characters. For "regular" and "custom_emoji" stickers only.
   @JsonKey(name: 'keywords')
-  List<String>? get keywords => throw _privateConstructorUsedError;
-
-  /// Serializes this InputSticker to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<String>? get keywords;
 
   /// Create a copy of InputSticker
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $InputStickerCopyWith<InputSticker> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$InputStickerCopyWithImpl<InputSticker>(
+          this as InputSticker, _$identity);
+
+  /// Serializes this InputSticker to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'InputSticker(sticker: $sticker, format: $format, emojiList: $emojiList, maskPosition: $maskPosition, keywords: $keywords)';
+  }
 }
 
 /// @nodoc
-abstract class $InputStickerCopyWith<$Res> {
+abstract mixin class $InputStickerCopyWith<$Res> {
   factory $InputStickerCopyWith(
-          InputSticker value, $Res Function(InputSticker) then) =
-      _$InputStickerCopyWithImpl<$Res, InputSticker>;
+          InputSticker value, $Res Function(InputSticker) _then) =
+      _$InputStickerCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'sticker') @InputFileConverter() InputFile sticker,
@@ -71,14 +76,11 @@ abstract class $InputStickerCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InputStickerCopyWithImpl<$Res, $Val extends InputSticker>
-    implements $InputStickerCopyWith<$Res> {
-  _$InputStickerCopyWithImpl(this._value, this._then);
+class _$InputStickerCopyWithImpl<$Res> implements $InputStickerCopyWith<$Res> {
+  _$InputStickerCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final InputSticker _self;
+  final $Res Function(InputSticker) _then;
 
   /// Create a copy of InputSticker
   /// with the given fields replaced by the non-null parameter values.
@@ -91,28 +93,28 @@ class _$InputStickerCopyWithImpl<$Res, $Val extends InputSticker>
     Object? maskPosition = freezed,
     Object? keywords = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       sticker: null == sticker
-          ? _value.sticker
+          ? _self.sticker
           : sticker // ignore: cast_nullable_to_non_nullable
               as InputFile,
       format: null == format
-          ? _value.format
+          ? _self.format
           : format // ignore: cast_nullable_to_non_nullable
               as InputStickerFormat,
       emojiList: null == emojiList
-          ? _value.emojiList
+          ? _self.emojiList
           : emojiList // ignore: cast_nullable_to_non_nullable
               as List<String>,
       maskPosition: freezed == maskPosition
-          ? _value.maskPosition
+          ? _self.maskPosition
           : maskPosition // ignore: cast_nullable_to_non_nullable
               as MaskPosition?,
       keywords: freezed == keywords
-          ? _value.keywords
+          ? _self.keywords
           : keywords // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of InputSticker
@@ -120,83 +122,20 @@ class _$InputStickerCopyWithImpl<$Res, $Val extends InputSticker>
   @override
   @pragma('vm:prefer-inline')
   $MaskPositionCopyWith<$Res>? get maskPosition {
-    if (_value.maskPosition == null) {
+    if (_self.maskPosition == null) {
       return null;
     }
 
-    return $MaskPositionCopyWith<$Res>(_value.maskPosition!, (value) {
-      return _then(_value.copyWith(maskPosition: value) as $Val);
+    return $MaskPositionCopyWith<$Res>(_self.maskPosition!, (value) {
+      return _then(_self.copyWith(maskPosition: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$InputStickerImplCopyWith<$Res>
-    implements $InputStickerCopyWith<$Res> {
-  factory _$$InputStickerImplCopyWith(
-          _$InputStickerImpl value, $Res Function(_$InputStickerImpl) then) =
-      __$$InputStickerImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'sticker') @InputFileConverter() InputFile sticker,
-      @JsonKey(name: 'format') InputStickerFormat format,
-      @JsonKey(name: 'emoji_list') List<String> emojiList,
-      @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
-      @JsonKey(name: 'keywords') List<String>? keywords});
-
-  @override
-  $MaskPositionCopyWith<$Res>? get maskPosition;
-}
-
-/// @nodoc
-class __$$InputStickerImplCopyWithImpl<$Res>
-    extends _$InputStickerCopyWithImpl<$Res, _$InputStickerImpl>
-    implements _$$InputStickerImplCopyWith<$Res> {
-  __$$InputStickerImplCopyWithImpl(
-      _$InputStickerImpl _value, $Res Function(_$InputStickerImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InputSticker
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? sticker = null,
-    Object? format = null,
-    Object? emojiList = null,
-    Object? maskPosition = freezed,
-    Object? keywords = freezed,
-  }) {
-    return _then(_$InputStickerImpl(
-      sticker: null == sticker
-          ? _value.sticker
-          : sticker // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-      format: null == format
-          ? _value.format
-          : format // ignore: cast_nullable_to_non_nullable
-              as InputStickerFormat,
-      emojiList: null == emojiList
-          ? _value._emojiList
-          : emojiList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      maskPosition: freezed == maskPosition
-          ? _value.maskPosition
-          : maskPosition // ignore: cast_nullable_to_non_nullable
-              as MaskPosition?,
-      keywords: freezed == keywords
-          ? _value._keywords
-          : keywords // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable(createFactory: false)
-class _$InputStickerImpl implements _InputSticker {
-  const _$InputStickerImpl(
+class _InputSticker implements InputSticker {
+  const _InputSticker(
       {@JsonKey(name: 'sticker') @InputFileConverter() required this.sticker,
       @JsonKey(name: 'format') required this.format,
       @JsonKey(name: 'emoji_list') required final List<String> emojiList,
@@ -255,75 +194,100 @@ class _$InputStickerImpl implements _InputSticker {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of InputSticker
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InputStickerCopyWith<_InputSticker> get copyWith =>
+      __$InputStickerCopyWithImpl<_InputSticker>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InputStickerToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'InputSticker(sticker: $sticker, format: $format, emojiList: $emojiList, maskPosition: $maskPosition, keywords: $keywords)';
   }
-
-  /// Create a copy of InputSticker
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InputStickerImplCopyWith<_$InputStickerImpl> get copyWith =>
-      __$$InputStickerImplCopyWithImpl<_$InputStickerImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InputStickerImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _InputSticker implements InputSticker {
-  const factory _InputSticker(
-          {@JsonKey(name: 'sticker')
-          @InputFileConverter()
-          required final InputFile sticker,
-          @JsonKey(name: 'format') required final InputStickerFormat format,
-          @JsonKey(name: 'emoji_list') required final List<String> emojiList,
-          @JsonKey(name: 'mask_position') final MaskPosition? maskPosition,
-          @JsonKey(name: 'keywords') final List<String>? keywords}) =
-      _$InputStickerImpl;
-
-  /// The added sticker. Pass a file_id as a String to send a file that
-  /// already exists on the Telegram servers, pass an HTTP URL as a String for
-  /// Telegram to get a file from the Internet, or upload a new one using
-  /// multipart/form-data. Animated and video stickers can't be uploaded via
-  /// HTTP URL. More information on Sending Files »
+/// @nodoc
+abstract mixin class _$InputStickerCopyWith<$Res>
+    implements $InputStickerCopyWith<$Res> {
+  factory _$InputStickerCopyWith(
+          _InputSticker value, $Res Function(_InputSticker) _then) =
+      __$InputStickerCopyWithImpl;
   @override
-  @JsonKey(name: 'sticker')
-  @InputFileConverter()
-  InputFile get sticker;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'sticker') @InputFileConverter() InputFile sticker,
+      @JsonKey(name: 'format') InputStickerFormat format,
+      @JsonKey(name: 'emoji_list') List<String> emojiList,
+      @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
+      @JsonKey(name: 'keywords') List<String>? keywords});
 
-  /// Format of the added sticker, must be one of "static" for a .WEBP or .PNG
-  /// image, "animated" for a .TGS animation, "video" for a WEBM video
   @override
-  @JsonKey(name: 'format')
-  InputStickerFormat get format;
+  $MaskPositionCopyWith<$Res>? get maskPosition;
+}
 
-  /// List of 1-20 emoji associated with the sticker
-  @override
-  @JsonKey(name: 'emoji_list')
-  List<String> get emojiList;
+/// @nodoc
+class __$InputStickerCopyWithImpl<$Res>
+    implements _$InputStickerCopyWith<$Res> {
+  __$InputStickerCopyWithImpl(this._self, this._then);
 
-  /// Optional. Position where the mask should be placed on faces. For "mask"
-  /// stickers only.
-  @override
-  @JsonKey(name: 'mask_position')
-  MaskPosition? get maskPosition;
-
-  /// Optional. List of 0-20 search keywords for the sticker with total length
-  /// of up to 64 characters. For "regular" and "custom_emoji" stickers only.
-  @override
-  @JsonKey(name: 'keywords')
-  List<String>? get keywords;
+  final _InputSticker _self;
+  final $Res Function(_InputSticker) _then;
 
   /// Create a copy of InputSticker
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InputStickerImplCopyWith<_$InputStickerImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? sticker = null,
+    Object? format = null,
+    Object? emojiList = null,
+    Object? maskPosition = freezed,
+    Object? keywords = freezed,
+  }) {
+    return _then(_InputSticker(
+      sticker: null == sticker
+          ? _self.sticker
+          : sticker // ignore: cast_nullable_to_non_nullable
+              as InputFile,
+      format: null == format
+          ? _self.format
+          : format // ignore: cast_nullable_to_non_nullable
+              as InputStickerFormat,
+      emojiList: null == emojiList
+          ? _self._emojiList
+          : emojiList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      maskPosition: freezed == maskPosition
+          ? _self.maskPosition
+          : maskPosition // ignore: cast_nullable_to_non_nullable
+              as MaskPosition?,
+      keywords: freezed == keywords
+          ? _self._keywords
+          : keywords // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+    ));
+  }
+
+  /// Create a copy of InputSticker
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MaskPositionCopyWith<$Res>? get maskPosition {
+    if (_self.maskPosition == null) {
+      return null;
+    }
+
+    return $MaskPositionCopyWith<$Res>(_self.maskPosition!, (value) {
+      return _then(_self.copyWith(maskPosition: value));
+    });
+  }
 }

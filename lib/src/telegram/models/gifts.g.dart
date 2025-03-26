@@ -6,13 +6,12 @@ part of 'gifts.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GiftsImpl _$$GiftsImplFromJson(Map<String, dynamic> json) => _$GiftsImpl(
+_Gifts _$GiftsFromJson(Map<String, dynamic> json) => _Gifts(
       gifts: (json['gifts'] as List<dynamic>)
           .map((e) => Gift.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$GiftsImplToJson(_$GiftsImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$GiftsToJson(_Gifts instance) => <String, dynamic>{
       'gifts': instance.gifts,
     };

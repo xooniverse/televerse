@@ -8,7 +8,7 @@ part 'encrypted_credentials.g.dart';
 /// EncryptedPassportElement. See the Telegram Passport Documentation for a
 /// complete description of the data decryption and authentication processes.
 @freezed
-class EncryptedCredentials with _$EncryptedCredentials {
+abstract class EncryptedCredentials with _$EncryptedCredentials {
   /// Creates a new [EncryptedCredentials] object.
   const factory EncryptedCredentials({
     /// Base64-encoded encrypted JSON-serialized data with unique user's

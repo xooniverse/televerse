@@ -6,17 +6,17 @@ part of 'chat_boost_source.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatBoostSourcePremiumImpl _$$ChatBoostSourcePremiumImplFromJson(
+ChatBoostSourcePremium _$ChatBoostSourcePremiumFromJson(
         Map<String, dynamic> json) =>
-    _$ChatBoostSourcePremiumImpl(
+    ChatBoostSourcePremium(
       source:
           $enumDecodeNullable(_$ChatBoostSourceTypeEnumMap, json['source']) ??
               ChatBoostSourceType.premium,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ChatBoostSourcePremiumImplToJson(
-        _$ChatBoostSourcePremiumImpl instance) =>
+Map<String, dynamic> _$ChatBoostSourcePremiumToJson(
+        ChatBoostSourcePremium instance) =>
     <String, dynamic>{
       'source': instance.source,
       'user': instance.user,
@@ -28,25 +28,25 @@ const _$ChatBoostSourceTypeEnumMap = {
   ChatBoostSourceType.giveaway: 'giveaway',
 };
 
-_$ChatBoostSourceGiftCodeImpl _$$ChatBoostSourceGiftCodeImplFromJson(
+ChatBoostSourceGiftCode _$ChatBoostSourceGiftCodeFromJson(
         Map<String, dynamic> json) =>
-    _$ChatBoostSourceGiftCodeImpl(
+    ChatBoostSourceGiftCode(
       source:
           $enumDecodeNullable(_$ChatBoostSourceTypeEnumMap, json['source']) ??
               ChatBoostSourceType.giftCode,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ChatBoostSourceGiftCodeImplToJson(
-        _$ChatBoostSourceGiftCodeImpl instance) =>
+Map<String, dynamic> _$ChatBoostSourceGiftCodeToJson(
+        ChatBoostSourceGiftCode instance) =>
     <String, dynamic>{
       'source': instance.source,
       'user': instance.user,
     };
 
-_$ChatBoostSourceGiveawayImpl _$$ChatBoostSourceGiveawayImplFromJson(
+ChatBoostSourceGiveaway _$ChatBoostSourceGiveawayFromJson(
         Map<String, dynamic> json) =>
-    _$ChatBoostSourceGiveawayImpl(
+    ChatBoostSourceGiveaway(
       source:
           $enumDecodeNullable(_$ChatBoostSourceTypeEnumMap, json['source']) ??
               ChatBoostSourceType.giveaway,
@@ -58,8 +58,8 @@ _$ChatBoostSourceGiveawayImpl _$$ChatBoostSourceGiveawayImplFromJson(
       isUnclaimed: json['is_unclaimed'] as bool?,
     );
 
-Map<String, dynamic> _$$ChatBoostSourceGiveawayImplToJson(
-        _$ChatBoostSourceGiveawayImpl instance) =>
+Map<String, dynamic> _$ChatBoostSourceGiveawayToJson(
+        ChatBoostSourceGiveaway instance) =>
     <String, dynamic>{
       'source': instance.source,
       'giveaway_message_id': instance.giveawayMessageId,

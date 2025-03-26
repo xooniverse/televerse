@@ -6,7 +6,7 @@ part 'voice.g.dart';
 
 /// This object represents a voice note.
 @freezed
-class Voice with _$Voice {
+abstract class Voice with _$Voice {
   /// Creates a voice note
   ///
   /// - [fileId] Identifier for this file, which can be used to download or

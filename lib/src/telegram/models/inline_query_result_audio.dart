@@ -16,7 +16,7 @@ part 'inline_query_result_audio.g.dart';
 /// Note: This will only work in Telegram versions released after 9 April, 2016.
 /// Older clients will ignore them.
 @freezed
-class InlineQueryResultAudio
+abstract class InlineQueryResultAudio
     with _$InlineQueryResultAudio
     implements InlineQueryResult {
   /// Constructs an [InlineQueryResultAudio] object

@@ -6,7 +6,7 @@ part of 'poll.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PollImpl _$$PollImplFromJson(Map<String, dynamic> json) => _$PollImpl(
+_Poll _$PollFromJson(Map<String, dynamic> json) => _Poll(
       id: json['id'] as String,
       question: json['question'] as String,
       options: (json['options'] as List<dynamic>)
@@ -29,8 +29,7 @@ _$PollImpl _$$PollImplFromJson(Map<String, dynamic> json) => _$PollImpl(
           .toList(),
     );
 
-Map<String, dynamic> _$$PollImplToJson(_$PollImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PollToJson(_Poll instance) => <String, dynamic>{
       'id': instance.id,
       'question': instance.question,
       'options': instance.options,

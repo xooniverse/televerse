@@ -7,7 +7,7 @@ part 'chat_background.g.dart';
 
 /// This object represents a chat background.
 @freezed
-class ChatBackground with _$ChatBackground {
+abstract class ChatBackground with _$ChatBackground {
   /// Constructs a [ChatBackground] object.
   const factory ChatBackground({
     /// Type of the background.

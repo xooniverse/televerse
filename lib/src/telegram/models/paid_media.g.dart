@@ -6,9 +6,8 @@ part of 'paid_media.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PaidMediaPreviewImpl _$$PaidMediaPreviewImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PaidMediaPreviewImpl(
+PaidMediaPreview _$PaidMediaPreviewFromJson(Map<String, dynamic> json) =>
+    PaidMediaPreview(
       type: $enumDecodeNullable(_$PaidMediaTypeEnumMap, json['type']) ??
           PaidMediaType.preview,
       width: (json['width'] as num?)?.toInt(),
@@ -16,8 +15,7 @@ _$PaidMediaPreviewImpl _$$PaidMediaPreviewImplFromJson(
       duration: (json['duration'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$PaidMediaPreviewImplToJson(
-        _$PaidMediaPreviewImpl instance) =>
+Map<String, dynamic> _$PaidMediaPreviewToJson(PaidMediaPreview instance) =>
     <String, dynamic>{
       'type': _$PaidMediaTypeEnumMap[instance.type]!,
       if (instance.width case final value?) 'width': value,
@@ -31,8 +29,8 @@ const _$PaidMediaTypeEnumMap = {
   PaidMediaType.video: 'video',
 };
 
-_$PaidMediaPhotoImpl _$$PaidMediaPhotoImplFromJson(Map<String, dynamic> json) =>
-    _$PaidMediaPhotoImpl(
+PaidMediaPhoto _$PaidMediaPhotoFromJson(Map<String, dynamic> json) =>
+    PaidMediaPhoto(
       type: $enumDecodeNullable(_$PaidMediaTypeEnumMap, json['type']) ??
           PaidMediaType.photo,
       photo: (json['photo'] as List<dynamic>)
@@ -40,22 +38,20 @@ _$PaidMediaPhotoImpl _$$PaidMediaPhotoImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$PaidMediaPhotoImplToJson(
-        _$PaidMediaPhotoImpl instance) =>
+Map<String, dynamic> _$PaidMediaPhotoToJson(PaidMediaPhoto instance) =>
     <String, dynamic>{
       'type': _$PaidMediaTypeEnumMap[instance.type]!,
       'photo': instance.photo,
     };
 
-_$PaidMediaVideoImpl _$$PaidMediaVideoImplFromJson(Map<String, dynamic> json) =>
-    _$PaidMediaVideoImpl(
+PaidMediaVideo _$PaidMediaVideoFromJson(Map<String, dynamic> json) =>
+    PaidMediaVideo(
       type: $enumDecodeNullable(_$PaidMediaTypeEnumMap, json['type']) ??
           PaidMediaType.video,
       video: Video.fromJson(json['video'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$PaidMediaVideoImplToJson(
-        _$PaidMediaVideoImpl instance) =>
+Map<String, dynamic> _$PaidMediaVideoToJson(PaidMediaVideo instance) =>
     <String, dynamic>{
       'type': _$PaidMediaTypeEnumMap[instance.type]!,
       'video': instance.video,

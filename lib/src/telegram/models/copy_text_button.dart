@@ -7,7 +7,7 @@ part 'copy_text_button.g.dart';
 /// This object represents an inline keyboard button that copies specified text
 /// to the clipboard.
 @freezed
-class CopyTextButton with _$CopyTextButton {
+abstract class CopyTextButton with _$CopyTextButton {
   /// This object represents an inline keyboard button that copies specified
   /// text to the clipboard.
   const factory CopyTextButton({

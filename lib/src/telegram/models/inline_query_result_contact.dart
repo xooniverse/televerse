@@ -12,7 +12,7 @@ part 'inline_query_result_contact.g.dart';
 ///
 /// Note: This will only work in Telegram versions released after 9 April, 2016. Older clients will ignore them.
 @freezed
-class InlineQueryResultContact
+abstract class InlineQueryResultContact
     with _$InlineQueryResultContact
     implements InlineQueryResult {
   /// Constructs an [InlineQueryResultContact] object

@@ -6,9 +6,8 @@ part of 'giveaway_completed.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GiveawayCompletedImpl _$$GiveawayCompletedImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GiveawayCompletedImpl(
+_GiveawayCompleted _$GiveawayCompletedFromJson(Map<String, dynamic> json) =>
+    _GiveawayCompleted(
       winnerCount: (json['winner_count'] as num).toInt(),
       unclaimedPrizeCount: (json['unclaimed_prize_count'] as num?)?.toInt(),
       giveawayMessage: json['giveaway_message'] == null
@@ -17,8 +16,7 @@ _$GiveawayCompletedImpl _$$GiveawayCompletedImplFromJson(
       isStarGiveaway: json['is_star_giveaway'] as bool?,
     );
 
-Map<String, dynamic> _$$GiveawayCompletedImplToJson(
-        _$GiveawayCompletedImpl instance) =>
+Map<String, dynamic> _$GiveawayCompletedToJson(_GiveawayCompleted instance) =>
     <String, dynamic>{
       'winner_count': instance.winnerCount,
       if (instance.unclaimedPrizeCount case final value?)

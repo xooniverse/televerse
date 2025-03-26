@@ -6,9 +6,9 @@ part of 'inline_query_result_document.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultDocumentImpl _$$InlineQueryResultDocumentImplFromJson(
+_InlineQueryResultDocument _$InlineQueryResultDocumentFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultDocumentImpl(
+    _InlineQueryResultDocument(
       id: json['id'] as String,
       type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
           InlineQueryResultType.document,
@@ -34,8 +34,8 @@ _$InlineQueryResultDocumentImpl _$$InlineQueryResultDocumentImplFromJson(
       thumbnailHeight: (json['thumbnail_height'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$InlineQueryResultDocumentImplToJson(
-        _$InlineQueryResultDocumentImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultDocumentToJson(
+        _InlineQueryResultDocument instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': instance.type,

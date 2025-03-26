@@ -6,8 +6,8 @@ part of 'shipping_query.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ShippingQueryImpl _$$ShippingQueryImplFromJson(Map<String, dynamic> json) =>
-    _$ShippingQueryImpl(
+_ShippingQuery _$ShippingQueryFromJson(Map<String, dynamic> json) =>
+    _ShippingQuery(
       id: json['id'] as String,
       from: User.fromJson(json['from'] as Map<String, dynamic>),
       invoicePayload: json['invoice_payload'] as String,
@@ -15,7 +15,7 @@ _$ShippingQueryImpl _$$ShippingQueryImplFromJson(Map<String, dynamic> json) =>
           json['shipping_address'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ShippingQueryImplToJson(_$ShippingQueryImpl instance) =>
+Map<String, dynamic> _$ShippingQueryToJson(_ShippingQuery instance) =>
     <String, dynamic>{
       'id': instance.id,
       'from': instance.from,

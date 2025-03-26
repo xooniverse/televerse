@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,83 +12,44 @@ part of 'web_app_info.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-WebAppInfo _$WebAppInfoFromJson(Map<String, dynamic> json) {
-  return _WebAppInfo.fromJson(json);
-}
-
 /// @nodoc
 mixin _$WebAppInfo {
   /// An HTTPS URL of a Web App to be opened with additional data as specified
   /// in Initializing Web Apps
   @JsonKey(name: 'url')
-  String get url => throw _privateConstructorUsedError;
-
-  /// Serializes this WebAppInfo to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get url;
 
   /// Create a copy of WebAppInfo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $WebAppInfoCopyWith<WebAppInfo> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $WebAppInfoCopyWith<$Res> {
-  factory $WebAppInfoCopyWith(
-          WebAppInfo value, $Res Function(WebAppInfo) then) =
-      _$WebAppInfoCopyWithImpl<$Res, WebAppInfo>;
-  @useResult
-  $Res call({@JsonKey(name: 'url') String url});
-}
-
-/// @nodoc
-class _$WebAppInfoCopyWithImpl<$Res, $Val extends WebAppInfo>
-    implements $WebAppInfoCopyWith<$Res> {
-  _$WebAppInfoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of WebAppInfo
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $WebAppInfoCopyWith<WebAppInfo> get copyWith =>
+      _$WebAppInfoCopyWithImpl<WebAppInfo>(this as WebAppInfo, _$identity);
+
+  /// Serializes this WebAppInfo to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? url = null,
-  }) {
-    return _then(_value.copyWith(
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'WebAppInfo(url: $url)';
   }
 }
 
 /// @nodoc
-abstract class _$$WebAppInfoImplCopyWith<$Res>
-    implements $WebAppInfoCopyWith<$Res> {
-  factory _$$WebAppInfoImplCopyWith(
-          _$WebAppInfoImpl value, $Res Function(_$WebAppInfoImpl) then) =
-      __$$WebAppInfoImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $WebAppInfoCopyWith<$Res> {
+  factory $WebAppInfoCopyWith(
+          WebAppInfo value, $Res Function(WebAppInfo) _then) =
+      _$WebAppInfoCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'url') String url});
 }
 
 /// @nodoc
-class __$$WebAppInfoImplCopyWithImpl<$Res>
-    extends _$WebAppInfoCopyWithImpl<$Res, _$WebAppInfoImpl>
-    implements _$$WebAppInfoImplCopyWith<$Res> {
-  __$$WebAppInfoImplCopyWithImpl(
-      _$WebAppInfoImpl _value, $Res Function(_$WebAppInfoImpl) _then)
-      : super(_value, _then);
+class _$WebAppInfoCopyWithImpl<$Res> implements $WebAppInfoCopyWith<$Res> {
+  _$WebAppInfoCopyWithImpl(this._self, this._then);
+
+  final WebAppInfo _self;
+  final $Res Function(WebAppInfo) _then;
 
   /// Create a copy of WebAppInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -96,9 +58,9 @@ class __$$WebAppInfoImplCopyWithImpl<$Res>
   $Res call({
     Object? url = null,
   }) {
-    return _then(_$WebAppInfoImpl(
+    return _then(_self.copyWith(
       url: null == url
-          ? _value.url
+          ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -107,11 +69,10 @@ class __$$WebAppInfoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$WebAppInfoImpl implements _WebAppInfo {
-  const _$WebAppInfoImpl({@JsonKey(name: 'url') required this.url});
-
-  factory _$WebAppInfoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WebAppInfoImplFromJson(json);
+class _WebAppInfo implements WebAppInfo {
+  const _WebAppInfo({@JsonKey(name: 'url') required this.url});
+  factory _WebAppInfo.fromJson(Map<String, dynamic> json) =>
+      _$WebAppInfoFromJson(json);
 
   /// An HTTPS URL of a Web App to be opened with additional data as specified
   /// in Initializing Web Apps
@@ -119,44 +80,57 @@ class _$WebAppInfoImpl implements _WebAppInfo {
   @JsonKey(name: 'url')
   final String url;
 
+  /// Create a copy of WebAppInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$WebAppInfoCopyWith<_WebAppInfo> get copyWith =>
+      __$WebAppInfoCopyWithImpl<_WebAppInfo>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$WebAppInfoToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'WebAppInfo(url: $url)';
   }
-
-  /// Create a copy of WebAppInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$WebAppInfoImplCopyWith<_$WebAppInfoImpl> get copyWith =>
-      __$$WebAppInfoImplCopyWithImpl<_$WebAppInfoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$WebAppInfoImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _WebAppInfo implements WebAppInfo {
-  const factory _WebAppInfo({@JsonKey(name: 'url') required final String url}) =
-      _$WebAppInfoImpl;
-
-  factory _WebAppInfo.fromJson(Map<String, dynamic> json) =
-      _$WebAppInfoImpl.fromJson;
-
-  /// An HTTPS URL of a Web App to be opened with additional data as specified
-  /// in Initializing Web Apps
+/// @nodoc
+abstract mixin class _$WebAppInfoCopyWith<$Res>
+    implements $WebAppInfoCopyWith<$Res> {
+  factory _$WebAppInfoCopyWith(
+          _WebAppInfo value, $Res Function(_WebAppInfo) _then) =
+      __$WebAppInfoCopyWithImpl;
   @override
-  @JsonKey(name: 'url')
-  String get url;
+  @useResult
+  $Res call({@JsonKey(name: 'url') String url});
+}
+
+/// @nodoc
+class __$WebAppInfoCopyWithImpl<$Res> implements _$WebAppInfoCopyWith<$Res> {
+  __$WebAppInfoCopyWithImpl(this._self, this._then);
+
+  final _WebAppInfo _self;
+  final $Res Function(_WebAppInfo) _then;
 
   /// Create a copy of WebAppInfo
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WebAppInfoImplCopyWith<_$WebAppInfoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? url = null,
+  }) {
+    return _then(_WebAppInfo(
+      url: null == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }

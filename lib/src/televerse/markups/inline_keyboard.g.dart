@@ -6,8 +6,8 @@ part of 'inline_keyboard.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineKeyboardImpl _$$InlineKeyboardImplFromJson(Map<String, dynamic> json) =>
-    _$InlineKeyboardImpl(
+_InlineKeyboard _$InlineKeyboardFromJson(Map<String, dynamic> json) =>
+    _InlineKeyboard(
       inlineKeyboard: (json['inline_keyboard'] as List<dynamic>?)
               ?.map((e) => (e as List<dynamic>)
                   .map((e) =>
@@ -17,8 +17,7 @@ _$InlineKeyboardImpl _$$InlineKeyboardImplFromJson(Map<String, dynamic> json) =>
           const [<InlineKeyboardButton>[]],
     );
 
-Map<String, dynamic> _$$InlineKeyboardImplToJson(
-        _$InlineKeyboardImpl instance) =>
+Map<String, dynamic> _$InlineKeyboardToJson(_InlineKeyboard instance) =>
     <String, dynamic>{
       'inline_keyboard': instance.inlineKeyboard,
     };

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,84 +12,39 @@ part of 'web_app_data.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-WebAppData _$WebAppDataFromJson(Map<String, dynamic> json) {
-  return _WebAppData.fromJson(json);
-}
-
 /// @nodoc
 mixin _$WebAppData {
   /// The data. Be aware that a bad client can send arbitrary data in this
   /// field.
   @JsonKey(name: 'data')
-  String get data => throw _privateConstructorUsedError;
+  String get data;
 
   /// Text of the web_app keyboard button from which the Web App was opened.
   /// Be aware that a bad client can send arbitrary data in this field.
   @JsonKey(name: 'button_text')
-  String get buttonText => throw _privateConstructorUsedError;
-
-  /// Serializes this WebAppData to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get buttonText;
 
   /// Create a copy of WebAppData
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $WebAppDataCopyWith<WebAppData> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $WebAppDataCopyWith<$Res> {
-  factory $WebAppDataCopyWith(
-          WebAppData value, $Res Function(WebAppData) then) =
-      _$WebAppDataCopyWithImpl<$Res, WebAppData>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'data') String data,
-      @JsonKey(name: 'button_text') String buttonText});
-}
-
-/// @nodoc
-class _$WebAppDataCopyWithImpl<$Res, $Val extends WebAppData>
-    implements $WebAppDataCopyWith<$Res> {
-  _$WebAppDataCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of WebAppData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $WebAppDataCopyWith<WebAppData> get copyWith =>
+      _$WebAppDataCopyWithImpl<WebAppData>(this as WebAppData, _$identity);
+
+  /// Serializes this WebAppData to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? data = null,
-    Object? buttonText = null,
-  }) {
-    return _then(_value.copyWith(
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-      buttonText: null == buttonText
-          ? _value.buttonText
-          : buttonText // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'WebAppData(data: $data, buttonText: $buttonText)';
   }
 }
 
 /// @nodoc
-abstract class _$$WebAppDataImplCopyWith<$Res>
-    implements $WebAppDataCopyWith<$Res> {
-  factory _$$WebAppDataImplCopyWith(
-          _$WebAppDataImpl value, $Res Function(_$WebAppDataImpl) then) =
-      __$$WebAppDataImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $WebAppDataCopyWith<$Res> {
+  factory $WebAppDataCopyWith(
+          WebAppData value, $Res Function(WebAppData) _then) =
+      _$WebAppDataCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'data') String data,
@@ -96,12 +52,11 @@ abstract class _$$WebAppDataImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$WebAppDataImplCopyWithImpl<$Res>
-    extends _$WebAppDataCopyWithImpl<$Res, _$WebAppDataImpl>
-    implements _$$WebAppDataImplCopyWith<$Res> {
-  __$$WebAppDataImplCopyWithImpl(
-      _$WebAppDataImpl _value, $Res Function(_$WebAppDataImpl) _then)
-      : super(_value, _then);
+class _$WebAppDataCopyWithImpl<$Res> implements $WebAppDataCopyWith<$Res> {
+  _$WebAppDataCopyWithImpl(this._self, this._then);
+
+  final WebAppData _self;
+  final $Res Function(WebAppData) _then;
 
   /// Create a copy of WebAppData
   /// with the given fields replaced by the non-null parameter values.
@@ -111,13 +66,13 @@ class __$$WebAppDataImplCopyWithImpl<$Res>
     Object? data = null,
     Object? buttonText = null,
   }) {
-    return _then(_$WebAppDataImpl(
+    return _then(_self.copyWith(
       data: null == data
-          ? _value.data
+          ? _self.data
           : data // ignore: cast_nullable_to_non_nullable
               as String,
       buttonText: null == buttonText
-          ? _value.buttonText
+          ? _self.buttonText
           : buttonText // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -126,13 +81,12 @@ class __$$WebAppDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$WebAppDataImpl implements _WebAppData {
-  const _$WebAppDataImpl(
+class _WebAppData implements WebAppData {
+  const _WebAppData(
       {@JsonKey(name: 'data') required this.data,
       @JsonKey(name: 'button_text') required this.buttonText});
-
-  factory _$WebAppDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WebAppDataImplFromJson(json);
+  factory _WebAppData.fromJson(Map<String, dynamic> json) =>
+      _$WebAppDataFromJson(json);
 
   /// The data. Be aware that a bad client can send arbitrary data in this
   /// field.
@@ -146,52 +100,64 @@ class _$WebAppDataImpl implements _WebAppData {
   @JsonKey(name: 'button_text')
   final String buttonText;
 
+  /// Create a copy of WebAppData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$WebAppDataCopyWith<_WebAppData> get copyWith =>
+      __$WebAppDataCopyWithImpl<_WebAppData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$WebAppDataToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'WebAppData(data: $data, buttonText: $buttonText)';
   }
-
-  /// Create a copy of WebAppData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$WebAppDataImplCopyWith<_$WebAppDataImpl> get copyWith =>
-      __$$WebAppDataImplCopyWithImpl<_$WebAppDataImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$WebAppDataImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _WebAppData implements WebAppData {
-  const factory _WebAppData(
-          {@JsonKey(name: 'data') required final String data,
-          @JsonKey(name: 'button_text') required final String buttonText}) =
-      _$WebAppDataImpl;
-
-  factory _WebAppData.fromJson(Map<String, dynamic> json) =
-      _$WebAppDataImpl.fromJson;
-
-  /// The data. Be aware that a bad client can send arbitrary data in this
-  /// field.
+/// @nodoc
+abstract mixin class _$WebAppDataCopyWith<$Res>
+    implements $WebAppDataCopyWith<$Res> {
+  factory _$WebAppDataCopyWith(
+          _WebAppData value, $Res Function(_WebAppData) _then) =
+      __$WebAppDataCopyWithImpl;
   @override
-  @JsonKey(name: 'data')
-  String get data;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'data') String data,
+      @JsonKey(name: 'button_text') String buttonText});
+}
 
-  /// Text of the web_app keyboard button from which the Web App was opened.
-  /// Be aware that a bad client can send arbitrary data in this field.
-  @override
-  @JsonKey(name: 'button_text')
-  String get buttonText;
+/// @nodoc
+class __$WebAppDataCopyWithImpl<$Res> implements _$WebAppDataCopyWith<$Res> {
+  __$WebAppDataCopyWithImpl(this._self, this._then);
+
+  final _WebAppData _self;
+  final $Res Function(_WebAppData) _then;
 
   /// Create a copy of WebAppData
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WebAppDataImplCopyWith<_$WebAppDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? data = null,
+    Object? buttonText = null,
+  }) {
+    return _then(_WebAppData(
+      data: null == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String,
+      buttonText: null == buttonText
+          ? _self.buttonText
+          : buttonText // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }

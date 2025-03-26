@@ -6,13 +6,12 @@ part of 'chat_background.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatBackgroundImpl _$$ChatBackgroundImplFromJson(Map<String, dynamic> json) =>
-    _$ChatBackgroundImpl(
+_ChatBackground _$ChatBackgroundFromJson(Map<String, dynamic> json) =>
+    _ChatBackground(
       type: BackgroundType.fromJson(json['type'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ChatBackgroundImplToJson(
-        _$ChatBackgroundImpl instance) =>
+Map<String, dynamic> _$ChatBackgroundToJson(_ChatBackground instance) =>
     <String, dynamic>{
       'type': instance.type,
     };

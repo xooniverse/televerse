@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,89 +12,87 @@ part of 'inline_query_result_location.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-InlineQueryResultLocation _$InlineQueryResultLocationFromJson(
-    Map<String, dynamic> json) {
-  return _InlineQueryResultLocation.fromJson(json);
-}
-
 /// @nodoc
 mixin _$InlineQueryResultLocation {
   /// Type of the result, always [InlineQueryResultType.location]
   @JsonKey(name: 'type')
-  InlineQueryResultType get type => throw _privateConstructorUsedError;
+  InlineQueryResultType get type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
 
   /// Location latitude in degrees
   @JsonKey(name: 'latitude')
-  double get latitude => throw _privateConstructorUsedError;
+  double get latitude;
 
   /// Location longitude in degrees
   @JsonKey(name: 'longitude')
-  double get longitude => throw _privateConstructorUsedError;
+  double get longitude;
 
   /// Location title
   @JsonKey(name: 'title')
-  String get title => throw _privateConstructorUsedError;
+  String get title;
 
   /// Optional. The radius of uncertainty for the location, measured in meters; 0-1500
   @JsonKey(name: 'horizontal_accuracy')
-  int? get horizontalAccuracy => throw _privateConstructorUsedError;
+  int? get horizontalAccuracy;
 
   /// Optional. Period in seconds for which the location can be updated, should be between 60 and 86400.
   @JsonKey(name: 'live_period')
-  int? get livePeriod => throw _privateConstructorUsedError;
+  int? get livePeriod;
 
   /// Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
   @JsonKey(name: 'heading')
-  int? get heading => throw _privateConstructorUsedError;
+  int? get heading;
 
   /// Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
   @JsonKey(name: 'proximity_alert_radius')
-  int? get proximityAlertRadius => throw _privateConstructorUsedError;
+  int? get proximityAlertRadius;
 
   /// Optional. Inline keyboard attached to the message
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup? get replyMarkup => throw _privateConstructorUsedError;
+  InlineKeyboardMarkup? get replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the location
   @JsonKey(name: 'input_message_content')
   @InputMessageContentConverter()
-  InputMessageContent? get inputMessageContent =>
-      throw _privateConstructorUsedError;
+  InputMessageContent? get inputMessageContent;
 
   /// Optional. Url of the thumbnail for the result
   @JsonKey(name: 'thumbnail_url')
-  String? get thumbnailUrl => throw _privateConstructorUsedError;
+  String? get thumbnailUrl;
 
   /// Optional. Thumbnail width
   @JsonKey(name: 'thumbnail_width')
-  int? get thumbnailWidth => throw _privateConstructorUsedError;
+  int? get thumbnailWidth;
 
   /// Optional. Thumbnail height
   @JsonKey(name: 'thumbnail_height')
-  int? get thumbnailHeight => throw _privateConstructorUsedError;
-
-  /// Serializes this InlineQueryResultLocation to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int? get thumbnailHeight;
 
   /// Create a copy of InlineQueryResultLocation
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $InlineQueryResultLocationCopyWith<InlineQueryResultLocation> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$InlineQueryResultLocationCopyWithImpl<InlineQueryResultLocation>(
+          this as InlineQueryResultLocation, _$identity);
+
+  /// Serializes this InlineQueryResultLocation to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'InlineQueryResultLocation(type: $type, id: $id, latitude: $latitude, longitude: $longitude, title: $title, horizontalAccuracy: $horizontalAccuracy, livePeriod: $livePeriod, heading: $heading, proximityAlertRadius: $proximityAlertRadius, replyMarkup: $replyMarkup, inputMessageContent: $inputMessageContent, thumbnailUrl: $thumbnailUrl, thumbnailWidth: $thumbnailWidth, thumbnailHeight: $thumbnailHeight)';
+  }
 }
 
 /// @nodoc
-abstract class $InlineQueryResultLocationCopyWith<$Res> {
+abstract mixin class $InlineQueryResultLocationCopyWith<$Res> {
   factory $InlineQueryResultLocationCopyWith(InlineQueryResultLocation value,
-          $Res Function(InlineQueryResultLocation) then) =
-      _$InlineQueryResultLocationCopyWithImpl<$Res, InlineQueryResultLocation>;
+          $Res Function(InlineQueryResultLocation) _then) =
+      _$InlineQueryResultLocationCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'type') InlineQueryResultType type,
@@ -117,15 +116,12 @@ abstract class $InlineQueryResultLocationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InlineQueryResultLocationCopyWithImpl<$Res,
-        $Val extends InlineQueryResultLocation>
+class _$InlineQueryResultLocationCopyWithImpl<$Res>
     implements $InlineQueryResultLocationCopyWith<$Res> {
-  _$InlineQueryResultLocationCopyWithImpl(this._value, this._then);
+  _$InlineQueryResultLocationCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final InlineQueryResultLocation _self;
+  final $Res Function(InlineQueryResultLocation) _then;
 
   /// Create a copy of InlineQueryResultLocation
   /// with the given fields replaced by the non-null parameter values.
@@ -147,64 +143,64 @@ class _$InlineQueryResultLocationCopyWithImpl<$Res,
     Object? thumbnailWidth = freezed,
     Object? thumbnailHeight = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as InlineQueryResultType,
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       latitude: null == latitude
-          ? _value.latitude
+          ? _self.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double,
       longitude: null == longitude
-          ? _value.longitude
+          ? _self.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
       title: null == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
       horizontalAccuracy: freezed == horizontalAccuracy
-          ? _value.horizontalAccuracy
+          ? _self.horizontalAccuracy
           : horizontalAccuracy // ignore: cast_nullable_to_non_nullable
               as int?,
       livePeriod: freezed == livePeriod
-          ? _value.livePeriod
+          ? _self.livePeriod
           : livePeriod // ignore: cast_nullable_to_non_nullable
               as int?,
       heading: freezed == heading
-          ? _value.heading
+          ? _self.heading
           : heading // ignore: cast_nullable_to_non_nullable
               as int?,
       proximityAlertRadius: freezed == proximityAlertRadius
-          ? _value.proximityAlertRadius
+          ? _self.proximityAlertRadius
           : proximityAlertRadius // ignore: cast_nullable_to_non_nullable
               as int?,
       replyMarkup: freezed == replyMarkup
-          ? _value.replyMarkup
+          ? _self.replyMarkup
           : replyMarkup // ignore: cast_nullable_to_non_nullable
               as InlineKeyboardMarkup?,
       inputMessageContent: freezed == inputMessageContent
-          ? _value.inputMessageContent
+          ? _self.inputMessageContent
           : inputMessageContent // ignore: cast_nullable_to_non_nullable
               as InputMessageContent?,
       thumbnailUrl: freezed == thumbnailUrl
-          ? _value.thumbnailUrl
+          ? _self.thumbnailUrl
           : thumbnailUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       thumbnailWidth: freezed == thumbnailWidth
-          ? _value.thumbnailWidth
+          ? _self.thumbnailWidth
           : thumbnailWidth // ignore: cast_nullable_to_non_nullable
               as int?,
       thumbnailHeight: freezed == thumbnailHeight
-          ? _value.thumbnailHeight
+          ? _self.thumbnailHeight
           : thumbnailHeight // ignore: cast_nullable_to_non_nullable
               as int?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of InlineQueryResultLocation
@@ -212,143 +208,21 @@ class _$InlineQueryResultLocationCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $InputMessageContentCopyWith<$Res>? get inputMessageContent {
-    if (_value.inputMessageContent == null) {
+    if (_self.inputMessageContent == null) {
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_value.inputMessageContent!,
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
         (value) {
-      return _then(_value.copyWith(inputMessageContent: value) as $Val);
+      return _then(_self.copyWith(inputMessageContent: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$InlineQueryResultLocationImplCopyWith<$Res>
-    implements $InlineQueryResultLocationCopyWith<$Res> {
-  factory _$$InlineQueryResultLocationImplCopyWith(
-          _$InlineQueryResultLocationImpl value,
-          $Res Function(_$InlineQueryResultLocationImpl) then) =
-      __$$InlineQueryResultLocationImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'id') String id,
-      @JsonKey(name: 'latitude') double latitude,
-      @JsonKey(name: 'longitude') double longitude,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'horizontal_accuracy') int? horizontalAccuracy,
-      @JsonKey(name: 'live_period') int? livePeriod,
-      @JsonKey(name: 'heading') int? heading,
-      @JsonKey(name: 'proximity_alert_radius') int? proximityAlertRadius,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height') int? thumbnailHeight});
-
-  @override
-  $InputMessageContentCopyWith<$Res>? get inputMessageContent;
-}
-
-/// @nodoc
-class __$$InlineQueryResultLocationImplCopyWithImpl<$Res>
-    extends _$InlineQueryResultLocationCopyWithImpl<$Res,
-        _$InlineQueryResultLocationImpl>
-    implements _$$InlineQueryResultLocationImplCopyWith<$Res> {
-  __$$InlineQueryResultLocationImplCopyWithImpl(
-      _$InlineQueryResultLocationImpl _value,
-      $Res Function(_$InlineQueryResultLocationImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InlineQueryResultLocation
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-    Object? id = null,
-    Object? latitude = null,
-    Object? longitude = null,
-    Object? title = null,
-    Object? horizontalAccuracy = freezed,
-    Object? livePeriod = freezed,
-    Object? heading = freezed,
-    Object? proximityAlertRadius = freezed,
-    Object? replyMarkup = freezed,
-    Object? inputMessageContent = freezed,
-    Object? thumbnailUrl = freezed,
-    Object? thumbnailWidth = freezed,
-    Object? thumbnailHeight = freezed,
-  }) {
-    return _then(_$InlineQueryResultLocationImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      latitude: null == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      horizontalAccuracy: freezed == horizontalAccuracy
-          ? _value.horizontalAccuracy
-          : horizontalAccuracy // ignore: cast_nullable_to_non_nullable
-              as int?,
-      livePeriod: freezed == livePeriod
-          ? _value.livePeriod
-          : livePeriod // ignore: cast_nullable_to_non_nullable
-              as int?,
-      heading: freezed == heading
-          ? _value.heading
-          : heading // ignore: cast_nullable_to_non_nullable
-              as int?,
-      proximityAlertRadius: freezed == proximityAlertRadius
-          ? _value.proximityAlertRadius
-          : proximityAlertRadius // ignore: cast_nullable_to_non_nullable
-              as int?,
-      replyMarkup: freezed == replyMarkup
-          ? _value.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _value.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      thumbnailUrl: freezed == thumbnailUrl
-          ? _value.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailWidth: freezed == thumbnailWidth
-          ? _value.thumbnailWidth
-          : thumbnailWidth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnailHeight: freezed == thumbnailHeight
-          ? _value.thumbnailHeight
-          : thumbnailHeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$InlineQueryResultLocationImpl extends _InlineQueryResultLocation {
-  const _$InlineQueryResultLocationImpl(
+class _InlineQueryResultLocation extends InlineQueryResultLocation {
+  const _InlineQueryResultLocation(
       {@JsonKey(name: 'type') this.type = InlineQueryResultType.location,
       @JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'latitude') required this.latitude,
@@ -366,9 +240,8 @@ class _$InlineQueryResultLocationImpl extends _InlineQueryResultLocation {
       @JsonKey(name: 'thumbnail_width') this.thumbnailWidth,
       @JsonKey(name: 'thumbnail_height') this.thumbnailHeight})
       : super._();
-
-  factory _$InlineQueryResultLocationImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InlineQueryResultLocationImplFromJson(json);
+  factory _InlineQueryResultLocation.fromJson(Map<String, dynamic> json) =>
+      _$InlineQueryResultLocationFromJson(json);
 
   /// Type of the result, always [InlineQueryResultType.location]
   @override
@@ -441,127 +314,159 @@ class _$InlineQueryResultLocationImpl extends _InlineQueryResultLocation {
   @JsonKey(name: 'thumbnail_height')
   final int? thumbnailHeight;
 
+  /// Create a copy of InlineQueryResultLocation
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InlineQueryResultLocationCopyWith<_InlineQueryResultLocation>
+      get copyWith =>
+          __$InlineQueryResultLocationCopyWithImpl<_InlineQueryResultLocation>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InlineQueryResultLocationToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'InlineQueryResultLocation(type: $type, id: $id, latitude: $latitude, longitude: $longitude, title: $title, horizontalAccuracy: $horizontalAccuracy, livePeriod: $livePeriod, heading: $heading, proximityAlertRadius: $proximityAlertRadius, replyMarkup: $replyMarkup, inputMessageContent: $inputMessageContent, thumbnailUrl: $thumbnailUrl, thumbnailWidth: $thumbnailWidth, thumbnailHeight: $thumbnailHeight)';
   }
-
-  /// Create a copy of InlineQueryResultLocation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InlineQueryResultLocationImplCopyWith<_$InlineQueryResultLocationImpl>
-      get copyWith => __$$InlineQueryResultLocationImplCopyWithImpl<
-          _$InlineQueryResultLocationImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InlineQueryResultLocationImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _InlineQueryResultLocation extends InlineQueryResultLocation {
-  const factory _InlineQueryResultLocation(
-      {@JsonKey(name: 'type') final InlineQueryResultType type,
-      @JsonKey(name: 'id') required final String id,
-      @JsonKey(name: 'latitude') required final double latitude,
-      @JsonKey(name: 'longitude') required final double longitude,
-      @JsonKey(name: 'title') required final String title,
-      @JsonKey(name: 'horizontal_accuracy') final int? horizontalAccuracy,
-      @JsonKey(name: 'live_period') final int? livePeriod,
-      @JsonKey(name: 'heading') final int? heading,
-      @JsonKey(name: 'proximity_alert_radius') final int? proximityAlertRadius,
-      @JsonKey(name: 'reply_markup') final InlineKeyboardMarkup? replyMarkup,
+/// @nodoc
+abstract mixin class _$InlineQueryResultLocationCopyWith<$Res>
+    implements $InlineQueryResultLocationCopyWith<$Res> {
+  factory _$InlineQueryResultLocationCopyWith(_InlineQueryResultLocation value,
+          $Res Function(_InlineQueryResultLocation) _then) =
+      __$InlineQueryResultLocationCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
+      @JsonKey(name: 'latitude') double latitude,
+      @JsonKey(name: 'longitude') double longitude,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'horizontal_accuracy') int? horizontalAccuracy,
+      @JsonKey(name: 'live_period') int? livePeriod,
+      @JsonKey(name: 'heading') int? heading,
+      @JsonKey(name: 'proximity_alert_radius') int? proximityAlertRadius,
+      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
-      final InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'thumbnail_url') final String? thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') final int? thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height')
-      final int? thumbnailHeight}) = _$InlineQueryResultLocationImpl;
-  const _InlineQueryResultLocation._() : super._();
+      InputMessageContent? inputMessageContent,
+      @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
+      @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
+      @JsonKey(name: 'thumbnail_height') int? thumbnailHeight});
 
-  factory _InlineQueryResultLocation.fromJson(Map<String, dynamic> json) =
-      _$InlineQueryResultLocationImpl.fromJson;
-
-  /// Type of the result, always [InlineQueryResultType.location]
   @override
-  @JsonKey(name: 'type')
-  InlineQueryResultType get type;
+  $InputMessageContentCopyWith<$Res>? get inputMessageContent;
+}
 
-  /// Unique identifier for this result, 1-64 Bytes
-  @override
-  @JsonKey(name: 'id')
-  String get id;
+/// @nodoc
+class __$InlineQueryResultLocationCopyWithImpl<$Res>
+    implements _$InlineQueryResultLocationCopyWith<$Res> {
+  __$InlineQueryResultLocationCopyWithImpl(this._self, this._then);
 
-  /// Location latitude in degrees
-  @override
-  @JsonKey(name: 'latitude')
-  double get latitude;
-
-  /// Location longitude in degrees
-  @override
-  @JsonKey(name: 'longitude')
-  double get longitude;
-
-  /// Location title
-  @override
-  @JsonKey(name: 'title')
-  String get title;
-
-  /// Optional. The radius of uncertainty for the location, measured in meters; 0-1500
-  @override
-  @JsonKey(name: 'horizontal_accuracy')
-  int? get horizontalAccuracy;
-
-  /// Optional. Period in seconds for which the location can be updated, should be between 60 and 86400.
-  @override
-  @JsonKey(name: 'live_period')
-  int? get livePeriod;
-
-  /// Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
-  @override
-  @JsonKey(name: 'heading')
-  int? get heading;
-
-  /// Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
-  @override
-  @JsonKey(name: 'proximity_alert_radius')
-  int? get proximityAlertRadius;
-
-  /// Optional. Inline keyboard attached to the message
-  @override
-  @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup? get replyMarkup;
-
-  /// Optional. Content of the message to be sent instead of the location
-  @override
-  @JsonKey(name: 'input_message_content')
-  @InputMessageContentConverter()
-  InputMessageContent? get inputMessageContent;
-
-  /// Optional. Url of the thumbnail for the result
-  @override
-  @JsonKey(name: 'thumbnail_url')
-  String? get thumbnailUrl;
-
-  /// Optional. Thumbnail width
-  @override
-  @JsonKey(name: 'thumbnail_width')
-  int? get thumbnailWidth;
-
-  /// Optional. Thumbnail height
-  @override
-  @JsonKey(name: 'thumbnail_height')
-  int? get thumbnailHeight;
+  final _InlineQueryResultLocation _self;
+  final $Res Function(_InlineQueryResultLocation) _then;
 
   /// Create a copy of InlineQueryResultLocation
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InlineQueryResultLocationImplCopyWith<_$InlineQueryResultLocationImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? type = null,
+    Object? id = null,
+    Object? latitude = null,
+    Object? longitude = null,
+    Object? title = null,
+    Object? horizontalAccuracy = freezed,
+    Object? livePeriod = freezed,
+    Object? heading = freezed,
+    Object? proximityAlertRadius = freezed,
+    Object? replyMarkup = freezed,
+    Object? inputMessageContent = freezed,
+    Object? thumbnailUrl = freezed,
+    Object? thumbnailWidth = freezed,
+    Object? thumbnailHeight = freezed,
+  }) {
+    return _then(_InlineQueryResultLocation(
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as InlineQueryResultType,
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      latitude: null == latitude
+          ? _self.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      longitude: null == longitude
+          ? _self.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      title: null == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      horizontalAccuracy: freezed == horizontalAccuracy
+          ? _self.horizontalAccuracy
+          : horizontalAccuracy // ignore: cast_nullable_to_non_nullable
+              as int?,
+      livePeriod: freezed == livePeriod
+          ? _self.livePeriod
+          : livePeriod // ignore: cast_nullable_to_non_nullable
+              as int?,
+      heading: freezed == heading
+          ? _self.heading
+          : heading // ignore: cast_nullable_to_non_nullable
+              as int?,
+      proximityAlertRadius: freezed == proximityAlertRadius
+          ? _self.proximityAlertRadius
+          : proximityAlertRadius // ignore: cast_nullable_to_non_nullable
+              as int?,
+      replyMarkup: freezed == replyMarkup
+          ? _self.replyMarkup
+          : replyMarkup // ignore: cast_nullable_to_non_nullable
+              as InlineKeyboardMarkup?,
+      inputMessageContent: freezed == inputMessageContent
+          ? _self.inputMessageContent
+          : inputMessageContent // ignore: cast_nullable_to_non_nullable
+              as InputMessageContent?,
+      thumbnailUrl: freezed == thumbnailUrl
+          ? _self.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbnailWidth: freezed == thumbnailWidth
+          ? _self.thumbnailWidth
+          : thumbnailWidth // ignore: cast_nullable_to_non_nullable
+              as int?,
+      thumbnailHeight: freezed == thumbnailHeight
+          ? _self.thumbnailHeight
+          : thumbnailHeight // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+
+  /// Create a copy of InlineQueryResultLocation
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $InputMessageContentCopyWith<$Res>? get inputMessageContent {
+    if (_self.inputMessageContent == null) {
+      return null;
+    }
+
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
+        (value) {
+      return _then(_self.copyWith(inputMessageContent: value));
+    });
+  }
 }

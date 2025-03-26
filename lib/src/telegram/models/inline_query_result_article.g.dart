@@ -6,9 +6,9 @@ part of 'inline_query_result_article.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultArticleImpl _$$InlineQueryResultArticleImplFromJson(
+_InlineQueryResultArticle _$InlineQueryResultArticleFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultArticleImpl(
+    _InlineQueryResultArticle(
       id: json['id'] as String,
       title: json['title'] as String,
       inputMessageContent: const InputMessageContentConverter()
@@ -26,8 +26,8 @@ _$InlineQueryResultArticleImpl _$$InlineQueryResultArticleImplFromJson(
           InlineQueryResultType.article,
     );
 
-Map<String, dynamic> _$$InlineQueryResultArticleImplToJson(
-        _$InlineQueryResultArticleImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultArticleToJson(
+        _InlineQueryResultArticle instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

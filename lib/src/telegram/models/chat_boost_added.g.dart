@@ -6,13 +6,12 @@ part of 'chat_boost_added.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatBoostAddedImpl _$$ChatBoostAddedImplFromJson(Map<String, dynamic> json) =>
-    _$ChatBoostAddedImpl(
+_ChatBoostAdded _$ChatBoostAddedFromJson(Map<String, dynamic> json) =>
+    _ChatBoostAdded(
       boostCount: (json['boost_count'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$ChatBoostAddedImplToJson(
-        _$ChatBoostAddedImpl instance) =>
+Map<String, dynamic> _$ChatBoostAddedToJson(_ChatBoostAdded instance) =>
     <String, dynamic>{
       'boost_count': instance.boostCount,
     };

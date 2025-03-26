@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,80 +12,77 @@ part of 'inline_query_result_audio.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-InlineQueryResultAudio _$InlineQueryResultAudioFromJson(
-    Map<String, dynamic> json) {
-  return _InlineQueryResultAudio.fromJson(json);
-}
-
 /// @nodoc
 mixin _$InlineQueryResultAudio {
   /// Unique identifier for this result, 1-64 Bytes
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
 
   /// A valid URL for the audio file
   @JsonKey(name: 'audio_url')
-  String get audioUrl => throw _privateConstructorUsedError;
+  String get audioUrl;
 
   /// Title
   @JsonKey(name: 'title')
-  String get title => throw _privateConstructorUsedError;
+  String get title;
 
   /// Optional. Caption, 0-1024 characters after entities parsing
   @JsonKey(name: 'caption')
-  String? get caption => throw _privateConstructorUsedError;
+  String? get caption;
 
   /// Optional. Mode for parsing entities in the audio caption. See formatting
   /// options for more details.
   @JsonKey(name: 'parse_mode')
-  ParseMode? get parseMode => throw _privateConstructorUsedError;
+  ParseMode? get parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can
   /// be specified instead of parse_mode
   @JsonKey(name: 'caption_entities')
-  List<MessageEntity>? get captionEntities =>
-      throw _privateConstructorUsedError;
+  List<MessageEntity>? get captionEntities;
 
   /// Optional. Performer
   @JsonKey(name: 'performer')
-  String? get performer => throw _privateConstructorUsedError;
+  String? get performer;
 
   /// Optional. Audio duration in seconds
   @JsonKey(name: 'audio_duration')
-  int? get audioDuration => throw _privateConstructorUsedError;
+  int? get audioDuration;
 
   /// Optional. Inline keyboard attached to the message
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup? get replyMarkup => throw _privateConstructorUsedError;
+  InlineKeyboardMarkup? get replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the audio
   @JsonKey(name: 'input_message_content')
   @InputMessageContentConverter()
-  InputMessageContent? get inputMessageContent =>
-      throw _privateConstructorUsedError;
+  InputMessageContent? get inputMessageContent;
 
   /// Type of the result, always [InlineQueryResultType.audio]
   @JsonKey(name: 'type')
-  InlineQueryResultType get type => throw _privateConstructorUsedError;
-
-  /// Serializes this InlineQueryResultAudio to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  InlineQueryResultType get type;
 
   /// Create a copy of InlineQueryResultAudio
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $InlineQueryResultAudioCopyWith<InlineQueryResultAudio> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$InlineQueryResultAudioCopyWithImpl<InlineQueryResultAudio>(
+          this as InlineQueryResultAudio, _$identity);
+
+  /// Serializes this InlineQueryResultAudio to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'InlineQueryResultAudio(id: $id, audioUrl: $audioUrl, title: $title, caption: $caption, parseMode: $parseMode, captionEntities: $captionEntities, performer: $performer, audioDuration: $audioDuration, replyMarkup: $replyMarkup, inputMessageContent: $inputMessageContent, type: $type)';
+  }
 }
 
 /// @nodoc
-abstract class $InlineQueryResultAudioCopyWith<$Res> {
+abstract mixin class $InlineQueryResultAudioCopyWith<$Res> {
   factory $InlineQueryResultAudioCopyWith(InlineQueryResultAudio value,
-          $Res Function(InlineQueryResultAudio) then) =
-      _$InlineQueryResultAudioCopyWithImpl<$Res, InlineQueryResultAudio>;
+          $Res Function(InlineQueryResultAudio) _then) =
+      _$InlineQueryResultAudioCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -105,15 +103,12 @@ abstract class $InlineQueryResultAudioCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InlineQueryResultAudioCopyWithImpl<$Res,
-        $Val extends InlineQueryResultAudio>
+class _$InlineQueryResultAudioCopyWithImpl<$Res>
     implements $InlineQueryResultAudioCopyWith<$Res> {
-  _$InlineQueryResultAudioCopyWithImpl(this._value, this._then);
+  _$InlineQueryResultAudioCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final InlineQueryResultAudio _self;
+  final $Res Function(InlineQueryResultAudio) _then;
 
   /// Create a copy of InlineQueryResultAudio
   /// with the given fields replaced by the non-null parameter values.
@@ -132,52 +127,52 @@ class _$InlineQueryResultAudioCopyWithImpl<$Res,
     Object? inputMessageContent = freezed,
     Object? type = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       audioUrl: null == audioUrl
-          ? _value.audioUrl
+          ? _self.audioUrl
           : audioUrl // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
       caption: freezed == caption
-          ? _value.caption
+          ? _self.caption
           : caption // ignore: cast_nullable_to_non_nullable
               as String?,
       parseMode: freezed == parseMode
-          ? _value.parseMode
+          ? _self.parseMode
           : parseMode // ignore: cast_nullable_to_non_nullable
               as ParseMode?,
       captionEntities: freezed == captionEntities
-          ? _value.captionEntities
+          ? _self.captionEntities
           : captionEntities // ignore: cast_nullable_to_non_nullable
               as List<MessageEntity>?,
       performer: freezed == performer
-          ? _value.performer
+          ? _self.performer
           : performer // ignore: cast_nullable_to_non_nullable
               as String?,
       audioDuration: freezed == audioDuration
-          ? _value.audioDuration
+          ? _self.audioDuration
           : audioDuration // ignore: cast_nullable_to_non_nullable
               as int?,
       replyMarkup: freezed == replyMarkup
-          ? _value.replyMarkup
+          ? _self.replyMarkup
           : replyMarkup // ignore: cast_nullable_to_non_nullable
               as InlineKeyboardMarkup?,
       inputMessageContent: freezed == inputMessageContent
-          ? _value.inputMessageContent
+          ? _self.inputMessageContent
           : inputMessageContent // ignore: cast_nullable_to_non_nullable
               as InputMessageContent?,
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as InlineQueryResultType,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of InlineQueryResultAudio
@@ -185,125 +180,21 @@ class _$InlineQueryResultAudioCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $InputMessageContentCopyWith<$Res>? get inputMessageContent {
-    if (_value.inputMessageContent == null) {
+    if (_self.inputMessageContent == null) {
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_value.inputMessageContent!,
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
         (value) {
-      return _then(_value.copyWith(inputMessageContent: value) as $Val);
+      return _then(_self.copyWith(inputMessageContent: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$InlineQueryResultAudioImplCopyWith<$Res>
-    implements $InlineQueryResultAudioCopyWith<$Res> {
-  factory _$$InlineQueryResultAudioImplCopyWith(
-          _$InlineQueryResultAudioImpl value,
-          $Res Function(_$InlineQueryResultAudioImpl) then) =
-      __$$InlineQueryResultAudioImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'audio_url') String audioUrl,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'performer') String? performer,
-      @JsonKey(name: 'audio_duration') int? audioDuration,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'type') InlineQueryResultType type});
-
-  @override
-  $InputMessageContentCopyWith<$Res>? get inputMessageContent;
-}
-
-/// @nodoc
-class __$$InlineQueryResultAudioImplCopyWithImpl<$Res>
-    extends _$InlineQueryResultAudioCopyWithImpl<$Res,
-        _$InlineQueryResultAudioImpl>
-    implements _$$InlineQueryResultAudioImplCopyWith<$Res> {
-  __$$InlineQueryResultAudioImplCopyWithImpl(
-      _$InlineQueryResultAudioImpl _value,
-      $Res Function(_$InlineQueryResultAudioImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InlineQueryResultAudio
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? audioUrl = null,
-    Object? title = null,
-    Object? caption = freezed,
-    Object? parseMode = freezed,
-    Object? captionEntities = freezed,
-    Object? performer = freezed,
-    Object? audioDuration = freezed,
-    Object? replyMarkup = freezed,
-    Object? inputMessageContent = freezed,
-    Object? type = null,
-  }) {
-    return _then(_$InlineQueryResultAudioImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      audioUrl: null == audioUrl
-          ? _value.audioUrl
-          : audioUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      caption: freezed == caption
-          ? _value.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _value.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _value._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      performer: freezed == performer
-          ? _value.performer
-          : performer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      audioDuration: freezed == audioDuration
-          ? _value.audioDuration
-          : audioDuration // ignore: cast_nullable_to_non_nullable
-              as int?,
-      replyMarkup: freezed == replyMarkup
-          ? _value.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _value.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$InlineQueryResultAudioImpl implements _InlineQueryResultAudio {
-  const _$InlineQueryResultAudioImpl(
+class _InlineQueryResultAudio implements InlineQueryResultAudio {
+  const _InlineQueryResultAudio(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'audio_url') required this.audioUrl,
       @JsonKey(name: 'title') required this.title,
@@ -319,9 +210,8 @@ class _$InlineQueryResultAudioImpl implements _InlineQueryResultAudio {
       this.inputMessageContent,
       @JsonKey(name: 'type') this.type = InlineQueryResultType.audio})
       : _captionEntities = captionEntities;
-
-  factory _$InlineQueryResultAudioImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InlineQueryResultAudioImplFromJson(json);
+  factory _InlineQueryResultAudio.fromJson(Map<String, dynamic> json) =>
+      _$InlineQueryResultAudioFromJson(json);
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
@@ -391,111 +281,140 @@ class _$InlineQueryResultAudioImpl implements _InlineQueryResultAudio {
   @JsonKey(name: 'type')
   final InlineQueryResultType type;
 
+  /// Create a copy of InlineQueryResultAudio
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InlineQueryResultAudioCopyWith<_InlineQueryResultAudio> get copyWith =>
+      __$InlineQueryResultAudioCopyWithImpl<_InlineQueryResultAudio>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InlineQueryResultAudioToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'InlineQueryResultAudio(id: $id, audioUrl: $audioUrl, title: $title, caption: $caption, parseMode: $parseMode, captionEntities: $captionEntities, performer: $performer, audioDuration: $audioDuration, replyMarkup: $replyMarkup, inputMessageContent: $inputMessageContent, type: $type)';
   }
-
-  /// Create a copy of InlineQueryResultAudio
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InlineQueryResultAudioImplCopyWith<_$InlineQueryResultAudioImpl>
-      get copyWith => __$$InlineQueryResultAudioImplCopyWithImpl<
-          _$InlineQueryResultAudioImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InlineQueryResultAudioImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _InlineQueryResultAudio implements InlineQueryResultAudio {
-  const factory _InlineQueryResultAudio(
-      {@JsonKey(name: 'id') required final String id,
-      @JsonKey(name: 'audio_url') required final String audioUrl,
-      @JsonKey(name: 'title') required final String title,
-      @JsonKey(name: 'caption') final String? caption,
-      @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'performer') final String? performer,
-      @JsonKey(name: 'audio_duration') final int? audioDuration,
-      @JsonKey(name: 'reply_markup') final InlineKeyboardMarkup? replyMarkup,
+/// @nodoc
+abstract mixin class _$InlineQueryResultAudioCopyWith<$Res>
+    implements $InlineQueryResultAudioCopyWith<$Res> {
+  factory _$InlineQueryResultAudioCopyWith(_InlineQueryResultAudio value,
+          $Res Function(_InlineQueryResultAudio) _then) =
+      __$InlineQueryResultAudioCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'audio_url') String audioUrl,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'caption') String? caption,
+      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+      @JsonKey(name: 'performer') String? performer,
+      @JsonKey(name: 'audio_duration') int? audioDuration,
+      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
-      final InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'type')
-      final InlineQueryResultType type}) = _$InlineQueryResultAudioImpl;
+      InputMessageContent? inputMessageContent,
+      @JsonKey(name: 'type') InlineQueryResultType type});
 
-  factory _InlineQueryResultAudio.fromJson(Map<String, dynamic> json) =
-      _$InlineQueryResultAudioImpl.fromJson;
-
-  /// Unique identifier for this result, 1-64 Bytes
   @override
-  @JsonKey(name: 'id')
-  String get id;
+  $InputMessageContentCopyWith<$Res>? get inputMessageContent;
+}
 
-  /// A valid URL for the audio file
-  @override
-  @JsonKey(name: 'audio_url')
-  String get audioUrl;
+/// @nodoc
+class __$InlineQueryResultAudioCopyWithImpl<$Res>
+    implements _$InlineQueryResultAudioCopyWith<$Res> {
+  __$InlineQueryResultAudioCopyWithImpl(this._self, this._then);
 
-  /// Title
-  @override
-  @JsonKey(name: 'title')
-  String get title;
-
-  /// Optional. Caption, 0-1024 characters after entities parsing
-  @override
-  @JsonKey(name: 'caption')
-  String? get caption;
-
-  /// Optional. Mode for parsing entities in the audio caption. See formatting
-  /// options for more details.
-  @override
-  @JsonKey(name: 'parse_mode')
-  ParseMode? get parseMode;
-
-  /// Optional. List of special entities that appear in the caption, which can
-  /// be specified instead of parse_mode
-  @override
-  @JsonKey(name: 'caption_entities')
-  List<MessageEntity>? get captionEntities;
-
-  /// Optional. Performer
-  @override
-  @JsonKey(name: 'performer')
-  String? get performer;
-
-  /// Optional. Audio duration in seconds
-  @override
-  @JsonKey(name: 'audio_duration')
-  int? get audioDuration;
-
-  /// Optional. Inline keyboard attached to the message
-  @override
-  @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup? get replyMarkup;
-
-  /// Optional. Content of the message to be sent instead of the audio
-  @override
-  @JsonKey(name: 'input_message_content')
-  @InputMessageContentConverter()
-  InputMessageContent? get inputMessageContent;
-
-  /// Type of the result, always [InlineQueryResultType.audio]
-  @override
-  @JsonKey(name: 'type')
-  InlineQueryResultType get type;
+  final _InlineQueryResultAudio _self;
+  final $Res Function(_InlineQueryResultAudio) _then;
 
   /// Create a copy of InlineQueryResultAudio
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InlineQueryResultAudioImplCopyWith<_$InlineQueryResultAudioImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? audioUrl = null,
+    Object? title = null,
+    Object? caption = freezed,
+    Object? parseMode = freezed,
+    Object? captionEntities = freezed,
+    Object? performer = freezed,
+    Object? audioDuration = freezed,
+    Object? replyMarkup = freezed,
+    Object? inputMessageContent = freezed,
+    Object? type = null,
+  }) {
+    return _then(_InlineQueryResultAudio(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      audioUrl: null == audioUrl
+          ? _self.audioUrl
+          : audioUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      caption: freezed == caption
+          ? _self.caption
+          : caption // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parseMode: freezed == parseMode
+          ? _self.parseMode
+          : parseMode // ignore: cast_nullable_to_non_nullable
+              as ParseMode?,
+      captionEntities: freezed == captionEntities
+          ? _self._captionEntities
+          : captionEntities // ignore: cast_nullable_to_non_nullable
+              as List<MessageEntity>?,
+      performer: freezed == performer
+          ? _self.performer
+          : performer // ignore: cast_nullable_to_non_nullable
+              as String?,
+      audioDuration: freezed == audioDuration
+          ? _self.audioDuration
+          : audioDuration // ignore: cast_nullable_to_non_nullable
+              as int?,
+      replyMarkup: freezed == replyMarkup
+          ? _self.replyMarkup
+          : replyMarkup // ignore: cast_nullable_to_non_nullable
+              as InlineKeyboardMarkup?,
+      inputMessageContent: freezed == inputMessageContent
+          ? _self.inputMessageContent
+          : inputMessageContent // ignore: cast_nullable_to_non_nullable
+              as InputMessageContent?,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as InlineQueryResultType,
+    ));
+  }
+
+  /// Create a copy of InlineQueryResultAudio
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $InputMessageContentCopyWith<$Res>? get inputMessageContent {
+    if (_self.inputMessageContent == null) {
+      return null;
+    }
+
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
+        (value) {
+      return _then(_self.copyWith(inputMessageContent: value));
+    });
+  }
 }

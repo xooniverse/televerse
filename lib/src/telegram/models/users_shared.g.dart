@@ -6,15 +6,14 @@ part of 'users_shared.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UsersSharedImpl _$$UsersSharedImplFromJson(Map<String, dynamic> json) =>
-    _$UsersSharedImpl(
+_UsersShared _$UsersSharedFromJson(Map<String, dynamic> json) => _UsersShared(
       requestId: (json['request_id'] as num).toInt(),
       users: (json['users'] as List<dynamic>)
           .map((e) => SharedUser.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$UsersSharedImplToJson(_$UsersSharedImpl instance) =>
+Map<String, dynamic> _$UsersSharedToJson(_UsersShared instance) =>
     <String, dynamic>{
       'request_id': instance.requestId,
       'users': instance.users,

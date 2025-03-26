@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,38 +12,38 @@ part of 'paid_media_purchased.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-PaidMediaPurchased _$PaidMediaPurchasedFromJson(Map<String, dynamic> json) {
-  return _PaidMediaPurchased.fromJson(json);
-}
-
 /// @nodoc
 mixin _$PaidMediaPurchased {
   /// The user who purchased the media.
   @JsonKey(name: 'from')
-  User get from => throw _privateConstructorUsedError;
+  User get from;
 
   /// A bot-specified payload related to the paid media.
   @JsonKey(name: 'paid_media_payload')
-  String get paidMediaPayload => throw _privateConstructorUsedError;
-
-  /// Serializes this PaidMediaPurchased to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get paidMediaPayload;
 
   /// Create a copy of PaidMediaPurchased
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $PaidMediaPurchasedCopyWith<PaidMediaPurchased> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$PaidMediaPurchasedCopyWithImpl<PaidMediaPurchased>(
+          this as PaidMediaPurchased, _$identity);
+
+  /// Serializes this PaidMediaPurchased to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'PaidMediaPurchased(from: $from, paidMediaPayload: $paidMediaPayload)';
+  }
 }
 
 /// @nodoc
-abstract class $PaidMediaPurchasedCopyWith<$Res> {
+abstract mixin class $PaidMediaPurchasedCopyWith<$Res> {
   factory $PaidMediaPurchasedCopyWith(
-          PaidMediaPurchased value, $Res Function(PaidMediaPurchased) then) =
-      _$PaidMediaPurchasedCopyWithImpl<$Res, PaidMediaPurchased>;
+          PaidMediaPurchased value, $Res Function(PaidMediaPurchased) _then) =
+      _$PaidMediaPurchasedCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'from') User from,
@@ -52,14 +53,12 @@ abstract class $PaidMediaPurchasedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PaidMediaPurchasedCopyWithImpl<$Res, $Val extends PaidMediaPurchased>
+class _$PaidMediaPurchasedCopyWithImpl<$Res>
     implements $PaidMediaPurchasedCopyWith<$Res> {
-  _$PaidMediaPurchasedCopyWithImpl(this._value, this._then);
+  _$PaidMediaPurchasedCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PaidMediaPurchased _self;
+  final $Res Function(PaidMediaPurchased) _then;
 
   /// Create a copy of PaidMediaPurchased
   /// with the given fields replaced by the non-null parameter values.
@@ -69,16 +68,16 @@ class _$PaidMediaPurchasedCopyWithImpl<$Res, $Val extends PaidMediaPurchased>
     Object? from = null,
     Object? paidMediaPayload = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       from: null == from
-          ? _value.from
+          ? _self.from
           : from // ignore: cast_nullable_to_non_nullable
               as User,
       paidMediaPayload: null == paidMediaPayload
-          ? _value.paidMediaPayload
+          ? _self.paidMediaPayload
           : paidMediaPayload // ignore: cast_nullable_to_non_nullable
               as String,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of PaidMediaPurchased
@@ -86,66 +85,20 @@ class _$PaidMediaPurchasedCopyWithImpl<$Res, $Val extends PaidMediaPurchased>
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get from {
-    return $UserCopyWith<$Res>(_value.from, (value) {
-      return _then(_value.copyWith(from: value) as $Val);
+    return $UserCopyWith<$Res>(_self.from, (value) {
+      return _then(_self.copyWith(from: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$PaidMediaPurchasedImplCopyWith<$Res>
-    implements $PaidMediaPurchasedCopyWith<$Res> {
-  factory _$$PaidMediaPurchasedImplCopyWith(_$PaidMediaPurchasedImpl value,
-          $Res Function(_$PaidMediaPurchasedImpl) then) =
-      __$$PaidMediaPurchasedImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'from') User from,
-      @JsonKey(name: 'paid_media_payload') String paidMediaPayload});
-
-  @override
-  $UserCopyWith<$Res> get from;
-}
-
-/// @nodoc
-class __$$PaidMediaPurchasedImplCopyWithImpl<$Res>
-    extends _$PaidMediaPurchasedCopyWithImpl<$Res, _$PaidMediaPurchasedImpl>
-    implements _$$PaidMediaPurchasedImplCopyWith<$Res> {
-  __$$PaidMediaPurchasedImplCopyWithImpl(_$PaidMediaPurchasedImpl _value,
-      $Res Function(_$PaidMediaPurchasedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of PaidMediaPurchased
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? from = null,
-    Object? paidMediaPayload = null,
-  }) {
-    return _then(_$PaidMediaPurchasedImpl(
-      from: null == from
-          ? _value.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      paidMediaPayload: null == paidMediaPayload
-          ? _value.paidMediaPayload
-          : paidMediaPayload // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$PaidMediaPurchasedImpl implements _PaidMediaPurchased {
-  const _$PaidMediaPurchasedImpl(
+class _PaidMediaPurchased implements PaidMediaPurchased {
+  const _PaidMediaPurchased(
       {@JsonKey(name: 'from') required this.from,
       @JsonKey(name: 'paid_media_payload') required this.paidMediaPayload});
-
-  factory _$PaidMediaPurchasedImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PaidMediaPurchasedImplFromJson(json);
+  factory _PaidMediaPurchased.fromJson(Map<String, dynamic> json) =>
+      _$PaidMediaPurchasedFromJson(json);
 
   /// The user who purchased the media.
   @override
@@ -157,51 +110,78 @@ class _$PaidMediaPurchasedImpl implements _PaidMediaPurchased {
   @JsonKey(name: 'paid_media_payload')
   final String paidMediaPayload;
 
+  /// Create a copy of PaidMediaPurchased
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PaidMediaPurchasedCopyWith<_PaidMediaPurchased> get copyWith =>
+      __$PaidMediaPurchasedCopyWithImpl<_PaidMediaPurchased>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PaidMediaPurchasedToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'PaidMediaPurchased(from: $from, paidMediaPayload: $paidMediaPayload)';
   }
-
-  /// Create a copy of PaidMediaPurchased
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PaidMediaPurchasedImplCopyWith<_$PaidMediaPurchasedImpl> get copyWith =>
-      __$$PaidMediaPurchasedImplCopyWithImpl<_$PaidMediaPurchasedImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PaidMediaPurchasedImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _PaidMediaPurchased implements PaidMediaPurchased {
-  const factory _PaidMediaPurchased(
-      {@JsonKey(name: 'from') required final User from,
-      @JsonKey(name: 'paid_media_payload')
-      required final String paidMediaPayload}) = _$PaidMediaPurchasedImpl;
-
-  factory _PaidMediaPurchased.fromJson(Map<String, dynamic> json) =
-      _$PaidMediaPurchasedImpl.fromJson;
-
-  /// The user who purchased the media.
+/// @nodoc
+abstract mixin class _$PaidMediaPurchasedCopyWith<$Res>
+    implements $PaidMediaPurchasedCopyWith<$Res> {
+  factory _$PaidMediaPurchasedCopyWith(
+          _PaidMediaPurchased value, $Res Function(_PaidMediaPurchased) _then) =
+      __$PaidMediaPurchasedCopyWithImpl;
   @override
-  @JsonKey(name: 'from')
-  User get from;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'from') User from,
+      @JsonKey(name: 'paid_media_payload') String paidMediaPayload});
 
-  /// A bot-specified payload related to the paid media.
   @override
-  @JsonKey(name: 'paid_media_payload')
-  String get paidMediaPayload;
+  $UserCopyWith<$Res> get from;
+}
+
+/// @nodoc
+class __$PaidMediaPurchasedCopyWithImpl<$Res>
+    implements _$PaidMediaPurchasedCopyWith<$Res> {
+  __$PaidMediaPurchasedCopyWithImpl(this._self, this._then);
+
+  final _PaidMediaPurchased _self;
+  final $Res Function(_PaidMediaPurchased) _then;
 
   /// Create a copy of PaidMediaPurchased
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PaidMediaPurchasedImplCopyWith<_$PaidMediaPurchasedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? from = null,
+    Object? paidMediaPayload = null,
+  }) {
+    return _then(_PaidMediaPurchased(
+      from: null == from
+          ? _self.from
+          : from // ignore: cast_nullable_to_non_nullable
+              as User,
+      paidMediaPayload: null == paidMediaPayload
+          ? _self.paidMediaPayload
+          : paidMediaPayload // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+
+  /// Create a copy of PaidMediaPurchased
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get from {
+    return $UserCopyWith<$Res>(_self.from, (value) {
+      return _then(_self.copyWith(from: value));
+    });
+  }
 }

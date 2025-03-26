@@ -6,20 +6,20 @@ part of 'passport_element_error.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PassportElementErrorDataFieldImpl
-    _$$PassportElementErrorDataFieldImplFromJson(Map<String, dynamic> json) =>
-        _$PassportElementErrorDataFieldImpl(
-          source: $enumDecodeNullable(
-                  _$PassportElementErrorSourceEnumMap, json['source']) ??
-              PassportElementErrorSource.data,
-          type: $enumDecode(_$PassportTypeEnumMap, json['type']),
-          message: json['message'] as String,
-          fieldName: json['field_name'] as String,
-          dataHash: json['data_hash'] as String,
-        );
+PassportElementErrorDataField _$PassportElementErrorDataFieldFromJson(
+        Map<String, dynamic> json) =>
+    PassportElementErrorDataField(
+      source: $enumDecodeNullable(
+              _$PassportElementErrorSourceEnumMap, json['source']) ??
+          PassportElementErrorSource.data,
+      type: $enumDecode(_$PassportTypeEnumMap, json['type']),
+      message: json['message'] as String,
+      fieldName: json['field_name'] as String,
+      dataHash: json['data_hash'] as String,
+    );
 
-Map<String, dynamic> _$$PassportElementErrorDataFieldImplToJson(
-        _$PassportElementErrorDataFieldImpl instance) =>
+Map<String, dynamic> _$PassportElementErrorDataFieldToJson(
+        PassportElementErrorDataField instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
       'type': instance.type,
@@ -56,49 +56,49 @@ const _$PassportTypeEnumMap = {
   PassportType.personalDetails: 'personal_details',
 };
 
-_$PassportElementErrorFrontSideImpl
-    _$$PassportElementErrorFrontSideImplFromJson(Map<String, dynamic> json) =>
-        _$PassportElementErrorFrontSideImpl(
-          source: $enumDecodeNullable(
-                  _$PassportElementErrorSourceEnumMap, json['source']) ??
-              PassportElementErrorSource.frontSide,
-          type: $enumDecode(_$PassportTypeEnumMap, json['type']),
-          message: json['message'] as String,
-          fileHash: json['file_hash'] as String,
-        );
-
-Map<String, dynamic> _$$PassportElementErrorFrontSideImplToJson(
-        _$PassportElementErrorFrontSideImpl instance) =>
-    <String, dynamic>{
-      'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
-      'type': instance.type,
-      'message': instance.message,
-      'file_hash': instance.fileHash,
-    };
-
-_$PassportElementErrorReverseSideImpl
-    _$$PassportElementErrorReverseSideImplFromJson(Map<String, dynamic> json) =>
-        _$PassportElementErrorReverseSideImpl(
-          source: $enumDecodeNullable(
-                  _$PassportElementErrorSourceEnumMap, json['source']) ??
-              PassportElementErrorSource.reverseSide,
-          type: $enumDecode(_$PassportTypeEnumMap, json['type']),
-          message: json['message'] as String,
-          fileHash: json['file_hash'] as String,
-        );
-
-Map<String, dynamic> _$$PassportElementErrorReverseSideImplToJson(
-        _$PassportElementErrorReverseSideImpl instance) =>
-    <String, dynamic>{
-      'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
-      'type': instance.type,
-      'message': instance.message,
-      'file_hash': instance.fileHash,
-    };
-
-_$PassportElementErrorSelfieImpl _$$PassportElementErrorSelfieImplFromJson(
+PassportElementErrorFrontSide _$PassportElementErrorFrontSideFromJson(
         Map<String, dynamic> json) =>
-    _$PassportElementErrorSelfieImpl(
+    PassportElementErrorFrontSide(
+      source: $enumDecodeNullable(
+              _$PassportElementErrorSourceEnumMap, json['source']) ??
+          PassportElementErrorSource.frontSide,
+      type: $enumDecode(_$PassportTypeEnumMap, json['type']),
+      message: json['message'] as String,
+      fileHash: json['file_hash'] as String,
+    );
+
+Map<String, dynamic> _$PassportElementErrorFrontSideToJson(
+        PassportElementErrorFrontSide instance) =>
+    <String, dynamic>{
+      'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
+      'type': instance.type,
+      'message': instance.message,
+      'file_hash': instance.fileHash,
+    };
+
+PassportElementErrorReverseSide _$PassportElementErrorReverseSideFromJson(
+        Map<String, dynamic> json) =>
+    PassportElementErrorReverseSide(
+      source: $enumDecodeNullable(
+              _$PassportElementErrorSourceEnumMap, json['source']) ??
+          PassportElementErrorSource.reverseSide,
+      type: $enumDecode(_$PassportTypeEnumMap, json['type']),
+      message: json['message'] as String,
+      fileHash: json['file_hash'] as String,
+    );
+
+Map<String, dynamic> _$PassportElementErrorReverseSideToJson(
+        PassportElementErrorReverseSide instance) =>
+    <String, dynamic>{
+      'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
+      'type': instance.type,
+      'message': instance.message,
+      'file_hash': instance.fileHash,
+    };
+
+PassportElementErrorSelfie _$PassportElementErrorSelfieFromJson(
+        Map<String, dynamic> json) =>
+    PassportElementErrorSelfie(
       source: $enumDecodeNullable(
               _$PassportElementErrorSourceEnumMap, json['source']) ??
           PassportElementErrorSource.selfie,
@@ -107,8 +107,8 @@ _$PassportElementErrorSelfieImpl _$$PassportElementErrorSelfieImplFromJson(
       fileHash: json['file_hash'] as String,
     );
 
-Map<String, dynamic> _$$PassportElementErrorSelfieImplToJson(
-        _$PassportElementErrorSelfieImpl instance) =>
+Map<String, dynamic> _$PassportElementErrorSelfieToJson(
+        PassportElementErrorSelfie instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
       'type': instance.type,
@@ -116,9 +116,9 @@ Map<String, dynamic> _$$PassportElementErrorSelfieImplToJson(
       'file_hash': instance.fileHash,
     };
 
-_$PassportElementErrorFileImpl _$$PassportElementErrorFileImplFromJson(
+PassportElementErrorFile _$PassportElementErrorFileFromJson(
         Map<String, dynamic> json) =>
-    _$PassportElementErrorFileImpl(
+    PassportElementErrorFile(
       source: $enumDecodeNullable(
               _$PassportElementErrorSourceEnumMap, json['source']) ??
           PassportElementErrorSource.file,
@@ -127,8 +127,8 @@ _$PassportElementErrorFileImpl _$$PassportElementErrorFileImplFromJson(
       fileHash: json['file_hash'] as String,
     );
 
-Map<String, dynamic> _$$PassportElementErrorFileImplToJson(
-        _$PassportElementErrorFileImpl instance) =>
+Map<String, dynamic> _$PassportElementErrorFileToJson(
+        PassportElementErrorFile instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
       'type': instance.type,
@@ -136,9 +136,9 @@ Map<String, dynamic> _$$PassportElementErrorFileImplToJson(
       'file_hash': instance.fileHash,
     };
 
-_$PassportElementErrorFilesImpl _$$PassportElementErrorFilesImplFromJson(
+PassportElementErrorFiles _$PassportElementErrorFilesFromJson(
         Map<String, dynamic> json) =>
-    _$PassportElementErrorFilesImpl(
+    PassportElementErrorFiles(
       source: $enumDecodeNullable(
               _$PassportElementErrorSourceEnumMap, json['source']) ??
           PassportElementErrorSource.files,
@@ -149,8 +149,8 @@ _$PassportElementErrorFilesImpl _$$PassportElementErrorFilesImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$PassportElementErrorFilesImplToJson(
-        _$PassportElementErrorFilesImpl instance) =>
+Map<String, dynamic> _$PassportElementErrorFilesToJson(
+        PassportElementErrorFiles instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
       'type': instance.type,
@@ -158,10 +158,9 @@ Map<String, dynamic> _$$PassportElementErrorFilesImplToJson(
       'file_hashes': instance.fileHashes,
     };
 
-_$PassportElementErrorTranslationFileImpl
-    _$$PassportElementErrorTranslationFileImplFromJson(
-            Map<String, dynamic> json) =>
-        _$PassportElementErrorTranslationFileImpl(
+PassportElementErrorTranslationFile
+    _$PassportElementErrorTranslationFileFromJson(Map<String, dynamic> json) =>
+        PassportElementErrorTranslationFile(
           source: $enumDecodeNullable(
                   _$PassportElementErrorSourceEnumMap, json['source']) ??
               PassportElementErrorSource.translationFile,
@@ -170,8 +169,8 @@ _$PassportElementErrorTranslationFileImpl
           fileHash: json['file_hash'] as String,
         );
 
-Map<String, dynamic> _$$PassportElementErrorTranslationFileImplToJson(
-        _$PassportElementErrorTranslationFileImpl instance) =>
+Map<String, dynamic> _$PassportElementErrorTranslationFileToJson(
+        PassportElementErrorTranslationFile instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
       'type': instance.type,
@@ -179,10 +178,9 @@ Map<String, dynamic> _$$PassportElementErrorTranslationFileImplToJson(
       'file_hash': instance.fileHash,
     };
 
-_$PassportElementErrorTranslationFilesImpl
-    _$$PassportElementErrorTranslationFilesImplFromJson(
-            Map<String, dynamic> json) =>
-        _$PassportElementErrorTranslationFilesImpl(
+PassportElementErrorTranslationFiles
+    _$PassportElementErrorTranslationFilesFromJson(Map<String, dynamic> json) =>
+        PassportElementErrorTranslationFiles(
           source: $enumDecodeNullable(
                   _$PassportElementErrorSourceEnumMap, json['source']) ??
               PassportElementErrorSource.translationFiles,
@@ -193,8 +191,8 @@ _$PassportElementErrorTranslationFilesImpl
               .toList(),
         );
 
-Map<String, dynamic> _$$PassportElementErrorTranslationFilesImplToJson(
-        _$PassportElementErrorTranslationFilesImpl instance) =>
+Map<String, dynamic> _$PassportElementErrorTranslationFilesToJson(
+        PassportElementErrorTranslationFiles instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
       'type': instance.type,
@@ -202,19 +200,19 @@ Map<String, dynamic> _$$PassportElementErrorTranslationFilesImplToJson(
       'file_hashes': instance.fileHashes,
     };
 
-_$PassportElementErrorUnspecifiedImpl
-    _$$PassportElementErrorUnspecifiedImplFromJson(Map<String, dynamic> json) =>
-        _$PassportElementErrorUnspecifiedImpl(
-          source: $enumDecodeNullable(
-                  _$PassportElementErrorSourceEnumMap, json['source']) ??
-              PassportElementErrorSource.unspecified,
-          type: $enumDecode(_$PassportTypeEnumMap, json['type']),
-          message: json['message'] as String,
-          elementHash: json['element_hash'] as String,
-        );
+PassportElementErrorUnspecified _$PassportElementErrorUnspecifiedFromJson(
+        Map<String, dynamic> json) =>
+    PassportElementErrorUnspecified(
+      source: $enumDecodeNullable(
+              _$PassportElementErrorSourceEnumMap, json['source']) ??
+          PassportElementErrorSource.unspecified,
+      type: $enumDecode(_$PassportTypeEnumMap, json['type']),
+      message: json['message'] as String,
+      elementHash: json['element_hash'] as String,
+    );
 
-Map<String, dynamic> _$$PassportElementErrorUnspecifiedImplToJson(
-        _$PassportElementErrorUnspecifiedImpl instance) =>
+Map<String, dynamic> _$PassportElementErrorUnspecifiedToJson(
+        PassportElementErrorUnspecified instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
       'type': instance.type,

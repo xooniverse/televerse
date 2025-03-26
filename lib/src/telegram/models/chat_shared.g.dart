@@ -6,8 +6,7 @@ part of 'chat_shared.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatSharedImpl _$$ChatSharedImplFromJson(Map<String, dynamic> json) =>
-    _$ChatSharedImpl(
+_ChatShared _$ChatSharedFromJson(Map<String, dynamic> json) => _ChatShared(
       requestId: (json['request_id'] as num).toInt(),
       chatId: (json['chat_id'] as num).toInt(),
       title: json['title'] as String?,
@@ -17,7 +16,7 @@ _$ChatSharedImpl _$$ChatSharedImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$ChatSharedImplToJson(_$ChatSharedImpl instance) =>
+Map<String, dynamic> _$ChatSharedToJson(_ChatShared instance) =>
     <String, dynamic>{
       'request_id': instance.requestId,
       'chat_id': instance.chatId,

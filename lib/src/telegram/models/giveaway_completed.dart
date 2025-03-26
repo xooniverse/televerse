@@ -8,7 +8,7 @@ part 'giveaway_completed.g.dart';
 /// This object represents a service message about the completion of a giveaway
 /// without public winners.
 @freezed
-class GiveawayCompleted with _$GiveawayCompleted {
+abstract class GiveawayCompleted with _$GiveawayCompleted {
   /// Constructor
   const factory GiveawayCompleted({
     /// Number of winners in the giveaway

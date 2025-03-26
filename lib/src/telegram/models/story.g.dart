@@ -6,13 +6,12 @@ part of 'story.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$StoryImpl _$$StoryImplFromJson(Map<String, dynamic> json) => _$StoryImpl(
+_Story _$StoryFromJson(Map<String, dynamic> json) => _Story(
       chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
       id: (json['id'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$StoryImplToJson(_$StoryImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$StoryToJson(_Story instance) => <String, dynamic>{
       'chat': instance.chat,
       'id': instance.id,
     };

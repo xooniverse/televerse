@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,93 +12,42 @@ part of 'poll_option.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-PollOption _$PollOptionFromJson(Map<String, dynamic> json) {
-  return _PollOption.fromJson(json);
-}
-
 /// @nodoc
 mixin _$PollOption {
   /// Option text, 1-100 characters
   @JsonKey(name: 'text')
-  String get text => throw _privateConstructorUsedError;
+  String get text;
 
   /// Number of users that voted for this option
   @JsonKey(name: 'voter_count')
-  int get voterCount => throw _privateConstructorUsedError;
+  int get voterCount;
 
   /// Optional. Special entities that appear in the option text. Currently,
   /// only custom emoji entities are allowed in poll option texts
   @JsonKey(name: 'text_entities')
-  List<MessageEntity>? get textEntities => throw _privateConstructorUsedError;
-
-  /// Serializes this PollOption to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<MessageEntity>? get textEntities;
 
   /// Create a copy of PollOption
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PollOptionCopyWith<PollOption> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PollOptionCopyWith<$Res> {
-  factory $PollOptionCopyWith(
-          PollOption value, $Res Function(PollOption) then) =
-      _$PollOptionCopyWithImpl<$Res, PollOption>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'voter_count') int voterCount,
-      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities});
-}
-
-/// @nodoc
-class _$PollOptionCopyWithImpl<$Res, $Val extends PollOption>
-    implements $PollOptionCopyWith<$Res> {
-  _$PollOptionCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of PollOption
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $PollOptionCopyWith<PollOption> get copyWith =>
+      _$PollOptionCopyWithImpl<PollOption>(this as PollOption, _$identity);
+
+  /// Serializes this PollOption to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? text = null,
-    Object? voterCount = null,
-    Object? textEntities = freezed,
-  }) {
-    return _then(_value.copyWith(
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      voterCount: null == voterCount
-          ? _value.voterCount
-          : voterCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      textEntities: freezed == textEntities
-          ? _value.textEntities
-          : textEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-    ) as $Val);
+  String toString() {
+    return 'PollOption(text: $text, voterCount: $voterCount, textEntities: $textEntities)';
   }
 }
 
 /// @nodoc
-abstract class _$$PollOptionImplCopyWith<$Res>
-    implements $PollOptionCopyWith<$Res> {
-  factory _$$PollOptionImplCopyWith(
-          _$PollOptionImpl value, $Res Function(_$PollOptionImpl) then) =
-      __$$PollOptionImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $PollOptionCopyWith<$Res> {
+  factory $PollOptionCopyWith(
+          PollOption value, $Res Function(PollOption) _then) =
+      _$PollOptionCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'text') String text,
@@ -106,12 +56,11 @@ abstract class _$$PollOptionImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PollOptionImplCopyWithImpl<$Res>
-    extends _$PollOptionCopyWithImpl<$Res, _$PollOptionImpl>
-    implements _$$PollOptionImplCopyWith<$Res> {
-  __$$PollOptionImplCopyWithImpl(
-      _$PollOptionImpl _value, $Res Function(_$PollOptionImpl) _then)
-      : super(_value, _then);
+class _$PollOptionCopyWithImpl<$Res> implements $PollOptionCopyWith<$Res> {
+  _$PollOptionCopyWithImpl(this._self, this._then);
+
+  final PollOption _self;
+  final $Res Function(PollOption) _then;
 
   /// Create a copy of PollOption
   /// with the given fields replaced by the non-null parameter values.
@@ -122,17 +71,17 @@ class __$$PollOptionImplCopyWithImpl<$Res>
     Object? voterCount = null,
     Object? textEntities = freezed,
   }) {
-    return _then(_$PollOptionImpl(
+    return _then(_self.copyWith(
       text: null == text
-          ? _value.text
+          ? _self.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
       voterCount: null == voterCount
-          ? _value.voterCount
+          ? _self.voterCount
           : voterCount // ignore: cast_nullable_to_non_nullable
               as int,
       textEntities: freezed == textEntities
-          ? _value._textEntities
+          ? _self.textEntities
           : textEntities // ignore: cast_nullable_to_non_nullable
               as List<MessageEntity>?,
     ));
@@ -141,15 +90,14 @@ class __$$PollOptionImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PollOptionImpl implements _PollOption {
-  const _$PollOptionImpl(
+class _PollOption implements PollOption {
+  const _PollOption(
       {@JsonKey(name: 'text') required this.text,
       @JsonKey(name: 'voter_count') required this.voterCount,
       @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities})
       : _textEntities = textEntities;
-
-  factory _$PollOptionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PollOptionImplFromJson(json);
+  factory _PollOption.fromJson(Map<String, dynamic> json) =>
+      _$PollOptionFromJson(json);
 
   /// Option text, 1-100 characters
   @override
@@ -177,57 +125,70 @@ class _$PollOptionImpl implements _PollOption {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of PollOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PollOptionCopyWith<_PollOption> get copyWith =>
+      __$PollOptionCopyWithImpl<_PollOption>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PollOptionToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'PollOption(text: $text, voterCount: $voterCount, textEntities: $textEntities)';
   }
-
-  /// Create a copy of PollOption
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PollOptionImplCopyWith<_$PollOptionImpl> get copyWith =>
-      __$$PollOptionImplCopyWithImpl<_$PollOptionImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PollOptionImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _PollOption implements PollOption {
-  const factory _PollOption(
-      {@JsonKey(name: 'text') required final String text,
-      @JsonKey(name: 'voter_count') required final int voterCount,
-      @JsonKey(name: 'text_entities')
-      final List<MessageEntity>? textEntities}) = _$PollOptionImpl;
-
-  factory _PollOption.fromJson(Map<String, dynamic> json) =
-      _$PollOptionImpl.fromJson;
-
-  /// Option text, 1-100 characters
+/// @nodoc
+abstract mixin class _$PollOptionCopyWith<$Res>
+    implements $PollOptionCopyWith<$Res> {
+  factory _$PollOptionCopyWith(
+          _PollOption value, $Res Function(_PollOption) _then) =
+      __$PollOptionCopyWithImpl;
   @override
-  @JsonKey(name: 'text')
-  String get text;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'text') String text,
+      @JsonKey(name: 'voter_count') int voterCount,
+      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities});
+}
 
-  /// Number of users that voted for this option
-  @override
-  @JsonKey(name: 'voter_count')
-  int get voterCount;
+/// @nodoc
+class __$PollOptionCopyWithImpl<$Res> implements _$PollOptionCopyWith<$Res> {
+  __$PollOptionCopyWithImpl(this._self, this._then);
 
-  /// Optional. Special entities that appear in the option text. Currently,
-  /// only custom emoji entities are allowed in poll option texts
-  @override
-  @JsonKey(name: 'text_entities')
-  List<MessageEntity>? get textEntities;
+  final _PollOption _self;
+  final $Res Function(_PollOption) _then;
 
   /// Create a copy of PollOption
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PollOptionImplCopyWith<_$PollOptionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? text = null,
+    Object? voterCount = null,
+    Object? textEntities = freezed,
+  }) {
+    return _then(_PollOption(
+      text: null == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      voterCount: null == voterCount
+          ? _self.voterCount
+          : voterCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      textEntities: freezed == textEntities
+          ? _self._textEntities
+          : textEntities // ignore: cast_nullable_to_non_nullable
+              as List<MessageEntity>?,
+    ));
+  }
 }

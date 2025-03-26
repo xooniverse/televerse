@@ -7,7 +7,7 @@ part 'write_access_allowed.g.dart';
 /// This object represents a service message about a user allowing a bot added
 /// to the attachment menu to write messages.
 @freezed
-class WriteAccessAllowed with _$WriteAccessAllowed {
+abstract class WriteAccessAllowed with _$WriteAccessAllowed {
   /// Constructs a [WriteAccessAllowed] object.
   const factory WriteAccessAllowed({
     /// Name of the connected website. Present only if the user allowed the bot

@@ -6,9 +6,8 @@ part of 'external_reply_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ExternalReplyInfoImpl _$$ExternalReplyInfoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ExternalReplyInfoImpl(
+_ExternalReplyInfo _$ExternalReplyInfoFromJson(Map<String, dynamic> json) =>
+    _ExternalReplyInfo(
       origin: MessageOrigin.fromJson(json['origin'] as Map<String, dynamic>),
       chat: json['chat'] == null
           ? null
@@ -79,8 +78,7 @@ _$ExternalReplyInfoImpl _$$ExternalReplyInfoImplFromJson(
           : PaidMediaInfo.fromJson(json['paid_media'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ExternalReplyInfoImplToJson(
-        _$ExternalReplyInfoImpl instance) =>
+Map<String, dynamic> _$ExternalReplyInfoToJson(_ExternalReplyInfo instance) =>
     <String, dynamic>{
       'origin': instance.origin,
       if (instance.chat case final value?) 'chat': value,

@@ -6,8 +6,8 @@ part of 'business_intro.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BusinessIntroImpl _$$BusinessIntroImplFromJson(Map<String, dynamic> json) =>
-    _$BusinessIntroImpl(
+_BusinessIntro _$BusinessIntroFromJson(Map<String, dynamic> json) =>
+    _BusinessIntro(
       title: json['title'] as String?,
       message: json['message'] as String?,
       sticker: json['sticker'] == null
@@ -15,7 +15,7 @@ _$BusinessIntroImpl _$$BusinessIntroImplFromJson(Map<String, dynamic> json) =>
           : Sticker.fromJson(json['sticker'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$BusinessIntroImplToJson(_$BusinessIntroImpl instance) =>
+Map<String, dynamic> _$BusinessIntroToJson(_BusinessIntro instance) =>
     <String, dynamic>{
       if (instance.title case final value?) 'title': value,
       if (instance.message case final value?) 'message': value,

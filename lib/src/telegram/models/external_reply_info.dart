@@ -29,7 +29,7 @@ part 'external_reply_info.g.dart';
 /// Contains information about a message that is being replied to,
 /// which may come from another chat or forum topic.
 @freezed
-class ExternalReplyInfo with _$ExternalReplyInfo {
+abstract class ExternalReplyInfo with _$ExternalReplyInfo {
   /// Constructs the [ExternalReplyInfo]
   const factory ExternalReplyInfo({
     /// Origin of the message replied to by the given message

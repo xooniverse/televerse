@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,83 +12,38 @@ part of 'callback_game.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-CallbackGame _$CallbackGameFromJson(Map<String, dynamic> json) {
-  return _CallbackGame.fromJson(json);
-}
-
 /// @nodoc
 mixin _$CallbackGame {
   /// Serializes this CallbackGame to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CallbackGameCopyWith<$Res> {
-  factory $CallbackGameCopyWith(
-          CallbackGame value, $Res Function(CallbackGame) then) =
-      _$CallbackGameCopyWithImpl<$Res, CallbackGame>;
-}
-
-/// @nodoc
-class _$CallbackGameCopyWithImpl<$Res, $Val extends CallbackGame>
-    implements $CallbackGameCopyWith<$Res> {
-  _$CallbackGameCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of CallbackGame
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$CallbackGameImplCopyWith<$Res> {
-  factory _$$CallbackGameImplCopyWith(
-          _$CallbackGameImpl value, $Res Function(_$CallbackGameImpl) then) =
-      __$$CallbackGameImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$CallbackGameImplCopyWithImpl<$Res>
-    extends _$CallbackGameCopyWithImpl<$Res, _$CallbackGameImpl>
-    implements _$$CallbackGameImplCopyWith<$Res> {
-  __$$CallbackGameImplCopyWithImpl(
-      _$CallbackGameImpl _value, $Res Function(_$CallbackGameImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CallbackGame
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$CallbackGameImpl implements _CallbackGame {
-  const _$CallbackGameImpl();
-
-  factory _$CallbackGameImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CallbackGameImplFromJson(json);
+  Map<String, dynamic> toJson();
 
   @override
   String toString() {
     return 'CallbackGame()';
   }
+}
+
+/// @nodoc
+class $CallbackGameCopyWith<$Res> {
+  $CallbackGameCopyWith(CallbackGame _, $Res Function(CallbackGame) __);
+}
+
+/// @nodoc
+@JsonSerializable()
+class _CallbackGame implements CallbackGame {
+  const _CallbackGame();
+  factory _CallbackGame.fromJson(Map<String, dynamic> json) =>
+      _$CallbackGameFromJson(json);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CallbackGameImplToJson(
+    return _$CallbackGameToJson(
       this,
     );
   }
-}
 
-abstract class _CallbackGame implements CallbackGame {
-  const factory _CallbackGame() = _$CallbackGameImpl;
-
-  factory _CallbackGame.fromJson(Map<String, dynamic> json) =
-      _$CallbackGameImpl.fromJson;
+  @override
+  String toString() {
+    return 'CallbackGame()';
+  }
 }

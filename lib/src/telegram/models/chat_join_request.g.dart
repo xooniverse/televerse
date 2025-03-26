@@ -6,9 +6,8 @@ part of 'chat_join_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatJoinRequestImpl _$$ChatJoinRequestImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatJoinRequestImpl(
+_ChatJoinRequest _$ChatJoinRequestFromJson(Map<String, dynamic> json) =>
+    _ChatJoinRequest(
       chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
       from: User.fromJson(json['from'] as Map<String, dynamic>),
       date: (json['date'] as num).toInt(),
@@ -20,8 +19,7 @@ _$ChatJoinRequestImpl _$$ChatJoinRequestImplFromJson(
       userChatId: (json['user_chat_id'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$ChatJoinRequestImplToJson(
-        _$ChatJoinRequestImpl instance) =>
+Map<String, dynamic> _$ChatJoinRequestToJson(_ChatJoinRequest instance) =>
     <String, dynamic>{
       'chat': instance.chat,
       'from': instance.from,

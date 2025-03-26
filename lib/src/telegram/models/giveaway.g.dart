@@ -6,8 +6,7 @@ part of 'giveaway.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GiveawayImpl _$$GiveawayImplFromJson(Map<String, dynamic> json) =>
-    _$GiveawayImpl(
+_Giveaway _$GiveawayFromJson(Map<String, dynamic> json) => _Giveaway(
       chats: (json['chats'] as List<dynamic>)
           .map((e) => Chat.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -24,8 +23,7 @@ _$GiveawayImpl _$$GiveawayImplFromJson(Map<String, dynamic> json) =>
       prizeStarCount: (json['prize_star_count'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$GiveawayImplToJson(_$GiveawayImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$GiveawayToJson(_Giveaway instance) => <String, dynamic>{
       'chats': instance.chats,
       'winners_selection_date': instance.winnersSelectionDate,
       'winner_count': instance.winnerCount,

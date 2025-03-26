@@ -375,4 +375,7 @@ class InlineMenu<CTX extends Context>
       }).toList(),
     };
   }
+
+  @override
+  String get $type => runtimeType.toString();
 }

@@ -6,9 +6,9 @@ part of 'inline_query_result_location.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultLocationImpl _$$InlineQueryResultLocationImplFromJson(
+_InlineQueryResultLocation _$InlineQueryResultLocationFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultLocationImpl(
+    _InlineQueryResultLocation(
       type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
           InlineQueryResultType.location,
       id: json['id'] as String,
@@ -32,8 +32,8 @@ _$InlineQueryResultLocationImpl _$$InlineQueryResultLocationImplFromJson(
       thumbnailHeight: (json['thumbnail_height'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$InlineQueryResultLocationImplToJson(
-        _$InlineQueryResultLocationImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultLocationToJson(
+        _InlineQueryResultLocation instance) =>
     <String, dynamic>{
       'type': instance.type,
       'id': instance.id,

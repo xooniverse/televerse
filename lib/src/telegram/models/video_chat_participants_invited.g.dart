@@ -6,16 +6,16 @@ part of 'video_chat_participants_invited.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VideoChatParticipantsInvitedImpl _$$VideoChatParticipantsInvitedImplFromJson(
+_VideoChatParticipantsInvited _$VideoChatParticipantsInvitedFromJson(
         Map<String, dynamic> json) =>
-    _$VideoChatParticipantsInvitedImpl(
+    _VideoChatParticipantsInvited(
       users: (json['users'] as List<dynamic>)
           .map((e) => User.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$VideoChatParticipantsInvitedImplToJson(
-        _$VideoChatParticipantsInvitedImpl instance) =>
+Map<String, dynamic> _$VideoChatParticipantsInvitedToJson(
+        _VideoChatParticipantsInvited instance) =>
     <String, dynamic>{
       'users': instance.users,
     };

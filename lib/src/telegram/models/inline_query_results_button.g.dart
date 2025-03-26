@@ -6,9 +6,9 @@ part of 'inline_query_results_button.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultsButtonImpl _$$InlineQueryResultsButtonImplFromJson(
+_InlineQueryResultsButton _$InlineQueryResultsButtonFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultsButtonImpl(
+    _InlineQueryResultsButton(
       text: json['text'] as String,
       webApp: json['web_app'] == null
           ? null
@@ -16,8 +16,8 @@ _$InlineQueryResultsButtonImpl _$$InlineQueryResultsButtonImplFromJson(
       startParameter: json['start_parameter'] as String?,
     );
 
-Map<String, dynamic> _$$InlineQueryResultsButtonImplToJson(
-        _$InlineQueryResultsButtonImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultsButtonToJson(
+        _InlineQueryResultsButton instance) =>
     <String, dynamic>{
       'text': instance.text,
       if (instance.webApp case final value?) 'web_app': value,

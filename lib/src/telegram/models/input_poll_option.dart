@@ -8,7 +8,7 @@ part 'input_poll_option.g.dart';
 
 /// Represents an input poll option.
 @freezed
-class InputPollOption with _$InputPollOption {
+abstract class InputPollOption with _$InputPollOption {
   /// Creates an [InputPollOption] object.
   const factory InputPollOption({
     /// Option text, 1-100 characters.

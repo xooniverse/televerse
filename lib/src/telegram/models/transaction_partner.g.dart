@@ -6,9 +6,9 @@ part of 'transaction_partner.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TransactionPartnerFragmentImpl _$$TransactionPartnerFragmentImplFromJson(
+TransactionPartnerFragment _$TransactionPartnerFragmentFromJson(
         Map<String, dynamic> json) =>
-    _$TransactionPartnerFragmentImpl(
+    TransactionPartnerFragment(
       type:
           $enumDecodeNullable(_$TransactionPartnerTypeEnumMap, json['type']) ??
               TransactionPartnerType.fragment,
@@ -18,8 +18,8 @@ _$TransactionPartnerFragmentImpl _$$TransactionPartnerFragmentImplFromJson(
               json['withdrawal_state'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$TransactionPartnerFragmentImplToJson(
-        _$TransactionPartnerFragmentImpl instance) =>
+Map<String, dynamic> _$TransactionPartnerFragmentToJson(
+        TransactionPartnerFragment instance) =>
     <String, dynamic>{
       'type': _$TransactionPartnerTypeEnumMap[instance.type]!,
       if (instance.withdrawalState case final value?) 'withdrawal_state': value,
@@ -35,9 +35,9 @@ const _$TransactionPartnerTypeEnumMap = {
   TransactionPartnerType.chat: 'chat',
 };
 
-_$TransactionPartnerUserImpl _$$TransactionPartnerUserImplFromJson(
+TransactionPartnerUser _$TransactionPartnerUserFromJson(
         Map<String, dynamic> json) =>
-    _$TransactionPartnerUserImpl(
+    TransactionPartnerUser(
       type:
           $enumDecodeNullable(_$TransactionPartnerTypeEnumMap, json['type']) ??
               TransactionPartnerType.user,
@@ -56,8 +56,8 @@ _$TransactionPartnerUserImpl _$$TransactionPartnerUserImplFromJson(
           : AffiliateInfo.fromJson(json['affiliate'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$TransactionPartnerUserImplToJson(
-        _$TransactionPartnerUserImpl instance) =>
+Map<String, dynamic> _$TransactionPartnerUserToJson(
+        TransactionPartnerUser instance) =>
     <String, dynamic>{
       'type': _$TransactionPartnerTypeEnumMap[instance.type]!,
       'user': instance.user,
@@ -71,74 +71,73 @@ Map<String, dynamic> _$$TransactionPartnerUserImplToJson(
       if (instance.affiliate case final value?) 'affiliate': value,
     };
 
-_$TransactionPartnerTelegramAdsImpl
-    _$$TransactionPartnerTelegramAdsImplFromJson(Map<String, dynamic> json) =>
-        _$TransactionPartnerTelegramAdsImpl(
-          type: $enumDecodeNullable(
-                  _$TransactionPartnerTypeEnumMap, json['type']) ??
+TransactionPartnerTelegramAds _$TransactionPartnerTelegramAdsFromJson(
+        Map<String, dynamic> json) =>
+    TransactionPartnerTelegramAds(
+      type:
+          $enumDecodeNullable(_$TransactionPartnerTypeEnumMap, json['type']) ??
               TransactionPartnerType.telegramAds,
-        );
+    );
 
-Map<String, dynamic> _$$TransactionPartnerTelegramAdsImplToJson(
-        _$TransactionPartnerTelegramAdsImpl instance) =>
+Map<String, dynamic> _$TransactionPartnerTelegramAdsToJson(
+        TransactionPartnerTelegramAds instance) =>
     <String, dynamic>{
       'type': _$TransactionPartnerTypeEnumMap[instance.type]!,
     };
 
-_$TransactionPartnerTelegramApiImpl
-    _$$TransactionPartnerTelegramApiImplFromJson(Map<String, dynamic> json) =>
-        _$TransactionPartnerTelegramApiImpl(
-          type: $enumDecodeNullable(
-                  _$TransactionPartnerTypeEnumMap, json['type']) ??
+TransactionPartnerTelegramApi _$TransactionPartnerTelegramApiFromJson(
+        Map<String, dynamic> json) =>
+    TransactionPartnerTelegramApi(
+      type:
+          $enumDecodeNullable(_$TransactionPartnerTypeEnumMap, json['type']) ??
               TransactionPartnerType.telegramApi,
-          requestCount: (json['request_count'] as num?)?.toInt(),
-        );
+      requestCount: (json['request_count'] as num?)?.toInt(),
+    );
 
-Map<String, dynamic> _$$TransactionPartnerTelegramApiImplToJson(
-        _$TransactionPartnerTelegramApiImpl instance) =>
+Map<String, dynamic> _$TransactionPartnerTelegramApiToJson(
+        TransactionPartnerTelegramApi instance) =>
     <String, dynamic>{
       'type': _$TransactionPartnerTypeEnumMap[instance.type]!,
       if (instance.requestCount case final value?) 'request_count': value,
     };
 
-_$TransactionPartnerOtherImpl _$$TransactionPartnerOtherImplFromJson(
+TransactionPartnerOther _$TransactionPartnerOtherFromJson(
         Map<String, dynamic> json) =>
-    _$TransactionPartnerOtherImpl(
+    TransactionPartnerOther(
       type:
           $enumDecodeNullable(_$TransactionPartnerTypeEnumMap, json['type']) ??
               TransactionPartnerType.other,
     );
 
-Map<String, dynamic> _$$TransactionPartnerOtherImplToJson(
-        _$TransactionPartnerOtherImpl instance) =>
+Map<String, dynamic> _$TransactionPartnerOtherToJson(
+        TransactionPartnerOther instance) =>
     <String, dynamic>{
       'type': _$TransactionPartnerTypeEnumMap[instance.type]!,
     };
 
-_$TransactionPartnerAffiliateProgramImpl
-    _$$TransactionPartnerAffiliateProgramImplFromJson(
-            Map<String, dynamic> json) =>
-        _$TransactionPartnerAffiliateProgramImpl(
-          type: $enumDecodeNullable(
-                  _$TransactionPartnerTypeEnumMap, json['type']) ??
+TransactionPartnerAffiliateProgram _$TransactionPartnerAffiliateProgramFromJson(
+        Map<String, dynamic> json) =>
+    TransactionPartnerAffiliateProgram(
+      type:
+          $enumDecodeNullable(_$TransactionPartnerTypeEnumMap, json['type']) ??
               TransactionPartnerType.affiliateProgram,
-          sponsorUser: json['sponsor_user'] == null
-              ? null
-              : User.fromJson(json['sponsor_user'] as Map<String, dynamic>),
-          commissionPerMille: (json['commission_per_mille'] as num).toInt(),
-        );
+      sponsorUser: json['sponsor_user'] == null
+          ? null
+          : User.fromJson(json['sponsor_user'] as Map<String, dynamic>),
+      commissionPerMille: (json['commission_per_mille'] as num).toInt(),
+    );
 
-Map<String, dynamic> _$$TransactionPartnerAffiliateProgramImplToJson(
-        _$TransactionPartnerAffiliateProgramImpl instance) =>
+Map<String, dynamic> _$TransactionPartnerAffiliateProgramToJson(
+        TransactionPartnerAffiliateProgram instance) =>
     <String, dynamic>{
       'type': _$TransactionPartnerTypeEnumMap[instance.type]!,
       if (instance.sponsorUser case final value?) 'sponsor_user': value,
       'commission_per_mille': instance.commissionPerMille,
     };
 
-_$TransactionPartnerChatImpl _$$TransactionPartnerChatImplFromJson(
+TransactionPartnerChat _$TransactionPartnerChatFromJson(
         Map<String, dynamic> json) =>
-    _$TransactionPartnerChatImpl(
+    TransactionPartnerChat(
       type:
           $enumDecodeNullable(_$TransactionPartnerTypeEnumMap, json['type']) ??
               TransactionPartnerType.chat,
@@ -148,8 +147,8 @@ _$TransactionPartnerChatImpl _$$TransactionPartnerChatImplFromJson(
           : Gift.fromJson(json['gift'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$TransactionPartnerChatImplToJson(
-        _$TransactionPartnerChatImpl instance) =>
+Map<String, dynamic> _$TransactionPartnerChatToJson(
+        TransactionPartnerChat instance) =>
     <String, dynamic>{
       'type': _$TransactionPartnerTypeEnumMap[instance.type]!,
       'chat': instance.chat,

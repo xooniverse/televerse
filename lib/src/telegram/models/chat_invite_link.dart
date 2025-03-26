@@ -7,7 +7,7 @@ part 'chat_invite_link.g.dart';
 
 /// Represents an invite link for a chat.
 @freezed
-class ChatInviteLink with _$ChatInviteLink {
+abstract class ChatInviteLink with _$ChatInviteLink {
   /// Creates a new [ChatInviteLink] object.
   const factory ChatInviteLink({
     /// The invite link. If the link was created by another chat administrator, then the second part of the link will be replaced with “…”.

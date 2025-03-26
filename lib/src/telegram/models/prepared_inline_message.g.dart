@@ -6,15 +6,15 @@ part of 'prepared_inline_message.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PreparedInlineMessageImpl _$$PreparedInlineMessageImplFromJson(
+_PreparedInlineMessage _$PreparedInlineMessageFromJson(
         Map<String, dynamic> json) =>
-    _$PreparedInlineMessageImpl(
+    _PreparedInlineMessage(
       id: json['id'] as String,
       expirationDate: (json['expiration_date'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$PreparedInlineMessageImplToJson(
-        _$PreparedInlineMessageImpl instance) =>
+Map<String, dynamic> _$PreparedInlineMessageToJson(
+        _PreparedInlineMessage instance) =>
     <String, dynamic>{
       'id': instance.id,
       'expiration_date': instance.expirationDate,

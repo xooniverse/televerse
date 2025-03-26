@@ -6,9 +6,9 @@ part of 'inline_query_result_contact.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultContactImpl _$$InlineQueryResultContactImplFromJson(
+_InlineQueryResultContact _$InlineQueryResultContactFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultContactImpl(
+    _InlineQueryResultContact(
       id: json['id'] as String,
       type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
           InlineQueryResultType.contact,
@@ -29,8 +29,8 @@ _$InlineQueryResultContactImpl _$$InlineQueryResultContactImplFromJson(
       thumbnailHeight: (json['thumbnail_height'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$InlineQueryResultContactImplToJson(
-        _$InlineQueryResultContactImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultContactToJson(
+        _InlineQueryResultContact instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': instance.type,

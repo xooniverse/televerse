@@ -6,9 +6,9 @@ part of 'encrypted_passport_element.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$EncryptedPassportElementImpl _$$EncryptedPassportElementImplFromJson(
+_EncryptedPassportElement _$EncryptedPassportElementFromJson(
         Map<String, dynamic> json) =>
-    _$EncryptedPassportElementImpl(
+    _EncryptedPassportElement(
       type: $enumDecode(_$PassportTypeEnumMap, json['type']),
       data: json['data'] as String?,
       phoneNumber: json['phone_number'] as String?,
@@ -31,8 +31,8 @@ _$EncryptedPassportElementImpl _$$EncryptedPassportElementImplFromJson(
       hash: json['hash'] as String,
     );
 
-Map<String, dynamic> _$$EncryptedPassportElementImplToJson(
-        _$EncryptedPassportElementImpl instance) =>
+Map<String, dynamic> _$EncryptedPassportElementToJson(
+        _EncryptedPassportElement instance) =>
     <String, dynamic>{
       'type': instance.type,
       if (instance.data case final value?) 'data': value,

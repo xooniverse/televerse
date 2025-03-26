@@ -8,7 +8,8 @@ part 'video_chat_participants_invited.g.dart';
 /// This object represents a service message about new members invited to a
 /// video chat.
 @freezed
-class VideoChatParticipantsInvited with _$VideoChatParticipantsInvited {
+abstract class VideoChatParticipantsInvited
+    with _$VideoChatParticipantsInvited {
   /// Constructs a [VideoChatParticipantsInvited] object.
   const factory VideoChatParticipantsInvited({
     /// New members that were invited to the video chat.

@@ -6,9 +6,9 @@ part of 'inline_query_result_game.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultGameImpl _$$InlineQueryResultGameImplFromJson(
+_InlineQueryResultGame _$InlineQueryResultGameFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultGameImpl(
+    _InlineQueryResultGame(
       type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
           InlineQueryResultType.game,
       id: json['id'] as String,
@@ -19,8 +19,8 @@ _$InlineQueryResultGameImpl _$$InlineQueryResultGameImplFromJson(
               json['reply_markup'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$InlineQueryResultGameImplToJson(
-        _$InlineQueryResultGameImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultGameToJson(
+        _InlineQueryResultGame instance) =>
     <String, dynamic>{
       'type': instance.type,
       'id': instance.id,

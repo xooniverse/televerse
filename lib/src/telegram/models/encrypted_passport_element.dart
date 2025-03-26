@@ -9,7 +9,7 @@ part 'encrypted_passport_element.g.dart';
 /// Describes documents or other Telegram Passport elements shared with the bot
 /// by the user.
 @freezed
-class EncryptedPassportElement with _$EncryptedPassportElement {
+abstract class EncryptedPassportElement with _$EncryptedPassportElement {
   /// Creates a new [EncryptedPassportElement] object.
   const factory EncryptedPassportElement({
     /// Type of Telegram Passport element

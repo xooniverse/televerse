@@ -6,15 +6,13 @@ part of 'paid_media_purchased.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PaidMediaPurchasedImpl _$$PaidMediaPurchasedImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PaidMediaPurchasedImpl(
+_PaidMediaPurchased _$PaidMediaPurchasedFromJson(Map<String, dynamic> json) =>
+    _PaidMediaPurchased(
       from: User.fromJson(json['from'] as Map<String, dynamic>),
       paidMediaPayload: json['paid_media_payload'] as String,
     );
 
-Map<String, dynamic> _$$PaidMediaPurchasedImplToJson(
-        _$PaidMediaPurchasedImpl instance) =>
+Map<String, dynamic> _$PaidMediaPurchasedToJson(_PaidMediaPurchased instance) =>
     <String, dynamic>{
       'from': instance.from,
       'paid_media_payload': instance.paidMediaPayload,

@@ -6,7 +6,7 @@ part 'response_parameters.g.dart';
 
 /// Describes why a request was unsuccessful.
 @freezed
-class ResponseParameters with _$ResponseParameters {
+abstract class ResponseParameters with _$ResponseParameters {
   /// Constructs a [ResponseParameters] object
   const factory ResponseParameters({
     /// Optional. The group has been migrated to a supergroup with the specified

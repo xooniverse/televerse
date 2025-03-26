@@ -6,7 +6,7 @@ part 'bot_command.g.dart';
 
 /// This object represents a bot command.
 @freezed
-class BotCommand with _$BotCommand {
+abstract class BotCommand with _$BotCommand {
   /// Constructs a [BotCommand] object.
   const factory BotCommand({
     /// Text of the command, 1-32 characters. Can contain only lowercase English letters, digits and underscores.

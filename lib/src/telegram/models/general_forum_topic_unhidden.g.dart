@@ -6,10 +6,10 @@ part of 'general_forum_topic_unhidden.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GeneralForumTopicUnhiddenImpl _$$GeneralForumTopicUnhiddenImplFromJson(
+_GeneralForumTopicUnhidden _$GeneralForumTopicUnhiddenFromJson(
         Map<String, dynamic> json) =>
-    _$GeneralForumTopicUnhiddenImpl();
+    _GeneralForumTopicUnhidden();
 
-Map<String, dynamic> _$$GeneralForumTopicUnhiddenImplToJson(
-        _$GeneralForumTopicUnhiddenImpl instance) =>
+Map<String, dynamic> _$GeneralForumTopicUnhiddenToJson(
+        _GeneralForumTopicUnhidden instance) =>
     <String, dynamic>{};

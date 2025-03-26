@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,18 +12,11 @@ part of 'chat_shared.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ChatShared _$ChatSharedFromJson(Map<String, dynamic> json) {
-  return _ChatShared.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ChatShared {
   /// Identifier of the request
   @JsonKey(name: 'request_id')
-  int get requestId => throw _privateConstructorUsedError;
+  int get requestId;
 
   /// Identifier of the shared chat. This number may have more than 32
   /// significant bits and some programming languages may have
@@ -32,99 +26,43 @@ mixin _$ChatShared {
   /// chat and could be unable to use this identifier, unless the chat is
   /// already known to the bot by some other means.
   @JsonKey(name: 'chat_id')
-  int get chatId => throw _privateConstructorUsedError;
+  int get chatId;
 
   /// Optional. Title of the chat, if the title was requested by the bot.
   @JsonKey(name: 'title')
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
 
   /// Optional. Username of the chat, if the username was requested by the bot
   /// and available.
   @JsonKey(name: 'username')
-  String? get username => throw _privateConstructorUsedError;
+  String? get username;
 
   /// Optional. Available sizes of the chat photo, if the photo was requested
   /// by the bot
   @JsonKey(name: 'photo')
-  List<PhotoSize>? get photo => throw _privateConstructorUsedError;
-
-  /// Serializes this ChatShared to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<PhotoSize>? get photo;
 
   /// Create a copy of ChatShared
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ChatSharedCopyWith<ChatShared> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ChatSharedCopyWith<$Res> {
-  factory $ChatSharedCopyWith(
-          ChatShared value, $Res Function(ChatShared) then) =
-      _$ChatSharedCopyWithImpl<$Res, ChatShared>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'request_id') int requestId,
-      @JsonKey(name: 'chat_id') int chatId,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'photo') List<PhotoSize>? photo});
-}
-
-/// @nodoc
-class _$ChatSharedCopyWithImpl<$Res, $Val extends ChatShared>
-    implements $ChatSharedCopyWith<$Res> {
-  _$ChatSharedCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ChatShared
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ChatSharedCopyWith<ChatShared> get copyWith =>
+      _$ChatSharedCopyWithImpl<ChatShared>(this as ChatShared, _$identity);
+
+  /// Serializes this ChatShared to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? requestId = null,
-    Object? chatId = null,
-    Object? title = freezed,
-    Object? username = freezed,
-    Object? photo = freezed,
-  }) {
-    return _then(_value.copyWith(
-      requestId: null == requestId
-          ? _value.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as int,
-      chatId: null == chatId
-          ? _value.chatId
-          : chatId // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photo: freezed == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as List<PhotoSize>?,
-    ) as $Val);
+  String toString() {
+    return 'ChatShared(requestId: $requestId, chatId: $chatId, title: $title, username: $username, photo: $photo)';
   }
 }
 
 /// @nodoc
-abstract class _$$ChatSharedImplCopyWith<$Res>
-    implements $ChatSharedCopyWith<$Res> {
-  factory _$$ChatSharedImplCopyWith(
-          _$ChatSharedImpl value, $Res Function(_$ChatSharedImpl) then) =
-      __$$ChatSharedImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ChatSharedCopyWith<$Res> {
+  factory $ChatSharedCopyWith(
+          ChatShared value, $Res Function(ChatShared) _then) =
+      _$ChatSharedCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'request_id') int requestId,
@@ -135,12 +73,11 @@ abstract class _$$ChatSharedImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ChatSharedImplCopyWithImpl<$Res>
-    extends _$ChatSharedCopyWithImpl<$Res, _$ChatSharedImpl>
-    implements _$$ChatSharedImplCopyWith<$Res> {
-  __$$ChatSharedImplCopyWithImpl(
-      _$ChatSharedImpl _value, $Res Function(_$ChatSharedImpl) _then)
-      : super(_value, _then);
+class _$ChatSharedCopyWithImpl<$Res> implements $ChatSharedCopyWith<$Res> {
+  _$ChatSharedCopyWithImpl(this._self, this._then);
+
+  final ChatShared _self;
+  final $Res Function(ChatShared) _then;
 
   /// Create a copy of ChatShared
   /// with the given fields replaced by the non-null parameter values.
@@ -153,25 +90,25 @@ class __$$ChatSharedImplCopyWithImpl<$Res>
     Object? username = freezed,
     Object? photo = freezed,
   }) {
-    return _then(_$ChatSharedImpl(
+    return _then(_self.copyWith(
       requestId: null == requestId
-          ? _value.requestId
+          ? _self.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
               as int,
       chatId: null == chatId
-          ? _value.chatId
+          ? _self.chatId
           : chatId // ignore: cast_nullable_to_non_nullable
               as int,
       title: freezed == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
       username: freezed == username
-          ? _value.username
+          ? _self.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
       photo: freezed == photo
-          ? _value._photo
+          ? _self.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as List<PhotoSize>?,
     ));
@@ -180,17 +117,16 @@ class __$$ChatSharedImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ChatSharedImpl implements _ChatShared {
-  const _$ChatSharedImpl(
+class _ChatShared implements ChatShared {
+  const _ChatShared(
       {@JsonKey(name: 'request_id') required this.requestId,
       @JsonKey(name: 'chat_id') required this.chatId,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'username') this.username,
       @JsonKey(name: 'photo') final List<PhotoSize>? photo})
       : _photo = photo;
-
-  factory _$ChatSharedImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChatSharedImplFromJson(json);
+  factory _ChatShared.fromJson(Map<String, dynamic> json) =>
+      _$ChatSharedFromJson(json);
 
   /// Identifier of the request
   @override
@@ -235,75 +171,82 @@ class _$ChatSharedImpl implements _ChatShared {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of ChatShared
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ChatSharedCopyWith<_ChatShared> get copyWith =>
+      __$ChatSharedCopyWithImpl<_ChatShared>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ChatSharedToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'ChatShared(requestId: $requestId, chatId: $chatId, title: $title, username: $username, photo: $photo)';
   }
-
-  /// Create a copy of ChatShared
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChatSharedImplCopyWith<_$ChatSharedImpl> get copyWith =>
-      __$$ChatSharedImplCopyWithImpl<_$ChatSharedImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChatSharedImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _ChatShared implements ChatShared {
-  const factory _ChatShared(
-      {@JsonKey(name: 'request_id') required final int requestId,
-      @JsonKey(name: 'chat_id') required final int chatId,
-      @JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'username') final String? username,
-      @JsonKey(name: 'photo') final List<PhotoSize>? photo}) = _$ChatSharedImpl;
-
-  factory _ChatShared.fromJson(Map<String, dynamic> json) =
-      _$ChatSharedImpl.fromJson;
-
-  /// Identifier of the request
+/// @nodoc
+abstract mixin class _$ChatSharedCopyWith<$Res>
+    implements $ChatSharedCopyWith<$Res> {
+  factory _$ChatSharedCopyWith(
+          _ChatShared value, $Res Function(_ChatShared) _then) =
+      __$ChatSharedCopyWithImpl;
   @override
-  @JsonKey(name: 'request_id')
-  int get requestId;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'request_id') int requestId,
+      @JsonKey(name: 'chat_id') int chatId,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'photo') List<PhotoSize>? photo});
+}
 
-  /// Identifier of the shared chat. This number may have more than 32
-  /// significant bits and some programming languages may have
-  /// difficulty/silent defects in interpreting it. But it has at most 52
-  /// significant bits, so a 64-bit integer or double-precision float type are
-  /// safe for storing this identifier. The bot may not have access to the
-  /// chat and could be unable to use this identifier, unless the chat is
-  /// already known to the bot by some other means.
-  @override
-  @JsonKey(name: 'chat_id')
-  int get chatId;
+/// @nodoc
+class __$ChatSharedCopyWithImpl<$Res> implements _$ChatSharedCopyWith<$Res> {
+  __$ChatSharedCopyWithImpl(this._self, this._then);
 
-  /// Optional. Title of the chat, if the title was requested by the bot.
-  @override
-  @JsonKey(name: 'title')
-  String? get title;
-
-  /// Optional. Username of the chat, if the username was requested by the bot
-  /// and available.
-  @override
-  @JsonKey(name: 'username')
-  String? get username;
-
-  /// Optional. Available sizes of the chat photo, if the photo was requested
-  /// by the bot
-  @override
-  @JsonKey(name: 'photo')
-  List<PhotoSize>? get photo;
+  final _ChatShared _self;
+  final $Res Function(_ChatShared) _then;
 
   /// Create a copy of ChatShared
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChatSharedImplCopyWith<_$ChatSharedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? requestId = null,
+    Object? chatId = null,
+    Object? title = freezed,
+    Object? username = freezed,
+    Object? photo = freezed,
+  }) {
+    return _then(_ChatShared(
+      requestId: null == requestId
+          ? _self.requestId
+          : requestId // ignore: cast_nullable_to_non_nullable
+              as int,
+      chatId: null == chatId
+          ? _self.chatId
+          : chatId // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photo: freezed == photo
+          ? _self._photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as List<PhotoSize>?,
+    ));
+  }
 }

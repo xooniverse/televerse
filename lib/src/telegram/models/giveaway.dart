@@ -7,7 +7,7 @@ part 'giveaway.g.dart';
 
 /// This object represents a message about a scheduled giveaway.
 @freezed
-class Giveaway with _$Giveaway {
+abstract class Giveaway with _$Giveaway {
   /// Constructor
   const factory Giveaway({
     /// The list of chats which the user must join to participate in the

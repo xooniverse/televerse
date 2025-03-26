@@ -8,7 +8,7 @@ part 'mask_position.g.dart';
 /// This object describes the position on faces where a mask should be placed by
 /// default.
 @freezed
-class MaskPosition with _$MaskPosition {
+abstract class MaskPosition with _$MaskPosition {
   /// Constructs a [MaskPosition] object
   const factory MaskPosition({
     /// The part of the face relative to which the mask should be placed. One of

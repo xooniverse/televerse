@@ -6,7 +6,7 @@ part 'message_id.g.dart';
 
 /// This object represents a unique message identifier.
 @freezed
-class MessageId with _$MessageId {
+abstract class MessageId with _$MessageId {
   /// Constructs a [MessageId] object
   const factory MessageId({
     /// Unique message identifier

@@ -7,7 +7,7 @@ part 'user_profile_photos.g.dart';
 
 /// This object represent a user's profile pictures.
 @freezed
-class UserProfilePhotos with _$UserProfilePhotos {
+abstract class UserProfilePhotos with _$UserProfilePhotos {
   /// Constructs a [UserProfilePhotos] object
   const factory UserProfilePhotos({
     /// Total number of profile pictures the target user has

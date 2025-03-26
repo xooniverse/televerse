@@ -6,9 +6,8 @@ part of 'successful_payment.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SuccessfulPaymentImpl _$$SuccessfulPaymentImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SuccessfulPaymentImpl(
+_SuccessfulPayment _$SuccessfulPaymentFromJson(Map<String, dynamic> json) =>
+    _SuccessfulPayment(
       currency: json['currency'] as String,
       totalAmount: (json['total_amount'] as num).toInt(),
       invoicePayload: json['invoice_payload'] as String,
@@ -22,8 +21,7 @@ _$SuccessfulPaymentImpl _$$SuccessfulPaymentImplFromJson(
       isFirstRecurring: json['is_first_recurring'] as bool?,
     );
 
-Map<String, dynamic> _$$SuccessfulPaymentImplToJson(
-        _$SuccessfulPaymentImpl instance) =>
+Map<String, dynamic> _$SuccessfulPaymentToJson(_SuccessfulPayment instance) =>
     <String, dynamic>{
       'currency': instance.currency,
       'total_amount': instance.totalAmount,

@@ -6,9 +6,8 @@ part of 'chat_member.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatMemberOwnerImpl _$$ChatMemberOwnerImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatMemberOwnerImpl(
+ChatMemberOwner _$ChatMemberOwnerFromJson(Map<String, dynamic> json) =>
+    ChatMemberOwner(
       status: $enumDecodeNullable(_$ChatMemberStatusEnumMap, json['status']) ??
           ChatMemberStatus.creator,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
@@ -16,8 +15,7 @@ _$ChatMemberOwnerImpl _$$ChatMemberOwnerImplFromJson(
       customTitle: json['custom_title'] as String?,
     );
 
-Map<String, dynamic> _$$ChatMemberOwnerImplToJson(
-        _$ChatMemberOwnerImpl instance) =>
+Map<String, dynamic> _$ChatMemberOwnerToJson(ChatMemberOwner instance) =>
     <String, dynamic>{
       'status': instance.status,
       'user': instance.user,
@@ -34,9 +32,9 @@ const _$ChatMemberStatusEnumMap = {
   ChatMemberStatus.kicked: 'kicked',
 };
 
-_$ChatMemberAdministratorImpl _$$ChatMemberAdministratorImplFromJson(
+ChatMemberAdministrator _$ChatMemberAdministratorFromJson(
         Map<String, dynamic> json) =>
-    _$ChatMemberAdministratorImpl(
+    ChatMemberAdministrator(
       status: $enumDecodeNullable(_$ChatMemberStatusEnumMap, json['status']) ??
           ChatMemberStatus.administrator,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
@@ -59,8 +57,8 @@ _$ChatMemberAdministratorImpl _$$ChatMemberAdministratorImplFromJson(
       customTitle: json['custom_title'] as String?,
     );
 
-Map<String, dynamic> _$$ChatMemberAdministratorImplToJson(
-        _$ChatMemberAdministratorImpl instance) =>
+Map<String, dynamic> _$ChatMemberAdministratorToJson(
+        ChatMemberAdministrator instance) =>
     <String, dynamic>{
       'status': instance.status,
       'user': instance.user,
@@ -86,26 +84,24 @@ Map<String, dynamic> _$$ChatMemberAdministratorImplToJson(
       if (instance.customTitle case final value?) 'custom_title': value,
     };
 
-_$ChatMemberMemberImpl _$$ChatMemberMemberImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatMemberMemberImpl(
+ChatMemberMember _$ChatMemberMemberFromJson(Map<String, dynamic> json) =>
+    ChatMemberMember(
       status: $enumDecodeNullable(_$ChatMemberStatusEnumMap, json['status']) ??
           ChatMemberStatus.member,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
       untilDate: (json['until_date'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$ChatMemberMemberImplToJson(
-        _$ChatMemberMemberImpl instance) =>
+Map<String, dynamic> _$ChatMemberMemberToJson(ChatMemberMember instance) =>
     <String, dynamic>{
       'status': instance.status,
       'user': instance.user,
       if (instance.untilDate case final value?) 'until_date': value,
     };
 
-_$ChatMemberRestrictedImpl _$$ChatMemberRestrictedImplFromJson(
+ChatMemberRestricted _$ChatMemberRestrictedFromJson(
         Map<String, dynamic> json) =>
-    _$ChatMemberRestrictedImpl(
+    ChatMemberRestricted(
       status: $enumDecodeNullable(_$ChatMemberStatusEnumMap, json['status']) ??
           ChatMemberStatus.restricted,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
@@ -127,8 +123,8 @@ _$ChatMemberRestrictedImpl _$$ChatMemberRestrictedImplFromJson(
       untilDate: (json['until_date'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$ChatMemberRestrictedImplToJson(
-        _$ChatMemberRestrictedImpl instance) =>
+Map<String, dynamic> _$ChatMemberRestrictedToJson(
+        ChatMemberRestricted instance) =>
     <String, dynamic>{
       'status': instance.status,
       'user': instance.user,
@@ -150,31 +146,28 @@ Map<String, dynamic> _$$ChatMemberRestrictedImplToJson(
       'until_date': instance.untilDate,
     };
 
-_$ChatMemberLeftImpl _$$ChatMemberLeftImplFromJson(Map<String, dynamic> json) =>
-    _$ChatMemberLeftImpl(
+ChatMemberLeft _$ChatMemberLeftFromJson(Map<String, dynamic> json) =>
+    ChatMemberLeft(
       status: $enumDecodeNullable(_$ChatMemberStatusEnumMap, json['status']) ??
           ChatMemberStatus.left,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ChatMemberLeftImplToJson(
-        _$ChatMemberLeftImpl instance) =>
+Map<String, dynamic> _$ChatMemberLeftToJson(ChatMemberLeft instance) =>
     <String, dynamic>{
       'status': instance.status,
       'user': instance.user,
     };
 
-_$ChatMemberBannedImpl _$$ChatMemberBannedImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatMemberBannedImpl(
+ChatMemberBanned _$ChatMemberBannedFromJson(Map<String, dynamic> json) =>
+    ChatMemberBanned(
       status: $enumDecodeNullable(_$ChatMemberStatusEnumMap, json['status']) ??
           ChatMemberStatus.kicked,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
       untilDate: (json['until_date'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$ChatMemberBannedImplToJson(
-        _$ChatMemberBannedImpl instance) =>
+Map<String, dynamic> _$ChatMemberBannedToJson(ChatMemberBanned instance) =>
     <String, dynamic>{
       'status': instance.status,
       'user': instance.user,

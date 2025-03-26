@@ -10,7 +10,7 @@ part 'pre_checkout_query.g.dart';
 
 /// This object contains information about an incoming pre-checkout query.
 @freezed
-class PreCheckoutQuery with _$PreCheckoutQuery implements WithUser {
+abstract class PreCheckoutQuery with _$PreCheckoutQuery implements WithUser {
   /// Constructs a [PreCheckoutQuery] object
   const factory PreCheckoutQuery({
     /// Unique query identifier

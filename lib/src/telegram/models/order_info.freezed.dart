@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,44 +12,43 @@ part of 'order_info.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-OrderInfo _$OrderInfoFromJson(Map<String, dynamic> json) {
-  return _OrderInfo.fromJson(json);
-}
-
 /// @nodoc
 mixin _$OrderInfo {
   /// User name
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
 
   /// User's phone number
   @JsonKey(name: 'phone_number')
-  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get phoneNumber;
 
   /// User email
   @JsonKey(name: 'email')
-  String? get email => throw _privateConstructorUsedError;
+  String? get email;
 
   /// User shipping address
   @JsonKey(name: 'shipping_address')
-  ShippingAddress? get shippingAddress => throw _privateConstructorUsedError;
-
-  /// Serializes this OrderInfo to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  ShippingAddress? get shippingAddress;
 
   /// Create a copy of OrderInfo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $OrderInfoCopyWith<OrderInfo> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$OrderInfoCopyWithImpl<OrderInfo>(this as OrderInfo, _$identity);
+
+  /// Serializes this OrderInfo to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'OrderInfo(name: $name, phoneNumber: $phoneNumber, email: $email, shippingAddress: $shippingAddress)';
+  }
 }
 
 /// @nodoc
-abstract class $OrderInfoCopyWith<$Res> {
-  factory $OrderInfoCopyWith(OrderInfo value, $Res Function(OrderInfo) then) =
-      _$OrderInfoCopyWithImpl<$Res, OrderInfo>;
+abstract mixin class $OrderInfoCopyWith<$Res> {
+  factory $OrderInfoCopyWith(OrderInfo value, $Res Function(OrderInfo) _then) =
+      _$OrderInfoCopyWithImpl;
   @useResult
   $Res call(
       {String? name,
@@ -60,14 +60,11 @@ abstract class $OrderInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OrderInfoCopyWithImpl<$Res, $Val extends OrderInfo>
-    implements $OrderInfoCopyWith<$Res> {
-  _$OrderInfoCopyWithImpl(this._value, this._then);
+class _$OrderInfoCopyWithImpl<$Res> implements $OrderInfoCopyWith<$Res> {
+  _$OrderInfoCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final OrderInfo _self;
+  final $Res Function(OrderInfo) _then;
 
   /// Create a copy of OrderInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -79,24 +76,24 @@ class _$OrderInfoCopyWithImpl<$Res, $Val extends OrderInfo>
     Object? email = freezed,
     Object? shippingAddress = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       name: freezed == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
       phoneNumber: freezed == phoneNumber
-          ? _value.phoneNumber
+          ? _self.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
-          ? _value.email
+          ? _self.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
       shippingAddress: freezed == shippingAddress
-          ? _value.shippingAddress
+          ? _self.shippingAddress
           : shippingAddress // ignore: cast_nullable_to_non_nullable
               as ShippingAddress?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of OrderInfo
@@ -104,84 +101,26 @@ class _$OrderInfoCopyWithImpl<$Res, $Val extends OrderInfo>
   @override
   @pragma('vm:prefer-inline')
   $ShippingAddressCopyWith<$Res>? get shippingAddress {
-    if (_value.shippingAddress == null) {
+    if (_self.shippingAddress == null) {
       return null;
     }
 
-    return $ShippingAddressCopyWith<$Res>(_value.shippingAddress!, (value) {
-      return _then(_value.copyWith(shippingAddress: value) as $Val);
+    return $ShippingAddressCopyWith<$Res>(_self.shippingAddress!, (value) {
+      return _then(_self.copyWith(shippingAddress: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$OrderInfoImplCopyWith<$Res>
-    implements $OrderInfoCopyWith<$Res> {
-  factory _$$OrderInfoImplCopyWith(
-          _$OrderInfoImpl value, $Res Function(_$OrderInfoImpl) then) =
-      __$$OrderInfoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String? name,
-      @JsonKey(name: 'phone_number') String? phoneNumber,
-      @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'shipping_address') ShippingAddress? shippingAddress});
-
-  @override
-  $ShippingAddressCopyWith<$Res>? get shippingAddress;
-}
-
-/// @nodoc
-class __$$OrderInfoImplCopyWithImpl<$Res>
-    extends _$OrderInfoCopyWithImpl<$Res, _$OrderInfoImpl>
-    implements _$$OrderInfoImplCopyWith<$Res> {
-  __$$OrderInfoImplCopyWithImpl(
-      _$OrderInfoImpl _value, $Res Function(_$OrderInfoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrderInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = freezed,
-    Object? phoneNumber = freezed,
-    Object? email = freezed,
-    Object? shippingAddress = freezed,
-  }) {
-    return _then(_$OrderInfoImpl(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: freezed == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      shippingAddress: freezed == shippingAddress
-          ? _value.shippingAddress
-          : shippingAddress // ignore: cast_nullable_to_non_nullable
-              as ShippingAddress?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$OrderInfoImpl implements _OrderInfo {
-  const _$OrderInfoImpl(
+class _OrderInfo implements OrderInfo {
+  const _OrderInfo(
       {this.name,
       @JsonKey(name: 'phone_number') this.phoneNumber,
       @JsonKey(name: 'email') this.email,
       @JsonKey(name: 'shipping_address') this.shippingAddress});
-
-  factory _$OrderInfoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OrderInfoImplFromJson(json);
+  factory _OrderInfo.fromJson(Map<String, dynamic> json) =>
+      _$OrderInfoFromJson(json);
 
   /// User name
   @override
@@ -202,61 +141,93 @@ class _$OrderInfoImpl implements _OrderInfo {
   @JsonKey(name: 'shipping_address')
   final ShippingAddress? shippingAddress;
 
+  /// Create a copy of OrderInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$OrderInfoCopyWith<_OrderInfo> get copyWith =>
+      __$OrderInfoCopyWithImpl<_OrderInfo>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$OrderInfoToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'OrderInfo(name: $name, phoneNumber: $phoneNumber, email: $email, shippingAddress: $shippingAddress)';
   }
-
-  /// Create a copy of OrderInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$OrderInfoImplCopyWith<_$OrderInfoImpl> get copyWith =>
-      __$$OrderInfoImplCopyWithImpl<_$OrderInfoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$OrderInfoImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _OrderInfo implements OrderInfo {
-  const factory _OrderInfo(
-      {final String? name,
-      @JsonKey(name: 'phone_number') final String? phoneNumber,
-      @JsonKey(name: 'email') final String? email,
-      @JsonKey(name: 'shipping_address')
-      final ShippingAddress? shippingAddress}) = _$OrderInfoImpl;
-
-  factory _OrderInfo.fromJson(Map<String, dynamic> json) =
-      _$OrderInfoImpl.fromJson;
-
-  /// User name
+/// @nodoc
+abstract mixin class _$OrderInfoCopyWith<$Res>
+    implements $OrderInfoCopyWith<$Res> {
+  factory _$OrderInfoCopyWith(
+          _OrderInfo value, $Res Function(_OrderInfo) _then) =
+      __$OrderInfoCopyWithImpl;
   @override
-  String? get name;
+  @useResult
+  $Res call(
+      {String? name,
+      @JsonKey(name: 'phone_number') String? phoneNumber,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'shipping_address') ShippingAddress? shippingAddress});
 
-  /// User's phone number
   @override
-  @JsonKey(name: 'phone_number')
-  String? get phoneNumber;
+  $ShippingAddressCopyWith<$Res>? get shippingAddress;
+}
 
-  /// User email
-  @override
-  @JsonKey(name: 'email')
-  String? get email;
+/// @nodoc
+class __$OrderInfoCopyWithImpl<$Res> implements _$OrderInfoCopyWith<$Res> {
+  __$OrderInfoCopyWithImpl(this._self, this._then);
 
-  /// User shipping address
-  @override
-  @JsonKey(name: 'shipping_address')
-  ShippingAddress? get shippingAddress;
+  final _OrderInfo _self;
+  final $Res Function(_OrderInfo) _then;
 
   /// Create a copy of OrderInfo
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OrderInfoImplCopyWith<_$OrderInfoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? name = freezed,
+    Object? phoneNumber = freezed,
+    Object? email = freezed,
+    Object? shippingAddress = freezed,
+  }) {
+    return _then(_OrderInfo(
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _self.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _self.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shippingAddress: freezed == shippingAddress
+          ? _self.shippingAddress
+          : shippingAddress // ignore: cast_nullable_to_non_nullable
+              as ShippingAddress?,
+    ));
+  }
+
+  /// Create a copy of OrderInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ShippingAddressCopyWith<$Res>? get shippingAddress {
+    if (_self.shippingAddress == null) {
+      return null;
+    }
+
+    return $ShippingAddressCopyWith<$Res>(_self.shippingAddress!, (value) {
+      return _then(_self.copyWith(shippingAddress: value));
+    });
+  }
 }
