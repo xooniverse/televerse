@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,10 +11,6 @@ part of 'paid_media.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 PaidMedia _$PaidMediaFromJson(Map<String, dynamic> json) {
   switch (json['type']) {
     case 'preview':
@@ -33,58 +30,38 @@ PaidMedia _$PaidMediaFromJson(Map<String, dynamic> json) {
 mixin _$PaidMedia {
   /// Type of the paid media, must be "preview"
   @JsonKey(name: 'type')
-  PaidMediaType get type => throw _privateConstructorUsedError;
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PaidMediaPreview value) preview,
-    required TResult Function(PaidMediaPhoto value) photo,
-    required TResult Function(PaidMediaVideo value) video,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PaidMediaPreview value)? preview,
-    TResult? Function(PaidMediaPhoto value)? photo,
-    TResult? Function(PaidMediaVideo value)? video,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PaidMediaPreview value)? preview,
-    TResult Function(PaidMediaPhoto value)? photo,
-    TResult Function(PaidMediaVideo value)? video,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this PaidMedia to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  PaidMediaType get type;
 
   /// Create a copy of PaidMedia
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $PaidMediaCopyWith<PaidMedia> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$PaidMediaCopyWithImpl<PaidMedia>(this as PaidMedia, _$identity);
+
+  /// Serializes this PaidMedia to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'PaidMedia(type: $type)';
+  }
 }
 
 /// @nodoc
-abstract class $PaidMediaCopyWith<$Res> {
-  factory $PaidMediaCopyWith(PaidMedia value, $Res Function(PaidMedia) then) =
-      _$PaidMediaCopyWithImpl<$Res, PaidMedia>;
+abstract mixin class $PaidMediaCopyWith<$Res> {
+  factory $PaidMediaCopyWith(PaidMedia value, $Res Function(PaidMedia) _then) =
+      _$PaidMediaCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'type') PaidMediaType type});
 }
 
 /// @nodoc
-class _$PaidMediaCopyWithImpl<$Res, $Val extends PaidMedia>
-    implements $PaidMediaCopyWith<$Res> {
-  _$PaidMediaCopyWithImpl(this._value, this._then);
+class _$PaidMediaCopyWithImpl<$Res> implements $PaidMediaCopyWith<$Res> {
+  _$PaidMediaCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PaidMedia _self;
+  final $Res Function(PaidMedia) _then;
 
   /// Create a copy of PaidMedia
   /// with the given fields replaced by the non-null parameter values.
@@ -93,21 +70,72 @@ class _$PaidMediaCopyWithImpl<$Res, $Val extends PaidMedia>
   $Res call({
     Object? type = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as PaidMediaType,
-    ) as $Val);
+    ));
   }
 }
 
 /// @nodoc
-abstract class _$$PaidMediaPreviewImplCopyWith<$Res>
+@JsonSerializable()
+class PaidMediaPreview implements PaidMedia {
+  const PaidMediaPreview(
+      {@JsonKey(name: 'type') this.type = PaidMediaType.preview,
+      @JsonKey(name: 'width') this.width,
+      @JsonKey(name: 'height') this.height,
+      @JsonKey(name: 'duration') this.duration})
+      : assert(type == PaidMediaType.preview,
+            'type must be PaidMediaType.preview');
+  factory PaidMediaPreview.fromJson(Map<String, dynamic> json) =>
+      _$PaidMediaPreviewFromJson(json);
+
+  /// Type of the paid media, must be "preview"
+  @override
+  @JsonKey(name: 'type')
+  final PaidMediaType type;
+
+  /// Optional. Media width as defined by the sender.
+  @JsonKey(name: 'width')
+  final int? width;
+
+  /// Optional. Media height as defined by the sender.
+  @JsonKey(name: 'height')
+  final int? height;
+
+  /// Optional. Duration of the media in seconds as defined by the sender.
+  @JsonKey(name: 'duration')
+  final int? duration;
+
+  /// Create a copy of PaidMedia
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PaidMediaPreviewCopyWith<PaidMediaPreview> get copyWith =>
+      _$PaidMediaPreviewCopyWithImpl<PaidMediaPreview>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PaidMediaPreviewToJson(
+      this,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'PaidMedia.preview(type: $type, width: $width, height: $height, duration: $duration)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $PaidMediaPreviewCopyWith<$Res>
     implements $PaidMediaCopyWith<$Res> {
-  factory _$$PaidMediaPreviewImplCopyWith(_$PaidMediaPreviewImpl value,
-          $Res Function(_$PaidMediaPreviewImpl) then) =
-      __$$PaidMediaPreviewImplCopyWithImpl<$Res>;
+  factory $PaidMediaPreviewCopyWith(
+          PaidMediaPreview value, $Res Function(PaidMediaPreview) _then) =
+      _$PaidMediaPreviewCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -118,38 +146,38 @@ abstract class _$$PaidMediaPreviewImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PaidMediaPreviewImplCopyWithImpl<$Res>
-    extends _$PaidMediaCopyWithImpl<$Res, _$PaidMediaPreviewImpl>
-    implements _$$PaidMediaPreviewImplCopyWith<$Res> {
-  __$$PaidMediaPreviewImplCopyWithImpl(_$PaidMediaPreviewImpl _value,
-      $Res Function(_$PaidMediaPreviewImpl) _then)
-      : super(_value, _then);
+class _$PaidMediaPreviewCopyWithImpl<$Res>
+    implements $PaidMediaPreviewCopyWith<$Res> {
+  _$PaidMediaPreviewCopyWithImpl(this._self, this._then);
+
+  final PaidMediaPreview _self;
+  final $Res Function(PaidMediaPreview) _then;
 
   /// Create a copy of PaidMedia
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
     Object? width = freezed,
     Object? height = freezed,
     Object? duration = freezed,
   }) {
-    return _then(_$PaidMediaPreviewImpl(
+    return _then(PaidMediaPreview(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as PaidMediaType,
       width: freezed == width
-          ? _value.width
+          ? _self.width
           : width // ignore: cast_nullable_to_non_nullable
               as int?,
       height: freezed == height
-          ? _value.height
+          ? _self.height
           : height // ignore: cast_nullable_to_non_nullable
               as int?,
       duration: freezed == duration
-          ? _value.duration
+          ? _self.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
@@ -158,182 +186,14 @@ class __$$PaidMediaPreviewImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PaidMediaPreviewImpl implements PaidMediaPreview {
-  const _$PaidMediaPreviewImpl(
-      {@JsonKey(name: 'type') this.type = PaidMediaType.preview,
-      @JsonKey(name: 'width') this.width,
-      @JsonKey(name: 'height') this.height,
-      @JsonKey(name: 'duration') this.duration})
-      : assert(type == PaidMediaType.preview,
-            'type must be PaidMediaType.preview');
-
-  factory _$PaidMediaPreviewImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PaidMediaPreviewImplFromJson(json);
-
-  /// Type of the paid media, must be "preview"
-  @override
-  @JsonKey(name: 'type')
-  final PaidMediaType type;
-
-  /// Optional. Media width as defined by the sender.
-  @override
-  @JsonKey(name: 'width')
-  final int? width;
-
-  /// Optional. Media height as defined by the sender.
-  @override
-  @JsonKey(name: 'height')
-  final int? height;
-
-  /// Optional. Duration of the media in seconds as defined by the sender.
-  @override
-  @JsonKey(name: 'duration')
-  final int? duration;
-
-  @override
-  String toString() {
-    return 'PaidMedia.preview(type: $type, width: $width, height: $height, duration: $duration)';
-  }
-
-  /// Create a copy of PaidMedia
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PaidMediaPreviewImplCopyWith<_$PaidMediaPreviewImpl> get copyWith =>
-      __$$PaidMediaPreviewImplCopyWithImpl<_$PaidMediaPreviewImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PaidMediaPreview value) preview,
-    required TResult Function(PaidMediaPhoto value) photo,
-    required TResult Function(PaidMediaVideo value) video,
-  }) {
-    return preview(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PaidMediaPreview value)? preview,
-    TResult? Function(PaidMediaPhoto value)? photo,
-    TResult? Function(PaidMediaVideo value)? video,
-  }) {
-    return preview?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PaidMediaPreview value)? preview,
-    TResult Function(PaidMediaPhoto value)? photo,
-    TResult Function(PaidMediaVideo value)? video,
-    required TResult orElse(),
-  }) {
-    if (preview != null) {
-      return preview(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PaidMediaPreviewImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class PaidMediaPreview implements PaidMedia {
-  const factory PaidMediaPreview(
-      {@JsonKey(name: 'type') final PaidMediaType type,
-      @JsonKey(name: 'width') final int? width,
-      @JsonKey(name: 'height') final int? height,
-      @JsonKey(name: 'duration') final int? duration}) = _$PaidMediaPreviewImpl;
-
-  factory PaidMediaPreview.fromJson(Map<String, dynamic> json) =
-      _$PaidMediaPreviewImpl.fromJson;
-
-  /// Type of the paid media, must be "preview"
-  @override
-  @JsonKey(name: 'type')
-  PaidMediaType get type;
-
-  /// Optional. Media width as defined by the sender.
-  @JsonKey(name: 'width')
-  int? get width;
-
-  /// Optional. Media height as defined by the sender.
-  @JsonKey(name: 'height')
-  int? get height;
-
-  /// Optional. Duration of the media in seconds as defined by the sender.
-  @JsonKey(name: 'duration')
-  int? get duration;
-
-  /// Create a copy of PaidMedia
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PaidMediaPreviewImplCopyWith<_$PaidMediaPreviewImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$PaidMediaPhotoImplCopyWith<$Res>
-    implements $PaidMediaCopyWith<$Res> {
-  factory _$$PaidMediaPhotoImplCopyWith(_$PaidMediaPhotoImpl value,
-          $Res Function(_$PaidMediaPhotoImpl) then) =
-      __$$PaidMediaPhotoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'type') PaidMediaType type,
-      @JsonKey(name: 'photo') List<PhotoSize> photo});
-}
-
-/// @nodoc
-class __$$PaidMediaPhotoImplCopyWithImpl<$Res>
-    extends _$PaidMediaCopyWithImpl<$Res, _$PaidMediaPhotoImpl>
-    implements _$$PaidMediaPhotoImplCopyWith<$Res> {
-  __$$PaidMediaPhotoImplCopyWithImpl(
-      _$PaidMediaPhotoImpl _value, $Res Function(_$PaidMediaPhotoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of PaidMedia
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-    Object? photo = null,
-  }) {
-    return _then(_$PaidMediaPhotoImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PaidMediaType,
-      photo: null == photo
-          ? _value._photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as List<PhotoSize>,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$PaidMediaPhotoImpl implements PaidMediaPhoto {
-  const _$PaidMediaPhotoImpl(
+class PaidMediaPhoto implements PaidMedia {
+  const PaidMediaPhoto(
       {@JsonKey(name: 'type') this.type = PaidMediaType.photo,
       @JsonKey(name: 'photo') required final List<PhotoSize> photo})
       : assert(type == PaidMediaType.photo, 'type must be PaidMediaType.photo'),
         _photo = photo;
-
-  factory _$PaidMediaPhotoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PaidMediaPhotoImplFromJson(json);
+  factory PaidMediaPhoto.fromJson(Map<String, dynamic> json) =>
+      _$PaidMediaPhotoFromJson(json);
 
   /// Type of the paid media, must be "photo"
   @override
@@ -344,7 +204,6 @@ class _$PaidMediaPhotoImpl implements PaidMediaPhoto {
   final List<PhotoSize> _photo;
 
   /// The photo.
-  @override
   @JsonKey(name: 'photo')
   List<PhotoSize> get photo {
     if (_photo is EqualUnmodifiableListView) return _photo;
@@ -352,94 +211,115 @@ class _$PaidMediaPhotoImpl implements PaidMediaPhoto {
     return EqualUnmodifiableListView(_photo);
   }
 
+  /// Create a copy of PaidMedia
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PaidMediaPhotoCopyWith<PaidMediaPhoto> get copyWith =>
+      _$PaidMediaPhotoCopyWithImpl<PaidMediaPhoto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PaidMediaPhotoToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'PaidMedia.photo(type: $type, photo: $photo)';
   }
-
-  /// Create a copy of PaidMedia
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PaidMediaPhotoImplCopyWith<_$PaidMediaPhotoImpl> get copyWith =>
-      __$$PaidMediaPhotoImplCopyWithImpl<_$PaidMediaPhotoImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PaidMediaPreview value) preview,
-    required TResult Function(PaidMediaPhoto value) photo,
-    required TResult Function(PaidMediaVideo value) video,
-  }) {
-    return photo(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PaidMediaPreview value)? preview,
-    TResult? Function(PaidMediaPhoto value)? photo,
-    TResult? Function(PaidMediaVideo value)? video,
-  }) {
-    return photo?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PaidMediaPreview value)? preview,
-    TResult Function(PaidMediaPhoto value)? photo,
-    TResult Function(PaidMediaVideo value)? video,
-    required TResult orElse(),
-  }) {
-    if (photo != null) {
-      return photo(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PaidMediaPhotoImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class PaidMediaPhoto implements PaidMedia {
-  const factory PaidMediaPhoto(
-          {@JsonKey(name: 'type') final PaidMediaType type,
-          @JsonKey(name: 'photo') required final List<PhotoSize> photo}) =
-      _$PaidMediaPhotoImpl;
-
-  factory PaidMediaPhoto.fromJson(Map<String, dynamic> json) =
-      _$PaidMediaPhotoImpl.fromJson;
-
-  /// Type of the paid media, must be "photo"
-  @override
-  @JsonKey(name: 'type')
-  PaidMediaType get type;
-
-  /// The photo.
-  @JsonKey(name: 'photo')
-  List<PhotoSize> get photo;
-
-  /// Create a copy of PaidMedia
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PaidMediaPhotoImplCopyWith<_$PaidMediaPhotoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$PaidMediaVideoImplCopyWith<$Res>
+abstract mixin class $PaidMediaPhotoCopyWith<$Res>
     implements $PaidMediaCopyWith<$Res> {
-  factory _$$PaidMediaVideoImplCopyWith(_$PaidMediaVideoImpl value,
-          $Res Function(_$PaidMediaVideoImpl) then) =
-      __$$PaidMediaVideoImplCopyWithImpl<$Res>;
+  factory $PaidMediaPhotoCopyWith(
+          PaidMediaPhoto value, $Res Function(PaidMediaPhoto) _then) =
+      _$PaidMediaPhotoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'type') PaidMediaType type,
+      @JsonKey(name: 'photo') List<PhotoSize> photo});
+}
+
+/// @nodoc
+class _$PaidMediaPhotoCopyWithImpl<$Res>
+    implements $PaidMediaPhotoCopyWith<$Res> {
+  _$PaidMediaPhotoCopyWithImpl(this._self, this._then);
+
+  final PaidMediaPhoto _self;
+  final $Res Function(PaidMediaPhoto) _then;
+
+  /// Create a copy of PaidMedia
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? type = null,
+    Object? photo = null,
+  }) {
+    return _then(PaidMediaPhoto(
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as PaidMediaType,
+      photo: null == photo
+          ? _self._photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as List<PhotoSize>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class PaidMediaVideo implements PaidMedia {
+  const PaidMediaVideo(
+      {@JsonKey(name: 'type') this.type = PaidMediaType.video,
+      @JsonKey(name: 'video') required this.video})
+      : assert(type == PaidMediaType.video, 'type must be PaidMediaType.video');
+  factory PaidMediaVideo.fromJson(Map<String, dynamic> json) =>
+      _$PaidMediaVideoFromJson(json);
+
+  /// Type of the paid media, must be "video"
+  @override
+  @JsonKey(name: 'type')
+  final PaidMediaType type;
+
+  /// The video.
+  @JsonKey(name: 'video')
+  final Video video;
+
+  /// Create a copy of PaidMedia
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PaidMediaVideoCopyWith<PaidMediaVideo> get copyWith =>
+      _$PaidMediaVideoCopyWithImpl<PaidMediaVideo>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PaidMediaVideoToJson(
+      this,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'PaidMedia.video(type: $type, video: $video)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $PaidMediaVideoCopyWith<$Res>
+    implements $PaidMediaCopyWith<$Res> {
+  factory $PaidMediaVideoCopyWith(
+          PaidMediaVideo value, $Res Function(PaidMediaVideo) _then) =
+      _$PaidMediaVideoCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -450,28 +330,28 @@ abstract class _$$PaidMediaVideoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PaidMediaVideoImplCopyWithImpl<$Res>
-    extends _$PaidMediaCopyWithImpl<$Res, _$PaidMediaVideoImpl>
-    implements _$$PaidMediaVideoImplCopyWith<$Res> {
-  __$$PaidMediaVideoImplCopyWithImpl(
-      _$PaidMediaVideoImpl _value, $Res Function(_$PaidMediaVideoImpl) _then)
-      : super(_value, _then);
+class _$PaidMediaVideoCopyWithImpl<$Res>
+    implements $PaidMediaVideoCopyWith<$Res> {
+  _$PaidMediaVideoCopyWithImpl(this._self, this._then);
+
+  final PaidMediaVideo _self;
+  final $Res Function(PaidMediaVideo) _then;
 
   /// Create a copy of PaidMedia
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
     Object? video = null,
   }) {
-    return _then(_$PaidMediaVideoImpl(
+    return _then(PaidMediaVideo(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as PaidMediaType,
       video: null == video
-          ? _value.video
+          ? _self.video
           : video // ignore: cast_nullable_to_non_nullable
               as Video,
     ));
@@ -482,111 +362,8 @@ class __$$PaidMediaVideoImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $VideoCopyWith<$Res> get video {
-    return $VideoCopyWith<$Res>(_value.video, (value) {
-      return _then(_value.copyWith(video: value));
+    return $VideoCopyWith<$Res>(_self.video, (value) {
+      return _then(_self.copyWith(video: value));
     });
   }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$PaidMediaVideoImpl implements PaidMediaVideo {
-  const _$PaidMediaVideoImpl(
-      {@JsonKey(name: 'type') this.type = PaidMediaType.video,
-      @JsonKey(name: 'video') required this.video})
-      : assert(type == PaidMediaType.video, 'type must be PaidMediaType.video');
-
-  factory _$PaidMediaVideoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PaidMediaVideoImplFromJson(json);
-
-  /// Type of the paid media, must be "video"
-  @override
-  @JsonKey(name: 'type')
-  final PaidMediaType type;
-
-  /// The video.
-  @override
-  @JsonKey(name: 'video')
-  final Video video;
-
-  @override
-  String toString() {
-    return 'PaidMedia.video(type: $type, video: $video)';
-  }
-
-  /// Create a copy of PaidMedia
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PaidMediaVideoImplCopyWith<_$PaidMediaVideoImpl> get copyWith =>
-      __$$PaidMediaVideoImplCopyWithImpl<_$PaidMediaVideoImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PaidMediaPreview value) preview,
-    required TResult Function(PaidMediaPhoto value) photo,
-    required TResult Function(PaidMediaVideo value) video,
-  }) {
-    return video(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PaidMediaPreview value)? preview,
-    TResult? Function(PaidMediaPhoto value)? photo,
-    TResult? Function(PaidMediaVideo value)? video,
-  }) {
-    return video?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PaidMediaPreview value)? preview,
-    TResult Function(PaidMediaPhoto value)? photo,
-    TResult Function(PaidMediaVideo value)? video,
-    required TResult orElse(),
-  }) {
-    if (video != null) {
-      return video(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PaidMediaVideoImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class PaidMediaVideo implements PaidMedia {
-  const factory PaidMediaVideo(
-          {@JsonKey(name: 'type') final PaidMediaType type,
-          @JsonKey(name: 'video') required final Video video}) =
-      _$PaidMediaVideoImpl;
-
-  factory PaidMediaVideo.fromJson(Map<String, dynamic> json) =
-      _$PaidMediaVideoImpl.fromJson;
-
-  /// Type of the paid media, must be "video"
-  @override
-  @JsonKey(name: 'type')
-  PaidMediaType get type;
-
-  /// The video.
-  @JsonKey(name: 'video')
-  Video get video;
-
-  /// Create a copy of PaidMedia
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PaidMediaVideoImplCopyWith<_$PaidMediaVideoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }

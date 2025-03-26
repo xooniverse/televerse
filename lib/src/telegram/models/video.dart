@@ -7,7 +7,7 @@ part 'video.g.dart';
 
 /// This object represents a video file.
 @freezed
-class Video with _$Video {
+abstract class Video with _$Video {
   /// Creates a video file
   ///
   /// - [fileId] Identifier for this file, which can be used to download or

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,214 +12,95 @@ part of 'poll.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Poll _$PollFromJson(Map<String, dynamic> json) {
-  return _Poll.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Poll {
   /// Unique poll identifier
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
 
   /// Poll question, 1-300 characters
   @JsonKey(name: 'question')
-  String get question => throw _privateConstructorUsedError;
+  String get question;
 
   /// List of poll options
   @JsonKey(name: 'options')
-  List<PollOption> get options => throw _privateConstructorUsedError;
+  List<PollOption> get options;
 
   /// Total number of users that voted in the poll
   @JsonKey(name: 'total_voter_count')
-  int get totalVoterCount => throw _privateConstructorUsedError;
+  int get totalVoterCount;
 
   /// True, if the poll is closed
   @JsonKey(name: 'is_closed')
-  bool get isClosed => throw _privateConstructorUsedError;
+  bool get isClosed;
 
   /// True, if the poll is anonymous
   @JsonKey(name: 'is_anonymous')
-  bool get isAnonymous => throw _privateConstructorUsedError;
+  bool get isAnonymous;
 
   /// Poll type, currently can be "regular" or "quiz"
   @JsonKey(name: 'type')
-  PollType get type => throw _privateConstructorUsedError;
+  PollType get type;
 
   /// True, if the poll allows multiple answers
   @JsonKey(name: 'allows_multiple_answers')
-  bool get allowsMultipleAnswers => throw _privateConstructorUsedError;
+  bool get allowsMultipleAnswers;
 
   /// Optional. 0-based identifier of the correct answer option. Available
   /// only for polls in the quiz mode, which are closed, or was sent (not
   /// forwarded) by the bot or to the private chat with the bot.
   @JsonKey(name: 'correct_option_id')
-  int? get correctOptionId => throw _privateConstructorUsedError;
+  int? get correctOptionId;
 
   /// Optional. Text that is shown when a user chooses an incorrect answer or
   /// taps on the lamp icon in a quiz-style poll, 0-200 characters
   @JsonKey(name: 'explanation')
-  String? get explanation => throw _privateConstructorUsedError;
+  String? get explanation;
 
   /// Optional. Special entities like usernames, URLs, bot commands, etc. that
   /// appear in the explanation
   @JsonKey(name: 'explanation_entities')
-  List<MessageEntity>? get explanationEntities =>
-      throw _privateConstructorUsedError;
+  List<MessageEntity>? get explanationEntities;
 
   /// Optional. Amount of time in seconds the poll will be active after
   /// creation
   ///
   /// A handy [Duration] object is available as [openPeriodDuration] getter
   @JsonKey(name: 'open_period')
-  int? get openPeriod => throw _privateConstructorUsedError;
+  int? get openPeriod;
 
   /// Optional. Point in time (Unix timestamp) when the poll will be
   /// automatically closed
   ///
   /// A handy [DateTime] object is available as [closeDateTime] getter
   @JsonKey(name: 'close_date')
-  int? get closeDate => throw _privateConstructorUsedError;
+  int? get closeDate;
 
   /// Optional. Special entities that appear in the question. Currently, only
   /// custom emoji entities are allowed in poll questions
   @JsonKey(name: 'question_entities')
-  List<MessageEntity>? get questionEntities =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this Poll to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<MessageEntity>? get questionEntities;
 
   /// Create a copy of Poll
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PollCopyWith<Poll> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PollCopyWith<$Res> {
-  factory $PollCopyWith(Poll value, $Res Function(Poll) then) =
-      _$PollCopyWithImpl<$Res, Poll>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'question') String question,
-      @JsonKey(name: 'options') List<PollOption> options,
-      @JsonKey(name: 'total_voter_count') int totalVoterCount,
-      @JsonKey(name: 'is_closed') bool isClosed,
-      @JsonKey(name: 'is_anonymous') bool isAnonymous,
-      @JsonKey(name: 'type') PollType type,
-      @JsonKey(name: 'allows_multiple_answers') bool allowsMultipleAnswers,
-      @JsonKey(name: 'correct_option_id') int? correctOptionId,
-      @JsonKey(name: 'explanation') String? explanation,
-      @JsonKey(name: 'explanation_entities')
-      List<MessageEntity>? explanationEntities,
-      @JsonKey(name: 'open_period') int? openPeriod,
-      @JsonKey(name: 'close_date') int? closeDate,
-      @JsonKey(name: 'question_entities')
-      List<MessageEntity>? questionEntities});
-}
-
-/// @nodoc
-class _$PollCopyWithImpl<$Res, $Val extends Poll>
-    implements $PollCopyWith<$Res> {
-  _$PollCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Poll
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $PollCopyWith<Poll> get copyWith =>
+      _$PollCopyWithImpl<Poll>(this as Poll, _$identity);
+
+  /// Serializes this Poll to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? question = null,
-    Object? options = null,
-    Object? totalVoterCount = null,
-    Object? isClosed = null,
-    Object? isAnonymous = null,
-    Object? type = null,
-    Object? allowsMultipleAnswers = null,
-    Object? correctOptionId = freezed,
-    Object? explanation = freezed,
-    Object? explanationEntities = freezed,
-    Object? openPeriod = freezed,
-    Object? closeDate = freezed,
-    Object? questionEntities = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      question: null == question
-          ? _value.question
-          : question // ignore: cast_nullable_to_non_nullable
-              as String,
-      options: null == options
-          ? _value.options
-          : options // ignore: cast_nullable_to_non_nullable
-              as List<PollOption>,
-      totalVoterCount: null == totalVoterCount
-          ? _value.totalVoterCount
-          : totalVoterCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      isClosed: null == isClosed
-          ? _value.isClosed
-          : isClosed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isAnonymous: null == isAnonymous
-          ? _value.isAnonymous
-          : isAnonymous // ignore: cast_nullable_to_non_nullable
-              as bool,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PollType,
-      allowsMultipleAnswers: null == allowsMultipleAnswers
-          ? _value.allowsMultipleAnswers
-          : allowsMultipleAnswers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      correctOptionId: freezed == correctOptionId
-          ? _value.correctOptionId
-          : correctOptionId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      explanation: freezed == explanation
-          ? _value.explanation
-          : explanation // ignore: cast_nullable_to_non_nullable
-              as String?,
-      explanationEntities: freezed == explanationEntities
-          ? _value.explanationEntities
-          : explanationEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      openPeriod: freezed == openPeriod
-          ? _value.openPeriod
-          : openPeriod // ignore: cast_nullable_to_non_nullable
-              as int?,
-      closeDate: freezed == closeDate
-          ? _value.closeDate
-          : closeDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      questionEntities: freezed == questionEntities
-          ? _value.questionEntities
-          : questionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-    ) as $Val);
+  String toString() {
+    return 'Poll(id: $id, question: $question, options: $options, totalVoterCount: $totalVoterCount, isClosed: $isClosed, isAnonymous: $isAnonymous, type: $type, allowsMultipleAnswers: $allowsMultipleAnswers, correctOptionId: $correctOptionId, explanation: $explanation, explanationEntities: $explanationEntities, openPeriod: $openPeriod, closeDate: $closeDate, questionEntities: $questionEntities)';
   }
 }
 
 /// @nodoc
-abstract class _$$PollImplCopyWith<$Res> implements $PollCopyWith<$Res> {
-  factory _$$PollImplCopyWith(
-          _$PollImpl value, $Res Function(_$PollImpl) then) =
-      __$$PollImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $PollCopyWith<$Res> {
+  factory $PollCopyWith(Poll value, $Res Function(Poll) _then) =
+      _$PollCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -240,11 +122,11 @@ abstract class _$$PollImplCopyWith<$Res> implements $PollCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$PollImplCopyWithImpl<$Res>
-    extends _$PollCopyWithImpl<$Res, _$PollImpl>
-    implements _$$PollImplCopyWith<$Res> {
-  __$$PollImplCopyWithImpl(_$PollImpl _value, $Res Function(_$PollImpl) _then)
-      : super(_value, _then);
+class _$PollCopyWithImpl<$Res> implements $PollCopyWith<$Res> {
+  _$PollCopyWithImpl(this._self, this._then);
+
+  final Poll _self;
+  final $Res Function(Poll) _then;
 
   /// Create a copy of Poll
   /// with the given fields replaced by the non-null parameter values.
@@ -266,61 +148,61 @@ class __$$PollImplCopyWithImpl<$Res>
     Object? closeDate = freezed,
     Object? questionEntities = freezed,
   }) {
-    return _then(_$PollImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       question: null == question
-          ? _value.question
+          ? _self.question
           : question // ignore: cast_nullable_to_non_nullable
               as String,
       options: null == options
-          ? _value._options
+          ? _self.options
           : options // ignore: cast_nullable_to_non_nullable
               as List<PollOption>,
       totalVoterCount: null == totalVoterCount
-          ? _value.totalVoterCount
+          ? _self.totalVoterCount
           : totalVoterCount // ignore: cast_nullable_to_non_nullable
               as int,
       isClosed: null == isClosed
-          ? _value.isClosed
+          ? _self.isClosed
           : isClosed // ignore: cast_nullable_to_non_nullable
               as bool,
       isAnonymous: null == isAnonymous
-          ? _value.isAnonymous
+          ? _self.isAnonymous
           : isAnonymous // ignore: cast_nullable_to_non_nullable
               as bool,
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as PollType,
       allowsMultipleAnswers: null == allowsMultipleAnswers
-          ? _value.allowsMultipleAnswers
+          ? _self.allowsMultipleAnswers
           : allowsMultipleAnswers // ignore: cast_nullable_to_non_nullable
               as bool,
       correctOptionId: freezed == correctOptionId
-          ? _value.correctOptionId
+          ? _self.correctOptionId
           : correctOptionId // ignore: cast_nullable_to_non_nullable
               as int?,
       explanation: freezed == explanation
-          ? _value.explanation
+          ? _self.explanation
           : explanation // ignore: cast_nullable_to_non_nullable
               as String?,
       explanationEntities: freezed == explanationEntities
-          ? _value._explanationEntities
+          ? _self.explanationEntities
           : explanationEntities // ignore: cast_nullable_to_non_nullable
               as List<MessageEntity>?,
       openPeriod: freezed == openPeriod
-          ? _value.openPeriod
+          ? _self.openPeriod
           : openPeriod // ignore: cast_nullable_to_non_nullable
               as int?,
       closeDate: freezed == closeDate
-          ? _value.closeDate
+          ? _self.closeDate
           : closeDate // ignore: cast_nullable_to_non_nullable
               as int?,
       questionEntities: freezed == questionEntities
-          ? _value._questionEntities
+          ? _self.questionEntities
           : questionEntities // ignore: cast_nullable_to_non_nullable
               as List<MessageEntity>?,
     ));
@@ -329,8 +211,8 @@ class __$$PollImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PollImpl implements _Poll {
-  const _$PollImpl(
+class _Poll implements Poll {
+  const _Poll(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'question') required this.question,
       @JsonKey(name: 'options') required final List<PollOption> options,
@@ -351,9 +233,7 @@ class _$PollImpl implements _Poll {
       : _options = options,
         _explanationEntities = explanationEntities,
         _questionEntities = questionEntities;
-
-  factory _$PollImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PollImplFromJson(json);
+  factory _Poll.fromJson(Map<String, dynamic> json) => _$PollFromJson(json);
 
   /// Unique poll identifier
   @override
@@ -465,134 +345,136 @@ class _$PollImpl implements _Poll {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of Poll
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PollCopyWith<_Poll> get copyWith =>
+      __$PollCopyWithImpl<_Poll>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PollToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'Poll(id: $id, question: $question, options: $options, totalVoterCount: $totalVoterCount, isClosed: $isClosed, isAnonymous: $isAnonymous, type: $type, allowsMultipleAnswers: $allowsMultipleAnswers, correctOptionId: $correctOptionId, explanation: $explanation, explanationEntities: $explanationEntities, openPeriod: $openPeriod, closeDate: $closeDate, questionEntities: $questionEntities)';
   }
-
-  /// Create a copy of Poll
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PollImplCopyWith<_$PollImpl> get copyWith =>
-      __$$PollImplCopyWithImpl<_$PollImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PollImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _Poll implements Poll {
-  const factory _Poll(
-      {@JsonKey(name: 'id') required final String id,
-      @JsonKey(name: 'question') required final String question,
-      @JsonKey(name: 'options') required final List<PollOption> options,
-      @JsonKey(name: 'total_voter_count') required final int totalVoterCount,
-      @JsonKey(name: 'is_closed') required final bool isClosed,
-      @JsonKey(name: 'is_anonymous') required final bool isAnonymous,
-      @JsonKey(name: 'type') required final PollType type,
-      @JsonKey(name: 'allows_multiple_answers')
-      required final bool allowsMultipleAnswers,
-      @JsonKey(name: 'correct_option_id') final int? correctOptionId,
-      @JsonKey(name: 'explanation') final String? explanation,
+/// @nodoc
+abstract mixin class _$PollCopyWith<$Res> implements $PollCopyWith<$Res> {
+  factory _$PollCopyWith(_Poll value, $Res Function(_Poll) _then) =
+      __$PollCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'question') String question,
+      @JsonKey(name: 'options') List<PollOption> options,
+      @JsonKey(name: 'total_voter_count') int totalVoterCount,
+      @JsonKey(name: 'is_closed') bool isClosed,
+      @JsonKey(name: 'is_anonymous') bool isAnonymous,
+      @JsonKey(name: 'type') PollType type,
+      @JsonKey(name: 'allows_multiple_answers') bool allowsMultipleAnswers,
+      @JsonKey(name: 'correct_option_id') int? correctOptionId,
+      @JsonKey(name: 'explanation') String? explanation,
       @JsonKey(name: 'explanation_entities')
-      final List<MessageEntity>? explanationEntities,
-      @JsonKey(name: 'open_period') final int? openPeriod,
-      @JsonKey(name: 'close_date') final int? closeDate,
+      List<MessageEntity>? explanationEntities,
+      @JsonKey(name: 'open_period') int? openPeriod,
+      @JsonKey(name: 'close_date') int? closeDate,
       @JsonKey(name: 'question_entities')
-      final List<MessageEntity>? questionEntities}) = _$PollImpl;
+      List<MessageEntity>? questionEntities});
+}
 
-  factory _Poll.fromJson(Map<String, dynamic> json) = _$PollImpl.fromJson;
+/// @nodoc
+class __$PollCopyWithImpl<$Res> implements _$PollCopyWith<$Res> {
+  __$PollCopyWithImpl(this._self, this._then);
 
-  /// Unique poll identifier
-  @override
-  @JsonKey(name: 'id')
-  String get id;
-
-  /// Poll question, 1-300 characters
-  @override
-  @JsonKey(name: 'question')
-  String get question;
-
-  /// List of poll options
-  @override
-  @JsonKey(name: 'options')
-  List<PollOption> get options;
-
-  /// Total number of users that voted in the poll
-  @override
-  @JsonKey(name: 'total_voter_count')
-  int get totalVoterCount;
-
-  /// True, if the poll is closed
-  @override
-  @JsonKey(name: 'is_closed')
-  bool get isClosed;
-
-  /// True, if the poll is anonymous
-  @override
-  @JsonKey(name: 'is_anonymous')
-  bool get isAnonymous;
-
-  /// Poll type, currently can be "regular" or "quiz"
-  @override
-  @JsonKey(name: 'type')
-  PollType get type;
-
-  /// True, if the poll allows multiple answers
-  @override
-  @JsonKey(name: 'allows_multiple_answers')
-  bool get allowsMultipleAnswers;
-
-  /// Optional. 0-based identifier of the correct answer option. Available
-  /// only for polls in the quiz mode, which are closed, or was sent (not
-  /// forwarded) by the bot or to the private chat with the bot.
-  @override
-  @JsonKey(name: 'correct_option_id')
-  int? get correctOptionId;
-
-  /// Optional. Text that is shown when a user chooses an incorrect answer or
-  /// taps on the lamp icon in a quiz-style poll, 0-200 characters
-  @override
-  @JsonKey(name: 'explanation')
-  String? get explanation;
-
-  /// Optional. Special entities like usernames, URLs, bot commands, etc. that
-  /// appear in the explanation
-  @override
-  @JsonKey(name: 'explanation_entities')
-  List<MessageEntity>? get explanationEntities;
-
-  /// Optional. Amount of time in seconds the poll will be active after
-  /// creation
-  ///
-  /// A handy [Duration] object is available as [openPeriodDuration] getter
-  @override
-  @JsonKey(name: 'open_period')
-  int? get openPeriod;
-
-  /// Optional. Point in time (Unix timestamp) when the poll will be
-  /// automatically closed
-  ///
-  /// A handy [DateTime] object is available as [closeDateTime] getter
-  @override
-  @JsonKey(name: 'close_date')
-  int? get closeDate;
-
-  /// Optional. Special entities that appear in the question. Currently, only
-  /// custom emoji entities are allowed in poll questions
-  @override
-  @JsonKey(name: 'question_entities')
-  List<MessageEntity>? get questionEntities;
+  final _Poll _self;
+  final $Res Function(_Poll) _then;
 
   /// Create a copy of Poll
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PollImplCopyWith<_$PollImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? question = null,
+    Object? options = null,
+    Object? totalVoterCount = null,
+    Object? isClosed = null,
+    Object? isAnonymous = null,
+    Object? type = null,
+    Object? allowsMultipleAnswers = null,
+    Object? correctOptionId = freezed,
+    Object? explanation = freezed,
+    Object? explanationEntities = freezed,
+    Object? openPeriod = freezed,
+    Object? closeDate = freezed,
+    Object? questionEntities = freezed,
+  }) {
+    return _then(_Poll(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      question: null == question
+          ? _self.question
+          : question // ignore: cast_nullable_to_non_nullable
+              as String,
+      options: null == options
+          ? _self._options
+          : options // ignore: cast_nullable_to_non_nullable
+              as List<PollOption>,
+      totalVoterCount: null == totalVoterCount
+          ? _self.totalVoterCount
+          : totalVoterCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      isClosed: null == isClosed
+          ? _self.isClosed
+          : isClosed // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAnonymous: null == isAnonymous
+          ? _self.isAnonymous
+          : isAnonymous // ignore: cast_nullable_to_non_nullable
+              as bool,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as PollType,
+      allowsMultipleAnswers: null == allowsMultipleAnswers
+          ? _self.allowsMultipleAnswers
+          : allowsMultipleAnswers // ignore: cast_nullable_to_non_nullable
+              as bool,
+      correctOptionId: freezed == correctOptionId
+          ? _self.correctOptionId
+          : correctOptionId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      explanation: freezed == explanation
+          ? _self.explanation
+          : explanation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      explanationEntities: freezed == explanationEntities
+          ? _self._explanationEntities
+          : explanationEntities // ignore: cast_nullable_to_non_nullable
+              as List<MessageEntity>?,
+      openPeriod: freezed == openPeriod
+          ? _self.openPeriod
+          : openPeriod // ignore: cast_nullable_to_non_nullable
+              as int?,
+      closeDate: freezed == closeDate
+          ? _self.closeDate
+          : closeDate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      questionEntities: freezed == questionEntities
+          ? _self._questionEntities
+          : questionEntities // ignore: cast_nullable_to_non_nullable
+              as List<MessageEntity>?,
+    ));
+  }
 }

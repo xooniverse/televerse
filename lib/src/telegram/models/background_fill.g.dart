@@ -6,16 +6,15 @@ part of 'background_fill.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BackgroundFillSolidImpl _$$BackgroundFillSolidImplFromJson(
-        Map<String, dynamic> json) =>
-    _$BackgroundFillSolidImpl(
+BackgroundFillSolid _$BackgroundFillSolidFromJson(Map<String, dynamic> json) =>
+    BackgroundFillSolid(
       type: $enumDecodeNullable(_$BackgroundFillTypeEnumMap, json['type']) ??
           BackgroundFillType.solid,
       color: (json['color'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$BackgroundFillSolidImplToJson(
-        _$BackgroundFillSolidImpl instance) =>
+Map<String, dynamic> _$BackgroundFillSolidToJson(
+        BackgroundFillSolid instance) =>
     <String, dynamic>{
       'type': _$BackgroundFillTypeEnumMap[instance.type]!,
       'color': instance.color,
@@ -27,9 +26,9 @@ const _$BackgroundFillTypeEnumMap = {
   BackgroundFillType.freeformGradient: 'freeform_gradient',
 };
 
-_$BackgroundFillGradientImpl _$$BackgroundFillGradientImplFromJson(
+BackgroundFillGradient _$BackgroundFillGradientFromJson(
         Map<String, dynamic> json) =>
-    _$BackgroundFillGradientImpl(
+    BackgroundFillGradient(
       type: $enumDecodeNullable(_$BackgroundFillTypeEnumMap, json['type']) ??
           BackgroundFillType.gradient,
       topColor: (json['top_color'] as num).toInt(),
@@ -37,8 +36,8 @@ _$BackgroundFillGradientImpl _$$BackgroundFillGradientImplFromJson(
       rotationAngle: (json['rotation_angle'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$BackgroundFillGradientImplToJson(
-        _$BackgroundFillGradientImpl instance) =>
+Map<String, dynamic> _$BackgroundFillGradientToJson(
+        BackgroundFillGradient instance) =>
     <String, dynamic>{
       'type': _$BackgroundFillTypeEnumMap[instance.type]!,
       'top_color': instance.topColor,
@@ -46,19 +45,18 @@ Map<String, dynamic> _$$BackgroundFillGradientImplToJson(
       'rotation_angle': instance.rotationAngle,
     };
 
-_$BackgroundFillFreeformGradientImpl
-    _$$BackgroundFillFreeformGradientImplFromJson(Map<String, dynamic> json) =>
-        _$BackgroundFillFreeformGradientImpl(
-          type:
-              $enumDecodeNullable(_$BackgroundFillTypeEnumMap, json['type']) ??
-                  BackgroundFillType.freeformGradient,
-          colors: (json['colors'] as List<dynamic>)
-              .map((e) => (e as num).toInt())
-              .toList(),
-        );
+BackgroundFillFreeformGradient _$BackgroundFillFreeformGradientFromJson(
+        Map<String, dynamic> json) =>
+    BackgroundFillFreeformGradient(
+      type: $enumDecodeNullable(_$BackgroundFillTypeEnumMap, json['type']) ??
+          BackgroundFillType.freeformGradient,
+      colors: (json['colors'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
+    );
 
-Map<String, dynamic> _$$BackgroundFillFreeformGradientImplToJson(
-        _$BackgroundFillFreeformGradientImpl instance) =>
+Map<String, dynamic> _$BackgroundFillFreeformGradientToJson(
+        BackgroundFillFreeformGradient instance) =>
     <String, dynamic>{
       'type': _$BackgroundFillTypeEnumMap[instance.type]!,
       'colors': instance.colors,

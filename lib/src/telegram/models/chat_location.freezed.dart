@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,38 +12,38 @@ part of 'chat_location.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ChatLocation _$ChatLocationFromJson(Map<String, dynamic> json) {
-  return _ChatLocation.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ChatLocation {
   /// The location to which the supergroup is connected.
   @JsonKey(name: 'location')
-  Location get location => throw _privateConstructorUsedError;
+  Location get location;
 
   /// Location address; 1-64 characters, as defined by the chat owner
   @JsonKey(name: 'address')
-  String get address => throw _privateConstructorUsedError;
-
-  /// Serializes this ChatLocation to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get address;
 
   /// Create a copy of ChatLocation
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ChatLocationCopyWith<ChatLocation> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ChatLocationCopyWithImpl<ChatLocation>(
+          this as ChatLocation, _$identity);
+
+  /// Serializes this ChatLocation to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'ChatLocation(location: $location, address: $address)';
+  }
 }
 
 /// @nodoc
-abstract class $ChatLocationCopyWith<$Res> {
+abstract mixin class $ChatLocationCopyWith<$Res> {
   factory $ChatLocationCopyWith(
-          ChatLocation value, $Res Function(ChatLocation) then) =
-      _$ChatLocationCopyWithImpl<$Res, ChatLocation>;
+          ChatLocation value, $Res Function(ChatLocation) _then) =
+      _$ChatLocationCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'location') Location location,
@@ -52,14 +53,11 @@ abstract class $ChatLocationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ChatLocationCopyWithImpl<$Res, $Val extends ChatLocation>
-    implements $ChatLocationCopyWith<$Res> {
-  _$ChatLocationCopyWithImpl(this._value, this._then);
+class _$ChatLocationCopyWithImpl<$Res> implements $ChatLocationCopyWith<$Res> {
+  _$ChatLocationCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ChatLocation _self;
+  final $Res Function(ChatLocation) _then;
 
   /// Create a copy of ChatLocation
   /// with the given fields replaced by the non-null parameter values.
@@ -69,16 +67,16 @@ class _$ChatLocationCopyWithImpl<$Res, $Val extends ChatLocation>
     Object? location = null,
     Object? address = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       location: null == location
-          ? _value.location
+          ? _self.location
           : location // ignore: cast_nullable_to_non_nullable
               as Location,
       address: null == address
-          ? _value.address
+          ? _self.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ChatLocation
@@ -86,66 +84,20 @@ class _$ChatLocationCopyWithImpl<$Res, $Val extends ChatLocation>
   @override
   @pragma('vm:prefer-inline')
   $LocationCopyWith<$Res> get location {
-    return $LocationCopyWith<$Res>(_value.location, (value) {
-      return _then(_value.copyWith(location: value) as $Val);
+    return $LocationCopyWith<$Res>(_self.location, (value) {
+      return _then(_self.copyWith(location: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ChatLocationImplCopyWith<$Res>
-    implements $ChatLocationCopyWith<$Res> {
-  factory _$$ChatLocationImplCopyWith(
-          _$ChatLocationImpl value, $Res Function(_$ChatLocationImpl) then) =
-      __$$ChatLocationImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'location') Location location,
-      @JsonKey(name: 'address') String address});
-
-  @override
-  $LocationCopyWith<$Res> get location;
-}
-
-/// @nodoc
-class __$$ChatLocationImplCopyWithImpl<$Res>
-    extends _$ChatLocationCopyWithImpl<$Res, _$ChatLocationImpl>
-    implements _$$ChatLocationImplCopyWith<$Res> {
-  __$$ChatLocationImplCopyWithImpl(
-      _$ChatLocationImpl _value, $Res Function(_$ChatLocationImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ChatLocation
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? location = null,
-    Object? address = null,
-  }) {
-    return _then(_$ChatLocationImpl(
-      location: null == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$ChatLocationImpl implements _ChatLocation {
-  const _$ChatLocationImpl(
+class _ChatLocation implements ChatLocation {
+  const _ChatLocation(
       {@JsonKey(name: 'location') required this.location,
       @JsonKey(name: 'address') required this.address});
-
-  factory _$ChatLocationImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChatLocationImplFromJson(json);
+  factory _ChatLocation.fromJson(Map<String, dynamic> json) =>
+      _$ChatLocationFromJson(json);
 
   /// The location to which the supergroup is connected.
   @override
@@ -157,50 +109,78 @@ class _$ChatLocationImpl implements _ChatLocation {
   @JsonKey(name: 'address')
   final String address;
 
+  /// Create a copy of ChatLocation
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ChatLocationCopyWith<_ChatLocation> get copyWith =>
+      __$ChatLocationCopyWithImpl<_ChatLocation>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ChatLocationToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'ChatLocation(location: $location, address: $address)';
   }
-
-  /// Create a copy of ChatLocation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChatLocationImplCopyWith<_$ChatLocationImpl> get copyWith =>
-      __$$ChatLocationImplCopyWithImpl<_$ChatLocationImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChatLocationImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _ChatLocation implements ChatLocation {
-  const factory _ChatLocation(
-          {@JsonKey(name: 'location') required final Location location,
-          @JsonKey(name: 'address') required final String address}) =
-      _$ChatLocationImpl;
-
-  factory _ChatLocation.fromJson(Map<String, dynamic> json) =
-      _$ChatLocationImpl.fromJson;
-
-  /// The location to which the supergroup is connected.
+/// @nodoc
+abstract mixin class _$ChatLocationCopyWith<$Res>
+    implements $ChatLocationCopyWith<$Res> {
+  factory _$ChatLocationCopyWith(
+          _ChatLocation value, $Res Function(_ChatLocation) _then) =
+      __$ChatLocationCopyWithImpl;
   @override
-  @JsonKey(name: 'location')
-  Location get location;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'location') Location location,
+      @JsonKey(name: 'address') String address});
 
-  /// Location address; 1-64 characters, as defined by the chat owner
   @override
-  @JsonKey(name: 'address')
-  String get address;
+  $LocationCopyWith<$Res> get location;
+}
+
+/// @nodoc
+class __$ChatLocationCopyWithImpl<$Res>
+    implements _$ChatLocationCopyWith<$Res> {
+  __$ChatLocationCopyWithImpl(this._self, this._then);
+
+  final _ChatLocation _self;
+  final $Res Function(_ChatLocation) _then;
 
   /// Create a copy of ChatLocation
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChatLocationImplCopyWith<_$ChatLocationImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? location = null,
+    Object? address = null,
+  }) {
+    return _then(_ChatLocation(
+      location: null == location
+          ? _self.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location,
+      address: null == address
+          ? _self.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+
+  /// Create a copy of ChatLocation
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationCopyWith<$Res> get location {
+    return $LocationCopyWith<$Res>(_self.location, (value) {
+      return _then(_self.copyWith(location: value));
+    });
+  }
 }

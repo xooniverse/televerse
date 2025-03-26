@@ -6,9 +6,9 @@ part of 'input_message_content.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InputTextMessageContentImpl _$$InputTextMessageContentImplFromJson(
+InputTextMessageContent _$InputTextMessageContentFromJson(
         Map<String, dynamic> json) =>
-    _$InputTextMessageContentImpl(
+    InputTextMessageContent(
       messageText: json['message_text'] as String,
       parseMode: $enumDecodeNullable(_$ParseModeEnumMap, json['parse_mode']),
       entities: (json['entities'] as List<dynamic>?)
@@ -21,8 +21,8 @@ _$InputTextMessageContentImpl _$$InputTextMessageContentImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$InputTextMessageContentImplToJson(
-        _$InputTextMessageContentImpl instance) =>
+Map<String, dynamic> _$InputTextMessageContentToJson(
+        InputTextMessageContent instance) =>
     <String, dynamic>{
       'message_text': instance.messageText,
       if (instance.parseMode case final value?) 'parse_mode': value,
@@ -38,9 +38,9 @@ const _$ParseModeEnumMap = {
   ParseMode.markdownV2: 'MarkdownV2',
 };
 
-_$InputLocationMessageContentImpl _$$InputLocationMessageContentImplFromJson(
+InputLocationMessageContent _$InputLocationMessageContentFromJson(
         Map<String, dynamic> json) =>
-    _$InputLocationMessageContentImpl(
+    InputLocationMessageContent(
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
       livePeriod: (json['live_period'] as num?)?.toInt(),
@@ -50,8 +50,8 @@ _$InputLocationMessageContentImpl _$$InputLocationMessageContentImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$InputLocationMessageContentImplToJson(
-        _$InputLocationMessageContentImpl instance) =>
+Map<String, dynamic> _$InputLocationMessageContentToJson(
+        InputLocationMessageContent instance) =>
     <String, dynamic>{
       'latitude': instance.latitude,
       'longitude': instance.longitude,
@@ -64,9 +64,9 @@ Map<String, dynamic> _$$InputLocationMessageContentImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$InputVenueMessageContentImpl _$$InputVenueMessageContentImplFromJson(
+InputVenueMessageContent _$InputVenueMessageContentFromJson(
         Map<String, dynamic> json) =>
-    _$InputVenueMessageContentImpl(
+    InputVenueMessageContent(
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
       title: json['title'] as String,
@@ -78,8 +78,8 @@ _$InputVenueMessageContentImpl _$$InputVenueMessageContentImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$InputVenueMessageContentImplToJson(
-        _$InputVenueMessageContentImpl instance) =>
+Map<String, dynamic> _$InputVenueMessageContentToJson(
+        InputVenueMessageContent instance) =>
     <String, dynamic>{
       'latitude': instance.latitude,
       'longitude': instance.longitude,
@@ -93,9 +93,9 @@ Map<String, dynamic> _$$InputVenueMessageContentImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$InputContactMessageContentImpl _$$InputContactMessageContentImplFromJson(
+InputContactMessageContent _$InputContactMessageContentFromJson(
         Map<String, dynamic> json) =>
-    _$InputContactMessageContentImpl(
+    InputContactMessageContent(
       phoneNumber: json['phone_number'] as String,
       firstName: json['first_name'] as String,
       lastName: json['last_name'] as String?,
@@ -103,8 +103,8 @@ _$InputContactMessageContentImpl _$$InputContactMessageContentImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$InputContactMessageContentImplToJson(
-        _$InputContactMessageContentImpl instance) =>
+Map<String, dynamic> _$InputContactMessageContentToJson(
+        InputContactMessageContent instance) =>
     <String, dynamic>{
       'phone_number': instance.phoneNumber,
       'first_name': instance.firstName,
@@ -113,9 +113,9 @@ Map<String, dynamic> _$$InputContactMessageContentImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$InputInvoiceMessageContentImpl _$$InputInvoiceMessageContentImplFromJson(
+InputInvoiceMessageContent _$InputInvoiceMessageContentFromJson(
         Map<String, dynamic> json) =>
-    _$InputInvoiceMessageContentImpl(
+    InputInvoiceMessageContent(
       title: json['title'] as String,
       description: json['description'] as String,
       payload: json['payload'] as String,
@@ -143,8 +143,8 @@ _$InputInvoiceMessageContentImpl _$$InputInvoiceMessageContentImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$InputInvoiceMessageContentImplToJson(
-        _$InputInvoiceMessageContentImpl instance) =>
+Map<String, dynamic> _$InputInvoiceMessageContentToJson(
+        InputInvoiceMessageContent instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,

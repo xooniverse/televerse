@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,45 +12,44 @@ part of 'chat_boost.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ChatBoost _$ChatBoostFromJson(Map<String, dynamic> json) {
-  return _ChatBoost.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ChatBoost {
   /// Unique identifier of the boost
   @JsonKey(name: 'boost_id')
-  String get boostId => throw _privateConstructorUsedError;
+  String get boostId;
 
   /// Point in time (Unix timestamp) when the chat was boosted
   @JsonKey(name: 'add_date')
-  int get addDate => throw _privateConstructorUsedError;
+  int get addDate;
 
   /// Point in time (Unix timestamp) when the boost will automatically expire, unless the booster's Telegram Premium subscription is prolonged
   @JsonKey(name: 'expiration_date')
-  int get expirationDate => throw _privateConstructorUsedError;
+  int get expirationDate;
 
   /// Source of the added boost
   @JsonKey(name: 'source')
-  ChatBoostSource get source => throw _privateConstructorUsedError;
-
-  /// Serializes this ChatBoost to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  ChatBoostSource get source;
 
   /// Create a copy of ChatBoost
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ChatBoostCopyWith<ChatBoost> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ChatBoostCopyWithImpl<ChatBoost>(this as ChatBoost, _$identity);
+
+  /// Serializes this ChatBoost to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'ChatBoost(boostId: $boostId, addDate: $addDate, expirationDate: $expirationDate, source: $source)';
+  }
 }
 
 /// @nodoc
-abstract class $ChatBoostCopyWith<$Res> {
-  factory $ChatBoostCopyWith(ChatBoost value, $Res Function(ChatBoost) then) =
-      _$ChatBoostCopyWithImpl<$Res, ChatBoost>;
+abstract mixin class $ChatBoostCopyWith<$Res> {
+  factory $ChatBoostCopyWith(ChatBoost value, $Res Function(ChatBoost) _then) =
+      _$ChatBoostCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'boost_id') String boostId,
@@ -61,14 +61,11 @@ abstract class $ChatBoostCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ChatBoostCopyWithImpl<$Res, $Val extends ChatBoost>
-    implements $ChatBoostCopyWith<$Res> {
-  _$ChatBoostCopyWithImpl(this._value, this._then);
+class _$ChatBoostCopyWithImpl<$Res> implements $ChatBoostCopyWith<$Res> {
+  _$ChatBoostCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ChatBoost _self;
+  final $Res Function(ChatBoost) _then;
 
   /// Create a copy of ChatBoost
   /// with the given fields replaced by the non-null parameter values.
@@ -80,24 +77,24 @@ class _$ChatBoostCopyWithImpl<$Res, $Val extends ChatBoost>
     Object? expirationDate = null,
     Object? source = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       boostId: null == boostId
-          ? _value.boostId
+          ? _self.boostId
           : boostId // ignore: cast_nullable_to_non_nullable
               as String,
       addDate: null == addDate
-          ? _value.addDate
+          ? _self.addDate
           : addDate // ignore: cast_nullable_to_non_nullable
               as int,
       expirationDate: null == expirationDate
-          ? _value.expirationDate
+          ? _self.expirationDate
           : expirationDate // ignore: cast_nullable_to_non_nullable
               as int,
       source: null == source
-          ? _value.source
+          ? _self.source
           : source // ignore: cast_nullable_to_non_nullable
               as ChatBoostSource,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ChatBoost
@@ -105,80 +102,22 @@ class _$ChatBoostCopyWithImpl<$Res, $Val extends ChatBoost>
   @override
   @pragma('vm:prefer-inline')
   $ChatBoostSourceCopyWith<$Res> get source {
-    return $ChatBoostSourceCopyWith<$Res>(_value.source, (value) {
-      return _then(_value.copyWith(source: value) as $Val);
+    return $ChatBoostSourceCopyWith<$Res>(_self.source, (value) {
+      return _then(_self.copyWith(source: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ChatBoostImplCopyWith<$Res>
-    implements $ChatBoostCopyWith<$Res> {
-  factory _$$ChatBoostImplCopyWith(
-          _$ChatBoostImpl value, $Res Function(_$ChatBoostImpl) then) =
-      __$$ChatBoostImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'boost_id') String boostId,
-      @JsonKey(name: 'add_date') int addDate,
-      @JsonKey(name: 'expiration_date') int expirationDate,
-      @JsonKey(name: 'source') ChatBoostSource source});
-
-  @override
-  $ChatBoostSourceCopyWith<$Res> get source;
-}
-
-/// @nodoc
-class __$$ChatBoostImplCopyWithImpl<$Res>
-    extends _$ChatBoostCopyWithImpl<$Res, _$ChatBoostImpl>
-    implements _$$ChatBoostImplCopyWith<$Res> {
-  __$$ChatBoostImplCopyWithImpl(
-      _$ChatBoostImpl _value, $Res Function(_$ChatBoostImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ChatBoost
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? boostId = null,
-    Object? addDate = null,
-    Object? expirationDate = null,
-    Object? source = null,
-  }) {
-    return _then(_$ChatBoostImpl(
-      boostId: null == boostId
-          ? _value.boostId
-          : boostId // ignore: cast_nullable_to_non_nullable
-              as String,
-      addDate: null == addDate
-          ? _value.addDate
-          : addDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      expirationDate: null == expirationDate
-          ? _value.expirationDate
-          : expirationDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      source: null == source
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as ChatBoostSource,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$ChatBoostImpl implements _ChatBoost {
-  const _$ChatBoostImpl(
+class _ChatBoost implements ChatBoost {
+  const _ChatBoost(
       {@JsonKey(name: 'boost_id') required this.boostId,
       @JsonKey(name: 'add_date') required this.addDate,
       @JsonKey(name: 'expiration_date') required this.expirationDate,
       @JsonKey(name: 'source') required this.source});
-
-  factory _$ChatBoostImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChatBoostImplFromJson(json);
+  factory _ChatBoost.fromJson(Map<String, dynamic> json) =>
+      _$ChatBoostFromJson(json);
 
   /// Unique identifier of the boost
   @override
@@ -200,62 +139,89 @@ class _$ChatBoostImpl implements _ChatBoost {
   @JsonKey(name: 'source')
   final ChatBoostSource source;
 
+  /// Create a copy of ChatBoost
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ChatBoostCopyWith<_ChatBoost> get copyWith =>
+      __$ChatBoostCopyWithImpl<_ChatBoost>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ChatBoostToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'ChatBoost(boostId: $boostId, addDate: $addDate, expirationDate: $expirationDate, source: $source)';
   }
-
-  /// Create a copy of ChatBoost
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChatBoostImplCopyWith<_$ChatBoostImpl> get copyWith =>
-      __$$ChatBoostImplCopyWithImpl<_$ChatBoostImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChatBoostImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _ChatBoost implements ChatBoost {
-  const factory _ChatBoost(
-          {@JsonKey(name: 'boost_id') required final String boostId,
-          @JsonKey(name: 'add_date') required final int addDate,
-          @JsonKey(name: 'expiration_date') required final int expirationDate,
-          @JsonKey(name: 'source') required final ChatBoostSource source}) =
-      _$ChatBoostImpl;
-
-  factory _ChatBoost.fromJson(Map<String, dynamic> json) =
-      _$ChatBoostImpl.fromJson;
-
-  /// Unique identifier of the boost
+/// @nodoc
+abstract mixin class _$ChatBoostCopyWith<$Res>
+    implements $ChatBoostCopyWith<$Res> {
+  factory _$ChatBoostCopyWith(
+          _ChatBoost value, $Res Function(_ChatBoost) _then) =
+      __$ChatBoostCopyWithImpl;
   @override
-  @JsonKey(name: 'boost_id')
-  String get boostId;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'boost_id') String boostId,
+      @JsonKey(name: 'add_date') int addDate,
+      @JsonKey(name: 'expiration_date') int expirationDate,
+      @JsonKey(name: 'source') ChatBoostSource source});
 
-  /// Point in time (Unix timestamp) when the chat was boosted
   @override
-  @JsonKey(name: 'add_date')
-  int get addDate;
+  $ChatBoostSourceCopyWith<$Res> get source;
+}
 
-  /// Point in time (Unix timestamp) when the boost will automatically expire, unless the booster's Telegram Premium subscription is prolonged
-  @override
-  @JsonKey(name: 'expiration_date')
-  int get expirationDate;
+/// @nodoc
+class __$ChatBoostCopyWithImpl<$Res> implements _$ChatBoostCopyWith<$Res> {
+  __$ChatBoostCopyWithImpl(this._self, this._then);
 
-  /// Source of the added boost
-  @override
-  @JsonKey(name: 'source')
-  ChatBoostSource get source;
+  final _ChatBoost _self;
+  final $Res Function(_ChatBoost) _then;
 
   /// Create a copy of ChatBoost
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChatBoostImplCopyWith<_$ChatBoostImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? boostId = null,
+    Object? addDate = null,
+    Object? expirationDate = null,
+    Object? source = null,
+  }) {
+    return _then(_ChatBoost(
+      boostId: null == boostId
+          ? _self.boostId
+          : boostId // ignore: cast_nullable_to_non_nullable
+              as String,
+      addDate: null == addDate
+          ? _self.addDate
+          : addDate // ignore: cast_nullable_to_non_nullable
+              as int,
+      expirationDate: null == expirationDate
+          ? _self.expirationDate
+          : expirationDate // ignore: cast_nullable_to_non_nullable
+              as int,
+      source: null == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as ChatBoostSource,
+    ));
+  }
+
+  /// Create a copy of ChatBoost
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatBoostSourceCopyWith<$Res> get source {
+    return $ChatBoostSourceCopyWith<$Res>(_self.source, (value) {
+      return _then(_self.copyWith(source: value));
+    });
+  }
 }

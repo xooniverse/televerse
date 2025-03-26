@@ -8,7 +8,7 @@ part 'successful_payment.g.dart';
 
 /// This object contains basic information about a successful payment.
 @freezed
-class SuccessfulPayment with _$SuccessfulPayment {
+abstract class SuccessfulPayment with _$SuccessfulPayment {
   /// Constructs a [SuccessfulPayment] object
   const factory SuccessfulPayment({
     /// Three-letter ISO 4217 currency code

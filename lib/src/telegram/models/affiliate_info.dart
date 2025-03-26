@@ -9,7 +9,7 @@ part 'affiliate_info.g.dart';
 /// Contains information about the affiliate that received a commission via this
 /// transaction.
 @freezed
-class AffiliateInfo with _$AffiliateInfo {
+abstract class AffiliateInfo with _$AffiliateInfo {
   /// Constructs an [AffiliateInfo] object.
   const factory AffiliateInfo({
     /// The bot or the user that received an affiliate commission if it was

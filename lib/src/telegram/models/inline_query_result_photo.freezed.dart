@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,90 +12,87 @@ part of 'inline_query_result_photo.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-InlineQueryResultPhoto _$InlineQueryResultPhotoFromJson(
-    Map<String, dynamic> json) {
-  return _InlineQueryResultPhoto.fromJson(json);
-}
-
 /// @nodoc
 mixin _$InlineQueryResultPhoto {
   /// Type of the result, always [InlineQueryResultType.photo]
   @JsonKey(name: 'type')
-  InlineQueryResultType get type => throw _privateConstructorUsedError;
+  InlineQueryResultType get type;
 
   /// Unique identifier for this result, 1-64 Bytes
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
 
   /// A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB
   @JsonKey(name: 'photo_url')
-  String get photoUrl => throw _privateConstructorUsedError;
+  String get photoUrl;
 
   /// URL of the thumbnail for the photo
   @JsonKey(name: 'thumbnail_url')
-  String get thumbnailUrl => throw _privateConstructorUsedError;
+  String get thumbnailUrl;
 
   /// Optional. Width of the photo
   @JsonKey(name: 'photo_width')
-  int? get photoWidth => throw _privateConstructorUsedError;
+  int? get photoWidth;
 
   /// Optional. Height of the photo
   @JsonKey(name: 'photo_height')
-  int? get photoHeight => throw _privateConstructorUsedError;
+  int? get photoHeight;
 
   /// Optional. Title for the result
   @JsonKey(name: 'title')
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
 
   /// Optional. Short description of the result
   @JsonKey(name: 'description')
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
 
   /// Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
   @JsonKey(name: 'caption')
-  String? get caption => throw _privateConstructorUsedError;
+  String? get caption;
 
   /// Optional. Mode for parsing entities in the photo caption. See formatting options for more details.
   @JsonKey(name: 'parse_mode')
-  ParseMode? get parseMode => throw _privateConstructorUsedError;
+  ParseMode? get parseMode;
 
   /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
   @JsonKey(name: 'caption_entities')
-  List<MessageEntity>? get captionEntities =>
-      throw _privateConstructorUsedError;
+  List<MessageEntity>? get captionEntities;
 
   /// Optional. Inline keyboard attached to the message
   @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup? get replyMarkup => throw _privateConstructorUsedError;
+  InlineKeyboardMarkup? get replyMarkup;
 
   /// Optional. Content of the message to be sent instead of the photo
   @JsonKey(name: 'input_message_content')
   @InputMessageContentConverter()
-  InputMessageContent? get inputMessageContent =>
-      throw _privateConstructorUsedError;
+  InputMessageContent? get inputMessageContent;
 
   /// Optional. True, if the caption must be shown above the message media
   @JsonKey(name: 'show_caption_above_media')
-  bool? get showCaptionAboveMedia => throw _privateConstructorUsedError;
-
-  /// Serializes this InlineQueryResultPhoto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  bool? get showCaptionAboveMedia;
 
   /// Create a copy of InlineQueryResultPhoto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $InlineQueryResultPhotoCopyWith<InlineQueryResultPhoto> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$InlineQueryResultPhotoCopyWithImpl<InlineQueryResultPhoto>(
+          this as InlineQueryResultPhoto, _$identity);
+
+  /// Serializes this InlineQueryResultPhoto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'InlineQueryResultPhoto(type: $type, id: $id, photoUrl: $photoUrl, thumbnailUrl: $thumbnailUrl, photoWidth: $photoWidth, photoHeight: $photoHeight, title: $title, description: $description, caption: $caption, parseMode: $parseMode, captionEntities: $captionEntities, replyMarkup: $replyMarkup, inputMessageContent: $inputMessageContent, showCaptionAboveMedia: $showCaptionAboveMedia)';
+  }
 }
 
 /// @nodoc
-abstract class $InlineQueryResultPhotoCopyWith<$Res> {
+abstract mixin class $InlineQueryResultPhotoCopyWith<$Res> {
   factory $InlineQueryResultPhotoCopyWith(InlineQueryResultPhoto value,
-          $Res Function(InlineQueryResultPhoto) then) =
-      _$InlineQueryResultPhotoCopyWithImpl<$Res, InlineQueryResultPhoto>;
+          $Res Function(InlineQueryResultPhoto) _then) =
+      _$InlineQueryResultPhotoCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'type') InlineQueryResultType type,
@@ -118,15 +116,12 @@ abstract class $InlineQueryResultPhotoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InlineQueryResultPhotoCopyWithImpl<$Res,
-        $Val extends InlineQueryResultPhoto>
+class _$InlineQueryResultPhotoCopyWithImpl<$Res>
     implements $InlineQueryResultPhotoCopyWith<$Res> {
-  _$InlineQueryResultPhotoCopyWithImpl(this._value, this._then);
+  _$InlineQueryResultPhotoCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final InlineQueryResultPhoto _self;
+  final $Res Function(InlineQueryResultPhoto) _then;
 
   /// Create a copy of InlineQueryResultPhoto
   /// with the given fields replaced by the non-null parameter values.
@@ -148,64 +143,64 @@ class _$InlineQueryResultPhotoCopyWithImpl<$Res,
     Object? inputMessageContent = freezed,
     Object? showCaptionAboveMedia = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as InlineQueryResultType,
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       photoUrl: null == photoUrl
-          ? _value.photoUrl
+          ? _self.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String,
       thumbnailUrl: null == thumbnailUrl
-          ? _value.thumbnailUrl
+          ? _self.thumbnailUrl
           : thumbnailUrl // ignore: cast_nullable_to_non_nullable
               as String,
       photoWidth: freezed == photoWidth
-          ? _value.photoWidth
+          ? _self.photoWidth
           : photoWidth // ignore: cast_nullable_to_non_nullable
               as int?,
       photoHeight: freezed == photoHeight
-          ? _value.photoHeight
+          ? _self.photoHeight
           : photoHeight // ignore: cast_nullable_to_non_nullable
               as int?,
       title: freezed == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
       description: freezed == description
-          ? _value.description
+          ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
       caption: freezed == caption
-          ? _value.caption
+          ? _self.caption
           : caption // ignore: cast_nullable_to_non_nullable
               as String?,
       parseMode: freezed == parseMode
-          ? _value.parseMode
+          ? _self.parseMode
           : parseMode // ignore: cast_nullable_to_non_nullable
               as ParseMode?,
       captionEntities: freezed == captionEntities
-          ? _value.captionEntities
+          ? _self.captionEntities
           : captionEntities // ignore: cast_nullable_to_non_nullable
               as List<MessageEntity>?,
       replyMarkup: freezed == replyMarkup
-          ? _value.replyMarkup
+          ? _self.replyMarkup
           : replyMarkup // ignore: cast_nullable_to_non_nullable
               as InlineKeyboardMarkup?,
       inputMessageContent: freezed == inputMessageContent
-          ? _value.inputMessageContent
+          ? _self.inputMessageContent
           : inputMessageContent // ignore: cast_nullable_to_non_nullable
               as InputMessageContent?,
       showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _value.showCaptionAboveMedia
+          ? _self.showCaptionAboveMedia
           : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
               as bool?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of InlineQueryResultPhoto
@@ -213,143 +208,21 @@ class _$InlineQueryResultPhotoCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $InputMessageContentCopyWith<$Res>? get inputMessageContent {
-    if (_value.inputMessageContent == null) {
+    if (_self.inputMessageContent == null) {
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_value.inputMessageContent!,
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
         (value) {
-      return _then(_value.copyWith(inputMessageContent: value) as $Val);
+      return _then(_self.copyWith(inputMessageContent: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$InlineQueryResultPhotoImplCopyWith<$Res>
-    implements $InlineQueryResultPhotoCopyWith<$Res> {
-  factory _$$InlineQueryResultPhotoImplCopyWith(
-          _$InlineQueryResultPhotoImpl value,
-          $Res Function(_$InlineQueryResultPhotoImpl) then) =
-      __$$InlineQueryResultPhotoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'id') String id,
-      @JsonKey(name: 'photo_url') String photoUrl,
-      @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
-      @JsonKey(name: 'photo_width') int? photoWidth,
-      @JsonKey(name: 'photo_height') int? photoHeight,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia});
-
-  @override
-  $InputMessageContentCopyWith<$Res>? get inputMessageContent;
-}
-
-/// @nodoc
-class __$$InlineQueryResultPhotoImplCopyWithImpl<$Res>
-    extends _$InlineQueryResultPhotoCopyWithImpl<$Res,
-        _$InlineQueryResultPhotoImpl>
-    implements _$$InlineQueryResultPhotoImplCopyWith<$Res> {
-  __$$InlineQueryResultPhotoImplCopyWithImpl(
-      _$InlineQueryResultPhotoImpl _value,
-      $Res Function(_$InlineQueryResultPhotoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InlineQueryResultPhoto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-    Object? id = null,
-    Object? photoUrl = null,
-    Object? thumbnailUrl = null,
-    Object? photoWidth = freezed,
-    Object? photoHeight = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? caption = freezed,
-    Object? parseMode = freezed,
-    Object? captionEntities = freezed,
-    Object? replyMarkup = freezed,
-    Object? inputMessageContent = freezed,
-    Object? showCaptionAboveMedia = freezed,
-  }) {
-    return _then(_$InlineQueryResultPhotoImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      photoUrl: null == photoUrl
-          ? _value.photoUrl
-          : photoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnailUrl: null == thumbnailUrl
-          ? _value.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      photoWidth: freezed == photoWidth
-          ? _value.photoWidth
-          : photoWidth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      photoHeight: freezed == photoHeight
-          ? _value.photoHeight
-          : photoHeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      caption: freezed == caption
-          ? _value.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _value.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _value._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      replyMarkup: freezed == replyMarkup
-          ? _value.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _value.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _value.showCaptionAboveMedia
-          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$InlineQueryResultPhotoImpl implements _InlineQueryResultPhoto {
-  const _$InlineQueryResultPhotoImpl(
+class _InlineQueryResultPhoto implements InlineQueryResultPhoto {
+  const _InlineQueryResultPhoto(
       {@JsonKey(name: 'type') this.type = InlineQueryResultType.photo,
       @JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'photo_url') required this.photoUrl,
@@ -368,9 +241,8 @@ class _$InlineQueryResultPhotoImpl implements _InlineQueryResultPhoto {
       this.inputMessageContent,
       @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia})
       : _captionEntities = captionEntities;
-
-  factory _$InlineQueryResultPhotoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InlineQueryResultPhotoImplFromJson(json);
+  factory _InlineQueryResultPhoto.fromJson(Map<String, dynamic> json) =>
+      _$InlineQueryResultPhotoFromJson(json);
 
   /// Type of the result, always [InlineQueryResultType.photo]
   @override
@@ -452,127 +324,158 @@ class _$InlineQueryResultPhotoImpl implements _InlineQueryResultPhoto {
   @JsonKey(name: 'show_caption_above_media')
   final bool? showCaptionAboveMedia;
 
+  /// Create a copy of InlineQueryResultPhoto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InlineQueryResultPhotoCopyWith<_InlineQueryResultPhoto> get copyWith =>
+      __$InlineQueryResultPhotoCopyWithImpl<_InlineQueryResultPhoto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InlineQueryResultPhotoToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'InlineQueryResultPhoto(type: $type, id: $id, photoUrl: $photoUrl, thumbnailUrl: $thumbnailUrl, photoWidth: $photoWidth, photoHeight: $photoHeight, title: $title, description: $description, caption: $caption, parseMode: $parseMode, captionEntities: $captionEntities, replyMarkup: $replyMarkup, inputMessageContent: $inputMessageContent, showCaptionAboveMedia: $showCaptionAboveMedia)';
   }
-
-  /// Create a copy of InlineQueryResultPhoto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InlineQueryResultPhotoImplCopyWith<_$InlineQueryResultPhotoImpl>
-      get copyWith => __$$InlineQueryResultPhotoImplCopyWithImpl<
-          _$InlineQueryResultPhotoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InlineQueryResultPhotoImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _InlineQueryResultPhoto implements InlineQueryResultPhoto {
-  const factory _InlineQueryResultPhoto(
-      {@JsonKey(name: 'type') final InlineQueryResultType type,
-      @JsonKey(name: 'id') required final String id,
-      @JsonKey(name: 'photo_url') required final String photoUrl,
-      @JsonKey(name: 'thumbnail_url') required final String thumbnailUrl,
-      @JsonKey(name: 'photo_width') final int? photoWidth,
-      @JsonKey(name: 'photo_height') final int? photoHeight,
-      @JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'description') final String? description,
-      @JsonKey(name: 'caption') final String? caption,
-      @JsonKey(name: 'parse_mode') final ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') final InlineKeyboardMarkup? replyMarkup,
+/// @nodoc
+abstract mixin class _$InlineQueryResultPhotoCopyWith<$Res>
+    implements $InlineQueryResultPhotoCopyWith<$Res> {
+  factory _$InlineQueryResultPhotoCopyWith(_InlineQueryResultPhoto value,
+          $Res Function(_InlineQueryResultPhoto) _then) =
+      __$InlineQueryResultPhotoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'type') InlineQueryResultType type,
+      @JsonKey(name: 'id') String id,
+      @JsonKey(name: 'photo_url') String photoUrl,
+      @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
+      @JsonKey(name: 'photo_width') int? photoWidth,
+      @JsonKey(name: 'photo_height') int? photoHeight,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'caption') String? caption,
+      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
       @JsonKey(name: 'input_message_content')
       @InputMessageContentConverter()
-      final InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media')
-      final bool? showCaptionAboveMedia}) = _$InlineQueryResultPhotoImpl;
+      InputMessageContent? inputMessageContent,
+      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia});
 
-  factory _InlineQueryResultPhoto.fromJson(Map<String, dynamic> json) =
-      _$InlineQueryResultPhotoImpl.fromJson;
-
-  /// Type of the result, always [InlineQueryResultType.photo]
   @override
-  @JsonKey(name: 'type')
-  InlineQueryResultType get type;
+  $InputMessageContentCopyWith<$Res>? get inputMessageContent;
+}
 
-  /// Unique identifier for this result, 1-64 Bytes
-  @override
-  @JsonKey(name: 'id')
-  String get id;
+/// @nodoc
+class __$InlineQueryResultPhotoCopyWithImpl<$Res>
+    implements _$InlineQueryResultPhotoCopyWith<$Res> {
+  __$InlineQueryResultPhotoCopyWithImpl(this._self, this._then);
 
-  /// A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB
-  @override
-  @JsonKey(name: 'photo_url')
-  String get photoUrl;
-
-  /// URL of the thumbnail for the photo
-  @override
-  @JsonKey(name: 'thumbnail_url')
-  String get thumbnailUrl;
-
-  /// Optional. Width of the photo
-  @override
-  @JsonKey(name: 'photo_width')
-  int? get photoWidth;
-
-  /// Optional. Height of the photo
-  @override
-  @JsonKey(name: 'photo_height')
-  int? get photoHeight;
-
-  /// Optional. Title for the result
-  @override
-  @JsonKey(name: 'title')
-  String? get title;
-
-  /// Optional. Short description of the result
-  @override
-  @JsonKey(name: 'description')
-  String? get description;
-
-  /// Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
-  @override
-  @JsonKey(name: 'caption')
-  String? get caption;
-
-  /// Optional. Mode for parsing entities in the photo caption. See formatting options for more details.
-  @override
-  @JsonKey(name: 'parse_mode')
-  ParseMode? get parseMode;
-
-  /// Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
-  @override
-  @JsonKey(name: 'caption_entities')
-  List<MessageEntity>? get captionEntities;
-
-  /// Optional. Inline keyboard attached to the message
-  @override
-  @JsonKey(name: 'reply_markup')
-  InlineKeyboardMarkup? get replyMarkup;
-
-  /// Optional. Content of the message to be sent instead of the photo
-  @override
-  @JsonKey(name: 'input_message_content')
-  @InputMessageContentConverter()
-  InputMessageContent? get inputMessageContent;
-
-  /// Optional. True, if the caption must be shown above the message media
-  @override
-  @JsonKey(name: 'show_caption_above_media')
-  bool? get showCaptionAboveMedia;
+  final _InlineQueryResultPhoto _self;
+  final $Res Function(_InlineQueryResultPhoto) _then;
 
   /// Create a copy of InlineQueryResultPhoto
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InlineQueryResultPhotoImplCopyWith<_$InlineQueryResultPhotoImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? type = null,
+    Object? id = null,
+    Object? photoUrl = null,
+    Object? thumbnailUrl = null,
+    Object? photoWidth = freezed,
+    Object? photoHeight = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? caption = freezed,
+    Object? parseMode = freezed,
+    Object? captionEntities = freezed,
+    Object? replyMarkup = freezed,
+    Object? inputMessageContent = freezed,
+    Object? showCaptionAboveMedia = freezed,
+  }) {
+    return _then(_InlineQueryResultPhoto(
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as InlineQueryResultType,
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      photoUrl: null == photoUrl
+          ? _self.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnailUrl: null == thumbnailUrl
+          ? _self.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      photoWidth: freezed == photoWidth
+          ? _self.photoWidth
+          : photoWidth // ignore: cast_nullable_to_non_nullable
+              as int?,
+      photoHeight: freezed == photoHeight
+          ? _self.photoHeight
+          : photoHeight // ignore: cast_nullable_to_non_nullable
+              as int?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      caption: freezed == caption
+          ? _self.caption
+          : caption // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parseMode: freezed == parseMode
+          ? _self.parseMode
+          : parseMode // ignore: cast_nullable_to_non_nullable
+              as ParseMode?,
+      captionEntities: freezed == captionEntities
+          ? _self._captionEntities
+          : captionEntities // ignore: cast_nullable_to_non_nullable
+              as List<MessageEntity>?,
+      replyMarkup: freezed == replyMarkup
+          ? _self.replyMarkup
+          : replyMarkup // ignore: cast_nullable_to_non_nullable
+              as InlineKeyboardMarkup?,
+      inputMessageContent: freezed == inputMessageContent
+          ? _self.inputMessageContent
+          : inputMessageContent // ignore: cast_nullable_to_non_nullable
+              as InputMessageContent?,
+      showCaptionAboveMedia: freezed == showCaptionAboveMedia
+          ? _self.showCaptionAboveMedia
+          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+
+  /// Create a copy of InlineQueryResultPhoto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $InputMessageContentCopyWith<$Res>? get inputMessageContent {
+    if (_self.inputMessageContent == null) {
+      return null;
+    }
+
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
+        (value) {
+      return _then(_self.copyWith(inputMessageContent: value));
+    });
+  }
 }

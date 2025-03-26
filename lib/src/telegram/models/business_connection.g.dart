@@ -6,9 +6,8 @@ part of 'business_connection.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BusinessConnectionImpl _$$BusinessConnectionImplFromJson(
-        Map<String, dynamic> json) =>
-    _$BusinessConnectionImpl(
+_BusinessConnection _$BusinessConnectionFromJson(Map<String, dynamic> json) =>
+    _BusinessConnection(
       id: json['id'] as String,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
       userChatId: (json['user_chat_id'] as num).toInt(),
@@ -17,8 +16,7 @@ _$BusinessConnectionImpl _$$BusinessConnectionImplFromJson(
       isEnabled: json['is_enabled'] as bool,
     );
 
-Map<String, dynamic> _$$BusinessConnectionImplToJson(
-        _$BusinessConnectionImpl instance) =>
+Map<String, dynamic> _$BusinessConnectionToJson(_BusinessConnection instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user': instance.user,

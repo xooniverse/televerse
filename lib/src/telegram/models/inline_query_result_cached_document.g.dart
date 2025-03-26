@@ -6,34 +6,32 @@ part of 'inline_query_result_cached_document.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultCachedDocumentImpl
-    _$$InlineQueryResultCachedDocumentImplFromJson(Map<String, dynamic> json) =>
-        _$InlineQueryResultCachedDocumentImpl(
-          id: json['id'] as String,
-          type: $enumDecodeNullable(
-                  _$InlineQueryResultTypeEnumMap, json['type']) ??
-              InlineQueryResultType.document,
-          documentFileId: json['document_file_id'] as String,
-          title: json['title'] as String,
-          description: json['description'] as String?,
-          caption: json['caption'] as String?,
-          parseMode:
-              $enumDecodeNullable(_$ParseModeEnumMap, json['parse_mode']),
-          captionEntities: (json['caption_entities'] as List<dynamic>?)
-              ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
-              .toList(),
-          replyMarkup: json['reply_markup'] == null
-              ? null
-              : InlineKeyboardMarkup.fromJson(
-                  json['reply_markup'] as Map<String, dynamic>),
-          inputMessageContent:
-              _$JsonConverterFromJson<Map<String, Object>, InputMessageContent>(
-                  json['input_message_content'],
-                  const InputMessageContentConverter().fromJson),
-        );
+_InlineQueryResultCachedDocument _$InlineQueryResultCachedDocumentFromJson(
+        Map<String, dynamic> json) =>
+    _InlineQueryResultCachedDocument(
+      id: json['id'] as String,
+      type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
+          InlineQueryResultType.document,
+      documentFileId: json['document_file_id'] as String,
+      title: json['title'] as String,
+      description: json['description'] as String?,
+      caption: json['caption'] as String?,
+      parseMode: $enumDecodeNullable(_$ParseModeEnumMap, json['parse_mode']),
+      captionEntities: (json['caption_entities'] as List<dynamic>?)
+          ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      replyMarkup: json['reply_markup'] == null
+          ? null
+          : InlineKeyboardMarkup.fromJson(
+              json['reply_markup'] as Map<String, dynamic>),
+      inputMessageContent:
+          _$JsonConverterFromJson<Map<String, Object>, InputMessageContent>(
+              json['input_message_content'],
+              const InputMessageContentConverter().fromJson),
+    );
 
-Map<String, dynamic> _$$InlineQueryResultCachedDocumentImplToJson(
-        _$InlineQueryResultCachedDocumentImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultCachedDocumentToJson(
+        _InlineQueryResultCachedDocument instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': instance.type,

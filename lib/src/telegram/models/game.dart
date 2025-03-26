@@ -10,7 +10,7 @@ part 'game.g.dart';
 
 /// This object represents a game. Use BotFather to create and edit games, their short names will act as unique identifiers.
 @freezed
-class Game with _$Game {
+abstract class Game with _$Game {
   /// Constructs a [Game] object.
   const factory Game({
     /// Title of the game

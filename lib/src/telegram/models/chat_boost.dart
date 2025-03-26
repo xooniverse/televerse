@@ -7,7 +7,7 @@ part 'chat_boost.g.dart';
 
 /// This object contains information about a chat boost.
 @freezed
-class ChatBoost with _$ChatBoost {
+abstract class ChatBoost with _$ChatBoost {
   /// Creates a chat boost.
   const factory ChatBoost({
     /// Unique identifier of the boost

@@ -15,7 +15,7 @@ part 'file.g.dart';
 /// the link will be valid for at least 1 hour. When the link expires, a new one
 /// can be requested by calling getFile.
 @freezed
-class File with _$File {
+abstract class File with _$File {
   const File._();
 
   /// Constructs the File object.

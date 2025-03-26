@@ -6,8 +6,7 @@ part of 'input_media.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$$InputMediaPhotoImplToJson(
-        _$InputMediaPhotoImpl instance) =>
+Map<String, dynamic> _$InputMediaPhotoToJson(InputMediaPhoto instance) =>
     <String, dynamic>{
       'type': instance.type,
       'media': const InputFileConverter().toJson(instance.media),
@@ -20,8 +19,7 @@ Map<String, dynamic> _$$InputMediaPhotoImplToJson(
       'runtimeType': instance.$type,
     };
 
-Map<String, dynamic> _$$InputMediaDocumentImplToJson(
-        _$InputMediaDocumentImpl instance) =>
+Map<String, dynamic> _$InputMediaDocumentToJson(InputMediaDocument instance) =>
     <String, dynamic>{
       'type': instance.type,
       'media': const InputFileConverter().toJson(instance.media),
@@ -43,8 +41,8 @@ Json? _$JsonConverterToJson<Json, Value>(
 ) =>
     value == null ? null : toJson(value);
 
-Map<String, dynamic> _$$InputMediaAnimationImplToJson(
-        _$InputMediaAnimationImpl instance) =>
+Map<String, dynamic> _$InputMediaAnimationToJson(
+        InputMediaAnimation instance) =>
     <String, dynamic>{
       'type': instance.type,
       'media': const InputFileConverter().toJson(instance.media),
@@ -64,8 +62,7 @@ Map<String, dynamic> _$$InputMediaAnimationImplToJson(
       'runtimeType': instance.$type,
     };
 
-Map<String, dynamic> _$$InputMediaAudioImplToJson(
-        _$InputMediaAudioImpl instance) =>
+Map<String, dynamic> _$InputMediaAudioToJson(InputMediaAudio instance) =>
     <String, dynamic>{
       'type': instance.type,
       'media': const InputFileConverter().toJson(instance.media),
@@ -82,8 +79,7 @@ Map<String, dynamic> _$$InputMediaAudioImplToJson(
       'runtimeType': instance.$type,
     };
 
-Map<String, dynamic> _$$InputMediaVideoImplToJson(
-        _$InputMediaVideoImpl instance) =>
+Map<String, dynamic> _$InputMediaVideoToJson(InputMediaVideo instance) =>
     <String, dynamic>{
       'type': instance.type,
       'media': const InputFileConverter().toJson(instance.media),

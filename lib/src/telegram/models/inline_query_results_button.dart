@@ -10,7 +10,7 @@ part 'inline_query_results_button.g.dart';
 ///
 /// Since: Bot API 6.7
 @freezed
-class InlineQueryResultsButton with _$InlineQueryResultsButton {
+abstract class InlineQueryResultsButton with _$InlineQueryResultsButton {
   /// Constructs an [InlineQueryResultsButton]
   const factory InlineQueryResultsButton({
     /// Label text on the button

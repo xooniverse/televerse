@@ -7,7 +7,8 @@ part 'message_auto_delete_timer_changed.g.dart';
 /// This object represents a service message about a change in auto-delete timer
 /// settings.
 @freezed
-class MessageAutoDeleteTimerChanged with _$MessageAutoDeleteTimerChanged {
+abstract class MessageAutoDeleteTimerChanged
+    with _$MessageAutoDeleteTimerChanged {
   /// Creates a service message about auto-delete timer change
   ///
   /// [messageAutoDeleteTime] New auto-delete time for messages in the chat in

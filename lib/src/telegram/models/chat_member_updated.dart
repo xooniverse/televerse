@@ -12,7 +12,9 @@ part 'chat_member_updated.g.dart';
 
 /// This object represents changes in the status of a chat member.
 @freezed
-class ChatMemberUpdated with _$ChatMemberUpdated implements WithChat, WithUser {
+abstract class ChatMemberUpdated
+    with _$ChatMemberUpdated
+    implements WithChat, WithUser {
   /// Creates a new [ChatMemberUpdated] object.
   const factory ChatMemberUpdated({
     /// Chat the user belongs to

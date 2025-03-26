@@ -9,7 +9,7 @@ part 'poll.g.dart';
 
 /// This object contains information about a poll.
 @freezed
-class Poll with _$Poll {
+abstract class Poll with _$Poll {
   /// Constructs a [Poll] object
   const factory Poll({
     /// Unique poll identifier

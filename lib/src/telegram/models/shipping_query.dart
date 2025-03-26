@@ -10,7 +10,7 @@ part 'shipping_query.g.dart';
 
 /// This object contains information about an incoming shipping query.
 @freezed
-class ShippingQuery with _$ShippingQuery implements WithUser {
+abstract class ShippingQuery with _$ShippingQuery implements WithUser {
   /// Constructs a [ShippingQuery] object
   const factory ShippingQuery({
     /// Unique query identifier

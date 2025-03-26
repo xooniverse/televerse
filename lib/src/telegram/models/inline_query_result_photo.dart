@@ -13,7 +13,7 @@ part 'inline_query_result_photo.g.dart';
 /// user with optional caption. Alternatively, you can use input_message_content
 /// to send a message with the specified content instead of the photo.
 @freezed
-class InlineQueryResultPhoto
+abstract class InlineQueryResultPhoto
     with _$InlineQueryResultPhoto
     implements InlineQueryResult {
   /// Creates an [InlineQueryResultPhoto] object

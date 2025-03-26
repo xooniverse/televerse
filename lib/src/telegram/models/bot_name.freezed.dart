@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,79 +12,42 @@ part of 'bot_name.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-BotName _$BotNameFromJson(Map<String, dynamic> json) {
-  return _BotName.fromJson(json);
-}
-
 /// @nodoc
 mixin _$BotName {
   /// The bot's name
   @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
-
-  /// Serializes this BotName to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get name;
 
   /// Create a copy of BotName
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $BotNameCopyWith<BotName> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $BotNameCopyWith<$Res> {
-  factory $BotNameCopyWith(BotName value, $Res Function(BotName) then) =
-      _$BotNameCopyWithImpl<$Res, BotName>;
-  @useResult
-  $Res call({@JsonKey(name: 'name') String name});
-}
-
-/// @nodoc
-class _$BotNameCopyWithImpl<$Res, $Val extends BotName>
-    implements $BotNameCopyWith<$Res> {
-  _$BotNameCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of BotName
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $BotNameCopyWith<BotName> get copyWith =>
+      _$BotNameCopyWithImpl<BotName>(this as BotName, _$identity);
+
+  /// Serializes this BotName to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'BotName(name: $name)';
   }
 }
 
 /// @nodoc
-abstract class _$$BotNameImplCopyWith<$Res> implements $BotNameCopyWith<$Res> {
-  factory _$$BotNameImplCopyWith(
-          _$BotNameImpl value, $Res Function(_$BotNameImpl) then) =
-      __$$BotNameImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $BotNameCopyWith<$Res> {
+  factory $BotNameCopyWith(BotName value, $Res Function(BotName) _then) =
+      _$BotNameCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'name') String name});
 }
 
 /// @nodoc
-class __$$BotNameImplCopyWithImpl<$Res>
-    extends _$BotNameCopyWithImpl<$Res, _$BotNameImpl>
-    implements _$$BotNameImplCopyWith<$Res> {
-  __$$BotNameImplCopyWithImpl(
-      _$BotNameImpl _value, $Res Function(_$BotNameImpl) _then)
-      : super(_value, _then);
+class _$BotNameCopyWithImpl<$Res> implements $BotNameCopyWith<$Res> {
+  _$BotNameCopyWithImpl(this._self, this._then);
+
+  final BotName _self;
+  final $Res Function(BotName) _then;
 
   /// Create a copy of BotName
   /// with the given fields replaced by the non-null parameter values.
@@ -92,9 +56,9 @@ class __$$BotNameImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
   }) {
-    return _then(_$BotNameImpl(
+    return _then(_self.copyWith(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -103,53 +67,65 @@ class __$$BotNameImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BotNameImpl implements _BotName {
-  const _$BotNameImpl({@JsonKey(name: 'name') required this.name});
-
-  factory _$BotNameImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BotNameImplFromJson(json);
+class _BotName implements BotName {
+  const _BotName({@JsonKey(name: 'name') required this.name});
+  factory _BotName.fromJson(Map<String, dynamic> json) =>
+      _$BotNameFromJson(json);
 
   /// The bot's name
   @override
   @JsonKey(name: 'name')
   final String name;
 
+  /// Create a copy of BotName
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BotNameCopyWith<_BotName> get copyWith =>
+      __$BotNameCopyWithImpl<_BotName>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$BotNameToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'BotName(name: $name)';
   }
-
-  /// Create a copy of BotName
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BotNameImplCopyWith<_$BotNameImpl> get copyWith =>
-      __$$BotNameImplCopyWithImpl<_$BotNameImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BotNameImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _BotName implements BotName {
-  const factory _BotName({@JsonKey(name: 'name') required final String name}) =
-      _$BotNameImpl;
-
-  factory _BotName.fromJson(Map<String, dynamic> json) = _$BotNameImpl.fromJson;
-
-  /// The bot's name
+/// @nodoc
+abstract mixin class _$BotNameCopyWith<$Res> implements $BotNameCopyWith<$Res> {
+  factory _$BotNameCopyWith(_BotName value, $Res Function(_BotName) _then) =
+      __$BotNameCopyWithImpl;
   @override
-  @JsonKey(name: 'name')
-  String get name;
+  @useResult
+  $Res call({@JsonKey(name: 'name') String name});
+}
+
+/// @nodoc
+class __$BotNameCopyWithImpl<$Res> implements _$BotNameCopyWith<$Res> {
+  __$BotNameCopyWithImpl(this._self, this._then);
+
+  final _BotName _self;
+  final $Res Function(_BotName) _then;
 
   /// Create a copy of BotName
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BotNameImplCopyWith<_$BotNameImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? name = null,
+  }) {
+    return _then(_BotName(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }

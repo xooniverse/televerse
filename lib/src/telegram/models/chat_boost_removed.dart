@@ -6,7 +6,7 @@ part 'chat_boost_removed.g.dart';
 
 /// This object represents a boost removed from a chat.
 @freezed
-class ChatBoostRemoved with _$ChatBoostRemoved implements WithChat {
+abstract class ChatBoostRemoved with _$ChatBoostRemoved implements WithChat {
   /// Creates a `ChatBoostRemoved` object.
   const factory ChatBoostRemoved({
     /// Chat which was boosted

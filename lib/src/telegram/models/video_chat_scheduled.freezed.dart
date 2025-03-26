@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,13 +12,6 @@ part of 'video_chat_scheduled.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-VideoChatScheduled _$VideoChatScheduledFromJson(Map<String, dynamic> json) {
-  return _VideoChatScheduled.fromJson(json);
-}
-
 /// @nodoc
 mixin _$VideoChatScheduled {
   /// Point in time (Unix timestamp) when the video chat is supposed to be
@@ -25,71 +19,41 @@ mixin _$VideoChatScheduled {
   ///
   /// Note: You can also use the [DateTime] object getter as [startDateTime]
   @JsonKey(name: 'start_date')
-  int get startDate => throw _privateConstructorUsedError;
-
-  /// Serializes this VideoChatScheduled to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get startDate;
 
   /// Create a copy of VideoChatScheduled
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $VideoChatScheduledCopyWith<VideoChatScheduled> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $VideoChatScheduledCopyWith<$Res> {
-  factory $VideoChatScheduledCopyWith(
-          VideoChatScheduled value, $Res Function(VideoChatScheduled) then) =
-      _$VideoChatScheduledCopyWithImpl<$Res, VideoChatScheduled>;
-  @useResult
-  $Res call({@JsonKey(name: 'start_date') int startDate});
-}
-
-/// @nodoc
-class _$VideoChatScheduledCopyWithImpl<$Res, $Val extends VideoChatScheduled>
-    implements $VideoChatScheduledCopyWith<$Res> {
-  _$VideoChatScheduledCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of VideoChatScheduled
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $VideoChatScheduledCopyWith<VideoChatScheduled> get copyWith =>
+      _$VideoChatScheduledCopyWithImpl<VideoChatScheduled>(
+          this as VideoChatScheduled, _$identity);
+
+  /// Serializes this VideoChatScheduled to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? startDate = null,
-  }) {
-    return _then(_value.copyWith(
-      startDate: null == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  String toString() {
+    return 'VideoChatScheduled(startDate: $startDate)';
   }
 }
 
 /// @nodoc
-abstract class _$$VideoChatScheduledImplCopyWith<$Res>
-    implements $VideoChatScheduledCopyWith<$Res> {
-  factory _$$VideoChatScheduledImplCopyWith(_$VideoChatScheduledImpl value,
-          $Res Function(_$VideoChatScheduledImpl) then) =
-      __$$VideoChatScheduledImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $VideoChatScheduledCopyWith<$Res> {
+  factory $VideoChatScheduledCopyWith(
+          VideoChatScheduled value, $Res Function(VideoChatScheduled) _then) =
+      _$VideoChatScheduledCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'start_date') int startDate});
 }
 
 /// @nodoc
-class __$$VideoChatScheduledImplCopyWithImpl<$Res>
-    extends _$VideoChatScheduledCopyWithImpl<$Res, _$VideoChatScheduledImpl>
-    implements _$$VideoChatScheduledImplCopyWith<$Res> {
-  __$$VideoChatScheduledImplCopyWithImpl(_$VideoChatScheduledImpl _value,
-      $Res Function(_$VideoChatScheduledImpl) _then)
-      : super(_value, _then);
+class _$VideoChatScheduledCopyWithImpl<$Res>
+    implements $VideoChatScheduledCopyWith<$Res> {
+  _$VideoChatScheduledCopyWithImpl(this._self, this._then);
+
+  final VideoChatScheduled _self;
+  final $Res Function(VideoChatScheduled) _then;
 
   /// Create a copy of VideoChatScheduled
   /// with the given fields replaced by the non-null parameter values.
@@ -98,9 +62,9 @@ class __$$VideoChatScheduledImplCopyWithImpl<$Res>
   $Res call({
     Object? startDate = null,
   }) {
-    return _then(_$VideoChatScheduledImpl(
+    return _then(_self.copyWith(
       startDate: null == startDate
-          ? _value.startDate
+          ? _self.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as int,
     ));
@@ -109,12 +73,11 @@ class __$$VideoChatScheduledImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$VideoChatScheduledImpl implements _VideoChatScheduled {
-  const _$VideoChatScheduledImpl(
+class _VideoChatScheduled implements VideoChatScheduled {
+  const _VideoChatScheduled(
       {@JsonKey(name: 'start_date') required this.startDate});
-
-  factory _$VideoChatScheduledImpl.fromJson(Map<String, dynamic> json) =>
-      _$$VideoChatScheduledImplFromJson(json);
+  factory _VideoChatScheduled.fromJson(Map<String, dynamic> json) =>
+      _$VideoChatScheduledFromJson(json);
 
   /// Point in time (Unix timestamp) when the video chat is supposed to be
   /// started by a chat administrator
@@ -124,48 +87,58 @@ class _$VideoChatScheduledImpl implements _VideoChatScheduled {
   @JsonKey(name: 'start_date')
   final int startDate;
 
+  /// Create a copy of VideoChatScheduled
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$VideoChatScheduledCopyWith<_VideoChatScheduled> get copyWith =>
+      __$VideoChatScheduledCopyWithImpl<_VideoChatScheduled>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$VideoChatScheduledToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'VideoChatScheduled(startDate: $startDate)';
   }
-
-  /// Create a copy of VideoChatScheduled
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$VideoChatScheduledImplCopyWith<_$VideoChatScheduledImpl> get copyWith =>
-      __$$VideoChatScheduledImplCopyWithImpl<_$VideoChatScheduledImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$VideoChatScheduledImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _VideoChatScheduled implements VideoChatScheduled {
-  const factory _VideoChatScheduled(
-          {@JsonKey(name: 'start_date') required final int startDate}) =
-      _$VideoChatScheduledImpl;
-
-  factory _VideoChatScheduled.fromJson(Map<String, dynamic> json) =
-      _$VideoChatScheduledImpl.fromJson;
-
-  /// Point in time (Unix timestamp) when the video chat is supposed to be
-  /// started by a chat administrator
-  ///
-  /// Note: You can also use the [DateTime] object getter as [startDateTime]
+/// @nodoc
+abstract mixin class _$VideoChatScheduledCopyWith<$Res>
+    implements $VideoChatScheduledCopyWith<$Res> {
+  factory _$VideoChatScheduledCopyWith(
+          _VideoChatScheduled value, $Res Function(_VideoChatScheduled) _then) =
+      __$VideoChatScheduledCopyWithImpl;
   @override
-  @JsonKey(name: 'start_date')
-  int get startDate;
+  @useResult
+  $Res call({@JsonKey(name: 'start_date') int startDate});
+}
+
+/// @nodoc
+class __$VideoChatScheduledCopyWithImpl<$Res>
+    implements _$VideoChatScheduledCopyWith<$Res> {
+  __$VideoChatScheduledCopyWithImpl(this._self, this._then);
+
+  final _VideoChatScheduled _self;
+  final $Res Function(_VideoChatScheduled) _then;
 
   /// Create a copy of VideoChatScheduled
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VideoChatScheduledImplCopyWith<_$VideoChatScheduledImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? startDate = null,
+  }) {
+    return _then(_VideoChatScheduled(
+      startDate: null == startDate
+          ? _self.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }

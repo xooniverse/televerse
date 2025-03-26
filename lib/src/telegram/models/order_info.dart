@@ -7,7 +7,7 @@ part 'order_info.g.dart';
 
 /// This object represents information about an order.
 @freezed
-class OrderInfo with _$OrderInfo {
+abstract class OrderInfo with _$OrderInfo {
   /// Creates a new [OrderInfo] object.
   const factory OrderInfo({
     /// User name

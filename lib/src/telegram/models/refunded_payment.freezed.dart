@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,116 +12,52 @@ part of 'refunded_payment.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-RefundedPayment _$RefundedPaymentFromJson(Map<String, dynamic> json) {
-  return _RefundedPayment.fromJson(json);
-}
-
 /// @nodoc
 mixin _$RefundedPayment {
   /// Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram
   /// Stars. Currently, always “XTR”.
   @JsonKey(name: 'currency')
-  String get currency => throw _privateConstructorUsedError;
+  String get currency;
 
   /// Total refunded price in the smallest units of the currency (integer, not
   /// float/double). For example, for a price of US$ 1.45, total_amount = 145.
   @JsonKey(name: 'total_amount')
-  int get totalAmount => throw _privateConstructorUsedError;
+  int get totalAmount;
 
   /// Bot-specified invoice payload.
   @JsonKey(name: 'invoice_payload')
-  String get invoicePayload => throw _privateConstructorUsedError;
+  String get invoicePayload;
 
   /// Telegram payment identifier.
   @JsonKey(name: 'telegram_payment_charge_id')
-  String get telegramPaymentChargeId => throw _privateConstructorUsedError;
+  String get telegramPaymentChargeId;
 
   /// Optional. Provider payment identifier.
   @JsonKey(name: 'provider_payment_charge_id')
-  String? get providerPaymentChargeId => throw _privateConstructorUsedError;
-
-  /// Serializes this RefundedPayment to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get providerPaymentChargeId;
 
   /// Create a copy of RefundedPayment
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $RefundedPaymentCopyWith<RefundedPayment> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $RefundedPaymentCopyWith<$Res> {
-  factory $RefundedPaymentCopyWith(
-          RefundedPayment value, $Res Function(RefundedPayment) then) =
-      _$RefundedPaymentCopyWithImpl<$Res, RefundedPayment>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'total_amount') int totalAmount,
-      @JsonKey(name: 'invoice_payload') String invoicePayload,
-      @JsonKey(name: 'telegram_payment_charge_id')
-      String telegramPaymentChargeId,
-      @JsonKey(name: 'provider_payment_charge_id')
-      String? providerPaymentChargeId});
-}
-
-/// @nodoc
-class _$RefundedPaymentCopyWithImpl<$Res, $Val extends RefundedPayment>
-    implements $RefundedPaymentCopyWith<$Res> {
-  _$RefundedPaymentCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of RefundedPayment
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $RefundedPaymentCopyWith<RefundedPayment> get copyWith =>
+      _$RefundedPaymentCopyWithImpl<RefundedPayment>(
+          this as RefundedPayment, _$identity);
+
+  /// Serializes this RefundedPayment to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? currency = null,
-    Object? totalAmount = null,
-    Object? invoicePayload = null,
-    Object? telegramPaymentChargeId = null,
-    Object? providerPaymentChargeId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      currency: null == currency
-          ? _value.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalAmount: null == totalAmount
-          ? _value.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
-      invoicePayload: null == invoicePayload
-          ? _value.invoicePayload
-          : invoicePayload // ignore: cast_nullable_to_non_nullable
-              as String,
-      telegramPaymentChargeId: null == telegramPaymentChargeId
-          ? _value.telegramPaymentChargeId
-          : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      providerPaymentChargeId: freezed == providerPaymentChargeId
-          ? _value.providerPaymentChargeId
-          : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  String toString() {
+    return 'RefundedPayment(currency: $currency, totalAmount: $totalAmount, invoicePayload: $invoicePayload, telegramPaymentChargeId: $telegramPaymentChargeId, providerPaymentChargeId: $providerPaymentChargeId)';
   }
 }
 
 /// @nodoc
-abstract class _$$RefundedPaymentImplCopyWith<$Res>
-    implements $RefundedPaymentCopyWith<$Res> {
-  factory _$$RefundedPaymentImplCopyWith(_$RefundedPaymentImpl value,
-          $Res Function(_$RefundedPaymentImpl) then) =
-      __$$RefundedPaymentImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $RefundedPaymentCopyWith<$Res> {
+  factory $RefundedPaymentCopyWith(
+          RefundedPayment value, $Res Function(RefundedPayment) _then) =
+      _$RefundedPaymentCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'currency') String currency,
@@ -133,12 +70,12 @@ abstract class _$$RefundedPaymentImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$RefundedPaymentImplCopyWithImpl<$Res>
-    extends _$RefundedPaymentCopyWithImpl<$Res, _$RefundedPaymentImpl>
-    implements _$$RefundedPaymentImplCopyWith<$Res> {
-  __$$RefundedPaymentImplCopyWithImpl(
-      _$RefundedPaymentImpl _value, $Res Function(_$RefundedPaymentImpl) _then)
-      : super(_value, _then);
+class _$RefundedPaymentCopyWithImpl<$Res>
+    implements $RefundedPaymentCopyWith<$Res> {
+  _$RefundedPaymentCopyWithImpl(this._self, this._then);
+
+  final RefundedPayment _self;
+  final $Res Function(RefundedPayment) _then;
 
   /// Create a copy of RefundedPayment
   /// with the given fields replaced by the non-null parameter values.
@@ -151,25 +88,25 @@ class __$$RefundedPaymentImplCopyWithImpl<$Res>
     Object? telegramPaymentChargeId = null,
     Object? providerPaymentChargeId = freezed,
   }) {
-    return _then(_$RefundedPaymentImpl(
+    return _then(_self.copyWith(
       currency: null == currency
-          ? _value.currency
+          ? _self.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
       totalAmount: null == totalAmount
-          ? _value.totalAmount
+          ? _self.totalAmount
           : totalAmount // ignore: cast_nullable_to_non_nullable
               as int,
       invoicePayload: null == invoicePayload
-          ? _value.invoicePayload
+          ? _self.invoicePayload
           : invoicePayload // ignore: cast_nullable_to_non_nullable
               as String,
       telegramPaymentChargeId: null == telegramPaymentChargeId
-          ? _value.telegramPaymentChargeId
+          ? _self.telegramPaymentChargeId
           : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
               as String,
       providerPaymentChargeId: freezed == providerPaymentChargeId
-          ? _value.providerPaymentChargeId
+          ? _self.providerPaymentChargeId
           : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -178,8 +115,8 @@ class __$$RefundedPaymentImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RefundedPaymentImpl implements _RefundedPayment {
-  const _$RefundedPaymentImpl(
+class _RefundedPayment implements RefundedPayment {
+  const _RefundedPayment(
       {@JsonKey(name: 'currency') required this.currency,
       @JsonKey(name: 'total_amount') required this.totalAmount,
       @JsonKey(name: 'invoice_payload') required this.invoicePayload,
@@ -187,9 +124,8 @@ class _$RefundedPaymentImpl implements _RefundedPayment {
       required this.telegramPaymentChargeId,
       @JsonKey(name: 'provider_payment_charge_id')
       this.providerPaymentChargeId});
-
-  factory _$RefundedPaymentImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RefundedPaymentImplFromJson(json);
+  factory _RefundedPayment.fromJson(Map<String, dynamic> json) =>
+      _$RefundedPaymentFromJson(json);
 
   /// Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram
   /// Stars. Currently, always “XTR”.
@@ -218,72 +154,85 @@ class _$RefundedPaymentImpl implements _RefundedPayment {
   @JsonKey(name: 'provider_payment_charge_id')
   final String? providerPaymentChargeId;
 
+  /// Create a copy of RefundedPayment
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$RefundedPaymentCopyWith<_RefundedPayment> get copyWith =>
+      __$RefundedPaymentCopyWithImpl<_RefundedPayment>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$RefundedPaymentToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'RefundedPayment(currency: $currency, totalAmount: $totalAmount, invoicePayload: $invoicePayload, telegramPaymentChargeId: $telegramPaymentChargeId, providerPaymentChargeId: $providerPaymentChargeId)';
   }
-
-  /// Create a copy of RefundedPayment
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RefundedPaymentImplCopyWith<_$RefundedPaymentImpl> get copyWith =>
-      __$$RefundedPaymentImplCopyWithImpl<_$RefundedPaymentImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$RefundedPaymentImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _RefundedPayment implements RefundedPayment {
-  const factory _RefundedPayment(
-      {@JsonKey(name: 'currency') required final String currency,
-      @JsonKey(name: 'total_amount') required final int totalAmount,
-      @JsonKey(name: 'invoice_payload') required final String invoicePayload,
+/// @nodoc
+abstract mixin class _$RefundedPaymentCopyWith<$Res>
+    implements $RefundedPaymentCopyWith<$Res> {
+  factory _$RefundedPaymentCopyWith(
+          _RefundedPayment value, $Res Function(_RefundedPayment) _then) =
+      __$RefundedPaymentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'currency') String currency,
+      @JsonKey(name: 'total_amount') int totalAmount,
+      @JsonKey(name: 'invoice_payload') String invoicePayload,
       @JsonKey(name: 'telegram_payment_charge_id')
-      required final String telegramPaymentChargeId,
+      String telegramPaymentChargeId,
       @JsonKey(name: 'provider_payment_charge_id')
-      final String? providerPaymentChargeId}) = _$RefundedPaymentImpl;
+      String? providerPaymentChargeId});
+}
 
-  factory _RefundedPayment.fromJson(Map<String, dynamic> json) =
-      _$RefundedPaymentImpl.fromJson;
+/// @nodoc
+class __$RefundedPaymentCopyWithImpl<$Res>
+    implements _$RefundedPaymentCopyWith<$Res> {
+  __$RefundedPaymentCopyWithImpl(this._self, this._then);
 
-  /// Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram
-  /// Stars. Currently, always “XTR”.
-  @override
-  @JsonKey(name: 'currency')
-  String get currency;
-
-  /// Total refunded price in the smallest units of the currency (integer, not
-  /// float/double). For example, for a price of US$ 1.45, total_amount = 145.
-  @override
-  @JsonKey(name: 'total_amount')
-  int get totalAmount;
-
-  /// Bot-specified invoice payload.
-  @override
-  @JsonKey(name: 'invoice_payload')
-  String get invoicePayload;
-
-  /// Telegram payment identifier.
-  @override
-  @JsonKey(name: 'telegram_payment_charge_id')
-  String get telegramPaymentChargeId;
-
-  /// Optional. Provider payment identifier.
-  @override
-  @JsonKey(name: 'provider_payment_charge_id')
-  String? get providerPaymentChargeId;
+  final _RefundedPayment _self;
+  final $Res Function(_RefundedPayment) _then;
 
   /// Create a copy of RefundedPayment
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RefundedPaymentImplCopyWith<_$RefundedPaymentImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? currency = null,
+    Object? totalAmount = null,
+    Object? invoicePayload = null,
+    Object? telegramPaymentChargeId = null,
+    Object? providerPaymentChargeId = freezed,
+  }) {
+    return _then(_RefundedPayment(
+      currency: null == currency
+          ? _self.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalAmount: null == totalAmount
+          ? _self.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+      invoicePayload: null == invoicePayload
+          ? _self.invoicePayload
+          : invoicePayload // ignore: cast_nullable_to_non_nullable
+              as String,
+      telegramPaymentChargeId: null == telegramPaymentChargeId
+          ? _self.telegramPaymentChargeId
+          : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
+              as String,
+      providerPaymentChargeId: freezed == providerPaymentChargeId
+          ? _self.providerPaymentChargeId
+          : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }

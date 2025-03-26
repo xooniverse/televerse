@@ -6,15 +6,14 @@ part of 'reply_markup.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ForceReplyImpl _$$ForceReplyImplFromJson(Map<String, dynamic> json) =>
-    _$ForceReplyImpl(
+ForceReply _$ForceReplyFromJson(Map<String, dynamic> json) => ForceReply(
       forceReply: json['force_reply'] as bool? ?? true,
       inputFieldPlaceholder: json['input_field_placeholder'] as String?,
       selective: json['selective'] as bool?,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ForceReplyImplToJson(_$ForceReplyImpl instance) =>
+Map<String, dynamic> _$ForceReplyToJson(ForceReply instance) =>
     <String, dynamic>{
       'force_reply': instance.forceReply,
       if (instance.inputFieldPlaceholder case final value?)
@@ -23,9 +22,9 @@ Map<String, dynamic> _$$ForceReplyImplToJson(_$ForceReplyImpl instance) =>
       'runtimeType': instance.$type,
     };
 
-_$InlineKeyboardMarkupImpl _$$InlineKeyboardMarkupImplFromJson(
+InlineKeyboardMarkup _$InlineKeyboardMarkupFromJson(
         Map<String, dynamic> json) =>
-    _$InlineKeyboardMarkupImpl(
+    InlineKeyboardMarkup(
       inlineKeyboard: (json['inline_keyboard'] as List<dynamic>?)
               ?.map((e) => (e as List<dynamic>)
                   .map((e) =>
@@ -36,16 +35,15 @@ _$InlineKeyboardMarkupImpl _$$InlineKeyboardMarkupImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$InlineKeyboardMarkupImplToJson(
-        _$InlineKeyboardMarkupImpl instance) =>
+Map<String, dynamic> _$InlineKeyboardMarkupToJson(
+        InlineKeyboardMarkup instance) =>
     <String, dynamic>{
       'inline_keyboard': instance.inlineKeyboard,
       'runtimeType': instance.$type,
     };
 
-_$ReplyKeyboardMarkupImpl _$$ReplyKeyboardMarkupImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ReplyKeyboardMarkupImpl(
+ReplyKeyboardMarkup _$ReplyKeyboardMarkupFromJson(Map<String, dynamic> json) =>
+    ReplyKeyboardMarkup(
       keyboard: (json['keyboard'] as List<dynamic>)
           .map((e) => (e as List<dynamic>)
               .map((e) => KeyboardButton.fromJson(e as Map<String, dynamic>))
@@ -59,8 +57,8 @@ _$ReplyKeyboardMarkupImpl _$$ReplyKeyboardMarkupImplFromJson(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ReplyKeyboardMarkupImplToJson(
-        _$ReplyKeyboardMarkupImpl instance) =>
+Map<String, dynamic> _$ReplyKeyboardMarkupToJson(
+        ReplyKeyboardMarkup instance) =>
     <String, dynamic>{
       'keyboard': instance.keyboard,
       if (instance.resizeKeyboard case final value?) 'resize_keyboard': value,
@@ -73,16 +71,15 @@ Map<String, dynamic> _$$ReplyKeyboardMarkupImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$ReplyKeyboardRemoveImpl _$$ReplyKeyboardRemoveImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ReplyKeyboardRemoveImpl(
+ReplyKeyboardRemove _$ReplyKeyboardRemoveFromJson(Map<String, dynamic> json) =>
+    ReplyKeyboardRemove(
       removeKeyboard: json['remove_keyboard'] as bool? ?? true,
       selective: json['selective'] as bool?,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ReplyKeyboardRemoveImplToJson(
-        _$ReplyKeyboardRemoveImpl instance) =>
+Map<String, dynamic> _$ReplyKeyboardRemoveToJson(
+        ReplyKeyboardRemove instance) =>
     <String, dynamic>{
       'remove_keyboard': instance.removeKeyboard,
       if (instance.selective case final value?) 'selective': value,

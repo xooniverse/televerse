@@ -6,7 +6,7 @@ part of 'chat.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatImpl _$$ChatImplFromJson(Map<String, dynamic> json) => _$ChatImpl(
+_Chat _$ChatFromJson(Map<String, dynamic> json) => _Chat(
       id: (json['id'] as num).toInt(),
       type: $enumDecode(_$ChatTypeEnumMap, json['type']),
       title: json['title'] as String?,
@@ -16,8 +16,7 @@ _$ChatImpl _$$ChatImplFromJson(Map<String, dynamic> json) => _$ChatImpl(
       isForum: json['is_forum'] as bool?,
     );
 
-Map<String, dynamic> _$$ChatImplToJson(_$ChatImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ChatToJson(_Chat instance) => <String, dynamic>{
       'id': instance.id,
       'type': _$ChatTypeEnumMap[instance.type]!,
       if (instance.title case final value?) 'title': value,

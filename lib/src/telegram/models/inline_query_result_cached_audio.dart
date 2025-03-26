@@ -17,7 +17,7 @@ part 'inline_query_result_cached_audio.g.dart';
 /// Note: This will only work in Telegram versions released after 9 April, 2016.
 /// Older clients will ignore them.
 @freezed
-class InlineQueryResultCachedAudio
+abstract class InlineQueryResultCachedAudio
     with _$InlineQueryResultCachedAudio
     implements InlineQueryResult {
   /// Constructs an [InlineQueryResultCachedAudio] object

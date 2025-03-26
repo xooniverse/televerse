@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,48 +12,47 @@ part of 'poll_answer.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-PollAnswer _$PollAnswerFromJson(Map<String, dynamic> json) {
-  return _PollAnswer.fromJson(json);
-}
-
 /// @nodoc
 mixin _$PollAnswer {
   /// Unique poll identifier
   @JsonKey(name: 'poll_id')
-  String get pollId => throw _privateConstructorUsedError;
+  String get pollId;
 
   /// The user, who changed the answer to the poll
   @JsonKey(name: 'user')
-  User? get user => throw _privateConstructorUsedError;
+  User? get user;
 
   /// 0-based identifiers of answer options, chosen by the user. May be empty
   /// if the user retracted their vote.
   @JsonKey(name: 'option_ids')
-  List<int> get optionIds => throw _privateConstructorUsedError;
+  List<int> get optionIds;
 
   /// Optional. The chat that changed the answer to the poll, if the voter is
   /// anonymous
   @JsonKey(name: 'voter_chat')
-  Chat? get voterChat => throw _privateConstructorUsedError;
-
-  /// Serializes this PollAnswer to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Chat? get voterChat;
 
   /// Create a copy of PollAnswer
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $PollAnswerCopyWith<PollAnswer> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$PollAnswerCopyWithImpl<PollAnswer>(this as PollAnswer, _$identity);
+
+  /// Serializes this PollAnswer to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'PollAnswer(pollId: $pollId, user: $user, optionIds: $optionIds, voterChat: $voterChat)';
+  }
 }
 
 /// @nodoc
-abstract class $PollAnswerCopyWith<$Res> {
+abstract mixin class $PollAnswerCopyWith<$Res> {
   factory $PollAnswerCopyWith(
-          PollAnswer value, $Res Function(PollAnswer) then) =
-      _$PollAnswerCopyWithImpl<$Res, PollAnswer>;
+          PollAnswer value, $Res Function(PollAnswer) _then) =
+      _$PollAnswerCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'poll_id') String pollId,
@@ -65,14 +65,11 @@ abstract class $PollAnswerCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PollAnswerCopyWithImpl<$Res, $Val extends PollAnswer>
-    implements $PollAnswerCopyWith<$Res> {
-  _$PollAnswerCopyWithImpl(this._value, this._then);
+class _$PollAnswerCopyWithImpl<$Res> implements $PollAnswerCopyWith<$Res> {
+  _$PollAnswerCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PollAnswer _self;
+  final $Res Function(PollAnswer) _then;
 
   /// Create a copy of PollAnswer
   /// with the given fields replaced by the non-null parameter values.
@@ -84,24 +81,24 @@ class _$PollAnswerCopyWithImpl<$Res, $Val extends PollAnswer>
     Object? optionIds = null,
     Object? voterChat = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       pollId: null == pollId
-          ? _value.pollId
+          ? _self.pollId
           : pollId // ignore: cast_nullable_to_non_nullable
               as String,
       user: freezed == user
-          ? _value.user
+          ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
       optionIds: null == optionIds
-          ? _value.optionIds
+          ? _self.optionIds
           : optionIds // ignore: cast_nullable_to_non_nullable
               as List<int>,
       voterChat: freezed == voterChat
-          ? _value.voterChat
+          ? _self.voterChat
           : voterChat // ignore: cast_nullable_to_non_nullable
               as Chat?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of PollAnswer
@@ -109,12 +106,12 @@ class _$PollAnswerCopyWithImpl<$Res, $Val extends PollAnswer>
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
+    if (_self.user == null) {
       return null;
     }
 
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
+    return $UserCopyWith<$Res>(_self.user!, (value) {
+      return _then(_self.copyWith(user: value));
     });
   }
 
@@ -123,87 +120,27 @@ class _$PollAnswerCopyWithImpl<$Res, $Val extends PollAnswer>
   @override
   @pragma('vm:prefer-inline')
   $ChatCopyWith<$Res>? get voterChat {
-    if (_value.voterChat == null) {
+    if (_self.voterChat == null) {
       return null;
     }
 
-    return $ChatCopyWith<$Res>(_value.voterChat!, (value) {
-      return _then(_value.copyWith(voterChat: value) as $Val);
+    return $ChatCopyWith<$Res>(_self.voterChat!, (value) {
+      return _then(_self.copyWith(voterChat: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$PollAnswerImplCopyWith<$Res>
-    implements $PollAnswerCopyWith<$Res> {
-  factory _$$PollAnswerImplCopyWith(
-          _$PollAnswerImpl value, $Res Function(_$PollAnswerImpl) then) =
-      __$$PollAnswerImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'poll_id') String pollId,
-      @JsonKey(name: 'user') User? user,
-      @JsonKey(name: 'option_ids') List<int> optionIds,
-      @JsonKey(name: 'voter_chat') Chat? voterChat});
-
-  @override
-  $UserCopyWith<$Res>? get user;
-  @override
-  $ChatCopyWith<$Res>? get voterChat;
-}
-
-/// @nodoc
-class __$$PollAnswerImplCopyWithImpl<$Res>
-    extends _$PollAnswerCopyWithImpl<$Res, _$PollAnswerImpl>
-    implements _$$PollAnswerImplCopyWith<$Res> {
-  __$$PollAnswerImplCopyWithImpl(
-      _$PollAnswerImpl _value, $Res Function(_$PollAnswerImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of PollAnswer
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? pollId = null,
-    Object? user = freezed,
-    Object? optionIds = null,
-    Object? voterChat = freezed,
-  }) {
-    return _then(_$PollAnswerImpl(
-      pollId: null == pollId
-          ? _value.pollId
-          : pollId // ignore: cast_nullable_to_non_nullable
-              as String,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      optionIds: null == optionIds
-          ? _value._optionIds
-          : optionIds // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      voterChat: freezed == voterChat
-          ? _value.voterChat
-          : voterChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$PollAnswerImpl implements _PollAnswer {
-  const _$PollAnswerImpl(
+class _PollAnswer implements PollAnswer {
+  const _PollAnswer(
       {@JsonKey(name: 'poll_id') required this.pollId,
       @JsonKey(name: 'user') this.user,
       @JsonKey(name: 'option_ids') required final List<int> optionIds,
       @JsonKey(name: 'voter_chat') this.voterChat})
       : _optionIds = optionIds;
-
-  factory _$PollAnswerImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PollAnswerImplFromJson(json);
+  factory _PollAnswer.fromJson(Map<String, dynamic> json) =>
+      _$PollAnswerFromJson(json);
 
   /// Unique poll identifier
   @override
@@ -235,63 +172,109 @@ class _$PollAnswerImpl implements _PollAnswer {
   @JsonKey(name: 'voter_chat')
   final Chat? voterChat;
 
+  /// Create a copy of PollAnswer
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PollAnswerCopyWith<_PollAnswer> get copyWith =>
+      __$PollAnswerCopyWithImpl<_PollAnswer>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PollAnswerToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'PollAnswer(pollId: $pollId, user: $user, optionIds: $optionIds, voterChat: $voterChat)';
   }
-
-  /// Create a copy of PollAnswer
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PollAnswerImplCopyWith<_$PollAnswerImpl> get copyWith =>
-      __$$PollAnswerImplCopyWithImpl<_$PollAnswerImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PollAnswerImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _PollAnswer implements PollAnswer {
-  const factory _PollAnswer(
-      {@JsonKey(name: 'poll_id') required final String pollId,
-      @JsonKey(name: 'user') final User? user,
-      @JsonKey(name: 'option_ids') required final List<int> optionIds,
-      @JsonKey(name: 'voter_chat') final Chat? voterChat}) = _$PollAnswerImpl;
-
-  factory _PollAnswer.fromJson(Map<String, dynamic> json) =
-      _$PollAnswerImpl.fromJson;
-
-  /// Unique poll identifier
+/// @nodoc
+abstract mixin class _$PollAnswerCopyWith<$Res>
+    implements $PollAnswerCopyWith<$Res> {
+  factory _$PollAnswerCopyWith(
+          _PollAnswer value, $Res Function(_PollAnswer) _then) =
+      __$PollAnswerCopyWithImpl;
   @override
-  @JsonKey(name: 'poll_id')
-  String get pollId;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'poll_id') String pollId,
+      @JsonKey(name: 'user') User? user,
+      @JsonKey(name: 'option_ids') List<int> optionIds,
+      @JsonKey(name: 'voter_chat') Chat? voterChat});
 
-  /// The user, who changed the answer to the poll
   @override
-  @JsonKey(name: 'user')
-  User? get user;
+  $UserCopyWith<$Res>? get user;
+  @override
+  $ChatCopyWith<$Res>? get voterChat;
+}
 
-  /// 0-based identifiers of answer options, chosen by the user. May be empty
-  /// if the user retracted their vote.
-  @override
-  @JsonKey(name: 'option_ids')
-  List<int> get optionIds;
+/// @nodoc
+class __$PollAnswerCopyWithImpl<$Res> implements _$PollAnswerCopyWith<$Res> {
+  __$PollAnswerCopyWithImpl(this._self, this._then);
 
-  /// Optional. The chat that changed the answer to the poll, if the voter is
-  /// anonymous
-  @override
-  @JsonKey(name: 'voter_chat')
-  Chat? get voterChat;
+  final _PollAnswer _self;
+  final $Res Function(_PollAnswer) _then;
 
   /// Create a copy of PollAnswer
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PollAnswerImplCopyWith<_$PollAnswerImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? pollId = null,
+    Object? user = freezed,
+    Object? optionIds = null,
+    Object? voterChat = freezed,
+  }) {
+    return _then(_PollAnswer(
+      pollId: null == pollId
+          ? _self.pollId
+          : pollId // ignore: cast_nullable_to_non_nullable
+              as String,
+      user: freezed == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+      optionIds: null == optionIds
+          ? _self._optionIds
+          : optionIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      voterChat: freezed == voterChat
+          ? _self.voterChat
+          : voterChat // ignore: cast_nullable_to_non_nullable
+              as Chat?,
+    ));
+  }
+
+  /// Create a copy of PollAnswer
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get user {
+    if (_self.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_self.user!, (value) {
+      return _then(_self.copyWith(user: value));
+    });
+  }
+
+  /// Create a copy of PollAnswer
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res>? get voterChat {
+    if (_self.voterChat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_self.voterChat!, (value) {
+      return _then(_self.copyWith(voterChat: value));
+    });
+  }
 }

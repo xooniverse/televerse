@@ -6,9 +6,9 @@ part of 'inline_query_result_video.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultVideoImpl _$$InlineQueryResultVideoImplFromJson(
+_InlineQueryResultVideo _$InlineQueryResultVideoFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultVideoImpl(
+    _InlineQueryResultVideo(
       type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
           InlineQueryResultType.video,
       id: json['id'] as String,
@@ -36,8 +36,8 @@ _$InlineQueryResultVideoImpl _$$InlineQueryResultVideoImplFromJson(
       showCaptionAboveMedia: json['show_caption_above_media'] as bool?,
     );
 
-Map<String, dynamic> _$$InlineQueryResultVideoImplToJson(
-        _$InlineQueryResultVideoImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultVideoToJson(
+        _InlineQueryResultVideo instance) =>
     <String, dynamic>{
       'type': instance.type,
       'id': instance.id,

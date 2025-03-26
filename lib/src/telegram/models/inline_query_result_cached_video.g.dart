@@ -6,9 +6,9 @@ part of 'inline_query_result_cached_video.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultCachedVideoImpl _$$InlineQueryResultCachedVideoImplFromJson(
+_InlineQueryResultCachedVideo _$InlineQueryResultCachedVideoFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultCachedVideoImpl(
+    _InlineQueryResultCachedVideo(
       id: json['id'] as String,
       videoFileId: json['video_file_id'] as String,
       title: json['title'] as String,
@@ -31,8 +31,8 @@ _$InlineQueryResultCachedVideoImpl _$$InlineQueryResultCachedVideoImplFromJson(
           InlineQueryResultType.video,
     );
 
-Map<String, dynamic> _$$InlineQueryResultCachedVideoImplToJson(
-        _$InlineQueryResultCachedVideoImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultCachedVideoToJson(
+        _InlineQueryResultCachedVideo instance) =>
     <String, dynamic>{
       'id': instance.id,
       'video_file_id': instance.videoFileId,

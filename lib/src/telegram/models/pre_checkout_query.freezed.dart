@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,26 +12,19 @@ part of 'pre_checkout_query.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-PreCheckoutQuery _$PreCheckoutQueryFromJson(Map<String, dynamic> json) {
-  return _PreCheckoutQuery.fromJson(json);
-}
-
 /// @nodoc
 mixin _$PreCheckoutQuery {
   /// Unique query identifier
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
 
   /// User who sent the query
   @JsonKey(name: 'from')
-  User get from => throw _privateConstructorUsedError;
+  User get from;
 
   /// Three-letter ISO 4217 currency code
   @JsonKey(name: 'currency')
-  String get currency => throw _privateConstructorUsedError;
+  String get currency;
 
   /// Total price in the smallest units of the currency (integer, not
   /// float/double). For example, for a price of US$ 1.45 pass amount = 145.
@@ -38,35 +32,42 @@ mixin _$PreCheckoutQuery {
   /// past the decimal point for each currency (2 for the majority of
   /// currencies).
   @JsonKey(name: 'total_amount')
-  int get totalAmount => throw _privateConstructorUsedError;
+  int get totalAmount;
 
   /// Bot specified invoice payload
   @JsonKey(name: 'invoice_payload')
-  String get invoicePayload => throw _privateConstructorUsedError;
+  String get invoicePayload;
 
   /// Optional. Identifier of the shipping option chosen by the user
   @JsonKey(name: 'shipping_option_id')
-  String? get shippingOptionId => throw _privateConstructorUsedError;
+  String? get shippingOptionId;
 
   /// Optional. Order info provided by the user
   @JsonKey(name: 'order_info')
-  OrderInfo? get orderInfo => throw _privateConstructorUsedError;
-
-  /// Serializes this PreCheckoutQuery to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  OrderInfo? get orderInfo;
 
   /// Create a copy of PreCheckoutQuery
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $PreCheckoutQueryCopyWith<PreCheckoutQuery> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$PreCheckoutQueryCopyWithImpl<PreCheckoutQuery>(
+          this as PreCheckoutQuery, _$identity);
+
+  /// Serializes this PreCheckoutQuery to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'PreCheckoutQuery(id: $id, from: $from, currency: $currency, totalAmount: $totalAmount, invoicePayload: $invoicePayload, shippingOptionId: $shippingOptionId, orderInfo: $orderInfo)';
+  }
 }
 
 /// @nodoc
-abstract class $PreCheckoutQueryCopyWith<$Res> {
+abstract mixin class $PreCheckoutQueryCopyWith<$Res> {
   factory $PreCheckoutQueryCopyWith(
-          PreCheckoutQuery value, $Res Function(PreCheckoutQuery) then) =
-      _$PreCheckoutQueryCopyWithImpl<$Res, PreCheckoutQuery>;
+          PreCheckoutQuery value, $Res Function(PreCheckoutQuery) _then) =
+      _$PreCheckoutQueryCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -82,14 +83,12 @@ abstract class $PreCheckoutQueryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PreCheckoutQueryCopyWithImpl<$Res, $Val extends PreCheckoutQuery>
+class _$PreCheckoutQueryCopyWithImpl<$Res>
     implements $PreCheckoutQueryCopyWith<$Res> {
-  _$PreCheckoutQueryCopyWithImpl(this._value, this._then);
+  _$PreCheckoutQueryCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PreCheckoutQuery _self;
+  final $Res Function(PreCheckoutQuery) _then;
 
   /// Create a copy of PreCheckoutQuery
   /// with the given fields replaced by the non-null parameter values.
@@ -104,36 +103,36 @@ class _$PreCheckoutQueryCopyWithImpl<$Res, $Val extends PreCheckoutQuery>
     Object? shippingOptionId = freezed,
     Object? orderInfo = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       from: null == from
-          ? _value.from
+          ? _self.from
           : from // ignore: cast_nullable_to_non_nullable
               as User,
       currency: null == currency
-          ? _value.currency
+          ? _self.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
       totalAmount: null == totalAmount
-          ? _value.totalAmount
+          ? _self.totalAmount
           : totalAmount // ignore: cast_nullable_to_non_nullable
               as int,
       invoicePayload: null == invoicePayload
-          ? _value.invoicePayload
+          ? _self.invoicePayload
           : invoicePayload // ignore: cast_nullable_to_non_nullable
               as String,
       shippingOptionId: freezed == shippingOptionId
-          ? _value.shippingOptionId
+          ? _self.shippingOptionId
           : shippingOptionId // ignore: cast_nullable_to_non_nullable
               as String?,
       orderInfo: freezed == orderInfo
-          ? _value.orderInfo
+          ? _self.orderInfo
           : orderInfo // ignore: cast_nullable_to_non_nullable
               as OrderInfo?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of PreCheckoutQuery
@@ -141,8 +140,8 @@ class _$PreCheckoutQueryCopyWithImpl<$Res, $Val extends PreCheckoutQuery>
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get from {
-    return $UserCopyWith<$Res>(_value.from, (value) {
-      return _then(_value.copyWith(from: value) as $Val);
+    return $UserCopyWith<$Res>(_self.from, (value) {
+      return _then(_self.copyWith(from: value));
     });
   }
 
@@ -151,97 +150,20 @@ class _$PreCheckoutQueryCopyWithImpl<$Res, $Val extends PreCheckoutQuery>
   @override
   @pragma('vm:prefer-inline')
   $OrderInfoCopyWith<$Res>? get orderInfo {
-    if (_value.orderInfo == null) {
+    if (_self.orderInfo == null) {
       return null;
     }
 
-    return $OrderInfoCopyWith<$Res>(_value.orderInfo!, (value) {
-      return _then(_value.copyWith(orderInfo: value) as $Val);
+    return $OrderInfoCopyWith<$Res>(_self.orderInfo!, (value) {
+      return _then(_self.copyWith(orderInfo: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$PreCheckoutQueryImplCopyWith<$Res>
-    implements $PreCheckoutQueryCopyWith<$Res> {
-  factory _$$PreCheckoutQueryImplCopyWith(_$PreCheckoutQueryImpl value,
-          $Res Function(_$PreCheckoutQueryImpl) then) =
-      __$$PreCheckoutQueryImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'total_amount') int totalAmount,
-      @JsonKey(name: 'invoice_payload') String invoicePayload,
-      @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
-      @JsonKey(name: 'order_info') OrderInfo? orderInfo});
-
-  @override
-  $UserCopyWith<$Res> get from;
-  @override
-  $OrderInfoCopyWith<$Res>? get orderInfo;
-}
-
-/// @nodoc
-class __$$PreCheckoutQueryImplCopyWithImpl<$Res>
-    extends _$PreCheckoutQueryCopyWithImpl<$Res, _$PreCheckoutQueryImpl>
-    implements _$$PreCheckoutQueryImplCopyWith<$Res> {
-  __$$PreCheckoutQueryImplCopyWithImpl(_$PreCheckoutQueryImpl _value,
-      $Res Function(_$PreCheckoutQueryImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of PreCheckoutQuery
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? from = null,
-    Object? currency = null,
-    Object? totalAmount = null,
-    Object? invoicePayload = null,
-    Object? shippingOptionId = freezed,
-    Object? orderInfo = freezed,
-  }) {
-    return _then(_$PreCheckoutQueryImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _value.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      currency: null == currency
-          ? _value.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalAmount: null == totalAmount
-          ? _value.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
-      invoicePayload: null == invoicePayload
-          ? _value.invoicePayload
-          : invoicePayload // ignore: cast_nullable_to_non_nullable
-              as String,
-      shippingOptionId: freezed == shippingOptionId
-          ? _value.shippingOptionId
-          : shippingOptionId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      orderInfo: freezed == orderInfo
-          ? _value.orderInfo
-          : orderInfo // ignore: cast_nullable_to_non_nullable
-              as OrderInfo?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$PreCheckoutQueryImpl implements _PreCheckoutQuery {
-  const _$PreCheckoutQueryImpl(
+class _PreCheckoutQuery implements PreCheckoutQuery {
+  const _PreCheckoutQuery(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'from') required this.from,
       @JsonKey(name: 'currency') required this.currency,
@@ -249,9 +171,8 @@ class _$PreCheckoutQueryImpl implements _PreCheckoutQuery {
       @JsonKey(name: 'invoice_payload') required this.invoicePayload,
       @JsonKey(name: 'shipping_option_id') this.shippingOptionId,
       @JsonKey(name: 'order_info') this.orderInfo});
-
-  factory _$PreCheckoutQueryImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PreCheckoutQueryImplFromJson(json);
+  factory _PreCheckoutQuery.fromJson(Map<String, dynamic> json) =>
+      _$PreCheckoutQueryFromJson(json);
 
   /// Unique query identifier
   @override
@@ -292,85 +213,124 @@ class _$PreCheckoutQueryImpl implements _PreCheckoutQuery {
   @JsonKey(name: 'order_info')
   final OrderInfo? orderInfo;
 
+  /// Create a copy of PreCheckoutQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PreCheckoutQueryCopyWith<_PreCheckoutQuery> get copyWith =>
+      __$PreCheckoutQueryCopyWithImpl<_PreCheckoutQuery>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PreCheckoutQueryToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'PreCheckoutQuery(id: $id, from: $from, currency: $currency, totalAmount: $totalAmount, invoicePayload: $invoicePayload, shippingOptionId: $shippingOptionId, orderInfo: $orderInfo)';
   }
-
-  /// Create a copy of PreCheckoutQuery
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PreCheckoutQueryImplCopyWith<_$PreCheckoutQueryImpl> get copyWith =>
-      __$$PreCheckoutQueryImplCopyWithImpl<_$PreCheckoutQueryImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PreCheckoutQueryImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _PreCheckoutQuery implements PreCheckoutQuery {
-  const factory _PreCheckoutQuery(
-      {@JsonKey(name: 'id') required final String id,
-      @JsonKey(name: 'from') required final User from,
-      @JsonKey(name: 'currency') required final String currency,
-      @JsonKey(name: 'total_amount') required final int totalAmount,
-      @JsonKey(name: 'invoice_payload') required final String invoicePayload,
-      @JsonKey(name: 'shipping_option_id') final String? shippingOptionId,
-      @JsonKey(name: 'order_info')
-      final OrderInfo? orderInfo}) = _$PreCheckoutQueryImpl;
-
-  factory _PreCheckoutQuery.fromJson(Map<String, dynamic> json) =
-      _$PreCheckoutQueryImpl.fromJson;
-
-  /// Unique query identifier
+/// @nodoc
+abstract mixin class _$PreCheckoutQueryCopyWith<$Res>
+    implements $PreCheckoutQueryCopyWith<$Res> {
+  factory _$PreCheckoutQueryCopyWith(
+          _PreCheckoutQuery value, $Res Function(_PreCheckoutQuery) _then) =
+      __$PreCheckoutQueryCopyWithImpl;
   @override
-  @JsonKey(name: 'id')
-  String get id;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'currency') String currency,
+      @JsonKey(name: 'total_amount') int totalAmount,
+      @JsonKey(name: 'invoice_payload') String invoicePayload,
+      @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
+      @JsonKey(name: 'order_info') OrderInfo? orderInfo});
 
-  /// User who sent the query
   @override
-  @JsonKey(name: 'from')
-  User get from;
+  $UserCopyWith<$Res> get from;
+  @override
+  $OrderInfoCopyWith<$Res>? get orderInfo;
+}
 
-  /// Three-letter ISO 4217 currency code
-  @override
-  @JsonKey(name: 'currency')
-  String get currency;
+/// @nodoc
+class __$PreCheckoutQueryCopyWithImpl<$Res>
+    implements _$PreCheckoutQueryCopyWith<$Res> {
+  __$PreCheckoutQueryCopyWithImpl(this._self, this._then);
 
-  /// Total price in the smallest units of the currency (integer, not
-  /// float/double). For example, for a price of US$ 1.45 pass amount = 145.
-  /// See the exp parameter in currencies.json, it shows the number of digits
-  /// past the decimal point for each currency (2 for the majority of
-  /// currencies).
-  @override
-  @JsonKey(name: 'total_amount')
-  int get totalAmount;
-
-  /// Bot specified invoice payload
-  @override
-  @JsonKey(name: 'invoice_payload')
-  String get invoicePayload;
-
-  /// Optional. Identifier of the shipping option chosen by the user
-  @override
-  @JsonKey(name: 'shipping_option_id')
-  String? get shippingOptionId;
-
-  /// Optional. Order info provided by the user
-  @override
-  @JsonKey(name: 'order_info')
-  OrderInfo? get orderInfo;
+  final _PreCheckoutQuery _self;
+  final $Res Function(_PreCheckoutQuery) _then;
 
   /// Create a copy of PreCheckoutQuery
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PreCheckoutQueryImplCopyWith<_$PreCheckoutQueryImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? from = null,
+    Object? currency = null,
+    Object? totalAmount = null,
+    Object? invoicePayload = null,
+    Object? shippingOptionId = freezed,
+    Object? orderInfo = freezed,
+  }) {
+    return _then(_PreCheckoutQuery(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      from: null == from
+          ? _self.from
+          : from // ignore: cast_nullable_to_non_nullable
+              as User,
+      currency: null == currency
+          ? _self.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalAmount: null == totalAmount
+          ? _self.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+      invoicePayload: null == invoicePayload
+          ? _self.invoicePayload
+          : invoicePayload // ignore: cast_nullable_to_non_nullable
+              as String,
+      shippingOptionId: freezed == shippingOptionId
+          ? _self.shippingOptionId
+          : shippingOptionId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      orderInfo: freezed == orderInfo
+          ? _self.orderInfo
+          : orderInfo // ignore: cast_nullable_to_non_nullable
+              as OrderInfo?,
+    ));
+  }
+
+  /// Create a copy of PreCheckoutQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get from {
+    return $UserCopyWith<$Res>(_self.from, (value) {
+      return _then(_self.copyWith(from: value));
+    });
+  }
+
+  /// Create a copy of PreCheckoutQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OrderInfoCopyWith<$Res>? get orderInfo {
+    if (_self.orderInfo == null) {
+      return null;
+    }
+
+    return $OrderInfoCopyWith<$Res>(_self.orderInfo!, (value) {
+      return _then(_self.copyWith(orderInfo: value));
+    });
+  }
 }

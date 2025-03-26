@@ -6,7 +6,7 @@ part 'link_preview_options.g.dart';
 
 /// Describes the options used for link preview generation.
 @freezed
-class LinkPreviewOptions with _$LinkPreviewOptions {
+abstract class LinkPreviewOptions with _$LinkPreviewOptions {
   /// Constructs an instance of [LinkPreviewOptions].
   const factory LinkPreviewOptions({
     /// Optional. True, if the link preview is disabled

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,79 +12,42 @@ part of 'gifts.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Gifts _$GiftsFromJson(Map<String, dynamic> json) {
-  return _Gifts.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Gifts {
   /// The list of gifts.
   @JsonKey(name: 'gifts')
-  List<Gift> get gifts => throw _privateConstructorUsedError;
-
-  /// Serializes this Gifts to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<Gift> get gifts;
 
   /// Create a copy of Gifts
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $GiftsCopyWith<Gifts> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $GiftsCopyWith<$Res> {
-  factory $GiftsCopyWith(Gifts value, $Res Function(Gifts) then) =
-      _$GiftsCopyWithImpl<$Res, Gifts>;
-  @useResult
-  $Res call({@JsonKey(name: 'gifts') List<Gift> gifts});
-}
-
-/// @nodoc
-class _$GiftsCopyWithImpl<$Res, $Val extends Gifts>
-    implements $GiftsCopyWith<$Res> {
-  _$GiftsCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Gifts
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $GiftsCopyWith<Gifts> get copyWith =>
+      _$GiftsCopyWithImpl<Gifts>(this as Gifts, _$identity);
+
+  /// Serializes this Gifts to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? gifts = null,
-  }) {
-    return _then(_value.copyWith(
-      gifts: null == gifts
-          ? _value.gifts
-          : gifts // ignore: cast_nullable_to_non_nullable
-              as List<Gift>,
-    ) as $Val);
+  String toString() {
+    return 'Gifts(gifts: $gifts)';
   }
 }
 
 /// @nodoc
-abstract class _$$GiftsImplCopyWith<$Res> implements $GiftsCopyWith<$Res> {
-  factory _$$GiftsImplCopyWith(
-          _$GiftsImpl value, $Res Function(_$GiftsImpl) then) =
-      __$$GiftsImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $GiftsCopyWith<$Res> {
+  factory $GiftsCopyWith(Gifts value, $Res Function(Gifts) _then) =
+      _$GiftsCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'gifts') List<Gift> gifts});
 }
 
 /// @nodoc
-class __$$GiftsImplCopyWithImpl<$Res>
-    extends _$GiftsCopyWithImpl<$Res, _$GiftsImpl>
-    implements _$$GiftsImplCopyWith<$Res> {
-  __$$GiftsImplCopyWithImpl(
-      _$GiftsImpl _value, $Res Function(_$GiftsImpl) _then)
-      : super(_value, _then);
+class _$GiftsCopyWithImpl<$Res> implements $GiftsCopyWith<$Res> {
+  _$GiftsCopyWithImpl(this._self, this._then);
+
+  final Gifts _self;
+  final $Res Function(Gifts) _then;
 
   /// Create a copy of Gifts
   /// with the given fields replaced by the non-null parameter values.
@@ -92,9 +56,9 @@ class __$$GiftsImplCopyWithImpl<$Res>
   $Res call({
     Object? gifts = null,
   }) {
-    return _then(_$GiftsImpl(
+    return _then(_self.copyWith(
       gifts: null == gifts
-          ? _value._gifts
+          ? _self.gifts
           : gifts // ignore: cast_nullable_to_non_nullable
               as List<Gift>,
     ));
@@ -103,12 +67,10 @@ class __$$GiftsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$GiftsImpl implements _Gifts {
-  const _$GiftsImpl({@JsonKey(name: 'gifts') required final List<Gift> gifts})
+class _Gifts implements Gifts {
+  const _Gifts({@JsonKey(name: 'gifts') required final List<Gift> gifts})
       : _gifts = gifts;
-
-  factory _$GiftsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GiftsImplFromJson(json);
+  factory _Gifts.fromJson(Map<String, dynamic> json) => _$GiftsFromJson(json);
 
   /// The list of gifts.
   final List<Gift> _gifts;
@@ -122,42 +84,55 @@ class _$GiftsImpl implements _Gifts {
     return EqualUnmodifiableListView(_gifts);
   }
 
+  /// Create a copy of Gifts
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$GiftsCopyWith<_Gifts> get copyWith =>
+      __$GiftsCopyWithImpl<_Gifts>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$GiftsToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'Gifts(gifts: $gifts)';
   }
-
-  /// Create a copy of Gifts
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GiftsImplCopyWith<_$GiftsImpl> get copyWith =>
-      __$$GiftsImplCopyWithImpl<_$GiftsImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$GiftsImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _Gifts implements Gifts {
-  const factory _Gifts(
-      {@JsonKey(name: 'gifts') required final List<Gift> gifts}) = _$GiftsImpl;
-
-  factory _Gifts.fromJson(Map<String, dynamic> json) = _$GiftsImpl.fromJson;
-
-  /// The list of gifts.
+/// @nodoc
+abstract mixin class _$GiftsCopyWith<$Res> implements $GiftsCopyWith<$Res> {
+  factory _$GiftsCopyWith(_Gifts value, $Res Function(_Gifts) _then) =
+      __$GiftsCopyWithImpl;
   @override
-  @JsonKey(name: 'gifts')
-  List<Gift> get gifts;
+  @useResult
+  $Res call({@JsonKey(name: 'gifts') List<Gift> gifts});
+}
+
+/// @nodoc
+class __$GiftsCopyWithImpl<$Res> implements _$GiftsCopyWith<$Res> {
+  __$GiftsCopyWithImpl(this._self, this._then);
+
+  final _Gifts _self;
+  final $Res Function(_Gifts) _then;
 
   /// Create a copy of Gifts
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GiftsImplCopyWith<_$GiftsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? gifts = null,
+  }) {
+    return _then(_Gifts(
+      gifts: null == gifts
+          ? _self._gifts
+          : gifts // ignore: cast_nullable_to_non_nullable
+              as List<Gift>,
+    ));
+  }
 }

@@ -6,7 +6,7 @@ part 'forum_topic_edited.g.dart';
 
 /// This object represents a service message about an edited forum topic.
 @freezed
-class ForumTopicEdited with _$ForumTopicEdited {
+abstract class ForumTopicEdited with _$ForumTopicEdited {
   /// Creates a new [ForumTopicEdited] object.
   const factory ForumTopicEdited({
     /// Optional. New name of the topic, if it was edited

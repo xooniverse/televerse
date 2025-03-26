@@ -8,7 +8,7 @@ part 'document.g.dart';
 /// This object represents a general file (as opposed to photos, voice messages
 /// and audio files).
 @freezed
-class Document with _$Document {
+abstract class Document with _$Document {
   /// Creates a general file
   ///
   /// [fileId] Identifier for this file, which can be used to download or reuse

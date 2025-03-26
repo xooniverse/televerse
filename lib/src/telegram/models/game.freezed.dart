@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,52 +12,52 @@ part of 'game.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Game _$GameFromJson(Map<String, dynamic> json) {
-  return _Game.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Game {
   /// Title of the game
   @JsonKey(name: 'title')
-  String get title => throw _privateConstructorUsedError;
+  String get title;
 
   /// Description of the game
   @JsonKey(name: 'description')
-  String get description => throw _privateConstructorUsedError;
+  String get description;
 
   /// Photo that will be displayed in the game message in chats.
   @JsonKey(name: 'photo')
-  List<PhotoSize> get photo => throw _privateConstructorUsedError;
+  List<PhotoSize> get photo;
 
   /// Optional. Brief description of the game or high scores included in the game message.
   @JsonKey(name: 'text')
-  String? get text => throw _privateConstructorUsedError;
+  String? get text;
 
   /// Optional. Special entities that appear in text, such as usernames, URLs, bot commands, etc.
   @JsonKey(name: 'text_entities')
-  List<MessageEntity>? get textEntities => throw _privateConstructorUsedError;
+  List<MessageEntity>? get textEntities;
 
   /// Optional. Animation that will be displayed in the game message in chats.
   @JsonKey(name: 'animation')
-  Animation? get animation => throw _privateConstructorUsedError;
-
-  /// Serializes this Game to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Animation? get animation;
 
   /// Create a copy of Game
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $GameCopyWith<Game> get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $GameCopyWith<Game> get copyWith =>
+      _$GameCopyWithImpl<Game>(this as Game, _$identity);
+
+  /// Serializes this Game to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'Game(title: $title, description: $description, photo: $photo, text: $text, textEntities: $textEntities, animation: $animation)';
+  }
 }
 
 /// @nodoc
-abstract class $GameCopyWith<$Res> {
-  factory $GameCopyWith(Game value, $Res Function(Game) then) =
-      _$GameCopyWithImpl<$Res, Game>;
+abstract mixin class $GameCopyWith<$Res> {
+  factory $GameCopyWith(Game value, $Res Function(Game) _then) =
+      _$GameCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'title') String title,
@@ -70,14 +71,11 @@ abstract class $GameCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GameCopyWithImpl<$Res, $Val extends Game>
-    implements $GameCopyWith<$Res> {
-  _$GameCopyWithImpl(this._value, this._then);
+class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
+  _$GameCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Game _self;
+  final $Res Function(Game) _then;
 
   /// Create a copy of Game
   /// with the given fields replaced by the non-null parameter values.
@@ -91,32 +89,32 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
     Object? textEntities = freezed,
     Object? animation = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       title: null == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
-          ? _value.description
+          ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
       photo: null == photo
-          ? _value.photo
+          ? _self.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as List<PhotoSize>,
       text: freezed == text
-          ? _value.text
+          ? _self.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
       textEntities: freezed == textEntities
-          ? _value.textEntities
+          ? _self.textEntities
           : textEntities // ignore: cast_nullable_to_non_nullable
               as List<MessageEntity>?,
       animation: freezed == animation
-          ? _value.animation
+          ? _self.animation
           : animation // ignore: cast_nullable_to_non_nullable
               as Animation?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of Game
@@ -124,87 +122,20 @@ class _$GameCopyWithImpl<$Res, $Val extends Game>
   @override
   @pragma('vm:prefer-inline')
   $AnimationCopyWith<$Res>? get animation {
-    if (_value.animation == null) {
+    if (_self.animation == null) {
       return null;
     }
 
-    return $AnimationCopyWith<$Res>(_value.animation!, (value) {
-      return _then(_value.copyWith(animation: value) as $Val);
+    return $AnimationCopyWith<$Res>(_self.animation!, (value) {
+      return _then(_self.copyWith(animation: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$GameImplCopyWith<$Res> implements $GameCopyWith<$Res> {
-  factory _$$GameImplCopyWith(
-          _$GameImpl value, $Res Function(_$GameImpl) then) =
-      __$$GameImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'description') String description,
-      @JsonKey(name: 'photo') List<PhotoSize> photo,
-      @JsonKey(name: 'text') String? text,
-      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
-      @JsonKey(name: 'animation') Animation? animation});
-
-  @override
-  $AnimationCopyWith<$Res>? get animation;
-}
-
-/// @nodoc
-class __$$GameImplCopyWithImpl<$Res>
-    extends _$GameCopyWithImpl<$Res, _$GameImpl>
-    implements _$$GameImplCopyWith<$Res> {
-  __$$GameImplCopyWithImpl(_$GameImpl _value, $Res Function(_$GameImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Game
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? title = null,
-    Object? description = null,
-    Object? photo = null,
-    Object? text = freezed,
-    Object? textEntities = freezed,
-    Object? animation = freezed,
-  }) {
-    return _then(_$GameImpl(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      photo: null == photo
-          ? _value._photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as List<PhotoSize>,
-      text: freezed == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String?,
-      textEntities: freezed == textEntities
-          ? _value._textEntities
-          : textEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      animation: freezed == animation
-          ? _value.animation
-          : animation // ignore: cast_nullable_to_non_nullable
-              as Animation?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$GameImpl implements _Game {
-  const _$GameImpl(
+class _Game implements Game {
+  const _Game(
       {@JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'description') required this.description,
       @JsonKey(name: 'photo') required final List<PhotoSize> photo,
@@ -213,9 +144,7 @@ class _$GameImpl implements _Game {
       @JsonKey(name: 'animation') this.animation})
       : _photo = photo,
         _textEntities = textEntities;
-
-  factory _$GameImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GameImplFromJson(json);
+  factory _Game.fromJson(Map<String, dynamic> json) => _$GameFromJson(json);
 
   /// Title of the game
   @override
@@ -263,72 +192,103 @@ class _$GameImpl implements _Game {
   @JsonKey(name: 'animation')
   final Animation? animation;
 
+  /// Create a copy of Game
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$GameCopyWith<_Game> get copyWith =>
+      __$GameCopyWithImpl<_Game>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$GameToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'Game(title: $title, description: $description, photo: $photo, text: $text, textEntities: $textEntities, animation: $animation)';
   }
-
-  /// Create a copy of Game
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GameImplCopyWith<_$GameImpl> get copyWith =>
-      __$$GameImplCopyWithImpl<_$GameImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$GameImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _Game implements Game {
-  const factory _Game(
-      {@JsonKey(name: 'title') required final String title,
-      @JsonKey(name: 'description') required final String description,
-      @JsonKey(name: 'photo') required final List<PhotoSize> photo,
-      @JsonKey(name: 'text') final String? text,
-      @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities,
-      @JsonKey(name: 'animation') final Animation? animation}) = _$GameImpl;
-
-  factory _Game.fromJson(Map<String, dynamic> json) = _$GameImpl.fromJson;
-
-  /// Title of the game
+/// @nodoc
+abstract mixin class _$GameCopyWith<$Res> implements $GameCopyWith<$Res> {
+  factory _$GameCopyWith(_Game value, $Res Function(_Game) _then) =
+      __$GameCopyWithImpl;
   @override
-  @JsonKey(name: 'title')
-  String get title;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'title') String title,
+      @JsonKey(name: 'description') String description,
+      @JsonKey(name: 'photo') List<PhotoSize> photo,
+      @JsonKey(name: 'text') String? text,
+      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
+      @JsonKey(name: 'animation') Animation? animation});
 
-  /// Description of the game
   @override
-  @JsonKey(name: 'description')
-  String get description;
+  $AnimationCopyWith<$Res>? get animation;
+}
 
-  /// Photo that will be displayed in the game message in chats.
-  @override
-  @JsonKey(name: 'photo')
-  List<PhotoSize> get photo;
+/// @nodoc
+class __$GameCopyWithImpl<$Res> implements _$GameCopyWith<$Res> {
+  __$GameCopyWithImpl(this._self, this._then);
 
-  /// Optional. Brief description of the game or high scores included in the game message.
-  @override
-  @JsonKey(name: 'text')
-  String? get text;
-
-  /// Optional. Special entities that appear in text, such as usernames, URLs, bot commands, etc.
-  @override
-  @JsonKey(name: 'text_entities')
-  List<MessageEntity>? get textEntities;
-
-  /// Optional. Animation that will be displayed in the game message in chats.
-  @override
-  @JsonKey(name: 'animation')
-  Animation? get animation;
+  final _Game _self;
+  final $Res Function(_Game) _then;
 
   /// Create a copy of Game
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GameImplCopyWith<_$GameImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? title = null,
+    Object? description = null,
+    Object? photo = null,
+    Object? text = freezed,
+    Object? textEntities = freezed,
+    Object? animation = freezed,
+  }) {
+    return _then(_Game(
+      title: null == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      photo: null == photo
+          ? _self._photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as List<PhotoSize>,
+      text: freezed == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String?,
+      textEntities: freezed == textEntities
+          ? _self._textEntities
+          : textEntities // ignore: cast_nullable_to_non_nullable
+              as List<MessageEntity>?,
+      animation: freezed == animation
+          ? _self.animation
+          : animation // ignore: cast_nullable_to_non_nullable
+              as Animation?,
+    ));
+  }
+
+  /// Create a copy of Game
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AnimationCopyWith<$Res>? get animation {
+    if (_self.animation == null) {
+      return null;
+    }
+
+    return $AnimationCopyWith<$Res>(_self.animation!, (value) {
+      return _then(_self.copyWith(animation: value));
+    });
+  }
 }

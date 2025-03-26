@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,65 +12,65 @@ part of 'callback_query.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-CallbackQuery _$CallbackQueryFromJson(Map<String, dynamic> json) {
-  return _CallbackQuery.fromJson(json);
-}
-
 /// @nodoc
 mixin _$CallbackQuery {
   /// Unique identifier for this query
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
 
   /// Sender
   @JsonKey(name: 'from')
-  User get from => throw _privateConstructorUsedError;
+  User get from;
 
   /// Optional. Message sent by the bot with the callback button that
   /// originated the query
   @JsonKey(name: 'message')
-  MaybeInaccessibleMessage? get message => throw _privateConstructorUsedError;
+  MaybeInaccessibleMessage? get message;
 
   /// Optional. Identifier of the message sent via the bot in inline mode,
   /// that originated the query.
   @JsonKey(name: 'inline_message_id')
-  String? get inlineMessageId => throw _privateConstructorUsedError;
+  String? get inlineMessageId;
 
   /// Global identifier, uniquely corresponding to the chat to which the
   /// message with the callback button was sent. Useful for high scores in
   /// games.
   @JsonKey(name: 'chat_instance')
-  String get chatInstance => throw _privateConstructorUsedError;
+  String get chatInstance;
 
   /// Optional. Data associated with the callback button. Be aware that the
   /// message originated the query can contain no callback buttons with this
   /// data.
   @JsonKey(name: 'data')
-  String? get data => throw _privateConstructorUsedError;
+  String? get data;
 
   /// Optional. Short name of a Game to be returned, serves as the unique
   /// identifier for the game
   @JsonKey(name: 'game_short_name')
-  String? get gameShortName => throw _privateConstructorUsedError;
-
-  /// Serializes this CallbackQuery to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get gameShortName;
 
   /// Create a copy of CallbackQuery
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $CallbackQueryCopyWith<CallbackQuery> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$CallbackQueryCopyWithImpl<CallbackQuery>(
+          this as CallbackQuery, _$identity);
+
+  /// Serializes this CallbackQuery to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'CallbackQuery(id: $id, from: $from, message: $message, inlineMessageId: $inlineMessageId, chatInstance: $chatInstance, data: $data, gameShortName: $gameShortName)';
+  }
 }
 
 /// @nodoc
-abstract class $CallbackQueryCopyWith<$Res> {
+abstract mixin class $CallbackQueryCopyWith<$Res> {
   factory $CallbackQueryCopyWith(
-          CallbackQuery value, $Res Function(CallbackQuery) then) =
-      _$CallbackQueryCopyWithImpl<$Res, CallbackQuery>;
+          CallbackQuery value, $Res Function(CallbackQuery) _then) =
+      _$CallbackQueryCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -84,14 +85,12 @@ abstract class $CallbackQueryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CallbackQueryCopyWithImpl<$Res, $Val extends CallbackQuery>
+class _$CallbackQueryCopyWithImpl<$Res>
     implements $CallbackQueryCopyWith<$Res> {
-  _$CallbackQueryCopyWithImpl(this._value, this._then);
+  _$CallbackQueryCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final CallbackQuery _self;
+  final $Res Function(CallbackQuery) _then;
 
   /// Create a copy of CallbackQuery
   /// with the given fields replaced by the non-null parameter values.
@@ -106,36 +105,36 @@ class _$CallbackQueryCopyWithImpl<$Res, $Val extends CallbackQuery>
     Object? data = freezed,
     Object? gameShortName = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       from: null == from
-          ? _value.from
+          ? _self.from
           : from // ignore: cast_nullable_to_non_nullable
               as User,
       message: freezed == message
-          ? _value.message
+          ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
               as MaybeInaccessibleMessage?,
       inlineMessageId: freezed == inlineMessageId
-          ? _value.inlineMessageId
+          ? _self.inlineMessageId
           : inlineMessageId // ignore: cast_nullable_to_non_nullable
               as String?,
       chatInstance: null == chatInstance
-          ? _value.chatInstance
+          ? _self.chatInstance
           : chatInstance // ignore: cast_nullable_to_non_nullable
               as String,
       data: freezed == data
-          ? _value.data
+          ? _self.data
           : data // ignore: cast_nullable_to_non_nullable
               as String?,
       gameShortName: freezed == gameShortName
-          ? _value.gameShortName
+          ? _self.gameShortName
           : gameShortName // ignore: cast_nullable_to_non_nullable
               as String?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of CallbackQuery
@@ -143,91 +142,16 @@ class _$CallbackQueryCopyWithImpl<$Res, $Val extends CallbackQuery>
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get from {
-    return $UserCopyWith<$Res>(_value.from, (value) {
-      return _then(_value.copyWith(from: value) as $Val);
+    return $UserCopyWith<$Res>(_self.from, (value) {
+      return _then(_self.copyWith(from: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$CallbackQueryImplCopyWith<$Res>
-    implements $CallbackQueryCopyWith<$Res> {
-  factory _$$CallbackQueryImplCopyWith(
-          _$CallbackQueryImpl value, $Res Function(_$CallbackQueryImpl) then) =
-      __$$CallbackQueryImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'message') MaybeInaccessibleMessage? message,
-      @JsonKey(name: 'inline_message_id') String? inlineMessageId,
-      @JsonKey(name: 'chat_instance') String chatInstance,
-      @JsonKey(name: 'data') String? data,
-      @JsonKey(name: 'game_short_name') String? gameShortName});
-
-  @override
-  $UserCopyWith<$Res> get from;
-}
-
-/// @nodoc
-class __$$CallbackQueryImplCopyWithImpl<$Res>
-    extends _$CallbackQueryCopyWithImpl<$Res, _$CallbackQueryImpl>
-    implements _$$CallbackQueryImplCopyWith<$Res> {
-  __$$CallbackQueryImplCopyWithImpl(
-      _$CallbackQueryImpl _value, $Res Function(_$CallbackQueryImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CallbackQuery
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? from = null,
-    Object? message = freezed,
-    Object? inlineMessageId = freezed,
-    Object? chatInstance = null,
-    Object? data = freezed,
-    Object? gameShortName = freezed,
-  }) {
-    return _then(_$CallbackQueryImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _value.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as MaybeInaccessibleMessage?,
-      inlineMessageId: freezed == inlineMessageId
-          ? _value.inlineMessageId
-          : inlineMessageId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      chatInstance: null == chatInstance
-          ? _value.chatInstance
-          : chatInstance // ignore: cast_nullable_to_non_nullable
-              as String,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String?,
-      gameShortName: freezed == gameShortName
-          ? _value.gameShortName
-          : gameShortName // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$CallbackQueryImpl implements _CallbackQuery {
-  const _$CallbackQueryImpl(
+class _CallbackQuery implements CallbackQuery {
+  const _CallbackQuery(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'from') required this.from,
       @JsonKey(name: 'message') this.message,
@@ -235,9 +159,8 @@ class _$CallbackQueryImpl implements _CallbackQuery {
       @JsonKey(name: 'chat_instance') required this.chatInstance,
       @JsonKey(name: 'data') this.data,
       @JsonKey(name: 'game_short_name') this.gameShortName});
-
-  factory _$CallbackQueryImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CallbackQueryImplFromJson(json);
+  factory _CallbackQuery.fromJson(Map<String, dynamic> json) =>
+      _$CallbackQueryFromJson(json);
 
   /// Unique identifier for this query
   @override
@@ -281,87 +204,108 @@ class _$CallbackQueryImpl implements _CallbackQuery {
   @JsonKey(name: 'game_short_name')
   final String? gameShortName;
 
+  /// Create a copy of CallbackQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$CallbackQueryCopyWith<_CallbackQuery> get copyWith =>
+      __$CallbackQueryCopyWithImpl<_CallbackQuery>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$CallbackQueryToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'CallbackQuery(id: $id, from: $from, message: $message, inlineMessageId: $inlineMessageId, chatInstance: $chatInstance, data: $data, gameShortName: $gameShortName)';
   }
-
-  /// Create a copy of CallbackQuery
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CallbackQueryImplCopyWith<_$CallbackQueryImpl> get copyWith =>
-      __$$CallbackQueryImplCopyWithImpl<_$CallbackQueryImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CallbackQueryImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _CallbackQuery implements CallbackQuery {
-  const factory _CallbackQuery(
-          {@JsonKey(name: 'id') required final String id,
-          @JsonKey(name: 'from') required final User from,
-          @JsonKey(name: 'message') final MaybeInaccessibleMessage? message,
-          @JsonKey(name: 'inline_message_id') final String? inlineMessageId,
-          @JsonKey(name: 'chat_instance') required final String chatInstance,
-          @JsonKey(name: 'data') final String? data,
-          @JsonKey(name: 'game_short_name') final String? gameShortName}) =
-      _$CallbackQueryImpl;
-
-  factory _CallbackQuery.fromJson(Map<String, dynamic> json) =
-      _$CallbackQueryImpl.fromJson;
-
-  /// Unique identifier for this query
+/// @nodoc
+abstract mixin class _$CallbackQueryCopyWith<$Res>
+    implements $CallbackQueryCopyWith<$Res> {
+  factory _$CallbackQueryCopyWith(
+          _CallbackQuery value, $Res Function(_CallbackQuery) _then) =
+      __$CallbackQueryCopyWithImpl;
   @override
-  @JsonKey(name: 'id')
-  String get id;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'message') MaybeInaccessibleMessage? message,
+      @JsonKey(name: 'inline_message_id') String? inlineMessageId,
+      @JsonKey(name: 'chat_instance') String chatInstance,
+      @JsonKey(name: 'data') String? data,
+      @JsonKey(name: 'game_short_name') String? gameShortName});
 
-  /// Sender
   @override
-  @JsonKey(name: 'from')
-  User get from;
+  $UserCopyWith<$Res> get from;
+}
 
-  /// Optional. Message sent by the bot with the callback button that
-  /// originated the query
-  @override
-  @JsonKey(name: 'message')
-  MaybeInaccessibleMessage? get message;
+/// @nodoc
+class __$CallbackQueryCopyWithImpl<$Res>
+    implements _$CallbackQueryCopyWith<$Res> {
+  __$CallbackQueryCopyWithImpl(this._self, this._then);
 
-  /// Optional. Identifier of the message sent via the bot in inline mode,
-  /// that originated the query.
-  @override
-  @JsonKey(name: 'inline_message_id')
-  String? get inlineMessageId;
-
-  /// Global identifier, uniquely corresponding to the chat to which the
-  /// message with the callback button was sent. Useful for high scores in
-  /// games.
-  @override
-  @JsonKey(name: 'chat_instance')
-  String get chatInstance;
-
-  /// Optional. Data associated with the callback button. Be aware that the
-  /// message originated the query can contain no callback buttons with this
-  /// data.
-  @override
-  @JsonKey(name: 'data')
-  String? get data;
-
-  /// Optional. Short name of a Game to be returned, serves as the unique
-  /// identifier for the game
-  @override
-  @JsonKey(name: 'game_short_name')
-  String? get gameShortName;
+  final _CallbackQuery _self;
+  final $Res Function(_CallbackQuery) _then;
 
   /// Create a copy of CallbackQuery
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CallbackQueryImplCopyWith<_$CallbackQueryImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? from = null,
+    Object? message = freezed,
+    Object? inlineMessageId = freezed,
+    Object? chatInstance = null,
+    Object? data = freezed,
+    Object? gameShortName = freezed,
+  }) {
+    return _then(_CallbackQuery(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      from: null == from
+          ? _self.from
+          : from // ignore: cast_nullable_to_non_nullable
+              as User,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as MaybeInaccessibleMessage?,
+      inlineMessageId: freezed == inlineMessageId
+          ? _self.inlineMessageId
+          : inlineMessageId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      chatInstance: null == chatInstance
+          ? _self.chatInstance
+          : chatInstance // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: freezed == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gameShortName: freezed == gameShortName
+          ? _self.gameShortName
+          : gameShortName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of CallbackQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get from {
+    return $UserCopyWith<$Res>(_self.from, (value) {
+      return _then(_self.copyWith(from: value));
+    });
+  }
 }

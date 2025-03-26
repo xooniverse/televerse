@@ -6,7 +6,7 @@ part 'webhook_info.g.dart';
 
 /// Describes the current status of a webhook.
 @freezed
-class WebhookInfo with _$WebhookInfo {
+abstract class WebhookInfo with _$WebhookInfo {
   /// Constructs a WebhookInfo object.
   const factory WebhookInfo({
     /// Webhook URL, may be empty if webhook is not set up

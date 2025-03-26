@@ -7,7 +7,7 @@ part 'story.g.dart';
 
 /// This object represents a message about a forwarded story in the chat.
 @freezed
-class Story with _$Story {
+abstract class Story with _$Story {
   /// Constructs an instance of [Story].
   const factory Story({
     /// Chat that posted the story

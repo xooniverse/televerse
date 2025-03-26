@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,55 +12,55 @@ part of 'affiliate_info.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-AffiliateInfo _$AffiliateInfoFromJson(Map<String, dynamic> json) {
-  return _AffiliateInfo.fromJson(json);
-}
-
 /// @nodoc
 mixin _$AffiliateInfo {
   /// The bot or the user that received an affiliate commission if it was
   /// received by a bot or a user.
   @JsonKey(name: 'affiliate_user')
-  User? get affiliateUser => throw _privateConstructorUsedError;
+  User? get affiliateUser;
 
   /// The chat that received an affiliate commission if it was received by a
   /// chat.
   @JsonKey(name: 'affiliate_chat')
-  Chat? get affiliateChat => throw _privateConstructorUsedError;
+  Chat? get affiliateChat;
 
   /// The number of Telegram Stars received by the affiliate for each 1000
   /// Telegram Stars received by the bot from referred users.
   @JsonKey(name: 'commission_per_mille')
-  int get commissionPerMille => throw _privateConstructorUsedError;
+  int get commissionPerMille;
 
   /// Integer amount of Telegram Stars received by the affiliate from the
   /// transaction, rounded to 0; can be negative for refunds.
   @JsonKey(name: 'amount')
-  int get amount => throw _privateConstructorUsedError;
+  int get amount;
 
   /// The number of 1/1000000000 shares of Telegram Stars received by the
   /// affiliate; from -999999999 to 999999999; can be negative for refunds.
   @JsonKey(name: 'nanostar_amount')
-  int? get nanostarAmount => throw _privateConstructorUsedError;
-
-  /// Serializes this AffiliateInfo to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int? get nanostarAmount;
 
   /// Create a copy of AffiliateInfo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $AffiliateInfoCopyWith<AffiliateInfo> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$AffiliateInfoCopyWithImpl<AffiliateInfo>(
+          this as AffiliateInfo, _$identity);
+
+  /// Serializes this AffiliateInfo to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'AffiliateInfo(affiliateUser: $affiliateUser, affiliateChat: $affiliateChat, commissionPerMille: $commissionPerMille, amount: $amount, nanostarAmount: $nanostarAmount)';
+  }
 }
 
 /// @nodoc
-abstract class $AffiliateInfoCopyWith<$Res> {
+abstract mixin class $AffiliateInfoCopyWith<$Res> {
   factory $AffiliateInfoCopyWith(
-          AffiliateInfo value, $Res Function(AffiliateInfo) then) =
-      _$AffiliateInfoCopyWithImpl<$Res, AffiliateInfo>;
+          AffiliateInfo value, $Res Function(AffiliateInfo) _then) =
+      _$AffiliateInfoCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'affiliate_user') User? affiliateUser,
@@ -73,14 +74,12 @@ abstract class $AffiliateInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AffiliateInfoCopyWithImpl<$Res, $Val extends AffiliateInfo>
+class _$AffiliateInfoCopyWithImpl<$Res>
     implements $AffiliateInfoCopyWith<$Res> {
-  _$AffiliateInfoCopyWithImpl(this._value, this._then);
+  _$AffiliateInfoCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final AffiliateInfo _self;
+  final $Res Function(AffiliateInfo) _then;
 
   /// Create a copy of AffiliateInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -93,28 +92,28 @@ class _$AffiliateInfoCopyWithImpl<$Res, $Val extends AffiliateInfo>
     Object? amount = null,
     Object? nanostarAmount = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       affiliateUser: freezed == affiliateUser
-          ? _value.affiliateUser
+          ? _self.affiliateUser
           : affiliateUser // ignore: cast_nullable_to_non_nullable
               as User?,
       affiliateChat: freezed == affiliateChat
-          ? _value.affiliateChat
+          ? _self.affiliateChat
           : affiliateChat // ignore: cast_nullable_to_non_nullable
               as Chat?,
       commissionPerMille: null == commissionPerMille
-          ? _value.commissionPerMille
+          ? _self.commissionPerMille
           : commissionPerMille // ignore: cast_nullable_to_non_nullable
               as int,
       amount: null == amount
-          ? _value.amount
+          ? _self.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
       nanostarAmount: freezed == nanostarAmount
-          ? _value.nanostarAmount
+          ? _self.nanostarAmount
           : nanostarAmount // ignore: cast_nullable_to_non_nullable
               as int?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of AffiliateInfo
@@ -122,12 +121,12 @@ class _$AffiliateInfoCopyWithImpl<$Res, $Val extends AffiliateInfo>
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res>? get affiliateUser {
-    if (_value.affiliateUser == null) {
+    if (_self.affiliateUser == null) {
       return null;
     }
 
-    return $UserCopyWith<$Res>(_value.affiliateUser!, (value) {
-      return _then(_value.copyWith(affiliateUser: value) as $Val);
+    return $UserCopyWith<$Res>(_self.affiliateUser!, (value) {
+      return _then(_self.copyWith(affiliateUser: value));
     });
   }
 
@@ -136,93 +135,27 @@ class _$AffiliateInfoCopyWithImpl<$Res, $Val extends AffiliateInfo>
   @override
   @pragma('vm:prefer-inline')
   $ChatCopyWith<$Res>? get affiliateChat {
-    if (_value.affiliateChat == null) {
+    if (_self.affiliateChat == null) {
       return null;
     }
 
-    return $ChatCopyWith<$Res>(_value.affiliateChat!, (value) {
-      return _then(_value.copyWith(affiliateChat: value) as $Val);
+    return $ChatCopyWith<$Res>(_self.affiliateChat!, (value) {
+      return _then(_self.copyWith(affiliateChat: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$AffiliateInfoImplCopyWith<$Res>
-    implements $AffiliateInfoCopyWith<$Res> {
-  factory _$$AffiliateInfoImplCopyWith(
-          _$AffiliateInfoImpl value, $Res Function(_$AffiliateInfoImpl) then) =
-      __$$AffiliateInfoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'affiliate_user') User? affiliateUser,
-      @JsonKey(name: 'affiliate_chat') Chat? affiliateChat,
-      @JsonKey(name: 'commission_per_mille') int commissionPerMille,
-      @JsonKey(name: 'amount') int amount,
-      @JsonKey(name: 'nanostar_amount') int? nanostarAmount});
-
-  @override
-  $UserCopyWith<$Res>? get affiliateUser;
-  @override
-  $ChatCopyWith<$Res>? get affiliateChat;
-}
-
-/// @nodoc
-class __$$AffiliateInfoImplCopyWithImpl<$Res>
-    extends _$AffiliateInfoCopyWithImpl<$Res, _$AffiliateInfoImpl>
-    implements _$$AffiliateInfoImplCopyWith<$Res> {
-  __$$AffiliateInfoImplCopyWithImpl(
-      _$AffiliateInfoImpl _value, $Res Function(_$AffiliateInfoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AffiliateInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? affiliateUser = freezed,
-    Object? affiliateChat = freezed,
-    Object? commissionPerMille = null,
-    Object? amount = null,
-    Object? nanostarAmount = freezed,
-  }) {
-    return _then(_$AffiliateInfoImpl(
-      affiliateUser: freezed == affiliateUser
-          ? _value.affiliateUser
-          : affiliateUser // ignore: cast_nullable_to_non_nullable
-              as User?,
-      affiliateChat: freezed == affiliateChat
-          ? _value.affiliateChat
-          : affiliateChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-      commissionPerMille: null == commissionPerMille
-          ? _value.commissionPerMille
-          : commissionPerMille // ignore: cast_nullable_to_non_nullable
-              as int,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-      nanostarAmount: freezed == nanostarAmount
-          ? _value.nanostarAmount
-          : nanostarAmount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$AffiliateInfoImpl implements _AffiliateInfo {
-  const _$AffiliateInfoImpl(
+class _AffiliateInfo implements AffiliateInfo {
+  const _AffiliateInfo(
       {@JsonKey(name: 'affiliate_user') this.affiliateUser,
       @JsonKey(name: 'affiliate_chat') this.affiliateChat,
       @JsonKey(name: 'commission_per_mille') required this.commissionPerMille,
       @JsonKey(name: 'amount') required this.amount,
       @JsonKey(name: 'nanostar_amount') this.nanostarAmount});
-
-  factory _$AffiliateInfoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AffiliateInfoImplFromJson(json);
+  factory _AffiliateInfo.fromJson(Map<String, dynamic> json) =>
+      _$AffiliateInfoFromJson(json);
 
   /// The bot or the user that received an affiliate commission if it was
   /// received by a bot or a user.
@@ -254,74 +187,116 @@ class _$AffiliateInfoImpl implements _AffiliateInfo {
   @JsonKey(name: 'nanostar_amount')
   final int? nanostarAmount;
 
+  /// Create a copy of AffiliateInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$AffiliateInfoCopyWith<_AffiliateInfo> get copyWith =>
+      __$AffiliateInfoCopyWithImpl<_AffiliateInfo>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$AffiliateInfoToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'AffiliateInfo(affiliateUser: $affiliateUser, affiliateChat: $affiliateChat, commissionPerMille: $commissionPerMille, amount: $amount, nanostarAmount: $nanostarAmount)';
   }
-
-  /// Create a copy of AffiliateInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AffiliateInfoImplCopyWith<_$AffiliateInfoImpl> get copyWith =>
-      __$$AffiliateInfoImplCopyWithImpl<_$AffiliateInfoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AffiliateInfoImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _AffiliateInfo implements AffiliateInfo {
-  const factory _AffiliateInfo(
-          {@JsonKey(name: 'affiliate_user') final User? affiliateUser,
-          @JsonKey(name: 'affiliate_chat') final Chat? affiliateChat,
-          @JsonKey(name: 'commission_per_mille')
-          required final int commissionPerMille,
-          @JsonKey(name: 'amount') required final int amount,
-          @JsonKey(name: 'nanostar_amount') final int? nanostarAmount}) =
-      _$AffiliateInfoImpl;
-
-  factory _AffiliateInfo.fromJson(Map<String, dynamic> json) =
-      _$AffiliateInfoImpl.fromJson;
-
-  /// The bot or the user that received an affiliate commission if it was
-  /// received by a bot or a user.
+/// @nodoc
+abstract mixin class _$AffiliateInfoCopyWith<$Res>
+    implements $AffiliateInfoCopyWith<$Res> {
+  factory _$AffiliateInfoCopyWith(
+          _AffiliateInfo value, $Res Function(_AffiliateInfo) _then) =
+      __$AffiliateInfoCopyWithImpl;
   @override
-  @JsonKey(name: 'affiliate_user')
-  User? get affiliateUser;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'affiliate_user') User? affiliateUser,
+      @JsonKey(name: 'affiliate_chat') Chat? affiliateChat,
+      @JsonKey(name: 'commission_per_mille') int commissionPerMille,
+      @JsonKey(name: 'amount') int amount,
+      @JsonKey(name: 'nanostar_amount') int? nanostarAmount});
 
-  /// The chat that received an affiliate commission if it was received by a
-  /// chat.
   @override
-  @JsonKey(name: 'affiliate_chat')
-  Chat? get affiliateChat;
+  $UserCopyWith<$Res>? get affiliateUser;
+  @override
+  $ChatCopyWith<$Res>? get affiliateChat;
+}
 
-  /// The number of Telegram Stars received by the affiliate for each 1000
-  /// Telegram Stars received by the bot from referred users.
-  @override
-  @JsonKey(name: 'commission_per_mille')
-  int get commissionPerMille;
+/// @nodoc
+class __$AffiliateInfoCopyWithImpl<$Res>
+    implements _$AffiliateInfoCopyWith<$Res> {
+  __$AffiliateInfoCopyWithImpl(this._self, this._then);
 
-  /// Integer amount of Telegram Stars received by the affiliate from the
-  /// transaction, rounded to 0; can be negative for refunds.
-  @override
-  @JsonKey(name: 'amount')
-  int get amount;
-
-  /// The number of 1/1000000000 shares of Telegram Stars received by the
-  /// affiliate; from -999999999 to 999999999; can be negative for refunds.
-  @override
-  @JsonKey(name: 'nanostar_amount')
-  int? get nanostarAmount;
+  final _AffiliateInfo _self;
+  final $Res Function(_AffiliateInfo) _then;
 
   /// Create a copy of AffiliateInfo
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AffiliateInfoImplCopyWith<_$AffiliateInfoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? affiliateUser = freezed,
+    Object? affiliateChat = freezed,
+    Object? commissionPerMille = null,
+    Object? amount = null,
+    Object? nanostarAmount = freezed,
+  }) {
+    return _then(_AffiliateInfo(
+      affiliateUser: freezed == affiliateUser
+          ? _self.affiliateUser
+          : affiliateUser // ignore: cast_nullable_to_non_nullable
+              as User?,
+      affiliateChat: freezed == affiliateChat
+          ? _self.affiliateChat
+          : affiliateChat // ignore: cast_nullable_to_non_nullable
+              as Chat?,
+      commissionPerMille: null == commissionPerMille
+          ? _self.commissionPerMille
+          : commissionPerMille // ignore: cast_nullable_to_non_nullable
+              as int,
+      amount: null == amount
+          ? _self.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+      nanostarAmount: freezed == nanostarAmount
+          ? _self.nanostarAmount
+          : nanostarAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+
+  /// Create a copy of AffiliateInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get affiliateUser {
+    if (_self.affiliateUser == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_self.affiliateUser!, (value) {
+      return _then(_self.copyWith(affiliateUser: value));
+    });
+  }
+
+  /// Create a copy of AffiliateInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res>? get affiliateChat {
+    if (_self.affiliateChat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_self.affiliateChat!, (value) {
+      return _then(_self.copyWith(affiliateChat: value));
+    });
+  }
 }

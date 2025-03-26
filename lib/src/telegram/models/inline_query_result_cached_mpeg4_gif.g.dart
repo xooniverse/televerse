@@ -6,34 +6,32 @@ part of 'inline_query_result_cached_mpeg4_gif.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultCachedMpeg4GifImpl
-    _$$InlineQueryResultCachedMpeg4GifImplFromJson(Map<String, dynamic> json) =>
-        _$InlineQueryResultCachedMpeg4GifImpl(
-          id: json['id'] as String,
-          mpeg4FileId: json['mpeg4_file_id'] as String,
-          type: $enumDecodeNullable(
-                  _$InlineQueryResultTypeEnumMap, json['type']) ??
-              InlineQueryResultType.mpeg4Gif,
-          title: json['title'] as String?,
-          caption: json['caption'] as String?,
-          parseMode:
-              $enumDecodeNullable(_$ParseModeEnumMap, json['parse_mode']),
-          captionEntities: (json['caption_entities'] as List<dynamic>?)
-              ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
-              .toList(),
-          replyMarkup: json['reply_markup'] == null
-              ? null
-              : InlineKeyboardMarkup.fromJson(
-                  json['reply_markup'] as Map<String, dynamic>),
-          inputMessageContent:
-              _$JsonConverterFromJson<Map<String, Object>, InputMessageContent>(
-                  json['input_message_content'],
-                  const InputMessageContentConverter().fromJson),
-          showCaptionAboveMedia: json['show_caption_above_media'] as bool?,
-        );
+_InlineQueryResultCachedMpeg4Gif _$InlineQueryResultCachedMpeg4GifFromJson(
+        Map<String, dynamic> json) =>
+    _InlineQueryResultCachedMpeg4Gif(
+      id: json['id'] as String,
+      mpeg4FileId: json['mpeg4_file_id'] as String,
+      type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
+          InlineQueryResultType.mpeg4Gif,
+      title: json['title'] as String?,
+      caption: json['caption'] as String?,
+      parseMode: $enumDecodeNullable(_$ParseModeEnumMap, json['parse_mode']),
+      captionEntities: (json['caption_entities'] as List<dynamic>?)
+          ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      replyMarkup: json['reply_markup'] == null
+          ? null
+          : InlineKeyboardMarkup.fromJson(
+              json['reply_markup'] as Map<String, dynamic>),
+      inputMessageContent:
+          _$JsonConverterFromJson<Map<String, Object>, InputMessageContent>(
+              json['input_message_content'],
+              const InputMessageContentConverter().fromJson),
+      showCaptionAboveMedia: json['show_caption_above_media'] as bool?,
+    );
 
-Map<String, dynamic> _$$InlineQueryResultCachedMpeg4GifImplToJson(
-        _$InlineQueryResultCachedMpeg4GifImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultCachedMpeg4GifToJson(
+        _InlineQueryResultCachedMpeg4Gif instance) =>
     <String, dynamic>{
       'id': instance.id,
       'mpeg4_file_id': instance.mpeg4FileId,

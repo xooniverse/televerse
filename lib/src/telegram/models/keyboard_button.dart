@@ -13,7 +13,7 @@ part 'keyboard_button.g.dart';
 /// button. Optional fields web_app, request_contact, request_location, and
 /// request_poll are mutually exclusive.
 @freezed
-class KeyboardButton with _$KeyboardButton {
+abstract class KeyboardButton with _$KeyboardButton {
   /// Creates a new [KeyboardButton] with the specified [text].
   ///
   /// - [text] Text of the button. If none of the optional fields are used, it

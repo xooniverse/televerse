@@ -26,7 +26,7 @@ part 'update.g.dart';
 ///
 /// At most one of the optional parameters can be present in any given update.
 @freezed
-class Update with _$Update {
+abstract class Update with _$Update {
   /// Update Constructor
   const factory Update({
     /// The update's unique identifier. Update identifiers start from a certain

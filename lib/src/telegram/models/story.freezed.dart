@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,36 +12,36 @@ part of 'story.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Story _$StoryFromJson(Map<String, dynamic> json) {
-  return _Story.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Story {
   /// Chat that posted the story
   @JsonKey(name: 'chat')
-  Chat get chat => throw _privateConstructorUsedError;
+  Chat get chat;
 
   /// Unique identifier for the story in the chat
   @JsonKey(name: 'id')
-  int get id => throw _privateConstructorUsedError;
-
-  /// Serializes this Story to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get id;
 
   /// Create a copy of Story
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $StoryCopyWith<Story> get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $StoryCopyWith<Story> get copyWith =>
+      _$StoryCopyWithImpl<Story>(this as Story, _$identity);
+
+  /// Serializes this Story to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'Story(chat: $chat, id: $id)';
+  }
 }
 
 /// @nodoc
-abstract class $StoryCopyWith<$Res> {
-  factory $StoryCopyWith(Story value, $Res Function(Story) then) =
-      _$StoryCopyWithImpl<$Res, Story>;
+abstract mixin class $StoryCopyWith<$Res> {
+  factory $StoryCopyWith(Story value, $Res Function(Story) _then) =
+      _$StoryCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'chat') Chat chat, @JsonKey(name: 'id') int id});
 
@@ -48,14 +49,11 @@ abstract class $StoryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$StoryCopyWithImpl<$Res, $Val extends Story>
-    implements $StoryCopyWith<$Res> {
-  _$StoryCopyWithImpl(this._value, this._then);
+class _$StoryCopyWithImpl<$Res> implements $StoryCopyWith<$Res> {
+  _$StoryCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Story _self;
+  final $Res Function(Story) _then;
 
   /// Create a copy of Story
   /// with the given fields replaced by the non-null parameter values.
@@ -65,16 +63,16 @@ class _$StoryCopyWithImpl<$Res, $Val extends Story>
     Object? chat = null,
     Object? id = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       chat: null == chat
-          ? _value.chat
+          ? _self.chat
           : chat // ignore: cast_nullable_to_non_nullable
               as Chat,
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of Story
@@ -82,63 +80,19 @@ class _$StoryCopyWithImpl<$Res, $Val extends Story>
   @override
   @pragma('vm:prefer-inline')
   $ChatCopyWith<$Res> get chat {
-    return $ChatCopyWith<$Res>(_value.chat, (value) {
-      return _then(_value.copyWith(chat: value) as $Val);
+    return $ChatCopyWith<$Res>(_self.chat, (value) {
+      return _then(_self.copyWith(chat: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$StoryImplCopyWith<$Res> implements $StoryCopyWith<$Res> {
-  factory _$$StoryImplCopyWith(
-          _$StoryImpl value, $Res Function(_$StoryImpl) then) =
-      __$$StoryImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({@JsonKey(name: 'chat') Chat chat, @JsonKey(name: 'id') int id});
-
-  @override
-  $ChatCopyWith<$Res> get chat;
-}
-
-/// @nodoc
-class __$$StoryImplCopyWithImpl<$Res>
-    extends _$StoryCopyWithImpl<$Res, _$StoryImpl>
-    implements _$$StoryImplCopyWith<$Res> {
-  __$$StoryImplCopyWithImpl(
-      _$StoryImpl _value, $Res Function(_$StoryImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Story
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? chat = null,
-    Object? id = null,
-  }) {
-    return _then(_$StoryImpl(
-      chat: null == chat
-          ? _value.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$StoryImpl implements _Story {
-  const _$StoryImpl(
+class _Story implements Story {
+  const _Story(
       {@JsonKey(name: 'chat') required this.chat,
       @JsonKey(name: 'id') required this.id});
-
-  factory _$StoryImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StoryImplFromJson(json);
+  factory _Story.fromJson(Map<String, dynamic> json) => _$StoryFromJson(json);
 
   /// Chat that posted the story
   @override
@@ -150,48 +104,73 @@ class _$StoryImpl implements _Story {
   @JsonKey(name: 'id')
   final int id;
 
+  /// Create a copy of Story
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$StoryCopyWith<_Story> get copyWith =>
+      __$StoryCopyWithImpl<_Story>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$StoryToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'Story(chat: $chat, id: $id)';
   }
-
-  /// Create a copy of Story
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$StoryImplCopyWith<_$StoryImpl> get copyWith =>
-      __$$StoryImplCopyWithImpl<_$StoryImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$StoryImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _Story implements Story {
-  const factory _Story(
-      {@JsonKey(name: 'chat') required final Chat chat,
-      @JsonKey(name: 'id') required final int id}) = _$StoryImpl;
-
-  factory _Story.fromJson(Map<String, dynamic> json) = _$StoryImpl.fromJson;
-
-  /// Chat that posted the story
+/// @nodoc
+abstract mixin class _$StoryCopyWith<$Res> implements $StoryCopyWith<$Res> {
+  factory _$StoryCopyWith(_Story value, $Res Function(_Story) _then) =
+      __$StoryCopyWithImpl;
   @override
-  @JsonKey(name: 'chat')
-  Chat get chat;
+  @useResult
+  $Res call({@JsonKey(name: 'chat') Chat chat, @JsonKey(name: 'id') int id});
 
-  /// Unique identifier for the story in the chat
   @override
-  @JsonKey(name: 'id')
-  int get id;
+  $ChatCopyWith<$Res> get chat;
+}
+
+/// @nodoc
+class __$StoryCopyWithImpl<$Res> implements _$StoryCopyWith<$Res> {
+  __$StoryCopyWithImpl(this._self, this._then);
+
+  final _Story _self;
+  final $Res Function(_Story) _then;
 
   /// Create a copy of Story
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StoryImplCopyWith<_$StoryImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? chat = null,
+    Object? id = null,
+  }) {
+    return _then(_Story(
+      chat: null == chat
+          ? _self.chat
+          : chat // ignore: cast_nullable_to_non_nullable
+              as Chat,
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+
+  /// Create a copy of Story
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res> get chat {
+    return $ChatCopyWith<$Res>(_self.chat, (value) {
+      return _then(_self.copyWith(chat: value));
+    });
+  }
 }

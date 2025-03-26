@@ -7,7 +7,7 @@ part 'star_transaction.g.dart';
 
 /// This object describes a Telegram Star transaction.
 @freezed
-class StarTransaction with _$StarTransaction {
+abstract class StarTransaction with _$StarTransaction {
   /// Creates a new [StarTransaction] object.
   const factory StarTransaction({
     /// Unique identifier of the transaction. Coincides with the identifier of

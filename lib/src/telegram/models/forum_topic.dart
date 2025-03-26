@@ -6,7 +6,7 @@ part 'forum_topic.g.dart';
 
 /// This object represents a forum topic.
 @freezed
-class ForumTopic with _$ForumTopic {
+abstract class ForumTopic with _$ForumTopic {
   /// Creates a new [ForumTopic] object.
   const factory ForumTopic({
     /// Unique identifier of the forum topic

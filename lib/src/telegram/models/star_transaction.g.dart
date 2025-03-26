@@ -6,9 +6,8 @@ part of 'star_transaction.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$StarTransactionImpl _$$StarTransactionImplFromJson(
-        Map<String, dynamic> json) =>
-    _$StarTransactionImpl(
+_StarTransaction _$StarTransactionFromJson(Map<String, dynamic> json) =>
+    _StarTransaction(
       id: json['id'] as String,
       amount: (json['amount'] as num).toInt(),
       date: (json['date'] as num).toInt(),
@@ -22,8 +21,7 @@ _$StarTransactionImpl _$$StarTransactionImplFromJson(
       nanostarAmount: (json['nanostar_amount'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$StarTransactionImplToJson(
-        _$StarTransactionImpl instance) =>
+Map<String, dynamic> _$StarTransactionToJson(_StarTransaction instance) =>
     <String, dynamic>{
       'id': instance.id,
       'amount': instance.amount,

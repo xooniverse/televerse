@@ -6,16 +6,14 @@ part of 'login_url.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LoginURLImpl _$$LoginURLImplFromJson(Map<String, dynamic> json) =>
-    _$LoginURLImpl(
+_LoginURL _$LoginURLFromJson(Map<String, dynamic> json) => _LoginURL(
       url: json['url'] as String,
       forwardText: json['forward_text'] as String?,
       botUsername: json['bot_username'] as String?,
       requestWriteAccess: json['request_write_access'] as bool?,
     );
 
-Map<String, dynamic> _$$LoginURLImplToJson(_$LoginURLImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$LoginURLToJson(_LoginURL instance) => <String, dynamic>{
       'url': instance.url,
       if (instance.forwardText case final value?) 'forward_text': value,
       if (instance.botUsername case final value?) 'bot_username': value,

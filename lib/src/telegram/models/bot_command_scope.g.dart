@@ -6,15 +6,15 @@ part of 'bot_command_scope.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BotCommandScopeDefaultImpl _$$BotCommandScopeDefaultImplFromJson(
+BotCommandScopeDefault _$BotCommandScopeDefaultFromJson(
         Map<String, dynamic> json) =>
-    _$BotCommandScopeDefaultImpl(
+    BotCommandScopeDefault(
       type: $enumDecodeNullable(_$BotCommandScopeTypeEnumMap, json['type']) ??
           BotCommandScopeType.default_,
     );
 
-Map<String, dynamic> _$$BotCommandScopeDefaultImplToJson(
-        _$BotCommandScopeDefaultImpl instance) =>
+Map<String, dynamic> _$BotCommandScopeDefaultToJson(
+        BotCommandScopeDefault instance) =>
     <String, dynamic>{
       'type': _$BotCommandScopeTypeEnumMap[instance.type]!,
     };
@@ -29,93 +29,88 @@ const _$BotCommandScopeTypeEnumMap = {
   BotCommandScopeType.chatMember: 'chat_member',
 };
 
-_$BotCommandScopeAllPrivateChatsImpl
-    _$$BotCommandScopeAllPrivateChatsImplFromJson(Map<String, dynamic> json) =>
-        _$BotCommandScopeAllPrivateChatsImpl(
-          type:
-              $enumDecodeNullable(_$BotCommandScopeTypeEnumMap, json['type']) ??
-                  BotCommandScopeType.allPrivateChats,
-        );
+BotCommandScopeAllPrivateChats _$BotCommandScopeAllPrivateChatsFromJson(
+        Map<String, dynamic> json) =>
+    BotCommandScopeAllPrivateChats(
+      type: $enumDecodeNullable(_$BotCommandScopeTypeEnumMap, json['type']) ??
+          BotCommandScopeType.allPrivateChats,
+    );
 
-Map<String, dynamic> _$$BotCommandScopeAllPrivateChatsImplToJson(
-        _$BotCommandScopeAllPrivateChatsImpl instance) =>
+Map<String, dynamic> _$BotCommandScopeAllPrivateChatsToJson(
+        BotCommandScopeAllPrivateChats instance) =>
     <String, dynamic>{
       'type': _$BotCommandScopeTypeEnumMap[instance.type]!,
     };
 
-_$BotCommandScopeAllGroupChatsImpl _$$BotCommandScopeAllGroupChatsImplFromJson(
+BotCommandScopeAllGroupChats _$BotCommandScopeAllGroupChatsFromJson(
         Map<String, dynamic> json) =>
-    _$BotCommandScopeAllGroupChatsImpl(
+    BotCommandScopeAllGroupChats(
       type: $enumDecodeNullable(_$BotCommandScopeTypeEnumMap, json['type']) ??
           BotCommandScopeType.allGroupChats,
     );
 
-Map<String, dynamic> _$$BotCommandScopeAllGroupChatsImplToJson(
-        _$BotCommandScopeAllGroupChatsImpl instance) =>
+Map<String, dynamic> _$BotCommandScopeAllGroupChatsToJson(
+        BotCommandScopeAllGroupChats instance) =>
     <String, dynamic>{
       'type': _$BotCommandScopeTypeEnumMap[instance.type]!,
     };
 
-_$BotCommandScopeAllChatAdministratorsImpl
-    _$$BotCommandScopeAllChatAdministratorsImplFromJson(
-            Map<String, dynamic> json) =>
-        _$BotCommandScopeAllChatAdministratorsImpl(
+BotCommandScopeAllChatAdministrators
+    _$BotCommandScopeAllChatAdministratorsFromJson(Map<String, dynamic> json) =>
+        BotCommandScopeAllChatAdministrators(
           type:
               $enumDecodeNullable(_$BotCommandScopeTypeEnumMap, json['type']) ??
                   BotCommandScopeType.allChatAdministrators,
         );
 
-Map<String, dynamic> _$$BotCommandScopeAllChatAdministratorsImplToJson(
-        _$BotCommandScopeAllChatAdministratorsImpl instance) =>
+Map<String, dynamic> _$BotCommandScopeAllChatAdministratorsToJson(
+        BotCommandScopeAllChatAdministrators instance) =>
     <String, dynamic>{
       'type': _$BotCommandScopeTypeEnumMap[instance.type]!,
     };
 
-_$BotCommandScopeChatImpl _$$BotCommandScopeChatImplFromJson(
-        Map<String, dynamic> json) =>
-    _$BotCommandScopeChatImpl(
+BotCommandScopeChat _$BotCommandScopeChatFromJson(Map<String, dynamic> json) =>
+    BotCommandScopeChat(
       type: $enumDecodeNullable(_$BotCommandScopeTypeEnumMap, json['type']) ??
           BotCommandScopeType.chat,
       chatId: const IDConverter().fromJson(json['chat_id']),
     );
 
-Map<String, dynamic> _$$BotCommandScopeChatImplToJson(
-        _$BotCommandScopeChatImpl instance) =>
+Map<String, dynamic> _$BotCommandScopeChatToJson(
+        BotCommandScopeChat instance) =>
     <String, dynamic>{
       'type': _$BotCommandScopeTypeEnumMap[instance.type]!,
       if (const IDConverter().toJson(instance.chatId) case final value?)
         'chat_id': value,
     };
 
-_$BotCommandScopeChatAdministratorsImpl
-    _$$BotCommandScopeChatAdministratorsImplFromJson(
-            Map<String, dynamic> json) =>
-        _$BotCommandScopeChatAdministratorsImpl(
-          type:
-              $enumDecodeNullable(_$BotCommandScopeTypeEnumMap, json['type']) ??
-                  BotCommandScopeType.chatAdministrators,
-          chatId: const IDConverter().fromJson(json['chat_id']),
-        );
-
-Map<String, dynamic> _$$BotCommandScopeChatAdministratorsImplToJson(
-        _$BotCommandScopeChatAdministratorsImpl instance) =>
-    <String, dynamic>{
-      'type': _$BotCommandScopeTypeEnumMap[instance.type]!,
-      if (const IDConverter().toJson(instance.chatId) case final value?)
-        'chat_id': value,
-    };
-
-_$BotCommandScopeChatMemberImpl _$$BotCommandScopeChatMemberImplFromJson(
+BotCommandScopeChatAdministrators _$BotCommandScopeChatAdministratorsFromJson(
         Map<String, dynamic> json) =>
-    _$BotCommandScopeChatMemberImpl(
+    BotCommandScopeChatAdministrators(
+      type: $enumDecodeNullable(_$BotCommandScopeTypeEnumMap, json['type']) ??
+          BotCommandScopeType.chatAdministrators,
+      chatId: const IDConverter().fromJson(json['chat_id']),
+    );
+
+Map<String, dynamic> _$BotCommandScopeChatAdministratorsToJson(
+        BotCommandScopeChatAdministrators instance) =>
+    <String, dynamic>{
+      'type': _$BotCommandScopeTypeEnumMap[instance.type]!,
+      if (const IDConverter().toJson(instance.chatId) case final value?)
+        'chat_id': value,
+    };
+
+BotCommandScopeChatMember _$BotCommandScopeChatMemberFromJson(
+        Map<String, dynamic> json) =>
+    BotCommandScopeChatMember(
       type: $enumDecodeNullable(_$BotCommandScopeTypeEnumMap, json['type']) ??
           BotCommandScopeType.chatMember,
       chatId: const IDConverter().fromJson(json['chat_id']),
       userId: (json['user_id'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$BotCommandScopeChatMemberImplToJson(
-        _$BotCommandScopeChatMemberImpl instance) =>
+Map<String, dynamic> _$BotCommandScopeChatMemberToJson(
+        BotCommandScopeChatMember instance) =>
     <String, dynamic>{
       'type': _$BotCommandScopeTypeEnumMap[instance.type]!,
       if (const IDConverter().toJson(instance.chatId) case final value?)

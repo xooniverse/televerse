@@ -6,7 +6,7 @@ part of 'voice.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VoiceImpl _$$VoiceImplFromJson(Map<String, dynamic> json) => _$VoiceImpl(
+_Voice _$VoiceFromJson(Map<String, dynamic> json) => _Voice(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
       duration: (json['duration'] as num).toInt(),
@@ -14,8 +14,7 @@ _$VoiceImpl _$$VoiceImplFromJson(Map<String, dynamic> json) => _$VoiceImpl(
       fileSize: (json['file_size'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$VoiceImplToJson(_$VoiceImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$VoiceToJson(_Voice instance) => <String, dynamic>{
       'file_id': instance.fileId,
       'file_unique_id': instance.fileUniqueId,
       'duration': instance.duration,

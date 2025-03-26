@@ -7,7 +7,7 @@ part 'user.g.dart';
 
 /// This object represents a Telegram user or bot.
 @freezed
-class User with _$User implements WithID {
+abstract class User with _$User implements WithID {
   /// Creates a Telegram user or bot
   ///
   /// - [id] Unique identifier for this user or bot

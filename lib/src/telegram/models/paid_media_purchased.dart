@@ -8,7 +8,9 @@ part 'paid_media_purchased.g.dart';
 
 /// Represents a paid media purchase made by a user.
 @freezed
-class PaidMediaPurchased with _$PaidMediaPurchased implements WithUser {
+abstract class PaidMediaPurchased
+    with _$PaidMediaPurchased
+    implements WithUser {
   /// Creates a [PaidMediaPurchased] object.
   const factory PaidMediaPurchased({
     /// The user who purchased the media.

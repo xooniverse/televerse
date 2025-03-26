@@ -6,8 +6,7 @@ part of 'keyboard.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$KeyboardImpl _$$KeyboardImplFromJson(Map<String, dynamic> json) =>
-    _$KeyboardImpl(
+_Keyboard _$KeyboardFromJson(Map<String, dynamic> json) => _Keyboard(
       keyboard: (json['keyboard'] as List<dynamic>?)
               ?.map((e) => (e as List<dynamic>)
                   .map(
@@ -22,8 +21,7 @@ _$KeyboardImpl _$$KeyboardImplFromJson(Map<String, dynamic> json) =>
       isPersistent: json['is_persistent'] as bool?,
     );
 
-Map<String, dynamic> _$$KeyboardImplToJson(_$KeyboardImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$KeyboardToJson(_Keyboard instance) => <String, dynamic>{
       'keyboard': instance.keyboard,
       if (instance.resizeKeyboard case final value?) 'resize_keyboard': value,
       if (instance.oneTimeKeyboard case final value?)

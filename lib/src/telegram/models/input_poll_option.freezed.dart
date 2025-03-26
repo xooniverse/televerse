@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,92 +12,42 @@ part of 'input_poll_option.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-InputPollOption _$InputPollOptionFromJson(Map<String, dynamic> json) {
-  return _InputPollOption.fromJson(json);
-}
-
 /// @nodoc
 mixin _$InputPollOption {
   /// Option text, 1-100 characters.
   @JsonKey(name: 'text')
-  String get text => throw _privateConstructorUsedError;
+  String get text;
 
   /// Optional. Mode for parsing entities in the text.
   @JsonKey(name: 'text_parse_mode')
-  ParseMode? get textParseMode => throw _privateConstructorUsedError;
+  ParseMode? get textParseMode;
 
   /// Optional. A list of special entities that appear in the poll option text.
   @JsonKey(name: 'text_entities')
-  List<MessageEntity>? get textEntities => throw _privateConstructorUsedError;
-
-  /// Serializes this InputPollOption to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<MessageEntity>? get textEntities;
 
   /// Create a copy of InputPollOption
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $InputPollOptionCopyWith<InputPollOption> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $InputPollOptionCopyWith<$Res> {
-  factory $InputPollOptionCopyWith(
-          InputPollOption value, $Res Function(InputPollOption) then) =
-      _$InputPollOptionCopyWithImpl<$Res, InputPollOption>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'text_parse_mode') ParseMode? textParseMode,
-      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities});
-}
-
-/// @nodoc
-class _$InputPollOptionCopyWithImpl<$Res, $Val extends InputPollOption>
-    implements $InputPollOptionCopyWith<$Res> {
-  _$InputPollOptionCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of InputPollOption
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $InputPollOptionCopyWith<InputPollOption> get copyWith =>
+      _$InputPollOptionCopyWithImpl<InputPollOption>(
+          this as InputPollOption, _$identity);
+
+  /// Serializes this InputPollOption to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? text = null,
-    Object? textParseMode = freezed,
-    Object? textEntities = freezed,
-  }) {
-    return _then(_value.copyWith(
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      textParseMode: freezed == textParseMode
-          ? _value.textParseMode
-          : textParseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      textEntities: freezed == textEntities
-          ? _value.textEntities
-          : textEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-    ) as $Val);
+  String toString() {
+    return 'InputPollOption(text: $text, textParseMode: $textParseMode, textEntities: $textEntities)';
   }
 }
 
 /// @nodoc
-abstract class _$$InputPollOptionImplCopyWith<$Res>
-    implements $InputPollOptionCopyWith<$Res> {
-  factory _$$InputPollOptionImplCopyWith(_$InputPollOptionImpl value,
-          $Res Function(_$InputPollOptionImpl) then) =
-      __$$InputPollOptionImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $InputPollOptionCopyWith<$Res> {
+  factory $InputPollOptionCopyWith(
+          InputPollOption value, $Res Function(InputPollOption) _then) =
+      _$InputPollOptionCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'text') String text,
@@ -105,12 +56,12 @@ abstract class _$$InputPollOptionImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$InputPollOptionImplCopyWithImpl<$Res>
-    extends _$InputPollOptionCopyWithImpl<$Res, _$InputPollOptionImpl>
-    implements _$$InputPollOptionImplCopyWith<$Res> {
-  __$$InputPollOptionImplCopyWithImpl(
-      _$InputPollOptionImpl _value, $Res Function(_$InputPollOptionImpl) _then)
-      : super(_value, _then);
+class _$InputPollOptionCopyWithImpl<$Res>
+    implements $InputPollOptionCopyWith<$Res> {
+  _$InputPollOptionCopyWithImpl(this._self, this._then);
+
+  final InputPollOption _self;
+  final $Res Function(InputPollOption) _then;
 
   /// Create a copy of InputPollOption
   /// with the given fields replaced by the non-null parameter values.
@@ -121,17 +72,17 @@ class __$$InputPollOptionImplCopyWithImpl<$Res>
     Object? textParseMode = freezed,
     Object? textEntities = freezed,
   }) {
-    return _then(_$InputPollOptionImpl(
+    return _then(_self.copyWith(
       text: null == text
-          ? _value.text
+          ? _self.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
       textParseMode: freezed == textParseMode
-          ? _value.textParseMode
+          ? _self.textParseMode
           : textParseMode // ignore: cast_nullable_to_non_nullable
               as ParseMode?,
       textEntities: freezed == textEntities
-          ? _value._textEntities
+          ? _self.textEntities
           : textEntities // ignore: cast_nullable_to_non_nullable
               as List<MessageEntity>?,
     ));
@@ -140,15 +91,14 @@ class __$$InputPollOptionImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$InputPollOptionImpl implements _InputPollOption {
-  const _$InputPollOptionImpl(
+class _InputPollOption implements InputPollOption {
+  const _InputPollOption(
       {@JsonKey(name: 'text') required this.text,
       @JsonKey(name: 'text_parse_mode') this.textParseMode,
       @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities})
       : _textEntities = textEntities;
-
-  factory _$InputPollOptionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InputPollOptionImplFromJson(json);
+  factory _InputPollOption.fromJson(Map<String, dynamic> json) =>
+      _$InputPollOptionFromJson(json);
 
   /// Option text, 1-100 characters.
   @override
@@ -174,57 +124,71 @@ class _$InputPollOptionImpl implements _InputPollOption {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of InputPollOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InputPollOptionCopyWith<_InputPollOption> get copyWith =>
+      __$InputPollOptionCopyWithImpl<_InputPollOption>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InputPollOptionToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'InputPollOption(text: $text, textParseMode: $textParseMode, textEntities: $textEntities)';
   }
-
-  /// Create a copy of InputPollOption
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InputPollOptionImplCopyWith<_$InputPollOptionImpl> get copyWith =>
-      __$$InputPollOptionImplCopyWithImpl<_$InputPollOptionImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InputPollOptionImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _InputPollOption implements InputPollOption {
-  const factory _InputPollOption(
-      {@JsonKey(name: 'text') required final String text,
-      @JsonKey(name: 'text_parse_mode') final ParseMode? textParseMode,
-      @JsonKey(name: 'text_entities')
-      final List<MessageEntity>? textEntities}) = _$InputPollOptionImpl;
-
-  factory _InputPollOption.fromJson(Map<String, dynamic> json) =
-      _$InputPollOptionImpl.fromJson;
-
-  /// Option text, 1-100 characters.
+/// @nodoc
+abstract mixin class _$InputPollOptionCopyWith<$Res>
+    implements $InputPollOptionCopyWith<$Res> {
+  factory _$InputPollOptionCopyWith(
+          _InputPollOption value, $Res Function(_InputPollOption) _then) =
+      __$InputPollOptionCopyWithImpl;
   @override
-  @JsonKey(name: 'text')
-  String get text;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'text') String text,
+      @JsonKey(name: 'text_parse_mode') ParseMode? textParseMode,
+      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities});
+}
 
-  /// Optional. Mode for parsing entities in the text.
-  @override
-  @JsonKey(name: 'text_parse_mode')
-  ParseMode? get textParseMode;
+/// @nodoc
+class __$InputPollOptionCopyWithImpl<$Res>
+    implements _$InputPollOptionCopyWith<$Res> {
+  __$InputPollOptionCopyWithImpl(this._self, this._then);
 
-  /// Optional. A list of special entities that appear in the poll option text.
-  @override
-  @JsonKey(name: 'text_entities')
-  List<MessageEntity>? get textEntities;
+  final _InputPollOption _self;
+  final $Res Function(_InputPollOption) _then;
 
   /// Create a copy of InputPollOption
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InputPollOptionImplCopyWith<_$InputPollOptionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? text = null,
+    Object? textParseMode = freezed,
+    Object? textEntities = freezed,
+  }) {
+    return _then(_InputPollOption(
+      text: null == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      textParseMode: freezed == textParseMode
+          ? _self.textParseMode
+          : textParseMode // ignore: cast_nullable_to_non_nullable
+              as ParseMode?,
+      textEntities: freezed == textEntities
+          ? _self._textEntities
+          : textEntities // ignore: cast_nullable_to_non_nullable
+              as List<MessageEntity>?,
+    ));
+  }
 }

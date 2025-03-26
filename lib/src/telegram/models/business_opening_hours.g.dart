@@ -6,9 +6,9 @@ part of 'business_opening_hours.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BusinessOpeningHoursImpl _$$BusinessOpeningHoursImplFromJson(
+_BusinessOpeningHours _$BusinessOpeningHoursFromJson(
         Map<String, dynamic> json) =>
-    _$BusinessOpeningHoursImpl(
+    _BusinessOpeningHours(
       timeZoneName: json['time_zone_name'] as String,
       openingHours: (json['opening_hours'] as List<dynamic>)
           .map((e) =>
@@ -16,8 +16,8 @@ _$BusinessOpeningHoursImpl _$$BusinessOpeningHoursImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$BusinessOpeningHoursImplToJson(
-        _$BusinessOpeningHoursImpl instance) =>
+Map<String, dynamic> _$BusinessOpeningHoursToJson(
+        _BusinessOpeningHours instance) =>
     <String, dynamic>{
       'time_zone_name': instance.timeZoneName,
       'opening_hours': instance.openingHours,

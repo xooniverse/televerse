@@ -6,9 +6,9 @@ part of 'keyboard_button_request_chat.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$KeyboardButtonRequestChatImpl _$$KeyboardButtonRequestChatImplFromJson(
+_KeyboardButtonRequestChat _$KeyboardButtonRequestChatFromJson(
         Map<String, dynamic> json) =>
-    _$KeyboardButtonRequestChatImpl(
+    _KeyboardButtonRequestChat(
       requestId: (json['request_id'] as num).toInt(),
       chatIsChannel: json['chat_is_channel'] as bool,
       chatIsForum: json['chat_is_forum'] as bool?,
@@ -28,8 +28,8 @@ _$KeyboardButtonRequestChatImpl _$$KeyboardButtonRequestChatImplFromJson(
       requestPhoto: json['request_photo'] as bool?,
     );
 
-Map<String, dynamic> _$$KeyboardButtonRequestChatImplToJson(
-        _$KeyboardButtonRequestChatImpl instance) =>
+Map<String, dynamic> _$KeyboardButtonRequestChatToJson(
+        _KeyboardButtonRequestChat instance) =>
     <String, dynamic>{
       'request_id': instance.requestId,
       'chat_is_channel': instance.chatIsChannel,

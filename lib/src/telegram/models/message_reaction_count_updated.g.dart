@@ -6,9 +6,9 @@ part of 'message_reaction_count_updated.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MessageReactionCountUpdatedImpl _$$MessageReactionCountUpdatedImplFromJson(
+_MessageReactionCountUpdated _$MessageReactionCountUpdatedFromJson(
         Map<String, dynamic> json) =>
-    _$MessageReactionCountUpdatedImpl(
+    _MessageReactionCountUpdated(
       chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
       messageId: (json['message_id'] as num).toInt(),
       date: (json['date'] as num).toInt(),
@@ -17,8 +17,8 @@ _$MessageReactionCountUpdatedImpl _$$MessageReactionCountUpdatedImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$MessageReactionCountUpdatedImplToJson(
-        _$MessageReactionCountUpdatedImpl instance) =>
+Map<String, dynamic> _$MessageReactionCountUpdatedToJson(
+        _MessageReactionCountUpdated instance) =>
     <String, dynamic>{
       'chat': instance.chat,
       'message_id': instance.messageId,

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,45 +12,44 @@ part of 'business_messages_deleted.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-BusinessMessagesDeleted _$BusinessMessagesDeletedFromJson(
-    Map<String, dynamic> json) {
-  return _BusinessMessagesDeleted.fromJson(json);
-}
-
 /// @nodoc
 mixin _$BusinessMessagesDeleted {
   /// Unique identifier of the business connection.
   @JsonKey(name: 'business_connection_id')
-  String get businessConnectionId => throw _privateConstructorUsedError;
+  String get businessConnectionId;
 
   /// Information about a chat in the business account. The bot may not have
   /// access to the chat or the corresponding user.
   @JsonKey(name: 'chat')
-  Chat get chat => throw _privateConstructorUsedError;
+  Chat get chat;
 
   /// A JSON-serialized list of identifiers of deleted messages in the chat of
   /// the business account.
   @JsonKey(name: 'message_ids')
-  List<int> get messageIds => throw _privateConstructorUsedError;
-
-  /// Serializes this BusinessMessagesDeleted to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<int> get messageIds;
 
   /// Create a copy of BusinessMessagesDeleted
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $BusinessMessagesDeletedCopyWith<BusinessMessagesDeleted> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$BusinessMessagesDeletedCopyWithImpl<BusinessMessagesDeleted>(
+          this as BusinessMessagesDeleted, _$identity);
+
+  /// Serializes this BusinessMessagesDeleted to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'BusinessMessagesDeleted(businessConnectionId: $businessConnectionId, chat: $chat, messageIds: $messageIds)';
+  }
 }
 
 /// @nodoc
-abstract class $BusinessMessagesDeletedCopyWith<$Res> {
+abstract mixin class $BusinessMessagesDeletedCopyWith<$Res> {
   factory $BusinessMessagesDeletedCopyWith(BusinessMessagesDeleted value,
-          $Res Function(BusinessMessagesDeleted) then) =
-      _$BusinessMessagesDeletedCopyWithImpl<$Res, BusinessMessagesDeleted>;
+          $Res Function(BusinessMessagesDeleted) _then) =
+      _$BusinessMessagesDeletedCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'business_connection_id') String businessConnectionId,
@@ -60,15 +60,12 @@ abstract class $BusinessMessagesDeletedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$BusinessMessagesDeletedCopyWithImpl<$Res,
-        $Val extends BusinessMessagesDeleted>
+class _$BusinessMessagesDeletedCopyWithImpl<$Res>
     implements $BusinessMessagesDeletedCopyWith<$Res> {
-  _$BusinessMessagesDeletedCopyWithImpl(this._value, this._then);
+  _$BusinessMessagesDeletedCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final BusinessMessagesDeleted _self;
+  final $Res Function(BusinessMessagesDeleted) _then;
 
   /// Create a copy of BusinessMessagesDeleted
   /// with the given fields replaced by the non-null parameter values.
@@ -79,20 +76,20 @@ class _$BusinessMessagesDeletedCopyWithImpl<$Res,
     Object? chat = null,
     Object? messageIds = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       businessConnectionId: null == businessConnectionId
-          ? _value.businessConnectionId
+          ? _self.businessConnectionId
           : businessConnectionId // ignore: cast_nullable_to_non_nullable
               as String,
       chat: null == chat
-          ? _value.chat
+          ? _self.chat
           : chat // ignore: cast_nullable_to_non_nullable
               as Chat,
       messageIds: null == messageIds
-          ? _value.messageIds
+          ? _self.messageIds
           : messageIds // ignore: cast_nullable_to_non_nullable
               as List<int>,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of BusinessMessagesDeleted
@@ -100,78 +97,23 @@ class _$BusinessMessagesDeletedCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $ChatCopyWith<$Res> get chat {
-    return $ChatCopyWith<$Res>(_value.chat, (value) {
-      return _then(_value.copyWith(chat: value) as $Val);
+    return $ChatCopyWith<$Res>(_self.chat, (value) {
+      return _then(_self.copyWith(chat: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$BusinessMessagesDeletedImplCopyWith<$Res>
-    implements $BusinessMessagesDeletedCopyWith<$Res> {
-  factory _$$BusinessMessagesDeletedImplCopyWith(
-          _$BusinessMessagesDeletedImpl value,
-          $Res Function(_$BusinessMessagesDeletedImpl) then) =
-      __$$BusinessMessagesDeletedImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'business_connection_id') String businessConnectionId,
-      @JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'message_ids') List<int> messageIds});
-
-  @override
-  $ChatCopyWith<$Res> get chat;
-}
-
-/// @nodoc
-class __$$BusinessMessagesDeletedImplCopyWithImpl<$Res>
-    extends _$BusinessMessagesDeletedCopyWithImpl<$Res,
-        _$BusinessMessagesDeletedImpl>
-    implements _$$BusinessMessagesDeletedImplCopyWith<$Res> {
-  __$$BusinessMessagesDeletedImplCopyWithImpl(
-      _$BusinessMessagesDeletedImpl _value,
-      $Res Function(_$BusinessMessagesDeletedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of BusinessMessagesDeleted
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? businessConnectionId = null,
-    Object? chat = null,
-    Object? messageIds = null,
-  }) {
-    return _then(_$BusinessMessagesDeletedImpl(
-      businessConnectionId: null == businessConnectionId
-          ? _value.businessConnectionId
-          : businessConnectionId // ignore: cast_nullable_to_non_nullable
-              as String,
-      chat: null == chat
-          ? _value.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      messageIds: null == messageIds
-          ? _value._messageIds
-          : messageIds // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$BusinessMessagesDeletedImpl implements _BusinessMessagesDeleted {
-  const _$BusinessMessagesDeletedImpl(
+class _BusinessMessagesDeleted implements BusinessMessagesDeleted {
+  const _BusinessMessagesDeleted(
       {@JsonKey(name: 'business_connection_id')
       required this.businessConnectionId,
       @JsonKey(name: 'chat') required this.chat,
       @JsonKey(name: 'message_ids') required final List<int> messageIds})
       : _messageIds = messageIds;
-
-  factory _$BusinessMessagesDeletedImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BusinessMessagesDeletedImplFromJson(json);
+  factory _BusinessMessagesDeleted.fromJson(Map<String, dynamic> json) =>
+      _$BusinessMessagesDeletedFromJson(json);
 
   /// Unique identifier of the business connection.
   @override
@@ -198,60 +140,85 @@ class _$BusinessMessagesDeletedImpl implements _BusinessMessagesDeleted {
     return EqualUnmodifiableListView(_messageIds);
   }
 
+  /// Create a copy of BusinessMessagesDeleted
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BusinessMessagesDeletedCopyWith<_BusinessMessagesDeleted> get copyWith =>
+      __$BusinessMessagesDeletedCopyWithImpl<_BusinessMessagesDeleted>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$BusinessMessagesDeletedToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'BusinessMessagesDeleted(businessConnectionId: $businessConnectionId, chat: $chat, messageIds: $messageIds)';
   }
-
-  /// Create a copy of BusinessMessagesDeleted
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BusinessMessagesDeletedImplCopyWith<_$BusinessMessagesDeletedImpl>
-      get copyWith => __$$BusinessMessagesDeletedImplCopyWithImpl<
-          _$BusinessMessagesDeletedImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BusinessMessagesDeletedImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _BusinessMessagesDeleted implements BusinessMessagesDeleted {
-  const factory _BusinessMessagesDeleted(
-          {@JsonKey(name: 'business_connection_id')
-          required final String businessConnectionId,
-          @JsonKey(name: 'chat') required final Chat chat,
-          @JsonKey(name: 'message_ids') required final List<int> messageIds}) =
-      _$BusinessMessagesDeletedImpl;
-
-  factory _BusinessMessagesDeleted.fromJson(Map<String, dynamic> json) =
-      _$BusinessMessagesDeletedImpl.fromJson;
-
-  /// Unique identifier of the business connection.
+/// @nodoc
+abstract mixin class _$BusinessMessagesDeletedCopyWith<$Res>
+    implements $BusinessMessagesDeletedCopyWith<$Res> {
+  factory _$BusinessMessagesDeletedCopyWith(_BusinessMessagesDeleted value,
+          $Res Function(_BusinessMessagesDeleted) _then) =
+      __$BusinessMessagesDeletedCopyWithImpl;
   @override
-  @JsonKey(name: 'business_connection_id')
-  String get businessConnectionId;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'business_connection_id') String businessConnectionId,
+      @JsonKey(name: 'chat') Chat chat,
+      @JsonKey(name: 'message_ids') List<int> messageIds});
 
-  /// Information about a chat in the business account. The bot may not have
-  /// access to the chat or the corresponding user.
   @override
-  @JsonKey(name: 'chat')
-  Chat get chat;
+  $ChatCopyWith<$Res> get chat;
+}
 
-  /// A JSON-serialized list of identifiers of deleted messages in the chat of
-  /// the business account.
-  @override
-  @JsonKey(name: 'message_ids')
-  List<int> get messageIds;
+/// @nodoc
+class __$BusinessMessagesDeletedCopyWithImpl<$Res>
+    implements _$BusinessMessagesDeletedCopyWith<$Res> {
+  __$BusinessMessagesDeletedCopyWithImpl(this._self, this._then);
+
+  final _BusinessMessagesDeleted _self;
+  final $Res Function(_BusinessMessagesDeleted) _then;
 
   /// Create a copy of BusinessMessagesDeleted
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BusinessMessagesDeletedImplCopyWith<_$BusinessMessagesDeletedImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? businessConnectionId = null,
+    Object? chat = null,
+    Object? messageIds = null,
+  }) {
+    return _then(_BusinessMessagesDeleted(
+      businessConnectionId: null == businessConnectionId
+          ? _self.businessConnectionId
+          : businessConnectionId // ignore: cast_nullable_to_non_nullable
+              as String,
+      chat: null == chat
+          ? _self.chat
+          : chat // ignore: cast_nullable_to_non_nullable
+              as Chat,
+      messageIds: null == messageIds
+          ? _self._messageIds
+          : messageIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+    ));
+  }
+
+  /// Create a copy of BusinessMessagesDeleted
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res> get chat {
+    return $ChatCopyWith<$Res>(_self.chat, (value) {
+      return _then(_self.copyWith(chat: value));
+    });
+  }
 }

@@ -7,7 +7,7 @@ part 'video_chat_started.g.dart';
 /// This object represents a service message about a video chat started in the
 /// chat. Currently holds no information.
 @freezed
-class VideoChatStarted with _$VideoChatStarted {
+abstract class VideoChatStarted with _$VideoChatStarted {
   /// Constructs a [VideoChatStarted] object
   const factory VideoChatStarted() = _VideoChatStarted;
 

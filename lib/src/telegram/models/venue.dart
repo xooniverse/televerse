@@ -7,7 +7,7 @@ part 'venue.g.dart';
 
 /// This object represents a venue.
 @freezed
-class Venue with _$Venue {
+abstract class Venue with _$Venue {
   /// Constructs a [Venue] object
   const factory Venue({
     /// Venue location

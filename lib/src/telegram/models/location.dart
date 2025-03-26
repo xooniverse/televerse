@@ -5,7 +5,7 @@ part 'location.g.dart';
 
 /// This object represents a point on the map.
 @freezed
-class Location with _$Location {
+abstract class Location with _$Location {
   /// Constructs a [Location] object
   const factory Location({
     /// Longitude as defined by sender

@@ -6,13 +6,12 @@ part of 'video_chat_ended.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VideoChatEndedImpl _$$VideoChatEndedImplFromJson(Map<String, dynamic> json) =>
-    _$VideoChatEndedImpl(
+_VideoChatEnded _$VideoChatEndedFromJson(Map<String, dynamic> json) =>
+    _VideoChatEnded(
       duration: (json['duration'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$VideoChatEndedImplToJson(
-        _$VideoChatEndedImpl instance) =>
+Map<String, dynamic> _$VideoChatEndedToJson(_VideoChatEnded instance) =>
     <String, dynamic>{
       'duration': instance.duration,
     };

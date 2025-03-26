@@ -6,7 +6,7 @@ part 'web_app_info.g.dart';
 
 /// Describes a Web App.
 @freezed
-class WebAppInfo with _$WebAppInfo {
+abstract class WebAppInfo with _$WebAppInfo {
   /// Constructs a [WebAppInfo] object
   const factory WebAppInfo({
     /// An HTTPS URL of a Web App to be opened with additional data as specified

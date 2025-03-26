@@ -6,10 +6,8 @@ part of 'forum_topic_closed.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ForumTopicClosedImpl _$$ForumTopicClosedImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ForumTopicClosedImpl();
+_ForumTopicClosed _$ForumTopicClosedFromJson(Map<String, dynamic> json) =>
+    _ForumTopicClosed();
 
-Map<String, dynamic> _$$ForumTopicClosedImplToJson(
-        _$ForumTopicClosedImpl instance) =>
+Map<String, dynamic> _$ForumTopicClosedToJson(_ForumTopicClosed instance) =>
     <String, dynamic>{};

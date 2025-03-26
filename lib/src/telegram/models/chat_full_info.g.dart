@@ -6,8 +6,8 @@ part of 'chat_full_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatFullInfoImpl _$$ChatFullInfoImplFromJson(Map<String, dynamic> json) =>
-    _$ChatFullInfoImpl(
+_ChatFullInfo _$ChatFullInfoFromJson(Map<String, dynamic> json) =>
+    _ChatFullInfo(
       id: (json['id'] as num).toInt(),
       type: $enumDecode(_$ChatTypeEnumMap, json['type']),
       title: json['title'] as String?,
@@ -87,7 +87,7 @@ _$ChatFullInfoImpl _$$ChatFullInfoImplFromJson(Map<String, dynamic> json) =>
       canSendGift: json['can_send_gift'] as bool?,
     );
 
-Map<String, dynamic> _$$ChatFullInfoImplToJson(_$ChatFullInfoImpl instance) =>
+Map<String, dynamic> _$ChatFullInfoToJson(_ChatFullInfo instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': _$ChatTypeEnumMap[instance.type]!,

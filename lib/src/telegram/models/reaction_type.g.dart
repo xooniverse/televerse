@@ -6,16 +6,14 @@ part of 'reaction_type.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ReactionTypeEmojiImpl _$$ReactionTypeEmojiImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ReactionTypeEmojiImpl(
+ReactionTypeEmoji _$ReactionTypeEmojiFromJson(Map<String, dynamic> json) =>
+    ReactionTypeEmoji(
       type: $enumDecodeNullable(_$ReactionTypeTypeEnumMap, json['type']) ??
           ReactionTypeType.emoji,
       emoji: json['emoji'] as String,
     );
 
-Map<String, dynamic> _$$ReactionTypeEmojiImplToJson(
-        _$ReactionTypeEmojiImpl instance) =>
+Map<String, dynamic> _$ReactionTypeEmojiToJson(ReactionTypeEmoji instance) =>
     <String, dynamic>{
       'type': instance.type,
       'emoji': instance.emoji,
@@ -27,30 +25,28 @@ const _$ReactionTypeTypeEnumMap = {
   ReactionTypeType.paid: 'paid',
 };
 
-_$ReactionTypeCustomEmojiImpl _$$ReactionTypeCustomEmojiImplFromJson(
+ReactionTypeCustomEmoji _$ReactionTypeCustomEmojiFromJson(
         Map<String, dynamic> json) =>
-    _$ReactionTypeCustomEmojiImpl(
+    ReactionTypeCustomEmoji(
       type: $enumDecodeNullable(_$ReactionTypeTypeEnumMap, json['type']) ??
           ReactionTypeType.customEmoji,
       customEmojiId: json['custom_emoji_id'] as String,
     );
 
-Map<String, dynamic> _$$ReactionTypeCustomEmojiImplToJson(
-        _$ReactionTypeCustomEmojiImpl instance) =>
+Map<String, dynamic> _$ReactionTypeCustomEmojiToJson(
+        ReactionTypeCustomEmoji instance) =>
     <String, dynamic>{
       'type': instance.type,
       'custom_emoji_id': instance.customEmojiId,
     };
 
-_$ReactionTypePaidImpl _$$ReactionTypePaidImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ReactionTypePaidImpl(
+ReactionTypePaid _$ReactionTypePaidFromJson(Map<String, dynamic> json) =>
+    ReactionTypePaid(
       type: $enumDecodeNullable(_$ReactionTypeTypeEnumMap, json['type']) ??
           ReactionTypeType.paid,
     );
 
-Map<String, dynamic> _$$ReactionTypePaidImplToJson(
-        _$ReactionTypePaidImpl instance) =>
+Map<String, dynamic> _$ReactionTypePaidToJson(ReactionTypePaid instance) =>
     <String, dynamic>{
       'type': instance.type,
     };

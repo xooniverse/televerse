@@ -8,7 +8,7 @@ part 'animation.g.dart';
 /// This object represents an animation file (GIF or H.264/MPEG-4 AVC video
 /// without sound).
 @freezed
-class Animation with _$Animation {
+abstract class Animation with _$Animation {
   /// Creates a new [Animation] object.
   const factory Animation({
     /// Identifier for this file, which can be used to download or reuse the

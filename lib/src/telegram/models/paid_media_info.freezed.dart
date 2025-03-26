@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,83 +12,39 @@ part of 'paid_media_info.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-PaidMediaInfo _$PaidMediaInfoFromJson(Map<String, dynamic> json) {
-  return _PaidMediaInfo.fromJson(json);
-}
-
 /// @nodoc
 mixin _$PaidMediaInfo {
   /// The number of Telegram Stars that must be paid to buy access to the
   /// media.
   @JsonKey(name: 'star_count')
-  int get starCount => throw _privateConstructorUsedError;
+  int get starCount;
 
   /// Information about the paid media.
   @JsonKey(name: 'paid_media')
-  List<PaidMedia> get paidMedia => throw _privateConstructorUsedError;
-
-  /// Serializes this PaidMediaInfo to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<PaidMedia> get paidMedia;
 
   /// Create a copy of PaidMediaInfo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PaidMediaInfoCopyWith<PaidMediaInfo> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PaidMediaInfoCopyWith<$Res> {
-  factory $PaidMediaInfoCopyWith(
-          PaidMediaInfo value, $Res Function(PaidMediaInfo) then) =
-      _$PaidMediaInfoCopyWithImpl<$Res, PaidMediaInfo>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'star_count') int starCount,
-      @JsonKey(name: 'paid_media') List<PaidMedia> paidMedia});
-}
-
-/// @nodoc
-class _$PaidMediaInfoCopyWithImpl<$Res, $Val extends PaidMediaInfo>
-    implements $PaidMediaInfoCopyWith<$Res> {
-  _$PaidMediaInfoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of PaidMediaInfo
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $PaidMediaInfoCopyWith<PaidMediaInfo> get copyWith =>
+      _$PaidMediaInfoCopyWithImpl<PaidMediaInfo>(
+          this as PaidMediaInfo, _$identity);
+
+  /// Serializes this PaidMediaInfo to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? starCount = null,
-    Object? paidMedia = null,
-  }) {
-    return _then(_value.copyWith(
-      starCount: null == starCount
-          ? _value.starCount
-          : starCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      paidMedia: null == paidMedia
-          ? _value.paidMedia
-          : paidMedia // ignore: cast_nullable_to_non_nullable
-              as List<PaidMedia>,
-    ) as $Val);
+  String toString() {
+    return 'PaidMediaInfo(starCount: $starCount, paidMedia: $paidMedia)';
   }
 }
 
 /// @nodoc
-abstract class _$$PaidMediaInfoImplCopyWith<$Res>
-    implements $PaidMediaInfoCopyWith<$Res> {
-  factory _$$PaidMediaInfoImplCopyWith(
-          _$PaidMediaInfoImpl value, $Res Function(_$PaidMediaInfoImpl) then) =
-      __$$PaidMediaInfoImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $PaidMediaInfoCopyWith<$Res> {
+  factory $PaidMediaInfoCopyWith(
+          PaidMediaInfo value, $Res Function(PaidMediaInfo) _then) =
+      _$PaidMediaInfoCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'star_count') int starCount,
@@ -95,12 +52,12 @@ abstract class _$$PaidMediaInfoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PaidMediaInfoImplCopyWithImpl<$Res>
-    extends _$PaidMediaInfoCopyWithImpl<$Res, _$PaidMediaInfoImpl>
-    implements _$$PaidMediaInfoImplCopyWith<$Res> {
-  __$$PaidMediaInfoImplCopyWithImpl(
-      _$PaidMediaInfoImpl _value, $Res Function(_$PaidMediaInfoImpl) _then)
-      : super(_value, _then);
+class _$PaidMediaInfoCopyWithImpl<$Res>
+    implements $PaidMediaInfoCopyWith<$Res> {
+  _$PaidMediaInfoCopyWithImpl(this._self, this._then);
+
+  final PaidMediaInfo _self;
+  final $Res Function(PaidMediaInfo) _then;
 
   /// Create a copy of PaidMediaInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -110,13 +67,13 @@ class __$$PaidMediaInfoImplCopyWithImpl<$Res>
     Object? starCount = null,
     Object? paidMedia = null,
   }) {
-    return _then(_$PaidMediaInfoImpl(
+    return _then(_self.copyWith(
       starCount: null == starCount
-          ? _value.starCount
+          ? _self.starCount
           : starCount // ignore: cast_nullable_to_non_nullable
               as int,
       paidMedia: null == paidMedia
-          ? _value._paidMedia
+          ? _self.paidMedia
           : paidMedia // ignore: cast_nullable_to_non_nullable
               as List<PaidMedia>,
     ));
@@ -125,14 +82,13 @@ class __$$PaidMediaInfoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PaidMediaInfoImpl implements _PaidMediaInfo {
-  const _$PaidMediaInfoImpl(
+class _PaidMediaInfo implements PaidMediaInfo {
+  const _PaidMediaInfo(
       {@JsonKey(name: 'star_count') required this.starCount,
       @JsonKey(name: 'paid_media') required final List<PaidMedia> paidMedia})
       : _paidMedia = paidMedia;
-
-  factory _$PaidMediaInfoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PaidMediaInfoImplFromJson(json);
+  factory _PaidMediaInfo.fromJson(Map<String, dynamic> json) =>
+      _$PaidMediaInfoFromJson(json);
 
   /// The number of Telegram Stars that must be paid to buy access to the
   /// media.
@@ -152,51 +108,65 @@ class _$PaidMediaInfoImpl implements _PaidMediaInfo {
     return EqualUnmodifiableListView(_paidMedia);
   }
 
+  /// Create a copy of PaidMediaInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PaidMediaInfoCopyWith<_PaidMediaInfo> get copyWith =>
+      __$PaidMediaInfoCopyWithImpl<_PaidMediaInfo>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PaidMediaInfoToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'PaidMediaInfo(starCount: $starCount, paidMedia: $paidMedia)';
   }
-
-  /// Create a copy of PaidMediaInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PaidMediaInfoImplCopyWith<_$PaidMediaInfoImpl> get copyWith =>
-      __$$PaidMediaInfoImplCopyWithImpl<_$PaidMediaInfoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PaidMediaInfoImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _PaidMediaInfo implements PaidMediaInfo {
-  const factory _PaidMediaInfo(
-      {@JsonKey(name: 'star_count') required final int starCount,
-      @JsonKey(name: 'paid_media')
-      required final List<PaidMedia> paidMedia}) = _$PaidMediaInfoImpl;
-
-  factory _PaidMediaInfo.fromJson(Map<String, dynamic> json) =
-      _$PaidMediaInfoImpl.fromJson;
-
-  /// The number of Telegram Stars that must be paid to buy access to the
-  /// media.
+/// @nodoc
+abstract mixin class _$PaidMediaInfoCopyWith<$Res>
+    implements $PaidMediaInfoCopyWith<$Res> {
+  factory _$PaidMediaInfoCopyWith(
+          _PaidMediaInfo value, $Res Function(_PaidMediaInfo) _then) =
+      __$PaidMediaInfoCopyWithImpl;
   @override
-  @JsonKey(name: 'star_count')
-  int get starCount;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'star_count') int starCount,
+      @JsonKey(name: 'paid_media') List<PaidMedia> paidMedia});
+}
 
-  /// Information about the paid media.
-  @override
-  @JsonKey(name: 'paid_media')
-  List<PaidMedia> get paidMedia;
+/// @nodoc
+class __$PaidMediaInfoCopyWithImpl<$Res>
+    implements _$PaidMediaInfoCopyWith<$Res> {
+  __$PaidMediaInfoCopyWithImpl(this._self, this._then);
+
+  final _PaidMediaInfo _self;
+  final $Res Function(_PaidMediaInfo) _then;
 
   /// Create a copy of PaidMediaInfo
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PaidMediaInfoImplCopyWith<_$PaidMediaInfoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? starCount = null,
+    Object? paidMedia = null,
+  }) {
+    return _then(_PaidMediaInfo(
+      starCount: null == starCount
+          ? _self.starCount
+          : starCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      paidMedia: null == paidMedia
+          ? _self._paidMedia
+          : paidMedia // ignore: cast_nullable_to_non_nullable
+              as List<PaidMedia>,
+    ));
+  }
 }

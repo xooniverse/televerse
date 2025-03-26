@@ -6,9 +6,9 @@ part of 'keyboard_button_request_users.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$KeyboardButtonRequestUsersImpl _$$KeyboardButtonRequestUsersImplFromJson(
+_KeyboardButtonRequestUsers _$KeyboardButtonRequestUsersFromJson(
         Map<String, dynamic> json) =>
-    _$KeyboardButtonRequestUsersImpl(
+    _KeyboardButtonRequestUsers(
       requestId: (json['request_id'] as num).toInt(),
       userIsBot: json['user_is_bot'] as bool?,
       userIsPremium: json['user_is_premium'] as bool?,
@@ -18,8 +18,8 @@ _$KeyboardButtonRequestUsersImpl _$$KeyboardButtonRequestUsersImplFromJson(
       requestPhoto: json['request_photo'] as bool?,
     );
 
-Map<String, dynamic> _$$KeyboardButtonRequestUsersImplToJson(
-        _$KeyboardButtonRequestUsersImpl instance) =>
+Map<String, dynamic> _$KeyboardButtonRequestUsersToJson(
+        _KeyboardButtonRequestUsers instance) =>
     <String, dynamic>{
       'request_id': instance.requestId,
       if (instance.userIsBot case final value?) 'user_is_bot': value,

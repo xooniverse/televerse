@@ -9,7 +9,7 @@ part 'inline_query_result_game.g.dart';
 
 /// Represents a Game.
 @freezed
-class InlineQueryResultGame
+abstract class InlineQueryResultGame
     with _$InlineQueryResultGame
     implements InlineQueryResult {
   /// Constructs an [InlineQueryResultGame] object

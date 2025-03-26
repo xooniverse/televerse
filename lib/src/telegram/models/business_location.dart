@@ -7,7 +7,7 @@ part 'business_location.g.dart';
 
 /// Represents the location of a business.
 @freezed
-class BusinessLocation with _$BusinessLocation {
+abstract class BusinessLocation with _$BusinessLocation {
   /// Creates a [BusinessLocation] object.
   const factory BusinessLocation({
     /// Address of the business.

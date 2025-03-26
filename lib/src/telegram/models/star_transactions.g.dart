@@ -6,16 +6,14 @@ part of 'star_transactions.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$StarTransactionsImpl _$$StarTransactionsImplFromJson(
-        Map<String, dynamic> json) =>
-    _$StarTransactionsImpl(
+_StarTransactions _$StarTransactionsFromJson(Map<String, dynamic> json) =>
+    _StarTransactions(
       transactions: (json['transactions'] as List<dynamic>)
           .map((e) => StarTransaction.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$StarTransactionsImplToJson(
-        _$StarTransactionsImpl instance) =>
+Map<String, dynamic> _$StarTransactionsToJson(_StarTransactions instance) =>
     <String, dynamic>{
       'transactions': instance.transactions,
     };

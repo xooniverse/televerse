@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,106 +12,49 @@ part of 'text_quote.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-TextQuote _$TextQuoteFromJson(Map<String, dynamic> json) {
-  return _TextQuote.fromJson(json);
-}
-
 /// @nodoc
 mixin _$TextQuote {
   /// Text of the quoted part of a message that is replied to by the given
   /// message.
   @JsonKey(name: 'text')
-  String get text => throw _privateConstructorUsedError;
+  String get text;
 
   /// Special entities that appear in the quote. Currently, only bold, italic,
   /// underline, strikethrough, spoiler, and custom_emoji entities are kept in
   /// quotes.
   @JsonKey(name: 'entities')
-  List<MessageEntity>? get entities => throw _privateConstructorUsedError;
+  List<MessageEntity>? get entities;
 
   /// Approximate quote position in the original message in UTF-16 code units
   /// as specified by the sender.
   @JsonKey(name: 'position')
-  int get position => throw _privateConstructorUsedError;
+  int get position;
 
   /// True, if the quote was chosen manually by the message sender. Otherwise,
   /// the quote was added automatically by the server.
   @JsonKey(name: 'is_manual')
-  bool? get isManual => throw _privateConstructorUsedError;
-
-  /// Serializes this TextQuote to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  bool? get isManual;
 
   /// Create a copy of TextQuote
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $TextQuoteCopyWith<TextQuote> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TextQuoteCopyWith<$Res> {
-  factory $TextQuoteCopyWith(TextQuote value, $Res Function(TextQuote) then) =
-      _$TextQuoteCopyWithImpl<$Res, TextQuote>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'entities') List<MessageEntity>? entities,
-      @JsonKey(name: 'position') int position,
-      @JsonKey(name: 'is_manual') bool? isManual});
-}
-
-/// @nodoc
-class _$TextQuoteCopyWithImpl<$Res, $Val extends TextQuote>
-    implements $TextQuoteCopyWith<$Res> {
-  _$TextQuoteCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of TextQuote
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $TextQuoteCopyWith<TextQuote> get copyWith =>
+      _$TextQuoteCopyWithImpl<TextQuote>(this as TextQuote, _$identity);
+
+  /// Serializes this TextQuote to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? text = null,
-    Object? entities = freezed,
-    Object? position = null,
-    Object? isManual = freezed,
-  }) {
-    return _then(_value.copyWith(
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      entities: freezed == entities
-          ? _value.entities
-          : entities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      position: null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as int,
-      isManual: freezed == isManual
-          ? _value.isManual
-          : isManual // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ) as $Val);
+  String toString() {
+    return 'TextQuote(text: $text, entities: $entities, position: $position, isManual: $isManual)';
   }
 }
 
 /// @nodoc
-abstract class _$$TextQuoteImplCopyWith<$Res>
-    implements $TextQuoteCopyWith<$Res> {
-  factory _$$TextQuoteImplCopyWith(
-          _$TextQuoteImpl value, $Res Function(_$TextQuoteImpl) then) =
-      __$$TextQuoteImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $TextQuoteCopyWith<$Res> {
+  factory $TextQuoteCopyWith(TextQuote value, $Res Function(TextQuote) _then) =
+      _$TextQuoteCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'text') String text,
@@ -120,12 +64,11 @@ abstract class _$$TextQuoteImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TextQuoteImplCopyWithImpl<$Res>
-    extends _$TextQuoteCopyWithImpl<$Res, _$TextQuoteImpl>
-    implements _$$TextQuoteImplCopyWith<$Res> {
-  __$$TextQuoteImplCopyWithImpl(
-      _$TextQuoteImpl _value, $Res Function(_$TextQuoteImpl) _then)
-      : super(_value, _then);
+class _$TextQuoteCopyWithImpl<$Res> implements $TextQuoteCopyWith<$Res> {
+  _$TextQuoteCopyWithImpl(this._self, this._then);
+
+  final TextQuote _self;
+  final $Res Function(TextQuote) _then;
 
   /// Create a copy of TextQuote
   /// with the given fields replaced by the non-null parameter values.
@@ -137,21 +80,21 @@ class __$$TextQuoteImplCopyWithImpl<$Res>
     Object? position = null,
     Object? isManual = freezed,
   }) {
-    return _then(_$TextQuoteImpl(
+    return _then(_self.copyWith(
       text: null == text
-          ? _value.text
+          ? _self.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
       entities: freezed == entities
-          ? _value._entities
+          ? _self.entities
           : entities // ignore: cast_nullable_to_non_nullable
               as List<MessageEntity>?,
       position: null == position
-          ? _value.position
+          ? _self.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
       isManual: freezed == isManual
-          ? _value.isManual
+          ? _self.isManual
           : isManual // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
@@ -160,16 +103,15 @@ class __$$TextQuoteImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TextQuoteImpl implements _TextQuote {
-  const _$TextQuoteImpl(
+class _TextQuote implements TextQuote {
+  const _TextQuote(
       {@JsonKey(name: 'text') required this.text,
       @JsonKey(name: 'entities') final List<MessageEntity>? entities,
       @JsonKey(name: 'position') required this.position,
       @JsonKey(name: 'is_manual') this.isManual})
       : _entities = entities;
-
-  factory _$TextQuoteImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TextQuoteImplFromJson(json);
+  factory _TextQuote.fromJson(Map<String, dynamic> json) =>
+      _$TextQuoteFromJson(json);
 
   /// Text of the quoted part of a message that is replied to by the given
   /// message.
@@ -207,66 +149,76 @@ class _$TextQuoteImpl implements _TextQuote {
   @JsonKey(name: 'is_manual')
   final bool? isManual;
 
+  /// Create a copy of TextQuote
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TextQuoteCopyWith<_TextQuote> get copyWith =>
+      __$TextQuoteCopyWithImpl<_TextQuote>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TextQuoteToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'TextQuote(text: $text, entities: $entities, position: $position, isManual: $isManual)';
   }
-
-  /// Create a copy of TextQuote
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TextQuoteImplCopyWith<_$TextQuoteImpl> get copyWith =>
-      __$$TextQuoteImplCopyWithImpl<_$TextQuoteImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TextQuoteImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _TextQuote implements TextQuote {
-  const factory _TextQuote(
-      {@JsonKey(name: 'text') required final String text,
-      @JsonKey(name: 'entities') final List<MessageEntity>? entities,
-      @JsonKey(name: 'position') required final int position,
-      @JsonKey(name: 'is_manual') final bool? isManual}) = _$TextQuoteImpl;
-
-  factory _TextQuote.fromJson(Map<String, dynamic> json) =
-      _$TextQuoteImpl.fromJson;
-
-  /// Text of the quoted part of a message that is replied to by the given
-  /// message.
+/// @nodoc
+abstract mixin class _$TextQuoteCopyWith<$Res>
+    implements $TextQuoteCopyWith<$Res> {
+  factory _$TextQuoteCopyWith(
+          _TextQuote value, $Res Function(_TextQuote) _then) =
+      __$TextQuoteCopyWithImpl;
   @override
-  @JsonKey(name: 'text')
-  String get text;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'text') String text,
+      @JsonKey(name: 'entities') List<MessageEntity>? entities,
+      @JsonKey(name: 'position') int position,
+      @JsonKey(name: 'is_manual') bool? isManual});
+}
 
-  /// Special entities that appear in the quote. Currently, only bold, italic,
-  /// underline, strikethrough, spoiler, and custom_emoji entities are kept in
-  /// quotes.
-  @override
-  @JsonKey(name: 'entities')
-  List<MessageEntity>? get entities;
+/// @nodoc
+class __$TextQuoteCopyWithImpl<$Res> implements _$TextQuoteCopyWith<$Res> {
+  __$TextQuoteCopyWithImpl(this._self, this._then);
 
-  /// Approximate quote position in the original message in UTF-16 code units
-  /// as specified by the sender.
-  @override
-  @JsonKey(name: 'position')
-  int get position;
-
-  /// True, if the quote was chosen manually by the message sender. Otherwise,
-  /// the quote was added automatically by the server.
-  @override
-  @JsonKey(name: 'is_manual')
-  bool? get isManual;
+  final _TextQuote _self;
+  final $Res Function(_TextQuote) _then;
 
   /// Create a copy of TextQuote
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TextQuoteImplCopyWith<_$TextQuoteImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? text = null,
+    Object? entities = freezed,
+    Object? position = null,
+    Object? isManual = freezed,
+  }) {
+    return _then(_TextQuote(
+      text: null == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      entities: freezed == entities
+          ? _self._entities
+          : entities // ignore: cast_nullable_to_non_nullable
+              as List<MessageEntity>?,
+      position: null == position
+          ? _self.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as int,
+      isManual: freezed == isManual
+          ? _self.isManual
+          : isManual // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
 }

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,10 +11,6 @@ part of 'menu_button.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 MenuButton _$MenuButtonFromJson(Map<String, dynamic> json) {
   switch (json['type']) {
     case 'default':
@@ -33,94 +30,39 @@ MenuButton _$MenuButtonFromJson(Map<String, dynamic> json) {
 mixin _$MenuButton {
   /// Type of the menu button
   @JsonKey(name: 'type')
-  MenuButtonType get type => throw _privateConstructorUsedError;
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(MenuButtonDefault value) $default, {
-    required TResult Function(MenuButtonWebApp value) webApp,
-    required TResult Function(MenuButtonCommands value) commands,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(MenuButtonDefault value)? $default, {
-    TResult? Function(MenuButtonWebApp value)? webApp,
-    TResult? Function(MenuButtonCommands value)? commands,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(MenuButtonDefault value)? $default, {
-    TResult Function(MenuButtonWebApp value)? webApp,
-    TResult Function(MenuButtonCommands value)? commands,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this MenuButton to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  MenuButtonType get type;
 
   /// Create a copy of MenuButton
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $MenuButtonCopyWith<MenuButton> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MenuButtonCopyWith<$Res> {
-  factory $MenuButtonCopyWith(
-          MenuButton value, $Res Function(MenuButton) then) =
-      _$MenuButtonCopyWithImpl<$Res, MenuButton>;
-  @useResult
-  $Res call({@JsonKey(name: 'type') MenuButtonType type});
-}
-
-/// @nodoc
-class _$MenuButtonCopyWithImpl<$Res, $Val extends MenuButton>
-    implements $MenuButtonCopyWith<$Res> {
-  _$MenuButtonCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of MenuButton
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $MenuButtonCopyWith<MenuButton> get copyWith =>
+      _$MenuButtonCopyWithImpl<MenuButton>(this as MenuButton, _$identity);
+
+  /// Serializes this MenuButton to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MenuButtonType,
-    ) as $Val);
+  String toString() {
+    return 'MenuButton(type: $type)';
   }
 }
 
 /// @nodoc
-abstract class _$$MenuButtonDefaultImplCopyWith<$Res>
-    implements $MenuButtonCopyWith<$Res> {
-  factory _$$MenuButtonDefaultImplCopyWith(_$MenuButtonDefaultImpl value,
-          $Res Function(_$MenuButtonDefaultImpl) then) =
-      __$$MenuButtonDefaultImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $MenuButtonCopyWith<$Res> {
+  factory $MenuButtonCopyWith(
+          MenuButton value, $Res Function(MenuButton) _then) =
+      _$MenuButtonCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'type') MenuButtonType type});
 }
 
 /// @nodoc
-class __$$MenuButtonDefaultImplCopyWithImpl<$Res>
-    extends _$MenuButtonCopyWithImpl<$Res, _$MenuButtonDefaultImpl>
-    implements _$$MenuButtonDefaultImplCopyWith<$Res> {
-  __$$MenuButtonDefaultImplCopyWithImpl(_$MenuButtonDefaultImpl _value,
-      $Res Function(_$MenuButtonDefaultImpl) _then)
-      : super(_value, _then);
+class _$MenuButtonCopyWithImpl<$Res> implements $MenuButtonCopyWith<$Res> {
+  _$MenuButtonCopyWithImpl(this._self, this._then);
+
+  final MenuButton _self;
+  final $Res Function(MenuButton) _then;
 
   /// Create a copy of MenuButton
   /// with the given fields replaced by the non-null parameter values.
@@ -129,9 +71,9 @@ class __$$MenuButtonDefaultImplCopyWithImpl<$Res>
   $Res call({
     Object? type = null,
   }) {
-    return _then(_$MenuButtonDefaultImpl(
+    return _then(_self.copyWith(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as MenuButtonType,
     ));
@@ -140,101 +82,129 @@ class __$$MenuButtonDefaultImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$MenuButtonDefaultImpl implements MenuButtonDefault {
-  const _$MenuButtonDefaultImpl(
+class MenuButtonDefault implements MenuButton {
+  const MenuButtonDefault(
       {@JsonKey(name: 'type') this.type = MenuButtonType.defaultButton});
-
-  factory _$MenuButtonDefaultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MenuButtonDefaultImplFromJson(json);
+  factory MenuButtonDefault.fromJson(Map<String, dynamic> json) =>
+      _$MenuButtonDefaultFromJson(json);
 
   /// Type of the menu button
   @override
   @JsonKey(name: 'type')
   final MenuButtonType type;
 
+  /// Create a copy of MenuButton
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $MenuButtonDefaultCopyWith<MenuButtonDefault> get copyWith =>
+      _$MenuButtonDefaultCopyWithImpl<MenuButtonDefault>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MenuButtonDefaultToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'MenuButton(type: $type)';
   }
+}
+
+/// @nodoc
+abstract mixin class $MenuButtonDefaultCopyWith<$Res>
+    implements $MenuButtonCopyWith<$Res> {
+  factory $MenuButtonDefaultCopyWith(
+          MenuButtonDefault value, $Res Function(MenuButtonDefault) _then) =
+      _$MenuButtonDefaultCopyWithImpl;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'type') MenuButtonType type});
+}
+
+/// @nodoc
+class _$MenuButtonDefaultCopyWithImpl<$Res>
+    implements $MenuButtonDefaultCopyWith<$Res> {
+  _$MenuButtonDefaultCopyWithImpl(this._self, this._then);
+
+  final MenuButtonDefault _self;
+  final $Res Function(MenuButtonDefault) _then;
 
   /// Create a copy of MenuButton
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$MenuButtonDefaultImplCopyWith<_$MenuButtonDefaultImpl> get copyWith =>
-      __$$MenuButtonDefaultImplCopyWithImpl<_$MenuButtonDefaultImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(MenuButtonDefault value) $default, {
-    required TResult Function(MenuButtonWebApp value) webApp,
-    required TResult Function(MenuButtonCommands value) commands,
+  $Res call({
+    Object? type = null,
   }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(MenuButtonDefault value)? $default, {
-    TResult? Function(MenuButtonWebApp value)? webApp,
-    TResult? Function(MenuButtonCommands value)? commands,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(MenuButtonDefault value)? $default, {
-    TResult Function(MenuButtonWebApp value)? webApp,
-    TResult Function(MenuButtonCommands value)? commands,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MenuButtonDefaultImplToJson(
-      this,
-    );
+    return _then(MenuButtonDefault(
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as MenuButtonType,
+    ));
   }
 }
 
-abstract class MenuButtonDefault implements MenuButton {
-  const factory MenuButtonDefault(
-          {@JsonKey(name: 'type') final MenuButtonType type}) =
-      _$MenuButtonDefaultImpl;
-
-  factory MenuButtonDefault.fromJson(Map<String, dynamic> json) =
-      _$MenuButtonDefaultImpl.fromJson;
+/// @nodoc
+@JsonSerializable()
+class MenuButtonWebApp implements MenuButton {
+  const MenuButtonWebApp(
+      {@JsonKey(name: 'type') this.type = MenuButtonType.webApp,
+      @JsonKey(name: 'text') required this.text,
+      @JsonKey(name: 'web_app') required this.webApp});
+  factory MenuButtonWebApp.fromJson(Map<String, dynamic> json) =>
+      _$MenuButtonWebAppFromJson(json);
 
   /// Type of the menu button
   @override
   @JsonKey(name: 'type')
-  MenuButtonType get type;
+  final MenuButtonType type;
+
+  /// Text on the button
+  @JsonKey(name: 'text')
+  final String text;
+
+  /// Description of the Web App that will be launched when the user presses
+  /// the button. The Web App will be able to send an arbitrary message on
+  /// behalf of the user using the method answerWebAppQuery.
+  ///
+  /// Alternatively, a t.me link to a Web App of the bot can be specified in
+  /// the object instead of the Web App's URL, in which case the Web App will
+  /// be opened as if the user pressed the link.
+  @JsonKey(name: 'web_app')
+  final WebAppInfo webApp;
 
   /// Create a copy of MenuButton
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MenuButtonDefaultImplCopyWith<_$MenuButtonDefaultImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $MenuButtonWebAppCopyWith<MenuButtonWebApp> get copyWith =>
+      _$MenuButtonWebAppCopyWithImpl<MenuButtonWebApp>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MenuButtonWebAppToJson(
+      this,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'MenuButton.webApp(type: $type, text: $text, webApp: $webApp)';
+  }
 }
 
 /// @nodoc
-abstract class _$$MenuButtonWebAppImplCopyWith<$Res>
+abstract mixin class $MenuButtonWebAppCopyWith<$Res>
     implements $MenuButtonCopyWith<$Res> {
-  factory _$$MenuButtonWebAppImplCopyWith(_$MenuButtonWebAppImpl value,
-          $Res Function(_$MenuButtonWebAppImpl) then) =
-      __$$MenuButtonWebAppImplCopyWithImpl<$Res>;
+  factory $MenuButtonWebAppCopyWith(
+          MenuButtonWebApp value, $Res Function(MenuButtonWebApp) _then) =
+      _$MenuButtonWebAppCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -246,33 +216,33 @@ abstract class _$$MenuButtonWebAppImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$MenuButtonWebAppImplCopyWithImpl<$Res>
-    extends _$MenuButtonCopyWithImpl<$Res, _$MenuButtonWebAppImpl>
-    implements _$$MenuButtonWebAppImplCopyWith<$Res> {
-  __$$MenuButtonWebAppImplCopyWithImpl(_$MenuButtonWebAppImpl _value,
-      $Res Function(_$MenuButtonWebAppImpl) _then)
-      : super(_value, _then);
+class _$MenuButtonWebAppCopyWithImpl<$Res>
+    implements $MenuButtonWebAppCopyWith<$Res> {
+  _$MenuButtonWebAppCopyWithImpl(this._self, this._then);
+
+  final MenuButtonWebApp _self;
+  final $Res Function(MenuButtonWebApp) _then;
 
   /// Create a copy of MenuButton
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
     Object? text = null,
     Object? webApp = null,
   }) {
-    return _then(_$MenuButtonWebAppImpl(
+    return _then(MenuButtonWebApp(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as MenuButtonType,
       text: null == text
-          ? _value.text
+          ? _self.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
       webApp: null == webApp
-          ? _value.webApp
+          ? _self.webApp
           : webApp // ignore: cast_nullable_to_non_nullable
               as WebAppInfo,
     ));
@@ -283,259 +253,77 @@ class __$$MenuButtonWebAppImplCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $WebAppInfoCopyWith<$Res> get webApp {
-    return $WebAppInfoCopyWith<$Res>(_value.webApp, (value) {
-      return _then(_value.copyWith(webApp: value));
+    return $WebAppInfoCopyWith<$Res>(_self.webApp, (value) {
+      return _then(_self.copyWith(webApp: value));
     });
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$MenuButtonWebAppImpl implements MenuButtonWebApp {
-  const _$MenuButtonWebAppImpl(
-      {@JsonKey(name: 'type') this.type = MenuButtonType.webApp,
-      @JsonKey(name: 'text') required this.text,
-      @JsonKey(name: 'web_app') required this.webApp});
-
-  factory _$MenuButtonWebAppImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MenuButtonWebAppImplFromJson(json);
+class MenuButtonCommands implements MenuButton {
+  const MenuButtonCommands(
+      {@JsonKey(name: 'type') this.type = MenuButtonType.commands});
+  factory MenuButtonCommands.fromJson(Map<String, dynamic> json) =>
+      _$MenuButtonCommandsFromJson(json);
 
   /// Type of the menu button
   @override
   @JsonKey(name: 'type')
   final MenuButtonType type;
 
-  /// Text on the button
-  @override
-  @JsonKey(name: 'text')
-  final String text;
-
-  /// Description of the Web App that will be launched when the user presses
-  /// the button. The Web App will be able to send an arbitrary message on
-  /// behalf of the user using the method answerWebAppQuery.
-  ///
-  /// Alternatively, a t.me link to a Web App of the bot can be specified in
-  /// the object instead of the Web App's URL, in which case the Web App will
-  /// be opened as if the user pressed the link.
-  @override
-  @JsonKey(name: 'web_app')
-  final WebAppInfo webApp;
-
-  @override
-  String toString() {
-    return 'MenuButton.webApp(type: $type, text: $text, webApp: $webApp)';
-  }
-
   /// Create a copy of MenuButton
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$MenuButtonWebAppImplCopyWith<_$MenuButtonWebAppImpl> get copyWith =>
-      __$$MenuButtonWebAppImplCopyWithImpl<_$MenuButtonWebAppImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(MenuButtonDefault value) $default, {
-    required TResult Function(MenuButtonWebApp value) webApp,
-    required TResult Function(MenuButtonCommands value) commands,
-  }) {
-    return webApp(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(MenuButtonDefault value)? $default, {
-    TResult? Function(MenuButtonWebApp value)? webApp,
-    TResult? Function(MenuButtonCommands value)? commands,
-  }) {
-    return webApp?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(MenuButtonDefault value)? $default, {
-    TResult Function(MenuButtonWebApp value)? webApp,
-    TResult Function(MenuButtonCommands value)? commands,
-    required TResult orElse(),
-  }) {
-    if (webApp != null) {
-      return webApp(this);
-    }
-    return orElse();
-  }
+  $MenuButtonCommandsCopyWith<MenuButtonCommands> get copyWith =>
+      _$MenuButtonCommandsCopyWithImpl<MenuButtonCommands>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MenuButtonWebAppImplToJson(
+    return _$MenuButtonCommandsToJson(
       this,
     );
   }
-}
 
-abstract class MenuButtonWebApp implements MenuButton {
-  const factory MenuButtonWebApp(
-          {@JsonKey(name: 'type') final MenuButtonType type,
-          @JsonKey(name: 'text') required final String text,
-          @JsonKey(name: 'web_app') required final WebAppInfo webApp}) =
-      _$MenuButtonWebAppImpl;
-
-  factory MenuButtonWebApp.fromJson(Map<String, dynamic> json) =
-      _$MenuButtonWebAppImpl.fromJson;
-
-  /// Type of the menu button
   @override
-  @JsonKey(name: 'type')
-  MenuButtonType get type;
-
-  /// Text on the button
-  @JsonKey(name: 'text')
-  String get text;
-
-  /// Description of the Web App that will be launched when the user presses
-  /// the button. The Web App will be able to send an arbitrary message on
-  /// behalf of the user using the method answerWebAppQuery.
-  ///
-  /// Alternatively, a t.me link to a Web App of the bot can be specified in
-  /// the object instead of the Web App's URL, in which case the Web App will
-  /// be opened as if the user pressed the link.
-  @JsonKey(name: 'web_app')
-  WebAppInfo get webApp;
-
-  /// Create a copy of MenuButton
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MenuButtonWebAppImplCopyWith<_$MenuButtonWebAppImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  String toString() {
+    return 'MenuButton.commands(type: $type)';
+  }
 }
 
 /// @nodoc
-abstract class _$$MenuButtonCommandsImplCopyWith<$Res>
+abstract mixin class $MenuButtonCommandsCopyWith<$Res>
     implements $MenuButtonCopyWith<$Res> {
-  factory _$$MenuButtonCommandsImplCopyWith(_$MenuButtonCommandsImpl value,
-          $Res Function(_$MenuButtonCommandsImpl) then) =
-      __$$MenuButtonCommandsImplCopyWithImpl<$Res>;
+  factory $MenuButtonCommandsCopyWith(
+          MenuButtonCommands value, $Res Function(MenuButtonCommands) _then) =
+      _$MenuButtonCommandsCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') MenuButtonType type});
 }
 
 /// @nodoc
-class __$$MenuButtonCommandsImplCopyWithImpl<$Res>
-    extends _$MenuButtonCopyWithImpl<$Res, _$MenuButtonCommandsImpl>
-    implements _$$MenuButtonCommandsImplCopyWith<$Res> {
-  __$$MenuButtonCommandsImplCopyWithImpl(_$MenuButtonCommandsImpl _value,
-      $Res Function(_$MenuButtonCommandsImpl) _then)
-      : super(_value, _then);
+class _$MenuButtonCommandsCopyWithImpl<$Res>
+    implements $MenuButtonCommandsCopyWith<$Res> {
+  _$MenuButtonCommandsCopyWithImpl(this._self, this._then);
+
+  final MenuButtonCommands _self;
+  final $Res Function(MenuButtonCommands) _then;
 
   /// Create a copy of MenuButton
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
   }) {
-    return _then(_$MenuButtonCommandsImpl(
+    return _then(MenuButtonCommands(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as MenuButtonType,
     ));
   }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$MenuButtonCommandsImpl implements MenuButtonCommands {
-  const _$MenuButtonCommandsImpl(
-      {@JsonKey(name: 'type') this.type = MenuButtonType.commands});
-
-  factory _$MenuButtonCommandsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MenuButtonCommandsImplFromJson(json);
-
-  /// Type of the menu button
-  @override
-  @JsonKey(name: 'type')
-  final MenuButtonType type;
-
-  @override
-  String toString() {
-    return 'MenuButton.commands(type: $type)';
-  }
-
-  /// Create a copy of MenuButton
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MenuButtonCommandsImplCopyWith<_$MenuButtonCommandsImpl> get copyWith =>
-      __$$MenuButtonCommandsImplCopyWithImpl<_$MenuButtonCommandsImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(MenuButtonDefault value) $default, {
-    required TResult Function(MenuButtonWebApp value) webApp,
-    required TResult Function(MenuButtonCommands value) commands,
-  }) {
-    return commands(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(MenuButtonDefault value)? $default, {
-    TResult? Function(MenuButtonWebApp value)? webApp,
-    TResult? Function(MenuButtonCommands value)? commands,
-  }) {
-    return commands?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(MenuButtonDefault value)? $default, {
-    TResult Function(MenuButtonWebApp value)? webApp,
-    TResult Function(MenuButtonCommands value)? commands,
-    required TResult orElse(),
-  }) {
-    if (commands != null) {
-      return commands(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MenuButtonCommandsImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class MenuButtonCommands implements MenuButton {
-  const factory MenuButtonCommands(
-          {@JsonKey(name: 'type') final MenuButtonType type}) =
-      _$MenuButtonCommandsImpl;
-
-  factory MenuButtonCommands.fromJson(Map<String, dynamic> json) =
-      _$MenuButtonCommandsImpl.fromJson;
-
-  /// Type of the menu button
-  @override
-  @JsonKey(name: 'type')
-  MenuButtonType get type;
-
-  /// Create a copy of MenuButton
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MenuButtonCommandsImplCopyWith<_$MenuButtonCommandsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }

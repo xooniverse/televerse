@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,10 +11,6 @@ part of 'reaction_type.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 ReactionType _$ReactionTypeFromJson(Map<String, dynamic> json) {
   switch (json['type']) {
     case 'emoji':
@@ -32,59 +29,41 @@ ReactionType _$ReactionTypeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ReactionType {
   /// Type of the reaction, must be "emoji"
-  ReactionTypeType get type => throw _privateConstructorUsedError;
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ReactionTypeEmoji value) emoji,
-    required TResult Function(ReactionTypeCustomEmoji value) customEmoji,
-    required TResult Function(ReactionTypePaid value) paid,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ReactionTypeEmoji value)? emoji,
-    TResult? Function(ReactionTypeCustomEmoji value)? customEmoji,
-    TResult? Function(ReactionTypePaid value)? paid,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ReactionTypeEmoji value)? emoji,
-    TResult Function(ReactionTypeCustomEmoji value)? customEmoji,
-    TResult Function(ReactionTypePaid value)? paid,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this ReactionType to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(name: 'type')
+  ReactionTypeType get type;
 
   /// Create a copy of ReactionType
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ReactionTypeCopyWith<ReactionType> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ReactionTypeCopyWithImpl<ReactionType>(
+          this as ReactionType, _$identity);
+
+  /// Serializes this ReactionType to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'ReactionType(type: $type)';
+  }
 }
 
 /// @nodoc
-abstract class $ReactionTypeCopyWith<$Res> {
+abstract mixin class $ReactionTypeCopyWith<$Res> {
   factory $ReactionTypeCopyWith(
-          ReactionType value, $Res Function(ReactionType) then) =
-      _$ReactionTypeCopyWithImpl<$Res, ReactionType>;
+          ReactionType value, $Res Function(ReactionType) _then) =
+      _$ReactionTypeCopyWithImpl;
   @useResult
   $Res call({ReactionTypeType type});
 }
 
 /// @nodoc
-class _$ReactionTypeCopyWithImpl<$Res, $Val extends ReactionType>
-    implements $ReactionTypeCopyWith<$Res> {
-  _$ReactionTypeCopyWithImpl(this._value, this._then);
+class _$ReactionTypeCopyWithImpl<$Res> implements $ReactionTypeCopyWith<$Res> {
+  _$ReactionTypeCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ReactionType _self;
+  final $Res Function(ReactionType) _then;
 
   /// Create a copy of ReactionType
   /// with the given fields replaced by the non-null parameter values.
@@ -93,66 +72,25 @@ class _$ReactionTypeCopyWithImpl<$Res, $Val extends ReactionType>
   $Res call({
     Object? type = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as ReactionTypeType,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ReactionTypeEmojiImplCopyWith<$Res>
-    implements $ReactionTypeCopyWith<$Res> {
-  factory _$$ReactionTypeEmojiImplCopyWith(_$ReactionTypeEmojiImpl value,
-          $Res Function(_$ReactionTypeEmojiImpl) then) =
-      __$$ReactionTypeEmojiImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({ReactionTypeType type, @JsonKey(name: 'emoji') String emoji});
-}
-
-/// @nodoc
-class __$$ReactionTypeEmojiImplCopyWithImpl<$Res>
-    extends _$ReactionTypeCopyWithImpl<$Res, _$ReactionTypeEmojiImpl>
-    implements _$$ReactionTypeEmojiImplCopyWith<$Res> {
-  __$$ReactionTypeEmojiImplCopyWithImpl(_$ReactionTypeEmojiImpl _value,
-      $Res Function(_$ReactionTypeEmojiImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ReactionType
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-    Object? emoji = null,
-  }) {
-    return _then(_$ReactionTypeEmojiImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ReactionTypeType,
-      emoji: null == emoji
-          ? _value.emoji
-          : emoji // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ReactionTypeEmojiImpl implements ReactionTypeEmoji {
-  const _$ReactionTypeEmojiImpl(
+class ReactionTypeEmoji implements ReactionType {
+  const ReactionTypeEmoji(
       {this.type = ReactionTypeType.emoji,
       @JsonKey(name: 'emoji') required this.emoji})
       : assert(type == ReactionTypeType.emoji,
             'type must be ReactionTypeType.emoji');
-
-  factory _$ReactionTypeEmojiImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ReactionTypeEmojiImplFromJson(json);
+  factory ReactionTypeEmoji.fromJson(Map<String, dynamic> json) =>
+      _$ReactionTypeEmojiFromJson(json);
 
   /// Type of the reaction, must be "emoji"
   @override
@@ -168,106 +106,118 @@ class _$ReactionTypeEmojiImpl implements ReactionTypeEmoji {
   /// "👻", "👨‍💻", "👀", "🎃", "🙈", "😇", "😨", "🤝", "✍", "🤗", "🫡",
   /// "🎅", "🎄", "☃", "💅", "🤪", "🗿", "🆒", "💘", "🙉", "🦄", "😘", "💊",
   /// "🙊", "😎", "👾", "🤷‍♂", "🤷", "🤷‍♀", "😡"
-  @override
   @JsonKey(name: 'emoji')
   final String emoji;
+
+  /// Create a copy of ReactionType
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ReactionTypeEmojiCopyWith<ReactionTypeEmoji> get copyWith =>
+      _$ReactionTypeEmojiCopyWithImpl<ReactionTypeEmoji>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ReactionTypeEmojiToJson(
+      this,
+    );
+  }
 
   @override
   String toString() {
     return 'ReactionType.emoji(type: $type, emoji: $emoji)';
   }
-
-  /// Create a copy of ReactionType
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ReactionTypeEmojiImplCopyWith<_$ReactionTypeEmojiImpl> get copyWith =>
-      __$$ReactionTypeEmojiImplCopyWithImpl<_$ReactionTypeEmojiImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ReactionTypeEmoji value) emoji,
-    required TResult Function(ReactionTypeCustomEmoji value) customEmoji,
-    required TResult Function(ReactionTypePaid value) paid,
-  }) {
-    return emoji(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ReactionTypeEmoji value)? emoji,
-    TResult? Function(ReactionTypeCustomEmoji value)? customEmoji,
-    TResult? Function(ReactionTypePaid value)? paid,
-  }) {
-    return emoji?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ReactionTypeEmoji value)? emoji,
-    TResult Function(ReactionTypeCustomEmoji value)? customEmoji,
-    TResult Function(ReactionTypePaid value)? paid,
-    required TResult orElse(),
-  }) {
-    if (emoji != null) {
-      return emoji(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ReactionTypeEmojiImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class ReactionTypeEmoji implements ReactionType {
-  const factory ReactionTypeEmoji(
-          {final ReactionTypeType type,
-          @JsonKey(name: 'emoji') required final String emoji}) =
-      _$ReactionTypeEmojiImpl;
-
-  factory ReactionTypeEmoji.fromJson(Map<String, dynamic> json) =
-      _$ReactionTypeEmojiImpl.fromJson;
-
-  /// Type of the reaction, must be "emoji"
-  @override
-  ReactionTypeType get type;
-
-  /// The reaction emoji.
-  ///
-  /// Currently, it can be one of: "👍", "👎", "❤", "🔥", "🥰", "👏", "😁",
-  /// "🤔", "🤯", "😱", "🤬", "😢", "🎉", "🤩", "🤮", "💩", "🙏", "👌", "🕊",
-  /// "🤡", "🥱", "🥴", "😍", "🐳", "❤‍🔥", "🌚", "🌭", "💯", "🤣", "⚡", "🍌",
-  /// "🏆", "💔", "🤨", "😐", "🍓", "🍾", "💋", "🖕", "😈", "😴", "😭", "🤓",
-  /// "👻", "👨‍💻", "👀", "🎃", "🙈", "😇", "😨", "🤝", "✍", "🤗", "🫡",
-  /// "🎅", "🎄", "☃", "💅", "🤪", "🗿", "🆒", "💘", "🙉", "🦄", "😘", "💊",
-  /// "🙊", "😎", "👾", "🤷‍♂", "🤷", "🤷‍♀", "😡"
-  @JsonKey(name: 'emoji')
-  String get emoji;
-
-  /// Create a copy of ReactionType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReactionTypeEmojiImplCopyWith<_$ReactionTypeEmojiImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ReactionTypeCustomEmojiImplCopyWith<$Res>
+abstract mixin class $ReactionTypeEmojiCopyWith<$Res>
     implements $ReactionTypeCopyWith<$Res> {
-  factory _$$ReactionTypeCustomEmojiImplCopyWith(
-          _$ReactionTypeCustomEmojiImpl value,
-          $Res Function(_$ReactionTypeCustomEmojiImpl) then) =
-      __$$ReactionTypeCustomEmojiImplCopyWithImpl<$Res>;
+  factory $ReactionTypeEmojiCopyWith(
+          ReactionTypeEmoji value, $Res Function(ReactionTypeEmoji) _then) =
+      _$ReactionTypeEmojiCopyWithImpl;
+  @override
+  @useResult
+  $Res call({ReactionTypeType type, @JsonKey(name: 'emoji') String emoji});
+}
+
+/// @nodoc
+class _$ReactionTypeEmojiCopyWithImpl<$Res>
+    implements $ReactionTypeEmojiCopyWith<$Res> {
+  _$ReactionTypeEmojiCopyWithImpl(this._self, this._then);
+
+  final ReactionTypeEmoji _self;
+  final $Res Function(ReactionTypeEmoji) _then;
+
+  /// Create a copy of ReactionType
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? type = null,
+    Object? emoji = null,
+  }) {
+    return _then(ReactionTypeEmoji(
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ReactionTypeType,
+      emoji: null == emoji
+          ? _self.emoji
+          : emoji // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class ReactionTypeCustomEmoji implements ReactionType {
+  const ReactionTypeCustomEmoji(
+      {@JsonKey(name: 'type') this.type = ReactionTypeType.customEmoji,
+      @JsonKey(name: 'custom_emoji_id') required this.customEmojiId})
+      : assert(type == ReactionTypeType.customEmoji,
+            'type must be ReactionTypeType.customEmoji');
+  factory ReactionTypeCustomEmoji.fromJson(Map<String, dynamic> json) =>
+      _$ReactionTypeCustomEmojiFromJson(json);
+
+  /// Type of the reaction, must be "custom_emoji"
+  @override
+  @JsonKey(name: 'type')
+  final ReactionTypeType type;
+
+  /// Custom emoji identifier
+  @JsonKey(name: 'custom_emoji_id')
+  final String customEmojiId;
+
+  /// Create a copy of ReactionType
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ReactionTypeCustomEmojiCopyWith<ReactionTypeCustomEmoji> get copyWith =>
+      _$ReactionTypeCustomEmojiCopyWithImpl<ReactionTypeCustomEmoji>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ReactionTypeCustomEmojiToJson(
+      this,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'ReactionType.customEmoji(type: $type, customEmojiId: $customEmojiId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ReactionTypeCustomEmojiCopyWith<$Res>
+    implements $ReactionTypeCopyWith<$Res> {
+  factory $ReactionTypeCustomEmojiCopyWith(ReactionTypeCustomEmoji value,
+          $Res Function(ReactionTypeCustomEmoji) _then) =
+      _$ReactionTypeCustomEmojiCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -276,29 +226,28 @@ abstract class _$$ReactionTypeCustomEmojiImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ReactionTypeCustomEmojiImplCopyWithImpl<$Res>
-    extends _$ReactionTypeCopyWithImpl<$Res, _$ReactionTypeCustomEmojiImpl>
-    implements _$$ReactionTypeCustomEmojiImplCopyWith<$Res> {
-  __$$ReactionTypeCustomEmojiImplCopyWithImpl(
-      _$ReactionTypeCustomEmojiImpl _value,
-      $Res Function(_$ReactionTypeCustomEmojiImpl) _then)
-      : super(_value, _then);
+class _$ReactionTypeCustomEmojiCopyWithImpl<$Res>
+    implements $ReactionTypeCustomEmojiCopyWith<$Res> {
+  _$ReactionTypeCustomEmojiCopyWithImpl(this._self, this._then);
+
+  final ReactionTypeCustomEmoji _self;
+  final $Res Function(ReactionTypeCustomEmoji) _then;
 
   /// Create a copy of ReactionType
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
     Object? customEmojiId = null,
   }) {
-    return _then(_$ReactionTypeCustomEmojiImpl(
+    return _then(ReactionTypeCustomEmoji(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as ReactionTypeType,
       customEmojiId: null == customEmojiId
-          ? _value.customEmojiId
+          ? _self.customEmojiId
           : customEmojiId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -307,232 +256,71 @@ class __$$ReactionTypeCustomEmojiImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ReactionTypeCustomEmojiImpl implements ReactionTypeCustomEmoji {
-  const _$ReactionTypeCustomEmojiImpl(
-      {@JsonKey(name: 'type') this.type = ReactionTypeType.customEmoji,
-      @JsonKey(name: 'custom_emoji_id') required this.customEmojiId})
-      : assert(type == ReactionTypeType.customEmoji,
-            'type must be ReactionTypeType.customEmoji');
+class ReactionTypePaid implements ReactionType {
+  const ReactionTypePaid(
+      {@JsonKey(name: 'type') this.type = ReactionTypeType.paid})
+      : assert(type == ReactionTypeType.paid,
+            'type must be ReactionTypeType.paid');
+  factory ReactionTypePaid.fromJson(Map<String, dynamic> json) =>
+      _$ReactionTypePaidFromJson(json);
 
-  factory _$ReactionTypeCustomEmojiImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ReactionTypeCustomEmojiImplFromJson(json);
-
-  /// Type of the reaction, must be "custom_emoji"
+  /// Type of the reaction, must be "paid"
   @override
   @JsonKey(name: 'type')
   final ReactionTypeType type;
 
-  /// Custom emoji identifier
-  @override
-  @JsonKey(name: 'custom_emoji_id')
-  final String customEmojiId;
-
-  @override
-  String toString() {
-    return 'ReactionType.customEmoji(type: $type, customEmojiId: $customEmojiId)';
-  }
-
   /// Create a copy of ReactionType
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$ReactionTypeCustomEmojiImplCopyWith<_$ReactionTypeCustomEmojiImpl>
-      get copyWith => __$$ReactionTypeCustomEmojiImplCopyWithImpl<
-          _$ReactionTypeCustomEmojiImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ReactionTypeEmoji value) emoji,
-    required TResult Function(ReactionTypeCustomEmoji value) customEmoji,
-    required TResult Function(ReactionTypePaid value) paid,
-  }) {
-    return customEmoji(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ReactionTypeEmoji value)? emoji,
-    TResult? Function(ReactionTypeCustomEmoji value)? customEmoji,
-    TResult? Function(ReactionTypePaid value)? paid,
-  }) {
-    return customEmoji?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ReactionTypeEmoji value)? emoji,
-    TResult Function(ReactionTypeCustomEmoji value)? customEmoji,
-    TResult Function(ReactionTypePaid value)? paid,
-    required TResult orElse(),
-  }) {
-    if (customEmoji != null) {
-      return customEmoji(this);
-    }
-    return orElse();
-  }
+  $ReactionTypePaidCopyWith<ReactionTypePaid> get copyWith =>
+      _$ReactionTypePaidCopyWithImpl<ReactionTypePaid>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ReactionTypeCustomEmojiImplToJson(
+    return _$ReactionTypePaidToJson(
       this,
     );
   }
-}
 
-abstract class ReactionTypeCustomEmoji implements ReactionType {
-  const factory ReactionTypeCustomEmoji(
-      {@JsonKey(name: 'type') final ReactionTypeType type,
-      @JsonKey(name: 'custom_emoji_id')
-      required final String customEmojiId}) = _$ReactionTypeCustomEmojiImpl;
-
-  factory ReactionTypeCustomEmoji.fromJson(Map<String, dynamic> json) =
-      _$ReactionTypeCustomEmojiImpl.fromJson;
-
-  /// Type of the reaction, must be "custom_emoji"
   @override
-  @JsonKey(name: 'type')
-  ReactionTypeType get type;
-
-  /// Custom emoji identifier
-  @JsonKey(name: 'custom_emoji_id')
-  String get customEmojiId;
-
-  /// Create a copy of ReactionType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReactionTypeCustomEmojiImplCopyWith<_$ReactionTypeCustomEmojiImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  String toString() {
+    return 'ReactionType.paid(type: $type)';
+  }
 }
 
 /// @nodoc
-abstract class _$$ReactionTypePaidImplCopyWith<$Res>
+abstract mixin class $ReactionTypePaidCopyWith<$Res>
     implements $ReactionTypeCopyWith<$Res> {
-  factory _$$ReactionTypePaidImplCopyWith(_$ReactionTypePaidImpl value,
-          $Res Function(_$ReactionTypePaidImpl) then) =
-      __$$ReactionTypePaidImplCopyWithImpl<$Res>;
+  factory $ReactionTypePaidCopyWith(
+          ReactionTypePaid value, $Res Function(ReactionTypePaid) _then) =
+      _$ReactionTypePaidCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') ReactionTypeType type});
 }
 
 /// @nodoc
-class __$$ReactionTypePaidImplCopyWithImpl<$Res>
-    extends _$ReactionTypeCopyWithImpl<$Res, _$ReactionTypePaidImpl>
-    implements _$$ReactionTypePaidImplCopyWith<$Res> {
-  __$$ReactionTypePaidImplCopyWithImpl(_$ReactionTypePaidImpl _value,
-      $Res Function(_$ReactionTypePaidImpl) _then)
-      : super(_value, _then);
+class _$ReactionTypePaidCopyWithImpl<$Res>
+    implements $ReactionTypePaidCopyWith<$Res> {
+  _$ReactionTypePaidCopyWithImpl(this._self, this._then);
+
+  final ReactionTypePaid _self;
+  final $Res Function(ReactionTypePaid) _then;
 
   /// Create a copy of ReactionType
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
   }) {
-    return _then(_$ReactionTypePaidImpl(
+    return _then(ReactionTypePaid(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as ReactionTypeType,
     ));
   }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ReactionTypePaidImpl implements ReactionTypePaid {
-  const _$ReactionTypePaidImpl(
-      {@JsonKey(name: 'type') this.type = ReactionTypeType.paid})
-      : assert(type == ReactionTypeType.paid,
-            'type must be ReactionTypeType.paid');
-
-  factory _$ReactionTypePaidImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ReactionTypePaidImplFromJson(json);
-
-  /// Type of the reaction, must be "paid"
-  @override
-  @JsonKey(name: 'type')
-  final ReactionTypeType type;
-
-  @override
-  String toString() {
-    return 'ReactionType.paid(type: $type)';
-  }
-
-  /// Create a copy of ReactionType
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ReactionTypePaidImplCopyWith<_$ReactionTypePaidImpl> get copyWith =>
-      __$$ReactionTypePaidImplCopyWithImpl<_$ReactionTypePaidImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ReactionTypeEmoji value) emoji,
-    required TResult Function(ReactionTypeCustomEmoji value) customEmoji,
-    required TResult Function(ReactionTypePaid value) paid,
-  }) {
-    return paid(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ReactionTypeEmoji value)? emoji,
-    TResult? Function(ReactionTypeCustomEmoji value)? customEmoji,
-    TResult? Function(ReactionTypePaid value)? paid,
-  }) {
-    return paid?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ReactionTypeEmoji value)? emoji,
-    TResult Function(ReactionTypeCustomEmoji value)? customEmoji,
-    TResult Function(ReactionTypePaid value)? paid,
-    required TResult orElse(),
-  }) {
-    if (paid != null) {
-      return paid(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ReactionTypePaidImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class ReactionTypePaid implements ReactionType {
-  const factory ReactionTypePaid(
-          {@JsonKey(name: 'type') final ReactionTypeType type}) =
-      _$ReactionTypePaidImpl;
-
-  factory ReactionTypePaid.fromJson(Map<String, dynamic> json) =
-      _$ReactionTypePaidImpl.fromJson;
-
-  /// Type of the reaction, must be "paid"
-  @override
-  @JsonKey(name: 'type')
-  ReactionTypeType get type;
-
-  /// Create a copy of ReactionType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReactionTypePaidImplCopyWith<_$ReactionTypePaidImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }

@@ -6,10 +6,8 @@ part of 'forum_topic_reopened.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ForumTopicReopenedImpl _$$ForumTopicReopenedImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ForumTopicReopenedImpl();
+_ForumTopicReopened _$ForumTopicReopenedFromJson(Map<String, dynamic> json) =>
+    _ForumTopicReopened();
 
-Map<String, dynamic> _$$ForumTopicReopenedImplToJson(
-        _$ForumTopicReopenedImpl instance) =>
+Map<String, dynamic> _$ForumTopicReopenedToJson(_ForumTopicReopened instance) =>
     <String, dynamic>{};

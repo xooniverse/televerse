@@ -6,9 +6,9 @@ part of 'chat_administrator_rights.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatAdministratorRightsImpl _$$ChatAdministratorRightsImplFromJson(
+_ChatAdministratorRights _$ChatAdministratorRightsFromJson(
         Map<String, dynamic> json) =>
-    _$ChatAdministratorRightsImpl(
+    _ChatAdministratorRights(
       isAnonymous: json['is_anonymous'] as bool,
       canManageChat: json['can_manage_chat'] as bool,
       canDeleteMessages: json['can_delete_messages'] as bool,
@@ -26,8 +26,8 @@ _$ChatAdministratorRightsImpl _$$ChatAdministratorRightsImplFromJson(
       canDeleteStories: json['can_delete_stories'] as bool?,
     );
 
-Map<String, dynamic> _$$ChatAdministratorRightsImplToJson(
-        _$ChatAdministratorRightsImpl instance) =>
+Map<String, dynamic> _$ChatAdministratorRightsToJson(
+        _ChatAdministratorRights instance) =>
     <String, dynamic>{
       'is_anonymous': instance.isAnonymous,
       'can_manage_chat': instance.canManageChat,

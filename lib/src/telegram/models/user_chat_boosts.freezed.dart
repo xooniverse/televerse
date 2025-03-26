@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,82 +12,45 @@ part of 'user_chat_boosts.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-UserChatBoosts _$UserChatBoostsFromJson(Map<String, dynamic> json) {
-  return _UserChatBoosts.fromJson(json);
-}
-
 /// @nodoc
 mixin _$UserChatBoosts {
   /// The list of boosts added to the chat by the user
   @JsonKey(name: 'boosts')
-  List<ChatBoost> get boosts => throw _privateConstructorUsedError;
-
-  /// Serializes this UserChatBoosts to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<ChatBoost> get boosts;
 
   /// Create a copy of UserChatBoosts
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserChatBoostsCopyWith<UserChatBoosts> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UserChatBoostsCopyWith<$Res> {
-  factory $UserChatBoostsCopyWith(
-          UserChatBoosts value, $Res Function(UserChatBoosts) then) =
-      _$UserChatBoostsCopyWithImpl<$Res, UserChatBoosts>;
-  @useResult
-  $Res call({@JsonKey(name: 'boosts') List<ChatBoost> boosts});
-}
-
-/// @nodoc
-class _$UserChatBoostsCopyWithImpl<$Res, $Val extends UserChatBoosts>
-    implements $UserChatBoostsCopyWith<$Res> {
-  _$UserChatBoostsCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of UserChatBoosts
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $UserChatBoostsCopyWith<UserChatBoosts> get copyWith =>
+      _$UserChatBoostsCopyWithImpl<UserChatBoosts>(
+          this as UserChatBoosts, _$identity);
+
+  /// Serializes this UserChatBoosts to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? boosts = null,
-  }) {
-    return _then(_value.copyWith(
-      boosts: null == boosts
-          ? _value.boosts
-          : boosts // ignore: cast_nullable_to_non_nullable
-              as List<ChatBoost>,
-    ) as $Val);
+  String toString() {
+    return 'UserChatBoosts(boosts: $boosts)';
   }
 }
 
 /// @nodoc
-abstract class _$$UserChatBoostsImplCopyWith<$Res>
-    implements $UserChatBoostsCopyWith<$Res> {
-  factory _$$UserChatBoostsImplCopyWith(_$UserChatBoostsImpl value,
-          $Res Function(_$UserChatBoostsImpl) then) =
-      __$$UserChatBoostsImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $UserChatBoostsCopyWith<$Res> {
+  factory $UserChatBoostsCopyWith(
+          UserChatBoosts value, $Res Function(UserChatBoosts) _then) =
+      _$UserChatBoostsCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'boosts') List<ChatBoost> boosts});
 }
 
 /// @nodoc
-class __$$UserChatBoostsImplCopyWithImpl<$Res>
-    extends _$UserChatBoostsCopyWithImpl<$Res, _$UserChatBoostsImpl>
-    implements _$$UserChatBoostsImplCopyWith<$Res> {
-  __$$UserChatBoostsImplCopyWithImpl(
-      _$UserChatBoostsImpl _value, $Res Function(_$UserChatBoostsImpl) _then)
-      : super(_value, _then);
+class _$UserChatBoostsCopyWithImpl<$Res>
+    implements $UserChatBoostsCopyWith<$Res> {
+  _$UserChatBoostsCopyWithImpl(this._self, this._then);
+
+  final UserChatBoosts _self;
+  final $Res Function(UserChatBoosts) _then;
 
   /// Create a copy of UserChatBoosts
   /// with the given fields replaced by the non-null parameter values.
@@ -95,9 +59,9 @@ class __$$UserChatBoostsImplCopyWithImpl<$Res>
   $Res call({
     Object? boosts = null,
   }) {
-    return _then(_$UserChatBoostsImpl(
+    return _then(_self.copyWith(
       boosts: null == boosts
-          ? _value._boosts
+          ? _self.boosts
           : boosts // ignore: cast_nullable_to_non_nullable
               as List<ChatBoost>,
     ));
@@ -106,13 +70,12 @@ class __$$UserChatBoostsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserChatBoostsImpl implements _UserChatBoosts {
-  const _$UserChatBoostsImpl(
+class _UserChatBoosts implements UserChatBoosts {
+  const _UserChatBoosts(
       {@JsonKey(name: 'boosts') required final List<ChatBoost> boosts})
       : _boosts = boosts;
-
-  factory _$UserChatBoostsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserChatBoostsImplFromJson(json);
+  factory _UserChatBoosts.fromJson(Map<String, dynamic> json) =>
+      _$UserChatBoostsFromJson(json);
 
   /// The list of boosts added to the chat by the user
   final List<ChatBoost> _boosts;
@@ -126,45 +89,58 @@ class _$UserChatBoostsImpl implements _UserChatBoosts {
     return EqualUnmodifiableListView(_boosts);
   }
 
+  /// Create a copy of UserChatBoosts
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UserChatBoostsCopyWith<_UserChatBoosts> get copyWith =>
+      __$UserChatBoostsCopyWithImpl<_UserChatBoosts>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$UserChatBoostsToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'UserChatBoosts(boosts: $boosts)';
   }
-
-  /// Create a copy of UserChatBoosts
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserChatBoostsImplCopyWith<_$UserChatBoostsImpl> get copyWith =>
-      __$$UserChatBoostsImplCopyWithImpl<_$UserChatBoostsImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserChatBoostsImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _UserChatBoosts implements UserChatBoosts {
-  const factory _UserChatBoosts(
-          {@JsonKey(name: 'boosts') required final List<ChatBoost> boosts}) =
-      _$UserChatBoostsImpl;
-
-  factory _UserChatBoosts.fromJson(Map<String, dynamic> json) =
-      _$UserChatBoostsImpl.fromJson;
-
-  /// The list of boosts added to the chat by the user
+/// @nodoc
+abstract mixin class _$UserChatBoostsCopyWith<$Res>
+    implements $UserChatBoostsCopyWith<$Res> {
+  factory _$UserChatBoostsCopyWith(
+          _UserChatBoosts value, $Res Function(_UserChatBoosts) _then) =
+      __$UserChatBoostsCopyWithImpl;
   @override
-  @JsonKey(name: 'boosts')
-  List<ChatBoost> get boosts;
+  @useResult
+  $Res call({@JsonKey(name: 'boosts') List<ChatBoost> boosts});
+}
+
+/// @nodoc
+class __$UserChatBoostsCopyWithImpl<$Res>
+    implements _$UserChatBoostsCopyWith<$Res> {
+  __$UserChatBoostsCopyWithImpl(this._self, this._then);
+
+  final _UserChatBoosts _self;
+  final $Res Function(_UserChatBoosts) _then;
 
   /// Create a copy of UserChatBoosts
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserChatBoostsImplCopyWith<_$UserChatBoostsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? boosts = null,
+  }) {
+    return _then(_UserChatBoosts(
+      boosts: null == boosts
+          ? _self._boosts
+          : boosts // ignore: cast_nullable_to_non_nullable
+              as List<ChatBoost>,
+    ));
+  }
 }

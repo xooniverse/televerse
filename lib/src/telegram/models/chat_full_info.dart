@@ -17,7 +17,7 @@ part 'chat_full_info.g.dart';
 
 /// This object represents a chat with full information.
 @freezed
-class ChatFullInfo with _$ChatFullInfo {
+abstract class ChatFullInfo with _$ChatFullInfo {
   /// Constructs a [ChatFullInfo] object.
   const factory ChatFullInfo({
     /// Unique identifier for this chat.

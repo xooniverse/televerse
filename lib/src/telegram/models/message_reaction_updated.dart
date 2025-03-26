@@ -10,7 +10,9 @@ part 'message_reaction_updated.g.dart';
 
 /// Represents a change of a reaction on a message performed by a user.
 @freezed
-class MessageReactionUpdated with _$MessageReactionUpdated implements WithChat {
+abstract class MessageReactionUpdated
+    with _$MessageReactionUpdated
+    implements WithChat {
   /// Creates a new instance of [MessageReactionUpdated].
   const factory MessageReactionUpdated({
     /// The chat containing the message the user reacted to.

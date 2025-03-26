@@ -10,7 +10,9 @@ part 'chosen_inline_result.g.dart';
 /// Represents a result of an inline query that was chosen by the user and sent
 /// to their chat partner.
 @freezed
-class ChosenInlineResult with _$ChosenInlineResult implements WithUser {
+abstract class ChosenInlineResult
+    with _$ChosenInlineResult
+    implements WithUser {
   /// Creates a new [ChosenInlineResult] object.
   const factory ChosenInlineResult({
     /// The unique identifier for the result that was chosen

@@ -8,7 +8,7 @@ part 'video_note.g.dart';
 /// This object represents a video message (available in Telegram apps as of
 /// v.4.0).
 @freezed
-class VideoNote with _$VideoNote {
+abstract class VideoNote with _$VideoNote {
   /// Constructs a [VideoNote] object
   const factory VideoNote({
     /// Identifier for this file, which can be used to download or reuse the

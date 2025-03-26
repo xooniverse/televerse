@@ -6,16 +6,16 @@ part of 'encrypted_credentials.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$EncryptedCredentialsImpl _$$EncryptedCredentialsImplFromJson(
+_EncryptedCredentials _$EncryptedCredentialsFromJson(
         Map<String, dynamic> json) =>
-    _$EncryptedCredentialsImpl(
+    _EncryptedCredentials(
       data: json['data'] as String,
       hash: json['hash'] as String,
       secret: json['secret'] as String,
     );
 
-Map<String, dynamic> _$$EncryptedCredentialsImplToJson(
-        _$EncryptedCredentialsImpl instance) =>
+Map<String, dynamic> _$EncryptedCredentialsToJson(
+        _EncryptedCredentials instance) =>
     <String, dynamic>{
       'data': instance.data,
       'hash': instance.hash,

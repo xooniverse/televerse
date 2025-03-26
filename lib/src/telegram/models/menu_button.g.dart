@@ -6,15 +6,13 @@ part of 'menu_button.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MenuButtonDefaultImpl _$$MenuButtonDefaultImplFromJson(
-        Map<String, dynamic> json) =>
-    _$MenuButtonDefaultImpl(
+MenuButtonDefault _$MenuButtonDefaultFromJson(Map<String, dynamic> json) =>
+    MenuButtonDefault(
       type: $enumDecodeNullable(_$MenuButtonTypeEnumMap, json['type']) ??
           MenuButtonType.defaultButton,
     );
 
-Map<String, dynamic> _$$MenuButtonDefaultImplToJson(
-        _$MenuButtonDefaultImpl instance) =>
+Map<String, dynamic> _$MenuButtonDefaultToJson(MenuButtonDefault instance) =>
     <String, dynamic>{
       'type': _$MenuButtonTypeEnumMap[instance.type]!,
     };
@@ -25,32 +23,28 @@ const _$MenuButtonTypeEnumMap = {
   MenuButtonType.commands: 'commands',
 };
 
-_$MenuButtonWebAppImpl _$$MenuButtonWebAppImplFromJson(
-        Map<String, dynamic> json) =>
-    _$MenuButtonWebAppImpl(
+MenuButtonWebApp _$MenuButtonWebAppFromJson(Map<String, dynamic> json) =>
+    MenuButtonWebApp(
       type: $enumDecodeNullable(_$MenuButtonTypeEnumMap, json['type']) ??
           MenuButtonType.webApp,
       text: json['text'] as String,
       webApp: WebAppInfo.fromJson(json['web_app'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$MenuButtonWebAppImplToJson(
-        _$MenuButtonWebAppImpl instance) =>
+Map<String, dynamic> _$MenuButtonWebAppToJson(MenuButtonWebApp instance) =>
     <String, dynamic>{
       'type': _$MenuButtonTypeEnumMap[instance.type]!,
       'text': instance.text,
       'web_app': instance.webApp,
     };
 
-_$MenuButtonCommandsImpl _$$MenuButtonCommandsImplFromJson(
-        Map<String, dynamic> json) =>
-    _$MenuButtonCommandsImpl(
+MenuButtonCommands _$MenuButtonCommandsFromJson(Map<String, dynamic> json) =>
+    MenuButtonCommands(
       type: $enumDecodeNullable(_$MenuButtonTypeEnumMap, json['type']) ??
           MenuButtonType.commands,
     );
 
-Map<String, dynamic> _$$MenuButtonCommandsImplToJson(
-        _$MenuButtonCommandsImpl instance) =>
+Map<String, dynamic> _$MenuButtonCommandsToJson(MenuButtonCommands instance) =>
     <String, dynamic>{
       'type': _$MenuButtonTypeEnumMap[instance.type]!,
     };

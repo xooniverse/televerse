@@ -8,7 +8,7 @@ part 'keyboard_button_request_users.g.dart';
 /// identifier of the selected user will be shared with the bot when the
 /// corresponding button is pressed.
 @freezed
-class KeyboardButtonRequestUsers with _$KeyboardButtonRequestUsers {
+abstract class KeyboardButtonRequestUsers with _$KeyboardButtonRequestUsers {
   /// Creates a new [KeyboardButtonRequestUsers] object.
   const factory KeyboardButtonRequestUsers({
     /// Signed 32-bit identifier of the request.

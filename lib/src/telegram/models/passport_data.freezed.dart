@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,39 +12,39 @@ part of 'passport_data.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-PassportData _$PassportDataFromJson(Map<String, dynamic> json) {
-  return _PassportData.fromJson(json);
-}
-
 /// @nodoc
 mixin _$PassportData {
   /// Array with information about documents and other Telegram Passport
   /// elements that was shared with the bot
   @JsonKey(name: 'data')
-  List<EncryptedPassportElement> get data => throw _privateConstructorUsedError;
+  List<EncryptedPassportElement> get data;
 
   /// Encrypted credentials required to decrypt the data
   @JsonKey(name: 'credentials')
-  EncryptedCredentials get credentials => throw _privateConstructorUsedError;
-
-  /// Serializes this PassportData to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  EncryptedCredentials get credentials;
 
   /// Create a copy of PassportData
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $PassportDataCopyWith<PassportData> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$PassportDataCopyWithImpl<PassportData>(
+          this as PassportData, _$identity);
+
+  /// Serializes this PassportData to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'PassportData(data: $data, credentials: $credentials)';
+  }
 }
 
 /// @nodoc
-abstract class $PassportDataCopyWith<$Res> {
+abstract mixin class $PassportDataCopyWith<$Res> {
   factory $PassportDataCopyWith(
-          PassportData value, $Res Function(PassportData) then) =
-      _$PassportDataCopyWithImpl<$Res, PassportData>;
+          PassportData value, $Res Function(PassportData) _then) =
+      _$PassportDataCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'data') List<EncryptedPassportElement> data,
@@ -53,14 +54,11 @@ abstract class $PassportDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PassportDataCopyWithImpl<$Res, $Val extends PassportData>
-    implements $PassportDataCopyWith<$Res> {
-  _$PassportDataCopyWithImpl(this._value, this._then);
+class _$PassportDataCopyWithImpl<$Res> implements $PassportDataCopyWith<$Res> {
+  _$PassportDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PassportData _self;
+  final $Res Function(PassportData) _then;
 
   /// Create a copy of PassportData
   /// with the given fields replaced by the non-null parameter values.
@@ -70,16 +68,16 @@ class _$PassportDataCopyWithImpl<$Res, $Val extends PassportData>
     Object? data = null,
     Object? credentials = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       data: null == data
-          ? _value.data
+          ? _self.data
           : data // ignore: cast_nullable_to_non_nullable
               as List<EncryptedPassportElement>,
       credentials: null == credentials
-          ? _value.credentials
+          ? _self.credentials
           : credentials // ignore: cast_nullable_to_non_nullable
               as EncryptedCredentials,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of PassportData
@@ -87,68 +85,22 @@ class _$PassportDataCopyWithImpl<$Res, $Val extends PassportData>
   @override
   @pragma('vm:prefer-inline')
   $EncryptedCredentialsCopyWith<$Res> get credentials {
-    return $EncryptedCredentialsCopyWith<$Res>(_value.credentials, (value) {
-      return _then(_value.copyWith(credentials: value) as $Val);
+    return $EncryptedCredentialsCopyWith<$Res>(_self.credentials, (value) {
+      return _then(_self.copyWith(credentials: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$PassportDataImplCopyWith<$Res>
-    implements $PassportDataCopyWith<$Res> {
-  factory _$$PassportDataImplCopyWith(
-          _$PassportDataImpl value, $Res Function(_$PassportDataImpl) then) =
-      __$$PassportDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'data') List<EncryptedPassportElement> data,
-      @JsonKey(name: 'credentials') EncryptedCredentials credentials});
-
-  @override
-  $EncryptedCredentialsCopyWith<$Res> get credentials;
-}
-
-/// @nodoc
-class __$$PassportDataImplCopyWithImpl<$Res>
-    extends _$PassportDataCopyWithImpl<$Res, _$PassportDataImpl>
-    implements _$$PassportDataImplCopyWith<$Res> {
-  __$$PassportDataImplCopyWithImpl(
-      _$PassportDataImpl _value, $Res Function(_$PassportDataImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of PassportData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-    Object? credentials = null,
-  }) {
-    return _then(_$PassportDataImpl(
-      data: null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<EncryptedPassportElement>,
-      credentials: null == credentials
-          ? _value.credentials
-          : credentials // ignore: cast_nullable_to_non_nullable
-              as EncryptedCredentials,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$PassportDataImpl implements _PassportData {
-  const _$PassportDataImpl(
+class _PassportData implements PassportData {
+  const _PassportData(
       {@JsonKey(name: 'data')
       required final List<EncryptedPassportElement> data,
       @JsonKey(name: 'credentials') required this.credentials})
       : _data = data;
-
-  factory _$PassportDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PassportDataImplFromJson(json);
+  factory _PassportData.fromJson(Map<String, dynamic> json) =>
+      _$PassportDataFromJson(json);
 
   /// Array with information about documents and other Telegram Passport
   /// elements that was shared with the bot
@@ -169,52 +121,78 @@ class _$PassportDataImpl implements _PassportData {
   @JsonKey(name: 'credentials')
   final EncryptedCredentials credentials;
 
+  /// Create a copy of PassportData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PassportDataCopyWith<_PassportData> get copyWith =>
+      __$PassportDataCopyWithImpl<_PassportData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PassportDataToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'PassportData(data: $data, credentials: $credentials)';
   }
-
-  /// Create a copy of PassportData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PassportDataImplCopyWith<_$PassportDataImpl> get copyWith =>
-      __$$PassportDataImplCopyWithImpl<_$PassportDataImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PassportDataImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _PassportData implements PassportData {
-  const factory _PassportData(
-      {@JsonKey(name: 'data')
-      required final List<EncryptedPassportElement> data,
-      @JsonKey(name: 'credentials')
-      required final EncryptedCredentials credentials}) = _$PassportDataImpl;
-
-  factory _PassportData.fromJson(Map<String, dynamic> json) =
-      _$PassportDataImpl.fromJson;
-
-  /// Array with information about documents and other Telegram Passport
-  /// elements that was shared with the bot
+/// @nodoc
+abstract mixin class _$PassportDataCopyWith<$Res>
+    implements $PassportDataCopyWith<$Res> {
+  factory _$PassportDataCopyWith(
+          _PassportData value, $Res Function(_PassportData) _then) =
+      __$PassportDataCopyWithImpl;
   @override
-  @JsonKey(name: 'data')
-  List<EncryptedPassportElement> get data;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'data') List<EncryptedPassportElement> data,
+      @JsonKey(name: 'credentials') EncryptedCredentials credentials});
 
-  /// Encrypted credentials required to decrypt the data
   @override
-  @JsonKey(name: 'credentials')
-  EncryptedCredentials get credentials;
+  $EncryptedCredentialsCopyWith<$Res> get credentials;
+}
+
+/// @nodoc
+class __$PassportDataCopyWithImpl<$Res>
+    implements _$PassportDataCopyWith<$Res> {
+  __$PassportDataCopyWithImpl(this._self, this._then);
+
+  final _PassportData _self;
+  final $Res Function(_PassportData) _then;
 
   /// Create a copy of PassportData
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PassportDataImplCopyWith<_$PassportDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? data = null,
+    Object? credentials = null,
+  }) {
+    return _then(_PassportData(
+      data: null == data
+          ? _self._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<EncryptedPassportElement>,
+      credentials: null == credentials
+          ? _self.credentials
+          : credentials // ignore: cast_nullable_to_non_nullable
+              as EncryptedCredentials,
+    ));
+  }
+
+  /// Create a copy of PassportData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EncryptedCredentialsCopyWith<$Res> get credentials {
+    return $EncryptedCredentialsCopyWith<$Res>(_self.credentials, (value) {
+      return _then(_self.copyWith(credentials: value));
+    });
+  }
 }

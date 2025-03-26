@@ -8,7 +8,9 @@ part 'business_connection.g.dart';
 
 /// Represents the connection of the bot with a business account.
 @freezed
-class BusinessConnection with _$BusinessConnection implements WithUser {
+abstract class BusinessConnection
+    with _$BusinessConnection
+    implements WithUser {
   // Private constructor for exposing the getter.
   const BusinessConnection._();
 

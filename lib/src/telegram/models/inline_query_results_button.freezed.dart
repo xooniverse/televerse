@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,26 +12,18 @@ part of 'inline_query_results_button.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-InlineQueryResultsButton _$InlineQueryResultsButtonFromJson(
-    Map<String, dynamic> json) {
-  return _InlineQueryResultsButton.fromJson(json);
-}
-
 /// @nodoc
 mixin _$InlineQueryResultsButton {
   /// Label text on the button
   @JsonKey(name: 'text')
-  String get text => throw _privateConstructorUsedError;
+  String get text;
 
   /// Optional. Description of the Web App that will be launched when the user
   /// presses the button. The Web App will be able to switch back to the
   /// inline mode using the method web_app_switch_inline_query inside the Web
   /// App.
   @JsonKey(name: 'web_app')
-  WebAppInfo? get webApp => throw _privateConstructorUsedError;
+  WebAppInfo? get webApp;
 
   /// Optional. Deep-linking parameter for the /start message sent to the bot
   /// when a user presses the button. 1-64 characters, only `A-Z`, `a-z`,
@@ -46,23 +39,30 @@ mixin _$InlineQueryResultsButton {
   /// easily return to the chat where they wanted to use the bot's inline
   /// capabilities.
   @JsonKey(name: 'start_parameter')
-  String? get startParameter => throw _privateConstructorUsedError;
-
-  /// Serializes this InlineQueryResultsButton to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get startParameter;
 
   /// Create a copy of InlineQueryResultsButton
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $InlineQueryResultsButtonCopyWith<InlineQueryResultsButton> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$InlineQueryResultsButtonCopyWithImpl<InlineQueryResultsButton>(
+          this as InlineQueryResultsButton, _$identity);
+
+  /// Serializes this InlineQueryResultsButton to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'InlineQueryResultsButton(text: $text, webApp: $webApp, startParameter: $startParameter)';
+  }
 }
 
 /// @nodoc
-abstract class $InlineQueryResultsButtonCopyWith<$Res> {
+abstract mixin class $InlineQueryResultsButtonCopyWith<$Res> {
   factory $InlineQueryResultsButtonCopyWith(InlineQueryResultsButton value,
-          $Res Function(InlineQueryResultsButton) then) =
-      _$InlineQueryResultsButtonCopyWithImpl<$Res, InlineQueryResultsButton>;
+          $Res Function(InlineQueryResultsButton) _then) =
+      _$InlineQueryResultsButtonCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'text') String text,
@@ -73,15 +73,12 @@ abstract class $InlineQueryResultsButtonCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InlineQueryResultsButtonCopyWithImpl<$Res,
-        $Val extends InlineQueryResultsButton>
+class _$InlineQueryResultsButtonCopyWithImpl<$Res>
     implements $InlineQueryResultsButtonCopyWith<$Res> {
-  _$InlineQueryResultsButtonCopyWithImpl(this._value, this._then);
+  _$InlineQueryResultsButtonCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final InlineQueryResultsButton _self;
+  final $Res Function(InlineQueryResultsButton) _then;
 
   /// Create a copy of InlineQueryResultsButton
   /// with the given fields replaced by the non-null parameter values.
@@ -92,20 +89,20 @@ class _$InlineQueryResultsButtonCopyWithImpl<$Res,
     Object? webApp = freezed,
     Object? startParameter = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       text: null == text
-          ? _value.text
+          ? _self.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
       webApp: freezed == webApp
-          ? _value.webApp
+          ? _self.webApp
           : webApp // ignore: cast_nullable_to_non_nullable
               as WebAppInfo?,
       startParameter: freezed == startParameter
-          ? _value.startParameter
+          ? _self.startParameter
           : startParameter // ignore: cast_nullable_to_non_nullable
               as String?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of InlineQueryResultsButton
@@ -113,80 +110,25 @@ class _$InlineQueryResultsButtonCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $WebAppInfoCopyWith<$Res>? get webApp {
-    if (_value.webApp == null) {
+    if (_self.webApp == null) {
       return null;
     }
 
-    return $WebAppInfoCopyWith<$Res>(_value.webApp!, (value) {
-      return _then(_value.copyWith(webApp: value) as $Val);
+    return $WebAppInfoCopyWith<$Res>(_self.webApp!, (value) {
+      return _then(_self.copyWith(webApp: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$InlineQueryResultsButtonImplCopyWith<$Res>
-    implements $InlineQueryResultsButtonCopyWith<$Res> {
-  factory _$$InlineQueryResultsButtonImplCopyWith(
-          _$InlineQueryResultsButtonImpl value,
-          $Res Function(_$InlineQueryResultsButtonImpl) then) =
-      __$$InlineQueryResultsButtonImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'web_app') WebAppInfo? webApp,
-      @JsonKey(name: 'start_parameter') String? startParameter});
-
-  @override
-  $WebAppInfoCopyWith<$Res>? get webApp;
-}
-
-/// @nodoc
-class __$$InlineQueryResultsButtonImplCopyWithImpl<$Res>
-    extends _$InlineQueryResultsButtonCopyWithImpl<$Res,
-        _$InlineQueryResultsButtonImpl>
-    implements _$$InlineQueryResultsButtonImplCopyWith<$Res> {
-  __$$InlineQueryResultsButtonImplCopyWithImpl(
-      _$InlineQueryResultsButtonImpl _value,
-      $Res Function(_$InlineQueryResultsButtonImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InlineQueryResultsButton
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? text = null,
-    Object? webApp = freezed,
-    Object? startParameter = freezed,
-  }) {
-    return _then(_$InlineQueryResultsButtonImpl(
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      webApp: freezed == webApp
-          ? _value.webApp
-          : webApp // ignore: cast_nullable_to_non_nullable
-              as WebAppInfo?,
-      startParameter: freezed == startParameter
-          ? _value.startParameter
-          : startParameter // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$InlineQueryResultsButtonImpl implements _InlineQueryResultsButton {
-  const _$InlineQueryResultsButtonImpl(
+class _InlineQueryResultsButton implements InlineQueryResultsButton {
+  const _InlineQueryResultsButton(
       {@JsonKey(name: 'text') required this.text,
       @JsonKey(name: 'web_app') this.webApp,
       @JsonKey(name: 'start_parameter') this.startParameter});
-
-  factory _$InlineQueryResultsButtonImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InlineQueryResultsButtonImplFromJson(json);
+  factory _InlineQueryResultsButton.fromJson(Map<String, dynamic> json) =>
+      _$InlineQueryResultsButtonFromJson(json);
 
   /// Label text on the button
   @override
@@ -218,72 +160,89 @@ class _$InlineQueryResultsButtonImpl implements _InlineQueryResultsButton {
   @JsonKey(name: 'start_parameter')
   final String? startParameter;
 
+  /// Create a copy of InlineQueryResultsButton
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InlineQueryResultsButtonCopyWith<_InlineQueryResultsButton> get copyWith =>
+      __$InlineQueryResultsButtonCopyWithImpl<_InlineQueryResultsButton>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InlineQueryResultsButtonToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'InlineQueryResultsButton(text: $text, webApp: $webApp, startParameter: $startParameter)';
   }
-
-  /// Create a copy of InlineQueryResultsButton
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InlineQueryResultsButtonImplCopyWith<_$InlineQueryResultsButtonImpl>
-      get copyWith => __$$InlineQueryResultsButtonImplCopyWithImpl<
-          _$InlineQueryResultsButtonImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InlineQueryResultsButtonImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _InlineQueryResultsButton implements InlineQueryResultsButton {
-  const factory _InlineQueryResultsButton(
-          {@JsonKey(name: 'text') required final String text,
-          @JsonKey(name: 'web_app') final WebAppInfo? webApp,
-          @JsonKey(name: 'start_parameter') final String? startParameter}) =
-      _$InlineQueryResultsButtonImpl;
-
-  factory _InlineQueryResultsButton.fromJson(Map<String, dynamic> json) =
-      _$InlineQueryResultsButtonImpl.fromJson;
-
-  /// Label text on the button
+/// @nodoc
+abstract mixin class _$InlineQueryResultsButtonCopyWith<$Res>
+    implements $InlineQueryResultsButtonCopyWith<$Res> {
+  factory _$InlineQueryResultsButtonCopyWith(_InlineQueryResultsButton value,
+          $Res Function(_InlineQueryResultsButton) _then) =
+      __$InlineQueryResultsButtonCopyWithImpl;
   @override
-  @JsonKey(name: 'text')
-  String get text;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'text') String text,
+      @JsonKey(name: 'web_app') WebAppInfo? webApp,
+      @JsonKey(name: 'start_parameter') String? startParameter});
 
-  /// Optional. Description of the Web App that will be launched when the user
-  /// presses the button. The Web App will be able to switch back to the
-  /// inline mode using the method web_app_switch_inline_query inside the Web
-  /// App.
   @override
-  @JsonKey(name: 'web_app')
-  WebAppInfo? get webApp;
+  $WebAppInfoCopyWith<$Res>? get webApp;
+}
 
-  /// Optional. Deep-linking parameter for the /start message sent to the bot
-  /// when a user presses the button. 1-64 characters, only `A-Z`, `a-z`,
-  /// `0-9`, `_` and `-` are allowed.
-  ///
-  /// Example: An inline bot that sends YouTube videos can ask the user to
-  /// connect the bot to their YouTube account to adapt search results
-  /// accordingly. To do this, it displays a 'Connect your YouTube account'
-  /// button above the results, or even before showing any. The user presses
-  /// the button, switches to a private chat with the bot and, in doing so,
-  /// passes a start parameter that instructs the bot to return an OAuth link.
-  /// Once done, the bot can offer a switch_inline button so that the user can
-  /// easily return to the chat where they wanted to use the bot's inline
-  /// capabilities.
-  @override
-  @JsonKey(name: 'start_parameter')
-  String? get startParameter;
+/// @nodoc
+class __$InlineQueryResultsButtonCopyWithImpl<$Res>
+    implements _$InlineQueryResultsButtonCopyWith<$Res> {
+  __$InlineQueryResultsButtonCopyWithImpl(this._self, this._then);
+
+  final _InlineQueryResultsButton _self;
+  final $Res Function(_InlineQueryResultsButton) _then;
 
   /// Create a copy of InlineQueryResultsButton
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InlineQueryResultsButtonImplCopyWith<_$InlineQueryResultsButtonImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? text = null,
+    Object? webApp = freezed,
+    Object? startParameter = freezed,
+  }) {
+    return _then(_InlineQueryResultsButton(
+      text: null == text
+          ? _self.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      webApp: freezed == webApp
+          ? _self.webApp
+          : webApp // ignore: cast_nullable_to_non_nullable
+              as WebAppInfo?,
+      startParameter: freezed == startParameter
+          ? _self.startParameter
+          : startParameter // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of InlineQueryResultsButton
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $WebAppInfoCopyWith<$Res>? get webApp {
+    if (_self.webApp == null) {
+      return null;
+    }
+
+    return $WebAppInfoCopyWith<$Res>(_self.webApp!, (value) {
+      return _then(_self.copyWith(webApp: value));
+    });
+  }
 }

@@ -6,9 +6,8 @@ part of 'chat_member_updated.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatMemberUpdatedImpl _$$ChatMemberUpdatedImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatMemberUpdatedImpl(
+_ChatMemberUpdated _$ChatMemberUpdatedFromJson(Map<String, dynamic> json) =>
+    _ChatMemberUpdated(
       chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
       from: User.fromJson(json['from'] as Map<String, dynamic>),
       date: (json['date'] as num).toInt(),
@@ -24,8 +23,7 @@ _$ChatMemberUpdatedImpl _$$ChatMemberUpdatedImplFromJson(
       viaJoinRequest: json['via_join_request'] as bool?,
     );
 
-Map<String, dynamic> _$$ChatMemberUpdatedImplToJson(
-        _$ChatMemberUpdatedImpl instance) =>
+Map<String, dynamic> _$ChatMemberUpdatedToJson(_ChatMemberUpdated instance) =>
     <String, dynamic>{
       'chat': instance.chat,
       'from': instance.from,

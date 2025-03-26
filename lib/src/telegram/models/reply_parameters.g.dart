@@ -6,9 +6,8 @@ part of 'reply_parameters.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ReplyParametersImpl _$$ReplyParametersImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ReplyParametersImpl(
+_ReplyParameters _$ReplyParametersFromJson(Map<String, dynamic> json) =>
+    _ReplyParameters(
       messageId: (json['message_id'] as num).toInt(),
       chatId: const IDConverter().fromJson(json['chat_id']),
       allowSendingWithoutReply: json['allow_sending_without_reply'] as bool?,
@@ -20,8 +19,7 @@ _$ReplyParametersImpl _$$ReplyParametersImplFromJson(
       quotePosition: (json['quote_position'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$ReplyParametersImplToJson(
-        _$ReplyParametersImpl instance) =>
+Map<String, dynamic> _$ReplyParametersToJson(_ReplyParameters instance) =>
     <String, dynamic>{
       'message_id': instance.messageId,
       if (_$JsonConverterToJson<dynamic, ID>(

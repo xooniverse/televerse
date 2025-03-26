@@ -6,9 +6,9 @@ part of 'inline_keyboard_button.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineKeyboardButtonImpl _$$InlineKeyboardButtonImplFromJson(
+_InlineKeyboardButton _$InlineKeyboardButtonFromJson(
         Map<String, dynamic> json) =>
-    _$InlineKeyboardButtonImpl(
+    _InlineKeyboardButton(
       text: json['text'] as String,
       url: json['url'] as String?,
       loginUrl: json['login_url'] == null
@@ -36,8 +36,8 @@ _$InlineKeyboardButtonImpl _$$InlineKeyboardButtonImplFromJson(
           : CopyTextButton.fromJson(json['copy_text'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$InlineKeyboardButtonImplToJson(
-        _$InlineKeyboardButtonImpl instance) =>
+Map<String, dynamic> _$InlineKeyboardButtonToJson(
+        _InlineKeyboardButton instance) =>
     <String, dynamic>{
       'text': instance.text,
       if (instance.url case final value?) 'url': value,

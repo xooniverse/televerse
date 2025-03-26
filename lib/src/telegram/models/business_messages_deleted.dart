@@ -9,7 +9,7 @@ part 'business_messages_deleted.g.dart';
 /// Represents an object received when messages are deleted from a connected
 /// business account.
 @freezed
-class BusinessMessagesDeleted
+abstract class BusinessMessagesDeleted
     with _$BusinessMessagesDeleted
     implements WithChat {
   /// Creates a [BusinessMessagesDeleted] object.

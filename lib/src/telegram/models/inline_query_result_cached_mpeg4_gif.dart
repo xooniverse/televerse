@@ -15,7 +15,7 @@ part 'inline_query_result_cached_mpeg4_gif.g.dart';
 /// use input_message_content to send a message with the specified content
 /// instead of the animation.
 @freezed
-class InlineQueryResultCachedMpeg4Gif
+abstract class InlineQueryResultCachedMpeg4Gif
     with _$InlineQueryResultCachedMpeg4Gif
     implements InlineQueryResult {
   /// Creates an [InlineQueryResultCachedMpeg4Gif] object

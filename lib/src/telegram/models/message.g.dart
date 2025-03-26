@@ -6,24 +6,22 @@ part of 'message.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InaccessibleMessageImpl _$$InaccessibleMessageImplFromJson(
-        Map<String, dynamic> json) =>
-    _$InaccessibleMessageImpl(
+_InaccessibleMessage _$InaccessibleMessageFromJson(Map<String, dynamic> json) =>
+    _InaccessibleMessage(
       chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
       messageId: (json['message_id'] as num).toInt(),
       date: (json['date'] as num?)?.toInt() ?? 0,
     );
 
-Map<String, dynamic> _$$InaccessibleMessageImplToJson(
-        _$InaccessibleMessageImpl instance) =>
+Map<String, dynamic> _$InaccessibleMessageToJson(
+        _InaccessibleMessage instance) =>
     <String, dynamic>{
       'chat': instance.chat,
       'message_id': instance.messageId,
       'date': instance.date,
     };
 
-_$MessageImpl _$$MessageImplFromJson(Map<String, dynamic> json) =>
-    _$MessageImpl(
+_Message _$MessageFromJson(Map<String, dynamic> json) => _Message(
       chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
       messageId: (json['message_id'] as num).toInt(),
       date: (json['date'] as num).toInt(),
@@ -257,8 +255,7 @@ _$MessageImpl _$$MessageImplFromJson(Map<String, dynamic> json) =>
               json['refunded_payment'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$MessageImplToJson(_$MessageImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
       'chat': instance.chat,
       'message_id': instance.messageId,
       'date': instance.date,

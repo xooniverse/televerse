@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,13 +12,6 @@ part of 'star_transaction.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-StarTransaction _$StarTransactionFromJson(Map<String, dynamic> json) {
-  return _StarTransaction.fromJson(json);
-}
-
 /// @nodoc
 mixin _$StarTransaction {
   /// Unique identifier of the transaction. Coincides with the identifier of
@@ -25,48 +19,55 @@ mixin _$StarTransaction {
   /// `SuccessfulPayment` for successful incoming
   /// payments from users.
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
 
   /// Number of Telegram Stars transferred by the transaction.
   @JsonKey(name: 'amount')
-  int get amount => throw _privateConstructorUsedError;
+  int get amount;
 
   /// Date the transaction was created in Unix time.
   @JsonKey(name: 'date')
-  int get date => throw _privateConstructorUsedError;
+  int get date;
 
   /// Optional. Source of an incoming transaction (e.g., a user purchasing
   /// goods or services, Fragment refunding a failed withdrawal). Only for
   /// incoming transactions.
   @JsonKey(name: 'source')
-  TransactionPartner? get source => throw _privateConstructorUsedError;
+  TransactionPartner? get source;
 
   /// Optional. Receiver of an outgoing transaction (e.g., a user for a
   /// purchase refund, Fragment for a withdrawal). Only for outgoing
   /// transactions.
   @JsonKey(name: 'receiver')
-  TransactionPartner? get receiver => throw _privateConstructorUsedError;
+  TransactionPartner? get receiver;
 
   /// Optional. The number of 1/1000000000 shares of Telegram Stars
   /// transferred by the transaction; from 0 to 999999999
   @JsonKey(name: 'nanostar_amount')
-  int? get nanostarAmount => throw _privateConstructorUsedError;
-
-  /// Serializes this StarTransaction to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int? get nanostarAmount;
 
   /// Create a copy of StarTransaction
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $StarTransactionCopyWith<StarTransaction> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$StarTransactionCopyWithImpl<StarTransaction>(
+          this as StarTransaction, _$identity);
+
+  /// Serializes this StarTransaction to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'StarTransaction(id: $id, amount: $amount, date: $date, source: $source, receiver: $receiver, nanostarAmount: $nanostarAmount)';
+  }
 }
 
 /// @nodoc
-abstract class $StarTransactionCopyWith<$Res> {
+abstract mixin class $StarTransactionCopyWith<$Res> {
   factory $StarTransactionCopyWith(
-          StarTransaction value, $Res Function(StarTransaction) then) =
-      _$StarTransactionCopyWithImpl<$Res, StarTransaction>;
+          StarTransaction value, $Res Function(StarTransaction) _then) =
+      _$StarTransactionCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -81,14 +82,12 @@ abstract class $StarTransactionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$StarTransactionCopyWithImpl<$Res, $Val extends StarTransaction>
+class _$StarTransactionCopyWithImpl<$Res>
     implements $StarTransactionCopyWith<$Res> {
-  _$StarTransactionCopyWithImpl(this._value, this._then);
+  _$StarTransactionCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final StarTransaction _self;
+  final $Res Function(StarTransaction) _then;
 
   /// Create a copy of StarTransaction
   /// with the given fields replaced by the non-null parameter values.
@@ -102,32 +101,32 @@ class _$StarTransactionCopyWithImpl<$Res, $Val extends StarTransaction>
     Object? receiver = freezed,
     Object? nanostarAmount = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       amount: null == amount
-          ? _value.amount
+          ? _self.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
       date: null == date
-          ? _value.date
+          ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
               as int,
       source: freezed == source
-          ? _value.source
+          ? _self.source
           : source // ignore: cast_nullable_to_non_nullable
               as TransactionPartner?,
       receiver: freezed == receiver
-          ? _value.receiver
+          ? _self.receiver
           : receiver // ignore: cast_nullable_to_non_nullable
               as TransactionPartner?,
       nanostarAmount: freezed == nanostarAmount
-          ? _value.nanostarAmount
+          ? _self.nanostarAmount
           : nanostarAmount // ignore: cast_nullable_to_non_nullable
               as int?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of StarTransaction
@@ -135,12 +134,12 @@ class _$StarTransactionCopyWithImpl<$Res, $Val extends StarTransaction>
   @override
   @pragma('vm:prefer-inline')
   $TransactionPartnerCopyWith<$Res>? get source {
-    if (_value.source == null) {
+    if (_self.source == null) {
       return null;
     }
 
-    return $TransactionPartnerCopyWith<$Res>(_value.source!, (value) {
-      return _then(_value.copyWith(source: value) as $Val);
+    return $TransactionPartnerCopyWith<$Res>(_self.source!, (value) {
+      return _then(_self.copyWith(source: value));
     });
   }
 
@@ -149,100 +148,28 @@ class _$StarTransactionCopyWithImpl<$Res, $Val extends StarTransaction>
   @override
   @pragma('vm:prefer-inline')
   $TransactionPartnerCopyWith<$Res>? get receiver {
-    if (_value.receiver == null) {
+    if (_self.receiver == null) {
       return null;
     }
 
-    return $TransactionPartnerCopyWith<$Res>(_value.receiver!, (value) {
-      return _then(_value.copyWith(receiver: value) as $Val);
+    return $TransactionPartnerCopyWith<$Res>(_self.receiver!, (value) {
+      return _then(_self.copyWith(receiver: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$StarTransactionImplCopyWith<$Res>
-    implements $StarTransactionCopyWith<$Res> {
-  factory _$$StarTransactionImplCopyWith(_$StarTransactionImpl value,
-          $Res Function(_$StarTransactionImpl) then) =
-      __$$StarTransactionImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'amount') int amount,
-      @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'source') TransactionPartner? source,
-      @JsonKey(name: 'receiver') TransactionPartner? receiver,
-      @JsonKey(name: 'nanostar_amount') int? nanostarAmount});
-
-  @override
-  $TransactionPartnerCopyWith<$Res>? get source;
-  @override
-  $TransactionPartnerCopyWith<$Res>? get receiver;
-}
-
-/// @nodoc
-class __$$StarTransactionImplCopyWithImpl<$Res>
-    extends _$StarTransactionCopyWithImpl<$Res, _$StarTransactionImpl>
-    implements _$$StarTransactionImplCopyWith<$Res> {
-  __$$StarTransactionImplCopyWithImpl(
-      _$StarTransactionImpl _value, $Res Function(_$StarTransactionImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of StarTransaction
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? amount = null,
-    Object? date = null,
-    Object? source = freezed,
-    Object? receiver = freezed,
-    Object? nanostarAmount = freezed,
-  }) {
-    return _then(_$StarTransactionImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      source: freezed == source
-          ? _value.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as TransactionPartner?,
-      receiver: freezed == receiver
-          ? _value.receiver
-          : receiver // ignore: cast_nullable_to_non_nullable
-              as TransactionPartner?,
-      nanostarAmount: freezed == nanostarAmount
-          ? _value.nanostarAmount
-          : nanostarAmount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$StarTransactionImpl implements _StarTransaction {
-  const _$StarTransactionImpl(
+class _StarTransaction implements StarTransaction {
+  const _StarTransaction(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'amount') required this.amount,
       @JsonKey(name: 'date') required this.date,
       @JsonKey(name: 'source') this.source,
       @JsonKey(name: 'receiver') this.receiver,
       @JsonKey(name: 'nanostar_amount') this.nanostarAmount});
-
-  factory _$StarTransactionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StarTransactionImplFromJson(json);
+  factory _StarTransaction.fromJson(Map<String, dynamic> json) =>
+      _$StarTransactionFromJson(json);
 
   /// Unique identifier of the transaction. Coincides with the identifier of
   /// the original transaction for refund transactions. Coincides with
@@ -282,83 +209,122 @@ class _$StarTransactionImpl implements _StarTransaction {
   @JsonKey(name: 'nanostar_amount')
   final int? nanostarAmount;
 
+  /// Create a copy of StarTransaction
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$StarTransactionCopyWith<_StarTransaction> get copyWith =>
+      __$StarTransactionCopyWithImpl<_StarTransaction>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$StarTransactionToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'StarTransaction(id: $id, amount: $amount, date: $date, source: $source, receiver: $receiver, nanostarAmount: $nanostarAmount)';
   }
-
-  /// Create a copy of StarTransaction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$StarTransactionImplCopyWith<_$StarTransactionImpl> get copyWith =>
-      __$$StarTransactionImplCopyWithImpl<_$StarTransactionImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$StarTransactionImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _StarTransaction implements StarTransaction {
-  const factory _StarTransaction(
-          {@JsonKey(name: 'id') required final String id,
-          @JsonKey(name: 'amount') required final int amount,
-          @JsonKey(name: 'date') required final int date,
-          @JsonKey(name: 'source') final TransactionPartner? source,
-          @JsonKey(name: 'receiver') final TransactionPartner? receiver,
-          @JsonKey(name: 'nanostar_amount') final int? nanostarAmount}) =
-      _$StarTransactionImpl;
-
-  factory _StarTransaction.fromJson(Map<String, dynamic> json) =
-      _$StarTransactionImpl.fromJson;
-
-  /// Unique identifier of the transaction. Coincides with the identifier of
-  /// the original transaction for refund transactions. Coincides with
-  /// `SuccessfulPayment` for successful incoming
-  /// payments from users.
+/// @nodoc
+abstract mixin class _$StarTransactionCopyWith<$Res>
+    implements $StarTransactionCopyWith<$Res> {
+  factory _$StarTransactionCopyWith(
+          _StarTransaction value, $Res Function(_StarTransaction) _then) =
+      __$StarTransactionCopyWithImpl;
   @override
-  @JsonKey(name: 'id')
-  String get id;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'amount') int amount,
+      @JsonKey(name: 'date') int date,
+      @JsonKey(name: 'source') TransactionPartner? source,
+      @JsonKey(name: 'receiver') TransactionPartner? receiver,
+      @JsonKey(name: 'nanostar_amount') int? nanostarAmount});
 
-  /// Number of Telegram Stars transferred by the transaction.
   @override
-  @JsonKey(name: 'amount')
-  int get amount;
+  $TransactionPartnerCopyWith<$Res>? get source;
+  @override
+  $TransactionPartnerCopyWith<$Res>? get receiver;
+}
 
-  /// Date the transaction was created in Unix time.
-  @override
-  @JsonKey(name: 'date')
-  int get date;
+/// @nodoc
+class __$StarTransactionCopyWithImpl<$Res>
+    implements _$StarTransactionCopyWith<$Res> {
+  __$StarTransactionCopyWithImpl(this._self, this._then);
 
-  /// Optional. Source of an incoming transaction (e.g., a user purchasing
-  /// goods or services, Fragment refunding a failed withdrawal). Only for
-  /// incoming transactions.
-  @override
-  @JsonKey(name: 'source')
-  TransactionPartner? get source;
-
-  /// Optional. Receiver of an outgoing transaction (e.g., a user for a
-  /// purchase refund, Fragment for a withdrawal). Only for outgoing
-  /// transactions.
-  @override
-  @JsonKey(name: 'receiver')
-  TransactionPartner? get receiver;
-
-  /// Optional. The number of 1/1000000000 shares of Telegram Stars
-  /// transferred by the transaction; from 0 to 999999999
-  @override
-  @JsonKey(name: 'nanostar_amount')
-  int? get nanostarAmount;
+  final _StarTransaction _self;
+  final $Res Function(_StarTransaction) _then;
 
   /// Create a copy of StarTransaction
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StarTransactionImplCopyWith<_$StarTransactionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? amount = null,
+    Object? date = null,
+    Object? source = freezed,
+    Object? receiver = freezed,
+    Object? nanostarAmount = freezed,
+  }) {
+    return _then(_StarTransaction(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: null == amount
+          ? _self.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+      date: null == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as int,
+      source: freezed == source
+          ? _self.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as TransactionPartner?,
+      receiver: freezed == receiver
+          ? _self.receiver
+          : receiver // ignore: cast_nullable_to_non_nullable
+              as TransactionPartner?,
+      nanostarAmount: freezed == nanostarAmount
+          ? _self.nanostarAmount
+          : nanostarAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+
+  /// Create a copy of StarTransaction
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TransactionPartnerCopyWith<$Res>? get source {
+    if (_self.source == null) {
+      return null;
+    }
+
+    return $TransactionPartnerCopyWith<$Res>(_self.source!, (value) {
+      return _then(_self.copyWith(source: value));
+    });
+  }
+
+  /// Create a copy of StarTransaction
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TransactionPartnerCopyWith<$Res>? get receiver {
+    if (_self.receiver == null) {
+      return null;
+    }
+
+    return $TransactionPartnerCopyWith<$Res>(_self.receiver!, (value) {
+      return _then(_self.copyWith(receiver: value));
+    });
+  }
 }

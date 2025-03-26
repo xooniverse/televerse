@@ -6,7 +6,7 @@ part 'chat_photo.g.dart';
 
 /// This object represents a chat photo.
 @freezed
-class ChatPhoto with _$ChatPhoto {
+abstract class ChatPhoto with _$ChatPhoto {
   /// Creates a new [ChatPhoto] object.
   const factory ChatPhoto({
     /// File identifier of small (160x160) chat photo. This file_id can be used

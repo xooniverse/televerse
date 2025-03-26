@@ -7,7 +7,7 @@ part 'game_high_score.g.dart';
 
 /// This object represents one row of the high scores table for a game.
 @freezed
-class GameHighScore with _$GameHighScore {
+abstract class GameHighScore with _$GameHighScore {
   /// Constructs a [GameHighScore] object
   const factory GameHighScore({
     /// Position in high score table for the game

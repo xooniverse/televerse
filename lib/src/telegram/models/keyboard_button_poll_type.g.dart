@@ -6,14 +6,14 @@ part of 'keyboard_button_poll_type.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$KeyboardButtonPollTypeImpl _$$KeyboardButtonPollTypeImplFromJson(
+_KeyboardButtonPollType _$KeyboardButtonPollTypeFromJson(
         Map<String, dynamic> json) =>
-    _$KeyboardButtonPollTypeImpl(
+    _KeyboardButtonPollType(
       type: $enumDecodeNullable(_$PollTypeEnumMap, json['type']),
     );
 
-Map<String, dynamic> _$$KeyboardButtonPollTypeImplToJson(
-        _$KeyboardButtonPollTypeImpl instance) =>
+Map<String, dynamic> _$KeyboardButtonPollTypeToJson(
+        _KeyboardButtonPollType instance) =>
     <String, dynamic>{
       if (instance.type case final value?) 'type': value,
     };

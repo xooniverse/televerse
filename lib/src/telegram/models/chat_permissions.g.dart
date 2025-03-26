@@ -6,9 +6,8 @@ part of 'chat_permissions.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatPermissionsImpl _$$ChatPermissionsImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatPermissionsImpl(
+_ChatPermissions _$ChatPermissionsFromJson(Map<String, dynamic> json) =>
+    _ChatPermissions(
       canSendMessages: json['can_send_messages'] as bool?,
       canSendPolls: json['can_send_polls'] as bool?,
       canSendOtherMessages: json['can_send_other_messages'] as bool?,
@@ -25,8 +24,7 @@ _$ChatPermissionsImpl _$$ChatPermissionsImplFromJson(
       canSendVoiceNotes: json['can_send_voice_notes'] as bool?,
     );
 
-Map<String, dynamic> _$$ChatPermissionsImplToJson(
-        _$ChatPermissionsImpl instance) =>
+Map<String, dynamic> _$ChatPermissionsToJson(_ChatPermissions instance) =>
     <String, dynamic>{
       if (instance.canSendMessages case final value?)
         'can_send_messages': value,

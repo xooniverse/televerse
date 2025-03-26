@@ -6,7 +6,7 @@ part 'prepared_inline_message.g.dart';
 
 /// Describes an inline message to be sent by a user of a Mini App.
 @freezed
-class PreparedInlineMessage with _$PreparedInlineMessage {
+abstract class PreparedInlineMessage with _$PreparedInlineMessage {
   /// Creates a [PreparedInlineMessage] object.
   const factory PreparedInlineMessage({
     /// Unique identifier of the prepared message.

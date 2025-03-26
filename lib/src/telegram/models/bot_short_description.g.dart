@@ -6,14 +6,13 @@ part of 'bot_short_description.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BotShortDescriptionImpl _$$BotShortDescriptionImplFromJson(
-        Map<String, dynamic> json) =>
-    _$BotShortDescriptionImpl(
+_BotShortDescription _$BotShortDescriptionFromJson(Map<String, dynamic> json) =>
+    _BotShortDescription(
       shortDescription: json['short_description'] as String,
     );
 
-Map<String, dynamic> _$$BotShortDescriptionImplToJson(
-        _$BotShortDescriptionImpl instance) =>
+Map<String, dynamic> _$BotShortDescriptionToJson(
+        _BotShortDescription instance) =>
     <String, dynamic>{
       'short_description': instance.shortDescription,
     };

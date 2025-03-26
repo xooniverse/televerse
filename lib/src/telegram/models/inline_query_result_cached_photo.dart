@@ -14,7 +14,7 @@ part 'inline_query_result_cached_photo.g.dart';
 /// you can use input_message_content to send a message with the specified
 /// content instead of the photo.
 @freezed
-class InlineQueryResultCachedPhoto
+abstract class InlineQueryResultCachedPhoto
     with _$InlineQueryResultCachedPhoto
     implements InlineQueryResult {
   /// Constructs an [InlineQueryResultCachedPhoto] object

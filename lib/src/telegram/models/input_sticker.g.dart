@@ -6,7 +6,7 @@ part of 'input_sticker.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$$InputStickerImplToJson(_$InputStickerImpl instance) =>
+Map<String, dynamic> _$InputStickerToJson(_InputSticker instance) =>
     <String, dynamic>{
       'sticker': const InputFileConverter().toJson(instance.sticker),
       'format': instance.format,

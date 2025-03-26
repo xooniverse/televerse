@@ -9,7 +9,7 @@ part 'message_reaction_count_updated.g.dart';
 
 /// Represents reaction changes on a message with anonymous reactions.
 @freezed
-class MessageReactionCountUpdated
+abstract class MessageReactionCountUpdated
     with _$MessageReactionCountUpdated
     implements WithChat {
   /// Creates a new instance of [MessageReactionCountUpdated].

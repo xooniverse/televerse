@@ -18,7 +18,7 @@ part 'inline_query_result_voice.g.dart';
 /// Note: This will only work in Telegram versions released after 9 April, 2016.
 /// Older clients will ignore them.
 @freezed
-class InlineQueryResultVoice
+abstract class InlineQueryResultVoice
     with _$InlineQueryResultVoice
     implements InlineQueryResult {
   /// Constructs the `InlineQueryResultVoice`

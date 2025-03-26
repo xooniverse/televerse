@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,88 +12,39 @@ part of 'general_forum_topic_hidden.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-GeneralForumTopicHidden _$GeneralForumTopicHiddenFromJson(
-    Map<String, dynamic> json) {
-  return _GeneralForumTopicHidden.fromJson(json);
-}
-
 /// @nodoc
 mixin _$GeneralForumTopicHidden {
   /// Serializes this GeneralForumTopicHidden to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $GeneralForumTopicHiddenCopyWith<$Res> {
-  factory $GeneralForumTopicHiddenCopyWith(GeneralForumTopicHidden value,
-          $Res Function(GeneralForumTopicHidden) then) =
-      _$GeneralForumTopicHiddenCopyWithImpl<$Res, GeneralForumTopicHidden>;
-}
-
-/// @nodoc
-class _$GeneralForumTopicHiddenCopyWithImpl<$Res,
-        $Val extends GeneralForumTopicHidden>
-    implements $GeneralForumTopicHiddenCopyWith<$Res> {
-  _$GeneralForumTopicHiddenCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of GeneralForumTopicHidden
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$GeneralForumTopicHiddenImplCopyWith<$Res> {
-  factory _$$GeneralForumTopicHiddenImplCopyWith(
-          _$GeneralForumTopicHiddenImpl value,
-          $Res Function(_$GeneralForumTopicHiddenImpl) then) =
-      __$$GeneralForumTopicHiddenImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GeneralForumTopicHiddenImplCopyWithImpl<$Res>
-    extends _$GeneralForumTopicHiddenCopyWithImpl<$Res,
-        _$GeneralForumTopicHiddenImpl>
-    implements _$$GeneralForumTopicHiddenImplCopyWith<$Res> {
-  __$$GeneralForumTopicHiddenImplCopyWithImpl(
-      _$GeneralForumTopicHiddenImpl _value,
-      $Res Function(_$GeneralForumTopicHiddenImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of GeneralForumTopicHidden
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$GeneralForumTopicHiddenImpl implements _GeneralForumTopicHidden {
-  const _$GeneralForumTopicHiddenImpl();
-
-  factory _$GeneralForumTopicHiddenImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GeneralForumTopicHiddenImplFromJson(json);
+  Map<String, dynamic> toJson();
 
   @override
   String toString() {
     return 'GeneralForumTopicHidden()';
   }
+}
+
+/// @nodoc
+class $GeneralForumTopicHiddenCopyWith<$Res> {
+  $GeneralForumTopicHiddenCopyWith(
+      GeneralForumTopicHidden _, $Res Function(GeneralForumTopicHidden) __);
+}
+
+/// @nodoc
+@JsonSerializable()
+class _GeneralForumTopicHidden implements GeneralForumTopicHidden {
+  const _GeneralForumTopicHidden();
+  factory _GeneralForumTopicHidden.fromJson(Map<String, dynamic> json) =>
+      _$GeneralForumTopicHiddenFromJson(json);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$GeneralForumTopicHiddenImplToJson(
+    return _$GeneralForumTopicHiddenToJson(
       this,
     );
   }
-}
 
-abstract class _GeneralForumTopicHidden implements GeneralForumTopicHidden {
-  const factory _GeneralForumTopicHidden() = _$GeneralForumTopicHiddenImpl;
-
-  factory _GeneralForumTopicHidden.fromJson(Map<String, dynamic> json) =
-      _$GeneralForumTopicHiddenImpl.fromJson;
+  @override
+  String toString() {
+    return 'GeneralForumTopicHidden()';
+  }
 }

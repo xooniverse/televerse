@@ -9,7 +9,7 @@ part 'sticker_set.g.dart';
 
 /// This object represents a sticker set.
 @freezed
-class StickerSet with _$StickerSet {
+abstract class StickerSet with _$StickerSet {
   /// Constructs a [StickerSet] object
   const factory StickerSet({
     /// Sticker set name

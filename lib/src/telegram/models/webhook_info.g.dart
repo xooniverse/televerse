@@ -6,8 +6,7 @@ part of 'webhook_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$WebhookInfoImpl _$$WebhookInfoImplFromJson(Map<String, dynamic> json) =>
-    _$WebhookInfoImpl(
+_WebhookInfo _$WebhookInfoFromJson(Map<String, dynamic> json) => _WebhookInfo(
       url: json['url'] as String,
       hasCustomCertificate: json['has_custom_certificate'] as bool,
       pendingUpdateCount: (json['pending_update_count'] as num).toInt(),
@@ -21,7 +20,7 @@ _$WebhookInfoImpl _$$WebhookInfoImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$WebhookInfoImplToJson(_$WebhookInfoImpl instance) =>
+Map<String, dynamic> _$WebhookInfoToJson(_WebhookInfo instance) =>
     <String, dynamic>{
       'url': instance.url,
       'has_custom_certificate': instance.hasCustomCertificate,

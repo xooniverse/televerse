@@ -6,7 +6,7 @@ part 'contact.g.dart';
 
 /// This object represents a phone contact.
 @freezed
-class Contact with _$Contact {
+abstract class Contact with _$Contact {
   /// Constructs a [Contact] object.
   const factory Contact({
     /// Contact's phone number

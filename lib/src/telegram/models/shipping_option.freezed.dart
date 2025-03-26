@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,92 +12,42 @@ part of 'shipping_option.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ShippingOption _$ShippingOptionFromJson(Map<String, dynamic> json) {
-  return _ShippingOption.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ShippingOption {
   /// Shipping option identifier
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
 
   /// Option title
   @JsonKey(name: 'title')
-  String get title => throw _privateConstructorUsedError;
+  String get title;
 
   /// List of price portions
   @JsonKey(name: 'prices')
-  List<LabeledPrice> get prices => throw _privateConstructorUsedError;
-
-  /// Serializes this ShippingOption to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<LabeledPrice> get prices;
 
   /// Create a copy of ShippingOption
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ShippingOptionCopyWith<ShippingOption> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ShippingOptionCopyWith<$Res> {
-  factory $ShippingOptionCopyWith(
-          ShippingOption value, $Res Function(ShippingOption) then) =
-      _$ShippingOptionCopyWithImpl<$Res, ShippingOption>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'prices') List<LabeledPrice> prices});
-}
-
-/// @nodoc
-class _$ShippingOptionCopyWithImpl<$Res, $Val extends ShippingOption>
-    implements $ShippingOptionCopyWith<$Res> {
-  _$ShippingOptionCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ShippingOption
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ShippingOptionCopyWith<ShippingOption> get copyWith =>
+      _$ShippingOptionCopyWithImpl<ShippingOption>(
+          this as ShippingOption, _$identity);
+
+  /// Serializes this ShippingOption to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? prices = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      prices: null == prices
-          ? _value.prices
-          : prices // ignore: cast_nullable_to_non_nullable
-              as List<LabeledPrice>,
-    ) as $Val);
+  String toString() {
+    return 'ShippingOption(id: $id, title: $title, prices: $prices)';
   }
 }
 
 /// @nodoc
-abstract class _$$ShippingOptionImplCopyWith<$Res>
-    implements $ShippingOptionCopyWith<$Res> {
-  factory _$$ShippingOptionImplCopyWith(_$ShippingOptionImpl value,
-          $Res Function(_$ShippingOptionImpl) then) =
-      __$$ShippingOptionImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ShippingOptionCopyWith<$Res> {
+  factory $ShippingOptionCopyWith(
+          ShippingOption value, $Res Function(ShippingOption) _then) =
+      _$ShippingOptionCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -105,12 +56,12 @@ abstract class _$$ShippingOptionImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ShippingOptionImplCopyWithImpl<$Res>
-    extends _$ShippingOptionCopyWithImpl<$Res, _$ShippingOptionImpl>
-    implements _$$ShippingOptionImplCopyWith<$Res> {
-  __$$ShippingOptionImplCopyWithImpl(
-      _$ShippingOptionImpl _value, $Res Function(_$ShippingOptionImpl) _then)
-      : super(_value, _then);
+class _$ShippingOptionCopyWithImpl<$Res>
+    implements $ShippingOptionCopyWith<$Res> {
+  _$ShippingOptionCopyWithImpl(this._self, this._then);
+
+  final ShippingOption _self;
+  final $Res Function(ShippingOption) _then;
 
   /// Create a copy of ShippingOption
   /// with the given fields replaced by the non-null parameter values.
@@ -121,17 +72,17 @@ class __$$ShippingOptionImplCopyWithImpl<$Res>
     Object? title = null,
     Object? prices = null,
   }) {
-    return _then(_$ShippingOptionImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
       prices: null == prices
-          ? _value._prices
+          ? _self.prices
           : prices // ignore: cast_nullable_to_non_nullable
               as List<LabeledPrice>,
     ));
@@ -140,15 +91,14 @@ class __$$ShippingOptionImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ShippingOptionImpl implements _ShippingOption {
-  const _$ShippingOptionImpl(
+class _ShippingOption implements ShippingOption {
+  const _ShippingOption(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'prices') required final List<LabeledPrice> prices})
       : _prices = prices;
-
-  factory _$ShippingOptionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ShippingOptionImplFromJson(json);
+  factory _ShippingOption.fromJson(Map<String, dynamic> json) =>
+      _$ShippingOptionFromJson(json);
 
   /// Shipping option identifier
   @override
@@ -172,57 +122,71 @@ class _$ShippingOptionImpl implements _ShippingOption {
     return EqualUnmodifiableListView(_prices);
   }
 
+  /// Create a copy of ShippingOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ShippingOptionCopyWith<_ShippingOption> get copyWith =>
+      __$ShippingOptionCopyWithImpl<_ShippingOption>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ShippingOptionToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'ShippingOption(id: $id, title: $title, prices: $prices)';
   }
-
-  /// Create a copy of ShippingOption
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ShippingOptionImplCopyWith<_$ShippingOptionImpl> get copyWith =>
-      __$$ShippingOptionImplCopyWithImpl<_$ShippingOptionImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ShippingOptionImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _ShippingOption implements ShippingOption {
-  const factory _ShippingOption(
-          {@JsonKey(name: 'id') required final String id,
-          @JsonKey(name: 'title') required final String title,
-          @JsonKey(name: 'prices') required final List<LabeledPrice> prices}) =
-      _$ShippingOptionImpl;
-
-  factory _ShippingOption.fromJson(Map<String, dynamic> json) =
-      _$ShippingOptionImpl.fromJson;
-
-  /// Shipping option identifier
+/// @nodoc
+abstract mixin class _$ShippingOptionCopyWith<$Res>
+    implements $ShippingOptionCopyWith<$Res> {
+  factory _$ShippingOptionCopyWith(
+          _ShippingOption value, $Res Function(_ShippingOption) _then) =
+      __$ShippingOptionCopyWithImpl;
   @override
-  @JsonKey(name: 'id')
-  String get id;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'prices') List<LabeledPrice> prices});
+}
 
-  /// Option title
-  @override
-  @JsonKey(name: 'title')
-  String get title;
+/// @nodoc
+class __$ShippingOptionCopyWithImpl<$Res>
+    implements _$ShippingOptionCopyWith<$Res> {
+  __$ShippingOptionCopyWithImpl(this._self, this._then);
 
-  /// List of price portions
-  @override
-  @JsonKey(name: 'prices')
-  List<LabeledPrice> get prices;
+  final _ShippingOption _self;
+  final $Res Function(_ShippingOption) _then;
 
   /// Create a copy of ShippingOption
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ShippingOptionImplCopyWith<_$ShippingOptionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? title = null,
+    Object? prices = null,
+  }) {
+    return _then(_ShippingOption(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      prices: null == prices
+          ? _self._prices
+          : prices // ignore: cast_nullable_to_non_nullable
+              as List<LabeledPrice>,
+    ));
+  }
 }

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,96 +12,45 @@ part of 'encrypted_credentials.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-EncryptedCredentials _$EncryptedCredentialsFromJson(Map<String, dynamic> json) {
-  return _EncryptedCredentials.fromJson(json);
-}
-
 /// @nodoc
 mixin _$EncryptedCredentials {
   /// Base64-encoded encrypted JSON-serialized data with unique user's
   /// payload, data hashes, and secrets required for EncryptedPassportElement
   /// decryption and authentication
   @JsonKey(name: 'data')
-  String get data => throw _privateConstructorUsedError;
+  String get data;
 
   /// Base64-encoded data hash for data authentication
   @JsonKey(name: 'hash')
-  String get hash => throw _privateConstructorUsedError;
+  String get hash;
 
   /// Base64-encoded secret, encrypted with the bot's public RSA key, required
   /// for data decryption
   @JsonKey(name: 'secret')
-  String get secret => throw _privateConstructorUsedError;
-
-  /// Serializes this EncryptedCredentials to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get secret;
 
   /// Create a copy of EncryptedCredentials
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $EncryptedCredentialsCopyWith<EncryptedCredentials> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $EncryptedCredentialsCopyWith<$Res> {
-  factory $EncryptedCredentialsCopyWith(EncryptedCredentials value,
-          $Res Function(EncryptedCredentials) then) =
-      _$EncryptedCredentialsCopyWithImpl<$Res, EncryptedCredentials>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'data') String data,
-      @JsonKey(name: 'hash') String hash,
-      @JsonKey(name: 'secret') String secret});
-}
-
-/// @nodoc
-class _$EncryptedCredentialsCopyWithImpl<$Res,
-        $Val extends EncryptedCredentials>
-    implements $EncryptedCredentialsCopyWith<$Res> {
-  _$EncryptedCredentialsCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of EncryptedCredentials
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $EncryptedCredentialsCopyWith<EncryptedCredentials> get copyWith =>
+      _$EncryptedCredentialsCopyWithImpl<EncryptedCredentials>(
+          this as EncryptedCredentials, _$identity);
+
+  /// Serializes this EncryptedCredentials to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? data = null,
-    Object? hash = null,
-    Object? secret = null,
-  }) {
-    return _then(_value.copyWith(
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-      hash: null == hash
-          ? _value.hash
-          : hash // ignore: cast_nullable_to_non_nullable
-              as String,
-      secret: null == secret
-          ? _value.secret
-          : secret // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'EncryptedCredentials(data: $data, hash: $hash, secret: $secret)';
   }
 }
 
 /// @nodoc
-abstract class _$$EncryptedCredentialsImplCopyWith<$Res>
-    implements $EncryptedCredentialsCopyWith<$Res> {
-  factory _$$EncryptedCredentialsImplCopyWith(_$EncryptedCredentialsImpl value,
-          $Res Function(_$EncryptedCredentialsImpl) then) =
-      __$$EncryptedCredentialsImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $EncryptedCredentialsCopyWith<$Res> {
+  factory $EncryptedCredentialsCopyWith(EncryptedCredentials value,
+          $Res Function(EncryptedCredentials) _then) =
+      _$EncryptedCredentialsCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'data') String data,
@@ -109,12 +59,12 @@ abstract class _$$EncryptedCredentialsImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$EncryptedCredentialsImplCopyWithImpl<$Res>
-    extends _$EncryptedCredentialsCopyWithImpl<$Res, _$EncryptedCredentialsImpl>
-    implements _$$EncryptedCredentialsImplCopyWith<$Res> {
-  __$$EncryptedCredentialsImplCopyWithImpl(_$EncryptedCredentialsImpl _value,
-      $Res Function(_$EncryptedCredentialsImpl) _then)
-      : super(_value, _then);
+class _$EncryptedCredentialsCopyWithImpl<$Res>
+    implements $EncryptedCredentialsCopyWith<$Res> {
+  _$EncryptedCredentialsCopyWithImpl(this._self, this._then);
+
+  final EncryptedCredentials _self;
+  final $Res Function(EncryptedCredentials) _then;
 
   /// Create a copy of EncryptedCredentials
   /// with the given fields replaced by the non-null parameter values.
@@ -125,17 +75,17 @@ class __$$EncryptedCredentialsImplCopyWithImpl<$Res>
     Object? hash = null,
     Object? secret = null,
   }) {
-    return _then(_$EncryptedCredentialsImpl(
+    return _then(_self.copyWith(
       data: null == data
-          ? _value.data
+          ? _self.data
           : data // ignore: cast_nullable_to_non_nullable
               as String,
       hash: null == hash
-          ? _value.hash
+          ? _self.hash
           : hash // ignore: cast_nullable_to_non_nullable
               as String,
       secret: null == secret
-          ? _value.secret
+          ? _self.secret
           : secret // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -144,14 +94,13 @@ class __$$EncryptedCredentialsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$EncryptedCredentialsImpl implements _EncryptedCredentials {
-  const _$EncryptedCredentialsImpl(
+class _EncryptedCredentials implements EncryptedCredentials {
+  const _EncryptedCredentials(
       {@JsonKey(name: 'data') required this.data,
       @JsonKey(name: 'hash') required this.hash,
       @JsonKey(name: 'secret') required this.secret});
-
-  factory _$EncryptedCredentialsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$EncryptedCredentialsImplFromJson(json);
+  factory _EncryptedCredentials.fromJson(Map<String, dynamic> json) =>
+      _$EncryptedCredentialsFromJson(json);
 
   /// Base64-encoded encrypted JSON-serialized data with unique user's
   /// payload, data hashes, and secrets required for EncryptedPassportElement
@@ -171,61 +120,72 @@ class _$EncryptedCredentialsImpl implements _EncryptedCredentials {
   @JsonKey(name: 'secret')
   final String secret;
 
+  /// Create a copy of EncryptedCredentials
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$EncryptedCredentialsCopyWith<_EncryptedCredentials> get copyWith =>
+      __$EncryptedCredentialsCopyWithImpl<_EncryptedCredentials>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$EncryptedCredentialsToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'EncryptedCredentials(data: $data, hash: $hash, secret: $secret)';
   }
-
-  /// Create a copy of EncryptedCredentials
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$EncryptedCredentialsImplCopyWith<_$EncryptedCredentialsImpl>
-      get copyWith =>
-          __$$EncryptedCredentialsImplCopyWithImpl<_$EncryptedCredentialsImpl>(
-              this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$EncryptedCredentialsImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _EncryptedCredentials implements EncryptedCredentials {
-  const factory _EncryptedCredentials(
-          {@JsonKey(name: 'data') required final String data,
-          @JsonKey(name: 'hash') required final String hash,
-          @JsonKey(name: 'secret') required final String secret}) =
-      _$EncryptedCredentialsImpl;
-
-  factory _EncryptedCredentials.fromJson(Map<String, dynamic> json) =
-      _$EncryptedCredentialsImpl.fromJson;
-
-  /// Base64-encoded encrypted JSON-serialized data with unique user's
-  /// payload, data hashes, and secrets required for EncryptedPassportElement
-  /// decryption and authentication
+/// @nodoc
+abstract mixin class _$EncryptedCredentialsCopyWith<$Res>
+    implements $EncryptedCredentialsCopyWith<$Res> {
+  factory _$EncryptedCredentialsCopyWith(_EncryptedCredentials value,
+          $Res Function(_EncryptedCredentials) _then) =
+      __$EncryptedCredentialsCopyWithImpl;
   @override
-  @JsonKey(name: 'data')
-  String get data;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'data') String data,
+      @JsonKey(name: 'hash') String hash,
+      @JsonKey(name: 'secret') String secret});
+}
 
-  /// Base64-encoded data hash for data authentication
-  @override
-  @JsonKey(name: 'hash')
-  String get hash;
+/// @nodoc
+class __$EncryptedCredentialsCopyWithImpl<$Res>
+    implements _$EncryptedCredentialsCopyWith<$Res> {
+  __$EncryptedCredentialsCopyWithImpl(this._self, this._then);
 
-  /// Base64-encoded secret, encrypted with the bot's public RSA key, required
-  /// for data decryption
-  @override
-  @JsonKey(name: 'secret')
-  String get secret;
+  final _EncryptedCredentials _self;
+  final $Res Function(_EncryptedCredentials) _then;
 
   /// Create a copy of EncryptedCredentials
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$EncryptedCredentialsImplCopyWith<_$EncryptedCredentialsImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? data = null,
+    Object? hash = null,
+    Object? secret = null,
+  }) {
+    return _then(_EncryptedCredentials(
+      data: null == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String,
+      hash: null == hash
+          ? _self.hash
+          : hash // ignore: cast_nullable_to_non_nullable
+              as String,
+      secret: null == secret
+          ? _self.secret
+          : secret // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }

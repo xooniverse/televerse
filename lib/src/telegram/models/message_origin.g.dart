@@ -6,13 +6,12 @@ part of 'message_origin.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MessageOriginUserImpl _$$MessageOriginUserImplFromJson(
-    Map<String, dynamic> json) {
+MessageOriginUser _$MessageOriginUserFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
     requiredKeys: const ['date'],
   );
-  return _$MessageOriginUserImpl(
+  return MessageOriginUser(
     type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
         MessageOriginType.user,
     date: (json['date'] as num).toInt(),
@@ -20,8 +19,7 @@ _$MessageOriginUserImpl _$$MessageOriginUserImplFromJson(
   );
 }
 
-Map<String, dynamic> _$$MessageOriginUserImplToJson(
-        _$MessageOriginUserImpl instance) =>
+Map<String, dynamic> _$MessageOriginUserToJson(MessageOriginUser instance) =>
     <String, dynamic>{
       'type': instance.type,
       'date': instance.date,
@@ -35,13 +33,13 @@ const _$MessageOriginTypeEnumMap = {
   MessageOriginType.channel: 'channel',
 };
 
-_$MessageOriginHiddenUserImpl _$$MessageOriginHiddenUserImplFromJson(
+MessageOriginHiddenUser _$MessageOriginHiddenUserFromJson(
     Map<String, dynamic> json) {
   $checkKeys(
     json,
     requiredKeys: const ['date'],
   );
-  return _$MessageOriginHiddenUserImpl(
+  return MessageOriginHiddenUser(
     type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
         MessageOriginType.hiddenUser,
     date: (json['date'] as num).toInt(),
@@ -49,21 +47,20 @@ _$MessageOriginHiddenUserImpl _$$MessageOriginHiddenUserImplFromJson(
   );
 }
 
-Map<String, dynamic> _$$MessageOriginHiddenUserImplToJson(
-        _$MessageOriginHiddenUserImpl instance) =>
+Map<String, dynamic> _$MessageOriginHiddenUserToJson(
+        MessageOriginHiddenUser instance) =>
     <String, dynamic>{
       'type': instance.type,
       'date': instance.date,
       'sender_user_name': instance.senderUserName,
     };
 
-_$MessageOriginChatImpl _$$MessageOriginChatImplFromJson(
-    Map<String, dynamic> json) {
+MessageOriginChat _$MessageOriginChatFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
     requiredKeys: const ['date'],
   );
-  return _$MessageOriginChatImpl(
+  return MessageOriginChat(
     type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
         MessageOriginType.chat,
     date: (json['date'] as num).toInt(),
@@ -72,8 +69,7 @@ _$MessageOriginChatImpl _$$MessageOriginChatImplFromJson(
   );
 }
 
-Map<String, dynamic> _$$MessageOriginChatImplToJson(
-        _$MessageOriginChatImpl instance) =>
+Map<String, dynamic> _$MessageOriginChatToJson(MessageOriginChat instance) =>
     <String, dynamic>{
       'type': instance.type,
       'date': instance.date,
@@ -81,13 +77,12 @@ Map<String, dynamic> _$$MessageOriginChatImplToJson(
       if (instance.authorSignature case final value?) 'author_signature': value,
     };
 
-_$MessageOriginChannelImpl _$$MessageOriginChannelImplFromJson(
-    Map<String, dynamic> json) {
+MessageOriginChannel _$MessageOriginChannelFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
     requiredKeys: const ['date'],
   );
-  return _$MessageOriginChannelImpl(
+  return MessageOriginChannel(
     type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
         MessageOriginType.channel,
     date: (json['date'] as num).toInt(),
@@ -97,8 +92,8 @@ _$MessageOriginChannelImpl _$$MessageOriginChannelImplFromJson(
   );
 }
 
-Map<String, dynamic> _$$MessageOriginChannelImplToJson(
-        _$MessageOriginChannelImpl instance) =>
+Map<String, dynamic> _$MessageOriginChannelToJson(
+        MessageOriginChannel instance) =>
     <String, dynamic>{
       'type': instance.type,
       'date': instance.date,

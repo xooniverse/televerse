@@ -9,7 +9,7 @@ part 'chat_boost_updated.g.dart';
 
 /// This object represents a boost added to a chat or changed.
 @freezed
-class ChatBoostUpdated with _$ChatBoostUpdated implements WithChat {
+abstract class ChatBoostUpdated with _$ChatBoostUpdated implements WithChat {
   /// Creates a ChatBoostUpdated object.
   const factory ChatBoostUpdated({
     /// Chat which was boosted

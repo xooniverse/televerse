@@ -12,7 +12,7 @@ part 'inline_keyboard_button.g.dart';
 /// This object represents one button of an inline keyboard. You must use
 /// exactly one of the optional fields.
 @freezed
-class InlineKeyboardButton with _$InlineKeyboardButton {
+abstract class InlineKeyboardButton with _$InlineKeyboardButton {
   /// This object represents one button of an inline keyboard.
   ///
   /// The inline keyboard consists of a row of buttons, each represented by an

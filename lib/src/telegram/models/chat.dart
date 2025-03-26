@@ -8,7 +8,7 @@ part 'chat.g.dart';
 
 /// This object represents a chat.
 @freezed
-class Chat with _$Chat implements WithID {
+abstract class Chat with _$Chat implements WithID {
   /// Constructs a [Chat] object.
   const factory Chat({
     /// Unique identifier for this chat.

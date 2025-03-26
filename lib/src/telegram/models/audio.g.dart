@@ -6,7 +6,7 @@ part of 'audio.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AudioImpl _$$AudioImplFromJson(Map<String, dynamic> json) => _$AudioImpl(
+_Audio _$AudioFromJson(Map<String, dynamic> json) => _Audio(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
       duration: (json['duration'] as num).toInt(),
@@ -20,8 +20,7 @@ _$AudioImpl _$$AudioImplFromJson(Map<String, dynamic> json) => _$AudioImpl(
           : PhotoSize.fromJson(json['thumbnail'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$AudioImplToJson(_$AudioImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$AudioToJson(_Audio instance) => <String, dynamic>{
       'file_id': instance.fileId,
       'file_unique_id': instance.fileUniqueId,
       'duration': instance.duration,

@@ -6,7 +6,8 @@ part 'business_opening_hours_interval.g.dart';
 
 /// Represents an interval of opening hours for a business.
 @freezed
-class BusinessOpeningHoursInterval with _$BusinessOpeningHoursInterval {
+abstract class BusinessOpeningHoursInterval
+    with _$BusinessOpeningHoursInterval {
   /// Creates a [BusinessOpeningHoursInterval] object.
   const factory BusinessOpeningHoursInterval({
     /// The minute's sequence number in a week, starting on Monday, marking the start

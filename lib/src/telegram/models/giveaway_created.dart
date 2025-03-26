@@ -7,7 +7,7 @@ part 'giveaway_created.g.dart';
 /// This object represents a service message about the creation of a scheduled
 /// giveaway. Currently holds no information.
 @freezed
-class GiveawayCreated with _$GiveawayCreated {
+abstract class GiveawayCreated with _$GiveawayCreated {
   /// Creates a `GiveawayCreated` object.
   const factory GiveawayCreated({
     /// Optional. The number of Telegram Stars to be split between giveaway

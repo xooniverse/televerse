@@ -6,7 +6,7 @@ part 'sent_web_app_message.g.dart';
 
 /// Describes an inline message sent by a Web App on behalf of a user.
 @freezed
-class SentWebAppMessage with _$SentWebAppMessage {
+abstract class SentWebAppMessage with _$SentWebAppMessage {
   /// Creates an inline message sent by a Web App
   ///
   /// [inlineMessageId] Identifier of the sent inline message. Available only if

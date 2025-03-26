@@ -7,7 +7,7 @@ part 'video_chat_ended.g.dart';
 /// This object represents a service message about a video chat ended in the
 /// chat.
 @freezed
-class VideoChatEnded with _$VideoChatEnded {
+abstract class VideoChatEnded with _$VideoChatEnded {
   /// Constructs a new `VideoChatEnded` instance
   const factory VideoChatEnded({
     /// Video chat duration in seconds

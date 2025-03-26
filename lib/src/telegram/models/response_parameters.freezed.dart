@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,13 +12,6 @@ part of 'response_parameters.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ResponseParameters _$ResponseParametersFromJson(Map<String, dynamic> json) {
-  return _ResponseParameters.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ResponseParameters {
   /// Optional. The group has been migrated to a supergroup with the specified
@@ -26,72 +20,35 @@ mixin _$ResponseParameters {
   /// it. But it has at most 52 significant bits, so a signed 64-bit integer
   /// or double-precision float type are safe for storing this identifier.
   @JsonKey(name: 'migrate_to_chat_id')
-  int? get migrateToChatId => throw _privateConstructorUsedError;
+  int? get migrateToChatId;
 
   /// Optional. In case of exceeding flood control, the number of seconds left
   /// to wait before the request can be repeated
   @JsonKey(name: 'retry_after')
-  int? get retryAfter => throw _privateConstructorUsedError;
-
-  /// Serializes this ResponseParameters to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int? get retryAfter;
 
   /// Create a copy of ResponseParameters
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ResponseParametersCopyWith<ResponseParameters> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ResponseParametersCopyWith<$Res> {
-  factory $ResponseParametersCopyWith(
-          ResponseParameters value, $Res Function(ResponseParameters) then) =
-      _$ResponseParametersCopyWithImpl<$Res, ResponseParameters>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'migrate_to_chat_id') int? migrateToChatId,
-      @JsonKey(name: 'retry_after') int? retryAfter});
-}
-
-/// @nodoc
-class _$ResponseParametersCopyWithImpl<$Res, $Val extends ResponseParameters>
-    implements $ResponseParametersCopyWith<$Res> {
-  _$ResponseParametersCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ResponseParameters
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ResponseParametersCopyWith<ResponseParameters> get copyWith =>
+      _$ResponseParametersCopyWithImpl<ResponseParameters>(
+          this as ResponseParameters, _$identity);
+
+  /// Serializes this ResponseParameters to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? migrateToChatId = freezed,
-    Object? retryAfter = freezed,
-  }) {
-    return _then(_value.copyWith(
-      migrateToChatId: freezed == migrateToChatId
-          ? _value.migrateToChatId
-          : migrateToChatId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      retryAfter: freezed == retryAfter
-          ? _value.retryAfter
-          : retryAfter // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
+  String toString() {
+    return 'ResponseParameters(migrateToChatId: $migrateToChatId, retryAfter: $retryAfter)';
   }
 }
 
 /// @nodoc
-abstract class _$$ResponseParametersImplCopyWith<$Res>
-    implements $ResponseParametersCopyWith<$Res> {
-  factory _$$ResponseParametersImplCopyWith(_$ResponseParametersImpl value,
-          $Res Function(_$ResponseParametersImpl) then) =
-      __$$ResponseParametersImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ResponseParametersCopyWith<$Res> {
+  factory $ResponseParametersCopyWith(
+          ResponseParameters value, $Res Function(ResponseParameters) _then) =
+      _$ResponseParametersCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'migrate_to_chat_id') int? migrateToChatId,
@@ -99,12 +56,12 @@ abstract class _$$ResponseParametersImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ResponseParametersImplCopyWithImpl<$Res>
-    extends _$ResponseParametersCopyWithImpl<$Res, _$ResponseParametersImpl>
-    implements _$$ResponseParametersImplCopyWith<$Res> {
-  __$$ResponseParametersImplCopyWithImpl(_$ResponseParametersImpl _value,
-      $Res Function(_$ResponseParametersImpl) _then)
-      : super(_value, _then);
+class _$ResponseParametersCopyWithImpl<$Res>
+    implements $ResponseParametersCopyWith<$Res> {
+  _$ResponseParametersCopyWithImpl(this._self, this._then);
+
+  final ResponseParameters _self;
+  final $Res Function(ResponseParameters) _then;
 
   /// Create a copy of ResponseParameters
   /// with the given fields replaced by the non-null parameter values.
@@ -114,13 +71,13 @@ class __$$ResponseParametersImplCopyWithImpl<$Res>
     Object? migrateToChatId = freezed,
     Object? retryAfter = freezed,
   }) {
-    return _then(_$ResponseParametersImpl(
+    return _then(_self.copyWith(
       migrateToChatId: freezed == migrateToChatId
-          ? _value.migrateToChatId
+          ? _self.migrateToChatId
           : migrateToChatId // ignore: cast_nullable_to_non_nullable
               as int?,
       retryAfter: freezed == retryAfter
-          ? _value.retryAfter
+          ? _self.retryAfter
           : retryAfter // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
@@ -129,13 +86,12 @@ class __$$ResponseParametersImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ResponseParametersImpl implements _ResponseParameters {
-  const _$ResponseParametersImpl(
+class _ResponseParameters implements ResponseParameters {
+  const _ResponseParameters(
       {@JsonKey(name: 'migrate_to_chat_id') this.migrateToChatId,
       @JsonKey(name: 'retry_after') this.retryAfter});
-
-  factory _$ResponseParametersImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ResponseParametersImplFromJson(json);
+  factory _ResponseParameters.fromJson(Map<String, dynamic> json) =>
+      _$ResponseParametersFromJson(json);
 
   /// Optional. The group has been migrated to a supergroup with the specified
   /// identifier. This number may have more than 32 significant bits and some
@@ -152,56 +108,65 @@ class _$ResponseParametersImpl implements _ResponseParameters {
   @JsonKey(name: 'retry_after')
   final int? retryAfter;
 
+  /// Create a copy of ResponseParameters
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ResponseParametersCopyWith<_ResponseParameters> get copyWith =>
+      __$ResponseParametersCopyWithImpl<_ResponseParameters>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ResponseParametersToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'ResponseParameters(migrateToChatId: $migrateToChatId, retryAfter: $retryAfter)';
   }
-
-  /// Create a copy of ResponseParameters
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ResponseParametersImplCopyWith<_$ResponseParametersImpl> get copyWith =>
-      __$$ResponseParametersImplCopyWithImpl<_$ResponseParametersImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ResponseParametersImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _ResponseParameters implements ResponseParameters {
-  const factory _ResponseParameters(
-          {@JsonKey(name: 'migrate_to_chat_id') final int? migrateToChatId,
-          @JsonKey(name: 'retry_after') final int? retryAfter}) =
-      _$ResponseParametersImpl;
-
-  factory _ResponseParameters.fromJson(Map<String, dynamic> json) =
-      _$ResponseParametersImpl.fromJson;
-
-  /// Optional. The group has been migrated to a supergroup with the specified
-  /// identifier. This number may have more than 32 significant bits and some
-  /// programming languages may have difficulty/silent defects in interpreting
-  /// it. But it has at most 52 significant bits, so a signed 64-bit integer
-  /// or double-precision float type are safe for storing this identifier.
+/// @nodoc
+abstract mixin class _$ResponseParametersCopyWith<$Res>
+    implements $ResponseParametersCopyWith<$Res> {
+  factory _$ResponseParametersCopyWith(
+          _ResponseParameters value, $Res Function(_ResponseParameters) _then) =
+      __$ResponseParametersCopyWithImpl;
   @override
-  @JsonKey(name: 'migrate_to_chat_id')
-  int? get migrateToChatId;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'migrate_to_chat_id') int? migrateToChatId,
+      @JsonKey(name: 'retry_after') int? retryAfter});
+}
 
-  /// Optional. In case of exceeding flood control, the number of seconds left
-  /// to wait before the request can be repeated
-  @override
-  @JsonKey(name: 'retry_after')
-  int? get retryAfter;
+/// @nodoc
+class __$ResponseParametersCopyWithImpl<$Res>
+    implements _$ResponseParametersCopyWith<$Res> {
+  __$ResponseParametersCopyWithImpl(this._self, this._then);
+
+  final _ResponseParameters _self;
+  final $Res Function(_ResponseParameters) _then;
 
   /// Create a copy of ResponseParameters
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResponseParametersImplCopyWith<_$ResponseParametersImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? migrateToChatId = freezed,
+    Object? retryAfter = freezed,
+  }) {
+    return _then(_ResponseParameters(
+      migrateToChatId: freezed == migrateToChatId
+          ? _self.migrateToChatId
+          : migrateToChatId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      retryAfter: freezed == retryAfter
+          ? _self.retryAfter
+          : retryAfter // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
 }

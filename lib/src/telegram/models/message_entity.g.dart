@@ -6,8 +6,8 @@ part of 'message_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MessageEntityImpl _$$MessageEntityImplFromJson(Map<String, dynamic> json) =>
-    _$MessageEntityImpl(
+_MessageEntity _$MessageEntityFromJson(Map<String, dynamic> json) =>
+    _MessageEntity(
       type: $enumDecode(_$MessageEntityTypeEnumMap, json['type']),
       offset: (json['offset'] as num).toInt(),
       length: (json['length'] as num).toInt(),
@@ -19,7 +19,7 @@ _$MessageEntityImpl _$$MessageEntityImplFromJson(Map<String, dynamic> json) =>
       customEmojiId: json['custom_emoji_id'] as String?,
     );
 
-Map<String, dynamic> _$$MessageEntityImplToJson(_$MessageEntityImpl instance) =>
+Map<String, dynamic> _$MessageEntityToJson(_MessageEntity instance) =>
     <String, dynamic>{
       'type': _$MessageEntityTypeEnumMap[instance.type]!,
       'offset': instance.offset,

@@ -6,8 +6,7 @@ part of 'poll_answer.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PollAnswerImpl _$$PollAnswerImplFromJson(Map<String, dynamic> json) =>
-    _$PollAnswerImpl(
+_PollAnswer _$PollAnswerFromJson(Map<String, dynamic> json) => _PollAnswer(
       pollId: json['poll_id'] as String,
       user: json['user'] == null
           ? null
@@ -20,7 +19,7 @@ _$PollAnswerImpl _$$PollAnswerImplFromJson(Map<String, dynamic> json) =>
           : Chat.fromJson(json['voter_chat'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$PollAnswerImplToJson(_$PollAnswerImpl instance) =>
+Map<String, dynamic> _$PollAnswerToJson(_PollAnswer instance) =>
     <String, dynamic>{
       'poll_id': instance.pollId,
       if (instance.user case final value?) 'user': value,

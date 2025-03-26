@@ -11,7 +11,9 @@ part 'chat_join_request.g.dart';
 
 /// Represents a join request sent to a chat.
 @freezed
-class ChatJoinRequest with _$ChatJoinRequest implements WithChat, WithUser {
+abstract class ChatJoinRequest
+    with _$ChatJoinRequest
+    implements WithChat, WithUser {
   /// Creates a new [ChatJoinRequest] object.
   const factory ChatJoinRequest({
     /// Chat to which the request was sent

@@ -6,7 +6,7 @@ part 'web_app_data.g.dart';
 
 /// Describes data sent from a Web App to the bot.
 @freezed
-class WebAppData with _$WebAppData {
+abstract class WebAppData with _$WebAppData {
   /// Constructs a [WebAppData] object
   const factory WebAppData({
     /// The data. Be aware that a bad client can send arbitrary data in this

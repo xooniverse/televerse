@@ -6,15 +6,13 @@ part of 'response_parameters.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ResponseParametersImpl _$$ResponseParametersImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ResponseParametersImpl(
+_ResponseParameters _$ResponseParametersFromJson(Map<String, dynamic> json) =>
+    _ResponseParameters(
       migrateToChatId: (json['migrate_to_chat_id'] as num?)?.toInt(),
       retryAfter: (json['retry_after'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$ResponseParametersImplToJson(
-        _$ResponseParametersImpl instance) =>
+Map<String, dynamic> _$ResponseParametersToJson(_ResponseParameters instance) =>
     <String, dynamic>{
       if (instance.migrateToChatId case final value?)
         'migrate_to_chat_id': value,

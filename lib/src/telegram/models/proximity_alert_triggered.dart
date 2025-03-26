@@ -9,7 +9,7 @@ part 'proximity_alert_triggered.g.dart';
 /// This object represents the content of a service message, sent whenever a user
 /// in the chat triggers a proximity alert set by another user.
 @freezed
-class ProximityAlertTriggered with _$ProximityAlertTriggered {
+abstract class ProximityAlertTriggered with _$ProximityAlertTriggered {
   /// Constructs a [ProximityAlertTriggered] object
   const factory ProximityAlertTriggered({
     /// User that triggered the alert

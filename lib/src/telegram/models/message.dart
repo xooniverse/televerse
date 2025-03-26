@@ -94,7 +94,7 @@ sealed class MaybeInaccessibleMessage implements WithChat {
 /// This object describes a message that was deleted or is otherwise
 /// inaccessible to the bot.
 @Freezed(copyWith: false)
-class InaccessibleMessage
+abstract class InaccessibleMessage
     with _$InaccessibleMessage
     implements MaybeInaccessibleMessage {
   /// Creates [InaccessibleMessage] instance
@@ -116,7 +116,9 @@ class InaccessibleMessage
 
 /// This object represents a message.
 @Freezed(copyWith: false)
-class Message with _$Message implements MaybeInaccessibleMessage, WithUser {
+abstract class Message
+    with _$Message
+    implements MaybeInaccessibleMessage, WithUser {
   /// Creates a Message object.
   const factory Message({
     /// Chat the message belonged to

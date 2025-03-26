@@ -6,13 +6,12 @@ part of 'web_app_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$WebAppDataImpl _$$WebAppDataImplFromJson(Map<String, dynamic> json) =>
-    _$WebAppDataImpl(
+_WebAppData _$WebAppDataFromJson(Map<String, dynamic> json) => _WebAppData(
       data: json['data'] as String,
       buttonText: json['button_text'] as String,
     );
 
-Map<String, dynamic> _$$WebAppDataImplToJson(_$WebAppDataImpl instance) =>
+Map<String, dynamic> _$WebAppDataToJson(_WebAppData instance) =>
     <String, dynamic>{
       'data': instance.data,
       'button_text': instance.buttonText,

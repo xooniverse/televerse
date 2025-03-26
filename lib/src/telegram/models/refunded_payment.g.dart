@@ -6,9 +6,8 @@ part of 'refunded_payment.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$RefundedPaymentImpl _$$RefundedPaymentImplFromJson(
-        Map<String, dynamic> json) =>
-    _$RefundedPaymentImpl(
+_RefundedPayment _$RefundedPaymentFromJson(Map<String, dynamic> json) =>
+    _RefundedPayment(
       currency: json['currency'] as String,
       totalAmount: (json['total_amount'] as num).toInt(),
       invoicePayload: json['invoice_payload'] as String,
@@ -16,8 +15,7 @@ _$RefundedPaymentImpl _$$RefundedPaymentImplFromJson(
       providerPaymentChargeId: json['provider_payment_charge_id'] as String?,
     );
 
-Map<String, dynamic> _$$RefundedPaymentImplToJson(
-        _$RefundedPaymentImpl instance) =>
+Map<String, dynamic> _$RefundedPaymentToJson(_RefundedPayment instance) =>
     <String, dynamic>{
       'currency': instance.currency,
       'total_amount': instance.totalAmount,

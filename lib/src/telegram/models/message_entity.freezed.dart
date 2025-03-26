@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,13 +11,6 @@ part of 'message_entity.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-MessageEntity _$MessageEntityFromJson(Map<String, dynamic> json) {
-  return _MessageEntity.fromJson(json);
-}
 
 /// @nodoc
 mixin _$MessageEntity {
@@ -39,50 +33,57 @@ mixin _$MessageEntity {
   /// - textMention - (for users without usernames),
   /// - customEmoji - (for inline custom emoji stickers)
   @JsonKey(name: 'type')
-  MessageEntityType get type => throw _privateConstructorUsedError;
+  MessageEntityType get type;
 
   /// Offset in UTF-16 code units to the start of the entity
   @JsonKey(name: 'offset')
-  int get offset => throw _privateConstructorUsedError;
+  int get offset;
 
   /// Length of the entity in UTF-16 code units
   @JsonKey(name: 'length')
-  int get length => throw _privateConstructorUsedError;
+  int get length;
 
   /// Optional. For "text_link" only, URL that will be opened after user taps
   /// on the text
   @JsonKey(name: 'url')
-  String? get url => throw _privateConstructorUsedError;
+  String? get url;
 
   /// Optional. For "text_mention" only, the mentioned user
   @JsonKey(name: 'user')
-  User? get user => throw _privateConstructorUsedError;
+  User? get user;
 
   /// Optional. For "pre" only, the programming language of the entity text
   @JsonKey(name: 'language')
-  String? get language => throw _privateConstructorUsedError;
+  String? get language;
 
   /// Optional. For "custom_emoji" only, unique identifier of the custom
   /// emoji. Use getCustomEmojiStickers to get full information about the
   /// sticker
   @JsonKey(name: 'custom_emoji_id')
-  String? get customEmojiId => throw _privateConstructorUsedError;
-
-  /// Serializes this MessageEntity to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get customEmojiId;
 
   /// Create a copy of MessageEntity
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $MessageEntityCopyWith<MessageEntity> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$MessageEntityCopyWithImpl<MessageEntity>(
+          this as MessageEntity, _$identity);
+
+  /// Serializes this MessageEntity to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'MessageEntity(type: $type, offset: $offset, length: $length, url: $url, user: $user, language: $language, customEmojiId: $customEmojiId)';
+  }
 }
 
 /// @nodoc
-abstract class $MessageEntityCopyWith<$Res> {
+abstract mixin class $MessageEntityCopyWith<$Res> {
   factory $MessageEntityCopyWith(
-          MessageEntity value, $Res Function(MessageEntity) then) =
-      _$MessageEntityCopyWithImpl<$Res, MessageEntity>;
+          MessageEntity value, $Res Function(MessageEntity) _then) =
+      _$MessageEntityCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'type') MessageEntityType type,
@@ -97,14 +98,12 @@ abstract class $MessageEntityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MessageEntityCopyWithImpl<$Res, $Val extends MessageEntity>
+class _$MessageEntityCopyWithImpl<$Res>
     implements $MessageEntityCopyWith<$Res> {
-  _$MessageEntityCopyWithImpl(this._value, this._then);
+  _$MessageEntityCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final MessageEntity _self;
+  final $Res Function(MessageEntity) _then;
 
   /// Create a copy of MessageEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -119,36 +118,36 @@ class _$MessageEntityCopyWithImpl<$Res, $Val extends MessageEntity>
     Object? language = freezed,
     Object? customEmojiId = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as MessageEntityType,
       offset: null == offset
-          ? _value.offset
+          ? _self.offset
           : offset // ignore: cast_nullable_to_non_nullable
               as int,
       length: null == length
-          ? _value.length
+          ? _self.length
           : length // ignore: cast_nullable_to_non_nullable
               as int,
       url: freezed == url
-          ? _value.url
+          ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
-          ? _value.user
+          ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
       language: freezed == language
-          ? _value.language
+          ? _self.language
           : language // ignore: cast_nullable_to_non_nullable
               as String?,
       customEmojiId: freezed == customEmojiId
-          ? _value.customEmojiId
+          ? _self.customEmojiId
           : customEmojiId // ignore: cast_nullable_to_non_nullable
               as String?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of MessageEntity
@@ -156,95 +155,20 @@ class _$MessageEntityCopyWithImpl<$Res, $Val extends MessageEntity>
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
+    if (_self.user == null) {
       return null;
     }
 
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
+    return $UserCopyWith<$Res>(_self.user!, (value) {
+      return _then(_self.copyWith(user: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$MessageEntityImplCopyWith<$Res>
-    implements $MessageEntityCopyWith<$Res> {
-  factory _$$MessageEntityImplCopyWith(
-          _$MessageEntityImpl value, $Res Function(_$MessageEntityImpl) then) =
-      __$$MessageEntityImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'type') MessageEntityType type,
-      @JsonKey(name: 'offset') int offset,
-      @JsonKey(name: 'length') int length,
-      @JsonKey(name: 'url') String? url,
-      @JsonKey(name: 'user') User? user,
-      @JsonKey(name: 'language') String? language,
-      @JsonKey(name: 'custom_emoji_id') String? customEmojiId});
-
-  @override
-  $UserCopyWith<$Res>? get user;
-}
-
-/// @nodoc
-class __$$MessageEntityImplCopyWithImpl<$Res>
-    extends _$MessageEntityCopyWithImpl<$Res, _$MessageEntityImpl>
-    implements _$$MessageEntityImplCopyWith<$Res> {
-  __$$MessageEntityImplCopyWithImpl(
-      _$MessageEntityImpl _value, $Res Function(_$MessageEntityImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of MessageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-    Object? offset = null,
-    Object? length = null,
-    Object? url = freezed,
-    Object? user = freezed,
-    Object? language = freezed,
-    Object? customEmojiId = freezed,
-  }) {
-    return _then(_$MessageEntityImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MessageEntityType,
-      offset: null == offset
-          ? _value.offset
-          : offset // ignore: cast_nullable_to_non_nullable
-              as int,
-      length: null == length
-          ? _value.length
-          : length // ignore: cast_nullable_to_non_nullable
-              as int,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      language: freezed == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as String?,
-      customEmojiId: freezed == customEmojiId
-          ? _value.customEmojiId
-          : customEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$MessageEntityImpl implements _MessageEntity {
-  const _$MessageEntityImpl(
+class _MessageEntity implements MessageEntity {
+  const _MessageEntity(
       {@JsonKey(name: 'type') required this.type,
       @JsonKey(name: 'offset') required this.offset,
       @JsonKey(name: 'length') required this.length,
@@ -252,9 +176,8 @@ class _$MessageEntityImpl implements _MessageEntity {
       @JsonKey(name: 'user') this.user,
       @JsonKey(name: 'language') this.language,
       @JsonKey(name: 'custom_emoji_id') this.customEmojiId});
-
-  factory _$MessageEntityImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MessageEntityImplFromJson(json);
+  factory _MessageEntity.fromJson(Map<String, dynamic> json) =>
+      _$MessageEntityFromJson(json);
 
   /// Type of the entity. Currently, can be:
   /// - mention - (@username)
@@ -311,100 +234,112 @@ class _$MessageEntityImpl implements _MessageEntity {
   @JsonKey(name: 'custom_emoji_id')
   final String? customEmojiId;
 
+  /// Create a copy of MessageEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MessageEntityCopyWith<_MessageEntity> get copyWith =>
+      __$MessageEntityCopyWithImpl<_MessageEntity>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MessageEntityToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'MessageEntity(type: $type, offset: $offset, length: $length, url: $url, user: $user, language: $language, customEmojiId: $customEmojiId)';
   }
-
-  /// Create a copy of MessageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MessageEntityImplCopyWith<_$MessageEntityImpl> get copyWith =>
-      __$$MessageEntityImplCopyWithImpl<_$MessageEntityImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MessageEntityImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _MessageEntity implements MessageEntity {
-  const factory _MessageEntity(
-          {@JsonKey(name: 'type') required final MessageEntityType type,
-          @JsonKey(name: 'offset') required final int offset,
-          @JsonKey(name: 'length') required final int length,
-          @JsonKey(name: 'url') final String? url,
-          @JsonKey(name: 'user') final User? user,
-          @JsonKey(name: 'language') final String? language,
-          @JsonKey(name: 'custom_emoji_id') final String? customEmojiId}) =
-      _$MessageEntityImpl;
-
-  factory _MessageEntity.fromJson(Map<String, dynamic> json) =
-      _$MessageEntityImpl.fromJson;
-
-  /// Type of the entity. Currently, can be:
-  /// - mention - (@username)
-  /// - hashtag - (#hashtag),
-  /// - cashtag - ($USD),
-  /// - botCommand - (/start@jobs_bot),
-  /// - url - (https://telegram.org),
-  /// - email - (do-not-reply@telegram.org),
-  /// - phoneNumber - (+1-212-555-0123),
-  /// - bold - (bold text),
-  /// - italic - (italic text),
-  /// - underline - (underlined text),
-  /// - strikethrough - (strikethrough text),
-  /// - spoiler - (spoiler message),
-  /// - code - (monowidth string),
-  /// - pre - (monowidth block),
-  /// - textLink - (for clickable text URLs),
-  /// - textMention - (for users without usernames),
-  /// - customEmoji - (for inline custom emoji stickers)
+/// @nodoc
+abstract mixin class _$MessageEntityCopyWith<$Res>
+    implements $MessageEntityCopyWith<$Res> {
+  factory _$MessageEntityCopyWith(
+          _MessageEntity value, $Res Function(_MessageEntity) _then) =
+      __$MessageEntityCopyWithImpl;
   @override
-  @JsonKey(name: 'type')
-  MessageEntityType get type;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'type') MessageEntityType type,
+      @JsonKey(name: 'offset') int offset,
+      @JsonKey(name: 'length') int length,
+      @JsonKey(name: 'url') String? url,
+      @JsonKey(name: 'user') User? user,
+      @JsonKey(name: 'language') String? language,
+      @JsonKey(name: 'custom_emoji_id') String? customEmojiId});
 
-  /// Offset in UTF-16 code units to the start of the entity
   @override
-  @JsonKey(name: 'offset')
-  int get offset;
+  $UserCopyWith<$Res>? get user;
+}
 
-  /// Length of the entity in UTF-16 code units
-  @override
-  @JsonKey(name: 'length')
-  int get length;
+/// @nodoc
+class __$MessageEntityCopyWithImpl<$Res>
+    implements _$MessageEntityCopyWith<$Res> {
+  __$MessageEntityCopyWithImpl(this._self, this._then);
 
-  /// Optional. For "text_link" only, URL that will be opened after user taps
-  /// on the text
-  @override
-  @JsonKey(name: 'url')
-  String? get url;
-
-  /// Optional. For "text_mention" only, the mentioned user
-  @override
-  @JsonKey(name: 'user')
-  User? get user;
-
-  /// Optional. For "pre" only, the programming language of the entity text
-  @override
-  @JsonKey(name: 'language')
-  String? get language;
-
-  /// Optional. For "custom_emoji" only, unique identifier of the custom
-  /// emoji. Use getCustomEmojiStickers to get full information about the
-  /// sticker
-  @override
-  @JsonKey(name: 'custom_emoji_id')
-  String? get customEmojiId;
+  final _MessageEntity _self;
+  final $Res Function(_MessageEntity) _then;
 
   /// Create a copy of MessageEntity
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MessageEntityImplCopyWith<_$MessageEntityImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? type = null,
+    Object? offset = null,
+    Object? length = null,
+    Object? url = freezed,
+    Object? user = freezed,
+    Object? language = freezed,
+    Object? customEmojiId = freezed,
+  }) {
+    return _then(_MessageEntity(
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as MessageEntityType,
+      offset: null == offset
+          ? _self.offset
+          : offset // ignore: cast_nullable_to_non_nullable
+              as int,
+      length: null == length
+          ? _self.length
+          : length // ignore: cast_nullable_to_non_nullable
+              as int,
+      url: freezed == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: freezed == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+      language: freezed == language
+          ? _self.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customEmojiId: freezed == customEmojiId
+          ? _self.customEmojiId
+          : customEmojiId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of MessageEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get user {
+    if (_self.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_self.user!, (value) {
+      return _then(_self.copyWith(user: value));
+    });
+  }
 }

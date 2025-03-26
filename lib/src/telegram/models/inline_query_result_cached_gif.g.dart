@@ -6,9 +6,9 @@ part of 'inline_query_result_cached_gif.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultCachedGifImpl _$$InlineQueryResultCachedGifImplFromJson(
+_InlineQueryResultCachedGif _$InlineQueryResultCachedGifFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultCachedGifImpl(
+    _InlineQueryResultCachedGif(
       id: json['id'] as String,
       gifFileId: json['gif_file_id'] as String,
       title: json['title'] as String?,
@@ -30,8 +30,8 @@ _$InlineQueryResultCachedGifImpl _$$InlineQueryResultCachedGifImplFromJson(
           InlineQueryResultType.gif,
     );
 
-Map<String, dynamic> _$$InlineQueryResultCachedGifImplToJson(
-        _$InlineQueryResultCachedGifImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultCachedGifToJson(
+        _InlineQueryResultCachedGif instance) =>
     <String, dynamic>{
       'id': instance.id,
       'gif_file_id': instance.gifFileId,

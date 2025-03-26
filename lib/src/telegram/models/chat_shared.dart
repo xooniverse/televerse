@@ -10,7 +10,7 @@ part 'chat_shared.g.dart';
 /// This object contains information about the chat whose identifier was shared
 /// with the bot using a [KeyboardButtonRequestChat] button.
 @freezed
-class ChatShared with _$ChatShared {
+abstract class ChatShared with _$ChatShared {
   /// Creates a new [ChatShared] object.
   const factory ChatShared({
     /// Identifier of the request

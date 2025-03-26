@@ -8,7 +8,7 @@ part 'audio.g.dart';
 /// This object represents an audio file to be treated as music by the Telegram
 /// clients.
 @freezed
-class Audio with _$Audio {
+abstract class Audio with _$Audio {
   /// Creates a new [Audio] object.
   const factory Audio({
     /// Identifier for this file, which can be used to download or reuse the

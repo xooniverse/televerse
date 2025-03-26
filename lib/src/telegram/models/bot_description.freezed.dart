@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,82 +12,45 @@ part of 'bot_description.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-BotDescription _$BotDescriptionFromJson(Map<String, dynamic> json) {
-  return _BotDescription.fromJson(json);
-}
-
 /// @nodoc
 mixin _$BotDescription {
   /// Bot's description.
   @JsonKey(name: 'description')
-  String get description => throw _privateConstructorUsedError;
-
-  /// Serializes this BotDescription to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get description;
 
   /// Create a copy of BotDescription
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $BotDescriptionCopyWith<BotDescription> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $BotDescriptionCopyWith<$Res> {
-  factory $BotDescriptionCopyWith(
-          BotDescription value, $Res Function(BotDescription) then) =
-      _$BotDescriptionCopyWithImpl<$Res, BotDescription>;
-  @useResult
-  $Res call({@JsonKey(name: 'description') String description});
-}
-
-/// @nodoc
-class _$BotDescriptionCopyWithImpl<$Res, $Val extends BotDescription>
-    implements $BotDescriptionCopyWith<$Res> {
-  _$BotDescriptionCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of BotDescription
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $BotDescriptionCopyWith<BotDescription> get copyWith =>
+      _$BotDescriptionCopyWithImpl<BotDescription>(
+          this as BotDescription, _$identity);
+
+  /// Serializes this BotDescription to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? description = null,
-  }) {
-    return _then(_value.copyWith(
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  String toString() {
+    return 'BotDescription(description: $description)';
   }
 }
 
 /// @nodoc
-abstract class _$$BotDescriptionImplCopyWith<$Res>
-    implements $BotDescriptionCopyWith<$Res> {
-  factory _$$BotDescriptionImplCopyWith(_$BotDescriptionImpl value,
-          $Res Function(_$BotDescriptionImpl) then) =
-      __$$BotDescriptionImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $BotDescriptionCopyWith<$Res> {
+  factory $BotDescriptionCopyWith(
+          BotDescription value, $Res Function(BotDescription) _then) =
+      _$BotDescriptionCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'description') String description});
 }
 
 /// @nodoc
-class __$$BotDescriptionImplCopyWithImpl<$Res>
-    extends _$BotDescriptionCopyWithImpl<$Res, _$BotDescriptionImpl>
-    implements _$$BotDescriptionImplCopyWith<$Res> {
-  __$$BotDescriptionImplCopyWithImpl(
-      _$BotDescriptionImpl _value, $Res Function(_$BotDescriptionImpl) _then)
-      : super(_value, _then);
+class _$BotDescriptionCopyWithImpl<$Res>
+    implements $BotDescriptionCopyWith<$Res> {
+  _$BotDescriptionCopyWithImpl(this._self, this._then);
+
+  final BotDescription _self;
+  final $Res Function(BotDescription) _then;
 
   /// Create a copy of BotDescription
   /// with the given fields replaced by the non-null parameter values.
@@ -95,9 +59,9 @@ class __$$BotDescriptionImplCopyWithImpl<$Res>
   $Res call({
     Object? description = null,
   }) {
-    return _then(_$BotDescriptionImpl(
+    return _then(_self.copyWith(
       description: null == description
-          ? _value.description
+          ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -106,57 +70,69 @@ class __$$BotDescriptionImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BotDescriptionImpl implements _BotDescription {
-  const _$BotDescriptionImpl(
+class _BotDescription implements BotDescription {
+  const _BotDescription(
       {@JsonKey(name: 'description') required this.description});
-
-  factory _$BotDescriptionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BotDescriptionImplFromJson(json);
+  factory _BotDescription.fromJson(Map<String, dynamic> json) =>
+      _$BotDescriptionFromJson(json);
 
   /// Bot's description.
   @override
   @JsonKey(name: 'description')
   final String description;
 
+  /// Create a copy of BotDescription
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BotDescriptionCopyWith<_BotDescription> get copyWith =>
+      __$BotDescriptionCopyWithImpl<_BotDescription>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$BotDescriptionToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'BotDescription(description: $description)';
   }
-
-  /// Create a copy of BotDescription
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BotDescriptionImplCopyWith<_$BotDescriptionImpl> get copyWith =>
-      __$$BotDescriptionImplCopyWithImpl<_$BotDescriptionImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BotDescriptionImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _BotDescription implements BotDescription {
-  const factory _BotDescription(
-          {@JsonKey(name: 'description') required final String description}) =
-      _$BotDescriptionImpl;
-
-  factory _BotDescription.fromJson(Map<String, dynamic> json) =
-      _$BotDescriptionImpl.fromJson;
-
-  /// Bot's description.
+/// @nodoc
+abstract mixin class _$BotDescriptionCopyWith<$Res>
+    implements $BotDescriptionCopyWith<$Res> {
+  factory _$BotDescriptionCopyWith(
+          _BotDescription value, $Res Function(_BotDescription) _then) =
+      __$BotDescriptionCopyWithImpl;
   @override
-  @JsonKey(name: 'description')
-  String get description;
+  @useResult
+  $Res call({@JsonKey(name: 'description') String description});
+}
+
+/// @nodoc
+class __$BotDescriptionCopyWithImpl<$Res>
+    implements _$BotDescriptionCopyWith<$Res> {
+  __$BotDescriptionCopyWithImpl(this._self, this._then);
+
+  final _BotDescription _self;
+  final $Res Function(_BotDescription) _then;
 
   /// Create a copy of BotDescription
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BotDescriptionImplCopyWith<_$BotDescriptionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? description = null,
+  }) {
+    return _then(_BotDescription(
+      description: null == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }

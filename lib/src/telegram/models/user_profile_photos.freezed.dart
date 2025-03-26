@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,82 +12,38 @@ part of 'user_profile_photos.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-UserProfilePhotos _$UserProfilePhotosFromJson(Map<String, dynamic> json) {
-  return _UserProfilePhotos.fromJson(json);
-}
-
 /// @nodoc
 mixin _$UserProfilePhotos {
   /// Total number of profile pictures the target user has
   @JsonKey(name: 'total_count')
-  int get totalCount => throw _privateConstructorUsedError;
+  int get totalCount;
 
   /// Requested profile pictures (in up to 4 sizes each)
   @JsonKey(name: 'photos')
-  List<List<PhotoSize>> get photos => throw _privateConstructorUsedError;
-
-  /// Serializes this UserProfilePhotos to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<List<PhotoSize>> get photos;
 
   /// Create a copy of UserProfilePhotos
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserProfilePhotosCopyWith<UserProfilePhotos> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UserProfilePhotosCopyWith<$Res> {
-  factory $UserProfilePhotosCopyWith(
-          UserProfilePhotos value, $Res Function(UserProfilePhotos) then) =
-      _$UserProfilePhotosCopyWithImpl<$Res, UserProfilePhotos>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'total_count') int totalCount,
-      @JsonKey(name: 'photos') List<List<PhotoSize>> photos});
-}
-
-/// @nodoc
-class _$UserProfilePhotosCopyWithImpl<$Res, $Val extends UserProfilePhotos>
-    implements $UserProfilePhotosCopyWith<$Res> {
-  _$UserProfilePhotosCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of UserProfilePhotos
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $UserProfilePhotosCopyWith<UserProfilePhotos> get copyWith =>
+      _$UserProfilePhotosCopyWithImpl<UserProfilePhotos>(
+          this as UserProfilePhotos, _$identity);
+
+  /// Serializes this UserProfilePhotos to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? totalCount = null,
-    Object? photos = null,
-  }) {
-    return _then(_value.copyWith(
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      photos: null == photos
-          ? _value.photos
-          : photos // ignore: cast_nullable_to_non_nullable
-              as List<List<PhotoSize>>,
-    ) as $Val);
+  String toString() {
+    return 'UserProfilePhotos(totalCount: $totalCount, photos: $photos)';
   }
 }
 
 /// @nodoc
-abstract class _$$UserProfilePhotosImplCopyWith<$Res>
-    implements $UserProfilePhotosCopyWith<$Res> {
-  factory _$$UserProfilePhotosImplCopyWith(_$UserProfilePhotosImpl value,
-          $Res Function(_$UserProfilePhotosImpl) then) =
-      __$$UserProfilePhotosImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $UserProfilePhotosCopyWith<$Res> {
+  factory $UserProfilePhotosCopyWith(
+          UserProfilePhotos value, $Res Function(UserProfilePhotos) _then) =
+      _$UserProfilePhotosCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'total_count') int totalCount,
@@ -94,12 +51,12 @@ abstract class _$$UserProfilePhotosImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$UserProfilePhotosImplCopyWithImpl<$Res>
-    extends _$UserProfilePhotosCopyWithImpl<$Res, _$UserProfilePhotosImpl>
-    implements _$$UserProfilePhotosImplCopyWith<$Res> {
-  __$$UserProfilePhotosImplCopyWithImpl(_$UserProfilePhotosImpl _value,
-      $Res Function(_$UserProfilePhotosImpl) _then)
-      : super(_value, _then);
+class _$UserProfilePhotosCopyWithImpl<$Res>
+    implements $UserProfilePhotosCopyWith<$Res> {
+  _$UserProfilePhotosCopyWithImpl(this._self, this._then);
+
+  final UserProfilePhotos _self;
+  final $Res Function(UserProfilePhotos) _then;
 
   /// Create a copy of UserProfilePhotos
   /// with the given fields replaced by the non-null parameter values.
@@ -109,13 +66,13 @@ class __$$UserProfilePhotosImplCopyWithImpl<$Res>
     Object? totalCount = null,
     Object? photos = null,
   }) {
-    return _then(_$UserProfilePhotosImpl(
+    return _then(_self.copyWith(
       totalCount: null == totalCount
-          ? _value.totalCount
+          ? _self.totalCount
           : totalCount // ignore: cast_nullable_to_non_nullable
               as int,
       photos: null == photos
-          ? _value._photos
+          ? _self.photos
           : photos // ignore: cast_nullable_to_non_nullable
               as List<List<PhotoSize>>,
     ));
@@ -124,14 +81,13 @@ class __$$UserProfilePhotosImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserProfilePhotosImpl implements _UserProfilePhotos {
-  const _$UserProfilePhotosImpl(
+class _UserProfilePhotos implements UserProfilePhotos {
+  const _UserProfilePhotos(
       {@JsonKey(name: 'total_count') required this.totalCount,
       @JsonKey(name: 'photos') required final List<List<PhotoSize>> photos})
       : _photos = photos;
-
-  factory _$UserProfilePhotosImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserProfilePhotosImplFromJson(json);
+  factory _UserProfilePhotos.fromJson(Map<String, dynamic> json) =>
+      _$UserProfilePhotosFromJson(json);
 
   /// Total number of profile pictures the target user has
   @override
@@ -150,51 +106,65 @@ class _$UserProfilePhotosImpl implements _UserProfilePhotos {
     return EqualUnmodifiableListView(_photos);
   }
 
+  /// Create a copy of UserProfilePhotos
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UserProfilePhotosCopyWith<_UserProfilePhotos> get copyWith =>
+      __$UserProfilePhotosCopyWithImpl<_UserProfilePhotos>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$UserProfilePhotosToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'UserProfilePhotos(totalCount: $totalCount, photos: $photos)';
   }
-
-  /// Create a copy of UserProfilePhotos
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserProfilePhotosImplCopyWith<_$UserProfilePhotosImpl> get copyWith =>
-      __$$UserProfilePhotosImplCopyWithImpl<_$UserProfilePhotosImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserProfilePhotosImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _UserProfilePhotos implements UserProfilePhotos {
-  const factory _UserProfilePhotos(
-      {@JsonKey(name: 'total_count') required final int totalCount,
-      @JsonKey(name: 'photos')
-      required final List<List<PhotoSize>> photos}) = _$UserProfilePhotosImpl;
-
-  factory _UserProfilePhotos.fromJson(Map<String, dynamic> json) =
-      _$UserProfilePhotosImpl.fromJson;
-
-  /// Total number of profile pictures the target user has
+/// @nodoc
+abstract mixin class _$UserProfilePhotosCopyWith<$Res>
+    implements $UserProfilePhotosCopyWith<$Res> {
+  factory _$UserProfilePhotosCopyWith(
+          _UserProfilePhotos value, $Res Function(_UserProfilePhotos) _then) =
+      __$UserProfilePhotosCopyWithImpl;
   @override
-  @JsonKey(name: 'total_count')
-  int get totalCount;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'total_count') int totalCount,
+      @JsonKey(name: 'photos') List<List<PhotoSize>> photos});
+}
 
-  /// Requested profile pictures (in up to 4 sizes each)
-  @override
-  @JsonKey(name: 'photos')
-  List<List<PhotoSize>> get photos;
+/// @nodoc
+class __$UserProfilePhotosCopyWithImpl<$Res>
+    implements _$UserProfilePhotosCopyWith<$Res> {
+  __$UserProfilePhotosCopyWithImpl(this._self, this._then);
+
+  final _UserProfilePhotos _self;
+  final $Res Function(_UserProfilePhotos) _then;
 
   /// Create a copy of UserProfilePhotos
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserProfilePhotosImplCopyWith<_$UserProfilePhotosImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? totalCount = null,
+    Object? photos = null,
+  }) {
+    return _then(_UserProfilePhotos(
+      totalCount: null == totalCount
+          ? _self.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      photos: null == photos
+          ? _self._photos
+          : photos // ignore: cast_nullable_to_non_nullable
+              as List<List<PhotoSize>>,
+    ));
+  }
 }

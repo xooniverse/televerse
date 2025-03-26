@@ -6,13 +6,12 @@ part of 'copy_text_button.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CopyTextButtonImpl _$$CopyTextButtonImplFromJson(Map<String, dynamic> json) =>
-    _$CopyTextButtonImpl(
+_CopyTextButton _$CopyTextButtonFromJson(Map<String, dynamic> json) =>
+    _CopyTextButton(
       text: json['text'] as String,
     );
 
-Map<String, dynamic> _$$CopyTextButtonImplToJson(
-        _$CopyTextButtonImpl instance) =>
+Map<String, dynamic> _$CopyTextButtonToJson(_CopyTextButton instance) =>
     <String, dynamic>{
       'text': instance.text,
     };

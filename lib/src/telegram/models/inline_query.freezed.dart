@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,30 +12,23 @@ part of 'inline_query.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-InlineQuery _$InlineQueryFromJson(Map<String, dynamic> json) {
-  return _InlineQuery.fromJson(json);
-}
-
 /// @nodoc
 mixin _$InlineQuery {
   /// Unique identifier for this query
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
 
   /// Sender
   @JsonKey(name: 'from')
-  User get from => throw _privateConstructorUsedError;
+  User get from;
 
   /// Text of the query (up to 256 characters)
   @JsonKey(name: 'query')
-  String get query => throw _privateConstructorUsedError;
+  String get query;
 
   /// Offset of the results to be returned, can be controlled by the bot
   @JsonKey(name: 'offset')
-  String get offset => throw _privateConstructorUsedError;
+  String get offset;
 
   /// Optional. Type of the chat from which the inline query was sent.
   /// Can be either "sender" for a private chat with the inline query sender,
@@ -42,26 +36,32 @@ mixin _$InlineQuery {
   /// always known for requests sent from official clients and most third-party
   /// clients, unless the request was sent from a secret chat
   @JsonKey(name: 'chat_type')
-  ChatType? get chatType => throw _privateConstructorUsedError;
+  ChatType? get chatType;
 
   /// Optional. Sender location, only for bots that request user location
-  Location? get location => throw _privateConstructorUsedError;
-
-  /// Serializes this InlineQuery to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Location? get location;
 
   /// Create a copy of InlineQuery
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $InlineQueryCopyWith<InlineQuery> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$InlineQueryCopyWithImpl<InlineQuery>(this as InlineQuery, _$identity);
+
+  /// Serializes this InlineQuery to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'InlineQuery(id: $id, from: $from, query: $query, offset: $offset, chatType: $chatType, location: $location)';
+  }
 }
 
 /// @nodoc
-abstract class $InlineQueryCopyWith<$Res> {
+abstract mixin class $InlineQueryCopyWith<$Res> {
   factory $InlineQueryCopyWith(
-          InlineQuery value, $Res Function(InlineQuery) then) =
-      _$InlineQueryCopyWithImpl<$Res, InlineQuery>;
+          InlineQuery value, $Res Function(InlineQuery) _then) =
+      _$InlineQueryCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -76,14 +76,11 @@ abstract class $InlineQueryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InlineQueryCopyWithImpl<$Res, $Val extends InlineQuery>
-    implements $InlineQueryCopyWith<$Res> {
-  _$InlineQueryCopyWithImpl(this._value, this._then);
+class _$InlineQueryCopyWithImpl<$Res> implements $InlineQueryCopyWith<$Res> {
+  _$InlineQueryCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final InlineQuery _self;
+  final $Res Function(InlineQuery) _then;
 
   /// Create a copy of InlineQuery
   /// with the given fields replaced by the non-null parameter values.
@@ -97,32 +94,32 @@ class _$InlineQueryCopyWithImpl<$Res, $Val extends InlineQuery>
     Object? chatType = freezed,
     Object? location = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       from: null == from
-          ? _value.from
+          ? _self.from
           : from // ignore: cast_nullable_to_non_nullable
               as User,
       query: null == query
-          ? _value.query
+          ? _self.query
           : query // ignore: cast_nullable_to_non_nullable
               as String,
       offset: null == offset
-          ? _value.offset
+          ? _self.offset
           : offset // ignore: cast_nullable_to_non_nullable
               as String,
       chatType: freezed == chatType
-          ? _value.chatType
+          ? _self.chatType
           : chatType // ignore: cast_nullable_to_non_nullable
               as ChatType?,
       location: freezed == location
-          ? _value.location
+          ? _self.location
           : location // ignore: cast_nullable_to_non_nullable
               as Location?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of InlineQuery
@@ -130,8 +127,8 @@ class _$InlineQueryCopyWithImpl<$Res, $Val extends InlineQuery>
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get from {
-    return $UserCopyWith<$Res>(_value.from, (value) {
-      return _then(_value.copyWith(from: value) as $Val);
+    return $UserCopyWith<$Res>(_self.from, (value) {
+      return _then(_self.copyWith(from: value));
     });
   }
 
@@ -140,100 +137,28 @@ class _$InlineQueryCopyWithImpl<$Res, $Val extends InlineQuery>
   @override
   @pragma('vm:prefer-inline')
   $LocationCopyWith<$Res>? get location {
-    if (_value.location == null) {
+    if (_self.location == null) {
       return null;
     }
 
-    return $LocationCopyWith<$Res>(_value.location!, (value) {
-      return _then(_value.copyWith(location: value) as $Val);
+    return $LocationCopyWith<$Res>(_self.location!, (value) {
+      return _then(_self.copyWith(location: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$InlineQueryImplCopyWith<$Res>
-    implements $InlineQueryCopyWith<$Res> {
-  factory _$$InlineQueryImplCopyWith(
-          _$InlineQueryImpl value, $Res Function(_$InlineQueryImpl) then) =
-      __$$InlineQueryImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'query') String query,
-      @JsonKey(name: 'offset') String offset,
-      @JsonKey(name: 'chat_type') ChatType? chatType,
-      Location? location});
-
-  @override
-  $UserCopyWith<$Res> get from;
-  @override
-  $LocationCopyWith<$Res>? get location;
-}
-
-/// @nodoc
-class __$$InlineQueryImplCopyWithImpl<$Res>
-    extends _$InlineQueryCopyWithImpl<$Res, _$InlineQueryImpl>
-    implements _$$InlineQueryImplCopyWith<$Res> {
-  __$$InlineQueryImplCopyWithImpl(
-      _$InlineQueryImpl _value, $Res Function(_$InlineQueryImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InlineQuery
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? from = null,
-    Object? query = null,
-    Object? offset = null,
-    Object? chatType = freezed,
-    Object? location = freezed,
-  }) {
-    return _then(_$InlineQueryImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _value.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      query: null == query
-          ? _value.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      offset: null == offset
-          ? _value.offset
-          : offset // ignore: cast_nullable_to_non_nullable
-              as String,
-      chatType: freezed == chatType
-          ? _value.chatType
-          : chatType // ignore: cast_nullable_to_non_nullable
-              as ChatType?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location?,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$InlineQueryImpl implements _InlineQuery {
-  const _$InlineQueryImpl(
+class _InlineQuery implements InlineQuery {
+  const _InlineQuery(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'from') required this.from,
       @JsonKey(name: 'query') required this.query,
       @JsonKey(name: 'offset') required this.offset,
       @JsonKey(name: 'chat_type') this.chatType,
       this.location});
-
-  factory _$InlineQueryImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InlineQueryImplFromJson(json);
+  factory _InlineQuery.fromJson(Map<String, dynamic> json) =>
+      _$InlineQueryFromJson(json);
 
   /// Unique identifier for this query
   @override
@@ -268,76 +193,117 @@ class _$InlineQueryImpl implements _InlineQuery {
   @override
   final Location? location;
 
+  /// Create a copy of InlineQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InlineQueryCopyWith<_InlineQuery> get copyWith =>
+      __$InlineQueryCopyWithImpl<_InlineQuery>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InlineQueryToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'InlineQuery(id: $id, from: $from, query: $query, offset: $offset, chatType: $chatType, location: $location)';
   }
-
-  /// Create a copy of InlineQuery
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InlineQueryImplCopyWith<_$InlineQueryImpl> get copyWith =>
-      __$$InlineQueryImplCopyWithImpl<_$InlineQueryImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InlineQueryImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _InlineQuery implements InlineQuery {
-  const factory _InlineQuery(
-      {@JsonKey(name: 'id') required final String id,
-      @JsonKey(name: 'from') required final User from,
-      @JsonKey(name: 'query') required final String query,
-      @JsonKey(name: 'offset') required final String offset,
-      @JsonKey(name: 'chat_type') final ChatType? chatType,
-      final Location? location}) = _$InlineQueryImpl;
-
-  factory _InlineQuery.fromJson(Map<String, dynamic> json) =
-      _$InlineQueryImpl.fromJson;
-
-  /// Unique identifier for this query
+/// @nodoc
+abstract mixin class _$InlineQueryCopyWith<$Res>
+    implements $InlineQueryCopyWith<$Res> {
+  factory _$InlineQueryCopyWith(
+          _InlineQuery value, $Res Function(_InlineQuery) _then) =
+      __$InlineQueryCopyWithImpl;
   @override
-  @JsonKey(name: 'id')
-  String get id;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'from') User from,
+      @JsonKey(name: 'query') String query,
+      @JsonKey(name: 'offset') String offset,
+      @JsonKey(name: 'chat_type') ChatType? chatType,
+      Location? location});
 
-  /// Sender
   @override
-  @JsonKey(name: 'from')
-  User get from;
+  $UserCopyWith<$Res> get from;
+  @override
+  $LocationCopyWith<$Res>? get location;
+}
 
-  /// Text of the query (up to 256 characters)
-  @override
-  @JsonKey(name: 'query')
-  String get query;
+/// @nodoc
+class __$InlineQueryCopyWithImpl<$Res> implements _$InlineQueryCopyWith<$Res> {
+  __$InlineQueryCopyWithImpl(this._self, this._then);
 
-  /// Offset of the results to be returned, can be controlled by the bot
-  @override
-  @JsonKey(name: 'offset')
-  String get offset;
-
-  /// Optional. Type of the chat from which the inline query was sent.
-  /// Can be either "sender" for a private chat with the inline query sender,
-  /// "private", "group", "supergroup", or "channel". The chat type should be
-  /// always known for requests sent from official clients and most third-party
-  /// clients, unless the request was sent from a secret chat
-  @override
-  @JsonKey(name: 'chat_type')
-  ChatType? get chatType;
-
-  /// Optional. Sender location, only for bots that request user location
-  @override
-  Location? get location;
+  final _InlineQuery _self;
+  final $Res Function(_InlineQuery) _then;
 
   /// Create a copy of InlineQuery
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InlineQueryImplCopyWith<_$InlineQueryImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? from = null,
+    Object? query = null,
+    Object? offset = null,
+    Object? chatType = freezed,
+    Object? location = freezed,
+  }) {
+    return _then(_InlineQuery(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      from: null == from
+          ? _self.from
+          : from // ignore: cast_nullable_to_non_nullable
+              as User,
+      query: null == query
+          ? _self.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+      offset: null == offset
+          ? _self.offset
+          : offset // ignore: cast_nullable_to_non_nullable
+              as String,
+      chatType: freezed == chatType
+          ? _self.chatType
+          : chatType // ignore: cast_nullable_to_non_nullable
+              as ChatType?,
+      location: freezed == location
+          ? _self.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location?,
+    ));
+  }
+
+  /// Create a copy of InlineQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get from {
+    return $UserCopyWith<$Res>(_self.from, (value) {
+      return _then(_self.copyWith(from: value));
+    });
+  }
+
+  /// Create a copy of InlineQuery
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationCopyWith<$Res>? get location {
+    if (_self.location == null) {
+      return null;
+    }
+
+    return $LocationCopyWith<$Res>(_self.location!, (value) {
+      return _then(_self.copyWith(location: value));
+    });
+  }
 }

@@ -6,8 +6,7 @@ part of 'sticker_set.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$StickerSetImpl _$$StickerSetImplFromJson(Map<String, dynamic> json) =>
-    _$StickerSetImpl(
+_StickerSet _$StickerSetFromJson(Map<String, dynamic> json) => _StickerSet(
       name: json['name'] as String,
       title: json['title'] as String,
       stickerType: $enumDecode(_$StickerTypeEnumMap, json['sticker_type']),
@@ -19,7 +18,7 @@ _$StickerSetImpl _$$StickerSetImplFromJson(Map<String, dynamic> json) =>
           : PhotoSize.fromJson(json['thumbnail'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$StickerSetImplToJson(_$StickerSetImpl instance) =>
+Map<String, dynamic> _$StickerSetToJson(_StickerSet instance) =>
     <String, dynamic>{
       'name': instance.name,
       'title': instance.title,

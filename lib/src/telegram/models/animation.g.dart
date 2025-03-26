@@ -6,8 +6,7 @@ part of 'animation.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AnimationImpl _$$AnimationImplFromJson(Map<String, dynamic> json) =>
-    _$AnimationImpl(
+_Animation _$AnimationFromJson(Map<String, dynamic> json) => _Animation(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
       width: (json['width'] as num).toInt(),
@@ -21,7 +20,7 @@ _$AnimationImpl _$$AnimationImplFromJson(Map<String, dynamic> json) =>
       fileSize: (json['file_size'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$AnimationImplToJson(_$AnimationImpl instance) =>
+Map<String, dynamic> _$AnimationToJson(_Animation instance) =>
     <String, dynamic>{
       'file_id': instance.fileId,
       'file_unique_id': instance.fileUniqueId,

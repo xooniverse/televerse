@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,83 +12,46 @@ part of 'sent_web_app_message.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-SentWebAppMessage _$SentWebAppMessageFromJson(Map<String, dynamic> json) {
-  return _SentWebAppMessage.fromJson(json);
-}
-
 /// @nodoc
 mixin _$SentWebAppMessage {
   /// Optional. Identifier of the sent inline message. Available only if there
   /// is an inline keyboard attached to the message.
   @JsonKey(name: 'inline_message_id')
-  String? get inlineMessageId => throw _privateConstructorUsedError;
-
-  /// Serializes this SentWebAppMessage to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String? get inlineMessageId;
 
   /// Create a copy of SentWebAppMessage
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $SentWebAppMessageCopyWith<SentWebAppMessage> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SentWebAppMessageCopyWith<$Res> {
-  factory $SentWebAppMessageCopyWith(
-          SentWebAppMessage value, $Res Function(SentWebAppMessage) then) =
-      _$SentWebAppMessageCopyWithImpl<$Res, SentWebAppMessage>;
-  @useResult
-  $Res call({@JsonKey(name: 'inline_message_id') String? inlineMessageId});
-}
-
-/// @nodoc
-class _$SentWebAppMessageCopyWithImpl<$Res, $Val extends SentWebAppMessage>
-    implements $SentWebAppMessageCopyWith<$Res> {
-  _$SentWebAppMessageCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SentWebAppMessage
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $SentWebAppMessageCopyWith<SentWebAppMessage> get copyWith =>
+      _$SentWebAppMessageCopyWithImpl<SentWebAppMessage>(
+          this as SentWebAppMessage, _$identity);
+
+  /// Serializes this SentWebAppMessage to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? inlineMessageId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      inlineMessageId: freezed == inlineMessageId
-          ? _value.inlineMessageId
-          : inlineMessageId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  String toString() {
+    return 'SentWebAppMessage(inlineMessageId: $inlineMessageId)';
   }
 }
 
 /// @nodoc
-abstract class _$$SentWebAppMessageImplCopyWith<$Res>
-    implements $SentWebAppMessageCopyWith<$Res> {
-  factory _$$SentWebAppMessageImplCopyWith(_$SentWebAppMessageImpl value,
-          $Res Function(_$SentWebAppMessageImpl) then) =
-      __$$SentWebAppMessageImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $SentWebAppMessageCopyWith<$Res> {
+  factory $SentWebAppMessageCopyWith(
+          SentWebAppMessage value, $Res Function(SentWebAppMessage) _then) =
+      _$SentWebAppMessageCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'inline_message_id') String? inlineMessageId});
 }
 
 /// @nodoc
-class __$$SentWebAppMessageImplCopyWithImpl<$Res>
-    extends _$SentWebAppMessageCopyWithImpl<$Res, _$SentWebAppMessageImpl>
-    implements _$$SentWebAppMessageImplCopyWith<$Res> {
-  __$$SentWebAppMessageImplCopyWithImpl(_$SentWebAppMessageImpl _value,
-      $Res Function(_$SentWebAppMessageImpl) _then)
-      : super(_value, _then);
+class _$SentWebAppMessageCopyWithImpl<$Res>
+    implements $SentWebAppMessageCopyWith<$Res> {
+  _$SentWebAppMessageCopyWithImpl(this._self, this._then);
+
+  final SentWebAppMessage _self;
+  final $Res Function(SentWebAppMessage) _then;
 
   /// Create a copy of SentWebAppMessage
   /// with the given fields replaced by the non-null parameter values.
@@ -96,9 +60,9 @@ class __$$SentWebAppMessageImplCopyWithImpl<$Res>
   $Res call({
     Object? inlineMessageId = freezed,
   }) {
-    return _then(_$SentWebAppMessageImpl(
+    return _then(_self.copyWith(
       inlineMessageId: freezed == inlineMessageId
-          ? _value.inlineMessageId
+          ? _self.inlineMessageId
           : inlineMessageId // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -107,12 +71,11 @@ class __$$SentWebAppMessageImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SentWebAppMessageImpl implements _SentWebAppMessage {
-  const _$SentWebAppMessageImpl(
+class _SentWebAppMessage implements SentWebAppMessage {
+  const _SentWebAppMessage(
       {@JsonKey(name: 'inline_message_id') this.inlineMessageId});
-
-  factory _$SentWebAppMessageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SentWebAppMessageImplFromJson(json);
+  factory _SentWebAppMessage.fromJson(Map<String, dynamic> json) =>
+      _$SentWebAppMessageFromJson(json);
 
   /// Optional. Identifier of the sent inline message. Available only if there
   /// is an inline keyboard attached to the message.
@@ -120,46 +83,58 @@ class _$SentWebAppMessageImpl implements _SentWebAppMessage {
   @JsonKey(name: 'inline_message_id')
   final String? inlineMessageId;
 
+  /// Create a copy of SentWebAppMessage
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SentWebAppMessageCopyWith<_SentWebAppMessage> get copyWith =>
+      __$SentWebAppMessageCopyWithImpl<_SentWebAppMessage>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SentWebAppMessageToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'SentWebAppMessage(inlineMessageId: $inlineMessageId)';
   }
-
-  /// Create a copy of SentWebAppMessage
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SentWebAppMessageImplCopyWith<_$SentWebAppMessageImpl> get copyWith =>
-      __$$SentWebAppMessageImplCopyWithImpl<_$SentWebAppMessageImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SentWebAppMessageImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _SentWebAppMessage implements SentWebAppMessage {
-  const factory _SentWebAppMessage(
-          {@JsonKey(name: 'inline_message_id') final String? inlineMessageId}) =
-      _$SentWebAppMessageImpl;
-
-  factory _SentWebAppMessage.fromJson(Map<String, dynamic> json) =
-      _$SentWebAppMessageImpl.fromJson;
-
-  /// Optional. Identifier of the sent inline message. Available only if there
-  /// is an inline keyboard attached to the message.
+/// @nodoc
+abstract mixin class _$SentWebAppMessageCopyWith<$Res>
+    implements $SentWebAppMessageCopyWith<$Res> {
+  factory _$SentWebAppMessageCopyWith(
+          _SentWebAppMessage value, $Res Function(_SentWebAppMessage) _then) =
+      __$SentWebAppMessageCopyWithImpl;
   @override
-  @JsonKey(name: 'inline_message_id')
-  String? get inlineMessageId;
+  @useResult
+  $Res call({@JsonKey(name: 'inline_message_id') String? inlineMessageId});
+}
+
+/// @nodoc
+class __$SentWebAppMessageCopyWithImpl<$Res>
+    implements _$SentWebAppMessageCopyWith<$Res> {
+  __$SentWebAppMessageCopyWithImpl(this._self, this._then);
+
+  final _SentWebAppMessage _self;
+  final $Res Function(_SentWebAppMessage) _then;
 
   /// Create a copy of SentWebAppMessage
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SentWebAppMessageImplCopyWith<_$SentWebAppMessageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? inlineMessageId = freezed,
+  }) {
+    return _then(_SentWebAppMessage(
+      inlineMessageId: freezed == inlineMessageId
+          ? _self.inlineMessageId
+          : inlineMessageId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }

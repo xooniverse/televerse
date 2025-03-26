@@ -6,8 +6,8 @@ part of 'affiliate_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AffiliateInfoImpl _$$AffiliateInfoImplFromJson(Map<String, dynamic> json) =>
-    _$AffiliateInfoImpl(
+_AffiliateInfo _$AffiliateInfoFromJson(Map<String, dynamic> json) =>
+    _AffiliateInfo(
       affiliateUser: json['affiliate_user'] == null
           ? null
           : User.fromJson(json['affiliate_user'] as Map<String, dynamic>),
@@ -19,7 +19,7 @@ _$AffiliateInfoImpl _$$AffiliateInfoImplFromJson(Map<String, dynamic> json) =>
       nanostarAmount: (json['nanostar_amount'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$AffiliateInfoImplToJson(_$AffiliateInfoImpl instance) =>
+Map<String, dynamic> _$AffiliateInfoToJson(_AffiliateInfo instance) =>
     <String, dynamic>{
       if (instance.affiliateUser case final value?) 'affiliate_user': value,
       if (instance.affiliateChat case final value?) 'affiliate_chat': value,

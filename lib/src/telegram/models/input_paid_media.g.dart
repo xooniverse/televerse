@@ -6,16 +6,16 @@ part of 'input_paid_media.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$$InputPaidMediaPhotoImplToJson(
-        _$InputPaidMediaPhotoImpl instance) =>
+Map<String, dynamic> _$InputPaidMediaPhotoToJson(
+        InputPaidMediaPhoto instance) =>
     <String, dynamic>{
       'type': instance.type,
       'media': const InputFileConverter().toJson(instance.media),
       'runtimeType': instance.$type,
     };
 
-Map<String, dynamic> _$$InputPaidMediaVideoImplToJson(
-        _$InputPaidMediaVideoImpl instance) =>
+Map<String, dynamic> _$InputPaidMediaVideoToJson(
+        InputPaidMediaVideo instance) =>
     <String, dynamic>{
       'type': instance.type,
       'media': const InputFileConverter().toJson(instance.media),

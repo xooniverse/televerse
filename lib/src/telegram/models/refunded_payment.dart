@@ -6,7 +6,7 @@ part 'refunded_payment.g.dart';
 
 /// This object contains basic information about a refunded payment.
 @freezed
-class RefundedPayment with _$RefundedPayment {
+abstract class RefundedPayment with _$RefundedPayment {
   /// Constructs a [RefundedPayment] object.
   const factory RefundedPayment({
     /// Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram

@@ -7,7 +7,7 @@ part 'user_chat_boosts.g.dart';
 
 /// This object represents a list of boosts added to a chat by a user.
 @freezed
-class UserChatBoosts with _$UserChatBoosts {
+abstract class UserChatBoosts with _$UserChatBoosts {
   /// Constructs a `UserChatBoosts` object.
   const factory UserChatBoosts({
     /// The list of boosts added to the chat by the user

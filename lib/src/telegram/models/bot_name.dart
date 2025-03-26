@@ -6,7 +6,7 @@ part 'bot_name.g.dart';
 
 /// This object represents the bot's name.
 @freezed
-class BotName with _$BotName {
+abstract class BotName with _$BotName {
   /// Creates a new [BotName] object.
   const factory BotName({
     /// The bot's name

@@ -6,17 +6,15 @@ part of 'business_location.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BusinessLocationImpl _$$BusinessLocationImplFromJson(
-        Map<String, dynamic> json) =>
-    _$BusinessLocationImpl(
+_BusinessLocation _$BusinessLocationFromJson(Map<String, dynamic> json) =>
+    _BusinessLocation(
       address: json['address'] as String,
       location: json['location'] == null
           ? null
           : Location.fromJson(json['location'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$BusinessLocationImplToJson(
-        _$BusinessLocationImpl instance) =>
+Map<String, dynamic> _$BusinessLocationToJson(_BusinessLocation instance) =>
     <String, dynamic>{
       'address': instance.address,
       if (instance.location case final value?) 'location': value,

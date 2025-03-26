@@ -6,9 +6,9 @@ part of 'message_reaction_updated.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MessageReactionUpdatedImpl _$$MessageReactionUpdatedImplFromJson(
+_MessageReactionUpdated _$MessageReactionUpdatedFromJson(
         Map<String, dynamic> json) =>
-    _$MessageReactionUpdatedImpl(
+    _MessageReactionUpdated(
       chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
       messageId: (json['message_id'] as num).toInt(),
       user: json['user'] == null
@@ -26,8 +26,8 @@ _$MessageReactionUpdatedImpl _$$MessageReactionUpdatedImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$MessageReactionUpdatedImplToJson(
-        _$MessageReactionUpdatedImpl instance) =>
+Map<String, dynamic> _$MessageReactionUpdatedToJson(
+        _MessageReactionUpdated instance) =>
     <String, dynamic>{
       'chat': instance.chat,
       'message_id': instance.messageId,

@@ -6,7 +6,7 @@ part 'invoice.g.dart';
 
 /// This object contains basic information about an invoice.
 @freezed
-class Invoice with _$Invoice {
+abstract class Invoice with _$Invoice {
   /// Constructs an [Invoice] object
   const factory Invoice({
     /// Product name

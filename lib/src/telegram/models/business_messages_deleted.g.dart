@@ -6,9 +6,9 @@ part of 'business_messages_deleted.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BusinessMessagesDeletedImpl _$$BusinessMessagesDeletedImplFromJson(
+_BusinessMessagesDeleted _$BusinessMessagesDeletedFromJson(
         Map<String, dynamic> json) =>
-    _$BusinessMessagesDeletedImpl(
+    _BusinessMessagesDeleted(
       businessConnectionId: json['business_connection_id'] as String,
       chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
       messageIds: (json['message_ids'] as List<dynamic>)
@@ -16,8 +16,8 @@ _$BusinessMessagesDeletedImpl _$$BusinessMessagesDeletedImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$BusinessMessagesDeletedImplToJson(
-        _$BusinessMessagesDeletedImpl instance) =>
+Map<String, dynamic> _$BusinessMessagesDeletedToJson(
+        _BusinessMessagesDeleted instance) =>
     <String, dynamic>{
       'business_connection_id': instance.businessConnectionId,
       'chat': instance.chat,

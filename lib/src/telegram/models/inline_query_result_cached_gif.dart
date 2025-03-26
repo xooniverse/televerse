@@ -14,7 +14,7 @@ part 'inline_query_result_cached_gif.g.dart';
 /// caption. Alternatively, you can use input_message_content to send a message
 /// with specified content instead of the animation.
 @freezed
-class InlineQueryResultCachedGif
+abstract class InlineQueryResultCachedGif
     with _$InlineQueryResultCachedGif
     implements InlineQueryResult {
   /// Constructs an [InlineQueryResultCachedGif] object

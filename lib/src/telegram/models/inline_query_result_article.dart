@@ -10,7 +10,7 @@ part 'inline_query_result_article.g.dart';
 
 /// Represents a link to an article or web page.
 @freezed
-class InlineQueryResultArticle
+abstract class InlineQueryResultArticle
     with _$InlineQueryResultArticle
     implements InlineQueryResult {
   /// This object represents a link to an article or web page.

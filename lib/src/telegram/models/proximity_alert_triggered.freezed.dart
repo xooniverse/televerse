@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,43 +12,42 @@ part of 'proximity_alert_triggered.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ProximityAlertTriggered _$ProximityAlertTriggeredFromJson(
-    Map<String, dynamic> json) {
-  return _ProximityAlertTriggered.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ProximityAlertTriggered {
   /// User that triggered the alert
   @JsonKey(name: 'traveler')
-  User get traveler => throw _privateConstructorUsedError;
+  User get traveler;
 
   /// User that set the alert
   @JsonKey(name: 'watcher')
-  User get watcher => throw _privateConstructorUsedError;
+  User get watcher;
 
   /// The distance between the users
   @JsonKey(name: 'distance')
-  int get distance => throw _privateConstructorUsedError;
-
-  /// Serializes this ProximityAlertTriggered to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get distance;
 
   /// Create a copy of ProximityAlertTriggered
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ProximityAlertTriggeredCopyWith<ProximityAlertTriggered> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ProximityAlertTriggeredCopyWithImpl<ProximityAlertTriggered>(
+          this as ProximityAlertTriggered, _$identity);
+
+  /// Serializes this ProximityAlertTriggered to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  String toString() {
+    return 'ProximityAlertTriggered(traveler: $traveler, watcher: $watcher, distance: $distance)';
+  }
 }
 
 /// @nodoc
-abstract class $ProximityAlertTriggeredCopyWith<$Res> {
+abstract mixin class $ProximityAlertTriggeredCopyWith<$Res> {
   factory $ProximityAlertTriggeredCopyWith(ProximityAlertTriggered value,
-          $Res Function(ProximityAlertTriggered) then) =
-      _$ProximityAlertTriggeredCopyWithImpl<$Res, ProximityAlertTriggered>;
+          $Res Function(ProximityAlertTriggered) _then) =
+      _$ProximityAlertTriggeredCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'traveler') User traveler,
@@ -59,15 +59,12 @@ abstract class $ProximityAlertTriggeredCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProximityAlertTriggeredCopyWithImpl<$Res,
-        $Val extends ProximityAlertTriggered>
+class _$ProximityAlertTriggeredCopyWithImpl<$Res>
     implements $ProximityAlertTriggeredCopyWith<$Res> {
-  _$ProximityAlertTriggeredCopyWithImpl(this._value, this._then);
+  _$ProximityAlertTriggeredCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ProximityAlertTriggered _self;
+  final $Res Function(ProximityAlertTriggered) _then;
 
   /// Create a copy of ProximityAlertTriggered
   /// with the given fields replaced by the non-null parameter values.
@@ -78,20 +75,20 @@ class _$ProximityAlertTriggeredCopyWithImpl<$Res,
     Object? watcher = null,
     Object? distance = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       traveler: null == traveler
-          ? _value.traveler
+          ? _self.traveler
           : traveler // ignore: cast_nullable_to_non_nullable
               as User,
       watcher: null == watcher
-          ? _value.watcher
+          ? _self.watcher
           : watcher // ignore: cast_nullable_to_non_nullable
               as User,
       distance: null == distance
-          ? _value.distance
+          ? _self.distance
           : distance // ignore: cast_nullable_to_non_nullable
               as int,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ProximityAlertTriggered
@@ -99,8 +96,8 @@ class _$ProximityAlertTriggeredCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get traveler {
-    return $UserCopyWith<$Res>(_value.traveler, (value) {
-      return _then(_value.copyWith(traveler: value) as $Val);
+    return $UserCopyWith<$Res>(_self.traveler, (value) {
+      return _then(_self.copyWith(traveler: value));
     });
   }
 
@@ -109,78 +106,21 @@ class _$ProximityAlertTriggeredCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get watcher {
-    return $UserCopyWith<$Res>(_value.watcher, (value) {
-      return _then(_value.copyWith(watcher: value) as $Val);
+    return $UserCopyWith<$Res>(_self.watcher, (value) {
+      return _then(_self.copyWith(watcher: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ProximityAlertTriggeredImplCopyWith<$Res>
-    implements $ProximityAlertTriggeredCopyWith<$Res> {
-  factory _$$ProximityAlertTriggeredImplCopyWith(
-          _$ProximityAlertTriggeredImpl value,
-          $Res Function(_$ProximityAlertTriggeredImpl) then) =
-      __$$ProximityAlertTriggeredImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'traveler') User traveler,
-      @JsonKey(name: 'watcher') User watcher,
-      @JsonKey(name: 'distance') int distance});
-
-  @override
-  $UserCopyWith<$Res> get traveler;
-  @override
-  $UserCopyWith<$Res> get watcher;
-}
-
-/// @nodoc
-class __$$ProximityAlertTriggeredImplCopyWithImpl<$Res>
-    extends _$ProximityAlertTriggeredCopyWithImpl<$Res,
-        _$ProximityAlertTriggeredImpl>
-    implements _$$ProximityAlertTriggeredImplCopyWith<$Res> {
-  __$$ProximityAlertTriggeredImplCopyWithImpl(
-      _$ProximityAlertTriggeredImpl _value,
-      $Res Function(_$ProximityAlertTriggeredImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProximityAlertTriggered
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? traveler = null,
-    Object? watcher = null,
-    Object? distance = null,
-  }) {
-    return _then(_$ProximityAlertTriggeredImpl(
-      traveler: null == traveler
-          ? _value.traveler
-          : traveler // ignore: cast_nullable_to_non_nullable
-              as User,
-      watcher: null == watcher
-          ? _value.watcher
-          : watcher // ignore: cast_nullable_to_non_nullable
-              as User,
-      distance: null == distance
-          ? _value.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable()
-class _$ProximityAlertTriggeredImpl implements _ProximityAlertTriggered {
-  const _$ProximityAlertTriggeredImpl(
+class _ProximityAlertTriggered implements ProximityAlertTriggered {
+  const _ProximityAlertTriggered(
       {@JsonKey(name: 'traveler') required this.traveler,
       @JsonKey(name: 'watcher') required this.watcher,
       @JsonKey(name: 'distance') required this.distance});
-
-  factory _$ProximityAlertTriggeredImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProximityAlertTriggeredImplFromJson(json);
+  factory _ProximityAlertTriggered.fromJson(Map<String, dynamic> json) =>
+      _$ProximityAlertTriggeredFromJson(json);
 
   /// User that triggered the alert
   @override
@@ -197,57 +137,97 @@ class _$ProximityAlertTriggeredImpl implements _ProximityAlertTriggered {
   @JsonKey(name: 'distance')
   final int distance;
 
+  /// Create a copy of ProximityAlertTriggered
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ProximityAlertTriggeredCopyWith<_ProximityAlertTriggered> get copyWith =>
+      __$ProximityAlertTriggeredCopyWithImpl<_ProximityAlertTriggered>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ProximityAlertTriggeredToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'ProximityAlertTriggered(traveler: $traveler, watcher: $watcher, distance: $distance)';
   }
-
-  /// Create a copy of ProximityAlertTriggered
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProximityAlertTriggeredImplCopyWith<_$ProximityAlertTriggeredImpl>
-      get copyWith => __$$ProximityAlertTriggeredImplCopyWithImpl<
-          _$ProximityAlertTriggeredImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ProximityAlertTriggeredImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _ProximityAlertTriggered implements ProximityAlertTriggered {
-  const factory _ProximityAlertTriggered(
-          {@JsonKey(name: 'traveler') required final User traveler,
-          @JsonKey(name: 'watcher') required final User watcher,
-          @JsonKey(name: 'distance') required final int distance}) =
-      _$ProximityAlertTriggeredImpl;
-
-  factory _ProximityAlertTriggered.fromJson(Map<String, dynamic> json) =
-      _$ProximityAlertTriggeredImpl.fromJson;
-
-  /// User that triggered the alert
+/// @nodoc
+abstract mixin class _$ProximityAlertTriggeredCopyWith<$Res>
+    implements $ProximityAlertTriggeredCopyWith<$Res> {
+  factory _$ProximityAlertTriggeredCopyWith(_ProximityAlertTriggered value,
+          $Res Function(_ProximityAlertTriggered) _then) =
+      __$ProximityAlertTriggeredCopyWithImpl;
   @override
-  @JsonKey(name: 'traveler')
-  User get traveler;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'traveler') User traveler,
+      @JsonKey(name: 'watcher') User watcher,
+      @JsonKey(name: 'distance') int distance});
 
-  /// User that set the alert
   @override
-  @JsonKey(name: 'watcher')
-  User get watcher;
+  $UserCopyWith<$Res> get traveler;
+  @override
+  $UserCopyWith<$Res> get watcher;
+}
 
-  /// The distance between the users
-  @override
-  @JsonKey(name: 'distance')
-  int get distance;
+/// @nodoc
+class __$ProximityAlertTriggeredCopyWithImpl<$Res>
+    implements _$ProximityAlertTriggeredCopyWith<$Res> {
+  __$ProximityAlertTriggeredCopyWithImpl(this._self, this._then);
+
+  final _ProximityAlertTriggered _self;
+  final $Res Function(_ProximityAlertTriggered) _then;
 
   /// Create a copy of ProximityAlertTriggered
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProximityAlertTriggeredImplCopyWith<_$ProximityAlertTriggeredImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? traveler = null,
+    Object? watcher = null,
+    Object? distance = null,
+  }) {
+    return _then(_ProximityAlertTriggered(
+      traveler: null == traveler
+          ? _self.traveler
+          : traveler // ignore: cast_nullable_to_non_nullable
+              as User,
+      watcher: null == watcher
+          ? _self.watcher
+          : watcher // ignore: cast_nullable_to_non_nullable
+              as User,
+      distance: null == distance
+          ? _self.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+
+  /// Create a copy of ProximityAlertTriggered
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get traveler {
+    return $UserCopyWith<$Res>(_self.traveler, (value) {
+      return _then(_self.copyWith(traveler: value));
+    });
+  }
+
+  /// Create a copy of ProximityAlertTriggered
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get watcher {
+    return $UserCopyWith<$Res>(_self.watcher, (value) {
+      return _then(_self.copyWith(watcher: value));
+    });
+  }
 }

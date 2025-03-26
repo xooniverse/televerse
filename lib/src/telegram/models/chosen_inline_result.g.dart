@@ -6,9 +6,8 @@ part of 'chosen_inline_result.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChosenInlineResultImpl _$$ChosenInlineResultImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ChosenInlineResultImpl(
+_ChosenInlineResult _$ChosenInlineResultFromJson(Map<String, dynamic> json) =>
+    _ChosenInlineResult(
       resultId: json['result_id'] as String,
       from: User.fromJson(json['from'] as Map<String, dynamic>),
       location: json['location'] == null
@@ -18,8 +17,7 @@ _$ChosenInlineResultImpl _$$ChosenInlineResultImplFromJson(
       query: json['query'] as String,
     );
 
-Map<String, dynamic> _$$ChosenInlineResultImplToJson(
-        _$ChosenInlineResultImpl instance) =>
+Map<String, dynamic> _$ChosenInlineResultToJson(_ChosenInlineResult instance) =>
     <String, dynamic>{
       'result_id': instance.resultId,
       'from': instance.from,

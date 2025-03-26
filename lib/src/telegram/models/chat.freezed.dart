@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -11,130 +12,57 @@ part of 'chat.dart';
 
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Chat _$ChatFromJson(Map<String, dynamic> json) {
-  return _Chat.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Chat {
   /// Unique identifier for this chat.
   @JsonKey(name: 'id')
-  int get id => throw _privateConstructorUsedError;
+  int get id;
 
   /// Type of the chat, can be either "private", "group", "supergroup" or
   /// "channel".
   @JsonKey(name: 'type')
-  ChatType get type => throw _privateConstructorUsedError;
+  ChatType get type;
 
   /// Title, for supergroups, channels, and group chats.
   @JsonKey(name: 'title')
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
 
   /// Username, for private chats, supergroups, and channels if available.
   @JsonKey(name: 'username')
-  String? get username => throw _privateConstructorUsedError;
+  String? get username;
 
   /// First name of the other party in a private chat.
   @JsonKey(name: 'first_name')
-  String? get firstName => throw _privateConstructorUsedError;
+  String? get firstName;
 
   /// Last name of the other party in a private chat.
   @JsonKey(name: 'last_name')
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get lastName;
 
   /// True, if the supergroup chat is a forum (has topics enabled).
   @JsonKey(name: 'is_forum')
-  bool? get isForum => throw _privateConstructorUsedError;
-
-  /// Serializes this Chat to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  bool? get isForum;
 
   /// Create a copy of Chat
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ChatCopyWith<Chat> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ChatCopyWith<$Res> {
-  factory $ChatCopyWith(Chat value, $Res Function(Chat) then) =
-      _$ChatCopyWithImpl<$Res, Chat>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'type') ChatType type,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'is_forum') bool? isForum});
-}
-
-/// @nodoc
-class _$ChatCopyWithImpl<$Res, $Val extends Chat>
-    implements $ChatCopyWith<$Res> {
-  _$ChatCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Chat
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ChatCopyWith<Chat> get copyWith =>
+      _$ChatCopyWithImpl<Chat>(this as Chat, _$identity);
+
+  /// Serializes this Chat to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? type = null,
-    Object? title = freezed,
-    Object? username = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? isForum = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ChatType,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isForum: freezed == isForum
-          ? _value.isForum
-          : isForum // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ) as $Val);
+  String toString() {
+    return 'Chat(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum)';
   }
 }
 
 /// @nodoc
-abstract class _$$ChatImplCopyWith<$Res> implements $ChatCopyWith<$Res> {
-  factory _$$ChatImplCopyWith(
-          _$ChatImpl value, $Res Function(_$ChatImpl) then) =
-      __$$ChatImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ChatCopyWith<$Res> {
+  factory $ChatCopyWith(Chat value, $Res Function(Chat) _then) =
+      _$ChatCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int id,
@@ -147,11 +75,11 @@ abstract class _$$ChatImplCopyWith<$Res> implements $ChatCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ChatImplCopyWithImpl<$Res>
-    extends _$ChatCopyWithImpl<$Res, _$ChatImpl>
-    implements _$$ChatImplCopyWith<$Res> {
-  __$$ChatImplCopyWithImpl(_$ChatImpl _value, $Res Function(_$ChatImpl) _then)
-      : super(_value, _then);
+class _$ChatCopyWithImpl<$Res> implements $ChatCopyWith<$Res> {
+  _$ChatCopyWithImpl(this._self, this._then);
+
+  final Chat _self;
+  final $Res Function(Chat) _then;
 
   /// Create a copy of Chat
   /// with the given fields replaced by the non-null parameter values.
@@ -166,33 +94,33 @@ class __$$ChatImplCopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? isForum = freezed,
   }) {
-    return _then(_$ChatImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as ChatType,
       title: freezed == title
-          ? _value.title
+          ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
       username: freezed == username
-          ? _value.username
+          ? _self.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
       firstName: freezed == firstName
-          ? _value.firstName
+          ? _self.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
       lastName: freezed == lastName
-          ? _value.lastName
+          ? _self.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       isForum: freezed == isForum
-          ? _value.isForum
+          ? _self.isForum
           : isForum // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
@@ -201,8 +129,8 @@ class __$$ChatImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ChatImpl implements _Chat {
-  const _$ChatImpl(
+class _Chat implements Chat {
+  const _Chat(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'type') required this.type,
       @JsonKey(name: 'title') this.title,
@@ -210,9 +138,7 @@ class _$ChatImpl implements _Chat {
       @JsonKey(name: 'first_name') this.firstName,
       @JsonKey(name: 'last_name') this.lastName,
       @JsonKey(name: 'is_forum') this.isForum});
-
-  factory _$ChatImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChatImplFromJson(json);
+  factory _Chat.fromJson(Map<String, dynamic> json) => _$ChatFromJson(json);
 
   /// Unique identifier for this chat.
   @override
@@ -250,79 +176,92 @@ class _$ChatImpl implements _Chat {
   @JsonKey(name: 'is_forum')
   final bool? isForum;
 
+  /// Create a copy of Chat
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ChatCopyWith<_Chat> get copyWith =>
+      __$ChatCopyWithImpl<_Chat>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ChatToJson(
+      this,
+    );
+  }
+
   @override
   String toString() {
     return 'Chat(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum)';
   }
-
-  /// Create a copy of Chat
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChatImplCopyWith<_$ChatImpl> get copyWith =>
-      __$$ChatImplCopyWithImpl<_$ChatImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChatImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _Chat implements Chat {
-  const factory _Chat(
-      {@JsonKey(name: 'id') required final int id,
-      @JsonKey(name: 'type') required final ChatType type,
-      @JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'username') final String? username,
-      @JsonKey(name: 'first_name') final String? firstName,
-      @JsonKey(name: 'last_name') final String? lastName,
-      @JsonKey(name: 'is_forum') final bool? isForum}) = _$ChatImpl;
-
-  factory _Chat.fromJson(Map<String, dynamic> json) = _$ChatImpl.fromJson;
-
-  /// Unique identifier for this chat.
+/// @nodoc
+abstract mixin class _$ChatCopyWith<$Res> implements $ChatCopyWith<$Res> {
+  factory _$ChatCopyWith(_Chat value, $Res Function(_Chat) _then) =
+      __$ChatCopyWithImpl;
   @override
-  @JsonKey(name: 'id')
-  int get id;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') int id,
+      @JsonKey(name: 'type') ChatType type,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      @JsonKey(name: 'is_forum') bool? isForum});
+}
 
-  /// Type of the chat, can be either "private", "group", "supergroup" or
-  /// "channel".
-  @override
-  @JsonKey(name: 'type')
-  ChatType get type;
+/// @nodoc
+class __$ChatCopyWithImpl<$Res> implements _$ChatCopyWith<$Res> {
+  __$ChatCopyWithImpl(this._self, this._then);
 
-  /// Title, for supergroups, channels, and group chats.
-  @override
-  @JsonKey(name: 'title')
-  String? get title;
-
-  /// Username, for private chats, supergroups, and channels if available.
-  @override
-  @JsonKey(name: 'username')
-  String? get username;
-
-  /// First name of the other party in a private chat.
-  @override
-  @JsonKey(name: 'first_name')
-  String? get firstName;
-
-  /// Last name of the other party in a private chat.
-  @override
-  @JsonKey(name: 'last_name')
-  String? get lastName;
-
-  /// True, if the supergroup chat is a forum (has topics enabled).
-  @override
-  @JsonKey(name: 'is_forum')
-  bool? get isForum;
+  final _Chat _self;
+  final $Res Function(_Chat) _then;
 
   /// Create a copy of Chat
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChatImplCopyWith<_$ChatImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? title = freezed,
+    Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? isForum = freezed,
+  }) {
+    return _then(_Chat(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ChatType,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _self.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _self.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isForum: freezed == isForum
+          ? _self.isForum
+          : isForum // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
 }

@@ -6,13 +6,13 @@ part of 'chat_location.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChatLocationImpl _$$ChatLocationImplFromJson(Map<String, dynamic> json) =>
-    _$ChatLocationImpl(
+_ChatLocation _$ChatLocationFromJson(Map<String, dynamic> json) =>
+    _ChatLocation(
       location: Location.fromJson(json['location'] as Map<String, dynamic>),
       address: json['address'] as String,
     );
 
-Map<String, dynamic> _$$ChatLocationImplToJson(_$ChatLocationImpl instance) =>
+Map<String, dynamic> _$ChatLocationToJson(_ChatLocation instance) =>
     <String, dynamic>{
       'location': instance.location,
       'address': instance.address,

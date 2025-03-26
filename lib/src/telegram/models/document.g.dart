@@ -6,8 +6,7 @@ part of 'document.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DocumentImpl _$$DocumentImplFromJson(Map<String, dynamic> json) =>
-    _$DocumentImpl(
+_Document _$DocumentFromJson(Map<String, dynamic> json) => _Document(
       fileId: json['file_id'] as String,
       fileUniqueId: json['file_unique_id'] as String,
       thumbnail: json['thumbnail'] == null
@@ -18,8 +17,7 @@ _$DocumentImpl _$$DocumentImplFromJson(Map<String, dynamic> json) =>
       fileSize: (json['file_size'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$DocumentImplToJson(_$DocumentImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$DocumentToJson(_Document instance) => <String, dynamic>{
       'file_id': instance.fileId,
       'file_unique_id': instance.fileUniqueId,
       if (instance.thumbnail case final value?) 'thumbnail': value,

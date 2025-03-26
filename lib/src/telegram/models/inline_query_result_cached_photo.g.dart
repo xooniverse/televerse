@@ -6,9 +6,9 @@ part of 'inline_query_result_cached_photo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InlineQueryResultCachedPhotoImpl _$$InlineQueryResultCachedPhotoImplFromJson(
+_InlineQueryResultCachedPhoto _$InlineQueryResultCachedPhotoFromJson(
         Map<String, dynamic> json) =>
-    _$InlineQueryResultCachedPhotoImpl(
+    _InlineQueryResultCachedPhoto(
       id: json['id'] as String,
       photoFileId: json['photo_file_id'] as String,
       type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
@@ -31,8 +31,8 @@ _$InlineQueryResultCachedPhotoImpl _$$InlineQueryResultCachedPhotoImplFromJson(
       showCaptionAboveMedia: json['show_caption_above_media'] as bool?,
     );
 
-Map<String, dynamic> _$$InlineQueryResultCachedPhotoImplToJson(
-        _$InlineQueryResultCachedPhotoImpl instance) =>
+Map<String, dynamic> _$InlineQueryResultCachedPhotoToJson(
+        _InlineQueryResultCachedPhoto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'photo_file_id': instance.photoFileId,

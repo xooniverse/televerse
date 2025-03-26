@@ -7,7 +7,7 @@ part 'general_forum_topic_unhidden.g.dart';
 /// This object represents a service message about General forum topic unhidden
 /// in the chat. Currently holds no information.
 @freezed
-class GeneralForumTopicUnhidden with _$GeneralForumTopicUnhidden {
+abstract class GeneralForumTopicUnhidden with _$GeneralForumTopicUnhidden {
   /// Constructs a [GeneralForumTopicUnhidden] object.
   const factory GeneralForumTopicUnhidden() = _GeneralForumTopicUnhidden;
 
