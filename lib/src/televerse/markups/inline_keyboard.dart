@@ -240,4 +240,8 @@ abstract class InlineKeyboard
           .toList(),
     };
   }
+
+  /// Runtime type
+  @override
+  String get $type => runtimeType.toString();
 }
