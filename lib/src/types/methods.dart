@@ -414,7 +414,11 @@ enum APIMethod {
   removeChatVerification,
 
   /// Marks a message as read on behalf of the business.
-  readBusinessMessage;
+  readBusinessMessage,
+
+  /// Deletes a message on behalf of the business
+  deleteBusinessMessages,
+  ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.
   String get name => toString().split('.').last;

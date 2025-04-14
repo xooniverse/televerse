@@ -4794,4 +4794,36 @@ class RawAPI {
     );
     return response;
   }
+
+  /// Use this method to delete messages on behalf of a business account.
+  ///
+  /// Requires the *can_delete_outgoing_messages* business bot right to delete
+  /// messages sent by the bot itself, or the *can_delete_all_messages* business
+  /// bot right to delete any message.
+  ///
+  /// Returns *True* on success.
+  Future<bool> deleteBusinessMessages({
+    required String businessConnectionId,
+    required List<int> messageIds,
+  }) async {
+    if (messageIds.isEmpty || messageIds.length > 100) {
+      throw TeleverseException(
+        "Invalid Parameter in [deleteBusinessMessages]",
+        description: "The number of message IDs must be between 1 and 100.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "message_ids": messageIds,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.deleteBusinessMessages,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
 }
