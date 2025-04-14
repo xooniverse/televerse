@@ -15,6 +15,7 @@ export 'inline_query_result_type.dart';
 export 'input_file_type.dart';
 export 'input_media_type.dart';
 export 'input_paid_media_type.dart';
+export 'input_profile_photo_type.dart';
 export 'input_sticker_format.dart';
 export 'mask_position_point.dart';
 export 'menu_button_type.dart';
