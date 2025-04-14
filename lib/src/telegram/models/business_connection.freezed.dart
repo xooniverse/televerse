@@ -36,8 +36,8 @@ mixin _$BusinessConnection {
 
   /// Indicates whether the bot can act on behalf of the business account in
   /// chats that were active in the last 24 hours.
-  @JsonKey(name: 'can_reply')
-  bool get canReply;
+  @JsonKey(name: 'rights')
+  BusinessBotRights get rights;
 
   /// Indicates whether the connection is active.
   @JsonKey(name: 'is_enabled')
@@ -56,7 +56,7 @@ mixin _$BusinessConnection {
 
   @override
   String toString() {
-    return 'BusinessConnection(id: $id, user: $user, userChatId: $userChatId, date: $date, canReply: $canReply, isEnabled: $isEnabled)';
+    return 'BusinessConnection(id: $id, user: $user, userChatId: $userChatId, date: $date, rights: $rights, isEnabled: $isEnabled)';
   }
 }
 
@@ -71,10 +71,11 @@ abstract mixin class $BusinessConnectionCopyWith<$Res> {
       @JsonKey(name: 'user') User user,
       @JsonKey(name: 'user_chat_id') int userChatId,
       @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'can_reply') bool canReply,
+      @JsonKey(name: 'rights') BusinessBotRights rights,
       @JsonKey(name: 'is_enabled') bool isEnabled});
 
   $UserCopyWith<$Res> get user;
+  $BusinessBotRightsCopyWith<$Res> get rights;
 }
 
 /// @nodoc
@@ -94,7 +95,7 @@ class _$BusinessConnectionCopyWithImpl<$Res>
     Object? user = null,
     Object? userChatId = null,
     Object? date = null,
-    Object? canReply = null,
+    Object? rights = null,
     Object? isEnabled = null,
   }) {
     return _then(_self.copyWith(
@@ -114,10 +115,10 @@ class _$BusinessConnectionCopyWithImpl<$Res>
           ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
               as int,
-      canReply: null == canReply
-          ? _self.canReply
-          : canReply // ignore: cast_nullable_to_non_nullable
-              as bool,
+      rights: null == rights
+          ? _self.rights
+          : rights // ignore: cast_nullable_to_non_nullable
+              as BusinessBotRights,
       isEnabled: null == isEnabled
           ? _self.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
@@ -134,6 +135,16 @@ class _$BusinessConnectionCopyWithImpl<$Res>
       return _then(_self.copyWith(user: value));
     });
   }
+
+  /// Create a copy of BusinessConnection
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $BusinessBotRightsCopyWith<$Res> get rights {
+    return $BusinessBotRightsCopyWith<$Res>(_self.rights, (value) {
+      return _then(_self.copyWith(rights: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -144,7 +155,7 @@ class _BusinessConnection extends BusinessConnection {
       @JsonKey(name: 'user') required this.user,
       @JsonKey(name: 'user_chat_id') required this.userChatId,
       @JsonKey(name: 'date') required this.date,
-      @JsonKey(name: 'can_reply') required this.canReply,
+      @JsonKey(name: 'rights') required this.rights,
       @JsonKey(name: 'is_enabled') required this.isEnabled})
       : super._();
   factory _BusinessConnection.fromJson(Map<String, dynamic> json) =>
@@ -177,8 +188,8 @@ class _BusinessConnection extends BusinessConnection {
   /// Indicates whether the bot can act on behalf of the business account in
   /// chats that were active in the last 24 hours.
   @override
-  @JsonKey(name: 'can_reply')
-  final bool canReply;
+  @JsonKey(name: 'rights')
+  final BusinessBotRights rights;
 
   /// Indicates whether the connection is active.
   @override
@@ -202,7 +213,7 @@ class _BusinessConnection extends BusinessConnection {
 
   @override
   String toString() {
-    return 'BusinessConnection(id: $id, user: $user, userChatId: $userChatId, date: $date, canReply: $canReply, isEnabled: $isEnabled)';
+    return 'BusinessConnection(id: $id, user: $user, userChatId: $userChatId, date: $date, rights: $rights, isEnabled: $isEnabled)';
   }
 }
 
@@ -219,11 +230,13 @@ abstract mixin class _$BusinessConnectionCopyWith<$Res>
       @JsonKey(name: 'user') User user,
       @JsonKey(name: 'user_chat_id') int userChatId,
       @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'can_reply') bool canReply,
+      @JsonKey(name: 'rights') BusinessBotRights rights,
       @JsonKey(name: 'is_enabled') bool isEnabled});
 
   @override
   $UserCopyWith<$Res> get user;
+  @override
+  $BusinessBotRightsCopyWith<$Res> get rights;
 }
 
 /// @nodoc
@@ -243,7 +256,7 @@ class __$BusinessConnectionCopyWithImpl<$Res>
     Object? user = null,
     Object? userChatId = null,
     Object? date = null,
-    Object? canReply = null,
+    Object? rights = null,
     Object? isEnabled = null,
   }) {
     return _then(_BusinessConnection(
@@ -263,10 +276,10 @@ class __$BusinessConnectionCopyWithImpl<$Res>
           ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
               as int,
-      canReply: null == canReply
-          ? _self.canReply
-          : canReply // ignore: cast_nullable_to_non_nullable
-              as bool,
+      rights: null == rights
+          ? _self.rights
+          : rights // ignore: cast_nullable_to_non_nullable
+              as BusinessBotRights,
       isEnabled: null == isEnabled
           ? _self.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
@@ -281,6 +294,16 @@ class __$BusinessConnectionCopyWithImpl<$Res>
   $UserCopyWith<$Res> get user {
     return $UserCopyWith<$Res>(_self.user, (value) {
       return _then(_self.copyWith(user: value));
+    });
+  }
+
+  /// Create a copy of BusinessConnection
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $BusinessBotRightsCopyWith<$Res> get rights {
+    return $BusinessBotRightsCopyWith<$Res>(_self.rights, (value) {
+      return _then(_self.copyWith(rights: value));
     });
   }
 }
