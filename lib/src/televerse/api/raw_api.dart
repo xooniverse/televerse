@@ -4774,4 +4774,24 @@ class RawAPI {
 
     return response;
   }
+
+  /// Marks incoming message as read on behalf of a business account.
+  /// Requires the *can_read_messages* business bot right.
+  /// Returns *True* on success.
+  Future<bool> readBusinessMessage({
+    required String businessConnectionId,
+    required ID chatId,
+    required int messageId,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "chat_id": chatId.id,
+      "message_id": messageId,
+    };
+    final response = await _makeApiBoolCall(
+      APIMethod.readBusinessMessage,
+      payload: Payload.from(params),
+    );
+    return response;
+  }
 }
