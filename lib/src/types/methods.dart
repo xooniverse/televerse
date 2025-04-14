@@ -445,6 +445,9 @@ enum APIMethod {
 
   /// Get business account gifts method
   getBusinessAccountGifts,
+
+  /// Converts a given regular gift to Telegram Stars.
+  convertGiftToStars,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.

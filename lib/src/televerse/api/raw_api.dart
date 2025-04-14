@@ -5082,4 +5082,29 @@ class RawAPI {
 
     return OwnedGifts.fromJson(response);
   }
+
+  /// Converts a given regular gift to Telegram Stars.
+  ///
+  /// Requires the *can_convert_gifts_to_stars* business bot right.
+  /// Returns *True* on success.
+  ///
+  /// Parameters:
+  /// - [businessConnectionId]: Unique identifier of the business connection
+  /// - [ownedGiftId]: Unique identifier of the regular gift that should be converted to Telegram Stars
+  Future<bool> convertGiftToStars({
+    required String businessConnectionId,
+    required String ownedGiftId,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "owned_gift_id": ownedGiftId,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.convertGiftToStars,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
 }
