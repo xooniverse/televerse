@@ -18,6 +18,17 @@ abstract interface class _WithProfilePhotoType {
 sealed class InputProfilePhoto
     with _$InputProfilePhoto
     implements _WithProfilePhotoType {
+  /// Private constructor
+  const InputProfilePhoto._();
+
+  /// The InputFile getter
+  InputFile get file {
+    return switch (this) {
+      InputProfilePhotoStatic(photo: final photo) => photo,
+      InputProfilePhotoAnimated(animation: final animation) => animation,
+    };
+  }
+
   /// A static profile photo in the .JPG format.
   const factory InputProfilePhoto.static({
     /// Type of the profile photo, always "static"

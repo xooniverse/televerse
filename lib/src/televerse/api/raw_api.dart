@@ -4926,4 +4926,48 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to change the profile photo of a managed business account.
+  /// Requires the *can_edit_profile_photo* business bot right.
+  /// Returns True on success.
+  Future<bool> setBusinessAccountProfilePhoto(
+    String businessConnectionId,
+    InputProfilePhoto photo, {
+    bool? isPublic,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "photo": photo.toJson(),
+      "is_public": isPublic,
+    };
+
+    final files = _getFiles([_MultipartHelper(photo.file)]);
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setBusinessAccountProfilePhoto,
+      payload: Payload(params, files),
+    );
+
+    return response;
+  }
+
+  /// Use this method to remove the current profile photo of a managed business account.
+  /// Requires the *can_edit_profile_photo* business bot right.
+  /// Returns True on success.
+  Future<bool> removeBusinessAccountProfilePhoto(
+    String businessConnectionId, {
+    bool? isPublic,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "is_public": isPublic,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.removeBusinessAccountProfilePhoto,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
 }

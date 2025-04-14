@@ -427,6 +427,12 @@ enum APIMethod {
 
   /// Change the bio of a managed business account
   setBusinessAccountBio,
+
+  /// Change the profile picture of a managed account
+  setBusinessAccountProfilePhoto,
+
+  /// Removes the profile photo of a managed business account
+  removeBusinessAccountProfilePhoto,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.

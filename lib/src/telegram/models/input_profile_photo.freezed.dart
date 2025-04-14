@@ -82,10 +82,11 @@ class _$InputProfilePhotoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class InputProfilePhotoStatic implements InputProfilePhoto {
+class InputProfilePhotoStatic extends InputProfilePhoto {
   const InputProfilePhotoStatic(
       {@JsonKey(name: 'type') this.type = InputProfilePhotoType.static,
-      @JsonKey(name: 'photo') @InputFileConverter() required this.photo});
+      @JsonKey(name: 'photo') @InputFileConverter() required this.photo})
+      : super._();
   factory InputProfilePhotoStatic.fromJson(Map<String, dynamic> json) =>
       _$InputProfilePhotoStaticFromJson(json);
 
@@ -166,11 +167,12 @@ class _$InputProfilePhotoStaticCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class InputProfilePhotoAnimated implements InputProfilePhoto {
+class InputProfilePhotoAnimated extends InputProfilePhoto {
   const InputProfilePhotoAnimated(
       {@JsonKey(name: 'type') this.type = InputProfilePhotoType.animated,
       @JsonKey(name: 'animation') @InputFileConverter() required this.animation,
-      @JsonKey(name: 'main_frame_timestamp') this.mainFrameTimestamp});
+      @JsonKey(name: 'main_frame_timestamp') this.mainFrameTimestamp})
+      : super._();
   factory InputProfilePhotoAnimated.fromJson(Map<String, dynamic> json) =>
       _$InputProfilePhotoAnimatedFromJson(json);
 

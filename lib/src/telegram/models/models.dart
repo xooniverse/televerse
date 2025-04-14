@@ -163,3 +163,6 @@ export './passport_data.dart';
 export './video_chat_participants_invited.dart';
 export './chat_boost_updated.dart';
 export './business_intro.dart';
+
+// Bot API 9.0
+export 'input_profile_photo.dart';
