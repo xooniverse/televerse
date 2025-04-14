@@ -4970,4 +4970,27 @@ class RawAPI {
 
     return response;
   }
+
+  /// Changes the privacy settings pertaining to incoming gifts in a managed
+  /// business account. Requires the *can_change_gift_settings* business bot right.
+  ///
+  /// Returns *True* on success.
+  Future<bool> setBusinessAccountGiftSettings(
+    String businessConnectionId,
+    bool showGiftButton,
+    AcceptedGiftTypes acceptedGiftTypes,
+  ) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "show_gift_button": showGiftButton,
+      "accepted_gift_types": acceptedGiftTypes.toJson(),
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setBusinessAccountGiftSettings,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
 }
