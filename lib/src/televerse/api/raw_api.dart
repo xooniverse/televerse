@@ -5132,4 +5132,28 @@ class RawAPI {
     );
     return response;
   }
+
+  /// Transfers an owned unique gift to another user. Requires the *can_transfer_and_upgrade_gifts*
+  /// business bot right. Requires *can_transfer_stars* business bot right if the transfer is paid.
+  ///
+  /// Returns *True* on success.
+  Future<bool> transferGift(
+    String businessConnectionId,
+    String ownedGiftId,
+    int newOwnerChatId, {
+    int? starCount,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "owned_gift_id": ownedGiftId,
+      "new_owner_chat_id": newOwnerChatId,
+      "star_count": starCount,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.transferGift,
+      payload: Payload.from(params),
+    );
+    return response;
+  }
 }

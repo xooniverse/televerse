@@ -451,6 +451,9 @@ enum APIMethod {
 
   /// Upgrades a iven gift to unique gift
   upgradeGift,
+
+  /// Transfers an owned unique gift to another user
+  transferGift,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.
