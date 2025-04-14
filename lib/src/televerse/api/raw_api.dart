@@ -4866,4 +4866,34 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to change the username of a managed business account.
+  ///
+  /// Requires the *can_change_username* business bot right.
+  ///
+  /// Returns *True* on success.
+  Future<bool> setBusinessAccountUsername({
+    required String businessConnectionId,
+    String? username,
+  }) async {
+    if (username != null && username.length > 32) {
+      throw TeleverseException(
+        "Invalid Parameter in [setBusinessAccountUsername]",
+        description: "The username must be between 0 and 32 characters.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "username": username,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setBusinessAccountUsername,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
 }
