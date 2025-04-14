@@ -9,7 +9,8 @@ part of 'input_story_content.dart';
 InputStoryContentPhoto _$InputStoryContentPhotoFromJson(
         Map<String, dynamic> json) =>
     InputStoryContentPhoto(
-      type: json['type'] as String? ?? 'photo',
+      type: $enumDecodeNullable(_$StoryContentTypeEnumMap, json['type']) ??
+          StoryContentType.photo,
       photo: const InputFileConverter().fromJson(json['photo'] as String),
     );
 
@@ -20,10 +21,16 @@ Map<String, dynamic> _$InputStoryContentPhotoToJson(
       'photo': const InputFileConverter().toJson(instance.photo),
     };
 
+const _$StoryContentTypeEnumMap = {
+  StoryContentType.photo: 'photo',
+  StoryContentType.video: 'video',
+};
+
 InputStoryContentVideo _$InputStoryContentVideoFromJson(
         Map<String, dynamic> json) =>
     InputStoryContentVideo(
-      type: json['type'] as String? ?? 'video',
+      type: $enumDecodeNullable(_$StoryContentTypeEnumMap, json['type']) ??
+          StoryContentType.video,
       video: const InputFileConverter().fromJson(json['video'] as String),
       duration: (json['duration'] as num?)?.toDouble(),
       coverFrameTimestamp: (json['cover_frame_timestamp'] as num?)?.toDouble(),

@@ -33,3 +33,4 @@ export 'sticker_type.dart';
 export 'transaction_partner_type.dart';
 export 'update_type.dart';
 export 'owned_gift_type.dart';
+export 'story_content_type.dart';

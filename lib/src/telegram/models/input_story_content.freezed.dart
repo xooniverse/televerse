@@ -28,7 +28,7 @@ InputStoryContent _$InputStoryContentFromJson(Map<String, dynamic> json) {
 mixin _$InputStoryContent {
   /// Type of the content, always "photo"
   @JsonKey(name: 'type')
-  String get type;
+  StoryContentType get type;
 
   /// Create a copy of InputStoryContent
   /// with the given fields replaced by the non-null parameter values.
@@ -53,7 +53,7 @@ abstract mixin class $InputStoryContentCopyWith<$Res> {
           InputStoryContent value, $Res Function(InputStoryContent) _then) =
       _$InputStoryContentCopyWithImpl;
   @useResult
-  $Res call({@JsonKey(name: 'type') String type});
+  $Res call({@JsonKey(name: 'type') StoryContentType type});
 }
 
 /// @nodoc
@@ -75,24 +75,25 @@ class _$InputStoryContentCopyWithImpl<$Res>
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as StoryContentType,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class InputStoryContentPhoto implements InputStoryContent {
+class InputStoryContentPhoto extends InputStoryContent {
   const InputStoryContentPhoto(
-      {@JsonKey(name: 'type') this.type = 'photo',
-      @JsonKey(name: 'photo') @InputFileConverter() required this.photo});
+      {@JsonKey(name: 'type') this.type = StoryContentType.photo,
+      @JsonKey(name: 'photo') @InputFileConverter() required this.photo})
+      : super._();
   factory InputStoryContentPhoto.fromJson(Map<String, dynamic> json) =>
       _$InputStoryContentPhotoFromJson(json);
 
   /// Type of the content, always "photo"
   @override
   @JsonKey(name: 'type')
-  final String type;
+  final StoryContentType type;
 
   /// The photo to post as a story. The photo must be of the size 1080x1920 and
   /// must not exceed 10 MB.
@@ -131,7 +132,7 @@ abstract mixin class $InputStoryContentPhotoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'type') String type,
+      {@JsonKey(name: 'type') StoryContentType type,
       @JsonKey(name: 'photo') @InputFileConverter() InputFile photo});
 }
 
@@ -155,7 +156,7 @@ class _$InputStoryContentPhotoCopyWithImpl<$Res>
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as StoryContentType,
       photo: null == photo
           ? _self.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -166,20 +167,21 @@ class _$InputStoryContentPhotoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class InputStoryContentVideo implements InputStoryContent {
+class InputStoryContentVideo extends InputStoryContent {
   const InputStoryContentVideo(
-      {@JsonKey(name: 'type') this.type = 'video',
+      {@JsonKey(name: 'type') this.type = StoryContentType.video,
       @JsonKey(name: 'video') @InputFileConverter() required this.video,
       @JsonKey(name: 'duration') this.duration,
       @JsonKey(name: 'cover_frame_timestamp') this.coverFrameTimestamp,
-      @JsonKey(name: 'is_animation') this.isAnimation});
+      @JsonKey(name: 'is_animation') this.isAnimation})
+      : super._();
   factory InputStoryContentVideo.fromJson(Map<String, dynamic> json) =>
       _$InputStoryContentVideoFromJson(json);
 
   /// Type of the content, always "video"
   @override
   @JsonKey(name: 'type')
-  final String type;
+  final StoryContentType type;
 
   /// The video to post as a story. The video must be of the size 720x1280,
   /// streamable, encoded with H.265 codec, with key frames added each second
@@ -232,7 +234,7 @@ abstract mixin class $InputStoryContentVideoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'type') String type,
+      {@JsonKey(name: 'type') StoryContentType type,
       @JsonKey(name: 'video') @InputFileConverter() InputFile video,
       @JsonKey(name: 'duration') double? duration,
       @JsonKey(name: 'cover_frame_timestamp') double? coverFrameTimestamp,
@@ -262,7 +264,7 @@ class _$InputStoryContentVideoCopyWithImpl<$Res>
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as StoryContentType,
       video: null == video
           ? _self.video
           : video // ignore: cast_nullable_to_non_nullable
