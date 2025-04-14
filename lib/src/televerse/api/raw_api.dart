@@ -5014,4 +5014,37 @@ class RawAPI {
 
     return StarAmount.fromJson(response);
   }
+
+  /// Use this method to transfer Telegram Stars from the business account
+  /// balance to the bot's balance. Requires the *can_transfer_stars* business
+  /// bot right.
+  ///
+  /// - [businessConnectionId]: Unique identifier of the business connection
+  /// - [starCount]: Number of Telegram Stars to transfer; 1-10000
+  ///
+  /// Returns *True* on success.
+  Future<bool> transferBusinessAccountStars(
+    String businessConnectionId,
+    int starCount,
+  ) async {
+    if (starCount < 1 || starCount > 10000) {
+      throw TeleverseException(
+        "Invalid Parameter in [transferBusinessAccountStars]",
+        description: "The star count must be between 1 and 10000.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "star_count": starCount,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.transferBusinessAccountStars,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
 }
