@@ -4993,4 +4993,25 @@ class RawAPI {
 
     return response;
   }
+
+  /// Returns the amount of Telegram Stars owned by a managed business account.
+  ///
+  /// Requires the *can_view_gifts_and_stars* business bot right.
+  /// Returns [StarAmount] on success.
+  ///
+  /// - [businessConnectionId]: Unique identifier of the business connection
+  Future<StarAmount> getBusinessAccountStarBalance(
+    String businessConnectionId,
+  ) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.getBusinessAccountStarBalance,
+      payload: Payload.from(params),
+    );
+
+    return StarAmount.fromJson(response);
+  }
 }

@@ -435,7 +435,11 @@ enum APIMethod {
   removeBusinessAccountProfilePhoto,
 
   /// Changes the privacy settings pertaining to incoming gifts in a managed business account.
-  setBusinessAccountGiftSettings;
+  setBusinessAccountGiftSettings,
+
+  /// Returns the amount of Telegram Stars owned by a managed business account
+  getBusinessAccountStarBalance,
+  ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.
   String get name => toString().split('.').last;

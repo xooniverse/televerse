@@ -167,3 +167,4 @@ export './business_intro.dart';
 // Bot API 9.0
 export 'input_profile_photo.dart';
 export 'accepted_gift_types.dart';
+export 'star_amount.dart';
