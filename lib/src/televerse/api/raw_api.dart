@@ -4896,4 +4896,34 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to change the bio of a managed business account.
+  ///
+  /// Requires the *can_change_bio* business bot right.
+  ///
+  /// Returns *True* on success.
+  Future<bool> setBusinessAccountBio({
+    required String businessConnectionId,
+    String? bio,
+  }) async {
+    if (bio != null && bio.length > 140) {
+      throw TeleverseException(
+        "Invalid Parameter in [setBusinessAccountBio]",
+        description: "The bio must be between 0 and 140 characters.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "bio": bio,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setBusinessAccountBio,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
 }
