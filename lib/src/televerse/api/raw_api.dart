@@ -5107,4 +5107,29 @@ class RawAPI {
 
     return response;
   }
+
+  /// Upgrades a given regular gift to a unique gift. Requires the *can_transfer_and_upgrade_gifts*
+  /// business bot right. Additionally requires the *can_transfer_stars* business bot right if the
+  /// upgrade is paid.
+  ///
+  /// Returns *True* on success.
+  Future<bool> upgradeGift(
+    String businessConnectionId,
+    String ownedGiftId, {
+    bool? keepOriginalDetails,
+    int? starCount,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "owned_gift_id": ownedGiftId,
+      "keep_original_details": keepOriginalDetails,
+      "star_count": starCount,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.upgradeGift,
+      payload: Payload.from(params),
+    );
+    return response;
+  }
 }

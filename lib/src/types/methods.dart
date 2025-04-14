@@ -448,6 +448,9 @@ enum APIMethod {
 
   /// Converts a given regular gift to Telegram Stars.
   convertGiftToStars,
+
+  /// Upgrades a iven gift to unique gift
+  upgradeGift,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.
