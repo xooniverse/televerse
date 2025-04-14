@@ -442,6 +442,9 @@ enum APIMethod {
 
   /// Transfers Telegram Stars from the business account balance to the bot's balance
   transferBusinessAccountStars,
+
+  /// Get business account gifts method
+  getBusinessAccountGifts,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.

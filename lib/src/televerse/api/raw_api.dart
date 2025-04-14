@@ -5047,4 +5047,39 @@ class RawAPI {
 
     return response;
   }
+
+  /// Returns the gifts received and owned by a managed business account.
+  ///
+  /// Requires the *can_view_gifts_and_stars* business bot right.
+  /// Returns [OwnedGifts] on success.
+  Future<OwnedGifts> getBusinessAccountGifts(
+    String businessConnectionId, {
+    bool? excludeUnsaved,
+    bool? excludeSaved,
+    bool? excludeUnlimited,
+    bool? excludeLimited,
+    bool? excludeUnique,
+    bool? sortByPrice,
+    String? offset,
+    int? limit,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "exclude_unsaved": excludeUnsaved,
+      "exclude_saved": excludeSaved,
+      "exclude_unlimited": excludeUnlimited,
+      "exclude_limited": excludeLimited,
+      "exclude_unique": excludeUnique,
+      "sort_by_price": sortByPrice,
+      "offset": offset,
+      "limit": limit,
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.getBusinessAccountGifts,
+      payload: Payload.from(params),
+    );
+
+    return OwnedGifts.fromJson(response);
+  }
 }
