@@ -418,6 +418,9 @@ enum APIMethod {
 
   /// Deletes a message on behalf of the business
   deleteBusinessMessages,
+
+  /// Change the first and last name of a managed business account
+  setBusinessAccountName,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.

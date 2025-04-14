@@ -4826,4 +4826,44 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to change the first and last name of a managed business account.
+  ///
+  /// Requires the *can_change_name* business bot right.
+  ///
+  /// Returns *True* on success.
+  Future<bool> setBusinessAccountName({
+    required String businessConnectionId,
+    required String firstName,
+    String? lastName,
+  }) async {
+    if (firstName.isEmpty || firstName.length > 64) {
+      throw TeleverseException(
+        "Invalid Parameter in [setBusinessAccountName]",
+        description: "The first name must be between 1 and 64 characters.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    if (lastName != null && lastName.length > 64) {
+      throw TeleverseException(
+        "Invalid Parameter in [setBusinessAccountName]",
+        description: "The last name must be between 0 and 64 characters.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "first_name": firstName,
+      "last_name": lastName,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setBusinessAccountName,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
 }
