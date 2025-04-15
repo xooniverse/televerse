@@ -5210,4 +5210,35 @@ class RawAPI {
 
     return Story.fromJson(response);
   }
+
+  /// Edits a story previously posted by the bot on behalf of a managed business account.
+  ///
+  /// Requires the *can_manage_stories* business bot right.
+  /// Returns the edited [Story] on success.
+  Future<Story> editStory(
+    String businessConnectionId,
+    int storyId,
+    InputStoryContent content, {
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    List<StoryArea>? areas,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "story_id": storyId,
+      "content": content.toJson(),
+      "caption": caption,
+      "parse_mode": parseMode?.toJson(),
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "areas": areas?.map((e) => e.toJson()).toList(),
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.editStory,
+      payload: Payload.from(params),
+    );
+
+    return Story.fromJson(response);
+  }
 }
