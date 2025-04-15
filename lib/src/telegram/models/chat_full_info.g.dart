@@ -84,7 +84,8 @@ _ChatFullInfo _$ChatFullInfoFromJson(Map<String, dynamic> json) =>
           : Birthdate.fromJson(json['birthdate'] as Map<String, dynamic>),
       maxReactionCount: (json['max_reaction_count'] as num?)?.toInt() ?? 0,
       canSendPaidMedia: json['can_send_paid_media'] as bool?,
-      canSendGift: json['can_send_gift'] as bool?,
+      acceptedGiftTypes: AcceptedGiftTypes.fromJson(
+          json['accepted_gift_types'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ChatFullInfoToJson(_ChatFullInfo instance) =>
@@ -153,7 +154,7 @@ Map<String, dynamic> _$ChatFullInfoToJson(_ChatFullInfo instance) =>
       'max_reaction_count': instance.maxReactionCount,
       if (instance.canSendPaidMedia case final value?)
         'can_send_paid_media': value,
-      if (instance.canSendGift case final value?) 'can_send_gift': value,
+      'accepted_gift_types': instance.acceptedGiftTypes,
     };
 
 const _$ChatTypeEnumMap = {

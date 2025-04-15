@@ -1,15 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/src/telegram/models/birthdate.dart';
-import 'package:televerse/src/telegram/models/business_intro.dart';
-import 'package:televerse/src/telegram/models/business_location.dart';
-import 'package:televerse/src/telegram/models/business_opening_hours.dart';
-import 'package:televerse/src/telegram/models/chat.dart';
-import 'package:televerse/src/telegram/models/chat_location.dart';
-import 'package:televerse/src/telegram/models/chat_permissions.dart';
-import 'package:televerse/src/telegram/models/chat_photo.dart';
-import 'package:televerse/src/telegram/models/message.dart';
-import 'package:televerse/src/telegram/models/reaction_type.dart';
+import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 
 part 'chat_full_info.freezed.dart';
@@ -162,8 +153,9 @@ abstract class ChatFullInfo with _$ChatFullInfo {
     /// Optional. True if paid media can be sent.
     @JsonKey(name: 'can_send_paid_media') final bool? canSendPaidMedia,
 
-    /// Optional. True if gifts can be sent.
-    @JsonKey(name: 'can_send_gift') final bool? canSendGift,
+    /// Information about types of gifts that are accepted by the chat or by the corresponding user for private chats.
+    @JsonKey(name: 'accepted_gift_types')
+    required final AcceptedGiftTypes acceptedGiftTypes,
   }) = _ChatFullInfo;
 
   /// Creates a [ChatFullInfo] object from a JSON map.
