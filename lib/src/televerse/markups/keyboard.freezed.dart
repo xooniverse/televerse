@@ -188,8 +188,6 @@ class _Keyboard extends Keyboard {
   String toString() {
     return 'Keyboard(keyboard: $keyboard, resizeKeyboard: $resizeKeyboard, oneTimeKeyboard: $oneTimeKeyboard, inputFieldPlaceholder: $inputFieldPlaceholder, selective: $selective, isPersistent: $isPersistent)';
   }
-
-  String get $type => runtimeType.toString();
 }
 
 /// @nodoc

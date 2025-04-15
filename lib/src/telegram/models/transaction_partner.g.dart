@@ -41,35 +41,50 @@ TransactionPartnerUser _$TransactionPartnerUserFromJson(
       type:
           $enumDecodeNullable(_$TransactionPartnerTypeEnumMap, json['type']) ??
               TransactionPartnerType.user,
+      transactionType:
+          $enumDecode(_$TransactionTypeEnumMap, json['transaction_type']),
       user: User.fromJson(json['user'] as Map<String, dynamic>),
+      affiliate: json['affiliate'] == null
+          ? null
+          : AffiliateInfo.fromJson(json['affiliate'] as Map<String, dynamic>),
       invoicePayload: json['invoice_payload'] as String?,
+      subscriptionPeriod: (json['subscription_period'] as num?)?.toInt(),
       paidMedia: (json['paid_media'] as List<dynamic>?)
           ?.map((e) => PaidMedia.fromJson(e as Map<String, dynamic>))
           .toList(),
       paidMediaPayload: json['paid_media_payload'] as String?,
-      subscriptionPeriod: (json['subscription_period'] as num?)?.toInt(),
       gift: json['gift'] == null
           ? null
           : Gift.fromJson(json['gift'] as Map<String, dynamic>),
-      affiliate: json['affiliate'] == null
-          ? null
-          : AffiliateInfo.fromJson(json['affiliate'] as Map<String, dynamic>),
+      premiumSubscriptionDuration:
+          (json['premium_subscription_duration'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$TransactionPartnerUserToJson(
         TransactionPartnerUser instance) =>
     <String, dynamic>{
       'type': _$TransactionPartnerTypeEnumMap[instance.type]!,
+      'transaction_type': instance.transactionType,
       'user': instance.user,
+      if (instance.affiliate case final value?) 'affiliate': value,
       if (instance.invoicePayload case final value?) 'invoice_payload': value,
+      if (instance.subscriptionPeriod case final value?)
+        'subscription_period': value,
       if (instance.paidMedia case final value?) 'paid_media': value,
       if (instance.paidMediaPayload case final value?)
         'paid_media_payload': value,
-      if (instance.subscriptionPeriod case final value?)
-        'subscription_period': value,
       if (instance.gift case final value?) 'gift': value,
-      if (instance.affiliate case final value?) 'affiliate': value,
+      if (instance.premiumSubscriptionDuration case final value?)
+        'premium_subscription_duration': value,
     };
+
+const _$TransactionTypeEnumMap = {
+  TransactionType.invoicePayment: 'invoice_payment',
+  TransactionType.paidMediaPayment: 'paid_media_payment',
+  TransactionType.giftPurchase: 'gift_purchase',
+  TransactionType.premiumPurchase: 'premium_purchase',
+  TransactionType.businessAccountTransfer: 'business_account_transfer',
+};
 
 TransactionPartnerTelegramAds _$TransactionPartnerTelegramAdsFromJson(
         Map<String, dynamic> json) =>

@@ -198,36 +198,59 @@ class _$TransactionPartnerFragmentCopyWithImpl<$Res>
 class TransactionPartnerUser implements TransactionPartner {
   const TransactionPartnerUser(
       {@JsonKey(name: 'type') this.type = TransactionPartnerType.user,
+      @JsonKey(name: 'transaction_type') required this.transactionType,
       @JsonKey(name: 'user') required this.user,
+      @JsonKey(name: 'affiliate') this.affiliate,
       @JsonKey(name: 'invoice_payload') this.invoicePayload,
+      @JsonKey(name: 'subscription_period') this.subscriptionPeriod,
       @JsonKey(name: 'paid_media') final List<PaidMedia>? paidMedia,
       @JsonKey(name: 'paid_media_payload') this.paidMediaPayload,
-      @JsonKey(name: 'subscription_period') this.subscriptionPeriod,
       @JsonKey(name: 'gift') this.gift,
-      @JsonKey(name: 'affiliate') this.affiliate})
+      @JsonKey(name: 'premium_subscription_duration')
+      this.premiumSubscriptionDuration})
       : assert(type == TransactionPartnerType.user,
             'type must be TransactionPartnerType.user'),
         _paidMedia = paidMedia;
   factory TransactionPartnerUser.fromJson(Map<String, dynamic> json) =>
       _$TransactionPartnerUserFromJson(json);
 
-  /// Type of the transaction partner, must be "user"
+  /// Type of the transaction partner, always "user"
   @override
   @JsonKey(name: 'type')
   final TransactionPartnerType type;
+
+  /// Type of the transaction, currently one of "invoice_payment" for payments via invoices,
+  /// "paid_media_payment" for payments for paid media, "gift_purchase" for gifts sent by the bot,
+  /// "premium_purchase" for Telegram Premium subscriptions gifted by the bot,
+  /// "business_account_transfer" for direct transfers from managed business accounts
+  @JsonKey(name: 'transaction_type')
+  final TransactionType transactionType;
 
   /// Information about the user.
   @JsonKey(name: 'user')
   final User user;
 
-  /// Bot-specified invoice payload.
+  /// Optional. Information about the affiliate that received a commission via this transaction.
+  /// Can be available only for "invoice_payment" and "paid_media_payment" transactions.
+  @JsonKey(name: 'affiliate')
+  final AffiliateInfo? affiliate;
+
+  /// Optional. Bot-specified invoice payload.
+  /// Can be available only for "invoice_payment" transactions.
   @JsonKey(name: 'invoice_payload')
   final String? invoicePayload;
 
-  /// Optional. Information about the paid media bought by the user
+  /// Optional. The duration of the paid subscription.
+  /// Can be available only for "invoice_payment" transactions.
+  @JsonKey(name: 'subscription_period')
+  final int? subscriptionPeriod;
+
+  /// Optional. Information about the paid media bought by the user;
+  /// for "paid_media_payment" transactions only
   final List<PaidMedia>? _paidMedia;
 
-  /// Optional. Information about the paid media bought by the user
+  /// Optional. Information about the paid media bought by the user;
+  /// for "paid_media_payment" transactions only
   @JsonKey(name: 'paid_media')
   List<PaidMedia>? get paidMedia {
     final value = _paidMedia;
@@ -237,22 +260,20 @@ class TransactionPartnerUser implements TransactionPartner {
     return EqualUnmodifiableListView(value);
   }
 
-  /// Optional. Bot-specified paid media payload
+  /// Optional. Bot-specified paid media payload.
+  /// Can be available only for "paid_media_payment" transactions.
   @JsonKey(name: 'paid_media_payload')
   final String? paidMediaPayload;
 
-  /// Optional. The duration of the paid subscription.
-  @JsonKey(name: 'subscription_period')
-  final int? subscriptionPeriod;
-
-  /// Optional. The gift sent to the user by the bot.
+  /// Optional. The gift sent to the user by the bot;
+  /// for "gift_purchase" transactions only
   @JsonKey(name: 'gift')
   final Gift? gift;
 
-  /// Optional. Information about the affiliate that received a commission via
-  /// this transaction
-  @JsonKey(name: 'affiliate')
-  final AffiliateInfo? affiliate;
+  /// Optional. Number of months the gifted Telegram Premium subscription
+  /// will be active for; for "premium_purchase" transactions only
+  @JsonKey(name: 'premium_subscription_duration')
+  final int? premiumSubscriptionDuration;
 
   /// Create a copy of TransactionPartner
   /// with the given fields replaced by the non-null parameter values.
@@ -272,7 +293,7 @@ class TransactionPartnerUser implements TransactionPartner {
 
   @override
   String toString() {
-    return 'TransactionPartner.user(type: $type, user: $user, invoicePayload: $invoicePayload, paidMedia: $paidMedia, paidMediaPayload: $paidMediaPayload, subscriptionPeriod: $subscriptionPeriod, gift: $gift, affiliate: $affiliate)';
+    return 'TransactionPartner.user(type: $type, transactionType: $transactionType, user: $user, affiliate: $affiliate, invoicePayload: $invoicePayload, subscriptionPeriod: $subscriptionPeriod, paidMedia: $paidMedia, paidMediaPayload: $paidMediaPayload, gift: $gift, premiumSubscriptionDuration: $premiumSubscriptionDuration)';
   }
 }
 
@@ -286,17 +307,20 @@ abstract mixin class $TransactionPartnerUserCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'type') TransactionPartnerType type,
+      @JsonKey(name: 'transaction_type') TransactionType transactionType,
       @JsonKey(name: 'user') User user,
+      @JsonKey(name: 'affiliate') AffiliateInfo? affiliate,
       @JsonKey(name: 'invoice_payload') String? invoicePayload,
+      @JsonKey(name: 'subscription_period') int? subscriptionPeriod,
       @JsonKey(name: 'paid_media') List<PaidMedia>? paidMedia,
       @JsonKey(name: 'paid_media_payload') String? paidMediaPayload,
-      @JsonKey(name: 'subscription_period') int? subscriptionPeriod,
       @JsonKey(name: 'gift') Gift? gift,
-      @JsonKey(name: 'affiliate') AffiliateInfo? affiliate});
+      @JsonKey(name: 'premium_subscription_duration')
+      int? premiumSubscriptionDuration});
 
   $UserCopyWith<$Res> get user;
-  $GiftCopyWith<$Res>? get gift;
   $AffiliateInfoCopyWith<$Res>? get affiliate;
+  $GiftCopyWith<$Res>? get gift;
 }
 
 /// @nodoc
@@ -313,27 +337,41 @@ class _$TransactionPartnerUserCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? type = null,
+    Object? transactionType = null,
     Object? user = null,
+    Object? affiliate = freezed,
     Object? invoicePayload = freezed,
+    Object? subscriptionPeriod = freezed,
     Object? paidMedia = freezed,
     Object? paidMediaPayload = freezed,
-    Object? subscriptionPeriod = freezed,
     Object? gift = freezed,
-    Object? affiliate = freezed,
+    Object? premiumSubscriptionDuration = freezed,
   }) {
     return _then(TransactionPartnerUser(
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as TransactionPartnerType,
+      transactionType: null == transactionType
+          ? _self.transactionType
+          : transactionType // ignore: cast_nullable_to_non_nullable
+              as TransactionType,
       user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
+      affiliate: freezed == affiliate
+          ? _self.affiliate
+          : affiliate // ignore: cast_nullable_to_non_nullable
+              as AffiliateInfo?,
       invoicePayload: freezed == invoicePayload
           ? _self.invoicePayload
           : invoicePayload // ignore: cast_nullable_to_non_nullable
               as String?,
+      subscriptionPeriod: freezed == subscriptionPeriod
+          ? _self.subscriptionPeriod
+          : subscriptionPeriod // ignore: cast_nullable_to_non_nullable
+              as int?,
       paidMedia: freezed == paidMedia
           ? _self._paidMedia
           : paidMedia // ignore: cast_nullable_to_non_nullable
@@ -342,18 +380,14 @@ class _$TransactionPartnerUserCopyWithImpl<$Res>
           ? _self.paidMediaPayload
           : paidMediaPayload // ignore: cast_nullable_to_non_nullable
               as String?,
-      subscriptionPeriod: freezed == subscriptionPeriod
-          ? _self.subscriptionPeriod
-          : subscriptionPeriod // ignore: cast_nullable_to_non_nullable
-              as int?,
       gift: freezed == gift
           ? _self.gift
           : gift // ignore: cast_nullable_to_non_nullable
               as Gift?,
-      affiliate: freezed == affiliate
-          ? _self.affiliate
-          : affiliate // ignore: cast_nullable_to_non_nullable
-              as AffiliateInfo?,
+      premiumSubscriptionDuration: freezed == premiumSubscriptionDuration
+          ? _self.premiumSubscriptionDuration
+          : premiumSubscriptionDuration // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 
@@ -371,20 +405,6 @@ class _$TransactionPartnerUserCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $GiftCopyWith<$Res>? get gift {
-    if (_self.gift == null) {
-      return null;
-    }
-
-    return $GiftCopyWith<$Res>(_self.gift!, (value) {
-      return _then(_self.copyWith(gift: value));
-    });
-  }
-
-  /// Create a copy of TransactionPartner
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $AffiliateInfoCopyWith<$Res>? get affiliate {
     if (_self.affiliate == null) {
       return null;
@@ -392,6 +412,20 @@ class _$TransactionPartnerUserCopyWithImpl<$Res>
 
     return $AffiliateInfoCopyWith<$Res>(_self.affiliate!, (value) {
       return _then(_self.copyWith(affiliate: value));
+    });
+  }
+
+  /// Create a copy of TransactionPartner
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GiftCopyWith<$Res>? get gift {
+    if (_self.gift == null) {
+      return null;
+    }
+
+    return $GiftCopyWith<$Res>(_self.gift!, (value) {
+      return _then(_self.copyWith(gift: value));
     });
   }
 }

@@ -169,4 +169,8 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   /// Removes the current keyboard and shows the default keyboard.
   static ReplyKeyboardRemove remove({bool? selective}) =>
       ReplyKeyboardRemove(selective: selective);
+
+  /// Runtime type
+  @override
+  String get $type => runtimeType.toString();
 }

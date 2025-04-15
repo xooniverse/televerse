@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:televerse/src/telegram/models/abstractions.dart';
+import 'package:televerse/src/telegram/models/business_bot_rights.dart';
 import 'user.dart';
 
 part 'business_connection.freezed.dart';
@@ -34,7 +35,7 @@ abstract class BusinessConnection
 
     /// Indicates whether the bot can act on behalf of the business account in
     /// chats that were active in the last 24 hours.
-    @JsonKey(name: 'can_reply') required bool canReply,
+    @JsonKey(name: 'rights') required BusinessBotRights rights,
 
     /// Indicates whether the connection is active.
     @JsonKey(name: 'is_enabled') required bool isEnabled,

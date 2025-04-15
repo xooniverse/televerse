@@ -12,7 +12,8 @@ _BusinessConnection _$BusinessConnectionFromJson(Map<String, dynamic> json) =>
       user: User.fromJson(json['user'] as Map<String, dynamic>),
       userChatId: (json['user_chat_id'] as num).toInt(),
       date: (json['date'] as num).toInt(),
-      canReply: json['can_reply'] as bool,
+      rights:
+          BusinessBotRights.fromJson(json['rights'] as Map<String, dynamic>),
       isEnabled: json['is_enabled'] as bool,
     );
 
@@ -22,6 +23,6 @@ Map<String, dynamic> _$BusinessConnectionToJson(_BusinessConnection instance) =>
       'user': instance.user,
       'user_chat_id': instance.userChatId,
       'date': instance.date,
-      'can_reply': instance.canReply,
+      'rights': instance.rights,
       'is_enabled': instance.isEnabled,
     };

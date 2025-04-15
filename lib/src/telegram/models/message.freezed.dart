@@ -478,12 +478,28 @@ mixin _$Message {
   @JsonKey(name: 'refunded_payment')
   RefundedPayment? get refundedPayment;
 
+  /// Optional. Service message: a regular gift was sent or received
+  @JsonKey(name: 'gift')
+  GiftInfo? get gift;
+
+  /// Optional. Service message: a unique gift was sent or received
+  @JsonKey(name: 'unique_gift')
+  UniqueGiftInfo? get uniqueGift;
+
+  /// Optional. Service message: the price for paid messages has changed in the chat
+  @JsonKey(name: 'paid_message_price_changed')
+  PaidMessagePriceChanged? get paidMessagePriceChanged;
+
+  /// Optional. The number of Telegram Stars that were paid by the sender of the message to send it
+  @JsonKey(name: 'paid_star_count')
+  int? get paidStarCount;
+
   /// Serializes this Message to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   String toString() {
-    return 'Message(chat: $chat, messageId: $messageId, date: $date, messageThreadId: $messageThreadId, from: $from, senderChat: $senderChat, forwardOrigin: $forwardOrigin, isTopicMessage: $isTopicMessage, isAutomaticForward: $isAutomaticForward, replyToMessage: $replyToMessage, viaBot: $viaBot, editDate: $editDate, hasProtectedContent: $hasProtectedContent, mediaGroupId: $mediaGroupId, authorSignature: $authorSignature, text: $text, entities: $entities, animation: $animation, audio: $audio, document: $document, photo: $photo, sticker: $sticker, video: $video, videoNote: $videoNote, voice: $voice, caption: $caption, captionEntities: $captionEntities, contact: $contact, dice: $dice, game: $game, poll: $poll, venue: $venue, location: $location, newChatMembers: $newChatMembers, leftChatMember: $leftChatMember, newChatTitle: $newChatTitle, newChatPhoto: $newChatPhoto, deleteChatPhoto: $deleteChatPhoto, groupChatCreated: $groupChatCreated, supergroupChatCreated: $supergroupChatCreated, channelChatCreated: $channelChatCreated, messageAutoDeleteTimerChanged: $messageAutoDeleteTimerChanged, migrateToChatId: $migrateToChatId, migrateFromChatId: $migrateFromChatId, pinnedMessage: $pinnedMessage, invoice: $invoice, successfulPayment: $successfulPayment, connectedWebsite: $connectedWebsite, passportData: $passportData, proximityAlertTriggered: $proximityAlertTriggered, forumTopicCreated: $forumTopicCreated, forumTopicClosed: $forumTopicClosed, forumTopicReopened: $forumTopicReopened, videoChatScheduled: $videoChatScheduled, videoChatStarted: $videoChatStarted, videoChatEnded: $videoChatEnded, videoChatParticipantsInvited: $videoChatParticipantsInvited, webAppData: $webAppData, replyMarkup: $replyMarkup, usersShared: $usersShared, chatShared: $chatShared, hasMediaSpoiler: $hasMediaSpoiler, forumTopicEdited: $forumTopicEdited, generalForumTopicHidden: $generalForumTopicHidden, generalForumTopicUnhidden: $generalForumTopicUnhidden, writeAccessAllowed: $writeAccessAllowed, story: $story, externalReply: $externalReply, quote: $quote, linkPreviewOptions: $linkPreviewOptions, giveaway: $giveaway, giveawayCreated: $giveawayCreated, giveawayWinners: $giveawayWinners, giveawayCompleted: $giveawayCompleted, boostAdded: $boostAdded, senderBoostCount: $senderBoostCount, replyToStory: $replyToStory, businessConnectionId: $businessConnectionId, senderBusinessBot: $senderBusinessBot, isFromOffline: $isFromOffline, chatBackgroundSet: $chatBackgroundSet, effectId: $effectId, showCaptionAboveMedia: $showCaptionAboveMedia, paidMedia: $paidMedia, refundedPayment: $refundedPayment)';
+    return 'Message(chat: $chat, messageId: $messageId, date: $date, messageThreadId: $messageThreadId, from: $from, senderChat: $senderChat, forwardOrigin: $forwardOrigin, isTopicMessage: $isTopicMessage, isAutomaticForward: $isAutomaticForward, replyToMessage: $replyToMessage, viaBot: $viaBot, editDate: $editDate, hasProtectedContent: $hasProtectedContent, mediaGroupId: $mediaGroupId, authorSignature: $authorSignature, text: $text, entities: $entities, animation: $animation, audio: $audio, document: $document, photo: $photo, sticker: $sticker, video: $video, videoNote: $videoNote, voice: $voice, caption: $caption, captionEntities: $captionEntities, contact: $contact, dice: $dice, game: $game, poll: $poll, venue: $venue, location: $location, newChatMembers: $newChatMembers, leftChatMember: $leftChatMember, newChatTitle: $newChatTitle, newChatPhoto: $newChatPhoto, deleteChatPhoto: $deleteChatPhoto, groupChatCreated: $groupChatCreated, supergroupChatCreated: $supergroupChatCreated, channelChatCreated: $channelChatCreated, messageAutoDeleteTimerChanged: $messageAutoDeleteTimerChanged, migrateToChatId: $migrateToChatId, migrateFromChatId: $migrateFromChatId, pinnedMessage: $pinnedMessage, invoice: $invoice, successfulPayment: $successfulPayment, connectedWebsite: $connectedWebsite, passportData: $passportData, proximityAlertTriggered: $proximityAlertTriggered, forumTopicCreated: $forumTopicCreated, forumTopicClosed: $forumTopicClosed, forumTopicReopened: $forumTopicReopened, videoChatScheduled: $videoChatScheduled, videoChatStarted: $videoChatStarted, videoChatEnded: $videoChatEnded, videoChatParticipantsInvited: $videoChatParticipantsInvited, webAppData: $webAppData, replyMarkup: $replyMarkup, usersShared: $usersShared, chatShared: $chatShared, hasMediaSpoiler: $hasMediaSpoiler, forumTopicEdited: $forumTopicEdited, generalForumTopicHidden: $generalForumTopicHidden, generalForumTopicUnhidden: $generalForumTopicUnhidden, writeAccessAllowed: $writeAccessAllowed, story: $story, externalReply: $externalReply, quote: $quote, linkPreviewOptions: $linkPreviewOptions, giveaway: $giveaway, giveawayCreated: $giveawayCreated, giveawayWinners: $giveawayWinners, giveawayCompleted: $giveawayCompleted, boostAdded: $boostAdded, senderBoostCount: $senderBoostCount, replyToStory: $replyToStory, businessConnectionId: $businessConnectionId, senderBusinessBot: $senderBusinessBot, isFromOffline: $isFromOffline, chatBackgroundSet: $chatBackgroundSet, effectId: $effectId, showCaptionAboveMedia: $showCaptionAboveMedia, paidMedia: $paidMedia, refundedPayment: $refundedPayment, gift: $gift, uniqueGift: $uniqueGift, paidMessagePriceChanged: $paidMessagePriceChanged, paidStarCount: $paidStarCount)';
   }
 }
 
@@ -579,7 +595,11 @@ class _Message implements Message {
       @JsonKey(name: 'effect_id') this.effectId,
       @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
       @JsonKey(name: 'paid_media') this.paidMedia,
-      @JsonKey(name: 'refunded_payment') this.refundedPayment})
+      @JsonKey(name: 'refunded_payment') this.refundedPayment,
+      @JsonKey(name: 'gift') this.gift,
+      @JsonKey(name: 'unique_gift') this.uniqueGift,
+      @JsonKey(name: 'paid_message_price_changed') this.paidMessagePriceChanged,
+      @JsonKey(name: 'paid_star_count') this.paidStarCount})
       : _entities = entities,
         _photo = photo,
         _captionEntities = captionEntities,
@@ -1127,6 +1147,26 @@ class _Message implements Message {
   @JsonKey(name: 'refunded_payment')
   final RefundedPayment? refundedPayment;
 
+  /// Optional. Service message: a regular gift was sent or received
+  @override
+  @JsonKey(name: 'gift')
+  final GiftInfo? gift;
+
+  /// Optional. Service message: a unique gift was sent or received
+  @override
+  @JsonKey(name: 'unique_gift')
+  final UniqueGiftInfo? uniqueGift;
+
+  /// Optional. Service message: the price for paid messages has changed in the chat
+  @override
+  @JsonKey(name: 'paid_message_price_changed')
+  final PaidMessagePriceChanged? paidMessagePriceChanged;
+
+  /// Optional. The number of Telegram Stars that were paid by the sender of the message to send it
+  @override
+  @JsonKey(name: 'paid_star_count')
+  final int? paidStarCount;
+
   @override
   Map<String, dynamic> toJson() {
     return _$MessageToJson(
@@ -1136,6 +1176,6 @@ class _Message implements Message {
 
   @override
   String toString() {
-    return 'Message(chat: $chat, messageId: $messageId, date: $date, messageThreadId: $messageThreadId, from: $from, senderChat: $senderChat, forwardOrigin: $forwardOrigin, isTopicMessage: $isTopicMessage, isAutomaticForward: $isAutomaticForward, replyToMessage: $replyToMessage, viaBot: $viaBot, editDate: $editDate, hasProtectedContent: $hasProtectedContent, mediaGroupId: $mediaGroupId, authorSignature: $authorSignature, text: $text, entities: $entities, animation: $animation, audio: $audio, document: $document, photo: $photo, sticker: $sticker, video: $video, videoNote: $videoNote, voice: $voice, caption: $caption, captionEntities: $captionEntities, contact: $contact, dice: $dice, game: $game, poll: $poll, venue: $venue, location: $location, newChatMembers: $newChatMembers, leftChatMember: $leftChatMember, newChatTitle: $newChatTitle, newChatPhoto: $newChatPhoto, deleteChatPhoto: $deleteChatPhoto, groupChatCreated: $groupChatCreated, supergroupChatCreated: $supergroupChatCreated, channelChatCreated: $channelChatCreated, messageAutoDeleteTimerChanged: $messageAutoDeleteTimerChanged, migrateToChatId: $migrateToChatId, migrateFromChatId: $migrateFromChatId, pinnedMessage: $pinnedMessage, invoice: $invoice, successfulPayment: $successfulPayment, connectedWebsite: $connectedWebsite, passportData: $passportData, proximityAlertTriggered: $proximityAlertTriggered, forumTopicCreated: $forumTopicCreated, forumTopicClosed: $forumTopicClosed, forumTopicReopened: $forumTopicReopened, videoChatScheduled: $videoChatScheduled, videoChatStarted: $videoChatStarted, videoChatEnded: $videoChatEnded, videoChatParticipantsInvited: $videoChatParticipantsInvited, webAppData: $webAppData, replyMarkup: $replyMarkup, usersShared: $usersShared, chatShared: $chatShared, hasMediaSpoiler: $hasMediaSpoiler, forumTopicEdited: $forumTopicEdited, generalForumTopicHidden: $generalForumTopicHidden, generalForumTopicUnhidden: $generalForumTopicUnhidden, writeAccessAllowed: $writeAccessAllowed, story: $story, externalReply: $externalReply, quote: $quote, linkPreviewOptions: $linkPreviewOptions, giveaway: $giveaway, giveawayCreated: $giveawayCreated, giveawayWinners: $giveawayWinners, giveawayCompleted: $giveawayCompleted, boostAdded: $boostAdded, senderBoostCount: $senderBoostCount, replyToStory: $replyToStory, businessConnectionId: $businessConnectionId, senderBusinessBot: $senderBusinessBot, isFromOffline: $isFromOffline, chatBackgroundSet: $chatBackgroundSet, effectId: $effectId, showCaptionAboveMedia: $showCaptionAboveMedia, paidMedia: $paidMedia, refundedPayment: $refundedPayment)';
+    return 'Message(chat: $chat, messageId: $messageId, date: $date, messageThreadId: $messageThreadId, from: $from, senderChat: $senderChat, forwardOrigin: $forwardOrigin, isTopicMessage: $isTopicMessage, isAutomaticForward: $isAutomaticForward, replyToMessage: $replyToMessage, viaBot: $viaBot, editDate: $editDate, hasProtectedContent: $hasProtectedContent, mediaGroupId: $mediaGroupId, authorSignature: $authorSignature, text: $text, entities: $entities, animation: $animation, audio: $audio, document: $document, photo: $photo, sticker: $sticker, video: $video, videoNote: $videoNote, voice: $voice, caption: $caption, captionEntities: $captionEntities, contact: $contact, dice: $dice, game: $game, poll: $poll, venue: $venue, location: $location, newChatMembers: $newChatMembers, leftChatMember: $leftChatMember, newChatTitle: $newChatTitle, newChatPhoto: $newChatPhoto, deleteChatPhoto: $deleteChatPhoto, groupChatCreated: $groupChatCreated, supergroupChatCreated: $supergroupChatCreated, channelChatCreated: $channelChatCreated, messageAutoDeleteTimerChanged: $messageAutoDeleteTimerChanged, migrateToChatId: $migrateToChatId, migrateFromChatId: $migrateFromChatId, pinnedMessage: $pinnedMessage, invoice: $invoice, successfulPayment: $successfulPayment, connectedWebsite: $connectedWebsite, passportData: $passportData, proximityAlertTriggered: $proximityAlertTriggered, forumTopicCreated: $forumTopicCreated, forumTopicClosed: $forumTopicClosed, forumTopicReopened: $forumTopicReopened, videoChatScheduled: $videoChatScheduled, videoChatStarted: $videoChatStarted, videoChatEnded: $videoChatEnded, videoChatParticipantsInvited: $videoChatParticipantsInvited, webAppData: $webAppData, replyMarkup: $replyMarkup, usersShared: $usersShared, chatShared: $chatShared, hasMediaSpoiler: $hasMediaSpoiler, forumTopicEdited: $forumTopicEdited, generalForumTopicHidden: $generalForumTopicHidden, generalForumTopicUnhidden: $generalForumTopicUnhidden, writeAccessAllowed: $writeAccessAllowed, story: $story, externalReply: $externalReply, quote: $quote, linkPreviewOptions: $linkPreviewOptions, giveaway: $giveaway, giveawayCreated: $giveawayCreated, giveawayWinners: $giveawayWinners, giveawayCompleted: $giveawayCompleted, boostAdded: $boostAdded, senderBoostCount: $senderBoostCount, replyToStory: $replyToStory, businessConnectionId: $businessConnectionId, senderBusinessBot: $senderBusinessBot, isFromOffline: $isFromOffline, chatBackgroundSet: $chatBackgroundSet, effectId: $effectId, showCaptionAboveMedia: $showCaptionAboveMedia, paidMedia: $paidMedia, refundedPayment: $refundedPayment, gift: $gift, uniqueGift: $uniqueGift, paidMessagePriceChanged: $paidMessagePriceChanged, paidStarCount: $paidStarCount)';
   }
 }

@@ -1,3 +1,7 @@
+# 2.5.0
+
+- 🤖 Bot API 9.0
+
 # 2.4.5
 
 - Migrated to Freezed 3.x.x

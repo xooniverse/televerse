@@ -18,7 +18,10 @@ String environ(String key) {
 }
 
 void main() {
-  final bot = Bot(environ('BOT_TOKEN'));
+  final bot = Bot(
+    environ('BOT_TOKEN'),
+    loggerOptions: LoggerOptions(logPrint: print),
+  );
   final chatId = int.parse(environ('CHAT_ID'));
   final gID = int.parse(environ('CHANNEL_ID'));
 

@@ -1,431 +1,487 @@
-/// Method - these are the available methods in the Telegram Bot API.
+/// Represents the methods available in the Telegram Bot API.
+///
+/// Each enum value corresponds to a specific Telegram Bot API endpoint.
 enum APIMethod {
-  /// Get Updates - returns the updates
-  getUpdates._("getUpdates"),
+  /// Returns the updates for the bot.
+  getUpdates,
 
-  /// Set Webhook - sets the webhook
-  setWebhook._("setWebhook"),
+  /// Sets a webhook for the bot.
+  setWebhook,
 
-  /// Delete Webhook - deletes the webhook
-  deleteWebhook._("deleteWebhook"),
+  /// Deletes the webhook for the bot.
+  deleteWebhook,
 
-  /// Get Me - returns the bot's information
-  getMe._("getMe"),
+  /// Returns the bot's information.
+  getMe,
 
-  /// Log Out - logs the bot out
-  logOut._("logOut"),
+  /// Logs the bot out.
+  logOut,
 
-  /// Close - closes the bot
-  close._("close"),
+  /// Closes the bot.
+  close,
 
-  /// Send Message - sends a message
-  sendMessage._("sendMessage"),
+  /// Sends a message.
+  sendMessage,
 
-  /// Forward Message - forwards a message
-  forwardMessage._("forwardMessage"),
+  /// Forwards a message.
+  forwardMessage,
 
-  /// Copy Message - copies a message
-  copyMessage._("copyMessage"),
+  /// Copies a message.
+  copyMessage,
 
-  /// Send Photo - sends a photo
-  sendPhoto._("sendPhoto"),
+  /// Sends a photo.
+  sendPhoto,
 
-  /// Send Audio - sends an audio
-  sendAudio._("sendAudio"),
+  /// Sends an audio file.
+  sendAudio,
 
-  /// Send Document - sends a document
-  sendDocument._("sendDocument"),
+  /// Sends a document.
+  sendDocument,
 
-  /// Send Video - sends a video
-  sendVideo._("sendVideo"),
+  /// Sends a video.
+  sendVideo,
 
-  /// Send Animation - sends an animation
-  sendAnimation._("sendAnimation"),
+  /// Sends an animation.
+  sendAnimation,
 
-  /// Send Voice - sends a voice
-  sendVoice._("sendVoice"),
+  /// Sends a voice message.
+  sendVoice,
 
-  /// Send Video Note - sends a video note
-  sendVideoNote._("sendVideoNote"),
+  /// Sends a video note.
+  sendVideoNote,
 
-  /// Send Media Group - sends a media group
-  sendMediaGroup._("sendMediaGroup"),
+  /// Sends a group of media files.
+  sendMediaGroup,
 
-  /// Send Location - sends a location
-  sendLocation._("sendLocation"),
+  /// Sends a location.
+  sendLocation,
 
-  /// Send Venue - sends a venue
-  sendVenue._("sendVenue"),
+  /// Sends a venue.
+  sendVenue,
 
-  /// Send Contact - sends a contact
-  sendContact._("sendContact"),
+  /// Sends a contact.
+  sendContact,
 
-  /// Send Poll - sends a poll
-  sendPoll._("sendPoll"),
+  /// Sends a poll.
+  sendPoll,
 
-  /// Send Dice - sends a dice
-  sendDice._("sendDice"),
+  /// Sends a dice.
+  sendDice,
 
-  /// Send Chat Action - sends a chat action
-  sendChatAction._("sendChatAction"),
+  /// Sends a chat action.
+  sendChatAction,
 
-  /// Get User Profile Photos - gets a user's profile photos
-  getUserProfilePhotos._("getUserProfilePhotos"),
+  /// Gets a user's profile photos.
+  getUserProfilePhotos,
 
-  /// Get File - gets a file
-  getFile._("getFile"),
+  /// Gets a file.
+  getFile,
 
-  /// Kick Chat Member - kicks a chat member
-  banChatMember._("banChatMember"),
+  /// Bans a chat member.
+  banChatMember,
 
-  /// Unban Chat Member - unbans a chat member
-  unbanChatMember._("unbanChatMember"),
+  /// Unbans a chat member.
+  unbanChatMember,
 
-  /// Restrict Chat Member - restricts a chat member
-  restrictChatMember._("restrictChatMember"),
+  /// Restricts a chat member.
+  restrictChatMember,
 
-  /// Promote Chat Member - promotes a chat member
-  promoteChatMember._("promoteChatMember"),
+  /// Promotes a chat member.
+  promoteChatMember,
 
-  /// Set Chat Administrator Custom Title - sets a chat administrator's custom title
-  setChatAdministratorCustomTitle._("setChatAdministratorCustomTitle"),
+  /// Sets a chat administrator's custom title.
+  setChatAdministratorCustomTitle,
 
-  /// Ban Chat Sender Chat - bans a chat sender chat
-  banChatSenderChat._("banChatSenderChat"),
+  /// Bans a chat sender chat.
+  banChatSenderChat,
 
-  /// Unban Chat Sender Chat - unbans a chat sender chat
-  unbanChatSenderChat._("unbanChatSenderChat"),
+  /// Unbans a chat sender chat.
+  unbanChatSenderChat,
 
-  /// Set Chat Permissions - sets a chat's permissions
-  setChatPermissions._("setChatPermissions"),
+  /// Sets a chat's permissions.
+  setChatPermissions,
 
-  /// Export Chat Invite Link - exports a chat's invite link
-  exportChatInviteLink._("exportChatInviteLink"),
+  /// Exports a chat's invite link.
+  exportChatInviteLink,
 
-  /// Create Chat Invite Link - creates a chat's invite link
-  createChatInviteLink._("createChatInviteLink"),
+  /// Creates a chat's invite link.
+  createChatInviteLink,
 
-  /// Edit Chat Invite Link - edits a chat's invite link
-  editChatInviteLink._("editChatInviteLink"),
+  /// Edits a chat's invite link.
+  editChatInviteLink,
 
-  /// Revoke Chat Invite Link - revokes a chat's invite link
-  revokeChatInviteLink._("revokeChatInviteLink"),
+  /// Revokes a chat's invite link.
+  revokeChatInviteLink,
 
-  /// Approve Chat Join Request - approves a chat's join request
-  approveChatJoinRequest._("approveChatJoinRequest"),
+  /// Approves a chat's join request.
+  approveChatJoinRequest,
 
-  /// Decline Chat Join Request - declines a chat's join request
-  declineChatJoinRequest._("declineChatJoinRequest"),
+  /// Declines a chat's join request.
+  declineChatJoinRequest,
 
-  /// Set Chat Photo - sets a chat's photo
-  setChatPhoto._("setChatPhoto"),
+  /// Sets a chat's photo.
+  setChatPhoto,
 
-  /// Delete Chat Photo - deletes a chat's photo
-  deleteChatPhoto._("deleteChatPhoto"),
+  /// Deletes a chat's photo.
+  deleteChatPhoto,
 
-  /// Set Chat Title - sets a chat's title
-  setChatTitle._("setChatTitle"),
+  /// Sets a chat's title.
+  setChatTitle,
 
-  /// Set Chat Description - sets a chat's description
-  setChatDescription._("setChatDescription"),
+  /// Sets a chat's description.
+  setChatDescription,
 
-  /// Pin Chat Message - pins a chat message
-  pinChatMessage._("pinChatMessage"),
+  /// Pins a chat message.
+  pinChatMessage,
 
-  /// Unpin Chat Message - unpins a chat message
-  unpinChatMessage._("unpinChatMessage"),
+  /// Unpins a chat message.
+  unpinChatMessage,
 
-  /// Unpin All Chat Messages - unpins all chat messages
-  unpinAllChatMessages._("unpinAllChatMessages"),
+  /// Unpins all chat messages.
+  unpinAllChatMessages,
 
-  /// Leave Chat - leaves a chat
-  leaveChat._("leaveChat"),
+  /// Leaves a chat.
+  leaveChat,
 
-  /// Get Chat - gets a chat
-  getChat._("getChat"),
+  /// Gets a chat.
+  getChat,
 
-  /// Get Chat Administrators - gets a chat's administrators
-  getChatAdministrators._("getChatAdministrators"),
+  /// Gets a chat's administrators.
+  getChatAdministrators,
 
-  /// Get Chat Member Count - gets a chat's member count
-  getChatMemberCount._("getChatMemberCount"),
+  /// Gets a chat's member count.
+  getChatMemberCount,
 
-  /// Get Chat Member - gets a chat member
-  getChatMember._("getChatMember"),
+  /// Gets a chat member.
+  getChatMember,
 
-  /// Set Chat Sticker Set - sets a chat's sticker set
-  setChatStickerSet._("setChatStickerSet"),
+  /// Sets a chat's sticker set.
+  setChatStickerSet,
 
-  /// Delete Chat Sticker Set - deletes a chat's sticker set
-  deleteChatStickerSet._("deleteChatStickerSet"),
+  /// Deletes a chat's sticker set.
+  deleteChatStickerSet,
 
-  /// Get Forum Topic Icon Stickers - gets a forum topic's icon stickers
-  getForumTopicIconStickers._("getForumTopicIconStickers"),
+  /// Gets a forum topic's icon stickers.
+  getForumTopicIconStickers,
 
-  /// Create Forum Topic - creates a forum topic
-  createForumTopic._("createForumTopic"),
+  /// Creates a forum topic.
+  createForumTopic,
 
-  /// Edit Forum Topic - edits a forum topic
-  editForumTopic._("editForumTopic"),
+  /// Edits a forum topic.
+  editForumTopic,
 
-  /// Close Forum Topic - closes a forum topic
-  closeForumTopic._("closeForumTopic"),
+  /// Closes a forum topic.
+  closeForumTopic,
 
-  /// Reopen Forum Topic - reopens a forum topic
-  reopenForumTopic._("reopenForumTopic"),
+  /// Reopens a forum topic.
+  reopenForumTopic,
 
-  /// Delete Forum Topic - deletes a forum topic
-  deleteForumTopic._("deleteForumTopic"),
+  /// Deletes a forum topic.
+  deleteForumTopic,
 
-  /// Unpin All Forum Topic Messages - unpins all forum topic messages
-  unpinAllForumTopicMessages._("unpinAllForumTopicMessages"),
+  /// Unpins all forum topic messages.
+  unpinAllForumTopicMessages,
 
-  /// Edit General Forum Topic - edits a general forum topic
-  editGeneralForumTopic._("editGeneralForumTopic"),
+  /// Edits a general forum topic.
+  editGeneralForumTopic,
 
-  /// Close General Forum Topic - closes a general forum topic
-  closeGeneralForumTopic._("closeGeneralForumTopic"),
+  /// Closes a general forum topic.
+  closeGeneralForumTopic,
 
-  /// Reopen General Forum Topic - reopens a general forum topic
-  reopenGeneralForumTopic._("reopenGeneralForumTopic"),
+  /// Reopens a general forum topic.
+  reopenGeneralForumTopic,
 
-  /// Hide General Forum Topic - hides a general forum topic
-  hideGeneralForumTopic._("hideGeneralForumTopic"),
+  /// Hides a general forum topic.
+  hideGeneralForumTopic,
 
-  /// Unhide General Forum Topic - unhides a general forum topic
-  unhideGeneralForumTopic._("unhideGeneralForumTopic"),
+  /// Unhides a general forum topic.
+  unhideGeneralForumTopic,
 
-  /// Answer Callback Query - answers a callback query
-  answerCallbackQuery._("answerCallbackQuery"),
+  /// Answers a callback query.
+  answerCallbackQuery,
 
-  /// Set My Commands - sets a bot's commands
-  setMyCommands._("setMyCommands"),
+  /// Sets a bot's commands.
+  setMyCommands,
 
-  /// Delete My Commands - deletes a bot's commands
-  deleteMyCommands._("deleteMyCommands"),
+  /// Deletes a bot's commands.
+  deleteMyCommands,
 
-  /// Get My Commands - gets a bot's commands
-  getMyCommands._("getMyCommands"),
+  /// Gets a bot's commands.
+  getMyCommands,
 
-  /// Set My Name - sets a bot's name
-  setMyName._("setMyName"),
+  /// Sets a bot's name.
+  setMyName,
 
-  /// Get My Name - gets a bot's name
-  getMyName._("getMyName"),
+  /// Gets a bot's name.
+  getMyName,
 
-  /// Set My Description - sets a bot's description
-  setMyDescription._("setMyDescription"),
+  /// Sets a bot's description.
+  setMyDescription,
 
-  /// Get My Description - gets a bot's description
-  getMyDescription._("getMyDescription"),
+  /// Gets a bot's description.
+  getMyDescription,
 
-  /// Set My Short Description - sets a bot's short description
-  setMyShortDescription._("setMyShortDescription"),
+  /// Sets a bot's short description.
+  setMyShortDescription,
 
-  /// Get My Short Description - gets a bot's short description
-  getMyShortDescription._("getMyShortDescription"),
+  /// Gets a bot's short description.
+  getMyShortDescription,
 
-  /// Set Chat Menu Button - sets a chat's menu button
-  setChatMenuButton._("setChatMenuButton"),
+  /// Sets a chat's menu button.
+  setChatMenuButton,
 
-  /// Get Chat Menu Button - gets a chat's menu button
-  getChatMenuButton._("getChatMenuButton"),
+  /// Gets a chat's menu button.
+  getChatMenuButton,
 
-  /// Set My Default Administrator Rights - sets a bot's default administrator rights
-  setMyDefaultAdministratorRights._("setMyDefaultAdministratorRights"),
+  /// Sets a bot's default administrator rights.
+  setMyDefaultAdministratorRights,
 
-  /// Get My Default Administrator Rights - gets a bot's default administrator rights
-  getMyDefaultAdministratorRights._("getMyDefaultAdministratorRights"),
+  /// Gets a bot's default administrator rights.
+  getMyDefaultAdministratorRights,
 
-  /// Edit Message Text - edits a message's text
-  editMessageText._("editMessageText"),
+  /// Edits a message's text.
+  editMessageText,
 
-  /// Edit Message Caption - edits a message's caption
-  editMessageCaption._("editMessageCaption"),
+  /// Edits a message's caption.
+  editMessageCaption,
 
-  /// Edit Message Media - edits a message's media
-  editMessageMedia._("editMessageMedia"),
+  /// Edits a message's media.
+  editMessageMedia,
 
-  /// Edit Message Live Location - edits a message's live location
-  editMessageLiveLocation._("editMessageLiveLocation"),
+  /// Edits a message's live location.
+  editMessageLiveLocation,
 
-  /// Stop Message Live Location - stops a message's live location
-  stopMessageLiveLocation._("stopMessageLiveLocation"),
+  /// Stops a message's live location.
+  stopMessageLiveLocation,
 
-  /// Edit Message Reply Markup - edits a message's reply markup
-  editMessageReplyMarkup._("editMessageReplyMarkup"),
+  /// Edits a message's reply markup.
+  editMessageReplyMarkup,
 
-  /// Stop Poll - stops a poll
-  stopPoll._("stopPoll"),
+  /// Stops a poll.
+  stopPoll,
 
-  /// Delete Message - deletes a message
-  deleteMessage._("deleteMessage"),
+  /// Deletes a message.
+  deleteMessage,
 
-  /// Send Sticker - sends a sticker
-  sendSticker._("sendSticker"),
+  /// Sends a sticker.
+  sendSticker,
 
-  /// Get Sticker Set - gets a sticker set
-  getStickerSet._("getStickerSet"),
+  /// Gets a sticker set.
+  getStickerSet,
 
-  /// Get Custom Emoji Stickers - gets custom emoji stickers
-  getCustomEmojiStickers._("getCustomEmojiStickers"),
+  /// Gets custom emoji stickers.
+  getCustomEmojiStickers,
 
-  /// Upload Sticker File - uploads a sticker file
-  uploadStickerFile._("uploadStickerFile"),
+  /// Uploads a sticker file.
+  uploadStickerFile,
 
-  /// Create New Sticker Set - creates a new sticker set
-  createNewStickerSet._("createNewStickerSet"),
+  /// Creates a new sticker set.
+  createNewStickerSet,
 
-  /// Add Sticker To Set - adds a sticker to a set
-  addStickerToSet._("addStickerToSet"),
+  /// Adds a sticker to a set.
+  addStickerToSet,
 
-  /// Set Sticker Position In Set - sets a sticker's position in a set
-  setStickerPositionInSet._("setStickerPositionInSet"),
+  /// Sets a sticker's position in a set.
+  setStickerPositionInSet,
 
-  /// Delete Sticker From Set - deletes a sticker from a set
-  deleteStickerFromSet._("deleteStickerFromSet"),
+  /// Deletes a sticker from a set.
+  deleteStickerFromSet,
 
-  /// Set Sticker Emoji List - sets a sticker's emoji list
-  setStickerEmojiList._("setStickerEmojiList"),
+  /// Sets a sticker's emoji list.
+  setStickerEmojiList,
 
-  /// Set Sticker Keywords - sets a sticker's keywords
-  setStickerKeywords._("setStickerKeywords"),
+  /// Sets a sticker's keywords.
+  setStickerKeywords,
 
-  /// Set Sticker Mask Position - sets a sticker's mask position
-  setStickerMaskPosition._("setStickerMaskPosition"),
+  /// Sets a sticker's mask position.
+  setStickerMaskPosition,
 
-  /// Set STicker Set Title - sets a sticker set's title
-  setStickerSetTitle._("setStickerSetTitle"),
+  /// Sets a sticker set's title.
+  setStickerSetTitle,
 
-  /// Set Sticker Set Thumbnail - sets a sticker set's thumbnail
-  setStickerSetThumbnail._("setStickerSetThumbnail"),
+  /// Sets a sticker set's thumbnail.
+  setStickerSetThumbnail,
 
-  /// Set Custom Emoji Sticker Set Thumbnail - sets a custom emoji sticker set's thumbnail
-  setCustomEmojiStickerSetThumbnail._("setCustomEmojiStickerSetThumbnail"),
+  /// Sets a custom emoji sticker set's thumbnail.
+  setCustomEmojiStickerSetThumbnail,
 
-  /// Delete Sticker Set - deletes a sticker set
-  deleteStickerSet._("deleteStickerSet"),
+  /// Deletes a sticker set.
+  deleteStickerSet,
 
-  /// Answer Inline Query - answers an inline query
-  answerInlineQuery._("answerInlineQuery"),
+  /// Answers an inline query.
+  answerInlineQuery,
 
-  /// Answer Web App Query - answers a web app query
-  answerWebAppQuery._("answerWebAppQuery"),
+  /// Answers a web app query.
+  answerWebAppQuery,
 
-  /// Send Invoice - sends an invoice
-  sendInvoice._("sendInvoice"),
+  /// Sends an invoice.
+  sendInvoice,
 
-  /// Create Invoice Link - creates an invoice link
-  createInvoiceLink._("createInvoiceLink"),
+  /// Creates an invoice link.
+  createInvoiceLink,
 
-  /// Answer Shipping Query - answers a shipping query
-  answerShippingQuery._("answerShippingQuery"),
+  /// Answers a shipping query.
+  answerShippingQuery,
 
-  /// Answer Pre Checkout Query - answers a pre checkout query
-  answerPreCheckoutQuery._("answerPreCheckoutQuery"),
+  /// Answers a pre checkout query.
+  answerPreCheckoutQuery,
 
-  /// Set Passport Data Errors - sets passport data errors
-  setPassportDataErrors._("setPassportDataErrors"),
+  /// Sets passport data errors.
+  setPassportDataErrors,
 
-  /// Send Game - sends a game
-  sendGame._("sendGame"),
+  /// Sends a game.
+  sendGame,
 
-  /// Set Game Score - sets a game's score
-  setGameScore._("setGameScore"),
+  /// Sets a game's score.
+  setGameScore,
 
-  /// Get Game High Scores - gets a game's high scores
-  getGameHighScores._("getGameHighScores"),
+  /// Gets a game's high scores.
+  getGameHighScores,
 
-  /// Set Message Reaction
-  setMessageReaction._("setMessageReaction"),
+  /// Sets a message reaction.
+  setMessageReaction,
 
-  /// Delete Messages
-  deleteMessages._("deleteMessages"),
+  /// Deletes multiple messages.
+  deleteMessages,
 
-  /// Forward Messages
-  forwardMessages._("forwardMessages"),
+  /// Forwards multiple messages.
+  forwardMessages,
 
-  /// Copy Messages
-  copyMessages._("copyMessages"),
+  /// Copies multiple messages.
+  copyMessages,
 
-  /// Get User Chat Boosts - gets a user's active chat boosts
-  getUserChatBoosts._("getUserChatBoosts"),
+  /// Gets a user's active chat boosts.
+  getUserChatBoosts,
 
-  /// Get Webhook Info - returns the webhook info
-  getWebhookInfo._("getWebhookInfo"),
+  /// Returns the webhook info.
+  getWebhookInfo,
 
-  /// Set Inline Game Score - sets an inline game's score
-  setInlineGameScore._("setInlineGameScore"),
+  /// Sets an inline game's score.
+  setInlineGameScore,
 
-  /// Unpin All General Forum Topic Messages - unpins all general forum topic messages
-  unpinAllGeneralForumTopicMessages._("unpinAllGeneralForumTopicMessages"),
+  /// Unpins all general forum topic messages.
+  unpinAllGeneralForumTopicMessages,
 
-  /// Get Chat Members Count - gets a chat's member count
-  getChatMembersCount._("getChatMembersCount"),
+  /// Gets a chat's member count (deprecated, use getChatMemberCount instead).
+  getChatMembersCount,
 
-  /// To get information about the connection of the bot with a business account
-  getBusinessConnection._("getBusinessConnection"),
+  /// Gets information about the connection of the bot with a business account.
+  getBusinessConnection,
 
-  /// To replace an exsiting sticker in a sticker pack
-  replaceStickerInSet._("replaceStickerInSet"),
+  /// Replaces an existing sticker in a sticker pack.
+  replaceStickerInSet,
 
-  /// To refunds a successful payment in Telegram Stars.
-  refundStarPayment._("refundStarPayment"),
+  /// Refunds a successful payment in Telegram Stars.
+  refundStarPayment,
 
-  /// Returns the bot's Telegram Star transactions in chronological order
-  getStarTransactions._("getStarTransactions"),
+  /// Returns the bot's Telegram Star transactions in chronological order.
+  getStarTransactions,
 
-  /// Sends paid media
-  sendPaidMedia._("sendPaidMedia"),
+  /// Sends paid media.
+  sendPaidMedia,
 
-  /// Use this method to create a subscription invite link for a channel chat
-  createChatSubscriptionInviteLink._("createChatSubscriptionInviteLink"),
+  /// Creates a subscription invite link for a channel chat.
+  createChatSubscriptionInviteLink,
 
-  /// Use this method to edit a subscription invite link created by the bot.
-  editChatSubscriptionInviteLink._("editChatSubscriptionInviteLink"),
+  /// Edits a subscription invite link created by the bot.
+  editChatSubscriptionInviteLink,
 
-  /// Edit user's star subscription
-  editUserStarSubscription._("editUserStarSubscription"),
+  /// Edits user's star subscription.
+  editUserStarSubscription,
 
-  /// Changes the emoji status for a given user
-  setUserEmojiStatus._("setUserEmojiStatus"),
+  /// Changes the emoji status for a given user.
+  setUserEmojiStatus,
 
-  /// Stores a message that can be sent by a user of a Mini App
-  savePreparedInlineMessage._("savePreparedInlineMessage"),
+  /// Stores a message that can be sent by a user of a Mini App.
+  savePreparedInlineMessage,
 
-  /// Returns the list of gifts that can be sent by the bot to users
-  getAvailableGifts._("getAvailableGifts"),
+  /// Returns the list of gifts that can be sent by the bot to users.
+  getAvailableGifts,
 
   /// Sends a gift to the given user.
-  sendGift._("sendGift"),
+  sendGift,
 
   /// Verifies a user on behalf of the organization which is represented by the bot.
-  verifyUser._("verifyUser"),
+  verifyUser,
 
   /// Verifies a chat on behalf of the organization which is represented by the bot.
-  verifyChat._("verifyChat"),
+  verifyChat,
 
-  /// Removes verification from a user who is currently verified on behalf of
-  /// the organization represented by the bot.
-  removeUserVerification._("removeUserVerification"),
+  /// Removes verification from a user who is currently verified.
+  removeUserVerification,
 
-  /// Removes verification from a chat that is currently verified on behalf of
-  /// the organization represented by the bot.
-  removeChatVerification._("removeChatVerification"),
+  /// Removes verification from a chat that is currently verified.
+  removeChatVerification,
+
+  /// Marks a message as read on behalf of the business.
+  readBusinessMessage,
+
+  /// Deletes a message on behalf of the business
+  deleteBusinessMessages,
+
+  /// Change the first and last name of a managed business account
+  setBusinessAccountName,
+
+  /// Change username of a managed business account
+  setBusinessAccountUsername,
+
+  /// Change the bio of a managed business account
+  setBusinessAccountBio,
+
+  /// Change the profile picture of a managed account
+  setBusinessAccountProfilePhoto,
+
+  /// Removes the profile photo of a managed business account
+  removeBusinessAccountProfilePhoto,
+
+  /// Changes the privacy settings pertaining to incoming gifts in a managed business account.
+  setBusinessAccountGiftSettings,
+
+  /// Returns the amount of Telegram Stars owned by a managed business account
+  getBusinessAccountStarBalance,
+
+  /// Transfers Telegram Stars from the business account balance to the bot's balance
+  transferBusinessAccountStars,
+
+  /// Get business account gifts method
+  getBusinessAccountGifts,
+
+  /// Converts a given regular gift to Telegram Stars.
+  convertGiftToStars,
+
+  /// Upgrades a iven gift to unique gift
+  upgradeGift,
+
+  /// Transfers an owned unique gift to another user
+  transferGift,
+
+  /// Post a story on behalf of a managed account
+  postStory,
+
+  /// Edits a story previously posted by the bot on behalf of a managed business account.
+  editStory,
+
+  /// Deletes a story previously posted by the bot on behalf of a managed business account.
+  deleteStory,
+
+  /// Gifts a Telegram Premium subscription to the given user
+  giftPremiumSubscription,
   ;
 
-  /// The name of the method.
-  final String name;
+  /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.
+  String get name => toString().split('.').last;
 
-  /// The method to use when making the request.
-  const APIMethod._(this.name);
-
-  /// Is exisiting method
+  /// Checks if a given string matches any API method name.
+  ///
+  /// Returns true if the method exists, false otherwise.
   static bool isExistingMethod(String name) {
     return values.any((method) => method.name == name);
   }
 
-  /// Get API Method from path
+  /// Gets an APIMethod enum value from a string path.
+  ///
+  /// Returns the corresponding enum value if found.
+  /// Throws if no matching method is found.
   static APIMethod method(String path) {
     return APIMethod.values.firstWhere((element) => element.name == path);
   }
@@ -457,7 +513,4 @@ enum APIMethod {
       APIMethod.sendPaidMedia,
     ];
   }
-
-  @override
-  String toString() => name;
 }

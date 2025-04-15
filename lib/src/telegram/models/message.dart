@@ -1,56 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/src/telegram/models/abstractions.dart';
-import 'package:televerse/src/telegram/models/animation.dart';
-import 'package:televerse/src/telegram/models/audio.dart';
-import 'package:televerse/src/telegram/models/chat.dart';
-import 'package:televerse/src/telegram/models/chat_background.dart';
-import 'package:televerse/src/telegram/models/chat_boost_added.dart';
-import 'package:televerse/src/telegram/models/chat_shared.dart';
-import 'package:televerse/src/telegram/models/contact.dart';
-import 'package:televerse/src/telegram/models/dice.dart';
-import 'package:televerse/src/telegram/models/document.dart';
-import 'package:televerse/src/telegram/models/external_reply_info.dart';
-import 'package:televerse/src/telegram/models/forum_topic_closed.dart';
-import 'package:televerse/src/telegram/models/forum_topic_created.dart';
-import 'package:televerse/src/telegram/models/forum_topic_edited.dart';
-import 'package:televerse/src/telegram/models/forum_topic_reopened.dart';
-import 'package:televerse/src/telegram/models/game.dart';
-import 'package:televerse/src/telegram/models/general_forum_topic_hidden.dart';
-import 'package:televerse/src/telegram/models/general_forum_topic_unhidden.dart';
-import 'package:televerse/src/telegram/models/giveaway.dart';
-import 'package:televerse/src/telegram/models/giveaway_completed.dart';
-import 'package:televerse/src/telegram/models/giveaway_created.dart';
-import 'package:televerse/src/telegram/models/giveaway_winners.dart';
-import 'package:televerse/src/telegram/models/invoice.dart';
-import 'package:televerse/src/telegram/models/link_preview_options.dart';
-import 'package:televerse/src/telegram/models/location.dart';
-import 'package:televerse/src/telegram/models/message_auto_delete_timer_changed.dart';
-import 'package:televerse/src/telegram/models/message_entity.dart';
-import 'package:televerse/src/telegram/models/message_origin.dart';
-import 'package:televerse/src/telegram/models/paid_media_info.dart';
-import 'package:televerse/src/telegram/models/passport_data.dart';
-import 'package:televerse/src/telegram/models/photo_size.dart';
-import 'package:televerse/src/telegram/models/poll.dart';
-import 'package:televerse/src/telegram/models/proximity_alert_triggered.dart';
-import 'package:televerse/src/telegram/models/refunded_payment.dart';
-import 'package:televerse/src/telegram/models/reply_markup.dart';
-import 'package:televerse/src/telegram/models/sticker.dart';
-import 'package:televerse/src/telegram/models/story.dart';
-import 'package:televerse/src/telegram/models/successful_payment.dart';
-import 'package:televerse/src/telegram/models/text_quote.dart';
-import 'package:televerse/src/telegram/models/user.dart';
-import 'package:televerse/src/telegram/models/users_shared.dart';
-import 'package:televerse/src/telegram/models/venue.dart';
-import 'package:televerse/src/telegram/models/video.dart';
-import 'package:televerse/src/telegram/models/video_chat_ended.dart';
-import 'package:televerse/src/telegram/models/video_chat_participants_invited.dart';
-import 'package:televerse/src/telegram/models/video_chat_scheduled.dart';
-import 'package:televerse/src/telegram/models/video_chat_started.dart';
-import 'package:televerse/src/telegram/models/video_note.dart';
-import 'package:televerse/src/telegram/models/voice.dart';
-import 'package:televerse/src/telegram/models/web_app_data.dart';
-import 'package:televerse/src/telegram/models/write_access_allowed.dart';
+import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 
 part 'message.freezed.dart';
@@ -450,6 +400,19 @@ abstract class Message
     /// Optional. Message is a service message about a refunded payment,
     /// information about the payment. More about payments »
     @JsonKey(name: 'refunded_payment') RefundedPayment? refundedPayment,
+
+    /// Optional. Service message: a regular gift was sent or received
+    @JsonKey(name: 'gift') GiftInfo? gift,
+
+    /// Optional. Service message: a unique gift was sent or received
+    @JsonKey(name: 'unique_gift') UniqueGiftInfo? uniqueGift,
+
+    /// Optional. Service message: the price for paid messages has changed in the chat
+    @JsonKey(name: 'paid_message_price_changed')
+    PaidMessagePriceChanged? paidMessagePriceChanged,
+
+    /// Optional. The number of Telegram Stars that were paid by the sender of the message to send it
+    @JsonKey(name: 'paid_star_count') int? paidStarCount,
   }) = _Message;
 
   /// Creates a [Message] object from JSON object

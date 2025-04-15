@@ -113,7 +113,7 @@ class RawAPI {
   /// Build the URI for the Telegram API.
   Uri _buildUri(APIMethod method) {
     if (_baseUri != null) {
-      return _baseUri!.replace(path: "${_baseUri!.path}/$method");
+      return _baseUri!.replace(path: "${_baseUri!.path}/${method.name}");
     }
 
     // Ensure the base URL includes "https" if no scheme is provided
@@ -127,7 +127,7 @@ class RawAPI {
     _baseUri = uri;
 
     // Return the full URI with the method appended
-    return uri.replace(path: "${uri.path}/$method");
+    return uri.replace(path: "${uri.path}/${method.name}");
   }
 
   /// Extracts a list of maps representing multipart files from a list of helper
@@ -4770,6 +4770,582 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.removeChatVerification,
       payload: Payload(params),
+    );
+
+    return response;
+  }
+
+  /// Marks incoming message as read on behalf of a business account.
+  /// Requires the *can_read_messages* business bot right.
+  /// Returns *True* on success.
+  Future<bool> readBusinessMessage({
+    required String businessConnectionId,
+    required ID chatId,
+    required int messageId,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "chat_id": chatId.id,
+      "message_id": messageId,
+    };
+    final response = await _makeApiBoolCall(
+      APIMethod.readBusinessMessage,
+      payload: Payload.from(params),
+    );
+    return response;
+  }
+
+  /// Use this method to delete messages on behalf of a business account.
+  ///
+  /// Requires the *can_delete_outgoing_messages* business bot right to delete
+  /// messages sent by the bot itself, or the *can_delete_all_messages* business
+  /// bot right to delete any message.
+  ///
+  /// Returns *True* on success.
+  Future<bool> deleteBusinessMessages({
+    required String businessConnectionId,
+    required List<int> messageIds,
+  }) async {
+    if (messageIds.isEmpty || messageIds.length > 100) {
+      throw TeleverseException(
+        "Invalid Parameter in [deleteBusinessMessages]",
+        description: "The number of message IDs must be between 1 and 100.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "message_ids": messageIds,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.deleteBusinessMessages,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
+
+  /// Use this method to change the first and last name of a managed business account.
+  ///
+  /// Requires the *can_change_name* business bot right.
+  ///
+  /// Returns *True* on success.
+  Future<bool> setBusinessAccountName({
+    required String businessConnectionId,
+    required String firstName,
+    String? lastName,
+  }) async {
+    if (firstName.isEmpty || firstName.length > 64) {
+      throw TeleverseException(
+        "Invalid Parameter in [setBusinessAccountName]",
+        description: "The first name must be between 1 and 64 characters.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    if (lastName != null && lastName.length > 64) {
+      throw TeleverseException(
+        "Invalid Parameter in [setBusinessAccountName]",
+        description: "The last name must be between 0 and 64 characters.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "first_name": firstName,
+      "last_name": lastName,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setBusinessAccountName,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
+
+  /// Use this method to change the username of a managed business account.
+  ///
+  /// Requires the *can_change_username* business bot right.
+  ///
+  /// Returns *True* on success.
+  Future<bool> setBusinessAccountUsername({
+    required String businessConnectionId,
+    String? username,
+  }) async {
+    if (username != null && username.length > 32) {
+      throw TeleverseException(
+        "Invalid Parameter in [setBusinessAccountUsername]",
+        description: "The username must be between 0 and 32 characters.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "username": username,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setBusinessAccountUsername,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
+
+  /// Use this method to change the bio of a managed business account.
+  ///
+  /// Requires the *can_change_bio* business bot right.
+  ///
+  /// Returns *True* on success.
+  Future<bool> setBusinessAccountBio({
+    required String businessConnectionId,
+    String? bio,
+  }) async {
+    if (bio != null && bio.length > 140) {
+      throw TeleverseException(
+        "Invalid Parameter in [setBusinessAccountBio]",
+        description: "The bio must be between 0 and 140 characters.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "bio": bio,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setBusinessAccountBio,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
+
+  /// Use this method to change the profile photo of a managed business account.
+  /// Requires the *can_edit_profile_photo* business bot right.
+  /// Returns True on success.
+  Future<bool> setBusinessAccountProfilePhoto(
+    String businessConnectionId,
+    InputProfilePhoto photo, {
+    bool? isPublic,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "photo": photo.toJson(),
+      "is_public": isPublic,
+    };
+
+    final files = _getFiles([_MultipartHelper(photo.file)]);
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setBusinessAccountProfilePhoto,
+      payload: Payload(params, files),
+    );
+
+    return response;
+  }
+
+  /// Use this method to remove the current profile photo of a managed business account.
+  /// Requires the *can_edit_profile_photo* business bot right.
+  /// Returns True on success.
+  Future<bool> removeBusinessAccountProfilePhoto(
+    String businessConnectionId, {
+    bool? isPublic,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "is_public": isPublic,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.removeBusinessAccountProfilePhoto,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
+
+  /// Changes the privacy settings pertaining to incoming gifts in a managed
+  /// business account. Requires the *can_change_gift_settings* business bot right.
+  ///
+  /// Returns *True* on success.
+  Future<bool> setBusinessAccountGiftSettings(
+    String businessConnectionId,
+    bool showGiftButton,
+    AcceptedGiftTypes acceptedGiftTypes,
+  ) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "show_gift_button": showGiftButton,
+      "accepted_gift_types": acceptedGiftTypes.toJson(),
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.setBusinessAccountGiftSettings,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
+
+  /// Returns the amount of Telegram Stars owned by a managed business account.
+  ///
+  /// Requires the *can_view_gifts_and_stars* business bot right.
+  /// Returns [StarAmount] on success.
+  ///
+  /// - [businessConnectionId]: Unique identifier of the business connection
+  Future<StarAmount> getBusinessAccountStarBalance(
+    String businessConnectionId,
+  ) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.getBusinessAccountStarBalance,
+      payload: Payload.from(params),
+    );
+
+    return StarAmount.fromJson(response);
+  }
+
+  /// Use this method to transfer Telegram Stars from the business account
+  /// balance to the bot's balance. Requires the *can_transfer_stars* business
+  /// bot right.
+  ///
+  /// - [businessConnectionId]: Unique identifier of the business connection
+  /// - [starCount]: Number of Telegram Stars to transfer; 1-10000
+  ///
+  /// Returns *True* on success.
+  Future<bool> transferBusinessAccountStars(
+    String businessConnectionId,
+    int starCount,
+  ) async {
+    if (starCount < 1 || starCount > 10000) {
+      throw TeleverseException(
+        "Invalid Parameter in [transferBusinessAccountStars]",
+        description: "The star count must be between 1 and 10000.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "star_count": starCount,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.transferBusinessAccountStars,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
+
+  /// Returns the gifts received and owned by a managed business account.
+  ///
+  /// Requires the *can_view_gifts_and_stars* business bot right.
+  /// Returns [OwnedGifts] on success.
+  Future<OwnedGifts> getBusinessAccountGifts(
+    String businessConnectionId, {
+    bool? excludeUnsaved,
+    bool? excludeSaved,
+    bool? excludeUnlimited,
+    bool? excludeLimited,
+    bool? excludeUnique,
+    bool? sortByPrice,
+    String? offset,
+    int? limit,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "exclude_unsaved": excludeUnsaved,
+      "exclude_saved": excludeSaved,
+      "exclude_unlimited": excludeUnlimited,
+      "exclude_limited": excludeLimited,
+      "exclude_unique": excludeUnique,
+      "sort_by_price": sortByPrice,
+      "offset": offset,
+      "limit": limit,
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.getBusinessAccountGifts,
+      payload: Payload.from(params),
+    );
+
+    return OwnedGifts.fromJson(response);
+  }
+
+  /// Converts a given regular gift to Telegram Stars.
+  ///
+  /// Requires the *can_convert_gifts_to_stars* business bot right.
+  /// Returns *True* on success.
+  ///
+  /// Parameters:
+  /// - [businessConnectionId]: Unique identifier of the business connection
+  /// - [ownedGiftId]: Unique identifier of the regular gift that should be converted to Telegram Stars
+  Future<bool> convertGiftToStars({
+    required String businessConnectionId,
+    required String ownedGiftId,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "owned_gift_id": ownedGiftId,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.convertGiftToStars,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
+
+  /// Upgrades a given regular gift to a unique gift. Requires the *can_transfer_and_upgrade_gifts*
+  /// business bot right. Additionally requires the *can_transfer_stars* business bot right if the
+  /// upgrade is paid.
+  ///
+  /// Returns *True* on success.
+  Future<bool> upgradeGift(
+    String businessConnectionId,
+    String ownedGiftId, {
+    bool? keepOriginalDetails,
+    int? starCount,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "owned_gift_id": ownedGiftId,
+      "keep_original_details": keepOriginalDetails,
+      "star_count": starCount,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.upgradeGift,
+      payload: Payload.from(params),
+    );
+    return response;
+  }
+
+  /// Transfers an owned unique gift to another user. Requires the *can_transfer_and_upgrade_gifts*
+  /// business bot right. Requires *can_transfer_stars* business bot right if the transfer is paid.
+  ///
+  /// Returns *True* on success.
+  Future<bool> transferGift(
+    String businessConnectionId,
+    String ownedGiftId,
+    int newOwnerChatId, {
+    int? starCount,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "owned_gift_id": ownedGiftId,
+      "new_owner_chat_id": newOwnerChatId,
+      "star_count": starCount,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.transferGift,
+      payload: Payload.from(params),
+    );
+    return response;
+  }
+
+  /// Posts a story on behalf of a managed business account.
+  ///
+  /// Requires the can_manage_stories business bot right.
+  ///
+  /// Returns Story on success.
+  Future<Story> postStory(
+    String businessConnectionId,
+    InputStoryContent content,
+    int activePeriod, {
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    List<StoryArea>? areas,
+    bool? postToChatPage,
+    bool? protectContent,
+  }) async {
+    // First validate active_period is one of the allowed values
+    final allowedPeriods = [6 * 3600, 12 * 3600, 86400, 2 * 86400];
+    if (!allowedPeriods.contains(activePeriod)) {
+      throw TeleverseException(
+        "Invalid Parameter in [postStory]",
+        description:
+            "active_period must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "content": content.toJson(),
+      "active_period": activePeriod,
+      "caption": caption,
+      "parse_mode": parseMode?.toJson(),
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "areas": areas?.map((e) => e.toJson()).toList(),
+      "post_to_chat_page": postToChatPage,
+      "protect_content": protectContent,
+    };
+
+    // Handle file uploads if content contains files
+    List<_MultipartHelper> helpers = [_MultipartHelper(content.file)];
+
+    final files = _getFiles(helpers);
+    final payload =
+        files.isEmpty ? Payload.from(params) : Payload(params, files);
+
+    final response = await _makeApiJsonCall(
+      APIMethod.postStory,
+      payload: payload,
+    );
+
+    return Story.fromJson(response);
+  }
+
+  /// Edits a story previously posted by the bot on behalf of a managed business account.
+  ///
+  /// Requires the *can_manage_stories* business bot right.
+  /// Returns the edited [Story] on success.
+  Future<Story> editStory(
+    String businessConnectionId,
+    int storyId,
+    InputStoryContent content, {
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    List<StoryArea>? areas,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "story_id": storyId,
+      "content": content.toJson(),
+      "caption": caption,
+      "parse_mode": parseMode?.toJson(),
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "areas": areas?.map((e) => e.toJson()).toList(),
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.editStory,
+      payload: Payload.from(params),
+    );
+
+    return Story.fromJson(response);
+  }
+
+  /// Deletes a story previously posted by the bot on behalf of a managed business account.
+  /// Requires the *can_manage_stories* business bot right.
+  ///
+  /// [businessConnectionId] - Unique identifier of the business connection
+  /// [storyId] - Unique identifier of the story to delete
+  ///
+  /// Returns *True* on success.
+  Future<bool> deleteStory({
+    required String businessConnectionId,
+    required int storyId,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "story_id": storyId,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.deleteStory,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
+
+  /// Gifts a Telegram Premium subscription to the given user.
+  ///
+  /// The [userId] is the unique identifier of the target user who will receive a
+  /// Telegram Premium subscription.
+  ///
+  /// The [monthCount] is the number of months the Telegram Premium subscription
+  /// will be active for the user; must be one of 3, 6, or 12.
+  ///
+  /// The [starCount] is the number of Telegram Stars to pay for the Telegram
+  /// Premium subscription; must be 1000 for 3 months, 1500 for 6 months, and
+  /// 2500 for 12 months.
+  ///
+  /// The optional [text] will be shown along with the service message about
+  /// the subscription; 0-128 characters.
+  ///
+  /// The optional [parseMode] specifies the mode for parsing entities in the
+  /// text. See formatting options for more details. Entities other than "bold",
+  /// "italic", "underline", "strikethrough", "spoiler", and "custom_emoji" are
+  /// ignored.
+  ///
+  /// The optional [entities] is a JSON-serialized list of special entities that
+  /// appear in the gift text. It can be specified instead of [parseMode].
+  /// Entities other than "bold", "italic", "underline", "strikethrough",
+  /// "spoiler", and "custom_emoji" are ignored.
+  ///
+  /// Returns `true` on success.
+  Future<bool> giftPremiumSubscription(
+    int userId,
+    int monthCount,
+    int starCount, {
+    String? text,
+    ParseMode? parseMode,
+    List<MessageEntity>? entities,
+  }) async {
+    // Validate monthCount
+    if (![3, 6, 12].contains(monthCount)) {
+      throw TeleverseException(
+        "Invalid Parameter in [giftPremiumSubscription]",
+        description: "monthCount must be one of 3, 6, or 12.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    // Validate starCount based on monthCount
+    final requiredStars = {
+      3: 1000,
+      6: 1500,
+      12: 2500,
+    };
+
+    if (starCount != requiredStars[monthCount]) {
+      throw TeleverseException(
+        "Invalid Parameter in [giftPremiumSubscription]",
+        description:
+            "starCount must be ${requiredStars[monthCount]} for $monthCount months.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    // Validate text length
+    if (text != null && text.length > 128) {
+      throw TeleverseException(
+        "Invalid Parameter in [giftPremiumSubscription]",
+        description: "text must be 0-128 characters.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "user_id": userId,
+      "month_count": monthCount,
+      "star_count": starCount,
+      "text": text,
+      "text_parse_mode": parseMode?.toJson(),
+      "text_entities": entities?.map((e) => e.toJson()).toList(),
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.giftPremiumSubscription,
+      payload: Payload.from(params),
     );
 
     return response;
