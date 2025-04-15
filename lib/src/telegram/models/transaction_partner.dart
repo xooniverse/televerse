@@ -55,32 +55,48 @@ sealed class TransactionPartner
     'type must be TransactionPartnerType.user',
   )
   const factory TransactionPartner.user({
-    /// Type of the transaction partner, must be "user"
+    /// Type of the transaction partner, always "user"
     @JsonKey(name: 'type')
     @Default(TransactionPartnerType.user)
     TransactionPartnerType type,
 
+    /// Type of the transaction, currently one of "invoice_payment" for payments via invoices,
+    /// "paid_media_payment" for payments for paid media, "gift_purchase" for gifts sent by the bot,
+    /// "premium_purchase" for Telegram Premium subscriptions gifted by the bot,
+    /// "business_account_transfer" for direct transfers from managed business accounts
+    @JsonKey(name: 'transaction_type') required TransactionType transactionType,
+
     /// Information about the user.
     @JsonKey(name: 'user') required final User user,
 
-    /// Bot-specified invoice payload.
+    /// Optional. Information about the affiliate that received a commission via this transaction.
+    /// Can be available only for "invoice_payment" and "paid_media_payment" transactions.
+    @JsonKey(name: 'affiliate') final AffiliateInfo? affiliate,
+
+    /// Optional. Bot-specified invoice payload.
+    /// Can be available only for "invoice_payment" transactions.
     @JsonKey(name: 'invoice_payload') final String? invoicePayload,
 
-    /// Optional. Information about the paid media bought by the user
-    @JsonKey(name: 'paid_media') final List<PaidMedia>? paidMedia,
-
-    /// Optional. Bot-specified paid media payload
-    @JsonKey(name: 'paid_media_payload') final String? paidMediaPayload,
-
     /// Optional. The duration of the paid subscription.
+    /// Can be available only for "invoice_payment" transactions.
     @JsonKey(name: 'subscription_period') final int? subscriptionPeriod,
 
-    /// Optional. The gift sent to the user by the bot.
+    /// Optional. Information about the paid media bought by the user;
+    /// for "paid_media_payment" transactions only
+    @JsonKey(name: 'paid_media') final List<PaidMedia>? paidMedia,
+
+    /// Optional. Bot-specified paid media payload.
+    /// Can be available only for "paid_media_payment" transactions.
+    @JsonKey(name: 'paid_media_payload') final String? paidMediaPayload,
+
+    /// Optional. The gift sent to the user by the bot;
+    /// for "gift_purchase" transactions only
     @JsonKey(name: 'gift') final Gift? gift,
 
-    /// Optional. Information about the affiliate that received a commission via
-    /// this transaction
-    @JsonKey(name: 'affiliate') final AffiliateInfo? affiliate,
+    /// Optional. Number of months the gifted Telegram Premium subscription
+    /// will be active for; for "premium_purchase" transactions only
+    @JsonKey(name: 'premium_subscription_duration')
+    final int? premiumSubscriptionDuration,
   }) = TransactionPartnerUser;
 
   /// Represents a withdrawal transaction to the Telegram Ads platform

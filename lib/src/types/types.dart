@@ -36,3 +36,4 @@ export 'owned_gift_type.dart';
 export 'story_content_type.dart';
 export 'story_area_type_type.dart';
 export 'input_story_content_type.dart';
+export 'transaction_type.dart';
