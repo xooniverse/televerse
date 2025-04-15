@@ -463,6 +463,9 @@ enum APIMethod {
 
   /// Deletes a story previously posted by the bot on behalf of a managed business account.
   deleteStory,
+
+  /// Gifts a Telegram Premium subscription to the given user
+  giftPremiumSubscription,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.

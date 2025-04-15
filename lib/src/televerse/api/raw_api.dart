@@ -5265,4 +5265,89 @@ class RawAPI {
 
     return response;
   }
+
+  /// Gifts a Telegram Premium subscription to the given user.
+  ///
+  /// The [userId] is the unique identifier of the target user who will receive a
+  /// Telegram Premium subscription.
+  ///
+  /// The [monthCount] is the number of months the Telegram Premium subscription
+  /// will be active for the user; must be one of 3, 6, or 12.
+  ///
+  /// The [starCount] is the number of Telegram Stars to pay for the Telegram
+  /// Premium subscription; must be 1000 for 3 months, 1500 for 6 months, and
+  /// 2500 for 12 months.
+  ///
+  /// The optional [text] will be shown along with the service message about
+  /// the subscription; 0-128 characters.
+  ///
+  /// The optional [parseMode] specifies the mode for parsing entities in the
+  /// text. See formatting options for more details. Entities other than "bold",
+  /// "italic", "underline", "strikethrough", "spoiler", and "custom_emoji" are
+  /// ignored.
+  ///
+  /// The optional [entities] is a JSON-serialized list of special entities that
+  /// appear in the gift text. It can be specified instead of [parseMode].
+  /// Entities other than "bold", "italic", "underline", "strikethrough",
+  /// "spoiler", and "custom_emoji" are ignored.
+  ///
+  /// Returns `true` on success.
+  Future<bool> giftPremiumSubscription(
+    int userId,
+    int monthCount,
+    int starCount, {
+    String? text,
+    ParseMode? parseMode,
+    List<MessageEntity>? entities,
+  }) async {
+    // Validate monthCount
+    if (![3, 6, 12].contains(monthCount)) {
+      throw TeleverseException(
+        "Invalid Parameter in [giftPremiumSubscription]",
+        description: "monthCount must be one of 3, 6, or 12.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    // Validate starCount based on monthCount
+    final requiredStars = {
+      3: 1000,
+      6: 1500,
+      12: 2500,
+    };
+
+    if (starCount != requiredStars[monthCount]) {
+      throw TeleverseException(
+        "Invalid Parameter in [giftPremiumSubscription]",
+        description:
+            "starCount must be ${requiredStars[monthCount]} for $monthCount months.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    // Validate text length
+    if (text != null && text.length > 128) {
+      throw TeleverseException(
+        "Invalid Parameter in [giftPremiumSubscription]",
+        description: "text must be 0-128 characters.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "user_id": userId,
+      "month_count": monthCount,
+      "star_count": starCount,
+      "text": text,
+      "text_parse_mode": parseMode?.toJson(),
+      "text_entities": entities?.map((e) => e.toJson()).toList(),
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.giftPremiumSubscription,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
 }
