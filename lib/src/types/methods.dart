@@ -454,6 +454,9 @@ enum APIMethod {
 
   /// Transfers an owned unique gift to another user
   transferGift,
+
+  /// Post a story on behalf of a managed account
+  postStory,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.

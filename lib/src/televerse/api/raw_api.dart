@@ -5156,4 +5156,58 @@ class RawAPI {
     );
     return response;
   }
+
+  /// Posts a story on behalf of a managed business account.
+  ///
+  /// Requires the can_manage_stories business bot right.
+  ///
+  /// Returns Story on success.
+  Future<Story> postStory(
+    String businessConnectionId,
+    InputStoryContent content,
+    int activePeriod, {
+    String? caption,
+    ParseMode? parseMode,
+    List<MessageEntity>? captionEntities,
+    List<StoryArea>? areas,
+    bool? postToChatPage,
+    bool? protectContent,
+  }) async {
+    // First validate active_period is one of the allowed values
+    final allowedPeriods = [6 * 3600, 12 * 3600, 86400, 2 * 86400];
+    if (!allowedPeriods.contains(activePeriod)) {
+      throw TeleverseException(
+        "Invalid Parameter in [postStory]",
+        description:
+            "active_period must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400.",
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "content": content.toJson(),
+      "active_period": activePeriod,
+      "caption": caption,
+      "parse_mode": parseMode?.toJson(),
+      "caption_entities": captionEntities?.map((e) => e.toJson()).toList(),
+      "areas": areas?.map((e) => e.toJson()).toList(),
+      "post_to_chat_page": postToChatPage,
+      "protect_content": protectContent,
+    };
+
+    // Handle file uploads if content contains files
+    List<_MultipartHelper> helpers = [_MultipartHelper(content.file)];
+
+    final files = _getFiles(helpers);
+    final payload =
+        files.isEmpty ? Payload.from(params) : Payload(params, files);
+
+    final response = await _makeApiJsonCall(
+      APIMethod.postStory,
+      payload: payload,
+    );
+
+    return Story.fromJson(response);
+  }
 }
