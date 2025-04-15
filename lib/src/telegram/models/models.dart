@@ -180,3 +180,4 @@ export 'story_area.dart';
 export 'location_address.dart';
 export 'input_story_content.dart';
 export 'gift_info.dart';
+export 'unique_gift_info.dart';

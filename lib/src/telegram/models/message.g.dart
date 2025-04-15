@@ -256,6 +256,10 @@ _Message _$MessageFromJson(Map<String, dynamic> json) => _Message(
       gift: json['gift'] == null
           ? null
           : GiftInfo.fromJson(json['gift'] as Map<String, dynamic>),
+      uniqueGift: json['unique_gift'] == null
+          ? null
+          : UniqueGiftInfo.fromJson(
+              json['unique_gift'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
@@ -376,4 +380,5 @@ Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
       if (instance.paidMedia case final value?) 'paid_media': value,
       if (instance.refundedPayment case final value?) 'refunded_payment': value,
       if (instance.gift case final value?) 'gift': value,
+      if (instance.uniqueGift case final value?) 'unique_gift': value,
     };

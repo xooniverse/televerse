@@ -403,6 +403,9 @@ abstract class Message
 
     /// Optional. Service message: a regular gift was sent or received
     @JsonKey(name: 'gift') GiftInfo? gift,
+
+    /// Optional. Service message: a unique gift was sent or received
+    @JsonKey(name: 'unique_gift') UniqueGiftInfo? uniqueGift,
   }) = _Message;
 
   /// Creates a [Message] object from JSON object
