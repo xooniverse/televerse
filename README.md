@@ -3,7 +3,7 @@
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/xooniverse/televerse?color=green)
-![](https://shields.io/badge/Latest-Bot%20API%208.3-blue)
+![](https://shields.io/badge/Latest-Bot%20API%209.0-blue)
 
   <a href="https://telegram.me/TeleverseDart">
     <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/>
@@ -12,25 +12,13 @@
 
 ---
 
-🤖 `Bot API version: Bot API 8.3 (February 12, 2025)`
+🤖 `Bot API version: Bot API 9.0 (April 11, 2025)`
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot
 framework built with Dart programming language. It provides a complete and
 well-structured API that enables developers to create and deploy complex
 Telegram bots with ease. Televerse provides a total of 0 dynamic types on its
 public interface, making it easy for developers to write strictly typed code.
-
-## 🔥 What's latest?
-
-### 🤖 Bot API 8.3
-
-(🗓️ February 12, 2025)
-
-In short, bots can now send gifts 🎁 to channels, and there are upgrades to sending videos , allowing custom covers and start timestamps.
-
-Checkout [changelog](https://core.telegram.org/bots/api-changelog#february-12-2025) for more details! 🚀
-
-<hr>
 
 ## 💻 Getting Started
 
