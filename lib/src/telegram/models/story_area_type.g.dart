@@ -9,9 +9,8 @@ part of 'story_area_type.dart';
 StoryAreaTypeLocation _$StoryAreaTypeLocationFromJson(
         Map<String, dynamic> json) =>
     StoryAreaTypeLocation(
-      type: json['type'] == null
-          ? StoryAreaTypeType.location
-          : StoryAreaType.fromJson(json['type'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$StoryAreaTypeTypeEnumMap, json['type']) ??
+          StoryAreaTypeType.location,
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
       address: json['address'] == null
@@ -28,12 +27,19 @@ Map<String, dynamic> _$StoryAreaTypeLocationToJson(
       if (instance.address case final value?) 'address': value,
     };
 
+const _$StoryAreaTypeTypeEnumMap = {
+  StoryAreaTypeType.location: 'location',
+  StoryAreaTypeType.suggestedReaction: 'suggested_reaction',
+  StoryAreaTypeType.link: 'link',
+  StoryAreaTypeType.weather: 'weather',
+  StoryAreaTypeType.uniqueGift: 'unique_gift',
+};
+
 StoryAreaTypeSuggestedReaction _$StoryAreaTypeSuggestedReactionFromJson(
         Map<String, dynamic> json) =>
     StoryAreaTypeSuggestedReaction(
-      type: json['type'] == null
-          ? StoryAreaTypeType.suggestedReaction
-          : StoryAreaType.fromJson(json['type'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$StoryAreaTypeTypeEnumMap, json['type']) ??
+          StoryAreaTypeType.suggestedReaction,
       reactionType:
           ReactionType.fromJson(json['reaction_type'] as Map<String, dynamic>),
       isDark: json['is_dark'] as bool?,
@@ -51,9 +57,8 @@ Map<String, dynamic> _$StoryAreaTypeSuggestedReactionToJson(
 
 StoryAreaTypeLink _$StoryAreaTypeLinkFromJson(Map<String, dynamic> json) =>
     StoryAreaTypeLink(
-      type: json['type'] == null
-          ? StoryAreaTypeType.link
-          : StoryAreaType.fromJson(json['type'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$StoryAreaTypeTypeEnumMap, json['type']) ??
+          StoryAreaTypeType.link,
       url: json['url'] as String,
     );
 
@@ -66,9 +71,8 @@ Map<String, dynamic> _$StoryAreaTypeLinkToJson(StoryAreaTypeLink instance) =>
 StoryAreaTypeWeather _$StoryAreaTypeWeatherFromJson(
         Map<String, dynamic> json) =>
     StoryAreaTypeWeather(
-      type: json['type'] == null
-          ? StoryAreaTypeType.weather
-          : StoryAreaType.fromJson(json['type'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$StoryAreaTypeTypeEnumMap, json['type']) ??
+          StoryAreaTypeType.weather,
       temperature: (json['temperature'] as num).toDouble(),
       emoji: json['emoji'] as String,
       backgroundColor: (json['background_color'] as num).toInt(),
@@ -86,9 +90,8 @@ Map<String, dynamic> _$StoryAreaTypeWeatherToJson(
 StoryAreaTypeUniqueGift _$StoryAreaTypeUniqueGiftFromJson(
         Map<String, dynamic> json) =>
     StoryAreaTypeUniqueGift(
-      type: json['type'] == null
-          ? StoryAreaTypeType.uniqueGift
-          : StoryAreaType.fromJson(json['type'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$StoryAreaTypeTypeEnumMap, json['type']) ??
+          StoryAreaTypeType.uniqueGift,
     );
 
 Map<String, dynamic> _$StoryAreaTypeUniqueGiftToJson(

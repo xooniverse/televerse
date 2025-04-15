@@ -10,7 +10,7 @@ part 'story_area_type.g.dart';
 /// Interface to expose the `type` property on StoryAreaType
 abstract interface class _WithStoryAreaType {
   /// Type of the story area
-  StoryAreaType get type;
+  StoryAreaTypeType get type;
 }
 
 /// This object describes the type of a clickable area on a story. Currently, it can be one of
@@ -27,7 +27,7 @@ sealed class StoryAreaType with _$StoryAreaType implements _WithStoryAreaType {
     /// Type of the area, always "location"
     @JsonKey(name: 'type')
     @Default(StoryAreaTypeType.location)
-    final StoryAreaType type,
+    final StoryAreaTypeType type,
 
     /// Location latitude in degrees
     @JsonKey(name: 'latitude') required double latitude,
@@ -45,7 +45,7 @@ sealed class StoryAreaType with _$StoryAreaType implements _WithStoryAreaType {
     /// Type of the area, always "suggested_reaction"
     @JsonKey(name: 'type')
     @Default(StoryAreaTypeType.suggestedReaction)
-    final StoryAreaType type,
+    final StoryAreaTypeType type,
 
     /// Type of the reaction
     @JsonKey(name: 'reaction_type') required ReactionType reactionType,
@@ -63,7 +63,7 @@ sealed class StoryAreaType with _$StoryAreaType implements _WithStoryAreaType {
     /// Type of the area, always "link"
     @JsonKey(name: 'type')
     @Default(StoryAreaTypeType.link)
-    final StoryAreaType type,
+    final StoryAreaTypeType type,
 
     /// HTTP or tg:// URL to be opened when the area is clicked
     @JsonKey(name: 'url') required String url,
@@ -75,7 +75,7 @@ sealed class StoryAreaType with _$StoryAreaType implements _WithStoryAreaType {
     /// Type of the area, always "weather"
     @JsonKey(name: 'type')
     @Default(StoryAreaTypeType.weather)
-    final StoryAreaType type,
+    final StoryAreaTypeType type,
 
     /// Temperature, in degree Celsius
     @JsonKey(name: 'temperature') required double temperature,
@@ -92,7 +92,7 @@ sealed class StoryAreaType with _$StoryAreaType implements _WithStoryAreaType {
     /// Type of the area, always "unique_gift"
     @JsonKey(name: 'type')
     @Default(StoryAreaTypeType.uniqueGift)
-    final StoryAreaType type,
+    final StoryAreaTypeType type,
   }) = StoryAreaTypeUniqueGift;
 
   /// Creates an instance of [StoryAreaType] from JSON data

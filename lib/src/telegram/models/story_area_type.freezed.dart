@@ -34,7 +34,7 @@ StoryAreaType _$StoryAreaTypeFromJson(Map<String, dynamic> json) {
 mixin _$StoryAreaType {
   /// Type of the area, always "location"
   @JsonKey(name: 'type')
-  StoryAreaType get type;
+  StoryAreaTypeType get type;
 
   /// Create a copy of StoryAreaType
   /// with the given fields replaced by the non-null parameter values.
@@ -59,9 +59,7 @@ abstract mixin class $StoryAreaTypeCopyWith<$Res> {
           StoryAreaType value, $Res Function(StoryAreaType) _then) =
       _$StoryAreaTypeCopyWithImpl;
   @useResult
-  $Res call({@JsonKey(name: 'type') StoryAreaType type});
-
-  $StoryAreaTypeCopyWith<$Res> get type;
+  $Res call({@JsonKey(name: 'type') StoryAreaTypeType type});
 }
 
 /// @nodoc
@@ -83,18 +81,8 @@ class _$StoryAreaTypeCopyWithImpl<$Res>
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as StoryAreaType,
+              as StoryAreaTypeType,
     ));
-  }
-
-  /// Create a copy of StoryAreaType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $StoryAreaTypeCopyWith<$Res> get type {
-    return $StoryAreaTypeCopyWith<$Res>(_self.type, (value) {
-      return _then(_self.copyWith(type: value));
-    });
   }
 }
 
@@ -112,7 +100,7 @@ class StoryAreaTypeLocation implements StoryAreaType {
   /// Type of the area, always "location"
   @override
   @JsonKey(name: 'type')
-  final StoryAreaType type;
+  final StoryAreaTypeType type;
 
   /// Location latitude in degrees
   @JsonKey(name: 'latitude')
@@ -157,13 +145,11 @@ abstract mixin class $StoryAreaTypeLocationCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'type') StoryAreaType type,
+      {@JsonKey(name: 'type') StoryAreaTypeType type,
       @JsonKey(name: 'latitude') double latitude,
       @JsonKey(name: 'longitude') double longitude,
       @JsonKey(name: 'address') LocationAddress? address});
 
-  @override
-  $StoryAreaTypeCopyWith<$Res> get type;
   $LocationAddressCopyWith<$Res>? get address;
 }
 
@@ -189,7 +175,7 @@ class _$StoryAreaTypeLocationCopyWithImpl<$Res>
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as StoryAreaType,
+              as StoryAreaTypeType,
       latitude: null == latitude
           ? _self.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -203,16 +189,6 @@ class _$StoryAreaTypeLocationCopyWithImpl<$Res>
           : address // ignore: cast_nullable_to_non_nullable
               as LocationAddress?,
     ));
-  }
-
-  /// Create a copy of StoryAreaType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $StoryAreaTypeCopyWith<$Res> get type {
-    return $StoryAreaTypeCopyWith<$Res>(_self.type, (value) {
-      return _then(_self.copyWith(type: value));
-    });
   }
 
   /// Create a copy of StoryAreaType
@@ -244,7 +220,7 @@ class StoryAreaTypeSuggestedReaction implements StoryAreaType {
   /// Type of the area, always "suggested_reaction"
   @override
   @JsonKey(name: 'type')
-  final StoryAreaType type;
+  final StoryAreaTypeType type;
 
   /// Type of the reaction
   @JsonKey(name: 'reaction_type')
@@ -290,13 +266,11 @@ abstract mixin class $StoryAreaTypeSuggestedReactionCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'type') StoryAreaType type,
+      {@JsonKey(name: 'type') StoryAreaTypeType type,
       @JsonKey(name: 'reaction_type') ReactionType reactionType,
       @JsonKey(name: 'is_dark') bool? isDark,
       @JsonKey(name: 'is_flipped') bool? isFlipped});
 
-  @override
-  $StoryAreaTypeCopyWith<$Res> get type;
   $ReactionTypeCopyWith<$Res> get reactionType;
 }
 
@@ -322,7 +296,7 @@ class _$StoryAreaTypeSuggestedReactionCopyWithImpl<$Res>
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as StoryAreaType,
+              as StoryAreaTypeType,
       reactionType: null == reactionType
           ? _self.reactionType
           : reactionType // ignore: cast_nullable_to_non_nullable
@@ -336,16 +310,6 @@ class _$StoryAreaTypeSuggestedReactionCopyWithImpl<$Res>
           : isFlipped // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
-  }
-
-  /// Create a copy of StoryAreaType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $StoryAreaTypeCopyWith<$Res> get type {
-    return $StoryAreaTypeCopyWith<$Res>(_self.type, (value) {
-      return _then(_self.copyWith(type: value));
-    });
   }
 
   /// Create a copy of StoryAreaType
@@ -371,7 +335,7 @@ class StoryAreaTypeLink implements StoryAreaType {
   /// Type of the area, always "link"
   @override
   @JsonKey(name: 'type')
-  final StoryAreaType type;
+  final StoryAreaTypeType type;
 
   /// HTTP or tg:// URL to be opened when the area is clicked
   @JsonKey(name: 'url')
@@ -407,11 +371,8 @@ abstract mixin class $StoryAreaTypeLinkCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'type') StoryAreaType type,
+      {@JsonKey(name: 'type') StoryAreaTypeType type,
       @JsonKey(name: 'url') String url});
-
-  @override
-  $StoryAreaTypeCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -434,22 +395,12 @@ class _$StoryAreaTypeLinkCopyWithImpl<$Res>
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as StoryAreaType,
+              as StoryAreaTypeType,
       url: null == url
           ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
-  }
-
-  /// Create a copy of StoryAreaType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $StoryAreaTypeCopyWith<$Res> get type {
-    return $StoryAreaTypeCopyWith<$Res>(_self.type, (value) {
-      return _then(_self.copyWith(type: value));
-    });
   }
 }
 
@@ -467,7 +418,7 @@ class StoryAreaTypeWeather implements StoryAreaType {
   /// Type of the area, always "weather"
   @override
   @JsonKey(name: 'type')
-  final StoryAreaType type;
+  final StoryAreaTypeType type;
 
   /// Temperature, in degree Celsius
   @JsonKey(name: 'temperature')
@@ -512,13 +463,10 @@ abstract mixin class $StoryAreaTypeWeatherCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'type') StoryAreaType type,
+      {@JsonKey(name: 'type') StoryAreaTypeType type,
       @JsonKey(name: 'temperature') double temperature,
       @JsonKey(name: 'emoji') String emoji,
       @JsonKey(name: 'background_color') int backgroundColor});
-
-  @override
-  $StoryAreaTypeCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -543,7 +491,7 @@ class _$StoryAreaTypeWeatherCopyWithImpl<$Res>
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as StoryAreaType,
+              as StoryAreaTypeType,
       temperature: null == temperature
           ? _self.temperature
           : temperature // ignore: cast_nullable_to_non_nullable
@@ -558,16 +506,6 @@ class _$StoryAreaTypeWeatherCopyWithImpl<$Res>
               as int,
     ));
   }
-
-  /// Create a copy of StoryAreaType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $StoryAreaTypeCopyWith<$Res> get type {
-    return $StoryAreaTypeCopyWith<$Res>(_self.type, (value) {
-      return _then(_self.copyWith(type: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -581,7 +519,7 @@ class StoryAreaTypeUniqueGift implements StoryAreaType {
   /// Type of the area, always "unique_gift"
   @override
   @JsonKey(name: 'type')
-  final StoryAreaType type;
+  final StoryAreaTypeType type;
 
   /// Create a copy of StoryAreaType
   /// with the given fields replaced by the non-null parameter values.
@@ -613,10 +551,7 @@ abstract mixin class $StoryAreaTypeUniqueGiftCopyWith<$Res>
       _$StoryAreaTypeUniqueGiftCopyWithImpl;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'type') StoryAreaType type});
-
-  @override
-  $StoryAreaTypeCopyWith<$Res> get type;
+  $Res call({@JsonKey(name: 'type') StoryAreaTypeType type});
 }
 
 /// @nodoc
@@ -638,17 +573,7 @@ class _$StoryAreaTypeUniqueGiftCopyWithImpl<$Res>
       type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as StoryAreaType,
+              as StoryAreaTypeType,
     ));
-  }
-
-  /// Create a copy of StoryAreaType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $StoryAreaTypeCopyWith<$Res> get type {
-    return $StoryAreaTypeCopyWith<$Res>(_self.type, (value) {
-      return _then(_self.copyWith(type: value));
-    });
   }
 }

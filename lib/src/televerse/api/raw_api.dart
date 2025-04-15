@@ -113,7 +113,7 @@ class RawAPI {
   /// Build the URI for the Telegram API.
   Uri _buildUri(APIMethod method) {
     if (_baseUri != null) {
-      return _baseUri!.replace(path: "${_baseUri!.path}/$method");
+      return _baseUri!.replace(path: "${_baseUri!.path}/${method.name}");
     }
 
     // Ensure the base URL includes "https" if no scheme is provided
@@ -127,7 +127,7 @@ class RawAPI {
     _baseUri = uri;
 
     // Return the full URI with the method appended
-    return uri.replace(path: "${uri.path}/$method");
+    return uri.replace(path: "${uri.path}/${method.name}");
   }
 
   /// Extracts a list of maps representing multipart files from a list of helper
