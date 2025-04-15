@@ -406,6 +406,13 @@ abstract class Message
 
     /// Optional. Service message: a unique gift was sent or received
     @JsonKey(name: 'unique_gift') UniqueGiftInfo? uniqueGift,
+
+    /// Optional. Service message: the price for paid messages has changed in the chat
+    @JsonKey(name: 'paid_message_price_changed')
+    PaidMessagePriceChanged? paidMessagePriceChanged,
+
+    /// Optional. The number of Telegram Stars that were paid by the sender of the message to send it
+    @JsonKey(name: 'paid_star_count') int? paidStarCount,
   }) = _Message;
 
   /// Creates a [Message] object from JSON object
