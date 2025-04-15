@@ -5241,4 +5241,28 @@ class RawAPI {
 
     return Story.fromJson(response);
   }
+
+  /// Deletes a story previously posted by the bot on behalf of a managed business account.
+  /// Requires the *can_manage_stories* business bot right.
+  ///
+  /// [businessConnectionId] - Unique identifier of the business connection
+  /// [storyId] - Unique identifier of the story to delete
+  ///
+  /// Returns *True* on success.
+  Future<bool> deleteStory({
+    required String businessConnectionId,
+    required int storyId,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "story_id": storyId,
+    };
+
+    final response = await _makeApiBoolCall(
+      APIMethod.deleteStory,
+      payload: Payload.from(params),
+    );
+
+    return response;
+  }
 }

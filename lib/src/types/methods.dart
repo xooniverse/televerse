@@ -460,6 +460,9 @@ enum APIMethod {
 
   /// Edits a story previously posted by the bot on behalf of a managed business account.
   editStory,
+
+  /// Deletes a story previously posted by the bot on behalf of a managed business account.
+  deleteStory,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.
