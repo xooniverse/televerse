@@ -253,6 +253,9 @@ _Message _$MessageFromJson(Map<String, dynamic> json) => _Message(
           ? null
           : RefundedPayment.fromJson(
               json['refunded_payment'] as Map<String, dynamic>),
+      gift: json['gift'] == null
+          ? null
+          : GiftInfo.fromJson(json['gift'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
@@ -372,4 +375,5 @@ Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
         'show_caption_above_media': value,
       if (instance.paidMedia case final value?) 'paid_media': value,
       if (instance.refundedPayment case final value?) 'refunded_payment': value,
+      if (instance.gift case final value?) 'gift': value,
     };
