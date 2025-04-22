@@ -16,9 +16,9 @@ part 'inline_keyboard.g.dart';
 /// ```dart
 /// // Create a new inline keyboard.
 /// var keyboard = InlineKeyboard()
-///   ..addUrl("Open Google", "https://google.com")
-///   ..row()
-///   ..add("Send a callback query", "callback_query");
+///   .addUrl("Open Google", "https://google.com")
+///   .row()
+///   .add("Send a callback query", "callback_query");
 ///
 /// // Send the keyboard with the message "Hello World!".
 /// ctx.api.sendMessage(ctx.id, "Hello World!", replyMarkup: keyboard);
