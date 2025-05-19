@@ -272,8 +272,8 @@ void main() {
       BotCommand(command: "help", description: "Get help"),
       BotCommand(command: "ban", description: "Ban a user"),
     ];
-    final scope = BotCommandScopeChatAdministrators(chatId: groupID);
-    final res = await bot.api.setMyCommands(commands, scope: scope);
+
+    final res = await bot.api.setMyCommands(commands);
     expect(res, true);
   });
 

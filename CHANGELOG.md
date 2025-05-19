@@ -1,3 +1,7 @@
+# 2.5.1
+
+- Fix [#334](https://github.com/xooniverse/televerse/issues/334) - thanks to [@zelmkhan](https://github.com/zelmkhan) for raising this!
+
 # 2.5.0
 
 - 🤖 Bot API 9.0
