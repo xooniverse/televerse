@@ -1,3 +1,7 @@
+# 2.5.2
+
+- Added `LinkPreviewOptions.disabled` static getter to disable link previews.
+
 # 2.5.1
 
 - Fix [#334](https://github.com/xooniverse/televerse/issues/334) - thanks to [@zelmkhan](https://github.com/zelmkhan) for raising this!
