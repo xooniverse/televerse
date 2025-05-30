@@ -26,10 +26,12 @@ class RawAPI {
   static _HttpClient _initializeHttpClient({
     LoggerOptions? loggerOptions,
     Duration? timeout,
+    Dio? dioInstance, // Add this parameter
   }) {
     return _HttpClient(
       loggerOptions,
       timeout: timeout,
+      dioInstance: dioInstance, // Pass it through
     );
   }
 
@@ -41,6 +43,7 @@ class RawAPI {
     _httpClient = _initializeHttpClient(
       loggerOptions: _httpClient.loggerOptions,
       timeout: timeout,
+      dioInstance: _httpClient._dio,
     );
     _closed = false;
   }
@@ -51,10 +54,12 @@ class RawAPI {
     String? baseUrl,
     LoggerOptions? loggerOptions,
     this.timeout,
+    Dio? dioInstance,
   })  : _baseUrl = baseUrl ?? defaultBase,
         _httpClient = _initializeHttpClient(
           loggerOptions: loggerOptions,
           timeout: timeout,
+          dioInstance: dioInstance,
         );
 
   /// `RawAPI` gives you access to all methods of Telegram Bot API.
@@ -75,11 +80,13 @@ class RawAPI {
     String token, {
     LoggerOptions? loggerOptions,
     Duration? timeout,
+    Dio? dioInstance,
   }) {
     return RawAPI._(
       token,
       loggerOptions: loggerOptions,
       timeout: timeout,
+      dioInstance: dioInstance,
     );
   }
 
@@ -92,12 +99,14 @@ class RawAPI {
     String baseUrl = RawAPI.defaultLocalBase,
     LoggerOptions? loggerOptions,
     Duration? timeout,
+    Dio? dioInstance,
   }) {
     return RawAPI._(
       token,
       baseUrl: baseUrl,
       loggerOptions: loggerOptions,
       timeout: timeout,
+      dioInstance: dioInstance,
     );
   }
 

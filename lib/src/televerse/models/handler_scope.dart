@@ -32,7 +32,7 @@ class HandlerScope<CTX extends Context> {
   final ScopeOptions<CTX>? options;
 
   /// Creates a new [HandlerScope].
-  HandlerScope({
+  const HandlerScope({
     this.handler,
     required this.predicate,
     required this.types,

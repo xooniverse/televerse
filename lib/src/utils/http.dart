@@ -2,26 +2,38 @@ part of '../../televerse.dart';
 
 /// HttpClient is used to send HTTP requests to the Telegram Bot API.
 class _HttpClient {
-  /// Construc client with optionally logging
+  /// Construct client with optionally logging and custom Dio instance
   _HttpClient(
     this.loggerOptions, {
     this.timeout,
-  }) {
-    if (loggerOptions != null) {
+    Dio? dioInstance,
+  }) : _dio = dioInstance ?? Dio() {
+    // Only add logger interceptor if it doesn't already exist and loggerOptions is provided
+    if (loggerOptions != null && !_hasLoggerInterceptor()) {
       _dio.interceptors.add(
         loggerOptions!.interceptor,
       );
     }
   }
 
-  /// Initialize Dio
-  final _dio = Dio();
+  /// The Dio instance used for HTTP requests
+  final Dio _dio;
 
   /// Log flag
   final LoggerOptions? loggerOptions;
 
   /// Timeout for the requests
   final Duration? timeout;
+
+  /// Check if the Dio instance already has a logger interceptor
+  bool _hasLoggerInterceptor() {
+    if (loggerOptions == null) return false;
+
+    return _dio.interceptors.any((interceptor) {
+      // Check if it's the same type of interceptor
+      return interceptor.runtimeType == loggerOptions!.interceptor.runtimeType;
+    });
+  }
 
   /// Returns the timeout duration for the given [uri]. The [timeout] will not be used for `getUpdates` requests.
   Duration? _timeoutDuration(Uri uri) {
@@ -112,6 +124,8 @@ class _HttpClient {
         options: Options(
           headers: {"Content-Type": "multipart/form-data"},
           responseType: ResponseType.json,
+          sendTimeout: _timeoutDuration(uri),
+          receiveTimeout: _timeoutDuration(uri),
         ),
       );
       final res = req.data;
@@ -155,4 +169,7 @@ class _HttpClient {
       headers: file.headers,
     );
   }
+
+  /// Get the current Dio instance (useful for advanced configuration)
+  Dio get dio => _dio;
 }

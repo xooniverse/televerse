@@ -31,6 +31,23 @@ abstract class LinkPreviewOptions with _$LinkPreviewOptions {
     @JsonKey(name: 'show_above_text') bool? showAboveText,
   }) = _LinkPreviewOptions;
 
+  /// Returns a [LinkPreviewOptions] instance with link preview disabled.
+  ///
+  /// This is a convenience getter that provides a pre-configured instance with
+  /// [isDisabled] set to true, which will disable link previews when used.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// // Disable link previews in a message
+  /// bot.api.sendMessage(
+  ///   chatId,
+  ///   'Check this link: https://example.com',
+  ///   linkPreviewOptions: LinkPreviewOptions.disabled,
+  /// );
+  /// ```
+  static LinkPreviewOptions get disabled =>
+      _LinkPreviewOptions(isDisabled: true);
+
   /// Creates an instance of [LinkPreviewOptions] from JSON data.
   factory LinkPreviewOptions.fromJson(Map<String, dynamic> json) =>
       _$LinkPreviewOptionsFromJson(json);
