@@ -1,3 +1,7 @@
+# 2.6.0
+
+- Supports accepting custom Dio instances for HTTP calls - See [#337](https://github.com/xooniverse/televerse/issues/337)
+
 # 2.5.2
 
 - Added `LinkPreviewOptions.disabled` static getter to disable link previews.
