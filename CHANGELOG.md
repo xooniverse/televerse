@@ -1,3 +1,8 @@
+# 2.6.1
+
+- Removed `Update.msg` usage in the `Conversation.waitForTextMessage`, this could unintentionally match callback query message texts.
+- Removed a maintenance script
+
 # 2.6.0
 
 - Supports accepting custom Dio instances for HTTP calls - See [#337](https://github.com/xooniverse/televerse/issues/337)
