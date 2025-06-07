@@ -272,7 +272,7 @@ class Conversation<CTX extends Context> {
   }) {
     return waitFor(
       chatId: chatId,
-      filter: (up) => up.msg?.text != null,
+      filter: (up) => up.message?.text != null,
       config: config,
     );
   }
