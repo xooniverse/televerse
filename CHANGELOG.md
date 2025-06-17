@@ -1,3 +1,7 @@
+# 2.6.2
+
+- `ForumTopic.messageThreadId` is `int` not `String`
+
 # 2.6.1
 
 - Removed `Update.msg` usage in the `Conversation.waitForTextMessage`, this could unintentionally match callback query message texts.
