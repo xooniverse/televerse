@@ -10,7 +10,7 @@ abstract class ForumTopic with _$ForumTopic {
   /// Creates a new [ForumTopic] object.
   const factory ForumTopic({
     /// Unique identifier of the forum topic
-    @JsonKey(name: 'message_thread_id') required String messageThreadId,
+    @JsonKey(name: 'message_thread_id') required int messageThreadId,
 
     /// Name of the topic
     @JsonKey(name: 'name') required String name,
