@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 mixin _$ForumTopic {
   /// Unique identifier of the forum topic
   @JsonKey(name: 'message_thread_id')
-  String get messageThreadId;
+  int get messageThreadId;
 
   /// Name of the topic
   @JsonKey(name: 'name')
@@ -53,7 +53,7 @@ abstract mixin class $ForumTopicCopyWith<$Res> {
       _$ForumTopicCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'message_thread_id') String messageThreadId,
+      {@JsonKey(name: 'message_thread_id') int messageThreadId,
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'icon_color') int iconColor,
       @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
@@ -80,7 +80,7 @@ class _$ForumTopicCopyWithImpl<$Res> implements $ForumTopicCopyWith<$Res> {
       messageThreadId: null == messageThreadId
           ? _self.messageThreadId
           : messageThreadId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -111,7 +111,7 @@ class _ForumTopic implements ForumTopic {
   /// Unique identifier of the forum topic
   @override
   @JsonKey(name: 'message_thread_id')
-  final String messageThreadId;
+  final int messageThreadId;
 
   /// Name of the topic
   @override
@@ -158,7 +158,7 @@ abstract mixin class _$ForumTopicCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'message_thread_id') String messageThreadId,
+      {@JsonKey(name: 'message_thread_id') int messageThreadId,
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'icon_color') int iconColor,
       @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
@@ -185,7 +185,7 @@ class __$ForumTopicCopyWithImpl<$Res> implements _$ForumTopicCopyWith<$Res> {
       messageThreadId: null == messageThreadId
           ? _self.messageThreadId
           : messageThreadId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
