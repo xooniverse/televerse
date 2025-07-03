@@ -76,6 +76,9 @@ _ExternalReplyInfo _$ExternalReplyInfoFromJson(Map<String, dynamic> json) =>
       paidMedia: json['paid_media'] == null
           ? null
           : PaidMediaInfo.fromJson(json['paid_media'] as Map<String, dynamic>),
+      checklist: json['checklist'] == null
+          ? null
+          : Checklist.fromJson(json['checklist'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ExternalReplyInfoToJson(_ExternalReplyInfo instance) =>
@@ -106,4 +109,5 @@ Map<String, dynamic> _$ExternalReplyInfoToJson(_ExternalReplyInfo instance) =>
       if (instance.poll case final value?) 'poll': value,
       if (instance.venue case final value?) 'venue': value,
       if (instance.paidMedia case final value?) 'paid_media': value,
+      if (instance.checklist case final value?) 'checklist': value,
     };

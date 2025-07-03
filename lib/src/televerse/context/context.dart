@@ -274,7 +274,9 @@ class Context {
         msg?.videoChatStarted != null ||
         msg?.videoChatEnded != null ||
         msg?.videoChatParticipantsInvited != null ||
-        msg?.webAppData != null;
+        msg?.webAppData != null ||
+        msg?.checklistTasksAdded != null ||
+        msg?.checklistTasksDone != null;
   }
 
   /// Whether the incoming context has an inline query

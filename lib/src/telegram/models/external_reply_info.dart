@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/checklist.dart';
 import 'message_origin.dart';
 import 'chat.dart';
 import 'link_preview_options.dart';
@@ -104,6 +105,9 @@ abstract class ExternalReplyInfo with _$ExternalReplyInfo {
 
     /// Optional. Message contains paid media; information about the paid media
     @JsonKey(name: 'paid_media') PaidMediaInfo? paidMedia,
+
+    /// Optional. Message is a checklist
+    @JsonKey(name: 'checklist') Checklist? checklist,
   }) = _ExternalReplyInfo;
 
   /// Creates instance of [ExternalReplyInfo] from JSON data.
