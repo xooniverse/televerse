@@ -66,6 +66,7 @@ OwnedGiftUnique _$OwnedGiftUniqueFromJson(Map<String, dynamic> json) =>
       isSaved: json['is_saved'] as bool?,
       canBeTransferred: json['can_be_transferred'] as bool?,
       transferStarCount: (json['transfer_star_count'] as num?)?.toInt(),
+      nextTransferDate: (json['next_transfer_date'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$OwnedGiftUniqueToJson(OwnedGiftUnique instance) =>
@@ -80,4 +81,6 @@ Map<String, dynamic> _$OwnedGiftUniqueToJson(OwnedGiftUnique instance) =>
         'can_be_transferred': value,
       if (instance.transferStarCount case final value?)
         'transfer_star_count': value,
+      if (instance.nextTransferDate case final value?)
+        'next_transfer_date': value,
     };

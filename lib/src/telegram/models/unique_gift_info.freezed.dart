@@ -18,9 +18,15 @@ mixin _$UniqueGiftInfo {
   @JsonKey(name: 'gift')
   UniqueGift get gift;
 
-  /// Origin of the gift. Currently, either "upgrade" or "transfer"
+  /// Origin of the gift. Currently, either "upgrade" for gifts upgraded
+  /// from regular gifts, "transfer" for gifts transferred from other users
+  /// or channels, or "resale" for gifts bought from other users
   @JsonKey(name: 'origin')
-  String get origin;
+  UniqueGiftOrigin get origin;
+
+  /// Optional. For gifts bought from other users, the price paid for the gift
+  @JsonKey(name: 'last_resale_star_count')
+  int? get lastResaleStarCount;
 
   /// Optional. Unique identifier of the received gift for the bot;
   /// only present for gifts received on behalf of business accounts
@@ -31,6 +37,11 @@ mixin _$UniqueGiftInfo {
   /// omitted if the bot cannot transfer the gift
   @JsonKey(name: 'transfer_star_count')
   int? get transferStarCount;
+
+  /// Optional. Point in time (Unix timestamp) when the gift can be transferred.
+  /// If it is in the past, then the gift can be transferred now
+  @JsonKey(name: 'next_transfer_date')
+  int? get nextTransferDate;
 
   /// Create a copy of UniqueGiftInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -45,7 +56,7 @@ mixin _$UniqueGiftInfo {
 
   @override
   String toString() {
-    return 'UniqueGiftInfo(gift: $gift, origin: $origin, ownedGiftId: $ownedGiftId, transferStarCount: $transferStarCount)';
+    return 'UniqueGiftInfo(gift: $gift, origin: $origin, lastResaleStarCount: $lastResaleStarCount, ownedGiftId: $ownedGiftId, transferStarCount: $transferStarCount, nextTransferDate: $nextTransferDate)';
   }
 }
 
@@ -57,9 +68,11 @@ abstract mixin class $UniqueGiftInfoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'gift') UniqueGift gift,
-      @JsonKey(name: 'origin') String origin,
+      @JsonKey(name: 'origin') UniqueGiftOrigin origin,
+      @JsonKey(name: 'last_resale_star_count') int? lastResaleStarCount,
       @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
-      @JsonKey(name: 'transfer_star_count') int? transferStarCount});
+      @JsonKey(name: 'transfer_star_count') int? transferStarCount,
+      @JsonKey(name: 'next_transfer_date') int? nextTransferDate});
 
   $UniqueGiftCopyWith<$Res> get gift;
 }
@@ -79,8 +92,10 @@ class _$UniqueGiftInfoCopyWithImpl<$Res>
   $Res call({
     Object? gift = null,
     Object? origin = null,
+    Object? lastResaleStarCount = freezed,
     Object? ownedGiftId = freezed,
     Object? transferStarCount = freezed,
+    Object? nextTransferDate = freezed,
   }) {
     return _then(_self.copyWith(
       gift: null == gift
@@ -90,7 +105,11 @@ class _$UniqueGiftInfoCopyWithImpl<$Res>
       origin: null == origin
           ? _self.origin
           : origin // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UniqueGiftOrigin,
+      lastResaleStarCount: freezed == lastResaleStarCount
+          ? _self.lastResaleStarCount
+          : lastResaleStarCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       ownedGiftId: freezed == ownedGiftId
           ? _self.ownedGiftId
           : ownedGiftId // ignore: cast_nullable_to_non_nullable
@@ -98,6 +117,10 @@ class _$UniqueGiftInfoCopyWithImpl<$Res>
       transferStarCount: freezed == transferStarCount
           ? _self.transferStarCount
           : transferStarCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      nextTransferDate: freezed == nextTransferDate
+          ? _self.nextTransferDate
+          : nextTransferDate // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -119,8 +142,10 @@ class _UniqueGiftInfo implements UniqueGiftInfo {
   const _UniqueGiftInfo(
       {@JsonKey(name: 'gift') required this.gift,
       @JsonKey(name: 'origin') required this.origin,
+      @JsonKey(name: 'last_resale_star_count') this.lastResaleStarCount,
       @JsonKey(name: 'owned_gift_id') this.ownedGiftId,
-      @JsonKey(name: 'transfer_star_count') this.transferStarCount});
+      @JsonKey(name: 'transfer_star_count') this.transferStarCount,
+      @JsonKey(name: 'next_transfer_date') this.nextTransferDate});
   factory _UniqueGiftInfo.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftInfoFromJson(json);
 
@@ -129,10 +154,17 @@ class _UniqueGiftInfo implements UniqueGiftInfo {
   @JsonKey(name: 'gift')
   final UniqueGift gift;
 
-  /// Origin of the gift. Currently, either "upgrade" or "transfer"
+  /// Origin of the gift. Currently, either "upgrade" for gifts upgraded
+  /// from regular gifts, "transfer" for gifts transferred from other users
+  /// or channels, or "resale" for gifts bought from other users
   @override
   @JsonKey(name: 'origin')
-  final String origin;
+  final UniqueGiftOrigin origin;
+
+  /// Optional. For gifts bought from other users, the price paid for the gift
+  @override
+  @JsonKey(name: 'last_resale_star_count')
+  final int? lastResaleStarCount;
 
   /// Optional. Unique identifier of the received gift for the bot;
   /// only present for gifts received on behalf of business accounts
@@ -145,6 +177,12 @@ class _UniqueGiftInfo implements UniqueGiftInfo {
   @override
   @JsonKey(name: 'transfer_star_count')
   final int? transferStarCount;
+
+  /// Optional. Point in time (Unix timestamp) when the gift can be transferred.
+  /// If it is in the past, then the gift can be transferred now
+  @override
+  @JsonKey(name: 'next_transfer_date')
+  final int? nextTransferDate;
 
   /// Create a copy of UniqueGiftInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -163,7 +201,7 @@ class _UniqueGiftInfo implements UniqueGiftInfo {
 
   @override
   String toString() {
-    return 'UniqueGiftInfo(gift: $gift, origin: $origin, ownedGiftId: $ownedGiftId, transferStarCount: $transferStarCount)';
+    return 'UniqueGiftInfo(gift: $gift, origin: $origin, lastResaleStarCount: $lastResaleStarCount, ownedGiftId: $ownedGiftId, transferStarCount: $transferStarCount, nextTransferDate: $nextTransferDate)';
   }
 }
 
@@ -177,9 +215,11 @@ abstract mixin class _$UniqueGiftInfoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'gift') UniqueGift gift,
-      @JsonKey(name: 'origin') String origin,
+      @JsonKey(name: 'origin') UniqueGiftOrigin origin,
+      @JsonKey(name: 'last_resale_star_count') int? lastResaleStarCount,
       @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
-      @JsonKey(name: 'transfer_star_count') int? transferStarCount});
+      @JsonKey(name: 'transfer_star_count') int? transferStarCount,
+      @JsonKey(name: 'next_transfer_date') int? nextTransferDate});
 
   @override
   $UniqueGiftCopyWith<$Res> get gift;
@@ -200,8 +240,10 @@ class __$UniqueGiftInfoCopyWithImpl<$Res>
   $Res call({
     Object? gift = null,
     Object? origin = null,
+    Object? lastResaleStarCount = freezed,
     Object? ownedGiftId = freezed,
     Object? transferStarCount = freezed,
+    Object? nextTransferDate = freezed,
   }) {
     return _then(_UniqueGiftInfo(
       gift: null == gift
@@ -211,7 +253,11 @@ class __$UniqueGiftInfoCopyWithImpl<$Res>
       origin: null == origin
           ? _self.origin
           : origin // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UniqueGiftOrigin,
+      lastResaleStarCount: freezed == lastResaleStarCount
+          ? _self.lastResaleStarCount
+          : lastResaleStarCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       ownedGiftId: freezed == ownedGiftId
           ? _self.ownedGiftId
           : ownedGiftId // ignore: cast_nullable_to_non_nullable
@@ -219,6 +265,10 @@ class __$UniqueGiftInfoCopyWithImpl<$Res>
       transferStarCount: freezed == transferStarCount
           ? _self.transferStarCount
           : transferStarCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      nextTransferDate: freezed == nextTransferDate
+          ? _self.nextTransferDate
+          : nextTransferDate // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }

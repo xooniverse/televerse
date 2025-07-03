@@ -31,15 +31,11 @@ MessageOrigin _$MessageOriginFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MessageOrigin {
   /// Type of the message origin, must be "user"
-  @JsonKey(defaultValue: MessageOriginType.user, name: 'type')
-  @JsonKey(name: 'type', defaultValue: MessageOriginType.hiddenUser)
-  @JsonKey(name: 'type', defaultValue: MessageOriginType.chat)
-  @JsonKey(name: 'type', defaultValue: MessageOriginType.channel)
+  @JsonKey(name: 'type')
   MessageOriginType get type;
 
   /// Date the message was sent originally in Unix time
-  @JsonKey(required: true, name: 'date')
-  @JsonKey(name: 'date', required: true)
+  @JsonKey(name: 'date')
   int get date;
 
   /// Create a copy of MessageOrigin
@@ -66,9 +62,8 @@ abstract mixin class $MessageOriginCopyWith<$Res> {
       _$MessageOriginCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(defaultValue: MessageOriginType.user, name: 'type')
-      MessageOriginType type,
-      @JsonKey(required: true, name: 'date') int date});
+      {@JsonKey(name: 'type') MessageOriginType type,
+      @JsonKey(name: 'date') int date});
 }
 
 /// @nodoc
@@ -104,9 +99,8 @@ class _$MessageOriginCopyWithImpl<$Res>
 @JsonSerializable()
 class MessageOriginUser implements MessageOrigin {
   const MessageOriginUser(
-      {@JsonKey(defaultValue: MessageOriginType.user, name: 'type')
-      this.type = MessageOriginType.user,
-      @JsonKey(required: true, name: 'date') required this.date,
+      {@JsonKey(name: 'type') this.type = MessageOriginType.user,
+      @JsonKey(name: 'date') required this.date,
       @JsonKey(name: 'sender_user') required this.senderUser})
       : assert(type == MessageOriginType.user,
             'type must be MessageOriginType.user');
@@ -115,12 +109,12 @@ class MessageOriginUser implements MessageOrigin {
 
   /// Type of the message origin, must be "user"
   @override
-  @JsonKey(defaultValue: MessageOriginType.user, name: 'type')
+  @JsonKey(name: 'type')
   final MessageOriginType type;
 
   /// Date the message was sent originally in Unix time
   @override
-  @JsonKey(required: true, name: 'date')
+  @JsonKey(name: 'date')
   final int date;
 
   /// User that sent the message originally
@@ -157,9 +151,8 @@ abstract mixin class $MessageOriginUserCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(defaultValue: MessageOriginType.user, name: 'type')
-      MessageOriginType type,
-      @JsonKey(required: true, name: 'date') int date,
+      {@JsonKey(name: 'type') MessageOriginType type,
+      @JsonKey(name: 'date') int date,
       @JsonKey(name: 'sender_user') User senderUser});
 
   $UserCopyWith<$Res> get senderUser;
@@ -213,9 +206,8 @@ class _$MessageOriginUserCopyWithImpl<$Res>
 @JsonSerializable()
 class MessageOriginHiddenUser implements MessageOrigin {
   const MessageOriginHiddenUser(
-      {@JsonKey(name: 'type', defaultValue: MessageOriginType.hiddenUser)
-      this.type = MessageOriginType.hiddenUser,
-      @JsonKey(name: 'date', required: true) required this.date,
+      {@JsonKey(name: 'type') this.type = MessageOriginType.hiddenUser,
+      @JsonKey(name: 'date') required this.date,
       @JsonKey(name: 'sender_user_name') required this.senderUserName})
       : assert(type == MessageOriginType.hiddenUser,
             'type must be MessageOriginType.hiddenUser');
@@ -224,12 +216,12 @@ class MessageOriginHiddenUser implements MessageOrigin {
 
   /// Type of the message origin, must be "hidden_user"
   @override
-  @JsonKey(name: 'type', defaultValue: MessageOriginType.hiddenUser)
+  @JsonKey(name: 'type')
   final MessageOriginType type;
 
   /// Date the message was sent originally in Unix time
   @override
-  @JsonKey(name: 'date', required: true)
+  @JsonKey(name: 'date')
   final int date;
 
   /// Name of the user that sent the message originally
@@ -267,9 +259,8 @@ abstract mixin class $MessageOriginHiddenUserCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'type', defaultValue: MessageOriginType.hiddenUser)
-      MessageOriginType type,
-      @JsonKey(name: 'date', required: true) int date,
+      {@JsonKey(name: 'type') MessageOriginType type,
+      @JsonKey(name: 'date') int date,
       @JsonKey(name: 'sender_user_name') String senderUserName});
 }
 
@@ -311,9 +302,8 @@ class _$MessageOriginHiddenUserCopyWithImpl<$Res>
 @JsonSerializable()
 class MessageOriginChat implements MessageOrigin {
   const MessageOriginChat(
-      {@JsonKey(name: 'type', defaultValue: MessageOriginType.chat)
-      this.type = MessageOriginType.chat,
-      @JsonKey(name: 'date', required: true) required this.date,
+      {@JsonKey(name: 'type') this.type = MessageOriginType.chat,
+      @JsonKey(name: 'date') required this.date,
       @JsonKey(name: 'sender_chat') required this.senderChat,
       @JsonKey(name: 'author_signature') this.authorSignature})
       : assert(type == MessageOriginType.chat,
@@ -323,12 +313,12 @@ class MessageOriginChat implements MessageOrigin {
 
   /// Type of the message origin, must be "chat"
   @override
-  @JsonKey(name: 'type', defaultValue: MessageOriginType.chat)
+  @JsonKey(name: 'type')
   final MessageOriginType type;
 
   /// Date the message was sent originally in Unix time
   @override
-  @JsonKey(name: 'date', required: true)
+  @JsonKey(name: 'date')
   final int date;
 
   /// Chat that sent the message originally
@@ -370,9 +360,8 @@ abstract mixin class $MessageOriginChatCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'type', defaultValue: MessageOriginType.chat)
-      MessageOriginType type,
-      @JsonKey(name: 'date', required: true) int date,
+      {@JsonKey(name: 'type') MessageOriginType type,
+      @JsonKey(name: 'date') int date,
       @JsonKey(name: 'sender_chat') Chat senderChat,
       @JsonKey(name: 'author_signature') String? authorSignature});
 
@@ -432,9 +421,8 @@ class _$MessageOriginChatCopyWithImpl<$Res>
 @JsonSerializable()
 class MessageOriginChannel implements MessageOrigin {
   const MessageOriginChannel(
-      {@JsonKey(name: 'type', defaultValue: MessageOriginType.channel)
-      this.type = MessageOriginType.channel,
-      @JsonKey(name: 'date', required: true) required this.date,
+      {@JsonKey(name: 'type') this.type = MessageOriginType.channel,
+      @JsonKey(name: 'date') required this.date,
       @JsonKey(name: 'chat') required this.chat,
       @JsonKey(name: 'message_id') required this.messageId,
       @JsonKey(name: 'author_signature') this.authorSignature})
@@ -445,12 +433,12 @@ class MessageOriginChannel implements MessageOrigin {
 
   /// Type of the message origin, must be "channel"
   @override
-  @JsonKey(name: 'type', defaultValue: MessageOriginType.channel)
+  @JsonKey(name: 'type')
   final MessageOriginType type;
 
   /// Date the message was sent originally in Unix time
   @override
-  @JsonKey(name: 'date', required: true)
+  @JsonKey(name: 'date')
   final int date;
 
   /// Channel chat to which the message was originally sent
@@ -496,9 +484,8 @@ abstract mixin class $MessageOriginChannelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'type', defaultValue: MessageOriginType.channel)
-      MessageOriginType type,
-      @JsonKey(name: 'date', required: true) int date,
+      {@JsonKey(name: 'type') MessageOriginType type,
+      @JsonKey(name: 'date') int date,
       @JsonKey(name: 'chat') Chat chat,
       @JsonKey(name: 'message_id') int messageId,
       @JsonKey(name: 'author_signature') String? authorSignature});

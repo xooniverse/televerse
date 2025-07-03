@@ -35,15 +35,15 @@ sealed class MessageOrigin with _$MessageOrigin implements _MessageOriginImpl {
   )
   const factory MessageOrigin.user({
     /// Type of the message origin, must be "user"
-    @JsonKey(defaultValue: MessageOriginType.user, name: 'type')
+    @JsonKey(name: 'type')
     @Default(MessageOriginType.user)
     MessageOriginType type,
 
     /// Date the message was sent originally in Unix time
-    @JsonKey(required: true, name: 'date') required int date,
+    @JsonKey(name: 'date') required int date,
 
     /// User that sent the message originally
-    @JsonKey(name: 'sender_user') required final User senderUser,
+    @JsonKey(name: 'sender_user') required User senderUser,
   }) = MessageOriginUser;
 
   /// Message was originally sent by an unknown user
@@ -53,12 +53,12 @@ sealed class MessageOrigin with _$MessageOrigin implements _MessageOriginImpl {
   )
   const factory MessageOrigin.hiddenUser({
     /// Type of the message origin, must be "hidden_user"
-    @JsonKey(name: 'type', defaultValue: MessageOriginType.hiddenUser)
+    @JsonKey(name: 'type')
     @Default(MessageOriginType.hiddenUser)
     MessageOriginType type,
 
     /// Date the message was sent originally in Unix time
-    @JsonKey(name: 'date', required: true) required int date,
+    @JsonKey(name: 'date') required int date,
 
     /// Name of the user that sent the message originally
     @JsonKey(name: 'sender_user_name') required String senderUserName,
@@ -71,12 +71,12 @@ sealed class MessageOrigin with _$MessageOrigin implements _MessageOriginImpl {
   )
   const factory MessageOrigin.chat({
     /// Type of the message origin, must be "chat"
-    @JsonKey(name: 'type', defaultValue: MessageOriginType.chat)
+    @JsonKey(name: 'type')
     @Default(MessageOriginType.chat)
     MessageOriginType type,
 
     /// Date the message was sent originally in Unix time
-    @JsonKey(name: 'date', required: true) required int date,
+    @JsonKey(name: 'date') required int date,
 
     /// Chat that sent the message originally
     @JsonKey(name: 'sender_chat') required Chat senderChat,
@@ -93,12 +93,12 @@ sealed class MessageOrigin with _$MessageOrigin implements _MessageOriginImpl {
   )
   const factory MessageOrigin.channel({
     /// Type of the message origin, must be "channel"
-    @JsonKey(name: 'type', defaultValue: MessageOriginType.channel)
+    @JsonKey(name: 'type')
     @Default(MessageOriginType.channel)
     MessageOriginType type,
 
     /// Date the message was sent originally in Unix time
-    @JsonKey(name: 'date', required: true) required int date,
+    @JsonKey(name: 'date') required int date,
 
     /// Channel chat to which the message was originally sent
     @JsonKey(name: 'chat') required Chat chat,

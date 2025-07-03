@@ -6,18 +6,13 @@ part of 'message_origin.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MessageOriginUser _$MessageOriginUserFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['date'],
-  );
-  return MessageOriginUser(
-    type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
-        MessageOriginType.user,
-    date: (json['date'] as num).toInt(),
-    senderUser: User.fromJson(json['sender_user'] as Map<String, dynamic>),
-  );
-}
+MessageOriginUser _$MessageOriginUserFromJson(Map<String, dynamic> json) =>
+    MessageOriginUser(
+      type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
+          MessageOriginType.user,
+      date: (json['date'] as num).toInt(),
+      senderUser: User.fromJson(json['sender_user'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$MessageOriginUserToJson(MessageOriginUser instance) =>
     <String, dynamic>{
@@ -34,18 +29,13 @@ const _$MessageOriginTypeEnumMap = {
 };
 
 MessageOriginHiddenUser _$MessageOriginHiddenUserFromJson(
-    Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['date'],
-  );
-  return MessageOriginHiddenUser(
-    type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
-        MessageOriginType.hiddenUser,
-    date: (json['date'] as num).toInt(),
-    senderUserName: json['sender_user_name'] as String,
-  );
-}
+        Map<String, dynamic> json) =>
+    MessageOriginHiddenUser(
+      type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
+          MessageOriginType.hiddenUser,
+      date: (json['date'] as num).toInt(),
+      senderUserName: json['sender_user_name'] as String,
+    );
 
 Map<String, dynamic> _$MessageOriginHiddenUserToJson(
         MessageOriginHiddenUser instance) =>
@@ -55,19 +45,14 @@ Map<String, dynamic> _$MessageOriginHiddenUserToJson(
       'sender_user_name': instance.senderUserName,
     };
 
-MessageOriginChat _$MessageOriginChatFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['date'],
-  );
-  return MessageOriginChat(
-    type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
-        MessageOriginType.chat,
-    date: (json['date'] as num).toInt(),
-    senderChat: Chat.fromJson(json['sender_chat'] as Map<String, dynamic>),
-    authorSignature: json['author_signature'] as String?,
-  );
-}
+MessageOriginChat _$MessageOriginChatFromJson(Map<String, dynamic> json) =>
+    MessageOriginChat(
+      type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
+          MessageOriginType.chat,
+      date: (json['date'] as num).toInt(),
+      senderChat: Chat.fromJson(json['sender_chat'] as Map<String, dynamic>),
+      authorSignature: json['author_signature'] as String?,
+    );
 
 Map<String, dynamic> _$MessageOriginChatToJson(MessageOriginChat instance) =>
     <String, dynamic>{
@@ -77,20 +62,16 @@ Map<String, dynamic> _$MessageOriginChatToJson(MessageOriginChat instance) =>
       if (instance.authorSignature case final value?) 'author_signature': value,
     };
 
-MessageOriginChannel _$MessageOriginChannelFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['date'],
-  );
-  return MessageOriginChannel(
-    type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
-        MessageOriginType.channel,
-    date: (json['date'] as num).toInt(),
-    chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
-    messageId: (json['message_id'] as num).toInt(),
-    authorSignature: json['author_signature'] as String?,
-  );
-}
+MessageOriginChannel _$MessageOriginChannelFromJson(
+        Map<String, dynamic> json) =>
+    MessageOriginChannel(
+      type: $enumDecodeNullable(_$MessageOriginTypeEnumMap, json['type']) ??
+          MessageOriginType.channel,
+      date: (json['date'] as num).toInt(),
+      chat: Chat.fromJson(json['chat'] as Map<String, dynamic>),
+      messageId: (json['message_id'] as num).toInt(),
+      authorSignature: json['author_signature'] as String?,
+    );
 
 Map<String, dynamic> _$MessageOriginChannelToJson(
         MessageOriginChannel instance) =>
