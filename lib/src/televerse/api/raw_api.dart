@@ -5359,4 +5359,75 @@ class RawAPI {
 
     return response;
   }
+
+  /// Use this method to send a checklist on behalf of a connected business account.
+  /// On success, the sent Message is returned.
+  ///
+  /// Parameters:
+  /// - [businessConnectionId]: Unique identifier of the business connection on behalf of which the message will be sent
+  /// - [chatId]: Unique identifier for the target chat
+  /// - [checklist]: A JSON-serialized object for the checklist to send
+  /// - [disableNotification]: Sends the message silently. Users will receive a notification with no sound.
+  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
+  /// - [messageEffectId]: Unique identifier of the message effect to be added to the message
+  /// - [replyParameters]: A JSON-serialized object for description of the message to reply to
+  /// - [replyMarkup]: A JSON-serialized object for an inline keyboard
+  Future<Message> sendChecklist(
+    String businessConnectionId,
+    ID chatId,
+    InputChecklist checklist, {
+    bool? disableNotification,
+    bool? protectContent,
+    String? messageEffectId,
+    ReplyParameters? replyParameters,
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "chat_id": chatId.id,
+      "checklist": checklist.toJson(),
+      "disable_notification": disableNotification,
+      "protect_content": protectContent,
+      "message_effect_id": messageEffectId,
+      "reply_parameters": replyParameters?.toJson(),
+      "reply_markup": replyMarkup?.toJson(),
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.sendChecklist,
+      payload: Payload.from(params),
+    );
+    return Message.fromJson(response);
+  }
+
+  /// Use this method to edit a checklist on behalf of a connected business account.
+  /// On success, the edited Message is returned.
+  ///
+  /// Parameters:
+  /// - [businessConnectionId]: Unique identifier of the business connection on behalf of which the message will be sent
+  /// - [chatId]: Unique identifier for the target chat
+  /// - [messageId]: Unique identifier for the target message
+  /// - [checklist]: A JSON-serialized object for the new checklist
+  /// - [replyMarkup]: A JSON-serialized object for the new inline keyboard for the message
+  Future<Message> editMessageChecklist(
+    String businessConnectionId,
+    ID chatId,
+    int messageId,
+    InputChecklist checklist, {
+    InlineKeyboardMarkup? replyMarkup,
+  }) async {
+    final params = {
+      "business_connection_id": businessConnectionId,
+      "chat_id": chatId.id,
+      "message_id": messageId,
+      "checklist": checklist.toJson(),
+      "reply_markup": replyMarkup?.toJson(),
+    };
+
+    final response = await _makeApiJsonCall(
+      APIMethod.editMessageChecklist,
+      payload: Payload.from(params),
+    );
+    return Message.fromJson(response);
+  }
 }

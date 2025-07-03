@@ -1,8 +1,5 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/src/telegram/models/checklist.dart';
-import 'package:televerse/src/telegram/models/checklist_tasks_added.dart';
-import 'package:televerse/src/telegram/models/checklist_tasks_done.dart';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 

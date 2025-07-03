@@ -466,6 +466,12 @@ enum APIMethod {
 
   /// Gifts a Telegram Premium subscription to the given user
   giftPremiumSubscription,
+
+  /// Send a checklist on behalf of a connected business account
+  sendChecklist,
+
+  /// Edit a checklist on behalf of a connected business account
+  editMessageChecklist,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.
@@ -491,26 +497,27 @@ enum APIMethod {
   /// This includes sending text messages, photos, videos, etc.
   static List<APIMethod> get sendMethods {
     return [
-      APIMethod.sendMessage,
-      APIMethod.forwardMessage,
-      APIMethod.copyMessage,
-      APIMethod.sendPhoto,
-      APIMethod.sendAudio,
-      APIMethod.sendDocument,
-      APIMethod.sendVideo,
-      APIMethod.sendAnimation,
-      APIMethod.sendVoice,
-      APIMethod.sendVideoNote,
-      APIMethod.sendMediaGroup,
-      APIMethod.sendLocation,
-      APIMethod.sendVenue,
-      APIMethod.sendContact,
-      APIMethod.sendPoll,
-      APIMethod.sendDice,
-      APIMethod.sendChatAction,
-      APIMethod.sendSticker,
-      APIMethod.sendGame,
-      APIMethod.sendPaidMedia,
+      sendMessage,
+      forwardMessage,
+      copyMessage,
+      sendPhoto,
+      sendAudio,
+      sendDocument,
+      sendVideo,
+      sendAnimation,
+      sendVoice,
+      sendVideoNote,
+      sendMediaGroup,
+      sendLocation,
+      sendVenue,
+      sendContact,
+      sendPoll,
+      sendDice,
+      sendChatAction,
+      sendSticker,
+      sendGame,
+      sendPaidMedia,
+      sendChecklist,
     ];
   }
 }
