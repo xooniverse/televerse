@@ -3,7 +3,7 @@
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/xooniverse/televerse?color=green)
-![](https://shields.io/badge/Latest-Bot%20API%209.0-blue)
+![](https://shields.io/badge/Latest-Bot%20API%209.1-blue)
 
   <a href="https://telegram.me/TeleverseDart">
     <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/>
@@ -12,7 +12,7 @@
 
 ---
 
-🤖 `Bot API version: Bot API 9.0 (April 11, 2025)`
+🤖 `Bot API version: Bot API 9.1 (July 3, 2025)`
 
 Televerse is a powerful, easy-to-use, and highly customizable Telegram bot
 framework built with Dart programming language. It provides a complete and

@@ -413,6 +413,21 @@ abstract class Message
 
     /// Optional. The number of Telegram Stars that were paid by the sender of the message to send it
     @JsonKey(name: 'paid_star_count') int? paidStarCount,
+
+    /// Optional. Message is a checklist
+    @JsonKey(name: 'checklist') Checklist? checklist,
+
+    /// Optional. Service message: some tasks in a checklist were marked as done or not done
+    @JsonKey(name: 'checklist_tasks_done')
+    ChecklistTasksDone? checklistTasksDone,
+
+    /// Optional. Service message: tasks were added to a checklist
+    @JsonKey(name: 'checklist_tasks_added')
+    ChecklistTasksAdded? checklistTasksAdded,
+
+    /// Optional. Service message: the price for paid messages in the corresponding direct messages chat of a channel has changed
+    @JsonKey(name: 'direct_message_price_changed')
+    DirectMessagePriceChanged? directMessagePriceChanged,
   }) = _Message;
 
   /// Creates a [Message] object from JSON object

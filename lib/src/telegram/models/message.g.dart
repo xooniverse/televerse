@@ -265,6 +265,21 @@ _Message _$MessageFromJson(Map<String, dynamic> json) => _Message(
           : PaidMessagePriceChanged.fromJson(
               json['paid_message_price_changed'] as Map<String, dynamic>),
       paidStarCount: (json['paid_star_count'] as num?)?.toInt(),
+      checklist: json['checklist'] == null
+          ? null
+          : Checklist.fromJson(json['checklist'] as Map<String, dynamic>),
+      checklistTasksDone: json['checklist_tasks_done'] == null
+          ? null
+          : ChecklistTasksDone.fromJson(
+              json['checklist_tasks_done'] as Map<String, dynamic>),
+      checklistTasksAdded: json['checklist_tasks_added'] == null
+          ? null
+          : ChecklistTasksAdded.fromJson(
+              json['checklist_tasks_added'] as Map<String, dynamic>),
+      directMessagePriceChanged: json['direct_message_price_changed'] == null
+          ? null
+          : DirectMessagePriceChanged.fromJson(
+              json['direct_message_price_changed'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
@@ -389,4 +404,11 @@ Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
       if (instance.paidMessagePriceChanged case final value?)
         'paid_message_price_changed': value,
       if (instance.paidStarCount case final value?) 'paid_star_count': value,
+      if (instance.checklist case final value?) 'checklist': value,
+      if (instance.checklistTasksDone case final value?)
+        'checklist_tasks_done': value,
+      if (instance.checklistTasksAdded case final value?)
+        'checklist_tasks_added': value,
+      if (instance.directMessagePriceChanged case final value?)
+        'direct_message_price_changed': value,
     };

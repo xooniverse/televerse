@@ -103,6 +103,10 @@ sealed class OwnedGift with _$OwnedGift implements _WithGiftType {
     /// Optional. Number of Telegram Stars that must be paid to transfer the gift;
     /// omitted if the bot cannot transfer the gift
     @JsonKey(name: 'transfer_star_count') int? transferStarCount,
+
+    /// Optional. Point in time (Unix timestamp) when the gift can be transferred.
+    /// If it is in the past, then the gift can be transferred now
+    @JsonKey(name: 'next_transfer_date') int? nextTransferDate,
   }) = OwnedGiftUnique;
 
   /// Creates an instance of [OwnedGift] from JSON data

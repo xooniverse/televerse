@@ -1,3 +1,7 @@
+# 2.7.0
+
+- 🤖 Bot API 9.1
+
 # 2.6.2
 
 - `ForumTopic.messageThreadId` is `int` not `String`
