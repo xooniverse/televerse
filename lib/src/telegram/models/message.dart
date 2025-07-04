@@ -424,6 +424,10 @@ abstract class Message
     /// Optional. Service message: tasks were added to a checklist
     @JsonKey(name: 'checklist_tasks_added')
     ChecklistTasksAdded? checklistTasksAdded,
+
+    /// Optional. Service message: the price for paid messages in the corresponding direct messages chat of a channel has changed
+    @JsonKey(name: 'direct_message_price_changed')
+    DirectMessagePriceChanged? directMessagePriceChanged,
   }) = _Message;
 
   /// Creates a [Message] object from JSON object

@@ -472,6 +472,9 @@ enum APIMethod {
 
   /// Edit a checklist on behalf of a connected business account
   editMessageChecklist,
+
+  /// Get the current Telegram Stars balance of the bot
+  getMyStarBalance,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.

@@ -5430,4 +5430,13 @@ class RawAPI {
     );
     return Message.fromJson(response);
   }
+
+  /// Use this method to get the current Telegram Stars balance of the bot.
+  /// On success, returns a [StarAmount] object.
+  Future<StarAmount> getMyStarBalance() async {
+    final response = await _makeApiJsonCall(
+      APIMethod.getMyStarBalance,
+    );
+    return StarAmount.fromJson(response);
+  }
 }
