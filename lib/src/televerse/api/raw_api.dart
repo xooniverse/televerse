@@ -4439,7 +4439,7 @@ class RawAPI {
     int starCount,
     List<InputPaidMedia> media, {
     String? caption,
-    String? parseMode,
+    ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     bool? showCaptionAboveMedia,
     bool? disableNotification,

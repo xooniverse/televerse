@@ -1890,7 +1890,7 @@ extension ContextAwareMethods on Context {
     int starCount,
     List<InputPaidMedia> media, {
     String? caption,
-    String? parseMode,
+    ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     bool? showCaptionAboveMedia,
     bool? disableNotification,
@@ -1899,10 +1899,7 @@ extension ContextAwareMethods on Context {
     ReplyMarkup? replyMarkup,
   }) async {
     api._addContext(this);
-    _verifyInfo(
-      [_chatId],
-      APIMethod.sendPaidMedia,
-    );
+    _verifyInfo([_chatId], APIMethod.sendPaidMedia);
 
     return api.sendPaidMedia(
       id,
