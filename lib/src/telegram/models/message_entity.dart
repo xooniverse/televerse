@@ -1,7 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/televerse.dart';
-import 'user.dart';
+import 'package:televerse/telegram.dart' show MessageEntityType, User;
 
 part 'message_entity.freezed.dart';
 part 'message_entity.g.dart';

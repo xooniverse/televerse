@@ -33,7 +33,7 @@ _InlineQueryResultVoice _$InlineQueryResultVoiceFromJson(
 Map<String, dynamic> _$InlineQueryResultVoiceToJson(
         _InlineQueryResultVoice instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       'id': instance.id,
       'voice_url': instance.voiceUrl,
       'title': instance.title,

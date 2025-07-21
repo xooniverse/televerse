@@ -1,7 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/televerse.dart';
-import 'message_entity.dart';
+import 'package:televerse/telegram.dart' show MessageEntity, ParseMode;
 
 part 'input_poll_option.freezed.dart';
 part 'input_poll_option.g.dart';

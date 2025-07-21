@@ -1,7 +1,19 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/telegram.dart';
-import 'package:televerse/televerse.dart';
+import 'package:televerse/telegram.dart'
+    show
+        AcceptedGiftTypes,
+        Birthdate,
+        BusinessIntro,
+        BusinessLocation,
+        BusinessOpeningHours,
+        Chat,
+        ChatLocation,
+        ChatPermissions,
+        ChatPhoto,
+        ChatType,
+        Message,
+        ReactionType;
 
 part 'chat_full_info.freezed.dart';
 part 'chat_full_info.g.dart';

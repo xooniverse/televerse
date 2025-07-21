@@ -8,7 +8,7 @@ part of 'input_media.dart';
 
 Map<String, dynamic> _$InputMediaPhotoToJson(InputMediaPhoto instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InputMediaTypeEnumMap[instance.type]!,
       'media': const InputFileConverter().toJson(instance.media),
       if (instance.caption case final value?) 'caption': value,
       if (instance.parseMode case final value?) 'parse_mode': value,
@@ -19,9 +19,17 @@ Map<String, dynamic> _$InputMediaPhotoToJson(InputMediaPhoto instance) =>
       'runtimeType': instance.$type,
     };
 
+const _$InputMediaTypeEnumMap = {
+  InputMediaType.animation: 'animation',
+  InputMediaType.audio: 'audio',
+  InputMediaType.document: 'document',
+  InputMediaType.photo: 'photo',
+  InputMediaType.video: 'video',
+};
+
 Map<String, dynamic> _$InputMediaDocumentToJson(InputMediaDocument instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InputMediaTypeEnumMap[instance.type]!,
       'media': const InputFileConverter().toJson(instance.media),
       if (_$JsonConverterToJson<String, InputFile>(
               instance.thumbnail, const InputFileConverter().toJson)
@@ -44,7 +52,7 @@ Json? _$JsonConverterToJson<Json, Value>(
 Map<String, dynamic> _$InputMediaAnimationToJson(
         InputMediaAnimation instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InputMediaTypeEnumMap[instance.type]!,
       'media': const InputFileConverter().toJson(instance.media),
       if (_$JsonConverterToJson<String, InputFile>(
               instance.thumbnail, const InputFileConverter().toJson)
@@ -64,7 +72,7 @@ Map<String, dynamic> _$InputMediaAnimationToJson(
 
 Map<String, dynamic> _$InputMediaAudioToJson(InputMediaAudio instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InputMediaTypeEnumMap[instance.type]!,
       'media': const InputFileConverter().toJson(instance.media),
       if (_$JsonConverterToJson<String, InputFile>(
               instance.thumbnail, const InputFileConverter().toJson)
@@ -81,7 +89,7 @@ Map<String, dynamic> _$InputMediaAudioToJson(InputMediaAudio instance) =>
 
 Map<String, dynamic> _$InputMediaVideoToJson(InputMediaVideo instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InputMediaTypeEnumMap[instance.type]!,
       'media': const InputFileConverter().toJson(instance.media),
       if (_$JsonConverterToJson<String, InputFile>(
               instance.thumbnail, const InputFileConverter().toJson)

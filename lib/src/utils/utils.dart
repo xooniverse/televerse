@@ -20,7 +20,7 @@ extension CleanString on String {
 
 /// Internal method to generate a random id.
 /// Include a-z, A-Z, 0-9
-String _getRandomID([
+String getRandomID([
   int len = 20,
 ]) {
   final random = Random();
@@ -31,7 +31,7 @@ String _getRandomID([
 }
 
 /// Null filter function.
-bool _nullFilter(String _, dynamic value) => value == null || value == 'null';
+bool nullFilter(String _, dynamic value) => value == null || value == 'null';
 
 /// [Update] extension to get the [Chat] and [User] from the update.
 extension FromAndChatExt on Update {
@@ -146,4 +146,4 @@ class _Ignore {
 }
 
 /// Ignores the value
-const _ignore = _Ignore();
+const ignore = _Ignore();

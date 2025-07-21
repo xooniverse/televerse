@@ -36,7 +36,7 @@ Map<String, dynamic> _$InlineQueryResultCachedPhotoToJson(
     <String, dynamic>{
       'id': instance.id,
       'photo_file_id': instance.photoFileId,
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       if (instance.title case final value?) 'title': value,
       if (instance.description case final value?) 'description': value,
       if (instance.caption case final value?) 'caption': value,

@@ -1,9 +1,20 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/src/telegram/models/labeled_price.dart';
-import 'package:televerse/src/telegram/models/link_preview_options.dart';
-import 'package:televerse/src/telegram/models/message_entity.dart';
-import 'package:televerse/televerse.dart';
+import 'package:televerse/telegram.dart'
+    show
+        InputContactMessageContent,
+        InputInvoiceMessageContent,
+        InputLocationMessageContent,
+        InputMessageContent,
+        InputMessageContentConverter,
+        InputTextMessageContent,
+        InputVenueMessageContent,
+        LabeledPrice,
+        LinkPreviewOptions,
+        MessageEntity,
+        ParseMode;
+import 'package:televerse/televerse.dart'
+    show TeleverseException, TeleverseExceptionType;
 
 part 'input_message_content.freezed.dart';
 part 'input_message_content.g.dart';

@@ -38,7 +38,7 @@ Map<String, dynamic> _$InlineQueryResultDocumentToJson(
         _InlineQueryResultDocument instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       'title': instance.title,
       'document_url': instance.documentUrl,
       'mime_type': instance.mimeType,

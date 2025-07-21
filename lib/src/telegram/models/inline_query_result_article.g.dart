@@ -39,7 +39,7 @@ Map<String, dynamic> _$InlineQueryResultArticleToJson(
       if (instance.thumbnailUrl case final value?) 'thumbnail_url': value,
       if (instance.thumbnailWidth case final value?) 'thumbnail_width': value,
       if (instance.thumbnailHeight case final value?) 'thumbnail_height': value,
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
     };
 
 const _$InlineQueryResultTypeEnumMap = {

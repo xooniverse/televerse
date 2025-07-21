@@ -2,7 +2,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:televerse/src/telegram/models/photo_size.dart';
 import 'package:televerse/src/telegram/models/sticker.dart';
-import 'package:televerse/televerse.dart';
+import 'package:televerse/telegram.dart' show StickerType;
 
 part 'sticker_set.freezed.dart';
 part 'sticker_set.g.dart';

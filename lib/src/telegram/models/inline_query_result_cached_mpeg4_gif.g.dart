@@ -35,7 +35,7 @@ Map<String, dynamic> _$InlineQueryResultCachedMpeg4GifToJson(
     <String, dynamic>{
       'id': instance.id,
       'mpeg4_file_id': instance.mpeg4FileId,
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       if (instance.title case final value?) 'title': value,
       if (instance.caption case final value?) 'caption': value,
       if (instance.parseMode case final value?) 'parse_mode': value,

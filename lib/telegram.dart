@@ -6,3 +6,4 @@
 library;
 
 export 'src/telegram/models/models.dart';
+export 'src/telegram/types/types.dart';

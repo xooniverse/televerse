@@ -31,7 +31,7 @@ OwnedGiftRegular _$OwnedGiftRegularFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$OwnedGiftRegularToJson(OwnedGiftRegular instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$OwnedGiftTypeEnumMap[instance.type]!,
       'gift': instance.gift,
       if (instance.ownedGiftId case final value?) 'owned_gift_id': value,
       if (instance.senderUser case final value?) 'sender_user': value,
@@ -70,7 +70,7 @@ OwnedGiftUnique _$OwnedGiftUniqueFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$OwnedGiftUniqueToJson(OwnedGiftUnique instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$OwnedGiftTypeEnumMap[instance.type]!,
       'gift': instance.gift,
       if (instance.ownedGiftId case final value?) 'owned_gift_id': value,
       if (instance.senderUser case final value?) 'sender_user': value,

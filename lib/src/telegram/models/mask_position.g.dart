@@ -16,7 +16,7 @@ _MaskPosition _$MaskPositionFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$MaskPositionToJson(_MaskPosition instance) =>
     <String, dynamic>{
-      'point': instance.point,
+      'point': _$MaskPositionPointEnumMap[instance.point]!,
       'x_shift': instance.xShift,
       'y_shift': instance.yShift,
       'scale': instance.scale,

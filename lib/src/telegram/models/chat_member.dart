@@ -1,7 +1,16 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/src/telegram/models/user.dart';
-import 'package:televerse/televerse.dart';
+import 'package:televerse/telegram.dart'
+    show
+        ChatMember,
+        ChatMemberAdministrator,
+        ChatMemberBanned,
+        ChatMemberLeft,
+        ChatMemberMember,
+        ChatMemberOwner,
+        ChatMemberRestricted,
+        ChatMemberStatus,
+        User;
 
 part 'chat_member.freezed.dart';
 part 'chat_member.g.dart';

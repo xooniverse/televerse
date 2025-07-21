@@ -42,7 +42,7 @@ Map<String, dynamic> _$InlineQueryResultCachedAudioToJson(
               const InputMessageContentConverter().toJson)
           case final value?)
         'input_message_content': value,
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
     };
 
 const _$ParseModeEnumMap = {

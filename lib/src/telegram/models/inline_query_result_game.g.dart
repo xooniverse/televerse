@@ -22,7 +22,7 @@ _InlineQueryResultGame _$InlineQueryResultGameFromJson(
 Map<String, dynamic> _$InlineQueryResultGameToJson(
         _InlineQueryResultGame instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       'id': instance.id,
       'game_short_name': instance.gameShortName,
       if (instance.replyMarkup case final value?) 'reply_markup': value,

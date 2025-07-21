@@ -37,7 +37,7 @@ _InlineQueryResultPhoto _$InlineQueryResultPhotoFromJson(
 Map<String, dynamic> _$InlineQueryResultPhotoToJson(
         _InlineQueryResultPhoto instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       'id': instance.id,
       'photo_url': instance.photoUrl,
       'thumbnail_url': instance.thumbnailUrl,

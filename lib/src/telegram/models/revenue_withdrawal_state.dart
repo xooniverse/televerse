@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/televerse.dart';
+import 'package:televerse/telegram.dart' show RevenueWithdrawalStateType;
 
 part 'revenue_withdrawal_state.freezed.dart';
 part 'revenue_withdrawal_state.g.dart';

@@ -9,15 +9,20 @@ part of 'input_paid_media.dart';
 Map<String, dynamic> _$InputPaidMediaPhotoToJson(
         InputPaidMediaPhoto instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InputPaidMediaTypeEnumMap[instance.type]!,
       'media': const InputFileConverter().toJson(instance.media),
       'runtimeType': instance.$type,
     };
 
+const _$InputPaidMediaTypeEnumMap = {
+  InputPaidMediaType.photo: 'photo',
+  InputPaidMediaType.video: 'video',
+};
+
 Map<String, dynamic> _$InputPaidMediaVideoToJson(
         InputPaidMediaVideo instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InputPaidMediaTypeEnumMap[instance.type]!,
       'media': const InputFileConverter().toJson(instance.media),
       if (_$JsonConverterToJson<String, InputFile>(
               instance.thumbnail, const InputFileConverter().toJson)

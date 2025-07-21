@@ -45,7 +45,7 @@ abstract class File with _$File {
   /// multiple bots running with the same code, you might want to pass the
   /// [token] parameter that can be used to generate the download URL.
   String getDownloadUrl([String? token]) {
-    return 'https://api.telegram.org/file/bot${token ?? Bot.instance.token}/$filePath';
+    return 'https://api.telegram.org/file/bot$token/$filePath';
   }
 
   /// Returns the [Uri] object of the download URL. This is an shorthand method

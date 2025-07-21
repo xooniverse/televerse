@@ -17,7 +17,7 @@ InputStoryContentPhoto _$InputStoryContentPhotoFromJson(
 Map<String, dynamic> _$InputStoryContentPhotoToJson(
         InputStoryContentPhoto instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$StoryContentTypeEnumMap[instance.type]!,
       'photo': const InputFileConverter().toJson(instance.photo),
     };
 
@@ -40,7 +40,7 @@ InputStoryContentVideo _$InputStoryContentVideoFromJson(
 Map<String, dynamic> _$InputStoryContentVideoToJson(
         InputStoryContentVideo instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$StoryContentTypeEnumMap[instance.type]!,
       'video': const InputFileConverter().toJson(instance.video),
       if (instance.duration case final value?) 'duration': value,
       if (instance.coverFrameTimestamp case final value?)

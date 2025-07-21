@@ -1,7 +1,8 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/src/telegram/models/message_entity.dart';
-import 'package:televerse/televerse.dart';
+import 'package:televerse/telegram.dart'
+    show InputMediaType, MessageEntity, ParseMode;
+import 'package:televerse/televerse.dart' show InputFile, InputFileConverter;
 
 part 'input_media.freezed.dart';
 part 'input_media.g.dart';

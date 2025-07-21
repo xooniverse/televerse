@@ -34,7 +34,7 @@ Map<String, dynamic> _$InlineQueryResultCachedStickerToJson(
               const InputMessageContentConverter().toJson)
           case final value?)
         'input_message_content': value,
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(

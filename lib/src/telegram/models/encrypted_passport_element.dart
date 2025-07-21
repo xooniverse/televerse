@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/src/telegram/models/passport_file.dart';
-import 'package:televerse/televerse.dart';
+import 'package:televerse/telegram.dart'
+    show EncryptedPassportElement, PassportFile, PassportType;
 
 part 'encrypted_passport_element.freezed.dart';
 part 'encrypted_passport_element.g.dart';

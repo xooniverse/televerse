@@ -35,7 +35,7 @@ _InlineQueryResultLocation _$InlineQueryResultLocationFromJson(
 Map<String, dynamic> _$InlineQueryResultLocationToJson(
         _InlineQueryResultLocation instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       'id': instance.id,
       'latitude': instance.latitude,
       'longitude': instance.longitude,

@@ -68,9 +68,6 @@ abstract class ID {
   /// Returns the hash code of the [id].
   @override
   int get hashCode => id.hashCode;
-
-  /// Returns the [Chat] object of the chat.
-  Future<ChatFullInfo> get() => Bot.instance.api.getChat(this);
 }
 
 /// This class is used to represent a chat id. It is a subclass of [ID].
@@ -81,19 +78,6 @@ class ChatID extends ID {
   ///
   /// The [ChatID] class is a subclass of [ID] and is used to represent a chat id.
   /// When the chat id is an integer, you can use this class to represent the chat id.
-  ///
-  /// You can use the [ChatID.get] getter to get the [Chat] object of the chat.  Make sure that the last instance of the [Bot] class is a member of the chat or chatted with the person.
-  ///
-  /// ```dart
-  /// // Get the chat id of the chat.
-  /// final chatID = ChatID(123456789);
-  ///
-  /// // Get the chat object of the chat.
-  /// final chat = await chatID.get();
-  ///
-  /// // Print the chat's title.
-  /// print(chat.title);
-  /// ```
   const ChatID(int super.id);
 
   /// The ID getter, returns the actual integer value

@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/televerse.dart';
+import 'package:televerse/telegram.dart';
+import 'package:televerse/televerse.dart' show IDConverter, ID;
 
 part 'bot_command_scope.freezed.dart';
 part 'bot_command_scope.g.dart';

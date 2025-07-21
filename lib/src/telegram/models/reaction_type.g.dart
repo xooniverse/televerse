@@ -15,7 +15,7 @@ ReactionTypeEmoji _$ReactionTypeEmojiFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ReactionTypeEmojiToJson(ReactionTypeEmoji instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$ReactionTypeTypeEnumMap[instance.type]!,
       'emoji': instance.emoji,
     };
 
@@ -36,7 +36,7 @@ ReactionTypeCustomEmoji _$ReactionTypeCustomEmojiFromJson(
 Map<String, dynamic> _$ReactionTypeCustomEmojiToJson(
         ReactionTypeCustomEmoji instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$ReactionTypeTypeEnumMap[instance.type]!,
       'custom_emoji_id': instance.customEmojiId,
     };
 
@@ -48,5 +48,5 @@ ReactionTypePaid _$ReactionTypePaidFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ReactionTypePaidToJson(ReactionTypePaid instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$ReactionTypeTypeEnumMap[instance.type]!,
     };
