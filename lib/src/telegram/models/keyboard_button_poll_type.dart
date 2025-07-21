@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/telegram.dart' show PollType;
+import 'package:televerse/telegram.dart';
 
 part 'keyboard_button_poll_type.freezed.dart';
 part 'keyboard_button_poll_type.g.dart';

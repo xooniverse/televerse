@@ -1,11 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/telegram.dart' show OwnedGiftType;
-
-import 'gift.dart';
-import 'unique_gift.dart';
-import 'message_entity.dart';
-import 'user.dart';
+import 'package:televerse/telegram.dart';
 
 part 'owned_gift.freezed.dart';
 part 'owned_gift.g.dart';

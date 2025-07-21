@@ -1,13 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/telegram.dart'
-    show
-        InlineKeyboardMarkup,
-        InlineQueryResult,
-        InlineQueryResultLocation,
-        InlineQueryResultType,
-        InputMessageContent,
-        InputMessageContentConverter;
+import 'package:televerse/telegram.dart';
 
 part 'inline_query_result_location.freezed.dart';
 part 'inline_query_result_location.g.dart';

@@ -1,8 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/src/telegram/models/photo_size.dart';
-import 'package:televerse/src/telegram/models/sticker.dart';
-import 'package:televerse/telegram.dart' show StickerType;
+import 'package:televerse/telegram.dart';
 
 part 'sticker_set.freezed.dart';
 part 'sticker_set.g.dart';

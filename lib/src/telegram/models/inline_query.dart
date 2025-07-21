@@ -1,7 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/telegram.dart'
-    show ChatType, InlineQuery, Location, User, WithUser;
+import 'package:televerse/telegram.dart';
 
 part 'inline_query.freezed.dart';
 part 'inline_query.g.dart';

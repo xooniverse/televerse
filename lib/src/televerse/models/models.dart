@@ -7,9 +7,11 @@ import 'dart:io' as io;
 import 'dart:typed_data';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 
 part 'chat_id.dart';
 part 'input_file.dart';
 part 'payload.dart';
 part 'televerse_exception.dart';
+part 'telegram_exception.dart';

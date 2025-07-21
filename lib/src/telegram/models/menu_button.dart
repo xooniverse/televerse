@@ -1,12 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/telegram.dart'
-    show
-        MenuButtonCommands,
-        MenuButtonDefault,
-        MenuButtonType,
-        MenuButtonWebApp,
-        WebAppInfo;
+import 'package:televerse/telegram.dart';
 
 part 'menu_button.freezed.dart';
 part 'menu_button.g.dart';

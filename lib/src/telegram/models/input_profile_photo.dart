@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/telegram.dart' show InputProfilePhotoType;
+import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart' show InputFileConverter, InputFile;
 part 'input_profile_photo.freezed.dart';
 part 'input_profile_photo.g.dart';

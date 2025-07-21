@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:televerse/telegram.dart' show PaidMediaType, PhotoSize, Video;
+import 'package:televerse/telegram.dart';
 
 part 'paid_media.freezed.dart';
 part 'paid_media.g.dart';

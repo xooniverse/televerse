@@ -1,18 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/telegram.dart'
-    show
-        InputContactMessageContent,
-        InputInvoiceMessageContent,
-        InputLocationMessageContent,
-        InputMessageContent,
-        InputMessageContentConverter,
-        InputTextMessageContent,
-        InputVenueMessageContent,
-        LabeledPrice,
-        LinkPreviewOptions,
-        MessageEntity,
-        ParseMode;
+import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart'
     show TeleverseException, TeleverseExceptionType;
 
@@ -27,7 +15,7 @@ part 'input_message_content.g.dart';
 /// - [InputVenueMessageContent]
 /// - [InputContactMessageContent]
 /// - [InputInvoiceMessageContent]
-@Freezed()
+@freezed
 sealed class InputMessageContent with _$InputMessageContent {
   /// Represents the content of a text message to be sent as the result of an
   /// inline query.

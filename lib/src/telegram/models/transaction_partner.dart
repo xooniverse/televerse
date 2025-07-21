@@ -1,15 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/telegram.dart'
-    show
-        AffiliateInfo,
-        Chat,
-        Gift,
-        PaidMedia,
-        RevenueWithdrawalState,
-        TransactionType,
-        User,
-        TransactionPartnerType;
+import 'package:televerse/telegram.dart';
 
 part 'transaction_partner.freezed.dart';
 part 'transaction_partner.g.dart';

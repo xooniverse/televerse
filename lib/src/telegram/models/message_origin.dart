@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/telegram.dart' show Chat, MessageOriginType, User;
+import 'package:televerse/telegram.dart';
 
 part 'message_origin.freezed.dart';
 part 'message_origin.g.dart';
