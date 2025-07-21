@@ -58,6 +58,7 @@ part 'src/televerse/models/multipart_helper.dart';
 part 'src/utils/date.dart';
 part 'src/utils/http.dart';
 part 'src/utils/utils.dart';
+part 'src/utils/call_options.dart';
 
 // Fetchers
 part 'src/televerse/fetch/fetch.dart';

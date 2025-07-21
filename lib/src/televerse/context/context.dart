@@ -46,9 +46,7 @@ class Context {
     required this.api,
     required this.me,
     required this.update,
-  }) {
-    api._addContext(this);
-  }
+  });
 
   /// Contains the matches of the regular expression. (Internal)
   List<RegExpMatch>? _matches;
@@ -116,18 +114,34 @@ class Context {
 
   /// Internal getter for the file id
   String? get _fileId {
-    if (__fileId != null) {
-      return __fileId;
-    }
-    __fileId = msg?.photo?.last.fileId ??
-        msg?.animation?.fileId ??
-        msg?.audio?.fileId ??
-        msg?.document?.fileId ??
-        msg?.video?.fileId ??
-        msg?.videoNote?.fileId ??
-        msg?.voice?.fileId ??
-        msg?.sticker?.fileId;
+    if (__fileId != null) return __fileId;
+
+    __fileId = _extractFileId();
     return __fileId;
+  }
+
+  String? _extractFileId() {
+    final message = msg;
+    if (message == null) return null;
+
+    // Use a more structured approach
+    final fileProviders = [
+      () => message.photo?.last.fileId,
+      () => message.animation?.fileId,
+      () => message.audio?.fileId,
+      () => message.document?.fileId,
+      () => message.video?.fileId,
+      () => message.videoNote?.fileId,
+      () => message.voice?.fileId,
+      () => message.sticker?.fileId,
+    ];
+
+    for (final provider in fileProviders) {
+      final fileId = provider();
+      if (fileId != null) return fileId;
+    }
+
+    return null;
   }
 
   /// The File ID if the incoming message contains a File of any kind.
@@ -285,6 +299,14 @@ class Context {
   /// Whether the incoming context has a callback query
   bool hasCallbackQuery() {
     return update.callbackQuery != null;
+  }
+
+  /// Clears middleware storage and cached values.
+  ///
+  /// Should be called when the context is no longer needed to prevent memory leaks.
+  void dispose() {
+    middlewareStorage.clear();
+    _transformers.clear();
   }
 }
 

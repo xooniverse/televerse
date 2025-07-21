@@ -26,12 +26,12 @@ class RawAPI {
   static _HttpClient _initializeHttpClient({
     LoggerOptions? loggerOptions,
     Duration? timeout,
-    Dio? dioInstance, // Add this parameter
+    Dio? dioInstance,
   }) {
     return _HttpClient(
       loggerOptions,
       timeout: timeout,
-      dioInstance: dioInstance, // Pass it through
+      dioInstance: dioInstance,
     );
   }
 
@@ -141,27 +141,6 @@ class RawAPI {
 
   /// Extracts a list of maps representing multipart files from a list of helper
   /// objects.
-  ///
-  /// This private method iterates through a list of `_MultipartHelper` objects
-  /// and extracts relevant information to create a list of maps suitable for
-  /// representing multipart files. It filters the input list to only include
-  /// elements where the `type` property is set to `InputFileType.bytes`. For
-  /// each matching element, it creates a map with the following structure:
-  ///
-  /// * Key: The `field` property value from the `_MultipartHelper` object.
-  /// * Value: A `MultipartFile` object created using the `file.getBytes()`
-  ///   method on the `_MultipartHelper` object's `file` property. The
-  ///   `filename` is set using the `name` property from the `_MultipartHelper`
-  ///   object.
-  ///
-  /// Parameters:
-  ///
-  /// * [list]: A list of `_MultipartHelper` objects.
-  ///
-  /// Returns:
-  ///
-  /// A new list of maps representing multipart files. The list will be empty if
-  /// no matching elements are found in the input list.
   List<Map<String, LocalFile>> _getFiles(List<_MultipartHelper> list) {
     List<Map<String, LocalFile>> files = list.where((el) {
       return el.type == InputFileType.bytes;
@@ -183,15 +162,6 @@ class RawAPI {
     _httpClient.close();
     _closed = true;
   }
-
-  /// (Internal) The Context object, which actually invokes the RawAPI method
-  ///
-  /// If the RawAPI access is being made from a Context object, that particular
-  /// Context object's reference.
-  Context? _context;
-
-  /// Attaches the context to the current RawAPI instance.
-  void _addContext(Context ctx) => _context = ctx;
 
   /// Transformers added to the RawAPI
   final List<Transformer> _transformers = [];
@@ -229,38 +199,6 @@ class RawAPI {
   /// first applies the transformer to the payload before invoking the previous
   /// API caller. This allows multiple transformers to be chained together,
   /// processing the payload sequentially.
-  ///
-  /// ## Parameters
-  /// - `prev` (`APICaller`): The previous API caller function.
-  /// - `transformer` (`Transformer`): The transformer to be applied to the
-  ///   payload.
-  ///
-  /// ## Returns
-  /// - `APICaller`: A new API caller function that applies the transformer to
-  ///   the payload before invoking the previous API caller.
-  ///
-  /// ## Example
-  /// Here's an example of how to use the `_combineTransformer` function:
-  ///
-  /// ```dart
-  /// final transformers = [transformer1, transformer2, transformer3];
-  /// APICaller combinedCaller = (method, payload) async {
-  ///   // Initial API call logic
-  ///   return {};
-  /// };
-  ///
-  /// for (final transformer in transformers) {
-  ///   combinedCaller = _combineTransformer(combinedCaller, transformer);
-  /// }
-  ///
-  /// // Now, combinedCaller applies all transformers sequentially
-  /// final result = await combinedCaller(method, payload);
-  /// ```
-  ///
-  /// In this example, the `_combineTransformer` function is used to combine
-  /// multiple transformers into a single API caller function, which processes
-  /// the payload through each transformer in sequence before making the API
-  /// call.
   APICaller _combineTransformer(APICaller prev, Transformer transformer) {
     apply(APIMethod method, [Payload? payload]) async =>
         await transformer.transform(prev, method, payload);
@@ -317,37 +255,17 @@ class RawAPI {
   /// transformers, and then makes the actual API call. Transformers can modify
   /// the payload before the call is made.
   ///
-  /// ## Parameters
-  /// - `method` (`APIMethod`): The API method to be called.
-  /// - `payload` (`Payload?`, optional): The payload for the API call, which
-  ///   can include parameters and files. If not provided, an empty `Payload` is
-  ///   created.
-  ///
-  /// ## Returns
-  /// - `Future<T>`: The result of the API call, cast to the expected type `T`.
-  ///
-  /// ## Example
-  /// ```dart
-  /// final payload = Payload.from({'chat_id': 123, 'text': 'Hello World'});
-  /// final result = await _makeApiCall<Map>(APIMethod.sendMessage, payload: payload);
-  /// ```
-  ///
-  /// This example demonstrates how to make an API call with a payload
-  /// containing parameters. The result of the API call is cast to a `String`.
-  ///
-  /// ## Implementation Details
-  /// - Constructs the API call URI.
-  /// - Removes null values from the payload parameters.
-  /// - Applies transformers in reverse order to the payload.
-  /// - Executes the API call with the transformed payload.
-  ///
   /// All API calls go through this method :)
   Future<T> _makeApiCall<T>(
     APIMethod method, {
     Payload? payload,
+    CallOptions? callOptions,
   }) async {
     APICaller caller = call;
-    final transformers = [..._transformers, ...(_context?._transformers ?? [])];
+    final transformers = [
+      ..._transformers,
+      ...(callOptions?.transformers ?? [])
+    ];
 
     // Combine transformers
     for (final transformer in transformers.reversed) {
@@ -364,10 +282,12 @@ class RawAPI {
   Future<Map<String, dynamic>> _makeApiJsonCall(
     APIMethod method, {
     Payload? payload,
+    CallOptions? callOptions,
   }) async =>
       await _makeApiCall<Map<String, dynamic>>(
         method,
         payload: payload,
+        callOptions: callOptions,
       );
 
   /// Make API call and expect `bool` result (Shorthand for `_makeApiCall`
@@ -375,10 +295,12 @@ class RawAPI {
   Future<bool> _makeApiBoolCall(
     APIMethod method, {
     Payload? payload,
+    CallOptions? callOptions,
   }) async =>
       await _makeApiCall<bool>(
         method,
         payload: payload,
+        callOptions: callOptions,
       );
 
   /// Use this method to receive incoming updates using long polling. An Array
@@ -390,6 +312,7 @@ class RawAPI {
     int? limit,
     int? timeout,
     List<String>? allowedUpdates,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "offset": offset,
@@ -401,6 +324,7 @@ class RawAPI {
     final response = await _makeApiCall<List>(
       APIMethod.getUpdates,
       payload: Payload.from(params),
+      callOptions: callOptions,
     );
 
     return (response)
@@ -426,6 +350,7 @@ class RawAPI {
     List<String>? allowedUpdates,
     bool? dropPendingUpdates,
     String? secretToken,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "url": url,
@@ -443,6 +368,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setWebhook,
       payload: Payload.from(params, files),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -451,13 +377,17 @@ class RawAPI {
   /// to getUpdates. Returns True on success.
   ///
   /// See more at https://core.telegram.org/bots/api#deletewebhook
-  Future<bool> deleteWebhook({bool? dropPendingUpdates}) async {
+  Future<bool> deleteWebhook({
+    bool? dropPendingUpdates,
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "drop_pending_updates": dropPendingUpdates,
     };
     final response = await _makeApiBoolCall(
       APIMethod.deleteWebhook,
       payload: Payload.from(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -467,9 +397,12 @@ class RawAPI {
   /// will return an object with the url field empty.
   ///
   /// See more at https://core.telegram.org/bots/api#getwebhookinfo
-  Future<WebhookInfo> getWebhookInfo() async {
+  Future<WebhookInfo> getWebhookInfo({
+    CallOptions? callOptions,
+  }) async {
     final response = await _makeApiJsonCall(
       APIMethod.getWebhookInfo,
+      callOptions: callOptions,
     );
     return WebhookInfo.fromJson(response);
   }
@@ -479,8 +412,13 @@ class RawAPI {
   /// object.
   ///
   /// See more at https://core.telegram.org/bots/api#getme
-  Future<User> getMe() async {
-    final response = await _makeApiJsonCall(APIMethod.getMe);
+  Future<User> getMe({
+    CallOptions? callOptions,
+  }) async {
+    final response = await _makeApiJsonCall(
+      APIMethod.getMe,
+      callOptions: callOptions,
+    );
     return User.fromJson(response);
   }
 
@@ -493,8 +431,13 @@ class RawAPI {
   /// all running bots.
   ///
   /// See more at https://core.telegram.org/bots/api#logout
-  Future<bool> logOut() async {
-    final response = await _makeApiBoolCall(APIMethod.logOut);
+  Future<bool> logOut({
+    CallOptions? callOptions,
+  }) async {
+    final response = await _makeApiBoolCall(
+      APIMethod.logOut,
+      callOptions: callOptions,
+    );
     return response;
   }
 
@@ -505,8 +448,13 @@ class RawAPI {
   /// launched. Returns True on success. Requires no parameters.
   ///
   /// See more at https://core.telegram.org/bots/api#close
-  Future<bool> close() async {
-    final response = await _makeApiBoolCall(APIMethod.close);
+  Future<bool> close({
+    CallOptions? callOptions,
+  }) async {
+    final response = await _makeApiBoolCall(
+      APIMethod.close,
+      callOptions: callOptions,
+    );
     return response;
   }
 
@@ -548,6 +496,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -568,6 +517,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendMessage,
       payload: Payload.from(params),
+      callOptions: callOptions,
     );
     return Message.fromJson(response);
   }
@@ -611,6 +561,7 @@ class RawAPI {
     int? messageThreadId,
     bool? protectContent,
     int? videoStartTimestamp,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -624,6 +575,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.forwardMessage,
       payload: Payload.from(params),
+      callOptions: callOptions,
     );
     return Message.fromJson(response);
   }
@@ -649,6 +601,7 @@ class RawAPI {
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
     int? videoStartTimestamp,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -669,6 +622,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.copyMessage,
       payload: Payload.from(params),
+      callOptions: callOptions,
     );
     return MessageId.fromJson(response);
   }
@@ -690,6 +644,7 @@ class RawAPI {
     String? messageEffectId,
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -713,6 +668,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendPhoto,
       payload: Payload.from(params, files),
+      callOptions: callOptions,
     );
     return Message.fromJson(response);
   }
@@ -742,6 +698,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -770,6 +727,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendAudio,
       payload: Payload.from(params, files),
+      callOptions: callOptions,
     );
 
     return Message.fromJson(response);
@@ -794,6 +752,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -820,6 +779,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendDocument,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
     return Message.fromJson(response);
   }
@@ -851,6 +811,7 @@ class RawAPI {
     bool? allowPaidBroadcast,
     InputFile? cover,
     int? startTimestamp,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -885,6 +846,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendVideo,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
     return Message.fromJson(response);
   }
@@ -913,6 +875,7 @@ class RawAPI {
     String? messageEffectId,
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -943,6 +906,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendAnimation,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
     return Message.fromJson(response);
   }
@@ -968,6 +932,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -992,6 +957,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendVoice,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
 
     return Message.fromJson(response);
@@ -1014,6 +980,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1040,6 +1007,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendVideoNote,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
     return Message.fromJson(response);
   }
@@ -1058,6 +1026,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     if (media.length > 10) {
       throw TeleverseException(
@@ -1113,6 +1082,7 @@ class RawAPI {
     final response = await _makeApiCall<List>(
       APIMethod.sendMediaGroup,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
 
     return (response).map((e) => Message.fromJson(e)).toList();
@@ -1136,6 +1106,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1157,6 +1128,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendLocation,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return Message.fromJson(response);
   }
@@ -1174,6 +1146,7 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     int? livePeriod,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "inline_message_id": inlineMessageId,
@@ -1191,6 +1164,7 @@ class RawAPI {
     final response = await _makeApiCall(
       APIMethod.editMessageLiveLocation,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     if (MessageOrBool == _Ignore) {
@@ -1223,6 +1197,7 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     int? livePeriod,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     return await _editMessageLiveLocation<Message>(
       chatId: chatId,
@@ -1235,6 +1210,7 @@ class RawAPI {
       replyMarkup: replyMarkup,
       livePeriod: livePeriod,
       businessConnectionId: businessConnectionId,
+      callOptions: callOptions,
     );
   }
 
@@ -1258,6 +1234,7 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     int? livePeriod,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     return await _editMessageLiveLocation<bool>(
       inlineMessageId: inlineMessageId,
@@ -1269,6 +1246,7 @@ class RawAPI {
       replyMarkup: replyMarkup,
       livePeriod: livePeriod,
       businessConnectionId: businessConnectionId,
+      callOptions: callOptions,
     );
   }
 
@@ -1279,6 +1257,7 @@ class RawAPI {
     String? inlineMessageId,
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId?.id,
@@ -1290,6 +1269,7 @@ class RawAPI {
     final response = await _makeApiCall(
       APIMethod.stopMessageLiveLocation,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     if (MessageOrBool == _Ignore) {
@@ -1316,12 +1296,14 @@ class RawAPI {
     int messageId, {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     return await _stopMessageLiveLocation<Message>(
       chatId: chatId,
       messageId: messageId,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      callOptions: callOptions,
     );
   }
 
@@ -1338,11 +1320,13 @@ class RawAPI {
     String inlineMessageId, {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     return await _stopMessageLiveLocation<bool>(
       inlineMessageId: inlineMessageId,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      callOptions: callOptions,
     );
   }
 
@@ -1366,6 +1350,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1389,6 +1374,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendVenue,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return Message.fromJson(response);
   }
@@ -1409,6 +1395,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1428,6 +1415,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendContact,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return Message.fromJson(response);
   }
@@ -1458,6 +1446,7 @@ class RawAPI {
     List<MessageEntity>? questionEntities,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     if (options.length < 2 || options.length > 10) {
       throw TeleverseException(
@@ -1542,6 +1531,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendPoll,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return Message.fromJson(response);
   }
@@ -1571,6 +1561,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1587,6 +1578,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendDice,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return Message.fromJson(response);
   }
@@ -1614,6 +1606,7 @@ class RawAPI {
     ChatAction action, {
     int? messageThreadId,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1624,6 +1617,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.sendChatAction,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -1634,6 +1628,7 @@ class RawAPI {
     int userId, {
     int? offset,
     int? limit,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -1643,6 +1638,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.getUserProfilePhotos,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return UserProfilePhotos.fromJson(response);
   }
@@ -1659,13 +1655,17 @@ class RawAPI {
   /// Note: This function may not preserve the original file name and MIME type.
   /// You should save the file's MIME type and name (if available) when the File
   /// object is received.
-  Future<File> getFile(String fileId) async {
+  Future<File> getFile(
+    String fileId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "file_id": fileId,
     };
     final response = await _makeApiJsonCall(
       APIMethod.getFile,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return File.fromJson(response);
   }
@@ -1680,6 +1680,7 @@ class RawAPI {
     int userId, {
     DateTime? untilDate,
     bool? revokeMessages,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1690,6 +1691,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.banChatMember,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -1706,6 +1708,7 @@ class RawAPI {
     ID chatId,
     int userId, {
     bool? onlyIfBanned,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1715,6 +1718,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.unbanChatMember,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -1738,6 +1742,7 @@ class RawAPI {
     ChatPermissions permissions, {
     DateTime? untilDate,
     bool? useIndependentChatPermissions,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1749,6 +1754,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.restrictChatMember,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -1775,6 +1781,7 @@ class RawAPI {
     bool? canPostStories,
     bool? canEditStories,
     bool? canDeleteStories,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1795,6 +1802,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.promoteChatMember,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -1804,8 +1812,9 @@ class RawAPI {
   Future<bool> setChatAdministratorCustomTitle(
     ID chatId,
     int userId,
-    String customTitle,
-  ) async {
+    String customTitle, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "user_id": userId,
@@ -1814,6 +1823,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setChatAdministratorCustomTitle,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -1825,8 +1835,9 @@ class RawAPI {
   /// the appropriate administrator rights. Returns True on success.
   Future<bool> banChatSenderChat(
     ID chatId,
-    int senderChatId,
-  ) async {
+    int senderChatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "sender_chat_id": senderChatId,
@@ -1834,6 +1845,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.banChatSenderChat,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -1845,8 +1857,9 @@ class RawAPI {
   /// the appropriate administrator rights. Returns True on success.
   Future<bool> unbanChatSenderChat(
     ID chatId,
-    int senderChatId,
-  ) async {
+    int senderChatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "sender_chat_id": senderChatId,
@@ -1854,6 +1867,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.unbanChatSenderChat,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -1875,6 +1889,7 @@ class RawAPI {
     ID chatId,
     ChatPermissions permissions, {
     bool? useIndependentChatPermissions,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -1884,6 +1899,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setChatPermissions,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -1900,14 +1916,16 @@ class RawAPI {
   /// to generate a new primary invite link replacing its previous one, use
   /// [exportChatInviteLink] again
   Future<String> exportChatInviteLink(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     final response = await _makeApiCall<String>(
       APIMethod.exportChatInviteLink,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -1923,6 +1941,7 @@ class RawAPI {
     DateTime? expireDate,
     int? memberLimit,
     bool? createsJoinRequest,
+    CallOptions? callOptions,
   }) async {
     if (expireDate != null && expireDate.isBefore(DateTime.now())) {
       throw TeleverseException(
@@ -1961,6 +1980,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.createChatInviteLink,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return ChatInviteLink.fromJson(response);
   }
@@ -1976,6 +1996,7 @@ class RawAPI {
     DateTime? expireDate,
     int? memberLimit,
     bool? createsJoinRequest,
+    CallOptions? callOptions,
   }) async {
     if (expireDate != null && expireDate.isBefore(DateTime.now())) {
       throw TeleverseException(
@@ -2015,6 +2036,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.editChatInviteLink,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return ChatInviteLink.fromJson(response);
   }
@@ -2026,8 +2048,9 @@ class RawAPI {
   /// ChatInviteLink object.
   Future<ChatInviteLink> revokeChatInviteLink(
     ID chatId,
-    String inviteLink,
-  ) async {
+    String inviteLink, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "invite_link": inviteLink,
@@ -2035,6 +2058,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.revokeChatInviteLink,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return ChatInviteLink.fromJson(response);
   }
@@ -2044,8 +2068,9 @@ class RawAPI {
   /// can_invite_users administrator right. Returns True on success.
   Future<bool> approveChatJoinRequest(
     ID chatId,
-    int userId,
-  ) async {
+    int userId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "user_id": userId,
@@ -2053,6 +2078,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.approveChatJoinRequest,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2062,8 +2088,9 @@ class RawAPI {
   /// can_invite_users administrator right. Returns True on success.
   Future<bool> declineChatJoinRequest(
     ID chatId,
-    int userId,
-  ) async {
+    int userId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "user_id": userId,
@@ -2071,6 +2098,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.declineChatJoinRequest,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2081,8 +2109,9 @@ class RawAPI {
   /// Returns True on success.
   Future<bool> setChatPhoto(
     ID chatId,
-    InputFile photo,
-  ) async {
+    InputFile photo, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "photo": photo.getValue(),
@@ -2092,6 +2121,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setChatPhoto,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2101,14 +2131,16 @@ class RawAPI {
   /// work and must have the appropriate administrator rights. Returns True on
   /// success.
   Future<bool> deleteChatPhoto(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     final response = await _makeApiBoolCall(
       APIMethod.deleteChatPhoto,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2119,8 +2151,9 @@ class RawAPI {
   /// success.
   Future<bool> setChatTitle(
     ID chatId,
-    String title,
-  ) async {
+    String title, {
+    CallOptions? callOptions,
+  }) async {
     if (title.length > 128) {
       throw TeleverseException(
         "Invalid Parameter [title]",
@@ -2136,6 +2169,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setChatTitle,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2144,9 +2178,10 @@ class RawAPI {
   /// channel. The bot must be an administrator in the chat for this to work and
   /// must have the appropriate administrator rights. Returns True on success.
   Future<bool> setChatDescription(
-    ID chatId,
+    ID chatId, {
     String? description,
-  ) async {
+    CallOptions? callOptions,
+  }) async {
     if (description != null && description.length > 255) {
       throw TeleverseException(
         "Invalid Parameter [description]",
@@ -2163,6 +2198,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setChatDescription,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2177,6 +2213,7 @@ class RawAPI {
     int messageId, {
     bool? disableNotification,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -2187,6 +2224,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.pinChatMessage,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2200,6 +2238,7 @@ class RawAPI {
     ID chatId,
     int messageId, {
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -2209,6 +2248,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.unpinChatMessage,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2219,14 +2259,16 @@ class RawAPI {
   /// in a supergroup or 'can_edit_messages' administrator right in a channel.
   /// Returns True on success.
   Future<bool> unpinAllChatMessages(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     final response = await _makeApiBoolCall(
       APIMethod.unpinAllChatMessages,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2234,14 +2276,16 @@ class RawAPI {
   /// Use this method for your bot to leave a group, supergroup or channel.
   /// Returns True on success.
   Future<bool> leaveChat(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     final response = await _makeApiBoolCall(
       APIMethod.leaveChat,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2250,14 +2294,16 @@ class RawAPI {
   /// of the user for one-on-one conversations, current username of a user,
   /// group or channel, etc.). Returns a Chat object on success.
   Future<ChatFullInfo> getChat(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     final response = await _makeApiJsonCall(
       APIMethod.getChat,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return ChatFullInfo.fromJson(response);
   }
@@ -2265,14 +2311,16 @@ class RawAPI {
   /// Use this method to get a list of administrators in a chat, which aren't
   /// bots. Returns an Array of ChatMember objects.
   Future<List<ChatMember>> getChatAdministrators(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     final response = await _makeApiCall<List>(
       APIMethod.getChatAdministrators,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response.map((e) => ChatMember.fromJson(e)).toList();
   }
@@ -2280,14 +2328,16 @@ class RawAPI {
   /// Use this method to get the number of members in a chat. Returns Int on
   /// success.
   Future<int> getChatMembersCount(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     int response = await _makeApiCall<int>(
       APIMethod.getChatMembersCount,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2297,8 +2347,9 @@ class RawAPI {
   /// Returns a ChatMember object on success.
   Future<ChatMember> getChatMember(
     ID chatId,
-    int userId,
-  ) async {
+    int userId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "user_id": userId,
@@ -2306,6 +2357,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.getChatMember,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return ChatMember.fromJson(response);
   }
@@ -2317,8 +2369,9 @@ class RawAPI {
   /// method. Returns True on success.
   Future<bool> setChatStickerSet(
     ID chatId,
-    String stickerSetName,
-  ) async {
+    String stickerSetName, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "sticker_set_name": stickerSetName,
@@ -2326,6 +2379,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setChatStickerSet,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2336,14 +2390,16 @@ class RawAPI {
   /// optionally returned in getChat requests to check if the bot can use this
   /// method. Returns True on success.
   Future<bool> deleteChatStickerSet(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     final response = await _makeApiBoolCall(
       APIMethod.deleteChatStickerSet,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2351,9 +2407,12 @@ class RawAPI {
   /// Use this method to get custom emoji stickers, which can be used as a forum
   /// topic icon by any user. Requires no parameters. Returns an Array of
   /// Sticker objects.
-  Future<List<Sticker>> getForumTopicIconStickers() async {
+  Future<List<Sticker>> getForumTopicIconStickers({
+    CallOptions? callOptions,
+  }) async {
     final response = await _makeApiCall<List>(
       APIMethod.getForumTopicIconStickers,
+      callOptions: callOptions,
     );
     return response.map((e) => Sticker.fromJson(e)).toList();
   }
@@ -2376,6 +2435,7 @@ class RawAPI {
     String name, {
     int? iconColor,
     String? iconCustomEmojiId,
+    CallOptions? callOptions,
   }) async {
     if (name.isEmpty || name.length > 128) {
       throw TeleverseException(
@@ -2394,6 +2454,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.createForumTopic,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return ForumTopic.fromJson(response);
   }
@@ -2407,6 +2468,7 @@ class RawAPI {
     int messageThreadId, {
     String? name,
     String? iconCustomEmojiId,
+    CallOptions? callOptions,
   }) async {
     if (name != null && (name.isEmpty || name.length > 128)) {
       throw TeleverseException(
@@ -2425,6 +2487,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.editForumTopic,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2435,8 +2498,9 @@ class RawAPI {
   /// topic. Returns True on success.
   Future<bool> closeForumTopic(
     ID chatId,
-    int messageThreadId,
-  ) async {
+    int messageThreadId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
@@ -2444,6 +2508,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.closeForumTopic,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2454,8 +2519,9 @@ class RawAPI {
   /// the topic. Returns True on success.
   Future<bool> reopenForumTopic(
     ID chatId,
-    int messageThreadId,
-  ) async {
+    int messageThreadId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
@@ -2463,6 +2529,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.reopenForumTopic,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2473,8 +2540,9 @@ class RawAPI {
   /// Returns True on success.
   Future<bool> deleteForumTopic(
     ID chatId,
-    int messageThreadId,
-  ) async {
+    int messageThreadId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
@@ -2482,6 +2550,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.deleteForumTopic,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2492,8 +2561,9 @@ class RawAPI {
   /// on success.
   Future<bool> unpinAllForumTopicMessages(
     ID chatId,
-    int messageThreadId,
-  ) async {
+    int messageThreadId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "message_thread_id": messageThreadId,
@@ -2501,6 +2571,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.unpinAllForumTopicMessages,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2511,8 +2582,9 @@ class RawAPI {
   /// success.
   Future<bool> editGeneralForumTopic(
     ID chatId,
-    String name,
-  ) async {
+    String name, {
+    CallOptions? callOptions,
+  }) async {
     if (name.isEmpty || name.length > 128) {
       throw TeleverseException(
         "Invalid Parameter [name]",
@@ -2528,6 +2600,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.editGeneralForumTopic,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2537,14 +2610,16 @@ class RawAPI {
   /// must have the can_manage_topics administrator rights. Returns True on
   /// success.
   Future<bool> closeGeneralForumTopic(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     final response = await _makeApiBoolCall(
       APIMethod.closeGeneralForumTopic,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2554,14 +2629,16 @@ class RawAPI {
   /// must have the can_manage_topics administrator rights. The topic will be
   /// automatically unhidden if it was hidden. Returns True on success.
   Future<bool> reopenGeneralForumTopic(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     final response = await _makeApiBoolCall(
       APIMethod.reopenGeneralForumTopic,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2571,14 +2648,16 @@ class RawAPI {
   /// have the can_manage_topics administrator rights. The topic will be
   /// automatically closed if it was open. Returns True on success.
   Future<bool> hideGeneralForumTopic(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     final response = await _makeApiBoolCall(
       APIMethod.hideGeneralForumTopic,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2587,14 +2666,16 @@ class RawAPI {
   /// The bot must be an administrator in the chat for this to work and must
   /// have the can_manage_topics administrator rights. Returns True on success.
   Future<bool> unhideGeneralForumTopic(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     final response = await _makeApiBoolCall(
       APIMethod.unhideGeneralForumTopic,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2608,6 +2689,7 @@ class RawAPI {
     bool showAlert = false,
     String? url,
     int cacheTime = 0,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "callback_query_id": callbackQueryId,
@@ -2619,6 +2701,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.answerCallbackQuery,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2629,6 +2712,7 @@ class RawAPI {
     List<BotCommand> commands, {
     BotCommandScope? scope,
     String? languageCode,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "commands": commands.map((e) => e.toJson()).toList(),
@@ -2638,6 +2722,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setMyCommands,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2648,6 +2733,7 @@ class RawAPI {
   Future<bool> deleteMyCommands({
     BotCommandScope? scope,
     String? languageCode,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "scope": scope?.toJson(),
@@ -2656,6 +2742,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.deleteMyCommands,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2666,6 +2753,7 @@ class RawAPI {
   Future<List<BotCommand>> getMyCommands({
     BotCommandScope? scope,
     String? languageCode,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "scope": scope?.toJson(),
@@ -2674,6 +2762,7 @@ class RawAPI {
     final response = await _makeApiCall<List>(
       APIMethod.getMyCommands,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response.map((e) => BotCommand.fromJson(e)).toList();
   }
@@ -2683,6 +2772,7 @@ class RawAPI {
   Future<bool> setChatMenuButton(
     MenuButton menuButton, {
     ID? chatId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId?.id,
@@ -2691,6 +2781,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setChatMenuButton,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2698,14 +2789,16 @@ class RawAPI {
   /// Use this method to get the current value of the bot's menu button in a
   /// private chat, or the default menu button. Returns MenuButton on success.
   Future<MenuButton> getChatMenuButton(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
     final response = await _makeApiJsonCall(
       APIMethod.getChatMenuButton,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return MenuButton.fromJson(response);
   }
@@ -2717,6 +2810,7 @@ class RawAPI {
   Future<bool> setMyDefaultAdministratorRights({
     ChatAdministratorRights? rights,
     bool? forChannels,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "rights": rights?.toJson(),
@@ -2725,6 +2819,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setMyDefaultAdministratorRights,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -2733,6 +2828,7 @@ class RawAPI {
   /// bot. Returns ChatAdministratorRights on success.
   Future<ChatAdministratorRights> getMyDefaultAdministratorRights({
     bool? forChannels,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "for_channels": forChannels,
@@ -2740,6 +2836,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.getMyDefaultAdministratorRights,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return ChatAdministratorRights.fromJson(response);
   }
@@ -2755,6 +2852,7 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     LinkPreviewOptions? linkPreviewOptions,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "inline_message_id": inlineMessageId,
@@ -2771,6 +2869,7 @@ class RawAPI {
     final response = await _makeApiCall(
       APIMethod.editMessageText,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     if (MessageOrBool == _Ignore) {
@@ -2800,6 +2899,7 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     LinkPreviewOptions? linkPreviewOptions,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     return await _editMessageText<Message>(
       chatId: chatId,
@@ -2810,6 +2910,7 @@ class RawAPI {
       replyMarkup: replyMarkup,
       linkPreviewOptions: linkPreviewOptions,
       businessConnectionId: businessConnectionId,
+      callOptions: callOptions,
     );
   }
 
@@ -2829,6 +2930,7 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     LinkPreviewOptions? linkPreviewOptions,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     return await _editMessageText<bool>(
       text: text,
@@ -2838,6 +2940,7 @@ class RawAPI {
       replyMarkup: replyMarkup,
       linkPreviewOptions: linkPreviewOptions,
       businessConnectionId: businessConnectionId,
+      callOptions: callOptions,
     );
   }
 
@@ -2852,6 +2955,7 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     bool? showCaptionAboveMedia,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "inline_message_id": inlineMessageId,
@@ -2867,6 +2971,7 @@ class RawAPI {
     final response = await _makeApiCall(
       APIMethod.editMessageCaption,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     if (MessageOrBool == _Ignore) {
@@ -2899,6 +3004,7 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     bool? showCaptionAboveMedia,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     return await _editMessageCaption<Message>(
       chatId: chatId,
@@ -2909,6 +3015,7 @@ class RawAPI {
       replyMarkup: replyMarkup,
       showCaptionAboveMedia: showCaptionAboveMedia,
       businessConnectionId: businessConnectionId,
+      callOptions: callOptions,
     );
   }
 
@@ -2928,6 +3035,7 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
     bool? showCaptionAboveMedia,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     return await _editMessageCaption<bool>(
       inlineMessageId: inlineMessageId,
@@ -2937,6 +3045,7 @@ class RawAPI {
       replyMarkup: replyMarkup,
       showCaptionAboveMedia: showCaptionAboveMedia,
       businessConnectionId: businessConnectionId,
+      callOptions: callOptions,
     );
   }
 
@@ -2948,6 +3057,7 @@ class RawAPI {
     String? inlineMessageId,
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId?.id,
@@ -2965,6 +3075,7 @@ class RawAPI {
     final response = await _makeApiCall(
       APIMethod.editMessageMedia,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
 
     if (MessageOrBool == _Ignore) {
@@ -3000,6 +3111,7 @@ class RawAPI {
     InputMedia media, {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     return await _editMessageMedia<Message>(
       media: media,
@@ -3007,6 +3119,7 @@ class RawAPI {
       messageId: messageId,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      callOptions: callOptions,
     );
   }
 
@@ -3022,12 +3135,14 @@ class RawAPI {
     InputMedia media, {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     return await _editMessageMedia<bool>(
       media: media,
       inlineMessageId: inlineMessageId,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      callOptions: callOptions,
     );
   }
 
@@ -3038,6 +3153,7 @@ class RawAPI {
     String? inlineMessageId,
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId?.id,
@@ -3049,6 +3165,7 @@ class RawAPI {
     final response = await _makeApiCall(
       APIMethod.editMessageReplyMarkup,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     if (MessageOrBool == _Ignore) {
@@ -3079,12 +3196,14 @@ class RawAPI {
     int messageId, {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     return await _editMessageReplyMarkup<Message>(
       chatId: chatId,
       messageId: messageId,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      callOptions: callOptions,
     );
   }
 
@@ -3101,11 +3220,13 @@ class RawAPI {
     String inlineMessageId, {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     return await _editMessageReplyMarkup<bool>(
       inlineMessageId: inlineMessageId,
       replyMarkup: replyMarkup,
       businessConnectionId: businessConnectionId,
+      callOptions: callOptions,
     );
   }
 
@@ -3116,6 +3237,7 @@ class RawAPI {
     int messageId, {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -3126,6 +3248,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.stopPoll,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return Poll.fromJson(response);
   }
@@ -3150,8 +3273,9 @@ class RawAPI {
   /// Returns [bool] on success.
   Future<bool> deleteMessage(
     ID chatId,
-    int messageId,
-  ) async {
+    int messageId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "message_id": messageId,
@@ -3159,6 +3283,7 @@ class RawAPI {
     final response = _makeApiBoolCall(
       APIMethod.deleteMessage,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -3181,6 +3306,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -3203,6 +3329,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendSticker,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
 
     return Message.fromJson(response);
@@ -3211,14 +3338,16 @@ class RawAPI {
   /// Use this method to get a sticker set. On success, a StickerSet object is
   /// returned.
   Future<StickerSet> getStickerSet(
-    String name,
-  ) async {
+    String name, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "name": name,
     };
     final response = await _makeApiJsonCall(
       APIMethod.getStickerSet,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return StickerSet.fromJson(response);
   }
@@ -3226,14 +3355,16 @@ class RawAPI {
   /// Use this method to get information about custom emoji stickers by their
   /// identifiers. Returns an Array of Sticker objects.
   Future<List<Sticker>> getCustomEmojiStickers(
-    List<String> customEmojiIds,
-  ) async {
+    List<String> customEmojiIds, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "custom_emoji_ids": customEmojiIds,
     };
     List<dynamic> response = await _makeApiCall<List>(
       APIMethod.getCustomEmojiStickers,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response.map((e) => Sticker.fromJson(e)).toList();
   }
@@ -3245,6 +3376,7 @@ class RawAPI {
     int userId,
     InputFile sticker,
     InputStickerFormat stickerFormat,
+    CallOptions? callOptions,
   ) async {
     final params = {
       "user_id": userId,
@@ -3258,10 +3390,8 @@ class RawAPI {
     if (files.isNotEmpty) {
       final response = await _makeApiJsonCall(
         APIMethod.uploadStickerFile,
-        payload: Payload(
-          params,
-          files,
-        ),
+        payload: Payload(params, files),
+        callOptions: callOptions,
       );
       return File.fromJson(response);
     } else {
@@ -3283,6 +3413,7 @@ class RawAPI {
     int userId,
     String name, {
     required InputSticker sticker,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -3297,6 +3428,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.addStickerToSet,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
 
     return response;
@@ -3307,7 +3439,11 @@ class RawAPI {
   ///
   /// [sticker] File identifier of the sticker. [position] New sticker position
   /// in the set, zero-based.
-  Future<bool> setStickerPositionInSet(String sticker, int position) async {
+  Future<bool> setStickerPositionInSet(
+    String sticker,
+    int position, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "sticker": sticker,
       "position": position,
@@ -3315,13 +3451,17 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setStickerPositionInSet,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
 
   /// Use this method to delete a sticker from a set created by the bot. Returns
   /// True on success.
-  Future<bool> deleteStickerFromSet(String sticker) async {
+  Future<bool> deleteStickerFromSet(
+    String sticker, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "sticker": sticker,
     };
@@ -3329,6 +3469,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.deleteStickerFromSet,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -3342,6 +3483,7 @@ class RawAPI {
     int userId, {
     InputFile? thumbnail,
     required InputStickerFormat format,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "name": name,
@@ -3361,6 +3503,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setStickerSetThumbnail,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
 
     return response;
@@ -3378,6 +3521,7 @@ class RawAPI {
     bool? isPersonal,
     String? nextOffset,
     InlineQueryResultsButton? button,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "inline_query_id": inlineQueryId,
@@ -3391,6 +3535,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.answerInlineQuery,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -3401,8 +3546,9 @@ class RawAPI {
   /// the query originated. On success, a SentWebAppMessage object is returned.
   Future<SentWebAppMessage> answerWebAppQuery(
     String webAppQueryId,
-    InlineQueryResult result,
-  ) async {
+    InlineQueryResult result, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "web_app_query_id": webAppQueryId,
       "result": result.toJson(),
@@ -3411,6 +3557,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.answerWebAppQuery,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return SentWebAppMessage.fromJson(response);
   }
@@ -3470,6 +3617,7 @@ class RawAPI {
     ReplyParameters? replyParameters,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -3506,6 +3654,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendInvoice,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return Message.fromJson(response);
@@ -3556,6 +3705,7 @@ class RawAPI {
     bool? isFlexible,
     int? subscriptionPeriod,
     String? businessConnectionId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "title": title,
@@ -3585,6 +3735,7 @@ class RawAPI {
     final response = await _makeApiCall<String>(
       APIMethod.createInvoiceLink,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -3611,6 +3762,7 @@ class RawAPI {
     bool ok, {
     List<ShippingOption>? shippingOptions,
     String? errorMessage,
+    CallOptions? callOptions,
   }) async {
     if (ok && shippingOptions == null) {
       throw TeleverseException(
@@ -3638,6 +3790,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.answerShippingQuery,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -3664,6 +3817,7 @@ class RawAPI {
     String preCheckoutQueryId,
     bool ok, {
     String? errorMessage,
+    CallOptions? callOptions,
   }) async {
     if (!ok && errorMessage == null) {
       throw TeleverseException(
@@ -3682,6 +3836,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.answerPreCheckoutQuery,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -3698,8 +3853,9 @@ class RawAPI {
   /// to correct the issues.
   Future<bool> setPassportDataErrors(
     int userId,
-    List<PassportElementError> errors,
-  ) async {
+    List<PassportElementError> errors, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "user_id": userId,
       "errors": errors.map((e) => e.toJson()).toList(),
@@ -3708,6 +3864,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setPassportDataErrors,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -3725,6 +3882,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -3742,6 +3900,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.sendGame,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return Message.fromJson(response);
@@ -3762,6 +3921,7 @@ class RawAPI {
     int messageId, {
     bool? force,
     bool? disableEditMessage,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -3775,6 +3935,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.setGameScore,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return Message.fromJson(response);
@@ -3795,6 +3956,7 @@ class RawAPI {
     String inlineMessageId, {
     bool? force,
     bool? disableEditMessage,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -3807,6 +3969,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setInlineGameScore,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -3820,6 +3983,7 @@ class RawAPI {
     ID? chatId,
     int? messageId,
     String? inlineMessageId,
+    CallOptions? callOptions,
   }) async {
     if (chatId == null && messageId == null && inlineMessageId == null) {
       throw TeleverseException(
@@ -3840,6 +4004,7 @@ class RawAPI {
     final response = await _makeApiCall<List>(
       APIMethod.getGameHighScores,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response.map((e) => GameHighScore.fromJson(e)).toList();
@@ -3857,6 +4022,7 @@ class RawAPI {
   Future<bool> setMyDescription({
     String? description,
     String? languageCode,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "description": description,
@@ -3866,6 +4032,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setMyDescription,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -3875,6 +4042,7 @@ class RawAPI {
   /// language. Returns [BotDescription] on success.
   Future<BotDescription> getMyDescription({
     String? languageCode,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "language_code": languageCode,
@@ -3883,6 +4051,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.getMyDescription,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return BotDescription.fromJson(response);
@@ -3894,6 +4063,7 @@ class RawAPI {
   Future<bool> setMyShortDescription({
     String? shortDescription,
     String? languageCode,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "short_description": shortDescription,
@@ -3903,6 +4073,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setMyShortDescription,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -3912,6 +4083,7 @@ class RawAPI {
   /// user language. Returns [BotShortDescription] on success.
   Future<BotShortDescription> getMyShortDescription({
     String? languageCode,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "language_code": languageCode,
@@ -3920,6 +4092,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.getMyShortDescription,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return BotShortDescription.fromJson(response);
@@ -3949,6 +4122,7 @@ class RawAPI {
     required List<InputSticker> stickers,
     StickerType stickerType = StickerType.regular,
     bool needsRepainting = false,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -3974,6 +4148,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.createNewStickerSet,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
 
     return response;
@@ -3990,6 +4165,7 @@ class RawAPI {
   Future<bool> setCustomEmojiStickerSetThumbnail(
     String name, {
     String? customEmojiId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "name": name,
@@ -3999,6 +4175,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setCustomEmojiStickerSetThumbnail,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4012,8 +4189,9 @@ class RawAPI {
   /// - [title] - New sticker set title; 1-64 characters
   Future<bool> setStickerSetTitle(
     String name,
-    String title,
-  ) async {
+    String title, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "name": name,
       "title": title,
@@ -4022,6 +4200,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setStickerSetTitle,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4033,8 +4212,9 @@ class RawAPI {
   /// Parameters:
   /// - [name] - Sticker set name
   Future<bool> deleteStickerSet(
-    String name,
-  ) async {
+    String name, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "name": name,
     };
@@ -4042,6 +4222,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.deleteStickerSet,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4057,8 +4238,9 @@ class RawAPI {
   ///   sticker
   Future<bool> setStickerEmojiList(
     String sticker,
-    List<String> emojiList,
-  ) async {
+    List<String> emojiList, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "sticker": sticker,
       "emoji_list": emojiList,
@@ -4067,6 +4249,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setStickerEmojiList,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4082,8 +4265,9 @@ class RawAPI {
   ///   sticker with total length of up to 64 characters
   Future<bool> setStickerKeywords(
     String sticker,
-    List<String> keywords,
-  ) async {
+    List<String> keywords, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "sticker": sticker,
       "keywords": keywords,
@@ -4092,6 +4276,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setStickerKeywords,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4106,8 +4291,9 @@ class RawAPI {
   /// - [maskPosition] - New mask position
   Future<bool> setStickerMaskPosition(
     String sticker,
-    MaskPosition maskPosition,
-  ) async {
+    MaskPosition maskPosition, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "sticker": sticker,
       "mask_position": maskPosition.toJson(),
@@ -4116,6 +4302,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setStickerMaskPosition,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4127,6 +4314,7 @@ class RawAPI {
   Future<bool> setMyName({
     String? name,
     String? languageCode,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "name": name,
@@ -4136,6 +4324,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setMyName,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -4144,6 +4333,7 @@ class RawAPI {
   /// Returns [BotName] on success.
   Future<BotName> getMyName({
     String? languageCode,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "language_code": languageCode,
@@ -4152,6 +4342,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.getMyName,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return BotName.fromJson(response);
@@ -4162,8 +4353,9 @@ class RawAPI {
   /// must have the can_pin_messages administrator right in the supergroup.
   /// Returns True on success.
   Future<bool> unpinAllGeneralForumTopicMessages(
-    ID chatId,
-  ) async {
+    ID chatId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
     };
@@ -4171,6 +4363,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.unpinAllGeneralForumTopicMessages,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4186,6 +4379,7 @@ class RawAPI {
     int messageId, {
     List<ReactionType>? reaction,
     bool? isBig,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -4197,6 +4391,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setMessageReaction,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4212,8 +4407,9 @@ class RawAPI {
   /// can be deleted
   Future<bool> deleteMessages(
     ID chatId,
-    List<int> messageIds,
-  ) async {
+    List<int> messageIds, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "message_ids": messageIds,
@@ -4222,6 +4418,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.deleteMessages,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4250,6 +4447,7 @@ class RawAPI {
     List<int> messageIds, {
     bool? disableNotification,
     bool? protectContent,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -4263,6 +4461,7 @@ class RawAPI {
     final response = await _makeApiCall<List>(
       APIMethod.forwardMessages,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response.map((e) => MessageId.fromJson(e)).toList();
@@ -4298,6 +4497,7 @@ class RawAPI {
     bool? removeCaption,
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -4314,6 +4514,7 @@ class RawAPI {
     final response = await _makeApiCall<List>(
       APIMethod.copyMessages,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response.map((e) => MessageId.fromJson(e)).toList();
@@ -4328,8 +4529,9 @@ class RawAPI {
   /// [ChannelID]) [userId] Unique identifier of the target user
   Future<UserChatBoosts> getUserChatBoosts(
     ID chatId,
-    int userId,
-  ) async {
+    int userId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "chat_id": chatId.id,
       "user_id": userId,
@@ -4338,6 +4540,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.getUserChatBoosts,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return UserChatBoosts.fromJson(response);
@@ -4346,14 +4549,16 @@ class RawAPI {
   /// Use this method to get information about the connection of the bot with a
   /// business account. Returns a [BusinessConnection] object on success.
   Future<BusinessConnection> getBusinessConnection(
-    String businessConnectionId,
-  ) async {
+    String businessConnectionId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "business_connection_id": businessConnectionId,
     };
     final response = await _makeApiJsonCall(
       APIMethod.getBusinessConnection,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return BusinessConnection.fromJson(response);
@@ -4367,6 +4572,7 @@ class RawAPI {
     required String name,
     required String oldSticker,
     required InputSticker sticker,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -4382,6 +4588,7 @@ class RawAPI {
     final response = _makeApiBoolCall(
       APIMethod.replaceStickerInSet,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4398,6 +4605,7 @@ class RawAPI {
   Future<bool> refundStarPayment({
     required int userId,
     required String telegramPaymentChargeId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -4407,6 +4615,7 @@ class RawAPI {
     final response = _makeApiBoolCall(
       APIMethod.refundStarPayment,
       payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -4418,6 +4627,7 @@ class RawAPI {
   Future<StarTransactions> getStarTransactions({
     int? offset,
     int? limit = 100,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "offset": offset,
@@ -4427,6 +4637,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.getStarTransactions,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return StarTransactions.fromJson(response);
@@ -4449,6 +4660,7 @@ class RawAPI {
     String? businessConnectionId,
     String? payload,
     bool? allowPaidBroadcast,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -4481,6 +4693,7 @@ class RawAPI {
     final response = await _makeApiCall<Map<String, dynamic>>(
       APIMethod.sendPaidMedia,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
 
     return Message.fromJson(response);
@@ -4496,6 +4709,7 @@ class RawAPI {
     String? name,
     required int subscriptionPeriod,
     required int subscriptionPrice,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -4507,6 +4721,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.createChatSubscriptionInviteLink,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return ChatInviteLink.fromJson(response);
@@ -4519,6 +4734,7 @@ class RawAPI {
     required ID chatId,
     required String inviteLink,
     String? name,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -4529,6 +4745,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.editChatSubscriptionInviteLink,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return ChatInviteLink.fromJson(response);
@@ -4550,6 +4767,7 @@ class RawAPI {
     required int userId,
     required String telegramPaymentChargeId,
     required bool isCanceled,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -4560,6 +4778,7 @@ class RawAPI {
     return await _makeApiBoolCall(
       APIMethod.editUserStarSubscription,
       payload: Payload(params),
+      callOptions: callOptions,
     );
   }
 
@@ -4577,6 +4796,7 @@ class RawAPI {
     required int userId,
     String? emojiStatusCustomEmojiId,
     int? emojiStatusExpirationDate,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -4587,6 +4807,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setUserEmojiStatus,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response == true;
@@ -4615,6 +4836,7 @@ class RawAPI {
     bool? allowBotChats,
     bool? allowGroupChats,
     bool? allowChannelChats,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -4628,6 +4850,7 @@ class RawAPI {
     final response = await _makeApiJsonCall(
       APIMethod.savePreparedInlineMessage,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return PreparedInlineMessage.fromJson(response);
@@ -4635,9 +4858,12 @@ class RawAPI {
 
   /// Returns the list of gifts that can be sent by the bot to users. Requires
   /// no parameters. Returns a [Gifts] object.
-  Future<Gifts> getAvailableGifts() async {
+  Future<Gifts> getAvailableGifts({
+    CallOptions? callOptions,
+  }) async {
     final response = await _makeApiJsonCall(
       APIMethod.getAvailableGifts,
+      callOptions: callOptions,
     );
 
     return Gifts.fromJson(response);
@@ -4671,6 +4897,7 @@ class RawAPI {
     ParseMode? textParseMode,
     List<MessageEntity>? textEntities,
     bool? payForUpgrade,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -4685,6 +4912,7 @@ class RawAPI {
     return await _makeApiBoolCall(
       APIMethod.sendGift,
       payload: Payload(params),
+      callOptions: callOptions,
     );
   }
 
@@ -4699,6 +4927,7 @@ class RawAPI {
   Future<bool> verifyUser({
     required int userId,
     String? customDescription,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -4708,6 +4937,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.verifyUser,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4725,6 +4955,7 @@ class RawAPI {
   Future<bool> verifyChat({
     required ID chatId,
     String? customDescription,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -4734,6 +4965,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.verifyChat,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4748,6 +4980,7 @@ class RawAPI {
   /// - [userId] - Unique identifier of the target user
   Future<bool> removeUserVerification({
     required int userId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "user_id": userId,
@@ -4756,6 +4989,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.removeUserVerification,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4771,6 +5005,7 @@ class RawAPI {
   ///   target channel (in the format @channelusername)
   Future<bool> removeChatVerification({
     required ID chatId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "chat_id": chatId.id,
@@ -4779,6 +5014,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.removeChatVerification,
       payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4791,6 +5027,7 @@ class RawAPI {
     required String businessConnectionId,
     required ID chatId,
     required int messageId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "business_connection_id": businessConnectionId,
@@ -4799,7 +5036,8 @@ class RawAPI {
     };
     final response = await _makeApiBoolCall(
       APIMethod.readBusinessMessage,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -4814,6 +5052,7 @@ class RawAPI {
   Future<bool> deleteBusinessMessages({
     required String businessConnectionId,
     required List<int> messageIds,
+    CallOptions? callOptions,
   }) async {
     if (messageIds.isEmpty || messageIds.length > 100) {
       throw TeleverseException(
@@ -4830,7 +5069,8 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.deleteBusinessMessages,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4845,6 +5085,7 @@ class RawAPI {
     required String businessConnectionId,
     required String firstName,
     String? lastName,
+    CallOptions? callOptions,
   }) async {
     if (firstName.isEmpty || firstName.length > 64) {
       throw TeleverseException(
@@ -4870,7 +5111,8 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setBusinessAccountName,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4884,6 +5126,7 @@ class RawAPI {
   Future<bool> setBusinessAccountUsername({
     required String businessConnectionId,
     String? username,
+    CallOptions? callOptions,
   }) async {
     if (username != null && username.length > 32) {
       throw TeleverseException(
@@ -4900,7 +5143,8 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setBusinessAccountUsername,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4914,6 +5158,7 @@ class RawAPI {
   Future<bool> setBusinessAccountBio({
     required String businessConnectionId,
     String? bio,
+    CallOptions? callOptions,
   }) async {
     if (bio != null && bio.length > 140) {
       throw TeleverseException(
@@ -4930,7 +5175,8 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setBusinessAccountBio,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4943,6 +5189,7 @@ class RawAPI {
     String businessConnectionId,
     InputProfilePhoto photo, {
     bool? isPublic,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "business_connection_id": businessConnectionId,
@@ -4955,6 +5202,7 @@ class RawAPI {
     final response = await _makeApiBoolCall(
       APIMethod.setBusinessAccountProfilePhoto,
       payload: Payload(params, files),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4966,6 +5214,7 @@ class RawAPI {
   Future<bool> removeBusinessAccountProfilePhoto(
     String businessConnectionId, {
     bool? isPublic,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "business_connection_id": businessConnectionId,
@@ -4974,7 +5223,8 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.removeBusinessAccountProfilePhoto,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -4987,8 +5237,9 @@ class RawAPI {
   Future<bool> setBusinessAccountGiftSettings(
     String businessConnectionId,
     bool showGiftButton,
-    AcceptedGiftTypes acceptedGiftTypes,
-  ) async {
+    AcceptedGiftTypes acceptedGiftTypes, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "business_connection_id": businessConnectionId,
       "show_gift_button": showGiftButton,
@@ -4997,7 +5248,8 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.setBusinessAccountGiftSettings,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -5010,15 +5262,17 @@ class RawAPI {
   ///
   /// - [businessConnectionId]: Unique identifier of the business connection
   Future<StarAmount> getBusinessAccountStarBalance(
-    String businessConnectionId,
-  ) async {
+    String businessConnectionId, {
+    CallOptions? callOptions,
+  }) async {
     final params = {
       "business_connection_id": businessConnectionId,
     };
 
     final response = await _makeApiJsonCall(
       APIMethod.getBusinessAccountStarBalance,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return StarAmount.fromJson(response);
@@ -5034,8 +5288,9 @@ class RawAPI {
   /// Returns *True* on success.
   Future<bool> transferBusinessAccountStars(
     String businessConnectionId,
-    int starCount,
-  ) async {
+    int starCount, {
+    CallOptions? callOptions,
+  }) async {
     if (starCount < 1 || starCount > 10000) {
       throw TeleverseException(
         "Invalid Parameter in [transferBusinessAccountStars]",
@@ -5051,7 +5306,8 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.transferBusinessAccountStars,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -5071,6 +5327,7 @@ class RawAPI {
     bool? sortByPrice,
     String? offset,
     int? limit,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "business_connection_id": businessConnectionId,
@@ -5086,7 +5343,8 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.getBusinessAccountGifts,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return OwnedGifts.fromJson(response);
@@ -5103,6 +5361,7 @@ class RawAPI {
   Future<bool> convertGiftToStars({
     required String businessConnectionId,
     required String ownedGiftId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "business_connection_id": businessConnectionId,
@@ -5111,7 +5370,8 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.convertGiftToStars,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -5127,6 +5387,7 @@ class RawAPI {
     String ownedGiftId, {
     bool? keepOriginalDetails,
     int? starCount,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "business_connection_id": businessConnectionId,
@@ -5137,7 +5398,8 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.upgradeGift,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -5151,6 +5413,7 @@ class RawAPI {
     String ownedGiftId,
     int newOwnerChatId, {
     int? starCount,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "business_connection_id": businessConnectionId,
@@ -5161,7 +5424,8 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.transferGift,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
     return response;
   }
@@ -5181,6 +5445,7 @@ class RawAPI {
     List<StoryArea>? areas,
     bool? postToChatPage,
     bool? protectContent,
+    CallOptions? callOptions,
   }) async {
     // First validate active_period is one of the allowed values
     final allowedPeriods = [6 * 3600, 12 * 3600, 86400, 2 * 86400];
@@ -5209,12 +5474,12 @@ class RawAPI {
     List<_MultipartHelper> helpers = [_MultipartHelper(content.file)];
 
     final files = _getFiles(helpers);
-    final payload =
-        files.isEmpty ? Payload.from(params) : Payload(params, files);
+    final payload = files.isEmpty ? Payload(params) : Payload(params, files);
 
     final response = await _makeApiJsonCall(
       APIMethod.postStory,
       payload: payload,
+      callOptions: callOptions,
     );
 
     return Story.fromJson(response);
@@ -5232,6 +5497,7 @@ class RawAPI {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     List<StoryArea>? areas,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "business_connection_id": businessConnectionId,
@@ -5245,7 +5511,8 @@ class RawAPI {
 
     final response = await _makeApiJsonCall(
       APIMethod.editStory,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return Story.fromJson(response);
@@ -5261,6 +5528,7 @@ class RawAPI {
   Future<bool> deleteStory({
     required String businessConnectionId,
     required int storyId,
+    CallOptions? callOptions,
   }) async {
     final params = {
       "business_connection_id": businessConnectionId,
@@ -5269,7 +5537,8 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.deleteStory,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;
@@ -5308,41 +5577,8 @@ class RawAPI {
     String? text,
     ParseMode? parseMode,
     List<MessageEntity>? entities,
+    CallOptions? callOptions,
   }) async {
-    // Validate monthCount
-    if (![3, 6, 12].contains(monthCount)) {
-      throw TeleverseException(
-        "Invalid Parameter in [giftPremiumSubscription]",
-        description: "monthCount must be one of 3, 6, or 12.",
-        type: TeleverseExceptionType.invalidParameter,
-      );
-    }
-
-    // Validate starCount based on monthCount
-    final requiredStars = {
-      3: 1000,
-      6: 1500,
-      12: 2500,
-    };
-
-    if (starCount != requiredStars[monthCount]) {
-      throw TeleverseException(
-        "Invalid Parameter in [giftPremiumSubscription]",
-        description:
-            "starCount must be ${requiredStars[monthCount]} for $monthCount months.",
-        type: TeleverseExceptionType.invalidParameter,
-      );
-    }
-
-    // Validate text length
-    if (text != null && text.length > 128) {
-      throw TeleverseException(
-        "Invalid Parameter in [giftPremiumSubscription]",
-        description: "text must be 0-128 characters.",
-        type: TeleverseExceptionType.invalidParameter,
-      );
-    }
-
     final params = {
       "user_id": userId,
       "month_count": monthCount,
@@ -5354,7 +5590,8 @@ class RawAPI {
 
     final response = await _makeApiBoolCall(
       APIMethod.giftPremiumSubscription,
-      payload: Payload.from(params),
+      payload: Payload(params),
+      callOptions: callOptions,
     );
 
     return response;

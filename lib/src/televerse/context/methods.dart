@@ -17,23 +17,20 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendMessage);
-    return api.sendMessage(
-      id,
-      text,
-      messageThreadId: _threadId(messageThreadId),
-      parseMode: parseMode,
-      entities: entities,
-      linkPreviewOptions: linkPreviewOptions,
-      disableNotification: disableNotification,
-      protectContent: protectContent,
-      replyParameters: replyParameters,
-      replyMarkup: replyMarkup,
-      businessConnectionId: businessConnectionId,
-      messageEffectId: messageEffectId,
-      allowPaidBroadcast: allowPaidBroadcast,
-    );
+    return api.sendMessage(id, text,
+        messageThreadId: _threadId(messageThreadId),
+        parseMode: parseMode,
+        entities: entities,
+        linkPreviewOptions: linkPreviewOptions,
+        disableNotification: disableNotification,
+        protectContent: protectContent,
+        replyParameters: replyParameters,
+        replyMarkup: replyMarkup,
+        businessConnectionId: businessConnectionId,
+        messageEffectId: messageEffectId,
+        allowPaidBroadcast: allowPaidBroadcast,
+        callOptions: CallOptions(transformers: _transformers));
   }
 
   /// Reply a Photo to the user.
@@ -61,7 +58,6 @@ extension ContextAwareMethods on Context {
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendPhoto);
     return api.sendPhoto(
       id,
@@ -103,7 +99,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendAudio);
     return api.sendAudio(
       id,
@@ -146,7 +141,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendDocument);
     return api.sendDocument(
       id,
@@ -192,7 +186,6 @@ extension ContextAwareMethods on Context {
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendVideo);
     return api.sendVideo(
       id,
@@ -236,7 +229,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendVideoNote);
     return api.sendVideoNote(
       id,
@@ -274,7 +266,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendVoice);
     return api.sendVoice(
       id,
@@ -308,7 +299,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendMediaGroup);
     return api.sendMediaGroup(
       id,
@@ -342,7 +332,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendLocation);
     return api.sendLocation(
       id,
@@ -384,7 +373,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendVenue);
     return api.sendVenue(
       id,
@@ -424,7 +412,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendContact);
     return api.sendContact(
       id,
@@ -468,7 +455,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendPoll);
     return api.sendPoll(
       id,
@@ -509,7 +495,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendDice);
     return api.sendDice(
       id,
@@ -533,7 +518,6 @@ extension ContextAwareMethods on Context {
     int? messageThreadId,
     String? businessConnectionId,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendChatAction);
     return api.sendChatAction(
       id,
@@ -557,7 +541,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendGame);
     return api.sendGame(
       id,
@@ -596,7 +579,6 @@ extension ContextAwareMethods on Context {
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendAnimation);
     return api.sendAnimation(
       id,
@@ -635,7 +617,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendSticker);
     return api.sendSticker(
       id,
@@ -675,7 +656,6 @@ extension ContextAwareMethods on Context {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
   }) async {
-    api._addContext(this);
     if (!_isInline()) {
       _verifyInfo([_chatId, _msgId], APIMethod.editMessageLiveLocation);
     }
@@ -704,7 +684,6 @@ extension ContextAwareMethods on Context {
     int? messageThreadId,
     bool? protectContent,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId, _msgId], APIMethod.forwardMessage);
     return api.forwardMessage(
       chatId,
@@ -759,7 +738,6 @@ extension ContextAwareMethods on Context {
     String emoji, {
     bool? isBig,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId, _msgId], APIMethod.setMessageReaction);
     return api.setMessageReaction(
       id,
@@ -776,7 +754,6 @@ extension ContextAwareMethods on Context {
     List<String> emojis, {
     bool? isBig,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId, _msgId], APIMethod.setMessageReaction);
     return api.setMessageReaction(
       id,
@@ -817,7 +794,7 @@ extension ContextAwareMethods on Context {
   /// Context aware method for set chat description [APIMethod.setChatDescription].
   Future<bool> setChatDescription(String description) async {
     _verifyInfo([_chatId], APIMethod.setChatDescription);
-    return api.setChatDescription(id, description);
+    return api.setChatDescription(id, description: description);
   }
 
   /// Context aware method for pin chat message [APIMethod.pinChatMessage].
@@ -825,7 +802,6 @@ extension ContextAwareMethods on Context {
     int messageId, {
     bool? disableNotification,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.pinChatMessage);
     return api.pinChatMessage(
       id,
@@ -838,7 +814,6 @@ extension ContextAwareMethods on Context {
   Future<bool> pinThisMessage({
     bool? disableNotification,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId, _msgId], APIMethod.pinChatMessage);
     return api.pinChatMessage(
       id,
@@ -866,7 +841,6 @@ extension ContextAwareMethods on Context {
     int? iconColor,
     String? iconCustomEmojiId,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.createForumTopic);
     return api.createForumTopic(
       id,
@@ -884,7 +858,6 @@ extension ContextAwareMethods on Context {
     String? name,
     String? iconCustomEmojiId,
   }) async {
-    api._addContext(this);
     _verifyInfo(
       [_chatId, _threadId(messageThreadId)],
       APIMethod.editForumTopic,
@@ -903,7 +876,6 @@ extension ContextAwareMethods on Context {
   Future<bool> closeForumTopic({
     int? messageThreadId,
   }) async {
-    api._addContext(this);
     _verifyInfo(
       [_chatId, _threadId(messageThreadId)],
       APIMethod.closeForumTopic,
@@ -920,7 +892,6 @@ extension ContextAwareMethods on Context {
   Future<bool> reopenForumTopic({
     int? messageThreadId,
   }) async {
-    api._addContext(this);
     _verifyInfo(
       [_chatId, _threadId(messageThreadId)],
       APIMethod.reopenForumTopic,
@@ -937,7 +908,6 @@ extension ContextAwareMethods on Context {
   Future<bool> deleteForumTopic({
     int? messageThreadId,
   }) async {
-    api._addContext(this);
     _verifyInfo(
       [_chatId, _threadId(messageThreadId)],
       APIMethod.deleteForumTopic,
@@ -954,7 +924,6 @@ extension ContextAwareMethods on Context {
   Future<bool> unpinAllForumTopicMessages({
     int? messageThreadId,
   }) async {
-    api._addContext(this);
     _verifyInfo(
       [_chatId, _threadId(messageThreadId)],
       APIMethod.unpinAllForumTopicMessages,
@@ -1013,7 +982,6 @@ extension ContextAwareMethods on Context {
     String? url,
     int cacheTime = 0,
   }) async {
-    api._addContext(this);
     _verifyInfo([callbackQuery?.id], APIMethod.answerCallbackQuery);
     return api.answerCallbackQuery(
       callbackQuery!.id,
@@ -1038,7 +1006,6 @@ extension ContextAwareMethods on Context {
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId, _msgId], APIMethod.copyMessage);
     return api.copyMessage(
       chatId,
@@ -1066,7 +1033,6 @@ extension ContextAwareMethods on Context {
     int? proximityAlertRadius,
     InlineKeyboardMarkup? replyMarkup,
   }) async {
-    api._addContext(this);
     _verifyInfo([_inlineMsgId], APIMethod.editMessageLiveLocation);
     return api.editInlineMessageLiveLocation(
       _inlineMsgId!,
@@ -1086,7 +1052,6 @@ extension ContextAwareMethods on Context {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
   }) async {
-    api._addContext(this);
     if (!_isInline()) {
       _verifyInfo([_chatId, _msgId], APIMethod.stopMessageLiveLocation);
     }
@@ -1113,7 +1078,6 @@ extension ContextAwareMethods on Context {
     int? offset,
     int? limit,
   }) async {
-    api._addContext(this);
     _verifyInfo([from?.id], APIMethod.getUserProfilePhotos);
     return api.getUserProfilePhotos(
       from!.id,
@@ -1136,7 +1100,6 @@ extension ContextAwareMethods on Context {
     DateTime? untilDate,
     bool? revokeMessages,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.banChatMember);
     return api.banChatMember(
       id,
@@ -1151,7 +1114,6 @@ extension ContextAwareMethods on Context {
     int userId, {
     bool? onlyIfBanned,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.unbanChatMember);
     return api.unbanChatMember(
       id,
@@ -1166,7 +1128,6 @@ extension ContextAwareMethods on Context {
     DateTime? untilDate,
     bool? revokeMessages,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId, from?.id], APIMethod.banChatMember);
     return api.banChatMember(
       id,
@@ -1181,7 +1142,6 @@ extension ContextAwareMethods on Context {
   Future<bool> unbanAuthor({
     bool? onlyIfBanned,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId, from?.id], APIMethod.unbanChatMember);
     return api.unbanChatMember(
       id,
@@ -1197,7 +1157,6 @@ extension ContextAwareMethods on Context {
     DateTime? untilDate,
     bool? useIndependentChatPermissions,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.restrictChatMember);
     return api.restrictChatMember(
       id,
@@ -1214,7 +1173,6 @@ extension ContextAwareMethods on Context {
     DateTime? untilDate,
     bool? useIndependentChatPermissions,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId, from?.id], APIMethod.restrictChatMember);
     return api.restrictChatMember(
       id,
@@ -1245,7 +1203,6 @@ extension ContextAwareMethods on Context {
     bool? canEditStories,
     bool? canDeleteStories,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.promoteChatMember);
     return api.promoteChatMember(
       id,
@@ -1287,7 +1244,6 @@ extension ContextAwareMethods on Context {
     bool? canEditStories,
     bool? canDeleteStories,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId, from?.id], APIMethod.promoteChatMember);
     return api.promoteChatMember(
       id,
@@ -1340,7 +1296,6 @@ extension ContextAwareMethods on Context {
     ChatPermissions permissions, {
     bool? useIndependentChatPermissions,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.setChatPermissions);
     return api.setChatPermissions(
       id,
@@ -1362,7 +1317,6 @@ extension ContextAwareMethods on Context {
     int? memberLimit,
     bool? createsJoinRequest,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.createChatInviteLink);
     return api.createChatInviteLink(
       id,
@@ -1381,7 +1335,6 @@ extension ContextAwareMethods on Context {
     int? memberLimit,
     bool? createsJoinRequest,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.editChatInviteLink);
     return api.editChatInviteLink(
       id,
@@ -1410,7 +1363,6 @@ extension ContextAwareMethods on Context {
   Future<bool> approveChatJoinRequest({
     int? userId,
   }) async {
-    api._addContext(this);
     _verifyInfo(
       [_chatId, userId ?? from?.id],
       APIMethod.approveChatJoinRequest,
@@ -1425,7 +1377,6 @@ extension ContextAwareMethods on Context {
   Future<bool> declineChatJoinRequest({
     int? userId,
   }) async {
-    api._addContext(this);
     _verifyInfo(
       [_chatId, userId ?? from?.id],
       APIMethod.declineChatJoinRequest,
@@ -1489,7 +1440,6 @@ extension ContextAwareMethods on Context {
     BotCommandScope? scope,
     String? languageCode,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.setMyCommands);
     return api.setMyCommands(
       commands,
@@ -1503,7 +1453,6 @@ extension ContextAwareMethods on Context {
     BotCommandScope? scope,
     String? languageCode,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.deleteMyCommands);
     return api.deleteMyCommands(
       scope: scope,
@@ -1516,7 +1465,6 @@ extension ContextAwareMethods on Context {
     BotCommandScope? scope,
     String? languageCode,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.getMyCommands);
     return api.getMyCommands(
       scope: scope,
@@ -1552,7 +1500,6 @@ extension ContextAwareMethods on Context {
   Future<ChatAdministratorRights> getMyDefaultAdministratorRights({
     bool? forChannels,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.getMyDefaultAdministratorRights);
     return api.getMyDefaultAdministratorRights(
       forChannels: forChannels,
@@ -1572,7 +1519,6 @@ extension ContextAwareMethods on Context {
     LinkPreviewOptions? linkPreviewOptions,
     String? businessConnectionId,
   }) async {
-    api._addContext(this);
     if (!_isInline()) {
       _verifyInfo([_chatId, _msgId], APIMethod.editMessageText);
     }
@@ -1601,7 +1547,6 @@ extension ContextAwareMethods on Context {
     bool? showCaptionAboveMedia,
     String? businessConnectionId,
   }) async {
-    api._addContext(this);
     if (!_isInline()) {
       _verifyInfo([_chatId, _msgId], APIMethod.editMessageCaption);
     }
@@ -1630,7 +1575,6 @@ extension ContextAwareMethods on Context {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
   }) async {
-    api._addContext(this);
     if (!_isInline()) {
       _verifyInfo([_chatId, _msgId], APIMethod.editMessageMedia);
     }
@@ -1653,7 +1597,6 @@ extension ContextAwareMethods on Context {
     InlineKeyboardMarkup? replyMarkup,
     String? businessConnectionId,
   }) async {
-    api._addContext(this);
     if (!_isInline()) {
       _verifyInfo([_chatId, _msgId], APIMethod.editMessageReplyMarkup);
     }
@@ -1679,7 +1622,6 @@ extension ContextAwareMethods on Context {
     String? nextOffset,
     InlineQueryResultsButton? button,
   }) async {
-    api._addContext(this);
     _verifyInfo([inlineQuery?.id], APIMethod.answerInlineQuery);
     return api.answerInlineQuery(
       inlineQuery!.id,
@@ -1736,7 +1678,6 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendInvoice);
     return api.sendInvoice(
       id,
@@ -1794,7 +1735,6 @@ extension ContextAwareMethods on Context {
     bool? sendEmailToProvider,
     bool? isFlexible,
   }) async {
-    api._addContext(this);
     return api.createInvoiceLink(
       title: title,
       description: description,
@@ -1825,7 +1765,6 @@ extension ContextAwareMethods on Context {
     List<ShippingOption>? shippingOptions,
     String? errorMessage,
   }) async {
-    api._addContext(this);
     _verifyInfo([shippingQuery?.id], APIMethod.answerShippingQuery);
     return api.answerShippingQuery(
       shippingQuery!.id,
@@ -1840,7 +1779,6 @@ extension ContextAwareMethods on Context {
     bool ok, {
     String? errorMessage,
   }) async {
-    api._addContext(this);
     _verifyInfo([preCheckoutQuery?.id], APIMethod.answerPreCheckoutQuery);
     return api.answerPreCheckoutQuery(
       preCheckoutQuery!.id,
@@ -1854,7 +1792,6 @@ extension ContextAwareMethods on Context {
     String? description,
     String? languageCode,
   }) async {
-    api._addContext(this);
     return api.setMyDescription(
       description: description,
       languageCode: languageCode,
@@ -1866,7 +1803,6 @@ extension ContextAwareMethods on Context {
     String? shortDescription,
     String? languageCode,
   }) async {
-    api._addContext(this);
     return api.setMyShortDescription(
       shortDescription: shortDescription,
       languageCode: languageCode,
@@ -1878,7 +1814,6 @@ extension ContextAwareMethods on Context {
     String? name,
     String? languageCode,
   }) async {
-    api._addContext(this);
     return api.setMyName(
       name: name,
       languageCode: languageCode,
@@ -1898,7 +1833,6 @@ extension ContextAwareMethods on Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
   }) async {
-    api._addContext(this);
     _verifyInfo([_chatId], APIMethod.sendPaidMedia);
 
     return api.sendPaidMedia(
@@ -1925,7 +1859,6 @@ extension ContextAwareMethods on Context {
     ParseMode? textParseMode,
     List<MessageEntity>? textEntities,
   }) async {
-    api._addContext(this);
     _verifyInfo([_from?.id], APIMethod.sendGift);
 
     return api.sendGift(
@@ -1939,7 +1872,6 @@ extension ContextAwareMethods on Context {
 
   /// Get the available gifts for the user
   Future<Gifts> getAvailableGifts() async {
-    api._addContext(this);
     return api.getAvailableGifts();
   }
 }
