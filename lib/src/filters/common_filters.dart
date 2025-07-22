@@ -38,7 +38,8 @@ class AnyMessageFilter<CTX extends Context> extends Filter<CTX> {
   const AnyMessageFilter();
 
   @override
-  bool matches(CTX ctx) => ctx.message != null || ctx.editedMessage != null;
+  bool matches(CTX ctx) =>
+      ctx.msg != null && ctx.callbackQuery?.message == null;
 
   @override
   String toString() => 'AnyMessageFilter()';
@@ -555,4 +556,218 @@ class ContactFilter<CTX extends Context> extends Filter<CTX> {
 
   @override
   String toString() => 'ContactFilter()';
+}
+
+/// Filter that matches messages with any media.
+class MediaFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches any media messages.
+  const MediaFilter();
+
+  @override
+  bool matches(CTX ctx) {
+    final msg = ctx.msg;
+    if (msg == null) return false;
+
+    return msg.photo != null ||
+        msg.video != null ||
+        msg.document != null ||
+        msg.audio != null ||
+        msg.voice != null ||
+        msg.videoNote != null ||
+        msg.sticker != null ||
+        msg.animation != null;
+  }
+
+  @override
+  String toString() => 'MediaFilter()';
+}
+
+// ===============================
+// Entity Filters
+// ===============================
+
+/// Filter that matches messages with specific entity types.
+class EntityFilter<CTX extends Context> extends Filter<CTX> {
+  /// The entity types to match.
+  final Set<MessageEntityType> entityTypes;
+
+  /// Creates a filter that matches messages with specific entities.
+  ///
+  /// Parameters:
+  /// - [entityTypes]: The set of entity types to match
+  const EntityFilter(this.entityTypes);
+
+  /// Creates a filter that matches a single entity type.
+  ///
+  /// Parameters:
+  /// - [entityType]: The entity type to match
+  EntityFilter.single(MessageEntityType entityType)
+      : entityTypes = {entityType};
+
+  @override
+  bool matches(CTX ctx) {
+    final entities = ctx.entities;
+    if (entities == null || entities.isEmpty) return false;
+
+    return entities.any((entity) => entityTypes.contains(entity.type));
+  }
+
+  @override
+  String toString() => 'EntityFilter(types: $entityTypes)';
+}
+
+/// Filter that matches messages with URLs.
+class UrlFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches messages with URLs.
+  const UrlFilter();
+
+  @override
+  bool matches(CTX ctx) {
+    final entities = ctx.entities;
+    if (entities == null) return false;
+
+    return entities.any((entity) =>
+        entity.type == MessageEntityType.url ||
+        entity.type == MessageEntityType.textLink);
+  }
+
+  @override
+  String toString() => 'UrlFilter()';
+}
+
+/// Filter that matches messages with mentions.
+class MentionFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches messages with mentions.
+  const MentionFilter();
+
+  @override
+  bool matches(CTX ctx) {
+    final entities = ctx.entities;
+    if (entities == null) return false;
+
+    return entities.any((entity) =>
+        entity.type == MessageEntityType.mention ||
+        entity.type == MessageEntityType.textMention);
+  }
+
+  @override
+  String toString() => 'MentionFilter()';
+}
+
+/// Filter that matches messages with hashtags.
+class HashtagFilter<CTX extends Context> extends Filter<CTX> {
+  /// Optional specific hashtag to match (without #).
+  final String? hashtag;
+
+  /// Creates a filter that matches messages with hashtags.
+  ///
+  /// Parameters:
+  /// - [hashtag]: Optional specific hashtag to match (without #)
+  const HashtagFilter({this.hashtag});
+
+  @override
+  bool matches(CTX ctx) {
+    final entities = ctx.entities;
+    final text = ctx.text;
+
+    if (entities == null || text == null) return false;
+
+    final hashtagEntities =
+        entities.where((entity) => entity.type == MessageEntityType.hashtag);
+
+    if (hashtagEntities.isEmpty) return false;
+
+    if (hashtag != null) {
+      return hashtagEntities.any((entity) {
+        final entityText = text.substring(
+          entity.offset + 1, // Skip the #
+          entity.offset + entity.length,
+        );
+        return entityText.toLowerCase() == hashtag!.toLowerCase();
+      });
+    }
+
+    return true;
+  }
+
+  @override
+  String toString() => hashtag != null
+      ? 'HashtagFilter(hashtag: "#$hashtag")'
+      : 'HashtagFilter()';
+}
+
+// ===============================
+// Combined and Complex Filters
+// ===============================
+
+/// Filter that matches text messages (messages with text content).
+class TextMessageFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches text messages.
+  const TextMessageFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.text != null;
+
+  @override
+  String toString() => 'TextMessageFilter()';
+}
+
+/// Filter that matches caption messages (messages with caption content).
+class CaptionMessageFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches messages with captions.
+  const CaptionMessageFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.caption != null;
+
+  @override
+  String toString() => 'CaptionMessageFilter()';
+}
+
+/// Filter that matches any text content (text or caption).
+class AnyTextFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches any text content.
+  const AnyTextFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.text != null || ctx.caption != null;
+
+  @override
+  String toString() => 'AnyTextFilter()';
+}
+
+/// Filter that matches forwarded messages.
+class ForwardedFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches forwarded messages.
+  const ForwardedFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.forwardOrigin != null;
+
+  @override
+  String toString() => 'ForwardedFilter()';
+}
+
+/// Filter that matches reply messages.
+class ReplyFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches reply messages.
+  const ReplyFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.replyToMessage != null;
+
+  @override
+  String toString() => 'ReplyFilter()';
+}
+
+/// Filter that matches pinned messages.
+class PinnedMessageFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches pinned messages.
+  const PinnedMessageFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.pinnedMessage != null;
+
+  @override
+  String toString() => 'PinnedMessageFilter()';
 }

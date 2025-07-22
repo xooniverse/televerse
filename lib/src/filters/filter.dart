@@ -31,6 +31,21 @@ abstract class Filter<CTX extends Context> {
   ///
   /// The resulting filter matches when this filter doesn't match.
   Filter<CTX> not() => _NotFilter<CTX>(this);
+
+  /// Combines this filter with another using logical OR.
+  ///
+  /// The resulting filter matches if either filter matches.
+  Filter<CTX> operator +(Filter<CTX> other) => or(other);
+
+  /// Combines this filter with another using logical AND.
+  ///
+  /// The resulting filter matches only if both filters match.
+  Filter<CTX> operator *(Filter<CTX> other) => and(other);
+
+  /// Creates a filter that matches the opposite of this filter.
+  ///
+  /// The resulting filter matches when this filter doesn't match.
+  Filter<CTX> operator -() => not();
 }
 
 /// A filter that always matches.
