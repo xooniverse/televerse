@@ -184,13 +184,14 @@ class RawAPI {
     int? offset,
     int? limit,
     int? timeout,
-    List<String>? allowedUpdates,
+    List<UpdateType>? allowedUpdates,
   }) async {
     final params = <String, dynamic>{
       if (offset != null) 'offset': offset,
       if (limit != null) 'limit': limit,
       if (timeout != null) 'timeout': timeout,
-      if (allowedUpdates != null) 'allowed_updates': allowedUpdates,
+      if (allowedUpdates != null)
+        'allowed_updates': allowedUpdates.map((e) => e.type).toList(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -200,6 +201,49 @@ class RawAPI {
     );
 
     return response.map((json) => Update.fromJson(json)).toList();
+  }
+
+  /// Sets a webhook to receive incoming updates via an outgoing webhook.
+  ///
+  /// Whenever there is an update for the bot, Telegram will send an HTTPS POST
+  /// request to the specified URL, containing a JSON-serialized Update.
+  ///
+  /// Parameters:
+  /// - [url]: HTTPS URL to send updates to. Use an empty string to remove webhook integration
+  /// - [certificate]: Upload your public key certificate so that the root certificate in use can be checked
+  /// - [ipAddress]: The fixed IP address which will be used to send webhook requests instead of the IP address resolved through DNS
+  /// - [maxConnections]: The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery (1-100, default 40)
+  /// - [allowedUpdates]: A list of the update types you want your bot to receive
+  /// - [dropPendingUpdates]: Pass True to drop all pending updates
+  /// - [secretToken]: A secret token to be sent in a header "X-Telegram-Bot-Api-Secret-Token" in every webhook request (1-256 characters)
+  ///
+  /// Returns True on success.
+  Future<bool> setWebhook(
+    String url, {
+    InputFile? certificate,
+    String? ipAddress,
+    int? maxConnections,
+    List<UpdateType>? allowedUpdates,
+    bool? dropPendingUpdates,
+    String? secretToken,
+  }) async {
+    final params = <String, dynamic>{
+      'url': url,
+      if (certificate != null) 'certificate': certificate,
+      if (ipAddress != null) 'ip_address': ipAddress,
+      if (maxConnections != null) 'max_connections': maxConnections,
+      if (allowedUpdates != null)
+        'allowed_updates': allowedUpdates.map((e) => e.type).toList(),
+      if (dropPendingUpdates != null)
+        'drop_pending_updates': dropPendingUpdates,
+      if (secretToken != null) 'secret_token': secretToken,
+    };
+
+    final convertedParams = _convertParameters(params);
+    final files = _extractFiles(params);
+
+    final payload = Payload(convertedParams, files);
+    return await _makeRequest<bool>(APIMethod.setWebhook, payload);
   }
 
   /// Removes webhook integration if you decide to switch back to getUpdates.

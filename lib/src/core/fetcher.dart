@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'package:televerse/telegram.dart';
+import 'package:televerse/televerse.dart';
 
 /// Abstract base class for update fetchers.
 ///
@@ -46,7 +47,7 @@ class FetcherConfig {
   /// The allowed update types to receive.
   ///
   /// If null, all update types will be received.
-  final List<String>? allowedUpdates;
+  final List<UpdateType>? allowedUpdates;
 
   /// Whether to drop pending updates when starting.
   final bool dropPendingUpdates;
@@ -70,28 +71,33 @@ class FetcherConfig {
   const FetcherConfig.all({
     this.dropPendingUpdates = false,
     this.maxConcurrentUpdates = 10,
-  }) : allowedUpdates = null;
+  }) : allowedUpdates = UpdateType.values;
 
   /// Creates a configuration for message updates only.
   const FetcherConfig.messagesOnly({
     this.dropPendingUpdates = false,
     this.maxConcurrentUpdates = 10,
   }) : allowedUpdates = const [
-          'message',
-          'edited_message',
-          'channel_post',
-          'edited_channel_post',
+          UpdateType.message,
+          UpdateType.editedMessage,
+          UpdateType.channelPost,
+          UpdateType.editedChannelPost,
+          UpdateType.businessMessage,
+          UpdateType.editedBusinessMessage,
         ];
 
   /// Creates a configuration for callback queries only.
   const FetcherConfig.callbackQueriesOnly({
     this.dropPendingUpdates = false,
     this.maxConcurrentUpdates = 10,
-  }) : allowedUpdates = const ['callback_query'];
+  }) : allowedUpdates = const [UpdateType.callbackQuery];
 
   /// Creates a configuration for inline queries only.
   const FetcherConfig.inlineQueriesOnly({
     this.dropPendingUpdates = false,
     this.maxConcurrentUpdates = 10,
-  }) : allowedUpdates = const ['inline_query', 'chosen_inline_result'];
+  }) : allowedUpdates = const [
+          UpdateType.inlineQuery,
+          UpdateType.chosenInlineResult
+        ];
 }
