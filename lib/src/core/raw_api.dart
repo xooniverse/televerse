@@ -36,6 +36,42 @@ class RawAPI {
         _baseUrl = baseUrl ?? 'https://api.telegram.org/bot$token',
         _ownsHttpClient = httpClient == null;
 
+  /// Makes a generic API call to any Telegram Bot API method.
+  ///
+  /// This is the most flexible way to interact with the Telegram Bot API.
+  /// It allows you to call any API method with custom parameters and files.
+  ///
+  /// This method is particularly useful for:
+  /// - Calling new API methods that don't have dedicated wrapper methods yet
+  /// - Advanced use cases requiring custom parameter handling
+  /// - Testing and experimentation with the API
+  ///
+  /// Example usage:
+  /// ```dart
+  /// // Send a message using the generic call method
+  /// final payload = Payload({
+  ///   'chat_id': chatId.toJson(),
+  ///   'text': 'Hello World!',
+  ///   'parse_mode': 'HTML',
+  /// });
+  ///
+  /// final response = await api<Map<String, dynamic>>(
+  ///   APIMethod.sendMessage,
+  ///   payload,
+  /// );
+  /// final message = Message.fromJson(response);
+  /// ```
+  ///
+  /// Parameters:
+  /// - [method]: The API method to call
+  /// - [payload]: The payload containing parameters and optional files
+  ///
+  /// Returns the parsed response data of type [T].
+  /// Throws [TeleverseException] if the request fails.
+  Future<T> call<T>(APIMethod method, Payload payload) async {
+    return await _makeRequest<T>(method, payload);
+  }
+
   /// Makes a request to the specified API method.
   ///
   /// This is the core method that handles all API requests. It automatically
