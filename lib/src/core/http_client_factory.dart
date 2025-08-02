@@ -1,8 +1,6 @@
 // File: lib/src/core/http_client_factory.dart
 
-import 'package:dio/dio.dart';
-import 'package:televerse/src/core/http_client.dart';
-import 'package:televerse/src/televerse/models/models.dart';
+part of '../../televerse.dart';
 
 /// Factory class for creating HTTP client instances.
 ///

@@ -1,9 +1,6 @@
 // File: lib/src/bot/context.dart
 
-import 'dart:async';
-import 'package:televerse/src/core/raw_api.dart';
-import 'package:televerse/telegram.dart';
-import 'package:televerse/televerse.dart';
+part of '../../televerse.dart';
 
 /// Bot information for context
 class BotInfo {

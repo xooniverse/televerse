@@ -1,9 +1,5 @@
 // File: lib/src/bot/composer.dart
-
-import 'dart:async';
-import 'package:televerse/src/bot/context.dart';
-import 'package:televerse/src/bot/middleware.dart';
-import 'package:televerse/src/bot/error.dart';
+part of '../../televerse.dart';
 
 /// Base class for middleware composition.
 ///
@@ -401,7 +397,7 @@ class Composer<CTX extends Context> {
   Future<void> _handleMiddlewareError(
     Object error,
     StackTrace stackTrace,
-    CTX ctx,
+    CTX? ctx,
     String? middlewareName,
   ) async {
     final botError = BotError<CTX>.fromMiddleware(

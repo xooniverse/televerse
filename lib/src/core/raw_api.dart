@@ -1,9 +1,6 @@
 // File: lib/src/core/raw_api.dart
 
-import 'dart:convert';
-import 'package:televerse/src/core/http_client.dart';
-import 'package:televerse/televerse.dart';
-import 'package:televerse/telegram.dart';
+part of '../../televerse.dart';
 
 /// Raw API class for making direct calls to the Telegram Bot API.
 ///
@@ -244,6 +241,23 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     return await _makeRequest<bool>(APIMethod.setWebhook, payload);
+  }
+
+  /// Gets current webhook status.
+  ///
+  /// Use this method to get current webhook status. Requires no parameters.
+  /// On success, returns a WebhookInfo object. If the bot is using getUpdates,
+  /// will return an object with the url field empty.
+  ///
+  /// Returns current webhook status.
+  Future<WebhookInfo> getWebhookInfo() async {
+    final payload = Payload({});
+    final response = await _makeRequest<Map<String, dynamic>>(
+      APIMethod.getWebhookInfo,
+      payload,
+    );
+
+    return WebhookInfo.fromJson(response);
   }
 
   /// Removes webhook integration if you decide to switch back to getUpdates.

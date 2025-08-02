@@ -1,9 +1,6 @@
 // File: lib/src/core/http_client.dart
 
-import 'dart:convert';
-import 'package:dio/dio.dart';
-import 'package:http_parser/http_parser.dart' as http_parser;
-import 'package:televerse/src/televerse/models/models.dart';
+part of '../../televerse.dart';
 
 /// Abstract HTTP client interface for making API requests.
 ///
@@ -48,13 +45,13 @@ class DioHttpClient implements HttpClient {
   /// - [receiveTimeout]: Response receive timeout (default: 30 seconds)
   DioHttpClient({
     Dio? dio,
-    Duration timeout = const Duration(seconds: 30),
-    Duration receiveTimeout = const Duration(seconds: 30),
+    Duration? timeout,
+    Duration? receiveTimeout,
   })  : _dio = dio ?? _createDefaultDio(timeout, receiveTimeout),
         _ownsInstance = dio == null;
 
   /// Creates a default Dio instance with appropriate configuration.
-  static Dio _createDefaultDio(Duration timeout, Duration receiveTimeout) {
+  static Dio _createDefaultDio(Duration? timeout, Duration? receiveTimeout) {
     final dio = Dio();
 
     dio.options = BaseOptions(
@@ -95,8 +92,9 @@ class DioHttpClient implements HttpClient {
         return TeleverseException.timeoutException(
           error.stackTrace,
           Duration(
-              milliseconds:
-                  error.requestOptions.connectTimeout?.inMilliseconds ?? 30000),
+            milliseconds:
+                error.requestOptions.connectTimeout?.inMilliseconds ?? 30000,
+          ),
         );
 
       case DioExceptionType.badResponse:

@@ -1,8 +1,6 @@
 // File: lib/src/bot/middleware.dart
 
-import 'dart:async';
-import 'package:televerse/src/bot/context.dart';
-import 'package:televerse/src/bot/error.dart';
+part of '../../televerse.dart';
 
 /// The next function type that continues the middleware chain.
 ///

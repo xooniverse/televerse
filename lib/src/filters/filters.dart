@@ -1,9 +1,6 @@
 // File: lib/src/filters/filters.dart
 
-import 'package:televerse/src/filters/filter.dart';
-import 'package:televerse/src/filters/common_filters.dart';
-import 'package:televerse/src/bot/context.dart';
-import 'package:televerse/telegram.dart';
+part of '../../televerse.dart';
 
 /// Convenience class for creating common filters.
 ///

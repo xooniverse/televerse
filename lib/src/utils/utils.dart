@@ -23,7 +23,7 @@ extension CleanString on String {
 String getRandomID([
   int len = 20,
 ]) {
-  final random = Random();
+  final random = math.Random();
   final chars =
       "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   return List.generate(len, (index) => chars[random.nextInt(chars.length)])

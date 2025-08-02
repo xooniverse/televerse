@@ -1,6 +1,6 @@
 // File: lib/src/filters/filter.dart
 
-import 'package:televerse/src/bot/context.dart';
+part of '../../televerse.dart';
 
 /// Base class for all filters.
 ///

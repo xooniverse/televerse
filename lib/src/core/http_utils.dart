@@ -1,4 +1,5 @@
 // File: lib/src/core/http_utils.dart
+part of '../../televerse.dart';
 
 /// Utilities for working with HTTP requests and responses.
 class HttpUtils {

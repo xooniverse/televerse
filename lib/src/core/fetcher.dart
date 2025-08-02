@@ -1,8 +1,6 @@
 // File: lib/src/core/fetcher.dart
 
-import 'dart:async';
-import 'package:televerse/telegram.dart';
-import 'package:televerse/televerse.dart';
+part of '../../televerse.dart';
 
 /// Abstract base class for update fetchers.
 ///

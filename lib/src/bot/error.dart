@@ -1,10 +1,6 @@
 // File: lib/src/bot/error.dart
 
-import 'package:televerse/src/bot/context.dart';
-import 'package:televerse/src/bot/middleware.dart';
-import 'package:televerse/src/core/raw_api.dart';
-import 'package:televerse/telegram.dart';
-import 'package:televerse/televerse.dart';
+part of '../../televerse.dart';
 
 /// A bot error that occurred during update processing.
 ///

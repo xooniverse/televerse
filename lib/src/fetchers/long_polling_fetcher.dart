@@ -1,11 +1,6 @@
 // File: lib/src/fetchers/long_polling_fetcher.dart
 
-import 'dart:async';
-import 'dart:math' as math;
-import 'package:televerse/src/core/fetcher.dart';
-import 'package:televerse/src/core/raw_api.dart';
-import 'package:televerse/telegram.dart';
-import 'package:televerse/televerse.dart';
+part of '../../televerse.dart';
 
 /// Long polling fetcher implementation.
 ///
