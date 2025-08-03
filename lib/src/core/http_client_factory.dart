@@ -85,7 +85,7 @@ class MockHttpClient implements HttpClient {
   MockHttpClient(this._responses);
 
   @override
-  Future<Map<String, dynamic>> post(String url, Payload payload) async {
+  Future<Map<String, dynamic>> post(String url, [Payload? payload]) async {
     // Record the request for testing verification
     _requestHistory.add(MockRequest(
       url: url,
@@ -164,7 +164,7 @@ class MockRequest {
   final String url;
 
   /// The payload that was sent with the request.
-  final Payload payload;
+  final Payload? payload;
 
   /// The timestamp when the request was made.
   final DateTime timestamp;
@@ -182,10 +182,10 @@ class MockRequest {
   }
 
   /// Gets the value of a parameter from the request payload.
-  dynamic getParam(String key) => payload.params[key];
+  dynamic getParam(String key) => payload?.params[key];
 
   /// Checks if the request contained files.
-  bool get hasFiles => payload.files != null && payload.files!.isNotEmpty;
+  bool get hasFiles => payload?.files != null && payload!.files!.isNotEmpty;
 
   @override
   String toString() {

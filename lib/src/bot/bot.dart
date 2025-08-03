@@ -275,7 +275,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     await _currentFetcher?.close();
 
     // Close the API
-    await api.close();
+    await api.closeClient();
   }
 
   // ===============================
@@ -907,28 +907,5 @@ abstract class MiddlewarePlugin<CTX extends Context> extends BotPlugin<CTX> {
   @override
   void install(Bot<CTX> bot) {
     bot.use(middleware);
-  }
-}
-
-/// Gets the bot's information from Telegram.
-///
-/// This method is already implemented in RawAPI, but we need to add it
-/// if it's missing from the current implementation.
-extension BotAPIExtensions on RawAPI {
-  /// Gets basic information about the bot.
-  ///
-  /// A simple method for testing your bot's authentication token.
-  /// Requires no parameters. Returns basic information about the bot
-  /// in form of a User object.
-  ///
-  /// Returns basic information about the bot.
-  Future<User> getMe() async {
-    final payload = Payload({});
-    final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getMe,
-      payload,
-    );
-
-    return User.fromJson(response);
   }
 }

@@ -88,6 +88,11 @@ class ChatID extends ID {
   factory ChatID.create(int id) {
     return ChatID(id);
   }
+
+  @override
+  String toString() {
+    return 'ChatID($id)';
+  }
 }
 
 /// This class is used to represent a channel id. It is a subclass of [ID].

@@ -16,7 +16,7 @@ abstract class HttpClient {
   /// Returns the response data as a [Map<String, dynamic>].
   ///
   /// Throws [TeleverseException] if the request fails.
-  Future<Map<String, dynamic>> post(String url, Payload payload);
+  Future<Map<String, dynamic>> post(String url, [Payload? payload]);
 
   /// Closes the HTTP client and releases any resources.
   Future<void> close();
@@ -132,11 +132,11 @@ class DioHttpClient implements HttpClient {
   }
 
   @override
-  Future<Map<String, dynamic>> post(String url, Payload payload) async {
+  Future<Map<String, dynamic>> post(String url, [Payload? payload]) async {
     try {
       late Response<dynamic> response;
 
-      if (payload.files != null && payload.files!.isNotEmpty) {
+      if (payload?.files != null && payload!.files!.isNotEmpty) {
         // Handle multipart request for file uploads
         response = await _sendMultipartRequest(url, payload);
       } else {
@@ -159,11 +159,11 @@ class DioHttpClient implements HttpClient {
   }
 
   /// Sends a regular JSON POST request.
-  Future<Response<dynamic>> _sendJsonRequest(
-      String url, Payload payload) async {
+  Future<Response<dynamic>> _sendJsonRequest(String url,
+      [Payload? payload]) async {
     return await _dio.post(
       url,
-      data: jsonEncode(payload.params),
+      data: payload?.params != null ? jsonEncode(payload!.params) : null,
       options: Options(
         contentType: 'application/json',
       ),

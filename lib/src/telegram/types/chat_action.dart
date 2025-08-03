@@ -1,9 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/types/televerse_enum.dart';
 part 'chat_action.g.dart';
 
 /// This object represents a chat action.
 @JsonEnum(fieldRename: FieldRename.snake, alwaysCreate: true)
-enum ChatAction {
+enum ChatAction implements TeleverseEnum {
   /// Typing
   @JsonValue('typing')
   typing,
@@ -49,5 +50,6 @@ enum ChatAction {
   uploadVideoNote;
 
   /// Converts the [ChatAction] to its corresponding JSON value.
+  @override
   String toJson() => _$ChatActionEnumMap[this]!;
 }
