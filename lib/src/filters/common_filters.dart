@@ -69,13 +69,16 @@ class EditedChannelPostFilter<CTX extends Context> extends Filter<CTX> {
 
 /// Filter that matches callback queries.
 class CallbackQueryFilter<CTX extends Context> extends Filter<CTX> {
-  /// Optional callback data to match.
-  final String? data;
+  /// Optional callback data pattern to match.
+  ///
+  /// Can be either a [String] for exact matching or a [RegExp] for pattern matching.
+  final Pattern? data;
 
   /// Creates a filter that matches callback queries.
   ///
   /// Parameters:
-  /// - [data]: Optional specific callback data to match
+  /// - [data]: Optional specific callback data pattern to match.
+  ///   Can be a [String] for exact matching or a [RegExp] for pattern matching.
   const CallbackQueryFilter({this.data});
 
   @override
@@ -84,7 +87,17 @@ class CallbackQueryFilter<CTX extends Context> extends Filter<CTX> {
     if (callbackQuery == null) return false;
 
     if (data != null) {
-      return callbackQuery.data == data;
+      final callbackData = callbackQuery.data;
+      if (callbackData == null) return false;
+
+      if (data is String) {
+        return callbackData == data;
+      } else if (data is RegExp) {
+        return (data as RegExp).hasMatch(callbackData);
+      }
+
+      // Fallback for other Pattern implementations
+      return callbackData.contains(data!);
     }
 
     return true;
@@ -92,19 +105,22 @@ class CallbackQueryFilter<CTX extends Context> extends Filter<CTX> {
 
   @override
   String toString() => data != null
-      ? 'CallbackQueryFilter(data: "$data")'
+      ? 'CallbackQueryFilter(data: ${data is RegExp ? '/${data.toString()}/' : '"$data"'})'
       : 'CallbackQueryFilter()';
 }
 
 /// Filter that matches inline queries.
 class InlineQueryFilter<CTX extends Context> extends Filter<CTX> {
-  /// Optional query text to match.
-  final String? query;
+  /// Optional query text pattern to match.
+  ///
+  /// Can be either a [String] for exact matching or a [RegExp] for pattern matching.
+  final Pattern? query;
 
   /// Creates a filter that matches inline queries.
   ///
   /// Parameters:
-  /// - [query]: Optional specific query text to match
+  /// - [query]: Optional specific query text pattern to match.
+  ///   Can be a [String] for exact matching or a [RegExp] for pattern matching.
   const InlineQueryFilter({this.query});
 
   @override
@@ -113,7 +129,16 @@ class InlineQueryFilter<CTX extends Context> extends Filter<CTX> {
     if (inlineQuery == null) return false;
 
     if (query != null) {
-      return inlineQuery.query == query;
+      final queryText = inlineQuery.query;
+
+      if (query is String) {
+        return queryText == query;
+      } else if (query is RegExp) {
+        return (query as RegExp).hasMatch(queryText);
+      }
+
+      // Fallback for other Pattern implementations
+      return queryText.contains(query!);
     }
 
     return true;
@@ -121,7 +146,7 @@ class InlineQueryFilter<CTX extends Context> extends Filter<CTX> {
 
   @override
   String toString() => query != null
-      ? 'InlineQueryFilter(query: "$query")'
+      ? 'InlineQueryFilter(query: ${query is RegExp ? '/${query.toString()}/' : '"$query"'})'
       : 'InlineQueryFilter()';
 }
 

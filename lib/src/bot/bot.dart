@@ -157,8 +157,8 @@ class Bot<CTX extends Context> extends Composer<CTX> {
       return updatedBotInfo;
     } catch (error, stackTrace) {
       throw BotError<CTX>(
-        originalError: error,
-        originalStackTrace: stackTrace,
+        error: error,
+        stackTrace: stackTrace,
         phase: ErrorPhase.initialization,
       );
     }
@@ -311,8 +311,8 @@ class Bot<CTX extends Context> extends Composer<CTX> {
 
       // Create bot error
       final botError = BotError<CTX>(
-        originalError: error,
-        originalStackTrace: stackTrace,
+        error: error,
+        stackTrace: stackTrace,
         ctx: ctx,
         phase: ErrorPhase.middleware,
       );
@@ -329,8 +329,8 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     _updateStats(processed: false);
 
     final botError = BotError<CTX>(
-      originalError: error,
-      originalStackTrace: stackTrace,
+      error: error,
+      stackTrace: stackTrace,
       phase: ErrorPhase.fetching,
     );
 
@@ -350,8 +350,8 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   Future<void> _handleErrorFromMiddleware(BotError<CTX> botError) async {
     // This method is implemented in the Composer base class
     await _handleMiddlewareError(
-      botError.originalError,
-      botError.originalStackTrace,
+      botError.error,
+      botError.stackTrace,
       botError.ctx,
       null, // middleware name
     );
@@ -471,7 +471,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [data]: The callback data to match
   /// - [handler]: The handler function
-  Bot<CTX> callbackQuery(String data, UpdateHandler<CTX> handler) {
+  Bot<CTX> callbackQuery(Pattern data, UpdateHandler<CTX> handler) {
     return filterWithFilter(CallbackQueryFilter<CTX>(data: data), handler);
   }
 
@@ -497,6 +497,15 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// ```
   Bot<CTX> onInlineQuery(UpdateHandler<CTX> handler) {
     return filterWithFilter(InlineQueryFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for inline queries with specific data.
+  ///
+  /// Parameters:
+  /// - [query]: The callback data to match
+  /// - [handler]: The handler function
+  Bot<CTX> inlineQuery(Pattern query, UpdateHandler<CTX> handler) {
+    return filterWithFilter(InlineQueryFilter<CTX>(query: query), handler);
   }
 
   /// Adds a handler for messages with photos.

@@ -12,10 +12,7 @@ part of '../../televerse.dart';
 /// in which the error occurred (if available).
 class BotError<CTX extends Context> extends TeleverseException {
   /// The original error that occurred.
-  final Object originalError;
-
-  /// The original stack trace.
-  final StackTrace originalStackTrace;
+  final Object error;
 
   /// The context in which the error occurred, if available.
   final CTX? ctx;
@@ -29,21 +26,20 @@ class BotError<CTX extends Context> extends TeleverseException {
   /// Creates a new bot error.
   ///
   /// Parameters:
-  /// - [originalError]: The original error that occurred
-  /// - [originalStackTrace]: The original stack trace
+  /// - [error]: The original error that occurred
+  /// - [stackTrace]: The original stack trace
   /// - [ctx]: The context in which the error occurred
   /// - [middlewareName]: The name of the middleware where the error occurred
   /// - [phase]: The phase of processing where the error occurred
   BotError({
-    required this.originalError,
-    required this.originalStackTrace,
+    required this.error,
+    required super.stackTrace,
     this.ctx,
     this.middlewareName,
     this.phase = ErrorPhase.middleware,
   }) : super(
-          'Bot error occurred during ${phase.name}: $originalError',
-          description: _buildDescription(originalError, ctx, middlewareName),
-          stackTrace: originalStackTrace,
+          'Bot error occurred during ${phase.name}: $error',
+          description: _buildDescription(error, ctx, middlewareName),
           type: TeleverseExceptionType.requestFailed,
         );
 
@@ -83,8 +79,8 @@ class BotError<CTX extends Context> extends TeleverseException {
     String? middlewareName,
   ) {
     return BotError<CTX>(
-      originalError: error,
-      originalStackTrace: stackTrace,
+      error: error,
+      stackTrace: stackTrace,
       ctx: ctx,
       middlewareName: middlewareName,
       phase: ErrorPhase.middleware,
@@ -97,8 +93,8 @@ class BotError<CTX extends Context> extends TeleverseException {
     StackTrace stackTrace,
   ) {
     return BotError<CTX>(
-      originalError: error,
-      originalStackTrace: stackTrace,
+      error: error,
+      stackTrace: stackTrace,
       phase: ErrorPhase.fetching,
     );
   }
@@ -110,8 +106,8 @@ class BotError<CTX extends Context> extends TeleverseException {
     CTX? ctx,
   ) {
     return BotError<CTX>(
-      originalError: error,
-      originalStackTrace: stackTrace,
+      error: error,
+      stackTrace: stackTrace,
       ctx: ctx,
       phase: ErrorPhase.api,
     );
@@ -140,10 +136,10 @@ class BotError<CTX extends Context> extends TeleverseException {
       this.middlewareName == middlewareName;
 
   /// Checks if this error is of a specific type.
-  bool isOfType<T>() => originalError is T;
+  bool isOfType<T>() => error is T;
 
   /// Gets the original error cast to a specific type.
-  T? getOriginalErrorAs<T>() => originalError is T ? originalError as T : null;
+  T? getOriginalErrorAs<T>() => error is T ? error as T : null;
 
   /// Creates a recovery context with limited functionality.
   ///
@@ -162,7 +158,7 @@ class BotError<CTX extends Context> extends TeleverseException {
     if (middlewareName != null) {
       buffer.writeln('  Middleware: $middlewareName');
     }
-    buffer.writeln('  Original Error: $originalError');
+    buffer.writeln('  Original Error: $error');
     if (hasContext) {
       buffer.writeln('  Update ID: ${updateId ?? 'N/A'}');
       buffer.writeln('  Chat ID: ${chatId ?? 'N/A'}');
