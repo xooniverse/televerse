@@ -22,6 +22,9 @@ class RawAPI {
   /// Whether this instance owns the HTTP client and should dispose it.
   final bool _ownsHttpClient;
 
+  /// Manager for handling transformer chains.
+  final TransformerManager _transformerManager = TransformerManager();
+
   /// Creates a new [RawAPI] instance.
   ///
   /// Parameters:
@@ -35,6 +38,52 @@ class RawAPI {
   })  : _httpClient = httpClient ?? DioHttpClient(),
         _baseUrl = baseUrl ?? 'https://api.telegram.org/bot$token',
         _ownsHttpClient = httpClient == null;
+
+  // ===============================
+  // Transformer Management
+  // ===============================
+
+  /// Adds a transformer to the request chain.
+  ///
+  /// Transformers are executed in the order they are added.
+  /// The first transformer added will be the outermost in the chain.
+  ///
+  /// Example:
+  /// ```dart
+  /// api.use(LoggingTransformer());
+  /// api.use(RetryTransformer(maxRetries: 3));
+  /// ```
+  void use(Transformer transformer) {
+    _transformerManager.addTransformer(transformer);
+  }
+
+  /// Removes a specific transformer from the chain.
+  ///
+  /// Returns true if the transformer was found and removed.
+  bool removeTransformer(Transformer transformer) {
+    return _transformerManager.removeTransformer(transformer);
+  }
+
+  /// Removes all transformers of the specified type.
+  ///
+  /// Returns the number of transformers removed.
+  ///
+  /// Example:
+  /// ```dart
+  /// // Remove all logging transformers
+  /// final removedCount = api.removeTransformersOfType<LoggingTransformer>();
+  /// ```
+  int removeTransformersOfType<T extends Transformer>() {
+    return _transformerManager.removeTransformersOfType<T>();
+  }
+
+  /// Gets a read-only list of all installed transformers.
+  List<Transformer> get transformers => _transformerManager.transformers;
+
+  /// Clears all transformers.
+  void clearTransformers() {
+    _transformerManager.clear();
+  }
 
   /// Makes a generic API call to any Telegram Bot API method.
   ///
@@ -75,7 +124,8 @@ class RawAPI {
   /// Makes a request to the specified API method.
   ///
   /// This is the core method that handles all API requests. It automatically
-  /// determines whether to send a JSON or multipart request based on the payload.
+  /// determines whether to send a JSON or multipart request based on the payload,
+  /// and executes the transformer chain.
   ///
   /// Parameters:
   /// - [method]: The API method to call
@@ -87,11 +137,28 @@ class RawAPI {
     APIMethod method, [
     Payload? payload,
   ]) async {
+    // Create the transformer chain
+    final caller = _transformerManager.createCaller(_actualApiCall);
+
+    // Execute the request through the transformer chain
+    final response = await caller(method, payload);
+
+    return _processResponse<T>(response);
+  }
+
+  /// The actual API call implementation (final step in transformer chain).
+  ///
+  /// This method performs the actual HTTP request to the Telegram Bot API.
+  /// It's called at the end of the transformer chain.
+  Future<Map<String, dynamic>> _actualApiCall(
+    APIMethod method, [
+    Payload? payload,
+  ]) async {
     final url = '$_baseUrl/${method.name}';
 
     try {
       final response = await _httpClient.post(url, payload);
-      return _processResponse<T>(response);
+      return response;
     } catch (e) {
       if (e is TeleverseException) {
         rethrow;

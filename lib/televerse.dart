@@ -48,6 +48,8 @@ part 'src/core/http_client_factory.dart';
 part 'src/core/http_client.dart';
 part 'src/core/http_utils.dart';
 part 'src/core/raw_api.dart';
+part 'src/core/transformer.dart';
+part 'src/core/plugin.dart';
 
 // Fetchers
 part 'src/fetchers/long_polling_fetcher.dart';
