@@ -656,6 +656,36 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     return this;
   }
 
+  @override
+  Bot<CTX> mount(Composer<CTX> other) {
+    super.mount(other);
+    return this;
+  }
+
+  @override
+  Bot<CTX> removeAt(int index) {
+    super.removeAt(index);
+    return this;
+  }
+
+  @override
+  Bot<CTX> removeNamed(String name) {
+    super.removeNamed(name);
+    return this;
+  }
+
+  @override
+  Bot<CTX> clear() {
+    super.clear();
+    return this;
+  }
+
+  @override
+  Bot<CTX> insertAt(index, Middleware<CTX> middleware) {
+    super.insertAt(index, middleware);
+    return this;
+  }
+
   // ===============================
   // Plugin System
   // ===============================
