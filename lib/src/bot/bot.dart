@@ -27,8 +27,8 @@ part of '../../televerse.dart';
 ///   await ctx.reply('Hi there! 👋');
 /// });
 ///
-/// bot.onError((error) async {
-///   print('Bot error: ${error.originalError}');
+/// bot.catch((error) async {
+///   print('Bot error: ${error.error}');
 /// });
 ///
 /// await bot.start();
@@ -156,11 +156,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
 
       return updatedBotInfo;
     } catch (error, stackTrace) {
-      throw BotError<CTX>(
-        error: error,
-        stackTrace: stackTrace,
-        phase: ErrorPhase.initialization,
-      );
+      throw BotError<CTX>.fromMiddleware(error, stackTrace, null);
     }
   }
 
@@ -310,11 +306,10 @@ class Bot<CTX extends Context> extends Composer<CTX> {
       _updateErrorStats(duration);
 
       // Create bot error
-      final botError = BotError<CTX>(
-        error: error,
-        stackTrace: stackTrace,
-        ctx: ctx,
-        phase: ErrorPhase.middleware,
+      final botError = BotError<CTX>.fromMiddleware(
+        error,
+        stackTrace,
+        ctx,
       );
 
       // Handle the error through the error handling system
@@ -328,11 +323,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
 
     _updateStats(processed: false);
 
-    final botError = BotError<CTX>(
-      error: error,
-      stackTrace: stackTrace,
-      phase: ErrorPhase.fetching,
-    );
+    final botError = BotError<CTX>.fromFetcher(error, stackTrace);
 
     // Try to handle through error system
     unawaited(_handleErrorFromMiddleware(botError));
@@ -348,12 +339,11 @@ class Bot<CTX extends Context> extends Composer<CTX> {
 
   /// Handles middleware errors.
   Future<void> _handleErrorFromMiddleware(BotError<CTX> botError) async {
-    // This method is implemented in the Composer base class
-    await _handleMiddlewareError(
+    // Use the inherited error handling from Composer
+    await _handleUnhandledError(
       botError.error,
       botError.stackTrace,
       botError.ctx,
-      null, // middleware name
     );
   }
 
@@ -596,7 +586,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     });
   }
 
-  // Override the base filter method to return Bot<CTX> instead of Composer<CTX>
+  // Override the base methods to return Bot<CTX> instead of Composer<CTX>
   @override
   Bot<CTX> filter(
     MiddlewarePredicate<CTX> predicate,
@@ -606,7 +596,6 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     return this;
   }
 
-  // Override other Composer methods to return Bot<CTX>
   @override
   Bot<CTX> use(Middleware<CTX> middleware) {
     super.use(middleware);
@@ -649,10 +638,30 @@ class Bot<CTX extends Context> extends Composer<CTX> {
 
   @override
   Bot<CTX> errorBoundary(
-    ErrorHandler<CTX> handler, {
-    bool continueOnError = false,
-  }) {
-    super.errorBoundary(handler, continueOnError: continueOnError);
+    ErrorBoundaryHandler<CTX> errorHandler, [
+    List<Middleware<CTX>> protectedMiddleware = const [],
+  ]) {
+    super.errorBoundary(errorHandler, protectedMiddleware);
+    return this;
+  }
+
+  @override
+  Bot<CTX> errorBoundaryVarArgs(
+    ErrorBoundaryHandler<CTX> errorHandler,
+    Middleware<CTX> middleware1, [
+    Middleware<CTX>? middleware2,
+    Middleware<CTX>? middleware3,
+    Middleware<CTX>? middleware4,
+    Middleware<CTX>? middleware5,
+  ]) {
+    super.errorBoundaryVarArgs(
+      errorHandler,
+      middleware1,
+      middleware2,
+      middleware3,
+      middleware4,
+      middleware5,
+    );
     return this;
   }
 

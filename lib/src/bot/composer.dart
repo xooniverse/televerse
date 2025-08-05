@@ -22,17 +22,8 @@ class Composer<CTX extends Context> {
   /// The list of middleware entries.
   final List<MiddlewareEntry<CTX>> _middleware = [];
 
-  /// Error boundaries for handling errors.
-  final List<ErrorBoundary<CTX>> _errorBoundaries = [];
-
   /// Global error handler.
   ErrorHandler<CTX>? _globalErrorHandler;
-
-  /// Statistics about the last middleware execution.
-  MiddlewareStats? _lastStats;
-
-  /// Whether to collect execution statistics.
-  bool _collectStats = false;
 
   /// Creates a new composer.
   Composer();
@@ -196,10 +187,10 @@ class Composer<CTX extends Context> {
   // Error Handling
   // ===============================
 
-  /// Sets the global error handler.
+  /// Sets a global error handler that catches all unhandled errors.
   ///
   /// This handler will be called for any unhandled errors that occur
-  /// during middleware execution.
+  /// during middleware execution and are not caught by error boundaries.
   ///
   /// Parameters:
   /// - [handler]: The error handler function
@@ -209,7 +200,7 @@ class Composer<CTX extends Context> {
   /// Example:
   /// ```dart
   /// composer.onError((error) async {
-  ///   print('Error occurred: ${error.originalError}');
+  ///   print('Error occurred: ${error.error}');
   ///   if (error.hasContext) {
   ///     await error.ctx!.reply('Sorry, something went wrong!');
   ///   }
@@ -220,50 +211,105 @@ class Composer<CTX extends Context> {
     return this;
   }
 
-  /// Adds an error boundary to catch and handle errors.
+  /// Creates an error boundary that catches errors from specific middleware.
   ///
-  /// Error boundaries provide a way to catch errors at specific points
-  /// in the middleware chain and handle them appropriately.
+  /// This is the correct implementation following grammY's pattern.
+  /// The error boundary:
+  /// 1. Accepts an error handler and middleware to protect
+  /// 2. If an error occurs in the protected middleware, calls the error handler
+  /// 3. If the error handler calls `next()`, continues execution after the boundary
+  /// 4. If the error handler doesn't call `next()`, stops execution (error contained)
   ///
   /// Parameters:
-  /// - [handler]: The error handler function
-  /// - [continueOnError]: Whether to continue execution after handling the error
+  /// - [errorHandler]: Error handler that gets error and next function
+  /// - [protectedMiddleware]: List of middleware to protect with this boundary
   ///
   /// Returns this composer for method chaining.
   ///
   /// Example:
   /// ```dart
-  /// composer.errorBoundary(
-  ///   (error) async {
-  ///     print('Caught error: ${error.originalError}');
+  /// bot.errorBoundary(
+  ///   (error, next) async {
+  ///     print('Error caught: ${error.error}');
+  ///
+  ///     if (error.error is ValidationException) {
+  ///       await error.ctx?.reply('Please check your input');
+  ///       await next(); // Continue after boundary
+  ///     } else {
+  ///       await error.ctx?.reply('Something went wrong');
+  ///       // Don't call next() - contain the error
+  ///     }
   ///   },
-  ///   continueOnError: true,
+  ///   riskyMiddleware1,
+  ///   riskyMiddleware2,
   /// );
   /// ```
   Composer<CTX> errorBoundary(
-    ErrorHandler<CTX> handler, {
-    bool continueOnError = false,
-  }) {
+    ErrorBoundaryHandler<CTX> errorHandler, [
+    List<Middleware<CTX>> protectedMiddleware = const [],
+  ]) {
+    // Add the error boundary middleware to the current composer
     return use((ctx, next) async {
       try {
+        // Execute all protected middleware first
+        for (final middleware in protectedMiddleware) {
+          await middleware(ctx, () async {});
+        }
+
+        // If all protected middleware completed successfully, continue with next
         await next();
       } catch (error, stackTrace) {
+        // Create bot error
         final botError = BotError<CTX>.fromMiddleware(
           error,
           stackTrace,
           ctx,
-          'error-boundary',
         );
 
-        await handler(botError);
-
-        if (!continueOnError) return;
-
-        // Continue with remaining middleware after error
-        // This is a simplified implementation - in practice,
-        // we'd need to track middleware position
+        // Call the error boundary handler with the error and next function
+        // The handler decides whether to call next() to continue execution
+        await errorHandler(botError, next);
       }
     });
+  }
+
+  /// Alternative error boundary method that accepts middleware as varargs.
+  ///
+  /// This matches grammY's exact API signature.
+  ///
+  /// Parameters:
+  /// - [errorHandler]: Error handler that gets error and next function
+  /// - [...]: Variable number of middleware to protect
+  ///
+  /// Returns this composer for method chaining.
+  ///
+  /// Example:
+  /// ```dart
+  /// bot.errorBoundaryVarArgs(
+  ///   (error, next) async {
+  ///     print('Error in boundary: ${error.error}');
+  ///     // Decide whether to call next() or not
+  ///   },
+  ///   middleware1,
+  ///   middleware2,
+  ///   middleware3,
+  /// );
+  /// ```
+  Composer<CTX> errorBoundaryVarArgs(
+    ErrorBoundaryHandler<CTX> errorHandler,
+    Middleware<CTX> middleware1, [
+    Middleware<CTX>? middleware2,
+    Middleware<CTX>? middleware3,
+    Middleware<CTX>? middleware4,
+    Middleware<CTX>? middleware5,
+  ]) {
+    final middlewareList = <Middleware<CTX>>[middleware1];
+    if (middleware2 != null) middlewareList.add(middleware2);
+    if (middleware3 != null) middlewareList.add(middleware3);
+    if (middleware4 != null) middlewareList.add(middleware4);
+    if (middleware5 != null) middlewareList.add(middleware5);
+
+    return errorBoundary(errorHandler, middlewareList);
   }
 
   // ===============================
@@ -273,7 +319,7 @@ class Composer<CTX extends Context> {
   /// Processes a context through the middleware chain.
   ///
   /// This method executes all middleware in order, handling errors
-  /// appropriately and collecting statistics if enabled.
+  /// appropriately.
   ///
   /// Parameters:
   /// - [ctx]: The context to process
@@ -286,37 +332,19 @@ class Composer<CTX extends Context> {
   Future<void> handle(CTX ctx) async {
     if (_middleware.isEmpty) return;
 
-    final executionInfos = <MiddlewareExecutionInfo>[];
-    final startTime = DateTime.now();
-
     try {
-      await _executeMiddleware(ctx, 0, executionInfos);
-    } finally {
-      if (_collectStats) {
-        final endTime = DateTime.now();
-        final totalTime = endTime.difference(startTime).inMicroseconds;
-
-        _lastStats = MiddlewareStats(
-          totalMiddleware: _middleware.length,
-          executedMiddleware:
-              executionInfos.where((info) => info.successful).length,
-          skippedMiddleware: _middleware.length - executionInfos.length,
-          executionTimeMicroseconds: totalTime,
-          middlewareExecutions: executionInfos,
-        );
-      }
+      await _executeMiddleware(ctx, 0);
+    } catch (error, stackTrace) {
+      // Handle any unhandled errors with the global error handler
+      await _handleUnhandledError(error, stackTrace, ctx);
     }
   }
 
   /// Executes middleware starting from a specific index.
   ///
   /// This is the core method that handles the middleware chain execution,
-  /// including error handling, statistics collection, and concurrent execution.
-  Future<void> _executeMiddleware(
-    CTX ctx,
-    int index,
-    List<MiddlewareExecutionInfo> executionInfos,
-  ) async {
+  /// including error handling and concurrent execution.
+  Future<void> _executeMiddleware(CTX ctx, int index) async {
     if (index >= _middleware.length) return;
 
     final entry = _middleware[index];
@@ -324,111 +352,56 @@ class Composer<CTX extends Context> {
     // Check if middleware should run
     if (!entry.shouldRun(ctx)) {
       // Skip this middleware and continue to next
-      return _executeMiddleware(ctx, index + 1, executionInfos);
+      return _executeMiddleware(ctx, index + 1);
     }
 
     // Handle concurrent (fork) middleware
     if (entry.concurrent) {
       // Start concurrent execution but don't wait for it
-      _executeSingleMiddleware(ctx, entry, executionInfos).catchError(
-        (error, stackTrace) => _handleMiddlewareError(
-          error,
-          stackTrace,
-          ctx,
-          entry.name,
-        ),
-      );
+      unawaited(_executeSingleMiddleware(ctx, entry, () async {})
+          .catchError((error, stackTrace) async {
+        // For forked middleware, we handle errors separately
+        // to avoid crashing the main middleware chain
+        await _handleForkedMiddlewareError(error, stackTrace, ctx);
+      }));
 
       // Continue to next middleware immediately
-      return _executeMiddleware(ctx, index + 1, executionInfos);
+      return _executeMiddleware(ctx, index + 1);
     }
 
     // Execute middleware and wait for completion
-    try {
-      await _executeSingleMiddleware(ctx, entry, executionInfos, () async {
-        // Next function - continue to next middleware
-        await _executeMiddleware(ctx, index + 1, executionInfos);
-      });
-    } catch (error, stackTrace) {
-      await _handleMiddlewareError(error, stackTrace, ctx, entry.name);
-    }
+    await _executeSingleMiddleware(ctx, entry, () async {
+      // Next function - continue to next middleware
+      await _executeMiddleware(ctx, index + 1);
+    });
   }
 
   /// Executes a single middleware entry.
   Future<void> _executeSingleMiddleware(
     CTX ctx,
     MiddlewareEntry<CTX> entry,
-    List<MiddlewareExecutionInfo> executionInfos, [
-    NextFunction? next,
-  ]) async {
-    final startTime = DateTime.now();
-
-    try {
-      await entry.middleware(ctx, next ?? (() async {}));
-
-      if (_collectStats) {
-        final endTime = DateTime.now();
-        final executionTime = endTime.difference(startTime).inMicroseconds;
-
-        executionInfos.add(MiddlewareExecutionInfo(
-          entry: entry,
-          executionTimeMicroseconds: executionTime,
-          successful: true,
-        ));
-      }
-    } catch (e) {
-      if (_collectStats) {
-        final endTime = DateTime.now();
-        final executionTime = endTime.difference(startTime).inMicroseconds;
-
-        executionInfos.add(MiddlewareExecutionInfo(
-          entry: entry,
-          executionTimeMicroseconds: executionTime,
-          successful: false,
-          error: e,
-        ));
-      }
-
-      rethrow;
-    }
+    NextFunction next,
+  ) async {
+    await entry.middleware(ctx, next);
   }
 
-  /// Handles middleware errors.
-  Future<void> _handleMiddlewareError(
+  /// Handles unhandled errors (errors that escape error boundaries).
+  ///
+  /// This method deals with errors that occur in middleware that isn't
+  /// protected by error boundaries, or errors that bubble up from
+  /// error boundary handlers themselves.
+  Future<void> _handleUnhandledError(
     Object error,
     StackTrace stackTrace,
     CTX? ctx,
-    String? middlewareName,
   ) async {
     final botError = BotError<CTX>.fromMiddleware(
       error,
       stackTrace,
       ctx,
-      middlewareName,
     );
 
-    // Try error boundaries first
-    for (final boundary in _errorBoundaries) {
-      if (boundary.handles(botError)) {
-        try {
-          await boundary.handler(botError);
-
-          if (!boundary.rethrowAfterHandling) {
-            if (boundary.continueOnError) {
-              // Continue execution - in practice, this would require
-              // more complex state management
-              return;
-            }
-            return; // Stop execution
-          }
-        } catch (handlerError) {
-          // Error in error handler - fall back to global handler
-          break;
-        }
-      }
-    }
-
-    // Fall back to global error handler
+    // Try global error handler
     if (_globalErrorHandler != null) {
       try {
         await _globalErrorHandler!(botError);
@@ -440,8 +413,42 @@ class Composer<CTX extends Context> {
       }
     }
 
-    // No handler available or handlers failed - rethrow original error
+    // No handler available or handler failed - rethrow original error
     throw botError;
+  }
+
+  /// Handles errors in forked (concurrent) middleware.
+  ///
+  /// Forked middleware errors are handled separately to prevent them
+  /// from crashing the main middleware chain.
+  Future<void> _handleForkedMiddlewareError(
+    Object error,
+    StackTrace stackTrace,
+    CTX? ctx,
+  ) async {
+    final botError = BotError<CTX>.fromMiddleware(
+      error,
+      stackTrace,
+      ctx,
+    );
+
+    // Try global error handler
+    if (_globalErrorHandler != null) {
+      try {
+        await _globalErrorHandler!(botError);
+      } catch (handlerError, handlerStackTrace) {
+        // Error in global handler - just log, don't rethrow for forked middleware
+        print(
+          'Error in global error handler for forked middleware: $handlerError',
+        );
+        print('Handler stack trace: $handlerStackTrace');
+        print('Original forked error: $error');
+      }
+    } else {
+      // No global handler - just log the forked middleware error
+      print('Unhandled error in forked middleware: $error');
+      print('Stack trace: $stackTrace');
+    }
   }
 
   // ===============================
@@ -469,7 +476,6 @@ class Composer<CTX extends Context> {
   /// ```
   Composer<CTX> mount(Composer<CTX> other) {
     _middleware.addAll(other._middleware);
-    _errorBoundaries.addAll(other._errorBoundaries);
     return this;
   }
 
@@ -496,7 +502,6 @@ class Composer<CTX extends Context> {
   Composer<CTX> extend(List<Middleware<CTX>> additionalMiddleware) {
     final newComposer = Composer<CTX>();
     newComposer._middleware.addAll(_middleware);
-    newComposer._errorBoundaries.addAll(_errorBoundaries);
     newComposer._globalErrorHandler = _globalErrorHandler;
 
     for (final middleware in additionalMiddleware) {
@@ -515,9 +520,7 @@ class Composer<CTX extends Context> {
   Composer<CTX> clone() {
     final newComposer = Composer<CTX>();
     newComposer._middleware.addAll(_middleware);
-    newComposer._errorBoundaries.addAll(_errorBoundaries);
     newComposer._globalErrorHandler = _globalErrorHandler;
-    newComposer._collectStats = _collectStats;
     return newComposer;
   }
 
@@ -537,36 +540,16 @@ class Composer<CTX extends Context> {
   bool get hasMiddleware => _middleware.isNotEmpty;
 
   /// Checks if the composer has error handling configured.
-  bool get hasErrorHandling =>
-      _globalErrorHandler != null || _errorBoundaries.isNotEmpty;
-
-  /// Gets statistics from the last execution.
-  MiddlewareStats? get lastExecutionStats => _lastStats;
-
-  /// Enables or disables statistics collection.
-  ///
-  /// When enabled, the composer will collect detailed statistics
-  /// about middleware execution times and success rates.
-  ///
-  /// Parameters:
-  /// - [enabled]: Whether to collect statistics
-  ///
-  /// Returns this composer for method chaining.
-  Composer<CTX> collectStatistics(bool enabled) {
-    _collectStats = enabled;
-    return this;
-  }
+  bool get hasErrorHandling => _globalErrorHandler != null;
 
   /// Removes all middleware from this composer.
   ///
-  /// This clears all middleware, error boundaries, and error handlers.
+  /// This clears all middleware and error handlers.
   ///
   /// Returns this composer for method chaining.
   Composer<CTX> clear() {
     _middleware.clear();
-    _errorBoundaries.clear();
     _globalErrorHandler = null;
-    _lastStats = null;
     return this;
   }
 
@@ -617,7 +600,6 @@ class Composer<CTX extends Context> {
   @override
   String toString() {
     return 'Composer<$CTX>(middleware: ${_middleware.length}, '
-        'errorBoundaries: ${_errorBoundaries.length}, '
         'hasGlobalErrorHandler: ${_globalErrorHandler != null})';
   }
 }

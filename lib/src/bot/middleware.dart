@@ -33,13 +33,6 @@ typedef Middleware<CTX extends Context> = FutureOr<void> Function(
 /// Returns true if the middleware should be executed, false otherwise.
 typedef MiddlewarePredicate<CTX extends Context> = bool Function(CTX ctx);
 
-/// Error handler function type.
-///
-/// This function is called when an error occurs during middleware execution.
-typedef ErrorHandler<CTX extends Context> = FutureOr<void> Function(
-  BotError<CTX> error,
-);
-
 /// Middleware filter function type.
 ///
 /// This function determines if a middleware should run based on the context.
