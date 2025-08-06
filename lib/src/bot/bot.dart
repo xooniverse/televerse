@@ -105,7 +105,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   ///
   /// Parameters:
   /// - [token]: The bot token
-  /// - [localApiUrl]: The URL of your local Bot API server
+  /// - [url]: The URL of your local Bot API server
   /// - [contextFactory]: Optional factory for creating custom context types
   /// - [botInfo]: Optional bot information
   /// - [httpClient]: Optional custom HTTP client
@@ -119,7 +119,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// ```
   factory Bot.local(
     String token,
-    String localApiUrl, {
+    String url, {
     ContextFactory<CTX>? contextFactory,
     BotInfo? botInfo,
     HttpClient? httpClient,
@@ -129,9 +129,56 @@ class Bot<CTX extends Context> extends Composer<CTX> {
       contextFactory: contextFactory,
       botInfo: botInfo,
       httpClient: httpClient,
-      baseUrl: localApiUrl,
+      baseUrl: url,
     );
   }
+
+  /// Creates a Bot instance from an existing RawAPI instance.
+  ///
+  /// This constructor is useful when you want to share a RawAPI instance
+  /// across multiple bots or when you need more control over the API configuration.
+  ///
+  /// Parameters:
+  /// - [api]: The pre-configured RawAPI instance
+  /// - [contextFactory]: Optional factory for creating custom context types
+  /// - [botInfo]: Optional bot information (will be fetched if not provided)
+  ///
+  /// Example:
+  /// ```dart
+  /// // Create and configure API instance
+  /// final api = RawAPI('YOUR_BOT_TOKEN');
+  /// api.use(LoggingTransformer());
+  /// api.use(RetryTransformer());
+  ///
+  /// // Create bot from API
+  /// final bot = Bot.fromAPI<Context>(
+  ///   api,
+  ///   contextFactory: MyContext.new,
+  /// );
+  ///
+  /// // Share API across multiple bots
+  /// final bot1 = Bot.fromAPI<Context>(api);
+  /// final bot2 = Bot.fromAPI<MyContext>(api, contextFactory: MyContext.new);
+  /// ```
+  factory Bot.fromAPI(
+    RawAPI api, {
+    ContextFactory<CTX>? contextFactory,
+    BotInfo? botInfo,
+  }) {
+    return Bot._(
+      api,
+      contextFactory: contextFactory ?? _defaultContextFactory,
+      botInfo: botInfo ?? const BotInfo(),
+    );
+  }
+
+  /// Private constructor for factory methods.
+  Bot._(
+    this.api, {
+    required ContextFactory<CTX> contextFactory,
+    required this.botInfo,
+  })  : _contextFactory = contextFactory,
+        token = api.token;
 
   // ===============================
   // Bot Lifecycle
