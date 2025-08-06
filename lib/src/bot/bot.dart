@@ -599,6 +599,648 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     return filterWithFilter(GroupChatFilter<CTX>(), handler);
   }
 
+  /// Adds a handler for messages with animations.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  ///
+  /// Example:
+  /// ```dart
+  /// bot.onAnimation((ctx) async {
+  ///   await ctx.reply('Nice animation! 🎬');
+  /// });
+  /// ```
+  Bot<CTX> onAnimation(UpdateHandler<CTX> handler) {
+    return filterWithFilter(AnimationFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with audio files.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onAudio(UpdateHandler<CTX> handler) {
+    return filterWithFilter(AudioFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with video files.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onVideo(UpdateHandler<CTX> handler) {
+    return filterWithFilter(VideoFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with video notes.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onVideoNote(UpdateHandler<CTX> handler) {
+    return filterWithFilter(VideoNoteFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with voice notes.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onVoice(UpdateHandler<CTX> handler) {
+    return filterWithFilter(VoiceFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with contacts.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onContact(UpdateHandler<CTX> handler) {
+    return filterWithFilter(ContactFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with dice.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onDice(UpdateHandler<CTX> handler) {
+    return filterWithFilter(DiceFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with games.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onGame(UpdateHandler<CTX> handler) {
+    return filterWithFilter(GameFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with polls.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onPollMessage(UpdateHandler<CTX> handler) {
+    return filterWithFilter(PollMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with venue information.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onVenue(UpdateHandler<CTX> handler) {
+    return filterWithFilter(VenueFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with location data.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onLocation(UpdateHandler<CTX> handler) {
+    return filterWithFilter(LocationFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with live location updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onLiveLocation(UpdateHandler<CTX> handler) {
+    return filterWithFilter(LiveLocationFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with captions.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onCaption(UpdateHandler<CTX> handler) {
+    return filterWithFilter(CaptionMessageFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Update Type Handlers
+  // ===============================
+
+  /// Adds a handler for any message update (regular or edited).
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onMessage(UpdateHandler<CTX> handler) {
+    return filterWithFilter(AnyMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for edited message updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onEditedMessage(UpdateHandler<CTX> handler) {
+    return filterWithFilter(EditedMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for channel post updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onChannelPost(UpdateHandler<CTX> handler) {
+    return filterWithFilter(ChannelPostFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for edited channel post updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onEditedChannelPost(UpdateHandler<CTX> handler) {
+    return filterWithFilter(EditedChannelPostFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for chosen inline result updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onChosenInlineResult(UpdateHandler<CTX> handler) {
+    return filterWithFilter(ChosenInlineResultFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for shipping query updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onShippingQuery(UpdateHandler<CTX> handler) {
+    return filterWithFilter(ShippingQueryFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for pre-checkout query updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onPreCheckoutQuery(UpdateHandler<CTX> handler) {
+    return filterWithFilter(PreCheckoutQueryFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for successful payment messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onSuccessfulPayment(UpdateHandler<CTX> handler) {
+    return filterWithFilter(SuccessfulPaymentFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for poll updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onPoll(UpdateHandler<CTX> handler) {
+    return filterWithFilter(PollFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for poll answer updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onPollAnswer(UpdateHandler<CTX> handler) {
+    return filterWithFilter(PollAnswerFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for bot's chat member updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onMyChatMember(UpdateHandler<CTX> handler) {
+    return filterWithFilter(MyChatMemberFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for chat member updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onChatMember(UpdateHandler<CTX> handler) {
+    return filterWithFilter(ChatMemberFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for chat join request updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onChatJoinRequest(UpdateHandler<CTX> handler) {
+    return filterWithFilter(ChatJoinRequestFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Service Message Handlers
+  // ===============================
+
+  /// Adds a handler for new chat title service messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onNewChatTitle(UpdateHandler<CTX> handler) {
+    return filterWithFilter(NewChatTitleFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for new chat photo service messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onNewChatPhoto(UpdateHandler<CTX> handler) {
+    return filterWithFilter(NewChatPhotoFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for delete chat photo service messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onDeleteChatPhoto(UpdateHandler<CTX> handler) {
+    return filterWithFilter(DeleteChatPhotoFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for pinned message service messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onPinnedMessage(UpdateHandler<CTX> handler) {
+    return filterWithFilter(PinnedMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for user shared messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onUsrShared(UpdateHandler<CTX> handler) {
+    return filterWithFilter(UsersSharedFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for chat shared messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onChatShared(UpdateHandler<CTX> handler) {
+    return filterWithFilter(ChatSharedFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Video Chat Service Messages
+  // ===============================
+
+  /// Adds a handler for video chat scheduled service messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> whenVideoChatScheduled(UpdateHandler<CTX> handler) {
+    return filterWithFilter(VideoChatScheduledFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for video chat started service messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> whenVideoChatStarted(UpdateHandler<CTX> handler) {
+    return filterWithFilter(VideoChatStartedFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for video chat ended service messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> whenVideoChatEnded(UpdateHandler<CTX> handler) {
+    return filterWithFilter(VideoChatEndedFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for video chat participants invited service messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> whenVideoChatParticipantsInvited(UpdateHandler<CTX> handler) {
+    return filterWithFilter(VideoChatParticipantsInvitedFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Forum Topic Service Messages
+  // ===============================
+
+  /// Adds a handler for forum topic created service messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onForumTopicCreated(UpdateHandler<CTX> handler) {
+    return filterWithFilter(ForumTopicCreatedFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for forum topic edited service messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onForumTopicEdited(UpdateHandler<CTX> handler) {
+    return filterWithFilter(ForumTopicEditedFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for forum topic closed service messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onForumTopicClosed(UpdateHandler<CTX> handler) {
+    return filterWithFilter(ForumTopicClosedFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for forum topic reopened service messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onForumTopicReopened(UpdateHandler<CTX> handler) {
+    return filterWithFilter(ForumTopicReopenedFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Web App and Advanced Features
+  // ===============================
+
+  /// Adds a handler for web app data messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onWebAppData(UpdateHandler<CTX> handler) {
+    return filterWithFilter(WebAppDataFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Entity-Based Handlers
+  // ===============================
+
+  /// Adds a handler for messages with URL entities.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onURL(UpdateHandler<CTX> handler) {
+    return filterWithFilter(UrlFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with email entities.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onEmail(UpdateHandler<CTX> handler) {
+    return filterWithFilter(
+        EntityFilter<CTX>.single(MessageEntityType.email), handler);
+  }
+
+  /// Adds a handler for messages with phone number entities.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onPhoneNumber(UpdateHandler<CTX> handler) {
+    return filterWithFilter(
+        EntityFilter<CTX>.single(MessageEntityType.phoneNumber), handler);
+  }
+
+  /// Adds a handler for messages with hashtag entities.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onHashtag(UpdateHandler<CTX> handler) {
+    return filterWithFilter(HashtagFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with mention entities.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onMention(UpdateHandler<CTX> handler) {
+    return filterWithFilter(MentionFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for when the bot is mentioned.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> whenMentioned(UpdateHandler<CTX> handler) {
+    return filterWithFilter(
+      PredicateFilter<CTX>((ctx) {
+        final entities = ctx.entities;
+        final text = ctx.text;
+        final botUsername = botInfo.username;
+
+        if (entities == null || text == null || botUsername == null) {
+          return false;
+        }
+
+        return entities.any((entity) {
+          if (entity.type == MessageEntityType.mention) {
+            final mentionText = text.substring(
+              entity.offset + 1, // Skip @
+              entity.offset + entity.length,
+            );
+            return mentionText.toLowerCase() == botUsername.toLowerCase();
+          }
+          return false;
+        });
+      }, name: 'bot-mentioned'),
+      handler,
+    );
+  }
+
+  /// Adds a handler for any command (equivalent to onCommand).
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onCommand(UpdateHandler<CTX> handler) {
+    return filterWithFilter(AnyCommandFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Chat Type Specific Handlers
+  // ===============================
+
+  /// Adds a handler for specific chat type.
+  ///
+  /// Parameters:
+  /// - [chatType]: The chat type to match
+  /// - [handler]: The handler function
+  Bot<CTX> chatType(ChatType chatType, UpdateHandler<CTX> handler) {
+    return filterWithFilter(ChatTypeFilter<CTX>.single(chatType), handler);
+  }
+
+  /// Adds a handler for multiple chat types.
+  ///
+  /// Parameters:
+  /// - [chatTypes]: The set of chat types to match
+  /// - [handler]: The handler function
+  Bot<CTX> chatTypes(Set<ChatType> chatTypes, UpdateHandler<CTX> handler) {
+    return filterWithFilter(ChatTypeFilter<CTX>(chatTypes), handler);
+  }
+
+  // ===============================
+  // Reaction Handlers
+  // ===============================
+
+  /// Adds a handler for message reaction updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onMessageReaction(UpdateHandler<CTX> handler) {
+    return filterWithFilter(MessageReactionFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for message reaction count updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onMessageReactionCount(UpdateHandler<CTX> handler) {
+    return filterWithFilter(MessageReactionCountFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for specific emoji reactions.
+  ///
+  /// Parameters:
+  /// - [emoji]: The emoji to match (e.g., '👍', '❤️')
+  /// - [handler]: The handler function
+  Bot<CTX> whenReacted(String emoji, UpdateHandler<CTX> handler) {
+    return filterWithFilter(EmojiReactionFilter<CTX>(emoji), handler);
+  }
+
+  // ===============================
+  // Chat Boost Handlers
+  // ===============================
+
+  /// Adds a handler for chat boost updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onChatBoosted(UpdateHandler<CTX> handler) {
+    return filterWithFilter(ChatBoostFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for chat boost removal updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onChatBoostRemoved(UpdateHandler<CTX> handler) {
+    return filterWithFilter(RemovedChatBoostFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Business Features
+  // ===============================
+
+  /// Adds a handler for business connection updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onBusinessConnection(UpdateHandler<CTX> handler) {
+    return filterWithFilter(BusinessConnectionFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for business message updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onBusinessMessage(UpdateHandler<CTX> handler) {
+    return filterWithFilter(BusinessMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for edited business message updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onBusinessMessageEdited(UpdateHandler<CTX> handler) {
+    return filterWithFilter(EditedBusinessMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for deleted business message updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onBusinessMessageDeleted(UpdateHandler<CTX> handler) {
+    return filterWithFilter(DeletedBusinessMessagesFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Paid Media Handlers
+  // ===============================
+
+  /// Adds a handler for paid media messages.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onPaidMedia(UpdateHandler<CTX> handler) {
+    return filterWithFilter(PaidMediaFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for paid media with videos.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onPaidMediaVideo(UpdateHandler<CTX> handler) {
+    return filterWithFilter(PaidMediaVideoFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for paid media with photos.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onPaidMediaPhoto(UpdateHandler<CTX> handler) {
+    return filterWithFilter(PaidMediaPhotoFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for paid media purchase updates.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> onPaidMediaPurchase(UpdateHandler<CTX> handler) {
+    return filterWithFilter(PurchasedPaidMediaFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Enhanced Convenience Methods
+  // ===============================
+
+  /// Adds a handler for specific entity types.
+  ///
+  /// Parameters:
+  /// - [entityType]: The entity type to match
+  /// - [handler]: The handler function
+  Bot<CTX> entity(MessageEntityType entityType, UpdateHandler<CTX> handler) {
+    return filterWithFilter(EntityFilter<CTX>.single(entityType), handler);
+  }
+
+  /// Adds a handler for multiple entity types.
+  ///
+  /// Parameters:
+  /// - [entityTypes]: The set of entity types to match
+  /// - [handler]: The handler function
+  Bot<CTX> entities(
+      Set<MessageEntityType> entityTypes, UpdateHandler<CTX> handler) {
+    return filterWithFilter(EntityFilter<CTX>(entityTypes), handler);
+  }
+
+  /// Adds a handler with exact text matching (alias for textEquals).
+  ///
+  /// Parameters:
+  /// - [text]: The exact text to match
+  /// - [handler]: The handler function
+  /// - [caseSensitive]: Whether matching should be case sensitive
+  Bot<CTX> text(
+    String text,
+    UpdateHandler<CTX> handler, {
+    bool caseSensitive = true,
+  }) {
+    return filterWithFilter(
+      TextFilter<CTX>(text: text, caseSensitive: caseSensitive),
+      handler,
+    );
+  }
+
+  // ===============================
+  // Shortcut Methods (Common Commands)
+  // ===============================
+
+  /// Adds a handler for /settings command.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> settings(UpdateHandler<CTX> handler) {
+    return command('settings', handler);
+  }
+
+  /// Adds a handler for /help command.
+  ///
+  /// Parameters:
+  /// - [handler]: The handler function
+  Bot<CTX> help(UpdateHandler<CTX> handler) {
+    return command('help', handler);
+  }
+
   /// Adds a handler using a custom filter.
   ///
   /// This method allows you to use any filter implementation to determine

@@ -794,3 +794,553 @@ class PinnedMessageFilter<CTX extends Context> extends Filter<CTX> {
   @override
   String toString() => 'PinnedMessageFilter()';
 }
+
+// ===============================
+// Update Type Filters
+// ===============================
+
+/// Filter that matches chosen inline results.
+class ChosenInlineResultFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches chosen inline results.
+  const ChosenInlineResultFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.chosenInlineResult != null;
+
+  @override
+  String toString() => 'ChosenInlineResultFilter()';
+}
+
+/// Filter that matches shipping queries.
+class ShippingQueryFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches shipping queries.
+  const ShippingQueryFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.shippingQuery != null;
+
+  @override
+  String toString() => 'ShippingQueryFilter()';
+}
+
+/// Filter that matches pre-checkout queries.
+class PreCheckoutQueryFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches pre-checkout queries.
+  const PreCheckoutQueryFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.preCheckoutQuery != null;
+
+  @override
+  String toString() => 'PreCheckoutQueryFilter()';
+}
+
+/// Filter that matches poll updates.
+class PollFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches poll updates.
+  const PollFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.poll != null;
+
+  @override
+  String toString() => 'PollFilter()';
+}
+
+/// Filter that matches poll answer updates.
+class PollAnswerFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches poll answer updates.
+  const PollAnswerFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.pollAnswer != null;
+
+  @override
+  String toString() => 'PollAnswerFilter()';
+}
+
+/// Filter that matches chat member updates.
+class ChatMemberFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches chat member updates.
+  const ChatMemberFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.chatMember != null;
+
+  @override
+  String toString() => 'ChatMemberFilter()';
+}
+
+/// Filter that matches my chat member updates.
+class MyChatMemberFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches bot's chat member updates.
+  const MyChatMemberFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.myChatMember != null;
+
+  @override
+  String toString() => 'MyChatMemberFilter()';
+}
+
+/// Filter that matches chat join request updates.
+class ChatJoinRequestFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches chat join request updates.
+  const ChatJoinRequestFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.chatJoinRequest != null;
+
+  @override
+  String toString() => 'ChatJoinRequestFilter()';
+}
+
+/// Filter that matches message reaction updates.
+class MessageReactionFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches message reaction updates.
+  const MessageReactionFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.messageReaction != null;
+
+  @override
+  String toString() => 'MessageReactionFilter()';
+}
+
+/// Filter that matches message reaction count updates.
+class MessageReactionCountFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches message reaction count updates.
+  const MessageReactionCountFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.messageReactionCount != null;
+
+  @override
+  String toString() => 'MessageReactionCountFilter()';
+}
+
+/// Filter that matches chat boost updates.
+class ChatBoostFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches chat boost updates.
+  const ChatBoostFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.chatBoost != null;
+
+  @override
+  String toString() => 'ChatBoostFilter()';
+}
+
+/// Filter that matches removed chat boost updates.
+class RemovedChatBoostFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches removed chat boost updates.
+  const RemovedChatBoostFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.removedChatBoost != null;
+
+  @override
+  String toString() => 'RemovedChatBoostFilter()';
+}
+
+/// Filter that matches business connection updates.
+class BusinessConnectionFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches business connection updates.
+  const BusinessConnectionFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.businessConnection != null;
+
+  @override
+  String toString() => 'BusinessConnectionFilter()';
+}
+
+/// Filter that matches business message updates.
+class BusinessMessageFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches business message updates.
+  const BusinessMessageFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.businessMessage != null;
+
+  @override
+  String toString() => 'BusinessMessageFilter()';
+}
+
+/// Filter that matches edited business message updates.
+class EditedBusinessMessageFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches edited business message updates.
+  const EditedBusinessMessageFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.editedBusinessMessage != null;
+
+  @override
+  String toString() => 'EditedBusinessMessageFilter()';
+}
+
+/// Filter that matches deleted business message updates.
+class DeletedBusinessMessagesFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches deleted business message updates.
+  const DeletedBusinessMessagesFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.deletedBusinessMessages != null;
+
+  @override
+  String toString() => 'DeletedBusinessMessagesFilter()';
+}
+
+// ===============================
+// Content-Specific Filters
+// ===============================
+
+/// Filter that matches messages with animations.
+class AnimationFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches animation messages.
+  const AnimationFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.animation != null;
+
+  @override
+  String toString() => 'AnimationFilter()';
+}
+
+/// Filter that matches messages with games.
+class GameFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches game messages.
+  const GameFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.game != null;
+
+  @override
+  String toString() => 'GameFilter()';
+}
+
+/// Filter that matches messages with venue information.
+class VenueFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches venue messages.
+  const VenueFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.venue != null;
+
+  @override
+  String toString() => 'VenueFilter()';
+}
+
+/// Filter that matches messages with dice.
+class DiceFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches dice messages.
+  const DiceFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.dice != null;
+
+  @override
+  String toString() => 'DiceFilter()';
+}
+
+/// Filter that matches messages with poll content.
+class PollMessageFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches poll messages.
+  const PollMessageFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.poll != null;
+
+  @override
+  String toString() => 'PollMessageFilter()';
+}
+
+/// Filter that matches messages with successful payment.
+class SuccessfulPaymentFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches successful payment messages.
+  const SuccessfulPaymentFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.successfulPayment != null;
+
+  @override
+  String toString() => 'SuccessfulPaymentFilter()';
+}
+
+/// Filter that matches messages with web app data.
+class WebAppDataFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches web app data messages.
+  const WebAppDataFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.webAppData != null;
+
+  @override
+  String toString() => 'WebAppDataFilter()';
+}
+
+/// Filter that matches messages with paid media.
+class PaidMediaFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches paid media messages.
+  const PaidMediaFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.paidMedia != null;
+
+  @override
+  String toString() => 'PaidMediaFilter()';
+}
+
+/// Filter that matches messages with user shared information.
+class UsersSharedFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches user shared messages.
+  const UsersSharedFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.usersShared != null;
+
+  @override
+  String toString() => 'UsersSharedFilter()';
+}
+
+/// Filter that matches messages with chat shared information.
+class ChatSharedFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches chat shared messages.
+  const ChatSharedFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.chatShared != null;
+
+  @override
+  String toString() => 'ChatSharedFilter()';
+}
+
+// ===============================
+// Service Message Filters
+// ===============================
+
+/// Filter that matches new chat title service messages.
+class NewChatTitleFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches new chat title messages.
+  const NewChatTitleFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.newChatTitle != null;
+
+  @override
+  String toString() => 'NewChatTitleFilter()';
+}
+
+/// Filter that matches new chat photo service messages.
+class NewChatPhotoFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches new chat photo messages.
+  const NewChatPhotoFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.newChatPhoto != null;
+
+  @override
+  String toString() => 'NewChatPhotoFilter()';
+}
+
+/// Filter that matches delete chat photo service messages.
+class DeleteChatPhotoFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches delete chat photo messages.
+  const DeleteChatPhotoFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.deleteChatPhoto != null;
+
+  @override
+  String toString() => 'DeleteChatPhotoFilter()';
+}
+
+/// Filter that matches video chat scheduled service messages.
+class VideoChatScheduledFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches video chat scheduled messages.
+  const VideoChatScheduledFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.videoChatScheduled != null;
+
+  @override
+  String toString() => 'VideoChatScheduledFilter()';
+}
+
+/// Filter that matches video chat started service messages.
+class VideoChatStartedFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches video chat started messages.
+  const VideoChatStartedFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.videoChatStarted != null;
+
+  @override
+  String toString() => 'VideoChatStartedFilter()';
+}
+
+/// Filter that matches video chat ended service messages.
+class VideoChatEndedFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches video chat ended messages.
+  const VideoChatEndedFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.videoChatEnded != null;
+
+  @override
+  String toString() => 'VideoChatEndedFilter()';
+}
+
+/// Filter that matches video chat participants invited service messages.
+class VideoChatParticipantsInvitedFilter<CTX extends Context>
+    extends Filter<CTX> {
+  /// Creates a filter that matches video chat participants invited messages.
+  const VideoChatParticipantsInvitedFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.videoChatParticipantsInvited != null;
+
+  @override
+  String toString() => 'VideoChatParticipantsInvitedFilter()';
+}
+
+/// Filter that matches forum topic created service messages.
+class ForumTopicCreatedFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches forum topic created messages.
+  const ForumTopicCreatedFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.forumTopicCreated != null;
+
+  @override
+  String toString() => 'ForumTopicCreatedFilter()';
+}
+
+/// Filter that matches forum topic edited service messages.
+class ForumTopicEditedFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches forum topic edited messages.
+  const ForumTopicEditedFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.forumTopicEdited != null;
+
+  @override
+  String toString() => 'ForumTopicEditedFilter()';
+}
+
+/// Filter that matches forum topic closed service messages.
+class ForumTopicClosedFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches forum topic closed messages.
+  const ForumTopicClosedFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.forumTopicClosed != null;
+
+  @override
+  String toString() => 'ForumTopicClosedFilter()';
+}
+
+/// Filter that matches forum topic reopened service messages.
+class ForumTopicReopenedFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches forum topic reopened messages.
+  const ForumTopicReopenedFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.msg?.forumTopicReopened != null;
+
+  @override
+  String toString() => 'ForumTopicReopenedFilter()';
+}
+
+/// Filter that matches live location messages.
+class LiveLocationFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches live location messages.
+  const LiveLocationFilter();
+
+  @override
+  bool matches(CTX ctx) {
+    final location = ctx.msg?.location;
+    return location != null &&
+        (location.livePeriod != null || location.horizontalAccuracy != null);
+  }
+
+  @override
+  String toString() => 'LiveLocationFilter()';
+}
+
+/// Filter that matches specific emoji reactions.
+class EmojiReactionFilter<CTX extends Context> extends Filter<CTX> {
+  /// The emoji to match in reactions.
+  final String emoji;
+
+  /// Creates a filter that matches specific emoji reactions.
+  ///
+  /// Parameters:
+  /// - [emoji]: The emoji to match (e.g., '👍', '❤️')
+  const EmojiReactionFilter(this.emoji);
+
+  @override
+  bool matches(CTX ctx) {
+    final reaction = ctx.update.messageReaction;
+    if (reaction == null) return false;
+
+    final newReaction = reaction.newReaction;
+    if (newReaction.isEmpty) return false;
+
+    return newReaction.any((reactionType) {
+      if (reactionType is ReactionTypeEmoji) {
+        return reactionType.emoji == emoji;
+      }
+      return false;
+    });
+  }
+
+  @override
+  String toString() => 'EmojiReactionFilter(emoji: "$emoji")';
+}
+
+/// Filter for paid media purchase updates.
+class PurchasedPaidMediaFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches paid media purchase updates.
+  const PurchasedPaidMediaFilter();
+
+  @override
+  bool matches(CTX ctx) => ctx.update.purchasedPaidMedia != null;
+
+  @override
+  String toString() => 'PurchasedPaidMediaFilter()';
+}
+
+/// Filter for paid media with videos.
+class PaidMediaVideoFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches paid media with videos.
+  const PaidMediaVideoFilter();
+
+  @override
+  bool matches(CTX ctx) {
+    final paidMedia = ctx.msg?.paidMedia;
+    if (paidMedia == null) return false;
+
+    return paidMedia.paidMedia.any((media) => media is PaidMediaVideo);
+  }
+
+  @override
+  String toString() => 'PaidMediaVideoFilter()';
+}
+
+/// Filter for paid media with photos.
+class PaidMediaPhotoFilter<CTX extends Context> extends Filter<CTX> {
+  /// Creates a filter that matches paid media with photos.
+  const PaidMediaPhotoFilter();
+
+  @override
+  bool matches(CTX ctx) {
+    final paidMedia = ctx.msg?.paidMedia;
+    if (paidMedia == null) return false;
+
+    return paidMedia.paidMedia.any((media) => media is PaidMediaPhoto);
+  }
+
+  @override
+  String toString() => 'PaidMediaPhotoFilter()';
+}

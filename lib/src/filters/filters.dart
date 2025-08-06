@@ -544,4 +544,348 @@ class Filters {
   static Filter<CTX> groupText<CTX extends Context>() {
     return TextMessageFilter<CTX>().and(GroupChatFilter<CTX>());
   }
+
+  // ===============================
+  // Additional Update Type Filters
+  // ===============================
+
+  /// Matches chosen inline results.
+  static const ChosenInlineResultFilter chosenInlineResult =
+      ChosenInlineResultFilter();
+
+  /// Matches shipping queries.
+  static const ShippingQueryFilter shippingQuery = ShippingQueryFilter();
+
+  /// Matches pre-checkout queries.
+  static const PreCheckoutQueryFilter preCheckoutQuery =
+      PreCheckoutQueryFilter();
+
+  /// Matches poll updates.
+  static const PollFilter poll = PollFilter();
+
+  /// Matches poll answer updates.
+  static const PollAnswerFilter pollAnswer = PollAnswerFilter();
+
+  /// Matches chat member updates.
+  static const ChatMemberFilter chatMember = ChatMemberFilter();
+
+  /// Matches bot's chat member updates.
+  static const MyChatMemberFilter myChatMember = MyChatMemberFilter();
+
+  /// Matches chat join request updates.
+  static const ChatJoinRequestFilter chatJoinRequest = ChatJoinRequestFilter();
+
+  /// Matches message reaction updates.
+  static const MessageReactionFilter messageReaction = MessageReactionFilter();
+
+  /// Matches message reaction count updates.
+  static const MessageReactionCountFilter messageReactionCount =
+      MessageReactionCountFilter();
+
+  /// Matches chat boost updates.
+  static const ChatBoostFilter chatBoost = ChatBoostFilter();
+
+  /// Matches removed chat boost updates.
+  static const RemovedChatBoostFilter removedChatBoost =
+      RemovedChatBoostFilter();
+
+  /// Matches business connection updates.
+  static const BusinessConnectionFilter businessConnection =
+      BusinessConnectionFilter();
+
+  /// Matches business message updates.
+  static const BusinessMessageFilter businessMessage = BusinessMessageFilter();
+
+  /// Matches edited business message updates.
+  static const EditedBusinessMessageFilter editedBusinessMessage =
+      EditedBusinessMessageFilter();
+
+  /// Matches deleted business message updates.
+  static const DeletedBusinessMessagesFilter deletedBusinessMessages =
+      DeletedBusinessMessagesFilter();
+
+  // ===============================
+  // Additional Media Type Filters
+  // ===============================
+
+  /// Matches messages with animations/GIFs.
+  static const AnimationFilter animation = AnimationFilter();
+
+  /// Matches messages with games.
+  static const GameFilter game = GameFilter();
+
+  /// Matches messages with venue information.
+  static const VenueFilter venue = VenueFilter();
+
+  /// Matches messages with dice.
+  static const DiceFilter dice = DiceFilter();
+
+  /// Matches messages with polls.
+  static const PollMessageFilter pollMessage = PollMessageFilter();
+
+  /// Matches messages with successful payments.
+  static const SuccessfulPaymentFilter successfulPayment =
+      SuccessfulPaymentFilter();
+
+  /// Matches messages with web app data.
+  static const WebAppDataFilter webAppData = WebAppDataFilter();
+
+  /// Matches messages with paid media.
+  static const PaidMediaFilter paidMedia = PaidMediaFilter();
+
+  /// Matches messages with user shared information.
+  static const UsersSharedFilter usersShared = UsersSharedFilter();
+
+  /// Matches messages with chat shared information.
+  static const ChatSharedFilter chatShared = ChatSharedFilter();
+
+  /// Matches messages with live location.
+  static const LiveLocationFilter liveLocation = LiveLocationFilter();
+
+  // ===============================
+  // Service Message Filters
+  // ===============================
+
+  /// Matches new chat title service messages.
+  static const NewChatTitleFilter newChatTitle = NewChatTitleFilter();
+
+  /// Matches new chat photo service messages.
+  static const NewChatPhotoFilter newChatPhoto = NewChatPhotoFilter();
+
+  /// Matches delete chat photo service messages.
+  static const DeleteChatPhotoFilter deleteChatPhoto = DeleteChatPhotoFilter();
+
+  /// Matches video chat scheduled service messages.
+  static const VideoChatScheduledFilter videoChatScheduled =
+      VideoChatScheduledFilter();
+
+  /// Matches video chat started service messages.
+  static const VideoChatStartedFilter videoChatStarted =
+      VideoChatStartedFilter();
+
+  /// Matches video chat ended service messages.
+  static const VideoChatEndedFilter videoChatEnded = VideoChatEndedFilter();
+
+  /// Matches video chat participants invited service messages.
+  static const VideoChatParticipantsInvitedFilter videoChatParticipantsInvited =
+      VideoChatParticipantsInvitedFilter();
+
+  /// Matches forum topic created service messages.
+  static const ForumTopicCreatedFilter forumTopicCreated =
+      ForumTopicCreatedFilter();
+
+  /// Matches forum topic edited service messages.
+  static const ForumTopicEditedFilter forumTopicEdited =
+      ForumTopicEditedFilter();
+
+  /// Matches forum topic closed service messages.
+  static const ForumTopicClosedFilter forumTopicClosed =
+      ForumTopicClosedFilter();
+
+  /// Matches forum topic reopened service messages.
+  static const ForumTopicReopenedFilter forumTopicReopened =
+      ForumTopicReopenedFilter();
+
+  // ===============================
+  // Paid Media Factory Methods
+  // ===============================
+
+  /// Matches paid media purchase updates.
+  static const PurchasedPaidMediaFilter paidMediaPurchased =
+      PurchasedPaidMediaFilter();
+
+  /// Matches paid media with videos.
+  static const PaidMediaVideoFilter paidMediaVideo = PaidMediaVideoFilter();
+
+  /// Matches paid media with photos.
+  static const PaidMediaPhotoFilter paidMediaPhoto = PaidMediaPhotoFilter();
+
+  // ===============================
+  // Reaction Factory Methods
+  // ===============================
+
+  /// Creates a filter that matches specific emoji reactions.
+  ///
+  /// Parameters:
+  /// - [emoji]: The emoji to match (e.g., '👍', '❤️')
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.reaction('👍') // matches thumbs up reactions
+  /// Filters.reaction('❤️') // matches heart reactions
+  /// ```
+  static EmojiReactionFilter reaction(String emoji) {
+    return EmojiReactionFilter(emoji);
+  }
+
+  // ===============================
+  // Enhanced Entity Factory Methods
+  // ===============================
+
+  /// Creates a filter that matches messages with email entities.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.email // matches messages containing email addresses
+  /// ```
+  static EntityFilter<CTX> email<CTX extends Context>() {
+    return EntityFilter<CTX>.single(MessageEntityType.email);
+  }
+
+  /// Creates a filter that matches messages with phone number entities.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.phoneNumber<Context>() // matches messages containing phone numbers
+  /// ```
+  static EntityFilter<CTX> phoneNumber<CTX extends Context>() {
+    return EntityFilter<CTX>.single(MessageEntityType.phoneNumber);
+  }
+
+  /// Creates a filter that matches messages with bold text entities.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.bold<Context>() // matches messages with bold formatting
+  /// ```
+  static EntityFilter<CTX> bold<CTX extends Context>() {
+    return EntityFilter<CTX>.single(MessageEntityType.bold);
+  }
+
+  /// Creates a filter that matches messages with italic text entities.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.italic<Context>() // matches messages with italic formatting
+  /// ```
+  static EntityFilter<CTX> italic<CTX extends Context>() {
+    return EntityFilter<CTX>.single(MessageEntityType.italic);
+  }
+
+  /// Creates a filter that matches messages with code entities.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.code<Context>() // matches messages with inline code
+  /// ```
+  static EntityFilter<CTX> code<CTX extends Context>() {
+    return EntityFilter<CTX>.single(MessageEntityType.code);
+  }
+
+  /// Creates a filter that matches messages with pre (code block) entities.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.pre<Context>() // matches messages with code blocks
+  /// ```
+  static EntityFilter<CTX> pre<CTX extends Context>() {
+    return EntityFilter<CTX>.single(MessageEntityType.pre);
+  }
+
+  // ===============================
+  // Advanced Combined Filters
+  // ===============================
+
+  /// Creates a filter that matches any service message.
+  ///
+  /// This includes new chat title, new chat photo, delete chat photo,
+  /// pinned message, and video chat service messages.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.serviceMessage<Context>() // matches any service message
+  /// ```
+  static Filter<CTX> serviceMessage<CTX extends Context>() {
+    return newChatTitle
+        .or(newChatPhoto)
+        .or(deleteChatPhoto)
+        .or(pinned)
+        .or(videoChatScheduled)
+        .or(videoChatStarted)
+        .or(videoChatEnded)
+        .or(videoChatParticipantsInvited) as Filter<CTX>;
+  }
+
+  /// Creates a filter that matches any video chat related service message.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.videoChatService<Context>() // matches any video chat service message
+  /// ```
+  static Filter<CTX> videoChatService<CTX extends Context>() {
+    return videoChatScheduled
+        .or(videoChatStarted)
+        .or(videoChatEnded)
+        .or(videoChatParticipantsInvited) as Filter<CTX>;
+  }
+
+  /// Creates a filter that matches any forum topic related service message.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.forumTopicService<Context>() // matches any forum topic service message
+  /// ```
+  static Filter<CTX> forumTopicService<CTX extends Context>() {
+    return forumTopicCreated
+        .or(forumTopicEdited)
+        .or(forumTopicClosed)
+        .or(forumTopicReopened) as Filter<CTX>;
+  }
+
+  /// Creates a filter that matches any business update.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.businessUpdate<Context>() // matches any business-related update
+  /// ```
+  static Filter<CTX> businessUpdate<CTX extends Context>() {
+    return businessConnection
+        .or(businessMessage)
+        .or(editedBusinessMessage)
+        .or(deletedBusinessMessages) as Filter<CTX>;
+  }
+
+  /// Creates a filter that matches any payment related update.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.paymentUpdate<Context>() // matches any payment-related update
+  /// ```
+  static Filter<CTX> paymentUpdate<CTX extends Context>() {
+    return shippingQuery.or(preCheckoutQuery).or(successfulPayment)
+        as Filter<CTX>;
+  }
+
+  /// Creates a filter that matches any reaction update.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.reactionUpdate<Context>() // matches any reaction update
+  /// ```
+  static Filter<CTX> reactionUpdate<CTX extends Context>() {
+    return messageReaction.or(messageReactionCount) as Filter<CTX>;
+  }
+
+  /// Creates a filter that matches any chat boost related update.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.boostUpdate<Context>() // matches any boost-related update
+  /// ```
+  static Filter<CTX> boostUpdate<CTX extends Context>() {
+    return chatBoost.or(removedChatBoost) as Filter<CTX>;
+  }
+
+  /// Creates a filter that matches any paid media related update.
+  ///
+  /// Example:
+  /// ```dart
+  /// Filters.paidMediaUpdate<Context>() // matches any paid media update
+  /// ```
+  static Filter<CTX> paidMediaUpdate<CTX extends Context>() {
+    return paidMedia
+        .or(paidMediaVideo)
+        .or(paidMediaPhoto)
+        .or(paidMediaPurchased) as Filter<CTX>;
+  }
 }
