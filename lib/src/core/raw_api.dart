@@ -205,7 +205,6 @@ class RawAPI {
       } else if (value is ID) {
         converted[key] = value.toJson();
       } else if (value is TeleverseEnum) {
-        print('fuck it is televerse enum');
         converted[key] = value.toJson();
       } else if (value is List) {
         converted[key] = jsonEncode(value);
