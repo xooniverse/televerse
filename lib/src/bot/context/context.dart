@@ -1,6 +1,6 @@
 // File: lib/src/bot/context.dart
 
-part of '../../televerse.dart';
+part of '../../../televerse.dart';
 
 /// Bot information for context
 class BotInfo {
@@ -77,6 +77,7 @@ class Context {
   bool? _cachedIsPrivateChat;
   bool? _cachedIsGroupChat;
   bool? _cachedIsChannelPost;
+  String? _cachedInlineMessageId;
 
   // Cache validity flags to know if we need to recompute
   bool _msgCached = false;
@@ -94,6 +95,7 @@ class Context {
   bool _isPrivateChatCached = false;
   bool _isGroupChatCached = false;
   bool _isChannelPostCached = false;
+  bool _isInlineMessageIdCached = false;
 
   /// Creates a new [Context] instance.
   ///
@@ -227,6 +229,7 @@ class Context {
   // ===============================
   // Cached Convenient Property Getters
   // ===============================
+
   /// The effective message from the update.
   ///
   /// This returns the first non-null message from the various message types,
@@ -339,6 +342,29 @@ class Context {
     return _cachedCaptionEntities;
   }
 
+  /// Internal method for getting Thread ID
+  int? _threadId([int? id]) {
+    bool isInTopic = msg?.isTopicMessage ?? false;
+    return id ?? (isInTopic ? msg?.messageThreadId : null);
+  }
+
+  /// The message thread id, if the message is in a forum topic
+  int? getThreadId() => _threadId();
+
+  /// Internal method for getting Inline Message ID
+  String? _getInlineMessageId() {
+    if (_isInlineMessageIdCached) {
+      return _cachedInlineMessageId;
+    }
+    _cachedInlineMessageId =
+        chosenInlineResult?.inlineMessageId ?? callbackQuery?.inlineMessageId;
+    _isInlineMessageIdCached = true;
+    return _cachedInlineMessageId;
+  }
+
+  /// Whether the message is an inline message
+  bool isInlineMessage() => _getInlineMessageId() != null;
+
   // ===============================
   // Property System
   // ===============================
@@ -384,123 +410,6 @@ class Context {
   ///
   /// Returns an iterable of all property keys currently stored.
   Iterable<String> get propertyKeys => _properties.keys;
-
-  // ===============================
-  // API Shortcuts - Messaging
-  // ===============================
-
-  /// Replies to the current message with text.
-  ///
-  /// This is a convenience method that sends a message to the same chat
-  /// where the current update originated from.
-  ///
-  /// Parameters:
-  /// - [text]: The text to send (1-4096 characters)
-  /// - [parseMode]: Mode for parsing entities in the message text
-  /// - [entities]: List of special entities that appear in message text
-  /// - [linkPreviewOptions]: Link preview generation options
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents from forwarding and saving
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [replyMarkup]: Additional interface options (keyboard, etc.)
-  ///
-  /// Returns the sent [Message].
-  ///
-  /// Throws [TeleverseException] if there's no chat to reply to.
-  ///
-  /// Example:
-  /// ```dart
-  /// await ctx.reply('Hello! 👋');
-  /// await ctx.reply('*Bold text*', parseMode: ParseMode.markdownV2);
-  /// ```
-  Future<Message> reply(
-    String text, {
-    ParseMode? parseMode,
-    List<MessageEntity>? entities,
-    LinkPreviewOptions? linkPreviewOptions,
-    bool? disableNotification,
-    bool? protectContent,
-    ReplyParameters? replyParameters,
-    ReplyMarkup? replyMarkup,
-  }) async {
-    final chatId = _getChatId();
-    if (chatId == null) {
-      throw TeleverseException(
-        'Cannot reply: no chat information available in update',
-        type: TeleverseExceptionType.updateTypeDoesNotHaveChat,
-      );
-    }
-
-    return api.sendMessage(
-      chatId,
-      text,
-      parseMode: parseMode,
-      entities: entities,
-      linkPreviewOptions: linkPreviewOptions,
-      disableNotification: disableNotification,
-      protectContent: protectContent,
-      replyParameters: replyParameters,
-      replyMarkup: replyMarkup,
-    );
-  }
-
-  /// Replies to the current message with a photo.
-  ///
-  /// This is a convenience method that sends a photo to the same chat
-  /// where the current update originated from.
-  ///
-  /// Parameters:
-  /// - [photo]: Photo to send (InputFile)
-  /// - [caption]: Photo caption (0-1024 characters)
-  /// - [parseMode]: Mode for parsing entities in the photo caption
-  /// - [captionEntities]: List of special entities that appear in the caption
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents from forwarding and saving
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [replyMarkup]: Additional interface options
-  /// - [hasSpoiler]: Pass True if the photo needs to be covered with a spoiler animation
-  ///
-  /// Returns the sent [Message].
-  ///
-  /// Throws [TeleverseException] if there's no chat to reply to.
-  ///
-  /// Example:
-  /// ```dart
-  /// final photo = InputFile.fromFile(File('photo.jpg'));
-  /// await ctx.replyWithPhoto(photo, caption: 'Beautiful sunset! 🌅');
-  /// ```
-  Future<Message> replyWithPhoto(
-    InputFile photo, {
-    String? caption,
-    ParseMode? parseMode,
-    List<MessageEntity>? captionEntities,
-    bool? disableNotification,
-    bool? protectContent,
-    ReplyParameters? replyParameters,
-    ReplyMarkup? replyMarkup,
-    bool? hasSpoiler,
-  }) async {
-    final chatId = _getChatId();
-    if (chatId == null) {
-      throw TeleverseException(
-        'Cannot reply: no chat information available in update',
-        type: TeleverseExceptionType.updateTypeDoesNotHaveChat,
-      );
-    }
-
-    return api.sendPhoto(
-      chatId,
-      photo,
-      caption: caption,
-      parseMode: parseMode,
-      captionEntities: captionEntities,
-      disableNotification: disableNotification,
-      protectContent: protectContent,
-      replyParameters: replyParameters,
-      replyMarkup: replyMarkup,
-      hasSpoiler: hasSpoiler,
-    );
-  }
 
   // ===============================
   // Cached Helper Methods & Properties
@@ -752,49 +661,6 @@ class Context {
   @override
   String toString() {
     return 'Context(updateId: ${update.updateId}, chatId: ${chat?.id}, userId: ${from?.id})';
-  }
-}
-
-/// Extension methods for enhanced Context functionality.
-extension ContextExtensions on Context {
-  /// Replies with markdown-formatted text.
-  ///
-  /// This is a convenience method that sets parseMode to MarkdownV2.
-  ///
-  /// Example:
-  /// ```dart
-  /// await ctx.replyWithMarkdown('*Bold text* and _italic text_');
-  /// ```
-  Future<Message> replyWithMarkdown(String text) {
-    return reply(text, parseMode: ParseMode.markdownV2);
-  }
-
-  /// Replies with HTML-formatted text.
-  ///
-  /// This is a convenience method that sets parseMode to HTML.
-  ///
-  /// Example:
-  /// ```dart
-  /// await ctx.replyWithHTML('<b>Bold text</b> and <i>italic text</i>');
-  /// ```
-  Future<Message> replyWithHTML(String text) {
-    return reply(text, parseMode: ParseMode.html);
-  }
-
-  /// Replies with an inline keyboard.
-  ///
-  /// This is a convenience method for replying with an inline keyboard markup.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboardMarkup(inlineKeyboard: [
-  ///   [InlineKeyboardButton(text: 'Button', callbackData: 'data')],
-  /// ]);
-  /// await ctx.replyWithKeyboard('Choose an option:', keyboard);
-  /// ```
-  Future<Message> replyWithKeyboard(
-      String text, InlineKeyboardMarkup keyboard) {
-    return reply(text, replyMarkup: keyboard);
   }
 }
 

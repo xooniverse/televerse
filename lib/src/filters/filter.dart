@@ -46,6 +46,11 @@ abstract class Filter<CTX extends Context> {
   ///
   /// The resulting filter matches when this filter doesn't match.
   Filter<CTX> operator -() => not();
+
+  /// Creates a filter that matches `this` AND `not the other`.
+  ///
+  /// The resulting filter matches when this filter doesn't match.
+  Filter<CTX> operator -(Filter<CTX> other) => and(-other);
 }
 
 /// A filter that always matches.
