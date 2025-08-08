@@ -226,6 +226,18 @@ class Context {
   /// This will be non-null when a user changes their answer in a non-anonymous poll.
   PollAnswer? get pollAnswer => update.pollAnswer;
 
+  /// The Chat ID quick getter.
+  ChatID get id {
+    final id = _getChatId();
+    if (id == null) {
+      throw TeleverseException(
+        'The current Context does not have a Chat.',
+        type: TeleverseExceptionType.updateTypeDoesNotHaveChat,
+      );
+    }
+    return id as ChatID;
+  }
+
   // ===============================
   // Cached Convenient Property Getters
   // ===============================
