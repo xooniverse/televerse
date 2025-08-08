@@ -138,10 +138,6 @@ extension ContextAwareMethods on Context {
     );
   }
 
-  // ===============================
-  // Extended API Shortcuts - Messaging
-  // ===============================
-
   /// Sends an audio file to the current chat.
   ///
   /// This is a convenience method that sends an audio file to the same chat
@@ -353,21 +349,32 @@ extension ContextAwareMethods on Context {
 
   /// Sends a voice message to the current chat.
   ///
+  /// This method sends a voice message using the provided [voice] file.
+  /// The voice message can include a caption and various formatting options.
+  ///
   /// Example:
   /// ```dart
   /// final voice = InputFile.fromFile(File('message.ogg'));
-  /// await ctx.replyWithVoice(voice, caption: 'Listen to this!');
+  /// await ctx.replyWithVoice(
+  ///   voice,
+  ///   caption: 'Listen to this!',
+  ///   duration: 30,
+  /// );
   /// ```
   Future<Message> replyWithVoice(
     InputFile voice, {
+    int? messageThreadId,
     String? caption,
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     int? duration,
     bool? disableNotification,
     bool? protectContent,
-    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
+    String? businessConnectionId,
+    String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendVoice);
@@ -375,14 +382,18 @@ extension ContextAwareMethods on Context {
     return api.sendVoice(
       chatId!,
       voice,
+      messageThreadId: messageThreadId,
       caption: caption,
       parseMode: parseMode,
       captionEntities: captionEntities,
       duration: duration,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      replyParameters: replyParameters,
+      businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -395,13 +406,17 @@ extension ContextAwareMethods on Context {
   /// ```
   Future<Message> replyWithVideoNote(
     InputFile videoNote, {
+    int? messageThreadId,
     int? duration,
     int? length,
     InputFile? thumbnail,
     bool? disableNotification,
     bool? protectContent,
-    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
+    String? businessConnectionId,
+    String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendVideoNote);
@@ -409,13 +424,17 @@ extension ContextAwareMethods on Context {
     return api.sendVideoNote(
       chatId!,
       videoNote,
+      messageThreadId: messageThreadId,
       duration: duration,
       length: length,
       thumbnail: thumbnail,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      replyParameters: replyParameters,
+      businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -431,9 +450,13 @@ extension ContextAwareMethods on Context {
   /// ```
   Future<List<Message>> replyWithMediaGroup(
     List<InputMedia> media, {
+    int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
     ReplyParameters? replyParameters,
+    String? businessConnectionId,
+    String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendMediaGroup);
@@ -441,9 +464,13 @@ extension ContextAwareMethods on Context {
     return api.sendMediaGroup(
       chatId!,
       media,
+      messageThreadId: messageThreadId,
       disableNotification: disableNotification,
       protectContent: protectContent,
       replyParameters: replyParameters,
+      businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -456,14 +483,18 @@ extension ContextAwareMethods on Context {
   Future<Message> replyWithLocation(
     double latitude,
     double longitude, {
+    int? messageThreadId,
     double? horizontalAccuracy,
     int? livePeriod,
     int? heading,
     int? proximityAlertRadius,
     bool? disableNotification,
     bool? protectContent,
-    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
+    String? businessConnectionId,
+    String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendLocation);
@@ -472,14 +503,18 @@ extension ContextAwareMethods on Context {
       chatId!,
       latitude,
       longitude,
+      messageThreadId: messageThreadId,
       horizontalAccuracy: horizontalAccuracy,
       livePeriod: livePeriod,
       heading: heading,
       proximityAlertRadius: proximityAlertRadius,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      replyParameters: replyParameters,
+      businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 
@@ -498,14 +533,18 @@ extension ContextAwareMethods on Context {
     double longitude,
     String title,
     String address, {
+    int? messageThreadId,
     String? foursquareId,
     String? foursquareType,
     String? googlePlaceId,
     String? googlePlaceType,
     bool? disableNotification,
     bool? protectContent,
-    ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    ReplyParameters? replyParameters,
+    String? businessConnectionId,
+    String? messageEffectId,
+    bool? allowPaidBroadcast,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendVenue);
@@ -516,14 +555,18 @@ extension ContextAwareMethods on Context {
       longitude,
       title,
       address,
+      messageThreadId: messageThreadId,
       foursquareId: foursquareId,
       foursquareType: foursquareType,
       googlePlaceId: googlePlaceId,
       googlePlaceType: googlePlaceType,
       disableNotification: disableNotification,
       protectContent: protectContent,
-      replyParameters: replyParameters,
       replyMarkup: replyMarkup,
+      replyParameters: replyParameters,
+      businessConnectionId: businessConnectionId,
+      messageEffectId: messageEffectId,
+      allowPaidBroadcast: allowPaidBroadcast,
     );
   }
 

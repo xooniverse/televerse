@@ -1510,7 +1510,6 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    print(payload.params);
     return await _makeRequest<bool>(APIMethod.sendChatAction, payload);
   }
 
