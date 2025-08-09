@@ -35,6 +35,10 @@ import 'package:televerse/televerse.dart';
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
 
+// Keyboards
+export 'src/televerse/markups/keyboard.dart';
+export 'src/televerse/markups/inline_keyboard.dart';
+
 // Bot
 part 'src/bot/bot.dart';
 part 'src/bot/context/context.dart';
