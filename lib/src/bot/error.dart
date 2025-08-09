@@ -116,11 +116,7 @@ class BotError<CTX extends Context> extends TeleverseException {
   String toString() {
     final buffer = StringBuffer();
     buffer.writeln('$error');
-    if (hasContext) {
-      buffer.writeln('  Update ID: ${updateId ?? 'N/A'}');
-      buffer.writeln('  Chat ID: ${chatId ?? 'N/A'}');
-      buffer.writeln('  User ID: ${userId ?? 'N/A'}');
-    }
+
     return buffer.toString();
   }
 }
