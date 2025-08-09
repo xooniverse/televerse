@@ -69,7 +69,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
       linkPreviewOptions: linkPreviewOptions,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
     );
@@ -131,7 +131,7 @@ extension ContextAwareMethods on Context {
       replyMarkup: replyMarkup,
       hasSpoiler: hasSpoiler,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       showCaptionAboveMedia: showCaptionAboveMedia,
       allowPaidBroadcast: allowPaidBroadcast,
@@ -184,7 +184,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
     );
@@ -229,7 +229,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
     );
@@ -285,7 +285,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       showCaptionAboveMedia: showCaptionAboveMedia,
       allowPaidBroadcast: allowPaidBroadcast,
@@ -340,7 +340,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       showCaptionAboveMedia: showCaptionAboveMedia,
       allowPaidBroadcast: allowPaidBroadcast,
@@ -391,7 +391,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
     );
@@ -432,7 +432,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
     );
@@ -468,7 +468,7 @@ extension ContextAwareMethods on Context {
       disableNotification: disableNotification,
       protectContent: protectContent,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
     );
@@ -512,7 +512,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
     );
@@ -564,7 +564,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
     );
@@ -617,7 +617,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
     );
@@ -697,7 +697,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       questionParseMode: questionParseMode,
       questionEntities: questionEntities,
       messageEffectId: messageEffectId,
@@ -745,7 +745,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       replyMarkup: replyMarkup,
       replyParameters: replyParameters,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
     );
@@ -788,7 +788,7 @@ extension ContextAwareMethods on Context {
     return api.sendSticker(
       chatId!,
       sticker,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       messageThreadId: _threadId(messageThreadId),
       emoji: emoji,
       disableNotification: disableNotification,
@@ -899,7 +899,7 @@ extension ContextAwareMethods on Context {
       chatId!,
       action,
       messageThreadId: _threadId(messageThreadId),
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
     );
   }
 
@@ -998,7 +998,7 @@ extension ContextAwareMethods on Context {
     return api.unpinChatMessage(
       chatId!,
       msgId!,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
     );
   }
 
@@ -1192,7 +1192,7 @@ extension ContextAwareMethods on Context {
       chatId!,
       msgId!,
       text,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       parseMode: parseMode,
       entities: entities,
       linkPreviewOptions: linkPreviewOptions,
@@ -1254,7 +1254,7 @@ extension ContextAwareMethods on Context {
     return api.editMessageCaption(
       chatId!,
       msgId!,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       caption: caption,
       parseMode: parseMode,
       captionEntities: captionEntities,
@@ -1314,7 +1314,7 @@ extension ContextAwareMethods on Context {
       chatId!,
       msgId!,
       media,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       replyMarkup: replyMarkup,
     );
   }
@@ -1424,7 +1424,7 @@ extension ContextAwareMethods on Context {
     return api.editInlineMessageText(
       inlineMessageId!,
       text,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       parseMode: parseMode,
       entities: entities,
       linkPreviewOptions: linkPreviewOptions,
@@ -1458,7 +1458,7 @@ extension ContextAwareMethods on Context {
 
     return api.editInlineMessageCaption(
       inlineMessageId!,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       caption: caption,
       parseMode: parseMode,
       captionEntities: captionEntities,
@@ -1494,7 +1494,7 @@ extension ContextAwareMethods on Context {
     return api.editInlineMessageMedia(
       inlineMessageId!,
       media,
-      businessConnectionId: businessConnectionId,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
       replyMarkup: replyMarkup,
     );
   }

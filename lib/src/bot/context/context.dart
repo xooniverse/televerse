@@ -377,6 +377,14 @@ class Context {
   /// Whether the message is an inline message
   bool isInlineMessage() => _getInlineMessageId() != null;
 
+  /// Business Connection ID
+  String? getBusinessConnectionId() => _businessConnectionId();
+
+  /// Internal method to auto add business connection ID
+  String? _businessConnectionId([String? id]) {
+    return id ?? msg?.businessConnectionId ?? businessConnection?.id;
+  }
+
   // ===============================
   // Property System
   // ===============================
