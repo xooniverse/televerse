@@ -47,7 +47,7 @@ class BotError<CTX extends Context> extends TeleverseException {
       }
     }
 
-    buffer.writeln('  Original Error: $originalError');
+    buffer.writeln('  Error: $originalError');
     return buffer.toString();
   }
 
@@ -115,8 +115,7 @@ class BotError<CTX extends Context> extends TeleverseException {
   @override
   String toString() {
     final buffer = StringBuffer();
-    buffer.writeln('BotError:');
-    buffer.writeln('  Original Error: $error');
+    buffer.writeln('$error');
     if (hasContext) {
       buffer.writeln('  Update ID: ${updateId ?? 'N/A'}');
       buffer.writeln('  Chat ID: ${chatId ?? 'N/A'}');

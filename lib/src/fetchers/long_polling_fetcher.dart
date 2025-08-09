@@ -334,7 +334,7 @@ class FetcherException extends TeleverseException {
     final buffer = StringBuffer();
     buffer.writeln('FetcherException: $message');
     if (originalError != null) {
-      buffer.writeln('  Original Error: $originalError');
+      buffer.writeln('  Error: $originalError');
     }
     buffer.writeln('  Error Count: $errorCount');
     return buffer.toString();
