@@ -96,6 +96,6 @@ class FetcherConfig {
     this.maxConcurrentUpdates = 10,
   }) : allowedUpdates = const [
           UpdateType.inlineQuery,
-          UpdateType.chosenInlineResult
+          UpdateType.chosenInlineResult,
         ];
 }

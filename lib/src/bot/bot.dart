@@ -985,7 +985,9 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// - [handler]: The handler function
   Bot<CTX> onEmail(UpdateHandler<CTX> handler) {
     return filterWithFilter(
-        EntityFilter<CTX>.single(MessageEntityType.email), handler);
+      EntityFilter<CTX>.single(MessageEntityType.email),
+      handler,
+    );
   }
 
   /// Adds a handler for messages with phone number entities.
@@ -994,7 +996,9 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// - [handler]: The handler function
   Bot<CTX> onPhoneNumber(UpdateHandler<CTX> handler) {
     return filterWithFilter(
-        EntityFilter<CTX>.single(MessageEntityType.phoneNumber), handler);
+      EntityFilter<CTX>.single(MessageEntityType.phoneNumber),
+      handler,
+    );
   }
 
   /// Adds a handler for messages with hashtag entities.
@@ -1019,26 +1023,29 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// - [handler]: The handler function
   Bot<CTX> whenMentioned(UpdateHandler<CTX> handler) {
     return filterWithFilter(
-      PredicateFilter<CTX>((ctx) {
-        final entities = ctx.entities;
-        final text = ctx.text;
-        final botUsername = botInfo.username;
+      PredicateFilter<CTX>(
+        (ctx) {
+          final entities = ctx.entities;
+          final text = ctx.text;
+          final botUsername = botInfo.username;
 
-        if (entities == null || text == null || botUsername == null) {
-          return false;
-        }
-
-        return entities.any((entity) {
-          if (entity.type == MessageEntityType.mention) {
-            final mentionText = text.substring(
-              entity.offset + 1, // Skip @
-              entity.offset + entity.length,
-            );
-            return mentionText.toLowerCase() == botUsername.toLowerCase();
+          if (entities == null || text == null || botUsername == null) {
+            return false;
           }
-          return false;
-        });
-      }, name: 'bot-mentioned'),
+
+          return entities.any((entity) {
+            if (entity.type == MessageEntityType.mention) {
+              final mentionText = text.substring(
+                entity.offset + 1, // Skip @
+                entity.offset + entity.length,
+              );
+              return mentionText.toLowerCase() == botUsername.toLowerCase();
+            }
+            return false;
+          });
+        },
+        name: 'bot-mentioned',
+      ),
       handler,
     );
   }
@@ -1213,7 +1220,9 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// - [entityTypes]: The set of entity types to match
   /// - [handler]: The handler function
   Bot<CTX> entities(
-      Set<MessageEntityType> entityTypes, UpdateHandler<CTX> handler) {
+    Set<MessageEntityType> entityTypes,
+    UpdateHandler<CTX> handler,
+  ) {
     return filterWithFilter(EntityFilter<CTX>(entityTypes), handler);
   }
 

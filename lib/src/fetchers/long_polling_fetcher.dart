@@ -250,8 +250,10 @@ class LongPollingConfig extends FetcherConfig {
     super.allowedUpdates,
     super.dropPendingUpdates = false,
     super.maxConcurrentUpdates = 10,
-  })  : assert(timeout >= 1 && timeout <= 50,
-            'Timeout must be between 1 and 50 seconds'),
+  })  : assert(
+          timeout >= 1 && timeout <= 50,
+          'Timeout must be between 1 and 50 seconds',
+        ),
         assert(limit >= 1 && limit <= 100, 'Limit must be between 1 and 100');
 
   /// Creates a configuration optimized for low latency.

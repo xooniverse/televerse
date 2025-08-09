@@ -1696,7 +1696,9 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-        APIMethod.setChatAdministratorCustomTitle, payload);
+      APIMethod.setChatAdministratorCustomTitle,
+      payload,
+    );
   }
 
   /// Use this method to ban a channel chat in a supergroup or a channel. Until
@@ -2600,7 +2602,9 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-        APIMethod.setMyDefaultAdministratorRights, payload);
+      APIMethod.setMyDefaultAdministratorRights,
+      payload,
+    );
   }
 
   /// Use this method to get the current default administrator rights of the
@@ -4071,7 +4075,9 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-        APIMethod.getStarTransactions, payload);
+      APIMethod.getStarTransactions,
+      payload,
+    );
 
     return StarTransactions.fromJson(response);
   }
@@ -4433,7 +4439,9 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-        APIMethod.setBusinessAccountUsername, payload);
+      APIMethod.setBusinessAccountUsername,
+      payload,
+    );
   }
 
   /// Changes the bio of a managed business account.
@@ -4471,7 +4479,9 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     return await _makeRequest<bool>(
-        APIMethod.setBusinessAccountProfilePhoto, payload);
+      APIMethod.setBusinessAccountProfilePhoto,
+      payload,
+    );
   }
 
   /// Removes the current profile photo of a managed business account.
@@ -4488,7 +4498,9 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-        APIMethod.removeBusinessAccountProfilePhoto, payload);
+      APIMethod.removeBusinessAccountProfilePhoto,
+      payload,
+    );
   }
 
   /// Changes the privacy settings pertaining to incoming gifts in a managed business account.
@@ -4507,7 +4519,9 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-        APIMethod.setBusinessAccountGiftSettings, payload);
+      APIMethod.setBusinessAccountGiftSettings,
+      payload,
+    );
   }
 
   /// Returns the amount of Telegram Stars owned by a managed business account.
@@ -4543,7 +4557,9 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-        APIMethod.transferBusinessAccountStars, payload);
+      APIMethod.transferBusinessAccountStars,
+      payload,
+    );
   }
 
   /// Returns the gifts received and owned by a managed business account.

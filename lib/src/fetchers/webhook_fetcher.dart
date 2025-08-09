@@ -369,9 +369,10 @@ class WebhookConfig extends FetcherConfig {
     super.dropPendingUpdates = false,
     super.maxConcurrentUpdates = 10,
   }) : assert(
-            maxConnections == null ||
-                (maxConnections >= 1 && maxConnections <= 100),
-            'maxConnections must be between 1 and 100');
+          maxConnections == null ||
+              (maxConnections >= 1 && maxConnections <= 100),
+          'maxConnections must be between 1 and 100',
+        );
 
   /// Creates a configuration for development with ngrok.
   ///

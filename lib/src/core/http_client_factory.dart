@@ -87,11 +87,13 @@ class MockHttpClient implements HttpClient {
   @override
   Future<Map<String, dynamic>> post(String url, [Payload? payload]) async {
     // Record the request for testing verification
-    _requestHistory.add(MockRequest(
-      url: url,
-      payload: payload,
-      timestamp: DateTime.now(),
-    ));
+    _requestHistory.add(
+      MockRequest(
+        url: url,
+        payload: payload,
+        timestamp: DateTime.now(),
+      ),
+    );
 
     // Find matching response
     final response = _findResponse(url);

@@ -215,12 +215,14 @@ class RegexFilter<CTX extends Context> extends Filter<CTX> {
     bool multiLine = false,
     bool dotAll = false,
   }) {
-    return RegexFilter(RegExp(
-      pattern,
-      caseSensitive: caseSensitive,
-      multiLine: multiLine,
-      dotAll: dotAll,
-    ));
+    return RegexFilter(
+      RegExp(
+        pattern,
+        caseSensitive: caseSensitive,
+        multiLine: multiLine,
+        dotAll: dotAll,
+      ),
+    );
   }
 
   @override
@@ -649,9 +651,11 @@ class UrlFilter<CTX extends Context> extends Filter<CTX> {
     final entities = ctx.entities;
     if (entities == null) return false;
 
-    return entities.any((entity) =>
-        entity.type == MessageEntityType.url ||
-        entity.type == MessageEntityType.textLink);
+    return entities.any(
+      (entity) =>
+          entity.type == MessageEntityType.url ||
+          entity.type == MessageEntityType.textLink,
+    );
   }
 
   @override
@@ -668,9 +672,11 @@ class MentionFilter<CTX extends Context> extends Filter<CTX> {
     final entities = ctx.entities;
     if (entities == null) return false;
 
-    return entities.any((entity) =>
-        entity.type == MessageEntityType.mention ||
-        entity.type == MessageEntityType.textMention);
+    return entities.any(
+      (entity) =>
+          entity.type == MessageEntityType.mention ||
+          entity.type == MessageEntityType.textMention,
+    );
   }
 
   @override

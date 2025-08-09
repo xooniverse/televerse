@@ -40,6 +40,7 @@ linter:
     - use_string_in_part_of_directives
     - valid_regexps
     - void_checks
+    - require_trailing_commas
 
 analyzer:
   exclude:
@@ -47,4 +48,3 @@ analyzer:
     - "**/*.freezed.dart"
   errors:
     invalid_annotation_target: ignore
-  

@@ -71,11 +71,13 @@ class DioHttpClient implements HttpClient {
         onError: (DioException error, ErrorInterceptorHandler handler) {
           // Convert Dio errors to TeleverseException
           final televerseError = _convertDioError(error);
-          handler.reject(DioException(
-            requestOptions: error.requestOptions,
-            error: televerseError,
-            type: error.type,
-          ));
+          handler.reject(
+            DioException(
+              requestOptions: error.requestOptions,
+              error: televerseError,
+              type: error.type,
+            ),
+          );
         },
       ),
     );
@@ -159,8 +161,10 @@ class DioHttpClient implements HttpClient {
   }
 
   /// Sends a regular JSON POST request.
-  Future<Response<dynamic>> _sendJsonRequest(String url,
-      [Payload? payload]) async {
+  Future<Response<dynamic>> _sendJsonRequest(
+    String url, [
+    Payload? payload,
+  ]) async {
     return await _dio.post(
       url,
       data: payload?.params != null ? jsonEncode(payload!.params) : null,

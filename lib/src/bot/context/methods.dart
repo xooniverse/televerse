@@ -820,8 +820,11 @@ extension ContextAwareMethods on Context {
     int cacheTime = 0,
   }) async {
     final query = callbackQuery;
-    _verifyInfo([query], APIMethod.answerCallbackQuery,
-        description: "No callback query found in the current update.");
+    _verifyInfo(
+      [query],
+      APIMethod.answerCallbackQuery,
+      description: "No callback query found in the current update.",
+    );
 
     return api.answerCallbackQuery(
       query!.id,
@@ -855,8 +858,11 @@ extension ContextAwareMethods on Context {
     InlineQueryResultsButton? button,
   }) async {
     final query = inlineQuery;
-    _verifyInfo([query], APIMethod.answerInlineQuery,
-        description: "No inline query found in the current update.");
+    _verifyInfo(
+      [query],
+      APIMethod.answerInlineQuery,
+      description: "No inline query found in the current update.",
+    );
 
     return api.answerInlineQuery(
       query!.id,
@@ -937,9 +943,12 @@ extension ContextAwareMethods on Context {
   Future<bool> deleteMessage() async {
     final chatId = _getChatId();
     final msgId = messageId;
-    _verifyInfo([chatId, msgId], APIMethod.deleteMessage,
-        description:
-            "No message or chat information found in the current update.");
+    _verifyInfo(
+      [chatId, msgId],
+      APIMethod.deleteMessage,
+      description:
+          "No message or chat information found in the current update.",
+    );
 
     return api.deleteMessage(chatId!, msgId!);
   }
@@ -956,9 +965,12 @@ extension ContextAwareMethods on Context {
   }) async {
     final chatId = _getChatId();
     final msgId = messageId;
-    _verifyInfo([chatId, msgId], APIMethod.pinChatMessage,
-        description:
-            "No message or chat information found in the current update.");
+    _verifyInfo(
+      [chatId, msgId],
+      APIMethod.pinChatMessage,
+      description:
+          "No message or chat information found in the current update.",
+    );
 
     return api.pinChatMessage(
       chatId!,
@@ -976,9 +988,12 @@ extension ContextAwareMethods on Context {
   Future<bool> unpinMessage({String? businessConnectionId}) async {
     final chatId = _getChatId();
     final msgId = messageId;
-    _verifyInfo([chatId, msgId], APIMethod.unpinChatMessage,
-        description:
-            "No message or chat information found in the current update.");
+    _verifyInfo(
+      [chatId, msgId],
+      APIMethod.unpinChatMessage,
+      description:
+          "No message or chat information found in the current update.",
+    );
 
     return api.unpinChatMessage(
       chatId!,
@@ -1024,9 +1039,12 @@ extension ContextAwareMethods on Context {
   }) async {
     final fromChatId = _getChatId();
     final msgId = messageId;
-    _verifyInfo([fromChatId, msgId], APIMethod.forwardMessage,
-        description:
-            "No message or chat information found in the current update.");
+    _verifyInfo(
+      [fromChatId, msgId],
+      APIMethod.forwardMessage,
+      description:
+          "No message or chat information found in the current update.",
+    );
 
     return api.forwardMessage(
       toChatId,
@@ -1090,9 +1108,12 @@ extension ContextAwareMethods on Context {
   }) async {
     final fromChatId = _getChatId();
     final msgId = messageId;
-    _verifyInfo([fromChatId, msgId], APIMethod.copyMessage,
-        description:
-            "No message or chat information found in the current update.");
+    _verifyInfo(
+      [fromChatId, msgId],
+      APIMethod.copyMessage,
+      description:
+          "No message or chat information found in the current update.",
+    );
 
     return api.copyMessage(
       toChatId,
@@ -1160,9 +1181,12 @@ extension ContextAwareMethods on Context {
   }) async {
     final chatId = _getChatId();
     final msgId = messageId;
-    _verifyInfo([chatId, msgId], APIMethod.editMessageText,
-        description:
-            "No message or chat information found in the current update.");
+    _verifyInfo(
+      [chatId, msgId],
+      APIMethod.editMessageText,
+      description:
+          "No message or chat information found in the current update.",
+    );
 
     return api.editMessageText(
       chatId!,
@@ -1220,9 +1244,12 @@ extension ContextAwareMethods on Context {
   }) async {
     final chatId = _getChatId();
     final msgId = messageId;
-    _verifyInfo([chatId, msgId], APIMethod.editMessageCaption,
-        description:
-            "No message or chat information found in the current update.");
+    _verifyInfo(
+      [chatId, msgId],
+      APIMethod.editMessageCaption,
+      description:
+          "No message or chat information found in the current update.",
+    );
 
     return api.editMessageCaption(
       chatId!,
@@ -1309,8 +1336,11 @@ extension ContextAwareMethods on Context {
     int? videoStartTimestamp,
   }) async {
     final chatId = _getChatId();
-    _verifyInfo([chatId], APIMethod.forwardMessage,
-        description: "No chat information found in the current update.");
+    _verifyInfo(
+      [chatId],
+      APIMethod.forwardMessage,
+      description: "No chat information found in the current update.",
+    );
 
     return forwardMessage(
       chatId!,
@@ -1345,8 +1375,11 @@ extension ContextAwareMethods on Context {
     int? videoStartTimestamp,
   }) async {
     final chatId = _getChatId();
-    _verifyInfo([chatId], APIMethod.copyMessage,
-        description: "No chat information found in the current update.");
+    _verifyInfo(
+      [chatId],
+      APIMethod.copyMessage,
+      description: "No chat information found in the current update.",
+    );
 
     return copyMessage(
       chatId!,
@@ -1492,9 +1525,12 @@ extension ContextAwareMethods on Context {
   }) async {
     final chatId = _getChatId();
     final msgId = messageId;
-    _verifyInfo([chatId, msgId], APIMethod.editMessageReplyMarkup,
-        description:
-            "No message or chat information found in the current update.");
+    _verifyInfo(
+      [chatId, msgId],
+      APIMethod.editMessageReplyMarkup,
+      description:
+          "No message or chat information found in the current update.",
+    );
 
     return api.editMessageReplyMarkup(
       chatId!,
@@ -2308,8 +2344,10 @@ extension ContextAwareMethods on Context {
     final chatId = _getChatId();
     final msgId = messageId;
     _verifyInfo(
-        [businessConnection, chatId, msgId], APIMethod.readBusinessMessage,
-        description: "No business connection or message information found.");
+      [businessConnection, chatId, msgId],
+      APIMethod.readBusinessMessage,
+      description: "No business connection or message information found.",
+    );
 
     return api.readBusinessMessage(businessConnection!, chatId!, msgId!);
   }

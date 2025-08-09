@@ -144,7 +144,8 @@ class _LoggingTransformer extends Transformer {
           final size = file.bytes.length;
           final sizeStr = _formatFileSize(size);
           options.logPrint(
-              '   │    ${entry.key}: ${file.fileName ?? 'unnamed'} ($sizeStr)');
+            '   │    ${entry.key}: ${file.fileName ?? 'unnamed'} ($sizeStr)',
+          );
         }
       }
     }

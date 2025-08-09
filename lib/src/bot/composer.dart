@@ -358,12 +358,14 @@ class Composer<CTX extends Context> {
     // Handle concurrent (fork) middleware
     if (entry.concurrent) {
       // Start concurrent execution but don't wait for it
-      unawaited(_executeSingleMiddleware(ctx, entry, () async {})
-          .catchError((error, stackTrace) async {
-        // For forked middleware, we handle errors separately
-        // to avoid crashing the main middleware chain
-        await _handleForkedMiddlewareError(error, stackTrace, ctx);
-      }));
+      unawaited(
+        _executeSingleMiddleware(ctx, entry, () async {})
+            .catchError((error, stackTrace) async {
+          // For forked middleware, we handle errors separately
+          // to avoid crashing the main middleware chain
+          await _handleForkedMiddlewareError(error, stackTrace, ctx);
+        }),
+      );
 
       // Continue to next middleware immediately
       return _executeMiddleware(ctx, index + 1);
