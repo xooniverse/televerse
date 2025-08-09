@@ -122,7 +122,7 @@ extension ContextAwareMethods on Context {
     return api.sendPhoto(
       chatId!,
       photo,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       caption: caption,
       parseMode: parseMode,
       captionEntities: captionEntities,
@@ -172,7 +172,7 @@ extension ContextAwareMethods on Context {
     return api.sendAudio(
       chatId!,
       audio,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       caption: caption,
       parseMode: parseMode,
       captionEntities: captionEntities,
@@ -219,7 +219,7 @@ extension ContextAwareMethods on Context {
     return api.sendDocument(
       chatId!,
       document,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       thumbnail: thumbnail,
       caption: caption,
       parseMode: parseMode,
@@ -271,7 +271,7 @@ extension ContextAwareMethods on Context {
     return api.sendVideo(
       chatId!,
       video,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       duration: duration,
       width: width,
       height: height,
@@ -327,7 +327,7 @@ extension ContextAwareMethods on Context {
     return api.sendAnimation(
       chatId!,
       animation,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       duration: duration,
       width: width,
       height: height,
@@ -382,7 +382,7 @@ extension ContextAwareMethods on Context {
     return api.sendVoice(
       chatId!,
       voice,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       caption: caption,
       parseMode: parseMode,
       captionEntities: captionEntities,
@@ -424,7 +424,7 @@ extension ContextAwareMethods on Context {
     return api.sendVideoNote(
       chatId!,
       videoNote,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       duration: duration,
       length: length,
       thumbnail: thumbnail,
@@ -464,7 +464,7 @@ extension ContextAwareMethods on Context {
     return api.sendMediaGroup(
       chatId!,
       media,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       disableNotification: disableNotification,
       protectContent: protectContent,
       replyParameters: replyParameters,
@@ -503,7 +503,7 @@ extension ContextAwareMethods on Context {
       chatId!,
       latitude,
       longitude,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       horizontalAccuracy: horizontalAccuracy,
       livePeriod: livePeriod,
       heading: heading,
@@ -555,7 +555,7 @@ extension ContextAwareMethods on Context {
       longitude,
       title,
       address,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       foursquareId: foursquareId,
       foursquareType: foursquareType,
       googlePlaceId: googlePlaceId,
@@ -610,7 +610,7 @@ extension ContextAwareMethods on Context {
       chatId!,
       phoneNumber,
       firstName,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       lastName: lastName,
       vcard: vcard,
       disableNotification: disableNotification,
@@ -682,7 +682,7 @@ extension ContextAwareMethods on Context {
       chatId!,
       question,
       options,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       isAnonymous: isAnonymous,
       type: type,
       allowsMultipleAnswers: allowsMultipleAnswers,
@@ -740,7 +740,7 @@ extension ContextAwareMethods on Context {
     return api.sendDice(
       chatId!,
       emoji: emoji,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       disableNotification: disableNotification,
       protectContent: protectContent,
       replyMarkup: replyMarkup,
@@ -789,7 +789,7 @@ extension ContextAwareMethods on Context {
       chatId!,
       sticker,
       businessConnectionId: businessConnectionId,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       emoji: emoji,
       disableNotification: disableNotification,
       protectContent: protectContent,
@@ -892,7 +892,7 @@ extension ContextAwareMethods on Context {
     return api.sendChatAction(
       chatId!,
       action,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       businessConnectionId: businessConnectionId,
     );
   }
@@ -1033,7 +1033,7 @@ extension ContextAwareMethods on Context {
       fromChatId!,
       msgId!,
       disableNotification: disableNotification,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       protectContent: protectContent,
       videoStartTimestamp: videoStartTimestamp,
     );
@@ -1098,7 +1098,7 @@ extension ContextAwareMethods on Context {
       toChatId,
       fromChatId!,
       msgId!,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       caption: caption,
       parseMode: parseMode,
       captionEntities: captionEntities,
@@ -1315,7 +1315,7 @@ extension ContextAwareMethods on Context {
     return forwardMessage(
       chatId!,
       disableNotification: disableNotification,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       protectContent: protectContent,
       videoStartTimestamp: videoStartTimestamp,
     );
@@ -1350,7 +1350,7 @@ extension ContextAwareMethods on Context {
 
     return copyMessage(
       chatId!,
-      messageThreadId: messageThreadId,
+      messageThreadId: _threadId(messageThreadId),
       caption: caption,
       parseMode: parseMode,
       captionEntities: captionEntities,
