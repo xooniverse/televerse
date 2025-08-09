@@ -2,77 +2,76 @@
 
 part of '../../televerse.dart';
 
-/// Convenience class for creating common filters.
+/// Context-aware filters factory that provides properly typed filters.
 ///
-/// This class provides static constants and factory methods for creating
-/// frequently used filters in a more readable and convenient way.
+/// This class is instantiated with a specific context type and provides
+/// filter instances that are correctly typed for that context. This eliminates
+/// the need to specify generic types when using filters.
 ///
 /// Example:
 /// ```dart
-/// // Using static constants
-/// composer.filter(Filters.privateChat, handler);
-/// composer.filter(Filters.photo, photoHandler);
+/// final bot = Bot<MyContext>('token');
 ///
-/// // Using factory methods
-/// composer.filter(Filters.command('start'), startHandler);
-/// composer.filter(Filters.textEquals('hello'), helloHandler);
-/// composer.filter(Filters.user(123456), specificUserHandler);
+/// // Use bot.filters for type-safe filter access
+/// bot.filterWithFilter(bot.filters.cmd('start'), startHandler);
+/// bot.filterWithFilter(bot.filters.privateChat, privateHandler);
+/// bot.filterWithFilter(bot.filters.photo, photoHandler);
 ///
 /// // Combining filters
-/// composer.filter(
-///   Filters.command('admin').and(Filters.privateChat),
+/// bot.filterWithFilter(
+///   bot.filters.command('admin').and(bot.filters.privateChat),
 ///   adminHandler,
 /// );
 /// ```
-class Filters {
-  // Private constructor to prevent instantiation
-  const Filters._();
+class Filters<CTX extends Context> {
+  /// Creates a new filters factory for the specified context type.
+  const Filters();
 
   // ===============================
   // Update Type Filters
   // ===============================
 
-  /// Matches regular messages (not edited).
-  static const MessageFilter message = MessageFilter();
+  /// Filter that matches regular messages (not edited).
+  MessageFilter<CTX> get message => MessageFilter<CTX>();
 
-  /// Matches edited messages.
-  static const EditedMessageFilter editedMessage = EditedMessageFilter();
+  /// Filter that matches edited messages.
+  EditedMessageFilter<CTX> get editedMessage => EditedMessageFilter<CTX>();
 
-  /// Matches any message (regular or edited).
-  static const AnyMessageFilter anyMessage = AnyMessageFilter();
+  /// Filter that matches any message (regular or edited).
+  AnyMessageFilter<CTX> get anyMessage => AnyMessageFilter<CTX>();
 
-  /// Matches channel posts.
-  static const ChannelPostFilter channelPost = ChannelPostFilter();
+  /// Filter that matches channel posts.
+  ChannelPostFilter<CTX> get channelPost => ChannelPostFilter<CTX>();
 
-  /// Matches edited channel posts.
-  static const EditedChannelPostFilter editedChannelPost =
-      EditedChannelPostFilter();
+  /// Filter that matches edited channel posts.
+  EditedChannelPostFilter<CTX> get editedChannelPost =>
+      EditedChannelPostFilter<CTX>();
 
-  /// Matches any callback query.
-  static const CallbackQueryFilter callbackQuery = CallbackQueryFilter();
+  /// Filter that matches any callback query.
+  CallbackQueryFilter<CTX> get callbackQuery => CallbackQueryFilter<CTX>();
 
-  /// Matches any inline query.
-  static const InlineQueryFilter inlineQuery = InlineQueryFilter();
+  /// Filter that matches any inline query.
+  InlineQueryFilter<CTX> get inlineQuery => InlineQueryFilter<CTX>();
 
   // ===============================
   // Text Content Filters
   // ===============================
 
-  /// Matches messages with text content.
-  static const TextMessageFilter text = TextMessageFilter();
+  /// Filter that matches messages with text content.
+  TextMessageFilter<CTX> get text => TextMessageFilter<CTX>();
 
-  /// Matches messages with caption content.
-  static const CaptionMessageFilter caption = CaptionMessageFilter();
+  /// Filter that matches messages with caption content.
+  CaptionMessageFilter<CTX> get caption => CaptionMessageFilter<CTX>();
 
-  /// Matches any text content (text or caption).
-  static const AnyTextFilter anyText = AnyTextFilter();
+  /// Filter that matches any text content (text or caption).
+  AnyTextFilter<CTX> get anyText => AnyTextFilter<CTX>();
 
   // ===============================
   // Command Filters
   // ===============================
 
-  /// Matches any bot command.
-  static const AnyCommandFilter command = AnyCommandFilter();
+  /// Filter that matches any bot command.
+  AnyCommandFilter<CTX> get command => AnyCommandFilter<CTX>();
 
   /// Creates a filter that matches a specific command.
   ///
@@ -82,55 +81,55 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.command('start') // matches /start
-  /// Filters.command('Help', caseSensitive: true) // matches /Help exactly
+  /// bot.filters.cmd('start') // matches /start
+  /// bot.filters.cmd('Help', caseSensitive: true) // matches /Help exactly
   /// ```
-  static CommandFilter cmd(String cmd, {bool caseSensitive = false}) {
-    return CommandFilter(cmd, caseSensitive: caseSensitive);
+  CommandFilter<CTX> cmd(String cmd, {bool caseSensitive = false}) {
+    return CommandFilter<CTX>(cmd, caseSensitive: caseSensitive);
   }
 
   // ===============================
   // Chat Type Filters
   // ===============================
 
-  /// Matches private chats.
-  static const PrivateChatFilter privateChat = PrivateChatFilter();
+  /// Filter that matches private chats.
+  PrivateChatFilter<CTX> get privateChat => PrivateChatFilter<CTX>();
 
-  /// Matches group chats (including supergroups).
-  static const GroupChatFilter groupChat = GroupChatFilter();
+  /// Filter that matches group chats (including supergroups).
+  GroupChatFilter<CTX> get groupChat => GroupChatFilter<CTX>();
 
-  /// Matches channel posts.
-  static const ChannelFilter channel = ChannelFilter();
+  /// Filter that matches channel posts.
+  ChannelFilter<CTX> get channel => ChannelFilter<CTX>();
 
   /// Creates a filter that matches a specific chat type.
   ///
   /// Example:
   /// ```dart
-  /// Filters.chatType(ChatType.supergroup)
+  /// bot.filters.chatType(ChatType.supergroup)
   /// ```
-  static ChatTypeFilter chatType(ChatType type) {
-    return ChatTypeFilter.single(type);
+  ChatTypeFilter<CTX> chatType(ChatType type) {
+    return ChatTypeFilter<CTX>.single(type);
   }
 
   /// Creates a filter that matches multiple chat types.
   ///
   /// Example:
   /// ```dart
-  /// Filters.chatTypes({ChatType.group, ChatType.supergroup})
+  /// bot.filters.chatTypes({ChatType.group, ChatType.supergroup})
   /// ```
-  static ChatTypeFilter chatTypes(Set<ChatType> types) {
-    return ChatTypeFilter(types);
+  ChatTypeFilter<CTX> chatTypes(Set<ChatType> types) {
+    return ChatTypeFilter<CTX>(types);
   }
 
   // ===============================
   // User Filters
   // ===============================
 
-  /// Matches messages from bot users.
-  static const BotUserFilter bot = BotUserFilter();
+  /// Filter that matches messages from bot users.
+  BotUserFilter<CTX> get bot => BotUserFilter<CTX>();
 
-  /// Matches messages from human users (non-bots).
-  static const HumanUserFilter human = HumanUserFilter();
+  /// Filter that matches messages from human users (non-bots).
+  HumanUserFilter<CTX> get human => HumanUserFilter<CTX>();
 
   /// Creates a filter that matches a specific user.
   ///
@@ -139,10 +138,10 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.user(123456789)
+  /// bot.filters.user(123456789)
   /// ```
-  static UserFilter user(int userId) {
-    return UserFilter.single(userId);
+  UserFilter<CTX> user(int userId) {
+    return UserFilter<CTX>.single(userId);
   }
 
   /// Creates a filter that matches multiple users.
@@ -152,58 +151,58 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.users({123456, 789012, 345678})
+  /// bot.filters.users({123456, 789012, 345678})
   /// ```
-  static UserFilter users(Set<int> userIds) {
-    return UserFilter(userIds);
+  UserFilter<CTX> users(Set<int> userIds) {
+    return UserFilter<CTX>(userIds);
   }
 
   // ===============================
   // Media Type Filters
   // ===============================
 
-  /// Matches messages with photos.
-  static const PhotoFilter photo = PhotoFilter();
+  /// Filter that matches messages with photos.
+  PhotoFilter<CTX> get photo => PhotoFilter<CTX>();
 
-  /// Matches messages with videos.
-  static const VideoFilter video = VideoFilter();
+  /// Filter that matches messages with videos.
+  VideoFilter<CTX> get video => VideoFilter<CTX>();
 
-  /// Matches messages with documents.
-  static const DocumentFilter document = DocumentFilter();
+  /// Filter that matches messages with documents.
+  DocumentFilter<CTX> get document => DocumentFilter<CTX>();
 
-  /// Matches messages with audio files.
-  static const AudioFilter audio = AudioFilter();
+  /// Filter that matches messages with audio files.
+  AudioFilter<CTX> get audio => AudioFilter<CTX>();
 
-  /// Matches messages with voice notes.
-  static const VoiceFilter voice = VoiceFilter();
+  /// Filter that matches messages with voice notes.
+  VoiceFilter<CTX> get voice => VoiceFilter<CTX>();
 
-  /// Matches messages with video notes.
-  static const VideoNoteFilter videoNote = VideoNoteFilter();
+  /// Filter that matches messages with video notes.
+  VideoNoteFilter<CTX> get videoNote => VideoNoteFilter<CTX>();
 
-  /// Matches messages with stickers.
-  static const StickerFilter sticker = StickerFilter();
+  /// Filter that matches messages with stickers.
+  StickerFilter<CTX> get sticker => StickerFilter<CTX>();
 
-  /// Matches messages with location data.
-  static const LocationFilter location = LocationFilter();
+  /// Filter that matches messages with location data.
+  LocationFilter<CTX> get location => LocationFilter<CTX>();
 
-  /// Matches messages with contact information.
-  static const ContactFilter contact = ContactFilter();
+  /// Filter that matches messages with contact information.
+  ContactFilter<CTX> get contact => ContactFilter<CTX>();
 
-  /// Matches messages with any media type.
-  static const MediaFilter media = MediaFilter();
+  /// Filter that matches messages with any media type.
+  MediaFilter<CTX> get media => MediaFilter<CTX>();
 
   // ===============================
   // Entity Filters
   // ===============================
 
-  /// Matches messages with URLs.
-  static const UrlFilter url = UrlFilter();
+  /// Filter that matches messages with URLs.
+  UrlFilter<CTX> get url => UrlFilter<CTX>();
 
-  /// Matches messages with mentions.
-  static const MentionFilter mention = MentionFilter();
+  /// Filter that matches messages with mentions.
+  MentionFilter<CTX> get mention => MentionFilter<CTX>();
 
-  /// Matches messages with any hashtag.
-  static const HashtagFilter hashtag = HashtagFilter();
+  /// Filter that matches messages with any hashtag.
+  HashtagFilter<CTX> get hashtag => HashtagFilter<CTX>();
 
   /// Creates a filter that matches a specific hashtag.
   ///
@@ -212,10 +211,10 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.tag('programming') // matches #programming
+  /// bot.filters.tag('programming') // matches #programming
   /// ```
-  static HashtagFilter tag(String tag) {
-    return HashtagFilter(hashtag: tag);
+  HashtagFilter<CTX> tag(String tag) {
+    return HashtagFilter<CTX>(hashtag: tag);
   }
 
   /// Creates a filter that matches specific entity types.
@@ -225,10 +224,10 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.entity(MessageEntityType.bold)
+  /// bot.filters.entity(MessageEntityType.bold)
   /// ```
-  static EntityFilter entity(MessageEntityType type) {
-    return EntityFilter.single(type);
+  EntityFilter<CTX> entity(MessageEntityType type) {
+    return EntityFilter<CTX>.single(type);
   }
 
   /// Creates a filter that matches multiple entity types.
@@ -238,34 +237,34 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.entities({MessageEntityType.bold, MessageEntityType.italic})
+  /// bot.filters.entities({MessageEntityType.bold, MessageEntityType.italic})
   /// ```
-  static EntityFilter entities(Set<MessageEntityType> types) {
-    return EntityFilter(types);
+  EntityFilter<CTX> entities(Set<MessageEntityType> types) {
+    return EntityFilter<CTX>(types);
   }
 
   // ===============================
   // Content Filters
   // ===============================
 
-  /// Matches forwarded messages.
-  static const ForwardedFilter forwarded = ForwardedFilter();
+  /// Filter that matches forwarded messages.
+  ForwardedFilter<CTX> get forwarded => ForwardedFilter<CTX>();
 
-  /// Matches reply messages.
-  static const ReplyFilter reply = ReplyFilter();
+  /// Filter that matches reply messages.
+  ReplyFilter<CTX> get reply => ReplyFilter<CTX>();
 
-  /// Matches pinned messages.
-  static const PinnedMessageFilter pinned = PinnedMessageFilter();
+  /// Filter that matches pinned messages.
+  PinnedMessageFilter<CTX> get pinned => PinnedMessageFilter<CTX>();
 
   // ===============================
   // Utility Filters
   // ===============================
 
-  /// A filter that always matches (useful for debugging).
-  static const AlwaysFilter always = AlwaysFilter();
+  /// Filter that always matches (useful for debugging).
+  AlwaysFilter<CTX> get always => AlwaysFilter<CTX>();
 
-  /// A filter that never matches (useful for temporarily disabling handlers).
-  static const NeverFilter never = NeverFilter();
+  /// Filter that never matches (useful for temporarily disabling handlers).
+  NeverFilter<CTX> get never => NeverFilter<CTX>();
 
   // ===============================
   // Text Matching Factory Methods
@@ -279,11 +278,11 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.textEquals('hello') // matches "hello" exactly
-  /// Filters.textEquals('Hello', caseSensitive: false) // matches "hello", "Hello", "HELLO"
+  /// bot.filters.textEquals('hello') // matches "hello" exactly
+  /// bot.filters.textEquals('Hello', caseSensitive: false) // matches "hello", "Hello", "HELLO"
   /// ```
-  static TextFilter textEquals(String text, {bool caseSensitive = true}) {
-    return TextFilter(text: text, caseSensitive: caseSensitive);
+  TextFilter<CTX> textEquals(String text, {bool caseSensitive = true}) {
+    return TextFilter<CTX>(text: text, caseSensitive: caseSensitive);
   }
 
   /// Creates a filter that matches text starting with a prefix.
@@ -294,12 +293,11 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.startsWith('/') // matches any text starting with '/'
-  /// Filters.startsWith('Hello', caseSensitive: false) // matches "Hello world", "hello there"
+  /// bot.filters.startsWith('/') // matches any text starting with '/'
+  /// bot.filters.startsWith('Hello', caseSensitive: false) // matches "Hello world", "hello there"
   /// ```
-  static StartsWithFilter startsWith(String prefix,
-      {bool caseSensitive = true}) {
-    return StartsWithFilter(prefix, caseSensitive: caseSensitive);
+  StartsWithFilter<CTX> startsWith(String prefix, {bool caseSensitive = true}) {
+    return StartsWithFilter<CTX>(prefix, caseSensitive: caseSensitive);
   }
 
   /// Creates a filter that matches text containing a substring.
@@ -310,11 +308,10 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.contains('hello') // matches "say hello", "hello world", "well hello there"
+  /// bot.filters.contains('hello') // matches "say hello", "hello world", "well hello there"
   /// ```
-  static ContainsFilter contains(String substring,
-      {bool caseSensitive = true}) {
-    return ContainsFilter(substring, caseSensitive: caseSensitive);
+  ContainsFilter<CTX> contains(String substring, {bool caseSensitive = true}) {
+    return ContainsFilter<CTX>(substring, caseSensitive: caseSensitive);
   }
 
   /// Creates a filter that matches text using a regular expression.
@@ -327,16 +324,16 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.regex(r'\d+') // matches any text containing numbers
-  /// Filters.regex(r'^/\w+', caseSensitive: false) // matches commands
+  /// bot.filters.regex(r'\d+') // matches any text containing numbers
+  /// bot.filters.regex(r'^/\w+', caseSensitive: false) // matches commands
   /// ```
-  static RegexFilter regex(
+  RegexFilter<CTX> regex(
     String pattern, {
     bool caseSensitive = true,
     bool multiLine = false,
     bool dotAll = false,
   }) {
-    return RegexFilter.fromString(
+    return RegexFilter<CTX>.fromString(
       pattern,
       caseSensitive: caseSensitive,
       multiLine: multiLine,
@@ -352,10 +349,10 @@ class Filters {
   /// Example:
   /// ```dart
   /// final pattern = RegExp(r'\b\w+@\w+\.\w+\b'); // email pattern
-  /// Filters.regexPattern(pattern) // matches emails
+  /// bot.filters.regexPattern(pattern) // matches emails
   /// ```
-  static RegexFilter regexPattern(RegExp pattern) {
-    return RegexFilter(pattern);
+  RegexFilter<CTX> regexPattern(RegExp pattern) {
+    return RegexFilter<CTX>(pattern);
   }
 
   // ===============================
@@ -369,10 +366,10 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.callbackData('button_clicked')
+  /// bot.filters.callbackData('button_clicked')
   /// ```
-  static CallbackQueryFilter callbackData(String data) {
-    return CallbackQueryFilter(data: data);
+  CallbackQueryFilter<CTX> callbackData(String data) {
+    return CallbackQueryFilter<CTX>(data: data);
   }
 
   // ===============================
@@ -386,10 +383,10 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.inlineQueryText('search')
+  /// bot.filters.inlineQueryText('search')
   /// ```
-  static InlineQueryFilter inlineQueryText(String query) {
-    return InlineQueryFilter(query: query);
+  InlineQueryFilter<CTX> inlineQueryText(String query) {
+    return InlineQueryFilter<CTX>(query: query);
   }
 
   // ===============================
@@ -408,13 +405,13 @@ class Filters {
   /// Example:
   /// ```dart
   /// // Filter for messages longer than 100 characters
-  /// Filters.predicate(
+  /// bot.filters.predicate(
   ///   (ctx) => (ctx.text?.length ?? 0) > 100,
   ///   name: 'long-message',
   /// )
   ///
   /// // Filter for weekend messages
-  /// Filters.predicate(
+  /// bot.filters.predicate(
   ///   (ctx) {
   ///     final weekday = DateTime.now().weekday;
   ///     return weekday == DateTime.saturday || weekday == DateTime.sunday;
@@ -422,7 +419,7 @@ class Filters {
   ///   name: 'weekend-only',
   /// )
   /// ```
-  static PredicateFilter<CTX> predicate<CTX extends Context>(
+  PredicateFilter<CTX> predicate(
     bool Function(CTX ctx) predicate, {
     String? name,
   }) {
@@ -440,10 +437,10 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.privateCommand('admin') // matches /admin only in private chats
+  /// bot.filters.privateCommand('admin') // matches /admin only in private chats
   /// ```
-  static Filter<CTX> privateCommand<CTX extends Context>(String cmd) {
-    return CommandFilter<CTX>(cmd).and(const PrivateChatFilter());
+  Filter<CTX> privateCommand(String cmd) {
+    return CommandFilter<CTX>(cmd).and(PrivateChatFilter<CTX>());
   }
 
   /// Creates a filter that matches commands in group chats only.
@@ -453,10 +450,10 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.groupCommand('stats') // matches /stats only in groups
+  /// bot.filters.groupCommand('stats') // matches /stats only in groups
   /// ```
-  static Filter<CTX> groupCommand<CTX extends Context>(String cmd) {
-    return CommandFilter<CTX>(cmd).and(const GroupChatFilter());
+  Filter<CTX> groupCommand(String cmd) {
+    return CommandFilter<CTX>(cmd).and(GroupChatFilter<CTX>());
   }
 
   /// Creates a filter that matches text from specific users.
@@ -466,9 +463,9 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.textFromUser(123456) // matches text messages from user 123456
+  /// bot.filters.textFromUser(123456) // matches text messages from user 123456
   /// ```
-  static Filter<CTX> textFromUser<CTX extends Context>(int userId) {
+  Filter<CTX> textFromUser(int userId) {
     return TextMessageFilter<CTX>().and(UserFilter<CTX>.single(userId));
   }
 
@@ -476,9 +473,9 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.humanMedia<Context>() // matches any media sent by human users
+  /// bot.filters.humanMedia // matches any media sent by human users
   /// ```
-  static Filter<CTX> humanMedia<CTX extends Context>() {
+  Filter<CTX> get humanMedia {
     return MediaFilter<CTX>().and(HumanUserFilter<CTX>());
   }
 
@@ -486,9 +483,9 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.forwardedText<Context>() // matches forwarded messages with text
+  /// bot.filters.forwardedText // matches forwarded messages with text
   /// ```
-  static Filter<CTX> forwardedText<CTX extends Context>() {
+  Filter<CTX> get forwardedText {
     return ForwardedFilter<CTX>().and(TextMessageFilter<CTX>());
   }
 
@@ -496,9 +493,9 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.privateMedia<Context>() // matches media in private chats only
+  /// bot.filters.privateMedia // matches media in private chats only
   /// ```
-  static Filter<CTX> privateMedia<CTX extends Context>() {
+  Filter<CTX> get privateMedia {
     return MediaFilter<CTX>().and(PrivateChatFilter<CTX>());
   }
 
@@ -506,9 +503,9 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.groupMedia<Context>() // matches media in group chats only
+  /// bot.filters.groupMedia // matches media in group chats only
   /// ```
-  static Filter<CTX> groupMedia<CTX extends Context>() {
+  Filter<CTX> get groupMedia {
     return MediaFilter<CTX>().and(GroupChatFilter<CTX>());
   }
 
@@ -519,9 +516,9 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.humanCommand<Context>('start') // matches /start from humans only
+  /// bot.filters.humanCommand('start') // matches /start from humans only
   /// ```
-  static Filter<CTX> humanCommand<CTX extends Context>(String cmd) {
+  Filter<CTX> humanCommand(String cmd) {
     return CommandFilter<CTX>(cmd).and(HumanUserFilter<CTX>());
   }
 
@@ -529,9 +526,9 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.privateText<Context>() // matches text in private chats only
+  /// bot.filters.privateText // matches text in private chats only
   /// ```
-  static Filter<CTX> privateText<CTX extends Context>() {
+  Filter<CTX> get privateText {
     return TextMessageFilter<CTX>().and(PrivateChatFilter<CTX>());
   }
 
@@ -539,9 +536,9 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.groupText<Context>() // matches text in group chats only
+  /// bot.filters.groupText // matches text in group chats only
   /// ```
-  static Filter<CTX> groupText<CTX extends Context>() {
+  Filter<CTX> get groupText {
     return TextMessageFilter<CTX>().and(GroupChatFilter<CTX>());
   }
 
@@ -549,156 +546,160 @@ class Filters {
   // Additional Update Type Filters
   // ===============================
 
-  /// Matches chosen inline results.
-  static const ChosenInlineResultFilter chosenInlineResult =
-      ChosenInlineResultFilter();
+  /// Filter that matches chosen inline results.
+  ChosenInlineResultFilter<CTX> get chosenInlineResult =>
+      ChosenInlineResultFilter<CTX>();
 
-  /// Matches shipping queries.
-  static const ShippingQueryFilter shippingQuery = ShippingQueryFilter();
+  /// Filter that matches shipping queries.
+  ShippingQueryFilter<CTX> get shippingQuery => ShippingQueryFilter<CTX>();
 
-  /// Matches pre-checkout queries.
-  static const PreCheckoutQueryFilter preCheckoutQuery =
-      PreCheckoutQueryFilter();
+  /// Filter that matches pre-checkout queries.
+  PreCheckoutQueryFilter<CTX> get preCheckoutQuery =>
+      PreCheckoutQueryFilter<CTX>();
 
-  /// Matches poll updates.
-  static const PollFilter poll = PollFilter();
+  /// Filter that matches poll updates.
+  PollFilter<CTX> get poll => PollFilter<CTX>();
 
-  /// Matches poll answer updates.
-  static const PollAnswerFilter pollAnswer = PollAnswerFilter();
+  /// Filter that matches poll answer updates.
+  PollAnswerFilter<CTX> get pollAnswer => PollAnswerFilter<CTX>();
 
-  /// Matches chat member updates.
-  static const ChatMemberFilter chatMember = ChatMemberFilter();
+  /// Filter that matches chat member updates.
+  ChatMemberFilter<CTX> get chatMember => ChatMemberFilter<CTX>();
 
-  /// Matches bot's chat member updates.
-  static const MyChatMemberFilter myChatMember = MyChatMemberFilter();
+  /// Filter that matches bot's chat member updates.
+  MyChatMemberFilter<CTX> get myChatMember => MyChatMemberFilter<CTX>();
 
-  /// Matches chat join request updates.
-  static const ChatJoinRequestFilter chatJoinRequest = ChatJoinRequestFilter();
+  /// Filter that matches chat join request updates.
+  ChatJoinRequestFilter<CTX> get chatJoinRequest =>
+      ChatJoinRequestFilter<CTX>();
 
-  /// Matches message reaction updates.
-  static const MessageReactionFilter messageReaction = MessageReactionFilter();
+  /// Filter that matches message reaction updates.
+  MessageReactionFilter<CTX> get messageReaction =>
+      MessageReactionFilter<CTX>();
 
-  /// Matches message reaction count updates.
-  static const MessageReactionCountFilter messageReactionCount =
-      MessageReactionCountFilter();
+  /// Filter that matches message reaction count updates.
+  MessageReactionCountFilter<CTX> get messageReactionCount =>
+      MessageReactionCountFilter<CTX>();
 
-  /// Matches chat boost updates.
-  static const ChatBoostFilter chatBoost = ChatBoostFilter();
+  /// Filter that matches chat boost updates.
+  ChatBoostFilter<CTX> get chatBoost => ChatBoostFilter<CTX>();
 
-  /// Matches removed chat boost updates.
-  static const RemovedChatBoostFilter removedChatBoost =
-      RemovedChatBoostFilter();
+  /// Filter that matches removed chat boost updates.
+  RemovedChatBoostFilter<CTX> get removedChatBoost =>
+      RemovedChatBoostFilter<CTX>();
 
-  /// Matches business connection updates.
-  static const BusinessConnectionFilter businessConnection =
-      BusinessConnectionFilter();
+  /// Filter that matches business connection updates.
+  BusinessConnectionFilter<CTX> get businessConnection =>
+      BusinessConnectionFilter<CTX>();
 
-  /// Matches business message updates.
-  static const BusinessMessageFilter businessMessage = BusinessMessageFilter();
+  /// Filter that matches business message updates.
+  BusinessMessageFilter<CTX> get businessMessage =>
+      BusinessMessageFilter<CTX>();
 
-  /// Matches edited business message updates.
-  static const EditedBusinessMessageFilter editedBusinessMessage =
-      EditedBusinessMessageFilter();
+  /// Filter that matches edited business message updates.
+  EditedBusinessMessageFilter<CTX> get editedBusinessMessage =>
+      EditedBusinessMessageFilter<CTX>();
 
-  /// Matches deleted business message updates.
-  static const DeletedBusinessMessagesFilter deletedBusinessMessages =
-      DeletedBusinessMessagesFilter();
+  /// Filter that matches deleted business message updates.
+  DeletedBusinessMessagesFilter<CTX> get deletedBusinessMessages =>
+      DeletedBusinessMessagesFilter<CTX>();
 
   // ===============================
   // Additional Media Type Filters
   // ===============================
 
-  /// Matches messages with animations/GIFs.
-  static const AnimationFilter animation = AnimationFilter();
+  /// Filter that matches messages with animations/GIFs.
+  AnimationFilter<CTX> get animation => AnimationFilter<CTX>();
 
-  /// Matches messages with games.
-  static const GameFilter game = GameFilter();
+  /// Filter that matches messages with games.
+  GameFilter<CTX> get game => GameFilter<CTX>();
 
-  /// Matches messages with venue information.
-  static const VenueFilter venue = VenueFilter();
+  /// Filter that matches messages with venue information.
+  VenueFilter<CTX> get venue => VenueFilter<CTX>();
 
-  /// Matches messages with dice.
-  static const DiceFilter dice = DiceFilter();
+  /// Filter that matches messages with dice.
+  DiceFilter<CTX> get dice => DiceFilter<CTX>();
 
-  /// Matches messages with polls.
-  static const PollMessageFilter pollMessage = PollMessageFilter();
+  /// Filter that matches messages with polls.
+  PollMessageFilter<CTX> get pollMessage => PollMessageFilter<CTX>();
 
-  /// Matches messages with successful payments.
-  static const SuccessfulPaymentFilter successfulPayment =
-      SuccessfulPaymentFilter();
+  /// Filter that matches messages with successful payments.
+  SuccessfulPaymentFilter<CTX> get successfulPayment =>
+      SuccessfulPaymentFilter<CTX>();
 
-  /// Matches messages with web app data.
-  static const WebAppDataFilter webAppData = WebAppDataFilter();
+  /// Filter that matches messages with web app data.
+  WebAppDataFilter<CTX> get webAppData => WebAppDataFilter<CTX>();
 
-  /// Matches messages with paid media.
-  static const PaidMediaFilter paidMedia = PaidMediaFilter();
+  /// Filter that matches messages with paid media.
+  PaidMediaFilter<CTX> get paidMedia => PaidMediaFilter<CTX>();
 
-  /// Matches messages with user shared information.
-  static const UsersSharedFilter usersShared = UsersSharedFilter();
+  /// Filter that matches messages with user shared information.
+  UsersSharedFilter<CTX> get usersShared => UsersSharedFilter<CTX>();
 
-  /// Matches messages with chat shared information.
-  static const ChatSharedFilter chatShared = ChatSharedFilter();
+  /// Filter that matches messages with chat shared information.
+  ChatSharedFilter<CTX> get chatShared => ChatSharedFilter<CTX>();
 
-  /// Matches messages with live location.
-  static const LiveLocationFilter liveLocation = LiveLocationFilter();
+  /// Filter that matches messages with live location.
+  LiveLocationFilter<CTX> get liveLocation => LiveLocationFilter<CTX>();
 
   // ===============================
   // Service Message Filters
   // ===============================
 
-  /// Matches new chat title service messages.
-  static const NewChatTitleFilter newChatTitle = NewChatTitleFilter();
+  /// Filter that matches new chat title service messages.
+  NewChatTitleFilter<CTX> get newChatTitle => NewChatTitleFilter<CTX>();
 
-  /// Matches new chat photo service messages.
-  static const NewChatPhotoFilter newChatPhoto = NewChatPhotoFilter();
+  /// Filter that matches new chat photo service messages.
+  NewChatPhotoFilter<CTX> get newChatPhoto => NewChatPhotoFilter<CTX>();
 
-  /// Matches delete chat photo service messages.
-  static const DeleteChatPhotoFilter deleteChatPhoto = DeleteChatPhotoFilter();
+  /// Filter that matches delete chat photo service messages.
+  DeleteChatPhotoFilter<CTX> get deleteChatPhoto =>
+      DeleteChatPhotoFilter<CTX>();
 
-  /// Matches video chat scheduled service messages.
-  static const VideoChatScheduledFilter videoChatScheduled =
-      VideoChatScheduledFilter();
+  /// Filter that matches video chat scheduled service messages.
+  VideoChatScheduledFilter<CTX> get videoChatScheduled =>
+      VideoChatScheduledFilter<CTX>();
 
-  /// Matches video chat started service messages.
-  static const VideoChatStartedFilter videoChatStarted =
-      VideoChatStartedFilter();
+  /// Filter that matches video chat started service messages.
+  VideoChatStartedFilter<CTX> get videoChatStarted =>
+      VideoChatStartedFilter<CTX>();
 
-  /// Matches video chat ended service messages.
-  static const VideoChatEndedFilter videoChatEnded = VideoChatEndedFilter();
+  /// Filter that matches video chat ended service messages.
+  VideoChatEndedFilter<CTX> get videoChatEnded => VideoChatEndedFilter<CTX>();
 
-  /// Matches video chat participants invited service messages.
-  static const VideoChatParticipantsInvitedFilter videoChatParticipantsInvited =
-      VideoChatParticipantsInvitedFilter();
+  /// Filter that matches video chat participants invited service messages.
+  VideoChatParticipantsInvitedFilter<CTX> get videoChatParticipantsInvited =>
+      VideoChatParticipantsInvitedFilter<CTX>();
 
-  /// Matches forum topic created service messages.
-  static const ForumTopicCreatedFilter forumTopicCreated =
-      ForumTopicCreatedFilter();
+  /// Filter that matches forum topic created service messages.
+  ForumTopicCreatedFilter<CTX> get forumTopicCreated =>
+      ForumTopicCreatedFilter<CTX>();
 
-  /// Matches forum topic edited service messages.
-  static const ForumTopicEditedFilter forumTopicEdited =
-      ForumTopicEditedFilter();
+  /// Filter that matches forum topic edited service messages.
+  ForumTopicEditedFilter<CTX> get forumTopicEdited =>
+      ForumTopicEditedFilter<CTX>();
 
-  /// Matches forum topic closed service messages.
-  static const ForumTopicClosedFilter forumTopicClosed =
-      ForumTopicClosedFilter();
+  /// Filter that matches forum topic closed service messages.
+  ForumTopicClosedFilter<CTX> get forumTopicClosed =>
+      ForumTopicClosedFilter<CTX>();
 
-  /// Matches forum topic reopened service messages.
-  static const ForumTopicReopenedFilter forumTopicReopened =
-      ForumTopicReopenedFilter();
+  /// Filter that matches forum topic reopened service messages.
+  ForumTopicReopenedFilter<CTX> get forumTopicReopened =>
+      ForumTopicReopenedFilter<CTX>();
 
   // ===============================
   // Paid Media Factory Methods
   // ===============================
 
-  /// Matches paid media purchase updates.
-  static const PurchasedPaidMediaFilter paidMediaPurchased =
-      PurchasedPaidMediaFilter();
+  /// Filter that matches paid media purchase updates.
+  PurchasedPaidMediaFilter<CTX> get paidMediaPurchased =>
+      PurchasedPaidMediaFilter<CTX>();
 
-  /// Matches paid media with videos.
-  static const PaidMediaVideoFilter paidMediaVideo = PaidMediaVideoFilter();
+  /// Filter that matches paid media with videos.
+  PaidMediaVideoFilter<CTX> get paidMediaVideo => PaidMediaVideoFilter<CTX>();
 
-  /// Matches paid media with photos.
-  static const PaidMediaPhotoFilter paidMediaPhoto = PaidMediaPhotoFilter();
+  /// Filter that matches paid media with photos.
+  PaidMediaPhotoFilter<CTX> get paidMediaPhoto => PaidMediaPhotoFilter<CTX>();
 
   // ===============================
   // Reaction Factory Methods
@@ -711,74 +712,74 @@ class Filters {
   ///
   /// Example:
   /// ```dart
-  /// Filters.reaction('👍') // matches thumbs up reactions
-  /// Filters.reaction('❤️') // matches heart reactions
+  /// bot.filters.reaction('👍') // matches thumbs up reactions
+  /// bot.filters.reaction('❤️') // matches heart reactions
   /// ```
-  static EmojiReactionFilter reaction(String emoji) {
-    return EmojiReactionFilter(emoji);
+  EmojiReactionFilter<CTX> reaction(String emoji) {
+    return EmojiReactionFilter<CTX>(emoji);
   }
 
   // ===============================
   // Enhanced Entity Factory Methods
   // ===============================
 
-  /// Creates a filter that matches messages with email entities.
+  /// Filter that matches messages with email entities.
   ///
   /// Example:
   /// ```dart
-  /// Filters.email // matches messages containing email addresses
+  /// bot.filters.email // matches messages containing email addresses
   /// ```
-  static EntityFilter<CTX> email<CTX extends Context>() {
+  EntityFilter<CTX> get email {
     return EntityFilter<CTX>.single(MessageEntityType.email);
   }
 
-  /// Creates a filter that matches messages with phone number entities.
+  /// Filter that matches messages with phone number entities.
   ///
   /// Example:
   /// ```dart
-  /// Filters.phoneNumber<Context>() // matches messages containing phone numbers
+  /// bot.filters.phoneNumber // matches messages containing phone numbers
   /// ```
-  static EntityFilter<CTX> phoneNumber<CTX extends Context>() {
+  EntityFilter<CTX> get phoneNumber {
     return EntityFilter<CTX>.single(MessageEntityType.phoneNumber);
   }
 
-  /// Creates a filter that matches messages with bold text entities.
+  /// Filter that matches messages with bold text entities.
   ///
   /// Example:
   /// ```dart
-  /// Filters.bold<Context>() // matches messages with bold formatting
+  /// bot.filters.bold // matches messages with bold formatting
   /// ```
-  static EntityFilter<CTX> bold<CTX extends Context>() {
+  EntityFilter<CTX> get bold {
     return EntityFilter<CTX>.single(MessageEntityType.bold);
   }
 
-  /// Creates a filter that matches messages with italic text entities.
+  /// Filter that matches messages with italic text entities.
   ///
   /// Example:
   /// ```dart
-  /// Filters.italic<Context>() // matches messages with italic formatting
+  /// bot.filters.italic // matches messages with italic formatting
   /// ```
-  static EntityFilter<CTX> italic<CTX extends Context>() {
+  EntityFilter<CTX> get italic {
     return EntityFilter<CTX>.single(MessageEntityType.italic);
   }
 
-  /// Creates a filter that matches messages with code entities.
+  /// Filter that matches messages with code entities.
   ///
   /// Example:
   /// ```dart
-  /// Filters.code<Context>() // matches messages with inline code
+  /// bot.filters.code // matches messages with inline code
   /// ```
-  static EntityFilter<CTX> code<CTX extends Context>() {
+  EntityFilter<CTX> get code {
     return EntityFilter<CTX>.single(MessageEntityType.code);
   }
 
-  /// Creates a filter that matches messages with pre (code block) entities.
+  /// Filter that matches messages with pre (code block) entities.
   ///
   /// Example:
   /// ```dart
-  /// Filters.pre<Context>() // matches messages with code blocks
+  /// bot.filters.pre // matches messages with code blocks
   /// ```
-  static EntityFilter<CTX> pre<CTX extends Context>() {
+  EntityFilter<CTX> get pre {
     return EntityFilter<CTX>.single(MessageEntityType.pre);
   }
 
@@ -786,16 +787,16 @@ class Filters {
   // Advanced Combined Filters
   // ===============================
 
-  /// Creates a filter that matches any service message.
+  /// Filter that matches any service message.
   ///
   /// This includes new chat title, new chat photo, delete chat photo,
   /// pinned message, and video chat service messages.
   ///
   /// Example:
   /// ```dart
-  /// Filters.serviceMessage<Context>() // matches any service message
+  /// bot.filters.serviceMessage // matches any service message
   /// ```
-  static Filter<CTX> serviceMessage<CTX extends Context>() {
+  Filter<CTX> get serviceMessage {
     return newChatTitle
         .or(newChatPhoto)
         .or(deleteChatPhoto)
@@ -803,89 +804,88 @@ class Filters {
         .or(videoChatScheduled)
         .or(videoChatStarted)
         .or(videoChatEnded)
-        .or(videoChatParticipantsInvited) as Filter<CTX>;
+        .or(videoChatParticipantsInvited);
   }
 
-  /// Creates a filter that matches any video chat related service message.
+  /// Filter that matches any video chat related service message.
   ///
   /// Example:
   /// ```dart
-  /// Filters.videoChatService<Context>() // matches any video chat service message
+  /// bot.filters.videoChatService // matches any video chat service message
   /// ```
-  static Filter<CTX> videoChatService<CTX extends Context>() {
+  Filter<CTX> get videoChatService {
     return videoChatScheduled
         .or(videoChatStarted)
         .or(videoChatEnded)
-        .or(videoChatParticipantsInvited) as Filter<CTX>;
+        .or(videoChatParticipantsInvited);
   }
 
-  /// Creates a filter that matches any forum topic related service message.
+  /// Filter that matches any forum topic related service message.
   ///
   /// Example:
   /// ```dart
-  /// Filters.forumTopicService<Context>() // matches any forum topic service message
+  /// bot.filters.forumTopicService // matches any forum topic service message
   /// ```
-  static Filter<CTX> forumTopicService<CTX extends Context>() {
+  Filter<CTX> get forumTopicService {
     return forumTopicCreated
         .or(forumTopicEdited)
         .or(forumTopicClosed)
-        .or(forumTopicReopened) as Filter<CTX>;
+        .or(forumTopicReopened);
   }
 
-  /// Creates a filter that matches any business update.
+  /// Filter that matches any business update.
   ///
   /// Example:
   /// ```dart
-  /// Filters.businessUpdate<Context>() // matches any business-related update
+  /// bot.filters.businessUpdate // matches any business-related update
   /// ```
-  static Filter<CTX> businessUpdate<CTX extends Context>() {
+  Filter<CTX> get businessUpdate {
     return businessConnection
         .or(businessMessage)
         .or(editedBusinessMessage)
-        .or(deletedBusinessMessages) as Filter<CTX>;
+        .or(deletedBusinessMessages);
   }
 
-  /// Creates a filter that matches any payment related update.
+  /// Filter that matches any payment related update.
   ///
   /// Example:
   /// ```dart
-  /// Filters.paymentUpdate<Context>() // matches any payment-related update
+  /// bot.filters.paymentUpdate // matches any payment-related update
   /// ```
-  static Filter<CTX> paymentUpdate<CTX extends Context>() {
-    return shippingQuery.or(preCheckoutQuery).or(successfulPayment)
-        as Filter<CTX>;
+  Filter<CTX> get paymentUpdate {
+    return shippingQuery.or(preCheckoutQuery).or(successfulPayment);
   }
 
-  /// Creates a filter that matches any reaction update.
+  /// Filter that matches any reaction update.
   ///
   /// Example:
   /// ```dart
-  /// Filters.reactionUpdate<Context>() // matches any reaction update
+  /// bot.filters.reactionUpdate // matches any reaction update
   /// ```
-  static Filter<CTX> reactionUpdate<CTX extends Context>() {
-    return messageReaction.or(messageReactionCount) as Filter<CTX>;
+  Filter<CTX> get reactionUpdate {
+    return messageReaction.or(messageReactionCount);
   }
 
-  /// Creates a filter that matches any chat boost related update.
+  /// Filter that matches any chat boost related update.
   ///
   /// Example:
   /// ```dart
-  /// Filters.boostUpdate<Context>() // matches any boost-related update
+  /// bot.filters.boostUpdate // matches any boost-related update
   /// ```
-  static Filter<CTX> boostUpdate<CTX extends Context>() {
-    return chatBoost.or(removedChatBoost) as Filter<CTX>;
+  Filter<CTX> get boostUpdate {
+    return chatBoost.or(removedChatBoost);
   }
 
-  /// Creates a filter that matches any paid media related update.
+  /// Filter that matches any paid media related update.
   ///
   /// Example:
   /// ```dart
-  /// Filters.paidMediaUpdate<Context>() // matches any paid media update
+  /// bot.filters.paidMediaUpdate // matches any paid media update
   /// ```
-  static Filter<CTX> paidMediaUpdate<CTX extends Context>() {
+  Filter<CTX> get paidMediaUpdate {
     return paidMedia
         .or(paidMediaVideo)
         .or(paidMediaPhoto)
-        .or(paidMediaPurchased) as Filter<CTX>;
+        .or(paidMediaPurchased);
   }
 }

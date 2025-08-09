@@ -394,6 +394,19 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     );
   }
 
+  /// Context-aware filters for this bot instance.
+  ///
+  /// Provides type-safe access to all available filters without needing
+  /// to specify generic types manually.
+  ///
+  /// Example:
+  /// ```dart
+  /// bot.filter(bot.filters.command, handler);
+  /// bot.filter(bot.filters.photo, photoHandler);
+  /// bot.filter(bot.filters.cmd('start'), startHandler);
+  /// ```
+  final Filters<CTX> filters = Filters<CTX>();
+
   // ===============================
   // Convenience Methods for Filters
   // ===============================
