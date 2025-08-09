@@ -63,7 +63,7 @@ part 'keyboard.g.dart';
 @freezed
 abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   /// Private Constructor
-  Keyboard._();
+  const Keyboard._();
 
   /// Creates a new [Keyboard] instance.
   ///
@@ -359,8 +359,8 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   /// final keyboard = Keyboard().add(button);
   /// ```
   Keyboard add(KeyboardButton button) {
-    final newKeyboard = keyboard.isEmpty ? [<KeyboardButton>[]] : [...keyboard];
-    newKeyboard.last.add(button);
+    final newKeyboard = [...keyboard];
+    newKeyboard.last = [...newKeyboard.last, button];
     return copyWith(keyboard: newKeyboard);
   }
 
@@ -375,8 +375,15 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   /// final keyboard = Keyboard().addAll(buttons);
   /// ```
   Keyboard addAll(List<KeyboardButton> buttons) {
-    final newKeyboard = keyboard.isEmpty ? [<KeyboardButton>[]] : [...keyboard];
-    newKeyboard.last.addAll(buttons);
+    if (buttons.isEmpty) return this;
+
+    if (keyboard.isEmpty) {
+      // Create first row with all buttons
+      return copyWith(keyboard: [buttons]);
+    }
+
+    final newKeyboard = [...keyboard];
+    newKeyboard.last = [...newKeyboard.last, ...buttons];
     return copyWith(keyboard: newKeyboard);
   }
 
@@ -393,7 +400,10 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   /// final keyboard = Keyboard().addRow(buttons);
   /// ```
   Keyboard addRow(List<KeyboardButton> buttons) {
-    return copyWith(keyboard: [...keyboard, buttons]);
+    final newKeyboard =
+        keyboard.map((row) => List<KeyboardButton>.from(row)).toList();
+    newKeyboard.add(List<KeyboardButton>.from(buttons));
+    return copyWith(keyboard: newKeyboard);
   }
 
   /// Adds a text button to the current row.
@@ -655,4 +665,8 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
     buffer.write(')');
     return buffer.toString();
   }
+
+  /// Runtime type
+  @override
+  String get $type => runtimeType.toString();
 }

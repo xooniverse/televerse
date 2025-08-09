@@ -64,7 +64,7 @@ abstract class InlineKeyboard
     with _$InlineKeyboard
     implements InlineKeyboardMarkup {
   /// Private Constructor
-  InlineKeyboard._();
+  const InlineKeyboard._();
 
   /// Creates a new [InlineKeyboard] instance.
   ///
@@ -423,10 +423,16 @@ abstract class InlineKeyboard
   /// final keyboard = InlineKeyboard().add(button);
   /// ```
   InlineKeyboard add(InlineKeyboardButton button) {
-    final newKeyboard = inlineKeyboard.isEmpty
-        ? [<InlineKeyboardButton>[]]
-        : [...inlineKeyboard];
-    newKeyboard.last.add(button);
+    if (inlineKeyboard.isEmpty) {
+      return copyWith(
+        inlineKeyboard: [
+          [button],
+        ],
+      );
+    }
+
+    final newKeyboard = [...inlineKeyboard];
+    newKeyboard.last = [...newKeyboard.last, button];
     return copyWith(inlineKeyboard: newKeyboard);
   }
 
@@ -441,10 +447,14 @@ abstract class InlineKeyboard
   /// final keyboard = InlineKeyboard().addAll(buttons);
   /// ```
   InlineKeyboard addAll(List<InlineKeyboardButton> buttons) {
-    final newKeyboard = inlineKeyboard.isEmpty
-        ? [<InlineKeyboardButton>[]]
-        : [...inlineKeyboard];
-    newKeyboard.last.addAll(buttons);
+    if (buttons.isEmpty) return this;
+
+    if (inlineKeyboard.isEmpty) {
+      return copyWith(inlineKeyboard: [buttons]);
+    }
+
+    final newKeyboard = [...inlineKeyboard];
+    newKeyboard.last = [...newKeyboard.last, ...buttons];
     return copyWith(inlineKeyboard: newKeyboard);
   }
 
@@ -665,4 +675,8 @@ abstract class InlineKeyboard
     buffer.write(')');
     return buffer.toString();
   }
+
+  /// Runtime type
+  @override
+  String get $type => runtimeType.toString();
 }
