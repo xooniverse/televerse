@@ -407,6 +407,54 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// ```
   final Filters<CTX> filters = Filters<CTX>();
 
+  /// Attaches a menu to this bot.
+  ///
+  /// This method registers all handlers defined in the menu with the bot.
+  /// Once attached, the menu buttons will automatically trigger their
+  /// associated handler functions when pressed by users.
+  ///
+  /// Parameters:
+  /// - [menu]: The menu to attach to this bot
+  ///
+  /// Returns this bot for method chaining.
+  ///
+  /// Example:
+  /// ```dart
+  /// final inlineMenu = InlineMenu<Context>()
+  ///   .text('Option 1', 'opt1', (ctx) async {
+  ///     await ctx.answerCallbackQuery(text: 'You chose option 1!');
+  ///   })
+  ///   .text('Option 2', 'opt2', (ctx) async {
+  ///     await ctx.answerCallbackQuery(text: 'You chose option 2!');
+  ///   });
+  ///
+  /// final keyboardMenu = KeyboardMenu<Context>()
+  ///   .text('Hello', (ctx) async {
+  ///     await ctx.reply('You said hello!');
+  ///   })
+  ///   .contact('Share Contact', (ctx) async {
+  ///     await ctx.reply('Thanks for sharing your contact!');
+  ///   });
+  ///
+  /// // Attach menus to bot
+  /// bot.attachMenu(inlineMenu);
+  /// bot.attachMenu(keyboardMenu);
+  ///
+  /// // Use menus in handlers
+  /// bot.command('start', (ctx) async {
+  ///   await ctx.reply('Choose an option:', replyMarkup: inlineMenu);
+  /// });
+  ///
+  /// bot.command('keyboard', (ctx) async {
+  ///   await ctx.reply('Use the keyboard:', replyMarkup: keyboardMenu);
+  /// });
+  /// ```
+  Bot<CTX> attachMenu(TeleverseMenu<CTX> menu) {
+    // Register all handlers for this menu
+    menu._registerHandlers(this);
+    return this;
+  }
+
   // ===============================
   // Convenience Methods for Filters
   // ===============================

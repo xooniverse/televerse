@@ -68,3 +68,7 @@ part 'src/filters/filters.dart';
 // Other utilities
 part 'src/utils/date.dart';
 part 'src/utils/utils.dart';
+
+part 'src/menus/menu.dart';
+part 'src/menus/keyboard_menu.dart';
+part 'src/menus/inline_menu.dart';
