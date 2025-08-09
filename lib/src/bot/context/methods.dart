@@ -1522,6 +1522,7 @@ extension ContextAwareMethods on Context {
   /// ```
   Future<Message> editMessageReplyMarkup({
     InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
   }) async {
     final chatId = _getChatId();
     final msgId = messageId;
@@ -1536,6 +1537,34 @@ extension ContextAwareMethods on Context {
       chatId!,
       msgId!,
       replyMarkup: replyMarkup,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
+    );
+  }
+
+  /// Edits the current inline messages's reply markup.
+  ///
+  /// Example:
+  /// ```dart
+  /// final newKeyboard = InlineKeyboardMarkup(inlineKeyboard: [
+  ///   [InlineKeyboardButton(text: 'New Button', callbackData: 'new_data')],
+  /// ]);
+  /// await ctx.editInlineMessageReplyMarkup(replyMarkup: newKeyboard);
+  /// ```
+  Future<bool> editInlineMessageReplyMarkup({
+    InlineKeyboardMarkup? replyMarkup,
+    String? businessConnectionId,
+  }) async {
+    _verifyInfo(
+      [_getInlineMessageId()],
+      APIMethod.editMessageReplyMarkup,
+      description:
+          "No message or chat information found in the current update.",
+    );
+
+    return api.editInlineMessageReplyMarkup(
+      _getInlineMessageId()!,
+      replyMarkup: replyMarkup,
+      businessConnectionId: _businessConnectionId(businessConnectionId),
     );
   }
 
