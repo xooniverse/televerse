@@ -319,7 +319,8 @@ class Composer<CTX extends Context> {
   /// Processes a context through the middleware chain.
   ///
   /// This method executes all middleware in order, handling errors
-  /// appropriately.
+  /// appropriately. Returns true if execution completed successfully,
+  /// false if an error occurred.
   ///
   /// Parameters:
   /// - [ctx]: The context to process
@@ -327,16 +328,17 @@ class Composer<CTX extends Context> {
   /// Example:
   /// ```dart
   /// final ctx = Context(update, api, botInfo);
-  /// await composer.handle(ctx);
+  /// final success = await composer.handle(ctx);
   /// ```
-  Future<void> handle(CTX ctx) async {
-    if (_middleware.isEmpty) return;
+  Future<bool> handle(CTX ctx) async {
+    if (_middleware.isEmpty) return true;
 
     try {
       await _executeMiddleware(ctx, 0);
+      return true;
     } catch (error, stackTrace) {
       // Handle any unhandled errors with the global error handler
-      await _handleUnhandledError(error, stackTrace, ctx);
+      return await _handleUnhandledError(error, stackTrace, ctx);
     }
   }
 
@@ -392,7 +394,9 @@ class Composer<CTX extends Context> {
   /// This method deals with errors that occur in middleware that isn't
   /// protected by error boundaries, or errors that bubble up from
   /// error boundary handlers themselves.
-  Future<void> _handleUnhandledError(
+  ///
+  /// Returns true if the error was handled successfully, false if it should be rethrown.
+  Future<bool> _handleUnhandledError(
     Object error,
     StackTrace stackTrace,
     CTX? ctx,
@@ -403,20 +407,79 @@ class Composer<CTX extends Context> {
       ctx,
     );
 
-    // Try global error handler
+    // Try global error handler first
     if (_globalErrorHandler != null) {
       try {
         await _globalErrorHandler!(botError);
-        return;
+        return true; // Error was handled successfully
       } catch (handlerError, handlerStackTrace) {
-        // Error in global handler - log and rethrow original
-        print('Error in global error handler: $handlerError');
+        // Error in global handler - log and continue to default handling
+        print('⚠️  Error in global error handler: $handlerError');
         print('Handler stack trace: $handlerStackTrace');
+        print('Falling back to default error handling...\n');
       }
     }
 
-    // No handler available or handler failed - rethrow original error
-    throw botError;
+    // No handler available or handler failed - provide helpful error information
+    _logUnhandledError(botError);
+
+    // Return false to indicate the error was not handled
+    // The caller can decide whether to rethrow or not
+    return false;
+  }
+
+  /// Logs unhandled error information in a user-friendly format.
+  void _logUnhandledError(BotError<CTX> botError) {
+    print('🚨 Unhandled Error in Televerse Bot');
+    print('━' * 50);
+    print('Error: ${botError.error}');
+    print('');
+
+    if (botError.hasContext) {
+      print('Context Information:');
+      if (botError.updateId != null) {
+        print('  • Update ID: ${botError.updateId}');
+      }
+      if (botError.chatId != null) {
+        print('  • Chat ID: ${botError.chatId}');
+      }
+      if (botError.userId != null) {
+        print('  • User ID: ${botError.userId}');
+      }
+      print('');
+    }
+
+    print('Original Stack Trace:');
+    print(botError.stackTrace);
+    print('');
+
+    print('💡 To handle errors in your bot, add an error handler:');
+    print('');
+    print('bot.onError((error) async {');
+    print('  print("Error occurred: \${error.error}");');
+    print('  if (error.hasContext) {');
+    print('    await error.ctx!.reply("Sorry, something went wrong!");');
+    print('  }');
+    print('});');
+    print('');
+
+    print('🆘 Need Help?');
+    print(
+      'If you believe this is an issue with Televerse, please report it on GitHub.',
+    );
+    print(
+      'Make sure to remove any sensitive information from the error logs before sharing.',
+    );
+    print('For additional help and community support:');
+    print('');
+    print('  • Telegram: https://t.me/televersedart');
+    print('  • GitHub Issues: https://github.com/xooniverse/televerse/issues');
+    print(
+      '  • GitHub Discussions: https://github.com/xooniverse/televerse/discussions',
+    );
+    print('');
+    print('🛑 Bot will continue processing other updates.');
+    print('━' * 50);
   }
 
   /// Handles errors in forked (concurrent) middleware.
