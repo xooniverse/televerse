@@ -30,7 +30,7 @@ abstract class ChatInviteLink with _$ChatInviteLink {
 
     /// Optional. Point in time (Unix timestamp) when the link will expire or has been expired
     ///
-    /// The expiry date is available as [expireDateTime] getter.
+    /// The expiry date is available as `expireDateTime` getter.
     @JsonKey(name: 'expire_date') int? expireDate,
 
     /// Optional. The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999

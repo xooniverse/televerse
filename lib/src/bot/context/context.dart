@@ -550,7 +550,7 @@ class Context {
   /// Returns a list of arguments after the command, or empty list if no arguments.
   /// The result is cached after the first access for better performance.
   ///
-  /// Example: "/start arg1 arg2" returns ["arg1", "arg2"]
+  /// Example: "/start arg1 arg2" returns list of arguments: `[arg1, arg2]`
   List<String> get args {
     if (!_argsCached) {
       if (!hasCommand) {

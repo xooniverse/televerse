@@ -53,13 +53,13 @@ abstract class Poll with _$Poll {
     /// Optional. Amount of time in seconds the poll will be active after
     /// creation
     ///
-    /// A handy [Duration] object is available as [openPeriodDuration] getter
+    /// A handy [Duration] object is available as `openPeriodDuration` getter
     @JsonKey(name: 'open_period') int? openPeriod,
 
     /// Optional. Point in time (Unix timestamp) when the poll will be
     /// automatically closed
     ///
-    /// A handy [DateTime] object is available as [closeDateTime] getter
+    /// A handy [DateTime] object is available as `closeDateTime` getter
     @JsonKey(name: 'close_date') int? closeDate,
 
     /// Optional. Special entities that appear in the question. Currently, only

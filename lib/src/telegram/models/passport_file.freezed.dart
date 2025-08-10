@@ -30,7 +30,7 @@ mixin _$PassportFile {
 
   /// Unix time when the file was uploaded
   ///
-  /// You can get the [DateTime] object as [fileDateTime] getter.
+  /// You can get the [DateTime] object as `fileDateTime` getter.
   @JsonKey(name: 'file_date')
   int get fileDate;
 
@@ -132,7 +132,7 @@ class _PassportFile implements PassportFile {
 
   /// Unix time when the file was uploaded
   ///
-  /// You can get the [DateTime] object as [fileDateTime] getter.
+  /// You can get the [DateTime] object as `fileDateTime` getter.
   @override
   @JsonKey(name: 'file_date')
   final int fileDate;

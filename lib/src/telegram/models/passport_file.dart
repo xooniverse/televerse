@@ -25,7 +25,7 @@ abstract class PassportFile with _$PassportFile {
 
     /// Unix time when the file was uploaded
     ///
-    /// You can get the [DateTime] object as [fileDateTime] getter.
+    /// You can get the [DateTime] object as `fileDateTime` getter.
     @JsonKey(name: 'file_date') required int fileDate,
   }) = _PassportFile;
 

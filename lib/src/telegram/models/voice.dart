@@ -27,7 +27,7 @@ abstract class Voice with _$Voice {
 
     /// Duration of the video in seconds as defined by sender
     ///
-    /// A handy [Duration] getter is available as [durationTime]
+    /// A handy [Duration] getter is available as `durationTime`
     @JsonKey(name: 'duration') required int duration,
 
     /// Optional. MIME type of the file as defined by sender

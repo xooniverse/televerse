@@ -22,7 +22,7 @@ abstract class Audio with _$Audio {
 
     /// Duration of the video in seconds as defined by sender
     ///
-    /// A handy [Duration] getter is available as [durationTime]
+    /// A handy [Duration] getter is available as `durationTime`
     @JsonKey(name: 'duration') required int duration,
 
     /// Optional. Performer of the audio as defined by sender or by audio tags

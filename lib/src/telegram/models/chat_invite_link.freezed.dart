@@ -40,7 +40,7 @@ mixin _$ChatInviteLink {
 
   /// Optional. Point in time (Unix timestamp) when the link will expire or has been expired
   ///
-  /// The expiry date is available as [expireDateTime] getter.
+  /// The expiry date is available as `expireDateTime` getter.
   @JsonKey(name: 'expire_date')
   int? get expireDate;
 
@@ -215,7 +215,7 @@ class _ChatInviteLink implements ChatInviteLink {
 
   /// Optional. Point in time (Unix timestamp) when the link will expire or has been expired
   ///
-  /// The expiry date is available as [expireDateTime] getter.
+  /// The expiry date is available as `expireDateTime` getter.
   @override
   @JsonKey(name: 'expire_date')
   final int? expireDate;
