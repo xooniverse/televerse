@@ -33,12 +33,6 @@ typedef Middleware<CTX extends Context> = FutureOr<void> Function(
 /// Returns true if the middleware should be executed, false otherwise.
 typedef MiddlewarePredicate<CTX extends Context> = bool Function(CTX ctx);
 
-/// Middleware filter function type.
-///
-/// This function determines if a middleware should run based on the context.
-/// Similar to predicate but can be used for more complex filtering logic.
-typedef MiddlewareFilter<CTX extends Context> = bool Function(CTX ctx);
-
 /// Middleware factory function type.
 ///
 /// This function creates middleware dynamically based on the context.
