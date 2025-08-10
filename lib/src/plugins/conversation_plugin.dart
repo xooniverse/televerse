@@ -513,13 +513,13 @@ class Conversation<CTX extends Context> {
     }
   }
 
-  /// Waits for an update that matches a specific filter query with timeout.
+  /// Waits for an update that matches a custom predicate with timeout.
   ///
   /// This method keeps waiting for updates until one matches the filter
   /// or the timeout is exceeded.
   ///
   /// Parameters:
-  /// - [filter]: The filter that the update must match.
+  /// - [predicate]: The predicate that the update must match.
   /// - [timeout]: Custom timeout for this wait operation.
   ///
   /// Example:
@@ -531,7 +531,10 @@ class Conversation<CTX extends Context> {
   /// );
   /// await photoCtx.reply('Nice photo!');
   /// ```
-  Future<CTX> waitFor(Filter<CTX> filter, [Duration? timeout]) async {
+  Future<CTX> waitFor(
+    MiddlewarePredicate<CTX> predicate, {
+    Duration? timeout,
+  }) async {
     final deadline = timeout != null ? DateTime.now().add(timeout) : null;
 
     CTX ctx;
@@ -543,7 +546,45 @@ class Conversation<CTX extends Context> {
       }
 
       ctx = await wait(remainingTime);
-    } while (!_matchesFilterQuery(ctx, filter));
+    } while (!predicate(ctx));
+
+    return ctx;
+  }
+
+  /// Waits for an update that matches a specific filter with timeout.
+  ///
+  /// This method keeps waiting for updates until one matches the filter
+  /// or the timeout is exceeded.
+  ///
+  /// Parameters:
+  /// - [filter]: The [Filter] that the update must match.
+  /// - [timeout]: Custom timeout for this wait operation.
+  ///
+  /// Example:
+  /// ```dart
+  /// await ctx.reply('Send me a photo:');
+  /// final photoCtx = await conversation.filter(
+  ///   PhotoFilter(),
+  ///   Duration(minutes: 5),
+  /// );
+  /// await photoCtx.reply('Nice photo!');
+  /// ```
+  Future<CTX> filter(
+    Filter<CTX> filter, {
+    Duration? timeout,
+  }) async {
+    final deadline = timeout != null ? DateTime.now().add(timeout) : null;
+
+    CTX ctx;
+    do {
+      final remainingTime = deadline?.difference(DateTime.now());
+
+      if (remainingTime != null && remainingTime.isNegative) {
+        throw ConversationTimeoutException(_conversationName);
+      }
+
+      ctx = await wait(remainingTime);
+    } while (_matchesFilter(ctx, filter));
 
     return ctx;
   }
@@ -646,7 +687,7 @@ class Conversation<CTX extends Context> {
   }
 
   /// Checks if a context matches a filter query.
-  bool _matchesFilterQuery(CTX ctx, Filter<CTX> filter) {
+  bool _matchesFilter(CTX ctx, Filter<CTX> filter) {
     return filter.matches(ctx);
   }
 
