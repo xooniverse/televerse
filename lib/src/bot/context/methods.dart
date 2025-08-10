@@ -1689,6 +1689,15 @@ extension ContextAwareMethods on Context {
     );
   }
 
+  /// Bans the author of the message
+  Future<bool> banAuthor({
+    DateTime? untilDate,
+    bool? revokeMessages,
+  }) async {
+    _verifyInfo([from?.id], APIMethod.banChatMember);
+    return banChatMember(from!.id);
+  }
+
   /// Unbans a previously banned user in the current chat.
   ///
   /// This method is a shortcut for [RawAPI.unbanChatMember] using the current chat.
@@ -2582,28 +2591,6 @@ extension ContextAwareMethods on Context {
     if (messageEntities == null) return [];
 
     return messageEntities.where((entity) => entity.type == type).toList();
-  }
-
-  /// Extracts text content for a specific entity.
-  ///
-  /// Example:
-  /// ```dart
-  /// final urls = ctx.getEntitiesOfType(MessageEntityType.url);
-  /// for (final url in urls) {
-  ///   final urlText = ctx.getEntityText(url);
-  ///   print('URL: $urlText');
-  /// }
-  /// ```
-  String? getEntityText(MessageEntity entity) {
-    final messageText = text;
-    if (messageText == null) return null;
-
-    final endOffset = entity.offset + entity.length;
-    if (endOffset <= messageText.length) {
-      return messageText.substring(entity.offset, endOffset);
-    }
-
-    return null;
   }
 
   // ===============================
