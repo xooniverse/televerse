@@ -19,6 +19,41 @@ part of '../../../televerse.dart';
 /// final results = builder.build();
 /// ```
 class InlineQueryResultBuilder {
+  /// Creates a new [InlineQueryResultBuilder] instance.
+  ///
+  /// This builder allows you to construct various types of Inline Query Results
+  /// for Telegram bots in a fluent, chainable manner. You can add multiple
+  /// results using the builder methods and then call [build] to get the final
+  /// list of results.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// final builder = InlineQueryResultBuilder();
+  ///
+  /// // Add different types of results
+  /// builder
+  ///   .article(
+  ///     '1',
+  ///     'Example Article',
+  ///     (content) => content.text('This is an example article.'),
+  ///     description: 'An example article for demonstration.',
+  ///   )
+  ///   .photo(
+  ///     '2',
+  ///     'https://example.com/photo.jpg',
+  ///     'https://example.com/thumb.jpg',
+  ///     title: 'Example Photo',
+  ///   )
+  ///   .cachedSticker('3', 'BAADBAADrwADBREAAWZkhKI6-qMLAg');
+  ///
+  /// // Build the final results
+  /// final results = builder.build();
+  ///
+  /// // Use in answer inline query
+  /// await bot.api.answerInlineQuery(inlineQuery.id, results);
+  /// ```
+  InlineQueryResultBuilder();
+
   /// Results
   final List<InlineQueryResult> _results = [];
 
