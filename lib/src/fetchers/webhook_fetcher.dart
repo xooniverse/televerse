@@ -1,39 +1,42 @@
 // File: lib/src/fetchers/webhook_fetcher.dart
 part of '../../televerse.dart';
 
-/// Webhook fetcher implementation.
+/// Enhanced webhook fetcher with built-in HTTP server support.
 ///
-/// This fetcher provides flexible webhook handling that can integrate with
-/// any Dart web server framework (Shelf, Angel, Aqueduct, etc.).
+/// This fetcher can either integrate with existing web servers (like the current
+/// implementation) or run its own HTTP server for maximum simplicity.
 ///
-/// The fetcher doesn't run its own web server. Instead, it provides methods
-/// to handle webhook requests that you can integrate into your existing
-/// web server setup.
-///
-/// Example with Shelf:
+/// **Simple standalone usage:**
 /// ```dart
-/// import 'package:shelf/shelf.dart';
-/// import 'package:shelf/shelf_io.dart';
+/// final bot = Bot<Context>('YOUR_BOT_TOKEN');
 ///
+/// bot.command('start', (ctx) async {
+///   await ctx.reply('Hello from webhook bot! 🚀');
+/// });
+///
+/// // This is all you need!
+/// await bot.startWebhook(
+///   webhookUrl: 'https://your-domain.com/webhook',
+///   port: 8080,
+/// );
+/// ```
+///
+/// **With custom configuration:**
+/// ```dart
+/// await bot.startWebhook(
+///   webhookUrl: 'https://your-domain.com/webhook',
+///   port: 8080,
+///   secretToken: 'your-secret-token',
+///   certificate: InputFile.fromFile(File('cert.pem')),
+///   healthCheckPath: '/health',
+///   corsEnabled: true,
+/// );
+/// ```
+///
+/// **For existing web servers (advanced usage):**
+/// ```dart
 /// final fetcher = WebhookFetcher();
-///
-/// final handler = Pipeline()
-///   .addHandler((request) async {
-///     if (request.method == 'POST' && request.url.path == '/webhook') {
-///       final body = await request.readAsString();
-///       final handled = await fetcher.handleWebhookRequest(body);
-///       return handled
-///         ? Response.ok('OK')
-///         : Response.badRequest('Invalid webhook data');
-///     }
-///     return Response.notFound('Not Found');
-///   });
-///
-/// final server = await serve(handler, 'localhost', 8080);
-/// await fetcher.start();
-///
-/// // Set webhook URL with Telegram
-/// await api.setWebhook('https://yourdomain.com/webhook');
+/// // Use the existing handleWebhookRequest method
 /// ```
 class WebhookFetcher implements UpdateFetcher {
   /// The RawAPI instance (optional, for webhook management).
@@ -47,6 +50,9 @@ class WebhookFetcher implements UpdateFetcher {
 
   /// Whether the fetcher is currently running.
   bool _isRunning = false;
+
+  /// The built-in HTTP server (if using standalone mode).
+  io.HttpServer? _httpServer;
 
   /// Statistics about webhook requests.
   WebhookStats _stats = WebhookStats.empty();
@@ -73,6 +79,15 @@ class WebhookFetcher implements UpdateFetcher {
   /// Gets webhook statistics.
   WebhookStats get stats => _stats;
 
+  /// Gets the HTTP server instance (if running in standalone mode).
+  io.HttpServer? get httpServer => _httpServer;
+
+  /// Gets the webhook URL that's currently set.
+  String? get webhookUrl => _config.webhookUrl;
+
+  /// Gets the port the server is listening on.
+  int? get port => _httpServer?.port ?? _config.port;
+
   @override
   Future<void> start() async {
     if (_isRunning) return;
@@ -80,9 +95,20 @@ class WebhookFetcher implements UpdateFetcher {
     _isRunning = true;
     _stats = WebhookStats.empty();
 
-    // Optionally set webhook URL if API and URL are provided
+    // Start built-in server if configured
+    if (_config.useBuiltInServer) {
+      await _startBuiltInServer();
+    }
+
+    // Set webhook URL if API and URL are provided
     if (_api != null && _config.webhookUrl != null) {
       await _setWebhook();
+    }
+
+    print('🌐 Webhook fetcher started successfully!');
+    if (_config.useBuiltInServer) {
+      print('📡 Built-in server running on http://localhost:$port');
+      print('🔗 Webhook URL: ${_config.webhookUrl}');
     }
   }
 
@@ -90,18 +116,164 @@ class WebhookFetcher implements UpdateFetcher {
   Future<void> stop() async {
     if (!_isRunning) return;
 
+    print('🛑 Stopping webhook fetcher...');
+
     _isRunning = false;
 
-    // Optionally delete webhook if API is provided
+    // Stop built-in server
+    if (_httpServer != null) {
+      await _httpServer!.close();
+      _httpServer = null;
+      print('🌐 Built-in server stopped');
+    }
+
+    // Optionally delete webhook
     if (_api != null && _config.deleteWebhookOnStop) {
       await _deleteWebhook();
     }
+
+    print('✅ Webhook fetcher stopped successfully!');
   }
 
   @override
   Future<void> close() async {
     await stop();
     await _updateController.close();
+  }
+
+  /// Starts the built-in HTTP server.
+  Future<void> _startBuiltInServer() async {
+    if (_config.port == null) {
+      throw TeleverseException(
+        'Port must be specified to use built-in server',
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    try {
+      // Bind to the specified port
+      _httpServer = await io.HttpServer.bind(
+        _config.bindAddress ?? '0.0.0.0',
+        _config.port!,
+      );
+
+      // Handle incoming requests
+      _httpServer!.listen(_handleHttpRequest);
+    } catch (error, stackTrace) {
+      throw TeleverseException(
+        'Failed to start built-in HTTP server on port ${_config.port}',
+        description: error.toString(),
+        stackTrace: stackTrace,
+        type: TeleverseExceptionType.requestFailed,
+      );
+    }
+  }
+
+  /// Handles HTTP requests in the built-in server.
+  Future<void> _handleHttpRequest(io.HttpRequest request) async {
+    final path = request.uri.path;
+    final method = request.method;
+
+    try {
+      // Handle CORS preflight requests
+      if (_config.corsEnabled && method == 'OPTIONS') {
+        _handleCorsRequest(request);
+        return;
+      }
+
+      // Handle webhook endpoint
+      if (method == 'POST' && path == _config.webhookPath) {
+        final success = await handleHttpRequest(request);
+        _sendResponse(
+          request,
+          success ? 200 : 400,
+          success ? 'OK' : 'Bad Request',
+        );
+        return;
+      }
+
+      // Handle health check endpoint
+      if (_config.healthCheckPath != null &&
+          method == 'GET' &&
+          path == _config.healthCheckPath) {
+        final healthData = {
+          'status': 'healthy',
+          'uptime': _stats.lastRequestTime != null
+              ? DateTime.now().difference(_stats.lastRequestTime!).inSeconds
+              : 0,
+          'totalRequests': _stats.totalRequests,
+          'successRate': _stats.successRate,
+        };
+        _sendJsonResponse(request, 200, healthData);
+        return;
+      }
+
+      // Handle root path with bot info
+      if (method == 'GET' && (path == '/' || path.isEmpty)) {
+        final botInfo = {
+          'status': 'running',
+          'bot': _api?.token.substring(0, 10) ?? 'unknown',
+          'webhook': _config.webhookUrl,
+          'stats': {
+            'totalRequests': _stats.totalRequests,
+            'validRequests': _stats.validRequests,
+            'successRate': '${_stats.successRate.toStringAsFixed(1)}%',
+          },
+        };
+        _sendJsonResponse(request, 200, botInfo);
+        return;
+      }
+
+      // Handle 404 for unknown paths
+      _sendResponse(request, 404, 'Not Found');
+    } catch (error, stackTrace) {
+      print('❌ Error handling HTTP request: $error');
+      print(stackTrace);
+      _sendResponse(request, 500, 'Internal Server Error');
+    }
+  }
+
+  /// Handles CORS preflight requests.
+  void _handleCorsRequest(io.HttpRequest request) {
+    request.response
+      ..headers.set('Access-Control-Allow-Origin', '*')
+      ..headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+      ..headers.set(
+        'Access-Control-Allow-Headers',
+        'Content-Type, X-Telegram-Bot-Api-Secret-Token',
+      )
+      ..statusCode = 200
+      ..close();
+  }
+
+  /// Sends a text response.
+  void _sendResponse(io.HttpRequest request, int statusCode, String body) {
+    if (_config.corsEnabled) {
+      request.response.headers.set('Access-Control-Allow-Origin', '*');
+    }
+
+    request.response
+      ..statusCode = statusCode
+      ..headers.contentType = io.ContentType.text
+      ..write(body)
+      ..close();
+  }
+
+  /// Sends a JSON response.
+  void _sendJsonResponse(
+    io.HttpRequest request,
+    int statusCode,
+    Map<String, dynamic> data,
+  ) {
+    if (_config.corsEnabled) {
+      request.response.headers.set('Access-Control-Allow-Origin', '*');
+    }
+
+    request.response
+      ..statusCode = statusCode
+      ..headers.contentType = io.ContentType.json
+      ..write(jsonEncode(data))
+      ..close();
   }
 
   /// Handles a webhook request from your web server.
@@ -114,14 +286,6 @@ class WebhookFetcher implements UpdateFetcher {
   /// - [headers]: Optional request headers for validation
   ///
   /// Returns true if the webhook was processed successfully, false otherwise.
-  ///
-  /// Example:
-  /// ```dart
-  /// // In your Shelf handler
-  /// final body = await request.readAsString();
-  /// final headers = request.headers;
-  /// final success = await fetcher.handleWebhookRequest(body, headers);
-  /// ```
   Future<bool> handleWebhookRequest(
     String requestBody, [
     Map<String, String>? headers,
@@ -194,20 +358,6 @@ class WebhookFetcher implements UpdateFetcher {
   /// - [request]: The HttpRequest object
   ///
   /// Returns true if the webhook was processed successfully, false otherwise.
-  ///
-  /// Example:
-  /// ```dart
-  /// // In your dart:io server
-  /// await for (HttpRequest request in server) {
-  ///   if (request.method == 'POST' && request.uri.path == '/webhook') {
-  ///     final success = await fetcher.handleHttpRequest(request);
-  ///     request.response
-  ///       ..statusCode = success ? 200 : 400
-  ///       ..write(success ? 'OK' : 'Bad Request')
-  ///       ..close();
-  ///   }
-  /// }
-  /// ```
   Future<bool> handleHttpRequest(io.HttpRequest request) async {
     if (request.method != 'POST') {
       return false;
@@ -228,12 +378,6 @@ class WebhookFetcher implements UpdateFetcher {
   }
 
   /// Manually adds an update to the stream.
-  ///
-  /// This can be useful for testing or if you're receiving updates
-  /// through a different mechanism.
-  ///
-  /// Parameters:
-  /// - [update]: The update to add
   void addUpdate(Update update) {
     if (_isRunning) {
       _updateController.add(update);
@@ -242,10 +386,6 @@ class WebhookFetcher implements UpdateFetcher {
   }
 
   /// Manually adds an error to the stream.
-  ///
-  /// Parameters:
-  /// - [error]: The error to add
-  /// - [stackTrace]: Optional stack trace
   void addError(Object error, [StackTrace? stackTrace]) {
     if (_isRunning && _updateController.hasListener) {
       _updateController.addError(error, stackTrace);
@@ -257,6 +397,7 @@ class WebhookFetcher implements UpdateFetcher {
     if (_api == null || _config.webhookUrl == null) return;
 
     try {
+      print('🔗 Setting webhook URL: ${_config.webhookUrl}');
       await _api!.setWebhook(
         _config.webhookUrl!,
         certificate: _config.certificate,
@@ -266,9 +407,14 @@ class WebhookFetcher implements UpdateFetcher {
         dropPendingUpdates: _config.dropPendingUpdates,
         secretToken: _config.secretToken,
       );
+      print('✅ Webhook set successfully!');
     } catch (error) {
-      // Log error but don't fail - user might set webhook manually
-      print('Warning: Failed to set webhook: $error');
+      print('❌ Failed to set webhook: $error');
+      throw TeleverseException(
+        'Failed to set webhook URL',
+        description: error.toString(),
+        type: TeleverseExceptionType.requestFailed,
+      );
     }
   }
 
@@ -277,19 +423,17 @@ class WebhookFetcher implements UpdateFetcher {
     if (_api == null) return;
 
     try {
+      print('🗑️ Deleting webhook...');
       await _api!.deleteWebhook(
         dropPendingUpdates: _config.dropPendingUpdates,
       );
+      print('✅ Webhook deleted successfully!');
     } catch (error) {
-      // Log error but don't fail
-      print('Warning: Failed to delete webhook: $error');
+      print('⚠️ Failed to delete webhook: $error');
     }
   }
 
   /// Checks if an update type is allowed based on configuration.
-  ///
-  /// This method uses the UpdateExt extension to determine the update type
-  /// and checks it against the configured allowed update types.
   bool _isUpdateAllowed(Update update) {
     final allowedUpdates = _config.allowedUpdates;
     if (allowedUpdates == null) return true;
@@ -297,7 +441,6 @@ class WebhookFetcher implements UpdateFetcher {
     try {
       return allowedUpdates.contains(update.type);
     } catch (e) {
-      // If update type cannot be determined, reject it
       return false;
     }
   }
@@ -314,52 +457,53 @@ class WebhookFetcher implements UpdateFetcher {
   }
 }
 
-/// Configuration for webhook fetcher.
+/// Enhanced configuration for webhook fetcher with built-in server support.
 class WebhookConfig extends FetcherConfig {
   /// The webhook URL to set with Telegram.
-  ///
-  /// If provided along with a RawAPI instance, the webhook will be
-  /// automatically set when the fetcher starts.
   final String? webhookUrl;
 
+  /// Whether to use the built-in HTTP server.
+  final bool useBuiltInServer;
+
+  /// Port for the built-in HTTP server.
+  final int? port;
+
+  /// Address to bind the server to (default: '0.0.0.0').
+  final String? bindAddress;
+
+  /// Path for webhook endpoint (default: '/webhook').
+  final String webhookPath;
+
+  /// Path for health check endpoint (optional).
+  final String? healthCheckPath;
+
+  /// Whether to enable CORS headers.
+  final bool corsEnabled;
+
   /// Certificate for self-signed HTTPS.
-  ///
-  /// Required if using a self-signed certificate for HTTPS.
   final InputFile? certificate;
 
   /// Fixed IP address for webhook.
-  ///
-  /// If provided, Telegram will only send webhooks to this IP.
   final String? ipAddress;
 
   /// Maximum allowed number of simultaneous HTTPS connections.
-  ///
-  /// Valid range is 1-100. Default is 40.
   final int? maxConnections;
 
   /// Secret token for webhook validation.
-  ///
-  /// If provided, Telegram will include this token in the
-  /// X-Telegram-Bot-Api-Secret-Token header of webhook requests.
   final String? secretToken;
 
   /// Whether to delete the webhook when the fetcher stops.
   final bool deleteWebhookOnStop;
 
   /// Creates a new webhook configuration.
-  ///
-  /// Parameters:
-  /// - [webhookUrl]: The URL where Telegram should send updates
-  /// - [certificate]: Certificate for self-signed HTTPS
-  /// - [ipAddress]: Fixed IP address for webhook
-  /// - [maxConnections]: Maximum simultaneous connections (1-100)
-  /// - [secretToken]: Secret token for request validation
-  /// - [deleteWebhookOnStop]: Whether to delete webhook on stop
-  /// - [allowedUpdates]: Update types to receive
-  /// - [dropPendingUpdates]: Whether to drop pending updates
-  /// - [maxConcurrentUpdates]: Maximum concurrent update processing
   const WebhookConfig({
     this.webhookUrl,
+    this.useBuiltInServer = false,
+    this.port,
+    this.bindAddress,
+    this.webhookPath = '/webhook',
+    this.healthCheckPath,
+    this.corsEnabled = false,
     this.certificate,
     this.ipAddress,
     this.maxConnections,
@@ -374,50 +518,98 @@ class WebhookConfig extends FetcherConfig {
           'maxConnections must be between 1 and 100',
         );
 
-  /// Creates a configuration for development with ngrok.
+  /// Creates a configuration for the built-in server.
   ///
-  /// Useful for testing webhooks locally with ngrok.
+  /// This is the simplest way to run a webhook bot.
   ///
   /// Parameters:
-  /// - [ngrokUrl]: Your ngrok URL (e.g., 'https://abc123.ngrok.io')
-  /// - [path]: Webhook path (default: '/webhook')
+  /// - [webhookUrl]: Your public webhook URL
+  /// - [port]: Port to run the server on
+  /// - [secretToken]: Optional secret token for security
+  /// - [healthCheckPath]: Optional health check endpoint
+  /// - [corsEnabled]: Whether to enable CORS
+  WebhookConfig.server({
+    required String this.webhookUrl,
+    required int this.port,
+    this.secretToken,
+    this.webhookPath = '/webhook',
+    this.healthCheckPath = '/health',
+    this.corsEnabled = true,
+    this.bindAddress,
+    super.allowedUpdates,
+    super.dropPendingUpdates = false,
+    super.maxConcurrentUpdates = 20,
+  })  : useBuiltInServer = true,
+        certificate = null,
+        ipAddress = null,
+        maxConnections = 40,
+        deleteWebhookOnStop = true;
+
+  /// Creates a configuration for development with ngrok.
   WebhookConfig.ngrok(
     String ngrokUrl, {
     String path = '/webhook',
+    int this.port = 8080,
     super.allowedUpdates,
     super.dropPendingUpdates = true,
     super.maxConcurrentUpdates = 5,
   })  : webhookUrl = '$ngrokUrl$path',
+        useBuiltInServer = true,
+        bindAddress = '0.0.0.0',
+        webhookPath = path,
+        healthCheckPath = '/health',
+        corsEnabled = true,
         certificate = null,
         ipAddress = null,
         maxConnections = 10,
         secretToken = null,
         deleteWebhookOnStop = true;
 
-  /// Creates a configuration for production deployment.
+  /// Creates a configuration for production deployment with built-in server.
+  WebhookConfig.production({
+    required String this.webhookUrl,
+    required int this.port,
+    required String this.secretToken,
+    this.webhookPath = '/webhook',
+    this.healthCheckPath = '/health',
+    this.corsEnabled = false,
+    this.bindAddress,
+    int this.maxConnections = 40,
+    super.allowedUpdates,
+    super.dropPendingUpdates = false,
+    super.maxConcurrentUpdates = 50,
+  })  : useBuiltInServer = true,
+        certificate = null,
+        ipAddress = null,
+        deleteWebhookOnStop = false;
+
+  /// Creates a configuration for custom web server integration.
   ///
-  /// Parameters:
-  /// - [webhookUrl]: Your production webhook URL
-  /// - [secretToken]: Secret token for security
-  /// - [maxConnections]: Maximum connections (default: 40)
-  WebhookConfig.production(
-    this.webhookUrl, {
+  /// Use this when you want to integrate with your existing web server.
+  const WebhookConfig.custom({
+    this.webhookUrl,
     this.secretToken,
-    this.maxConnections = 40,
     super.allowedUpdates,
     super.dropPendingUpdates = false,
     super.maxConcurrentUpdates = 20,
-  })  : certificate = null,
+  })  : useBuiltInServer = false,
+        port = null,
+        bindAddress = null,
+        webhookPath = '/webhook',
+        healthCheckPath = null,
+        corsEnabled = false,
+        certificate = null,
         ipAddress = null,
+        maxConnections = null,
         deleteWebhookOnStop = false;
 
   @override
   String toString() {
     return 'WebhookConfig('
         'url: $webhookUrl, '
-        'maxConnections: $maxConnections, '
-        'hasSecretToken: ${secretToken != null}, '
-        'allowedUpdates: $allowedUpdates'
+        'builtin: $useBuiltInServer, '
+        'port: $port, '
+        'path: $webhookPath'
         ')';
   }
 }

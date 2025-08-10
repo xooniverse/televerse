@@ -277,6 +277,88 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     }
   }
 
+  /// Starts the bot with a built-in webhook server.
+  ///
+  /// This is the simplest way to run a webhook bot. The method will:
+  /// 1. Start a built-in HTTP server on the specified port
+  /// 2. Set the webhook URL with Telegram
+  /// 3. Handle all incoming webhook requests automatically
+  /// 4. Provide health check and status endpoints
+  ///
+  /// Parameters:
+  /// - [webhookUrl]: Your public webhook URL (must be HTTPS in production)
+  /// - [port]: Port to run the server on (default: 8080)
+  /// - [secretToken]: Optional secret token for webhook validation
+  /// - [healthCheckPath]: Path for health check endpoint (default: '/health')
+  /// - [corsEnabled]: Whether to enable CORS headers (default: true)
+  /// - [bindAddress]: Address to bind server to (default: '0.0.0.0')
+  /// - [webhookPath]: Path for webhook endpoint (default: '/webhook')
+  /// - [maxConnections]: Max simultaneous connections (default: 40)
+  /// - [dropPendingUpdates]: Whether to drop pending updates (default: false)
+  /// - [allowedUpdates]: Update types to receive (default: all)
+  ///
+  /// Example:
+  /// ```dart
+  /// final bot = Bot<Context>('YOUR_BOT_TOKEN');
+  ///
+  /// bot.command('start', (ctx) async {
+  ///   await ctx.reply('Hello from webhook bot! 🚀');
+  /// });
+  ///
+  /// // This is all you need for a webhook bot!
+  /// await bot.startWebhook(
+  ///   webhookUrl: 'https://your-domain.com/webhook',
+  ///   port: 8080,
+  /// );
+  /// ```
+  ///
+  /// The server will provide these endpoints:
+  /// - `POST /webhook` - Webhook endpoint for Telegram
+  /// - `GET /health` - Health check endpoint
+  /// - `GET /` - Bot status and statistics
+  Future<void> startWebhook({
+    required String webhookUrl,
+    int port = 8080,
+    String? secretToken,
+    String? healthCheckPath = '/health',
+    bool corsEnabled = true,
+    String? bindAddress,
+    String webhookPath = '/webhook',
+    int maxConnections = 40,
+    bool dropPendingUpdates = false,
+    List<UpdateType>? allowedUpdates,
+  }) async {
+    if (_isRunning) {
+      throw TeleverseException(
+        'Bot is already running',
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    // Create webhook configuration
+    final config = WebhookConfig.server(
+      webhookUrl: webhookUrl,
+      port: port,
+      secretToken: secretToken,
+      webhookPath: webhookPath,
+      healthCheckPath: healthCheckPath,
+      corsEnabled: corsEnabled,
+      bindAddress: bindAddress,
+      allowedUpdates: allowedUpdates,
+      dropPendingUpdates: dropPendingUpdates,
+      maxConcurrentUpdates: 50,
+    );
+
+    // Create webhook fetcher
+    final fetcher = WebhookFetcher(
+      api: api,
+      config: config,
+    );
+
+    // Start the bot with webhook fetcher
+    await start(fetcher);
+  }
+
   /// Stops the bot.
   ///
   /// This method gracefully shuts down the bot by stopping the update fetcher
@@ -305,6 +387,44 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     } finally {
       _startCompleter = null;
     }
+  }
+
+  /// Starts the bot with webhook for ngrok development.
+  ///
+  /// This is a convenience method for local development with ngrok.
+  /// It automatically configures sensible defaults for development.
+  ///
+  /// Parameters:
+  /// - [ngrokUrl]: Your ngrok URL (e.g., 'https://abc123.ngrok.io')
+  /// - [port]: Local port to run on (default: 8080)
+  /// - [webhookPath]: Webhook path (default: '/webhook')
+  ///
+  /// Example:
+  /// ```dart
+  /// // Start ngrok: ngrok http 8080
+  /// // Copy the HTTPS URL
+  ///
+  /// final bot = Bot<Context>('YOUR_BOT_TOKEN');
+  ///
+  /// bot.command('start', (ctx) async {
+  ///   await ctx.reply('Hello from ngrok! 🚀');
+  /// });
+  ///
+  /// await bot.startWebhookDev('https://abc123.ngrok.io');
+  /// ```
+  Future<void> startWebhookDev(
+    String ngrokUrl, {
+    int port = 8080,
+    String webhookPath = '/webhook',
+  }) async {
+    await startWebhook(
+      webhookUrl: '$ngrokUrl$webhookPath',
+      port: port,
+      webhookPath: webhookPath,
+      corsEnabled: true,
+      dropPendingUpdates: true,
+      healthCheckPath: '/health',
+    );
   }
 
   /// Closes the bot and releases all resources.
