@@ -1,5 +1,8 @@
-// File: lib/src/transformers/built_in/logging_transformer.dart
-part of '../../plugins.dart';
+// File: lib/src/plugins/logging_plugin.dart
+
+import 'dart:convert';
+
+import 'package:televerse/televerse.dart';
 
 /// A comprehensive logging plugin for Telegram Bot API requests.
 ///

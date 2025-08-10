@@ -1,4 +1,6 @@
-part of '../../plugins.dart';
+// File: lib/src/plugins/session_plugin.dart
+
+import 'package:televerse/televerse.dart';
 
 /// A comprehensive session management plugin.
 ///
