@@ -32,7 +32,7 @@ part of '../../televerse.dart';
 ///     });
 ///
 ///     // Add transformers
-///     bot.api.addTransformer(MyTransformer());
+///     bot.api.use(MyTransformer());
 ///   }
 /// }
 /// ```
@@ -62,7 +62,7 @@ abstract interface class BotPlugin<CTX extends Context> {
   ///
   /// This method should:
   /// - Add any required middleware using `bot.use()`
-  /// - Add any required transformers using `bot.api.addTransformer()`
+  /// - Add any required transformers using `bot.api.use()`
   /// - Set up any necessary configurations
   /// - Register any event handlers
   ///
