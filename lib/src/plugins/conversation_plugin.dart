@@ -830,6 +830,8 @@ class ConversationTimeoutException implements Exception {
 
 /// Exception thrown when a conversation is halted.
 class ConversationHaltException implements Exception {
+  /// Creates a new ConversationHaltException.
+  const ConversationHaltException();
   @override
   String toString() => 'ConversationHaltException: Conversation was halted';
 }
@@ -854,6 +856,9 @@ abstract interface class ConversationStorage {
 
 /// Enhanced in-memory implementation of conversation storage.
 class MemoryConversationStorage implements ConversationStorage {
+  /// Creates a new MemoryConversationStorage instance.
+  MemoryConversationStorage();
+
   final Map<String, ConversationState> _storage = {};
 
   @override
