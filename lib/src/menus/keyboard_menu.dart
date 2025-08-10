@@ -75,7 +75,7 @@ class _KeyboardMenuItemStatic<CTX extends Context>
 ///     await ctx.reply('You said goodbye!');
 ///   })
 ///   .row()
-///   .contact('Share Contact', (ctx) async {
+///   .requestContact('Share Contact', (ctx) async {
 ///     await ctx.reply('Thanks for sharing your contact!');
 ///   })
 ///   .resized()
@@ -148,11 +148,11 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
   ///
   /// Example:
   /// ```dart
-  /// menu.contact('Share Contact', (ctx) async {
+  /// menu.requestContact('Share Contact', (ctx) async {
   ///   await ctx.reply('Thanks for sharing your contact!');
   /// });
   /// ```
-  KeyboardMenu<CTX> contact(String text, MenuHandler<CTX> handler) {
+  KeyboardMenu<CTX> requestContact(String text, MenuHandler<CTX> handler) {
     _ensureCurrentRow();
     final button = _KeyboardMenuButton<CTX>(
       text: text,
@@ -171,11 +171,11 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
   ///
   /// Example:
   /// ```dart
-  /// menu.location('Share Location', (ctx) async {
+  /// menu.requestLocation('Share Location', (ctx) async {
   ///   await ctx.reply('Thanks for sharing your location!');
   /// });
   /// ```
-  KeyboardMenu<CTX> location(String text, MenuHandler<CTX> handler) {
+  KeyboardMenu<CTX> requestLocation(String text, MenuHandler<CTX> handler) {
     _ensureCurrentRow();
     final button = _KeyboardMenuButton<CTX>(
       text: text,
