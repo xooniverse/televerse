@@ -69,6 +69,11 @@ part 'src/filters/filters.dart';
 part 'src/utils/date.dart';
 part 'src/utils/utils.dart';
 
+// Televerse Menus
 part 'src/menus/menu.dart';
 part 'src/menus/keyboard_menu.dart';
 part 'src/menus/inline_menu.dart';
+
+// Inline Query Result Builder
+part 'src/builders/inline_query_result_builder.dart';
+part 'src/builders/message_content_generator.dart';
