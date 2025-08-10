@@ -43,6 +43,7 @@ export 'src/televerse/markups/inline_keyboard.dart';
 part 'src/bot/bot.dart';
 part 'src/bot/context/context.dart';
 part 'src/bot/context/methods.dart';
+part 'src/bot/context/entity_extension.dart';
 part 'src/bot/composer.dart';
 part 'src/bot/error.dart';
 part 'src/bot/middleware.dart';
