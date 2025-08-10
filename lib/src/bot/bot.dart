@@ -1291,6 +1291,18 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     );
   }
 
+  /// Adds a handler for matching a custom filter
+  Bot<CTX> match(MiddlewarePredicate predicate, UpdateHandler<CTX> handler) {
+    use((ctx, next) {
+      if (predicate(ctx)) {
+        handler(ctx);
+      } else {
+        next();
+      }
+    });
+    return this;
+  }
+
   // ===============================
   // Shortcut Methods (Common Commands)
   // ===============================
