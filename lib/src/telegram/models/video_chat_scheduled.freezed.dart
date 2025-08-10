@@ -17,7 +17,7 @@ mixin _$VideoChatScheduled {
   /// Point in time (Unix timestamp) when the video chat is supposed to be
   /// started by a chat administrator
   ///
-  /// Note: You can also use the [DateTime] object getter as [startDateTime]
+  /// Note: You can also use the [DateTime] object getter as `startDateTime`
   @JsonKey(name: 'start_date')
   int get startDate;
 
@@ -82,7 +82,7 @@ class _VideoChatScheduled implements VideoChatScheduled {
   /// Point in time (Unix timestamp) when the video chat is supposed to be
   /// started by a chat administrator
   ///
-  /// Note: You can also use the [DateTime] object getter as [startDateTime]
+  /// Note: You can also use the [DateTime] object getter as `startDateTime`
   @override
   @JsonKey(name: 'start_date')
   final int startDate;

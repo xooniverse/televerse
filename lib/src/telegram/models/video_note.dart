@@ -26,7 +26,7 @@ abstract class VideoNote with _$VideoNote {
 
     /// Duration of the video in seconds as defined by sender
     ///
-    /// A handy [Duration] getter is available as [durationTime]
+    /// A handy [Duration] getter is available as `durationTime`
     @JsonKey(name: 'duration') required int duration,
 
     /// Optional. Animation thumbnail as defined by sender

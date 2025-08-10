@@ -77,26 +77,21 @@ abstract class InlineKeyboard
     List<List<InlineKeyboardButton>> inlineKeyboard,
   }) = _InlineKeyboard;
 
-  /// Creates an inline keyboard from a 2D array of label-data pairs.
+  /// Creates an inline keyboard from a 2D array of (text, callbackData) records.
   ///
-  /// Each inner array represents a row, and each pair represents [text, callbackData].
+  /// Each inner array represents a row, and each record represents `(text, callbackData)`.
   ///
   /// Example:
   /// ```dart
   /// final keyboard = InlineKeyboard.from([
-  ///   [["Yes", "yes"], ["No", "no"]],
-  ///   [["Maybe", "maybe"], ["Cancel", "cancel"]]
+  ///   [("Yes", "yes"), ("No", "no")],
+  ///   [("Maybe", "maybe"), ("Cancel", "cancel")]
   /// ]);
   /// ```
-  factory InlineKeyboard.from(List<List<List<String>>> source) {
+  factory InlineKeyboard.from(List<List<(String, String)>> source) {
     final buttons = source.map((row) {
       return row.map((pair) {
-        if (pair.length != 2) {
-          throw ArgumentError(
-            'Each button pair must contain exactly 2 elements: [text, data]',
-          );
-        }
-        return InlineKeyboardButton(text: pair[0], callbackData: pair[1]);
+        return InlineKeyboardButton(text: pair.$1, callbackData: pair.$2);
       }).toList();
     }).toList();
     return InlineKeyboard(inlineKeyboard: buttons);

@@ -24,7 +24,7 @@ abstract class ChatJoinRequest
 
     /// Date the request was sent in Unix time
     ///
-    /// You can use the [dateTime] getter to get a [DateTime] object
+    /// You can use the `dateTime` getter to get a [DateTime] object
     @JsonKey(name: 'date') required int date,
 
     /// Optional. Bio of the user.

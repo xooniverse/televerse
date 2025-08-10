@@ -16,7 +16,7 @@ abstract class MessageAutoDeleteTimerChanged
   const factory MessageAutoDeleteTimerChanged({
     /// New auto-delete time for messages in the chat; in seconds
     ///
-    /// Note: you can also use the getter [timeInDuration] to get the time in
+    /// Note: you can also use the getter `timeInDuration` to get the time in
     /// [Duration] object
     @JsonKey(name: 'message_auto_delete_time')
     required int messageAutoDeleteTime,

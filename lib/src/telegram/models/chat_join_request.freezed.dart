@@ -24,7 +24,7 @@ mixin _$ChatJoinRequest {
 
   /// Date the request was sent in Unix time
   ///
-  /// You can use the [dateTime] getter to get a [DateTime] object
+  /// You can use the `dateTime` getter to get a [DateTime] object
   @JsonKey(name: 'date')
   int get date;
 
@@ -186,7 +186,7 @@ class _ChatJoinRequest implements ChatJoinRequest {
 
   /// Date the request was sent in Unix time
   ///
-  /// You can use the [dateTime] getter to get a [DateTime] object
+  /// You can use the `dateTime` getter to get a [DateTime] object
   @override
   @JsonKey(name: 'date')
   final int date;

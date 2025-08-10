@@ -35,7 +35,7 @@ mixin _$Animation {
 
   /// Duration of the video in seconds as defined by sender
   ///
-  /// A handy [Duration] getter is available as [durationTime]
+  /// A handy [Duration] getter is available as `durationTime`
   @JsonKey(name: 'duration')
   int get duration;
 
@@ -211,7 +211,7 @@ class _Animation implements Animation {
 
   /// Duration of the video in seconds as defined by sender
   ///
-  /// A handy [Duration] getter is available as [durationTime]
+  /// A handy [Duration] getter is available as `durationTime`
   @override
   @JsonKey(name: 'duration')
   final int duration;

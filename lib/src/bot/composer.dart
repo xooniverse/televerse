@@ -279,7 +279,7 @@ class Composer<CTX extends Context> {
   ///
   /// Parameters:
   /// - [errorHandler]: Error handler that gets error and next function
-  /// - [...]: Variable number of middleware to protect
+  /// - ...: Variable number of middleware to protect
   ///
   /// Returns this composer for method chaining.
   ///

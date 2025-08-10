@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 mixin _$MessageAutoDeleteTimerChanged {
   /// New auto-delete time for messages in the chat; in seconds
   ///
-  /// Note: you can also use the getter [timeInDuration] to get the time in
+  /// Note: you can also use the getter `timeInDuration` to get the time in
   /// [Duration] object
   @JsonKey(name: 'message_auto_delete_time')
   int get messageAutoDeleteTime;
@@ -85,7 +85,7 @@ class _MessageAutoDeleteTimerChanged implements MessageAutoDeleteTimerChanged {
 
   /// New auto-delete time for messages in the chat; in seconds
   ///
-  /// Note: you can also use the getter [timeInDuration] to get the time in
+  /// Note: you can also use the getter `timeInDuration` to get the time in
   /// [Duration] object
   @override
   @JsonKey(name: 'message_auto_delete_time')
