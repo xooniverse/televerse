@@ -484,7 +484,7 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
           }
 
           // Register the handler with the bot
-          bot.filterWithFilter(filter, button.handler);
+          bot.on(filter, button.handler);
         }
       }
     }

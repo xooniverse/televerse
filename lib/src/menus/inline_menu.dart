@@ -336,7 +336,7 @@ class InlineMenu<CTX extends Context> extends TeleverseMenu<CTX>
           final button = item.button;
 
           // Register callback query handler for this button
-          bot.filterWithFilter(
+          bot.on(
             CallbackQueryFilter<CTX>(data: button.data),
             button.handler,
           );

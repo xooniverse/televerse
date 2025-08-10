@@ -13,12 +13,12 @@ part of '../../televerse.dart';
 /// final bot = Bot<MyContext>('token');
 ///
 /// // Use bot.filters for type-safe filter access
-/// bot.filterWithFilter(bot.filters.cmd('start'), startHandler);
-/// bot.filterWithFilter(bot.filters.privateChat, privateHandler);
-/// bot.filterWithFilter(bot.filters.photo, photoHandler);
+/// bot.on(bot.filters.cmd('start'), startHandler);
+/// bot.on(bot.filters.privateChat, privateHandler);
+/// bot.on(bot.filters.photo, photoHandler);
 ///
 /// // Combining filters
-/// bot.filterWithFilter(
+/// bot.on(
 ///   bot.filters.command('admin').and(bot.filters.privateChat),
 ///   adminHandler,
 /// );
