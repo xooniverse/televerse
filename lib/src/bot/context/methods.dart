@@ -2429,19 +2429,6 @@ extension ContextAwareMethods on Context {
     }
   }
 
-  /// Checks if the message text matches a pattern.
-  ///
-  /// Example:
-  /// ```dart
-  /// if (ctx.matches(RegExp(r'\d+'))) {
-  ///   await ctx.reply('Found numbers!');
-  /// }
-  /// ```
-  bool matches(RegExp pattern) {
-    final messageText = text;
-    return messageText != null && pattern.hasMatch(messageText);
-  }
-
   /// Checks if the message has any media content.
   ///
   /// Example:

@@ -93,6 +93,7 @@ class CallbackQueryFilter<CTX extends Context> extends Filter<CTX> {
       if (data is String) {
         return callbackData == data;
       } else if (data is RegExp) {
+        ctx.set('matches', (data as RegExp).allMatches(callbackData).toList());
         return (data as RegExp).hasMatch(callbackData);
       }
 
@@ -134,6 +135,7 @@ class InlineQueryFilter<CTX extends Context> extends Filter<CTX> {
       if (query is String) {
         return queryText == query;
       } else if (query is RegExp) {
+        ctx.set('matches', (query as RegExp).allMatches(queryText).toList());
         return (query as RegExp).hasMatch(queryText);
       }
 
@@ -228,6 +230,7 @@ class RegexFilter<CTX extends Context> extends Filter<CTX> {
   @override
   bool matches(CTX ctx) {
     final text = ctx.text ?? ctx.caption;
+    ctx.set('matches', pattern.allMatches(text ?? '').toList());
     return text != null && pattern.hasMatch(text);
   }
 

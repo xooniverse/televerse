@@ -275,10 +275,7 @@ class Context {
   /// The result is cached after the first access for better performance.
   User? get from {
     if (!_fromCached) {
-      _cachedFrom = message?.from ??
-          editedMessage?.from ??
-          channelPost?.from ??
-          editedChannelPost?.from ??
+      _cachedFrom = msg?.from ??
           callbackQuery?.from ??
           inlineQuery?.from ??
           chosenInlineResult?.from ??
@@ -676,6 +673,39 @@ class Context {
         msg?.checklistTasksAdded != null ||
         msg?.checklistTasksDone != null ||
         msg?.directMessagePriceChanged != null;
+  }
+
+  /// Regular expression matches found in the current update.
+  ///
+  /// This property contains a list of [RegExpMatch] objects that were found
+  /// when a [RegExp] filter was applied to any text content in the update.
+  /// The matches are automatically extracted and stored in the context when
+  /// using regex patterns with methods like [Bot.hears], [Bot.callbackQuery],
+  /// or [Bot.inlineQuery].
+  ///
+  /// The text source depends on the method used:
+  /// - [Bot.hears]: Matches against message text or media caption
+  /// - [Bot.callbackQuery]: Matches against callback query data
+  /// - [Bot.inlineQuery]: Matches against inline query text
+  ///
+  /// Returns an empty list if no regex filter was applied or no matches were found.
+  ///
+  /// Example:
+  /// ```dart
+  /// bot.hears(RegExp(r'\d+'), (ctx) {
+  ///   final matches = ctx.matches;
+  ///   for (final match in matches) {
+  ///     print('Found number: ${match.group(0)}');
+  ///   }
+  /// });
+  ///
+  /// bot.callbackQuery(RegExp(r'btn_(\w+)'), (ctx) {
+  ///   final buttonType = ctx.matches.first.group(1);
+  ///   print('Button type: $buttonType');
+  /// });
+  /// ```
+  List<RegExpMatch> get matches {
+    return get('matches') ?? [];
   }
 
   @override

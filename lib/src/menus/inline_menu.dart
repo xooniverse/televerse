@@ -232,9 +232,9 @@ class InlineMenu<CTX extends Context> extends TeleverseMenu<CTX>
   ///
   /// Example:
   /// ```dart
-  /// menu.switchInlineCurrent('Search here', 'cats');
+  /// menu.switchInlineCurrentChat('Search here', 'cats');
   /// ```
-  InlineMenu<CTX> switchInlineCurrent(String text, String query) {
+  InlineMenu<CTX> switchInlineCurrentChat(String text, String query) {
     _ensureCurrentRow();
     final button = InlineKeyboardButton(
       text: text,

@@ -537,9 +537,9 @@ abstract class InlineKeyboard
   ///
   /// Example:
   /// ```dart
-  /// final keyboard = InlineKeyboard().switchInlineCurrent("Search", "cats");
+  /// final keyboard = InlineKeyboard().switchInlineCurrentChat("Search", "cats");
   /// ```
-  InlineKeyboard switchInlineCurrent(String text, [String query = ""]) {
+  InlineKeyboard switchInlineCurrentChat(String text, [String query = ""]) {
     return add(InlineKeyboard.buttonSwitchInlineCurrent(text, query));
   }
 
