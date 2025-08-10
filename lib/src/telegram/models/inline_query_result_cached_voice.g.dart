@@ -33,7 +33,7 @@ Map<String, dynamic> _$InlineQueryResultCachedVoiceToJson(
         _InlineQueryResultCachedVoice instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       'voice_file_id': instance.voiceFileId,
       'title': instance.title,
       if (instance.caption case final value?) 'caption': value,

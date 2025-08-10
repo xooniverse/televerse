@@ -20,6 +20,7 @@ dependencies:
   dio: ^5.8.0+1
   freezed: ^3.0.6
   freezed_annotation: ^3.0.0
+  http_parser: ^4.1.2
   json_annotation: ^4.9.0
 
 dev_dependencies:

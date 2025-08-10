@@ -17,7 +17,7 @@ InputProfilePhotoStatic _$InputProfilePhotoStaticFromJson(
 Map<String, dynamic> _$InputProfilePhotoStaticToJson(
         InputProfilePhotoStatic instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InputProfilePhotoTypeEnumMap[instance.type]!,
       'photo': const InputFileConverter().toJson(instance.photo),
     };
 
@@ -39,7 +39,7 @@ InputProfilePhotoAnimated _$InputProfilePhotoAnimatedFromJson(
 Map<String, dynamic> _$InputProfilePhotoAnimatedToJson(
         InputProfilePhotoAnimated instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InputProfilePhotoTypeEnumMap[instance.type]!,
       'animation': const InputFileConverter().toJson(instance.animation),
       if (instance.mainFrameTimestamp case final value?)
         'main_frame_timestamp': value,

@@ -21,7 +21,7 @@ StoryAreaTypeLocation _$StoryAreaTypeLocationFromJson(
 Map<String, dynamic> _$StoryAreaTypeLocationToJson(
         StoryAreaTypeLocation instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$StoryAreaTypeTypeEnumMap[instance.type]!,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       if (instance.address case final value?) 'address': value,
@@ -49,7 +49,7 @@ StoryAreaTypeSuggestedReaction _$StoryAreaTypeSuggestedReactionFromJson(
 Map<String, dynamic> _$StoryAreaTypeSuggestedReactionToJson(
         StoryAreaTypeSuggestedReaction instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$StoryAreaTypeTypeEnumMap[instance.type]!,
       'reaction_type': instance.reactionType,
       if (instance.isDark case final value?) 'is_dark': value,
       if (instance.isFlipped case final value?) 'is_flipped': value,
@@ -64,7 +64,7 @@ StoryAreaTypeLink _$StoryAreaTypeLinkFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$StoryAreaTypeLinkToJson(StoryAreaTypeLink instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$StoryAreaTypeTypeEnumMap[instance.type]!,
       'url': instance.url,
     };
 
@@ -81,7 +81,7 @@ StoryAreaTypeWeather _$StoryAreaTypeWeatherFromJson(
 Map<String, dynamic> _$StoryAreaTypeWeatherToJson(
         StoryAreaTypeWeather instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$StoryAreaTypeTypeEnumMap[instance.type]!,
       'temperature': instance.temperature,
       'emoji': instance.emoji,
       'background_color': instance.backgroundColor,
@@ -97,5 +97,5 @@ StoryAreaTypeUniqueGift _$StoryAreaTypeUniqueGiftFromJson(
 Map<String, dynamic> _$StoryAreaTypeUniqueGiftToJson(
         StoryAreaTypeUniqueGift instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$StoryAreaTypeTypeEnumMap[instance.type]!,
     };

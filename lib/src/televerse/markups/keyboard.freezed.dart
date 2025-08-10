@@ -47,11 +47,6 @@ mixin _$Keyboard {
 
   /// Serializes this Keyboard to a JSON map.
   Map<String, dynamic> toJson();
-
-  @override
-  String toString() {
-    return 'Keyboard(keyboard: $keyboard, resizeKeyboard: $resizeKeyboard, oneTimeKeyboard: $oneTimeKeyboard, inputFieldPlaceholder: $inputFieldPlaceholder, selective: $selective, isPersistent: $isPersistent)';
-  }
 }
 
 /// @nodoc
@@ -119,7 +114,7 @@ class _$KeyboardCopyWithImpl<$Res> implements $KeyboardCopyWith<$Res> {
 /// @nodoc
 @JsonSerializable()
 class _Keyboard extends Keyboard {
-  _Keyboard(
+  const _Keyboard(
       {@JsonKey(name: 'keyboard')
       final List<List<KeyboardButton>> keyboard = const [<KeyboardButton>[]],
       @JsonKey(name: 'resize_keyboard') this.resizeKeyboard,
@@ -182,11 +177,6 @@ class _Keyboard extends Keyboard {
     return _$KeyboardToJson(
       this,
     );
-  }
-
-  @override
-  String toString() {
-    return 'Keyboard(keyboard: $keyboard, resizeKeyboard: $resizeKeyboard, oneTimeKeyboard: $oneTimeKeyboard, inputFieldPlaceholder: $inputFieldPlaceholder, selective: $selective, isPersistent: $isPersistent)';
   }
 }
 

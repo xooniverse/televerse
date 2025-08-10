@@ -16,7 +16,7 @@ BackgroundTypeFill _$BackgroundTypeFillFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$BackgroundTypeFillToJson(BackgroundTypeFill instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$BackgroundTypeTypeEnumMap[instance.type]!,
       'fill': instance.fill,
       'dark_theme_dimming': instance.darkThemeDimming,
     };
@@ -42,7 +42,7 @@ BackgroundTypeWallpaper _$BackgroundTypeWallpaperFromJson(
 Map<String, dynamic> _$BackgroundTypeWallpaperToJson(
         BackgroundTypeWallpaper instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$BackgroundTypeTypeEnumMap[instance.type]!,
       'document': instance.document,
       'dark_theme_dimming': instance.darkThemeDimming,
       if (instance.isBlurred case final value?) 'is_blurred': value,
@@ -64,7 +64,7 @@ BackgroundTypePattern _$BackgroundTypePatternFromJson(
 Map<String, dynamic> _$BackgroundTypePatternToJson(
         BackgroundTypePattern instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$BackgroundTypeTypeEnumMap[instance.type]!,
       'document': instance.document,
       'fill': instance.fill,
       'intensity': instance.intensity,
@@ -83,6 +83,6 @@ BackgroundTypeChatTheme _$BackgroundTypeChatThemeFromJson(
 Map<String, dynamic> _$BackgroundTypeChatThemeToJson(
         BackgroundTypeChatTheme instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$BackgroundTypeTypeEnumMap[instance.type]!,
       'theme_name': instance.themeName,
     };

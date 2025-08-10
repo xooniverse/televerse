@@ -22,7 +22,7 @@ Map<String, dynamic> _$StickerSetToJson(_StickerSet instance) =>
     <String, dynamic>{
       'name': instance.name,
       'title': instance.title,
-      'sticker_type': instance.stickerType,
+      'sticker_type': _$StickerTypeEnumMap[instance.stickerType]!,
       'stickers': instance.stickers,
       if (instance.thumbnail case final value?) 'thumbnail': value,
     };

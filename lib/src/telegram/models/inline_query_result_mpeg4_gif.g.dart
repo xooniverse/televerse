@@ -38,7 +38,7 @@ _InlineQueryResultMpeg4Gif _$InlineQueryResultMpeg4GifFromJson(
 Map<String, dynamic> _$InlineQueryResultMpeg4GifToJson(
         _InlineQueryResultMpeg4Gif instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       'id': instance.id,
       'mpeg4_url': instance.mpeg4Url,
       'thumbnail_url': instance.thumbnailUrl,

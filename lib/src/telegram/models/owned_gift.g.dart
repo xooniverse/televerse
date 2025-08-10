@@ -31,7 +31,7 @@ OwnedGiftRegular _$OwnedGiftRegularFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$OwnedGiftRegularToJson(OwnedGiftRegular instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$OwnedGiftTypeEnumMap[instance.type]!,
       'gift': instance.gift,
       if (instance.ownedGiftId case final value?) 'owned_gift_id': value,
       if (instance.senderUser case final value?) 'sender_user': value,
@@ -66,11 +66,12 @@ OwnedGiftUnique _$OwnedGiftUniqueFromJson(Map<String, dynamic> json) =>
       isSaved: json['is_saved'] as bool?,
       canBeTransferred: json['can_be_transferred'] as bool?,
       transferStarCount: (json['transfer_star_count'] as num?)?.toInt(),
+      nextTransferDate: (json['next_transfer_date'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$OwnedGiftUniqueToJson(OwnedGiftUnique instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$OwnedGiftTypeEnumMap[instance.type]!,
       'gift': instance.gift,
       if (instance.ownedGiftId case final value?) 'owned_gift_id': value,
       if (instance.senderUser case final value?) 'sender_user': value,
@@ -80,4 +81,6 @@ Map<String, dynamic> _$OwnedGiftUniqueToJson(OwnedGiftUnique instance) =>
         'can_be_transferred': value,
       if (instance.transferStarCount case final value?)
         'transfer_star_count': value,
+      if (instance.nextTransferDate case final value?)
+        'next_transfer_date': value,
     };

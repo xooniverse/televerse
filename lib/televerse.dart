@@ -23,67 +23,52 @@ library;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as io;
-import 'dart:math';
+import 'dart:math' as math;
 
 import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart' as http_parser;
+import 'package:televerse/src/telegram/types/televerse_enum.dart';
 
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
 
-export 'src/televerse/extensions/extensions.dart';
-export 'src/televerse/links/links.dart';
 export 'src/televerse/models/models.dart';
 export 'src/types/types.dart';
-export 'src/televerse/markups/inline_keyboard.dart';
+
+// Keyboards
 export 'src/televerse/markups/keyboard.dart';
+export 'src/televerse/markups/inline_keyboard.dart';
 
-// Bot & API
-part 'src/televerse/api/raw_api.dart';
-part 'src/televerse/bot/bot.dart';
+// Bot
+part 'src/bot/bot.dart';
+part 'src/bot/context/context.dart';
+part 'src/bot/context/methods.dart';
+part 'src/bot/composer.dart';
+part 'src/bot/error.dart';
+part 'src/bot/middleware.dart';
 
-// Context
-part 'src/televerse/context/constructor.dart';
-part 'src/televerse/context/context.dart';
-part 'src/televerse/context/methods.dart';
-part 'src/televerse/context/properties.dart';
-
-// Keyboards & Menus
-part 'src/televerse/markups/inline_menu.dart';
-part 'src/televerse/markups/keyboard_menu.dart';
-part 'src/televerse/markups/menu.dart';
-
-// Other utilities
-part 'src/televerse/models/logger_options.dart';
-part 'src/televerse/models/multipart_helper.dart';
-part 'src/utils/date.dart';
-part 'src/utils/http.dart';
-part 'src/utils/utils.dart';
+// Core
+part 'src/core/fetcher.dart';
+part 'src/core/http_client_factory.dart';
+part 'src/core/http_client.dart';
+part 'src/core/http_utils.dart';
+part 'src/core/raw_api.dart';
+part 'src/core/transformer.dart';
+part 'src/core/plugin.dart';
 
 // Fetchers
-part 'src/televerse/fetch/fetch.dart';
-part 'src/televerse/fetch/long_polling.dart';
-part 'src/televerse/fetch/webhook.dart';
+part 'src/fetchers/long_polling_fetcher.dart';
+part 'src/fetchers/webhook_fetcher.dart';
 
-/// Conversation API
-part 'src/televerse/conversation/conversation.dart';
-part 'src/televerse/conversation/conversation_exception.dart';
+// Filters
+part 'src/filters/common_filters.dart';
+part 'src/filters/filter.dart';
+part 'src/filters/filters.dart';
 
-/// Inline Query Result Builder
-part 'src/televerse/builders/inline_query_result_builder.dart';
-part 'src/televerse/builders/message_content_generator.dart';
+// Other utilities
+part 'src/utils/date.dart';
+part 'src/utils/utils.dart';
 
-/// Extras
-part 'src/televerse/extras/tg_exceptions.dart';
-part 'src/televerse/models/scope_options.dart';
-
-/// Middlewares
-part 'src/televerse/middlewares/base.dart';
-part 'src/televerse/middlewares/types.dart';
-part 'src/televerse/middlewares/middleware.dart';
-part 'src/televerse/middlewares/transformer.dart';
-
-/// The main class of the library.
-///
-/// This class is used to create a new bot instance. This is just a
-/// type alias for [Bot] class.
-typedef Televerse = Bot;
+part 'src/menus/menu.dart';
+part 'src/menus/keyboard_menu.dart';
+part 'src/menus/inline_menu.dart';

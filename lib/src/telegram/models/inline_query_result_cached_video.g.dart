@@ -49,7 +49,7 @@ Map<String, dynamic> _$InlineQueryResultCachedVideoToJson(
         'input_message_content': value,
       if (instance.showCaptionAboveMedia case final value?)
         'show_caption_above_media': value,
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
     };
 
 const _$ParseModeEnumMap = {

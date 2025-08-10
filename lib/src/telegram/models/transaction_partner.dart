@@ -1,12 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/src/telegram/models/affiliate_info.dart';
-import 'package:televerse/src/telegram/models/chat.dart';
-import 'package:televerse/src/telegram/models/gift.dart';
-import 'package:televerse/src/telegram/models/paid_media.dart';
-import 'package:televerse/src/telegram/models/revenue_withdrawal_state.dart';
-import 'package:televerse/src/telegram/models/user.dart';
-import 'package:televerse/televerse.dart';
+import 'package:televerse/telegram.dart';
 
 part 'transaction_partner.freezed.dart';
 part 'transaction_partner.g.dart';

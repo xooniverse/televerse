@@ -64,7 +64,7 @@ Map<String, dynamic> _$TransactionPartnerUserToJson(
         TransactionPartnerUser instance) =>
     <String, dynamic>{
       'type': _$TransactionPartnerTypeEnumMap[instance.type]!,
-      'transaction_type': instance.transactionType,
+      'transaction_type': _$TransactionTypeEnumMap[instance.transactionType]!,
       'user': instance.user,
       if (instance.affiliate case final value?) 'affiliate': value,
       if (instance.invoicePayload case final value?) 'invoice_payload': value,

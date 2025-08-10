@@ -18,7 +18,7 @@ ChatBoostSourcePremium _$ChatBoostSourcePremiumFromJson(
 Map<String, dynamic> _$ChatBoostSourcePremiumToJson(
         ChatBoostSourcePremium instance) =>
     <String, dynamic>{
-      'source': instance.source,
+      'source': _$ChatBoostSourceTypeEnumMap[instance.source]!,
       'user': instance.user,
     };
 
@@ -40,7 +40,7 @@ ChatBoostSourceGiftCode _$ChatBoostSourceGiftCodeFromJson(
 Map<String, dynamic> _$ChatBoostSourceGiftCodeToJson(
         ChatBoostSourceGiftCode instance) =>
     <String, dynamic>{
-      'source': instance.source,
+      'source': _$ChatBoostSourceTypeEnumMap[instance.source]!,
       'user': instance.user,
     };
 
@@ -61,7 +61,7 @@ ChatBoostSourceGiveaway _$ChatBoostSourceGiveawayFromJson(
 Map<String, dynamic> _$ChatBoostSourceGiveawayToJson(
         ChatBoostSourceGiveaway instance) =>
     <String, dynamic>{
-      'source': instance.source,
+      'source': _$ChatBoostSourceTypeEnumMap[instance.source]!,
       'giveaway_message_id': instance.giveawayMessageId,
       if (instance.user case final value?) 'user': value,
       if (instance.prizeStarCount case final value?) 'prize_star_count': value,

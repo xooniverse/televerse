@@ -179,7 +179,7 @@ extension UpdateExt on Update {
     } else if (chatBoost != null) {
       return UpdateType.chatBoost;
     } else if (removedChatBoost != null) {
-      return UpdateType.chatBoostRemoved;
+      return UpdateType.removedChatBoost;
     } else if (businessConnection != null) {
       return UpdateType.businessConnection;
     } else if (businessMessage != null) {

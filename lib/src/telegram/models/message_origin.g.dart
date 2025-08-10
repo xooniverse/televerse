@@ -21,7 +21,7 @@ MessageOriginUser _$MessageOriginUserFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$MessageOriginUserToJson(MessageOriginUser instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$MessageOriginTypeEnumMap[instance.type]!,
       'date': instance.date,
       'sender_user': instance.senderUser,
     };
@@ -50,7 +50,7 @@ MessageOriginHiddenUser _$MessageOriginHiddenUserFromJson(
 Map<String, dynamic> _$MessageOriginHiddenUserToJson(
         MessageOriginHiddenUser instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$MessageOriginTypeEnumMap[instance.type]!,
       'date': instance.date,
       'sender_user_name': instance.senderUserName,
     };
@@ -71,7 +71,7 @@ MessageOriginChat _$MessageOriginChatFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$MessageOriginChatToJson(MessageOriginChat instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$MessageOriginTypeEnumMap[instance.type]!,
       'date': instance.date,
       'sender_chat': instance.senderChat,
       if (instance.authorSignature case final value?) 'author_signature': value,
@@ -95,7 +95,7 @@ MessageOriginChannel _$MessageOriginChannelFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$MessageOriginChannelToJson(
         MessageOriginChannel instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$MessageOriginTypeEnumMap[instance.type]!,
       'date': instance.date,
       'chat': instance.chat,
       'message_id': instance.messageId,

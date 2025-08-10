@@ -1,11 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/src/telegram/models/inline_query_result.dart';
-import 'package:televerse/src/telegram/models/input_message_content.dart';
-import 'package:televerse/src/telegram/models/message_entity.dart';
-import 'package:televerse/src/telegram/models/reply_markup.dart';
-import 'package:televerse/televerse.dart' show InlineQueryResultType, ParseMode;
-
+import 'package:televerse/telegram.dart';
 part 'inline_query_result_document.freezed.dart';
 part 'inline_query_result_document.g.dart';
 

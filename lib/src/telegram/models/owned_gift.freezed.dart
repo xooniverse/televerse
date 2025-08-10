@@ -404,7 +404,8 @@ class OwnedGiftUnique implements OwnedGift {
       @JsonKey(name: 'send_date') required this.sendDate,
       @JsonKey(name: 'is_saved') this.isSaved,
       @JsonKey(name: 'can_be_transferred') this.canBeTransferred,
-      @JsonKey(name: 'transfer_star_count') this.transferStarCount});
+      @JsonKey(name: 'transfer_star_count') this.transferStarCount,
+      @JsonKey(name: 'next_transfer_date') this.nextTransferDate});
   factory OwnedGiftUnique.fromJson(Map<String, dynamic> json) =>
       _$OwnedGiftUniqueFromJson(json);
 
@@ -450,6 +451,11 @@ class OwnedGiftUnique implements OwnedGift {
   @JsonKey(name: 'transfer_star_count')
   final int? transferStarCount;
 
+  /// Optional. Point in time (Unix timestamp) when the gift can be transferred.
+  /// If it is in the past, then the gift can be transferred now
+  @JsonKey(name: 'next_transfer_date')
+  final int? nextTransferDate;
+
   /// Create a copy of OwnedGift
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -467,7 +473,7 @@ class OwnedGiftUnique implements OwnedGift {
 
   @override
   String toString() {
-    return 'OwnedGift.unique(type: $type, gift: $gift, ownedGiftId: $ownedGiftId, senderUser: $senderUser, sendDate: $sendDate, isSaved: $isSaved, canBeTransferred: $canBeTransferred, transferStarCount: $transferStarCount)';
+    return 'OwnedGift.unique(type: $type, gift: $gift, ownedGiftId: $ownedGiftId, senderUser: $senderUser, sendDate: $sendDate, isSaved: $isSaved, canBeTransferred: $canBeTransferred, transferStarCount: $transferStarCount, nextTransferDate: $nextTransferDate)';
   }
 }
 
@@ -487,7 +493,8 @@ abstract mixin class $OwnedGiftUniqueCopyWith<$Res>
       @JsonKey(name: 'send_date') int sendDate,
       @JsonKey(name: 'is_saved') bool? isSaved,
       @JsonKey(name: 'can_be_transferred') bool? canBeTransferred,
-      @JsonKey(name: 'transfer_star_count') int? transferStarCount});
+      @JsonKey(name: 'transfer_star_count') int? transferStarCount,
+      @JsonKey(name: 'next_transfer_date') int? nextTransferDate});
 
   $UniqueGiftCopyWith<$Res> get gift;
   @override
@@ -515,6 +522,7 @@ class _$OwnedGiftUniqueCopyWithImpl<$Res>
     Object? isSaved = freezed,
     Object? canBeTransferred = freezed,
     Object? transferStarCount = freezed,
+    Object? nextTransferDate = freezed,
   }) {
     return _then(OwnedGiftUnique(
       type: null == type
@@ -548,6 +556,10 @@ class _$OwnedGiftUniqueCopyWithImpl<$Res>
       transferStarCount: freezed == transferStarCount
           ? _self.transferStarCount
           : transferStarCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      nextTransferDate: freezed == nextTransferDate
+          ? _self.nextTransferDate
+          : nextTransferDate // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }

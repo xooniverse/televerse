@@ -1,9 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/televerse.dart';
-import 'location_address.dart';
-import 'reaction_type.dart';
-
+import 'package:televerse/telegram.dart';
 part 'story_area_type.freezed.dart';
 part 'story_area_type.g.dart';
 

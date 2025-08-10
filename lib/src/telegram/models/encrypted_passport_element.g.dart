@@ -34,7 +34,7 @@ _EncryptedPassportElement _$EncryptedPassportElementFromJson(
 Map<String, dynamic> _$EncryptedPassportElementToJson(
         _EncryptedPassportElement instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$PassportTypeEnumMap[instance.type]!,
       if (instance.data case final value?) 'data': value,
       if (instance.phoneNumber case final value?) 'phone_number': value,
       if (instance.email case final value?) 'email': value,

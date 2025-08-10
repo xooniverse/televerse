@@ -38,7 +38,7 @@ _InlineQueryResultGif _$InlineQueryResultGifFromJson(
 Map<String, dynamic> _$InlineQueryResultGifToJson(
         _InlineQueryResultGif instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       'id': instance.id,
       'gif_url': instance.gifUrl,
       'thumbnail_url': instance.thumbnailUrl,

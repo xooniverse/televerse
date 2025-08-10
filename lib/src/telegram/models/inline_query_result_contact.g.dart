@@ -33,7 +33,7 @@ Map<String, dynamic> _$InlineQueryResultContactToJson(
         _InlineQueryResultContact instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       'phone_number': instance.phoneNumber,
       'first_name': instance.firstName,
       if (instance.lastName case final value?) 'last_name': value,

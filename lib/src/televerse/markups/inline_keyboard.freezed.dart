@@ -14,6 +14,7 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$InlineKeyboard {
+  /// Array of button rows, each represented by an Array of InlineKeyboardButton objects
   @JsonKey(name: 'inline_keyboard')
   List<List<InlineKeyboardButton>> get inlineKeyboard;
 
@@ -27,11 +28,6 @@ mixin _$InlineKeyboard {
 
   /// Serializes this InlineKeyboard to a JSON map.
   Map<String, dynamic> toJson();
-
-  @override
-  String toString() {
-    return 'InlineKeyboard(inlineKeyboard: $inlineKeyboard)';
-  }
 }
 
 /// @nodoc
@@ -72,7 +68,7 @@ class _$InlineKeyboardCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _InlineKeyboard extends InlineKeyboard {
-  _InlineKeyboard(
+  const _InlineKeyboard(
       {@JsonKey(name: 'inline_keyboard')
       final List<List<InlineKeyboardButton>> inlineKeyboard = const [
         <InlineKeyboardButton>[]
@@ -82,7 +78,10 @@ class _InlineKeyboard extends InlineKeyboard {
   factory _InlineKeyboard.fromJson(Map<String, dynamic> json) =>
       _$InlineKeyboardFromJson(json);
 
+  /// Array of button rows, each represented by an Array of InlineKeyboardButton objects
   final List<List<InlineKeyboardButton>> _inlineKeyboard;
+
+  /// Array of button rows, each represented by an Array of InlineKeyboardButton objects
   @override
   @JsonKey(name: 'inline_keyboard')
   List<List<InlineKeyboardButton>> get inlineKeyboard {
@@ -104,11 +103,6 @@ class _InlineKeyboard extends InlineKeyboard {
     return _$InlineKeyboardToJson(
       this,
     );
-  }
-
-  @override
-  String toString() {
-    return 'InlineKeyboard(inlineKeyboard: $inlineKeyboard)';
   }
 }
 

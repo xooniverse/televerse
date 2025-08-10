@@ -34,7 +34,7 @@ Map<String, dynamic> _$InlineQueryResultCachedDocumentToJson(
         _InlineQueryResultCachedDocument instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       'document_file_id': instance.documentFileId,
       'title': instance.title,
       if (instance.description case final value?) 'description': value,

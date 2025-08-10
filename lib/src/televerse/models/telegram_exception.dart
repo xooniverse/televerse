@@ -58,22 +58,12 @@ class TelegramException implements Exception {
   /// Returns true if the exception is a server exception.
   bool get isServerExeption => code >= 500 && code < 600;
 
-  /// Converts this exception to a [LongPollingException].
-  LongPollingException toLongPollingException(StackTrace stackTrace) {
-    return LongPollingException(
-      description ?? "Unknown error occurred",
-      code: code,
-      parameters: parameters,
-      stackTrace: stackTrace,
-    );
-  }
-
   /// Returns the JSON encodable Map
   Map<String, dynamic> toJson() {
     return {
       "error_code": code,
       "description": description,
       "parameters": parameters?.toJson(),
-    }..removeWhere((_, v) => v != null);
+    }..removeWhere(nullFilter);
   }
 }

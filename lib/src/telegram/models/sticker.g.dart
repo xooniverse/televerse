@@ -34,7 +34,7 @@ _Sticker _$StickerFromJson(Map<String, dynamic> json) => _Sticker(
 Map<String, dynamic> _$StickerToJson(_Sticker instance) => <String, dynamic>{
       'file_id': instance.fileId,
       'file_unique_id': instance.fileUniqueId,
-      'type': instance.type,
+      'type': _$StickerTypeEnumMap[instance.type]!,
       'width': instance.width,
       'height': instance.height,
       'is_animated': instance.isAnimated,

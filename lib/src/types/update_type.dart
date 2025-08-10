@@ -52,7 +52,7 @@ enum UpdateType {
   chatBoost("chat_boost"),
 
   /// Update when a chat boost is removed.
-  chatBoostRemoved("chat_boost_removed"),
+  removedChatBoost("removed_chat_boost"),
 
   /// Update when a business connection is established.
   businessConnection("business_connection"),

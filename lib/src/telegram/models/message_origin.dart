@@ -1,8 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:televerse/src/telegram/models/chat.dart';
-import 'package:televerse/src/telegram/models/user.dart';
-import 'package:televerse/televerse.dart';
+import 'package:televerse/telegram.dart';
 
 part 'message_origin.freezed.dart';
 part 'message_origin.g.dart';

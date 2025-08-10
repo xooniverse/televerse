@@ -22,7 +22,7 @@ Map<String, dynamic> _$PassportElementErrorDataFieldToJson(
         PassportElementErrorDataField instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
-      'type': instance.type,
+      'type': _$PassportTypeEnumMap[instance.type]!,
       'message': instance.message,
       'field_name': instance.fieldName,
       'data_hash': instance.dataHash,
@@ -71,7 +71,7 @@ Map<String, dynamic> _$PassportElementErrorFrontSideToJson(
         PassportElementErrorFrontSide instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
-      'type': instance.type,
+      'type': _$PassportTypeEnumMap[instance.type]!,
       'message': instance.message,
       'file_hash': instance.fileHash,
     };
@@ -91,7 +91,7 @@ Map<String, dynamic> _$PassportElementErrorReverseSideToJson(
         PassportElementErrorReverseSide instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
-      'type': instance.type,
+      'type': _$PassportTypeEnumMap[instance.type]!,
       'message': instance.message,
       'file_hash': instance.fileHash,
     };
@@ -111,7 +111,7 @@ Map<String, dynamic> _$PassportElementErrorSelfieToJson(
         PassportElementErrorSelfie instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
-      'type': instance.type,
+      'type': _$PassportTypeEnumMap[instance.type]!,
       'message': instance.message,
       'file_hash': instance.fileHash,
     };
@@ -131,7 +131,7 @@ Map<String, dynamic> _$PassportElementErrorFileToJson(
         PassportElementErrorFile instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
-      'type': instance.type,
+      'type': _$PassportTypeEnumMap[instance.type]!,
       'message': instance.message,
       'file_hash': instance.fileHash,
     };
@@ -153,7 +153,7 @@ Map<String, dynamic> _$PassportElementErrorFilesToJson(
         PassportElementErrorFiles instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
-      'type': instance.type,
+      'type': _$PassportTypeEnumMap[instance.type]!,
       'message': instance.message,
       'file_hashes': instance.fileHashes,
     };
@@ -173,7 +173,7 @@ Map<String, dynamic> _$PassportElementErrorTranslationFileToJson(
         PassportElementErrorTranslationFile instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
-      'type': instance.type,
+      'type': _$PassportTypeEnumMap[instance.type]!,
       'message': instance.message,
       'file_hash': instance.fileHash,
     };
@@ -195,7 +195,7 @@ Map<String, dynamic> _$PassportElementErrorTranslationFilesToJson(
         PassportElementErrorTranslationFiles instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
-      'type': instance.type,
+      'type': _$PassportTypeEnumMap[instance.type]!,
       'message': instance.message,
       'file_hashes': instance.fileHashes,
     };
@@ -215,7 +215,7 @@ Map<String, dynamic> _$PassportElementErrorUnspecifiedToJson(
         PassportElementErrorUnspecified instance) =>
     <String, dynamic>{
       'source': _$PassportElementErrorSourceEnumMap[instance.source]!,
-      'type': instance.type,
+      'type': _$PassportTypeEnumMap[instance.type]!,
       'message': instance.message,
       'element_hash': instance.elementHash,
     };

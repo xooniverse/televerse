@@ -39,7 +39,7 @@ _InlineQueryResultVideo _$InlineQueryResultVideoFromJson(
 Map<String, dynamic> _$InlineQueryResultVideoToJson(
         _InlineQueryResultVideo instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
       'id': instance.id,
       'video_url': instance.videoUrl,
       'mime_type': instance.mimeType,

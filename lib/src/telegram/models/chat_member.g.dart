@@ -17,7 +17,7 @@ ChatMemberOwner _$ChatMemberOwnerFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ChatMemberOwnerToJson(ChatMemberOwner instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': _$ChatMemberStatusEnumMap[instance.status]!,
       'user': instance.user,
       'is_anonymous': instance.isAnonymous,
       if (instance.customTitle case final value?) 'custom_title': value,
@@ -60,7 +60,7 @@ ChatMemberAdministrator _$ChatMemberAdministratorFromJson(
 Map<String, dynamic> _$ChatMemberAdministratorToJson(
         ChatMemberAdministrator instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': _$ChatMemberStatusEnumMap[instance.status]!,
       'user': instance.user,
       'can_be_edited': instance.canBeEdited,
       'is_anonymous': instance.isAnonymous,
@@ -94,7 +94,7 @@ ChatMemberMember _$ChatMemberMemberFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ChatMemberMemberToJson(ChatMemberMember instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': _$ChatMemberStatusEnumMap[instance.status]!,
       'user': instance.user,
       if (instance.untilDate case final value?) 'until_date': value,
     };
@@ -126,7 +126,7 @@ ChatMemberRestricted _$ChatMemberRestrictedFromJson(
 Map<String, dynamic> _$ChatMemberRestrictedToJson(
         ChatMemberRestricted instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': _$ChatMemberStatusEnumMap[instance.status]!,
       'user': instance.user,
       'is_member': instance.isMember,
       'can_send_messages': instance.canSendMessages,
@@ -155,7 +155,7 @@ ChatMemberLeft _$ChatMemberLeftFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ChatMemberLeftToJson(ChatMemberLeft instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': _$ChatMemberStatusEnumMap[instance.status]!,
       'user': instance.user,
     };
 
@@ -169,7 +169,7 @@ ChatMemberBanned _$ChatMemberBannedFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ChatMemberBannedToJson(ChatMemberBanned instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': _$ChatMemberStatusEnumMap[instance.status]!,
       'user': instance.user,
       'until_date': instance.untilDate,
     };

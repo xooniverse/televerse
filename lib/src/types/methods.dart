@@ -356,14 +356,8 @@ enum APIMethod {
   /// Returns the webhook info.
   getWebhookInfo,
 
-  /// Sets an inline game's score.
-  setInlineGameScore,
-
   /// Unpins all general forum topic messages.
   unpinAllGeneralForumTopicMessages,
-
-  /// Gets a chat's member count (deprecated, use getChatMemberCount instead).
-  getChatMembersCount,
 
   /// Gets information about the connection of the bot with a business account.
   getBusinessConnection,
@@ -466,6 +460,15 @@ enum APIMethod {
 
   /// Gifts a Telegram Premium subscription to the given user
   giftPremiumSubscription,
+
+  /// Send a checklist on behalf of a connected business account
+  sendChecklist,
+
+  /// Edit a checklist on behalf of a connected business account
+  editMessageChecklist,
+
+  /// Get the current Telegram Stars balance of the bot
+  getMyStarBalance,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.
