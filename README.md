@@ -173,7 +173,7 @@ Host your own Bot API server and listen to updates effortlessly with Televerse. 
 /// Creates the bot instance with local Bot API server.
 final Bot bot = Bot.local(
   "YOUR_BOT_TOKEN",
-  "http://localhost:8081", // Base URL to poll for
+  "http://localhost:8081",
 );
 ```
 
