@@ -120,7 +120,7 @@ abstract class MiddlewarePlugin<CTX extends Context> implements BotPlugin<CTX> {
 
   @override
   void install(Bot<CTX> bot) {
-    bot.use(middleware);
+    bot.useNamed(name, middleware);
   }
 }
 

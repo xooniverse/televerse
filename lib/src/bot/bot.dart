@@ -449,6 +449,12 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   ///
   /// This method creates a context for the update and processes it through
   /// the middleware chain.
+  Future<void> handleUpdate(Update update) => _handleUpdate(update);
+
+  /// Handles an incoming update.
+  ///
+  /// This method creates a context for the update and processes it through
+  /// the middleware chain.
   Future<void> _handleUpdate(Update update) async {
     if (!_isRunning) return;
 
@@ -1413,14 +1419,13 @@ class Bot<CTX extends Context> extends Composer<CTX> {
 
   /// Adds a handler for matching a custom filter
   Bot<CTX> filter(MiddlewarePredicate predicate, UpdateHandler<CTX> handler) {
-    use((ctx, next) {
+    return use((ctx, next) {
       if (predicate(ctx)) {
         handler(ctx);
       } else {
         next();
       }
     });
-    return this;
   }
 
   // ===============================
