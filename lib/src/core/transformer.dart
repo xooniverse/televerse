@@ -32,7 +32,7 @@ typedef APICaller = Future<Map<String, dynamic>> Function(
 /// class LoggingTransformer extends Transformer {
 ///   @override
 ///   Future<Map<String, dynamic>> transform(
-///     TransformerCaller next,
+///     APICaller call,
 ///     APIMethod method,
 ///     Payload payload,
 ///   ) async {
@@ -40,7 +40,7 @@ typedef APICaller = Future<Map<String, dynamic>> Function(
 ///
 ///     final startTime = DateTime.now();
 ///     try {
-///       final result = await next(method, payload);
+///       final result = await call(method, payload);
 ///       final duration = DateTime.now().difference(startTime);
 ///       print('✅ ${method.name} completed in ${duration.inMilliseconds}ms');
 ///       return result;

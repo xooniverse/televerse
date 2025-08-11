@@ -35,8 +35,8 @@ part 'keyboard.g.dart';
 /// final keyboard = Keyboard()
 ///   .text("Regular Button")
 ///   .row()
-///   .contact("Share Contact")
-///   .location("Share Location")
+///   .requestContact("Share Contact")
+///   .requestLocation("Share Location")
 ///   .row()
 ///   .users(text: "Select User", requestId: 1)
 ///   .resized()
@@ -431,9 +431,9 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   ///
   /// Example:
   /// ```dart
-  /// final keyboard = Keyboard().contact("Share Contact");
+  /// final keyboard = Keyboard().requestContact("Share Contact");
   /// ```
-  Keyboard contact(String text) {
+  Keyboard requestContact(String text) {
     return add(Keyboard.buttonContact(text));
   }
 
@@ -441,9 +441,9 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   ///
   /// Example:
   /// ```dart
-  /// final keyboard = Keyboard().location("Share Location");
+  /// final keyboard = Keyboard().requestLocation("Share Location");
   /// ```
-  Keyboard location(String text) {
+  Keyboard requestLocation(String text) {
     return add(Keyboard.buttonLocation(text));
   }
 

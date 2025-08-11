@@ -84,7 +84,7 @@ class Composer<CTX extends Context> {
   ///
   /// Example:
   /// ```dart
-  /// composer.filter(
+  /// composer.when(
   ///   (ctx) => ctx.isPrivateChat,
   ///   (ctx, next) async {
   ///     await ctx.reply('This only works in private chats!');
@@ -92,7 +92,7 @@ class Composer<CTX extends Context> {
   ///   },
   /// );
   /// ```
-  Composer<CTX> filter(
+  Composer<CTX> when(
     MiddlewarePredicate<CTX> predicate,
     Middleware<CTX> middleware,
   ) {

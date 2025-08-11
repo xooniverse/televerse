@@ -191,6 +191,9 @@ abstract interface class SessionStorage<T> {
 /// when the application terminates. It's suitable for development
 /// and testing, but not recommended for production use.
 class MemorySessionStorage<T> implements SessionStorage<T> {
+  /// Creates a new instance of MemorySessionStorage.
+  MemorySessionStorage();
+
   final Map<String, T> _storage = <String, T>{};
 
   @override

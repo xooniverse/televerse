@@ -22,7 +22,7 @@ import 'package:televerse/televerse.dart';
 ///   ),
 /// ));
 /// ```
-class LoggingPlugin implements TransformerPlugin {
+class LoggingPlugin<CTX extends Context> implements TransformerPlugin<CTX> {
   /// The logging configuration options.
   final LoggerOptions options;
 
@@ -39,7 +39,7 @@ class LoggingPlugin implements TransformerPlugin {
   String? get description => 'API request/response logging utility';
 
   @override
-  void install(Bot<Context> bot) {
+  void install(Bot<CTX> bot) {
     bot.api.use(transformer);
   }
 

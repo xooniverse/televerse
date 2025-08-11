@@ -277,6 +277,88 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     }
   }
 
+  /// Starts the bot with a built-in webhook server.
+  ///
+  /// This is the simplest way to run a webhook bot. The method will:
+  /// 1. Start a built-in HTTP server on the specified port
+  /// 2. Set the webhook URL with Telegram
+  /// 3. Handle all incoming webhook requests automatically
+  /// 4. Provide health check and status endpoints
+  ///
+  /// Parameters:
+  /// - [webhookUrl]: Your public webhook URL (must be HTTPS in production)
+  /// - [port]: Port to run the server on (default: 8080)
+  /// - [secretToken]: Optional secret token for webhook validation
+  /// - [healthCheckPath]: Path for health check endpoint (default: '/health')
+  /// - [corsEnabled]: Whether to enable CORS headers (default: true)
+  /// - [bindAddress]: Address to bind server to (default: '0.0.0.0')
+  /// - [webhookPath]: Path for webhook endpoint (default: '/webhook')
+  /// - [maxConnections]: Max simultaneous connections (default: 40)
+  /// - [dropPendingUpdates]: Whether to drop pending updates (default: false)
+  /// - [allowedUpdates]: Update types to receive (default: all)
+  ///
+  /// Example:
+  /// ```dart
+  /// final bot = Bot<Context>('YOUR_BOT_TOKEN');
+  ///
+  /// bot.command('start', (ctx) async {
+  ///   await ctx.reply('Hello from webhook bot! 🚀');
+  /// });
+  ///
+  /// // This is all you need for a webhook bot!
+  /// await bot.startWebhook(
+  ///   webhookUrl: 'https://your-domain.com/webhook',
+  ///   port: 8080,
+  /// );
+  /// ```
+  ///
+  /// The server will provide these endpoints:
+  /// - `POST /webhook` - Webhook endpoint for Telegram
+  /// - `GET /health` - Health check endpoint
+  /// - `GET /` - Bot status and statistics
+  Future<void> startWebhook({
+    required String webhookUrl,
+    int port = 8080,
+    String? secretToken,
+    String? healthCheckPath = '/health',
+    bool corsEnabled = true,
+    String? bindAddress,
+    String webhookPath = '/webhook',
+    int maxConnections = 40,
+    bool dropPendingUpdates = false,
+    List<UpdateType>? allowedUpdates,
+  }) async {
+    if (_isRunning) {
+      throw TeleverseException(
+        'Bot is already running',
+        type: TeleverseExceptionType.invalidParameter,
+      );
+    }
+
+    // Create webhook configuration
+    final config = WebhookConfig.server(
+      webhookUrl: webhookUrl,
+      port: port,
+      secretToken: secretToken,
+      webhookPath: webhookPath,
+      healthCheckPath: healthCheckPath,
+      corsEnabled: corsEnabled,
+      bindAddress: bindAddress,
+      allowedUpdates: allowedUpdates,
+      dropPendingUpdates: dropPendingUpdates,
+      maxConcurrentUpdates: 50,
+    );
+
+    // Create webhook fetcher
+    final fetcher = WebhookFetcher(
+      api: api,
+      config: config,
+    );
+
+    // Start the bot with webhook fetcher
+    await start(fetcher);
+  }
+
   /// Stops the bot.
   ///
   /// This method gracefully shuts down the bot by stopping the update fetcher
@@ -307,6 +389,44 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     }
   }
 
+  /// Starts the bot with webhook for ngrok development.
+  ///
+  /// This is a convenience method for local development with ngrok.
+  /// It automatically configures sensible defaults for development.
+  ///
+  /// Parameters:
+  /// - [ngrokUrl]: Your ngrok URL (e.g., 'https://abc123.ngrok.io')
+  /// - [port]: Local port to run on (default: 8080)
+  /// - [webhookPath]: Webhook path (default: '/webhook')
+  ///
+  /// Example:
+  /// ```dart
+  /// // Start ngrok: ngrok http 8080
+  /// // Copy the HTTPS URL
+  ///
+  /// final bot = Bot<Context>('YOUR_BOT_TOKEN');
+  ///
+  /// bot.command('start', (ctx) async {
+  ///   await ctx.reply('Hello from ngrok! 🚀');
+  /// });
+  ///
+  /// await bot.startWebhookDev('https://abc123.ngrok.io');
+  /// ```
+  Future<void> startWebhookDev(
+    String ngrokUrl, {
+    int port = 8080,
+    String webhookPath = '/webhook',
+  }) async {
+    await startWebhook(
+      webhookUrl: '$ngrokUrl$webhookPath',
+      port: port,
+      webhookPath: webhookPath,
+      corsEnabled: true,
+      dropPendingUpdates: true,
+      healthCheckPath: '/health',
+    );
+  }
+
   /// Closes the bot and releases all resources.
   ///
   /// This method should be called when you're completely done with the bot
@@ -324,6 +444,12 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   // ===============================
   // Update Handling
   // ===============================
+
+  /// Handles an incoming update.
+  ///
+  /// This method creates a context for the update and processes it through
+  /// the middleware chain.
+  Future<void> handleUpdate(Update update) => _handleUpdate(update);
 
   /// Handles an incoming update.
   ///
@@ -401,9 +527,9 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   ///
   /// Example:
   /// ```dart
-  /// bot.filter(bot.filters.command, handler);
-  /// bot.filter(bot.filters.photo, photoHandler);
-  /// bot.filter(bot.filters.cmd('start'), startHandler);
+  /// bot.on(bot.filters.command, handler);
+  /// bot.on(bot.filters.photo, photoHandler);
+  /// bot.on(bot.filters.cmd('start'), startHandler);
   /// ```
   final Filters<CTX> filters = Filters<CTX>();
 
@@ -481,7 +607,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     UpdateHandler<CTX> handler, {
     bool caseSensitive = false,
   }) {
-    return filterWithFilter(
+    return on(
       CommandFilter<CTX>(command, caseSensitive: caseSensitive),
       handler,
     );
@@ -522,7 +648,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
       throw ArgumentError('Pattern must be String or RegExp');
     }
 
-    return filterWithFilter(filter, handler);
+    return on(filter, handler);
   }
 
   /// Adds a handler that runs for any text message.
@@ -540,7 +666,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// });
   /// ```
   Bot<CTX> onText(UpdateHandler<CTX> handler) {
-    return filterWithFilter(TextMessageFilter<CTX>(), handler);
+    return on(TextMessageFilter<CTX>(), handler);
   }
 
   /// Adds a handler for callback queries.
@@ -561,7 +687,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// });
   /// ```
   Bot<CTX> onCallbackQuery(UpdateHandler<CTX> handler) {
-    return filterWithFilter(CallbackQueryFilter<CTX>(), handler);
+    return on(CallbackQueryFilter<CTX>(), handler);
   }
 
   /// Adds a handler for callback queries with specific data.
@@ -570,7 +696,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// - [data]: The callback data to match
   /// - [handler]: The handler function
   Bot<CTX> callbackQuery(Pattern data, UpdateHandler<CTX> handler) {
-    return filterWithFilter(CallbackQueryFilter<CTX>(data: data), handler);
+    return on(CallbackQueryFilter<CTX>(data: data), handler);
   }
 
   /// Adds a handler for inline queries.
@@ -594,7 +720,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// });
   /// ```
   Bot<CTX> onInlineQuery(UpdateHandler<CTX> handler) {
-    return filterWithFilter(InlineQueryFilter<CTX>(), handler);
+    return on(InlineQueryFilter<CTX>(), handler);
   }
 
   /// Adds a handler for inline queries with specific data.
@@ -603,7 +729,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// - [query]: The callback data to match
   /// - [handler]: The handler function
   Bot<CTX> inlineQuery(Pattern query, UpdateHandler<CTX> handler) {
-    return filterWithFilter(InlineQueryFilter<CTX>(query: query), handler);
+    return on(InlineQueryFilter<CTX>(query: query), handler);
   }
 
   /// Adds a handler for messages with photos.
@@ -618,7 +744,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// });
   /// ```
   Bot<CTX> onPhoto(UpdateHandler<CTX> handler) {
-    return filterWithFilter(PhotoFilter<CTX>(), handler);
+    return on(PhotoFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with documents.
@@ -626,7 +752,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onDocument(UpdateHandler<CTX> handler) {
-    return filterWithFilter(DocumentFilter<CTX>(), handler);
+    return on(DocumentFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with stickers.
@@ -634,7 +760,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onSticker(UpdateHandler<CTX> handler) {
-    return filterWithFilter(StickerFilter<CTX>(), handler);
+    return on(StickerFilter<CTX>(), handler);
   }
 
   /// Adds a handler for private chat messages.
@@ -649,7 +775,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// });
   /// ```
   Bot<CTX> onPrivateChat(UpdateHandler<CTX> handler) {
-    return filterWithFilter(PrivateChatFilter<CTX>(), handler);
+    return on(PrivateChatFilter<CTX>(), handler);
   }
 
   /// Adds a handler for group chat messages.
@@ -657,7 +783,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onGroupChat(UpdateHandler<CTX> handler) {
-    return filterWithFilter(GroupChatFilter<CTX>(), handler);
+    return on(GroupChatFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with animations.
@@ -672,7 +798,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// });
   /// ```
   Bot<CTX> onAnimation(UpdateHandler<CTX> handler) {
-    return filterWithFilter(AnimationFilter<CTX>(), handler);
+    return on(AnimationFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with audio files.
@@ -680,7 +806,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onAudio(UpdateHandler<CTX> handler) {
-    return filterWithFilter(AudioFilter<CTX>(), handler);
+    return on(AudioFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with video files.
@@ -688,7 +814,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onVideo(UpdateHandler<CTX> handler) {
-    return filterWithFilter(VideoFilter<CTX>(), handler);
+    return on(VideoFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with video notes.
@@ -696,7 +822,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onVideoNote(UpdateHandler<CTX> handler) {
-    return filterWithFilter(VideoNoteFilter<CTX>(), handler);
+    return on(VideoNoteFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with voice notes.
@@ -704,7 +830,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onVoice(UpdateHandler<CTX> handler) {
-    return filterWithFilter(VoiceFilter<CTX>(), handler);
+    return on(VoiceFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with contacts.
@@ -712,7 +838,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onContact(UpdateHandler<CTX> handler) {
-    return filterWithFilter(ContactFilter<CTX>(), handler);
+    return on(ContactFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with dice.
@@ -720,7 +846,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onDice(UpdateHandler<CTX> handler) {
-    return filterWithFilter(DiceFilter<CTX>(), handler);
+    return on(DiceFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with games.
@@ -728,7 +854,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onGame(UpdateHandler<CTX> handler) {
-    return filterWithFilter(GameFilter<CTX>(), handler);
+    return on(GameFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with polls.
@@ -736,7 +862,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onPollMessage(UpdateHandler<CTX> handler) {
-    return filterWithFilter(PollMessageFilter<CTX>(), handler);
+    return on(PollMessageFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with venue information.
@@ -744,7 +870,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onVenue(UpdateHandler<CTX> handler) {
-    return filterWithFilter(VenueFilter<CTX>(), handler);
+    return on(VenueFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with location data.
@@ -752,7 +878,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onLocation(UpdateHandler<CTX> handler) {
-    return filterWithFilter(LocationFilter<CTX>(), handler);
+    return on(LocationFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with live location updates.
@@ -760,7 +886,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onLiveLocation(UpdateHandler<CTX> handler) {
-    return filterWithFilter(LiveLocationFilter<CTX>(), handler);
+    return on(LiveLocationFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with captions.
@@ -768,7 +894,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onCaption(UpdateHandler<CTX> handler) {
-    return filterWithFilter(CaptionMessageFilter<CTX>(), handler);
+    return on(CaptionMessageFilter<CTX>(), handler);
   }
 
   // ===============================
@@ -780,7 +906,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onMessage(UpdateHandler<CTX> handler) {
-    return filterWithFilter(AnyMessageFilter<CTX>(), handler);
+    return on(AnyMessageFilter<CTX>(), handler);
   }
 
   /// Adds a handler for edited message updates.
@@ -788,7 +914,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onEditedMessage(UpdateHandler<CTX> handler) {
-    return filterWithFilter(EditedMessageFilter<CTX>(), handler);
+    return on(EditedMessageFilter<CTX>(), handler);
   }
 
   /// Adds a handler for channel post updates.
@@ -796,7 +922,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onChannelPost(UpdateHandler<CTX> handler) {
-    return filterWithFilter(ChannelPostFilter<CTX>(), handler);
+    return on(ChannelPostFilter<CTX>(), handler);
   }
 
   /// Adds a handler for edited channel post updates.
@@ -804,7 +930,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onEditedChannelPost(UpdateHandler<CTX> handler) {
-    return filterWithFilter(EditedChannelPostFilter<CTX>(), handler);
+    return on(EditedChannelPostFilter<CTX>(), handler);
   }
 
   /// Adds a handler for chosen inline result updates.
@@ -812,7 +938,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onChosenInlineResult(UpdateHandler<CTX> handler) {
-    return filterWithFilter(ChosenInlineResultFilter<CTX>(), handler);
+    return on(ChosenInlineResultFilter<CTX>(), handler);
   }
 
   /// Adds a handler for shipping query updates.
@@ -820,7 +946,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onShippingQuery(UpdateHandler<CTX> handler) {
-    return filterWithFilter(ShippingQueryFilter<CTX>(), handler);
+    return on(ShippingQueryFilter<CTX>(), handler);
   }
 
   /// Adds a handler for pre-checkout query updates.
@@ -828,7 +954,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onPreCheckoutQuery(UpdateHandler<CTX> handler) {
-    return filterWithFilter(PreCheckoutQueryFilter<CTX>(), handler);
+    return on(PreCheckoutQueryFilter<CTX>(), handler);
   }
 
   /// Adds a handler for successful payment messages.
@@ -836,7 +962,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onSuccessfulPayment(UpdateHandler<CTX> handler) {
-    return filterWithFilter(SuccessfulPaymentFilter<CTX>(), handler);
+    return on(SuccessfulPaymentFilter<CTX>(), handler);
   }
 
   /// Adds a handler for poll updates.
@@ -844,7 +970,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onPoll(UpdateHandler<CTX> handler) {
-    return filterWithFilter(PollFilter<CTX>(), handler);
+    return on(PollFilter<CTX>(), handler);
   }
 
   /// Adds a handler for poll answer updates.
@@ -852,7 +978,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onPollAnswer(UpdateHandler<CTX> handler) {
-    return filterWithFilter(PollAnswerFilter<CTX>(), handler);
+    return on(PollAnswerFilter<CTX>(), handler);
   }
 
   /// Adds a handler for bot's chat member updates.
@@ -860,7 +986,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onMyChatMember(UpdateHandler<CTX> handler) {
-    return filterWithFilter(MyChatMemberFilter<CTX>(), handler);
+    return on(MyChatMemberFilter<CTX>(), handler);
   }
 
   /// Adds a handler for chat member updates.
@@ -868,7 +994,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onChatMember(UpdateHandler<CTX> handler) {
-    return filterWithFilter(ChatMemberFilter<CTX>(), handler);
+    return on(ChatMemberFilter<CTX>(), handler);
   }
 
   /// Adds a handler for chat join request updates.
@@ -876,7 +1002,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onChatJoinRequest(UpdateHandler<CTX> handler) {
-    return filterWithFilter(ChatJoinRequestFilter<CTX>(), handler);
+    return on(ChatJoinRequestFilter<CTX>(), handler);
   }
 
   // ===============================
@@ -888,7 +1014,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onNewChatTitle(UpdateHandler<CTX> handler) {
-    return filterWithFilter(NewChatTitleFilter<CTX>(), handler);
+    return on(NewChatTitleFilter<CTX>(), handler);
   }
 
   /// Adds a handler for new chat photo service messages.
@@ -896,7 +1022,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onNewChatPhoto(UpdateHandler<CTX> handler) {
-    return filterWithFilter(NewChatPhotoFilter<CTX>(), handler);
+    return on(NewChatPhotoFilter<CTX>(), handler);
   }
 
   /// Adds a handler for delete chat photo service messages.
@@ -904,7 +1030,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onDeleteChatPhoto(UpdateHandler<CTX> handler) {
-    return filterWithFilter(DeleteChatPhotoFilter<CTX>(), handler);
+    return on(DeleteChatPhotoFilter<CTX>(), handler);
   }
 
   /// Adds a handler for pinned message service messages.
@@ -912,7 +1038,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onPinnedMessage(UpdateHandler<CTX> handler) {
-    return filterWithFilter(PinnedMessageFilter<CTX>(), handler);
+    return on(PinnedMessageFilter<CTX>(), handler);
   }
 
   /// Adds a handler for user shared messages.
@@ -920,7 +1046,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onUsrShared(UpdateHandler<CTX> handler) {
-    return filterWithFilter(UsersSharedFilter<CTX>(), handler);
+    return on(UsersSharedFilter<CTX>(), handler);
   }
 
   /// Adds a handler for chat shared messages.
@@ -928,7 +1054,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onChatShared(UpdateHandler<CTX> handler) {
-    return filterWithFilter(ChatSharedFilter<CTX>(), handler);
+    return on(ChatSharedFilter<CTX>(), handler);
   }
 
   // ===============================
@@ -940,7 +1066,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> whenVideoChatScheduled(UpdateHandler<CTX> handler) {
-    return filterWithFilter(VideoChatScheduledFilter<CTX>(), handler);
+    return on(VideoChatScheduledFilter<CTX>(), handler);
   }
 
   /// Adds a handler for video chat started service messages.
@@ -948,7 +1074,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> whenVideoChatStarted(UpdateHandler<CTX> handler) {
-    return filterWithFilter(VideoChatStartedFilter<CTX>(), handler);
+    return on(VideoChatStartedFilter<CTX>(), handler);
   }
 
   /// Adds a handler for video chat ended service messages.
@@ -956,7 +1082,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> whenVideoChatEnded(UpdateHandler<CTX> handler) {
-    return filterWithFilter(VideoChatEndedFilter<CTX>(), handler);
+    return on(VideoChatEndedFilter<CTX>(), handler);
   }
 
   /// Adds a handler for video chat participants invited service messages.
@@ -964,7 +1090,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> whenVideoChatParticipantsInvited(UpdateHandler<CTX> handler) {
-    return filterWithFilter(VideoChatParticipantsInvitedFilter<CTX>(), handler);
+    return on(VideoChatParticipantsInvitedFilter<CTX>(), handler);
   }
 
   // ===============================
@@ -976,7 +1102,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onForumTopicCreated(UpdateHandler<CTX> handler) {
-    return filterWithFilter(ForumTopicCreatedFilter<CTX>(), handler);
+    return on(ForumTopicCreatedFilter<CTX>(), handler);
   }
 
   /// Adds a handler for forum topic edited service messages.
@@ -984,7 +1110,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onForumTopicEdited(UpdateHandler<CTX> handler) {
-    return filterWithFilter(ForumTopicEditedFilter<CTX>(), handler);
+    return on(ForumTopicEditedFilter<CTX>(), handler);
   }
 
   /// Adds a handler for forum topic closed service messages.
@@ -992,7 +1118,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onForumTopicClosed(UpdateHandler<CTX> handler) {
-    return filterWithFilter(ForumTopicClosedFilter<CTX>(), handler);
+    return on(ForumTopicClosedFilter<CTX>(), handler);
   }
 
   /// Adds a handler for forum topic reopened service messages.
@@ -1000,7 +1126,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onForumTopicReopened(UpdateHandler<CTX> handler) {
-    return filterWithFilter(ForumTopicReopenedFilter<CTX>(), handler);
+    return on(ForumTopicReopenedFilter<CTX>(), handler);
   }
 
   // ===============================
@@ -1012,7 +1138,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onWebAppData(UpdateHandler<CTX> handler) {
-    return filterWithFilter(WebAppDataFilter<CTX>(), handler);
+    return on(WebAppDataFilter<CTX>(), handler);
   }
 
   // ===============================
@@ -1024,7 +1150,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onURL(UpdateHandler<CTX> handler) {
-    return filterWithFilter(UrlFilter<CTX>(), handler);
+    return on(UrlFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with email entities.
@@ -1032,7 +1158,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onEmail(UpdateHandler<CTX> handler) {
-    return filterWithFilter(
+    return on(
       EntityFilter<CTX>.single(MessageEntityType.email),
       handler,
     );
@@ -1043,7 +1169,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onPhoneNumber(UpdateHandler<CTX> handler) {
-    return filterWithFilter(
+    return on(
       EntityFilter<CTX>.single(MessageEntityType.phoneNumber),
       handler,
     );
@@ -1054,7 +1180,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onHashtag(UpdateHandler<CTX> handler) {
-    return filterWithFilter(HashtagFilter<CTX>(), handler);
+    return on(HashtagFilter<CTX>(), handler);
   }
 
   /// Adds a handler for messages with mention entities.
@@ -1062,7 +1188,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onMention(UpdateHandler<CTX> handler) {
-    return filterWithFilter(MentionFilter<CTX>(), handler);
+    return on(MentionFilter<CTX>(), handler);
   }
 
   /// Adds a handler for when the bot is mentioned.
@@ -1070,7 +1196,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> whenMentioned(UpdateHandler<CTX> handler) {
-    return filterWithFilter(
+    return on(
       PredicateFilter<CTX>(
         (ctx) {
           final entities = ctx.entities;
@@ -1103,7 +1229,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onCommand(UpdateHandler<CTX> handler) {
-    return filterWithFilter(AnyCommandFilter<CTX>(), handler);
+    return on(AnyCommandFilter<CTX>(), handler);
   }
 
   // ===============================
@@ -1116,7 +1242,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// - [chatType]: The chat type to match
   /// - [handler]: The handler function
   Bot<CTX> chatType(ChatType chatType, UpdateHandler<CTX> handler) {
-    return filterWithFilter(ChatTypeFilter<CTX>.single(chatType), handler);
+    return on(ChatTypeFilter<CTX>.single(chatType), handler);
   }
 
   /// Adds a handler for multiple chat types.
@@ -1125,7 +1251,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// - [chatTypes]: The set of chat types to match
   /// - [handler]: The handler function
   Bot<CTX> chatTypes(Set<ChatType> chatTypes, UpdateHandler<CTX> handler) {
-    return filterWithFilter(ChatTypeFilter<CTX>(chatTypes), handler);
+    return on(ChatTypeFilter<CTX>(chatTypes), handler);
   }
 
   // ===============================
@@ -1137,7 +1263,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onMessageReaction(UpdateHandler<CTX> handler) {
-    return filterWithFilter(MessageReactionFilter<CTX>(), handler);
+    return on(MessageReactionFilter<CTX>(), handler);
   }
 
   /// Adds a handler for message reaction count updates.
@@ -1145,7 +1271,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onMessageReactionCount(UpdateHandler<CTX> handler) {
-    return filterWithFilter(MessageReactionCountFilter<CTX>(), handler);
+    return on(MessageReactionCountFilter<CTX>(), handler);
   }
 
   /// Adds a handler for specific emoji reactions.
@@ -1154,7 +1280,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// - [emoji]: The emoji to match (e.g., '👍', '❤️')
   /// - [handler]: The handler function
   Bot<CTX> whenReacted(String emoji, UpdateHandler<CTX> handler) {
-    return filterWithFilter(EmojiReactionFilter<CTX>(emoji), handler);
+    return on(EmojiReactionFilter<CTX>(emoji), handler);
   }
 
   // ===============================
@@ -1166,7 +1292,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onChatBoosted(UpdateHandler<CTX> handler) {
-    return filterWithFilter(ChatBoostFilter<CTX>(), handler);
+    return on(ChatBoostFilter<CTX>(), handler);
   }
 
   /// Adds a handler for chat boost removal updates.
@@ -1174,7 +1300,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onChatBoostRemoved(UpdateHandler<CTX> handler) {
-    return filterWithFilter(RemovedChatBoostFilter<CTX>(), handler);
+    return on(RemovedChatBoostFilter<CTX>(), handler);
   }
 
   // ===============================
@@ -1186,7 +1312,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onBusinessConnection(UpdateHandler<CTX> handler) {
-    return filterWithFilter(BusinessConnectionFilter<CTX>(), handler);
+    return on(BusinessConnectionFilter<CTX>(), handler);
   }
 
   /// Adds a handler for business message updates.
@@ -1194,7 +1320,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onBusinessMessage(UpdateHandler<CTX> handler) {
-    return filterWithFilter(BusinessMessageFilter<CTX>(), handler);
+    return on(BusinessMessageFilter<CTX>(), handler);
   }
 
   /// Adds a handler for edited business message updates.
@@ -1202,7 +1328,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onBusinessMessageEdited(UpdateHandler<CTX> handler) {
-    return filterWithFilter(EditedBusinessMessageFilter<CTX>(), handler);
+    return on(EditedBusinessMessageFilter<CTX>(), handler);
   }
 
   /// Adds a handler for deleted business message updates.
@@ -1210,7 +1336,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onBusinessMessageDeleted(UpdateHandler<CTX> handler) {
-    return filterWithFilter(DeletedBusinessMessagesFilter<CTX>(), handler);
+    return on(DeletedBusinessMessagesFilter<CTX>(), handler);
   }
 
   // ===============================
@@ -1222,7 +1348,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onPaidMedia(UpdateHandler<CTX> handler) {
-    return filterWithFilter(PaidMediaFilter<CTX>(), handler);
+    return on(PaidMediaFilter<CTX>(), handler);
   }
 
   /// Adds a handler for paid media with videos.
@@ -1230,7 +1356,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onPaidMediaVideo(UpdateHandler<CTX> handler) {
-    return filterWithFilter(PaidMediaVideoFilter<CTX>(), handler);
+    return on(PaidMediaVideoFilter<CTX>(), handler);
   }
 
   /// Adds a handler for paid media with photos.
@@ -1238,7 +1364,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onPaidMediaPhoto(UpdateHandler<CTX> handler) {
-    return filterWithFilter(PaidMediaPhotoFilter<CTX>(), handler);
+    return on(PaidMediaPhotoFilter<CTX>(), handler);
   }
 
   /// Adds a handler for paid media purchase updates.
@@ -1246,7 +1372,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onPaidMediaPurchase(UpdateHandler<CTX> handler) {
-    return filterWithFilter(PurchasedPaidMediaFilter<CTX>(), handler);
+    return on(PurchasedPaidMediaFilter<CTX>(), handler);
   }
 
   // ===============================
@@ -1259,7 +1385,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// - [entityType]: The entity type to match
   /// - [handler]: The handler function
   Bot<CTX> entity(MessageEntityType entityType, UpdateHandler<CTX> handler) {
-    return filterWithFilter(EntityFilter<CTX>.single(entityType), handler);
+    return on(EntityFilter<CTX>.single(entityType), handler);
   }
 
   /// Adds a handler for multiple entity types.
@@ -1271,7 +1397,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     Set<MessageEntityType> entityTypes,
     UpdateHandler<CTX> handler,
   ) {
-    return filterWithFilter(EntityFilter<CTX>(entityTypes), handler);
+    return on(EntityFilter<CTX>(entityTypes), handler);
   }
 
   /// Adds a handler with exact text matching (alias for textEquals).
@@ -1285,22 +1411,21 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     UpdateHandler<CTX> handler, {
     bool caseSensitive = true,
   }) {
-    return filterWithFilter(
+    return on(
       TextFilter<CTX>(text: text, caseSensitive: caseSensitive),
       handler,
     );
   }
 
   /// Adds a handler for matching a custom filter
-  Bot<CTX> match(MiddlewarePredicate predicate, UpdateHandler<CTX> handler) {
-    use((ctx, next) {
+  Bot<CTX> filter(MiddlewarePredicate predicate, UpdateHandler<CTX> handler) {
+    return use((ctx, next) {
       if (predicate(ctx)) {
         handler(ctx);
       } else {
         next();
       }
     });
-    return this;
   }
 
   // ===============================
@@ -1335,19 +1460,19 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Example:
   /// ```dart
   /// // Using built-in filters
-  /// bot.filterWithFilter(Filters.photo.and(Filters.privateChat), (ctx) async {
+  /// bot.on(Filters.photo.and(Filters.privateChat), (ctx) async {
   ///   await ctx.reply('Private photo received!');
   /// });
   ///
   /// // Using custom filter
-  /// bot.filterWithFilter(
+  /// bot.on(
   ///   PredicateFilter((ctx) => ctx.text?.length > 100),
   ///   (ctx) async {
   ///     await ctx.reply('That was a long message!');
   ///   },
   /// );
   /// ```
-  Bot<CTX> filterWithFilter(Filter<CTX> filter, UpdateHandler<CTX> handler) {
+  Bot<CTX> on(Filter<CTX> filter, UpdateHandler<CTX> handler) {
     return use((ctx, next) async {
       if (filter.matches(ctx)) {
         await handler(ctx);
@@ -1359,11 +1484,11 @@ class Bot<CTX extends Context> extends Composer<CTX> {
 
   // Override the base methods to return Bot<CTX> instead of Composer<CTX>
   @override
-  Bot<CTX> filter(
+  Bot<CTX> when(
     MiddlewarePredicate<CTX> predicate,
     Middleware<CTX> middleware,
   ) {
-    super.filter(predicate, middleware);
+    super.when(predicate, middleware);
     return this;
   }
 

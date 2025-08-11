@@ -43,6 +43,7 @@ export 'src/televerse/markups/inline_keyboard.dart';
 part 'src/bot/bot.dart';
 part 'src/bot/context/context.dart';
 part 'src/bot/context/methods.dart';
+part 'src/bot/context/entity_extension.dart';
 part 'src/bot/composer.dart';
 part 'src/bot/error.dart';
 part 'src/bot/middleware.dart';
@@ -69,6 +70,11 @@ part 'src/filters/filters.dart';
 part 'src/utils/date.dart';
 part 'src/utils/utils.dart';
 
+// Televerse Menus
 part 'src/menus/menu.dart';
 part 'src/menus/keyboard_menu.dart';
 part 'src/menus/inline_menu.dart';
+
+// Inline Query Result Builder
+part 'src/builders/inline_query_result_builder.dart';
+part 'src/builders/message_content_generator.dart';
