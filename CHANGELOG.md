@@ -1,3 +1,117 @@
+# 3.0.0+dev.0
+
+## 🚀 Major Architectural Overhaul
+
+This is a **major breaking release** that introduces a complete architectural redesign inspired by grammY, bringing modern patterns and enhanced developer experience to Telegram bot development in Dart.
+
+### ✨ New Features
+
+#### 🎯 Filter System
+- **NEW**: Added **80+ filters** for comprehensive update handling
+- **NEW**: Filter combination with logical operators (`+` for OR, `*` for AND, `-` for NOT)
+- **NEW**: `bot.filters` property for type-safe filter access without generic specifications
+- **NEW**: `PredicateFilter` for custom filtering logic with optional naming
+- **NEW**: Complex filter combinations like `bot.filters.photo + bot.filters.video`
+- **NEW**: Negation operations like `bot.filters.anyMessage - bot.filters.command`
+
+#### 🔌 Comprehensive Plugin System
+- **NEW**: `BotPlugin<CTX>` interface for extensible bot functionality
+- **NEW**: Three built-in plugins:
+  - `SessionPlugin<CTX, T>` - Persistent user sessions with customizable storage
+  - `ConversationPlugin<CTX>` - Advanced multi-step conversations with timeout support
+  - `LoggingPlugin<CTX>` - Request/response logging
+- **NEW**: Plugin dependency management and validation
+- **NEW**: `MiddlewarePlugin` and `TransformerPlugin` base classes for easy plugin development
+
+#### 💬 Advanced Conversation API
+- **NEW**: `Conversation.wait()` with timeout support and `ConversationTimeoutException`
+- **NEW**: `Conversation.waitFor()` for predicate-based waiting
+- **NEW**: `Conversation.filter()` for filter-based waiting 
+- **NEW**: `Conversation.waitUntil()` with validation and `otherwise` callback
+- **NEW**: Conversation timeout management with `extendTimeout()` and `setCustomTimeout()`
+- **NEW**: `ConversationStorage` interface with `MemoryConversationStorage` implementation
+- **NEW**: Automatic conversation cleanup and statistics via `getConversationStats()`
+
+#### 🛠️ Enhanced Middleware System
+- **NEW**: Function-based middleware with `Middleware<CTX>` typedef
+- **NEW**: `Composer<CTX>` class for advanced middleware composition
+- **NEW**: Conditional middleware with `bot.when()`
+- **NEW**: Concurrent middleware with `bot.fork()`
+- **NEW**: Lazy middleware with `bot.lazy()`
+- **NEW**: Branching middleware with `bot.branch()`
+- **NEW**: Error boundaries with `bot.errorBoundary()` and recovery support
+- **NEW**: Named middleware support for debugging and management
+
+#### 🌐 Built-in Webhook Server
+- **NEW**: `bot.startWebhook()` for instant webhook deployment
+- **NEW**: `bot.startWebhookDev()` for ngrok development workflow
+- **NEW**: Built-in HTTP server with health check and status endpoints
+- **NEW**: CORS support and secret token validation
+- **NEW**: Automatic webhook URL configuration with Telegram
+
+#### 🎯 Enhanced Type Safety
+- **NEW**: Full generic support with `Bot<CTX extends Context>`
+- **NEW**: Custom context factories with `contextFactory` parameter
+- **NEW**: Type-safe filter access through `bot.filters`
+- **NEW**: Strongly typed plugin interfaces
+- **NEW**: Zero dynamic types in public API
+
+#### 📊 Bot Statistics and Monitoring
+- **NEW**: `BotStats` class with comprehensive metrics
+- **NEW**: Processing time tracking and success/error rates
+- **NEW**: Real-time update statistics via `bot.stats`
+- **NEW**: Plugin installation tracking
+
+#### 🔧 Advanced HTTP Client Support
+- **NEW**: Custom HTTP client injection via constructor
+- **NEW**: `DioHttpClient` as default implementation
+- **NEW**: Interceptor support through custom HTTP clients
+- **NEW**: Network request/response transformation
+
+### 💥 Breaking Changes
+
+#### Middleware System
+- **BREAKING**: `Middleware` is now a function typedef instead of a class
+- **BREAKING**: Remove `MiddlewareBase` - use function-based middleware
+- **BREAKING**: `Bot.use()` now only accepts `Middleware<CTX>` functions
+- **BREAKING**: Transformer attachment moved to `bot.api.use()` instead of `Bot.use()`
+
+#### Constructor and Configuration
+- **BREAKING**: `Bot.local()` constructor now takes URL as second positional parameter
+- **BREAKING**: Context factory moved from `Bot.useContext()` to constructor parameter `contextFactory`
+- **BREAKING**: Update fetcher moved from constructor to `Bot.start()` method
+- **BREAKING**: Removed `LoggerOptions` - use custom HTTP client with interceptors instead
+
+#### Context Changes
+- **BREAKING**: `Context.me` is now `BotInfo` instead of `User`
+- **BREAKING**: Access bot user info via `ctx.me.me?.firstName` instead of `ctx.me.firstName`
+
+#### Conversation API
+- **BREAKING**: Remove `Conversation.waitForTextMessage()` and similar methods
+- **BREAKING**: Replace with `conversation.filter(Filters().text)` pattern
+- **BREAKING**: `ConversationResult` classes removed - methods now return `Context` directly
+- **BREAKING**: Conversation methods no longer return `ConversationSuccess`/`ConversationError`
+
+#### Keyboard and Menu Changes
+- **BREAKING**: `Keyboard.addText()` renamed to `Keyboard.text()`
+- **BREAKING**: `InlineKeyboard.addUrl()` renamed to `InlineKeyboard.url()`
+- **BREAKING**: `InlineMenu.text()` signature changed to `(String text, String callbackData, UpdateHandler<CTX>)`
+- **BREAKING**: `switchInlineQueryCurrentChat` renamed to `switchInlineCurrentChat`
+- **BREAKING**: `Bot.removeMenu()` method removed
+
+#### Type and Handler Changes
+- **BREAKING**: `Handler<Context>` typedef renamed to `UpdateHandler<Context>`
+- **BREAKING**: `ID.get()` method removed - use `api.getChat(id)` instead
+- **BREAKING**: Links library removed - use Telegram deeplink documentation
+
+#### Import Structure
+- **BREAKING**: Many enums and types moved from `televerse.dart` to `telegram.dart`
+- **BREAKING**: Must import `package:televerse/telegram.dart` for `ParseMode`, `ChatAction`, etc.
+
+# 2.7.0
+
+- 🤖 Bot API 9.1
+
 # 2.6.2
 
 - `ForumTopic.messageThreadId` is `int` not `String`
