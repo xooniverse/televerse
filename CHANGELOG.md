@@ -1,3 +1,8 @@
+# 3.0.0-dev.1
+
+- Fixes a bug in `Conversation.filter` method.
+- Updates the `Context.from` retrieval order.
+
 # 3.0.0-dev.0
 
 ## 🚀 Major Architectural Overhaul
