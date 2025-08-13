@@ -275,12 +275,12 @@ class Context {
   /// The result is cached after the first access for better performance.
   User? get from {
     if (!_fromCached) {
-      _cachedFrom = msg?.from ??
-          callbackQuery?.from ??
+      _cachedFrom = callbackQuery?.from ??
           inlineQuery?.from ??
           chosenInlineResult?.from ??
           shippingQuery?.from ??
-          preCheckoutQuery?.from;
+          preCheckoutQuery?.from ??
+          msg?.from;
       _fromCached = true;
     }
     return _cachedFrom;
