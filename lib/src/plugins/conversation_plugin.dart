@@ -584,7 +584,7 @@ class Conversation<CTX extends Context> {
       }
 
       ctx = await wait(remainingTime);
-    } while (_matchesFilter(ctx, filter));
+    } while (!_matchesFilter(ctx, filter));
 
     return ctx;
   }
