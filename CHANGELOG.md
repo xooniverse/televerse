@@ -1,3 +1,8 @@
+# 3.0.0
+
+- Bot API 9.2
+- Televerse v3
+
 # 3.0.0-dev.1
 
 - Fixes a bug in `Conversation.filter` method.
