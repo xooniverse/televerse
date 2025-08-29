@@ -55,6 +55,7 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendMessage);
@@ -74,6 +75,7 @@ extension ContextAwareMethods on Context {
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -118,6 +120,7 @@ extension ContextAwareMethods on Context {
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendPhoto);
@@ -139,6 +142,7 @@ extension ContextAwareMethods on Context {
       showCaptionAboveMedia: showCaptionAboveMedia,
       allowPaidBroadcast: allowPaidBroadcast,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -170,6 +174,7 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendAudio);
@@ -193,6 +198,7 @@ extension ContextAwareMethods on Context {
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -219,6 +225,7 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendDocument);
@@ -240,6 +247,7 @@ extension ContextAwareMethods on Context {
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -273,6 +281,7 @@ extension ContextAwareMethods on Context {
     InputFile? cover,
     int? startTimestamp,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendVideo);
@@ -301,6 +310,7 @@ extension ContextAwareMethods on Context {
       cover: cover,
       startTimestamp: startTimestamp,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -331,6 +341,7 @@ extension ContextAwareMethods on Context {
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendAnimation);
@@ -356,6 +367,7 @@ extension ContextAwareMethods on Context {
       showCaptionAboveMedia: showCaptionAboveMedia,
       allowPaidBroadcast: allowPaidBroadcast,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -388,6 +400,7 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendVoice);
@@ -408,6 +421,7 @@ extension ContextAwareMethods on Context {
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -432,6 +446,7 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendVideoNote);
@@ -451,6 +466,7 @@ extension ContextAwareMethods on Context {
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -514,6 +530,7 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendLocation);
@@ -535,6 +552,7 @@ extension ContextAwareMethods on Context {
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -566,6 +584,7 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendVenue);
@@ -589,6 +608,7 @@ extension ContextAwareMethods on Context {
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -625,6 +645,7 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendContact);
@@ -644,6 +665,7 @@ extension ContextAwareMethods on Context {
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -758,6 +780,7 @@ extension ContextAwareMethods on Context {
     String? messageEffectId,
     bool? allowPaidBroadcast,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendDice);
@@ -774,6 +797,7 @@ extension ContextAwareMethods on Context {
       messageEffectId: messageEffectId,
       allowPaidBroadcast: allowPaidBroadcast,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -808,6 +832,7 @@ extension ContextAwareMethods on Context {
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.sendSticker);
@@ -825,6 +850,7 @@ extension ContextAwareMethods on Context {
       replyParameters: replyParameters,
       replyMarkup: replyMarkup,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -1065,6 +1091,7 @@ extension ContextAwareMethods on Context {
     bool? protectContent,
     int? videoStartTimestamp,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final fromChatId = _getChatId();
     final msgId = messageId;
@@ -1084,6 +1111,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       videoStartTimestamp: videoStartTimestamp,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -1136,6 +1164,7 @@ extension ContextAwareMethods on Context {
     bool? allowPaidBroadcast,
     int? videoStartTimestamp,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final fromChatId = _getChatId();
     final msgId = messageId;
@@ -1162,6 +1191,7 @@ extension ContextAwareMethods on Context {
       allowPaidBroadcast: allowPaidBroadcast,
       videoStartTimestamp: videoStartTimestamp,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -1367,6 +1397,7 @@ extension ContextAwareMethods on Context {
     bool? protectContent,
     int? videoStartTimestamp,
     int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo(
@@ -1382,6 +1413,7 @@ extension ContextAwareMethods on Context {
       protectContent: protectContent,
       videoStartTimestamp: videoStartTimestamp,
       directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 
@@ -1407,6 +1439,8 @@ extension ContextAwareMethods on Context {
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
     int? videoStartTimestamp,
+    int? directMessagesTopicId,
+    SuggestedPostParameters? suggestedPostParameters,
   }) async {
     final chatId = _getChatId();
     _verifyInfo(
@@ -1428,6 +1462,8 @@ extension ContextAwareMethods on Context {
       showCaptionAboveMedia: showCaptionAboveMedia,
       allowPaidBroadcast: allowPaidBroadcast,
       videoStartTimestamp: videoStartTimestamp,
+      directMessagesTopicId: directMessagesTopicId,
+      suggestedPostParameters: suggestedPostParameters,
     );
   }
 

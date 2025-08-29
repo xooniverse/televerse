@@ -187,3 +187,4 @@ export 'input_checklist_task.dart';
 
 // Bot API 9.2
 export 'direct_messages_topic.dart';
+export 'suggested_post_parameters.dart';
