@@ -286,6 +286,32 @@ _Message _$MessageFromJson(Map<String, dynamic> json) => _Message(
           ? null
           : DirectMessagesTopic.fromJson(
               json['direct_messages_topic'] as Map<String, dynamic>),
+      isPaidPost: json['is_paid_post'] as bool?,
+      suggestedPostInfo: json['suggested_post_info'] == null
+          ? null
+          : SuggestedPostInfo.fromJson(
+              json['suggested_post_info'] as Map<String, dynamic>),
+      suggestedPostApproved: json['suggested_post_approved'] == null
+          ? null
+          : SuggestedPostApproved.fromJson(
+              json['suggested_post_approved'] as Map<String, dynamic>),
+      suggestedPostApprovalFailed: json['suggested_post_approval_failed'] ==
+              null
+          ? null
+          : SuggestedPostApprovalFailed.fromJson(
+              json['suggested_post_approval_failed'] as Map<String, dynamic>),
+      suggestedPostDeclined: json['suggested_post_declined'] == null
+          ? null
+          : SuggestedPostDeclined.fromJson(
+              json['suggested_post_declined'] as Map<String, dynamic>),
+      suggestedPostPaid: json['suggested_post_paid'] == null
+          ? null
+          : SuggestedPostPaid.fromJson(
+              json['suggested_post_paid'] as Map<String, dynamic>),
+      suggestedPostRefunded: json['suggested_post_refunded'] == null
+          ? null
+          : SuggestedPostRefunded.fromJson(
+              json['suggested_post_refunded'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
@@ -421,4 +447,17 @@ Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
         'reply_to_checklist_task_id': value,
       if (instance.directMessagesTopic case final value?)
         'direct_messages_topic': value,
+      if (instance.isPaidPost case final value?) 'is_paid_post': value,
+      if (instance.suggestedPostInfo case final value?)
+        'suggested_post_info': value,
+      if (instance.suggestedPostApproved case final value?)
+        'suggested_post_approved': value,
+      if (instance.suggestedPostApprovalFailed case final value?)
+        'suggested_post_approval_failed': value,
+      if (instance.suggestedPostDeclined case final value?)
+        'suggested_post_declined': value,
+      if (instance.suggestedPostPaid case final value?)
+        'suggested_post_paid': value,
+      if (instance.suggestedPostRefunded case final value?)
+        'suggested_post_refunded': value,
     };

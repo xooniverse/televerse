@@ -439,6 +439,31 @@ abstract class Message
     /// Optional. Information about the direct messages chat topic that contains the message
     @JsonKey(name: 'direct_messages_topic')
     DirectMessagesTopic? directMessagesTopic,
+
+    /// Optional. True, if the message is a paid post. Note that such posts must not be deleted for 24 hours to receive the payment and can't be edited.
+    @JsonKey(name: 'is_paid_post') bool? isPaidPost,
+
+    /// Optional. Information about suggested post parameters if the message is a suggested post in a channel direct messages chat. If the message is an approved or declined suggested post, then it can't be edited.
+    @JsonKey(name: 'suggested_post_info') SuggestedPostInfo? suggestedPostInfo,
+
+    /// Optional. Service message: a suggested post was approved
+    @JsonKey(name: 'suggested_post_approved')
+    SuggestedPostApproved? suggestedPostApproved,
+
+    /// Optional. Service message: approval of a suggested post has failed
+    @JsonKey(name: 'suggested_post_approval_failed')
+    SuggestedPostApprovalFailed? suggestedPostApprovalFailed,
+
+    /// Optional. Service message: a suggested post was declined
+    @JsonKey(name: 'suggested_post_declined')
+    SuggestedPostDeclined? suggestedPostDeclined,
+
+    /// Optional. Service message: payment for a suggested post was received
+    @JsonKey(name: 'suggested_post_paid') SuggestedPostPaid? suggestedPostPaid,
+
+    /// Optional. Service message: payment for a suggested post was refunded
+    @JsonKey(name: 'suggested_post_refunded')
+    SuggestedPostRefunded? suggestedPostRefunded,
   }) = _Message;
 
   /// Creates a [Message] object from JSON object

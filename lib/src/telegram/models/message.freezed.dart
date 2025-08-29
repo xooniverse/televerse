@@ -518,12 +518,40 @@ mixin _$Message {
   @JsonKey(name: 'direct_messages_topic')
   DirectMessagesTopic? get directMessagesTopic;
 
+  /// Optional. True, if the message is a paid post. Note that such posts must not be deleted for 24 hours to receive the payment and can't be edited.
+  @JsonKey(name: 'is_paid_post')
+  bool? get isPaidPost;
+
+  /// Optional. Information about suggested post parameters if the message is a suggested post in a channel direct messages chat. If the message is an approved or declined suggested post, then it can't be edited.
+  @JsonKey(name: 'suggested_post_info')
+  SuggestedPostInfo? get suggestedPostInfo;
+
+  /// Optional. Service message: a suggested post was approved
+  @JsonKey(name: 'suggested_post_approved')
+  SuggestedPostApproved? get suggestedPostApproved;
+
+  /// Optional. Service message: approval of a suggested post has failed
+  @JsonKey(name: 'suggested_post_approval_failed')
+  SuggestedPostApprovalFailed? get suggestedPostApprovalFailed;
+
+  /// Optional. Service message: a suggested post was declined
+  @JsonKey(name: 'suggested_post_declined')
+  SuggestedPostDeclined? get suggestedPostDeclined;
+
+  /// Optional. Service message: payment for a suggested post was received
+  @JsonKey(name: 'suggested_post_paid')
+  SuggestedPostPaid? get suggestedPostPaid;
+
+  /// Optional. Service message: payment for a suggested post was refunded
+  @JsonKey(name: 'suggested_post_refunded')
+  SuggestedPostRefunded? get suggestedPostRefunded;
+
   /// Serializes this Message to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   String toString() {
-    return 'Message(chat: $chat, messageId: $messageId, date: $date, messageThreadId: $messageThreadId, from: $from, senderChat: $senderChat, forwardOrigin: $forwardOrigin, isTopicMessage: $isTopicMessage, isAutomaticForward: $isAutomaticForward, replyToMessage: $replyToMessage, viaBot: $viaBot, editDate: $editDate, hasProtectedContent: $hasProtectedContent, mediaGroupId: $mediaGroupId, authorSignature: $authorSignature, text: $text, entities: $entities, animation: $animation, audio: $audio, document: $document, photo: $photo, sticker: $sticker, video: $video, videoNote: $videoNote, voice: $voice, caption: $caption, captionEntities: $captionEntities, contact: $contact, dice: $dice, game: $game, poll: $poll, venue: $venue, location: $location, newChatMembers: $newChatMembers, leftChatMember: $leftChatMember, newChatTitle: $newChatTitle, newChatPhoto: $newChatPhoto, deleteChatPhoto: $deleteChatPhoto, groupChatCreated: $groupChatCreated, supergroupChatCreated: $supergroupChatCreated, channelChatCreated: $channelChatCreated, messageAutoDeleteTimerChanged: $messageAutoDeleteTimerChanged, migrateToChatId: $migrateToChatId, migrateFromChatId: $migrateFromChatId, pinnedMessage: $pinnedMessage, invoice: $invoice, successfulPayment: $successfulPayment, connectedWebsite: $connectedWebsite, passportData: $passportData, proximityAlertTriggered: $proximityAlertTriggered, forumTopicCreated: $forumTopicCreated, forumTopicClosed: $forumTopicClosed, forumTopicReopened: $forumTopicReopened, videoChatScheduled: $videoChatScheduled, videoChatStarted: $videoChatStarted, videoChatEnded: $videoChatEnded, videoChatParticipantsInvited: $videoChatParticipantsInvited, webAppData: $webAppData, replyMarkup: $replyMarkup, usersShared: $usersShared, chatShared: $chatShared, hasMediaSpoiler: $hasMediaSpoiler, forumTopicEdited: $forumTopicEdited, generalForumTopicHidden: $generalForumTopicHidden, generalForumTopicUnhidden: $generalForumTopicUnhidden, writeAccessAllowed: $writeAccessAllowed, story: $story, externalReply: $externalReply, quote: $quote, linkPreviewOptions: $linkPreviewOptions, giveaway: $giveaway, giveawayCreated: $giveawayCreated, giveawayWinners: $giveawayWinners, giveawayCompleted: $giveawayCompleted, boostAdded: $boostAdded, senderBoostCount: $senderBoostCount, replyToStory: $replyToStory, businessConnectionId: $businessConnectionId, senderBusinessBot: $senderBusinessBot, isFromOffline: $isFromOffline, chatBackgroundSet: $chatBackgroundSet, effectId: $effectId, showCaptionAboveMedia: $showCaptionAboveMedia, paidMedia: $paidMedia, refundedPayment: $refundedPayment, gift: $gift, uniqueGift: $uniqueGift, paidMessagePriceChanged: $paidMessagePriceChanged, paidStarCount: $paidStarCount, checklist: $checklist, checklistTasksDone: $checklistTasksDone, checklistTasksAdded: $checklistTasksAdded, directMessagePriceChanged: $directMessagePriceChanged, replyToChecklistTaskId: $replyToChecklistTaskId, directMessagesTopic: $directMessagesTopic)';
+    return 'Message(chat: $chat, messageId: $messageId, date: $date, messageThreadId: $messageThreadId, from: $from, senderChat: $senderChat, forwardOrigin: $forwardOrigin, isTopicMessage: $isTopicMessage, isAutomaticForward: $isAutomaticForward, replyToMessage: $replyToMessage, viaBot: $viaBot, editDate: $editDate, hasProtectedContent: $hasProtectedContent, mediaGroupId: $mediaGroupId, authorSignature: $authorSignature, text: $text, entities: $entities, animation: $animation, audio: $audio, document: $document, photo: $photo, sticker: $sticker, video: $video, videoNote: $videoNote, voice: $voice, caption: $caption, captionEntities: $captionEntities, contact: $contact, dice: $dice, game: $game, poll: $poll, venue: $venue, location: $location, newChatMembers: $newChatMembers, leftChatMember: $leftChatMember, newChatTitle: $newChatTitle, newChatPhoto: $newChatPhoto, deleteChatPhoto: $deleteChatPhoto, groupChatCreated: $groupChatCreated, supergroupChatCreated: $supergroupChatCreated, channelChatCreated: $channelChatCreated, messageAutoDeleteTimerChanged: $messageAutoDeleteTimerChanged, migrateToChatId: $migrateToChatId, migrateFromChatId: $migrateFromChatId, pinnedMessage: $pinnedMessage, invoice: $invoice, successfulPayment: $successfulPayment, connectedWebsite: $connectedWebsite, passportData: $passportData, proximityAlertTriggered: $proximityAlertTriggered, forumTopicCreated: $forumTopicCreated, forumTopicClosed: $forumTopicClosed, forumTopicReopened: $forumTopicReopened, videoChatScheduled: $videoChatScheduled, videoChatStarted: $videoChatStarted, videoChatEnded: $videoChatEnded, videoChatParticipantsInvited: $videoChatParticipantsInvited, webAppData: $webAppData, replyMarkup: $replyMarkup, usersShared: $usersShared, chatShared: $chatShared, hasMediaSpoiler: $hasMediaSpoiler, forumTopicEdited: $forumTopicEdited, generalForumTopicHidden: $generalForumTopicHidden, generalForumTopicUnhidden: $generalForumTopicUnhidden, writeAccessAllowed: $writeAccessAllowed, story: $story, externalReply: $externalReply, quote: $quote, linkPreviewOptions: $linkPreviewOptions, giveaway: $giveaway, giveawayCreated: $giveawayCreated, giveawayWinners: $giveawayWinners, giveawayCompleted: $giveawayCompleted, boostAdded: $boostAdded, senderBoostCount: $senderBoostCount, replyToStory: $replyToStory, businessConnectionId: $businessConnectionId, senderBusinessBot: $senderBusinessBot, isFromOffline: $isFromOffline, chatBackgroundSet: $chatBackgroundSet, effectId: $effectId, showCaptionAboveMedia: $showCaptionAboveMedia, paidMedia: $paidMedia, refundedPayment: $refundedPayment, gift: $gift, uniqueGift: $uniqueGift, paidMessagePriceChanged: $paidMessagePriceChanged, paidStarCount: $paidStarCount, checklist: $checklist, checklistTasksDone: $checklistTasksDone, checklistTasksAdded: $checklistTasksAdded, directMessagePriceChanged: $directMessagePriceChanged, replyToChecklistTaskId: $replyToChecklistTaskId, directMessagesTopic: $directMessagesTopic, isPaidPost: $isPaidPost, suggestedPostInfo: $suggestedPostInfo, suggestedPostApproved: $suggestedPostApproved, suggestedPostApprovalFailed: $suggestedPostApprovalFailed, suggestedPostDeclined: $suggestedPostDeclined, suggestedPostPaid: $suggestedPostPaid, suggestedPostRefunded: $suggestedPostRefunded)';
   }
 }
 
@@ -630,7 +658,15 @@ class _Message implements Message {
       @JsonKey(name: 'direct_message_price_changed')
       this.directMessagePriceChanged,
       @JsonKey(name: 'reply_to_checklist_task_id') this.replyToChecklistTaskId,
-      @JsonKey(name: 'direct_messages_topic') this.directMessagesTopic})
+      @JsonKey(name: 'direct_messages_topic') this.directMessagesTopic,
+      @JsonKey(name: 'is_paid_post') this.isPaidPost,
+      @JsonKey(name: 'suggested_post_info') this.suggestedPostInfo,
+      @JsonKey(name: 'suggested_post_approved') this.suggestedPostApproved,
+      @JsonKey(name: 'suggested_post_approval_failed')
+      this.suggestedPostApprovalFailed,
+      @JsonKey(name: 'suggested_post_declined') this.suggestedPostDeclined,
+      @JsonKey(name: 'suggested_post_paid') this.suggestedPostPaid,
+      @JsonKey(name: 'suggested_post_refunded') this.suggestedPostRefunded})
       : _entities = entities,
         _photo = photo,
         _captionEntities = captionEntities,
@@ -1228,6 +1264,41 @@ class _Message implements Message {
   @JsonKey(name: 'direct_messages_topic')
   final DirectMessagesTopic? directMessagesTopic;
 
+  /// Optional. True, if the message is a paid post. Note that such posts must not be deleted for 24 hours to receive the payment and can't be edited.
+  @override
+  @JsonKey(name: 'is_paid_post')
+  final bool? isPaidPost;
+
+  /// Optional. Information about suggested post parameters if the message is a suggested post in a channel direct messages chat. If the message is an approved or declined suggested post, then it can't be edited.
+  @override
+  @JsonKey(name: 'suggested_post_info')
+  final SuggestedPostInfo? suggestedPostInfo;
+
+  /// Optional. Service message: a suggested post was approved
+  @override
+  @JsonKey(name: 'suggested_post_approved')
+  final SuggestedPostApproved? suggestedPostApproved;
+
+  /// Optional. Service message: approval of a suggested post has failed
+  @override
+  @JsonKey(name: 'suggested_post_approval_failed')
+  final SuggestedPostApprovalFailed? suggestedPostApprovalFailed;
+
+  /// Optional. Service message: a suggested post was declined
+  @override
+  @JsonKey(name: 'suggested_post_declined')
+  final SuggestedPostDeclined? suggestedPostDeclined;
+
+  /// Optional. Service message: payment for a suggested post was received
+  @override
+  @JsonKey(name: 'suggested_post_paid')
+  final SuggestedPostPaid? suggestedPostPaid;
+
+  /// Optional. Service message: payment for a suggested post was refunded
+  @override
+  @JsonKey(name: 'suggested_post_refunded')
+  final SuggestedPostRefunded? suggestedPostRefunded;
+
   @override
   Map<String, dynamic> toJson() {
     return _$MessageToJson(
@@ -1237,6 +1308,6 @@ class _Message implements Message {
 
   @override
   String toString() {
-    return 'Message(chat: $chat, messageId: $messageId, date: $date, messageThreadId: $messageThreadId, from: $from, senderChat: $senderChat, forwardOrigin: $forwardOrigin, isTopicMessage: $isTopicMessage, isAutomaticForward: $isAutomaticForward, replyToMessage: $replyToMessage, viaBot: $viaBot, editDate: $editDate, hasProtectedContent: $hasProtectedContent, mediaGroupId: $mediaGroupId, authorSignature: $authorSignature, text: $text, entities: $entities, animation: $animation, audio: $audio, document: $document, photo: $photo, sticker: $sticker, video: $video, videoNote: $videoNote, voice: $voice, caption: $caption, captionEntities: $captionEntities, contact: $contact, dice: $dice, game: $game, poll: $poll, venue: $venue, location: $location, newChatMembers: $newChatMembers, leftChatMember: $leftChatMember, newChatTitle: $newChatTitle, newChatPhoto: $newChatPhoto, deleteChatPhoto: $deleteChatPhoto, groupChatCreated: $groupChatCreated, supergroupChatCreated: $supergroupChatCreated, channelChatCreated: $channelChatCreated, messageAutoDeleteTimerChanged: $messageAutoDeleteTimerChanged, migrateToChatId: $migrateToChatId, migrateFromChatId: $migrateFromChatId, pinnedMessage: $pinnedMessage, invoice: $invoice, successfulPayment: $successfulPayment, connectedWebsite: $connectedWebsite, passportData: $passportData, proximityAlertTriggered: $proximityAlertTriggered, forumTopicCreated: $forumTopicCreated, forumTopicClosed: $forumTopicClosed, forumTopicReopened: $forumTopicReopened, videoChatScheduled: $videoChatScheduled, videoChatStarted: $videoChatStarted, videoChatEnded: $videoChatEnded, videoChatParticipantsInvited: $videoChatParticipantsInvited, webAppData: $webAppData, replyMarkup: $replyMarkup, usersShared: $usersShared, chatShared: $chatShared, hasMediaSpoiler: $hasMediaSpoiler, forumTopicEdited: $forumTopicEdited, generalForumTopicHidden: $generalForumTopicHidden, generalForumTopicUnhidden: $generalForumTopicUnhidden, writeAccessAllowed: $writeAccessAllowed, story: $story, externalReply: $externalReply, quote: $quote, linkPreviewOptions: $linkPreviewOptions, giveaway: $giveaway, giveawayCreated: $giveawayCreated, giveawayWinners: $giveawayWinners, giveawayCompleted: $giveawayCompleted, boostAdded: $boostAdded, senderBoostCount: $senderBoostCount, replyToStory: $replyToStory, businessConnectionId: $businessConnectionId, senderBusinessBot: $senderBusinessBot, isFromOffline: $isFromOffline, chatBackgroundSet: $chatBackgroundSet, effectId: $effectId, showCaptionAboveMedia: $showCaptionAboveMedia, paidMedia: $paidMedia, refundedPayment: $refundedPayment, gift: $gift, uniqueGift: $uniqueGift, paidMessagePriceChanged: $paidMessagePriceChanged, paidStarCount: $paidStarCount, checklist: $checklist, checklistTasksDone: $checklistTasksDone, checklistTasksAdded: $checklistTasksAdded, directMessagePriceChanged: $directMessagePriceChanged, replyToChecklistTaskId: $replyToChecklistTaskId, directMessagesTopic: $directMessagesTopic)';
+    return 'Message(chat: $chat, messageId: $messageId, date: $date, messageThreadId: $messageThreadId, from: $from, senderChat: $senderChat, forwardOrigin: $forwardOrigin, isTopicMessage: $isTopicMessage, isAutomaticForward: $isAutomaticForward, replyToMessage: $replyToMessage, viaBot: $viaBot, editDate: $editDate, hasProtectedContent: $hasProtectedContent, mediaGroupId: $mediaGroupId, authorSignature: $authorSignature, text: $text, entities: $entities, animation: $animation, audio: $audio, document: $document, photo: $photo, sticker: $sticker, video: $video, videoNote: $videoNote, voice: $voice, caption: $caption, captionEntities: $captionEntities, contact: $contact, dice: $dice, game: $game, poll: $poll, venue: $venue, location: $location, newChatMembers: $newChatMembers, leftChatMember: $leftChatMember, newChatTitle: $newChatTitle, newChatPhoto: $newChatPhoto, deleteChatPhoto: $deleteChatPhoto, groupChatCreated: $groupChatCreated, supergroupChatCreated: $supergroupChatCreated, channelChatCreated: $channelChatCreated, messageAutoDeleteTimerChanged: $messageAutoDeleteTimerChanged, migrateToChatId: $migrateToChatId, migrateFromChatId: $migrateFromChatId, pinnedMessage: $pinnedMessage, invoice: $invoice, successfulPayment: $successfulPayment, connectedWebsite: $connectedWebsite, passportData: $passportData, proximityAlertTriggered: $proximityAlertTriggered, forumTopicCreated: $forumTopicCreated, forumTopicClosed: $forumTopicClosed, forumTopicReopened: $forumTopicReopened, videoChatScheduled: $videoChatScheduled, videoChatStarted: $videoChatStarted, videoChatEnded: $videoChatEnded, videoChatParticipantsInvited: $videoChatParticipantsInvited, webAppData: $webAppData, replyMarkup: $replyMarkup, usersShared: $usersShared, chatShared: $chatShared, hasMediaSpoiler: $hasMediaSpoiler, forumTopicEdited: $forumTopicEdited, generalForumTopicHidden: $generalForumTopicHidden, generalForumTopicUnhidden: $generalForumTopicUnhidden, writeAccessAllowed: $writeAccessAllowed, story: $story, externalReply: $externalReply, quote: $quote, linkPreviewOptions: $linkPreviewOptions, giveaway: $giveaway, giveawayCreated: $giveawayCreated, giveawayWinners: $giveawayWinners, giveawayCompleted: $giveawayCompleted, boostAdded: $boostAdded, senderBoostCount: $senderBoostCount, replyToStory: $replyToStory, businessConnectionId: $businessConnectionId, senderBusinessBot: $senderBusinessBot, isFromOffline: $isFromOffline, chatBackgroundSet: $chatBackgroundSet, effectId: $effectId, showCaptionAboveMedia: $showCaptionAboveMedia, paidMedia: $paidMedia, refundedPayment: $refundedPayment, gift: $gift, uniqueGift: $uniqueGift, paidMessagePriceChanged: $paidMessagePriceChanged, paidStarCount: $paidStarCount, checklist: $checklist, checklistTasksDone: $checklistTasksDone, checklistTasksAdded: $checklistTasksAdded, directMessagePriceChanged: $directMessagePriceChanged, replyToChecklistTaskId: $replyToChecklistTaskId, directMessagesTopic: $directMessagesTopic, isPaidPost: $isPaidPost, suggestedPostInfo: $suggestedPostInfo, suggestedPostApproved: $suggestedPostApproved, suggestedPostApprovalFailed: $suggestedPostApprovalFailed, suggestedPostDeclined: $suggestedPostDeclined, suggestedPostPaid: $suggestedPostPaid, suggestedPostRefunded: $suggestedPostRefunded)';
   }
 }

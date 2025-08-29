@@ -117,6 +117,9 @@ sealed class ChatMember with _$ChatMember implements _ChatMemberImpl {
 
     /// Optional. Custom title for this user
     @JsonKey(name: 'custom_title') String? customTitle,
+
+    /// Optional. True, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only
+    @JsonKey(name: 'can_manage_direct_messages') bool? canManageDirectMessages,
   }) = ChatMemberAdministrator;
 
   /// Represents a chat member that has no additional privileges or

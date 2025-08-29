@@ -2017,6 +2017,7 @@ extension ContextAwareMethods on Context {
     bool? canPostStories,
     bool? canEditStories,
     bool? canDeleteStories,
+    bool? canManageDirectMessages,
   }) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.promoteChatMember);
@@ -2039,6 +2040,7 @@ extension ContextAwareMethods on Context {
       canPostStories: canPostStories,
       canEditStories: canEditStories,
       canDeleteStories: canDeleteStories,
+      canManageDirectMessages: canManageDirectMessages,
     );
   }
 
@@ -2075,6 +2077,7 @@ extension ContextAwareMethods on Context {
     bool? canPostStories,
     bool? canEditStories,
     bool? canDeleteStories,
+    bool? canManageDirectMessages,
   }) async {
     final chatId = _getChatId();
     final userId = from?.id;
@@ -2098,6 +2101,7 @@ extension ContextAwareMethods on Context {
       canPostStories: canPostStories,
       canEditStories: canEditStories,
       canDeleteStories: canDeleteStories,
+      canManageDirectMessages: canManageDirectMessages,
     );
   }
 

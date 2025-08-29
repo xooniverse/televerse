@@ -641,38 +641,49 @@ class Context {
 
   /// Determine whether the update is a service message
   bool isServiceMessage() {
-    return msg?.leftChatMember != null ||
-        msg?.newChatTitle != null ||
-        msg?.newChatPhoto != null ||
-        msg?.deleteChatPhoto == true ||
-        msg?.groupChatCreated == true ||
-        msg?.supergroupChatCreated == true ||
-        msg?.channelChatCreated == true ||
-        msg?.messageAutoDeleteTimerChanged != null ||
-        msg?.successfulPayment != null ||
-        msg?.refundedPayment != null ||
-        msg?.usersShared != null ||
-        msg?.chatShared != null ||
-        msg?.writeAccessAllowed != null ||
-        msg?.proximityAlertTriggered != null ||
-        msg?.boostAdded != null ||
-        msg?.chatBackgroundSet != null ||
-        msg?.forumTopicCreated != null ||
-        msg?.forumTopicEdited != null ||
-        msg?.forumTopicClosed != null ||
-        msg?.forumTopicReopened != null ||
-        msg?.generalForumTopicHidden != null ||
-        msg?.generalForumTopicUnhidden != null ||
-        msg?.giveawayCreated != null ||
-        msg?.giveawayCompleted != null ||
-        msg?.videoChatScheduled != null ||
-        msg?.videoChatStarted != null ||
-        msg?.videoChatEnded != null ||
-        msg?.videoChatParticipantsInvited != null ||
-        msg?.webAppData != null ||
-        msg?.checklistTasksAdded != null ||
-        msg?.checklistTasksDone != null ||
-        msg?.directMessagePriceChanged != null;
+    if (msg == null) return false;
+
+    final checks = [
+      msg!.leftChatMember,
+      msg!.newChatTitle,
+      msg!.newChatPhoto,
+      msg!.deleteChatPhoto == true,
+      msg!.groupChatCreated == true,
+      msg!.supergroupChatCreated == true,
+      msg!.channelChatCreated == true,
+      msg!.messageAutoDeleteTimerChanged,
+      msg!.successfulPayment,
+      msg!.refundedPayment,
+      msg!.usersShared,
+      msg!.chatShared,
+      msg!.writeAccessAllowed,
+      msg!.proximityAlertTriggered,
+      msg!.boostAdded,
+      msg!.chatBackgroundSet,
+      msg!.forumTopicCreated,
+      msg!.forumTopicEdited,
+      msg!.forumTopicClosed,
+      msg!.forumTopicReopened,
+      msg!.generalForumTopicHidden,
+      msg!.generalForumTopicUnhidden,
+      msg!.giveawayCreated,
+      msg!.giveawayCompleted,
+      msg!.videoChatScheduled,
+      msg!.videoChatStarted,
+      msg!.videoChatEnded,
+      msg!.videoChatParticipantsInvited,
+      msg!.webAppData,
+      msg!.checklistTasksAdded,
+      msg!.checklistTasksDone,
+      msg!.directMessagePriceChanged,
+      msg!.suggestedPostApproved,
+      msg!.suggestedPostDeclined,
+      msg!.suggestedPostApprovalFailed,
+      msg!.suggestedPostPaid,
+      msg!.suggestedPostRefunded,
+    ];
+
+    return checks.any((c) => c != null && c != false);
   }
 
   /// Regular expression matches found in the current update.

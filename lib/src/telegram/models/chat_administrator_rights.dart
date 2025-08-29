@@ -69,6 +69,9 @@ abstract class ChatAdministratorRights with _$ChatAdministratorRights {
     /// Optional. True, if the administrator can delete stories posted by other
     /// users
     @JsonKey(name: 'can_delete_stories') final bool? canDeleteStories,
+
+    /// Optional. True, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only
+    @JsonKey(name: 'can_manage_direct_messages') bool? canManageDirectMessages,
   }) = _ChatAdministratorRights;
 
   /// Creates a new [ChatAdministratorRights] object from json.

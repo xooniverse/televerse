@@ -249,7 +249,9 @@ class ChatMemberAdministrator implements ChatMember {
       @JsonKey(name: 'can_edit_messages') this.canEditMessages,
       @JsonKey(name: 'can_pin_messages') this.canPinMessages,
       @JsonKey(name: 'can_manage_topics') this.canManageTopics,
-      @JsonKey(name: 'custom_title') this.customTitle});
+      @JsonKey(name: 'custom_title') this.customTitle,
+      @JsonKey(name: 'can_manage_direct_messages')
+      this.canManageDirectMessages});
   factory ChatMemberAdministrator.fromJson(Map<String, dynamic> json) =>
       _$ChatMemberAdministratorFromJson(json);
 
@@ -340,6 +342,10 @@ class ChatMemberAdministrator implements ChatMember {
   @JsonKey(name: 'custom_title')
   final String? customTitle;
 
+  /// Optional. True, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only
+  @JsonKey(name: 'can_manage_direct_messages')
+  final bool? canManageDirectMessages;
+
   /// Create a copy of ChatMember
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -358,7 +364,7 @@ class ChatMemberAdministrator implements ChatMember {
 
   @override
   String toString() {
-    return 'ChatMember.administrator(status: $status, user: $user, canBeEdited: $canBeEdited, isAnonymous: $isAnonymous, canManageChat: $canManageChat, canDeleteMessages: $canDeleteMessages, canManageVideoChats: $canManageVideoChats, canRestrictMembers: $canRestrictMembers, canPromoteMembers: $canPromoteMembers, canChangeInfo: $canChangeInfo, canInviteUsers: $canInviteUsers, canPostStories: $canPostStories, canEditStories: $canEditStories, canDeleteStories: $canDeleteStories, canPostMessages: $canPostMessages, canEditMessages: $canEditMessages, canPinMessages: $canPinMessages, canManageTopics: $canManageTopics, customTitle: $customTitle)';
+    return 'ChatMember.administrator(status: $status, user: $user, canBeEdited: $canBeEdited, isAnonymous: $isAnonymous, canManageChat: $canManageChat, canDeleteMessages: $canDeleteMessages, canManageVideoChats: $canManageVideoChats, canRestrictMembers: $canRestrictMembers, canPromoteMembers: $canPromoteMembers, canChangeInfo: $canChangeInfo, canInviteUsers: $canInviteUsers, canPostStories: $canPostStories, canEditStories: $canEditStories, canDeleteStories: $canDeleteStories, canPostMessages: $canPostMessages, canEditMessages: $canEditMessages, canPinMessages: $canPinMessages, canManageTopics: $canManageTopics, customTitle: $customTitle, canManageDirectMessages: $canManageDirectMessages)';
   }
 }
 
@@ -389,7 +395,9 @@ abstract mixin class $ChatMemberAdministratorCopyWith<$Res>
       @JsonKey(name: 'can_edit_messages') bool? canEditMessages,
       @JsonKey(name: 'can_pin_messages') bool? canPinMessages,
       @JsonKey(name: 'can_manage_topics') bool? canManageTopics,
-      @JsonKey(name: 'custom_title') String? customTitle});
+      @JsonKey(name: 'custom_title') String? customTitle,
+      @JsonKey(name: 'can_manage_direct_messages')
+      bool? canManageDirectMessages});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -427,6 +435,7 @@ class _$ChatMemberAdministratorCopyWithImpl<$Res>
     Object? canPinMessages = freezed,
     Object? canManageTopics = freezed,
     Object? customTitle = freezed,
+    Object? canManageDirectMessages = freezed,
   }) {
     return _then(ChatMemberAdministrator(
       status: null == status
@@ -505,6 +514,10 @@ class _$ChatMemberAdministratorCopyWithImpl<$Res>
           ? _self.customTitle
           : customTitle // ignore: cast_nullable_to_non_nullable
               as String?,
+      canManageDirectMessages: freezed == canManageDirectMessages
+          ? _self.canManageDirectMessages
+          : canManageDirectMessages // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 

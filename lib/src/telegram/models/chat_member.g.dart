@@ -55,6 +55,7 @@ ChatMemberAdministrator _$ChatMemberAdministratorFromJson(
       canPinMessages: json['can_pin_messages'] as bool?,
       canManageTopics: json['can_manage_topics'] as bool?,
       customTitle: json['custom_title'] as String?,
+      canManageDirectMessages: json['can_manage_direct_messages'] as bool?,
     );
 
 Map<String, dynamic> _$ChatMemberAdministratorToJson(
@@ -82,6 +83,8 @@ Map<String, dynamic> _$ChatMemberAdministratorToJson(
       if (instance.canManageTopics case final value?)
         'can_manage_topics': value,
       if (instance.customTitle case final value?) 'custom_title': value,
+      if (instance.canManageDirectMessages case final value?)
+        'can_manage_direct_messages': value,
     };
 
 ChatMemberMember _$ChatMemberMemberFromJson(Map<String, dynamic> json) =>

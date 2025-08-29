@@ -1739,6 +1739,7 @@ class RawAPI {
     bool? canPostStories,
     bool? canEditStories,
     bool? canDeleteStories,
+    bool? canManageDirectMessages,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -1760,6 +1761,8 @@ class RawAPI {
       if (canPostStories != null) 'can_post_stories': canPostStories,
       if (canEditStories != null) 'can_edit_stories': canEditStories,
       if (canDeleteStories != null) 'can_delete_stories': canDeleteStories,
+      if (canManageDirectMessages != null)
+        'can_manage_direct_messages': canManageDirectMessages,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4958,5 +4961,47 @@ class RawAPI {
     );
 
     return StarAmount.fromJson(response);
+  }
+
+  /// Approves a suggested post in a direct messages chat.
+  ///
+  /// The bot must have the 'can_post_messages' administrator right in the
+  /// corresponding channel chat.
+  ///
+  /// See more: https://core.telegram.org/bots/api#approvesuggestedpost
+  Future<bool> approveSuggestedPost(
+    ID chatId,
+    int messageId, {
+    int? sendDate,
+  }) async {
+    final params = <String, dynamic>{
+      'chat_id': chatId,
+      'message_id': messageId,
+      if (sendDate != null) 'send_date': sendDate,
+    };
+
+    final payload = Payload(_convertParameters(params));
+    return await _makeRequest<bool>(APIMethod.approveSuggestedPost, payload);
+  }
+
+  /// Declines a suggested post in a direct messages chat.
+  ///
+  /// The bot must have the 'can_manage_direct_messages' administrator right
+  /// in the corresponding channel chat.
+  ///
+  /// See more: https://core.telegram.org/bots/api#declinesuggestedpost
+  Future<bool> declineSuggestedPost(
+    ID chatId,
+    int messageId, {
+    String? comment,
+  }) async {
+    final params = <String, dynamic>{
+      'chat_id': chatId,
+      'message_id': messageId,
+      if (comment != null) 'comment': comment,
+    };
+
+    final payload = Payload(_convertParameters(params));
+    return await _makeRequest<bool>(APIMethod.declineSuggestedPost, payload);
   }
 }

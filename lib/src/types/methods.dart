@@ -469,6 +469,12 @@ enum APIMethod {
 
   /// Get the current Telegram Stars balance of the bot
   getMyStarBalance,
+
+  /// Approve a suggested post in a direct messages chat
+  approveSuggestedPost,
+
+  /// Decline a suggested post in a direct messages chat
+  declineSuggestedPost,
   ;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.

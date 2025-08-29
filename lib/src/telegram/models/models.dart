@@ -188,3 +188,10 @@ export 'input_checklist_task.dart';
 // Bot API 9.2
 export 'direct_messages_topic.dart';
 export 'suggested_post_parameters.dart';
+export 'suggested_post_info.dart';
+export 'suggested_post_price.dart';
+export 'suggested_post_approval_failed.dart';
+export 'suggested_post_approved.dart';
+export 'suggested_post_declined.dart';
+export 'suggested_post_paid.dart';
+export 'suggested_post_refunded.dart';
