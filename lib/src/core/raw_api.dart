@@ -413,6 +413,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -433,6 +434,8 @@ class RawAPI {
       if (messageEffectId != null) 'message_effect_id': messageEffectId,
       if (allowPaidBroadcast != null)
         'allow_paid_broadcast': allowPaidBroadcast,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -482,6 +485,7 @@ class RawAPI {
     String? messageEffectId,
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -504,6 +508,8 @@ class RawAPI {
         'show_caption_above_media': showCaptionAboveMedia,
       if (allowPaidBroadcast != null)
         'allow_paid_broadcast': allowPaidBroadcast,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final convertedParams = _convertParameters(params);
@@ -543,6 +549,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -557,6 +564,8 @@ class RawAPI {
       if (messageEffectId != null) 'message_effect_id': messageEffectId,
       if (allowPaidBroadcast != null)
         'allow_paid_broadcast': allowPaidBroadcast,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final convertedParams = _convertParameters(params);
@@ -646,6 +655,7 @@ class RawAPI {
     int? messageThreadId,
     bool? protectContent,
     int? videoStartTimestamp,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -657,6 +667,8 @@ class RawAPI {
       if (protectContent != null) 'protect_content': protectContent,
       if (videoStartTimestamp != null)
         'video_start_timestamp': videoStartTimestamp,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -732,6 +744,7 @@ class RawAPI {
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
     int? videoStartTimestamp,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -753,6 +766,8 @@ class RawAPI {
         'allow_paid_broadcast': allowPaidBroadcast,
       if (videoStartTimestamp != null)
         'video_start_timestamp': videoStartTimestamp,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -810,6 +825,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -833,6 +849,8 @@ class RawAPI {
       if (messageEffectId != null) 'message_effect_id': messageEffectId,
       if (allowPaidBroadcast != null)
         'allow_paid_broadcast': allowPaidBroadcast,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final convertedParams = _convertParameters(params);
@@ -885,6 +903,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -907,6 +926,8 @@ class RawAPI {
       if (messageEffectId != null) 'message_effect_id': messageEffectId,
       if (allowPaidBroadcast != null)
         'allow_paid_broadcast': allowPaidBroadcast,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final convertedParams = _convertParameters(params);
@@ -974,6 +995,7 @@ class RawAPI {
     bool? allowPaidBroadcast,
     InputFile? cover,
     int? startTimestamp,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -1003,6 +1025,8 @@ class RawAPI {
         'allow_paid_broadcast': allowPaidBroadcast,
       if (cover != null) 'cover': cover,
       if (startTimestamp != null) 'start_timestamp': startTimestamp,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final convertedParams = _convertParameters(params);
@@ -1066,6 +1090,7 @@ class RawAPI {
     String? messageEffectId,
     bool? showCaptionAboveMedia,
     bool? allowPaidBroadcast,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -1092,6 +1117,8 @@ class RawAPI {
         'show_caption_above_media': showCaptionAboveMedia,
       if (allowPaidBroadcast != null)
         'allow_paid_broadcast': allowPaidBroadcast,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final convertedParams = _convertParameters(params);
@@ -1133,6 +1160,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -1153,6 +1181,8 @@ class RawAPI {
       if (messageEffectId != null) 'message_effect_id': messageEffectId,
       if (allowPaidBroadcast != null)
         'allow_paid_broadcast': allowPaidBroadcast,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final convertedParams = _convertParameters(params);
@@ -1190,6 +1220,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -1208,6 +1239,8 @@ class RawAPI {
       if (messageEffectId != null) 'message_effect_id': messageEffectId,
       if (allowPaidBroadcast != null)
         'allow_paid_broadcast': allowPaidBroadcast,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final convertedParams = _convertParameters(params);
@@ -1243,6 +1276,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -1264,6 +1298,8 @@ class RawAPI {
       if (messageEffectId != null) 'message_effect_id': messageEffectId,
       if (allowPaidBroadcast != null)
         'allow_paid_broadcast': allowPaidBroadcast,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1298,6 +1334,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -1320,6 +1357,8 @@ class RawAPI {
       if (messageEffectId != null) 'message_effect_id': messageEffectId,
       if (allowPaidBroadcast != null)
         'allow_paid_broadcast': allowPaidBroadcast,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1348,6 +1387,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -1366,6 +1406,8 @@ class RawAPI {
       if (messageEffectId != null) 'message_effect_id': messageEffectId,
       if (allowPaidBroadcast != null)
         'allow_paid_broadcast': allowPaidBroadcast,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1463,6 +1505,7 @@ class RawAPI {
     String? businessConnectionId,
     String? messageEffectId,
     bool? allowPaidBroadcast,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -1478,6 +1521,8 @@ class RawAPI {
       if (messageEffectId != null) 'message_effect_id': messageEffectId,
       if (allowPaidBroadcast != null)
         'allow_paid_broadcast': allowPaidBroadcast,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3196,6 +3241,7 @@ class RawAPI {
     String? messageEffectId,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -3212,6 +3258,8 @@ class RawAPI {
       if (messageEffectId != null) 'message_effect_id': messageEffectId,
       if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
       if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final convertedParams = _convertParameters(params);
@@ -3590,6 +3638,7 @@ class RawAPI {
     String? messageEffectId,
     ReplyParameters? replyParameters,
     InlineKeyboardMarkup? replyMarkup,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -3627,6 +3676,8 @@ class RawAPI {
       if (messageEffectId != null) 'message_effect_id': messageEffectId,
       if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
       if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -3915,6 +3966,7 @@ class RawAPI {
     int? messageThreadId,
     bool? disableNotification,
     bool? protectContent,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -3924,6 +3976,8 @@ class RawAPI {
       if (disableNotification != null)
         'disable_notification': disableNotification,
       if (protectContent != null) 'protect_content': protectContent,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3944,6 +3998,7 @@ class RawAPI {
     bool? disableNotification,
     bool? protectContent,
     bool? removeCaption,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -3954,6 +4009,8 @@ class RawAPI {
         'disable_notification': disableNotification,
       if (protectContent != null) 'protect_content': protectContent,
       if (removeCaption != null) 'remove_caption': removeCaption,
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4100,6 +4157,7 @@ class RawAPI {
     bool? allowPaidBroadcast,
     ReplyParameters? replyParameters,
     ReplyMarkup? replyMarkup,
+    int? directMessagesTopicId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -4121,6 +4179,8 @@ class RawAPI {
         'allow_paid_broadcast': allowPaidBroadcast,
       if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
       if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      if (directMessagesTopicId != null)
+        'direct_messages_topic_id': directMessagesTopicId,
     };
 
     final convertedParams = _convertParameters(params);
