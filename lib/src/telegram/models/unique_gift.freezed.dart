@@ -38,6 +38,10 @@ mixin _$UniqueGift {
   @JsonKey(name: 'backdrop')
   UniqueGiftBackdrop get backdrop;
 
+  /// Optional. Information about the chat that published the gift
+  @JsonKey(name: 'publisher_chat')
+  Chat? get publisherChat;
+
   /// Create a copy of UniqueGift
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -50,7 +54,7 @@ mixin _$UniqueGift {
 
   @override
   String toString() {
-    return 'UniqueGift(baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop)';
+    return 'UniqueGift(baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat)';
   }
 }
 
@@ -66,11 +70,13 @@ abstract mixin class $UniqueGiftCopyWith<$Res> {
       @JsonKey(name: 'number') int number,
       @JsonKey(name: 'model') UniqueGiftModel model,
       @JsonKey(name: 'symbol') UniqueGiftSymbol symbol,
-      @JsonKey(name: 'backdrop') UniqueGiftBackdrop backdrop});
+      @JsonKey(name: 'backdrop') UniqueGiftBackdrop backdrop,
+      @JsonKey(name: 'publisher_chat') Chat? publisherChat});
 
   $UniqueGiftModelCopyWith<$Res> get model;
   $UniqueGiftSymbolCopyWith<$Res> get symbol;
   $UniqueGiftBackdropCopyWith<$Res> get backdrop;
+  $ChatCopyWith<$Res>? get publisherChat;
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
     Object? model = null,
     Object? symbol = null,
     Object? backdrop = null,
+    Object? publisherChat = freezed,
   }) {
     return _then(_self.copyWith(
       baseName: null == baseName
@@ -117,6 +124,10 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
           ? _self.backdrop
           : backdrop // ignore: cast_nullable_to_non_nullable
               as UniqueGiftBackdrop,
+      publisherChat: freezed == publisherChat
+          ? _self.publisherChat
+          : publisherChat // ignore: cast_nullable_to_non_nullable
+              as Chat?,
     ));
   }
 
@@ -149,6 +160,20 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
       return _then(_self.copyWith(backdrop: value));
     });
   }
+
+  /// Create a copy of UniqueGift
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res>? get publisherChat {
+    if (_self.publisherChat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_self.publisherChat!, (value) {
+      return _then(_self.copyWith(publisherChat: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -160,7 +185,8 @@ class _UniqueGift implements UniqueGift {
       @JsonKey(name: 'number') required this.number,
       @JsonKey(name: 'model') required this.model,
       @JsonKey(name: 'symbol') required this.symbol,
-      @JsonKey(name: 'backdrop') required this.backdrop});
+      @JsonKey(name: 'backdrop') required this.backdrop,
+      @JsonKey(name: 'publisher_chat') this.publisherChat});
   factory _UniqueGift.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftFromJson(json);
 
@@ -194,6 +220,11 @@ class _UniqueGift implements UniqueGift {
   @JsonKey(name: 'backdrop')
   final UniqueGiftBackdrop backdrop;
 
+  /// Optional. Information about the chat that published the gift
+  @override
+  @JsonKey(name: 'publisher_chat')
+  final Chat? publisherChat;
+
   /// Create a copy of UniqueGift
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -211,7 +242,7 @@ class _UniqueGift implements UniqueGift {
 
   @override
   String toString() {
-    return 'UniqueGift(baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop)';
+    return 'UniqueGift(baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat)';
   }
 }
 
@@ -229,7 +260,8 @@ abstract mixin class _$UniqueGiftCopyWith<$Res>
       @JsonKey(name: 'number') int number,
       @JsonKey(name: 'model') UniqueGiftModel model,
       @JsonKey(name: 'symbol') UniqueGiftSymbol symbol,
-      @JsonKey(name: 'backdrop') UniqueGiftBackdrop backdrop});
+      @JsonKey(name: 'backdrop') UniqueGiftBackdrop backdrop,
+      @JsonKey(name: 'publisher_chat') Chat? publisherChat});
 
   @override
   $UniqueGiftModelCopyWith<$Res> get model;
@@ -237,6 +269,8 @@ abstract mixin class _$UniqueGiftCopyWith<$Res>
   $UniqueGiftSymbolCopyWith<$Res> get symbol;
   @override
   $UniqueGiftBackdropCopyWith<$Res> get backdrop;
+  @override
+  $ChatCopyWith<$Res>? get publisherChat;
 }
 
 /// @nodoc
@@ -257,6 +291,7 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
     Object? model = null,
     Object? symbol = null,
     Object? backdrop = null,
+    Object? publisherChat = freezed,
   }) {
     return _then(_UniqueGift(
       baseName: null == baseName
@@ -283,6 +318,10 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
           ? _self.backdrop
           : backdrop // ignore: cast_nullable_to_non_nullable
               as UniqueGiftBackdrop,
+      publisherChat: freezed == publisherChat
+          ? _self.publisherChat
+          : publisherChat // ignore: cast_nullable_to_non_nullable
+              as Chat?,
     ));
   }
 
@@ -313,6 +352,20 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
   $UniqueGiftBackdropCopyWith<$Res> get backdrop {
     return $UniqueGiftBackdropCopyWith<$Res>(_self.backdrop, (value) {
       return _then(_self.copyWith(backdrop: value));
+    });
+  }
+
+  /// Create a copy of UniqueGift
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res>? get publisherChat {
+    if (_self.publisherChat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_self.publisherChat!, (value) {
+      return _then(_self.copyWith(publisherChat: value));
     });
   }
 }

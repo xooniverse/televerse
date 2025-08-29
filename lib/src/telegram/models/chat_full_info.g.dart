@@ -86,6 +86,10 @@ _ChatFullInfo _$ChatFullInfoFromJson(Map<String, dynamic> json) =>
       canSendPaidMedia: json['can_send_paid_media'] as bool?,
       acceptedGiftTypes: AcceptedGiftTypes.fromJson(
           json['accepted_gift_types'] as Map<String, dynamic>),
+      isDirectMessages: json['is_direct_messages'] as bool?,
+      parentChat: json['parent_chat'] == null
+          ? null
+          : Chat.fromJson(json['parent_chat'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ChatFullInfoToJson(_ChatFullInfo instance) =>
@@ -155,6 +159,9 @@ Map<String, dynamic> _$ChatFullInfoToJson(_ChatFullInfo instance) =>
       if (instance.canSendPaidMedia case final value?)
         'can_send_paid_media': value,
       'accepted_gift_types': instance.acceptedGiftTypes,
+      if (instance.isDirectMessages case final value?)
+        'is_direct_messages': value,
+      if (instance.parentChat case final value?) 'parent_chat': value,
     };
 
 const _$ChatTypeEnumMap = {

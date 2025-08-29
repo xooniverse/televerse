@@ -155,6 +155,12 @@ abstract class ChatFullInfo with _$ChatFullInfo {
     /// Information about types of gifts that are accepted by the chat or by the corresponding user for private chats.
     @JsonKey(name: 'accepted_gift_types')
     required final AcceptedGiftTypes acceptedGiftTypes,
+
+    /// Optional. True, if the chat is the direct messages chat of a channel
+    @JsonKey(name: 'is_direct_messages') bool? isDirectMessages,
+
+    /// Optional. Information about the corresponding channel chat; for direct messages chats only
+    @JsonKey(name: 'parent_chat') Chat? parentChat,
   }) = _ChatFullInfo;
 
   /// Creates a [ChatFullInfo] object from a JSON map.

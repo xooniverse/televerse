@@ -41,6 +41,10 @@ mixin _$Gift {
   @JsonKey(name: 'upgrade_star_count')
   int? get upgradeStarCount;
 
+  /// Optional. Information about the chat that published the gift
+  @JsonKey(name: 'publisher_chat')
+  Chat? get publisherChat;
+
   /// Create a copy of Gift
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -53,7 +57,7 @@ mixin _$Gift {
 
   @override
   String toString() {
-    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount)';
+    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat)';
   }
 }
 
@@ -68,9 +72,11 @@ abstract mixin class $GiftCopyWith<$Res> {
       @JsonKey(name: 'star_count') int starCount,
       @JsonKey(name: 'total_count') int? totalCount,
       @JsonKey(name: 'remaining_count') int? remainingCount,
-      @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount});
+      @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount,
+      @JsonKey(name: 'publisher_chat') Chat? publisherChat});
 
   $StickerCopyWith<$Res> get sticker;
+  $ChatCopyWith<$Res>? get publisherChat;
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
     Object? totalCount = freezed,
     Object? remainingCount = freezed,
     Object? upgradeStarCount = freezed,
+    Object? publisherChat = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -117,6 +124,10 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
           ? _self.upgradeStarCount
           : upgradeStarCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      publisherChat: freezed == publisherChat
+          ? _self.publisherChat
+          : publisherChat // ignore: cast_nullable_to_non_nullable
+              as Chat?,
     ));
   }
 
@@ -127,6 +138,20 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
   $StickerCopyWith<$Res> get sticker {
     return $StickerCopyWith<$Res>(_self.sticker, (value) {
       return _then(_self.copyWith(sticker: value));
+    });
+  }
+
+  /// Create a copy of Gift
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res>? get publisherChat {
+    if (_self.publisherChat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_self.publisherChat!, (value) {
+      return _then(_self.copyWith(publisherChat: value));
     });
   }
 }
@@ -140,7 +165,8 @@ class _Gift implements Gift {
       @JsonKey(name: 'star_count') required this.starCount,
       @JsonKey(name: 'total_count') this.totalCount,
       @JsonKey(name: 'remaining_count') this.remainingCount,
-      @JsonKey(name: 'upgrade_star_count') this.upgradeStarCount});
+      @JsonKey(name: 'upgrade_star_count') this.upgradeStarCount,
+      @JsonKey(name: 'publisher_chat') this.publisherChat});
   factory _Gift.fromJson(Map<String, dynamic> json) => _$GiftFromJson(json);
 
   /// Unique identifier of the gift.
@@ -176,6 +202,11 @@ class _Gift implements Gift {
   @JsonKey(name: 'upgrade_star_count')
   final int? upgradeStarCount;
 
+  /// Optional. Information about the chat that published the gift
+  @override
+  @JsonKey(name: 'publisher_chat')
+  final Chat? publisherChat;
+
   /// Create a copy of Gift
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -193,7 +224,7 @@ class _Gift implements Gift {
 
   @override
   String toString() {
-    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount)';
+    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat)';
   }
 }
 
@@ -209,10 +240,13 @@ abstract mixin class _$GiftCopyWith<$Res> implements $GiftCopyWith<$Res> {
       @JsonKey(name: 'star_count') int starCount,
       @JsonKey(name: 'total_count') int? totalCount,
       @JsonKey(name: 'remaining_count') int? remainingCount,
-      @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount});
+      @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount,
+      @JsonKey(name: 'publisher_chat') Chat? publisherChat});
 
   @override
   $StickerCopyWith<$Res> get sticker;
+  @override
+  $ChatCopyWith<$Res>? get publisherChat;
 }
 
 /// @nodoc
@@ -233,6 +267,7 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
     Object? totalCount = freezed,
     Object? remainingCount = freezed,
     Object? upgradeStarCount = freezed,
+    Object? publisherChat = freezed,
   }) {
     return _then(_Gift(
       id: null == id
@@ -259,6 +294,10 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
           ? _self.upgradeStarCount
           : upgradeStarCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      publisherChat: freezed == publisherChat
+          ? _self.publisherChat
+          : publisherChat // ignore: cast_nullable_to_non_nullable
+              as Chat?,
     ));
   }
 
@@ -269,6 +308,20 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
   $StickerCopyWith<$Res> get sticker {
     return $StickerCopyWith<$Res>(_self.sticker, (value) {
       return _then(_self.copyWith(sticker: value));
+    });
+  }
+
+  /// Create a copy of Gift
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res>? get publisherChat {
+    if (_self.publisherChat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_self.publisherChat!, (value) {
+      return _then(_self.copyWith(publisherChat: value));
     });
   }
 }

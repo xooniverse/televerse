@@ -31,6 +31,9 @@ abstract class Chat with _$Chat implements WithID {
 
     /// True, if the supergroup chat is a forum (has topics enabled).
     @JsonKey(name: 'is_forum') bool? isForum,
+
+    /// Optional. True, if the chat is the direct messages chat of a channel
+    @JsonKey(name: 'is_direct_messages') bool? isDirectMessages,
   }) = _Chat;
 
   /// Creates a [Chat] object from JSON.

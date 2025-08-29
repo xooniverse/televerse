@@ -14,6 +14,7 @@ _Chat _$ChatFromJson(Map<String, dynamic> json) => _Chat(
       firstName: json['first_name'] as String?,
       lastName: json['last_name'] as String?,
       isForum: json['is_forum'] as bool?,
+      isDirectMessages: json['is_direct_messages'] as bool?,
     );
 
 Map<String, dynamic> _$ChatToJson(_Chat instance) => <String, dynamic>{
@@ -24,6 +25,8 @@ Map<String, dynamic> _$ChatToJson(_Chat instance) => <String, dynamic>{
       if (instance.firstName case final value?) 'first_name': value,
       if (instance.lastName case final value?) 'last_name': value,
       if (instance.isForum case final value?) 'is_forum': value,
+      if (instance.isDirectMessages case final value?)
+        'is_direct_messages': value,
     };
 
 const _$ChatTypeEnumMap = {

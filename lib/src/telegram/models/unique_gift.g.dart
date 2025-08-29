@@ -14,6 +14,9 @@ _UniqueGift _$UniqueGiftFromJson(Map<String, dynamic> json) => _UniqueGift(
       symbol: UniqueGiftSymbol.fromJson(json['symbol'] as Map<String, dynamic>),
       backdrop:
           UniqueGiftBackdrop.fromJson(json['backdrop'] as Map<String, dynamic>),
+      publisherChat: json['publisher_chat'] == null
+          ? null
+          : Chat.fromJson(json['publisher_chat'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UniqueGiftToJson(_UniqueGift instance) =>
@@ -24,4 +27,5 @@ Map<String, dynamic> _$UniqueGiftToJson(_UniqueGift instance) =>
       'model': instance.model,
       'symbol': instance.symbol,
       'backdrop': instance.backdrop,
+      if (instance.publisherChat case final value?) 'publisher_chat': value,
     };

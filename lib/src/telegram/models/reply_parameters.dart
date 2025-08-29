@@ -17,12 +17,13 @@ abstract class ReplyParameters with _$ReplyParameters {
 
     /// If the message to be replied to is from a different chat, unique
     /// identifier for the chat or username of the channel (in the format
-    /// @channelusername).
+    /// @channelusername). Not supported for messages sent on behalf of a
+    /// business account and messages from channel direct messages chats.
     @IDConverter() @JsonKey(name: 'chat_id') ID? chatId,
 
     /// Pass True if the message should be sent even if the specified message to
-    /// be replied to is not found; can be used only for replies in the same
-    /// chat and forum topic.
+    /// be replied to is not found. Always False for replies in another chat or
+    /// forum topic. Always True for messages sent on behalf of a business account.
     @JsonKey(name: 'allow_sending_without_reply')
     bool? allowSendingWithoutReply,
 
@@ -43,6 +44,9 @@ abstract class ReplyParameters with _$ReplyParameters {
 
     /// Position of the quote in the original message in UTF-16 code units.
     @JsonKey(name: 'quote_position') int? quotePosition,
+
+    /// Identifier of the specific checklist task to be replied to.
+    @JsonKey(name: 'checklist_task_id') int? checklistTaskId,
   }) = _ReplyParameters;
 
   /// Creates a `ReplyParameters` object from a JSON object.

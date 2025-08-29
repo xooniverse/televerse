@@ -21,14 +21,15 @@ mixin _$ReplyParameters {
 
   /// If the message to be replied to is from a different chat, unique
   /// identifier for the chat or username of the channel (in the format
-  /// @channelusername).
+  /// @channelusername). Not supported for messages sent on behalf of a
+  /// business account and messages from channel direct messages chats.
   @IDConverter()
   @JsonKey(name: 'chat_id')
   ID? get chatId;
 
   /// Pass True if the message should be sent even if the specified message to
-  /// be replied to is not found; can be used only for replies in the same
-  /// chat and forum topic.
+  /// be replied to is not found. Always False for replies in another chat or
+  /// forum topic. Always True for messages sent on behalf of a business account.
   @JsonKey(name: 'allow_sending_without_reply')
   bool? get allowSendingWithoutReply;
 
@@ -54,6 +55,10 @@ mixin _$ReplyParameters {
   @JsonKey(name: 'quote_position')
   int? get quotePosition;
 
+  /// Identifier of the specific checklist task to be replied to.
+  @JsonKey(name: 'checklist_task_id')
+  int? get checklistTaskId;
+
   /// Create a copy of ReplyParameters
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -67,7 +72,7 @@ mixin _$ReplyParameters {
 
   @override
   String toString() {
-    return 'ReplyParameters(messageId: $messageId, chatId: $chatId, allowSendingWithoutReply: $allowSendingWithoutReply, quote: $quote, quoteParseMode: $quoteParseMode, quoteEntities: $quoteEntities, quotePosition: $quotePosition)';
+    return 'ReplyParameters(messageId: $messageId, chatId: $chatId, allowSendingWithoutReply: $allowSendingWithoutReply, quote: $quote, quoteParseMode: $quoteParseMode, quoteEntities: $quoteEntities, quotePosition: $quotePosition, checklistTaskId: $checklistTaskId)';
   }
 }
 
@@ -85,7 +90,8 @@ abstract mixin class $ReplyParametersCopyWith<$Res> {
       @JsonKey(name: 'quote') String? quote,
       @JsonKey(name: 'quote_parse_mode') String? quoteParseMode,
       @JsonKey(name: 'quote_entities') List<MessageEntity>? quoteEntities,
-      @JsonKey(name: 'quote_position') int? quotePosition});
+      @JsonKey(name: 'quote_position') int? quotePosition,
+      @JsonKey(name: 'checklist_task_id') int? checklistTaskId});
 }
 
 /// @nodoc
@@ -108,6 +114,7 @@ class _$ReplyParametersCopyWithImpl<$Res>
     Object? quoteParseMode = freezed,
     Object? quoteEntities = freezed,
     Object? quotePosition = freezed,
+    Object? checklistTaskId = freezed,
   }) {
     return _then(_self.copyWith(
       messageId: null == messageId
@@ -138,6 +145,10 @@ class _$ReplyParametersCopyWithImpl<$Res>
           ? _self.quotePosition
           : quotePosition // ignore: cast_nullable_to_non_nullable
               as int?,
+      checklistTaskId: freezed == checklistTaskId
+          ? _self.checklistTaskId
+          : checklistTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -153,7 +164,8 @@ class _ReplyParameters implements ReplyParameters {
       @JsonKey(name: 'quote') this.quote,
       @JsonKey(name: 'quote_parse_mode') this.quoteParseMode,
       @JsonKey(name: 'quote_entities') final List<MessageEntity>? quoteEntities,
-      @JsonKey(name: 'quote_position') this.quotePosition})
+      @JsonKey(name: 'quote_position') this.quotePosition,
+      @JsonKey(name: 'checklist_task_id') this.checklistTaskId})
       : _quoteEntities = quoteEntities;
   factory _ReplyParameters.fromJson(Map<String, dynamic> json) =>
       _$ReplyParametersFromJson(json);
@@ -166,15 +178,16 @@ class _ReplyParameters implements ReplyParameters {
 
   /// If the message to be replied to is from a different chat, unique
   /// identifier for the chat or username of the channel (in the format
-  /// @channelusername).
+  /// @channelusername). Not supported for messages sent on behalf of a
+  /// business account and messages from channel direct messages chats.
   @override
   @IDConverter()
   @JsonKey(name: 'chat_id')
   final ID? chatId;
 
   /// Pass True if the message should be sent even if the specified message to
-  /// be replied to is not found; can be used only for replies in the same
-  /// chat and forum topic.
+  /// be replied to is not found. Always False for replies in another chat or
+  /// forum topic. Always True for messages sent on behalf of a business account.
   @override
   @JsonKey(name: 'allow_sending_without_reply')
   final bool? allowSendingWithoutReply;
@@ -215,6 +228,11 @@ class _ReplyParameters implements ReplyParameters {
   @JsonKey(name: 'quote_position')
   final int? quotePosition;
 
+  /// Identifier of the specific checklist task to be replied to.
+  @override
+  @JsonKey(name: 'checklist_task_id')
+  final int? checklistTaskId;
+
   /// Create a copy of ReplyParameters
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -232,7 +250,7 @@ class _ReplyParameters implements ReplyParameters {
 
   @override
   String toString() {
-    return 'ReplyParameters(messageId: $messageId, chatId: $chatId, allowSendingWithoutReply: $allowSendingWithoutReply, quote: $quote, quoteParseMode: $quoteParseMode, quoteEntities: $quoteEntities, quotePosition: $quotePosition)';
+    return 'ReplyParameters(messageId: $messageId, chatId: $chatId, allowSendingWithoutReply: $allowSendingWithoutReply, quote: $quote, quoteParseMode: $quoteParseMode, quoteEntities: $quoteEntities, quotePosition: $quotePosition, checklistTaskId: $checklistTaskId)';
   }
 }
 
@@ -252,7 +270,8 @@ abstract mixin class _$ReplyParametersCopyWith<$Res>
       @JsonKey(name: 'quote') String? quote,
       @JsonKey(name: 'quote_parse_mode') String? quoteParseMode,
       @JsonKey(name: 'quote_entities') List<MessageEntity>? quoteEntities,
-      @JsonKey(name: 'quote_position') int? quotePosition});
+      @JsonKey(name: 'quote_position') int? quotePosition,
+      @JsonKey(name: 'checklist_task_id') int? checklistTaskId});
 }
 
 /// @nodoc
@@ -275,6 +294,7 @@ class __$ReplyParametersCopyWithImpl<$Res>
     Object? quoteParseMode = freezed,
     Object? quoteEntities = freezed,
     Object? quotePosition = freezed,
+    Object? checklistTaskId = freezed,
   }) {
     return _then(_ReplyParameters(
       messageId: null == messageId
@@ -304,6 +324,10 @@ class __$ReplyParametersCopyWithImpl<$Res>
       quotePosition: freezed == quotePosition
           ? _self.quotePosition
           : quotePosition // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checklistTaskId: freezed == checklistTaskId
+          ? _self.checklistTaskId
+          : checklistTaskId // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }

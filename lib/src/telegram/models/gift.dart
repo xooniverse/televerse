@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/chat.dart';
 import 'sticker.dart';
 
 part 'gift.freezed.dart';
@@ -30,6 +31,9 @@ abstract class Gift with _$Gift {
     /// Optional. The number of Telegram Stars that must be paid to upgrade the
     /// gift to a unique one.
     @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount,
+
+    /// Optional. Information about the chat that published the gift
+    @JsonKey(name: 'publisher_chat') Chat? publisherChat,
   }) = _Gift;
 
   /// Creates a [Gift] object from a JSON map.

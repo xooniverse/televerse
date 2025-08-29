@@ -184,3 +184,6 @@ export 'unique_gift_info.dart';
 export 'paid_message_price_changed.dart';
 export 'input_checklist.dart';
 export 'input_checklist_task.dart';
+
+// Bot API 9.2
+export 'direct_messages_topic.dart';

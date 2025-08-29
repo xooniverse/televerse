@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/chat.dart';
 
 import 'unique_gift_model.dart';
 import 'unique_gift_symbol.dart';
@@ -30,6 +31,9 @@ abstract class UniqueGift with _$UniqueGift {
 
     /// Backdrop of the gift
     @JsonKey(name: 'backdrop') required UniqueGiftBackdrop backdrop,
+
+    /// Optional. Information about the chat that published the gift
+    @JsonKey(name: 'publisher_chat') Chat? publisherChat,
   }) = _UniqueGift;
 
   /// Creates a new [UniqueGift] object from a JSON [Map].

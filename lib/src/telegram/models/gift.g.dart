@@ -13,6 +13,9 @@ _Gift _$GiftFromJson(Map<String, dynamic> json) => _Gift(
       totalCount: (json['total_count'] as num?)?.toInt(),
       remainingCount: (json['remaining_count'] as num?)?.toInt(),
       upgradeStarCount: (json['upgrade_star_count'] as num?)?.toInt(),
+      publisherChat: json['publisher_chat'] == null
+          ? null
+          : Chat.fromJson(json['publisher_chat'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$GiftToJson(_Gift instance) => <String, dynamic>{
@@ -23,4 +26,5 @@ Map<String, dynamic> _$GiftToJson(_Gift instance) => <String, dynamic>{
       if (instance.remainingCount case final value?) 'remaining_count': value,
       if (instance.upgradeStarCount case final value?)
         'upgrade_star_count': value,
+      if (instance.publisherChat case final value?) 'publisher_chat': value,
     };

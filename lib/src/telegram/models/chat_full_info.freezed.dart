@@ -194,6 +194,14 @@ mixin _$ChatFullInfo {
   @JsonKey(name: 'accepted_gift_types')
   AcceptedGiftTypes get acceptedGiftTypes;
 
+  /// Optional. True, if the chat is the direct messages chat of a channel
+  @JsonKey(name: 'is_direct_messages')
+  bool? get isDirectMessages;
+
+  /// Optional. Information about the corresponding channel chat; for direct messages chats only
+  @JsonKey(name: 'parent_chat')
+  Chat? get parentChat;
+
   /// Create a copy of ChatFullInfo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -207,7 +215,7 @@ mixin _$ChatFullInfo {
 
   @override
   String toString() {
-    return 'ChatFullInfo(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum, photo: $photo, activeUsernames: $activeUsernames, bio: $bio, hasPrivateForwards: $hasPrivateForwards, hasRestrictedVoiceAndVideoMessages: $hasRestrictedVoiceAndVideoMessages, joinToSendMessages: $joinToSendMessages, joinByRequest: $joinByRequest, description: $description, inviteLink: $inviteLink, pinnedMessage: $pinnedMessage, permissions: $permissions, slowModeDelay: $slowModeDelay, messageAutoDeleteTime: $messageAutoDeleteTime, hasProtectedContent: $hasProtectedContent, stickerSetName: $stickerSetName, canSetStickerSet: $canSetStickerSet, linkedChatId: $linkedChatId, location: $location, hasHiddenMembers: $hasHiddenMembers, hasAggressiveAntiSpamEnabled: $hasAggressiveAntiSpamEnabled, emojiStatusExpirationDate: $emojiStatusExpirationDate, availableReactions: $availableReactions, emojiStatusCustomEmojiId: $emojiStatusCustomEmojiId, accentColorId: $accentColorId, backgroundCustomEmojiId: $backgroundCustomEmojiId, profileAccentColorId: $profileAccentColorId, profileBackgroundCustomEmojiId: $profileBackgroundCustomEmojiId, hasVisibleHistory: $hasVisibleHistory, unrestrictBoostCount: $unrestrictBoostCount, customEmojiStickerSetName: $customEmojiStickerSetName, businessIntro: $businessIntro, businessLocation: $businessLocation, businessOpeningHours: $businessOpeningHours, personalChat: $personalChat, birthdate: $birthdate, maxReactionCount: $maxReactionCount, canSendPaidMedia: $canSendPaidMedia, acceptedGiftTypes: $acceptedGiftTypes)';
+    return 'ChatFullInfo(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum, photo: $photo, activeUsernames: $activeUsernames, bio: $bio, hasPrivateForwards: $hasPrivateForwards, hasRestrictedVoiceAndVideoMessages: $hasRestrictedVoiceAndVideoMessages, joinToSendMessages: $joinToSendMessages, joinByRequest: $joinByRequest, description: $description, inviteLink: $inviteLink, pinnedMessage: $pinnedMessage, permissions: $permissions, slowModeDelay: $slowModeDelay, messageAutoDeleteTime: $messageAutoDeleteTime, hasProtectedContent: $hasProtectedContent, stickerSetName: $stickerSetName, canSetStickerSet: $canSetStickerSet, linkedChatId: $linkedChatId, location: $location, hasHiddenMembers: $hasHiddenMembers, hasAggressiveAntiSpamEnabled: $hasAggressiveAntiSpamEnabled, emojiStatusExpirationDate: $emojiStatusExpirationDate, availableReactions: $availableReactions, emojiStatusCustomEmojiId: $emojiStatusCustomEmojiId, accentColorId: $accentColorId, backgroundCustomEmojiId: $backgroundCustomEmojiId, profileAccentColorId: $profileAccentColorId, profileBackgroundCustomEmojiId: $profileBackgroundCustomEmojiId, hasVisibleHistory: $hasVisibleHistory, unrestrictBoostCount: $unrestrictBoostCount, customEmojiStickerSetName: $customEmojiStickerSetName, businessIntro: $businessIntro, businessLocation: $businessLocation, businessOpeningHours: $businessOpeningHours, personalChat: $personalChat, birthdate: $birthdate, maxReactionCount: $maxReactionCount, canSendPaidMedia: $canSendPaidMedia, acceptedGiftTypes: $acceptedGiftTypes, isDirectMessages: $isDirectMessages, parentChat: $parentChat)';
   }
 }
 
@@ -271,8 +279,9 @@ abstract mixin class $ChatFullInfoCopyWith<$Res> {
       @JsonKey(name: 'birthdate') Birthdate? birthdate,
       @JsonKey(name: 'max_reaction_count') int maxReactionCount,
       @JsonKey(name: 'can_send_paid_media') bool? canSendPaidMedia,
-      @JsonKey(name: 'accepted_gift_types')
-      AcceptedGiftTypes acceptedGiftTypes});
+      @JsonKey(name: 'accepted_gift_types') AcceptedGiftTypes acceptedGiftTypes,
+      @JsonKey(name: 'is_direct_messages') bool? isDirectMessages,
+      @JsonKey(name: 'parent_chat') Chat? parentChat});
 
   $ChatPhotoCopyWith<$Res>? get photo;
   $ChatPermissionsCopyWith<$Res>? get permissions;
@@ -283,6 +292,7 @@ abstract mixin class $ChatFullInfoCopyWith<$Res> {
   $ChatCopyWith<$Res>? get personalChat;
   $BirthdateCopyWith<$Res>? get birthdate;
   $AcceptedGiftTypesCopyWith<$Res> get acceptedGiftTypes;
+  $ChatCopyWith<$Res>? get parentChat;
 }
 
 /// @nodoc
@@ -342,6 +352,8 @@ class _$ChatFullInfoCopyWithImpl<$Res> implements $ChatFullInfoCopyWith<$Res> {
     Object? maxReactionCount = null,
     Object? canSendPaidMedia = freezed,
     Object? acceptedGiftTypes = null,
+    Object? isDirectMessages = freezed,
+    Object? parentChat = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -525,6 +537,14 @@ class _$ChatFullInfoCopyWithImpl<$Res> implements $ChatFullInfoCopyWith<$Res> {
           ? _self.acceptedGiftTypes
           : acceptedGiftTypes // ignore: cast_nullable_to_non_nullable
               as AcceptedGiftTypes,
+      isDirectMessages: freezed == isDirectMessages
+          ? _self.isDirectMessages
+          : isDirectMessages // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      parentChat: freezed == parentChat
+          ? _self.parentChat
+          : parentChat // ignore: cast_nullable_to_non_nullable
+              as Chat?,
     ));
   }
 
@@ -650,6 +670,20 @@ class _$ChatFullInfoCopyWithImpl<$Res> implements $ChatFullInfoCopyWith<$Res> {
       return _then(_self.copyWith(acceptedGiftTypes: value));
     });
   }
+
+  /// Create a copy of ChatFullInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res>? get parentChat {
+    if (_self.parentChat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_self.parentChat!, (value) {
+      return _then(_self.copyWith(parentChat: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -707,7 +741,9 @@ class _ChatFullInfo implements ChatFullInfo {
       @JsonKey(name: 'birthdate') this.birthdate,
       @JsonKey(name: 'max_reaction_count') this.maxReactionCount = 0,
       @JsonKey(name: 'can_send_paid_media') this.canSendPaidMedia,
-      @JsonKey(name: 'accepted_gift_types') required this.acceptedGiftTypes})
+      @JsonKey(name: 'accepted_gift_types') required this.acceptedGiftTypes,
+      @JsonKey(name: 'is_direct_messages') this.isDirectMessages,
+      @JsonKey(name: 'parent_chat') this.parentChat})
       : _activeUsernames = activeUsernames,
         _availableReactions = availableReactions;
   factory _ChatFullInfo.fromJson(Map<String, dynamic> json) =>
@@ -957,6 +993,16 @@ class _ChatFullInfo implements ChatFullInfo {
   @JsonKey(name: 'accepted_gift_types')
   final AcceptedGiftTypes acceptedGiftTypes;
 
+  /// Optional. True, if the chat is the direct messages chat of a channel
+  @override
+  @JsonKey(name: 'is_direct_messages')
+  final bool? isDirectMessages;
+
+  /// Optional. Information about the corresponding channel chat; for direct messages chats only
+  @override
+  @JsonKey(name: 'parent_chat')
+  final Chat? parentChat;
+
   /// Create a copy of ChatFullInfo
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -974,7 +1020,7 @@ class _ChatFullInfo implements ChatFullInfo {
 
   @override
   String toString() {
-    return 'ChatFullInfo(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum, photo: $photo, activeUsernames: $activeUsernames, bio: $bio, hasPrivateForwards: $hasPrivateForwards, hasRestrictedVoiceAndVideoMessages: $hasRestrictedVoiceAndVideoMessages, joinToSendMessages: $joinToSendMessages, joinByRequest: $joinByRequest, description: $description, inviteLink: $inviteLink, pinnedMessage: $pinnedMessage, permissions: $permissions, slowModeDelay: $slowModeDelay, messageAutoDeleteTime: $messageAutoDeleteTime, hasProtectedContent: $hasProtectedContent, stickerSetName: $stickerSetName, canSetStickerSet: $canSetStickerSet, linkedChatId: $linkedChatId, location: $location, hasHiddenMembers: $hasHiddenMembers, hasAggressiveAntiSpamEnabled: $hasAggressiveAntiSpamEnabled, emojiStatusExpirationDate: $emojiStatusExpirationDate, availableReactions: $availableReactions, emojiStatusCustomEmojiId: $emojiStatusCustomEmojiId, accentColorId: $accentColorId, backgroundCustomEmojiId: $backgroundCustomEmojiId, profileAccentColorId: $profileAccentColorId, profileBackgroundCustomEmojiId: $profileBackgroundCustomEmojiId, hasVisibleHistory: $hasVisibleHistory, unrestrictBoostCount: $unrestrictBoostCount, customEmojiStickerSetName: $customEmojiStickerSetName, businessIntro: $businessIntro, businessLocation: $businessLocation, businessOpeningHours: $businessOpeningHours, personalChat: $personalChat, birthdate: $birthdate, maxReactionCount: $maxReactionCount, canSendPaidMedia: $canSendPaidMedia, acceptedGiftTypes: $acceptedGiftTypes)';
+    return 'ChatFullInfo(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum, photo: $photo, activeUsernames: $activeUsernames, bio: $bio, hasPrivateForwards: $hasPrivateForwards, hasRestrictedVoiceAndVideoMessages: $hasRestrictedVoiceAndVideoMessages, joinToSendMessages: $joinToSendMessages, joinByRequest: $joinByRequest, description: $description, inviteLink: $inviteLink, pinnedMessage: $pinnedMessage, permissions: $permissions, slowModeDelay: $slowModeDelay, messageAutoDeleteTime: $messageAutoDeleteTime, hasProtectedContent: $hasProtectedContent, stickerSetName: $stickerSetName, canSetStickerSet: $canSetStickerSet, linkedChatId: $linkedChatId, location: $location, hasHiddenMembers: $hasHiddenMembers, hasAggressiveAntiSpamEnabled: $hasAggressiveAntiSpamEnabled, emojiStatusExpirationDate: $emojiStatusExpirationDate, availableReactions: $availableReactions, emojiStatusCustomEmojiId: $emojiStatusCustomEmojiId, accentColorId: $accentColorId, backgroundCustomEmojiId: $backgroundCustomEmojiId, profileAccentColorId: $profileAccentColorId, profileBackgroundCustomEmojiId: $profileBackgroundCustomEmojiId, hasVisibleHistory: $hasVisibleHistory, unrestrictBoostCount: $unrestrictBoostCount, customEmojiStickerSetName: $customEmojiStickerSetName, businessIntro: $businessIntro, businessLocation: $businessLocation, businessOpeningHours: $businessOpeningHours, personalChat: $personalChat, birthdate: $birthdate, maxReactionCount: $maxReactionCount, canSendPaidMedia: $canSendPaidMedia, acceptedGiftTypes: $acceptedGiftTypes, isDirectMessages: $isDirectMessages, parentChat: $parentChat)';
   }
 }
 
@@ -1040,8 +1086,9 @@ abstract mixin class _$ChatFullInfoCopyWith<$Res>
       @JsonKey(name: 'birthdate') Birthdate? birthdate,
       @JsonKey(name: 'max_reaction_count') int maxReactionCount,
       @JsonKey(name: 'can_send_paid_media') bool? canSendPaidMedia,
-      @JsonKey(name: 'accepted_gift_types')
-      AcceptedGiftTypes acceptedGiftTypes});
+      @JsonKey(name: 'accepted_gift_types') AcceptedGiftTypes acceptedGiftTypes,
+      @JsonKey(name: 'is_direct_messages') bool? isDirectMessages,
+      @JsonKey(name: 'parent_chat') Chat? parentChat});
 
   @override
   $ChatPhotoCopyWith<$Res>? get photo;
@@ -1061,6 +1108,8 @@ abstract mixin class _$ChatFullInfoCopyWith<$Res>
   $BirthdateCopyWith<$Res>? get birthdate;
   @override
   $AcceptedGiftTypesCopyWith<$Res> get acceptedGiftTypes;
+  @override
+  $ChatCopyWith<$Res>? get parentChat;
 }
 
 /// @nodoc
@@ -1121,6 +1170,8 @@ class __$ChatFullInfoCopyWithImpl<$Res>
     Object? maxReactionCount = null,
     Object? canSendPaidMedia = freezed,
     Object? acceptedGiftTypes = null,
+    Object? isDirectMessages = freezed,
+    Object? parentChat = freezed,
   }) {
     return _then(_ChatFullInfo(
       id: null == id
@@ -1304,6 +1355,14 @@ class __$ChatFullInfoCopyWithImpl<$Res>
           ? _self.acceptedGiftTypes
           : acceptedGiftTypes // ignore: cast_nullable_to_non_nullable
               as AcceptedGiftTypes,
+      isDirectMessages: freezed == isDirectMessages
+          ? _self.isDirectMessages
+          : isDirectMessages // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      parentChat: freezed == parentChat
+          ? _self.parentChat
+          : parentChat // ignore: cast_nullable_to_non_nullable
+              as Chat?,
     ));
   }
 
@@ -1427,6 +1486,20 @@ class __$ChatFullInfoCopyWithImpl<$Res>
   $AcceptedGiftTypesCopyWith<$Res> get acceptedGiftTypes {
     return $AcceptedGiftTypesCopyWith<$Res>(_self.acceptedGiftTypes, (value) {
       return _then(_self.copyWith(acceptedGiftTypes: value));
+    });
+  }
+
+  /// Create a copy of ChatFullInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res>? get parentChat {
+    if (_self.parentChat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_self.parentChat!, (value) {
+      return _then(_self.copyWith(parentChat: value));
     });
   }
 }

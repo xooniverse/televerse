@@ -17,6 +17,7 @@ _ReplyParameters _$ReplyParametersFromJson(Map<String, dynamic> json) =>
           ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
       quotePosition: (json['quote_position'] as num?)?.toInt(),
+      checklistTaskId: (json['checklist_task_id'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ReplyParametersToJson(_ReplyParameters instance) =>
@@ -32,6 +33,8 @@ Map<String, dynamic> _$ReplyParametersToJson(_ReplyParameters instance) =>
       if (instance.quoteParseMode case final value?) 'quote_parse_mode': value,
       if (instance.quoteEntities case final value?) 'quote_entities': value,
       if (instance.quotePosition case final value?) 'quote_position': value,
+      if (instance.checklistTaskId case final value?)
+        'checklist_task_id': value,
     };
 
 Json? _$JsonConverterToJson<Json, Value>(

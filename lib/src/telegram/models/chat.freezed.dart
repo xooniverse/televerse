@@ -43,6 +43,10 @@ mixin _$Chat {
   @JsonKey(name: 'is_forum')
   bool? get isForum;
 
+  /// Optional. True, if the chat is the direct messages chat of a channel
+  @JsonKey(name: 'is_direct_messages')
+  bool? get isDirectMessages;
+
   /// Create a copy of Chat
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -55,7 +59,7 @@ mixin _$Chat {
 
   @override
   String toString() {
-    return 'Chat(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum)';
+    return 'Chat(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum, isDirectMessages: $isDirectMessages)';
   }
 }
 
@@ -71,7 +75,8 @@ abstract mixin class $ChatCopyWith<$Res> {
       @JsonKey(name: 'username') String? username,
       @JsonKey(name: 'first_name') String? firstName,
       @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'is_forum') bool? isForum});
+      @JsonKey(name: 'is_forum') bool? isForum,
+      @JsonKey(name: 'is_direct_messages') bool? isDirectMessages});
 }
 
 /// @nodoc
@@ -93,6 +98,7 @@ class _$ChatCopyWithImpl<$Res> implements $ChatCopyWith<$Res> {
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? isForum = freezed,
+    Object? isDirectMessages = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -123,6 +129,10 @@ class _$ChatCopyWithImpl<$Res> implements $ChatCopyWith<$Res> {
           ? _self.isForum
           : isForum // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isDirectMessages: freezed == isDirectMessages
+          ? _self.isDirectMessages
+          : isDirectMessages // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -137,7 +147,8 @@ class _Chat implements Chat {
       @JsonKey(name: 'username') this.username,
       @JsonKey(name: 'first_name') this.firstName,
       @JsonKey(name: 'last_name') this.lastName,
-      @JsonKey(name: 'is_forum') this.isForum});
+      @JsonKey(name: 'is_forum') this.isForum,
+      @JsonKey(name: 'is_direct_messages') this.isDirectMessages});
   factory _Chat.fromJson(Map<String, dynamic> json) => _$ChatFromJson(json);
 
   /// Unique identifier for this chat.
@@ -176,6 +187,11 @@ class _Chat implements Chat {
   @JsonKey(name: 'is_forum')
   final bool? isForum;
 
+  /// Optional. True, if the chat is the direct messages chat of a channel
+  @override
+  @JsonKey(name: 'is_direct_messages')
+  final bool? isDirectMessages;
+
   /// Create a copy of Chat
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -193,7 +209,7 @@ class _Chat implements Chat {
 
   @override
   String toString() {
-    return 'Chat(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum)';
+    return 'Chat(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum, isDirectMessages: $isDirectMessages)';
   }
 }
 
@@ -210,7 +226,8 @@ abstract mixin class _$ChatCopyWith<$Res> implements $ChatCopyWith<$Res> {
       @JsonKey(name: 'username') String? username,
       @JsonKey(name: 'first_name') String? firstName,
       @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'is_forum') bool? isForum});
+      @JsonKey(name: 'is_forum') bool? isForum,
+      @JsonKey(name: 'is_direct_messages') bool? isDirectMessages});
 }
 
 /// @nodoc
@@ -232,6 +249,7 @@ class __$ChatCopyWithImpl<$Res> implements _$ChatCopyWith<$Res> {
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? isForum = freezed,
+    Object? isDirectMessages = freezed,
   }) {
     return _then(_Chat(
       id: null == id
@@ -261,6 +279,10 @@ class __$ChatCopyWithImpl<$Res> implements _$ChatCopyWith<$Res> {
       isForum: freezed == isForum
           ? _self.isForum
           : isForum // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isDirectMessages: freezed == isDirectMessages
+          ? _self.isDirectMessages
+          : isDirectMessages // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }

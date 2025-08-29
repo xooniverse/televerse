@@ -432,6 +432,13 @@ abstract class Message
     /// Optional. Service message: the price for paid messages in the corresponding direct messages chat of a channel has changed
     @JsonKey(name: 'direct_message_price_changed')
     DirectMessagePriceChanged? directMessagePriceChanged,
+
+    /// Optional. Identifier of the specific checklist task that is being replied to
+    @JsonKey(name: 'reply_to_checklist_task_id') int? replyToChecklistTaskId,
+
+    /// Optional. Information about the direct messages chat topic that contains the message
+    @JsonKey(name: 'direct_messages_topic')
+    DirectMessagesTopic? directMessagesTopic,
   }) = _Message;
 
   /// Creates a [Message] object from JSON object

@@ -280,6 +280,12 @@ _Message _$MessageFromJson(Map<String, dynamic> json) => _Message(
           ? null
           : DirectMessagePriceChanged.fromJson(
               json['direct_message_price_changed'] as Map<String, dynamic>),
+      replyToChecklistTaskId:
+          (json['reply_to_checklist_task_id'] as num?)?.toInt(),
+      directMessagesTopic: json['direct_messages_topic'] == null
+          ? null
+          : DirectMessagesTopic.fromJson(
+              json['direct_messages_topic'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
@@ -411,4 +417,8 @@ Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
         'checklist_tasks_added': value,
       if (instance.directMessagePriceChanged case final value?)
         'direct_message_price_changed': value,
+      if (instance.replyToChecklistTaskId case final value?)
+        'reply_to_checklist_task_id': value,
+      if (instance.directMessagesTopic case final value?)
+        'direct_messages_topic': value,
     };
