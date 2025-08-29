@@ -2,6 +2,7 @@
 
 - Bot API 9.2
 - Televerse v3
+- ⚠️ Contains Breaking Changes: [See migration guide here](https://televerse.xooniverse.com/extras/migration-v2-v3.html).
 
 # 3.0.0-dev.1
 
