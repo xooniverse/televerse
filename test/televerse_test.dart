@@ -9,9 +9,9 @@ import 'package:test/test.dart';
 
 // This will avoid github's builder to throw errors caused by env vars.
 String environ(String key) {
-  final value = Platform.environment[key] ?? '';
+  final value = Platform.environment[key];
 
-  if (value.isEmpty) {
+  if (value == null) {
     log("Wasn't able to get '$key' from the environment values.");
     io.exit(0);
   }
