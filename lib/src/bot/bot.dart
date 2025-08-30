@@ -43,6 +43,9 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Information about the bot.
   BotInfo botInfo;
 
+  /// Information about the bot.
+  BotInfo get me => botInfo;
+
   /// Factory function for creating context instances.
   final ContextFactory<CTX> _contextFactory;
 
