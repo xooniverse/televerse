@@ -101,7 +101,7 @@ class Payload {
       );
 
   /// Get the parameter value for the key
-  operator [](String key) {
+  Object? operator [](String key) {
     return params[key];
   }
 

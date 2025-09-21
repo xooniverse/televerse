@@ -1,3 +1,8 @@
+# 3.0.1
+
+- Removed one last stray `dynamic` type from the library.
+- Typed `Payload`'s `[]` operator as `Object?`.
+
 # 3.0.0
 
 - Bot API 9.2
