@@ -56,6 +56,10 @@ mixin _$Gift {
   @JsonKey(name: 'is_premium')
   bool? get isPremium;
 
+  /// Optional. True, if the gift can be used (after being upgraded) to customize a user's appearance
+  @JsonKey(name: 'has_colors')
+  bool? get hasColors;
+
   /// Create a copy of Gift
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -68,7 +72,7 @@ mixin _$Gift {
 
   @override
   String toString() {
-    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat, personalRemainingCount: $personalRemainingCount, personalTotalCount: $personalTotalCount, isPremium: $isPremium)';
+    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat, personalRemainingCount: $personalRemainingCount, personalTotalCount: $personalTotalCount, isPremium: $isPremium, hasColors: $hasColors)';
   }
 }
 
@@ -88,6 +92,7 @@ abstract mixin class $GiftCopyWith<$Res> {
     @JsonKey(name: 'personal_remaining_count') int? personalRemainingCount,
     @JsonKey(name: 'personal_total_count') int? personalTotalCount,
     @JsonKey(name: 'is_premium') bool? isPremium,
+    @JsonKey(name: 'has_colors') bool? hasColors,
   });
 
   $StickerCopyWith<$Res> get sticker;
@@ -116,6 +121,7 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
     Object? personalRemainingCount = freezed,
     Object? personalTotalCount = freezed,
     Object? isPremium = freezed,
+    Object? hasColors = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -158,6 +164,10 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
         isPremium: freezed == isPremium
             ? _self.isPremium
             : isPremium // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        hasColors: freezed == hasColors
+            ? _self.hasColors
+            : hasColors // ignore: cast_nullable_to_non_nullable
                   as bool?,
       ),
     );
@@ -280,6 +290,7 @@ class _Gift implements Gift {
     @JsonKey(name: 'personal_remaining_count') this.personalRemainingCount,
     @JsonKey(name: 'personal_total_count') this.personalTotalCount,
     @JsonKey(name: 'is_premium') this.isPremium,
+    @JsonKey(name: 'has_colors') this.hasColors,
   });
   factory _Gift.fromJson(Map<String, dynamic> json) => _$GiftFromJson(json);
 
@@ -336,6 +347,11 @@ class _Gift implements Gift {
   @JsonKey(name: 'is_premium')
   final bool? isPremium;
 
+  /// Optional. True, if the gift can be used (after being upgraded) to customize a user's appearance
+  @override
+  @JsonKey(name: 'has_colors')
+  final bool? hasColors;
+
   /// Create a copy of Gift
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -351,7 +367,7 @@ class _Gift implements Gift {
 
   @override
   String toString() {
-    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat, personalRemainingCount: $personalRemainingCount, personalTotalCount: $personalTotalCount, isPremium: $isPremium)';
+    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat, personalRemainingCount: $personalRemainingCount, personalTotalCount: $personalTotalCount, isPremium: $isPremium, hasColors: $hasColors)';
   }
 }
 
@@ -372,6 +388,7 @@ abstract mixin class _$GiftCopyWith<$Res> implements $GiftCopyWith<$Res> {
     @JsonKey(name: 'personal_remaining_count') int? personalRemainingCount,
     @JsonKey(name: 'personal_total_count') int? personalTotalCount,
     @JsonKey(name: 'is_premium') bool? isPremium,
+    @JsonKey(name: 'has_colors') bool? hasColors,
   });
 
   @override
@@ -402,6 +419,7 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
     Object? personalRemainingCount = freezed,
     Object? personalTotalCount = freezed,
     Object? isPremium = freezed,
+    Object? hasColors = freezed,
   }) {
     return _then(
       _Gift(
@@ -444,6 +462,10 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
         isPremium: freezed == isPremium
             ? _self.isPremium
             : isPremium // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        hasColors: freezed == hasColors
+            ? _self.hasColors
+            : hasColors // ignore: cast_nullable_to_non_nullable
                   as bool?,
       ),
     );

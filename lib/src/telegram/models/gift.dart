@@ -43,6 +43,9 @@ abstract class Gift with _$Gift {
 
     /// Optional. True, if the gift can only be purchased by Telegram Premium subscribers
     @JsonKey(name: 'is_premium') bool? isPremium,
+
+    /// Optional. True, if the gift can be used (after being upgraded) to customize a user's appearance
+    @JsonKey(name: 'has_colors') bool? hasColors,
   }) = _Gift;
 
   /// Creates a [Gift] object from a JSON map.

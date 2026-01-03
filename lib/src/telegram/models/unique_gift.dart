@@ -2,6 +2,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:televerse/src/telegram/models/chat.dart';
 
+import 'unique_gift_colors.dart';
 import 'unique_gift_model.dart';
 import 'unique_gift_symbol.dart';
 import 'unique_gift_backdrop.dart';
@@ -43,6 +44,9 @@ abstract class UniqueGift with _$UniqueGift {
 
     /// Optional. True, if the gift can only be purchased by Telegram Premium subscribers
     @JsonKey(name: 'is_premium') bool? isPremium,
+
+    /// Optional. The color scheme that can be used by the gift's owner for the chat's name, replies to messages and link previews; for business account gifts and gifts that are currently on sale only
+    @JsonKey(name: 'colors') UniqueGiftColors? colors,
   }) = _UniqueGift;
 
   /// Creates a new [UniqueGift] object from a JSON [Map].

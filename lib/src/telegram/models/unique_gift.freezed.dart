@@ -53,6 +53,10 @@ mixin _$UniqueGift {
   @JsonKey(name: 'is_premium')
   bool? get isPremium;
 
+  /// Optional. The color scheme that can be used by the gift's owner for the chat's name, replies to messages and link previews; for business account gifts and gifts that are currently on sale only
+  @JsonKey(name: 'colors')
+  UniqueGiftColors? get colors;
+
   /// Create a copy of UniqueGift
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -65,7 +69,7 @@ mixin _$UniqueGift {
 
   @override
   String toString() {
-    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain, isPremium: $isPremium)';
+    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain, isPremium: $isPremium, colors: $colors)';
   }
 }
 
@@ -87,12 +91,14 @@ abstract mixin class $UniqueGiftCopyWith<$Res> {
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
     @JsonKey(name: 'is_from_blockchain') bool? isFromBlockchain,
     @JsonKey(name: 'is_premium') bool? isPremium,
+    @JsonKey(name: 'colors') UniqueGiftColors? colors,
   });
 
   $UniqueGiftModelCopyWith<$Res> get model;
   $UniqueGiftSymbolCopyWith<$Res> get symbol;
   $UniqueGiftBackdropCopyWith<$Res> get backdrop;
   $ChatCopyWith<$Res>? get publisherChat;
+  $UniqueGiftColorsCopyWith<$Res>? get colors;
 }
 
 /// @nodoc
@@ -117,6 +123,7 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
     Object? publisherChat = freezed,
     Object? isFromBlockchain = freezed,
     Object? isPremium = freezed,
+    Object? colors = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -160,6 +167,10 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
             ? _self.isPremium
             : isPremium // ignore: cast_nullable_to_non_nullable
                   as bool?,
+        colors: freezed == colors
+            ? _self.colors
+            : colors // ignore: cast_nullable_to_non_nullable
+                  as UniqueGiftColors?,
       ),
     );
   }
@@ -205,6 +216,20 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
 
     return $ChatCopyWith<$Res>(_self.publisherChat!, (value) {
       return _then(_self.copyWith(publisherChat: value));
+    });
+  }
+
+  /// Create a copy of UniqueGift
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UniqueGiftColorsCopyWith<$Res>? get colors {
+    if (_self.colors == null) {
+      return null;
+    }
+
+    return $UniqueGiftColorsCopyWith<$Res>(_self.colors!, (value) {
+      return _then(_self.copyWith(colors: value));
     });
   }
 }
@@ -303,6 +328,7 @@ class _UniqueGift implements UniqueGift {
     @JsonKey(name: 'publisher_chat') this.publisherChat,
     @JsonKey(name: 'is_from_blockchain') this.isFromBlockchain,
     @JsonKey(name: 'is_premium') this.isPremium,
+    @JsonKey(name: 'colors') this.colors,
   });
   factory _UniqueGift.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftFromJson(json);
@@ -357,6 +383,11 @@ class _UniqueGift implements UniqueGift {
   @JsonKey(name: 'is_premium')
   final bool? isPremium;
 
+  /// Optional. The color scheme that can be used by the gift's owner for the chat's name, replies to messages and link previews; for business account gifts and gifts that are currently on sale only
+  @override
+  @JsonKey(name: 'colors')
+  final UniqueGiftColors? colors;
+
   /// Create a copy of UniqueGift
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -372,7 +403,7 @@ class _UniqueGift implements UniqueGift {
 
   @override
   String toString() {
-    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain, isPremium: $isPremium)';
+    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain, isPremium: $isPremium, colors: $colors)';
   }
 }
 
@@ -396,6 +427,7 @@ abstract mixin class _$UniqueGiftCopyWith<$Res>
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
     @JsonKey(name: 'is_from_blockchain') bool? isFromBlockchain,
     @JsonKey(name: 'is_premium') bool? isPremium,
+    @JsonKey(name: 'colors') UniqueGiftColors? colors,
   });
 
   @override
@@ -406,6 +438,8 @@ abstract mixin class _$UniqueGiftCopyWith<$Res>
   $UniqueGiftBackdropCopyWith<$Res> get backdrop;
   @override
   $ChatCopyWith<$Res>? get publisherChat;
+  @override
+  $UniqueGiftColorsCopyWith<$Res>? get colors;
 }
 
 /// @nodoc
@@ -430,6 +464,7 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
     Object? publisherChat = freezed,
     Object? isFromBlockchain = freezed,
     Object? isPremium = freezed,
+    Object? colors = freezed,
   }) {
     return _then(
       _UniqueGift(
@@ -473,6 +508,10 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
             ? _self.isPremium
             : isPremium // ignore: cast_nullable_to_non_nullable
                   as bool?,
+        colors: freezed == colors
+            ? _self.colors
+            : colors // ignore: cast_nullable_to_non_nullable
+                  as UniqueGiftColors?,
       ),
     );
   }
@@ -518,6 +557,20 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
 
     return $ChatCopyWith<$Res>(_self.publisherChat!, (value) {
       return _then(_self.copyWith(publisherChat: value));
+    });
+  }
+
+  /// Create a copy of UniqueGift
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UniqueGiftColorsCopyWith<$Res>? get colors {
+    if (_self.colors == null) {
+      return null;
+    }
+
+    return $UniqueGiftColorsCopyWith<$Res>(_self.colors!, (value) {
+      return _then(_self.copyWith(colors: value));
     });
   }
 }
