@@ -195,3 +195,6 @@ export 'suggested_post_approved.dart';
 export 'suggested_post_declined.dart';
 export 'suggested_post_paid.dart';
 export 'suggested_post_refunded.dart';
+
+/// Bot API 9.3
+export 'unique_gift_colors.dart';
