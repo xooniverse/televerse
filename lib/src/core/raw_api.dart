@@ -695,6 +695,7 @@ class RawAPI {
     int? videoStartTimestamp,
     int? directMessagesTopicId,
     SuggestedPostParameters? suggestedPostParameters,
+    String? messageEffectId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -710,6 +711,7 @@ class RawAPI {
         'direct_messages_topic_id': directMessagesTopicId,
       if (suggestedPostParameters != null)
         'suggested_post_parameters': suggestedPostParameters,
+      if (messageEffectId != null) 'message_effect_id': messageEffectId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -787,6 +789,7 @@ class RawAPI {
     int? videoStartTimestamp,
     int? directMessagesTopicId,
     SuggestedPostParameters? suggestedPostParameters,
+    String? messageEffectId,
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
@@ -812,6 +815,7 @@ class RawAPI {
         'direct_messages_topic_id': directMessagesTopicId,
       if (suggestedPostParameters != null)
         'suggested_post_parameters': suggestedPostParameters,
+      if (messageEffectId != null) 'message_effect_id': messageEffectId,
     };
 
     final payload = Payload(_convertParameters(params));

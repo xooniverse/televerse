@@ -164,6 +164,13 @@ abstract class ChatFullInfo with _$ChatFullInfo {
 
     /// Optional. For private chats, the rating of the user if any
     @JsonKey(name: 'rating') final UserRating? rating,
+
+    /// Optional. The number of Telegram Stars a general user have to pay to send a message to the chat
+    @JsonKey(name: 'paid_message_star_count') final int? paidMessageStarCount,
+
+    /// Optional. The color scheme based on a unique gift that must be used for the chat's name, message replies and link previews
+    @JsonKey(name: 'unique_gift_colors')
+    final UniqueGiftColors? uniqueGiftColors,
   }) = _ChatFullInfo;
 
   /// Creates a [ChatFullInfo] object from a JSON map.
