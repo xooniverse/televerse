@@ -34,6 +34,12 @@ abstract class Gift with _$Gift {
 
     /// Optional. Information about the chat that published the gift
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
+
+    /// Optional. The number of remaining gifts of this type that can be sent by the bot; for limited gifts only
+    @JsonKey(name: 'personal_remaining_count') int? personalRemainingCount,
+
+    /// Optional. The total number of gifts of this type that can be sent by the bot; for limited gifts only
+    @JsonKey(name: 'personal_total_count') int? personalTotalCount,
   }) = _Gift;
 
   /// Creates a [Gift] object from a JSON map.

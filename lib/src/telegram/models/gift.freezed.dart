@@ -44,6 +44,14 @@ mixin _$Gift {
   @JsonKey(name: 'publisher_chat')
   Chat? get publisherChat;
 
+  /// Optional. The number of remaining gifts of this type that can be sent by the bot; for limited gifts only
+  @JsonKey(name: 'personal_remaining_count')
+  int? get personalRemainingCount;
+
+  /// Optional. The total number of gifts of this type that can be sent by the bot; for limited gifts only
+  @JsonKey(name: 'personal_total_count')
+  int? get personalTotalCount;
+
   /// Create a copy of Gift
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -56,7 +64,7 @@ mixin _$Gift {
 
   @override
   String toString() {
-    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat)';
+    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat, personalRemainingCount: $personalRemainingCount, personalTotalCount: $personalTotalCount)';
   }
 }
 
@@ -73,6 +81,8 @@ abstract mixin class $GiftCopyWith<$Res> {
     @JsonKey(name: 'remaining_count') int? remainingCount,
     @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount,
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
+    @JsonKey(name: 'personal_remaining_count') int? personalRemainingCount,
+    @JsonKey(name: 'personal_total_count') int? personalTotalCount,
   });
 
   $StickerCopyWith<$Res> get sticker;
@@ -98,6 +108,8 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
     Object? remainingCount = freezed,
     Object? upgradeStarCount = freezed,
     Object? publisherChat = freezed,
+    Object? personalRemainingCount = freezed,
+    Object? personalTotalCount = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -129,6 +141,14 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
             ? _self.publisherChat
             : publisherChat // ignore: cast_nullable_to_non_nullable
                   as Chat?,
+        personalRemainingCount: freezed == personalRemainingCount
+            ? _self.personalRemainingCount
+            : personalRemainingCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        personalTotalCount: freezed == personalTotalCount
+            ? _self.personalTotalCount
+            : personalTotalCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
       ),
     );
   }
@@ -247,6 +267,8 @@ class _Gift implements Gift {
     @JsonKey(name: 'remaining_count') this.remainingCount,
     @JsonKey(name: 'upgrade_star_count') this.upgradeStarCount,
     @JsonKey(name: 'publisher_chat') this.publisherChat,
+    @JsonKey(name: 'personal_remaining_count') this.personalRemainingCount,
+    @JsonKey(name: 'personal_total_count') this.personalTotalCount,
   });
   factory _Gift.fromJson(Map<String, dynamic> json) => _$GiftFromJson(json);
 
@@ -288,6 +310,16 @@ class _Gift implements Gift {
   @JsonKey(name: 'publisher_chat')
   final Chat? publisherChat;
 
+  /// Optional. The number of remaining gifts of this type that can be sent by the bot; for limited gifts only
+  @override
+  @JsonKey(name: 'personal_remaining_count')
+  final int? personalRemainingCount;
+
+  /// Optional. The total number of gifts of this type that can be sent by the bot; for limited gifts only
+  @override
+  @JsonKey(name: 'personal_total_count')
+  final int? personalTotalCount;
+
   /// Create a copy of Gift
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -303,7 +335,7 @@ class _Gift implements Gift {
 
   @override
   String toString() {
-    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat)';
+    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat, personalRemainingCount: $personalRemainingCount, personalTotalCount: $personalTotalCount)';
   }
 }
 
@@ -321,6 +353,8 @@ abstract mixin class _$GiftCopyWith<$Res> implements $GiftCopyWith<$Res> {
     @JsonKey(name: 'remaining_count') int? remainingCount,
     @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount,
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
+    @JsonKey(name: 'personal_remaining_count') int? personalRemainingCount,
+    @JsonKey(name: 'personal_total_count') int? personalTotalCount,
   });
 
   @override
@@ -348,6 +382,8 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
     Object? remainingCount = freezed,
     Object? upgradeStarCount = freezed,
     Object? publisherChat = freezed,
+    Object? personalRemainingCount = freezed,
+    Object? personalTotalCount = freezed,
   }) {
     return _then(
       _Gift(
@@ -379,6 +415,14 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
             ? _self.publisherChat
             : publisherChat // ignore: cast_nullable_to_non_nullable
                   as Chat?,
+        personalRemainingCount: freezed == personalRemainingCount
+            ? _self.personalRemainingCount
+            : personalRemainingCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        personalTotalCount: freezed == personalTotalCount
+            ? _self.personalTotalCount
+            : personalTotalCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
       ),
     );
   }
