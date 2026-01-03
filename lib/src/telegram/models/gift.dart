@@ -40,6 +40,9 @@ abstract class Gift with _$Gift {
 
     /// Optional. The total number of gifts of this type that can be sent by the bot; for limited gifts only
     @JsonKey(name: 'personal_total_count') int? personalTotalCount,
+
+    /// Optional. True, if the gift can only be purchased by Telegram Premium subscribers
+    @JsonKey(name: 'is_premium') bool? isPremium,
   }) = _Gift;
 
   /// Creates a [Gift] object from a JSON map.

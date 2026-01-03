@@ -49,6 +49,10 @@ mixin _$UniqueGift {
   @JsonKey(name: 'is_from_blockchain')
   bool? get isFromBlockchain;
 
+  /// Optional. True, if the gift can only be purchased by Telegram Premium subscribers
+  @JsonKey(name: 'is_premium')
+  bool? get isPremium;
+
   /// Create a copy of UniqueGift
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -61,7 +65,7 @@ mixin _$UniqueGift {
 
   @override
   String toString() {
-    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain)';
+    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain, isPremium: $isPremium)';
   }
 }
 
@@ -82,6 +86,7 @@ abstract mixin class $UniqueGiftCopyWith<$Res> {
     @JsonKey(name: 'backdrop') UniqueGiftBackdrop backdrop,
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
     @JsonKey(name: 'is_from_blockchain') bool? isFromBlockchain,
+    @JsonKey(name: 'is_premium') bool? isPremium,
   });
 
   $UniqueGiftModelCopyWith<$Res> get model;
@@ -111,6 +116,7 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
     Object? backdrop = null,
     Object? publisherChat = freezed,
     Object? isFromBlockchain = freezed,
+    Object? isPremium = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -149,6 +155,10 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
         isFromBlockchain: freezed == isFromBlockchain
             ? _self.isFromBlockchain
             : isFromBlockchain // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isPremium: freezed == isPremium
+            ? _self.isPremium
+            : isPremium // ignore: cast_nullable_to_non_nullable
                   as bool?,
       ),
     );
@@ -292,6 +302,7 @@ class _UniqueGift implements UniqueGift {
     @JsonKey(name: 'backdrop') required this.backdrop,
     @JsonKey(name: 'publisher_chat') this.publisherChat,
     @JsonKey(name: 'is_from_blockchain') this.isFromBlockchain,
+    @JsonKey(name: 'is_premium') this.isPremium,
   });
   factory _UniqueGift.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftFromJson(json);
@@ -341,6 +352,11 @@ class _UniqueGift implements UniqueGift {
   @JsonKey(name: 'is_from_blockchain')
   final bool? isFromBlockchain;
 
+  /// Optional. True, if the gift can only be purchased by Telegram Premium subscribers
+  @override
+  @JsonKey(name: 'is_premium')
+  final bool? isPremium;
+
   /// Create a copy of UniqueGift
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -356,7 +372,7 @@ class _UniqueGift implements UniqueGift {
 
   @override
   String toString() {
-    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain)';
+    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain, isPremium: $isPremium)';
   }
 }
 
@@ -379,6 +395,7 @@ abstract mixin class _$UniqueGiftCopyWith<$Res>
     @JsonKey(name: 'backdrop') UniqueGiftBackdrop backdrop,
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
     @JsonKey(name: 'is_from_blockchain') bool? isFromBlockchain,
+    @JsonKey(name: 'is_premium') bool? isPremium,
   });
 
   @override
@@ -412,6 +429,7 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
     Object? backdrop = null,
     Object? publisherChat = freezed,
     Object? isFromBlockchain = freezed,
+    Object? isPremium = freezed,
   }) {
     return _then(
       _UniqueGift(
@@ -450,6 +468,10 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
         isFromBlockchain: freezed == isFromBlockchain
             ? _self.isFromBlockchain
             : isFromBlockchain // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isPremium: freezed == isPremium
+            ? _self.isPremium
+            : isPremium // ignore: cast_nullable_to_non_nullable
                   as bool?,
       ),
     );

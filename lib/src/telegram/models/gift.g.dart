@@ -18,6 +18,7 @@ _Gift _$GiftFromJson(Map<String, dynamic> json) => _Gift(
       : Chat.fromJson(json['publisher_chat'] as Map<String, dynamic>),
   personalRemainingCount: (json['personal_remaining_count'] as num?)?.toInt(),
   personalTotalCount: (json['personal_total_count'] as num?)?.toInt(),
+  isPremium: json['is_premium'] as bool?,
 );
 
 Map<String, dynamic> _$GiftToJson(_Gift instance) => <String, dynamic>{
@@ -30,4 +31,5 @@ Map<String, dynamic> _$GiftToJson(_Gift instance) => <String, dynamic>{
   'publisher_chat': ?instance.publisherChat,
   'personal_remaining_count': ?instance.personalRemainingCount,
   'personal_total_count': ?instance.personalTotalCount,
+  'is_premium': ?instance.isPremium,
 };

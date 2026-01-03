@@ -20,6 +20,7 @@ _UniqueGift _$UniqueGiftFromJson(Map<String, dynamic> json) => _UniqueGift(
       ? null
       : Chat.fromJson(json['publisher_chat'] as Map<String, dynamic>),
   isFromBlockchain: json['is_from_blockchain'] as bool?,
+  isPremium: json['is_premium'] as bool?,
 );
 
 Map<String, dynamic> _$UniqueGiftToJson(_UniqueGift instance) =>
@@ -33,4 +34,5 @@ Map<String, dynamic> _$UniqueGiftToJson(_UniqueGift instance) =>
       'backdrop': instance.backdrop,
       'publisher_chat': ?instance.publisherChat,
       'is_from_blockchain': ?instance.isFromBlockchain,
+      'is_premium': ?instance.isPremium,
     };

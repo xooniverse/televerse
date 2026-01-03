@@ -40,6 +40,9 @@ abstract class UniqueGift with _$UniqueGift {
 
     /// Optional. True, if the gift is assigned from the TON blockchain and can't be resold or transferred in Telegram
     @JsonKey(name: 'is_from_blockchain') bool? isFromBlockchain,
+
+    /// Optional. True, if the gift can only be purchased by Telegram Premium subscribers
+    @JsonKey(name: 'is_premium') bool? isPremium,
   }) = _UniqueGift;
 
   /// Creates a new [UniqueGift] object from a JSON [Map].

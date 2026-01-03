@@ -52,6 +52,10 @@ mixin _$Gift {
   @JsonKey(name: 'personal_total_count')
   int? get personalTotalCount;
 
+  /// Optional. True, if the gift can only be purchased by Telegram Premium subscribers
+  @JsonKey(name: 'is_premium')
+  bool? get isPremium;
+
   /// Create a copy of Gift
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -64,7 +68,7 @@ mixin _$Gift {
 
   @override
   String toString() {
-    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat, personalRemainingCount: $personalRemainingCount, personalTotalCount: $personalTotalCount)';
+    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat, personalRemainingCount: $personalRemainingCount, personalTotalCount: $personalTotalCount, isPremium: $isPremium)';
   }
 }
 
@@ -83,6 +87,7 @@ abstract mixin class $GiftCopyWith<$Res> {
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
     @JsonKey(name: 'personal_remaining_count') int? personalRemainingCount,
     @JsonKey(name: 'personal_total_count') int? personalTotalCount,
+    @JsonKey(name: 'is_premium') bool? isPremium,
   });
 
   $StickerCopyWith<$Res> get sticker;
@@ -110,6 +115,7 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
     Object? publisherChat = freezed,
     Object? personalRemainingCount = freezed,
     Object? personalTotalCount = freezed,
+    Object? isPremium = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -149,6 +155,10 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
             ? _self.personalTotalCount
             : personalTotalCount // ignore: cast_nullable_to_non_nullable
                   as int?,
+        isPremium: freezed == isPremium
+            ? _self.isPremium
+            : isPremium // ignore: cast_nullable_to_non_nullable
+                  as bool?,
       ),
     );
   }
@@ -269,6 +279,7 @@ class _Gift implements Gift {
     @JsonKey(name: 'publisher_chat') this.publisherChat,
     @JsonKey(name: 'personal_remaining_count') this.personalRemainingCount,
     @JsonKey(name: 'personal_total_count') this.personalTotalCount,
+    @JsonKey(name: 'is_premium') this.isPremium,
   });
   factory _Gift.fromJson(Map<String, dynamic> json) => _$GiftFromJson(json);
 
@@ -320,6 +331,11 @@ class _Gift implements Gift {
   @JsonKey(name: 'personal_total_count')
   final int? personalTotalCount;
 
+  /// Optional. True, if the gift can only be purchased by Telegram Premium subscribers
+  @override
+  @JsonKey(name: 'is_premium')
+  final bool? isPremium;
+
   /// Create a copy of Gift
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -335,7 +351,7 @@ class _Gift implements Gift {
 
   @override
   String toString() {
-    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat, personalRemainingCount: $personalRemainingCount, personalTotalCount: $personalTotalCount)';
+    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat, personalRemainingCount: $personalRemainingCount, personalTotalCount: $personalTotalCount, isPremium: $isPremium)';
   }
 }
 
@@ -355,6 +371,7 @@ abstract mixin class _$GiftCopyWith<$Res> implements $GiftCopyWith<$Res> {
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
     @JsonKey(name: 'personal_remaining_count') int? personalRemainingCount,
     @JsonKey(name: 'personal_total_count') int? personalTotalCount,
+    @JsonKey(name: 'is_premium') bool? isPremium,
   });
 
   @override
@@ -384,6 +401,7 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
     Object? publisherChat = freezed,
     Object? personalRemainingCount = freezed,
     Object? personalTotalCount = freezed,
+    Object? isPremium = freezed,
   }) {
     return _then(
       _Gift(
@@ -423,6 +441,10 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
             ? _self.personalTotalCount
             : personalTotalCount // ignore: cast_nullable_to_non_nullable
                   as int?,
+        isPremium: freezed == isPremium
+            ? _self.isPremium
+            : isPremium // ignore: cast_nullable_to_non_nullable
+                  as bool?,
       ),
     );
   }
