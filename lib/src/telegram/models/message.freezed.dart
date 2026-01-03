@@ -163,8 +163,7 @@ mixin _$Message {
   @JsonKey(name: "date")
   int get date;
 
-  /// Optional. Unique identifier of a message thread to which the message
-  /// belongs; for supergroups only
+  /// Optional. Unique identifier of a message thread or forum topic to which the message belongs; for supergroups and private chats only
   @JsonKey(name: 'message_thread_id')
   int? get messageThreadId;
 
@@ -187,7 +186,7 @@ mixin _$Message {
   @JsonKey(name: 'forward_origin')
   MessageOrigin? get forwardOrigin;
 
-  /// Optional. True, if the message is sent to a forum topic
+  /// Optional. True, if the message is sent to a topic in a forum supergroup or a private chat with the bot
   @JsonKey(name: 'is_topic_message')
   bool? get isTopicMessage;
 
@@ -849,8 +848,7 @@ class _Message implements Message {
   @JsonKey(name: "date")
   final int date;
 
-  /// Optional. Unique identifier of a message thread to which the message
-  /// belongs; for supergroups only
+  /// Optional. Unique identifier of a message thread or forum topic to which the message belongs; for supergroups and private chats only
   @override
   @JsonKey(name: 'message_thread_id')
   final int? messageThreadId;
@@ -877,7 +875,7 @@ class _Message implements Message {
   @JsonKey(name: 'forward_origin')
   final MessageOrigin? forwardOrigin;
 
-  /// Optional. True, if the message is sent to a forum topic
+  /// Optional. True, if the message is sent to a topic in a forum supergroup or a private chat with the bot
   @override
   @JsonKey(name: 'is_topic_message')
   final bool? isTopicMessage;

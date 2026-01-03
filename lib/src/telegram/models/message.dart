@@ -85,8 +85,7 @@ abstract class Message
     /// representing a valid date.
     @JsonKey(name: "date") required int date,
 
-    /// Optional. Unique identifier of a message thread to which the message
-    /// belongs; for supergroups only
+    /// Optional. Unique identifier of a message thread or forum topic to which the message belongs; for supergroups and private chats only
     @JsonKey(name: 'message_thread_id') int? messageThreadId,
 
     /// Optional. Sender of the message; empty for messages sent to channels.
@@ -105,7 +104,7 @@ abstract class Message
     /// Optional. Information about the original message for forwarded messages
     @JsonKey(name: 'forward_origin') MessageOrigin? forwardOrigin,
 
-    /// Optional. True, if the message is sent to a forum topic
+    /// Optional. True, if the message is sent to a topic in a forum supergroup or a private chat with the bot
     @JsonKey(name: 'is_topic_message') bool? isTopicMessage,
 
     /// Optional. True, if the message is a channel post that was automatically
