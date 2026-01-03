@@ -41,6 +41,9 @@ abstract class GiftInfo with _$GiftInfo {
 
     /// Optional. True, if the gift's upgrade was purchased after the gift was sent
     @JsonKey(name: 'is_upgrade_separate') bool? isUpgradeSeparate,
+
+    /// Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift
+    @JsonKey(name: 'unique_gift_number') int? uniqueGiftNumber,
   }) = _GiftInfo;
 
   /// Creates a new [GiftInfo] object from a JSON [Map].

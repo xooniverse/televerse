@@ -20,6 +20,10 @@ _Gift _$GiftFromJson(Map<String, dynamic> json) => _Gift(
   personalTotalCount: (json['personal_total_count'] as num?)?.toInt(),
   isPremium: json['is_premium'] as bool?,
   hasColors: json['has_colors'] as bool?,
+  background: json['background'] == null
+      ? null
+      : GiftBackground.fromJson(json['background'] as Map<String, dynamic>),
+  uniqueGiftVariantCount: (json['unique_gift_variant_count'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$GiftToJson(_Gift instance) => <String, dynamic>{
@@ -34,4 +38,6 @@ Map<String, dynamic> _$GiftToJson(_Gift instance) => <String, dynamic>{
   'personal_total_count': ?instance.personalTotalCount,
   'is_premium': ?instance.isPremium,
   'has_colors': ?instance.hasColors,
+  'background': ?instance.background,
+  'unique_gift_variant_count': ?instance.uniqueGiftVariantCount,
 };

@@ -53,6 +53,10 @@ mixin _$GiftInfo {
   @JsonKey(name: 'is_upgrade_separate')
   bool? get isUpgradeSeparate;
 
+  /// Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift
+  @JsonKey(name: 'unique_gift_number')
+  int? get uniqueGiftNumber;
+
   /// Create a copy of GiftInfo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -65,7 +69,7 @@ mixin _$GiftInfo {
 
   @override
   String toString() {
-    return 'GiftInfo(gift: $gift, ownedGiftId: $ownedGiftId, convertStarCount: $convertStarCount, prepaidUpgradeStarCount: $prepaidUpgradeStarCount, canBeUpgraded: $canBeUpgraded, text: $text, entities: $entities, isPrivate: $isPrivate, isUpgradeSeparate: $isUpgradeSeparate)';
+    return 'GiftInfo(gift: $gift, ownedGiftId: $ownedGiftId, convertStarCount: $convertStarCount, prepaidUpgradeStarCount: $prepaidUpgradeStarCount, canBeUpgraded: $canBeUpgraded, text: $text, entities: $entities, isPrivate: $isPrivate, isUpgradeSeparate: $isUpgradeSeparate, uniqueGiftNumber: $uniqueGiftNumber)';
   }
 }
 
@@ -84,6 +88,7 @@ abstract mixin class $GiftInfoCopyWith<$Res> {
     @JsonKey(name: 'entities') List<MessageEntity>? entities,
     @JsonKey(name: 'is_private') bool? isPrivate,
     @JsonKey(name: 'is_upgrade_separate') bool? isUpgradeSeparate,
+    @JsonKey(name: 'unique_gift_number') int? uniqueGiftNumber,
   });
 
   $GiftCopyWith<$Res> get gift;
@@ -110,6 +115,7 @@ class _$GiftInfoCopyWithImpl<$Res> implements $GiftInfoCopyWith<$Res> {
     Object? entities = freezed,
     Object? isPrivate = freezed,
     Object? isUpgradeSeparate = freezed,
+    Object? uniqueGiftNumber = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -149,6 +155,10 @@ class _$GiftInfoCopyWithImpl<$Res> implements $GiftInfoCopyWith<$Res> {
             ? _self.isUpgradeSeparate
             : isUpgradeSeparate // ignore: cast_nullable_to_non_nullable
                   as bool?,
+        uniqueGiftNumber: freezed == uniqueGiftNumber
+            ? _self.uniqueGiftNumber
+            : uniqueGiftNumber // ignore: cast_nullable_to_non_nullable
+                  as int?,
       ),
     );
   }
@@ -257,6 +267,7 @@ class _GiftInfo implements GiftInfo {
     @JsonKey(name: 'entities') final List<MessageEntity>? entities,
     @JsonKey(name: 'is_private') this.isPrivate,
     @JsonKey(name: 'is_upgrade_separate') this.isUpgradeSeparate,
+    @JsonKey(name: 'unique_gift_number') this.uniqueGiftNumber,
   }) : _entities = entities;
   factory _GiftInfo.fromJson(Map<String, dynamic> json) =>
       _$GiftInfoFromJson(json);
@@ -319,6 +330,11 @@ class _GiftInfo implements GiftInfo {
   @JsonKey(name: 'is_upgrade_separate')
   final bool? isUpgradeSeparate;
 
+  /// Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift
+  @override
+  @JsonKey(name: 'unique_gift_number')
+  final int? uniqueGiftNumber;
+
   /// Create a copy of GiftInfo
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -334,7 +350,7 @@ class _GiftInfo implements GiftInfo {
 
   @override
   String toString() {
-    return 'GiftInfo(gift: $gift, ownedGiftId: $ownedGiftId, convertStarCount: $convertStarCount, prepaidUpgradeStarCount: $prepaidUpgradeStarCount, canBeUpgraded: $canBeUpgraded, text: $text, entities: $entities, isPrivate: $isPrivate, isUpgradeSeparate: $isUpgradeSeparate)';
+    return 'GiftInfo(gift: $gift, ownedGiftId: $ownedGiftId, convertStarCount: $convertStarCount, prepaidUpgradeStarCount: $prepaidUpgradeStarCount, canBeUpgraded: $canBeUpgraded, text: $text, entities: $entities, isPrivate: $isPrivate, isUpgradeSeparate: $isUpgradeSeparate, uniqueGiftNumber: $uniqueGiftNumber)';
   }
 }
 
@@ -355,6 +371,7 @@ abstract mixin class _$GiftInfoCopyWith<$Res>
     @JsonKey(name: 'entities') List<MessageEntity>? entities,
     @JsonKey(name: 'is_private') bool? isPrivate,
     @JsonKey(name: 'is_upgrade_separate') bool? isUpgradeSeparate,
+    @JsonKey(name: 'unique_gift_number') int? uniqueGiftNumber,
   });
 
   @override
@@ -382,6 +399,7 @@ class __$GiftInfoCopyWithImpl<$Res> implements _$GiftInfoCopyWith<$Res> {
     Object? entities = freezed,
     Object? isPrivate = freezed,
     Object? isUpgradeSeparate = freezed,
+    Object? uniqueGiftNumber = freezed,
   }) {
     return _then(
       _GiftInfo(
@@ -421,6 +439,10 @@ class __$GiftInfoCopyWithImpl<$Res> implements _$GiftInfoCopyWith<$Res> {
             ? _self.isUpgradeSeparate
             : isUpgradeSeparate // ignore: cast_nullable_to_non_nullable
                   as bool?,
+        uniqueGiftNumber: freezed == uniqueGiftNumber
+            ? _self.uniqueGiftNumber
+            : uniqueGiftNumber // ignore: cast_nullable_to_non_nullable
+                  as int?,
       ),
     );
   }

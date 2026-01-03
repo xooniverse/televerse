@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:televerse/src/telegram/models/chat.dart';
+import 'gift_background.dart';
 import 'sticker.dart';
 
 part 'gift.freezed.dart';
@@ -46,6 +47,12 @@ abstract class Gift with _$Gift {
 
     /// Optional. True, if the gift can be used (after being upgraded) to customize a user's appearance
     @JsonKey(name: 'has_colors') bool? hasColors,
+
+    /// Optional. Background of the gift
+    @JsonKey(name: 'background') GiftBackground? background,
+
+    /// Optional. The total number of different unique gifts that can be obtained by upgrading the gift
+    @JsonKey(name: 'unique_gift_variant_count') int? uniqueGiftVariantCount,
   }) = _Gift;
 
   /// Creates a [Gift] object from a JSON map.
