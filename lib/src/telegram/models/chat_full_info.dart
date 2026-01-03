@@ -161,6 +161,9 @@ abstract class ChatFullInfo with _$ChatFullInfo {
 
     /// Optional. Information about the corresponding channel chat; for direct messages chats only
     @JsonKey(name: 'parent_chat') Chat? parentChat,
+
+    /// Optional. For private chats, the rating of the user if any
+    @JsonKey(name: 'rating') final UserRating? rating,
   }) = _ChatFullInfo;
 
   /// Creates a [ChatFullInfo] object from a JSON map.
