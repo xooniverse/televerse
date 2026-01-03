@@ -23,9 +23,14 @@ mixin _$UniqueGiftInfo {
   @JsonKey(name: 'origin')
   UniqueGiftOriginType get origin;
 
-  /// Optional. For gifts bought from other users, the price paid for the gift
-  @JsonKey(name: 'last_resale_star_count')
-  int? get lastResaleStarCount;
+  /// Optional. For gifts bought from other users, the currency in which the payment for the gift was done.
+  /// Currently, one of “XTR” for Telegram Stars or “TON” for toncoins.
+  @JsonKey(name: 'last_resale_currency')
+  String? get lastResaleCurrency;
+
+  /// Optional. For gifts bought from other users, the price paid for the gift in either Telegram Stars or nanotoncoins
+  @JsonKey(name: 'last_resale_amount')
+  int? get lastResaleAmount;
 
   /// Optional. Unique identifier of the received gift for the bot;
   /// only present for gifts received on behalf of business accounts
@@ -57,7 +62,7 @@ mixin _$UniqueGiftInfo {
 
   @override
   String toString() {
-    return 'UniqueGiftInfo(gift: $gift, origin: $origin, lastResaleStarCount: $lastResaleStarCount, ownedGiftId: $ownedGiftId, transferStarCount: $transferStarCount, nextTransferDate: $nextTransferDate)';
+    return 'UniqueGiftInfo(gift: $gift, origin: $origin, lastResaleCurrency: $lastResaleCurrency, lastResaleAmount: $lastResaleAmount, ownedGiftId: $ownedGiftId, transferStarCount: $transferStarCount, nextTransferDate: $nextTransferDate)';
   }
 }
 
@@ -71,7 +76,8 @@ abstract mixin class $UniqueGiftInfoCopyWith<$Res> {
   $Res call({
     @JsonKey(name: 'gift') UniqueGift gift,
     @JsonKey(name: 'origin') UniqueGiftOriginType origin,
-    @JsonKey(name: 'last_resale_star_count') int? lastResaleStarCount,
+    @JsonKey(name: 'last_resale_currency') String? lastResaleCurrency,
+    @JsonKey(name: 'last_resale_amount') int? lastResaleAmount,
     @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
     @JsonKey(name: 'transfer_star_count') int? transferStarCount,
     @JsonKey(name: 'next_transfer_date') int? nextTransferDate,
@@ -95,7 +101,8 @@ class _$UniqueGiftInfoCopyWithImpl<$Res>
   $Res call({
     Object? gift = null,
     Object? origin = null,
-    Object? lastResaleStarCount = freezed,
+    Object? lastResaleCurrency = freezed,
+    Object? lastResaleAmount = freezed,
     Object? ownedGiftId = freezed,
     Object? transferStarCount = freezed,
     Object? nextTransferDate = freezed,
@@ -110,9 +117,13 @@ class _$UniqueGiftInfoCopyWithImpl<$Res>
             ? _self.origin
             : origin // ignore: cast_nullable_to_non_nullable
                   as UniqueGiftOriginType,
-        lastResaleStarCount: freezed == lastResaleStarCount
-            ? _self.lastResaleStarCount
-            : lastResaleStarCount // ignore: cast_nullable_to_non_nullable
+        lastResaleCurrency: freezed == lastResaleCurrency
+            ? _self.lastResaleCurrency
+            : lastResaleCurrency // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        lastResaleAmount: freezed == lastResaleAmount
+            ? _self.lastResaleAmount
+            : lastResaleAmount // ignore: cast_nullable_to_non_nullable
                   as int?,
         ownedGiftId: freezed == ownedGiftId
             ? _self.ownedGiftId
@@ -227,7 +238,8 @@ class _UniqueGiftInfo implements UniqueGiftInfo {
   const _UniqueGiftInfo({
     @JsonKey(name: 'gift') required this.gift,
     @JsonKey(name: 'origin') required this.origin,
-    @JsonKey(name: 'last_resale_star_count') this.lastResaleStarCount,
+    @JsonKey(name: 'last_resale_currency') this.lastResaleCurrency,
+    @JsonKey(name: 'last_resale_amount') this.lastResaleAmount,
     @JsonKey(name: 'owned_gift_id') this.ownedGiftId,
     @JsonKey(name: 'transfer_star_count') this.transferStarCount,
     @JsonKey(name: 'next_transfer_date') this.nextTransferDate,
@@ -247,10 +259,16 @@ class _UniqueGiftInfo implements UniqueGiftInfo {
   @JsonKey(name: 'origin')
   final UniqueGiftOriginType origin;
 
-  /// Optional. For gifts bought from other users, the price paid for the gift
+  /// Optional. For gifts bought from other users, the currency in which the payment for the gift was done.
+  /// Currently, one of “XTR” for Telegram Stars or “TON” for toncoins.
   @override
-  @JsonKey(name: 'last_resale_star_count')
-  final int? lastResaleStarCount;
+  @JsonKey(name: 'last_resale_currency')
+  final String? lastResaleCurrency;
+
+  /// Optional. For gifts bought from other users, the price paid for the gift in either Telegram Stars or nanotoncoins
+  @override
+  @JsonKey(name: 'last_resale_amount')
+  final int? lastResaleAmount;
 
   /// Optional. Unique identifier of the received gift for the bot;
   /// only present for gifts received on behalf of business accounts
@@ -285,7 +303,7 @@ class _UniqueGiftInfo implements UniqueGiftInfo {
 
   @override
   String toString() {
-    return 'UniqueGiftInfo(gift: $gift, origin: $origin, lastResaleStarCount: $lastResaleStarCount, ownedGiftId: $ownedGiftId, transferStarCount: $transferStarCount, nextTransferDate: $nextTransferDate)';
+    return 'UniqueGiftInfo(gift: $gift, origin: $origin, lastResaleCurrency: $lastResaleCurrency, lastResaleAmount: $lastResaleAmount, ownedGiftId: $ownedGiftId, transferStarCount: $transferStarCount, nextTransferDate: $nextTransferDate)';
   }
 }
 
@@ -301,7 +319,8 @@ abstract mixin class _$UniqueGiftInfoCopyWith<$Res>
   $Res call({
     @JsonKey(name: 'gift') UniqueGift gift,
     @JsonKey(name: 'origin') UniqueGiftOriginType origin,
-    @JsonKey(name: 'last_resale_star_count') int? lastResaleStarCount,
+    @JsonKey(name: 'last_resale_currency') String? lastResaleCurrency,
+    @JsonKey(name: 'last_resale_amount') int? lastResaleAmount,
     @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
     @JsonKey(name: 'transfer_star_count') int? transferStarCount,
     @JsonKey(name: 'next_transfer_date') int? nextTransferDate,
@@ -326,7 +345,8 @@ class __$UniqueGiftInfoCopyWithImpl<$Res>
   $Res call({
     Object? gift = null,
     Object? origin = null,
-    Object? lastResaleStarCount = freezed,
+    Object? lastResaleCurrency = freezed,
+    Object? lastResaleAmount = freezed,
     Object? ownedGiftId = freezed,
     Object? transferStarCount = freezed,
     Object? nextTransferDate = freezed,
@@ -341,9 +361,13 @@ class __$UniqueGiftInfoCopyWithImpl<$Res>
             ? _self.origin
             : origin // ignore: cast_nullable_to_non_nullable
                   as UniqueGiftOriginType,
-        lastResaleStarCount: freezed == lastResaleStarCount
-            ? _self.lastResaleStarCount
-            : lastResaleStarCount // ignore: cast_nullable_to_non_nullable
+        lastResaleCurrency: freezed == lastResaleCurrency
+            ? _self.lastResaleCurrency
+            : lastResaleCurrency // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        lastResaleAmount: freezed == lastResaleAmount
+            ? _self.lastResaleAmount
+            : lastResaleAmount // ignore: cast_nullable_to_non_nullable
                   as int?,
         ownedGiftId: freezed == ownedGiftId
             ? _self.ownedGiftId

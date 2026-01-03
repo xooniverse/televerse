@@ -19,8 +19,12 @@ abstract class UniqueGiftInfo with _$UniqueGiftInfo {
     /// or channels, or "resale" for gifts bought from other users
     @JsonKey(name: 'origin') required UniqueGiftOriginType origin,
 
-    /// Optional. For gifts bought from other users, the price paid for the gift
-    @JsonKey(name: 'last_resale_star_count') int? lastResaleStarCount,
+    /// Optional. For gifts bought from other users, the currency in which the payment for the gift was done.
+    /// Currently, one of “XTR” for Telegram Stars or “TON” for toncoins.
+    @JsonKey(name: 'last_resale_currency') String? lastResaleCurrency,
+
+    /// Optional. For gifts bought from other users, the price paid for the gift in either Telegram Stars or nanotoncoins
+    @JsonKey(name: 'last_resale_amount') int? lastResaleAmount,
 
     /// Optional. Unique identifier of the received gift for the bot;
     /// only present for gifts received on behalf of business accounts
