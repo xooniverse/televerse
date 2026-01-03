@@ -4534,8 +4534,10 @@ class RawAPI {
     bool? excludeUnsaved,
     bool? excludeSaved,
     bool? excludeUnlimited,
-    bool? excludeLimited,
+    bool? excludeLimitedUpgradable,
+    bool? excludeLimitedNonUpgradable,
     bool? excludeUnique,
+    bool? excludeFromBlockchain,
     bool? sortByPrice,
     String? offset,
     int? limit,
@@ -4545,8 +4547,13 @@ class RawAPI {
       if (excludeUnsaved != null) 'exclude_unsaved': excludeUnsaved,
       if (excludeSaved != null) 'exclude_saved': excludeSaved,
       if (excludeUnlimited != null) 'exclude_unlimited': excludeUnlimited,
-      if (excludeLimited != null) 'exclude_limited': excludeLimited,
+      if (excludeLimitedUpgradable != null)
+        'exclude_limited_upgradable': excludeLimitedUpgradable,
+      if (excludeLimitedNonUpgradable != null)
+        'exclude_limited_non_upgradable': excludeLimitedNonUpgradable,
       if (excludeUnique != null) 'exclude_unique': excludeUnique,
+      if (excludeFromBlockchain != null)
+        'exclude_from_blockchain': excludeFromBlockchain,
       if (sortByPrice != null) 'sort_by_price': sortByPrice,
       if (offset != null) 'offset': offset,
       if (limit != null) 'limit': limit,
