@@ -4851,4 +4851,82 @@ class RawAPI {
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.declineSuggestedPost, payload);
   }
+
+  /// Returns the gifts owned and hosted by a user. Returns OwnedGifts on success.
+  ///
+  /// See: https://core.telegram.org/bots/api#getusergifts
+  Future<OwnedGifts> getUserGifts(
+    int userId, {
+    bool? excludeUnlimited,
+    bool? excludeLimitedUpgradable,
+    bool? excludeLimitedNonUpgradable,
+    bool? excludeFromBlockchain,
+    bool? excludeUnique,
+    bool? sortByPrice,
+    String? offset,
+    int? limit,
+  }) async {
+    final params = <String, dynamic>{
+      'user_id': userId,
+      if (excludeUnlimited != null) 'exclude_unlimited': excludeUnlimited,
+      if (excludeLimitedUpgradable != null)
+        'exclude_limited_upgradable': excludeLimitedUpgradable,
+      if (excludeLimitedNonUpgradable != null)
+        'exclude_limited_non_upgradable': excludeLimitedNonUpgradable,
+      if (excludeFromBlockchain != null)
+        'exclude_from_blockchain': excludeFromBlockchain,
+      if (excludeUnique != null) 'exclude_unique': excludeUnique,
+      if (sortByPrice != null) 'sort_by_price': sortByPrice,
+      if (offset != null) 'offset': offset,
+      if (limit != null) 'limit': limit,
+    };
+
+    final payload = Payload(_convertParameters(params));
+    final response = await _makeRequest<Map<String, dynamic>>(
+      APIMethod.getUserGifts,
+      payload,
+    );
+    return OwnedGifts.fromJson(response);
+  }
+
+  /// Returns the gifts owned by a chat. Returns OwnedGifts on success.
+  ///
+  /// See: https://core.telegram.org/bots/api#getchatgifts
+  Future<OwnedGifts> getChatGifts(
+    ID chatId, {
+    bool? excludeUnsaved,
+    bool? excludeSaved,
+    bool? excludeUnlimited,
+    bool? excludeLimitedUpgradable,
+    bool? excludeLimitedNonUpgradable,
+    bool? excludeFromBlockchain,
+    bool? excludeUnique,
+    bool? sortByPrice,
+    String? offset,
+    int? limit,
+  }) async {
+    final params = <String, dynamic>{
+      'chat_id': chatId,
+      if (excludeUnsaved != null) 'exclude_unsaved': excludeUnsaved,
+      if (excludeSaved != null) 'exclude_saved': excludeSaved,
+      if (excludeUnlimited != null) 'exclude_unlimited': excludeUnlimited,
+      if (excludeLimitedUpgradable != null)
+        'exclude_limited_upgradable': excludeLimitedUpgradable,
+      if (excludeLimitedNonUpgradable != null)
+        'exclude_limited_non_upgradable': excludeLimitedNonUpgradable,
+      if (excludeFromBlockchain != null)
+        'exclude_from_blockchain': excludeFromBlockchain,
+      if (excludeUnique != null) 'exclude_unique': excludeUnique,
+      if (sortByPrice != null) 'sort_by_price': sortByPrice,
+      if (offset != null) 'offset': offset,
+      if (limit != null) 'limit': limit,
+    };
+
+    final payload = Payload(_convertParameters(params));
+    final response = await _makeRequest<Map<String, dynamic>>(
+      APIMethod.getChatGifts,
+      payload,
+    );
+    return OwnedGifts.fromJson(response);
+  }
 }
