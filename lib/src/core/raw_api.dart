@@ -4936,4 +4936,32 @@ class RawAPI {
     );
     return OwnedGifts.fromJson(response);
   }
+
+  /// Reposts a story on behalf of a business account from another business account. Both business accounts must be managed by the same bot, and the story on the source account must have been posted (or reposted) by the bot. Requires the can_manage_stories business bot right for both business accounts. Returns Story on success.
+  ///
+  /// See: https://core.telegram.org/bots/api#repoststory
+  Future<Story> repostStory(
+    String businessConnectionId,
+    ID fromChatId,
+    int fromStoryId,
+    int activePeriod, {
+    bool? postToChatPage,
+    bool? protectContent,
+  }) async {
+    final params = <String, dynamic>{
+      'business_connection_id': businessConnectionId,
+      'from_chat_id': fromChatId,
+      'from_story_id': fromStoryId,
+      'active_period': activePeriod,
+      if (postToChatPage != null) 'post_to_chat_page': postToChatPage,
+      if (protectContent != null) 'protect_content': protectContent,
+    };
+
+    final payload = Payload(_convertParameters(params));
+    final response = await _makeRequest<Map<String, dynamic>>(
+      APIMethod.repostStory,
+      payload,
+    );
+    return Story.fromJson(response);
+  }
 }

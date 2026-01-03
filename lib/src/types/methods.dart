@@ -483,7 +483,10 @@ enum APIMethod {
   getUserGifts,
 
   /// Returns the gifts owned by a chat.
-  getChatGifts;
+  getChatGifts,
+
+  /// Reposts a story on behalf of a business account.
+  repostStory;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.
   String get name => toString().split('.').last;
