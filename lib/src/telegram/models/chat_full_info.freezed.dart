@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -208,7 +207,9 @@ mixin _$ChatFullInfo {
   @pragma('vm:prefer-inline')
   $ChatFullInfoCopyWith<ChatFullInfo> get copyWith =>
       _$ChatFullInfoCopyWithImpl<ChatFullInfo>(
-          this as ChatFullInfo, _$identity);
+        this as ChatFullInfo,
+        _$identity,
+      );
 
   /// Serializes this ChatFullInfo to a JSON map.
   Map<String, dynamic> toJson();
@@ -222,66 +223,68 @@ mixin _$ChatFullInfo {
 /// @nodoc
 abstract mixin class $ChatFullInfoCopyWith<$Res> {
   factory $ChatFullInfoCopyWith(
-          ChatFullInfo value, $Res Function(ChatFullInfo) _then) =
-      _$ChatFullInfoCopyWithImpl;
+    ChatFullInfo value,
+    $Res Function(ChatFullInfo) _then,
+  ) = _$ChatFullInfoCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'type') ChatType type,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'is_forum') bool? isForum,
-      @JsonKey(name: 'photo') ChatPhoto? photo,
-      @JsonKey(name: 'active_usernames') List<String>? activeUsernames,
-      @JsonKey(name: 'bio') String? bio,
-      @JsonKey(name: 'has_private_forwards') bool? hasPrivateForwards,
-      @JsonKey(name: 'has_restricted_voice_and_video_messages')
-      bool? hasRestrictedVoiceAndVideoMessages,
-      @JsonKey(name: 'join_to_send_messages') bool? joinToSendMessages,
-      @JsonKey(name: 'join_by_request') bool? joinByRequest,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'invite_link') String? inviteLink,
-      @JsonKey(name: 'pinned_message') Message? pinnedMessage,
-      @JsonKey(name: 'permissions') ChatPermissions? permissions,
-      @JsonKey(name: 'slow_mode_delay') int? slowModeDelay,
-      @JsonKey(name: 'message_auto_delete_time') int? messageAutoDeleteTime,
-      @JsonKey(name: 'has_protected_content') bool? hasProtectedContent,
-      @JsonKey(name: 'sticker_set_name') String? stickerSetName,
-      @JsonKey(name: 'can_set_sticker_set') bool? canSetStickerSet,
-      @JsonKey(name: 'linked_chat_id') int? linkedChatId,
-      @JsonKey(name: 'location') ChatLocation? location,
-      @JsonKey(name: 'has_hidden_members') bool? hasHiddenMembers,
-      @JsonKey(name: 'has_aggressive_anti_spam_enabled')
-      bool? hasAggressiveAntiSpamEnabled,
-      @JsonKey(name: 'emoji_status_expiration_date')
-      int? emojiStatusExpirationDate,
-      @JsonKey(name: 'available_reactions')
-      List<ReactionType>? availableReactions,
-      @JsonKey(name: 'emoji_status_custom_emoji_id')
-      String? emojiStatusCustomEmojiId,
-      @JsonKey(name: 'accent_color_id') int? accentColorId,
-      @JsonKey(name: 'background_custom_emoji_id')
-      String? backgroundCustomEmojiId,
-      @JsonKey(name: 'profile_accent_color_id') int? profileAccentColorId,
-      @JsonKey(name: 'profile_background_custom_emoji_id')
-      String? profileBackgroundCustomEmojiId,
-      @JsonKey(name: 'has_visible_history') bool? hasVisibleHistory,
-      @JsonKey(name: 'unrestrict_boost_count') int? unrestrictBoostCount,
-      @JsonKey(name: 'custom_emoji_sticker_set_name')
-      String? customEmojiStickerSetName,
-      @JsonKey(name: 'business_intro') BusinessIntro? businessIntro,
-      @JsonKey(name: 'business_location') BusinessLocation? businessLocation,
-      @JsonKey(name: 'business_opening_hours')
-      BusinessOpeningHours? businessOpeningHours,
-      @JsonKey(name: 'personal_chat') Chat? personalChat,
-      @JsonKey(name: 'birthdate') Birthdate? birthdate,
-      @JsonKey(name: 'max_reaction_count') int maxReactionCount,
-      @JsonKey(name: 'can_send_paid_media') bool? canSendPaidMedia,
-      @JsonKey(name: 'accepted_gift_types') AcceptedGiftTypes acceptedGiftTypes,
-      @JsonKey(name: 'is_direct_messages') bool? isDirectMessages,
-      @JsonKey(name: 'parent_chat') Chat? parentChat});
+  $Res call({
+    @JsonKey(name: 'id') int id,
+    @JsonKey(name: 'type') ChatType type,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'username') String? username,
+    @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'is_forum') bool? isForum,
+    @JsonKey(name: 'photo') ChatPhoto? photo,
+    @JsonKey(name: 'active_usernames') List<String>? activeUsernames,
+    @JsonKey(name: 'bio') String? bio,
+    @JsonKey(name: 'has_private_forwards') bool? hasPrivateForwards,
+    @JsonKey(name: 'has_restricted_voice_and_video_messages')
+    bool? hasRestrictedVoiceAndVideoMessages,
+    @JsonKey(name: 'join_to_send_messages') bool? joinToSendMessages,
+    @JsonKey(name: 'join_by_request') bool? joinByRequest,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'invite_link') String? inviteLink,
+    @JsonKey(name: 'pinned_message') Message? pinnedMessage,
+    @JsonKey(name: 'permissions') ChatPermissions? permissions,
+    @JsonKey(name: 'slow_mode_delay') int? slowModeDelay,
+    @JsonKey(name: 'message_auto_delete_time') int? messageAutoDeleteTime,
+    @JsonKey(name: 'has_protected_content') bool? hasProtectedContent,
+    @JsonKey(name: 'sticker_set_name') String? stickerSetName,
+    @JsonKey(name: 'can_set_sticker_set') bool? canSetStickerSet,
+    @JsonKey(name: 'linked_chat_id') int? linkedChatId,
+    @JsonKey(name: 'location') ChatLocation? location,
+    @JsonKey(name: 'has_hidden_members') bool? hasHiddenMembers,
+    @JsonKey(name: 'has_aggressive_anti_spam_enabled')
+    bool? hasAggressiveAntiSpamEnabled,
+    @JsonKey(name: 'emoji_status_expiration_date')
+    int? emojiStatusExpirationDate,
+    @JsonKey(name: 'available_reactions')
+    List<ReactionType>? availableReactions,
+    @JsonKey(name: 'emoji_status_custom_emoji_id')
+    String? emojiStatusCustomEmojiId,
+    @JsonKey(name: 'accent_color_id') int? accentColorId,
+    @JsonKey(name: 'background_custom_emoji_id')
+    String? backgroundCustomEmojiId,
+    @JsonKey(name: 'profile_accent_color_id') int? profileAccentColorId,
+    @JsonKey(name: 'profile_background_custom_emoji_id')
+    String? profileBackgroundCustomEmojiId,
+    @JsonKey(name: 'has_visible_history') bool? hasVisibleHistory,
+    @JsonKey(name: 'unrestrict_boost_count') int? unrestrictBoostCount,
+    @JsonKey(name: 'custom_emoji_sticker_set_name')
+    String? customEmojiStickerSetName,
+    @JsonKey(name: 'business_intro') BusinessIntro? businessIntro,
+    @JsonKey(name: 'business_location') BusinessLocation? businessLocation,
+    @JsonKey(name: 'business_opening_hours')
+    BusinessOpeningHours? businessOpeningHours,
+    @JsonKey(name: 'personal_chat') Chat? personalChat,
+    @JsonKey(name: 'birthdate') Birthdate? birthdate,
+    @JsonKey(name: 'max_reaction_count') int maxReactionCount,
+    @JsonKey(name: 'can_send_paid_media') bool? canSendPaidMedia,
+    @JsonKey(name: 'accepted_gift_types') AcceptedGiftTypes acceptedGiftTypes,
+    @JsonKey(name: 'is_direct_messages') bool? isDirectMessages,
+    @JsonKey(name: 'parent_chat') Chat? parentChat,
+  });
 
   $ChatPhotoCopyWith<$Res>? get photo;
   $ChatPermissionsCopyWith<$Res>? get permissions;
@@ -355,197 +358,200 @@ class _$ChatFullInfoCopyWithImpl<$Res> implements $ChatFullInfoCopyWith<$Res> {
     Object? isDirectMessages = freezed,
     Object? parentChat = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ChatType,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _self.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      firstName: freezed == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isForum: freezed == isForum
-          ? _self.isForum
-          : isForum // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      photo: freezed == photo
-          ? _self.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as ChatPhoto?,
-      activeUsernames: freezed == activeUsernames
-          ? _self.activeUsernames
-          : activeUsernames // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      bio: freezed == bio
-          ? _self.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String?,
-      hasPrivateForwards: freezed == hasPrivateForwards
-          ? _self.hasPrivateForwards
-          : hasPrivateForwards // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      hasRestrictedVoiceAndVideoMessages: freezed ==
-              hasRestrictedVoiceAndVideoMessages
-          ? _self.hasRestrictedVoiceAndVideoMessages
-          : hasRestrictedVoiceAndVideoMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      joinToSendMessages: freezed == joinToSendMessages
-          ? _self.joinToSendMessages
-          : joinToSendMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      joinByRequest: freezed == joinByRequest
-          ? _self.joinByRequest
-          : joinByRequest // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      description: freezed == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      inviteLink: freezed == inviteLink
-          ? _self.inviteLink
-          : inviteLink // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pinnedMessage: freezed == pinnedMessage
-          ? _self.pinnedMessage
-          : pinnedMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      permissions: freezed == permissions
-          ? _self.permissions
-          : permissions // ignore: cast_nullable_to_non_nullable
-              as ChatPermissions?,
-      slowModeDelay: freezed == slowModeDelay
-          ? _self.slowModeDelay
-          : slowModeDelay // ignore: cast_nullable_to_non_nullable
-              as int?,
-      messageAutoDeleteTime: freezed == messageAutoDeleteTime
-          ? _self.messageAutoDeleteTime
-          : messageAutoDeleteTime // ignore: cast_nullable_to_non_nullable
-              as int?,
-      hasProtectedContent: freezed == hasProtectedContent
-          ? _self.hasProtectedContent
-          : hasProtectedContent // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      stickerSetName: freezed == stickerSetName
-          ? _self.stickerSetName
-          : stickerSetName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      canSetStickerSet: freezed == canSetStickerSet
-          ? _self.canSetStickerSet
-          : canSetStickerSet // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      linkedChatId: freezed == linkedChatId
-          ? _self.linkedChatId
-          : linkedChatId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      location: freezed == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as ChatLocation?,
-      hasHiddenMembers: freezed == hasHiddenMembers
-          ? _self.hasHiddenMembers
-          : hasHiddenMembers // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      hasAggressiveAntiSpamEnabled: freezed == hasAggressiveAntiSpamEnabled
-          ? _self.hasAggressiveAntiSpamEnabled
-          : hasAggressiveAntiSpamEnabled // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      emojiStatusExpirationDate: freezed == emojiStatusExpirationDate
-          ? _self.emojiStatusExpirationDate
-          : emojiStatusExpirationDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      availableReactions: freezed == availableReactions
-          ? _self.availableReactions
-          : availableReactions // ignore: cast_nullable_to_non_nullable
-              as List<ReactionType>?,
-      emojiStatusCustomEmojiId: freezed == emojiStatusCustomEmojiId
-          ? _self.emojiStatusCustomEmojiId
-          : emojiStatusCustomEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      accentColorId: freezed == accentColorId
-          ? _self.accentColorId
-          : accentColorId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      backgroundCustomEmojiId: freezed == backgroundCustomEmojiId
-          ? _self.backgroundCustomEmojiId
-          : backgroundCustomEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profileAccentColorId: freezed == profileAccentColorId
-          ? _self.profileAccentColorId
-          : profileAccentColorId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      profileBackgroundCustomEmojiId: freezed == profileBackgroundCustomEmojiId
-          ? _self.profileBackgroundCustomEmojiId
-          : profileBackgroundCustomEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      hasVisibleHistory: freezed == hasVisibleHistory
-          ? _self.hasVisibleHistory
-          : hasVisibleHistory // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      unrestrictBoostCount: freezed == unrestrictBoostCount
-          ? _self.unrestrictBoostCount
-          : unrestrictBoostCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      customEmojiStickerSetName: freezed == customEmojiStickerSetName
-          ? _self.customEmojiStickerSetName
-          : customEmojiStickerSetName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      businessIntro: freezed == businessIntro
-          ? _self.businessIntro
-          : businessIntro // ignore: cast_nullable_to_non_nullable
-              as BusinessIntro?,
-      businessLocation: freezed == businessLocation
-          ? _self.businessLocation
-          : businessLocation // ignore: cast_nullable_to_non_nullable
-              as BusinessLocation?,
-      businessOpeningHours: freezed == businessOpeningHours
-          ? _self.businessOpeningHours
-          : businessOpeningHours // ignore: cast_nullable_to_non_nullable
-              as BusinessOpeningHours?,
-      personalChat: freezed == personalChat
-          ? _self.personalChat
-          : personalChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-      birthdate: freezed == birthdate
-          ? _self.birthdate
-          : birthdate // ignore: cast_nullable_to_non_nullable
-              as Birthdate?,
-      maxReactionCount: null == maxReactionCount
-          ? _self.maxReactionCount
-          : maxReactionCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      canSendPaidMedia: freezed == canSendPaidMedia
-          ? _self.canSendPaidMedia
-          : canSendPaidMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      acceptedGiftTypes: null == acceptedGiftTypes
-          ? _self.acceptedGiftTypes
-          : acceptedGiftTypes // ignore: cast_nullable_to_non_nullable
-              as AcceptedGiftTypes,
-      isDirectMessages: freezed == isDirectMessages
-          ? _self.isDirectMessages
-          : isDirectMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      parentChat: freezed == parentChat
-          ? _self.parentChat
-          : parentChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as ChatType,
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        username: freezed == username
+            ? _self.username
+            : username // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        firstName: freezed == firstName
+            ? _self.firstName
+            : firstName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        lastName: freezed == lastName
+            ? _self.lastName
+            : lastName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        isForum: freezed == isForum
+            ? _self.isForum
+            : isForum // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        photo: freezed == photo
+            ? _self.photo
+            : photo // ignore: cast_nullable_to_non_nullable
+                  as ChatPhoto?,
+        activeUsernames: freezed == activeUsernames
+            ? _self.activeUsernames
+            : activeUsernames // ignore: cast_nullable_to_non_nullable
+                  as List<String>?,
+        bio: freezed == bio
+            ? _self.bio
+            : bio // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        hasPrivateForwards: freezed == hasPrivateForwards
+            ? _self.hasPrivateForwards
+            : hasPrivateForwards // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        hasRestrictedVoiceAndVideoMessages:
+            freezed == hasRestrictedVoiceAndVideoMessages
+            ? _self.hasRestrictedVoiceAndVideoMessages
+            : hasRestrictedVoiceAndVideoMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        joinToSendMessages: freezed == joinToSendMessages
+            ? _self.joinToSendMessages
+            : joinToSendMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        joinByRequest: freezed == joinByRequest
+            ? _self.joinByRequest
+            : joinByRequest // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        description: freezed == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        inviteLink: freezed == inviteLink
+            ? _self.inviteLink
+            : inviteLink // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        pinnedMessage: freezed == pinnedMessage
+            ? _self.pinnedMessage
+            : pinnedMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        permissions: freezed == permissions
+            ? _self.permissions
+            : permissions // ignore: cast_nullable_to_non_nullable
+                  as ChatPermissions?,
+        slowModeDelay: freezed == slowModeDelay
+            ? _self.slowModeDelay
+            : slowModeDelay // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        messageAutoDeleteTime: freezed == messageAutoDeleteTime
+            ? _self.messageAutoDeleteTime
+            : messageAutoDeleteTime // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        hasProtectedContent: freezed == hasProtectedContent
+            ? _self.hasProtectedContent
+            : hasProtectedContent // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        stickerSetName: freezed == stickerSetName
+            ? _self.stickerSetName
+            : stickerSetName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        canSetStickerSet: freezed == canSetStickerSet
+            ? _self.canSetStickerSet
+            : canSetStickerSet // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        linkedChatId: freezed == linkedChatId
+            ? _self.linkedChatId
+            : linkedChatId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        location: freezed == location
+            ? _self.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as ChatLocation?,
+        hasHiddenMembers: freezed == hasHiddenMembers
+            ? _self.hasHiddenMembers
+            : hasHiddenMembers // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        hasAggressiveAntiSpamEnabled: freezed == hasAggressiveAntiSpamEnabled
+            ? _self.hasAggressiveAntiSpamEnabled
+            : hasAggressiveAntiSpamEnabled // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        emojiStatusExpirationDate: freezed == emojiStatusExpirationDate
+            ? _self.emojiStatusExpirationDate
+            : emojiStatusExpirationDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        availableReactions: freezed == availableReactions
+            ? _self.availableReactions
+            : availableReactions // ignore: cast_nullable_to_non_nullable
+                  as List<ReactionType>?,
+        emojiStatusCustomEmojiId: freezed == emojiStatusCustomEmojiId
+            ? _self.emojiStatusCustomEmojiId
+            : emojiStatusCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        accentColorId: freezed == accentColorId
+            ? _self.accentColorId
+            : accentColorId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        backgroundCustomEmojiId: freezed == backgroundCustomEmojiId
+            ? _self.backgroundCustomEmojiId
+            : backgroundCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        profileAccentColorId: freezed == profileAccentColorId
+            ? _self.profileAccentColorId
+            : profileAccentColorId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        profileBackgroundCustomEmojiId:
+            freezed == profileBackgroundCustomEmojiId
+            ? _self.profileBackgroundCustomEmojiId
+            : profileBackgroundCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        hasVisibleHistory: freezed == hasVisibleHistory
+            ? _self.hasVisibleHistory
+            : hasVisibleHistory // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        unrestrictBoostCount: freezed == unrestrictBoostCount
+            ? _self.unrestrictBoostCount
+            : unrestrictBoostCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        customEmojiStickerSetName: freezed == customEmojiStickerSetName
+            ? _self.customEmojiStickerSetName
+            : customEmojiStickerSetName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        businessIntro: freezed == businessIntro
+            ? _self.businessIntro
+            : businessIntro // ignore: cast_nullable_to_non_nullable
+                  as BusinessIntro?,
+        businessLocation: freezed == businessLocation
+            ? _self.businessLocation
+            : businessLocation // ignore: cast_nullable_to_non_nullable
+                  as BusinessLocation?,
+        businessOpeningHours: freezed == businessOpeningHours
+            ? _self.businessOpeningHours
+            : businessOpeningHours // ignore: cast_nullable_to_non_nullable
+                  as BusinessOpeningHours?,
+        personalChat: freezed == personalChat
+            ? _self.personalChat
+            : personalChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+        birthdate: freezed == birthdate
+            ? _self.birthdate
+            : birthdate // ignore: cast_nullable_to_non_nullable
+                  as Birthdate?,
+        maxReactionCount: null == maxReactionCount
+            ? _self.maxReactionCount
+            : maxReactionCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        canSendPaidMedia: freezed == canSendPaidMedia
+            ? _self.canSendPaidMedia
+            : canSendPaidMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        acceptedGiftTypes: null == acceptedGiftTypes
+            ? _self.acceptedGiftTypes
+            : acceptedGiftTypes // ignore: cast_nullable_to_non_nullable
+                  as AcceptedGiftTypes,
+        isDirectMessages: freezed == isDirectMessages
+            ? _self.isDirectMessages
+            : isDirectMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        parentChat: freezed == parentChat
+            ? _self.parentChat
+            : parentChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+      ),
+    );
   }
 
   /// Create a copy of ChatFullInfo
@@ -627,8 +633,9 @@ class _$ChatFullInfoCopyWithImpl<$Res> implements $ChatFullInfoCopyWith<$Res> {
       return null;
     }
 
-    return $BusinessOpeningHoursCopyWith<$Res>(_self.businessOpeningHours!,
-        (value) {
+    return $BusinessOpeningHoursCopyWith<$Res>(_self.businessOpeningHours!, (
+      value,
+    ) {
       return _then(_self.copyWith(businessOpeningHours: value));
     });
   }
@@ -686,66 +693,146 @@ class _$ChatFullInfoCopyWithImpl<$Res> implements $ChatFullInfoCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [ChatFullInfo].
+extension ChatFullInfoPatterns on ChatFullInfo {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChatFullInfo value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChatFullInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChatFullInfo value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatFullInfo():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChatFullInfo value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatFullInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _ChatFullInfo implements ChatFullInfo {
-  const _ChatFullInfo(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'username') this.username,
-      @JsonKey(name: 'first_name') this.firstName,
-      @JsonKey(name: 'last_name') this.lastName,
-      @JsonKey(name: 'is_forum') this.isForum,
-      @JsonKey(name: 'photo') this.photo,
-      @JsonKey(name: 'active_usernames') final List<String>? activeUsernames,
-      @JsonKey(name: 'bio') this.bio,
-      @JsonKey(name: 'has_private_forwards') this.hasPrivateForwards,
-      @JsonKey(name: 'has_restricted_voice_and_video_messages')
-      this.hasRestrictedVoiceAndVideoMessages,
-      @JsonKey(name: 'join_to_send_messages') this.joinToSendMessages,
-      @JsonKey(name: 'join_by_request') this.joinByRequest,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'invite_link') this.inviteLink,
-      @JsonKey(name: 'pinned_message') this.pinnedMessage,
-      @JsonKey(name: 'permissions') this.permissions,
-      @JsonKey(name: 'slow_mode_delay') this.slowModeDelay,
-      @JsonKey(name: 'message_auto_delete_time') this.messageAutoDeleteTime,
-      @JsonKey(name: 'has_protected_content') this.hasProtectedContent,
-      @JsonKey(name: 'sticker_set_name') this.stickerSetName,
-      @JsonKey(name: 'can_set_sticker_set') this.canSetStickerSet,
-      @JsonKey(name: 'linked_chat_id') this.linkedChatId,
-      @JsonKey(name: 'location') this.location,
-      @JsonKey(name: 'has_hidden_members') this.hasHiddenMembers,
-      @JsonKey(name: 'has_aggressive_anti_spam_enabled')
-      this.hasAggressiveAntiSpamEnabled,
-      @JsonKey(name: 'emoji_status_expiration_date')
-      this.emojiStatusExpirationDate,
-      @JsonKey(name: 'available_reactions')
-      final List<ReactionType>? availableReactions,
-      @JsonKey(name: 'emoji_status_custom_emoji_id')
-      this.emojiStatusCustomEmojiId,
-      @JsonKey(name: 'accent_color_id') this.accentColorId,
-      @JsonKey(name: 'background_custom_emoji_id') this.backgroundCustomEmojiId,
-      @JsonKey(name: 'profile_accent_color_id') this.profileAccentColorId,
-      @JsonKey(name: 'profile_background_custom_emoji_id')
-      this.profileBackgroundCustomEmojiId,
-      @JsonKey(name: 'has_visible_history') this.hasVisibleHistory,
-      @JsonKey(name: 'unrestrict_boost_count') this.unrestrictBoostCount,
-      @JsonKey(name: 'custom_emoji_sticker_set_name')
-      this.customEmojiStickerSetName,
-      @JsonKey(name: 'business_intro') this.businessIntro,
-      @JsonKey(name: 'business_location') this.businessLocation,
-      @JsonKey(name: 'business_opening_hours') this.businessOpeningHours,
-      @JsonKey(name: 'personal_chat') this.personalChat,
-      @JsonKey(name: 'birthdate') this.birthdate,
-      @JsonKey(name: 'max_reaction_count') this.maxReactionCount = 0,
-      @JsonKey(name: 'can_send_paid_media') this.canSendPaidMedia,
-      @JsonKey(name: 'accepted_gift_types') required this.acceptedGiftTypes,
-      @JsonKey(name: 'is_direct_messages') this.isDirectMessages,
-      @JsonKey(name: 'parent_chat') this.parentChat})
-      : _activeUsernames = activeUsernames,
-        _availableReactions = availableReactions;
+  const _ChatFullInfo({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'title') this.title,
+    @JsonKey(name: 'username') this.username,
+    @JsonKey(name: 'first_name') this.firstName,
+    @JsonKey(name: 'last_name') this.lastName,
+    @JsonKey(name: 'is_forum') this.isForum,
+    @JsonKey(name: 'photo') this.photo,
+    @JsonKey(name: 'active_usernames') final List<String>? activeUsernames,
+    @JsonKey(name: 'bio') this.bio,
+    @JsonKey(name: 'has_private_forwards') this.hasPrivateForwards,
+    @JsonKey(name: 'has_restricted_voice_and_video_messages')
+    this.hasRestrictedVoiceAndVideoMessages,
+    @JsonKey(name: 'join_to_send_messages') this.joinToSendMessages,
+    @JsonKey(name: 'join_by_request') this.joinByRequest,
+    @JsonKey(name: 'description') this.description,
+    @JsonKey(name: 'invite_link') this.inviteLink,
+    @JsonKey(name: 'pinned_message') this.pinnedMessage,
+    @JsonKey(name: 'permissions') this.permissions,
+    @JsonKey(name: 'slow_mode_delay') this.slowModeDelay,
+    @JsonKey(name: 'message_auto_delete_time') this.messageAutoDeleteTime,
+    @JsonKey(name: 'has_protected_content') this.hasProtectedContent,
+    @JsonKey(name: 'sticker_set_name') this.stickerSetName,
+    @JsonKey(name: 'can_set_sticker_set') this.canSetStickerSet,
+    @JsonKey(name: 'linked_chat_id') this.linkedChatId,
+    @JsonKey(name: 'location') this.location,
+    @JsonKey(name: 'has_hidden_members') this.hasHiddenMembers,
+    @JsonKey(name: 'has_aggressive_anti_spam_enabled')
+    this.hasAggressiveAntiSpamEnabled,
+    @JsonKey(name: 'emoji_status_expiration_date')
+    this.emojiStatusExpirationDate,
+    @JsonKey(name: 'available_reactions')
+    final List<ReactionType>? availableReactions,
+    @JsonKey(name: 'emoji_status_custom_emoji_id')
+    this.emojiStatusCustomEmojiId,
+    @JsonKey(name: 'accent_color_id') this.accentColorId,
+    @JsonKey(name: 'background_custom_emoji_id') this.backgroundCustomEmojiId,
+    @JsonKey(name: 'profile_accent_color_id') this.profileAccentColorId,
+    @JsonKey(name: 'profile_background_custom_emoji_id')
+    this.profileBackgroundCustomEmojiId,
+    @JsonKey(name: 'has_visible_history') this.hasVisibleHistory,
+    @JsonKey(name: 'unrestrict_boost_count') this.unrestrictBoostCount,
+    @JsonKey(name: 'custom_emoji_sticker_set_name')
+    this.customEmojiStickerSetName,
+    @JsonKey(name: 'business_intro') this.businessIntro,
+    @JsonKey(name: 'business_location') this.businessLocation,
+    @JsonKey(name: 'business_opening_hours') this.businessOpeningHours,
+    @JsonKey(name: 'personal_chat') this.personalChat,
+    @JsonKey(name: 'birthdate') this.birthdate,
+    @JsonKey(name: 'max_reaction_count') this.maxReactionCount = 0,
+    @JsonKey(name: 'can_send_paid_media') this.canSendPaidMedia,
+    @JsonKey(name: 'accepted_gift_types') required this.acceptedGiftTypes,
+    @JsonKey(name: 'is_direct_messages') this.isDirectMessages,
+    @JsonKey(name: 'parent_chat') this.parentChat,
+  }) : _activeUsernames = activeUsernames,
+       _availableReactions = availableReactions;
   factory _ChatFullInfo.fromJson(Map<String, dynamic> json) =>
       _$ChatFullInfoFromJson(json);
 
@@ -1013,9 +1100,7 @@ class _ChatFullInfo implements ChatFullInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatFullInfoToJson(
-      this,
-    );
+    return _$ChatFullInfoToJson(this);
   }
 
   @override
@@ -1028,67 +1113,69 @@ class _ChatFullInfo implements ChatFullInfo {
 abstract mixin class _$ChatFullInfoCopyWith<$Res>
     implements $ChatFullInfoCopyWith<$Res> {
   factory _$ChatFullInfoCopyWith(
-          _ChatFullInfo value, $Res Function(_ChatFullInfo) _then) =
-      __$ChatFullInfoCopyWithImpl;
+    _ChatFullInfo value,
+    $Res Function(_ChatFullInfo) _then,
+  ) = __$ChatFullInfoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'type') ChatType type,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'is_forum') bool? isForum,
-      @JsonKey(name: 'photo') ChatPhoto? photo,
-      @JsonKey(name: 'active_usernames') List<String>? activeUsernames,
-      @JsonKey(name: 'bio') String? bio,
-      @JsonKey(name: 'has_private_forwards') bool? hasPrivateForwards,
-      @JsonKey(name: 'has_restricted_voice_and_video_messages')
-      bool? hasRestrictedVoiceAndVideoMessages,
-      @JsonKey(name: 'join_to_send_messages') bool? joinToSendMessages,
-      @JsonKey(name: 'join_by_request') bool? joinByRequest,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'invite_link') String? inviteLink,
-      @JsonKey(name: 'pinned_message') Message? pinnedMessage,
-      @JsonKey(name: 'permissions') ChatPermissions? permissions,
-      @JsonKey(name: 'slow_mode_delay') int? slowModeDelay,
-      @JsonKey(name: 'message_auto_delete_time') int? messageAutoDeleteTime,
-      @JsonKey(name: 'has_protected_content') bool? hasProtectedContent,
-      @JsonKey(name: 'sticker_set_name') String? stickerSetName,
-      @JsonKey(name: 'can_set_sticker_set') bool? canSetStickerSet,
-      @JsonKey(name: 'linked_chat_id') int? linkedChatId,
-      @JsonKey(name: 'location') ChatLocation? location,
-      @JsonKey(name: 'has_hidden_members') bool? hasHiddenMembers,
-      @JsonKey(name: 'has_aggressive_anti_spam_enabled')
-      bool? hasAggressiveAntiSpamEnabled,
-      @JsonKey(name: 'emoji_status_expiration_date')
-      int? emojiStatusExpirationDate,
-      @JsonKey(name: 'available_reactions')
-      List<ReactionType>? availableReactions,
-      @JsonKey(name: 'emoji_status_custom_emoji_id')
-      String? emojiStatusCustomEmojiId,
-      @JsonKey(name: 'accent_color_id') int? accentColorId,
-      @JsonKey(name: 'background_custom_emoji_id')
-      String? backgroundCustomEmojiId,
-      @JsonKey(name: 'profile_accent_color_id') int? profileAccentColorId,
-      @JsonKey(name: 'profile_background_custom_emoji_id')
-      String? profileBackgroundCustomEmojiId,
-      @JsonKey(name: 'has_visible_history') bool? hasVisibleHistory,
-      @JsonKey(name: 'unrestrict_boost_count') int? unrestrictBoostCount,
-      @JsonKey(name: 'custom_emoji_sticker_set_name')
-      String? customEmojiStickerSetName,
-      @JsonKey(name: 'business_intro') BusinessIntro? businessIntro,
-      @JsonKey(name: 'business_location') BusinessLocation? businessLocation,
-      @JsonKey(name: 'business_opening_hours')
-      BusinessOpeningHours? businessOpeningHours,
-      @JsonKey(name: 'personal_chat') Chat? personalChat,
-      @JsonKey(name: 'birthdate') Birthdate? birthdate,
-      @JsonKey(name: 'max_reaction_count') int maxReactionCount,
-      @JsonKey(name: 'can_send_paid_media') bool? canSendPaidMedia,
-      @JsonKey(name: 'accepted_gift_types') AcceptedGiftTypes acceptedGiftTypes,
-      @JsonKey(name: 'is_direct_messages') bool? isDirectMessages,
-      @JsonKey(name: 'parent_chat') Chat? parentChat});
+  $Res call({
+    @JsonKey(name: 'id') int id,
+    @JsonKey(name: 'type') ChatType type,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'username') String? username,
+    @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'is_forum') bool? isForum,
+    @JsonKey(name: 'photo') ChatPhoto? photo,
+    @JsonKey(name: 'active_usernames') List<String>? activeUsernames,
+    @JsonKey(name: 'bio') String? bio,
+    @JsonKey(name: 'has_private_forwards') bool? hasPrivateForwards,
+    @JsonKey(name: 'has_restricted_voice_and_video_messages')
+    bool? hasRestrictedVoiceAndVideoMessages,
+    @JsonKey(name: 'join_to_send_messages') bool? joinToSendMessages,
+    @JsonKey(name: 'join_by_request') bool? joinByRequest,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'invite_link') String? inviteLink,
+    @JsonKey(name: 'pinned_message') Message? pinnedMessage,
+    @JsonKey(name: 'permissions') ChatPermissions? permissions,
+    @JsonKey(name: 'slow_mode_delay') int? slowModeDelay,
+    @JsonKey(name: 'message_auto_delete_time') int? messageAutoDeleteTime,
+    @JsonKey(name: 'has_protected_content') bool? hasProtectedContent,
+    @JsonKey(name: 'sticker_set_name') String? stickerSetName,
+    @JsonKey(name: 'can_set_sticker_set') bool? canSetStickerSet,
+    @JsonKey(name: 'linked_chat_id') int? linkedChatId,
+    @JsonKey(name: 'location') ChatLocation? location,
+    @JsonKey(name: 'has_hidden_members') bool? hasHiddenMembers,
+    @JsonKey(name: 'has_aggressive_anti_spam_enabled')
+    bool? hasAggressiveAntiSpamEnabled,
+    @JsonKey(name: 'emoji_status_expiration_date')
+    int? emojiStatusExpirationDate,
+    @JsonKey(name: 'available_reactions')
+    List<ReactionType>? availableReactions,
+    @JsonKey(name: 'emoji_status_custom_emoji_id')
+    String? emojiStatusCustomEmojiId,
+    @JsonKey(name: 'accent_color_id') int? accentColorId,
+    @JsonKey(name: 'background_custom_emoji_id')
+    String? backgroundCustomEmojiId,
+    @JsonKey(name: 'profile_accent_color_id') int? profileAccentColorId,
+    @JsonKey(name: 'profile_background_custom_emoji_id')
+    String? profileBackgroundCustomEmojiId,
+    @JsonKey(name: 'has_visible_history') bool? hasVisibleHistory,
+    @JsonKey(name: 'unrestrict_boost_count') int? unrestrictBoostCount,
+    @JsonKey(name: 'custom_emoji_sticker_set_name')
+    String? customEmojiStickerSetName,
+    @JsonKey(name: 'business_intro') BusinessIntro? businessIntro,
+    @JsonKey(name: 'business_location') BusinessLocation? businessLocation,
+    @JsonKey(name: 'business_opening_hours')
+    BusinessOpeningHours? businessOpeningHours,
+    @JsonKey(name: 'personal_chat') Chat? personalChat,
+    @JsonKey(name: 'birthdate') Birthdate? birthdate,
+    @JsonKey(name: 'max_reaction_count') int maxReactionCount,
+    @JsonKey(name: 'can_send_paid_media') bool? canSendPaidMedia,
+    @JsonKey(name: 'accepted_gift_types') AcceptedGiftTypes acceptedGiftTypes,
+    @JsonKey(name: 'is_direct_messages') bool? isDirectMessages,
+    @JsonKey(name: 'parent_chat') Chat? parentChat,
+  });
 
   @override
   $ChatPhotoCopyWith<$Res>? get photo;
@@ -1173,197 +1260,200 @@ class __$ChatFullInfoCopyWithImpl<$Res>
     Object? isDirectMessages = freezed,
     Object? parentChat = freezed,
   }) {
-    return _then(_ChatFullInfo(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ChatType,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _self.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      firstName: freezed == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isForum: freezed == isForum
-          ? _self.isForum
-          : isForum // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      photo: freezed == photo
-          ? _self.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as ChatPhoto?,
-      activeUsernames: freezed == activeUsernames
-          ? _self._activeUsernames
-          : activeUsernames // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      bio: freezed == bio
-          ? _self.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String?,
-      hasPrivateForwards: freezed == hasPrivateForwards
-          ? _self.hasPrivateForwards
-          : hasPrivateForwards // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      hasRestrictedVoiceAndVideoMessages: freezed ==
-              hasRestrictedVoiceAndVideoMessages
-          ? _self.hasRestrictedVoiceAndVideoMessages
-          : hasRestrictedVoiceAndVideoMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      joinToSendMessages: freezed == joinToSendMessages
-          ? _self.joinToSendMessages
-          : joinToSendMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      joinByRequest: freezed == joinByRequest
-          ? _self.joinByRequest
-          : joinByRequest // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      description: freezed == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      inviteLink: freezed == inviteLink
-          ? _self.inviteLink
-          : inviteLink // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pinnedMessage: freezed == pinnedMessage
-          ? _self.pinnedMessage
-          : pinnedMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      permissions: freezed == permissions
-          ? _self.permissions
-          : permissions // ignore: cast_nullable_to_non_nullable
-              as ChatPermissions?,
-      slowModeDelay: freezed == slowModeDelay
-          ? _self.slowModeDelay
-          : slowModeDelay // ignore: cast_nullable_to_non_nullable
-              as int?,
-      messageAutoDeleteTime: freezed == messageAutoDeleteTime
-          ? _self.messageAutoDeleteTime
-          : messageAutoDeleteTime // ignore: cast_nullable_to_non_nullable
-              as int?,
-      hasProtectedContent: freezed == hasProtectedContent
-          ? _self.hasProtectedContent
-          : hasProtectedContent // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      stickerSetName: freezed == stickerSetName
-          ? _self.stickerSetName
-          : stickerSetName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      canSetStickerSet: freezed == canSetStickerSet
-          ? _self.canSetStickerSet
-          : canSetStickerSet // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      linkedChatId: freezed == linkedChatId
-          ? _self.linkedChatId
-          : linkedChatId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      location: freezed == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as ChatLocation?,
-      hasHiddenMembers: freezed == hasHiddenMembers
-          ? _self.hasHiddenMembers
-          : hasHiddenMembers // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      hasAggressiveAntiSpamEnabled: freezed == hasAggressiveAntiSpamEnabled
-          ? _self.hasAggressiveAntiSpamEnabled
-          : hasAggressiveAntiSpamEnabled // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      emojiStatusExpirationDate: freezed == emojiStatusExpirationDate
-          ? _self.emojiStatusExpirationDate
-          : emojiStatusExpirationDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      availableReactions: freezed == availableReactions
-          ? _self._availableReactions
-          : availableReactions // ignore: cast_nullable_to_non_nullable
-              as List<ReactionType>?,
-      emojiStatusCustomEmojiId: freezed == emojiStatusCustomEmojiId
-          ? _self.emojiStatusCustomEmojiId
-          : emojiStatusCustomEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      accentColorId: freezed == accentColorId
-          ? _self.accentColorId
-          : accentColorId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      backgroundCustomEmojiId: freezed == backgroundCustomEmojiId
-          ? _self.backgroundCustomEmojiId
-          : backgroundCustomEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profileAccentColorId: freezed == profileAccentColorId
-          ? _self.profileAccentColorId
-          : profileAccentColorId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      profileBackgroundCustomEmojiId: freezed == profileBackgroundCustomEmojiId
-          ? _self.profileBackgroundCustomEmojiId
-          : profileBackgroundCustomEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      hasVisibleHistory: freezed == hasVisibleHistory
-          ? _self.hasVisibleHistory
-          : hasVisibleHistory // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      unrestrictBoostCount: freezed == unrestrictBoostCount
-          ? _self.unrestrictBoostCount
-          : unrestrictBoostCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      customEmojiStickerSetName: freezed == customEmojiStickerSetName
-          ? _self.customEmojiStickerSetName
-          : customEmojiStickerSetName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      businessIntro: freezed == businessIntro
-          ? _self.businessIntro
-          : businessIntro // ignore: cast_nullable_to_non_nullable
-              as BusinessIntro?,
-      businessLocation: freezed == businessLocation
-          ? _self.businessLocation
-          : businessLocation // ignore: cast_nullable_to_non_nullable
-              as BusinessLocation?,
-      businessOpeningHours: freezed == businessOpeningHours
-          ? _self.businessOpeningHours
-          : businessOpeningHours // ignore: cast_nullable_to_non_nullable
-              as BusinessOpeningHours?,
-      personalChat: freezed == personalChat
-          ? _self.personalChat
-          : personalChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-      birthdate: freezed == birthdate
-          ? _self.birthdate
-          : birthdate // ignore: cast_nullable_to_non_nullable
-              as Birthdate?,
-      maxReactionCount: null == maxReactionCount
-          ? _self.maxReactionCount
-          : maxReactionCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      canSendPaidMedia: freezed == canSendPaidMedia
-          ? _self.canSendPaidMedia
-          : canSendPaidMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      acceptedGiftTypes: null == acceptedGiftTypes
-          ? _self.acceptedGiftTypes
-          : acceptedGiftTypes // ignore: cast_nullable_to_non_nullable
-              as AcceptedGiftTypes,
-      isDirectMessages: freezed == isDirectMessages
-          ? _self.isDirectMessages
-          : isDirectMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      parentChat: freezed == parentChat
-          ? _self.parentChat
-          : parentChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-    ));
+    return _then(
+      _ChatFullInfo(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as ChatType,
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        username: freezed == username
+            ? _self.username
+            : username // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        firstName: freezed == firstName
+            ? _self.firstName
+            : firstName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        lastName: freezed == lastName
+            ? _self.lastName
+            : lastName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        isForum: freezed == isForum
+            ? _self.isForum
+            : isForum // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        photo: freezed == photo
+            ? _self.photo
+            : photo // ignore: cast_nullable_to_non_nullable
+                  as ChatPhoto?,
+        activeUsernames: freezed == activeUsernames
+            ? _self._activeUsernames
+            : activeUsernames // ignore: cast_nullable_to_non_nullable
+                  as List<String>?,
+        bio: freezed == bio
+            ? _self.bio
+            : bio // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        hasPrivateForwards: freezed == hasPrivateForwards
+            ? _self.hasPrivateForwards
+            : hasPrivateForwards // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        hasRestrictedVoiceAndVideoMessages:
+            freezed == hasRestrictedVoiceAndVideoMessages
+            ? _self.hasRestrictedVoiceAndVideoMessages
+            : hasRestrictedVoiceAndVideoMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        joinToSendMessages: freezed == joinToSendMessages
+            ? _self.joinToSendMessages
+            : joinToSendMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        joinByRequest: freezed == joinByRequest
+            ? _self.joinByRequest
+            : joinByRequest // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        description: freezed == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        inviteLink: freezed == inviteLink
+            ? _self.inviteLink
+            : inviteLink // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        pinnedMessage: freezed == pinnedMessage
+            ? _self.pinnedMessage
+            : pinnedMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        permissions: freezed == permissions
+            ? _self.permissions
+            : permissions // ignore: cast_nullable_to_non_nullable
+                  as ChatPermissions?,
+        slowModeDelay: freezed == slowModeDelay
+            ? _self.slowModeDelay
+            : slowModeDelay // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        messageAutoDeleteTime: freezed == messageAutoDeleteTime
+            ? _self.messageAutoDeleteTime
+            : messageAutoDeleteTime // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        hasProtectedContent: freezed == hasProtectedContent
+            ? _self.hasProtectedContent
+            : hasProtectedContent // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        stickerSetName: freezed == stickerSetName
+            ? _self.stickerSetName
+            : stickerSetName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        canSetStickerSet: freezed == canSetStickerSet
+            ? _self.canSetStickerSet
+            : canSetStickerSet // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        linkedChatId: freezed == linkedChatId
+            ? _self.linkedChatId
+            : linkedChatId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        location: freezed == location
+            ? _self.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as ChatLocation?,
+        hasHiddenMembers: freezed == hasHiddenMembers
+            ? _self.hasHiddenMembers
+            : hasHiddenMembers // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        hasAggressiveAntiSpamEnabled: freezed == hasAggressiveAntiSpamEnabled
+            ? _self.hasAggressiveAntiSpamEnabled
+            : hasAggressiveAntiSpamEnabled // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        emojiStatusExpirationDate: freezed == emojiStatusExpirationDate
+            ? _self.emojiStatusExpirationDate
+            : emojiStatusExpirationDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        availableReactions: freezed == availableReactions
+            ? _self._availableReactions
+            : availableReactions // ignore: cast_nullable_to_non_nullable
+                  as List<ReactionType>?,
+        emojiStatusCustomEmojiId: freezed == emojiStatusCustomEmojiId
+            ? _self.emojiStatusCustomEmojiId
+            : emojiStatusCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        accentColorId: freezed == accentColorId
+            ? _self.accentColorId
+            : accentColorId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        backgroundCustomEmojiId: freezed == backgroundCustomEmojiId
+            ? _self.backgroundCustomEmojiId
+            : backgroundCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        profileAccentColorId: freezed == profileAccentColorId
+            ? _self.profileAccentColorId
+            : profileAccentColorId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        profileBackgroundCustomEmojiId:
+            freezed == profileBackgroundCustomEmojiId
+            ? _self.profileBackgroundCustomEmojiId
+            : profileBackgroundCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        hasVisibleHistory: freezed == hasVisibleHistory
+            ? _self.hasVisibleHistory
+            : hasVisibleHistory // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        unrestrictBoostCount: freezed == unrestrictBoostCount
+            ? _self.unrestrictBoostCount
+            : unrestrictBoostCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        customEmojiStickerSetName: freezed == customEmojiStickerSetName
+            ? _self.customEmojiStickerSetName
+            : customEmojiStickerSetName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        businessIntro: freezed == businessIntro
+            ? _self.businessIntro
+            : businessIntro // ignore: cast_nullable_to_non_nullable
+                  as BusinessIntro?,
+        businessLocation: freezed == businessLocation
+            ? _self.businessLocation
+            : businessLocation // ignore: cast_nullable_to_non_nullable
+                  as BusinessLocation?,
+        businessOpeningHours: freezed == businessOpeningHours
+            ? _self.businessOpeningHours
+            : businessOpeningHours // ignore: cast_nullable_to_non_nullable
+                  as BusinessOpeningHours?,
+        personalChat: freezed == personalChat
+            ? _self.personalChat
+            : personalChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+        birthdate: freezed == birthdate
+            ? _self.birthdate
+            : birthdate // ignore: cast_nullable_to_non_nullable
+                  as Birthdate?,
+        maxReactionCount: null == maxReactionCount
+            ? _self.maxReactionCount
+            : maxReactionCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        canSendPaidMedia: freezed == canSendPaidMedia
+            ? _self.canSendPaidMedia
+            : canSendPaidMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        acceptedGiftTypes: null == acceptedGiftTypes
+            ? _self.acceptedGiftTypes
+            : acceptedGiftTypes // ignore: cast_nullable_to_non_nullable
+                  as AcceptedGiftTypes,
+        isDirectMessages: freezed == isDirectMessages
+            ? _self.isDirectMessages
+            : isDirectMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        parentChat: freezed == parentChat
+            ? _self.parentChat
+            : parentChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+      ),
+    );
   }
 
   /// Create a copy of ChatFullInfo
@@ -1445,8 +1535,9 @@ class __$ChatFullInfoCopyWithImpl<$Res>
       return null;
     }
 
-    return $BusinessOpeningHoursCopyWith<$Res>(_self.businessOpeningHours!,
-        (value) {
+    return $BusinessOpeningHoursCopyWith<$Res>(_self.businessOpeningHours!, (
+      value,
+    ) {
       return _then(_self.copyWith(businessOpeningHours: value));
     });
   }

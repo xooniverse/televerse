@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -35,7 +34,9 @@ mixin _$ChatBoostRemoved {
   @pragma('vm:prefer-inline')
   $ChatBoostRemovedCopyWith<ChatBoostRemoved> get copyWith =>
       _$ChatBoostRemovedCopyWithImpl<ChatBoostRemoved>(
-          this as ChatBoostRemoved, _$identity);
+        this as ChatBoostRemoved,
+        _$identity,
+      );
 
   /// Serializes this ChatBoostRemoved to a JSON map.
   Map<String, dynamic> toJson();
@@ -49,14 +50,16 @@ mixin _$ChatBoostRemoved {
 /// @nodoc
 abstract mixin class $ChatBoostRemovedCopyWith<$Res> {
   factory $ChatBoostRemovedCopyWith(
-          ChatBoostRemoved value, $Res Function(ChatBoostRemoved) _then) =
-      _$ChatBoostRemovedCopyWithImpl;
+    ChatBoostRemoved value,
+    $Res Function(ChatBoostRemoved) _then,
+  ) = _$ChatBoostRemovedCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'boost_id') String boostId,
-      @JsonKey(name: 'remove_date') int removeDate,
-      ChatBoostSource source});
+  $Res call({
+    @JsonKey(name: 'chat') Chat chat,
+    @JsonKey(name: 'boost_id') String boostId,
+    @JsonKey(name: 'remove_date') int removeDate,
+    ChatBoostSource source,
+  });
 
   $ChatCopyWith<$Res> get chat;
   $ChatBoostSourceCopyWith<$Res> get source;
@@ -80,24 +83,26 @@ class _$ChatBoostRemovedCopyWithImpl<$Res>
     Object? removeDate = null,
     Object? source = null,
   }) {
-    return _then(_self.copyWith(
-      chat: null == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      boostId: null == boostId
-          ? _self.boostId
-          : boostId // ignore: cast_nullable_to_non_nullable
-              as String,
-      removeDate: null == removeDate
-          ? _self.removeDate
-          : removeDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as ChatBoostSource,
-    ));
+    return _then(
+      _self.copyWith(
+        chat: null == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        boostId: null == boostId
+            ? _self.boostId
+            : boostId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        removeDate: null == removeDate
+            ? _self.removeDate
+            : removeDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as ChatBoostSource,
+      ),
+    );
   }
 
   /// Create a copy of ChatBoostRemoved
@@ -121,14 +126,95 @@ class _$ChatBoostRemovedCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [ChatBoostRemoved].
+extension ChatBoostRemovedPatterns on ChatBoostRemoved {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChatBoostRemoved value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChatBoostRemoved() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChatBoostRemoved value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatBoostRemoved():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChatBoostRemoved value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatBoostRemoved() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _ChatBoostRemoved implements ChatBoostRemoved {
-  const _ChatBoostRemoved(
-      {@JsonKey(name: 'chat') required this.chat,
-      @JsonKey(name: 'boost_id') required this.boostId,
-      @JsonKey(name: 'remove_date') required this.removeDate,
-      required this.source});
+  const _ChatBoostRemoved({
+    @JsonKey(name: 'chat') required this.chat,
+    @JsonKey(name: 'boost_id') required this.boostId,
+    @JsonKey(name: 'remove_date') required this.removeDate,
+    required this.source,
+  });
   factory _ChatBoostRemoved.fromJson(Map<String, dynamic> json) =>
       _$ChatBoostRemovedFromJson(json);
 
@@ -161,9 +247,7 @@ class _ChatBoostRemoved implements ChatBoostRemoved {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatBoostRemovedToJson(
-      this,
-    );
+    return _$ChatBoostRemovedToJson(this);
   }
 
   @override
@@ -176,15 +260,17 @@ class _ChatBoostRemoved implements ChatBoostRemoved {
 abstract mixin class _$ChatBoostRemovedCopyWith<$Res>
     implements $ChatBoostRemovedCopyWith<$Res> {
   factory _$ChatBoostRemovedCopyWith(
-          _ChatBoostRemoved value, $Res Function(_ChatBoostRemoved) _then) =
-      __$ChatBoostRemovedCopyWithImpl;
+    _ChatBoostRemoved value,
+    $Res Function(_ChatBoostRemoved) _then,
+  ) = __$ChatBoostRemovedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'boost_id') String boostId,
-      @JsonKey(name: 'remove_date') int removeDate,
-      ChatBoostSource source});
+  $Res call({
+    @JsonKey(name: 'chat') Chat chat,
+    @JsonKey(name: 'boost_id') String boostId,
+    @JsonKey(name: 'remove_date') int removeDate,
+    ChatBoostSource source,
+  });
 
   @override
   $ChatCopyWith<$Res> get chat;
@@ -210,24 +296,26 @@ class __$ChatBoostRemovedCopyWithImpl<$Res>
     Object? removeDate = null,
     Object? source = null,
   }) {
-    return _then(_ChatBoostRemoved(
-      chat: null == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      boostId: null == boostId
-          ? _self.boostId
-          : boostId // ignore: cast_nullable_to_non_nullable
-              as String,
-      removeDate: null == removeDate
-          ? _self.removeDate
-          : removeDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as ChatBoostSource,
-    ));
+    return _then(
+      _ChatBoostRemoved(
+        chat: null == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        boostId: null == boostId
+            ? _self.boostId
+            : boostId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        removeDate: null == removeDate
+            ? _self.removeDate
+            : removeDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as ChatBoostSource,
+      ),
+    );
   }
 
   /// Create a copy of ChatBoostRemoved

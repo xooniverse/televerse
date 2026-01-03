@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -29,7 +28,9 @@ mixin _$ForumTopicEdited {
   @pragma('vm:prefer-inline')
   $ForumTopicEditedCopyWith<ForumTopicEdited> get copyWith =>
       _$ForumTopicEditedCopyWithImpl<ForumTopicEdited>(
-          this as ForumTopicEdited, _$identity);
+        this as ForumTopicEdited,
+        _$identity,
+      );
 
   /// Serializes this ForumTopicEdited to a JSON map.
   Map<String, dynamic> toJson();
@@ -43,12 +44,14 @@ mixin _$ForumTopicEdited {
 /// @nodoc
 abstract mixin class $ForumTopicEditedCopyWith<$Res> {
   factory $ForumTopicEditedCopyWith(
-          ForumTopicEdited value, $Res Function(ForumTopicEdited) _then) =
-      _$ForumTopicEditedCopyWithImpl;
+    ForumTopicEdited value,
+    $Res Function(ForumTopicEdited) _then,
+  ) = _$ForumTopicEditedCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
+  $Res call({
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+  });
 }
 
 /// @nodoc
@@ -63,29 +66,109 @@ class _$ForumTopicEditedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? name = freezed,
-    Object? iconCustomEmojiId = freezed,
+  $Res call({Object? name = freezed, Object? iconCustomEmojiId = freezed}) {
+    return _then(
+      _self.copyWith(
+        name: freezed == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        iconCustomEmojiId: freezed == iconCustomEmojiId
+            ? _self.iconCustomEmojiId
+            : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [ForumTopicEdited].
+extension ForumTopicEditedPatterns on ForumTopicEdited {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ForumTopicEdited value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iconCustomEmojiId: freezed == iconCustomEmojiId
-          ? _self.iconCustomEmojiId
-          : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _ForumTopicEdited() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ForumTopicEdited value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ForumTopicEdited():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ForumTopicEdited value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ForumTopicEdited() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _ForumTopicEdited implements ForumTopicEdited {
-  const _ForumTopicEdited(
-      {@JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'icon_custom_emoji_id') this.iconCustomEmojiId});
+  const _ForumTopicEdited({
+    @JsonKey(name: 'name') this.name,
+    @JsonKey(name: 'icon_custom_emoji_id') this.iconCustomEmojiId,
+  });
   factory _ForumTopicEdited.fromJson(Map<String, dynamic> json) =>
       _$ForumTopicEditedFromJson(json);
 
@@ -110,9 +193,7 @@ class _ForumTopicEdited implements ForumTopicEdited {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ForumTopicEditedToJson(
-      this,
-    );
+    return _$ForumTopicEditedToJson(this);
   }
 
   @override
@@ -125,13 +206,15 @@ class _ForumTopicEdited implements ForumTopicEdited {
 abstract mixin class _$ForumTopicEditedCopyWith<$Res>
     implements $ForumTopicEditedCopyWith<$Res> {
   factory _$ForumTopicEditedCopyWith(
-          _ForumTopicEdited value, $Res Function(_ForumTopicEdited) _then) =
-      __$ForumTopicEditedCopyWithImpl;
+    _ForumTopicEdited value,
+    $Res Function(_ForumTopicEdited) _then,
+  ) = __$ForumTopicEditedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
+  $Res call({
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+  });
 }
 
 /// @nodoc
@@ -146,19 +229,18 @@ class __$ForumTopicEditedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? name = freezed,
-    Object? iconCustomEmojiId = freezed,
-  }) {
-    return _then(_ForumTopicEdited(
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      iconCustomEmojiId: freezed == iconCustomEmojiId
-          ? _self.iconCustomEmojiId
-          : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? name = freezed, Object? iconCustomEmojiId = freezed}) {
+    return _then(
+      _ForumTopicEdited(
+        name: freezed == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        iconCustomEmojiId: freezed == iconCustomEmojiId
+            ? _self.iconCustomEmojiId
+            : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }

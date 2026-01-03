@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -68,7 +67,9 @@ mixin _$MessageEntity {
   @pragma('vm:prefer-inline')
   $MessageEntityCopyWith<MessageEntity> get copyWith =>
       _$MessageEntityCopyWithImpl<MessageEntity>(
-          this as MessageEntity, _$identity);
+        this as MessageEntity,
+        _$identity,
+      );
 
   /// Serializes this MessageEntity to a JSON map.
   Map<String, dynamic> toJson();
@@ -82,17 +83,19 @@ mixin _$MessageEntity {
 /// @nodoc
 abstract mixin class $MessageEntityCopyWith<$Res> {
   factory $MessageEntityCopyWith(
-          MessageEntity value, $Res Function(MessageEntity) _then) =
-      _$MessageEntityCopyWithImpl;
+    MessageEntity value,
+    $Res Function(MessageEntity) _then,
+  ) = _$MessageEntityCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') MessageEntityType type,
-      @JsonKey(name: 'offset') int offset,
-      @JsonKey(name: 'length') int length,
-      @JsonKey(name: 'url') String? url,
-      @JsonKey(name: 'user') User? user,
-      @JsonKey(name: 'language') String? language,
-      @JsonKey(name: 'custom_emoji_id') String? customEmojiId});
+  $Res call({
+    @JsonKey(name: 'type') MessageEntityType type,
+    @JsonKey(name: 'offset') int offset,
+    @JsonKey(name: 'length') int length,
+    @JsonKey(name: 'url') String? url,
+    @JsonKey(name: 'user') User? user,
+    @JsonKey(name: 'language') String? language,
+    @JsonKey(name: 'custom_emoji_id') String? customEmojiId,
+  });
 
   $UserCopyWith<$Res>? get user;
 }
@@ -118,36 +121,38 @@ class _$MessageEntityCopyWithImpl<$Res>
     Object? language = freezed,
     Object? customEmojiId = freezed,
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MessageEntityType,
-      offset: null == offset
-          ? _self.offset
-          : offset // ignore: cast_nullable_to_non_nullable
-              as int,
-      length: null == length
-          ? _self.length
-          : length // ignore: cast_nullable_to_non_nullable
-              as int,
-      url: freezed == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      user: freezed == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      language: freezed == language
-          ? _self.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as String?,
-      customEmojiId: freezed == customEmojiId
-          ? _self.customEmojiId
-          : customEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as MessageEntityType,
+        offset: null == offset
+            ? _self.offset
+            : offset // ignore: cast_nullable_to_non_nullable
+                  as int,
+        length: null == length
+            ? _self.length
+            : length // ignore: cast_nullable_to_non_nullable
+                  as int,
+        url: freezed == url
+            ? _self.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        user: freezed == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        language: freezed == language
+            ? _self.language
+            : language // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        customEmojiId: freezed == customEmojiId
+            ? _self.customEmojiId
+            : customEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 
   /// Create a copy of MessageEntity
@@ -165,17 +170,98 @@ class _$MessageEntityCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [MessageEntity].
+extension MessageEntityPatterns on MessageEntity {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_MessageEntity value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MessageEntity() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_MessageEntity value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MessageEntity():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_MessageEntity value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MessageEntity() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _MessageEntity implements MessageEntity {
-  const _MessageEntity(
-      {@JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'offset') required this.offset,
-      @JsonKey(name: 'length') required this.length,
-      @JsonKey(name: 'url') this.url,
-      @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'language') this.language,
-      @JsonKey(name: 'custom_emoji_id') this.customEmojiId});
+  const _MessageEntity({
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'offset') required this.offset,
+    @JsonKey(name: 'length') required this.length,
+    @JsonKey(name: 'url') this.url,
+    @JsonKey(name: 'user') this.user,
+    @JsonKey(name: 'language') this.language,
+    @JsonKey(name: 'custom_emoji_id') this.customEmojiId,
+  });
   factory _MessageEntity.fromJson(Map<String, dynamic> json) =>
       _$MessageEntityFromJson(json);
 
@@ -244,9 +330,7 @@ class _MessageEntity implements MessageEntity {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$MessageEntityToJson(
-      this,
-    );
+    return _$MessageEntityToJson(this);
   }
 
   @override
@@ -259,18 +343,20 @@ class _MessageEntity implements MessageEntity {
 abstract mixin class _$MessageEntityCopyWith<$Res>
     implements $MessageEntityCopyWith<$Res> {
   factory _$MessageEntityCopyWith(
-          _MessageEntity value, $Res Function(_MessageEntity) _then) =
-      __$MessageEntityCopyWithImpl;
+    _MessageEntity value,
+    $Res Function(_MessageEntity) _then,
+  ) = __$MessageEntityCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') MessageEntityType type,
-      @JsonKey(name: 'offset') int offset,
-      @JsonKey(name: 'length') int length,
-      @JsonKey(name: 'url') String? url,
-      @JsonKey(name: 'user') User? user,
-      @JsonKey(name: 'language') String? language,
-      @JsonKey(name: 'custom_emoji_id') String? customEmojiId});
+  $Res call({
+    @JsonKey(name: 'type') MessageEntityType type,
+    @JsonKey(name: 'offset') int offset,
+    @JsonKey(name: 'length') int length,
+    @JsonKey(name: 'url') String? url,
+    @JsonKey(name: 'user') User? user,
+    @JsonKey(name: 'language') String? language,
+    @JsonKey(name: 'custom_emoji_id') String? customEmojiId,
+  });
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -297,36 +383,38 @@ class __$MessageEntityCopyWithImpl<$Res>
     Object? language = freezed,
     Object? customEmojiId = freezed,
   }) {
-    return _then(_MessageEntity(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MessageEntityType,
-      offset: null == offset
-          ? _self.offset
-          : offset // ignore: cast_nullable_to_non_nullable
-              as int,
-      length: null == length
-          ? _self.length
-          : length // ignore: cast_nullable_to_non_nullable
-              as int,
-      url: freezed == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      user: freezed == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      language: freezed == language
-          ? _self.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as String?,
-      customEmojiId: freezed == customEmojiId
-          ? _self.customEmojiId
-          : customEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _MessageEntity(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as MessageEntityType,
+        offset: null == offset
+            ? _self.offset
+            : offset // ignore: cast_nullable_to_non_nullable
+                  as int,
+        length: null == length
+            ? _self.length
+            : length // ignore: cast_nullable_to_non_nullable
+                  as int,
+        url: freezed == url
+            ? _self.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        user: freezed == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        language: freezed == language
+            ? _self.language
+            : language // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        customEmojiId: freezed == customEmojiId
+            ? _self.customEmojiId
+            : customEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 
   /// Create a copy of MessageEntity

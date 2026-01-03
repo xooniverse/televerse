@@ -10,12 +10,11 @@ Map<String, dynamic> _$InputMediaPhotoToJson(InputMediaPhoto instance) =>
     <String, dynamic>{
       'type': _$InputMediaTypeEnumMap[instance.type]!,
       'media': const InputFileConverter().toJson(instance.media),
-      if (instance.caption case final value?) 'caption': value,
-      if (instance.parseMode case final value?) 'parse_mode': value,
-      if (instance.captionEntities case final value?) 'caption_entities': value,
-      if (instance.hasSpoiler case final value?) 'has_spoiler': value,
-      if (instance.showCaptionAboveMedia case final value?)
-        'show_caption_above_media': value,
+      'caption': ?instance.caption,
+      'parse_mode': ?instance.parseMode,
+      'caption_entities': ?instance.captionEntities,
+      'has_spoiler': ?instance.hasSpoiler,
+      'show_caption_above_media': ?instance.showCaptionAboveMedia,
       'runtimeType': instance.$type,
     };
 
@@ -31,59 +30,56 @@ Map<String, dynamic> _$InputMediaDocumentToJson(InputMediaDocument instance) =>
     <String, dynamic>{
       'type': _$InputMediaTypeEnumMap[instance.type]!,
       'media': const InputFileConverter().toJson(instance.media),
-      if (_$JsonConverterToJson<String, InputFile>(
-              instance.thumbnail, const InputFileConverter().toJson)
-          case final value?)
-        'thumbnail': value,
-      if (instance.caption case final value?) 'caption': value,
-      if (instance.parseMode case final value?) 'parse_mode': value,
-      if (instance.captionEntities case final value?) 'caption_entities': value,
-      if (instance.disableContentTypeDetection case final value?)
-        'disable_content_type_detection': value,
+      'thumbnail': ?_$JsonConverterToJson<String, InputFile>(
+        instance.thumbnail,
+        const InputFileConverter().toJson,
+      ),
+      'caption': ?instance.caption,
+      'parse_mode': ?instance.parseMode,
+      'caption_entities': ?instance.captionEntities,
+      'disable_content_type_detection': ?instance.disableContentTypeDetection,
       'runtimeType': instance.$type,
     };
 
 Json? _$JsonConverterToJson<Json, Value>(
   Value? value,
   Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);
+) => value == null ? null : toJson(value);
 
 Map<String, dynamic> _$InputMediaAnimationToJson(
-        InputMediaAnimation instance) =>
-    <String, dynamic>{
-      'type': _$InputMediaTypeEnumMap[instance.type]!,
-      'media': const InputFileConverter().toJson(instance.media),
-      if (_$JsonConverterToJson<String, InputFile>(
-              instance.thumbnail, const InputFileConverter().toJson)
-          case final value?)
-        'thumbnail': value,
-      if (instance.caption case final value?) 'caption': value,
-      if (instance.parseMode case final value?) 'parse_mode': value,
-      if (instance.captionEntities case final value?) 'caption_entities': value,
-      if (instance.width case final value?) 'width': value,
-      if (instance.height case final value?) 'height': value,
-      if (instance.duration case final value?) 'duration': value,
-      if (instance.hasSpoiler case final value?) 'has_spoiler': value,
-      if (instance.showCaptionAboveMedia case final value?)
-        'show_caption_above_media': value,
-      'runtimeType': instance.$type,
-    };
+  InputMediaAnimation instance,
+) => <String, dynamic>{
+  'type': _$InputMediaTypeEnumMap[instance.type]!,
+  'media': const InputFileConverter().toJson(instance.media),
+  'thumbnail': ?_$JsonConverterToJson<String, InputFile>(
+    instance.thumbnail,
+    const InputFileConverter().toJson,
+  ),
+  'caption': ?instance.caption,
+  'parse_mode': ?instance.parseMode,
+  'caption_entities': ?instance.captionEntities,
+  'width': ?instance.width,
+  'height': ?instance.height,
+  'duration': ?instance.duration,
+  'has_spoiler': ?instance.hasSpoiler,
+  'show_caption_above_media': ?instance.showCaptionAboveMedia,
+  'runtimeType': instance.$type,
+};
 
 Map<String, dynamic> _$InputMediaAudioToJson(InputMediaAudio instance) =>
     <String, dynamic>{
       'type': _$InputMediaTypeEnumMap[instance.type]!,
       'media': const InputFileConverter().toJson(instance.media),
-      if (_$JsonConverterToJson<String, InputFile>(
-              instance.thumbnail, const InputFileConverter().toJson)
-          case final value?)
-        'thumbnail': value,
-      if (instance.caption case final value?) 'caption': value,
-      if (instance.parseMode case final value?) 'parse_mode': value,
-      if (instance.captionEntities case final value?) 'caption_entities': value,
-      if (instance.duration case final value?) 'duration': value,
-      if (instance.performer case final value?) 'performer': value,
-      if (instance.title case final value?) 'title': value,
+      'thumbnail': ?_$JsonConverterToJson<String, InputFile>(
+        instance.thumbnail,
+        const InputFileConverter().toJson,
+      ),
+      'caption': ?instance.caption,
+      'parse_mode': ?instance.parseMode,
+      'caption_entities': ?instance.captionEntities,
+      'duration': ?instance.duration,
+      'performer': ?instance.performer,
+      'title': ?instance.title,
       'runtimeType': instance.$type,
     };
 
@@ -91,25 +87,23 @@ Map<String, dynamic> _$InputMediaVideoToJson(InputMediaVideo instance) =>
     <String, dynamic>{
       'type': _$InputMediaTypeEnumMap[instance.type]!,
       'media': const InputFileConverter().toJson(instance.media),
-      if (_$JsonConverterToJson<String, InputFile>(
-              instance.thumbnail, const InputFileConverter().toJson)
-          case final value?)
-        'thumbnail': value,
-      if (instance.caption case final value?) 'caption': value,
-      if (instance.parseMode case final value?) 'parse_mode': value,
-      if (instance.captionEntities case final value?) 'caption_entities': value,
-      if (instance.width case final value?) 'width': value,
-      if (instance.height case final value?) 'height': value,
-      if (instance.duration case final value?) 'duration': value,
-      if (instance.supportsStreaming case final value?)
-        'supports_streaming': value,
-      if (instance.hasSpoiler case final value?) 'has_spoiler': value,
-      if (instance.showCaptionAboveMedia case final value?)
-        'show_caption_above_media': value,
-      if (instance.startTimestamp case final value?) 'start_timestamp': value,
-      if (_$JsonConverterToJson<String, InputFile>(
-              instance.cover, const InputFileConverter().toJson)
-          case final value?)
-        'cover': value,
+      'thumbnail': ?_$JsonConverterToJson<String, InputFile>(
+        instance.thumbnail,
+        const InputFileConverter().toJson,
+      ),
+      'caption': ?instance.caption,
+      'parse_mode': ?instance.parseMode,
+      'caption_entities': ?instance.captionEntities,
+      'width': ?instance.width,
+      'height': ?instance.height,
+      'duration': ?instance.duration,
+      'supports_streaming': ?instance.supportsStreaming,
+      'has_spoiler': ?instance.hasSpoiler,
+      'show_caption_above_media': ?instance.showCaptionAboveMedia,
+      'start_timestamp': ?instance.startTimestamp,
+      'cover': ?_$JsonConverterToJson<String, InputFile>(
+        instance.cover,
+        const InputFileConverter().toJson,
+      ),
       'runtimeType': instance.$type,
     };

@@ -7,15 +7,15 @@ part of 'inline_query.dart';
 // **************************************************************************
 
 _InlineQuery _$InlineQueryFromJson(Map<String, dynamic> json) => _InlineQuery(
-      id: json['id'] as String,
-      from: User.fromJson(json['from'] as Map<String, dynamic>),
-      query: json['query'] as String,
-      offset: json['offset'] as String,
-      chatType: $enumDecodeNullable(_$ChatTypeEnumMap, json['chat_type']),
-      location: json['location'] == null
-          ? null
-          : Location.fromJson(json['location'] as Map<String, dynamic>),
-    );
+  id: json['id'] as String,
+  from: User.fromJson(json['from'] as Map<String, dynamic>),
+  query: json['query'] as String,
+  offset: json['offset'] as String,
+  chatType: $enumDecodeNullable(_$ChatTypeEnumMap, json['chat_type']),
+  location: json['location'] == null
+      ? null
+      : Location.fromJson(json['location'] as Map<String, dynamic>),
+);
 
 Map<String, dynamic> _$InlineQueryToJson(_InlineQuery instance) =>
     <String, dynamic>{
@@ -23,9 +23,8 @@ Map<String, dynamic> _$InlineQueryToJson(_InlineQuery instance) =>
       'from': instance.from,
       'query': instance.query,
       'offset': instance.offset,
-      if (_$ChatTypeEnumMap[instance.chatType] case final value?)
-        'chat_type': value,
-      if (instance.location case final value?) 'location': value,
+      'chat_type': ?_$ChatTypeEnumMap[instance.chatType],
+      'location': ?instance.location,
     };
 
 const _$ChatTypeEnumMap = {

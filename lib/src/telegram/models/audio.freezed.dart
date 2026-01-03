@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -79,16 +78,17 @@ abstract mixin class $AudioCopyWith<$Res> {
   factory $AudioCopyWith(Audio value, $Res Function(Audio) _then) =
       _$AudioCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'duration') int duration,
-      @JsonKey(name: 'performer') String? performer,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'file_name') String? fileName,
-      @JsonKey(name: 'mime_type') String? mimeType,
-      @JsonKey(name: 'file_size') int? fileSize,
-      @JsonKey(name: 'thumbnail') PhotoSize? thumbnail});
+  $Res call({
+    @JsonKey(name: 'file_id') String fileId,
+    @JsonKey(name: 'file_unique_id') String fileUniqueId,
+    @JsonKey(name: 'duration') int duration,
+    @JsonKey(name: 'performer') String? performer,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'file_name') String? fileName,
+    @JsonKey(name: 'mime_type') String? mimeType,
+    @JsonKey(name: 'file_size') int? fileSize,
+    @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
+  });
 
   $PhotoSizeCopyWith<$Res>? get thumbnail;
 }
@@ -115,44 +115,46 @@ class _$AudioCopyWithImpl<$Res> implements $AudioCopyWith<$Res> {
     Object? fileSize = freezed,
     Object? thumbnail = freezed,
   }) {
-    return _then(_self.copyWith(
-      fileId: null == fileId
-          ? _self.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _self.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      duration: null == duration
-          ? _self.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int,
-      performer: freezed == performer
-          ? _self.performer
-          : performer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fileName: freezed == fileName
-          ? _self.fileName
-          : fileName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mimeType: freezed == mimeType
-          ? _self.mimeType
-          : mimeType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fileSize: freezed == fileSize
-          ? _self.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnail: freezed == thumbnail
-          ? _self.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as PhotoSize?,
-    ));
+    return _then(
+      _self.copyWith(
+        fileId: null == fileId
+            ? _self.fileId
+            : fileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileUniqueId: null == fileUniqueId
+            ? _self.fileUniqueId
+            : fileUniqueId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        duration: null == duration
+            ? _self.duration
+            : duration // ignore: cast_nullable_to_non_nullable
+                  as int,
+        performer: freezed == performer
+            ? _self.performer
+            : performer // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        fileName: freezed == fileName
+            ? _self.fileName
+            : fileName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        mimeType: freezed == mimeType
+            ? _self.mimeType
+            : mimeType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        fileSize: freezed == fileSize
+            ? _self.fileSize
+            : fileSize // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        thumbnail: freezed == thumbnail
+            ? _self.thumbnail
+            : thumbnail // ignore: cast_nullable_to_non_nullable
+                  as PhotoSize?,
+      ),
+    );
   }
 
   /// Create a copy of Audio
@@ -170,19 +172,100 @@ class _$AudioCopyWithImpl<$Res> implements $AudioCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [Audio].
+extension AudioPatterns on Audio {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Audio value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Audio() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Audio value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Audio():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Audio value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Audio() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _Audio implements Audio {
-  const _Audio(
-      {@JsonKey(name: 'file_id') required this.fileId,
-      @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
-      @JsonKey(name: 'duration') required this.duration,
-      @JsonKey(name: 'performer') this.performer,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'file_name') this.fileName,
-      @JsonKey(name: 'mime_type') this.mimeType,
-      @JsonKey(name: 'file_size') this.fileSize,
-      @JsonKey(name: 'thumbnail') this.thumbnail});
+  const _Audio({
+    @JsonKey(name: 'file_id') required this.fileId,
+    @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
+    @JsonKey(name: 'duration') required this.duration,
+    @JsonKey(name: 'performer') this.performer,
+    @JsonKey(name: 'title') this.title,
+    @JsonKey(name: 'file_name') this.fileName,
+    @JsonKey(name: 'mime_type') this.mimeType,
+    @JsonKey(name: 'file_size') this.fileSize,
+    @JsonKey(name: 'thumbnail') this.thumbnail,
+  });
   factory _Audio.fromJson(Map<String, dynamic> json) => _$AudioFromJson(json);
 
   /// Identifier for this file, which can be used to download or reuse the
@@ -248,9 +331,7 @@ class _Audio implements Audio {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$AudioToJson(
-      this,
-    );
+    return _$AudioToJson(this);
   }
 
   @override
@@ -265,16 +346,17 @@ abstract mixin class _$AudioCopyWith<$Res> implements $AudioCopyWith<$Res> {
       __$AudioCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'duration') int duration,
-      @JsonKey(name: 'performer') String? performer,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'file_name') String? fileName,
-      @JsonKey(name: 'mime_type') String? mimeType,
-      @JsonKey(name: 'file_size') int? fileSize,
-      @JsonKey(name: 'thumbnail') PhotoSize? thumbnail});
+  $Res call({
+    @JsonKey(name: 'file_id') String fileId,
+    @JsonKey(name: 'file_unique_id') String fileUniqueId,
+    @JsonKey(name: 'duration') int duration,
+    @JsonKey(name: 'performer') String? performer,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'file_name') String? fileName,
+    @JsonKey(name: 'mime_type') String? mimeType,
+    @JsonKey(name: 'file_size') int? fileSize,
+    @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
+  });
 
   @override
   $PhotoSizeCopyWith<$Res>? get thumbnail;
@@ -302,44 +384,46 @@ class __$AudioCopyWithImpl<$Res> implements _$AudioCopyWith<$Res> {
     Object? fileSize = freezed,
     Object? thumbnail = freezed,
   }) {
-    return _then(_Audio(
-      fileId: null == fileId
-          ? _self.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _self.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      duration: null == duration
-          ? _self.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int,
-      performer: freezed == performer
-          ? _self.performer
-          : performer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fileName: freezed == fileName
-          ? _self.fileName
-          : fileName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mimeType: freezed == mimeType
-          ? _self.mimeType
-          : mimeType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fileSize: freezed == fileSize
-          ? _self.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnail: freezed == thumbnail
-          ? _self.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as PhotoSize?,
-    ));
+    return _then(
+      _Audio(
+        fileId: null == fileId
+            ? _self.fileId
+            : fileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileUniqueId: null == fileUniqueId
+            ? _self.fileUniqueId
+            : fileUniqueId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        duration: null == duration
+            ? _self.duration
+            : duration // ignore: cast_nullable_to_non_nullable
+                  as int,
+        performer: freezed == performer
+            ? _self.performer
+            : performer // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        fileName: freezed == fileName
+            ? _self.fileName
+            : fileName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        mimeType: freezed == mimeType
+            ? _self.mimeType
+            : mimeType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        fileSize: freezed == fileSize
+            ? _self.fileSize
+            : fileSize // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        thumbnail: freezed == thumbnail
+            ? _self.thumbnail
+            : thumbnail // ignore: cast_nullable_to_non_nullable
+                  as PhotoSize?,
+      ),
+    );
   }
 
   /// Create a copy of Audio

@@ -17,7 +17,8 @@ _StarTransaction _$StarTransactionFromJson(Map<String, dynamic> json) =>
       receiver: json['receiver'] == null
           ? null
           : TransactionPartner.fromJson(
-              json['receiver'] as Map<String, dynamic>),
+              json['receiver'] as Map<String, dynamic>,
+            ),
       nanostarAmount: (json['nanostar_amount'] as num?)?.toInt(),
     );
 
@@ -26,7 +27,7 @@ Map<String, dynamic> _$StarTransactionToJson(_StarTransaction instance) =>
       'id': instance.id,
       'amount': instance.amount,
       'date': instance.date,
-      if (instance.source case final value?) 'source': value,
-      if (instance.receiver case final value?) 'receiver': value,
-      if (instance.nanostarAmount case final value?) 'nanostar_amount': value,
+      'source': ?instance.source,
+      'receiver': ?instance.receiver,
+      'nanostar_amount': ?instance.nanostarAmount,
     };

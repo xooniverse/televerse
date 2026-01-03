@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -42,7 +41,9 @@ mixin _$RefundedPayment {
   @pragma('vm:prefer-inline')
   $RefundedPaymentCopyWith<RefundedPayment> get copyWith =>
       _$RefundedPaymentCopyWithImpl<RefundedPayment>(
-          this as RefundedPayment, _$identity);
+        this as RefundedPayment,
+        _$identity,
+      );
 
   /// Serializes this RefundedPayment to a JSON map.
   Map<String, dynamic> toJson();
@@ -56,17 +57,18 @@ mixin _$RefundedPayment {
 /// @nodoc
 abstract mixin class $RefundedPaymentCopyWith<$Res> {
   factory $RefundedPaymentCopyWith(
-          RefundedPayment value, $Res Function(RefundedPayment) _then) =
-      _$RefundedPaymentCopyWithImpl;
+    RefundedPayment value,
+    $Res Function(RefundedPayment) _then,
+  ) = _$RefundedPaymentCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'total_amount') int totalAmount,
-      @JsonKey(name: 'invoice_payload') String invoicePayload,
-      @JsonKey(name: 'telegram_payment_charge_id')
-      String telegramPaymentChargeId,
-      @JsonKey(name: 'provider_payment_charge_id')
-      String? providerPaymentChargeId});
+  $Res call({
+    @JsonKey(name: 'currency') String currency,
+    @JsonKey(name: 'total_amount') int totalAmount,
+    @JsonKey(name: 'invoice_payload') String invoicePayload,
+    @JsonKey(name: 'telegram_payment_charge_id') String telegramPaymentChargeId,
+    @JsonKey(name: 'provider_payment_charge_id')
+    String? providerPaymentChargeId,
+  });
 }
 
 /// @nodoc
@@ -88,42 +90,124 @@ class _$RefundedPaymentCopyWithImpl<$Res>
     Object? telegramPaymentChargeId = null,
     Object? providerPaymentChargeId = freezed,
   }) {
-    return _then(_self.copyWith(
-      currency: null == currency
-          ? _self.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalAmount: null == totalAmount
-          ? _self.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
-      invoicePayload: null == invoicePayload
-          ? _self.invoicePayload
-          : invoicePayload // ignore: cast_nullable_to_non_nullable
-              as String,
-      telegramPaymentChargeId: null == telegramPaymentChargeId
-          ? _self.telegramPaymentChargeId
-          : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      providerPaymentChargeId: freezed == providerPaymentChargeId
-          ? _self.providerPaymentChargeId
-          : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _self.copyWith(
+        currency: null == currency
+            ? _self.currency
+            : currency // ignore: cast_nullable_to_non_nullable
+                  as String,
+        totalAmount: null == totalAmount
+            ? _self.totalAmount
+            : totalAmount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        invoicePayload: null == invoicePayload
+            ? _self.invoicePayload
+            : invoicePayload // ignore: cast_nullable_to_non_nullable
+                  as String,
+        telegramPaymentChargeId: null == telegramPaymentChargeId
+            ? _self.telegramPaymentChargeId
+            : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        providerPaymentChargeId: freezed == providerPaymentChargeId
+            ? _self.providerPaymentChargeId
+            : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [RefundedPayment].
+extension RefundedPaymentPatterns on RefundedPayment {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_RefundedPayment value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _RefundedPayment() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_RefundedPayment value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RefundedPayment():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_RefundedPayment value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RefundedPayment() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _RefundedPayment implements RefundedPayment {
-  const _RefundedPayment(
-      {@JsonKey(name: 'currency') required this.currency,
-      @JsonKey(name: 'total_amount') required this.totalAmount,
-      @JsonKey(name: 'invoice_payload') required this.invoicePayload,
-      @JsonKey(name: 'telegram_payment_charge_id')
-      required this.telegramPaymentChargeId,
-      @JsonKey(name: 'provider_payment_charge_id')
-      this.providerPaymentChargeId});
+  const _RefundedPayment({
+    @JsonKey(name: 'currency') required this.currency,
+    @JsonKey(name: 'total_amount') required this.totalAmount,
+    @JsonKey(name: 'invoice_payload') required this.invoicePayload,
+    @JsonKey(name: 'telegram_payment_charge_id')
+    required this.telegramPaymentChargeId,
+    @JsonKey(name: 'provider_payment_charge_id') this.providerPaymentChargeId,
+  });
   factory _RefundedPayment.fromJson(Map<String, dynamic> json) =>
       _$RefundedPaymentFromJson(json);
 
@@ -164,9 +248,7 @@ class _RefundedPayment implements RefundedPayment {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$RefundedPaymentToJson(
-      this,
-    );
+    return _$RefundedPaymentToJson(this);
   }
 
   @override
@@ -179,18 +261,19 @@ class _RefundedPayment implements RefundedPayment {
 abstract mixin class _$RefundedPaymentCopyWith<$Res>
     implements $RefundedPaymentCopyWith<$Res> {
   factory _$RefundedPaymentCopyWith(
-          _RefundedPayment value, $Res Function(_RefundedPayment) _then) =
-      __$RefundedPaymentCopyWithImpl;
+    _RefundedPayment value,
+    $Res Function(_RefundedPayment) _then,
+  ) = __$RefundedPaymentCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'total_amount') int totalAmount,
-      @JsonKey(name: 'invoice_payload') String invoicePayload,
-      @JsonKey(name: 'telegram_payment_charge_id')
-      String telegramPaymentChargeId,
-      @JsonKey(name: 'provider_payment_charge_id')
-      String? providerPaymentChargeId});
+  $Res call({
+    @JsonKey(name: 'currency') String currency,
+    @JsonKey(name: 'total_amount') int totalAmount,
+    @JsonKey(name: 'invoice_payload') String invoicePayload,
+    @JsonKey(name: 'telegram_payment_charge_id') String telegramPaymentChargeId,
+    @JsonKey(name: 'provider_payment_charge_id')
+    String? providerPaymentChargeId,
+  });
 }
 
 /// @nodoc
@@ -212,27 +295,29 @@ class __$RefundedPaymentCopyWithImpl<$Res>
     Object? telegramPaymentChargeId = null,
     Object? providerPaymentChargeId = freezed,
   }) {
-    return _then(_RefundedPayment(
-      currency: null == currency
-          ? _self.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalAmount: null == totalAmount
-          ? _self.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
-      invoicePayload: null == invoicePayload
-          ? _self.invoicePayload
-          : invoicePayload // ignore: cast_nullable_to_non_nullable
-              as String,
-      telegramPaymentChargeId: null == telegramPaymentChargeId
-          ? _self.telegramPaymentChargeId
-          : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      providerPaymentChargeId: freezed == providerPaymentChargeId
-          ? _self.providerPaymentChargeId
-          : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _RefundedPayment(
+        currency: null == currency
+            ? _self.currency
+            : currency // ignore: cast_nullable_to_non_nullable
+                  as String,
+        totalAmount: null == totalAmount
+            ? _self.totalAmount
+            : totalAmount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        invoicePayload: null == invoicePayload
+            ? _self.invoicePayload
+            : invoicePayload // ignore: cast_nullable_to_non_nullable
+                  as String,
+        telegramPaymentChargeId: null == telegramPaymentChargeId
+            ? _self.telegramPaymentChargeId
+            : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        providerPaymentChargeId: freezed == providerPaymentChargeId
+            ? _self.providerPaymentChargeId
+            : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }

@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -40,7 +39,9 @@ mixin _$PassportFile {
   @pragma('vm:prefer-inline')
   $PassportFileCopyWith<PassportFile> get copyWith =>
       _$PassportFileCopyWithImpl<PassportFile>(
-          this as PassportFile, _$identity);
+        this as PassportFile,
+        _$identity,
+      );
 
   /// Serializes this PassportFile to a JSON map.
   Map<String, dynamic> toJson();
@@ -54,14 +55,16 @@ mixin _$PassportFile {
 /// @nodoc
 abstract mixin class $PassportFileCopyWith<$Res> {
   factory $PassportFileCopyWith(
-          PassportFile value, $Res Function(PassportFile) _then) =
-      _$PassportFileCopyWithImpl;
+    PassportFile value,
+    $Res Function(PassportFile) _then,
+  ) = _$PassportFileCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'file_size') int fileSize,
-      @JsonKey(name: 'file_date') int fileDate});
+  $Res call({
+    @JsonKey(name: 'file_id') String fileId,
+    @JsonKey(name: 'file_unique_id') String fileUniqueId,
+    @JsonKey(name: 'file_size') int fileSize,
+    @JsonKey(name: 'file_date') int fileDate,
+  });
 }
 
 /// @nodoc
@@ -81,35 +84,118 @@ class _$PassportFileCopyWithImpl<$Res> implements $PassportFileCopyWith<$Res> {
     Object? fileSize = null,
     Object? fileDate = null,
   }) {
-    return _then(_self.copyWith(
-      fileId: null == fileId
-          ? _self.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _self.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileSize: null == fileSize
-          ? _self.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int,
-      fileDate: null == fileDate
-          ? _self.fileDate
-          : fileDate // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _self.copyWith(
+        fileId: null == fileId
+            ? _self.fileId
+            : fileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileUniqueId: null == fileUniqueId
+            ? _self.fileUniqueId
+            : fileUniqueId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileSize: null == fileSize
+            ? _self.fileSize
+            : fileSize // ignore: cast_nullable_to_non_nullable
+                  as int,
+        fileDate: null == fileDate
+            ? _self.fileDate
+            : fileDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [PassportFile].
+extension PassportFilePatterns on PassportFile {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PassportFile value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PassportFile() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PassportFile value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PassportFile():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PassportFile value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PassportFile() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _PassportFile implements PassportFile {
-  const _PassportFile(
-      {@JsonKey(name: 'file_id') required this.fileId,
-      @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
-      @JsonKey(name: 'file_size') required this.fileSize,
-      @JsonKey(name: 'file_date') required this.fileDate});
+  const _PassportFile({
+    @JsonKey(name: 'file_id') required this.fileId,
+    @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
+    @JsonKey(name: 'file_size') required this.fileSize,
+    @JsonKey(name: 'file_date') required this.fileDate,
+  });
   factory _PassportFile.fromJson(Map<String, dynamic> json) =>
       _$PassportFileFromJson(json);
 
@@ -147,9 +233,7 @@ class _PassportFile implements PassportFile {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PassportFileToJson(
-      this,
-    );
+    return _$PassportFileToJson(this);
   }
 
   @override
@@ -162,15 +246,17 @@ class _PassportFile implements PassportFile {
 abstract mixin class _$PassportFileCopyWith<$Res>
     implements $PassportFileCopyWith<$Res> {
   factory _$PassportFileCopyWith(
-          _PassportFile value, $Res Function(_PassportFile) _then) =
-      __$PassportFileCopyWithImpl;
+    _PassportFile value,
+    $Res Function(_PassportFile) _then,
+  ) = __$PassportFileCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'file_size') int fileSize,
-      @JsonKey(name: 'file_date') int fileDate});
+  $Res call({
+    @JsonKey(name: 'file_id') String fileId,
+    @JsonKey(name: 'file_unique_id') String fileUniqueId,
+    @JsonKey(name: 'file_size') int fileSize,
+    @JsonKey(name: 'file_date') int fileDate,
+  });
 }
 
 /// @nodoc
@@ -191,23 +277,25 @@ class __$PassportFileCopyWithImpl<$Res>
     Object? fileSize = null,
     Object? fileDate = null,
   }) {
-    return _then(_PassportFile(
-      fileId: null == fileId
-          ? _self.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _self.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileSize: null == fileSize
-          ? _self.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int,
-      fileDate: null == fileDate
-          ? _self.fileDate
-          : fileDate // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _PassportFile(
+        fileId: null == fileId
+            ? _self.fileId
+            : fileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileUniqueId: null == fileUniqueId
+            ? _self.fileUniqueId
+            : fileUniqueId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileSize: null == fileSize
+            ? _self.fileSize
+            : fileSize // ignore: cast_nullable_to_non_nullable
+                  as int,
+        fileDate: null == fileDate
+            ? _self.fileDate
+            : fileDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }

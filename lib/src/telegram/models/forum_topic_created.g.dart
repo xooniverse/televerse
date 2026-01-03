@@ -17,6 +17,5 @@ Map<String, dynamic> _$ForumTopicCreatedToJson(_ForumTopicCreated instance) =>
     <String, dynamic>{
       'name': instance.name,
       'icon_color': instance.iconColor,
-      if (instance.iconCustomEmojiId case final value?)
-        'icon_custom_emoji_id': value,
+      'icon_custom_emoji_id': ?instance.iconCustomEmojiId,
     };

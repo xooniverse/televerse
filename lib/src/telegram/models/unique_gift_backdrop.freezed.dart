@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -32,7 +31,9 @@ mixin _$UniqueGiftBackdrop {
   @pragma('vm:prefer-inline')
   $UniqueGiftBackdropCopyWith<UniqueGiftBackdrop> get copyWith =>
       _$UniqueGiftBackdropCopyWithImpl<UniqueGiftBackdrop>(
-          this as UniqueGiftBackdrop, _$identity);
+        this as UniqueGiftBackdrop,
+        _$identity,
+      );
 
   /// Serializes this UniqueGiftBackdrop to a JSON map.
   Map<String, dynamic> toJson();
@@ -46,13 +47,15 @@ mixin _$UniqueGiftBackdrop {
 /// @nodoc
 abstract mixin class $UniqueGiftBackdropCopyWith<$Res> {
   factory $UniqueGiftBackdropCopyWith(
-          UniqueGiftBackdrop value, $Res Function(UniqueGiftBackdrop) _then) =
-      _$UniqueGiftBackdropCopyWithImpl;
+    UniqueGiftBackdrop value,
+    $Res Function(UniqueGiftBackdrop) _then,
+  ) = _$UniqueGiftBackdropCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'colors') UniqueGiftBackdropColors colors,
-      @JsonKey(name: 'rarity_per_mille') int rarityPerMille});
+  $Res call({
+    @JsonKey(name: 'name') String name,
+    @JsonKey(name: 'colors') UniqueGiftBackdropColors colors,
+    @JsonKey(name: 'rarity_per_mille') int rarityPerMille,
+  });
 
   $UniqueGiftBackdropColorsCopyWith<$Res> get colors;
 }
@@ -74,20 +77,22 @@ class _$UniqueGiftBackdropCopyWithImpl<$Res>
     Object? colors = null,
     Object? rarityPerMille = null,
   }) {
-    return _then(_self.copyWith(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      colors: null == colors
-          ? _self.colors
-          : colors // ignore: cast_nullable_to_non_nullable
-              as UniqueGiftBackdropColors,
-      rarityPerMille: null == rarityPerMille
-          ? _self.rarityPerMille
-          : rarityPerMille // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _self.copyWith(
+        name: null == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        colors: null == colors
+            ? _self.colors
+            : colors // ignore: cast_nullable_to_non_nullable
+                  as UniqueGiftBackdropColors,
+        rarityPerMille: null == rarityPerMille
+            ? _self.rarityPerMille
+            : rarityPerMille // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of UniqueGiftBackdrop
@@ -101,13 +106,94 @@ class _$UniqueGiftBackdropCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [UniqueGiftBackdrop].
+extension UniqueGiftBackdropPatterns on UniqueGiftBackdrop {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UniqueGiftBackdrop value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGiftBackdrop() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UniqueGiftBackdrop value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGiftBackdrop():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_UniqueGiftBackdrop value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGiftBackdrop() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _UniqueGiftBackdrop implements UniqueGiftBackdrop {
-  const _UniqueGiftBackdrop(
-      {@JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'colors') required this.colors,
-      @JsonKey(name: 'rarity_per_mille') required this.rarityPerMille});
+  const _UniqueGiftBackdrop({
+    @JsonKey(name: 'name') required this.name,
+    @JsonKey(name: 'colors') required this.colors,
+    @JsonKey(name: 'rarity_per_mille') required this.rarityPerMille,
+  });
   factory _UniqueGiftBackdrop.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftBackdropFromJson(json);
 
@@ -136,9 +222,7 @@ class _UniqueGiftBackdrop implements UniqueGiftBackdrop {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$UniqueGiftBackdropToJson(
-      this,
-    );
+    return _$UniqueGiftBackdropToJson(this);
   }
 
   @override
@@ -151,14 +235,16 @@ class _UniqueGiftBackdrop implements UniqueGiftBackdrop {
 abstract mixin class _$UniqueGiftBackdropCopyWith<$Res>
     implements $UniqueGiftBackdropCopyWith<$Res> {
   factory _$UniqueGiftBackdropCopyWith(
-          _UniqueGiftBackdrop value, $Res Function(_UniqueGiftBackdrop) _then) =
-      __$UniqueGiftBackdropCopyWithImpl;
+    _UniqueGiftBackdrop value,
+    $Res Function(_UniqueGiftBackdrop) _then,
+  ) = __$UniqueGiftBackdropCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'colors') UniqueGiftBackdropColors colors,
-      @JsonKey(name: 'rarity_per_mille') int rarityPerMille});
+  $Res call({
+    @JsonKey(name: 'name') String name,
+    @JsonKey(name: 'colors') UniqueGiftBackdropColors colors,
+    @JsonKey(name: 'rarity_per_mille') int rarityPerMille,
+  });
 
   @override
   $UniqueGiftBackdropColorsCopyWith<$Res> get colors;
@@ -181,20 +267,22 @@ class __$UniqueGiftBackdropCopyWithImpl<$Res>
     Object? colors = null,
     Object? rarityPerMille = null,
   }) {
-    return _then(_UniqueGiftBackdrop(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      colors: null == colors
-          ? _self.colors
-          : colors // ignore: cast_nullable_to_non_nullable
-              as UniqueGiftBackdropColors,
-      rarityPerMille: null == rarityPerMille
-          ? _self.rarityPerMille
-          : rarityPerMille // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _UniqueGiftBackdrop(
+        name: null == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        colors: null == colors
+            ? _self.colors
+            : colors // ignore: cast_nullable_to_non_nullable
+                  as UniqueGiftBackdropColors,
+        rarityPerMille: null == rarityPerMille
+            ? _self.rarityPerMille
+            : rarityPerMille // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of UniqueGiftBackdrop

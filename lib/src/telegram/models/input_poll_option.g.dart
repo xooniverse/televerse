@@ -9,8 +9,10 @@ part of 'input_poll_option.dart';
 _InputPollOption _$InputPollOptionFromJson(Map<String, dynamic> json) =>
     _InputPollOption(
       text: json['text'] as String,
-      textParseMode:
-          $enumDecodeNullable(_$ParseModeEnumMap, json['text_parse_mode']),
+      textParseMode: $enumDecodeNullable(
+        _$ParseModeEnumMap,
+        json['text_parse_mode'],
+      ),
       textEntities: (json['text_entities'] as List<dynamic>?)
           ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -19,8 +21,8 @@ _InputPollOption _$InputPollOptionFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$InputPollOptionToJson(_InputPollOption instance) =>
     <String, dynamic>{
       'text': instance.text,
-      if (instance.textParseMode case final value?) 'text_parse_mode': value,
-      if (instance.textEntities case final value?) 'text_entities': value,
+      'text_parse_mode': ?instance.textParseMode,
+      'text_entities': ?instance.textEntities,
     };
 
 const _$ParseModeEnumMap = {

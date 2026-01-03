@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -58,12 +57,13 @@ abstract mixin class $PhotoSizeCopyWith<$Res> {
   factory $PhotoSizeCopyWith(PhotoSize value, $Res Function(PhotoSize) _then) =
       _$PhotoSizeCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'width') int width,
-      @JsonKey(name: 'height') int height,
-      @JsonKey(name: 'file_size') int? fileSize});
+  $Res call({
+    @JsonKey(name: 'file_id') String fileId,
+    @JsonKey(name: 'file_unique_id') String fileUniqueId,
+    @JsonKey(name: 'width') int width,
+    @JsonKey(name: 'height') int height,
+    @JsonKey(name: 'file_size') int? fileSize,
+  });
 }
 
 /// @nodoc
@@ -84,40 +84,123 @@ class _$PhotoSizeCopyWithImpl<$Res> implements $PhotoSizeCopyWith<$Res> {
     Object? height = null,
     Object? fileSize = freezed,
   }) {
-    return _then(_self.copyWith(
-      fileId: null == fileId
-          ? _self.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _self.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      width: null == width
-          ? _self.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int,
-      height: null == height
-          ? _self.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int,
-      fileSize: freezed == fileSize
-          ? _self.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        fileId: null == fileId
+            ? _self.fileId
+            : fileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileUniqueId: null == fileUniqueId
+            ? _self.fileUniqueId
+            : fileUniqueId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        width: null == width
+            ? _self.width
+            : width // ignore: cast_nullable_to_non_nullable
+                  as int,
+        height: null == height
+            ? _self.height
+            : height // ignore: cast_nullable_to_non_nullable
+                  as int,
+        fileSize: freezed == fileSize
+            ? _self.fileSize
+            : fileSize // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [PhotoSize].
+extension PhotoSizePatterns on PhotoSize {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PhotoSize value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PhotoSize() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PhotoSize value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PhotoSize():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PhotoSize value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PhotoSize() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _PhotoSize implements PhotoSize {
-  const _PhotoSize(
-      {@JsonKey(name: 'file_id') required this.fileId,
-      @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
-      @JsonKey(name: 'width') required this.width,
-      @JsonKey(name: 'height') required this.height,
-      @JsonKey(name: 'file_size') this.fileSize});
+  const _PhotoSize({
+    @JsonKey(name: 'file_id') required this.fileId,
+    @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
+    @JsonKey(name: 'width') required this.width,
+    @JsonKey(name: 'height') required this.height,
+    @JsonKey(name: 'file_size') this.fileSize,
+  });
   factory _PhotoSize.fromJson(Map<String, dynamic> json) =>
       _$PhotoSizeFromJson(json);
 
@@ -159,9 +242,7 @@ class _PhotoSize implements PhotoSize {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PhotoSizeToJson(
-      this,
-    );
+    return _$PhotoSizeToJson(this);
   }
 
   @override
@@ -174,16 +255,18 @@ class _PhotoSize implements PhotoSize {
 abstract mixin class _$PhotoSizeCopyWith<$Res>
     implements $PhotoSizeCopyWith<$Res> {
   factory _$PhotoSizeCopyWith(
-          _PhotoSize value, $Res Function(_PhotoSize) _then) =
-      __$PhotoSizeCopyWithImpl;
+    _PhotoSize value,
+    $Res Function(_PhotoSize) _then,
+  ) = __$PhotoSizeCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'width') int width,
-      @JsonKey(name: 'height') int height,
-      @JsonKey(name: 'file_size') int? fileSize});
+  $Res call({
+    @JsonKey(name: 'file_id') String fileId,
+    @JsonKey(name: 'file_unique_id') String fileUniqueId,
+    @JsonKey(name: 'width') int width,
+    @JsonKey(name: 'height') int height,
+    @JsonKey(name: 'file_size') int? fileSize,
+  });
 }
 
 /// @nodoc
@@ -204,27 +287,29 @@ class __$PhotoSizeCopyWithImpl<$Res> implements _$PhotoSizeCopyWith<$Res> {
     Object? height = null,
     Object? fileSize = freezed,
   }) {
-    return _then(_PhotoSize(
-      fileId: null == fileId
-          ? _self.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _self.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      width: null == width
-          ? _self.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int,
-      height: null == height
-          ? _self.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int,
-      fileSize: freezed == fileSize
-          ? _self.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _PhotoSize(
+        fileId: null == fileId
+            ? _self.fileId
+            : fileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileUniqueId: null == fileUniqueId
+            ? _self.fileUniqueId
+            : fileUniqueId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        width: null == width
+            ? _self.width
+            : width // ignore: cast_nullable_to_non_nullable
+                  as int,
+        height: null == height
+            ? _self.height
+            : height // ignore: cast_nullable_to_non_nullable
+                  as int,
+        fileSize: freezed == fileSize
+            ? _self.fileSize
+            : fileSize // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 }

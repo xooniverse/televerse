@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -50,11 +49,12 @@ abstract mixin class $OrderInfoCopyWith<$Res> {
   factory $OrderInfoCopyWith(OrderInfo value, $Res Function(OrderInfo) _then) =
       _$OrderInfoCopyWithImpl;
   @useResult
-  $Res call(
-      {String? name,
-      @JsonKey(name: 'phone_number') String? phoneNumber,
-      @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'shipping_address') ShippingAddress? shippingAddress});
+  $Res call({
+    String? name,
+    @JsonKey(name: 'phone_number') String? phoneNumber,
+    @JsonKey(name: 'email') String? email,
+    @JsonKey(name: 'shipping_address') ShippingAddress? shippingAddress,
+  });
 
   $ShippingAddressCopyWith<$Res>? get shippingAddress;
 }
@@ -76,24 +76,26 @@ class _$OrderInfoCopyWithImpl<$Res> implements $OrderInfoCopyWith<$Res> {
     Object? email = freezed,
     Object? shippingAddress = freezed,
   }) {
-    return _then(_self.copyWith(
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: freezed == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      shippingAddress: freezed == shippingAddress
-          ? _self.shippingAddress
-          : shippingAddress // ignore: cast_nullable_to_non_nullable
-              as ShippingAddress?,
-    ));
+    return _then(
+      _self.copyWith(
+        name: freezed == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        phoneNumber: freezed == phoneNumber
+            ? _self.phoneNumber
+            : phoneNumber // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        email: freezed == email
+            ? _self.email
+            : email // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        shippingAddress: freezed == shippingAddress
+            ? _self.shippingAddress
+            : shippingAddress // ignore: cast_nullable_to_non_nullable
+                  as ShippingAddress?,
+      ),
+    );
   }
 
   /// Create a copy of OrderInfo
@@ -111,14 +113,95 @@ class _$OrderInfoCopyWithImpl<$Res> implements $OrderInfoCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [OrderInfo].
+extension OrderInfoPatterns on OrderInfo {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OrderInfo value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _OrderInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OrderInfo value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _OrderInfo():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OrderInfo value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _OrderInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _OrderInfo implements OrderInfo {
-  const _OrderInfo(
-      {this.name,
-      @JsonKey(name: 'phone_number') this.phoneNumber,
-      @JsonKey(name: 'email') this.email,
-      @JsonKey(name: 'shipping_address') this.shippingAddress});
+  const _OrderInfo({
+    this.name,
+    @JsonKey(name: 'phone_number') this.phoneNumber,
+    @JsonKey(name: 'email') this.email,
+    @JsonKey(name: 'shipping_address') this.shippingAddress,
+  });
   factory _OrderInfo.fromJson(Map<String, dynamic> json) =>
       _$OrderInfoFromJson(json);
 
@@ -151,9 +234,7 @@ class _OrderInfo implements OrderInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$OrderInfoToJson(
-      this,
-    );
+    return _$OrderInfoToJson(this);
   }
 
   @override
@@ -166,15 +247,17 @@ class _OrderInfo implements OrderInfo {
 abstract mixin class _$OrderInfoCopyWith<$Res>
     implements $OrderInfoCopyWith<$Res> {
   factory _$OrderInfoCopyWith(
-          _OrderInfo value, $Res Function(_OrderInfo) _then) =
-      __$OrderInfoCopyWithImpl;
+    _OrderInfo value,
+    $Res Function(_OrderInfo) _then,
+  ) = __$OrderInfoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {String? name,
-      @JsonKey(name: 'phone_number') String? phoneNumber,
-      @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'shipping_address') ShippingAddress? shippingAddress});
+  $Res call({
+    String? name,
+    @JsonKey(name: 'phone_number') String? phoneNumber,
+    @JsonKey(name: 'email') String? email,
+    @JsonKey(name: 'shipping_address') ShippingAddress? shippingAddress,
+  });
 
   @override
   $ShippingAddressCopyWith<$Res>? get shippingAddress;
@@ -197,24 +280,26 @@ class __$OrderInfoCopyWithImpl<$Res> implements _$OrderInfoCopyWith<$Res> {
     Object? email = freezed,
     Object? shippingAddress = freezed,
   }) {
-    return _then(_OrderInfo(
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: freezed == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      shippingAddress: freezed == shippingAddress
-          ? _self.shippingAddress
-          : shippingAddress // ignore: cast_nullable_to_non_nullable
-              as ShippingAddress?,
-    ));
+    return _then(
+      _OrderInfo(
+        name: freezed == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        phoneNumber: freezed == phoneNumber
+            ? _self.phoneNumber
+            : phoneNumber // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        email: freezed == email
+            ? _self.email
+            : email // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        shippingAddress: freezed == shippingAddress
+            ? _self.shippingAddress
+            : shippingAddress // ignore: cast_nullable_to_non_nullable
+                  as ShippingAddress?,
+      ),
+    );
   }
 
   /// Create a copy of OrderInfo

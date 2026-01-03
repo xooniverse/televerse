@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -24,7 +23,9 @@ mixin _$StarTransactions {
   @pragma('vm:prefer-inline')
   $StarTransactionsCopyWith<StarTransactions> get copyWith =>
       _$StarTransactionsCopyWithImpl<StarTransactions>(
-          this as StarTransactions, _$identity);
+        this as StarTransactions,
+        _$identity,
+      );
 
   /// Serializes this StarTransactions to a JSON map.
   Map<String, dynamic> toJson();
@@ -38,11 +39,13 @@ mixin _$StarTransactions {
 /// @nodoc
 abstract mixin class $StarTransactionsCopyWith<$Res> {
   factory $StarTransactionsCopyWith(
-          StarTransactions value, $Res Function(StarTransactions) _then) =
-      _$StarTransactionsCopyWithImpl;
+    StarTransactions value,
+    $Res Function(StarTransactions) _then,
+  ) = _$StarTransactionsCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'transactions') List<StarTransaction> transactions});
+  $Res call({
+    @JsonKey(name: 'transactions') List<StarTransaction> transactions,
+  });
 }
 
 /// @nodoc
@@ -57,25 +60,105 @@ class _$StarTransactionsCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? transactions = null,
+  $Res call({Object? transactions = null}) {
+    return _then(
+      _self.copyWith(
+        transactions: null == transactions
+            ? _self.transactions
+            : transactions // ignore: cast_nullable_to_non_nullable
+                  as List<StarTransaction>,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [StarTransactions].
+extension StarTransactionsPatterns on StarTransactions {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_StarTransactions value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      transactions: null == transactions
-          ? _self.transactions
-          : transactions // ignore: cast_nullable_to_non_nullable
-              as List<StarTransaction>,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _StarTransactions() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_StarTransactions value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StarTransactions():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_StarTransactions value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StarTransactions() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _StarTransactions implements StarTransactions {
-  const _StarTransactions(
-      {@JsonKey(name: 'transactions')
-      required final List<StarTransaction> transactions})
-      : _transactions = transactions;
+  const _StarTransactions({
+    @JsonKey(name: 'transactions')
+    required final List<StarTransaction> transactions,
+  }) : _transactions = transactions;
   factory _StarTransactions.fromJson(Map<String, dynamic> json) =>
       _$StarTransactionsFromJson(json);
 
@@ -101,9 +184,7 @@ class _StarTransactions implements StarTransactions {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$StarTransactionsToJson(
-      this,
-    );
+    return _$StarTransactionsToJson(this);
   }
 
   @override
@@ -116,12 +197,14 @@ class _StarTransactions implements StarTransactions {
 abstract mixin class _$StarTransactionsCopyWith<$Res>
     implements $StarTransactionsCopyWith<$Res> {
   factory _$StarTransactionsCopyWith(
-          _StarTransactions value, $Res Function(_StarTransactions) _then) =
-      __$StarTransactionsCopyWithImpl;
+    _StarTransactions value,
+    $Res Function(_StarTransactions) _then,
+  ) = __$StarTransactionsCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'transactions') List<StarTransaction> transactions});
+  $Res call({
+    @JsonKey(name: 'transactions') List<StarTransaction> transactions,
+  });
 }
 
 /// @nodoc
@@ -136,14 +219,14 @@ class __$StarTransactionsCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? transactions = null,
-  }) {
-    return _then(_StarTransactions(
-      transactions: null == transactions
-          ? _self._transactions
-          : transactions // ignore: cast_nullable_to_non_nullable
-              as List<StarTransaction>,
-    ));
+  $Res call({Object? transactions = null}) {
+    return _then(
+      _StarTransactions(
+        transactions: null == transactions
+            ? _self._transactions
+            : transactions // ignore: cast_nullable_to_non_nullable
+                  as List<StarTransaction>,
+      ),
+    );
   }
 }

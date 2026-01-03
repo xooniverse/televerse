@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -43,12 +42,14 @@ mixin _$WebAppData {
 /// @nodoc
 abstract mixin class $WebAppDataCopyWith<$Res> {
   factory $WebAppDataCopyWith(
-          WebAppData value, $Res Function(WebAppData) _then) =
-      _$WebAppDataCopyWithImpl;
+    WebAppData value,
+    $Res Function(WebAppData) _then,
+  ) = _$WebAppDataCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'data') String data,
-      @JsonKey(name: 'button_text') String buttonText});
+  $Res call({
+    @JsonKey(name: 'data') String data,
+    @JsonKey(name: 'button_text') String buttonText,
+  });
 }
 
 /// @nodoc
@@ -62,29 +63,109 @@ class _$WebAppDataCopyWithImpl<$Res> implements $WebAppDataCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? data = null,
-    Object? buttonText = null,
+  $Res call({Object? data = null, Object? buttonText = null}) {
+    return _then(
+      _self.copyWith(
+        data: null == data
+            ? _self.data
+            : data // ignore: cast_nullable_to_non_nullable
+                  as String,
+        buttonText: null == buttonText
+            ? _self.buttonText
+            : buttonText // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [WebAppData].
+extension WebAppDataPatterns on WebAppData {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_WebAppData value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      data: null == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-      buttonText: null == buttonText
-          ? _self.buttonText
-          : buttonText // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _WebAppData() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_WebAppData value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WebAppData():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_WebAppData value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WebAppData() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _WebAppData implements WebAppData {
-  const _WebAppData(
-      {@JsonKey(name: 'data') required this.data,
-      @JsonKey(name: 'button_text') required this.buttonText});
+  const _WebAppData({
+    @JsonKey(name: 'data') required this.data,
+    @JsonKey(name: 'button_text') required this.buttonText,
+  });
   factory _WebAppData.fromJson(Map<String, dynamic> json) =>
       _$WebAppDataFromJson(json);
 
@@ -110,9 +191,7 @@ class _WebAppData implements WebAppData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$WebAppDataToJson(
-      this,
-    );
+    return _$WebAppDataToJson(this);
   }
 
   @override
@@ -125,13 +204,15 @@ class _WebAppData implements WebAppData {
 abstract mixin class _$WebAppDataCopyWith<$Res>
     implements $WebAppDataCopyWith<$Res> {
   factory _$WebAppDataCopyWith(
-          _WebAppData value, $Res Function(_WebAppData) _then) =
-      __$WebAppDataCopyWithImpl;
+    _WebAppData value,
+    $Res Function(_WebAppData) _then,
+  ) = __$WebAppDataCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'data') String data,
-      @JsonKey(name: 'button_text') String buttonText});
+  $Res call({
+    @JsonKey(name: 'data') String data,
+    @JsonKey(name: 'button_text') String buttonText,
+  });
 }
 
 /// @nodoc
@@ -145,19 +226,18 @@ class __$WebAppDataCopyWithImpl<$Res> implements _$WebAppDataCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? data = null,
-    Object? buttonText = null,
-  }) {
-    return _then(_WebAppData(
-      data: null == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-      buttonText: null == buttonText
-          ? _self.buttonText
-          : buttonText // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? data = null, Object? buttonText = null}) {
+    return _then(
+      _WebAppData(
+        data: null == data
+            ? _self.data
+            : data // ignore: cast_nullable_to_non_nullable
+                  as String,
+        buttonText: null == buttonText
+            ? _self.buttonText
+            : buttonText // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }

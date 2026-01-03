@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -25,8 +24,12 @@ StoryAreaType _$StoryAreaTypeFromJson(Map<String, dynamic> json) {
       return StoryAreaTypeUniqueGift.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'type', 'StoryAreaType',
-          'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'type',
+        'StoryAreaType',
+        'Invalid union type "${json['type']}"!',
+      );
   }
 }
 
@@ -42,7 +45,9 @@ mixin _$StoryAreaType {
   @pragma('vm:prefer-inline')
   $StoryAreaTypeCopyWith<StoryAreaType> get copyWith =>
       _$StoryAreaTypeCopyWithImpl<StoryAreaType>(
-          this as StoryAreaType, _$identity);
+        this as StoryAreaType,
+        _$identity,
+      );
 
   /// Serializes this StoryAreaType to a JSON map.
   Map<String, dynamic> toJson();
@@ -56,8 +61,9 @@ mixin _$StoryAreaType {
 /// @nodoc
 abstract mixin class $StoryAreaTypeCopyWith<$Res> {
   factory $StoryAreaTypeCopyWith(
-          StoryAreaType value, $Res Function(StoryAreaType) _then) =
-      _$StoryAreaTypeCopyWithImpl;
+    StoryAreaType value,
+    $Res Function(StoryAreaType) _then,
+  ) = _$StoryAreaTypeCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'type') StoryAreaTypeType type});
 }
@@ -74,26 +80,142 @@ class _$StoryAreaTypeCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
+  $Res call({Object? type = null}) {
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as StoryAreaTypeType,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [StoryAreaType].
+extension StoryAreaTypePatterns on StoryAreaType {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StoryAreaTypeLocation value)? location,
+    TResult Function(StoryAreaTypeSuggestedReaction value)? suggestedReaction,
+    TResult Function(StoryAreaTypeLink value)? link,
+    TResult Function(StoryAreaTypeWeather value)? weather,
+    TResult Function(StoryAreaTypeUniqueGift value)? uniqueGift,
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as StoryAreaTypeType,
-    ));
+    final _that = this;
+    switch (_that) {
+      case StoryAreaTypeLocation() when location != null:
+        return location(_that);
+      case StoryAreaTypeSuggestedReaction() when suggestedReaction != null:
+        return suggestedReaction(_that);
+      case StoryAreaTypeLink() when link != null:
+        return link(_that);
+      case StoryAreaTypeWeather() when weather != null:
+        return weather(_that);
+      case StoryAreaTypeUniqueGift() when uniqueGift != null:
+        return uniqueGift(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StoryAreaTypeLocation value) location,
+    required TResult Function(StoryAreaTypeSuggestedReaction value)
+    suggestedReaction,
+    required TResult Function(StoryAreaTypeLink value) link,
+    required TResult Function(StoryAreaTypeWeather value) weather,
+    required TResult Function(StoryAreaTypeUniqueGift value) uniqueGift,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case StoryAreaTypeLocation():
+        return location(_that);
+      case StoryAreaTypeSuggestedReaction():
+        return suggestedReaction(_that);
+      case StoryAreaTypeLink():
+        return link(_that);
+      case StoryAreaTypeWeather():
+        return weather(_that);
+      case StoryAreaTypeUniqueGift():
+        return uniqueGift(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(StoryAreaTypeLocation value)? location,
+    TResult? Function(StoryAreaTypeSuggestedReaction value)? suggestedReaction,
+    TResult? Function(StoryAreaTypeLink value)? link,
+    TResult? Function(StoryAreaTypeWeather value)? weather,
+    TResult? Function(StoryAreaTypeUniqueGift value)? uniqueGift,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case StoryAreaTypeLocation() when location != null:
+        return location(_that);
+      case StoryAreaTypeSuggestedReaction() when suggestedReaction != null:
+        return suggestedReaction(_that);
+      case StoryAreaTypeLink() when link != null:
+        return link(_that);
+      case StoryAreaTypeWeather() when weather != null:
+        return weather(_that);
+      case StoryAreaTypeUniqueGift() when uniqueGift != null:
+        return uniqueGift(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class StoryAreaTypeLocation implements StoryAreaType {
-  const StoryAreaTypeLocation(
-      {@JsonKey(name: 'type') this.type = StoryAreaTypeType.location,
-      @JsonKey(name: 'latitude') required this.latitude,
-      @JsonKey(name: 'longitude') required this.longitude,
-      @JsonKey(name: 'address') this.address});
+  const StoryAreaTypeLocation({
+    @JsonKey(name: 'type') this.type = StoryAreaTypeType.location,
+    @JsonKey(name: 'latitude') required this.latitude,
+    @JsonKey(name: 'longitude') required this.longitude,
+    @JsonKey(name: 'address') this.address,
+  });
   factory StoryAreaTypeLocation.fromJson(Map<String, dynamic> json) =>
       _$StoryAreaTypeLocationFromJson(json);
 
@@ -121,13 +243,13 @@ class StoryAreaTypeLocation implements StoryAreaType {
   @pragma('vm:prefer-inline')
   $StoryAreaTypeLocationCopyWith<StoryAreaTypeLocation> get copyWith =>
       _$StoryAreaTypeLocationCopyWithImpl<StoryAreaTypeLocation>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$StoryAreaTypeLocationToJson(
-      this,
-    );
+    return _$StoryAreaTypeLocationToJson(this);
   }
 
   @override
@@ -139,16 +261,18 @@ class StoryAreaTypeLocation implements StoryAreaType {
 /// @nodoc
 abstract mixin class $StoryAreaTypeLocationCopyWith<$Res>
     implements $StoryAreaTypeCopyWith<$Res> {
-  factory $StoryAreaTypeLocationCopyWith(StoryAreaTypeLocation value,
-          $Res Function(StoryAreaTypeLocation) _then) =
-      _$StoryAreaTypeLocationCopyWithImpl;
+  factory $StoryAreaTypeLocationCopyWith(
+    StoryAreaTypeLocation value,
+    $Res Function(StoryAreaTypeLocation) _then,
+  ) = _$StoryAreaTypeLocationCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') StoryAreaTypeType type,
-      @JsonKey(name: 'latitude') double latitude,
-      @JsonKey(name: 'longitude') double longitude,
-      @JsonKey(name: 'address') LocationAddress? address});
+  $Res call({
+    @JsonKey(name: 'type') StoryAreaTypeType type,
+    @JsonKey(name: 'latitude') double latitude,
+    @JsonKey(name: 'longitude') double longitude,
+    @JsonKey(name: 'address') LocationAddress? address,
+  });
 
   $LocationAddressCopyWith<$Res>? get address;
 }
@@ -171,24 +295,26 @@ class _$StoryAreaTypeLocationCopyWithImpl<$Res>
     Object? longitude = null,
     Object? address = freezed,
   }) {
-    return _then(StoryAreaTypeLocation(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as StoryAreaTypeType,
-      latitude: null == latitude
-          ? _self.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _self.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      address: freezed == address
-          ? _self.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as LocationAddress?,
-    ));
+    return _then(
+      StoryAreaTypeLocation(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as StoryAreaTypeType,
+        latitude: null == latitude
+            ? _self.latitude
+            : latitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        longitude: null == longitude
+            ? _self.longitude
+            : longitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        address: freezed == address
+            ? _self.address
+            : address // ignore: cast_nullable_to_non_nullable
+                  as LocationAddress?,
+      ),
+    );
   }
 
   /// Create a copy of StoryAreaType
@@ -209,11 +335,12 @@ class _$StoryAreaTypeLocationCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class StoryAreaTypeSuggestedReaction implements StoryAreaType {
-  const StoryAreaTypeSuggestedReaction(
-      {@JsonKey(name: 'type') this.type = StoryAreaTypeType.suggestedReaction,
-      @JsonKey(name: 'reaction_type') required this.reactionType,
-      @JsonKey(name: 'is_dark') this.isDark,
-      @JsonKey(name: 'is_flipped') this.isFlipped});
+  const StoryAreaTypeSuggestedReaction({
+    @JsonKey(name: 'type') this.type = StoryAreaTypeType.suggestedReaction,
+    @JsonKey(name: 'reaction_type') required this.reactionType,
+    @JsonKey(name: 'is_dark') this.isDark,
+    @JsonKey(name: 'is_flipped') this.isFlipped,
+  });
   factory StoryAreaTypeSuggestedReaction.fromJson(Map<String, dynamic> json) =>
       _$StoryAreaTypeSuggestedReactionFromJson(json);
 
@@ -240,14 +367,14 @@ class StoryAreaTypeSuggestedReaction implements StoryAreaType {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $StoryAreaTypeSuggestedReactionCopyWith<StoryAreaTypeSuggestedReaction>
-      get copyWith => _$StoryAreaTypeSuggestedReactionCopyWithImpl<
-          StoryAreaTypeSuggestedReaction>(this, _$identity);
+  get copyWith =>
+      _$StoryAreaTypeSuggestedReactionCopyWithImpl<
+        StoryAreaTypeSuggestedReaction
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$StoryAreaTypeSuggestedReactionToJson(
-      this,
-    );
+    return _$StoryAreaTypeSuggestedReactionToJson(this);
   }
 
   @override
@@ -260,16 +387,17 @@ class StoryAreaTypeSuggestedReaction implements StoryAreaType {
 abstract mixin class $StoryAreaTypeSuggestedReactionCopyWith<$Res>
     implements $StoryAreaTypeCopyWith<$Res> {
   factory $StoryAreaTypeSuggestedReactionCopyWith(
-          StoryAreaTypeSuggestedReaction value,
-          $Res Function(StoryAreaTypeSuggestedReaction) _then) =
-      _$StoryAreaTypeSuggestedReactionCopyWithImpl;
+    StoryAreaTypeSuggestedReaction value,
+    $Res Function(StoryAreaTypeSuggestedReaction) _then,
+  ) = _$StoryAreaTypeSuggestedReactionCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') StoryAreaTypeType type,
-      @JsonKey(name: 'reaction_type') ReactionType reactionType,
-      @JsonKey(name: 'is_dark') bool? isDark,
-      @JsonKey(name: 'is_flipped') bool? isFlipped});
+  $Res call({
+    @JsonKey(name: 'type') StoryAreaTypeType type,
+    @JsonKey(name: 'reaction_type') ReactionType reactionType,
+    @JsonKey(name: 'is_dark') bool? isDark,
+    @JsonKey(name: 'is_flipped') bool? isFlipped,
+  });
 
   $ReactionTypeCopyWith<$Res> get reactionType;
 }
@@ -292,24 +420,26 @@ class _$StoryAreaTypeSuggestedReactionCopyWithImpl<$Res>
     Object? isDark = freezed,
     Object? isFlipped = freezed,
   }) {
-    return _then(StoryAreaTypeSuggestedReaction(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as StoryAreaTypeType,
-      reactionType: null == reactionType
-          ? _self.reactionType
-          : reactionType // ignore: cast_nullable_to_non_nullable
-              as ReactionType,
-      isDark: freezed == isDark
-          ? _self.isDark
-          : isDark // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isFlipped: freezed == isFlipped
-          ? _self.isFlipped
-          : isFlipped // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      StoryAreaTypeSuggestedReaction(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as StoryAreaTypeType,
+        reactionType: null == reactionType
+            ? _self.reactionType
+            : reactionType // ignore: cast_nullable_to_non_nullable
+                  as ReactionType,
+        isDark: freezed == isDark
+            ? _self.isDark
+            : isDark // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isFlipped: freezed == isFlipped
+            ? _self.isFlipped
+            : isFlipped // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of StoryAreaType
@@ -326,9 +456,10 @@ class _$StoryAreaTypeSuggestedReactionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class StoryAreaTypeLink implements StoryAreaType {
-  const StoryAreaTypeLink(
-      {@JsonKey(name: 'type') this.type = StoryAreaTypeType.link,
-      @JsonKey(name: 'url') required this.url});
+  const StoryAreaTypeLink({
+    @JsonKey(name: 'type') this.type = StoryAreaTypeType.link,
+    @JsonKey(name: 'url') required this.url,
+  });
   factory StoryAreaTypeLink.fromJson(Map<String, dynamic> json) =>
       _$StoryAreaTypeLinkFromJson(json);
 
@@ -351,9 +482,7 @@ class StoryAreaTypeLink implements StoryAreaType {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$StoryAreaTypeLinkToJson(
-      this,
-    );
+    return _$StoryAreaTypeLinkToJson(this);
   }
 
   @override
@@ -366,13 +495,15 @@ class StoryAreaTypeLink implements StoryAreaType {
 abstract mixin class $StoryAreaTypeLinkCopyWith<$Res>
     implements $StoryAreaTypeCopyWith<$Res> {
   factory $StoryAreaTypeLinkCopyWith(
-          StoryAreaTypeLink value, $Res Function(StoryAreaTypeLink) _then) =
-      _$StoryAreaTypeLinkCopyWithImpl;
+    StoryAreaTypeLink value,
+    $Res Function(StoryAreaTypeLink) _then,
+  ) = _$StoryAreaTypeLinkCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') StoryAreaTypeType type,
-      @JsonKey(name: 'url') String url});
+  $Res call({
+    @JsonKey(name: 'type') StoryAreaTypeType type,
+    @JsonKey(name: 'url') String url,
+  });
 }
 
 /// @nodoc
@@ -387,31 +518,31 @@ class _$StoryAreaTypeLinkCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? url = null,
-  }) {
-    return _then(StoryAreaTypeLink(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as StoryAreaTypeType,
-      url: null == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? type = null, Object? url = null}) {
+    return _then(
+      StoryAreaTypeLink(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as StoryAreaTypeType,
+        url: null == url
+            ? _self.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class StoryAreaTypeWeather implements StoryAreaType {
-  const StoryAreaTypeWeather(
-      {@JsonKey(name: 'type') this.type = StoryAreaTypeType.weather,
-      @JsonKey(name: 'temperature') required this.temperature,
-      @JsonKey(name: 'emoji') required this.emoji,
-      @JsonKey(name: 'background_color') required this.backgroundColor});
+  const StoryAreaTypeWeather({
+    @JsonKey(name: 'type') this.type = StoryAreaTypeType.weather,
+    @JsonKey(name: 'temperature') required this.temperature,
+    @JsonKey(name: 'emoji') required this.emoji,
+    @JsonKey(name: 'background_color') required this.backgroundColor,
+  });
   factory StoryAreaTypeWeather.fromJson(Map<String, dynamic> json) =>
       _$StoryAreaTypeWeatherFromJson(json);
 
@@ -439,13 +570,13 @@ class StoryAreaTypeWeather implements StoryAreaType {
   @pragma('vm:prefer-inline')
   $StoryAreaTypeWeatherCopyWith<StoryAreaTypeWeather> get copyWith =>
       _$StoryAreaTypeWeatherCopyWithImpl<StoryAreaTypeWeather>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$StoryAreaTypeWeatherToJson(
-      this,
-    );
+    return _$StoryAreaTypeWeatherToJson(this);
   }
 
   @override
@@ -457,16 +588,18 @@ class StoryAreaTypeWeather implements StoryAreaType {
 /// @nodoc
 abstract mixin class $StoryAreaTypeWeatherCopyWith<$Res>
     implements $StoryAreaTypeCopyWith<$Res> {
-  factory $StoryAreaTypeWeatherCopyWith(StoryAreaTypeWeather value,
-          $Res Function(StoryAreaTypeWeather) _then) =
-      _$StoryAreaTypeWeatherCopyWithImpl;
+  factory $StoryAreaTypeWeatherCopyWith(
+    StoryAreaTypeWeather value,
+    $Res Function(StoryAreaTypeWeather) _then,
+  ) = _$StoryAreaTypeWeatherCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') StoryAreaTypeType type,
-      @JsonKey(name: 'temperature') double temperature,
-      @JsonKey(name: 'emoji') String emoji,
-      @JsonKey(name: 'background_color') int backgroundColor});
+  $Res call({
+    @JsonKey(name: 'type') StoryAreaTypeType type,
+    @JsonKey(name: 'temperature') double temperature,
+    @JsonKey(name: 'emoji') String emoji,
+    @JsonKey(name: 'background_color') int backgroundColor,
+  });
 }
 
 /// @nodoc
@@ -487,32 +620,35 @@ class _$StoryAreaTypeWeatherCopyWithImpl<$Res>
     Object? emoji = null,
     Object? backgroundColor = null,
   }) {
-    return _then(StoryAreaTypeWeather(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as StoryAreaTypeType,
-      temperature: null == temperature
-          ? _self.temperature
-          : temperature // ignore: cast_nullable_to_non_nullable
-              as double,
-      emoji: null == emoji
-          ? _self.emoji
-          : emoji // ignore: cast_nullable_to_non_nullable
-              as String,
-      backgroundColor: null == backgroundColor
-          ? _self.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      StoryAreaTypeWeather(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as StoryAreaTypeType,
+        temperature: null == temperature
+            ? _self.temperature
+            : temperature // ignore: cast_nullable_to_non_nullable
+                  as double,
+        emoji: null == emoji
+            ? _self.emoji
+            : emoji // ignore: cast_nullable_to_non_nullable
+                  as String,
+        backgroundColor: null == backgroundColor
+            ? _self.backgroundColor
+            : backgroundColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class StoryAreaTypeUniqueGift implements StoryAreaType {
-  const StoryAreaTypeUniqueGift(
-      {@JsonKey(name: 'type') this.type = StoryAreaTypeType.uniqueGift});
+  const StoryAreaTypeUniqueGift({
+    @JsonKey(name: 'type') this.type = StoryAreaTypeType.uniqueGift,
+  });
   factory StoryAreaTypeUniqueGift.fromJson(Map<String, dynamic> json) =>
       _$StoryAreaTypeUniqueGiftFromJson(json);
 
@@ -528,13 +664,13 @@ class StoryAreaTypeUniqueGift implements StoryAreaType {
   @pragma('vm:prefer-inline')
   $StoryAreaTypeUniqueGiftCopyWith<StoryAreaTypeUniqueGift> get copyWith =>
       _$StoryAreaTypeUniqueGiftCopyWithImpl<StoryAreaTypeUniqueGift>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$StoryAreaTypeUniqueGiftToJson(
-      this,
-    );
+    return _$StoryAreaTypeUniqueGiftToJson(this);
   }
 
   @override
@@ -546,9 +682,10 @@ class StoryAreaTypeUniqueGift implements StoryAreaType {
 /// @nodoc
 abstract mixin class $StoryAreaTypeUniqueGiftCopyWith<$Res>
     implements $StoryAreaTypeCopyWith<$Res> {
-  factory $StoryAreaTypeUniqueGiftCopyWith(StoryAreaTypeUniqueGift value,
-          $Res Function(StoryAreaTypeUniqueGift) _then) =
-      _$StoryAreaTypeUniqueGiftCopyWithImpl;
+  factory $StoryAreaTypeUniqueGiftCopyWith(
+    StoryAreaTypeUniqueGift value,
+    $Res Function(StoryAreaTypeUniqueGift) _then,
+  ) = _$StoryAreaTypeUniqueGiftCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') StoryAreaTypeType type});
@@ -566,14 +703,14 @@ class _$StoryAreaTypeUniqueGiftCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(StoryAreaTypeUniqueGift(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as StoryAreaTypeType,
-    ));
+  $Res call({Object? type = null}) {
+    return _then(
+      StoryAreaTypeUniqueGift(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as StoryAreaTypeType,
+      ),
+    );
   }
 }

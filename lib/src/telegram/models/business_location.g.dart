@@ -17,5 +17,5 @@ _BusinessLocation _$BusinessLocationFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$BusinessLocationToJson(_BusinessLocation instance) =>
     <String, dynamic>{
       'address': instance.address,
-      if (instance.location case final value?) 'location': value,
+      'location': ?instance.location,
     };

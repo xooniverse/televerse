@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -49,7 +48,9 @@ mixin _$BusinessConnection {
   @pragma('vm:prefer-inline')
   $BusinessConnectionCopyWith<BusinessConnection> get copyWith =>
       _$BusinessConnectionCopyWithImpl<BusinessConnection>(
-          this as BusinessConnection, _$identity);
+        this as BusinessConnection,
+        _$identity,
+      );
 
   /// Serializes this BusinessConnection to a JSON map.
   Map<String, dynamic> toJson();
@@ -63,16 +64,18 @@ mixin _$BusinessConnection {
 /// @nodoc
 abstract mixin class $BusinessConnectionCopyWith<$Res> {
   factory $BusinessConnectionCopyWith(
-          BusinessConnection value, $Res Function(BusinessConnection) _then) =
-      _$BusinessConnectionCopyWithImpl;
+    BusinessConnection value,
+    $Res Function(BusinessConnection) _then,
+  ) = _$BusinessConnectionCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'user') User user,
-      @JsonKey(name: 'user_chat_id') int userChatId,
-      @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'rights') BusinessBotRights rights,
-      @JsonKey(name: 'is_enabled') bool isEnabled});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'user') User user,
+    @JsonKey(name: 'user_chat_id') int userChatId,
+    @JsonKey(name: 'date') int date,
+    @JsonKey(name: 'rights') BusinessBotRights rights,
+    @JsonKey(name: 'is_enabled') bool isEnabled,
+  });
 
   $UserCopyWith<$Res> get user;
   $BusinessBotRightsCopyWith<$Res> get rights;
@@ -98,32 +101,34 @@ class _$BusinessConnectionCopyWithImpl<$Res>
     Object? rights = null,
     Object? isEnabled = null,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      userChatId: null == userChatId
-          ? _self.userChatId
-          : userChatId // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      rights: null == rights
-          ? _self.rights
-          : rights // ignore: cast_nullable_to_non_nullable
-              as BusinessBotRights,
-      isEnabled: null == isEnabled
-          ? _self.isEnabled
-          : isEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+        userChatId: null == userChatId
+            ? _self.userChatId
+            : userChatId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+        rights: null == rights
+            ? _self.rights
+            : rights // ignore: cast_nullable_to_non_nullable
+                  as BusinessBotRights,
+        isEnabled: null == isEnabled
+            ? _self.isEnabled
+            : isEnabled // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 
   /// Create a copy of BusinessConnection
@@ -147,17 +152,97 @@ class _$BusinessConnectionCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [BusinessConnection].
+extension BusinessConnectionPatterns on BusinessConnection {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_BusinessConnection value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessConnection() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_BusinessConnection value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessConnection():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_BusinessConnection value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessConnection() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _BusinessConnection extends BusinessConnection {
-  const _BusinessConnection(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'user_chat_id') required this.userChatId,
-      @JsonKey(name: 'date') required this.date,
-      @JsonKey(name: 'rights') required this.rights,
-      @JsonKey(name: 'is_enabled') required this.isEnabled})
-      : super._();
+  const _BusinessConnection({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'user') required this.user,
+    @JsonKey(name: 'user_chat_id') required this.userChatId,
+    @JsonKey(name: 'date') required this.date,
+    @JsonKey(name: 'rights') required this.rights,
+    @JsonKey(name: 'is_enabled') required this.isEnabled,
+  }) : super._();
   factory _BusinessConnection.fromJson(Map<String, dynamic> json) =>
       _$BusinessConnectionFromJson(json);
 
@@ -206,9 +291,7 @@ class _BusinessConnection extends BusinessConnection {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BusinessConnectionToJson(
-      this,
-    );
+    return _$BusinessConnectionToJson(this);
   }
 
   @override
@@ -221,17 +304,19 @@ class _BusinessConnection extends BusinessConnection {
 abstract mixin class _$BusinessConnectionCopyWith<$Res>
     implements $BusinessConnectionCopyWith<$Res> {
   factory _$BusinessConnectionCopyWith(
-          _BusinessConnection value, $Res Function(_BusinessConnection) _then) =
-      __$BusinessConnectionCopyWithImpl;
+    _BusinessConnection value,
+    $Res Function(_BusinessConnection) _then,
+  ) = __$BusinessConnectionCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'user') User user,
-      @JsonKey(name: 'user_chat_id') int userChatId,
-      @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'rights') BusinessBotRights rights,
-      @JsonKey(name: 'is_enabled') bool isEnabled});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'user') User user,
+    @JsonKey(name: 'user_chat_id') int userChatId,
+    @JsonKey(name: 'date') int date,
+    @JsonKey(name: 'rights') BusinessBotRights rights,
+    @JsonKey(name: 'is_enabled') bool isEnabled,
+  });
 
   @override
   $UserCopyWith<$Res> get user;
@@ -259,32 +344,34 @@ class __$BusinessConnectionCopyWithImpl<$Res>
     Object? rights = null,
     Object? isEnabled = null,
   }) {
-    return _then(_BusinessConnection(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      userChatId: null == userChatId
-          ? _self.userChatId
-          : userChatId // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      rights: null == rights
-          ? _self.rights
-          : rights // ignore: cast_nullable_to_non_nullable
-              as BusinessBotRights,
-      isEnabled: null == isEnabled
-          ? _self.isEnabled
-          : isEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _BusinessConnection(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+        userChatId: null == userChatId
+            ? _self.userChatId
+            : userChatId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+        rights: null == rights
+            ? _self.rights
+            : rights // ignore: cast_nullable_to_non_nullable
+                  as BusinessBotRights,
+        isEnabled: null == isEnabled
+            ? _self.isEnabled
+            : isEnabled // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 
   /// Create a copy of BusinessConnection

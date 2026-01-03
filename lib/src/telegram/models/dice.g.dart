@@ -7,14 +7,14 @@ part of 'dice.dart';
 // **************************************************************************
 
 _Dice _$DiceFromJson(Map<String, dynamic> json) => _Dice(
-      emoji: $enumDecode(_$DiceEmojiEnumMap, json['emoji']),
-      value: (json['value'] as num).toInt(),
-    );
+  emoji: $enumDecode(_$DiceEmojiEnumMap, json['emoji']),
+  value: (json['value'] as num).toInt(),
+);
 
 Map<String, dynamic> _$DiceToJson(_Dice instance) => <String, dynamic>{
-      'emoji': instance.emoji,
-      'value': instance.value,
-    };
+  'emoji': instance.emoji,
+  'value': instance.value,
+};
 
 const _$DiceEmojiEnumMap = {
   DiceEmoji.dice: '🎲',

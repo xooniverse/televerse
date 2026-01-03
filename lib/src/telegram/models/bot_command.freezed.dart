@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -41,12 +40,14 @@ mixin _$BotCommand {
 /// @nodoc
 abstract mixin class $BotCommandCopyWith<$Res> {
   factory $BotCommandCopyWith(
-          BotCommand value, $Res Function(BotCommand) _then) =
-      _$BotCommandCopyWithImpl;
+    BotCommand value,
+    $Res Function(BotCommand) _then,
+  ) = _$BotCommandCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'command') String command,
-      @JsonKey(name: 'description') String description});
+  $Res call({
+    @JsonKey(name: 'command') String command,
+    @JsonKey(name: 'description') String description,
+  });
 }
 
 /// @nodoc
@@ -60,29 +61,109 @@ class _$BotCommandCopyWithImpl<$Res> implements $BotCommandCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? command = null,
-    Object? description = null,
+  $Res call({Object? command = null, Object? description = null}) {
+    return _then(
+      _self.copyWith(
+        command: null == command
+            ? _self.command
+            : command // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: null == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [BotCommand].
+extension BotCommandPatterns on BotCommand {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_BotCommand value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      command: null == command
-          ? _self.command
-          : command // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _BotCommand() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_BotCommand value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BotCommand():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_BotCommand value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BotCommand() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _BotCommand implements BotCommand {
-  const _BotCommand(
-      {@JsonKey(name: 'command') required this.command,
-      @JsonKey(name: 'description') required this.description});
+  const _BotCommand({
+    @JsonKey(name: 'command') required this.command,
+    @JsonKey(name: 'description') required this.description,
+  });
   factory _BotCommand.fromJson(Map<String, dynamic> json) =>
       _$BotCommandFromJson(json);
 
@@ -106,9 +187,7 @@ class _BotCommand implements BotCommand {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BotCommandToJson(
-      this,
-    );
+    return _$BotCommandToJson(this);
   }
 
   @override
@@ -121,13 +200,15 @@ class _BotCommand implements BotCommand {
 abstract mixin class _$BotCommandCopyWith<$Res>
     implements $BotCommandCopyWith<$Res> {
   factory _$BotCommandCopyWith(
-          _BotCommand value, $Res Function(_BotCommand) _then) =
-      __$BotCommandCopyWithImpl;
+    _BotCommand value,
+    $Res Function(_BotCommand) _then,
+  ) = __$BotCommandCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'command') String command,
-      @JsonKey(name: 'description') String description});
+  $Res call({
+    @JsonKey(name: 'command') String command,
+    @JsonKey(name: 'description') String description,
+  });
 }
 
 /// @nodoc
@@ -141,19 +222,18 @@ class __$BotCommandCopyWithImpl<$Res> implements _$BotCommandCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? command = null,
-    Object? description = null,
-  }) {
-    return _then(_BotCommand(
-      command: null == command
-          ? _self.command
-          : command // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? command = null, Object? description = null}) {
+    return _then(
+      _BotCommand(
+        command: null == command
+            ? _self.command
+            : command // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: null == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }

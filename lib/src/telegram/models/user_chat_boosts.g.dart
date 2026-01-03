@@ -14,6 +14,4 @@ _UserChatBoosts _$UserChatBoostsFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$UserChatBoostsToJson(_UserChatBoosts instance) =>
-    <String, dynamic>{
-      'boosts': instance.boosts,
-    };
+    <String, dynamic>{'boosts': instance.boosts};

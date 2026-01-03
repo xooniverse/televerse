@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -52,7 +51,9 @@ mixin _$ChatMemberUpdated {
   @pragma('vm:prefer-inline')
   $ChatMemberUpdatedCopyWith<ChatMemberUpdated> get copyWith =>
       _$ChatMemberUpdatedCopyWithImpl<ChatMemberUpdated>(
-          this as ChatMemberUpdated, _$identity);
+        this as ChatMemberUpdated,
+        _$identity,
+      );
 
   /// Serializes this ChatMemberUpdated to a JSON map.
   Map<String, dynamic> toJson();
@@ -66,19 +67,20 @@ mixin _$ChatMemberUpdated {
 /// @nodoc
 abstract mixin class $ChatMemberUpdatedCopyWith<$Res> {
   factory $ChatMemberUpdatedCopyWith(
-          ChatMemberUpdated value, $Res Function(ChatMemberUpdated) _then) =
-      _$ChatMemberUpdatedCopyWithImpl;
+    ChatMemberUpdated value,
+    $Res Function(ChatMemberUpdated) _then,
+  ) = _$ChatMemberUpdatedCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'old_chat_member') ChatMember oldChatMember,
-      @JsonKey(name: 'new_chat_member') ChatMember newChatMember,
-      @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,
-      @JsonKey(name: 'via_chat_folder_invite_link')
-      bool? viaChatFolderInviteLink,
-      @JsonKey(name: 'via_join_request') bool? viaJoinRequest});
+  $Res call({
+    @JsonKey(name: 'chat') Chat chat,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'date') int date,
+    @JsonKey(name: 'old_chat_member') ChatMember oldChatMember,
+    @JsonKey(name: 'new_chat_member') ChatMember newChatMember,
+    @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,
+    @JsonKey(name: 'via_chat_folder_invite_link') bool? viaChatFolderInviteLink,
+    @JsonKey(name: 'via_join_request') bool? viaJoinRequest,
+  });
 
   $ChatCopyWith<$Res> get chat;
   $UserCopyWith<$Res> get from;
@@ -109,40 +111,42 @@ class _$ChatMemberUpdatedCopyWithImpl<$Res>
     Object? viaChatFolderInviteLink = freezed,
     Object? viaJoinRequest = freezed,
   }) {
-    return _then(_self.copyWith(
-      chat: null == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      oldChatMember: null == oldChatMember
-          ? _self.oldChatMember
-          : oldChatMember // ignore: cast_nullable_to_non_nullable
-              as ChatMember,
-      newChatMember: null == newChatMember
-          ? _self.newChatMember
-          : newChatMember // ignore: cast_nullable_to_non_nullable
-              as ChatMember,
-      inviteLink: freezed == inviteLink
-          ? _self.inviteLink
-          : inviteLink // ignore: cast_nullable_to_non_nullable
-              as ChatInviteLink?,
-      viaChatFolderInviteLink: freezed == viaChatFolderInviteLink
-          ? _self.viaChatFolderInviteLink
-          : viaChatFolderInviteLink // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      viaJoinRequest: freezed == viaJoinRequest
-          ? _self.viaJoinRequest
-          : viaJoinRequest // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        chat: null == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+        oldChatMember: null == oldChatMember
+            ? _self.oldChatMember
+            : oldChatMember // ignore: cast_nullable_to_non_nullable
+                  as ChatMember,
+        newChatMember: null == newChatMember
+            ? _self.newChatMember
+            : newChatMember // ignore: cast_nullable_to_non_nullable
+                  as ChatMember,
+        inviteLink: freezed == inviteLink
+            ? _self.inviteLink
+            : inviteLink // ignore: cast_nullable_to_non_nullable
+                  as ChatInviteLink?,
+        viaChatFolderInviteLink: freezed == viaChatFolderInviteLink
+            ? _self.viaChatFolderInviteLink
+            : viaChatFolderInviteLink // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        viaJoinRequest: freezed == viaJoinRequest
+            ? _self.viaJoinRequest
+            : viaJoinRequest // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of ChatMemberUpdated
@@ -200,19 +204,99 @@ class _$ChatMemberUpdatedCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [ChatMemberUpdated].
+extension ChatMemberUpdatedPatterns on ChatMemberUpdated {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChatMemberUpdated value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChatMemberUpdated() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChatMemberUpdated value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatMemberUpdated():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChatMemberUpdated value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatMemberUpdated() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _ChatMemberUpdated implements ChatMemberUpdated {
-  const _ChatMemberUpdated(
-      {@JsonKey(name: 'chat') required this.chat,
-      @JsonKey(name: 'from') required this.from,
-      @JsonKey(name: 'date') required this.date,
-      @JsonKey(name: 'old_chat_member') required this.oldChatMember,
-      @JsonKey(name: 'new_chat_member') required this.newChatMember,
-      @JsonKey(name: 'invite_link') this.inviteLink,
-      @JsonKey(name: 'via_chat_folder_invite_link')
-      this.viaChatFolderInviteLink,
-      @JsonKey(name: 'via_join_request') this.viaJoinRequest});
+  const _ChatMemberUpdated({
+    @JsonKey(name: 'chat') required this.chat,
+    @JsonKey(name: 'from') required this.from,
+    @JsonKey(name: 'date') required this.date,
+    @JsonKey(name: 'old_chat_member') required this.oldChatMember,
+    @JsonKey(name: 'new_chat_member') required this.newChatMember,
+    @JsonKey(name: 'invite_link') this.inviteLink,
+    @JsonKey(name: 'via_chat_folder_invite_link') this.viaChatFolderInviteLink,
+    @JsonKey(name: 'via_join_request') this.viaJoinRequest,
+  });
   factory _ChatMemberUpdated.fromJson(Map<String, dynamic> json) =>
       _$ChatMemberUpdatedFromJson(json);
 
@@ -266,9 +350,7 @@ class _ChatMemberUpdated implements ChatMemberUpdated {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatMemberUpdatedToJson(
-      this,
-    );
+    return _$ChatMemberUpdatedToJson(this);
   }
 
   @override
@@ -281,20 +363,21 @@ class _ChatMemberUpdated implements ChatMemberUpdated {
 abstract mixin class _$ChatMemberUpdatedCopyWith<$Res>
     implements $ChatMemberUpdatedCopyWith<$Res> {
   factory _$ChatMemberUpdatedCopyWith(
-          _ChatMemberUpdated value, $Res Function(_ChatMemberUpdated) _then) =
-      __$ChatMemberUpdatedCopyWithImpl;
+    _ChatMemberUpdated value,
+    $Res Function(_ChatMemberUpdated) _then,
+  ) = __$ChatMemberUpdatedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'old_chat_member') ChatMember oldChatMember,
-      @JsonKey(name: 'new_chat_member') ChatMember newChatMember,
-      @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,
-      @JsonKey(name: 'via_chat_folder_invite_link')
-      bool? viaChatFolderInviteLink,
-      @JsonKey(name: 'via_join_request') bool? viaJoinRequest});
+  $Res call({
+    @JsonKey(name: 'chat') Chat chat,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'date') int date,
+    @JsonKey(name: 'old_chat_member') ChatMember oldChatMember,
+    @JsonKey(name: 'new_chat_member') ChatMember newChatMember,
+    @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,
+    @JsonKey(name: 'via_chat_folder_invite_link') bool? viaChatFolderInviteLink,
+    @JsonKey(name: 'via_join_request') bool? viaJoinRequest,
+  });
 
   @override
   $ChatCopyWith<$Res> get chat;
@@ -330,40 +413,42 @@ class __$ChatMemberUpdatedCopyWithImpl<$Res>
     Object? viaChatFolderInviteLink = freezed,
     Object? viaJoinRequest = freezed,
   }) {
-    return _then(_ChatMemberUpdated(
-      chat: null == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      oldChatMember: null == oldChatMember
-          ? _self.oldChatMember
-          : oldChatMember // ignore: cast_nullable_to_non_nullable
-              as ChatMember,
-      newChatMember: null == newChatMember
-          ? _self.newChatMember
-          : newChatMember // ignore: cast_nullable_to_non_nullable
-              as ChatMember,
-      inviteLink: freezed == inviteLink
-          ? _self.inviteLink
-          : inviteLink // ignore: cast_nullable_to_non_nullable
-              as ChatInviteLink?,
-      viaChatFolderInviteLink: freezed == viaChatFolderInviteLink
-          ? _self.viaChatFolderInviteLink
-          : viaChatFolderInviteLink // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      viaJoinRequest: freezed == viaJoinRequest
-          ? _self.viaJoinRequest
-          : viaJoinRequest // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _ChatMemberUpdated(
+        chat: null == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+        oldChatMember: null == oldChatMember
+            ? _self.oldChatMember
+            : oldChatMember // ignore: cast_nullable_to_non_nullable
+                  as ChatMember,
+        newChatMember: null == newChatMember
+            ? _self.newChatMember
+            : newChatMember // ignore: cast_nullable_to_non_nullable
+                  as ChatMember,
+        inviteLink: freezed == inviteLink
+            ? _self.inviteLink
+            : inviteLink // ignore: cast_nullable_to_non_nullable
+                  as ChatInviteLink?,
+        viaChatFolderInviteLink: freezed == viaChatFolderInviteLink
+            ? _self.viaChatFolderInviteLink
+            : viaChatFolderInviteLink // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        viaJoinRequest: freezed == viaJoinRequest
+            ? _self.viaJoinRequest
+            : viaJoinRequest // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of ChatMemberUpdated

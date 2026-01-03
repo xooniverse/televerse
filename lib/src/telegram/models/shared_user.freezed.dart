@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -61,15 +60,17 @@ mixin _$SharedUser {
 /// @nodoc
 abstract mixin class $SharedUserCopyWith<$Res> {
   factory $SharedUserCopyWith(
-          SharedUser value, $Res Function(SharedUser) _then) =
-      _$SharedUserCopyWithImpl;
+    SharedUser value,
+    $Res Function(SharedUser) _then,
+  ) = _$SharedUserCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'user_id') int userId,
-      @JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'photo') List<PhotoSize>? photo});
+  $Res call({
+    @JsonKey(name: 'user_id') int userId,
+    @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'username') String? username,
+    @JsonKey(name: 'photo') List<PhotoSize>? photo,
+  });
 }
 
 /// @nodoc
@@ -90,41 +91,123 @@ class _$SharedUserCopyWithImpl<$Res> implements $SharedUserCopyWith<$Res> {
     Object? username = freezed,
     Object? photo = freezed,
   }) {
-    return _then(_self.copyWith(
-      userId: null == userId
-          ? _self.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      firstName: freezed == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _self.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photo: freezed == photo
-          ? _self.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as List<PhotoSize>?,
-    ));
+    return _then(
+      _self.copyWith(
+        userId: null == userId
+            ? _self.userId
+            : userId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        firstName: freezed == firstName
+            ? _self.firstName
+            : firstName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        lastName: freezed == lastName
+            ? _self.lastName
+            : lastName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        username: freezed == username
+            ? _self.username
+            : username // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        photo: freezed == photo
+            ? _self.photo
+            : photo // ignore: cast_nullable_to_non_nullable
+                  as List<PhotoSize>?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [SharedUser].
+extension SharedUserPatterns on SharedUser {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SharedUser value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SharedUser() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SharedUser value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SharedUser():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SharedUser value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SharedUser() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _SharedUser implements SharedUser {
-  const _SharedUser(
-      {@JsonKey(name: 'user_id') required this.userId,
-      @JsonKey(name: 'first_name') this.firstName,
-      @JsonKey(name: 'last_name') this.lastName,
-      @JsonKey(name: 'username') this.username,
-      @JsonKey(name: 'photo') final List<PhotoSize>? photo})
-      : _photo = photo;
+  const _SharedUser({
+    @JsonKey(name: 'user_id') required this.userId,
+    @JsonKey(name: 'first_name') this.firstName,
+    @JsonKey(name: 'last_name') this.lastName,
+    @JsonKey(name: 'username') this.username,
+    @JsonKey(name: 'photo') final List<PhotoSize>? photo,
+  }) : _photo = photo;
   factory _SharedUser.fromJson(Map<String, dynamic> json) =>
       _$SharedUserFromJson(json);
 
@@ -181,9 +264,7 @@ class _SharedUser implements SharedUser {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$SharedUserToJson(
-      this,
-    );
+    return _$SharedUserToJson(this);
   }
 
   @override
@@ -196,16 +277,18 @@ class _SharedUser implements SharedUser {
 abstract mixin class _$SharedUserCopyWith<$Res>
     implements $SharedUserCopyWith<$Res> {
   factory _$SharedUserCopyWith(
-          _SharedUser value, $Res Function(_SharedUser) _then) =
-      __$SharedUserCopyWithImpl;
+    _SharedUser value,
+    $Res Function(_SharedUser) _then,
+  ) = __$SharedUserCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'user_id') int userId,
-      @JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'photo') List<PhotoSize>? photo});
+  $Res call({
+    @JsonKey(name: 'user_id') int userId,
+    @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'username') String? username,
+    @JsonKey(name: 'photo') List<PhotoSize>? photo,
+  });
 }
 
 /// @nodoc
@@ -226,27 +309,29 @@ class __$SharedUserCopyWithImpl<$Res> implements _$SharedUserCopyWith<$Res> {
     Object? username = freezed,
     Object? photo = freezed,
   }) {
-    return _then(_SharedUser(
-      userId: null == userId
-          ? _self.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-      firstName: freezed == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _self.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photo: freezed == photo
-          ? _self._photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as List<PhotoSize>?,
-    ));
+    return _then(
+      _SharedUser(
+        userId: null == userId
+            ? _self.userId
+            : userId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        firstName: freezed == firstName
+            ? _self.firstName
+            : firstName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        lastName: freezed == lastName
+            ? _self.lastName
+            : lastName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        username: freezed == username
+            ? _self.username
+            : username // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        photo: freezed == photo
+            ? _self._photo
+            : photo // ignore: cast_nullable_to_non_nullable
+                  as List<PhotoSize>?,
+      ),
+    );
   }
 }

@@ -18,6 +18,6 @@ _SuggestedPostInfo _$SuggestedPostInfoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$SuggestedPostInfoToJson(_SuggestedPostInfo instance) =>
     <String, dynamic>{
       'state': instance.state,
-      if (instance.price case final value?) 'price': value,
-      if (instance.sendDate case final value?) 'send_date': value,
+      'price': ?instance.price,
+      'send_date': ?instance.sendDate,
     };

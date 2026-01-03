@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -40,9 +39,10 @@ mixin _$InlineQueryResultCachedSticker {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $InlineQueryResultCachedStickerCopyWith<InlineQueryResultCachedSticker>
-      get copyWith => _$InlineQueryResultCachedStickerCopyWithImpl<
-              InlineQueryResultCachedSticker>(
-          this as InlineQueryResultCachedSticker, _$identity);
+  get copyWith =>
+      _$InlineQueryResultCachedStickerCopyWithImpl<
+        InlineQueryResultCachedSticker
+      >(this as InlineQueryResultCachedSticker, _$identity);
 
   /// Serializes this InlineQueryResultCachedSticker to a JSON map.
   Map<String, dynamic> toJson();
@@ -56,18 +56,19 @@ mixin _$InlineQueryResultCachedSticker {
 /// @nodoc
 abstract mixin class $InlineQueryResultCachedStickerCopyWith<$Res> {
   factory $InlineQueryResultCachedStickerCopyWith(
-          InlineQueryResultCachedSticker value,
-          $Res Function(InlineQueryResultCachedSticker) _then) =
-      _$InlineQueryResultCachedStickerCopyWithImpl;
+    InlineQueryResultCachedSticker value,
+    $Res Function(InlineQueryResultCachedSticker) _then,
+  ) = _$InlineQueryResultCachedStickerCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'sticker_file_id') String stickerFileId,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'type') InlineQueryResultType type});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'sticker_file_id') String stickerFileId,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'type') InlineQueryResultType type,
+  });
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -91,28 +92,30 @@ class _$InlineQueryResultCachedStickerCopyWithImpl<$Res>
     Object? inputMessageContent = freezed,
     Object? type = null,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      stickerFileId: null == stickerFileId
-          ? _self.stickerFileId
-          : stickerFileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        stickerFileId: null == stickerFileId
+            ? _self.stickerFileId
+            : stickerFileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultCachedSticker
@@ -124,10 +127,92 @@ class _$InlineQueryResultCachedStickerCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [InlineQueryResultCachedSticker].
+extension InlineQueryResultCachedStickerPatterns
+    on InlineQueryResultCachedSticker {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineQueryResultCachedSticker value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultCachedSticker() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineQueryResultCachedSticker value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultCachedSticker():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineQueryResultCachedSticker value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultCachedSticker() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
@@ -135,14 +220,15 @@ class _$InlineQueryResultCachedStickerCopyWithImpl<$Res>
 @JsonSerializable()
 class _InlineQueryResultCachedSticker
     implements InlineQueryResultCachedSticker {
-  const _InlineQueryResultCachedSticker(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'sticker_file_id') required this.stickerFileId,
-      @JsonKey(name: 'reply_markup') this.replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      this.inputMessageContent,
-      @JsonKey(name: 'type') this.type = InlineQueryResultType.sticker});
+  const _InlineQueryResultCachedSticker({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'sticker_file_id') required this.stickerFileId,
+    @JsonKey(name: 'reply_markup') this.replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    this.inputMessageContent,
+    @JsonKey(name: 'type') this.type = InlineQueryResultType.sticker,
+  });
   factory _InlineQueryResultCachedSticker.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultCachedStickerFromJson(json);
 
@@ -178,14 +264,14 @@ class _InlineQueryResultCachedSticker
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   _$InlineQueryResultCachedStickerCopyWith<_InlineQueryResultCachedSticker>
-      get copyWith => __$InlineQueryResultCachedStickerCopyWithImpl<
-          _InlineQueryResultCachedSticker>(this, _$identity);
+  get copyWith =>
+      __$InlineQueryResultCachedStickerCopyWithImpl<
+        _InlineQueryResultCachedSticker
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineQueryResultCachedStickerToJson(
-      this,
-    );
+    return _$InlineQueryResultCachedStickerToJson(this);
   }
 
   @override
@@ -198,19 +284,20 @@ class _InlineQueryResultCachedSticker
 abstract mixin class _$InlineQueryResultCachedStickerCopyWith<$Res>
     implements $InlineQueryResultCachedStickerCopyWith<$Res> {
   factory _$InlineQueryResultCachedStickerCopyWith(
-          _InlineQueryResultCachedSticker value,
-          $Res Function(_InlineQueryResultCachedSticker) _then) =
-      __$InlineQueryResultCachedStickerCopyWithImpl;
+    _InlineQueryResultCachedSticker value,
+    $Res Function(_InlineQueryResultCachedSticker) _then,
+  ) = __$InlineQueryResultCachedStickerCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'sticker_file_id') String stickerFileId,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'type') InlineQueryResultType type});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'sticker_file_id') String stickerFileId,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'type') InlineQueryResultType type,
+  });
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -235,28 +322,30 @@ class __$InlineQueryResultCachedStickerCopyWithImpl<$Res>
     Object? inputMessageContent = freezed,
     Object? type = null,
   }) {
-    return _then(_InlineQueryResultCachedSticker(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      stickerFileId: null == stickerFileId
-          ? _self.stickerFileId
-          : stickerFileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-    ));
+    return _then(
+      _InlineQueryResultCachedSticker(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        stickerFileId: null == stickerFileId
+            ? _self.stickerFileId
+            : stickerFileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultCachedSticker
@@ -268,8 +357,9 @@ class __$InlineQueryResultCachedStickerCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
   }

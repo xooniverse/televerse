@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -35,7 +34,9 @@ mixin _$EncryptedCredentials {
   @pragma('vm:prefer-inline')
   $EncryptedCredentialsCopyWith<EncryptedCredentials> get copyWith =>
       _$EncryptedCredentialsCopyWithImpl<EncryptedCredentials>(
-          this as EncryptedCredentials, _$identity);
+        this as EncryptedCredentials,
+        _$identity,
+      );
 
   /// Serializes this EncryptedCredentials to a JSON map.
   Map<String, dynamic> toJson();
@@ -48,14 +49,16 @@ mixin _$EncryptedCredentials {
 
 /// @nodoc
 abstract mixin class $EncryptedCredentialsCopyWith<$Res> {
-  factory $EncryptedCredentialsCopyWith(EncryptedCredentials value,
-          $Res Function(EncryptedCredentials) _then) =
-      _$EncryptedCredentialsCopyWithImpl;
+  factory $EncryptedCredentialsCopyWith(
+    EncryptedCredentials value,
+    $Res Function(EncryptedCredentials) _then,
+  ) = _$EncryptedCredentialsCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'data') String data,
-      @JsonKey(name: 'hash') String hash,
-      @JsonKey(name: 'secret') String secret});
+  $Res call({
+    @JsonKey(name: 'data') String data,
+    @JsonKey(name: 'hash') String hash,
+    @JsonKey(name: 'secret') String secret,
+  });
 }
 
 /// @nodoc
@@ -70,35 +73,114 @@ class _$EncryptedCredentialsCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? data = null,
-    Object? hash = null,
-    Object? secret = null,
+  $Res call({Object? data = null, Object? hash = null, Object? secret = null}) {
+    return _then(
+      _self.copyWith(
+        data: null == data
+            ? _self.data
+            : data // ignore: cast_nullable_to_non_nullable
+                  as String,
+        hash: null == hash
+            ? _self.hash
+            : hash // ignore: cast_nullable_to_non_nullable
+                  as String,
+        secret: null == secret
+            ? _self.secret
+            : secret // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [EncryptedCredentials].
+extension EncryptedCredentialsPatterns on EncryptedCredentials {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_EncryptedCredentials value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      data: null == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-      hash: null == hash
-          ? _self.hash
-          : hash // ignore: cast_nullable_to_non_nullable
-              as String,
-      secret: null == secret
-          ? _self.secret
-          : secret // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _EncryptedCredentials() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_EncryptedCredentials value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _EncryptedCredentials():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_EncryptedCredentials value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _EncryptedCredentials() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _EncryptedCredentials implements EncryptedCredentials {
-  const _EncryptedCredentials(
-      {@JsonKey(name: 'data') required this.data,
-      @JsonKey(name: 'hash') required this.hash,
-      @JsonKey(name: 'secret') required this.secret});
+  const _EncryptedCredentials({
+    @JsonKey(name: 'data') required this.data,
+    @JsonKey(name: 'hash') required this.hash,
+    @JsonKey(name: 'secret') required this.secret,
+  });
   factory _EncryptedCredentials.fromJson(Map<String, dynamic> json) =>
       _$EncryptedCredentialsFromJson(json);
 
@@ -127,13 +209,13 @@ class _EncryptedCredentials implements EncryptedCredentials {
   @pragma('vm:prefer-inline')
   _$EncryptedCredentialsCopyWith<_EncryptedCredentials> get copyWith =>
       __$EncryptedCredentialsCopyWithImpl<_EncryptedCredentials>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$EncryptedCredentialsToJson(
-      this,
-    );
+    return _$EncryptedCredentialsToJson(this);
   }
 
   @override
@@ -145,15 +227,17 @@ class _EncryptedCredentials implements EncryptedCredentials {
 /// @nodoc
 abstract mixin class _$EncryptedCredentialsCopyWith<$Res>
     implements $EncryptedCredentialsCopyWith<$Res> {
-  factory _$EncryptedCredentialsCopyWith(_EncryptedCredentials value,
-          $Res Function(_EncryptedCredentials) _then) =
-      __$EncryptedCredentialsCopyWithImpl;
+  factory _$EncryptedCredentialsCopyWith(
+    _EncryptedCredentials value,
+    $Res Function(_EncryptedCredentials) _then,
+  ) = __$EncryptedCredentialsCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'data') String data,
-      @JsonKey(name: 'hash') String hash,
-      @JsonKey(name: 'secret') String secret});
+  $Res call({
+    @JsonKey(name: 'data') String data,
+    @JsonKey(name: 'hash') String hash,
+    @JsonKey(name: 'secret') String secret,
+  });
 }
 
 /// @nodoc
@@ -168,24 +252,22 @@ class __$EncryptedCredentialsCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? data = null,
-    Object? hash = null,
-    Object? secret = null,
-  }) {
-    return _then(_EncryptedCredentials(
-      data: null == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-      hash: null == hash
-          ? _self.hash
-          : hash // ignore: cast_nullable_to_non_nullable
-              as String,
-      secret: null == secret
-          ? _self.secret
-          : secret // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? data = null, Object? hash = null, Object? secret = null}) {
+    return _then(
+      _EncryptedCredentials(
+        data: null == data
+            ? _self.data
+            : data // ignore: cast_nullable_to_non_nullable
+                  as String,
+        hash: null == hash
+            ? _self.hash
+            : hash // ignore: cast_nullable_to_non_nullable
+                  as String,
+        secret: null == secret
+            ? _self.secret
+            : secret // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }

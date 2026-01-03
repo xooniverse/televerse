@@ -12,6 +12,4 @@ _GiveawayCreated _$GiveawayCreatedFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$GiveawayCreatedToJson(_GiveawayCreated instance) =>
-    <String, dynamic>{
-      if (instance.prizeStarCount case final value?) 'prize_star_count': value,
-    };
+    <String, dynamic>{'prize_star_count': ?instance.prizeStarCount};

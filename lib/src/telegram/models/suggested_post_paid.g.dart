@@ -11,7 +11,8 @@ _SuggestedPostPaid _$SuggestedPostPaidFromJson(Map<String, dynamic> json) =>
       suggestedPostMessage: json['suggested_post_message'] == null
           ? null
           : Message.fromJson(
-              json['suggested_post_message'] as Map<String, dynamic>),
+              json['suggested_post_message'] as Map<String, dynamic>,
+            ),
       currency: json['currency'] as String,
       amount: (json['amount'] as num?)?.toInt(),
       starAmount: json['star_amount'] == null
@@ -21,9 +22,8 @@ _SuggestedPostPaid _$SuggestedPostPaidFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SuggestedPostPaidToJson(_SuggestedPostPaid instance) =>
     <String, dynamic>{
-      if (instance.suggestedPostMessage case final value?)
-        'suggested_post_message': value,
+      'suggested_post_message': ?instance.suggestedPostMessage,
       'currency': instance.currency,
-      if (instance.amount case final value?) 'amount': value,
-      if (instance.starAmount case final value?) 'star_amount': value,
+      'amount': ?instance.amount,
+      'star_amount': ?instance.starAmount,
     };

@@ -7,44 +7,44 @@ part of 'encrypted_passport_element.dart';
 // **************************************************************************
 
 _EncryptedPassportElement _$EncryptedPassportElementFromJson(
-        Map<String, dynamic> json) =>
-    _EncryptedPassportElement(
-      type: $enumDecode(_$PassportTypeEnumMap, json['type']),
-      data: json['data'] as String?,
-      phoneNumber: json['phone_number'] as String?,
-      email: json['email'] as String?,
-      files: (json['files'] as List<dynamic>?)
-          ?.map((e) => PassportFile.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      frontSide: json['front_side'] == null
-          ? null
-          : PassportFile.fromJson(json['front_side'] as Map<String, dynamic>),
-      reverseSide: json['reverse_side'] == null
-          ? null
-          : PassportFile.fromJson(json['reverse_side'] as Map<String, dynamic>),
-      selfie: json['selfie'] == null
-          ? null
-          : PassportFile.fromJson(json['selfie'] as Map<String, dynamic>),
-      translation: (json['translation'] as List<dynamic>?)
-          ?.map((e) => PassportFile.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      hash: json['hash'] as String,
-    );
+  Map<String, dynamic> json,
+) => _EncryptedPassportElement(
+  type: $enumDecode(_$PassportTypeEnumMap, json['type']),
+  data: json['data'] as String?,
+  phoneNumber: json['phone_number'] as String?,
+  email: json['email'] as String?,
+  files: (json['files'] as List<dynamic>?)
+      ?.map((e) => PassportFile.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  frontSide: json['front_side'] == null
+      ? null
+      : PassportFile.fromJson(json['front_side'] as Map<String, dynamic>),
+  reverseSide: json['reverse_side'] == null
+      ? null
+      : PassportFile.fromJson(json['reverse_side'] as Map<String, dynamic>),
+  selfie: json['selfie'] == null
+      ? null
+      : PassportFile.fromJson(json['selfie'] as Map<String, dynamic>),
+  translation: (json['translation'] as List<dynamic>?)
+      ?.map((e) => PassportFile.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  hash: json['hash'] as String,
+);
 
 Map<String, dynamic> _$EncryptedPassportElementToJson(
-        _EncryptedPassportElement instance) =>
-    <String, dynamic>{
-      'type': _$PassportTypeEnumMap[instance.type]!,
-      if (instance.data case final value?) 'data': value,
-      if (instance.phoneNumber case final value?) 'phone_number': value,
-      if (instance.email case final value?) 'email': value,
-      if (instance.files case final value?) 'files': value,
-      if (instance.frontSide case final value?) 'front_side': value,
-      if (instance.reverseSide case final value?) 'reverse_side': value,
-      if (instance.selfie case final value?) 'selfie': value,
-      if (instance.translation case final value?) 'translation': value,
-      'hash': instance.hash,
-    };
+  _EncryptedPassportElement instance,
+) => <String, dynamic>{
+  'type': _$PassportTypeEnumMap[instance.type]!,
+  'data': ?instance.data,
+  'phone_number': ?instance.phoneNumber,
+  'email': ?instance.email,
+  'files': ?instance.files,
+  'front_side': ?instance.frontSide,
+  'reverse_side': ?instance.reverseSide,
+  'selfie': ?instance.selfie,
+  'translation': ?instance.translation,
+  'hash': instance.hash,
+};
 
 const _$PassportTypeEnumMap = {
   PassportType.passport: 'passport',

@@ -7,27 +7,26 @@ part of 'chat.dart';
 // **************************************************************************
 
 _Chat _$ChatFromJson(Map<String, dynamic> json) => _Chat(
-      id: (json['id'] as num).toInt(),
-      type: $enumDecode(_$ChatTypeEnumMap, json['type']),
-      title: json['title'] as String?,
-      username: json['username'] as String?,
-      firstName: json['first_name'] as String?,
-      lastName: json['last_name'] as String?,
-      isForum: json['is_forum'] as bool?,
-      isDirectMessages: json['is_direct_messages'] as bool?,
-    );
+  id: (json['id'] as num).toInt(),
+  type: $enumDecode(_$ChatTypeEnumMap, json['type']),
+  title: json['title'] as String?,
+  username: json['username'] as String?,
+  firstName: json['first_name'] as String?,
+  lastName: json['last_name'] as String?,
+  isForum: json['is_forum'] as bool?,
+  isDirectMessages: json['is_direct_messages'] as bool?,
+);
 
 Map<String, dynamic> _$ChatToJson(_Chat instance) => <String, dynamic>{
-      'id': instance.id,
-      'type': _$ChatTypeEnumMap[instance.type]!,
-      if (instance.title case final value?) 'title': value,
-      if (instance.username case final value?) 'username': value,
-      if (instance.firstName case final value?) 'first_name': value,
-      if (instance.lastName case final value?) 'last_name': value,
-      if (instance.isForum case final value?) 'is_forum': value,
-      if (instance.isDirectMessages case final value?)
-        'is_direct_messages': value,
-    };
+  'id': instance.id,
+  'type': _$ChatTypeEnumMap[instance.type]!,
+  'title': ?instance.title,
+  'username': ?instance.username,
+  'first_name': ?instance.firstName,
+  'last_name': ?instance.lastName,
+  'is_forum': ?instance.isForum,
+  'is_direct_messages': ?instance.isDirectMessages,
+};
 
 const _$ChatTypeEnumMap = {
   ChatType.private: 'private',

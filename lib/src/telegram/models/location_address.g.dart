@@ -17,7 +17,7 @@ _LocationAddress _$LocationAddressFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$LocationAddressToJson(_LocationAddress instance) =>
     <String, dynamic>{
       'country_code': instance.countryCode,
-      if (instance.state case final value?) 'state': value,
-      if (instance.city case final value?) 'city': value,
-      if (instance.street case final value?) 'street': value,
+      'state': ?instance.state,
+      'city': ?instance.city,
+      'street': ?instance.street,
     };

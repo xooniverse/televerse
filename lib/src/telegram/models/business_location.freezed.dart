@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -28,7 +27,9 @@ mixin _$BusinessLocation {
   @pragma('vm:prefer-inline')
   $BusinessLocationCopyWith<BusinessLocation> get copyWith =>
       _$BusinessLocationCopyWithImpl<BusinessLocation>(
-          this as BusinessLocation, _$identity);
+        this as BusinessLocation,
+        _$identity,
+      );
 
   /// Serializes this BusinessLocation to a JSON map.
   Map<String, dynamic> toJson();
@@ -42,12 +43,14 @@ mixin _$BusinessLocation {
 /// @nodoc
 abstract mixin class $BusinessLocationCopyWith<$Res> {
   factory $BusinessLocationCopyWith(
-          BusinessLocation value, $Res Function(BusinessLocation) _then) =
-      _$BusinessLocationCopyWithImpl;
+    BusinessLocation value,
+    $Res Function(BusinessLocation) _then,
+  ) = _$BusinessLocationCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'address') String address,
-      @JsonKey(name: 'location') Location? location});
+  $Res call({
+    @JsonKey(name: 'address') String address,
+    @JsonKey(name: 'location') Location? location,
+  });
 
   $LocationCopyWith<$Res>? get location;
 }
@@ -64,20 +67,19 @@ class _$BusinessLocationCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? address = null,
-    Object? location = freezed,
-  }) {
-    return _then(_self.copyWith(
-      address: null == address
-          ? _self.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      location: freezed == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location?,
-    ));
+  $Res call({Object? address = null, Object? location = freezed}) {
+    return _then(
+      _self.copyWith(
+        address: null == address
+            ? _self.address
+            : address // ignore: cast_nullable_to_non_nullable
+                  as String,
+        location: freezed == location
+            ? _self.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as Location?,
+      ),
+    );
   }
 
   /// Create a copy of BusinessLocation
@@ -95,12 +97,93 @@ class _$BusinessLocationCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [BusinessLocation].
+extension BusinessLocationPatterns on BusinessLocation {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_BusinessLocation value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessLocation() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_BusinessLocation value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessLocation():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_BusinessLocation value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessLocation() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _BusinessLocation implements BusinessLocation {
-  const _BusinessLocation(
-      {@JsonKey(name: 'address') required this.address,
-      @JsonKey(name: 'location') this.location});
+  const _BusinessLocation({
+    @JsonKey(name: 'address') required this.address,
+    @JsonKey(name: 'location') this.location,
+  });
   factory _BusinessLocation.fromJson(Map<String, dynamic> json) =>
       _$BusinessLocationFromJson(json);
 
@@ -124,9 +207,7 @@ class _BusinessLocation implements BusinessLocation {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BusinessLocationToJson(
-      this,
-    );
+    return _$BusinessLocationToJson(this);
   }
 
   @override
@@ -139,13 +220,15 @@ class _BusinessLocation implements BusinessLocation {
 abstract mixin class _$BusinessLocationCopyWith<$Res>
     implements $BusinessLocationCopyWith<$Res> {
   factory _$BusinessLocationCopyWith(
-          _BusinessLocation value, $Res Function(_BusinessLocation) _then) =
-      __$BusinessLocationCopyWithImpl;
+    _BusinessLocation value,
+    $Res Function(_BusinessLocation) _then,
+  ) = __$BusinessLocationCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'address') String address,
-      @JsonKey(name: 'location') Location? location});
+  $Res call({
+    @JsonKey(name: 'address') String address,
+    @JsonKey(name: 'location') Location? location,
+  });
 
   @override
   $LocationCopyWith<$Res>? get location;
@@ -163,20 +246,19 @@ class __$BusinessLocationCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? address = null,
-    Object? location = freezed,
-  }) {
-    return _then(_BusinessLocation(
-      address: null == address
-          ? _self.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      location: freezed == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location?,
-    ));
+  $Res call({Object? address = null, Object? location = freezed}) {
+    return _then(
+      _BusinessLocation(
+        address: null == address
+            ? _self.address
+            : address // ignore: cast_nullable_to_non_nullable
+                  as String,
+        location: freezed == location
+            ? _self.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as Location?,
+      ),
+    );
   }
 
   /// Create a copy of BusinessLocation

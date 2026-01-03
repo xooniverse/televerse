@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -34,7 +33,9 @@ mixin _$ChecklistTasksDone {
   @pragma('vm:prefer-inline')
   $ChecklistTasksDoneCopyWith<ChecklistTasksDone> get copyWith =>
       _$ChecklistTasksDoneCopyWithImpl<ChecklistTasksDone>(
-          this as ChecklistTasksDone, _$identity);
+        this as ChecklistTasksDone,
+        _$identity,
+      );
 
   /// Serializes this ChecklistTasksDone to a JSON map.
   Map<String, dynamic> toJson();
@@ -48,14 +49,16 @@ mixin _$ChecklistTasksDone {
 /// @nodoc
 abstract mixin class $ChecklistTasksDoneCopyWith<$Res> {
   factory $ChecklistTasksDoneCopyWith(
-          ChecklistTasksDone value, $Res Function(ChecklistTasksDone) _then) =
-      _$ChecklistTasksDoneCopyWithImpl;
+    ChecklistTasksDone value,
+    $Res Function(ChecklistTasksDone) _then,
+  ) = _$ChecklistTasksDoneCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'checklist_message') Message? checklistMessage,
-      @JsonKey(name: 'marked_as_done_task_ids') List<int>? markedAsDoneTaskIds,
-      @JsonKey(name: 'marked_as_not_done_task_ids')
-      List<int>? markedAsNotDoneTaskIds});
+  $Res call({
+    @JsonKey(name: 'checklist_message') Message? checklistMessage,
+    @JsonKey(name: 'marked_as_done_task_ids') List<int>? markedAsDoneTaskIds,
+    @JsonKey(name: 'marked_as_not_done_task_ids')
+    List<int>? markedAsNotDoneTaskIds,
+  });
 }
 
 /// @nodoc
@@ -75,34 +78,116 @@ class _$ChecklistTasksDoneCopyWithImpl<$Res>
     Object? markedAsDoneTaskIds = freezed,
     Object? markedAsNotDoneTaskIds = freezed,
   }) {
-    return _then(_self.copyWith(
-      checklistMessage: freezed == checklistMessage
-          ? _self.checklistMessage
-          : checklistMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      markedAsDoneTaskIds: freezed == markedAsDoneTaskIds
-          ? _self.markedAsDoneTaskIds
-          : markedAsDoneTaskIds // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
-      markedAsNotDoneTaskIds: freezed == markedAsNotDoneTaskIds
-          ? _self.markedAsNotDoneTaskIds
-          : markedAsNotDoneTaskIds // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
-    ));
+    return _then(
+      _self.copyWith(
+        checklistMessage: freezed == checklistMessage
+            ? _self.checklistMessage
+            : checklistMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        markedAsDoneTaskIds: freezed == markedAsDoneTaskIds
+            ? _self.markedAsDoneTaskIds
+            : markedAsDoneTaskIds // ignore: cast_nullable_to_non_nullable
+                  as List<int>?,
+        markedAsNotDoneTaskIds: freezed == markedAsNotDoneTaskIds
+            ? _self.markedAsNotDoneTaskIds
+            : markedAsNotDoneTaskIds // ignore: cast_nullable_to_non_nullable
+                  as List<int>?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [ChecklistTasksDone].
+extension ChecklistTasksDonePatterns on ChecklistTasksDone {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChecklistTasksDone value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChecklistTasksDone() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChecklistTasksDone value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChecklistTasksDone():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChecklistTasksDone value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChecklistTasksDone() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _ChecklistTasksDone implements ChecklistTasksDone {
-  const _ChecklistTasksDone(
-      {@JsonKey(name: 'checklist_message') this.checklistMessage,
-      @JsonKey(name: 'marked_as_done_task_ids')
-      final List<int>? markedAsDoneTaskIds,
-      @JsonKey(name: 'marked_as_not_done_task_ids')
-      final List<int>? markedAsNotDoneTaskIds})
-      : _markedAsDoneTaskIds = markedAsDoneTaskIds,
-        _markedAsNotDoneTaskIds = markedAsNotDoneTaskIds;
+  const _ChecklistTasksDone({
+    @JsonKey(name: 'checklist_message') this.checklistMessage,
+    @JsonKey(name: 'marked_as_done_task_ids')
+    final List<int>? markedAsDoneTaskIds,
+    @JsonKey(name: 'marked_as_not_done_task_ids')
+    final List<int>? markedAsNotDoneTaskIds,
+  }) : _markedAsDoneTaskIds = markedAsDoneTaskIds,
+       _markedAsNotDoneTaskIds = markedAsNotDoneTaskIds;
   factory _ChecklistTasksDone.fromJson(Map<String, dynamic> json) =>
       _$ChecklistTasksDoneFromJson(json);
 
@@ -153,9 +238,7 @@ class _ChecklistTasksDone implements ChecklistTasksDone {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChecklistTasksDoneToJson(
-      this,
-    );
+    return _$ChecklistTasksDoneToJson(this);
   }
 
   @override
@@ -168,15 +251,17 @@ class _ChecklistTasksDone implements ChecklistTasksDone {
 abstract mixin class _$ChecklistTasksDoneCopyWith<$Res>
     implements $ChecklistTasksDoneCopyWith<$Res> {
   factory _$ChecklistTasksDoneCopyWith(
-          _ChecklistTasksDone value, $Res Function(_ChecklistTasksDone) _then) =
-      __$ChecklistTasksDoneCopyWithImpl;
+    _ChecklistTasksDone value,
+    $Res Function(_ChecklistTasksDone) _then,
+  ) = __$ChecklistTasksDoneCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'checklist_message') Message? checklistMessage,
-      @JsonKey(name: 'marked_as_done_task_ids') List<int>? markedAsDoneTaskIds,
-      @JsonKey(name: 'marked_as_not_done_task_ids')
-      List<int>? markedAsNotDoneTaskIds});
+  $Res call({
+    @JsonKey(name: 'checklist_message') Message? checklistMessage,
+    @JsonKey(name: 'marked_as_done_task_ids') List<int>? markedAsDoneTaskIds,
+    @JsonKey(name: 'marked_as_not_done_task_ids')
+    List<int>? markedAsNotDoneTaskIds,
+  });
 }
 
 /// @nodoc
@@ -196,19 +281,21 @@ class __$ChecklistTasksDoneCopyWithImpl<$Res>
     Object? markedAsDoneTaskIds = freezed,
     Object? markedAsNotDoneTaskIds = freezed,
   }) {
-    return _then(_ChecklistTasksDone(
-      checklistMessage: freezed == checklistMessage
-          ? _self.checklistMessage
-          : checklistMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      markedAsDoneTaskIds: freezed == markedAsDoneTaskIds
-          ? _self._markedAsDoneTaskIds
-          : markedAsDoneTaskIds // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
-      markedAsNotDoneTaskIds: freezed == markedAsNotDoneTaskIds
-          ? _self._markedAsNotDoneTaskIds
-          : markedAsNotDoneTaskIds // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
-    ));
+    return _then(
+      _ChecklistTasksDone(
+        checklistMessage: freezed == checklistMessage
+            ? _self.checklistMessage
+            : checklistMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        markedAsDoneTaskIds: freezed == markedAsDoneTaskIds
+            ? _self._markedAsDoneTaskIds
+            : markedAsDoneTaskIds // ignore: cast_nullable_to_non_nullable
+                  as List<int>?,
+        markedAsNotDoneTaskIds: freezed == markedAsNotDoneTaskIds
+            ? _self._markedAsNotDoneTaskIds
+            : markedAsNotDoneTaskIds // ignore: cast_nullable_to_non_nullable
+                  as List<int>?,
+      ),
+    );
   }
 }

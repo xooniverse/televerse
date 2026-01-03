@@ -11,8 +11,8 @@ Map<String, dynamic> _$InputStickerToJson(_InputSticker instance) =>
       'sticker': const InputFileConverter().toJson(instance.sticker),
       'format': _$InputStickerFormatEnumMap[instance.format]!,
       'emoji_list': instance.emojiList,
-      if (instance.maskPosition case final value?) 'mask_position': value,
-      if (instance.keywords case final value?) 'keywords': value,
+      'mask_position': ?instance.maskPosition,
+      'keywords': ?instance.keywords,
     };
 
 const _$InputStickerFormatEnumMap = {

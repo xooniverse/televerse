@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -66,14 +65,15 @@ abstract mixin class $GiftCopyWith<$Res> {
   factory $GiftCopyWith(Gift value, $Res Function(Gift) _then) =
       _$GiftCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'sticker') Sticker sticker,
-      @JsonKey(name: 'star_count') int starCount,
-      @JsonKey(name: 'total_count') int? totalCount,
-      @JsonKey(name: 'remaining_count') int? remainingCount,
-      @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount,
-      @JsonKey(name: 'publisher_chat') Chat? publisherChat});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'sticker') Sticker sticker,
+    @JsonKey(name: 'star_count') int starCount,
+    @JsonKey(name: 'total_count') int? totalCount,
+    @JsonKey(name: 'remaining_count') int? remainingCount,
+    @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount,
+    @JsonKey(name: 'publisher_chat') Chat? publisherChat,
+  });
 
   $StickerCopyWith<$Res> get sticker;
   $ChatCopyWith<$Res>? get publisherChat;
@@ -99,36 +99,38 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
     Object? upgradeStarCount = freezed,
     Object? publisherChat = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      sticker: null == sticker
-          ? _self.sticker
-          : sticker // ignore: cast_nullable_to_non_nullable
-              as Sticker,
-      starCount: null == starCount
-          ? _self.starCount
-          : starCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      totalCount: freezed == totalCount
-          ? _self.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      remainingCount: freezed == remainingCount
-          ? _self.remainingCount
-          : remainingCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      upgradeStarCount: freezed == upgradeStarCount
-          ? _self.upgradeStarCount
-          : upgradeStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      publisherChat: freezed == publisherChat
-          ? _self.publisherChat
-          : publisherChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        sticker: null == sticker
+            ? _self.sticker
+            : sticker // ignore: cast_nullable_to_non_nullable
+                  as Sticker,
+        starCount: null == starCount
+            ? _self.starCount
+            : starCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        totalCount: freezed == totalCount
+            ? _self.totalCount
+            : totalCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        remainingCount: freezed == remainingCount
+            ? _self.remainingCount
+            : remainingCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        upgradeStarCount: freezed == upgradeStarCount
+            ? _self.upgradeStarCount
+            : upgradeStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        publisherChat: freezed == publisherChat
+            ? _self.publisherChat
+            : publisherChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+      ),
+    );
   }
 
   /// Create a copy of Gift
@@ -156,17 +158,96 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [Gift].
+extension GiftPatterns on Gift {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Gift value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Gift() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(TResult Function(_Gift value) $default) {
+    final _that = this;
+    switch (_that) {
+      case _Gift():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Gift value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Gift() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _Gift implements Gift {
-  const _Gift(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'sticker') required this.sticker,
-      @JsonKey(name: 'star_count') required this.starCount,
-      @JsonKey(name: 'total_count') this.totalCount,
-      @JsonKey(name: 'remaining_count') this.remainingCount,
-      @JsonKey(name: 'upgrade_star_count') this.upgradeStarCount,
-      @JsonKey(name: 'publisher_chat') this.publisherChat});
+  const _Gift({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'sticker') required this.sticker,
+    @JsonKey(name: 'star_count') required this.starCount,
+    @JsonKey(name: 'total_count') this.totalCount,
+    @JsonKey(name: 'remaining_count') this.remainingCount,
+    @JsonKey(name: 'upgrade_star_count') this.upgradeStarCount,
+    @JsonKey(name: 'publisher_chat') this.publisherChat,
+  });
   factory _Gift.fromJson(Map<String, dynamic> json) => _$GiftFromJson(json);
 
   /// Unique identifier of the gift.
@@ -217,9 +298,7 @@ class _Gift implements Gift {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$GiftToJson(
-      this,
-    );
+    return _$GiftToJson(this);
   }
 
   @override
@@ -234,14 +313,15 @@ abstract mixin class _$GiftCopyWith<$Res> implements $GiftCopyWith<$Res> {
       __$GiftCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'sticker') Sticker sticker,
-      @JsonKey(name: 'star_count') int starCount,
-      @JsonKey(name: 'total_count') int? totalCount,
-      @JsonKey(name: 'remaining_count') int? remainingCount,
-      @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount,
-      @JsonKey(name: 'publisher_chat') Chat? publisherChat});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'sticker') Sticker sticker,
+    @JsonKey(name: 'star_count') int starCount,
+    @JsonKey(name: 'total_count') int? totalCount,
+    @JsonKey(name: 'remaining_count') int? remainingCount,
+    @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount,
+    @JsonKey(name: 'publisher_chat') Chat? publisherChat,
+  });
 
   @override
   $StickerCopyWith<$Res> get sticker;
@@ -269,36 +349,38 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
     Object? upgradeStarCount = freezed,
     Object? publisherChat = freezed,
   }) {
-    return _then(_Gift(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      sticker: null == sticker
-          ? _self.sticker
-          : sticker // ignore: cast_nullable_to_non_nullable
-              as Sticker,
-      starCount: null == starCount
-          ? _self.starCount
-          : starCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      totalCount: freezed == totalCount
-          ? _self.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      remainingCount: freezed == remainingCount
-          ? _self.remainingCount
-          : remainingCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      upgradeStarCount: freezed == upgradeStarCount
-          ? _self.upgradeStarCount
-          : upgradeStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      publisherChat: freezed == publisherChat
-          ? _self.publisherChat
-          : publisherChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-    ));
+    return _then(
+      _Gift(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        sticker: null == sticker
+            ? _self.sticker
+            : sticker // ignore: cast_nullable_to_non_nullable
+                  as Sticker,
+        starCount: null == starCount
+            ? _self.starCount
+            : starCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        totalCount: freezed == totalCount
+            ? _self.totalCount
+            : totalCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        remainingCount: freezed == remainingCount
+            ? _self.remainingCount
+            : remainingCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        upgradeStarCount: freezed == upgradeStarCount
+            ? _self.upgradeStarCount
+            : upgradeStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        publisherChat: freezed == publisherChat
+            ? _self.publisherChat
+            : publisherChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+      ),
+    );
   }
 
   /// Create a copy of Gift

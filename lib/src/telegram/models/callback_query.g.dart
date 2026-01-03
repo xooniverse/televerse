@@ -13,7 +13,8 @@ _CallbackQuery _$CallbackQueryFromJson(Map<String, dynamic> json) =>
       message: json['message'] == null
           ? null
           : MaybeInaccessibleMessage.fromJson(
-              json['message'] as Map<String, dynamic>),
+              json['message'] as Map<String, dynamic>,
+            ),
       inlineMessageId: json['inline_message_id'] as String?,
       chatInstance: json['chat_instance'] as String,
       data: json['data'] as String?,
@@ -24,10 +25,9 @@ Map<String, dynamic> _$CallbackQueryToJson(_CallbackQuery instance) =>
     <String, dynamic>{
       'id': instance.id,
       'from': instance.from,
-      if (instance.message case final value?) 'message': value,
-      if (instance.inlineMessageId case final value?)
-        'inline_message_id': value,
+      'message': ?instance.message,
+      'inline_message_id': ?instance.inlineMessageId,
       'chat_instance': instance.chatInstance,
-      if (instance.data case final value?) 'data': value,
-      if (instance.gameShortName case final value?) 'game_short_name': value,
+      'data': ?instance.data,
+      'game_short_name': ?instance.gameShortName,
     };

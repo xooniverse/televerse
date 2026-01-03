@@ -14,7 +14,6 @@ _ResponseParameters _$ResponseParametersFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ResponseParametersToJson(_ResponseParameters instance) =>
     <String, dynamic>{
-      if (instance.migrateToChatId case final value?)
-        'migrate_to_chat_id': value,
-      if (instance.retryAfter case final value?) 'retry_after': value,
+      'migrate_to_chat_id': ?instance.migrateToChatId,
+      'retry_after': ?instance.retryAfter,
     };

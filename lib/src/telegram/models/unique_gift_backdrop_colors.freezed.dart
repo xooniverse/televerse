@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -36,7 +35,9 @@ mixin _$UniqueGiftBackdropColors {
   @pragma('vm:prefer-inline')
   $UniqueGiftBackdropColorsCopyWith<UniqueGiftBackdropColors> get copyWith =>
       _$UniqueGiftBackdropColorsCopyWithImpl<UniqueGiftBackdropColors>(
-          this as UniqueGiftBackdropColors, _$identity);
+        this as UniqueGiftBackdropColors,
+        _$identity,
+      );
 
   /// Serializes this UniqueGiftBackdropColors to a JSON map.
   Map<String, dynamic> toJson();
@@ -49,15 +50,17 @@ mixin _$UniqueGiftBackdropColors {
 
 /// @nodoc
 abstract mixin class $UniqueGiftBackdropColorsCopyWith<$Res> {
-  factory $UniqueGiftBackdropColorsCopyWith(UniqueGiftBackdropColors value,
-          $Res Function(UniqueGiftBackdropColors) _then) =
-      _$UniqueGiftBackdropColorsCopyWithImpl;
+  factory $UniqueGiftBackdropColorsCopyWith(
+    UniqueGiftBackdropColors value,
+    $Res Function(UniqueGiftBackdropColors) _then,
+  ) = _$UniqueGiftBackdropColorsCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'center_color') int centerColor,
-      @JsonKey(name: 'edge_color') int edgeColor,
-      @JsonKey(name: 'symbol_color') int symbolColor,
-      @JsonKey(name: 'text_color') int textColor});
+  $Res call({
+    @JsonKey(name: 'center_color') int centerColor,
+    @JsonKey(name: 'edge_color') int edgeColor,
+    @JsonKey(name: 'symbol_color') int symbolColor,
+    @JsonKey(name: 'text_color') int textColor,
+  });
 }
 
 /// @nodoc
@@ -78,35 +81,118 @@ class _$UniqueGiftBackdropColorsCopyWithImpl<$Res>
     Object? symbolColor = null,
     Object? textColor = null,
   }) {
-    return _then(_self.copyWith(
-      centerColor: null == centerColor
-          ? _self.centerColor
-          : centerColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      edgeColor: null == edgeColor
-          ? _self.edgeColor
-          : edgeColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      symbolColor: null == symbolColor
-          ? _self.symbolColor
-          : symbolColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      textColor: null == textColor
-          ? _self.textColor
-          : textColor // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _self.copyWith(
+        centerColor: null == centerColor
+            ? _self.centerColor
+            : centerColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+        edgeColor: null == edgeColor
+            ? _self.edgeColor
+            : edgeColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+        symbolColor: null == symbolColor
+            ? _self.symbolColor
+            : symbolColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+        textColor: null == textColor
+            ? _self.textColor
+            : textColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [UniqueGiftBackdropColors].
+extension UniqueGiftBackdropColorsPatterns on UniqueGiftBackdropColors {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UniqueGiftBackdropColors value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGiftBackdropColors() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UniqueGiftBackdropColors value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGiftBackdropColors():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_UniqueGiftBackdropColors value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGiftBackdropColors() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _UniqueGiftBackdropColors implements UniqueGiftBackdropColors {
-  const _UniqueGiftBackdropColors(
-      {@JsonKey(name: 'center_color') required this.centerColor,
-      @JsonKey(name: 'edge_color') required this.edgeColor,
-      @JsonKey(name: 'symbol_color') required this.symbolColor,
-      @JsonKey(name: 'text_color') required this.textColor});
+  const _UniqueGiftBackdropColors({
+    @JsonKey(name: 'center_color') required this.centerColor,
+    @JsonKey(name: 'edge_color') required this.edgeColor,
+    @JsonKey(name: 'symbol_color') required this.symbolColor,
+    @JsonKey(name: 'text_color') required this.textColor,
+  });
   factory _UniqueGiftBackdropColors.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftBackdropColorsFromJson(json);
 
@@ -137,13 +223,13 @@ class _UniqueGiftBackdropColors implements UniqueGiftBackdropColors {
   @pragma('vm:prefer-inline')
   _$UniqueGiftBackdropColorsCopyWith<_UniqueGiftBackdropColors> get copyWith =>
       __$UniqueGiftBackdropColorsCopyWithImpl<_UniqueGiftBackdropColors>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$UniqueGiftBackdropColorsToJson(
-      this,
-    );
+    return _$UniqueGiftBackdropColorsToJson(this);
   }
 
   @override
@@ -155,16 +241,18 @@ class _UniqueGiftBackdropColors implements UniqueGiftBackdropColors {
 /// @nodoc
 abstract mixin class _$UniqueGiftBackdropColorsCopyWith<$Res>
     implements $UniqueGiftBackdropColorsCopyWith<$Res> {
-  factory _$UniqueGiftBackdropColorsCopyWith(_UniqueGiftBackdropColors value,
-          $Res Function(_UniqueGiftBackdropColors) _then) =
-      __$UniqueGiftBackdropColorsCopyWithImpl;
+  factory _$UniqueGiftBackdropColorsCopyWith(
+    _UniqueGiftBackdropColors value,
+    $Res Function(_UniqueGiftBackdropColors) _then,
+  ) = __$UniqueGiftBackdropColorsCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'center_color') int centerColor,
-      @JsonKey(name: 'edge_color') int edgeColor,
-      @JsonKey(name: 'symbol_color') int symbolColor,
-      @JsonKey(name: 'text_color') int textColor});
+  $Res call({
+    @JsonKey(name: 'center_color') int centerColor,
+    @JsonKey(name: 'edge_color') int edgeColor,
+    @JsonKey(name: 'symbol_color') int symbolColor,
+    @JsonKey(name: 'text_color') int textColor,
+  });
 }
 
 /// @nodoc
@@ -185,23 +273,25 @@ class __$UniqueGiftBackdropColorsCopyWithImpl<$Res>
     Object? symbolColor = null,
     Object? textColor = null,
   }) {
-    return _then(_UniqueGiftBackdropColors(
-      centerColor: null == centerColor
-          ? _self.centerColor
-          : centerColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      edgeColor: null == edgeColor
-          ? _self.edgeColor
-          : edgeColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      symbolColor: null == symbolColor
-          ? _self.symbolColor
-          : symbolColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      textColor: null == textColor
-          ? _self.textColor
-          : textColor // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _UniqueGiftBackdropColors(
+        centerColor: null == centerColor
+            ? _self.centerColor
+            : centerColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+        edgeColor: null == edgeColor
+            ? _self.edgeColor
+            : edgeColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+        symbolColor: null == symbolColor
+            ? _self.symbolColor
+            : symbolColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+        textColor: null == textColor
+            ? _self.textColor
+            : textColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }

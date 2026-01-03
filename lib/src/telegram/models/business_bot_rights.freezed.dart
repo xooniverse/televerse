@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -77,7 +76,9 @@ mixin _$BusinessBotRights {
   @pragma('vm:prefer-inline')
   $BusinessBotRightsCopyWith<BusinessBotRights> get copyWith =>
       _$BusinessBotRightsCopyWithImpl<BusinessBotRights>(
-          this as BusinessBotRights, _$identity);
+        this as BusinessBotRights,
+        _$identity,
+      );
 
   /// Serializes this BusinessBotRights to a JSON map.
   Map<String, dynamic> toJson();
@@ -91,26 +92,28 @@ mixin _$BusinessBotRights {
 /// @nodoc
 abstract mixin class $BusinessBotRightsCopyWith<$Res> {
   factory $BusinessBotRightsCopyWith(
-          BusinessBotRights value, $Res Function(BusinessBotRights) _then) =
-      _$BusinessBotRightsCopyWithImpl;
+    BusinessBotRights value,
+    $Res Function(BusinessBotRights) _then,
+  ) = _$BusinessBotRightsCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'can_reply') bool? canReply,
-      @JsonKey(name: 'can_read_messages') bool? canReadMessages,
-      @JsonKey(name: 'can_delete_outgoing_messages')
-      bool? canDeleteOutgoingMessages,
-      @JsonKey(name: 'can_delete_all_messages') bool? canDeleteAllMessages,
-      @JsonKey(name: 'can_edit_name') bool? canEditName,
-      @JsonKey(name: 'can_edit_bio') bool? canEditBio,
-      @JsonKey(name: 'can_edit_profile_photo') bool? canEditProfilePhoto,
-      @JsonKey(name: 'can_edit_username') bool? canEditUsername,
-      @JsonKey(name: 'can_change_gift_settings') bool? canChangeGiftSettings,
-      @JsonKey(name: 'can_view_gifts_and_stars') bool? canViewGiftsAndStars,
-      @JsonKey(name: 'can_convert_gifts_to_stars') bool? canConvertGiftsToStars,
-      @JsonKey(name: 'can_transfer_and_upgrade_gifts')
-      bool? canTransferAndUpgradeGifts,
-      @JsonKey(name: 'can_transfer_stars') bool? canTransferStars,
-      @JsonKey(name: 'can_manage_stories') bool? canManageStories});
+  $Res call({
+    @JsonKey(name: 'can_reply') bool? canReply,
+    @JsonKey(name: 'can_read_messages') bool? canReadMessages,
+    @JsonKey(name: 'can_delete_outgoing_messages')
+    bool? canDeleteOutgoingMessages,
+    @JsonKey(name: 'can_delete_all_messages') bool? canDeleteAllMessages,
+    @JsonKey(name: 'can_edit_name') bool? canEditName,
+    @JsonKey(name: 'can_edit_bio') bool? canEditBio,
+    @JsonKey(name: 'can_edit_profile_photo') bool? canEditProfilePhoto,
+    @JsonKey(name: 'can_edit_username') bool? canEditUsername,
+    @JsonKey(name: 'can_change_gift_settings') bool? canChangeGiftSettings,
+    @JsonKey(name: 'can_view_gifts_and_stars') bool? canViewGiftsAndStars,
+    @JsonKey(name: 'can_convert_gifts_to_stars') bool? canConvertGiftsToStars,
+    @JsonKey(name: 'can_transfer_and_upgrade_gifts')
+    bool? canTransferAndUpgradeGifts,
+    @JsonKey(name: 'can_transfer_stars') bool? canTransferStars,
+    @JsonKey(name: 'can_manage_stories') bool? canManageStories,
+  });
 }
 
 /// @nodoc
@@ -141,87 +144,170 @@ class _$BusinessBotRightsCopyWithImpl<$Res>
     Object? canTransferStars = freezed,
     Object? canManageStories = freezed,
   }) {
-    return _then(_self.copyWith(
-      canReply: freezed == canReply
-          ? _self.canReply
-          : canReply // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canReadMessages: freezed == canReadMessages
-          ? _self.canReadMessages
-          : canReadMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canDeleteOutgoingMessages: freezed == canDeleteOutgoingMessages
-          ? _self.canDeleteOutgoingMessages
-          : canDeleteOutgoingMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canDeleteAllMessages: freezed == canDeleteAllMessages
-          ? _self.canDeleteAllMessages
-          : canDeleteAllMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditName: freezed == canEditName
-          ? _self.canEditName
-          : canEditName // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditBio: freezed == canEditBio
-          ? _self.canEditBio
-          : canEditBio // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditProfilePhoto: freezed == canEditProfilePhoto
-          ? _self.canEditProfilePhoto
-          : canEditProfilePhoto // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditUsername: freezed == canEditUsername
-          ? _self.canEditUsername
-          : canEditUsername // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canChangeGiftSettings: freezed == canChangeGiftSettings
-          ? _self.canChangeGiftSettings
-          : canChangeGiftSettings // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canViewGiftsAndStars: freezed == canViewGiftsAndStars
-          ? _self.canViewGiftsAndStars
-          : canViewGiftsAndStars // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canConvertGiftsToStars: freezed == canConvertGiftsToStars
-          ? _self.canConvertGiftsToStars
-          : canConvertGiftsToStars // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canTransferAndUpgradeGifts: freezed == canTransferAndUpgradeGifts
-          ? _self.canTransferAndUpgradeGifts
-          : canTransferAndUpgradeGifts // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canTransferStars: freezed == canTransferStars
-          ? _self.canTransferStars
-          : canTransferStars // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canManageStories: freezed == canManageStories
-          ? _self.canManageStories
-          : canManageStories // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        canReply: freezed == canReply
+            ? _self.canReply
+            : canReply // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canReadMessages: freezed == canReadMessages
+            ? _self.canReadMessages
+            : canReadMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canDeleteOutgoingMessages: freezed == canDeleteOutgoingMessages
+            ? _self.canDeleteOutgoingMessages
+            : canDeleteOutgoingMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canDeleteAllMessages: freezed == canDeleteAllMessages
+            ? _self.canDeleteAllMessages
+            : canDeleteAllMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditName: freezed == canEditName
+            ? _self.canEditName
+            : canEditName // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditBio: freezed == canEditBio
+            ? _self.canEditBio
+            : canEditBio // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditProfilePhoto: freezed == canEditProfilePhoto
+            ? _self.canEditProfilePhoto
+            : canEditProfilePhoto // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditUsername: freezed == canEditUsername
+            ? _self.canEditUsername
+            : canEditUsername // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canChangeGiftSettings: freezed == canChangeGiftSettings
+            ? _self.canChangeGiftSettings
+            : canChangeGiftSettings // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canViewGiftsAndStars: freezed == canViewGiftsAndStars
+            ? _self.canViewGiftsAndStars
+            : canViewGiftsAndStars // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canConvertGiftsToStars: freezed == canConvertGiftsToStars
+            ? _self.canConvertGiftsToStars
+            : canConvertGiftsToStars // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canTransferAndUpgradeGifts: freezed == canTransferAndUpgradeGifts
+            ? _self.canTransferAndUpgradeGifts
+            : canTransferAndUpgradeGifts // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canTransferStars: freezed == canTransferStars
+            ? _self.canTransferStars
+            : canTransferStars // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canManageStories: freezed == canManageStories
+            ? _self.canManageStories
+            : canManageStories // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [BusinessBotRights].
+extension BusinessBotRightsPatterns on BusinessBotRights {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_BusinessBotRights value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessBotRights() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_BusinessBotRights value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessBotRights():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_BusinessBotRights value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessBotRights() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _BusinessBotRights implements BusinessBotRights {
-  const _BusinessBotRights(
-      {@JsonKey(name: 'can_reply') this.canReply,
-      @JsonKey(name: 'can_read_messages') this.canReadMessages,
-      @JsonKey(name: 'can_delete_outgoing_messages')
-      this.canDeleteOutgoingMessages,
-      @JsonKey(name: 'can_delete_all_messages') this.canDeleteAllMessages,
-      @JsonKey(name: 'can_edit_name') this.canEditName,
-      @JsonKey(name: 'can_edit_bio') this.canEditBio,
-      @JsonKey(name: 'can_edit_profile_photo') this.canEditProfilePhoto,
-      @JsonKey(name: 'can_edit_username') this.canEditUsername,
-      @JsonKey(name: 'can_change_gift_settings') this.canChangeGiftSettings,
-      @JsonKey(name: 'can_view_gifts_and_stars') this.canViewGiftsAndStars,
-      @JsonKey(name: 'can_convert_gifts_to_stars') this.canConvertGiftsToStars,
-      @JsonKey(name: 'can_transfer_and_upgrade_gifts')
-      this.canTransferAndUpgradeGifts,
-      @JsonKey(name: 'can_transfer_stars') this.canTransferStars,
-      @JsonKey(name: 'can_manage_stories') this.canManageStories});
+  const _BusinessBotRights({
+    @JsonKey(name: 'can_reply') this.canReply,
+    @JsonKey(name: 'can_read_messages') this.canReadMessages,
+    @JsonKey(name: 'can_delete_outgoing_messages')
+    this.canDeleteOutgoingMessages,
+    @JsonKey(name: 'can_delete_all_messages') this.canDeleteAllMessages,
+    @JsonKey(name: 'can_edit_name') this.canEditName,
+    @JsonKey(name: 'can_edit_bio') this.canEditBio,
+    @JsonKey(name: 'can_edit_profile_photo') this.canEditProfilePhoto,
+    @JsonKey(name: 'can_edit_username') this.canEditUsername,
+    @JsonKey(name: 'can_change_gift_settings') this.canChangeGiftSettings,
+    @JsonKey(name: 'can_view_gifts_and_stars') this.canViewGiftsAndStars,
+    @JsonKey(name: 'can_convert_gifts_to_stars') this.canConvertGiftsToStars,
+    @JsonKey(name: 'can_transfer_and_upgrade_gifts')
+    this.canTransferAndUpgradeGifts,
+    @JsonKey(name: 'can_transfer_stars') this.canTransferStars,
+    @JsonKey(name: 'can_manage_stories') this.canManageStories,
+  });
   factory _BusinessBotRights.fromJson(Map<String, dynamic> json) =>
       _$BusinessBotRightsFromJson(json);
 
@@ -306,9 +392,7 @@ class _BusinessBotRights implements BusinessBotRights {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BusinessBotRightsToJson(
-      this,
-    );
+    return _$BusinessBotRightsToJson(this);
   }
 
   @override
@@ -321,27 +405,29 @@ class _BusinessBotRights implements BusinessBotRights {
 abstract mixin class _$BusinessBotRightsCopyWith<$Res>
     implements $BusinessBotRightsCopyWith<$Res> {
   factory _$BusinessBotRightsCopyWith(
-          _BusinessBotRights value, $Res Function(_BusinessBotRights) _then) =
-      __$BusinessBotRightsCopyWithImpl;
+    _BusinessBotRights value,
+    $Res Function(_BusinessBotRights) _then,
+  ) = __$BusinessBotRightsCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'can_reply') bool? canReply,
-      @JsonKey(name: 'can_read_messages') bool? canReadMessages,
-      @JsonKey(name: 'can_delete_outgoing_messages')
-      bool? canDeleteOutgoingMessages,
-      @JsonKey(name: 'can_delete_all_messages') bool? canDeleteAllMessages,
-      @JsonKey(name: 'can_edit_name') bool? canEditName,
-      @JsonKey(name: 'can_edit_bio') bool? canEditBio,
-      @JsonKey(name: 'can_edit_profile_photo') bool? canEditProfilePhoto,
-      @JsonKey(name: 'can_edit_username') bool? canEditUsername,
-      @JsonKey(name: 'can_change_gift_settings') bool? canChangeGiftSettings,
-      @JsonKey(name: 'can_view_gifts_and_stars') bool? canViewGiftsAndStars,
-      @JsonKey(name: 'can_convert_gifts_to_stars') bool? canConvertGiftsToStars,
-      @JsonKey(name: 'can_transfer_and_upgrade_gifts')
-      bool? canTransferAndUpgradeGifts,
-      @JsonKey(name: 'can_transfer_stars') bool? canTransferStars,
-      @JsonKey(name: 'can_manage_stories') bool? canManageStories});
+  $Res call({
+    @JsonKey(name: 'can_reply') bool? canReply,
+    @JsonKey(name: 'can_read_messages') bool? canReadMessages,
+    @JsonKey(name: 'can_delete_outgoing_messages')
+    bool? canDeleteOutgoingMessages,
+    @JsonKey(name: 'can_delete_all_messages') bool? canDeleteAllMessages,
+    @JsonKey(name: 'can_edit_name') bool? canEditName,
+    @JsonKey(name: 'can_edit_bio') bool? canEditBio,
+    @JsonKey(name: 'can_edit_profile_photo') bool? canEditProfilePhoto,
+    @JsonKey(name: 'can_edit_username') bool? canEditUsername,
+    @JsonKey(name: 'can_change_gift_settings') bool? canChangeGiftSettings,
+    @JsonKey(name: 'can_view_gifts_and_stars') bool? canViewGiftsAndStars,
+    @JsonKey(name: 'can_convert_gifts_to_stars') bool? canConvertGiftsToStars,
+    @JsonKey(name: 'can_transfer_and_upgrade_gifts')
+    bool? canTransferAndUpgradeGifts,
+    @JsonKey(name: 'can_transfer_stars') bool? canTransferStars,
+    @JsonKey(name: 'can_manage_stories') bool? canManageStories,
+  });
 }
 
 /// @nodoc
@@ -372,63 +458,65 @@ class __$BusinessBotRightsCopyWithImpl<$Res>
     Object? canTransferStars = freezed,
     Object? canManageStories = freezed,
   }) {
-    return _then(_BusinessBotRights(
-      canReply: freezed == canReply
-          ? _self.canReply
-          : canReply // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canReadMessages: freezed == canReadMessages
-          ? _self.canReadMessages
-          : canReadMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canDeleteOutgoingMessages: freezed == canDeleteOutgoingMessages
-          ? _self.canDeleteOutgoingMessages
-          : canDeleteOutgoingMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canDeleteAllMessages: freezed == canDeleteAllMessages
-          ? _self.canDeleteAllMessages
-          : canDeleteAllMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditName: freezed == canEditName
-          ? _self.canEditName
-          : canEditName // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditBio: freezed == canEditBio
-          ? _self.canEditBio
-          : canEditBio // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditProfilePhoto: freezed == canEditProfilePhoto
-          ? _self.canEditProfilePhoto
-          : canEditProfilePhoto // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditUsername: freezed == canEditUsername
-          ? _self.canEditUsername
-          : canEditUsername // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canChangeGiftSettings: freezed == canChangeGiftSettings
-          ? _self.canChangeGiftSettings
-          : canChangeGiftSettings // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canViewGiftsAndStars: freezed == canViewGiftsAndStars
-          ? _self.canViewGiftsAndStars
-          : canViewGiftsAndStars // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canConvertGiftsToStars: freezed == canConvertGiftsToStars
-          ? _self.canConvertGiftsToStars
-          : canConvertGiftsToStars // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canTransferAndUpgradeGifts: freezed == canTransferAndUpgradeGifts
-          ? _self.canTransferAndUpgradeGifts
-          : canTransferAndUpgradeGifts // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canTransferStars: freezed == canTransferStars
-          ? _self.canTransferStars
-          : canTransferStars // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canManageStories: freezed == canManageStories
-          ? _self.canManageStories
-          : canManageStories // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _BusinessBotRights(
+        canReply: freezed == canReply
+            ? _self.canReply
+            : canReply // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canReadMessages: freezed == canReadMessages
+            ? _self.canReadMessages
+            : canReadMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canDeleteOutgoingMessages: freezed == canDeleteOutgoingMessages
+            ? _self.canDeleteOutgoingMessages
+            : canDeleteOutgoingMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canDeleteAllMessages: freezed == canDeleteAllMessages
+            ? _self.canDeleteAllMessages
+            : canDeleteAllMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditName: freezed == canEditName
+            ? _self.canEditName
+            : canEditName // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditBio: freezed == canEditBio
+            ? _self.canEditBio
+            : canEditBio // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditProfilePhoto: freezed == canEditProfilePhoto
+            ? _self.canEditProfilePhoto
+            : canEditProfilePhoto // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditUsername: freezed == canEditUsername
+            ? _self.canEditUsername
+            : canEditUsername // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canChangeGiftSettings: freezed == canChangeGiftSettings
+            ? _self.canChangeGiftSettings
+            : canChangeGiftSettings // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canViewGiftsAndStars: freezed == canViewGiftsAndStars
+            ? _self.canViewGiftsAndStars
+            : canViewGiftsAndStars // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canConvertGiftsToStars: freezed == canConvertGiftsToStars
+            ? _self.canConvertGiftsToStars
+            : canConvertGiftsToStars // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canTransferAndUpgradeGifts: freezed == canTransferAndUpgradeGifts
+            ? _self.canTransferAndUpgradeGifts
+            : canTransferAndUpgradeGifts // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canTransferStars: freezed == canTransferStars
+            ? _self.canTransferStars
+            : canTransferStars // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canManageStories: freezed == canManageStories
+            ? _self.canManageStories
+            : canManageStories // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

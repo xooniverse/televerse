@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -23,8 +22,12 @@ ReplyMarkup _$ReplyMarkupFromJson(Map<String, dynamic> json) {
       return ReplyKeyboardRemove.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'ReplyMarkup',
-          'Invalid union type "${json['runtimeType']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'runtimeType',
+        'ReplyMarkup',
+        'Invalid union type "${json['runtimeType']}"!',
+      );
   }
 }
 
@@ -39,16 +42,121 @@ mixin _$ReplyMarkup {
   }
 }
 
+/// Adds pattern-matching-related methods to [ReplyMarkup].
+extension ReplyMarkupPatterns on ReplyMarkup {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ForceReply value)? forceReply,
+    TResult Function(InlineKeyboardMarkup value)? inlineKeyboard,
+    TResult Function(ReplyKeyboardMarkup value)? keyboard,
+    TResult Function(ReplyKeyboardRemove value)? keyboardRemove,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ForceReply() when forceReply != null:
+        return forceReply(_that);
+      case InlineKeyboardMarkup() when inlineKeyboard != null:
+        return inlineKeyboard(_that);
+      case ReplyKeyboardMarkup() when keyboard != null:
+        return keyboard(_that);
+      case ReplyKeyboardRemove() when keyboardRemove != null:
+        return keyboardRemove(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ForceReply value) forceReply,
+    required TResult Function(InlineKeyboardMarkup value) inlineKeyboard,
+    required TResult Function(ReplyKeyboardMarkup value) keyboard,
+    required TResult Function(ReplyKeyboardRemove value) keyboardRemove,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ForceReply():
+        return forceReply(_that);
+      case InlineKeyboardMarkup():
+        return inlineKeyboard(_that);
+      case ReplyKeyboardMarkup():
+        return keyboard(_that);
+      case ReplyKeyboardRemove():
+        return keyboardRemove(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ForceReply value)? forceReply,
+    TResult? Function(InlineKeyboardMarkup value)? inlineKeyboard,
+    TResult? Function(ReplyKeyboardMarkup value)? keyboard,
+    TResult? Function(ReplyKeyboardRemove value)? keyboardRemove,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ForceReply() when forceReply != null:
+        return forceReply(_that);
+      case InlineKeyboardMarkup() when inlineKeyboard != null:
+        return inlineKeyboard(_that);
+      case ReplyKeyboardMarkup() when keyboard != null:
+        return keyboard(_that);
+      case ReplyKeyboardRemove() when keyboardRemove != null:
+        return keyboardRemove(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class ForceReply extends ReplyMarkup {
-  const ForceReply(
-      {@JsonKey(name: 'force_reply') this.forceReply = true,
-      @JsonKey(name: 'input_field_placeholder') this.inputFieldPlaceholder,
-      @JsonKey(name: 'selective') this.selective,
-      final String? $type})
-      : $type = $type ?? 'forceReply',
-        super._();
+  const ForceReply({
+    @JsonKey(name: 'force_reply') this.forceReply = true,
+    @JsonKey(name: 'input_field_placeholder') this.inputFieldPlaceholder,
+    @JsonKey(name: 'selective') this.selective,
+    final String? $type,
+  }) : $type = $type ?? 'forceReply',
+       super._();
   factory ForceReply.fromJson(Map<String, dynamic> json) =>
       _$ForceReplyFromJson(json);
 
@@ -74,9 +182,7 @@ class ForceReply extends ReplyMarkup {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ForceReplyToJson(
-      this,
-    );
+    return _$ForceReplyToJson(this);
   }
 
   @override
@@ -88,15 +194,15 @@ class ForceReply extends ReplyMarkup {
 /// @nodoc
 @JsonSerializable()
 class InlineKeyboardMarkup extends ReplyMarkup {
-  const InlineKeyboardMarkup(
-      {@JsonKey(name: 'inline_keyboard')
-      final List<List<InlineKeyboardButton>> inlineKeyboard = const [
-        <InlineKeyboardButton>[]
-      ],
-      final String? $type})
-      : _inlineKeyboard = inlineKeyboard,
-        $type = $type ?? 'inlineKeyboard',
-        super._();
+  const InlineKeyboardMarkup({
+    @JsonKey(name: 'inline_keyboard')
+    final List<List<InlineKeyboardButton>> inlineKeyboard = const [
+      <InlineKeyboardButton>[],
+    ],
+    final String? $type,
+  }) : _inlineKeyboard = inlineKeyboard,
+       $type = $type ?? 'inlineKeyboard',
+       super._();
   factory InlineKeyboardMarkup.fromJson(Map<String, dynamic> json) =>
       _$InlineKeyboardMarkupFromJson(json);
 
@@ -118,9 +224,7 @@ class InlineKeyboardMarkup extends ReplyMarkup {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineKeyboardMarkupToJson(
-      this,
-    );
+    return _$InlineKeyboardMarkupToJson(this);
   }
 
   @override
@@ -132,18 +236,18 @@ class InlineKeyboardMarkup extends ReplyMarkup {
 /// @nodoc
 @JsonSerializable()
 class ReplyKeyboardMarkup extends ReplyMarkup {
-  const ReplyKeyboardMarkup(
-      {@JsonKey(name: 'keyboard')
-      required final List<List<KeyboardButton>> keyboard,
-      @JsonKey(name: 'resize_keyboard') this.resizeKeyboard,
-      @JsonKey(name: 'one_time_keyboard') this.oneTimeKeyboard,
-      @JsonKey(name: 'input_field_placeholder') this.inputFieldPlaceholder,
-      @JsonKey(name: 'selective') this.selective,
-      @JsonKey(name: 'is_persistent') this.isPersistent,
-      final String? $type})
-      : _keyboard = keyboard,
-        $type = $type ?? 'keyboard',
-        super._();
+  const ReplyKeyboardMarkup({
+    @JsonKey(name: 'keyboard')
+    required final List<List<KeyboardButton>> keyboard,
+    @JsonKey(name: 'resize_keyboard') this.resizeKeyboard,
+    @JsonKey(name: 'one_time_keyboard') this.oneTimeKeyboard,
+    @JsonKey(name: 'input_field_placeholder') this.inputFieldPlaceholder,
+    @JsonKey(name: 'selective') this.selective,
+    @JsonKey(name: 'is_persistent') this.isPersistent,
+    final String? $type,
+  }) : _keyboard = keyboard,
+       $type = $type ?? 'keyboard',
+       super._();
   factory ReplyKeyboardMarkup.fromJson(Map<String, dynamic> json) =>
       _$ReplyKeyboardMarkupFromJson(json);
 
@@ -202,9 +306,7 @@ class ReplyKeyboardMarkup extends ReplyMarkup {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ReplyKeyboardMarkupToJson(
-      this,
-    );
+    return _$ReplyKeyboardMarkupToJson(this);
   }
 
   @override
@@ -216,12 +318,12 @@ class ReplyKeyboardMarkup extends ReplyMarkup {
 /// @nodoc
 @JsonSerializable()
 class ReplyKeyboardRemove extends ReplyMarkup {
-  const ReplyKeyboardRemove(
-      {@JsonKey(name: 'remove_keyboard') this.removeKeyboard = true,
-      @JsonKey(name: 'selective') this.selective,
-      final String? $type})
-      : $type = $type ?? 'keyboardRemove',
-        super._();
+  const ReplyKeyboardRemove({
+    @JsonKey(name: 'remove_keyboard') this.removeKeyboard = true,
+    @JsonKey(name: 'selective') this.selective,
+    final String? $type,
+  }) : $type = $type ?? 'keyboardRemove',
+       super._();
   factory ReplyKeyboardRemove.fromJson(Map<String, dynamic> json) =>
       _$ReplyKeyboardRemoveFromJson(json);
 
@@ -248,9 +350,7 @@ class ReplyKeyboardRemove extends ReplyMarkup {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ReplyKeyboardRemoveToJson(
-      this,
-    );
+    return _$ReplyKeyboardRemoveToJson(this);
   }
 
   @override

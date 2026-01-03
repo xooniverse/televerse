@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -24,7 +23,9 @@ mixin _$ChatBoostAdded {
   @pragma('vm:prefer-inline')
   $ChatBoostAddedCopyWith<ChatBoostAdded> get copyWith =>
       _$ChatBoostAddedCopyWithImpl<ChatBoostAdded>(
-          this as ChatBoostAdded, _$identity);
+        this as ChatBoostAdded,
+        _$identity,
+      );
 
   /// Serializes this ChatBoostAdded to a JSON map.
   Map<String, dynamic> toJson();
@@ -38,8 +39,9 @@ mixin _$ChatBoostAdded {
 /// @nodoc
 abstract mixin class $ChatBoostAddedCopyWith<$Res> {
   factory $ChatBoostAddedCopyWith(
-          ChatBoostAdded value, $Res Function(ChatBoostAdded) _then) =
-      _$ChatBoostAddedCopyWithImpl;
+    ChatBoostAdded value,
+    $Res Function(ChatBoostAdded) _then,
+  ) = _$ChatBoostAddedCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'boost_count') int boostCount});
 }
@@ -56,15 +58,95 @@ class _$ChatBoostAddedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? boostCount = null,
+  $Res call({Object? boostCount = null}) {
+    return _then(
+      _self.copyWith(
+        boostCount: null == boostCount
+            ? _self.boostCount
+            : boostCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [ChatBoostAdded].
+extension ChatBoostAddedPatterns on ChatBoostAdded {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChatBoostAdded value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      boostCount: null == boostCount
-          ? _self.boostCount
-          : boostCount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _ChatBoostAdded() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChatBoostAdded value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatBoostAdded():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChatBoostAdded value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatBoostAdded() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
@@ -72,8 +154,9 @@ class _$ChatBoostAddedCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _ChatBoostAdded implements ChatBoostAdded {
-  const _ChatBoostAdded(
-      {@JsonKey(name: 'boost_count') required this.boostCount});
+  const _ChatBoostAdded({
+    @JsonKey(name: 'boost_count') required this.boostCount,
+  });
   factory _ChatBoostAdded.fromJson(Map<String, dynamic> json) =>
       _$ChatBoostAddedFromJson(json);
 
@@ -92,9 +175,7 @@ class _ChatBoostAdded implements ChatBoostAdded {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatBoostAddedToJson(
-      this,
-    );
+    return _$ChatBoostAddedToJson(this);
   }
 
   @override
@@ -107,8 +188,9 @@ class _ChatBoostAdded implements ChatBoostAdded {
 abstract mixin class _$ChatBoostAddedCopyWith<$Res>
     implements $ChatBoostAddedCopyWith<$Res> {
   factory _$ChatBoostAddedCopyWith(
-          _ChatBoostAdded value, $Res Function(_ChatBoostAdded) _then) =
-      __$ChatBoostAddedCopyWithImpl;
+    _ChatBoostAdded value,
+    $Res Function(_ChatBoostAdded) _then,
+  ) = __$ChatBoostAddedCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'boost_count') int boostCount});
@@ -126,14 +208,14 @@ class __$ChatBoostAddedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? boostCount = null,
-  }) {
-    return _then(_ChatBoostAdded(
-      boostCount: null == boostCount
-          ? _self.boostCount
-          : boostCount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+  $Res call({Object? boostCount = null}) {
+    return _then(
+      _ChatBoostAdded(
+        boostCount: null == boostCount
+            ? _self.boostCount
+            : boostCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }

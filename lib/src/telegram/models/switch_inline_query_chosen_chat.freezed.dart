@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -40,9 +39,11 @@ mixin _$SwitchInlineQueryChosenChat {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $SwitchInlineQueryChosenChatCopyWith<SwitchInlineQueryChosenChat>
-      get copyWith => _$SwitchInlineQueryChosenChatCopyWithImpl<
-              SwitchInlineQueryChosenChat>(
-          this as SwitchInlineQueryChosenChat, _$identity);
+  get copyWith =>
+      _$SwitchInlineQueryChosenChatCopyWithImpl<SwitchInlineQueryChosenChat>(
+        this as SwitchInlineQueryChosenChat,
+        _$identity,
+      );
 
   /// Serializes this SwitchInlineQueryChosenChat to a JSON map.
   Map<String, dynamic> toJson();
@@ -56,16 +57,17 @@ mixin _$SwitchInlineQueryChosenChat {
 /// @nodoc
 abstract mixin class $SwitchInlineQueryChosenChatCopyWith<$Res> {
   factory $SwitchInlineQueryChosenChatCopyWith(
-          SwitchInlineQueryChosenChat value,
-          $Res Function(SwitchInlineQueryChosenChat) _then) =
-      _$SwitchInlineQueryChosenChatCopyWithImpl;
+    SwitchInlineQueryChosenChat value,
+    $Res Function(SwitchInlineQueryChosenChat) _then,
+  ) = _$SwitchInlineQueryChosenChatCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'query') String? query,
-      @JsonKey(name: 'allow_user_chats') bool? allowUserChats,
-      @JsonKey(name: 'allow_bot_chats') bool? allowBotChats,
-      @JsonKey(name: 'allow_group_chats') bool? allowGroupChats,
-      @JsonKey(name: 'allow_channel_chats') bool? allowChannelChats});
+  $Res call({
+    @JsonKey(name: 'query') String? query,
+    @JsonKey(name: 'allow_user_chats') bool? allowUserChats,
+    @JsonKey(name: 'allow_bot_chats') bool? allowBotChats,
+    @JsonKey(name: 'allow_group_chats') bool? allowGroupChats,
+    @JsonKey(name: 'allow_channel_chats') bool? allowChannelChats,
+  });
 }
 
 /// @nodoc
@@ -87,40 +89,123 @@ class _$SwitchInlineQueryChosenChatCopyWithImpl<$Res>
     Object? allowGroupChats = freezed,
     Object? allowChannelChats = freezed,
   }) {
-    return _then(_self.copyWith(
-      query: freezed == query
-          ? _self.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String?,
-      allowUserChats: freezed == allowUserChats
-          ? _self.allowUserChats
-          : allowUserChats // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      allowBotChats: freezed == allowBotChats
-          ? _self.allowBotChats
-          : allowBotChats // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      allowGroupChats: freezed == allowGroupChats
-          ? _self.allowGroupChats
-          : allowGroupChats // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      allowChannelChats: freezed == allowChannelChats
-          ? _self.allowChannelChats
-          : allowChannelChats // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        query: freezed == query
+            ? _self.query
+            : query // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        allowUserChats: freezed == allowUserChats
+            ? _self.allowUserChats
+            : allowUserChats // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        allowBotChats: freezed == allowBotChats
+            ? _self.allowBotChats
+            : allowBotChats // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        allowGroupChats: freezed == allowGroupChats
+            ? _self.allowGroupChats
+            : allowGroupChats // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        allowChannelChats: freezed == allowChannelChats
+            ? _self.allowChannelChats
+            : allowChannelChats // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [SwitchInlineQueryChosenChat].
+extension SwitchInlineQueryChosenChatPatterns on SwitchInlineQueryChosenChat {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SwitchInlineQueryChosenChat value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SwitchInlineQueryChosenChat() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SwitchInlineQueryChosenChat value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SwitchInlineQueryChosenChat():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SwitchInlineQueryChosenChat value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SwitchInlineQueryChosenChat() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _SwitchInlineQueryChosenChat implements SwitchInlineQueryChosenChat {
-  const _SwitchInlineQueryChosenChat(
-      {@JsonKey(name: 'query') this.query,
-      @JsonKey(name: 'allow_user_chats') this.allowUserChats,
-      @JsonKey(name: 'allow_bot_chats') this.allowBotChats,
-      @JsonKey(name: 'allow_group_chats') this.allowGroupChats,
-      @JsonKey(name: 'allow_channel_chats') this.allowChannelChats});
+  const _SwitchInlineQueryChosenChat({
+    @JsonKey(name: 'query') this.query,
+    @JsonKey(name: 'allow_user_chats') this.allowUserChats,
+    @JsonKey(name: 'allow_bot_chats') this.allowBotChats,
+    @JsonKey(name: 'allow_group_chats') this.allowGroupChats,
+    @JsonKey(name: 'allow_channel_chats') this.allowChannelChats,
+  });
   factory _SwitchInlineQueryChosenChat.fromJson(Map<String, dynamic> json) =>
       _$SwitchInlineQueryChosenChatFromJson(json);
 
@@ -156,14 +241,15 @@ class _SwitchInlineQueryChosenChat implements SwitchInlineQueryChosenChat {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   _$SwitchInlineQueryChosenChatCopyWith<_SwitchInlineQueryChosenChat>
-      get copyWith => __$SwitchInlineQueryChosenChatCopyWithImpl<
-          _SwitchInlineQueryChosenChat>(this, _$identity);
+  get copyWith =>
+      __$SwitchInlineQueryChosenChatCopyWithImpl<_SwitchInlineQueryChosenChat>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$SwitchInlineQueryChosenChatToJson(
-      this,
-    );
+    return _$SwitchInlineQueryChosenChatToJson(this);
   }
 
   @override
@@ -176,17 +262,18 @@ class _SwitchInlineQueryChosenChat implements SwitchInlineQueryChosenChat {
 abstract mixin class _$SwitchInlineQueryChosenChatCopyWith<$Res>
     implements $SwitchInlineQueryChosenChatCopyWith<$Res> {
   factory _$SwitchInlineQueryChosenChatCopyWith(
-          _SwitchInlineQueryChosenChat value,
-          $Res Function(_SwitchInlineQueryChosenChat) _then) =
-      __$SwitchInlineQueryChosenChatCopyWithImpl;
+    _SwitchInlineQueryChosenChat value,
+    $Res Function(_SwitchInlineQueryChosenChat) _then,
+  ) = __$SwitchInlineQueryChosenChatCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'query') String? query,
-      @JsonKey(name: 'allow_user_chats') bool? allowUserChats,
-      @JsonKey(name: 'allow_bot_chats') bool? allowBotChats,
-      @JsonKey(name: 'allow_group_chats') bool? allowGroupChats,
-      @JsonKey(name: 'allow_channel_chats') bool? allowChannelChats});
+  $Res call({
+    @JsonKey(name: 'query') String? query,
+    @JsonKey(name: 'allow_user_chats') bool? allowUserChats,
+    @JsonKey(name: 'allow_bot_chats') bool? allowBotChats,
+    @JsonKey(name: 'allow_group_chats') bool? allowGroupChats,
+    @JsonKey(name: 'allow_channel_chats') bool? allowChannelChats,
+  });
 }
 
 /// @nodoc
@@ -208,27 +295,29 @@ class __$SwitchInlineQueryChosenChatCopyWithImpl<$Res>
     Object? allowGroupChats = freezed,
     Object? allowChannelChats = freezed,
   }) {
-    return _then(_SwitchInlineQueryChosenChat(
-      query: freezed == query
-          ? _self.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String?,
-      allowUserChats: freezed == allowUserChats
-          ? _self.allowUserChats
-          : allowUserChats // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      allowBotChats: freezed == allowBotChats
-          ? _self.allowBotChats
-          : allowBotChats // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      allowGroupChats: freezed == allowGroupChats
-          ? _self.allowGroupChats
-          : allowGroupChats // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      allowChannelChats: freezed == allowChannelChats
-          ? _self.allowChannelChats
-          : allowChannelChats // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _SwitchInlineQueryChosenChat(
+        query: freezed == query
+            ? _self.query
+            : query // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        allowUserChats: freezed == allowUserChats
+            ? _self.allowUserChats
+            : allowUserChats // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        allowBotChats: freezed == allowBotChats
+            ? _self.allowBotChats
+            : allowBotChats // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        allowGroupChats: freezed == allowGroupChats
+            ? _self.allowGroupChats
+            : allowGroupChats // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        allowChannelChats: freezed == allowChannelChats
+            ? _self.allowChannelChats
+            : allowChannelChats // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

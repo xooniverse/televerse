@@ -17,11 +17,9 @@ _LinkPreviewOptions _$LinkPreviewOptionsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$LinkPreviewOptionsToJson(_LinkPreviewOptions instance) =>
     <String, dynamic>{
-      if (instance.isDisabled case final value?) 'is_disabled': value,
-      if (instance.url case final value?) 'url': value,
-      if (instance.preferSmallMedia case final value?)
-        'prefer_small_media': value,
-      if (instance.preferLargeMedia case final value?)
-        'prefer_large_media': value,
-      if (instance.showAboveText case final value?) 'show_above_text': value,
+      'is_disabled': ?instance.isDisabled,
+      'url': ?instance.url,
+      'prefer_small_media': ?instance.preferSmallMedia,
+      'prefer_large_media': ?instance.preferLargeMedia,
+      'show_above_text': ?instance.showAboveText,
     };

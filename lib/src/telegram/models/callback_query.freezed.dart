@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -55,7 +54,9 @@ mixin _$CallbackQuery {
   @pragma('vm:prefer-inline')
   $CallbackQueryCopyWith<CallbackQuery> get copyWith =>
       _$CallbackQueryCopyWithImpl<CallbackQuery>(
-          this as CallbackQuery, _$identity);
+        this as CallbackQuery,
+        _$identity,
+      );
 
   /// Serializes this CallbackQuery to a JSON map.
   Map<String, dynamic> toJson();
@@ -69,17 +70,19 @@ mixin _$CallbackQuery {
 /// @nodoc
 abstract mixin class $CallbackQueryCopyWith<$Res> {
   factory $CallbackQueryCopyWith(
-          CallbackQuery value, $Res Function(CallbackQuery) _then) =
-      _$CallbackQueryCopyWithImpl;
+    CallbackQuery value,
+    $Res Function(CallbackQuery) _then,
+  ) = _$CallbackQueryCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'message') MaybeInaccessibleMessage? message,
-      @JsonKey(name: 'inline_message_id') String? inlineMessageId,
-      @JsonKey(name: 'chat_instance') String chatInstance,
-      @JsonKey(name: 'data') String? data,
-      @JsonKey(name: 'game_short_name') String? gameShortName});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'message') MaybeInaccessibleMessage? message,
+    @JsonKey(name: 'inline_message_id') String? inlineMessageId,
+    @JsonKey(name: 'chat_instance') String chatInstance,
+    @JsonKey(name: 'data') String? data,
+    @JsonKey(name: 'game_short_name') String? gameShortName,
+  });
 
   $UserCopyWith<$Res> get from;
 }
@@ -105,36 +108,38 @@ class _$CallbackQueryCopyWithImpl<$Res>
     Object? data = freezed,
     Object? gameShortName = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      message: freezed == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as MaybeInaccessibleMessage?,
-      inlineMessageId: freezed == inlineMessageId
-          ? _self.inlineMessageId
-          : inlineMessageId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      chatInstance: null == chatInstance
-          ? _self.chatInstance
-          : chatInstance // ignore: cast_nullable_to_non_nullable
-              as String,
-      data: freezed == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String?,
-      gameShortName: freezed == gameShortName
-          ? _self.gameShortName
-          : gameShortName // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        message: freezed == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as MaybeInaccessibleMessage?,
+        inlineMessageId: freezed == inlineMessageId
+            ? _self.inlineMessageId
+            : inlineMessageId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        chatInstance: null == chatInstance
+            ? _self.chatInstance
+            : chatInstance // ignore: cast_nullable_to_non_nullable
+                  as String,
+        data: freezed == data
+            ? _self.data
+            : data // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        gameShortName: freezed == gameShortName
+            ? _self.gameShortName
+            : gameShortName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 
   /// Create a copy of CallbackQuery
@@ -148,17 +153,98 @@ class _$CallbackQueryCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [CallbackQuery].
+extension CallbackQueryPatterns on CallbackQuery {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_CallbackQuery value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _CallbackQuery() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_CallbackQuery value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CallbackQuery():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_CallbackQuery value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CallbackQuery() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _CallbackQuery implements CallbackQuery {
-  const _CallbackQuery(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'from') required this.from,
-      @JsonKey(name: 'message') this.message,
-      @JsonKey(name: 'inline_message_id') this.inlineMessageId,
-      @JsonKey(name: 'chat_instance') required this.chatInstance,
-      @JsonKey(name: 'data') this.data,
-      @JsonKey(name: 'game_short_name') this.gameShortName});
+  const _CallbackQuery({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'from') required this.from,
+    @JsonKey(name: 'message') this.message,
+    @JsonKey(name: 'inline_message_id') this.inlineMessageId,
+    @JsonKey(name: 'chat_instance') required this.chatInstance,
+    @JsonKey(name: 'data') this.data,
+    @JsonKey(name: 'game_short_name') this.gameShortName,
+  });
   factory _CallbackQuery.fromJson(Map<String, dynamic> json) =>
       _$CallbackQueryFromJson(json);
 
@@ -214,9 +300,7 @@ class _CallbackQuery implements CallbackQuery {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$CallbackQueryToJson(
-      this,
-    );
+    return _$CallbackQueryToJson(this);
   }
 
   @override
@@ -229,18 +313,20 @@ class _CallbackQuery implements CallbackQuery {
 abstract mixin class _$CallbackQueryCopyWith<$Res>
     implements $CallbackQueryCopyWith<$Res> {
   factory _$CallbackQueryCopyWith(
-          _CallbackQuery value, $Res Function(_CallbackQuery) _then) =
-      __$CallbackQueryCopyWithImpl;
+    _CallbackQuery value,
+    $Res Function(_CallbackQuery) _then,
+  ) = __$CallbackQueryCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'message') MaybeInaccessibleMessage? message,
-      @JsonKey(name: 'inline_message_id') String? inlineMessageId,
-      @JsonKey(name: 'chat_instance') String chatInstance,
-      @JsonKey(name: 'data') String? data,
-      @JsonKey(name: 'game_short_name') String? gameShortName});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'message') MaybeInaccessibleMessage? message,
+    @JsonKey(name: 'inline_message_id') String? inlineMessageId,
+    @JsonKey(name: 'chat_instance') String chatInstance,
+    @JsonKey(name: 'data') String? data,
+    @JsonKey(name: 'game_short_name') String? gameShortName,
+  });
 
   @override
   $UserCopyWith<$Res> get from;
@@ -267,36 +353,38 @@ class __$CallbackQueryCopyWithImpl<$Res>
     Object? data = freezed,
     Object? gameShortName = freezed,
   }) {
-    return _then(_CallbackQuery(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      message: freezed == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as MaybeInaccessibleMessage?,
-      inlineMessageId: freezed == inlineMessageId
-          ? _self.inlineMessageId
-          : inlineMessageId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      chatInstance: null == chatInstance
-          ? _self.chatInstance
-          : chatInstance // ignore: cast_nullable_to_non_nullable
-              as String,
-      data: freezed == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String?,
-      gameShortName: freezed == gameShortName
-          ? _self.gameShortName
-          : gameShortName // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _CallbackQuery(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        message: freezed == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as MaybeInaccessibleMessage?,
+        inlineMessageId: freezed == inlineMessageId
+            ? _self.inlineMessageId
+            : inlineMessageId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        chatInstance: null == chatInstance
+            ? _self.chatInstance
+            : chatInstance // ignore: cast_nullable_to_non_nullable
+                  as String,
+        data: freezed == data
+            ? _self.data
+            : data // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        gameShortName: freezed == gameShortName
+            ? _self.gameShortName
+            : gameShortName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 
   /// Create a copy of CallbackQuery

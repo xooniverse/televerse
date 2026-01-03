@@ -23,22 +23,19 @@ _ReplyParameters _$ReplyParametersFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ReplyParametersToJson(_ReplyParameters instance) =>
     <String, dynamic>{
       'message_id': instance.messageId,
-      if (_$JsonConverterToJson<dynamic, ID>(
-              instance.chatId, const IDConverter().toJson)
-          case final value?)
-        'chat_id': value,
-      if (instance.allowSendingWithoutReply case final value?)
-        'allow_sending_without_reply': value,
-      if (instance.quote case final value?) 'quote': value,
-      if (instance.quoteParseMode case final value?) 'quote_parse_mode': value,
-      if (instance.quoteEntities case final value?) 'quote_entities': value,
-      if (instance.quotePosition case final value?) 'quote_position': value,
-      if (instance.checklistTaskId case final value?)
-        'checklist_task_id': value,
+      'chat_id': ?_$JsonConverterToJson<dynamic, ID>(
+        instance.chatId,
+        const IDConverter().toJson,
+      ),
+      'allow_sending_without_reply': ?instance.allowSendingWithoutReply,
+      'quote': ?instance.quote,
+      'quote_parse_mode': ?instance.quoteParseMode,
+      'quote_entities': ?instance.quoteEntities,
+      'quote_position': ?instance.quotePosition,
+      'checklist_task_id': ?instance.checklistTaskId,
     };
 
 Json? _$JsonConverterToJson<Json, Value>(
   Value? value,
   Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);
+) => value == null ? null : toJson(value);

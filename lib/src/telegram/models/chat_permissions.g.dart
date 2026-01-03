@@ -26,25 +26,18 @@ _ChatPermissions _$ChatPermissionsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ChatPermissionsToJson(_ChatPermissions instance) =>
     <String, dynamic>{
-      if (instance.canSendMessages case final value?)
-        'can_send_messages': value,
-      if (instance.canSendPolls case final value?) 'can_send_polls': value,
-      if (instance.canSendOtherMessages case final value?)
-        'can_send_other_messages': value,
-      if (instance.canAddWebPagePreviews case final value?)
-        'can_add_web_page_previews': value,
-      if (instance.canChangeInfo case final value?) 'can_change_info': value,
-      if (instance.canInviteUsers case final value?) 'can_invite_users': value,
-      if (instance.canPinMessages case final value?) 'can_pin_messages': value,
-      if (instance.canManageTopics case final value?)
-        'can_manage_topics': value,
-      if (instance.canSendAudios case final value?) 'can_send_audios': value,
-      if (instance.canSendDocuments case final value?)
-        'can_send_documents': value,
-      if (instance.canSendPhotos case final value?) 'can_send_photos': value,
-      if (instance.canSendVideos case final value?) 'can_send_videos': value,
-      if (instance.canSendVideoNotes case final value?)
-        'can_send_video_notes': value,
-      if (instance.canSendVoiceNotes case final value?)
-        'can_send_voice_notes': value,
+      'can_send_messages': ?instance.canSendMessages,
+      'can_send_polls': ?instance.canSendPolls,
+      'can_send_other_messages': ?instance.canSendOtherMessages,
+      'can_add_web_page_previews': ?instance.canAddWebPagePreviews,
+      'can_change_info': ?instance.canChangeInfo,
+      'can_invite_users': ?instance.canInviteUsers,
+      'can_pin_messages': ?instance.canPinMessages,
+      'can_manage_topics': ?instance.canManageTopics,
+      'can_send_audios': ?instance.canSendAudios,
+      'can_send_documents': ?instance.canSendDocuments,
+      'can_send_photos': ?instance.canSendPhotos,
+      'can_send_videos': ?instance.canSendVideos,
+      'can_send_video_notes': ?instance.canSendVideoNotes,
+      'can_send_voice_notes': ?instance.canSendVoiceNotes,
     };

@@ -7,26 +7,28 @@ part of 'inline_query_result_game.dart';
 // **************************************************************************
 
 _InlineQueryResultGame _$InlineQueryResultGameFromJson(
-        Map<String, dynamic> json) =>
-    _InlineQueryResultGame(
-      type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
-          InlineQueryResultType.game,
-      id: json['id'] as String,
-      gameShortName: json['game_short_name'] as String,
-      replyMarkup: json['reply_markup'] == null
-          ? null
-          : InlineKeyboardMarkup.fromJson(
-              json['reply_markup'] as Map<String, dynamic>),
-    );
+  Map<String, dynamic> json,
+) => _InlineQueryResultGame(
+  type:
+      $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
+      InlineQueryResultType.game,
+  id: json['id'] as String,
+  gameShortName: json['game_short_name'] as String,
+  replyMarkup: json['reply_markup'] == null
+      ? null
+      : InlineKeyboardMarkup.fromJson(
+          json['reply_markup'] as Map<String, dynamic>,
+        ),
+);
 
 Map<String, dynamic> _$InlineQueryResultGameToJson(
-        _InlineQueryResultGame instance) =>
-    <String, dynamic>{
-      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
-      'id': instance.id,
-      'game_short_name': instance.gameShortName,
-      if (instance.replyMarkup case final value?) 'reply_markup': value,
-    };
+  _InlineQueryResultGame instance,
+) => <String, dynamic>{
+  'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
+  'id': instance.id,
+  'game_short_name': instance.gameShortName,
+  'reply_markup': ?instance.replyMarkup,
+};
 
 const _$InlineQueryResultTypeEnumMap = {
   InlineQueryResultType.article: 'article',

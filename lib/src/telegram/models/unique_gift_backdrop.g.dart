@@ -10,7 +10,8 @@ _UniqueGiftBackdrop _$UniqueGiftBackdropFromJson(Map<String, dynamic> json) =>
     _UniqueGiftBackdrop(
       name: json['name'] as String,
       colors: UniqueGiftBackdropColors.fromJson(
-          json['colors'] as Map<String, dynamic>),
+        json['colors'] as Map<String, dynamic>,
+      ),
       rarityPerMille: (json['rarity_per_mille'] as num).toInt(),
     );
 

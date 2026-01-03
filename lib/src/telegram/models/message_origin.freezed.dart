@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -23,8 +22,12 @@ MessageOrigin _$MessageOriginFromJson(Map<String, dynamic> json) {
       return MessageOriginChannel.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'type', 'MessageOrigin',
-          'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'type',
+        'MessageOrigin',
+        'Invalid union type "${json['type']}"!',
+      );
   }
 }
 
@@ -48,7 +51,9 @@ mixin _$MessageOrigin {
   @pragma('vm:prefer-inline')
   $MessageOriginCopyWith<MessageOrigin> get copyWith =>
       _$MessageOriginCopyWithImpl<MessageOrigin>(
-          this as MessageOrigin, _$identity);
+        this as MessageOrigin,
+        _$identity,
+      );
 
   /// Serializes this MessageOrigin to a JSON map.
   Map<String, dynamic> toJson();
@@ -62,13 +67,15 @@ mixin _$MessageOrigin {
 /// @nodoc
 abstract mixin class $MessageOriginCopyWith<$Res> {
   factory $MessageOriginCopyWith(
-          MessageOrigin value, $Res Function(MessageOrigin) _then) =
-      _$MessageOriginCopyWithImpl;
+    MessageOrigin value,
+    $Res Function(MessageOrigin) _then,
+  ) = _$MessageOriginCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(defaultValue: MessageOriginType.user, name: 'type')
-      MessageOriginType type,
-      @JsonKey(required: true, name: 'date') int date});
+  $Res call({
+    @JsonKey(defaultValue: MessageOriginType.user, name: 'type')
+    MessageOriginType type,
+    @JsonKey(required: true, name: 'date') int date,
+  });
 }
 
 /// @nodoc
@@ -83,33 +90,139 @@ class _$MessageOriginCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
-    Object? date = null,
+  $Res call({Object? type = null, Object? date = null}) {
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as MessageOriginType,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [MessageOrigin].
+extension MessageOriginPatterns on MessageOrigin {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MessageOriginUser value)? user,
+    TResult Function(MessageOriginHiddenUser value)? hiddenUser,
+    TResult Function(MessageOriginChat value)? chat,
+    TResult Function(MessageOriginChannel value)? channel,
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MessageOriginType,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    final _that = this;
+    switch (_that) {
+      case MessageOriginUser() when user != null:
+        return user(_that);
+      case MessageOriginHiddenUser() when hiddenUser != null:
+        return hiddenUser(_that);
+      case MessageOriginChat() when chat != null:
+        return chat(_that);
+      case MessageOriginChannel() when channel != null:
+        return channel(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MessageOriginUser value) user,
+    required TResult Function(MessageOriginHiddenUser value) hiddenUser,
+    required TResult Function(MessageOriginChat value) chat,
+    required TResult Function(MessageOriginChannel value) channel,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case MessageOriginUser():
+        return user(_that);
+      case MessageOriginHiddenUser():
+        return hiddenUser(_that);
+      case MessageOriginChat():
+        return chat(_that);
+      case MessageOriginChannel():
+        return channel(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MessageOriginUser value)? user,
+    TResult? Function(MessageOriginHiddenUser value)? hiddenUser,
+    TResult? Function(MessageOriginChat value)? chat,
+    TResult? Function(MessageOriginChannel value)? channel,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case MessageOriginUser() when user != null:
+        return user(_that);
+      case MessageOriginHiddenUser() when hiddenUser != null:
+        return hiddenUser(_that);
+      case MessageOriginChat() when chat != null:
+        return chat(_that);
+      case MessageOriginChannel() when channel != null:
+        return channel(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class MessageOriginUser implements MessageOrigin {
-  const MessageOriginUser(
-      {@JsonKey(defaultValue: MessageOriginType.user, name: 'type')
-      this.type = MessageOriginType.user,
-      @JsonKey(required: true, name: 'date') required this.date,
-      @JsonKey(name: 'sender_user') required this.senderUser})
-      : assert(type == MessageOriginType.user,
-            'type must be MessageOriginType.user');
+  const MessageOriginUser({
+    @JsonKey(defaultValue: MessageOriginType.user, name: 'type')
+    this.type = MessageOriginType.user,
+    @JsonKey(required: true, name: 'date') required this.date,
+    @JsonKey(name: 'sender_user') required this.senderUser,
+  }) : assert(
+         type == MessageOriginType.user,
+         'type must be MessageOriginType.user',
+       );
   factory MessageOriginUser.fromJson(Map<String, dynamic> json) =>
       _$MessageOriginUserFromJson(json);
 
@@ -137,9 +250,7 @@ class MessageOriginUser implements MessageOrigin {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$MessageOriginUserToJson(
-      this,
-    );
+    return _$MessageOriginUserToJson(this);
   }
 
   @override
@@ -152,15 +263,17 @@ class MessageOriginUser implements MessageOrigin {
 abstract mixin class $MessageOriginUserCopyWith<$Res>
     implements $MessageOriginCopyWith<$Res> {
   factory $MessageOriginUserCopyWith(
-          MessageOriginUser value, $Res Function(MessageOriginUser) _then) =
-      _$MessageOriginUserCopyWithImpl;
+    MessageOriginUser value,
+    $Res Function(MessageOriginUser) _then,
+  ) = _$MessageOriginUserCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(defaultValue: MessageOriginType.user, name: 'type')
-      MessageOriginType type,
-      @JsonKey(required: true, name: 'date') int date,
-      @JsonKey(name: 'sender_user') User senderUser});
+  $Res call({
+    @JsonKey(defaultValue: MessageOriginType.user, name: 'type')
+    MessageOriginType type,
+    @JsonKey(required: true, name: 'date') int date,
+    @JsonKey(name: 'sender_user') User senderUser,
+  });
 
   $UserCopyWith<$Res> get senderUser;
 }
@@ -182,20 +295,22 @@ class _$MessageOriginUserCopyWithImpl<$Res>
     Object? date = null,
     Object? senderUser = null,
   }) {
-    return _then(MessageOriginUser(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MessageOriginType,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      senderUser: null == senderUser
-          ? _self.senderUser
-          : senderUser // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
+    return _then(
+      MessageOriginUser(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as MessageOriginType,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+        senderUser: null == senderUser
+            ? _self.senderUser
+            : senderUser // ignore: cast_nullable_to_non_nullable
+                  as User,
+      ),
+    );
   }
 
   /// Create a copy of MessageOrigin
@@ -212,13 +327,15 @@ class _$MessageOriginUserCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class MessageOriginHiddenUser implements MessageOrigin {
-  const MessageOriginHiddenUser(
-      {@JsonKey(name: 'type', defaultValue: MessageOriginType.hiddenUser)
-      this.type = MessageOriginType.hiddenUser,
-      @JsonKey(name: 'date', required: true) required this.date,
-      @JsonKey(name: 'sender_user_name') required this.senderUserName})
-      : assert(type == MessageOriginType.hiddenUser,
-            'type must be MessageOriginType.hiddenUser');
+  const MessageOriginHiddenUser({
+    @JsonKey(name: 'type', defaultValue: MessageOriginType.hiddenUser)
+    this.type = MessageOriginType.hiddenUser,
+    @JsonKey(name: 'date', required: true) required this.date,
+    @JsonKey(name: 'sender_user_name') required this.senderUserName,
+  }) : assert(
+         type == MessageOriginType.hiddenUser,
+         'type must be MessageOriginType.hiddenUser',
+       );
   factory MessageOriginHiddenUser.fromJson(Map<String, dynamic> json) =>
       _$MessageOriginHiddenUserFromJson(json);
 
@@ -243,13 +360,13 @@ class MessageOriginHiddenUser implements MessageOrigin {
   @pragma('vm:prefer-inline')
   $MessageOriginHiddenUserCopyWith<MessageOriginHiddenUser> get copyWith =>
       _$MessageOriginHiddenUserCopyWithImpl<MessageOriginHiddenUser>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$MessageOriginHiddenUserToJson(
-      this,
-    );
+    return _$MessageOriginHiddenUserToJson(this);
   }
 
   @override
@@ -261,16 +378,18 @@ class MessageOriginHiddenUser implements MessageOrigin {
 /// @nodoc
 abstract mixin class $MessageOriginHiddenUserCopyWith<$Res>
     implements $MessageOriginCopyWith<$Res> {
-  factory $MessageOriginHiddenUserCopyWith(MessageOriginHiddenUser value,
-          $Res Function(MessageOriginHiddenUser) _then) =
-      _$MessageOriginHiddenUserCopyWithImpl;
+  factory $MessageOriginHiddenUserCopyWith(
+    MessageOriginHiddenUser value,
+    $Res Function(MessageOriginHiddenUser) _then,
+  ) = _$MessageOriginHiddenUserCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type', defaultValue: MessageOriginType.hiddenUser)
-      MessageOriginType type,
-      @JsonKey(name: 'date', required: true) int date,
-      @JsonKey(name: 'sender_user_name') String senderUserName});
+  $Res call({
+    @JsonKey(name: 'type', defaultValue: MessageOriginType.hiddenUser)
+    MessageOriginType type,
+    @JsonKey(name: 'date', required: true) int date,
+    @JsonKey(name: 'sender_user_name') String senderUserName,
+  });
 }
 
 /// @nodoc
@@ -290,34 +409,38 @@ class _$MessageOriginHiddenUserCopyWithImpl<$Res>
     Object? date = null,
     Object? senderUserName = null,
   }) {
-    return _then(MessageOriginHiddenUser(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MessageOriginType,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      senderUserName: null == senderUserName
-          ? _self.senderUserName
-          : senderUserName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      MessageOriginHiddenUser(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as MessageOriginType,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+        senderUserName: null == senderUserName
+            ? _self.senderUserName
+            : senderUserName // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class MessageOriginChat implements MessageOrigin {
-  const MessageOriginChat(
-      {@JsonKey(name: 'type', defaultValue: MessageOriginType.chat)
-      this.type = MessageOriginType.chat,
-      @JsonKey(name: 'date', required: true) required this.date,
-      @JsonKey(name: 'sender_chat') required this.senderChat,
-      @JsonKey(name: 'author_signature') this.authorSignature})
-      : assert(type == MessageOriginType.chat,
-            'type must be MessageOriginType.chat');
+  const MessageOriginChat({
+    @JsonKey(name: 'type', defaultValue: MessageOriginType.chat)
+    this.type = MessageOriginType.chat,
+    @JsonKey(name: 'date', required: true) required this.date,
+    @JsonKey(name: 'sender_chat') required this.senderChat,
+    @JsonKey(name: 'author_signature') this.authorSignature,
+  }) : assert(
+         type == MessageOriginType.chat,
+         'type must be MessageOriginType.chat',
+       );
   factory MessageOriginChat.fromJson(Map<String, dynamic> json) =>
       _$MessageOriginChatFromJson(json);
 
@@ -350,9 +473,7 @@ class MessageOriginChat implements MessageOrigin {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$MessageOriginChatToJson(
-      this,
-    );
+    return _$MessageOriginChatToJson(this);
   }
 
   @override
@@ -365,16 +486,18 @@ class MessageOriginChat implements MessageOrigin {
 abstract mixin class $MessageOriginChatCopyWith<$Res>
     implements $MessageOriginCopyWith<$Res> {
   factory $MessageOriginChatCopyWith(
-          MessageOriginChat value, $Res Function(MessageOriginChat) _then) =
-      _$MessageOriginChatCopyWithImpl;
+    MessageOriginChat value,
+    $Res Function(MessageOriginChat) _then,
+  ) = _$MessageOriginChatCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type', defaultValue: MessageOriginType.chat)
-      MessageOriginType type,
-      @JsonKey(name: 'date', required: true) int date,
-      @JsonKey(name: 'sender_chat') Chat senderChat,
-      @JsonKey(name: 'author_signature') String? authorSignature});
+  $Res call({
+    @JsonKey(name: 'type', defaultValue: MessageOriginType.chat)
+    MessageOriginType type,
+    @JsonKey(name: 'date', required: true) int date,
+    @JsonKey(name: 'sender_chat') Chat senderChat,
+    @JsonKey(name: 'author_signature') String? authorSignature,
+  });
 
   $ChatCopyWith<$Res> get senderChat;
 }
@@ -397,24 +520,26 @@ class _$MessageOriginChatCopyWithImpl<$Res>
     Object? senderChat = null,
     Object? authorSignature = freezed,
   }) {
-    return _then(MessageOriginChat(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MessageOriginType,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      senderChat: null == senderChat
-          ? _self.senderChat
-          : senderChat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      authorSignature: freezed == authorSignature
-          ? _self.authorSignature
-          : authorSignature // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      MessageOriginChat(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as MessageOriginType,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+        senderChat: null == senderChat
+            ? _self.senderChat
+            : senderChat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        authorSignature: freezed == authorSignature
+            ? _self.authorSignature
+            : authorSignature // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 
   /// Create a copy of MessageOrigin
@@ -431,15 +556,17 @@ class _$MessageOriginChatCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class MessageOriginChannel implements MessageOrigin {
-  const MessageOriginChannel(
-      {@JsonKey(name: 'type', defaultValue: MessageOriginType.channel)
-      this.type = MessageOriginType.channel,
-      @JsonKey(name: 'date', required: true) required this.date,
-      @JsonKey(name: 'chat') required this.chat,
-      @JsonKey(name: 'message_id') required this.messageId,
-      @JsonKey(name: 'author_signature') this.authorSignature})
-      : assert(type == MessageOriginType.channel,
-            'type must be MessageOriginType.channel');
+  const MessageOriginChannel({
+    @JsonKey(name: 'type', defaultValue: MessageOriginType.channel)
+    this.type = MessageOriginType.channel,
+    @JsonKey(name: 'date', required: true) required this.date,
+    @JsonKey(name: 'chat') required this.chat,
+    @JsonKey(name: 'message_id') required this.messageId,
+    @JsonKey(name: 'author_signature') this.authorSignature,
+  }) : assert(
+         type == MessageOriginType.channel,
+         'type must be MessageOriginType.channel',
+       );
   factory MessageOriginChannel.fromJson(Map<String, dynamic> json) =>
       _$MessageOriginChannelFromJson(json);
 
@@ -472,13 +599,13 @@ class MessageOriginChannel implements MessageOrigin {
   @pragma('vm:prefer-inline')
   $MessageOriginChannelCopyWith<MessageOriginChannel> get copyWith =>
       _$MessageOriginChannelCopyWithImpl<MessageOriginChannel>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$MessageOriginChannelToJson(
-      this,
-    );
+    return _$MessageOriginChannelToJson(this);
   }
 
   @override
@@ -490,18 +617,20 @@ class MessageOriginChannel implements MessageOrigin {
 /// @nodoc
 abstract mixin class $MessageOriginChannelCopyWith<$Res>
     implements $MessageOriginCopyWith<$Res> {
-  factory $MessageOriginChannelCopyWith(MessageOriginChannel value,
-          $Res Function(MessageOriginChannel) _then) =
-      _$MessageOriginChannelCopyWithImpl;
+  factory $MessageOriginChannelCopyWith(
+    MessageOriginChannel value,
+    $Res Function(MessageOriginChannel) _then,
+  ) = _$MessageOriginChannelCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type', defaultValue: MessageOriginType.channel)
-      MessageOriginType type,
-      @JsonKey(name: 'date', required: true) int date,
-      @JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'message_id') int messageId,
-      @JsonKey(name: 'author_signature') String? authorSignature});
+  $Res call({
+    @JsonKey(name: 'type', defaultValue: MessageOriginType.channel)
+    MessageOriginType type,
+    @JsonKey(name: 'date', required: true) int date,
+    @JsonKey(name: 'chat') Chat chat,
+    @JsonKey(name: 'message_id') int messageId,
+    @JsonKey(name: 'author_signature') String? authorSignature,
+  });
 
   $ChatCopyWith<$Res> get chat;
 }
@@ -525,28 +654,30 @@ class _$MessageOriginChannelCopyWithImpl<$Res>
     Object? messageId = null,
     Object? authorSignature = freezed,
   }) {
-    return _then(MessageOriginChannel(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as MessageOriginType,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      chat: null == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      messageId: null == messageId
-          ? _self.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as int,
-      authorSignature: freezed == authorSignature
-          ? _self.authorSignature
-          : authorSignature // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      MessageOriginChannel(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as MessageOriginType,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+        chat: null == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        messageId: null == messageId
+            ? _self.messageId
+            : messageId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        authorSignature: freezed == authorSignature
+            ? _self.authorSignature
+            : authorSignature // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 
   /// Create a copy of MessageOrigin

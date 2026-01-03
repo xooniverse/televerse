@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -33,13 +32,94 @@ mixin _$InaccessibleMessage {
   }
 }
 
+/// Adds pattern-matching-related methods to [InaccessibleMessage].
+extension InaccessibleMessagePatterns on InaccessibleMessage {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InaccessibleMessage value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InaccessibleMessage() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InaccessibleMessage value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InaccessibleMessage():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InaccessibleMessage value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InaccessibleMessage() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _InaccessibleMessage implements InaccessibleMessage {
-  const _InaccessibleMessage(
-      {required this.chat,
-      @JsonKey(name: 'message_id') required this.messageId,
-      this.date = 0});
+  const _InaccessibleMessage({
+    required this.chat,
+    @JsonKey(name: 'message_id') required this.messageId,
+    this.date = 0,
+  });
   factory _InaccessibleMessage.fromJson(Map<String, dynamic> json) =>
       _$InaccessibleMessageFromJson(json);
 
@@ -59,9 +139,7 @@ class _InaccessibleMessage implements InaccessibleMessage {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InaccessibleMessageToJson(
-      this,
-    );
+    return _$InaccessibleMessageToJson(this);
   }
 
   @override
@@ -555,123 +633,203 @@ mixin _$Message {
   }
 }
 
+/// Adds pattern-matching-related methods to [Message].
+extension MessagePatterns on Message {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Message value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Message() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Message value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Message():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Message value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Message() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _Message implements Message {
-  const _Message(
-      {@JsonKey(name: "chat") required this.chat,
-      @JsonKey(name: "message_id") required this.messageId,
-      @JsonKey(name: "date") required this.date,
-      @JsonKey(name: 'message_thread_id') this.messageThreadId,
-      @JsonKey(name: 'from') this.from,
-      @JsonKey(name: 'sender_chat') this.senderChat,
-      @JsonKey(name: 'forward_origin') this.forwardOrigin,
-      @JsonKey(name: 'is_topic_message') this.isTopicMessage,
-      @JsonKey(name: 'is_automatic_forward') this.isAutomaticForward,
-      @JsonKey(name: 'reply_to_message') this.replyToMessage,
-      @JsonKey(name: 'via_bot') this.viaBot,
-      @JsonKey(name: 'edit_date') this.editDate,
-      @JsonKey(name: 'has_protected_content') this.hasProtectedContent,
-      @JsonKey(name: 'media_group_id') this.mediaGroupId,
-      @JsonKey(name: 'author_signature') this.authorSignature,
-      @JsonKey(name: 'text') this.text,
-      @JsonKey(name: 'entities') final List<MessageEntity>? entities,
-      @JsonKey(name: 'animation') this.animation,
-      @JsonKey(name: 'audio') this.audio,
-      @JsonKey(name: 'document') this.document,
-      @JsonKey(name: 'photo') final List<PhotoSize>? photo,
-      @JsonKey(name: 'sticker') this.sticker,
-      @JsonKey(name: 'video') this.video,
-      @JsonKey(name: 'video_note') this.videoNote,
-      @JsonKey(name: 'voice') this.voice,
-      @JsonKey(name: 'caption') this.caption,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'contact') this.contact,
-      @JsonKey(name: 'dice') this.dice,
-      @JsonKey(name: 'game') this.game,
-      @JsonKey(name: 'poll') this.poll,
-      @JsonKey(name: 'venue') this.venue,
-      @JsonKey(name: 'location') this.location,
-      @JsonKey(name: 'new_chat_members') final List<User>? newChatMembers,
-      @JsonKey(name: 'left_chat_member') this.leftChatMember,
-      @JsonKey(name: 'new_chat_title') this.newChatTitle,
-      @JsonKey(name: 'new_chat_photo') final List<PhotoSize>? newChatPhoto,
-      @JsonKey(name: 'delete_chat_photo') this.deleteChatPhoto,
-      @JsonKey(name: 'group_chat_created') this.groupChatCreated,
-      @JsonKey(name: 'supergroup_chat_created') this.supergroupChatCreated,
-      @JsonKey(name: 'channel_chat_created') this.channelChatCreated,
-      @JsonKey(name: 'message_auto_delete_timer_changed')
-      this.messageAutoDeleteTimerChanged,
-      @JsonKey(name: 'migrate_to_chat_id') this.migrateToChatId,
-      @JsonKey(name: 'migrate_from_chat_id') this.migrateFromChatId,
-      @JsonKey(name: 'pinned_message') this.pinnedMessage,
-      @JsonKey(name: 'invoice') this.invoice,
-      @JsonKey(name: 'successful_payment') this.successfulPayment,
-      @JsonKey(name: 'connected_website') this.connectedWebsite,
-      @JsonKey(name: 'passport_data') this.passportData,
-      @JsonKey(name: 'proximity_alert_triggered') this.proximityAlertTriggered,
-      @JsonKey(name: 'forum_topic_created') this.forumTopicCreated,
-      @JsonKey(name: 'forum_topic_closed') this.forumTopicClosed,
-      @JsonKey(name: 'forum_topic_reopened') this.forumTopicReopened,
-      @JsonKey(name: 'video_chat_scheduled') this.videoChatScheduled,
-      @JsonKey(name: 'video_chat_started') this.videoChatStarted,
-      @JsonKey(name: 'video_chat_ended') this.videoChatEnded,
-      @JsonKey(name: 'video_chat_participants_invited')
-      this.videoChatParticipantsInvited,
-      @JsonKey(name: 'web_app_data') this.webAppData,
-      @JsonKey(name: 'reply_markup') this.replyMarkup,
-      @JsonKey(name: 'users_shared') this.usersShared,
-      @JsonKey(name: 'chat_shared') this.chatShared,
-      @JsonKey(name: 'has_media_spoiler') this.hasMediaSpoiler,
-      @JsonKey(name: 'forum_topic_edited') this.forumTopicEdited,
-      @JsonKey(name: 'general_forum_topic_hidden') this.generalForumTopicHidden,
-      @JsonKey(name: 'general_forum_topic_unhidden')
-      this.generalForumTopicUnhidden,
-      @JsonKey(name: 'write_access_allowed') this.writeAccessAllowed,
-      @JsonKey(name: 'story') this.story,
-      @JsonKey(name: 'external_reply') this.externalReply,
-      @JsonKey(name: 'quote') this.quote,
-      @JsonKey(name: 'link_preview_options') this.linkPreviewOptions,
-      @JsonKey(name: 'giveaway') this.giveaway,
-      @JsonKey(name: 'giveaway_created') this.giveawayCreated,
-      @JsonKey(name: 'giveaway_winners') this.giveawayWinners,
-      @JsonKey(name: 'giveaway_completed') this.giveawayCompleted,
-      @JsonKey(name: 'boost_added') this.boostAdded,
-      @JsonKey(name: 'sender_boost_count') this.senderBoostCount,
-      @JsonKey(name: 'reply_to_story') this.replyToStory,
-      @JsonKey(name: 'business_connection_id') this.businessConnectionId,
-      @JsonKey(name: 'sender_business_bot') this.senderBusinessBot,
-      @JsonKey(name: 'is_from_offline') this.isFromOffline,
-      @JsonKey(name: 'chat_background_set') this.chatBackgroundSet,
-      @JsonKey(name: 'effect_id') this.effectId,
-      @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
-      @JsonKey(name: 'paid_media') this.paidMedia,
-      @JsonKey(name: 'refunded_payment') this.refundedPayment,
-      @JsonKey(name: 'gift') this.gift,
-      @JsonKey(name: 'unique_gift') this.uniqueGift,
-      @JsonKey(name: 'paid_message_price_changed') this.paidMessagePriceChanged,
-      @JsonKey(name: 'paid_star_count') this.paidStarCount,
-      @JsonKey(name: 'checklist') this.checklist,
-      @JsonKey(name: 'checklist_tasks_done') this.checklistTasksDone,
-      @JsonKey(name: 'checklist_tasks_added') this.checklistTasksAdded,
-      @JsonKey(name: 'direct_message_price_changed')
-      this.directMessagePriceChanged,
-      @JsonKey(name: 'reply_to_checklist_task_id') this.replyToChecklistTaskId,
-      @JsonKey(name: 'direct_messages_topic') this.directMessagesTopic,
-      @JsonKey(name: 'is_paid_post') this.isPaidPost,
-      @JsonKey(name: 'suggested_post_info') this.suggestedPostInfo,
-      @JsonKey(name: 'suggested_post_approved') this.suggestedPostApproved,
-      @JsonKey(name: 'suggested_post_approval_failed')
-      this.suggestedPostApprovalFailed,
-      @JsonKey(name: 'suggested_post_declined') this.suggestedPostDeclined,
-      @JsonKey(name: 'suggested_post_paid') this.suggestedPostPaid,
-      @JsonKey(name: 'suggested_post_refunded') this.suggestedPostRefunded})
-      : _entities = entities,
-        _photo = photo,
-        _captionEntities = captionEntities,
-        _newChatMembers = newChatMembers,
-        _newChatPhoto = newChatPhoto;
+  const _Message({
+    @JsonKey(name: "chat") required this.chat,
+    @JsonKey(name: "message_id") required this.messageId,
+    @JsonKey(name: "date") required this.date,
+    @JsonKey(name: 'message_thread_id') this.messageThreadId,
+    @JsonKey(name: 'from') this.from,
+    @JsonKey(name: 'sender_chat') this.senderChat,
+    @JsonKey(name: 'forward_origin') this.forwardOrigin,
+    @JsonKey(name: 'is_topic_message') this.isTopicMessage,
+    @JsonKey(name: 'is_automatic_forward') this.isAutomaticForward,
+    @JsonKey(name: 'reply_to_message') this.replyToMessage,
+    @JsonKey(name: 'via_bot') this.viaBot,
+    @JsonKey(name: 'edit_date') this.editDate,
+    @JsonKey(name: 'has_protected_content') this.hasProtectedContent,
+    @JsonKey(name: 'media_group_id') this.mediaGroupId,
+    @JsonKey(name: 'author_signature') this.authorSignature,
+    @JsonKey(name: 'text') this.text,
+    @JsonKey(name: 'entities') final List<MessageEntity>? entities,
+    @JsonKey(name: 'animation') this.animation,
+    @JsonKey(name: 'audio') this.audio,
+    @JsonKey(name: 'document') this.document,
+    @JsonKey(name: 'photo') final List<PhotoSize>? photo,
+    @JsonKey(name: 'sticker') this.sticker,
+    @JsonKey(name: 'video') this.video,
+    @JsonKey(name: 'video_note') this.videoNote,
+    @JsonKey(name: 'voice') this.voice,
+    @JsonKey(name: 'caption') this.caption,
+    @JsonKey(name: 'caption_entities')
+    final List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'contact') this.contact,
+    @JsonKey(name: 'dice') this.dice,
+    @JsonKey(name: 'game') this.game,
+    @JsonKey(name: 'poll') this.poll,
+    @JsonKey(name: 'venue') this.venue,
+    @JsonKey(name: 'location') this.location,
+    @JsonKey(name: 'new_chat_members') final List<User>? newChatMembers,
+    @JsonKey(name: 'left_chat_member') this.leftChatMember,
+    @JsonKey(name: 'new_chat_title') this.newChatTitle,
+    @JsonKey(name: 'new_chat_photo') final List<PhotoSize>? newChatPhoto,
+    @JsonKey(name: 'delete_chat_photo') this.deleteChatPhoto,
+    @JsonKey(name: 'group_chat_created') this.groupChatCreated,
+    @JsonKey(name: 'supergroup_chat_created') this.supergroupChatCreated,
+    @JsonKey(name: 'channel_chat_created') this.channelChatCreated,
+    @JsonKey(name: 'message_auto_delete_timer_changed')
+    this.messageAutoDeleteTimerChanged,
+    @JsonKey(name: 'migrate_to_chat_id') this.migrateToChatId,
+    @JsonKey(name: 'migrate_from_chat_id') this.migrateFromChatId,
+    @JsonKey(name: 'pinned_message') this.pinnedMessage,
+    @JsonKey(name: 'invoice') this.invoice,
+    @JsonKey(name: 'successful_payment') this.successfulPayment,
+    @JsonKey(name: 'connected_website') this.connectedWebsite,
+    @JsonKey(name: 'passport_data') this.passportData,
+    @JsonKey(name: 'proximity_alert_triggered') this.proximityAlertTriggered,
+    @JsonKey(name: 'forum_topic_created') this.forumTopicCreated,
+    @JsonKey(name: 'forum_topic_closed') this.forumTopicClosed,
+    @JsonKey(name: 'forum_topic_reopened') this.forumTopicReopened,
+    @JsonKey(name: 'video_chat_scheduled') this.videoChatScheduled,
+    @JsonKey(name: 'video_chat_started') this.videoChatStarted,
+    @JsonKey(name: 'video_chat_ended') this.videoChatEnded,
+    @JsonKey(name: 'video_chat_participants_invited')
+    this.videoChatParticipantsInvited,
+    @JsonKey(name: 'web_app_data') this.webAppData,
+    @JsonKey(name: 'reply_markup') this.replyMarkup,
+    @JsonKey(name: 'users_shared') this.usersShared,
+    @JsonKey(name: 'chat_shared') this.chatShared,
+    @JsonKey(name: 'has_media_spoiler') this.hasMediaSpoiler,
+    @JsonKey(name: 'forum_topic_edited') this.forumTopicEdited,
+    @JsonKey(name: 'general_forum_topic_hidden') this.generalForumTopicHidden,
+    @JsonKey(name: 'general_forum_topic_unhidden')
+    this.generalForumTopicUnhidden,
+    @JsonKey(name: 'write_access_allowed') this.writeAccessAllowed,
+    @JsonKey(name: 'story') this.story,
+    @JsonKey(name: 'external_reply') this.externalReply,
+    @JsonKey(name: 'quote') this.quote,
+    @JsonKey(name: 'link_preview_options') this.linkPreviewOptions,
+    @JsonKey(name: 'giveaway') this.giveaway,
+    @JsonKey(name: 'giveaway_created') this.giveawayCreated,
+    @JsonKey(name: 'giveaway_winners') this.giveawayWinners,
+    @JsonKey(name: 'giveaway_completed') this.giveawayCompleted,
+    @JsonKey(name: 'boost_added') this.boostAdded,
+    @JsonKey(name: 'sender_boost_count') this.senderBoostCount,
+    @JsonKey(name: 'reply_to_story') this.replyToStory,
+    @JsonKey(name: 'business_connection_id') this.businessConnectionId,
+    @JsonKey(name: 'sender_business_bot') this.senderBusinessBot,
+    @JsonKey(name: 'is_from_offline') this.isFromOffline,
+    @JsonKey(name: 'chat_background_set') this.chatBackgroundSet,
+    @JsonKey(name: 'effect_id') this.effectId,
+    @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
+    @JsonKey(name: 'paid_media') this.paidMedia,
+    @JsonKey(name: 'refunded_payment') this.refundedPayment,
+    @JsonKey(name: 'gift') this.gift,
+    @JsonKey(name: 'unique_gift') this.uniqueGift,
+    @JsonKey(name: 'paid_message_price_changed') this.paidMessagePriceChanged,
+    @JsonKey(name: 'paid_star_count') this.paidStarCount,
+    @JsonKey(name: 'checklist') this.checklist,
+    @JsonKey(name: 'checklist_tasks_done') this.checklistTasksDone,
+    @JsonKey(name: 'checklist_tasks_added') this.checklistTasksAdded,
+    @JsonKey(name: 'direct_message_price_changed')
+    this.directMessagePriceChanged,
+    @JsonKey(name: 'reply_to_checklist_task_id') this.replyToChecklistTaskId,
+    @JsonKey(name: 'direct_messages_topic') this.directMessagesTopic,
+    @JsonKey(name: 'is_paid_post') this.isPaidPost,
+    @JsonKey(name: 'suggested_post_info') this.suggestedPostInfo,
+    @JsonKey(name: 'suggested_post_approved') this.suggestedPostApproved,
+    @JsonKey(name: 'suggested_post_approval_failed')
+    this.suggestedPostApprovalFailed,
+    @JsonKey(name: 'suggested_post_declined') this.suggestedPostDeclined,
+    @JsonKey(name: 'suggested_post_paid') this.suggestedPostPaid,
+    @JsonKey(name: 'suggested_post_refunded') this.suggestedPostRefunded,
+  }) : _entities = entities,
+       _photo = photo,
+       _captionEntities = captionEntities,
+       _newChatMembers = newChatMembers,
+       _newChatPhoto = newChatPhoto;
   factory _Message.fromJson(Map<String, dynamic> json) =>
       _$MessageFromJson(json);
 
@@ -1301,9 +1459,7 @@ class _Message implements Message {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$MessageToJson(
-      this,
-    );
+    return _$MessageToJson(this);
   }
 
   @override

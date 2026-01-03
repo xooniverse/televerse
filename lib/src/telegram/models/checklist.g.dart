@@ -7,24 +7,22 @@ part of 'checklist.dart';
 // **************************************************************************
 
 _Checklist _$ChecklistFromJson(Map<String, dynamic> json) => _Checklist(
-      title: json['title'] as String,
-      titleEntities: (json['title_entities'] as List<dynamic>?)
-          ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      tasks: (json['tasks'] as List<dynamic>)
-          .map((e) => ChecklistTask.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      othersCanAddTasks: json['others_can_add_tasks'] as bool?,
-      othersCanMarkTasksAsDone: json['others_can_mark_tasks_as_done'] as bool?,
-    );
+  title: json['title'] as String,
+  titleEntities: (json['title_entities'] as List<dynamic>?)
+      ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  tasks: (json['tasks'] as List<dynamic>)
+      .map((e) => ChecklistTask.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  othersCanAddTasks: json['others_can_add_tasks'] as bool?,
+  othersCanMarkTasksAsDone: json['others_can_mark_tasks_as_done'] as bool?,
+);
 
 Map<String, dynamic> _$ChecklistToJson(_Checklist instance) =>
     <String, dynamic>{
       'title': instance.title,
-      if (instance.titleEntities case final value?) 'title_entities': value,
+      'title_entities': ?instance.titleEntities,
       'tasks': instance.tasks,
-      if (instance.othersCanAddTasks case final value?)
-        'others_can_add_tasks': value,
-      if (instance.othersCanMarkTasksAsDone case final value?)
-        'others_can_mark_tasks_as_done': value,
+      'others_can_add_tasks': ?instance.othersCanAddTasks,
+      'others_can_mark_tasks_as_done': ?instance.othersCanMarkTasksAsDone,
     };

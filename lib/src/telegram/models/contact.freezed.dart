@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -56,12 +55,13 @@ abstract mixin class $ContactCopyWith<$Res> {
   factory $ContactCopyWith(Contact value, $Res Function(Contact) _then) =
       _$ContactCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'phone_number') String phoneNumber,
-      @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'user_id') int? userId,
-      @JsonKey(name: 'vcard') String? vcard});
+  $Res call({
+    @JsonKey(name: 'phone_number') String phoneNumber,
+    @JsonKey(name: 'first_name') String firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'user_id') int? userId,
+    @JsonKey(name: 'vcard') String? vcard,
+  });
 }
 
 /// @nodoc
@@ -82,40 +82,123 @@ class _$ContactCopyWithImpl<$Res> implements $ContactCopyWith<$Res> {
     Object? userId = freezed,
     Object? vcard = freezed,
   }) {
-    return _then(_self.copyWith(
-      phoneNumber: null == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userId: freezed == userId
-          ? _self.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      vcard: freezed == vcard
-          ? _self.vcard
-          : vcard // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _self.copyWith(
+        phoneNumber: null == phoneNumber
+            ? _self.phoneNumber
+            : phoneNumber // ignore: cast_nullable_to_non_nullable
+                  as String,
+        firstName: null == firstName
+            ? _self.firstName
+            : firstName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        lastName: freezed == lastName
+            ? _self.lastName
+            : lastName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        userId: freezed == userId
+            ? _self.userId
+            : userId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        vcard: freezed == vcard
+            ? _self.vcard
+            : vcard // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [Contact].
+extension ContactPatterns on Contact {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Contact value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Contact() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Contact value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Contact():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Contact value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Contact() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _Contact implements Contact {
-  const _Contact(
-      {@JsonKey(name: 'phone_number') required this.phoneNumber,
-      @JsonKey(name: 'first_name') required this.firstName,
-      @JsonKey(name: 'last_name') this.lastName,
-      @JsonKey(name: 'user_id') this.userId,
-      @JsonKey(name: 'vcard') this.vcard});
+  const _Contact({
+    @JsonKey(name: 'phone_number') required this.phoneNumber,
+    @JsonKey(name: 'first_name') required this.firstName,
+    @JsonKey(name: 'last_name') this.lastName,
+    @JsonKey(name: 'user_id') this.userId,
+    @JsonKey(name: 'vcard') this.vcard,
+  });
   factory _Contact.fromJson(Map<String, dynamic> json) =>
       _$ContactFromJson(json);
 
@@ -155,9 +238,7 @@ class _Contact implements Contact {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ContactToJson(
-      this,
-    );
+    return _$ContactToJson(this);
   }
 
   @override
@@ -172,12 +253,13 @@ abstract mixin class _$ContactCopyWith<$Res> implements $ContactCopyWith<$Res> {
       __$ContactCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'phone_number') String phoneNumber,
-      @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'user_id') int? userId,
-      @JsonKey(name: 'vcard') String? vcard});
+  $Res call({
+    @JsonKey(name: 'phone_number') String phoneNumber,
+    @JsonKey(name: 'first_name') String firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'user_id') int? userId,
+    @JsonKey(name: 'vcard') String? vcard,
+  });
 }
 
 /// @nodoc
@@ -198,27 +280,29 @@ class __$ContactCopyWithImpl<$Res> implements _$ContactCopyWith<$Res> {
     Object? userId = freezed,
     Object? vcard = freezed,
   }) {
-    return _then(_Contact(
-      phoneNumber: null == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userId: freezed == userId
-          ? _self.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      vcard: freezed == vcard
-          ? _self.vcard
-          : vcard // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _Contact(
+        phoneNumber: null == phoneNumber
+            ? _self.phoneNumber
+            : phoneNumber // ignore: cast_nullable_to_non_nullable
+                  as String,
+        firstName: null == firstName
+            ? _self.firstName
+            : firstName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        lastName: freezed == lastName
+            ? _self.lastName
+            : lastName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        userId: freezed == userId
+            ? _self.userId
+            : userId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        vcard: freezed == vcard
+            ? _self.vcard
+            : vcard // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }

@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -54,13 +53,14 @@ abstract mixin class $KeyboardCopyWith<$Res> {
   factory $KeyboardCopyWith(Keyboard value, $Res Function(Keyboard) _then) =
       _$KeyboardCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'keyboard') List<List<KeyboardButton>> keyboard,
-      @JsonKey(name: 'resize_keyboard') bool? resizeKeyboard,
-      @JsonKey(name: 'one_time_keyboard') bool? oneTimeKeyboard,
-      @JsonKey(name: 'input_field_placeholder') String? inputFieldPlaceholder,
-      @JsonKey(name: 'selective') bool? selective,
-      @JsonKey(name: 'is_persistent') bool? isPersistent});
+  $Res call({
+    @JsonKey(name: 'keyboard') List<List<KeyboardButton>> keyboard,
+    @JsonKey(name: 'resize_keyboard') bool? resizeKeyboard,
+    @JsonKey(name: 'one_time_keyboard') bool? oneTimeKeyboard,
+    @JsonKey(name: 'input_field_placeholder') String? inputFieldPlaceholder,
+    @JsonKey(name: 'selective') bool? selective,
+    @JsonKey(name: 'is_persistent') bool? isPersistent,
+  });
 }
 
 /// @nodoc
@@ -82,48 +82,130 @@ class _$KeyboardCopyWithImpl<$Res> implements $KeyboardCopyWith<$Res> {
     Object? selective = freezed,
     Object? isPersistent = freezed,
   }) {
-    return _then(_self.copyWith(
-      keyboard: null == keyboard
-          ? _self.keyboard
-          : keyboard // ignore: cast_nullable_to_non_nullable
-              as List<List<KeyboardButton>>,
-      resizeKeyboard: freezed == resizeKeyboard
-          ? _self.resizeKeyboard
-          : resizeKeyboard // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      oneTimeKeyboard: freezed == oneTimeKeyboard
-          ? _self.oneTimeKeyboard
-          : oneTimeKeyboard // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      inputFieldPlaceholder: freezed == inputFieldPlaceholder
-          ? _self.inputFieldPlaceholder
-          : inputFieldPlaceholder // ignore: cast_nullable_to_non_nullable
-              as String?,
-      selective: freezed == selective
-          ? _self.selective
-          : selective // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isPersistent: freezed == isPersistent
-          ? _self.isPersistent
-          : isPersistent // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        keyboard: null == keyboard
+            ? _self.keyboard
+            : keyboard // ignore: cast_nullable_to_non_nullable
+                  as List<List<KeyboardButton>>,
+        resizeKeyboard: freezed == resizeKeyboard
+            ? _self.resizeKeyboard
+            : resizeKeyboard // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        oneTimeKeyboard: freezed == oneTimeKeyboard
+            ? _self.oneTimeKeyboard
+            : oneTimeKeyboard // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        inputFieldPlaceholder: freezed == inputFieldPlaceholder
+            ? _self.inputFieldPlaceholder
+            : inputFieldPlaceholder // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        selective: freezed == selective
+            ? _self.selective
+            : selective // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isPersistent: freezed == isPersistent
+            ? _self.isPersistent
+            : isPersistent // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [Keyboard].
+extension KeyboardPatterns on Keyboard {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Keyboard value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Keyboard() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Keyboard value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Keyboard():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Keyboard value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Keyboard() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _Keyboard extends Keyboard {
-  const _Keyboard(
-      {@JsonKey(name: 'keyboard')
-      final List<List<KeyboardButton>> keyboard = const [<KeyboardButton>[]],
-      @JsonKey(name: 'resize_keyboard') this.resizeKeyboard,
-      @JsonKey(name: 'one_time_keyboard') this.oneTimeKeyboard,
-      @JsonKey(name: 'input_field_placeholder') this.inputFieldPlaceholder,
-      @JsonKey(name: 'selective') this.selective,
-      @JsonKey(name: 'is_persistent') this.isPersistent})
-      : _keyboard = keyboard,
-        super._();
+  const _Keyboard({
+    @JsonKey(name: 'keyboard')
+    final List<List<KeyboardButton>> keyboard = const [<KeyboardButton>[]],
+    @JsonKey(name: 'resize_keyboard') this.resizeKeyboard,
+    @JsonKey(name: 'one_time_keyboard') this.oneTimeKeyboard,
+    @JsonKey(name: 'input_field_placeholder') this.inputFieldPlaceholder,
+    @JsonKey(name: 'selective') this.selective,
+    @JsonKey(name: 'is_persistent') this.isPersistent,
+  }) : _keyboard = keyboard,
+       super._();
   factory _Keyboard.fromJson(Map<String, dynamic> json) =>
       _$KeyboardFromJson(json);
 
@@ -174,9 +256,7 @@ class _Keyboard extends Keyboard {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$KeyboardToJson(
-      this,
-    );
+    return _$KeyboardToJson(this);
   }
 }
 
@@ -187,13 +267,14 @@ abstract mixin class _$KeyboardCopyWith<$Res>
       __$KeyboardCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'keyboard') List<List<KeyboardButton>> keyboard,
-      @JsonKey(name: 'resize_keyboard') bool? resizeKeyboard,
-      @JsonKey(name: 'one_time_keyboard') bool? oneTimeKeyboard,
-      @JsonKey(name: 'input_field_placeholder') String? inputFieldPlaceholder,
-      @JsonKey(name: 'selective') bool? selective,
-      @JsonKey(name: 'is_persistent') bool? isPersistent});
+  $Res call({
+    @JsonKey(name: 'keyboard') List<List<KeyboardButton>> keyboard,
+    @JsonKey(name: 'resize_keyboard') bool? resizeKeyboard,
+    @JsonKey(name: 'one_time_keyboard') bool? oneTimeKeyboard,
+    @JsonKey(name: 'input_field_placeholder') String? inputFieldPlaceholder,
+    @JsonKey(name: 'selective') bool? selective,
+    @JsonKey(name: 'is_persistent') bool? isPersistent,
+  });
 }
 
 /// @nodoc
@@ -215,31 +296,33 @@ class __$KeyboardCopyWithImpl<$Res> implements _$KeyboardCopyWith<$Res> {
     Object? selective = freezed,
     Object? isPersistent = freezed,
   }) {
-    return _then(_Keyboard(
-      keyboard: null == keyboard
-          ? _self._keyboard
-          : keyboard // ignore: cast_nullable_to_non_nullable
-              as List<List<KeyboardButton>>,
-      resizeKeyboard: freezed == resizeKeyboard
-          ? _self.resizeKeyboard
-          : resizeKeyboard // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      oneTimeKeyboard: freezed == oneTimeKeyboard
-          ? _self.oneTimeKeyboard
-          : oneTimeKeyboard // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      inputFieldPlaceholder: freezed == inputFieldPlaceholder
-          ? _self.inputFieldPlaceholder
-          : inputFieldPlaceholder // ignore: cast_nullable_to_non_nullable
-              as String?,
-      selective: freezed == selective
-          ? _self.selective
-          : selective // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isPersistent: freezed == isPersistent
-          ? _self.isPersistent
-          : isPersistent // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _Keyboard(
+        keyboard: null == keyboard
+            ? _self._keyboard
+            : keyboard // ignore: cast_nullable_to_non_nullable
+                  as List<List<KeyboardButton>>,
+        resizeKeyboard: freezed == resizeKeyboard
+            ? _self.resizeKeyboard
+            : resizeKeyboard // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        oneTimeKeyboard: freezed == oneTimeKeyboard
+            ? _self.oneTimeKeyboard
+            : oneTimeKeyboard // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        inputFieldPlaceholder: freezed == inputFieldPlaceholder
+            ? _self.inputFieldPlaceholder
+            : inputFieldPlaceholder // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        selective: freezed == selective
+            ? _self.selective
+            : selective // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isPersistent: freezed == isPersistent
+            ? _self.isPersistent
+            : isPersistent // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

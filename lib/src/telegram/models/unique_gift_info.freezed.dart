@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -49,7 +48,9 @@ mixin _$UniqueGiftInfo {
   @pragma('vm:prefer-inline')
   $UniqueGiftInfoCopyWith<UniqueGiftInfo> get copyWith =>
       _$UniqueGiftInfoCopyWithImpl<UniqueGiftInfo>(
-          this as UniqueGiftInfo, _$identity);
+        this as UniqueGiftInfo,
+        _$identity,
+      );
 
   /// Serializes this UniqueGiftInfo to a JSON map.
   Map<String, dynamic> toJson();
@@ -63,16 +64,18 @@ mixin _$UniqueGiftInfo {
 /// @nodoc
 abstract mixin class $UniqueGiftInfoCopyWith<$Res> {
   factory $UniqueGiftInfoCopyWith(
-          UniqueGiftInfo value, $Res Function(UniqueGiftInfo) _then) =
-      _$UniqueGiftInfoCopyWithImpl;
+    UniqueGiftInfo value,
+    $Res Function(UniqueGiftInfo) _then,
+  ) = _$UniqueGiftInfoCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'gift') UniqueGift gift,
-      @JsonKey(name: 'origin') UniqueGiftOriginType origin,
-      @JsonKey(name: 'last_resale_star_count') int? lastResaleStarCount,
-      @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
-      @JsonKey(name: 'transfer_star_count') int? transferStarCount,
-      @JsonKey(name: 'next_transfer_date') int? nextTransferDate});
+  $Res call({
+    @JsonKey(name: 'gift') UniqueGift gift,
+    @JsonKey(name: 'origin') UniqueGiftOriginType origin,
+    @JsonKey(name: 'last_resale_star_count') int? lastResaleStarCount,
+    @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
+    @JsonKey(name: 'transfer_star_count') int? transferStarCount,
+    @JsonKey(name: 'next_transfer_date') int? nextTransferDate,
+  });
 
   $UniqueGiftCopyWith<$Res> get gift;
 }
@@ -97,32 +100,34 @@ class _$UniqueGiftInfoCopyWithImpl<$Res>
     Object? transferStarCount = freezed,
     Object? nextTransferDate = freezed,
   }) {
-    return _then(_self.copyWith(
-      gift: null == gift
-          ? _self.gift
-          : gift // ignore: cast_nullable_to_non_nullable
-              as UniqueGift,
-      origin: null == origin
-          ? _self.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as UniqueGiftOriginType,
-      lastResaleStarCount: freezed == lastResaleStarCount
-          ? _self.lastResaleStarCount
-          : lastResaleStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      ownedGiftId: freezed == ownedGiftId
-          ? _self.ownedGiftId
-          : ownedGiftId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      transferStarCount: freezed == transferStarCount
-          ? _self.transferStarCount
-          : transferStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      nextTransferDate: freezed == nextTransferDate
-          ? _self.nextTransferDate
-          : nextTransferDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        gift: null == gift
+            ? _self.gift
+            : gift // ignore: cast_nullable_to_non_nullable
+                  as UniqueGift,
+        origin: null == origin
+            ? _self.origin
+            : origin // ignore: cast_nullable_to_non_nullable
+                  as UniqueGiftOriginType,
+        lastResaleStarCount: freezed == lastResaleStarCount
+            ? _self.lastResaleStarCount
+            : lastResaleStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        ownedGiftId: freezed == ownedGiftId
+            ? _self.ownedGiftId
+            : ownedGiftId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        transferStarCount: freezed == transferStarCount
+            ? _self.transferStarCount
+            : transferStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        nextTransferDate: freezed == nextTransferDate
+            ? _self.nextTransferDate
+            : nextTransferDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of UniqueGiftInfo
@@ -136,16 +141,97 @@ class _$UniqueGiftInfoCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [UniqueGiftInfo].
+extension UniqueGiftInfoPatterns on UniqueGiftInfo {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UniqueGiftInfo value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGiftInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UniqueGiftInfo value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGiftInfo():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_UniqueGiftInfo value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGiftInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _UniqueGiftInfo implements UniqueGiftInfo {
-  const _UniqueGiftInfo(
-      {@JsonKey(name: 'gift') required this.gift,
-      @JsonKey(name: 'origin') required this.origin,
-      @JsonKey(name: 'last_resale_star_count') this.lastResaleStarCount,
-      @JsonKey(name: 'owned_gift_id') this.ownedGiftId,
-      @JsonKey(name: 'transfer_star_count') this.transferStarCount,
-      @JsonKey(name: 'next_transfer_date') this.nextTransferDate});
+  const _UniqueGiftInfo({
+    @JsonKey(name: 'gift') required this.gift,
+    @JsonKey(name: 'origin') required this.origin,
+    @JsonKey(name: 'last_resale_star_count') this.lastResaleStarCount,
+    @JsonKey(name: 'owned_gift_id') this.ownedGiftId,
+    @JsonKey(name: 'transfer_star_count') this.transferStarCount,
+    @JsonKey(name: 'next_transfer_date') this.nextTransferDate,
+  });
   factory _UniqueGiftInfo.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftInfoFromJson(json);
 
@@ -194,9 +280,7 @@ class _UniqueGiftInfo implements UniqueGiftInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$UniqueGiftInfoToJson(
-      this,
-    );
+    return _$UniqueGiftInfoToJson(this);
   }
 
   @override
@@ -209,17 +293,19 @@ class _UniqueGiftInfo implements UniqueGiftInfo {
 abstract mixin class _$UniqueGiftInfoCopyWith<$Res>
     implements $UniqueGiftInfoCopyWith<$Res> {
   factory _$UniqueGiftInfoCopyWith(
-          _UniqueGiftInfo value, $Res Function(_UniqueGiftInfo) _then) =
-      __$UniqueGiftInfoCopyWithImpl;
+    _UniqueGiftInfo value,
+    $Res Function(_UniqueGiftInfo) _then,
+  ) = __$UniqueGiftInfoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'gift') UniqueGift gift,
-      @JsonKey(name: 'origin') UniqueGiftOriginType origin,
-      @JsonKey(name: 'last_resale_star_count') int? lastResaleStarCount,
-      @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
-      @JsonKey(name: 'transfer_star_count') int? transferStarCount,
-      @JsonKey(name: 'next_transfer_date') int? nextTransferDate});
+  $Res call({
+    @JsonKey(name: 'gift') UniqueGift gift,
+    @JsonKey(name: 'origin') UniqueGiftOriginType origin,
+    @JsonKey(name: 'last_resale_star_count') int? lastResaleStarCount,
+    @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
+    @JsonKey(name: 'transfer_star_count') int? transferStarCount,
+    @JsonKey(name: 'next_transfer_date') int? nextTransferDate,
+  });
 
   @override
   $UniqueGiftCopyWith<$Res> get gift;
@@ -245,32 +331,34 @@ class __$UniqueGiftInfoCopyWithImpl<$Res>
     Object? transferStarCount = freezed,
     Object? nextTransferDate = freezed,
   }) {
-    return _then(_UniqueGiftInfo(
-      gift: null == gift
-          ? _self.gift
-          : gift // ignore: cast_nullable_to_non_nullable
-              as UniqueGift,
-      origin: null == origin
-          ? _self.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as UniqueGiftOriginType,
-      lastResaleStarCount: freezed == lastResaleStarCount
-          ? _self.lastResaleStarCount
-          : lastResaleStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      ownedGiftId: freezed == ownedGiftId
-          ? _self.ownedGiftId
-          : ownedGiftId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      transferStarCount: freezed == transferStarCount
-          ? _self.transferStarCount
-          : transferStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      nextTransferDate: freezed == nextTransferDate
-          ? _self.nextTransferDate
-          : nextTransferDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _UniqueGiftInfo(
+        gift: null == gift
+            ? _self.gift
+            : gift // ignore: cast_nullable_to_non_nullable
+                  as UniqueGift,
+        origin: null == origin
+            ? _self.origin
+            : origin // ignore: cast_nullable_to_non_nullable
+                  as UniqueGiftOriginType,
+        lastResaleStarCount: freezed == lastResaleStarCount
+            ? _self.lastResaleStarCount
+            : lastResaleStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        ownedGiftId: freezed == ownedGiftId
+            ? _self.ownedGiftId
+            : ownedGiftId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        transferStarCount: freezed == transferStarCount
+            ? _self.transferStarCount
+            : transferStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        nextTransferDate: freezed == nextTransferDate
+            ? _self.nextTransferDate
+            : nextTransferDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of UniqueGiftInfo

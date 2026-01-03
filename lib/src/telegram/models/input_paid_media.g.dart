@@ -7,12 +7,12 @@ part of 'input_paid_media.dart';
 // **************************************************************************
 
 Map<String, dynamic> _$InputPaidMediaPhotoToJson(
-        InputPaidMediaPhoto instance) =>
-    <String, dynamic>{
-      'type': _$InputPaidMediaTypeEnumMap[instance.type]!,
-      'media': const InputFileConverter().toJson(instance.media),
-      'runtimeType': instance.$type,
-    };
+  InputPaidMediaPhoto instance,
+) => <String, dynamic>{
+  'type': _$InputPaidMediaTypeEnumMap[instance.type]!,
+  'media': const InputFileConverter().toJson(instance.media),
+  'runtimeType': instance.$type,
+};
 
 const _$InputPaidMediaTypeEnumMap = {
   InputPaidMediaType.photo: 'photo',
@@ -20,29 +20,27 @@ const _$InputPaidMediaTypeEnumMap = {
 };
 
 Map<String, dynamic> _$InputPaidMediaVideoToJson(
-        InputPaidMediaVideo instance) =>
-    <String, dynamic>{
-      'type': _$InputPaidMediaTypeEnumMap[instance.type]!,
-      'media': const InputFileConverter().toJson(instance.media),
-      if (_$JsonConverterToJson<String, InputFile>(
-              instance.thumbnail, const InputFileConverter().toJson)
-          case final value?)
-        'thumbnail': value,
-      if (instance.width case final value?) 'width': value,
-      if (instance.height case final value?) 'height': value,
-      if (instance.duration case final value?) 'duration': value,
-      if (instance.supportsStreaming case final value?)
-        'supports_streaming': value,
-      if (instance.startTimestamp case final value?) 'start_timestamp': value,
-      if (_$JsonConverterToJson<String, InputFile>(
-              instance.cover, const InputFileConverter().toJson)
-          case final value?)
-        'cover': value,
-      'runtimeType': instance.$type,
-    };
+  InputPaidMediaVideo instance,
+) => <String, dynamic>{
+  'type': _$InputPaidMediaTypeEnumMap[instance.type]!,
+  'media': const InputFileConverter().toJson(instance.media),
+  'thumbnail': ?_$JsonConverterToJson<String, InputFile>(
+    instance.thumbnail,
+    const InputFileConverter().toJson,
+  ),
+  'width': ?instance.width,
+  'height': ?instance.height,
+  'duration': ?instance.duration,
+  'supports_streaming': ?instance.supportsStreaming,
+  'start_timestamp': ?instance.startTimestamp,
+  'cover': ?_$JsonConverterToJson<String, InputFile>(
+    instance.cover,
+    const InputFileConverter().toJson,
+  ),
+  'runtimeType': instance.$type,
+};
 
 Json? _$JsonConverterToJson<Json, Value>(
   Value? value,
   Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);
+) => value == null ? null : toJson(value);

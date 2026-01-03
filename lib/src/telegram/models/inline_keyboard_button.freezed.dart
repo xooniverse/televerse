@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -97,7 +96,9 @@ mixin _$InlineKeyboardButton {
   @pragma('vm:prefer-inline')
   $InlineKeyboardButtonCopyWith<InlineKeyboardButton> get copyWith =>
       _$InlineKeyboardButtonCopyWithImpl<InlineKeyboardButton>(
-          this as InlineKeyboardButton, _$identity);
+        this as InlineKeyboardButton,
+        _$identity,
+      );
 
   /// Serializes this InlineKeyboardButton to a JSON map.
   Map<String, dynamic> toJson();
@@ -110,24 +111,26 @@ mixin _$InlineKeyboardButton {
 
 /// @nodoc
 abstract mixin class $InlineKeyboardButtonCopyWith<$Res> {
-  factory $InlineKeyboardButtonCopyWith(InlineKeyboardButton value,
-          $Res Function(InlineKeyboardButton) _then) =
-      _$InlineKeyboardButtonCopyWithImpl;
+  factory $InlineKeyboardButtonCopyWith(
+    InlineKeyboardButton value,
+    $Res Function(InlineKeyboardButton) _then,
+  ) = _$InlineKeyboardButtonCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'url') String? url,
-      @JsonKey(name: 'login_url') LoginURL? loginUrl,
-      @JsonKey(name: 'callback_data') String? callbackData,
-      @JsonKey(name: 'switch_inline_query') String? switchInlineQuery,
-      @JsonKey(name: 'switch_inline_query_current_chat')
-      String? switchInlineQueryCurrentChat,
-      @JsonKey(name: 'callback_game') CallbackGame? callbackGame,
-      @JsonKey(name: 'pay') bool? pay,
-      @JsonKey(name: 'web_app') WebAppInfo? webApp,
-      @JsonKey(name: 'switch_inline_query_chosen_chat')
-      SwitchInlineQueryChosenChat? switchInlineQueryChosenChat,
-      @JsonKey(name: 'copy_text') CopyTextButton? copyText});
+  $Res call({
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'url') String? url,
+    @JsonKey(name: 'login_url') LoginURL? loginUrl,
+    @JsonKey(name: 'callback_data') String? callbackData,
+    @JsonKey(name: 'switch_inline_query') String? switchInlineQuery,
+    @JsonKey(name: 'switch_inline_query_current_chat')
+    String? switchInlineQueryCurrentChat,
+    @JsonKey(name: 'callback_game') CallbackGame? callbackGame,
+    @JsonKey(name: 'pay') bool? pay,
+    @JsonKey(name: 'web_app') WebAppInfo? webApp,
+    @JsonKey(name: 'switch_inline_query_chosen_chat')
+    SwitchInlineQueryChosenChat? switchInlineQueryChosenChat,
+    @JsonKey(name: 'copy_text') CopyTextButton? copyText,
+  });
 
   $LoginURLCopyWith<$Res>? get loginUrl;
   $CallbackGameCopyWith<$Res>? get callbackGame;
@@ -161,52 +164,54 @@ class _$InlineKeyboardButtonCopyWithImpl<$Res>
     Object? switchInlineQueryChosenChat = freezed,
     Object? copyText = freezed,
   }) {
-    return _then(_self.copyWith(
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: freezed == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      loginUrl: freezed == loginUrl
-          ? _self.loginUrl
-          : loginUrl // ignore: cast_nullable_to_non_nullable
-              as LoginURL?,
-      callbackData: freezed == callbackData
-          ? _self.callbackData
-          : callbackData // ignore: cast_nullable_to_non_nullable
-              as String?,
-      switchInlineQuery: freezed == switchInlineQuery
-          ? _self.switchInlineQuery
-          : switchInlineQuery // ignore: cast_nullable_to_non_nullable
-              as String?,
-      switchInlineQueryCurrentChat: freezed == switchInlineQueryCurrentChat
-          ? _self.switchInlineQueryCurrentChat
-          : switchInlineQueryCurrentChat // ignore: cast_nullable_to_non_nullable
-              as String?,
-      callbackGame: freezed == callbackGame
-          ? _self.callbackGame
-          : callbackGame // ignore: cast_nullable_to_non_nullable
-              as CallbackGame?,
-      pay: freezed == pay
-          ? _self.pay
-          : pay // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      webApp: freezed == webApp
-          ? _self.webApp
-          : webApp // ignore: cast_nullable_to_non_nullable
-              as WebAppInfo?,
-      switchInlineQueryChosenChat: freezed == switchInlineQueryChosenChat
-          ? _self.switchInlineQueryChosenChat
-          : switchInlineQueryChosenChat // ignore: cast_nullable_to_non_nullable
-              as SwitchInlineQueryChosenChat?,
-      copyText: freezed == copyText
-          ? _self.copyText
-          : copyText // ignore: cast_nullable_to_non_nullable
-              as CopyTextButton?,
-    ));
+    return _then(
+      _self.copyWith(
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        url: freezed == url
+            ? _self.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        loginUrl: freezed == loginUrl
+            ? _self.loginUrl
+            : loginUrl // ignore: cast_nullable_to_non_nullable
+                  as LoginURL?,
+        callbackData: freezed == callbackData
+            ? _self.callbackData
+            : callbackData // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        switchInlineQuery: freezed == switchInlineQuery
+            ? _self.switchInlineQuery
+            : switchInlineQuery // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        switchInlineQueryCurrentChat: freezed == switchInlineQueryCurrentChat
+            ? _self.switchInlineQueryCurrentChat
+            : switchInlineQueryCurrentChat // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        callbackGame: freezed == callbackGame
+            ? _self.callbackGame
+            : callbackGame // ignore: cast_nullable_to_non_nullable
+                  as CallbackGame?,
+        pay: freezed == pay
+            ? _self.pay
+            : pay // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        webApp: freezed == webApp
+            ? _self.webApp
+            : webApp // ignore: cast_nullable_to_non_nullable
+                  as WebAppInfo?,
+        switchInlineQueryChosenChat: freezed == switchInlineQueryChosenChat
+            ? _self.switchInlineQueryChosenChat
+            : switchInlineQueryChosenChat // ignore: cast_nullable_to_non_nullable
+                  as SwitchInlineQueryChosenChat?,
+        copyText: freezed == copyText
+            ? _self.copyText
+            : copyText // ignore: cast_nullable_to_non_nullable
+                  as CopyTextButton?,
+      ),
+    );
   }
 
   /// Create a copy of InlineKeyboardButton
@@ -261,9 +266,11 @@ class _$InlineKeyboardButtonCopyWithImpl<$Res>
     }
 
     return $SwitchInlineQueryChosenChatCopyWith<$Res>(
-        _self.switchInlineQueryChosenChat!, (value) {
-      return _then(_self.copyWith(switchInlineQueryChosenChat: value));
-    });
+      _self.switchInlineQueryChosenChat!,
+      (value) {
+        return _then(_self.copyWith(switchInlineQueryChosenChat: value));
+      },
+    );
   }
 
   /// Create a copy of InlineKeyboardButton
@@ -281,23 +288,104 @@ class _$InlineKeyboardButtonCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [InlineKeyboardButton].
+extension InlineKeyboardButtonPatterns on InlineKeyboardButton {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineKeyboardButton value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineKeyboardButton() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineKeyboardButton value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineKeyboardButton():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineKeyboardButton value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineKeyboardButton() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _InlineKeyboardButton implements InlineKeyboardButton {
-  const _InlineKeyboardButton(
-      {@JsonKey(name: 'text') required this.text,
-      @JsonKey(name: 'url') this.url,
-      @JsonKey(name: 'login_url') this.loginUrl,
-      @JsonKey(name: 'callback_data') this.callbackData,
-      @JsonKey(name: 'switch_inline_query') this.switchInlineQuery,
-      @JsonKey(name: 'switch_inline_query_current_chat')
-      this.switchInlineQueryCurrentChat,
-      @JsonKey(name: 'callback_game') this.callbackGame,
-      @JsonKey(name: 'pay') this.pay,
-      @JsonKey(name: 'web_app') this.webApp,
-      @JsonKey(name: 'switch_inline_query_chosen_chat')
-      this.switchInlineQueryChosenChat,
-      @JsonKey(name: 'copy_text') this.copyText});
+  const _InlineKeyboardButton({
+    @JsonKey(name: 'text') required this.text,
+    @JsonKey(name: 'url') this.url,
+    @JsonKey(name: 'login_url') this.loginUrl,
+    @JsonKey(name: 'callback_data') this.callbackData,
+    @JsonKey(name: 'switch_inline_query') this.switchInlineQuery,
+    @JsonKey(name: 'switch_inline_query_current_chat')
+    this.switchInlineQueryCurrentChat,
+    @JsonKey(name: 'callback_game') this.callbackGame,
+    @JsonKey(name: 'pay') this.pay,
+    @JsonKey(name: 'web_app') this.webApp,
+    @JsonKey(name: 'switch_inline_query_chosen_chat')
+    this.switchInlineQueryChosenChat,
+    @JsonKey(name: 'copy_text') this.copyText,
+  });
   factory _InlineKeyboardButton.fromJson(Map<String, dynamic> json) =>
       _$InlineKeyboardButtonFromJson(json);
 
@@ -396,13 +484,13 @@ class _InlineKeyboardButton implements InlineKeyboardButton {
   @pragma('vm:prefer-inline')
   _$InlineKeyboardButtonCopyWith<_InlineKeyboardButton> get copyWith =>
       __$InlineKeyboardButtonCopyWithImpl<_InlineKeyboardButton>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineKeyboardButtonToJson(
-      this,
-    );
+    return _$InlineKeyboardButtonToJson(this);
   }
 
   @override
@@ -414,25 +502,27 @@ class _InlineKeyboardButton implements InlineKeyboardButton {
 /// @nodoc
 abstract mixin class _$InlineKeyboardButtonCopyWith<$Res>
     implements $InlineKeyboardButtonCopyWith<$Res> {
-  factory _$InlineKeyboardButtonCopyWith(_InlineKeyboardButton value,
-          $Res Function(_InlineKeyboardButton) _then) =
-      __$InlineKeyboardButtonCopyWithImpl;
+  factory _$InlineKeyboardButtonCopyWith(
+    _InlineKeyboardButton value,
+    $Res Function(_InlineKeyboardButton) _then,
+  ) = __$InlineKeyboardButtonCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'url') String? url,
-      @JsonKey(name: 'login_url') LoginURL? loginUrl,
-      @JsonKey(name: 'callback_data') String? callbackData,
-      @JsonKey(name: 'switch_inline_query') String? switchInlineQuery,
-      @JsonKey(name: 'switch_inline_query_current_chat')
-      String? switchInlineQueryCurrentChat,
-      @JsonKey(name: 'callback_game') CallbackGame? callbackGame,
-      @JsonKey(name: 'pay') bool? pay,
-      @JsonKey(name: 'web_app') WebAppInfo? webApp,
-      @JsonKey(name: 'switch_inline_query_chosen_chat')
-      SwitchInlineQueryChosenChat? switchInlineQueryChosenChat,
-      @JsonKey(name: 'copy_text') CopyTextButton? copyText});
+  $Res call({
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'url') String? url,
+    @JsonKey(name: 'login_url') LoginURL? loginUrl,
+    @JsonKey(name: 'callback_data') String? callbackData,
+    @JsonKey(name: 'switch_inline_query') String? switchInlineQuery,
+    @JsonKey(name: 'switch_inline_query_current_chat')
+    String? switchInlineQueryCurrentChat,
+    @JsonKey(name: 'callback_game') CallbackGame? callbackGame,
+    @JsonKey(name: 'pay') bool? pay,
+    @JsonKey(name: 'web_app') WebAppInfo? webApp,
+    @JsonKey(name: 'switch_inline_query_chosen_chat')
+    SwitchInlineQueryChosenChat? switchInlineQueryChosenChat,
+    @JsonKey(name: 'copy_text') CopyTextButton? copyText,
+  });
 
   @override
   $LoginURLCopyWith<$Res>? get loginUrl;
@@ -471,52 +561,54 @@ class __$InlineKeyboardButtonCopyWithImpl<$Res>
     Object? switchInlineQueryChosenChat = freezed,
     Object? copyText = freezed,
   }) {
-    return _then(_InlineKeyboardButton(
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: freezed == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      loginUrl: freezed == loginUrl
-          ? _self.loginUrl
-          : loginUrl // ignore: cast_nullable_to_non_nullable
-              as LoginURL?,
-      callbackData: freezed == callbackData
-          ? _self.callbackData
-          : callbackData // ignore: cast_nullable_to_non_nullable
-              as String?,
-      switchInlineQuery: freezed == switchInlineQuery
-          ? _self.switchInlineQuery
-          : switchInlineQuery // ignore: cast_nullable_to_non_nullable
-              as String?,
-      switchInlineQueryCurrentChat: freezed == switchInlineQueryCurrentChat
-          ? _self.switchInlineQueryCurrentChat
-          : switchInlineQueryCurrentChat // ignore: cast_nullable_to_non_nullable
-              as String?,
-      callbackGame: freezed == callbackGame
-          ? _self.callbackGame
-          : callbackGame // ignore: cast_nullable_to_non_nullable
-              as CallbackGame?,
-      pay: freezed == pay
-          ? _self.pay
-          : pay // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      webApp: freezed == webApp
-          ? _self.webApp
-          : webApp // ignore: cast_nullable_to_non_nullable
-              as WebAppInfo?,
-      switchInlineQueryChosenChat: freezed == switchInlineQueryChosenChat
-          ? _self.switchInlineQueryChosenChat
-          : switchInlineQueryChosenChat // ignore: cast_nullable_to_non_nullable
-              as SwitchInlineQueryChosenChat?,
-      copyText: freezed == copyText
-          ? _self.copyText
-          : copyText // ignore: cast_nullable_to_non_nullable
-              as CopyTextButton?,
-    ));
+    return _then(
+      _InlineKeyboardButton(
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        url: freezed == url
+            ? _self.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        loginUrl: freezed == loginUrl
+            ? _self.loginUrl
+            : loginUrl // ignore: cast_nullable_to_non_nullable
+                  as LoginURL?,
+        callbackData: freezed == callbackData
+            ? _self.callbackData
+            : callbackData // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        switchInlineQuery: freezed == switchInlineQuery
+            ? _self.switchInlineQuery
+            : switchInlineQuery // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        switchInlineQueryCurrentChat: freezed == switchInlineQueryCurrentChat
+            ? _self.switchInlineQueryCurrentChat
+            : switchInlineQueryCurrentChat // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        callbackGame: freezed == callbackGame
+            ? _self.callbackGame
+            : callbackGame // ignore: cast_nullable_to_non_nullable
+                  as CallbackGame?,
+        pay: freezed == pay
+            ? _self.pay
+            : pay // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        webApp: freezed == webApp
+            ? _self.webApp
+            : webApp // ignore: cast_nullable_to_non_nullable
+                  as WebAppInfo?,
+        switchInlineQueryChosenChat: freezed == switchInlineQueryChosenChat
+            ? _self.switchInlineQueryChosenChat
+            : switchInlineQueryChosenChat // ignore: cast_nullable_to_non_nullable
+                  as SwitchInlineQueryChosenChat?,
+        copyText: freezed == copyText
+            ? _self.copyText
+            : copyText // ignore: cast_nullable_to_non_nullable
+                  as CopyTextButton?,
+      ),
+    );
   }
 
   /// Create a copy of InlineKeyboardButton
@@ -571,9 +663,11 @@ class __$InlineKeyboardButtonCopyWithImpl<$Res>
     }
 
     return $SwitchInlineQueryChosenChatCopyWith<$Res>(
-        _self.switchInlineQueryChosenChat!, (value) {
-      return _then(_self.copyWith(switchInlineQueryChosenChat: value));
-    });
+      _self.switchInlineQueryChosenChat!,
+      (value) {
+        return _then(_self.copyWith(switchInlineQueryChosenChat: value));
+      },
+    );
   }
 
   /// Create a copy of InlineKeyboardButton

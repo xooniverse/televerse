@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -83,7 +82,9 @@ mixin _$ChatPermissions {
   @pragma('vm:prefer-inline')
   $ChatPermissionsCopyWith<ChatPermissions> get copyWith =>
       _$ChatPermissionsCopyWithImpl<ChatPermissions>(
-          this as ChatPermissions, _$identity);
+        this as ChatPermissions,
+        _$identity,
+      );
 
   /// Serializes this ChatPermissions to a JSON map.
   Map<String, dynamic> toJson();
@@ -97,24 +98,26 @@ mixin _$ChatPermissions {
 /// @nodoc
 abstract mixin class $ChatPermissionsCopyWith<$Res> {
   factory $ChatPermissionsCopyWith(
-          ChatPermissions value, $Res Function(ChatPermissions) _then) =
-      _$ChatPermissionsCopyWithImpl;
+    ChatPermissions value,
+    $Res Function(ChatPermissions) _then,
+  ) = _$ChatPermissionsCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'can_send_messages') bool? canSendMessages,
-      @JsonKey(name: 'can_send_polls') bool? canSendPolls,
-      @JsonKey(name: 'can_send_other_messages') bool? canSendOtherMessages,
-      @JsonKey(name: 'can_add_web_page_previews') bool? canAddWebPagePreviews,
-      @JsonKey(name: 'can_change_info') bool? canChangeInfo,
-      @JsonKey(name: 'can_invite_users') bool? canInviteUsers,
-      @JsonKey(name: 'can_pin_messages') bool? canPinMessages,
-      @JsonKey(name: 'can_manage_topics') bool? canManageTopics,
-      @JsonKey(name: 'can_send_audios') bool? canSendAudios,
-      @JsonKey(name: 'can_send_documents') bool? canSendDocuments,
-      @JsonKey(name: 'can_send_photos') bool? canSendPhotos,
-      @JsonKey(name: 'can_send_videos') bool? canSendVideos,
-      @JsonKey(name: 'can_send_video_notes') bool? canSendVideoNotes,
-      @JsonKey(name: 'can_send_voice_notes') bool? canSendVoiceNotes});
+  $Res call({
+    @JsonKey(name: 'can_send_messages') bool? canSendMessages,
+    @JsonKey(name: 'can_send_polls') bool? canSendPolls,
+    @JsonKey(name: 'can_send_other_messages') bool? canSendOtherMessages,
+    @JsonKey(name: 'can_add_web_page_previews') bool? canAddWebPagePreviews,
+    @JsonKey(name: 'can_change_info') bool? canChangeInfo,
+    @JsonKey(name: 'can_invite_users') bool? canInviteUsers,
+    @JsonKey(name: 'can_pin_messages') bool? canPinMessages,
+    @JsonKey(name: 'can_manage_topics') bool? canManageTopics,
+    @JsonKey(name: 'can_send_audios') bool? canSendAudios,
+    @JsonKey(name: 'can_send_documents') bool? canSendDocuments,
+    @JsonKey(name: 'can_send_photos') bool? canSendPhotos,
+    @JsonKey(name: 'can_send_videos') bool? canSendVideos,
+    @JsonKey(name: 'can_send_video_notes') bool? canSendVideoNotes,
+    @JsonKey(name: 'can_send_voice_notes') bool? canSendVoiceNotes,
+  });
 }
 
 /// @nodoc
@@ -145,85 +148,168 @@ class _$ChatPermissionsCopyWithImpl<$Res>
     Object? canSendVideoNotes = freezed,
     Object? canSendVoiceNotes = freezed,
   }) {
-    return _then(_self.copyWith(
-      canSendMessages: freezed == canSendMessages
-          ? _self.canSendMessages
-          : canSendMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendPolls: freezed == canSendPolls
-          ? _self.canSendPolls
-          : canSendPolls // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendOtherMessages: freezed == canSendOtherMessages
-          ? _self.canSendOtherMessages
-          : canSendOtherMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canAddWebPagePreviews: freezed == canAddWebPagePreviews
-          ? _self.canAddWebPagePreviews
-          : canAddWebPagePreviews // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canChangeInfo: freezed == canChangeInfo
-          ? _self.canChangeInfo
-          : canChangeInfo // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canInviteUsers: freezed == canInviteUsers
-          ? _self.canInviteUsers
-          : canInviteUsers // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canPinMessages: freezed == canPinMessages
-          ? _self.canPinMessages
-          : canPinMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canManageTopics: freezed == canManageTopics
-          ? _self.canManageTopics
-          : canManageTopics // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendAudios: freezed == canSendAudios
-          ? _self.canSendAudios
-          : canSendAudios // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendDocuments: freezed == canSendDocuments
-          ? _self.canSendDocuments
-          : canSendDocuments // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendPhotos: freezed == canSendPhotos
-          ? _self.canSendPhotos
-          : canSendPhotos // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendVideos: freezed == canSendVideos
-          ? _self.canSendVideos
-          : canSendVideos // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendVideoNotes: freezed == canSendVideoNotes
-          ? _self.canSendVideoNotes
-          : canSendVideoNotes // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendVoiceNotes: freezed == canSendVoiceNotes
-          ? _self.canSendVoiceNotes
-          : canSendVoiceNotes // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        canSendMessages: freezed == canSendMessages
+            ? _self.canSendMessages
+            : canSendMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendPolls: freezed == canSendPolls
+            ? _self.canSendPolls
+            : canSendPolls // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendOtherMessages: freezed == canSendOtherMessages
+            ? _self.canSendOtherMessages
+            : canSendOtherMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canAddWebPagePreviews: freezed == canAddWebPagePreviews
+            ? _self.canAddWebPagePreviews
+            : canAddWebPagePreviews // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canChangeInfo: freezed == canChangeInfo
+            ? _self.canChangeInfo
+            : canChangeInfo // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canInviteUsers: freezed == canInviteUsers
+            ? _self.canInviteUsers
+            : canInviteUsers // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canPinMessages: freezed == canPinMessages
+            ? _self.canPinMessages
+            : canPinMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canManageTopics: freezed == canManageTopics
+            ? _self.canManageTopics
+            : canManageTopics // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendAudios: freezed == canSendAudios
+            ? _self.canSendAudios
+            : canSendAudios // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendDocuments: freezed == canSendDocuments
+            ? _self.canSendDocuments
+            : canSendDocuments // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendPhotos: freezed == canSendPhotos
+            ? _self.canSendPhotos
+            : canSendPhotos // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendVideos: freezed == canSendVideos
+            ? _self.canSendVideos
+            : canSendVideos // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendVideoNotes: freezed == canSendVideoNotes
+            ? _self.canSendVideoNotes
+            : canSendVideoNotes // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendVoiceNotes: freezed == canSendVoiceNotes
+            ? _self.canSendVoiceNotes
+            : canSendVoiceNotes // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [ChatPermissions].
+extension ChatPermissionsPatterns on ChatPermissions {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChatPermissions value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChatPermissions() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChatPermissions value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatPermissions():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChatPermissions value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatPermissions() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _ChatPermissions implements ChatPermissions {
-  const _ChatPermissions(
-      {@JsonKey(name: 'can_send_messages') this.canSendMessages,
-      @JsonKey(name: 'can_send_polls') this.canSendPolls,
-      @JsonKey(name: 'can_send_other_messages') this.canSendOtherMessages,
-      @JsonKey(name: 'can_add_web_page_previews') this.canAddWebPagePreviews,
-      @JsonKey(name: 'can_change_info') this.canChangeInfo,
-      @JsonKey(name: 'can_invite_users') this.canInviteUsers,
-      @JsonKey(name: 'can_pin_messages') this.canPinMessages,
-      @JsonKey(name: 'can_manage_topics') this.canManageTopics,
-      @JsonKey(name: 'can_send_audios') this.canSendAudios,
-      @JsonKey(name: 'can_send_documents') this.canSendDocuments,
-      @JsonKey(name: 'can_send_photos') this.canSendPhotos,
-      @JsonKey(name: 'can_send_videos') this.canSendVideos,
-      @JsonKey(name: 'can_send_video_notes') this.canSendVideoNotes,
-      @JsonKey(name: 'can_send_voice_notes') this.canSendVoiceNotes});
+  const _ChatPermissions({
+    @JsonKey(name: 'can_send_messages') this.canSendMessages,
+    @JsonKey(name: 'can_send_polls') this.canSendPolls,
+    @JsonKey(name: 'can_send_other_messages') this.canSendOtherMessages,
+    @JsonKey(name: 'can_add_web_page_previews') this.canAddWebPagePreviews,
+    @JsonKey(name: 'can_change_info') this.canChangeInfo,
+    @JsonKey(name: 'can_invite_users') this.canInviteUsers,
+    @JsonKey(name: 'can_pin_messages') this.canPinMessages,
+    @JsonKey(name: 'can_manage_topics') this.canManageTopics,
+    @JsonKey(name: 'can_send_audios') this.canSendAudios,
+    @JsonKey(name: 'can_send_documents') this.canSendDocuments,
+    @JsonKey(name: 'can_send_photos') this.canSendPhotos,
+    @JsonKey(name: 'can_send_videos') this.canSendVideos,
+    @JsonKey(name: 'can_send_video_notes') this.canSendVideoNotes,
+    @JsonKey(name: 'can_send_voice_notes') this.canSendVoiceNotes,
+  });
   factory _ChatPermissions.fromJson(Map<String, dynamic> json) =>
       _$ChatPermissionsFromJson(json);
 
@@ -314,9 +400,7 @@ class _ChatPermissions implements ChatPermissions {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatPermissionsToJson(
-      this,
-    );
+    return _$ChatPermissionsToJson(this);
   }
 
   @override
@@ -329,25 +413,27 @@ class _ChatPermissions implements ChatPermissions {
 abstract mixin class _$ChatPermissionsCopyWith<$Res>
     implements $ChatPermissionsCopyWith<$Res> {
   factory _$ChatPermissionsCopyWith(
-          _ChatPermissions value, $Res Function(_ChatPermissions) _then) =
-      __$ChatPermissionsCopyWithImpl;
+    _ChatPermissions value,
+    $Res Function(_ChatPermissions) _then,
+  ) = __$ChatPermissionsCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'can_send_messages') bool? canSendMessages,
-      @JsonKey(name: 'can_send_polls') bool? canSendPolls,
-      @JsonKey(name: 'can_send_other_messages') bool? canSendOtherMessages,
-      @JsonKey(name: 'can_add_web_page_previews') bool? canAddWebPagePreviews,
-      @JsonKey(name: 'can_change_info') bool? canChangeInfo,
-      @JsonKey(name: 'can_invite_users') bool? canInviteUsers,
-      @JsonKey(name: 'can_pin_messages') bool? canPinMessages,
-      @JsonKey(name: 'can_manage_topics') bool? canManageTopics,
-      @JsonKey(name: 'can_send_audios') bool? canSendAudios,
-      @JsonKey(name: 'can_send_documents') bool? canSendDocuments,
-      @JsonKey(name: 'can_send_photos') bool? canSendPhotos,
-      @JsonKey(name: 'can_send_videos') bool? canSendVideos,
-      @JsonKey(name: 'can_send_video_notes') bool? canSendVideoNotes,
-      @JsonKey(name: 'can_send_voice_notes') bool? canSendVoiceNotes});
+  $Res call({
+    @JsonKey(name: 'can_send_messages') bool? canSendMessages,
+    @JsonKey(name: 'can_send_polls') bool? canSendPolls,
+    @JsonKey(name: 'can_send_other_messages') bool? canSendOtherMessages,
+    @JsonKey(name: 'can_add_web_page_previews') bool? canAddWebPagePreviews,
+    @JsonKey(name: 'can_change_info') bool? canChangeInfo,
+    @JsonKey(name: 'can_invite_users') bool? canInviteUsers,
+    @JsonKey(name: 'can_pin_messages') bool? canPinMessages,
+    @JsonKey(name: 'can_manage_topics') bool? canManageTopics,
+    @JsonKey(name: 'can_send_audios') bool? canSendAudios,
+    @JsonKey(name: 'can_send_documents') bool? canSendDocuments,
+    @JsonKey(name: 'can_send_photos') bool? canSendPhotos,
+    @JsonKey(name: 'can_send_videos') bool? canSendVideos,
+    @JsonKey(name: 'can_send_video_notes') bool? canSendVideoNotes,
+    @JsonKey(name: 'can_send_voice_notes') bool? canSendVoiceNotes,
+  });
 }
 
 /// @nodoc
@@ -378,63 +464,65 @@ class __$ChatPermissionsCopyWithImpl<$Res>
     Object? canSendVideoNotes = freezed,
     Object? canSendVoiceNotes = freezed,
   }) {
-    return _then(_ChatPermissions(
-      canSendMessages: freezed == canSendMessages
-          ? _self.canSendMessages
-          : canSendMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendPolls: freezed == canSendPolls
-          ? _self.canSendPolls
-          : canSendPolls // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendOtherMessages: freezed == canSendOtherMessages
-          ? _self.canSendOtherMessages
-          : canSendOtherMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canAddWebPagePreviews: freezed == canAddWebPagePreviews
-          ? _self.canAddWebPagePreviews
-          : canAddWebPagePreviews // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canChangeInfo: freezed == canChangeInfo
-          ? _self.canChangeInfo
-          : canChangeInfo // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canInviteUsers: freezed == canInviteUsers
-          ? _self.canInviteUsers
-          : canInviteUsers // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canPinMessages: freezed == canPinMessages
-          ? _self.canPinMessages
-          : canPinMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canManageTopics: freezed == canManageTopics
-          ? _self.canManageTopics
-          : canManageTopics // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendAudios: freezed == canSendAudios
-          ? _self.canSendAudios
-          : canSendAudios // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendDocuments: freezed == canSendDocuments
-          ? _self.canSendDocuments
-          : canSendDocuments // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendPhotos: freezed == canSendPhotos
-          ? _self.canSendPhotos
-          : canSendPhotos // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendVideos: freezed == canSendVideos
-          ? _self.canSendVideos
-          : canSendVideos // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendVideoNotes: freezed == canSendVideoNotes
-          ? _self.canSendVideoNotes
-          : canSendVideoNotes // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canSendVoiceNotes: freezed == canSendVoiceNotes
-          ? _self.canSendVoiceNotes
-          : canSendVoiceNotes // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _ChatPermissions(
+        canSendMessages: freezed == canSendMessages
+            ? _self.canSendMessages
+            : canSendMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendPolls: freezed == canSendPolls
+            ? _self.canSendPolls
+            : canSendPolls // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendOtherMessages: freezed == canSendOtherMessages
+            ? _self.canSendOtherMessages
+            : canSendOtherMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canAddWebPagePreviews: freezed == canAddWebPagePreviews
+            ? _self.canAddWebPagePreviews
+            : canAddWebPagePreviews // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canChangeInfo: freezed == canChangeInfo
+            ? _self.canChangeInfo
+            : canChangeInfo // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canInviteUsers: freezed == canInviteUsers
+            ? _self.canInviteUsers
+            : canInviteUsers // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canPinMessages: freezed == canPinMessages
+            ? _self.canPinMessages
+            : canPinMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canManageTopics: freezed == canManageTopics
+            ? _self.canManageTopics
+            : canManageTopics // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendAudios: freezed == canSendAudios
+            ? _self.canSendAudios
+            : canSendAudios // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendDocuments: freezed == canSendDocuments
+            ? _self.canSendDocuments
+            : canSendDocuments // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendPhotos: freezed == canSendPhotos
+            ? _self.canSendPhotos
+            : canSendPhotos // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendVideos: freezed == canSendVideos
+            ? _self.canSendVideos
+            : canSendVideos // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendVideoNotes: freezed == canSendVideoNotes
+            ? _self.canSendVideoNotes
+            : canSendVideoNotes // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canSendVoiceNotes: freezed == canSendVoiceNotes
+            ? _self.canSendVoiceNotes
+            : canSendVoiceNotes // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -46,7 +45,9 @@ mixin _$LinkPreviewOptions {
   @pragma('vm:prefer-inline')
   $LinkPreviewOptionsCopyWith<LinkPreviewOptions> get copyWith =>
       _$LinkPreviewOptionsCopyWithImpl<LinkPreviewOptions>(
-          this as LinkPreviewOptions, _$identity);
+        this as LinkPreviewOptions,
+        _$identity,
+      );
 
   /// Serializes this LinkPreviewOptions to a JSON map.
   Map<String, dynamic> toJson();
@@ -60,15 +61,17 @@ mixin _$LinkPreviewOptions {
 /// @nodoc
 abstract mixin class $LinkPreviewOptionsCopyWith<$Res> {
   factory $LinkPreviewOptionsCopyWith(
-          LinkPreviewOptions value, $Res Function(LinkPreviewOptions) _then) =
-      _$LinkPreviewOptionsCopyWithImpl;
+    LinkPreviewOptions value,
+    $Res Function(LinkPreviewOptions) _then,
+  ) = _$LinkPreviewOptionsCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'is_disabled') bool? isDisabled,
-      @JsonKey(name: 'url') String? url,
-      @JsonKey(name: 'prefer_small_media') bool? preferSmallMedia,
-      @JsonKey(name: 'prefer_large_media') bool? preferLargeMedia,
-      @JsonKey(name: 'show_above_text') bool? showAboveText});
+  $Res call({
+    @JsonKey(name: 'is_disabled') bool? isDisabled,
+    @JsonKey(name: 'url') String? url,
+    @JsonKey(name: 'prefer_small_media') bool? preferSmallMedia,
+    @JsonKey(name: 'prefer_large_media') bool? preferLargeMedia,
+    @JsonKey(name: 'show_above_text') bool? showAboveText,
+  });
 }
 
 /// @nodoc
@@ -90,40 +93,123 @@ class _$LinkPreviewOptionsCopyWithImpl<$Res>
     Object? preferLargeMedia = freezed,
     Object? showAboveText = freezed,
   }) {
-    return _then(_self.copyWith(
-      isDisabled: freezed == isDisabled
-          ? _self.isDisabled
-          : isDisabled // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      url: freezed == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      preferSmallMedia: freezed == preferSmallMedia
-          ? _self.preferSmallMedia
-          : preferSmallMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      preferLargeMedia: freezed == preferLargeMedia
-          ? _self.preferLargeMedia
-          : preferLargeMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      showAboveText: freezed == showAboveText
-          ? _self.showAboveText
-          : showAboveText // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        isDisabled: freezed == isDisabled
+            ? _self.isDisabled
+            : isDisabled // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        url: freezed == url
+            ? _self.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        preferSmallMedia: freezed == preferSmallMedia
+            ? _self.preferSmallMedia
+            : preferSmallMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        preferLargeMedia: freezed == preferLargeMedia
+            ? _self.preferLargeMedia
+            : preferLargeMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        showAboveText: freezed == showAboveText
+            ? _self.showAboveText
+            : showAboveText // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [LinkPreviewOptions].
+extension LinkPreviewOptionsPatterns on LinkPreviewOptions {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_LinkPreviewOptions value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LinkPreviewOptions() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_LinkPreviewOptions value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LinkPreviewOptions():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_LinkPreviewOptions value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LinkPreviewOptions() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _LinkPreviewOptions implements LinkPreviewOptions {
-  const _LinkPreviewOptions(
-      {@JsonKey(name: 'is_disabled') this.isDisabled,
-      @JsonKey(name: 'url') this.url,
-      @JsonKey(name: 'prefer_small_media') this.preferSmallMedia,
-      @JsonKey(name: 'prefer_large_media') this.preferLargeMedia,
-      @JsonKey(name: 'show_above_text') this.showAboveText});
+  const _LinkPreviewOptions({
+    @JsonKey(name: 'is_disabled') this.isDisabled,
+    @JsonKey(name: 'url') this.url,
+    @JsonKey(name: 'prefer_small_media') this.preferSmallMedia,
+    @JsonKey(name: 'prefer_large_media') this.preferLargeMedia,
+    @JsonKey(name: 'show_above_text') this.showAboveText,
+  });
   factory _LinkPreviewOptions.fromJson(Map<String, dynamic> json) =>
       _$LinkPreviewOptionsFromJson(json);
 
@@ -168,9 +254,7 @@ class _LinkPreviewOptions implements LinkPreviewOptions {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$LinkPreviewOptionsToJson(
-      this,
-    );
+    return _$LinkPreviewOptionsToJson(this);
   }
 
   @override
@@ -183,16 +267,18 @@ class _LinkPreviewOptions implements LinkPreviewOptions {
 abstract mixin class _$LinkPreviewOptionsCopyWith<$Res>
     implements $LinkPreviewOptionsCopyWith<$Res> {
   factory _$LinkPreviewOptionsCopyWith(
-          _LinkPreviewOptions value, $Res Function(_LinkPreviewOptions) _then) =
-      __$LinkPreviewOptionsCopyWithImpl;
+    _LinkPreviewOptions value,
+    $Res Function(_LinkPreviewOptions) _then,
+  ) = __$LinkPreviewOptionsCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'is_disabled') bool? isDisabled,
-      @JsonKey(name: 'url') String? url,
-      @JsonKey(name: 'prefer_small_media') bool? preferSmallMedia,
-      @JsonKey(name: 'prefer_large_media') bool? preferLargeMedia,
-      @JsonKey(name: 'show_above_text') bool? showAboveText});
+  $Res call({
+    @JsonKey(name: 'is_disabled') bool? isDisabled,
+    @JsonKey(name: 'url') String? url,
+    @JsonKey(name: 'prefer_small_media') bool? preferSmallMedia,
+    @JsonKey(name: 'prefer_large_media') bool? preferLargeMedia,
+    @JsonKey(name: 'show_above_text') bool? showAboveText,
+  });
 }
 
 /// @nodoc
@@ -214,27 +300,29 @@ class __$LinkPreviewOptionsCopyWithImpl<$Res>
     Object? preferLargeMedia = freezed,
     Object? showAboveText = freezed,
   }) {
-    return _then(_LinkPreviewOptions(
-      isDisabled: freezed == isDisabled
-          ? _self.isDisabled
-          : isDisabled // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      url: freezed == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-      preferSmallMedia: freezed == preferSmallMedia
-          ? _self.preferSmallMedia
-          : preferSmallMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      preferLargeMedia: freezed == preferLargeMedia
-          ? _self.preferLargeMedia
-          : preferLargeMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      showAboveText: freezed == showAboveText
-          ? _self.showAboveText
-          : showAboveText // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _LinkPreviewOptions(
+        isDisabled: freezed == isDisabled
+            ? _self.isDisabled
+            : isDisabled // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        url: freezed == url
+            ? _self.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        preferSmallMedia: freezed == preferSmallMedia
+            ? _self.preferSmallMedia
+            : preferSmallMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        preferLargeMedia: freezed == preferLargeMedia
+            ? _self.preferLargeMedia
+            : preferLargeMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        showAboveText: freezed == showAboveText
+            ? _self.showAboveText
+            : showAboveText // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

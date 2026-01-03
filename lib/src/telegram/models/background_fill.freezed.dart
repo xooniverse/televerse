@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -21,8 +20,12 @@ BackgroundFill _$BackgroundFillFromJson(Map<String, dynamic> json) {
       return BackgroundFillFreeformGradient.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'type', 'BackgroundFill',
-          'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'type',
+        'BackgroundFill',
+        'Invalid union type "${json['type']}"!',
+      );
   }
 }
 
@@ -38,7 +41,9 @@ mixin _$BackgroundFill {
   @pragma('vm:prefer-inline')
   $BackgroundFillCopyWith<BackgroundFill> get copyWith =>
       _$BackgroundFillCopyWithImpl<BackgroundFill>(
-          this as BackgroundFill, _$identity);
+        this as BackgroundFill,
+        _$identity,
+      );
 
   /// Serializes this BackgroundFill to a JSON map.
   Map<String, dynamic> toJson();
@@ -52,8 +57,9 @@ mixin _$BackgroundFill {
 /// @nodoc
 abstract mixin class $BackgroundFillCopyWith<$Res> {
   factory $BackgroundFillCopyWith(
-          BackgroundFill value, $Res Function(BackgroundFill) _then) =
-      _$BackgroundFillCopyWithImpl;
+    BackgroundFill value,
+    $Res Function(BackgroundFill) _then,
+  ) = _$BackgroundFillCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'type') BackgroundFillType type});
 }
@@ -70,24 +76,122 @@ class _$BackgroundFillCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
+  $Res call({Object? type = null}) {
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as BackgroundFillType,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [BackgroundFill].
+extension BackgroundFillPatterns on BackgroundFill {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BackgroundFillSolid value)? solid,
+    TResult Function(BackgroundFillGradient value)? gradient,
+    TResult Function(BackgroundFillFreeformGradient value)? freeformGradient,
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BackgroundFillType,
-    ));
+    final _that = this;
+    switch (_that) {
+      case BackgroundFillSolid() when solid != null:
+        return solid(_that);
+      case BackgroundFillGradient() when gradient != null:
+        return gradient(_that);
+      case BackgroundFillFreeformGradient() when freeformGradient != null:
+        return freeformGradient(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BackgroundFillSolid value) solid,
+    required TResult Function(BackgroundFillGradient value) gradient,
+    required TResult Function(BackgroundFillFreeformGradient value)
+    freeformGradient,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case BackgroundFillSolid():
+        return solid(_that);
+      case BackgroundFillGradient():
+        return gradient(_that);
+      case BackgroundFillFreeformGradient():
+        return freeformGradient(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(BackgroundFillSolid value)? solid,
+    TResult? Function(BackgroundFillGradient value)? gradient,
+    TResult? Function(BackgroundFillFreeformGradient value)? freeformGradient,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case BackgroundFillSolid() when solid != null:
+        return solid(_that);
+      case BackgroundFillGradient() when gradient != null:
+        return gradient(_that);
+      case BackgroundFillFreeformGradient() when freeformGradient != null:
+        return freeformGradient(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class BackgroundFillSolid implements BackgroundFill {
-  const BackgroundFillSolid(
-      {@JsonKey(name: 'type') this.type = BackgroundFillType.solid,
-      @JsonKey(name: 'color') required this.color});
+  const BackgroundFillSolid({
+    @JsonKey(name: 'type') this.type = BackgroundFillType.solid,
+    @JsonKey(name: 'color') required this.color,
+  });
   factory BackgroundFillSolid.fromJson(Map<String, dynamic> json) =>
       _$BackgroundFillSolidFromJson(json);
 
@@ -108,9 +212,7 @@ class BackgroundFillSolid implements BackgroundFill {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BackgroundFillSolidToJson(
-      this,
-    );
+    return _$BackgroundFillSolidToJson(this);
   }
 
   @override
@@ -123,13 +225,15 @@ class BackgroundFillSolid implements BackgroundFill {
 abstract mixin class $BackgroundFillSolidCopyWith<$Res>
     implements $BackgroundFillCopyWith<$Res> {
   factory $BackgroundFillSolidCopyWith(
-          BackgroundFillSolid value, $Res Function(BackgroundFillSolid) _then) =
-      _$BackgroundFillSolidCopyWithImpl;
+    BackgroundFillSolid value,
+    $Res Function(BackgroundFillSolid) _then,
+  ) = _$BackgroundFillSolidCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') BackgroundFillType type,
-      @JsonKey(name: 'color') int color});
+  $Res call({
+    @JsonKey(name: 'type') BackgroundFillType type,
+    @JsonKey(name: 'color') int color,
+  });
 }
 
 /// @nodoc
@@ -144,31 +248,31 @@ class _$BackgroundFillSolidCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? color = null,
-  }) {
-    return _then(BackgroundFillSolid(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BackgroundFillType,
-      color: null == color
-          ? _self.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+  $Res call({Object? type = null, Object? color = null}) {
+    return _then(
+      BackgroundFillSolid(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as BackgroundFillType,
+        color: null == color
+            ? _self.color
+            : color // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class BackgroundFillGradient implements BackgroundFill {
-  const BackgroundFillGradient(
-      {@JsonKey(name: 'type') this.type = BackgroundFillType.gradient,
-      @JsonKey(name: 'top_color') required this.topColor,
-      @JsonKey(name: 'bottom_color') required this.bottomColor,
-      @JsonKey(name: 'rotation_angle') required this.rotationAngle});
+  const BackgroundFillGradient({
+    @JsonKey(name: 'type') this.type = BackgroundFillType.gradient,
+    @JsonKey(name: 'top_color') required this.topColor,
+    @JsonKey(name: 'bottom_color') required this.bottomColor,
+    @JsonKey(name: 'rotation_angle') required this.rotationAngle,
+  });
   factory BackgroundFillGradient.fromJson(Map<String, dynamic> json) =>
       _$BackgroundFillGradientFromJson(json);
 
@@ -196,13 +300,13 @@ class BackgroundFillGradient implements BackgroundFill {
   @pragma('vm:prefer-inline')
   $BackgroundFillGradientCopyWith<BackgroundFillGradient> get copyWith =>
       _$BackgroundFillGradientCopyWithImpl<BackgroundFillGradient>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BackgroundFillGradientToJson(
-      this,
-    );
+    return _$BackgroundFillGradientToJson(this);
   }
 
   @override
@@ -214,16 +318,18 @@ class BackgroundFillGradient implements BackgroundFill {
 /// @nodoc
 abstract mixin class $BackgroundFillGradientCopyWith<$Res>
     implements $BackgroundFillCopyWith<$Res> {
-  factory $BackgroundFillGradientCopyWith(BackgroundFillGradient value,
-          $Res Function(BackgroundFillGradient) _then) =
-      _$BackgroundFillGradientCopyWithImpl;
+  factory $BackgroundFillGradientCopyWith(
+    BackgroundFillGradient value,
+    $Res Function(BackgroundFillGradient) _then,
+  ) = _$BackgroundFillGradientCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') BackgroundFillType type,
-      @JsonKey(name: 'top_color') int topColor,
-      @JsonKey(name: 'bottom_color') int bottomColor,
-      @JsonKey(name: 'rotation_angle') int rotationAngle});
+  $Res call({
+    @JsonKey(name: 'type') BackgroundFillType type,
+    @JsonKey(name: 'top_color') int topColor,
+    @JsonKey(name: 'bottom_color') int bottomColor,
+    @JsonKey(name: 'rotation_angle') int rotationAngle,
+  });
 }
 
 /// @nodoc
@@ -244,34 +350,36 @@ class _$BackgroundFillGradientCopyWithImpl<$Res>
     Object? bottomColor = null,
     Object? rotationAngle = null,
   }) {
-    return _then(BackgroundFillGradient(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BackgroundFillType,
-      topColor: null == topColor
-          ? _self.topColor
-          : topColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      bottomColor: null == bottomColor
-          ? _self.bottomColor
-          : bottomColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      rotationAngle: null == rotationAngle
-          ? _self.rotationAngle
-          : rotationAngle // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      BackgroundFillGradient(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as BackgroundFillType,
+        topColor: null == topColor
+            ? _self.topColor
+            : topColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+        bottomColor: null == bottomColor
+            ? _self.bottomColor
+            : bottomColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+        rotationAngle: null == rotationAngle
+            ? _self.rotationAngle
+            : rotationAngle // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class BackgroundFillFreeformGradient implements BackgroundFill {
-  const BackgroundFillFreeformGradient(
-      {@JsonKey(name: 'type') this.type = BackgroundFillType.freeformGradient,
-      @JsonKey(name: 'colors') required final List<int> colors})
-      : _colors = colors;
+  const BackgroundFillFreeformGradient({
+    @JsonKey(name: 'type') this.type = BackgroundFillType.freeformGradient,
+    @JsonKey(name: 'colors') required final List<int> colors,
+  }) : _colors = colors;
   factory BackgroundFillFreeformGradient.fromJson(Map<String, dynamic> json) =>
       _$BackgroundFillFreeformGradientFromJson(json);
 
@@ -299,14 +407,14 @@ class BackgroundFillFreeformGradient implements BackgroundFill {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $BackgroundFillFreeformGradientCopyWith<BackgroundFillFreeformGradient>
-      get copyWith => _$BackgroundFillFreeformGradientCopyWithImpl<
-          BackgroundFillFreeformGradient>(this, _$identity);
+  get copyWith =>
+      _$BackgroundFillFreeformGradientCopyWithImpl<
+        BackgroundFillFreeformGradient
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BackgroundFillFreeformGradientToJson(
-      this,
-    );
+    return _$BackgroundFillFreeformGradientToJson(this);
   }
 
   @override
@@ -319,14 +427,15 @@ class BackgroundFillFreeformGradient implements BackgroundFill {
 abstract mixin class $BackgroundFillFreeformGradientCopyWith<$Res>
     implements $BackgroundFillCopyWith<$Res> {
   factory $BackgroundFillFreeformGradientCopyWith(
-          BackgroundFillFreeformGradient value,
-          $Res Function(BackgroundFillFreeformGradient) _then) =
-      _$BackgroundFillFreeformGradientCopyWithImpl;
+    BackgroundFillFreeformGradient value,
+    $Res Function(BackgroundFillFreeformGradient) _then,
+  ) = _$BackgroundFillFreeformGradientCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') BackgroundFillType type,
-      @JsonKey(name: 'colors') List<int> colors});
+  $Res call({
+    @JsonKey(name: 'type') BackgroundFillType type,
+    @JsonKey(name: 'colors') List<int> colors,
+  });
 }
 
 /// @nodoc
@@ -341,19 +450,18 @@ class _$BackgroundFillFreeformGradientCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? colors = null,
-  }) {
-    return _then(BackgroundFillFreeformGradient(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BackgroundFillType,
-      colors: null == colors
-          ? _self._colors
-          : colors // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-    ));
+  $Res call({Object? type = null, Object? colors = null}) {
+    return _then(
+      BackgroundFillFreeformGradient(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as BackgroundFillType,
+        colors: null == colors
+            ? _self._colors
+            : colors // ignore: cast_nullable_to_non_nullable
+                  as List<int>,
+      ),
+    );
   }
 }

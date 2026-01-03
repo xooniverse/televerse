@@ -13,7 +13,4 @@ _ChatBoostUpdated _$ChatBoostUpdatedFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ChatBoostUpdatedToJson(_ChatBoostUpdated instance) =>
-    <String, dynamic>{
-      'chat': instance.chat,
-      'boost': instance.boost,
-    };
+    <String, dynamic>{'chat': instance.chat, 'boost': instance.boost};

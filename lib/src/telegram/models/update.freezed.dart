@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -160,37 +159,37 @@ abstract mixin class $UpdateCopyWith<$Res> {
   factory $UpdateCopyWith(Update value, $Res Function(Update) _then) =
       _$UpdateCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'update_id') int updateId,
-      @JsonKey(name: 'message') Message? message,
-      @JsonKey(name: 'edited_message') Message? editedMessage,
-      @JsonKey(name: 'channel_post') Message? channelPost,
-      @JsonKey(name: 'edited_channel_post') Message? editedChannelPost,
-      @JsonKey(name: 'inline_query') InlineQuery? inlineQuery,
-      @JsonKey(name: 'chosen_inline_result')
-      ChosenInlineResult? chosenInlineResult,
-      @JsonKey(name: 'callback_query') CallbackQuery? callbackQuery,
-      @JsonKey(name: 'shipping_query') ShippingQuery? shippingQuery,
-      @JsonKey(name: 'pre_checkout_query') PreCheckoutQuery? preCheckoutQuery,
-      @JsonKey(name: 'poll') Poll? poll,
-      @JsonKey(name: 'poll_answer') PollAnswer? pollAnswer,
-      @JsonKey(name: 'my_chat_member') ChatMemberUpdated? myChatMember,
-      @JsonKey(name: 'chat_member') ChatMemberUpdated? chatMember,
-      @JsonKey(name: 'chat_join_request') ChatJoinRequest? chatJoinRequest,
-      @JsonKey(name: 'message_reaction')
-      MessageReactionUpdated? messageReaction,
-      @JsonKey(name: 'message_reaction_count')
-      MessageReactionCountUpdated? messageReactionCount,
-      @JsonKey(name: 'chat_boost') ChatBoostUpdated? chatBoost,
-      @JsonKey(name: 'removed_chat_boost') ChatBoostRemoved? removedChatBoost,
-      @JsonKey(name: 'business_connection')
-      BusinessConnection? businessConnection,
-      @JsonKey(name: 'business_message') Message? businessMessage,
-      @JsonKey(name: 'edited_business_message') Message? editedBusinessMessage,
-      @JsonKey(name: 'deleted_business_messages')
-      BusinessMessagesDeleted? deletedBusinessMessages,
-      @JsonKey(name: 'purchased_paid_media')
-      PaidMediaPurchased? purchasedPaidMedia});
+  $Res call({
+    @JsonKey(name: 'update_id') int updateId,
+    @JsonKey(name: 'message') Message? message,
+    @JsonKey(name: 'edited_message') Message? editedMessage,
+    @JsonKey(name: 'channel_post') Message? channelPost,
+    @JsonKey(name: 'edited_channel_post') Message? editedChannelPost,
+    @JsonKey(name: 'inline_query') InlineQuery? inlineQuery,
+    @JsonKey(name: 'chosen_inline_result')
+    ChosenInlineResult? chosenInlineResult,
+    @JsonKey(name: 'callback_query') CallbackQuery? callbackQuery,
+    @JsonKey(name: 'shipping_query') ShippingQuery? shippingQuery,
+    @JsonKey(name: 'pre_checkout_query') PreCheckoutQuery? preCheckoutQuery,
+    @JsonKey(name: 'poll') Poll? poll,
+    @JsonKey(name: 'poll_answer') PollAnswer? pollAnswer,
+    @JsonKey(name: 'my_chat_member') ChatMemberUpdated? myChatMember,
+    @JsonKey(name: 'chat_member') ChatMemberUpdated? chatMember,
+    @JsonKey(name: 'chat_join_request') ChatJoinRequest? chatJoinRequest,
+    @JsonKey(name: 'message_reaction') MessageReactionUpdated? messageReaction,
+    @JsonKey(name: 'message_reaction_count')
+    MessageReactionCountUpdated? messageReactionCount,
+    @JsonKey(name: 'chat_boost') ChatBoostUpdated? chatBoost,
+    @JsonKey(name: 'removed_chat_boost') ChatBoostRemoved? removedChatBoost,
+    @JsonKey(name: 'business_connection')
+    BusinessConnection? businessConnection,
+    @JsonKey(name: 'business_message') Message? businessMessage,
+    @JsonKey(name: 'edited_business_message') Message? editedBusinessMessage,
+    @JsonKey(name: 'deleted_business_messages')
+    BusinessMessagesDeleted? deletedBusinessMessages,
+    @JsonKey(name: 'purchased_paid_media')
+    PaidMediaPurchased? purchasedPaidMedia,
+  });
 
   $InlineQueryCopyWith<$Res>? get inlineQuery;
   $ChosenInlineResultCopyWith<$Res>? get chosenInlineResult;
@@ -248,104 +247,106 @@ class _$UpdateCopyWithImpl<$Res> implements $UpdateCopyWith<$Res> {
     Object? deletedBusinessMessages = freezed,
     Object? purchasedPaidMedia = freezed,
   }) {
-    return _then(_self.copyWith(
-      updateId: null == updateId
-          ? _self.updateId
-          : updateId // ignore: cast_nullable_to_non_nullable
-              as int,
-      message: freezed == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      editedMessage: freezed == editedMessage
-          ? _self.editedMessage
-          : editedMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      channelPost: freezed == channelPost
-          ? _self.channelPost
-          : channelPost // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      editedChannelPost: freezed == editedChannelPost
-          ? _self.editedChannelPost
-          : editedChannelPost // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      inlineQuery: freezed == inlineQuery
-          ? _self.inlineQuery
-          : inlineQuery // ignore: cast_nullable_to_non_nullable
-              as InlineQuery?,
-      chosenInlineResult: freezed == chosenInlineResult
-          ? _self.chosenInlineResult
-          : chosenInlineResult // ignore: cast_nullable_to_non_nullable
-              as ChosenInlineResult?,
-      callbackQuery: freezed == callbackQuery
-          ? _self.callbackQuery
-          : callbackQuery // ignore: cast_nullable_to_non_nullable
-              as CallbackQuery?,
-      shippingQuery: freezed == shippingQuery
-          ? _self.shippingQuery
-          : shippingQuery // ignore: cast_nullable_to_non_nullable
-              as ShippingQuery?,
-      preCheckoutQuery: freezed == preCheckoutQuery
-          ? _self.preCheckoutQuery
-          : preCheckoutQuery // ignore: cast_nullable_to_non_nullable
-              as PreCheckoutQuery?,
-      poll: freezed == poll
-          ? _self.poll
-          : poll // ignore: cast_nullable_to_non_nullable
-              as Poll?,
-      pollAnswer: freezed == pollAnswer
-          ? _self.pollAnswer
-          : pollAnswer // ignore: cast_nullable_to_non_nullable
-              as PollAnswer?,
-      myChatMember: freezed == myChatMember
-          ? _self.myChatMember
-          : myChatMember // ignore: cast_nullable_to_non_nullable
-              as ChatMemberUpdated?,
-      chatMember: freezed == chatMember
-          ? _self.chatMember
-          : chatMember // ignore: cast_nullable_to_non_nullable
-              as ChatMemberUpdated?,
-      chatJoinRequest: freezed == chatJoinRequest
-          ? _self.chatJoinRequest
-          : chatJoinRequest // ignore: cast_nullable_to_non_nullable
-              as ChatJoinRequest?,
-      messageReaction: freezed == messageReaction
-          ? _self.messageReaction
-          : messageReaction // ignore: cast_nullable_to_non_nullable
-              as MessageReactionUpdated?,
-      messageReactionCount: freezed == messageReactionCount
-          ? _self.messageReactionCount
-          : messageReactionCount // ignore: cast_nullable_to_non_nullable
-              as MessageReactionCountUpdated?,
-      chatBoost: freezed == chatBoost
-          ? _self.chatBoost
-          : chatBoost // ignore: cast_nullable_to_non_nullable
-              as ChatBoostUpdated?,
-      removedChatBoost: freezed == removedChatBoost
-          ? _self.removedChatBoost
-          : removedChatBoost // ignore: cast_nullable_to_non_nullable
-              as ChatBoostRemoved?,
-      businessConnection: freezed == businessConnection
-          ? _self.businessConnection
-          : businessConnection // ignore: cast_nullable_to_non_nullable
-              as BusinessConnection?,
-      businessMessage: freezed == businessMessage
-          ? _self.businessMessage
-          : businessMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      editedBusinessMessage: freezed == editedBusinessMessage
-          ? _self.editedBusinessMessage
-          : editedBusinessMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      deletedBusinessMessages: freezed == deletedBusinessMessages
-          ? _self.deletedBusinessMessages
-          : deletedBusinessMessages // ignore: cast_nullable_to_non_nullable
-              as BusinessMessagesDeleted?,
-      purchasedPaidMedia: freezed == purchasedPaidMedia
-          ? _self.purchasedPaidMedia
-          : purchasedPaidMedia // ignore: cast_nullable_to_non_nullable
-              as PaidMediaPurchased?,
-    ));
+    return _then(
+      _self.copyWith(
+        updateId: null == updateId
+            ? _self.updateId
+            : updateId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        message: freezed == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        editedMessage: freezed == editedMessage
+            ? _self.editedMessage
+            : editedMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        channelPost: freezed == channelPost
+            ? _self.channelPost
+            : channelPost // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        editedChannelPost: freezed == editedChannelPost
+            ? _self.editedChannelPost
+            : editedChannelPost // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        inlineQuery: freezed == inlineQuery
+            ? _self.inlineQuery
+            : inlineQuery // ignore: cast_nullable_to_non_nullable
+                  as InlineQuery?,
+        chosenInlineResult: freezed == chosenInlineResult
+            ? _self.chosenInlineResult
+            : chosenInlineResult // ignore: cast_nullable_to_non_nullable
+                  as ChosenInlineResult?,
+        callbackQuery: freezed == callbackQuery
+            ? _self.callbackQuery
+            : callbackQuery // ignore: cast_nullable_to_non_nullable
+                  as CallbackQuery?,
+        shippingQuery: freezed == shippingQuery
+            ? _self.shippingQuery
+            : shippingQuery // ignore: cast_nullable_to_non_nullable
+                  as ShippingQuery?,
+        preCheckoutQuery: freezed == preCheckoutQuery
+            ? _self.preCheckoutQuery
+            : preCheckoutQuery // ignore: cast_nullable_to_non_nullable
+                  as PreCheckoutQuery?,
+        poll: freezed == poll
+            ? _self.poll
+            : poll // ignore: cast_nullable_to_non_nullable
+                  as Poll?,
+        pollAnswer: freezed == pollAnswer
+            ? _self.pollAnswer
+            : pollAnswer // ignore: cast_nullable_to_non_nullable
+                  as PollAnswer?,
+        myChatMember: freezed == myChatMember
+            ? _self.myChatMember
+            : myChatMember // ignore: cast_nullable_to_non_nullable
+                  as ChatMemberUpdated?,
+        chatMember: freezed == chatMember
+            ? _self.chatMember
+            : chatMember // ignore: cast_nullable_to_non_nullable
+                  as ChatMemberUpdated?,
+        chatJoinRequest: freezed == chatJoinRequest
+            ? _self.chatJoinRequest
+            : chatJoinRequest // ignore: cast_nullable_to_non_nullable
+                  as ChatJoinRequest?,
+        messageReaction: freezed == messageReaction
+            ? _self.messageReaction
+            : messageReaction // ignore: cast_nullable_to_non_nullable
+                  as MessageReactionUpdated?,
+        messageReactionCount: freezed == messageReactionCount
+            ? _self.messageReactionCount
+            : messageReactionCount // ignore: cast_nullable_to_non_nullable
+                  as MessageReactionCountUpdated?,
+        chatBoost: freezed == chatBoost
+            ? _self.chatBoost
+            : chatBoost // ignore: cast_nullable_to_non_nullable
+                  as ChatBoostUpdated?,
+        removedChatBoost: freezed == removedChatBoost
+            ? _self.removedChatBoost
+            : removedChatBoost // ignore: cast_nullable_to_non_nullable
+                  as ChatBoostRemoved?,
+        businessConnection: freezed == businessConnection
+            ? _self.businessConnection
+            : businessConnection // ignore: cast_nullable_to_non_nullable
+                  as BusinessConnection?,
+        businessMessage: freezed == businessMessage
+            ? _self.businessMessage
+            : businessMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        editedBusinessMessage: freezed == editedBusinessMessage
+            ? _self.editedBusinessMessage
+            : editedBusinessMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        deletedBusinessMessages: freezed == deletedBusinessMessages
+            ? _self.deletedBusinessMessages
+            : deletedBusinessMessages // ignore: cast_nullable_to_non_nullable
+                  as BusinessMessagesDeleted?,
+        purchasedPaidMedia: freezed == purchasedPaidMedia
+            ? _self.purchasedPaidMedia
+            : purchasedPaidMedia // ignore: cast_nullable_to_non_nullable
+                  as PaidMediaPurchased?,
+      ),
+    );
   }
 
   /// Create a copy of Update
@@ -371,8 +372,9 @@ class _$UpdateCopyWithImpl<$Res> implements $UpdateCopyWith<$Res> {
       return null;
     }
 
-    return $ChosenInlineResultCopyWith<$Res>(_self.chosenInlineResult!,
-        (value) {
+    return $ChosenInlineResultCopyWith<$Res>(_self.chosenInlineResult!, (
+      value,
+    ) {
       return _then(_self.copyWith(chosenInlineResult: value));
     });
   }
@@ -498,8 +500,9 @@ class _$UpdateCopyWithImpl<$Res> implements $UpdateCopyWith<$Res> {
       return null;
     }
 
-    return $MessageReactionUpdatedCopyWith<$Res>(_self.messageReaction!,
-        (value) {
+    return $MessageReactionUpdatedCopyWith<$Res>(_self.messageReaction!, (
+      value,
+    ) {
       return _then(_self.copyWith(messageReaction: value));
     });
   }
@@ -514,9 +517,11 @@ class _$UpdateCopyWithImpl<$Res> implements $UpdateCopyWith<$Res> {
     }
 
     return $MessageReactionCountUpdatedCopyWith<$Res>(
-        _self.messageReactionCount!, (value) {
-      return _then(_self.copyWith(messageReactionCount: value));
-    });
+      _self.messageReactionCount!,
+      (value) {
+        return _then(_self.copyWith(messageReactionCount: value));
+      },
+    );
   }
 
   /// Create a copy of Update
@@ -556,8 +561,9 @@ class _$UpdateCopyWithImpl<$Res> implements $UpdateCopyWith<$Res> {
       return null;
     }
 
-    return $BusinessConnectionCopyWith<$Res>(_self.businessConnection!,
-        (value) {
+    return $BusinessConnectionCopyWith<$Res>(_self.businessConnection!, (
+      value,
+    ) {
       return _then(_self.copyWith(businessConnection: value));
     });
   }
@@ -572,9 +578,11 @@ class _$UpdateCopyWithImpl<$Res> implements $UpdateCopyWith<$Res> {
     }
 
     return $BusinessMessagesDeletedCopyWith<$Res>(
-        _self.deletedBusinessMessages!, (value) {
-      return _then(_self.copyWith(deletedBusinessMessages: value));
-    });
+      _self.deletedBusinessMessages!,
+      (value) {
+        return _then(_self.copyWith(deletedBusinessMessages: value));
+      },
+    );
   }
 
   /// Create a copy of Update
@@ -586,41 +594,123 @@ class _$UpdateCopyWithImpl<$Res> implements $UpdateCopyWith<$Res> {
       return null;
     }
 
-    return $PaidMediaPurchasedCopyWith<$Res>(_self.purchasedPaidMedia!,
-        (value) {
+    return $PaidMediaPurchasedCopyWith<$Res>(_self.purchasedPaidMedia!, (
+      value,
+    ) {
       return _then(_self.copyWith(purchasedPaidMedia: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [Update].
+extension UpdatePatterns on Update {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Update value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Update() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Update value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Update():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Update value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Update() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _Update implements Update {
-  const _Update(
-      {@JsonKey(name: 'update_id') required this.updateId,
-      @JsonKey(name: 'message') this.message,
-      @JsonKey(name: 'edited_message') this.editedMessage,
-      @JsonKey(name: 'channel_post') this.channelPost,
-      @JsonKey(name: 'edited_channel_post') this.editedChannelPost,
-      @JsonKey(name: 'inline_query') this.inlineQuery,
-      @JsonKey(name: 'chosen_inline_result') this.chosenInlineResult,
-      @JsonKey(name: 'callback_query') this.callbackQuery,
-      @JsonKey(name: 'shipping_query') this.shippingQuery,
-      @JsonKey(name: 'pre_checkout_query') this.preCheckoutQuery,
-      @JsonKey(name: 'poll') this.poll,
-      @JsonKey(name: 'poll_answer') this.pollAnswer,
-      @JsonKey(name: 'my_chat_member') this.myChatMember,
-      @JsonKey(name: 'chat_member') this.chatMember,
-      @JsonKey(name: 'chat_join_request') this.chatJoinRequest,
-      @JsonKey(name: 'message_reaction') this.messageReaction,
-      @JsonKey(name: 'message_reaction_count') this.messageReactionCount,
-      @JsonKey(name: 'chat_boost') this.chatBoost,
-      @JsonKey(name: 'removed_chat_boost') this.removedChatBoost,
-      @JsonKey(name: 'business_connection') this.businessConnection,
-      @JsonKey(name: 'business_message') this.businessMessage,
-      @JsonKey(name: 'edited_business_message') this.editedBusinessMessage,
-      @JsonKey(name: 'deleted_business_messages') this.deletedBusinessMessages,
-      @JsonKey(name: 'purchased_paid_media') this.purchasedPaidMedia});
+  const _Update({
+    @JsonKey(name: 'update_id') required this.updateId,
+    @JsonKey(name: 'message') this.message,
+    @JsonKey(name: 'edited_message') this.editedMessage,
+    @JsonKey(name: 'channel_post') this.channelPost,
+    @JsonKey(name: 'edited_channel_post') this.editedChannelPost,
+    @JsonKey(name: 'inline_query') this.inlineQuery,
+    @JsonKey(name: 'chosen_inline_result') this.chosenInlineResult,
+    @JsonKey(name: 'callback_query') this.callbackQuery,
+    @JsonKey(name: 'shipping_query') this.shippingQuery,
+    @JsonKey(name: 'pre_checkout_query') this.preCheckoutQuery,
+    @JsonKey(name: 'poll') this.poll,
+    @JsonKey(name: 'poll_answer') this.pollAnswer,
+    @JsonKey(name: 'my_chat_member') this.myChatMember,
+    @JsonKey(name: 'chat_member') this.chatMember,
+    @JsonKey(name: 'chat_join_request') this.chatJoinRequest,
+    @JsonKey(name: 'message_reaction') this.messageReaction,
+    @JsonKey(name: 'message_reaction_count') this.messageReactionCount,
+    @JsonKey(name: 'chat_boost') this.chatBoost,
+    @JsonKey(name: 'removed_chat_boost') this.removedChatBoost,
+    @JsonKey(name: 'business_connection') this.businessConnection,
+    @JsonKey(name: 'business_message') this.businessMessage,
+    @JsonKey(name: 'edited_business_message') this.editedBusinessMessage,
+    @JsonKey(name: 'deleted_business_messages') this.deletedBusinessMessages,
+    @JsonKey(name: 'purchased_paid_media') this.purchasedPaidMedia,
+  });
   factory _Update.fromJson(Map<String, dynamic> json) => _$UpdateFromJson(json);
 
   /// The update's unique identifier. Update identifiers start from a certain
@@ -782,9 +872,7 @@ class _Update implements Update {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$UpdateToJson(
-      this,
-    );
+    return _$UpdateToJson(this);
   }
 
   @override
@@ -799,37 +887,37 @@ abstract mixin class _$UpdateCopyWith<$Res> implements $UpdateCopyWith<$Res> {
       __$UpdateCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'update_id') int updateId,
-      @JsonKey(name: 'message') Message? message,
-      @JsonKey(name: 'edited_message') Message? editedMessage,
-      @JsonKey(name: 'channel_post') Message? channelPost,
-      @JsonKey(name: 'edited_channel_post') Message? editedChannelPost,
-      @JsonKey(name: 'inline_query') InlineQuery? inlineQuery,
-      @JsonKey(name: 'chosen_inline_result')
-      ChosenInlineResult? chosenInlineResult,
-      @JsonKey(name: 'callback_query') CallbackQuery? callbackQuery,
-      @JsonKey(name: 'shipping_query') ShippingQuery? shippingQuery,
-      @JsonKey(name: 'pre_checkout_query') PreCheckoutQuery? preCheckoutQuery,
-      @JsonKey(name: 'poll') Poll? poll,
-      @JsonKey(name: 'poll_answer') PollAnswer? pollAnswer,
-      @JsonKey(name: 'my_chat_member') ChatMemberUpdated? myChatMember,
-      @JsonKey(name: 'chat_member') ChatMemberUpdated? chatMember,
-      @JsonKey(name: 'chat_join_request') ChatJoinRequest? chatJoinRequest,
-      @JsonKey(name: 'message_reaction')
-      MessageReactionUpdated? messageReaction,
-      @JsonKey(name: 'message_reaction_count')
-      MessageReactionCountUpdated? messageReactionCount,
-      @JsonKey(name: 'chat_boost') ChatBoostUpdated? chatBoost,
-      @JsonKey(name: 'removed_chat_boost') ChatBoostRemoved? removedChatBoost,
-      @JsonKey(name: 'business_connection')
-      BusinessConnection? businessConnection,
-      @JsonKey(name: 'business_message') Message? businessMessage,
-      @JsonKey(name: 'edited_business_message') Message? editedBusinessMessage,
-      @JsonKey(name: 'deleted_business_messages')
-      BusinessMessagesDeleted? deletedBusinessMessages,
-      @JsonKey(name: 'purchased_paid_media')
-      PaidMediaPurchased? purchasedPaidMedia});
+  $Res call({
+    @JsonKey(name: 'update_id') int updateId,
+    @JsonKey(name: 'message') Message? message,
+    @JsonKey(name: 'edited_message') Message? editedMessage,
+    @JsonKey(name: 'channel_post') Message? channelPost,
+    @JsonKey(name: 'edited_channel_post') Message? editedChannelPost,
+    @JsonKey(name: 'inline_query') InlineQuery? inlineQuery,
+    @JsonKey(name: 'chosen_inline_result')
+    ChosenInlineResult? chosenInlineResult,
+    @JsonKey(name: 'callback_query') CallbackQuery? callbackQuery,
+    @JsonKey(name: 'shipping_query') ShippingQuery? shippingQuery,
+    @JsonKey(name: 'pre_checkout_query') PreCheckoutQuery? preCheckoutQuery,
+    @JsonKey(name: 'poll') Poll? poll,
+    @JsonKey(name: 'poll_answer') PollAnswer? pollAnswer,
+    @JsonKey(name: 'my_chat_member') ChatMemberUpdated? myChatMember,
+    @JsonKey(name: 'chat_member') ChatMemberUpdated? chatMember,
+    @JsonKey(name: 'chat_join_request') ChatJoinRequest? chatJoinRequest,
+    @JsonKey(name: 'message_reaction') MessageReactionUpdated? messageReaction,
+    @JsonKey(name: 'message_reaction_count')
+    MessageReactionCountUpdated? messageReactionCount,
+    @JsonKey(name: 'chat_boost') ChatBoostUpdated? chatBoost,
+    @JsonKey(name: 'removed_chat_boost') ChatBoostRemoved? removedChatBoost,
+    @JsonKey(name: 'business_connection')
+    BusinessConnection? businessConnection,
+    @JsonKey(name: 'business_message') Message? businessMessage,
+    @JsonKey(name: 'edited_business_message') Message? editedBusinessMessage,
+    @JsonKey(name: 'deleted_business_messages')
+    BusinessMessagesDeleted? deletedBusinessMessages,
+    @JsonKey(name: 'purchased_paid_media')
+    PaidMediaPurchased? purchasedPaidMedia,
+  });
 
   @override
   $InlineQueryCopyWith<$Res>? get inlineQuery;
@@ -904,104 +992,106 @@ class __$UpdateCopyWithImpl<$Res> implements _$UpdateCopyWith<$Res> {
     Object? deletedBusinessMessages = freezed,
     Object? purchasedPaidMedia = freezed,
   }) {
-    return _then(_Update(
-      updateId: null == updateId
-          ? _self.updateId
-          : updateId // ignore: cast_nullable_to_non_nullable
-              as int,
-      message: freezed == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      editedMessage: freezed == editedMessage
-          ? _self.editedMessage
-          : editedMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      channelPost: freezed == channelPost
-          ? _self.channelPost
-          : channelPost // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      editedChannelPost: freezed == editedChannelPost
-          ? _self.editedChannelPost
-          : editedChannelPost // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      inlineQuery: freezed == inlineQuery
-          ? _self.inlineQuery
-          : inlineQuery // ignore: cast_nullable_to_non_nullable
-              as InlineQuery?,
-      chosenInlineResult: freezed == chosenInlineResult
-          ? _self.chosenInlineResult
-          : chosenInlineResult // ignore: cast_nullable_to_non_nullable
-              as ChosenInlineResult?,
-      callbackQuery: freezed == callbackQuery
-          ? _self.callbackQuery
-          : callbackQuery // ignore: cast_nullable_to_non_nullable
-              as CallbackQuery?,
-      shippingQuery: freezed == shippingQuery
-          ? _self.shippingQuery
-          : shippingQuery // ignore: cast_nullable_to_non_nullable
-              as ShippingQuery?,
-      preCheckoutQuery: freezed == preCheckoutQuery
-          ? _self.preCheckoutQuery
-          : preCheckoutQuery // ignore: cast_nullable_to_non_nullable
-              as PreCheckoutQuery?,
-      poll: freezed == poll
-          ? _self.poll
-          : poll // ignore: cast_nullable_to_non_nullable
-              as Poll?,
-      pollAnswer: freezed == pollAnswer
-          ? _self.pollAnswer
-          : pollAnswer // ignore: cast_nullable_to_non_nullable
-              as PollAnswer?,
-      myChatMember: freezed == myChatMember
-          ? _self.myChatMember
-          : myChatMember // ignore: cast_nullable_to_non_nullable
-              as ChatMemberUpdated?,
-      chatMember: freezed == chatMember
-          ? _self.chatMember
-          : chatMember // ignore: cast_nullable_to_non_nullable
-              as ChatMemberUpdated?,
-      chatJoinRequest: freezed == chatJoinRequest
-          ? _self.chatJoinRequest
-          : chatJoinRequest // ignore: cast_nullable_to_non_nullable
-              as ChatJoinRequest?,
-      messageReaction: freezed == messageReaction
-          ? _self.messageReaction
-          : messageReaction // ignore: cast_nullable_to_non_nullable
-              as MessageReactionUpdated?,
-      messageReactionCount: freezed == messageReactionCount
-          ? _self.messageReactionCount
-          : messageReactionCount // ignore: cast_nullable_to_non_nullable
-              as MessageReactionCountUpdated?,
-      chatBoost: freezed == chatBoost
-          ? _self.chatBoost
-          : chatBoost // ignore: cast_nullable_to_non_nullable
-              as ChatBoostUpdated?,
-      removedChatBoost: freezed == removedChatBoost
-          ? _self.removedChatBoost
-          : removedChatBoost // ignore: cast_nullable_to_non_nullable
-              as ChatBoostRemoved?,
-      businessConnection: freezed == businessConnection
-          ? _self.businessConnection
-          : businessConnection // ignore: cast_nullable_to_non_nullable
-              as BusinessConnection?,
-      businessMessage: freezed == businessMessage
-          ? _self.businessMessage
-          : businessMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      editedBusinessMessage: freezed == editedBusinessMessage
-          ? _self.editedBusinessMessage
-          : editedBusinessMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      deletedBusinessMessages: freezed == deletedBusinessMessages
-          ? _self.deletedBusinessMessages
-          : deletedBusinessMessages // ignore: cast_nullable_to_non_nullable
-              as BusinessMessagesDeleted?,
-      purchasedPaidMedia: freezed == purchasedPaidMedia
-          ? _self.purchasedPaidMedia
-          : purchasedPaidMedia // ignore: cast_nullable_to_non_nullable
-              as PaidMediaPurchased?,
-    ));
+    return _then(
+      _Update(
+        updateId: null == updateId
+            ? _self.updateId
+            : updateId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        message: freezed == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        editedMessage: freezed == editedMessage
+            ? _self.editedMessage
+            : editedMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        channelPost: freezed == channelPost
+            ? _self.channelPost
+            : channelPost // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        editedChannelPost: freezed == editedChannelPost
+            ? _self.editedChannelPost
+            : editedChannelPost // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        inlineQuery: freezed == inlineQuery
+            ? _self.inlineQuery
+            : inlineQuery // ignore: cast_nullable_to_non_nullable
+                  as InlineQuery?,
+        chosenInlineResult: freezed == chosenInlineResult
+            ? _self.chosenInlineResult
+            : chosenInlineResult // ignore: cast_nullable_to_non_nullable
+                  as ChosenInlineResult?,
+        callbackQuery: freezed == callbackQuery
+            ? _self.callbackQuery
+            : callbackQuery // ignore: cast_nullable_to_non_nullable
+                  as CallbackQuery?,
+        shippingQuery: freezed == shippingQuery
+            ? _self.shippingQuery
+            : shippingQuery // ignore: cast_nullable_to_non_nullable
+                  as ShippingQuery?,
+        preCheckoutQuery: freezed == preCheckoutQuery
+            ? _self.preCheckoutQuery
+            : preCheckoutQuery // ignore: cast_nullable_to_non_nullable
+                  as PreCheckoutQuery?,
+        poll: freezed == poll
+            ? _self.poll
+            : poll // ignore: cast_nullable_to_non_nullable
+                  as Poll?,
+        pollAnswer: freezed == pollAnswer
+            ? _self.pollAnswer
+            : pollAnswer // ignore: cast_nullable_to_non_nullable
+                  as PollAnswer?,
+        myChatMember: freezed == myChatMember
+            ? _self.myChatMember
+            : myChatMember // ignore: cast_nullable_to_non_nullable
+                  as ChatMemberUpdated?,
+        chatMember: freezed == chatMember
+            ? _self.chatMember
+            : chatMember // ignore: cast_nullable_to_non_nullable
+                  as ChatMemberUpdated?,
+        chatJoinRequest: freezed == chatJoinRequest
+            ? _self.chatJoinRequest
+            : chatJoinRequest // ignore: cast_nullable_to_non_nullable
+                  as ChatJoinRequest?,
+        messageReaction: freezed == messageReaction
+            ? _self.messageReaction
+            : messageReaction // ignore: cast_nullable_to_non_nullable
+                  as MessageReactionUpdated?,
+        messageReactionCount: freezed == messageReactionCount
+            ? _self.messageReactionCount
+            : messageReactionCount // ignore: cast_nullable_to_non_nullable
+                  as MessageReactionCountUpdated?,
+        chatBoost: freezed == chatBoost
+            ? _self.chatBoost
+            : chatBoost // ignore: cast_nullable_to_non_nullable
+                  as ChatBoostUpdated?,
+        removedChatBoost: freezed == removedChatBoost
+            ? _self.removedChatBoost
+            : removedChatBoost // ignore: cast_nullable_to_non_nullable
+                  as ChatBoostRemoved?,
+        businessConnection: freezed == businessConnection
+            ? _self.businessConnection
+            : businessConnection // ignore: cast_nullable_to_non_nullable
+                  as BusinessConnection?,
+        businessMessage: freezed == businessMessage
+            ? _self.businessMessage
+            : businessMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        editedBusinessMessage: freezed == editedBusinessMessage
+            ? _self.editedBusinessMessage
+            : editedBusinessMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        deletedBusinessMessages: freezed == deletedBusinessMessages
+            ? _self.deletedBusinessMessages
+            : deletedBusinessMessages // ignore: cast_nullable_to_non_nullable
+                  as BusinessMessagesDeleted?,
+        purchasedPaidMedia: freezed == purchasedPaidMedia
+            ? _self.purchasedPaidMedia
+            : purchasedPaidMedia // ignore: cast_nullable_to_non_nullable
+                  as PaidMediaPurchased?,
+      ),
+    );
   }
 
   /// Create a copy of Update
@@ -1027,8 +1117,9 @@ class __$UpdateCopyWithImpl<$Res> implements _$UpdateCopyWith<$Res> {
       return null;
     }
 
-    return $ChosenInlineResultCopyWith<$Res>(_self.chosenInlineResult!,
-        (value) {
+    return $ChosenInlineResultCopyWith<$Res>(_self.chosenInlineResult!, (
+      value,
+    ) {
       return _then(_self.copyWith(chosenInlineResult: value));
     });
   }
@@ -1154,8 +1245,9 @@ class __$UpdateCopyWithImpl<$Res> implements _$UpdateCopyWith<$Res> {
       return null;
     }
 
-    return $MessageReactionUpdatedCopyWith<$Res>(_self.messageReaction!,
-        (value) {
+    return $MessageReactionUpdatedCopyWith<$Res>(_self.messageReaction!, (
+      value,
+    ) {
       return _then(_self.copyWith(messageReaction: value));
     });
   }
@@ -1170,9 +1262,11 @@ class __$UpdateCopyWithImpl<$Res> implements _$UpdateCopyWith<$Res> {
     }
 
     return $MessageReactionCountUpdatedCopyWith<$Res>(
-        _self.messageReactionCount!, (value) {
-      return _then(_self.copyWith(messageReactionCount: value));
-    });
+      _self.messageReactionCount!,
+      (value) {
+        return _then(_self.copyWith(messageReactionCount: value));
+      },
+    );
   }
 
   /// Create a copy of Update
@@ -1212,8 +1306,9 @@ class __$UpdateCopyWithImpl<$Res> implements _$UpdateCopyWith<$Res> {
       return null;
     }
 
-    return $BusinessConnectionCopyWith<$Res>(_self.businessConnection!,
-        (value) {
+    return $BusinessConnectionCopyWith<$Res>(_self.businessConnection!, (
+      value,
+    ) {
       return _then(_self.copyWith(businessConnection: value));
     });
   }
@@ -1228,9 +1323,11 @@ class __$UpdateCopyWithImpl<$Res> implements _$UpdateCopyWith<$Res> {
     }
 
     return $BusinessMessagesDeletedCopyWith<$Res>(
-        _self.deletedBusinessMessages!, (value) {
-      return _then(_self.copyWith(deletedBusinessMessages: value));
-    });
+      _self.deletedBusinessMessages!,
+      (value) {
+        return _then(_self.copyWith(deletedBusinessMessages: value));
+      },
+    );
   }
 
   /// Create a copy of Update
@@ -1242,8 +1339,9 @@ class __$UpdateCopyWithImpl<$Res> implements _$UpdateCopyWith<$Res> {
       return null;
     }
 
-    return $PaidMediaPurchasedCopyWith<$Res>(_self.purchasedPaidMedia!,
-        (value) {
+    return $PaidMediaPurchasedCopyWith<$Res>(_self.purchasedPaidMedia!, (
+      value,
+    ) {
       return _then(_self.copyWith(purchasedPaidMedia: value));
     });
   }

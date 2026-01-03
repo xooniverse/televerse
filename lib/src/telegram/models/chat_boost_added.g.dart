@@ -7,11 +7,7 @@ part of 'chat_boost_added.dart';
 // **************************************************************************
 
 _ChatBoostAdded _$ChatBoostAddedFromJson(Map<String, dynamic> json) =>
-    _ChatBoostAdded(
-      boostCount: (json['boost_count'] as num).toInt(),
-    );
+    _ChatBoostAdded(boostCount: (json['boost_count'] as num).toInt());
 
 Map<String, dynamic> _$ChatBoostAddedToJson(_ChatBoostAdded instance) =>
-    <String, dynamic>{
-      'boost_count': instance.boostCount,
-    };
+    <String, dynamic>{'boost_count': instance.boostCount};

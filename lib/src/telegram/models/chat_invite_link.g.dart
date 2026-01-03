@@ -24,14 +24,12 @@ _ChatInviteLink _$ChatInviteLinkFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ChatInviteLinkToJson(_ChatInviteLink instance) =>
     <String, dynamic>{
       'invite_link': instance.inviteLink,
-      if (instance.creator case final value?) 'creator': value,
-      if (instance.createsJoinRequest case final value?)
-        'creates_join_request': value,
-      if (instance.isPrimary case final value?) 'is_primary': value,
-      if (instance.isRevoked case final value?) 'is_revoked': value,
-      if (instance.name case final value?) 'name': value,
-      if (instance.expireDate case final value?) 'expire_date': value,
-      if (instance.memberLimit case final value?) 'member_limit': value,
-      if (instance.pendingMemberCount case final value?)
-        'pending_member_count': value,
+      'creator': ?instance.creator,
+      'creates_join_request': ?instance.createsJoinRequest,
+      'is_primary': ?instance.isPrimary,
+      'is_revoked': ?instance.isRevoked,
+      'name': ?instance.name,
+      'expire_date': ?instance.expireDate,
+      'member_limit': ?instance.memberLimit,
+      'pending_member_count': ?instance.pendingMemberCount,
     };

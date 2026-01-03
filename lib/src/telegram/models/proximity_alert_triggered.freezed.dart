@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -32,7 +31,9 @@ mixin _$ProximityAlertTriggered {
   @pragma('vm:prefer-inline')
   $ProximityAlertTriggeredCopyWith<ProximityAlertTriggered> get copyWith =>
       _$ProximityAlertTriggeredCopyWithImpl<ProximityAlertTriggered>(
-          this as ProximityAlertTriggered, _$identity);
+        this as ProximityAlertTriggered,
+        _$identity,
+      );
 
   /// Serializes this ProximityAlertTriggered to a JSON map.
   Map<String, dynamic> toJson();
@@ -45,14 +46,16 @@ mixin _$ProximityAlertTriggered {
 
 /// @nodoc
 abstract mixin class $ProximityAlertTriggeredCopyWith<$Res> {
-  factory $ProximityAlertTriggeredCopyWith(ProximityAlertTriggered value,
-          $Res Function(ProximityAlertTriggered) _then) =
-      _$ProximityAlertTriggeredCopyWithImpl;
+  factory $ProximityAlertTriggeredCopyWith(
+    ProximityAlertTriggered value,
+    $Res Function(ProximityAlertTriggered) _then,
+  ) = _$ProximityAlertTriggeredCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'traveler') User traveler,
-      @JsonKey(name: 'watcher') User watcher,
-      @JsonKey(name: 'distance') int distance});
+  $Res call({
+    @JsonKey(name: 'traveler') User traveler,
+    @JsonKey(name: 'watcher') User watcher,
+    @JsonKey(name: 'distance') int distance,
+  });
 
   $UserCopyWith<$Res> get traveler;
   $UserCopyWith<$Res> get watcher;
@@ -75,20 +78,22 @@ class _$ProximityAlertTriggeredCopyWithImpl<$Res>
     Object? watcher = null,
     Object? distance = null,
   }) {
-    return _then(_self.copyWith(
-      traveler: null == traveler
-          ? _self.traveler
-          : traveler // ignore: cast_nullable_to_non_nullable
-              as User,
-      watcher: null == watcher
-          ? _self.watcher
-          : watcher // ignore: cast_nullable_to_non_nullable
-              as User,
-      distance: null == distance
-          ? _self.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _self.copyWith(
+        traveler: null == traveler
+            ? _self.traveler
+            : traveler // ignore: cast_nullable_to_non_nullable
+                  as User,
+        watcher: null == watcher
+            ? _self.watcher
+            : watcher // ignore: cast_nullable_to_non_nullable
+                  as User,
+        distance: null == distance
+            ? _self.distance
+            : distance // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of ProximityAlertTriggered
@@ -112,13 +117,94 @@ class _$ProximityAlertTriggeredCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [ProximityAlertTriggered].
+extension ProximityAlertTriggeredPatterns on ProximityAlertTriggered {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ProximityAlertTriggered value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ProximityAlertTriggered() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ProximityAlertTriggered value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ProximityAlertTriggered():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ProximityAlertTriggered value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ProximityAlertTriggered() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _ProximityAlertTriggered implements ProximityAlertTriggered {
-  const _ProximityAlertTriggered(
-      {@JsonKey(name: 'traveler') required this.traveler,
-      @JsonKey(name: 'watcher') required this.watcher,
-      @JsonKey(name: 'distance') required this.distance});
+  const _ProximityAlertTriggered({
+    @JsonKey(name: 'traveler') required this.traveler,
+    @JsonKey(name: 'watcher') required this.watcher,
+    @JsonKey(name: 'distance') required this.distance,
+  });
   factory _ProximityAlertTriggered.fromJson(Map<String, dynamic> json) =>
       _$ProximityAlertTriggeredFromJson(json);
 
@@ -144,13 +230,13 @@ class _ProximityAlertTriggered implements ProximityAlertTriggered {
   @pragma('vm:prefer-inline')
   _$ProximityAlertTriggeredCopyWith<_ProximityAlertTriggered> get copyWith =>
       __$ProximityAlertTriggeredCopyWithImpl<_ProximityAlertTriggered>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ProximityAlertTriggeredToJson(
-      this,
-    );
+    return _$ProximityAlertTriggeredToJson(this);
   }
 
   @override
@@ -162,15 +248,17 @@ class _ProximityAlertTriggered implements ProximityAlertTriggered {
 /// @nodoc
 abstract mixin class _$ProximityAlertTriggeredCopyWith<$Res>
     implements $ProximityAlertTriggeredCopyWith<$Res> {
-  factory _$ProximityAlertTriggeredCopyWith(_ProximityAlertTriggered value,
-          $Res Function(_ProximityAlertTriggered) _then) =
-      __$ProximityAlertTriggeredCopyWithImpl;
+  factory _$ProximityAlertTriggeredCopyWith(
+    _ProximityAlertTriggered value,
+    $Res Function(_ProximityAlertTriggered) _then,
+  ) = __$ProximityAlertTriggeredCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'traveler') User traveler,
-      @JsonKey(name: 'watcher') User watcher,
-      @JsonKey(name: 'distance') int distance});
+  $Res call({
+    @JsonKey(name: 'traveler') User traveler,
+    @JsonKey(name: 'watcher') User watcher,
+    @JsonKey(name: 'distance') int distance,
+  });
 
   @override
   $UserCopyWith<$Res> get traveler;
@@ -195,20 +283,22 @@ class __$ProximityAlertTriggeredCopyWithImpl<$Res>
     Object? watcher = null,
     Object? distance = null,
   }) {
-    return _then(_ProximityAlertTriggered(
-      traveler: null == traveler
-          ? _self.traveler
-          : traveler // ignore: cast_nullable_to_non_nullable
-              as User,
-      watcher: null == watcher
-          ? _self.watcher
-          : watcher // ignore: cast_nullable_to_non_nullable
-              as User,
-      distance: null == distance
-          ? _self.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _ProximityAlertTriggered(
+        traveler: null == traveler
+            ? _self.traveler
+            : traveler // ignore: cast_nullable_to_non_nullable
+                  as User,
+        watcher: null == watcher
+            ? _self.watcher
+            : watcher // ignore: cast_nullable_to_non_nullable
+                  as User,
+        distance: null == distance
+            ? _self.distance
+            : distance // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of ProximityAlertTriggered

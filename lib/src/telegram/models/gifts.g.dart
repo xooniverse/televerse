@@ -7,11 +7,11 @@ part of 'gifts.dart';
 // **************************************************************************
 
 _Gifts _$GiftsFromJson(Map<String, dynamic> json) => _Gifts(
-      gifts: (json['gifts'] as List<dynamic>)
-          .map((e) => Gift.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+  gifts: (json['gifts'] as List<dynamic>)
+      .map((e) => Gift.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);
 
 Map<String, dynamic> _$GiftsToJson(_Gifts instance) => <String, dynamic>{
-      'gifts': instance.gifts,
-    };
+  'gifts': instance.gifts,
+};

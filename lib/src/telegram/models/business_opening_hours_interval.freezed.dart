@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -29,9 +28,11 @@ mixin _$BusinessOpeningHoursInterval {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $BusinessOpeningHoursIntervalCopyWith<BusinessOpeningHoursInterval>
-      get copyWith => _$BusinessOpeningHoursIntervalCopyWithImpl<
-              BusinessOpeningHoursInterval>(
-          this as BusinessOpeningHoursInterval, _$identity);
+  get copyWith =>
+      _$BusinessOpeningHoursIntervalCopyWithImpl<BusinessOpeningHoursInterval>(
+        this as BusinessOpeningHoursInterval,
+        _$identity,
+      );
 
   /// Serializes this BusinessOpeningHoursInterval to a JSON map.
   Map<String, dynamic> toJson();
@@ -45,13 +46,14 @@ mixin _$BusinessOpeningHoursInterval {
 /// @nodoc
 abstract mixin class $BusinessOpeningHoursIntervalCopyWith<$Res> {
   factory $BusinessOpeningHoursIntervalCopyWith(
-          BusinessOpeningHoursInterval value,
-          $Res Function(BusinessOpeningHoursInterval) _then) =
-      _$BusinessOpeningHoursIntervalCopyWithImpl;
+    BusinessOpeningHoursInterval value,
+    $Res Function(BusinessOpeningHoursInterval) _then,
+  ) = _$BusinessOpeningHoursIntervalCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'opening_minute') int openingMinute,
-      @JsonKey(name: 'closing_minute') int closingMinute});
+  $Res call({
+    @JsonKey(name: 'opening_minute') int openingMinute,
+    @JsonKey(name: 'closing_minute') int closingMinute,
+  });
 }
 
 /// @nodoc
@@ -66,29 +68,109 @@ class _$BusinessOpeningHoursIntervalCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? openingMinute = null,
-    Object? closingMinute = null,
+  $Res call({Object? openingMinute = null, Object? closingMinute = null}) {
+    return _then(
+      _self.copyWith(
+        openingMinute: null == openingMinute
+            ? _self.openingMinute
+            : openingMinute // ignore: cast_nullable_to_non_nullable
+                  as int,
+        closingMinute: null == closingMinute
+            ? _self.closingMinute
+            : closingMinute // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [BusinessOpeningHoursInterval].
+extension BusinessOpeningHoursIntervalPatterns on BusinessOpeningHoursInterval {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_BusinessOpeningHoursInterval value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      openingMinute: null == openingMinute
-          ? _self.openingMinute
-          : openingMinute // ignore: cast_nullable_to_non_nullable
-              as int,
-      closingMinute: null == closingMinute
-          ? _self.closingMinute
-          : closingMinute // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _BusinessOpeningHoursInterval() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_BusinessOpeningHoursInterval value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessOpeningHoursInterval():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_BusinessOpeningHoursInterval value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessOpeningHoursInterval() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _BusinessOpeningHoursInterval implements BusinessOpeningHoursInterval {
-  const _BusinessOpeningHoursInterval(
-      {@JsonKey(name: 'opening_minute') required this.openingMinute,
-      @JsonKey(name: 'closing_minute') required this.closingMinute});
+  const _BusinessOpeningHoursInterval({
+    @JsonKey(name: 'opening_minute') required this.openingMinute,
+    @JsonKey(name: 'closing_minute') required this.closingMinute,
+  });
   factory _BusinessOpeningHoursInterval.fromJson(Map<String, dynamic> json) =>
       _$BusinessOpeningHoursIntervalFromJson(json);
 
@@ -110,14 +192,14 @@ class _BusinessOpeningHoursInterval implements BusinessOpeningHoursInterval {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   _$BusinessOpeningHoursIntervalCopyWith<_BusinessOpeningHoursInterval>
-      get copyWith => __$BusinessOpeningHoursIntervalCopyWithImpl<
-          _BusinessOpeningHoursInterval>(this, _$identity);
+  get copyWith =>
+      __$BusinessOpeningHoursIntervalCopyWithImpl<
+        _BusinessOpeningHoursInterval
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BusinessOpeningHoursIntervalToJson(
-      this,
-    );
+    return _$BusinessOpeningHoursIntervalToJson(this);
   }
 
   @override
@@ -130,14 +212,15 @@ class _BusinessOpeningHoursInterval implements BusinessOpeningHoursInterval {
 abstract mixin class _$BusinessOpeningHoursIntervalCopyWith<$Res>
     implements $BusinessOpeningHoursIntervalCopyWith<$Res> {
   factory _$BusinessOpeningHoursIntervalCopyWith(
-          _BusinessOpeningHoursInterval value,
-          $Res Function(_BusinessOpeningHoursInterval) _then) =
-      __$BusinessOpeningHoursIntervalCopyWithImpl;
+    _BusinessOpeningHoursInterval value,
+    $Res Function(_BusinessOpeningHoursInterval) _then,
+  ) = __$BusinessOpeningHoursIntervalCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'opening_minute') int openingMinute,
-      @JsonKey(name: 'closing_minute') int closingMinute});
+  $Res call({
+    @JsonKey(name: 'opening_minute') int openingMinute,
+    @JsonKey(name: 'closing_minute') int closingMinute,
+  });
 }
 
 /// @nodoc
@@ -152,19 +235,18 @@ class __$BusinessOpeningHoursIntervalCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? openingMinute = null,
-    Object? closingMinute = null,
-  }) {
-    return _then(_BusinessOpeningHoursInterval(
-      openingMinute: null == openingMinute
-          ? _self.openingMinute
-          : openingMinute // ignore: cast_nullable_to_non_nullable
-              as int,
-      closingMinute: null == closingMinute
-          ? _self.closingMinute
-          : closingMinute // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+  $Res call({Object? openingMinute = null, Object? closingMinute = null}) {
+    return _then(
+      _BusinessOpeningHoursInterval(
+        openingMinute: null == openingMinute
+            ? _self.openingMinute
+            : openingMinute // ignore: cast_nullable_to_non_nullable
+                  as int,
+        closingMinute: null == closingMinute
+            ? _self.closingMinute
+            : closingMinute // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }

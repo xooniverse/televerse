@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -41,7 +40,9 @@ mixin _$MaskPosition {
   @pragma('vm:prefer-inline')
   $MaskPositionCopyWith<MaskPosition> get copyWith =>
       _$MaskPositionCopyWithImpl<MaskPosition>(
-          this as MaskPosition, _$identity);
+        this as MaskPosition,
+        _$identity,
+      );
 
   /// Serializes this MaskPosition to a JSON map.
   Map<String, dynamic> toJson();
@@ -55,14 +56,16 @@ mixin _$MaskPosition {
 /// @nodoc
 abstract mixin class $MaskPositionCopyWith<$Res> {
   factory $MaskPositionCopyWith(
-          MaskPosition value, $Res Function(MaskPosition) _then) =
-      _$MaskPositionCopyWithImpl;
+    MaskPosition value,
+    $Res Function(MaskPosition) _then,
+  ) = _$MaskPositionCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'point') MaskPositionPoint point,
-      @JsonKey(name: 'x_shift') double xShift,
-      @JsonKey(name: 'y_shift') double yShift,
-      @JsonKey(name: 'scale') double scale});
+  $Res call({
+    @JsonKey(name: 'point') MaskPositionPoint point,
+    @JsonKey(name: 'x_shift') double xShift,
+    @JsonKey(name: 'y_shift') double yShift,
+    @JsonKey(name: 'scale') double scale,
+  });
 }
 
 /// @nodoc
@@ -82,35 +85,118 @@ class _$MaskPositionCopyWithImpl<$Res> implements $MaskPositionCopyWith<$Res> {
     Object? yShift = null,
     Object? scale = null,
   }) {
-    return _then(_self.copyWith(
-      point: null == point
-          ? _self.point
-          : point // ignore: cast_nullable_to_non_nullable
-              as MaskPositionPoint,
-      xShift: null == xShift
-          ? _self.xShift
-          : xShift // ignore: cast_nullable_to_non_nullable
-              as double,
-      yShift: null == yShift
-          ? _self.yShift
-          : yShift // ignore: cast_nullable_to_non_nullable
-              as double,
-      scale: null == scale
-          ? _self.scale
-          : scale // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+    return _then(
+      _self.copyWith(
+        point: null == point
+            ? _self.point
+            : point // ignore: cast_nullable_to_non_nullable
+                  as MaskPositionPoint,
+        xShift: null == xShift
+            ? _self.xShift
+            : xShift // ignore: cast_nullable_to_non_nullable
+                  as double,
+        yShift: null == yShift
+            ? _self.yShift
+            : yShift // ignore: cast_nullable_to_non_nullable
+                  as double,
+        scale: null == scale
+            ? _self.scale
+            : scale // ignore: cast_nullable_to_non_nullable
+                  as double,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [MaskPosition].
+extension MaskPositionPatterns on MaskPosition {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_MaskPosition value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MaskPosition() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_MaskPosition value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MaskPosition():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_MaskPosition value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MaskPosition() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _MaskPosition implements MaskPosition {
-  const _MaskPosition(
-      {@JsonKey(name: 'point') required this.point,
-      @JsonKey(name: 'x_shift') required this.xShift,
-      @JsonKey(name: 'y_shift') required this.yShift,
-      @JsonKey(name: 'scale') required this.scale});
+  const _MaskPosition({
+    @JsonKey(name: 'point') required this.point,
+    @JsonKey(name: 'x_shift') required this.xShift,
+    @JsonKey(name: 'y_shift') required this.yShift,
+    @JsonKey(name: 'scale') required this.scale,
+  });
   factory _MaskPosition.fromJson(Map<String, dynamic> json) =>
       _$MaskPositionFromJson(json);
 
@@ -149,9 +235,7 @@ class _MaskPosition implements MaskPosition {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$MaskPositionToJson(
-      this,
-    );
+    return _$MaskPositionToJson(this);
   }
 
   @override
@@ -164,15 +248,17 @@ class _MaskPosition implements MaskPosition {
 abstract mixin class _$MaskPositionCopyWith<$Res>
     implements $MaskPositionCopyWith<$Res> {
   factory _$MaskPositionCopyWith(
-          _MaskPosition value, $Res Function(_MaskPosition) _then) =
-      __$MaskPositionCopyWithImpl;
+    _MaskPosition value,
+    $Res Function(_MaskPosition) _then,
+  ) = __$MaskPositionCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'point') MaskPositionPoint point,
-      @JsonKey(name: 'x_shift') double xShift,
-      @JsonKey(name: 'y_shift') double yShift,
-      @JsonKey(name: 'scale') double scale});
+  $Res call({
+    @JsonKey(name: 'point') MaskPositionPoint point,
+    @JsonKey(name: 'x_shift') double xShift,
+    @JsonKey(name: 'y_shift') double yShift,
+    @JsonKey(name: 'scale') double scale,
+  });
 }
 
 /// @nodoc
@@ -193,23 +279,25 @@ class __$MaskPositionCopyWithImpl<$Res>
     Object? yShift = null,
     Object? scale = null,
   }) {
-    return _then(_MaskPosition(
-      point: null == point
-          ? _self.point
-          : point // ignore: cast_nullable_to_non_nullable
-              as MaskPositionPoint,
-      xShift: null == xShift
-          ? _self.xShift
-          : xShift // ignore: cast_nullable_to_non_nullable
-              as double,
-      yShift: null == yShift
-          ? _self.yShift
-          : yShift // ignore: cast_nullable_to_non_nullable
-              as double,
-      scale: null == scale
-          ? _self.scale
-          : scale // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+    return _then(
+      _MaskPosition(
+        point: null == point
+            ? _self.point
+            : point // ignore: cast_nullable_to_non_nullable
+                  as MaskPositionPoint,
+        xShift: null == xShift
+            ? _self.xShift
+            : xShift // ignore: cast_nullable_to_non_nullable
+                  as double,
+        yShift: null == yShift
+            ? _self.yShift
+            : yShift // ignore: cast_nullable_to_non_nullable
+                  as double,
+        scale: null == scale
+            ? _self.scale
+            : scale // ignore: cast_nullable_to_non_nullable
+                  as double,
+      ),
+    );
   }
 }

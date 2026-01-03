@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -29,8 +28,12 @@ BotCommandScope _$BotCommandScopeFromJson(Map<String, dynamic> json) {
       return BotCommandScopeChatMember.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'type', 'BotCommandScope',
-          'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'type',
+        'BotCommandScope',
+        'Invalid union type "${json['type']}"!',
+      );
   }
 }
 
@@ -46,7 +49,9 @@ mixin _$BotCommandScope {
   @pragma('vm:prefer-inline')
   $BotCommandScopeCopyWith<BotCommandScope> get copyWith =>
       _$BotCommandScopeCopyWithImpl<BotCommandScope>(
-          this as BotCommandScope, _$identity);
+        this as BotCommandScope,
+        _$identity,
+      );
 
   /// Serializes this BotCommandScope to a JSON map.
   Map<String, dynamic> toJson();
@@ -60,8 +65,9 @@ mixin _$BotCommandScope {
 /// @nodoc
 abstract mixin class $BotCommandScopeCopyWith<$Res> {
   factory $BotCommandScopeCopyWith(
-          BotCommandScope value, $Res Function(BotCommandScope) _then) =
-      _$BotCommandScopeCopyWithImpl;
+    BotCommandScope value,
+    $Res Function(BotCommandScope) _then,
+  ) = _$BotCommandScopeCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'type') BotCommandScopeType type});
 }
@@ -78,23 +84,165 @@ class _$BotCommandScopeCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
+  $Res call({Object? type = null}) {
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as BotCommandScopeType,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [BotCommandScope].
+extension BotCommandScopePatterns on BotCommandScope {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BotCommandScopeDefault value)? default_,
+    TResult Function(BotCommandScopeAllPrivateChats value)? allPrivateChats,
+    TResult Function(BotCommandScopeAllGroupChats value)? allGroupChats,
+    TResult Function(BotCommandScopeAllChatAdministrators value)?
+    allChatAdministrators,
+    TResult Function(BotCommandScopeChat value)? chat,
+    TResult Function(BotCommandScopeChatAdministrators value)?
+    chatAdministrators,
+    TResult Function(BotCommandScopeChatMember value)? chatMember,
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BotCommandScopeType,
-    ));
+    final _that = this;
+    switch (_that) {
+      case BotCommandScopeDefault() when default_ != null:
+        return default_(_that);
+      case BotCommandScopeAllPrivateChats() when allPrivateChats != null:
+        return allPrivateChats(_that);
+      case BotCommandScopeAllGroupChats() when allGroupChats != null:
+        return allGroupChats(_that);
+      case BotCommandScopeAllChatAdministrators()
+          when allChatAdministrators != null:
+        return allChatAdministrators(_that);
+      case BotCommandScopeChat() when chat != null:
+        return chat(_that);
+      case BotCommandScopeChatAdministrators() when chatAdministrators != null:
+        return chatAdministrators(_that);
+      case BotCommandScopeChatMember() when chatMember != null:
+        return chatMember(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BotCommandScopeDefault value) default_,
+    required TResult Function(BotCommandScopeAllPrivateChats value)
+    allPrivateChats,
+    required TResult Function(BotCommandScopeAllGroupChats value) allGroupChats,
+    required TResult Function(BotCommandScopeAllChatAdministrators value)
+    allChatAdministrators,
+    required TResult Function(BotCommandScopeChat value) chat,
+    required TResult Function(BotCommandScopeChatAdministrators value)
+    chatAdministrators,
+    required TResult Function(BotCommandScopeChatMember value) chatMember,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case BotCommandScopeDefault():
+        return default_(_that);
+      case BotCommandScopeAllPrivateChats():
+        return allPrivateChats(_that);
+      case BotCommandScopeAllGroupChats():
+        return allGroupChats(_that);
+      case BotCommandScopeAllChatAdministrators():
+        return allChatAdministrators(_that);
+      case BotCommandScopeChat():
+        return chat(_that);
+      case BotCommandScopeChatAdministrators():
+        return chatAdministrators(_that);
+      case BotCommandScopeChatMember():
+        return chatMember(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(BotCommandScopeDefault value)? default_,
+    TResult? Function(BotCommandScopeAllPrivateChats value)? allPrivateChats,
+    TResult? Function(BotCommandScopeAllGroupChats value)? allGroupChats,
+    TResult? Function(BotCommandScopeAllChatAdministrators value)?
+    allChatAdministrators,
+    TResult? Function(BotCommandScopeChat value)? chat,
+    TResult? Function(BotCommandScopeChatAdministrators value)?
+    chatAdministrators,
+    TResult? Function(BotCommandScopeChatMember value)? chatMember,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case BotCommandScopeDefault() when default_ != null:
+        return default_(_that);
+      case BotCommandScopeAllPrivateChats() when allPrivateChats != null:
+        return allPrivateChats(_that);
+      case BotCommandScopeAllGroupChats() when allGroupChats != null:
+        return allGroupChats(_that);
+      case BotCommandScopeAllChatAdministrators()
+          when allChatAdministrators != null:
+        return allChatAdministrators(_that);
+      case BotCommandScopeChat() when chat != null:
+        return chat(_that);
+      case BotCommandScopeChatAdministrators() when chatAdministrators != null:
+        return chatAdministrators(_that);
+      case BotCommandScopeChatMember() when chatMember != null:
+        return chatMember(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class BotCommandScopeDefault implements BotCommandScope {
-  const BotCommandScopeDefault(
-      {@JsonKey(name: 'type') this.type = BotCommandScopeType.default_});
+  const BotCommandScopeDefault({
+    @JsonKey(name: 'type') this.type = BotCommandScopeType.default_,
+  });
   factory BotCommandScopeDefault.fromJson(Map<String, dynamic> json) =>
       _$BotCommandScopeDefaultFromJson(json);
 
@@ -110,13 +258,13 @@ class BotCommandScopeDefault implements BotCommandScope {
   @pragma('vm:prefer-inline')
   $BotCommandScopeDefaultCopyWith<BotCommandScopeDefault> get copyWith =>
       _$BotCommandScopeDefaultCopyWithImpl<BotCommandScopeDefault>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BotCommandScopeDefaultToJson(
-      this,
-    );
+    return _$BotCommandScopeDefaultToJson(this);
   }
 
   @override
@@ -128,9 +276,10 @@ class BotCommandScopeDefault implements BotCommandScope {
 /// @nodoc
 abstract mixin class $BotCommandScopeDefaultCopyWith<$Res>
     implements $BotCommandScopeCopyWith<$Res> {
-  factory $BotCommandScopeDefaultCopyWith(BotCommandScopeDefault value,
-          $Res Function(BotCommandScopeDefault) _then) =
-      _$BotCommandScopeDefaultCopyWithImpl;
+  factory $BotCommandScopeDefaultCopyWith(
+    BotCommandScopeDefault value,
+    $Res Function(BotCommandScopeDefault) _then,
+  ) = _$BotCommandScopeDefaultCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') BotCommandScopeType type});
@@ -148,23 +297,24 @@ class _$BotCommandScopeDefaultCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(BotCommandScopeDefault(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BotCommandScopeType,
-    ));
+  $Res call({Object? type = null}) {
+    return _then(
+      BotCommandScopeDefault(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as BotCommandScopeType,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class BotCommandScopeAllPrivateChats implements BotCommandScope {
-  const BotCommandScopeAllPrivateChats(
-      {@JsonKey(name: 'type') this.type = BotCommandScopeType.allPrivateChats});
+  const BotCommandScopeAllPrivateChats({
+    @JsonKey(name: 'type') this.type = BotCommandScopeType.allPrivateChats,
+  });
   factory BotCommandScopeAllPrivateChats.fromJson(Map<String, dynamic> json) =>
       _$BotCommandScopeAllPrivateChatsFromJson(json);
 
@@ -179,14 +329,14 @@ class BotCommandScopeAllPrivateChats implements BotCommandScope {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $BotCommandScopeAllPrivateChatsCopyWith<BotCommandScopeAllPrivateChats>
-      get copyWith => _$BotCommandScopeAllPrivateChatsCopyWithImpl<
-          BotCommandScopeAllPrivateChats>(this, _$identity);
+  get copyWith =>
+      _$BotCommandScopeAllPrivateChatsCopyWithImpl<
+        BotCommandScopeAllPrivateChats
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BotCommandScopeAllPrivateChatsToJson(
-      this,
-    );
+    return _$BotCommandScopeAllPrivateChatsToJson(this);
   }
 
   @override
@@ -199,9 +349,9 @@ class BotCommandScopeAllPrivateChats implements BotCommandScope {
 abstract mixin class $BotCommandScopeAllPrivateChatsCopyWith<$Res>
     implements $BotCommandScopeCopyWith<$Res> {
   factory $BotCommandScopeAllPrivateChatsCopyWith(
-          BotCommandScopeAllPrivateChats value,
-          $Res Function(BotCommandScopeAllPrivateChats) _then) =
-      _$BotCommandScopeAllPrivateChatsCopyWithImpl;
+    BotCommandScopeAllPrivateChats value,
+    $Res Function(BotCommandScopeAllPrivateChats) _then,
+  ) = _$BotCommandScopeAllPrivateChatsCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') BotCommandScopeType type});
@@ -219,23 +369,24 @@ class _$BotCommandScopeAllPrivateChatsCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(BotCommandScopeAllPrivateChats(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BotCommandScopeType,
-    ));
+  $Res call({Object? type = null}) {
+    return _then(
+      BotCommandScopeAllPrivateChats(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as BotCommandScopeType,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class BotCommandScopeAllGroupChats implements BotCommandScope {
-  const BotCommandScopeAllGroupChats(
-      {this.type = BotCommandScopeType.allGroupChats});
+  const BotCommandScopeAllGroupChats({
+    this.type = BotCommandScopeType.allGroupChats,
+  });
   factory BotCommandScopeAllGroupChats.fromJson(Map<String, dynamic> json) =>
       _$BotCommandScopeAllGroupChatsFromJson(json);
 
@@ -250,14 +401,15 @@ class BotCommandScopeAllGroupChats implements BotCommandScope {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $BotCommandScopeAllGroupChatsCopyWith<BotCommandScopeAllGroupChats>
-      get copyWith => _$BotCommandScopeAllGroupChatsCopyWithImpl<
-          BotCommandScopeAllGroupChats>(this, _$identity);
+  get copyWith =>
+      _$BotCommandScopeAllGroupChatsCopyWithImpl<BotCommandScopeAllGroupChats>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BotCommandScopeAllGroupChatsToJson(
-      this,
-    );
+    return _$BotCommandScopeAllGroupChatsToJson(this);
   }
 
   @override
@@ -270,9 +422,9 @@ class BotCommandScopeAllGroupChats implements BotCommandScope {
 abstract mixin class $BotCommandScopeAllGroupChatsCopyWith<$Res>
     implements $BotCommandScopeCopyWith<$Res> {
   factory $BotCommandScopeAllGroupChatsCopyWith(
-          BotCommandScopeAllGroupChats value,
-          $Res Function(BotCommandScopeAllGroupChats) _then) =
-      _$BotCommandScopeAllGroupChatsCopyWithImpl;
+    BotCommandScopeAllGroupChats value,
+    $Res Function(BotCommandScopeAllGroupChats) _then,
+  ) = _$BotCommandScopeAllGroupChatsCopyWithImpl;
   @override
   @useResult
   $Res call({BotCommandScopeType type});
@@ -290,27 +442,28 @@ class _$BotCommandScopeAllGroupChatsCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(BotCommandScopeAllGroupChats(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BotCommandScopeType,
-    ));
+  $Res call({Object? type = null}) {
+    return _then(
+      BotCommandScopeAllGroupChats(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as BotCommandScopeType,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class BotCommandScopeAllChatAdministrators implements BotCommandScope {
-  const BotCommandScopeAllChatAdministrators(
-      {@JsonKey(name: 'type')
-      this.type = BotCommandScopeType.allChatAdministrators});
+  const BotCommandScopeAllChatAdministrators({
+    @JsonKey(name: 'type')
+    this.type = BotCommandScopeType.allChatAdministrators,
+  });
   factory BotCommandScopeAllChatAdministrators.fromJson(
-          Map<String, dynamic> json) =>
-      _$BotCommandScopeAllChatAdministratorsFromJson(json);
+    Map<String, dynamic> json,
+  ) => _$BotCommandScopeAllChatAdministratorsFromJson(json);
 
   /// Scope type, always be [BotCommandScopeType.allChatAdministrators]
   @override
@@ -323,15 +476,16 @@ class BotCommandScopeAllChatAdministrators implements BotCommandScope {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $BotCommandScopeAllChatAdministratorsCopyWith<
-          BotCommandScopeAllChatAdministrators>
-      get copyWith => _$BotCommandScopeAllChatAdministratorsCopyWithImpl<
-          BotCommandScopeAllChatAdministrators>(this, _$identity);
+    BotCommandScopeAllChatAdministrators
+  >
+  get copyWith =>
+      _$BotCommandScopeAllChatAdministratorsCopyWithImpl<
+        BotCommandScopeAllChatAdministrators
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BotCommandScopeAllChatAdministratorsToJson(
-      this,
-    );
+    return _$BotCommandScopeAllChatAdministratorsToJson(this);
   }
 
   @override
@@ -344,9 +498,9 @@ class BotCommandScopeAllChatAdministrators implements BotCommandScope {
 abstract mixin class $BotCommandScopeAllChatAdministratorsCopyWith<$Res>
     implements $BotCommandScopeCopyWith<$Res> {
   factory $BotCommandScopeAllChatAdministratorsCopyWith(
-          BotCommandScopeAllChatAdministrators value,
-          $Res Function(BotCommandScopeAllChatAdministrators) _then) =
-      _$BotCommandScopeAllChatAdministratorsCopyWithImpl;
+    BotCommandScopeAllChatAdministrators value,
+    $Res Function(BotCommandScopeAllChatAdministrators) _then,
+  ) = _$BotCommandScopeAllChatAdministratorsCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') BotCommandScopeType type});
@@ -364,24 +518,25 @@ class _$BotCommandScopeAllChatAdministratorsCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(BotCommandScopeAllChatAdministrators(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BotCommandScopeType,
-    ));
+  $Res call({Object? type = null}) {
+    return _then(
+      BotCommandScopeAllChatAdministrators(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as BotCommandScopeType,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class BotCommandScopeChat implements BotCommandScope {
-  const BotCommandScopeChat(
-      {@JsonKey(name: 'type') this.type = BotCommandScopeType.chat,
-      @JsonKey(name: 'chat_id') @IDConverter() required this.chatId});
+  const BotCommandScopeChat({
+    @JsonKey(name: 'type') this.type = BotCommandScopeType.chat,
+    @JsonKey(name: 'chat_id') @IDConverter() required this.chatId,
+  });
   factory BotCommandScopeChat.fromJson(Map<String, dynamic> json) =>
       _$BotCommandScopeChatFromJson(json);
 
@@ -405,9 +560,7 @@ class BotCommandScopeChat implements BotCommandScope {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BotCommandScopeChatToJson(
-      this,
-    );
+    return _$BotCommandScopeChatToJson(this);
   }
 
   @override
@@ -420,13 +573,15 @@ class BotCommandScopeChat implements BotCommandScope {
 abstract mixin class $BotCommandScopeChatCopyWith<$Res>
     implements $BotCommandScopeCopyWith<$Res> {
   factory $BotCommandScopeChatCopyWith(
-          BotCommandScopeChat value, $Res Function(BotCommandScopeChat) _then) =
-      _$BotCommandScopeChatCopyWithImpl;
+    BotCommandScopeChat value,
+    $Res Function(BotCommandScopeChat) _then,
+  ) = _$BotCommandScopeChatCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') BotCommandScopeType type,
-      @JsonKey(name: 'chat_id') @IDConverter() ID chatId});
+  $Res call({
+    @JsonKey(name: 'type') BotCommandScopeType type,
+    @JsonKey(name: 'chat_id') @IDConverter() ID chatId,
+  });
 }
 
 /// @nodoc
@@ -441,33 +596,32 @@ class _$BotCommandScopeChatCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? chatId = null,
-  }) {
-    return _then(BotCommandScopeChat(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BotCommandScopeType,
-      chatId: null == chatId
-          ? _self.chatId
-          : chatId // ignore: cast_nullable_to_non_nullable
-              as ID,
-    ));
+  $Res call({Object? type = null, Object? chatId = null}) {
+    return _then(
+      BotCommandScopeChat(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as BotCommandScopeType,
+        chatId: null == chatId
+            ? _self.chatId
+            : chatId // ignore: cast_nullable_to_non_nullable
+                  as ID,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class BotCommandScopeChatAdministrators implements BotCommandScope {
-  const BotCommandScopeChatAdministrators(
-      {@JsonKey(name: 'type')
-      this.type = BotCommandScopeType.chatAdministrators,
-      @JsonKey(name: 'chat_id') @IDConverter() required this.chatId});
+  const BotCommandScopeChatAdministrators({
+    @JsonKey(name: 'type') this.type = BotCommandScopeType.chatAdministrators,
+    @JsonKey(name: 'chat_id') @IDConverter() required this.chatId,
+  });
   factory BotCommandScopeChatAdministrators.fromJson(
-          Map<String, dynamic> json) =>
-      _$BotCommandScopeChatAdministratorsFromJson(json);
+    Map<String, dynamic> json,
+  ) => _$BotCommandScopeChatAdministratorsFromJson(json);
 
   /// Scope type, always be [BotCommandScopeType.chatAdministrators]
   @override
@@ -485,14 +639,14 @@ class BotCommandScopeChatAdministrators implements BotCommandScope {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $BotCommandScopeChatAdministratorsCopyWith<BotCommandScopeChatAdministrators>
-      get copyWith => _$BotCommandScopeChatAdministratorsCopyWithImpl<
-          BotCommandScopeChatAdministrators>(this, _$identity);
+  get copyWith =>
+      _$BotCommandScopeChatAdministratorsCopyWithImpl<
+        BotCommandScopeChatAdministrators
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BotCommandScopeChatAdministratorsToJson(
-      this,
-    );
+    return _$BotCommandScopeChatAdministratorsToJson(this);
   }
 
   @override
@@ -505,14 +659,15 @@ class BotCommandScopeChatAdministrators implements BotCommandScope {
 abstract mixin class $BotCommandScopeChatAdministratorsCopyWith<$Res>
     implements $BotCommandScopeCopyWith<$Res> {
   factory $BotCommandScopeChatAdministratorsCopyWith(
-          BotCommandScopeChatAdministrators value,
-          $Res Function(BotCommandScopeChatAdministrators) _then) =
-      _$BotCommandScopeChatAdministratorsCopyWithImpl;
+    BotCommandScopeChatAdministrators value,
+    $Res Function(BotCommandScopeChatAdministrators) _then,
+  ) = _$BotCommandScopeChatAdministratorsCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') BotCommandScopeType type,
-      @JsonKey(name: 'chat_id') @IDConverter() ID chatId});
+  $Res call({
+    @JsonKey(name: 'type') BotCommandScopeType type,
+    @JsonKey(name: 'chat_id') @IDConverter() ID chatId,
+  });
 }
 
 /// @nodoc
@@ -527,30 +682,30 @@ class _$BotCommandScopeChatAdministratorsCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? chatId = null,
-  }) {
-    return _then(BotCommandScopeChatAdministrators(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BotCommandScopeType,
-      chatId: null == chatId
-          ? _self.chatId
-          : chatId // ignore: cast_nullable_to_non_nullable
-              as ID,
-    ));
+  $Res call({Object? type = null, Object? chatId = null}) {
+    return _then(
+      BotCommandScopeChatAdministrators(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as BotCommandScopeType,
+        chatId: null == chatId
+            ? _self.chatId
+            : chatId // ignore: cast_nullable_to_non_nullable
+                  as ID,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class BotCommandScopeChatMember implements BotCommandScope {
-  const BotCommandScopeChatMember(
-      {@JsonKey(name: 'type') this.type = BotCommandScopeType.chatMember,
-      @JsonKey(name: 'chat_id') @IDConverter() required this.chatId,
-      @JsonKey(name: 'user_id') required this.userId});
+  const BotCommandScopeChatMember({
+    @JsonKey(name: 'type') this.type = BotCommandScopeType.chatMember,
+    @JsonKey(name: 'chat_id') @IDConverter() required this.chatId,
+    @JsonKey(name: 'user_id') required this.userId,
+  });
   factory BotCommandScopeChatMember.fromJson(Map<String, dynamic> json) =>
       _$BotCommandScopeChatMemberFromJson(json);
 
@@ -575,13 +730,13 @@ class BotCommandScopeChatMember implements BotCommandScope {
   @pragma('vm:prefer-inline')
   $BotCommandScopeChatMemberCopyWith<BotCommandScopeChatMember> get copyWith =>
       _$BotCommandScopeChatMemberCopyWithImpl<BotCommandScopeChatMember>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BotCommandScopeChatMemberToJson(
-      this,
-    );
+    return _$BotCommandScopeChatMemberToJson(this);
   }
 
   @override
@@ -593,15 +748,17 @@ class BotCommandScopeChatMember implements BotCommandScope {
 /// @nodoc
 abstract mixin class $BotCommandScopeChatMemberCopyWith<$Res>
     implements $BotCommandScopeCopyWith<$Res> {
-  factory $BotCommandScopeChatMemberCopyWith(BotCommandScopeChatMember value,
-          $Res Function(BotCommandScopeChatMember) _then) =
-      _$BotCommandScopeChatMemberCopyWithImpl;
+  factory $BotCommandScopeChatMemberCopyWith(
+    BotCommandScopeChatMember value,
+    $Res Function(BotCommandScopeChatMember) _then,
+  ) = _$BotCommandScopeChatMemberCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') BotCommandScopeType type,
-      @JsonKey(name: 'chat_id') @IDConverter() ID chatId,
-      @JsonKey(name: 'user_id') int userId});
+  $Res call({
+    @JsonKey(name: 'type') BotCommandScopeType type,
+    @JsonKey(name: 'chat_id') @IDConverter() ID chatId,
+    @JsonKey(name: 'user_id') int userId,
+  });
 }
 
 /// @nodoc
@@ -621,19 +778,21 @@ class _$BotCommandScopeChatMemberCopyWithImpl<$Res>
     Object? chatId = null,
     Object? userId = null,
   }) {
-    return _then(BotCommandScopeChatMember(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as BotCommandScopeType,
-      chatId: null == chatId
-          ? _self.chatId
-          : chatId // ignore: cast_nullable_to_non_nullable
-              as ID,
-      userId: null == userId
-          ? _self.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      BotCommandScopeChatMember(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as BotCommandScopeType,
+        chatId: null == chatId
+            ? _self.chatId
+            : chatId // ignore: cast_nullable_to_non_nullable
+                  as ID,
+        userId: null == userId
+            ? _self.userId
+            : userId // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }

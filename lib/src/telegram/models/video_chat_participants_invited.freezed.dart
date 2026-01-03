@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -23,9 +22,11 @@ mixin _$VideoChatParticipantsInvited {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $VideoChatParticipantsInvitedCopyWith<VideoChatParticipantsInvited>
-      get copyWith => _$VideoChatParticipantsInvitedCopyWithImpl<
-              VideoChatParticipantsInvited>(
-          this as VideoChatParticipantsInvited, _$identity);
+  get copyWith =>
+      _$VideoChatParticipantsInvitedCopyWithImpl<VideoChatParticipantsInvited>(
+        this as VideoChatParticipantsInvited,
+        _$identity,
+      );
 
   /// Serializes this VideoChatParticipantsInvited to a JSON map.
   Map<String, dynamic> toJson();
@@ -39,9 +40,9 @@ mixin _$VideoChatParticipantsInvited {
 /// @nodoc
 abstract mixin class $VideoChatParticipantsInvitedCopyWith<$Res> {
   factory $VideoChatParticipantsInvitedCopyWith(
-          VideoChatParticipantsInvited value,
-          $Res Function(VideoChatParticipantsInvited) _then) =
-      _$VideoChatParticipantsInvitedCopyWithImpl;
+    VideoChatParticipantsInvited value,
+    $Res Function(VideoChatParticipantsInvited) _then,
+  ) = _$VideoChatParticipantsInvitedCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'users') List<User> users});
 }
@@ -58,24 +59,104 @@ class _$VideoChatParticipantsInvitedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? users = null,
+  $Res call({Object? users = null}) {
+    return _then(
+      _self.copyWith(
+        users: null == users
+            ? _self.users
+            : users // ignore: cast_nullable_to_non_nullable
+                  as List<User>,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [VideoChatParticipantsInvited].
+extension VideoChatParticipantsInvitedPatterns on VideoChatParticipantsInvited {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_VideoChatParticipantsInvited value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      users: null == users
-          ? _self.users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<User>,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _VideoChatParticipantsInvited() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_VideoChatParticipantsInvited value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _VideoChatParticipantsInvited():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_VideoChatParticipantsInvited value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _VideoChatParticipantsInvited() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _VideoChatParticipantsInvited implements VideoChatParticipantsInvited {
-  const _VideoChatParticipantsInvited(
-      {@JsonKey(name: 'users') required final List<User> users})
-      : _users = users;
+  const _VideoChatParticipantsInvited({
+    @JsonKey(name: 'users') required final List<User> users,
+  }) : _users = users;
   factory _VideoChatParticipantsInvited.fromJson(Map<String, dynamic> json) =>
       _$VideoChatParticipantsInvitedFromJson(json);
 
@@ -97,14 +178,14 @@ class _VideoChatParticipantsInvited implements VideoChatParticipantsInvited {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   _$VideoChatParticipantsInvitedCopyWith<_VideoChatParticipantsInvited>
-      get copyWith => __$VideoChatParticipantsInvitedCopyWithImpl<
-          _VideoChatParticipantsInvited>(this, _$identity);
+  get copyWith =>
+      __$VideoChatParticipantsInvitedCopyWithImpl<
+        _VideoChatParticipantsInvited
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$VideoChatParticipantsInvitedToJson(
-      this,
-    );
+    return _$VideoChatParticipantsInvitedToJson(this);
   }
 
   @override
@@ -117,9 +198,9 @@ class _VideoChatParticipantsInvited implements VideoChatParticipantsInvited {
 abstract mixin class _$VideoChatParticipantsInvitedCopyWith<$Res>
     implements $VideoChatParticipantsInvitedCopyWith<$Res> {
   factory _$VideoChatParticipantsInvitedCopyWith(
-          _VideoChatParticipantsInvited value,
-          $Res Function(_VideoChatParticipantsInvited) _then) =
-      __$VideoChatParticipantsInvitedCopyWithImpl;
+    _VideoChatParticipantsInvited value,
+    $Res Function(_VideoChatParticipantsInvited) _then,
+  ) = __$VideoChatParticipantsInvitedCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'users') List<User> users});
@@ -137,14 +218,14 @@ class __$VideoChatParticipantsInvitedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? users = null,
-  }) {
-    return _then(_VideoChatParticipantsInvited(
-      users: null == users
-          ? _self._users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<User>,
-    ));
+  $Res call({Object? users = null}) {
+    return _then(
+      _VideoChatParticipantsInvited(
+        users: null == users
+            ? _self._users
+            : users // ignore: cast_nullable_to_non_nullable
+                  as List<User>,
+      ),
+    );
   }
 }

@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -27,8 +26,12 @@ ChatMember _$ChatMemberFromJson(Map<String, dynamic> json) {
       return ChatMemberBanned.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'status', 'ChatMember',
-          'Invalid union type "${json['status']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'status',
+        'ChatMember',
+        'Invalid union type "${json['status']}"!',
+      );
   }
 }
 
@@ -61,12 +64,14 @@ mixin _$ChatMember {
 /// @nodoc
 abstract mixin class $ChatMemberCopyWith<$Res> {
   factory $ChatMemberCopyWith(
-          ChatMember value, $Res Function(ChatMember) _then) =
-      _$ChatMemberCopyWithImpl;
+    ChatMember value,
+    $Res Function(ChatMember) _then,
+  ) = _$ChatMemberCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'status') ChatMemberStatus status,
-      @JsonKey(name: 'user') User user});
+  $Res call({
+    @JsonKey(name: 'status') ChatMemberStatus status,
+    @JsonKey(name: 'user') User user,
+  });
 
   $UserCopyWith<$Res> get user;
 }
@@ -82,20 +87,19 @@ class _$ChatMemberCopyWithImpl<$Res> implements $ChatMemberCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? status = null,
-    Object? user = null,
-  }) {
-    return _then(_self.copyWith(
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as ChatMemberStatus,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
+  $Res call({Object? status = null, Object? user = null}) {
+    return _then(
+      _self.copyWith(
+        status: null == status
+            ? _self.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as ChatMemberStatus,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+      ),
+    );
   }
 
   /// Create a copy of ChatMember
@@ -109,14 +113,138 @@ class _$ChatMemberCopyWithImpl<$Res> implements $ChatMemberCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [ChatMember].
+extension ChatMemberPatterns on ChatMember {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChatMemberOwner value)? creator,
+    TResult Function(ChatMemberAdministrator value)? administrator,
+    TResult Function(ChatMemberMember value)? member,
+    TResult Function(ChatMemberRestricted value)? restricted,
+    TResult Function(ChatMemberLeft value)? left,
+    TResult Function(ChatMemberBanned value)? kicked,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ChatMemberOwner() when creator != null:
+        return creator(_that);
+      case ChatMemberAdministrator() when administrator != null:
+        return administrator(_that);
+      case ChatMemberMember() when member != null:
+        return member(_that);
+      case ChatMemberRestricted() when restricted != null:
+        return restricted(_that);
+      case ChatMemberLeft() when left != null:
+        return left(_that);
+      case ChatMemberBanned() when kicked != null:
+        return kicked(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChatMemberOwner value) creator,
+    required TResult Function(ChatMemberAdministrator value) administrator,
+    required TResult Function(ChatMemberMember value) member,
+    required TResult Function(ChatMemberRestricted value) restricted,
+    required TResult Function(ChatMemberLeft value) left,
+    required TResult Function(ChatMemberBanned value) kicked,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ChatMemberOwner():
+        return creator(_that);
+      case ChatMemberAdministrator():
+        return administrator(_that);
+      case ChatMemberMember():
+        return member(_that);
+      case ChatMemberRestricted():
+        return restricted(_that);
+      case ChatMemberLeft():
+        return left(_that);
+      case ChatMemberBanned():
+        return kicked(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ChatMemberOwner value)? creator,
+    TResult? Function(ChatMemberAdministrator value)? administrator,
+    TResult? Function(ChatMemberMember value)? member,
+    TResult? Function(ChatMemberRestricted value)? restricted,
+    TResult? Function(ChatMemberLeft value)? left,
+    TResult? Function(ChatMemberBanned value)? kicked,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ChatMemberOwner() when creator != null:
+        return creator(_that);
+      case ChatMemberAdministrator() when administrator != null:
+        return administrator(_that);
+      case ChatMemberMember() when member != null:
+        return member(_that);
+      case ChatMemberRestricted() when restricted != null:
+        return restricted(_that);
+      case ChatMemberLeft() when left != null:
+        return left(_that);
+      case ChatMemberBanned() when kicked != null:
+        return kicked(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class ChatMemberOwner implements ChatMember {
-  const ChatMemberOwner(
-      {@JsonKey(name: 'status') this.status = ChatMemberStatus.creator,
-      @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'is_anonymous') required this.isAnonymous,
-      @JsonKey(name: 'custom_title') this.customTitle});
+  const ChatMemberOwner({
+    @JsonKey(name: 'status') this.status = ChatMemberStatus.creator,
+    @JsonKey(name: 'user') required this.user,
+    @JsonKey(name: 'is_anonymous') required this.isAnonymous,
+    @JsonKey(name: 'custom_title') this.customTitle,
+  });
   factory ChatMemberOwner.fromJson(Map<String, dynamic> json) =>
       _$ChatMemberOwnerFromJson(json);
 
@@ -148,9 +276,7 @@ class ChatMemberOwner implements ChatMember {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatMemberOwnerToJson(
-      this,
-    );
+    return _$ChatMemberOwnerToJson(this);
   }
 
   @override
@@ -163,15 +289,17 @@ class ChatMemberOwner implements ChatMember {
 abstract mixin class $ChatMemberOwnerCopyWith<$Res>
     implements $ChatMemberCopyWith<$Res> {
   factory $ChatMemberOwnerCopyWith(
-          ChatMemberOwner value, $Res Function(ChatMemberOwner) _then) =
-      _$ChatMemberOwnerCopyWithImpl;
+    ChatMemberOwner value,
+    $Res Function(ChatMemberOwner) _then,
+  ) = _$ChatMemberOwnerCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'status') ChatMemberStatus status,
-      @JsonKey(name: 'user') User user,
-      @JsonKey(name: 'is_anonymous') bool isAnonymous,
-      @JsonKey(name: 'custom_title') String? customTitle});
+  $Res call({
+    @JsonKey(name: 'status') ChatMemberStatus status,
+    @JsonKey(name: 'user') User user,
+    @JsonKey(name: 'is_anonymous') bool isAnonymous,
+    @JsonKey(name: 'custom_title') String? customTitle,
+  });
 
   @override
   $UserCopyWith<$Res> get user;
@@ -195,24 +323,26 @@ class _$ChatMemberOwnerCopyWithImpl<$Res>
     Object? isAnonymous = null,
     Object? customTitle = freezed,
   }) {
-    return _then(ChatMemberOwner(
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as ChatMemberStatus,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      isAnonymous: null == isAnonymous
-          ? _self.isAnonymous
-          : isAnonymous // ignore: cast_nullable_to_non_nullable
-              as bool,
-      customTitle: freezed == customTitle
-          ? _self.customTitle
-          : customTitle // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      ChatMemberOwner(
+        status: null == status
+            ? _self.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as ChatMemberStatus,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+        isAnonymous: null == isAnonymous
+            ? _self.isAnonymous
+            : isAnonymous // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        customTitle: freezed == customTitle
+            ? _self.customTitle
+            : customTitle // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 
   /// Create a copy of ChatMember
@@ -229,29 +359,28 @@ class _$ChatMemberOwnerCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class ChatMemberAdministrator implements ChatMember {
-  const ChatMemberAdministrator(
-      {@JsonKey(name: 'status') this.status = ChatMemberStatus.administrator,
-      @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'can_be_edited') required this.canBeEdited,
-      @JsonKey(name: 'is_anonymous') required this.isAnonymous,
-      @JsonKey(name: 'can_manage_chat') required this.canManageChat,
-      @JsonKey(name: 'can_delete_messages') required this.canDeleteMessages,
-      @JsonKey(name: 'can_manage_video_chats')
-      required this.canManageVideoChats,
-      @JsonKey(name: 'can_restrict_members') required this.canRestrictMembers,
-      @JsonKey(name: 'can_promote_members') required this.canPromoteMembers,
-      @JsonKey(name: 'can_change_info') required this.canChangeInfo,
-      @JsonKey(name: 'can_invite_users') required this.canInviteUsers,
-      @JsonKey(name: 'can_post_stories') required this.canPostStories,
-      @JsonKey(name: 'can_edit_stories') required this.canEditStories,
-      @JsonKey(name: 'can_delete_stories') required this.canDeleteStories,
-      @JsonKey(name: 'can_post_messages') this.canPostMessages,
-      @JsonKey(name: 'can_edit_messages') this.canEditMessages,
-      @JsonKey(name: 'can_pin_messages') this.canPinMessages,
-      @JsonKey(name: 'can_manage_topics') this.canManageTopics,
-      @JsonKey(name: 'custom_title') this.customTitle,
-      @JsonKey(name: 'can_manage_direct_messages')
-      this.canManageDirectMessages});
+  const ChatMemberAdministrator({
+    @JsonKey(name: 'status') this.status = ChatMemberStatus.administrator,
+    @JsonKey(name: 'user') required this.user,
+    @JsonKey(name: 'can_be_edited') required this.canBeEdited,
+    @JsonKey(name: 'is_anonymous') required this.isAnonymous,
+    @JsonKey(name: 'can_manage_chat') required this.canManageChat,
+    @JsonKey(name: 'can_delete_messages') required this.canDeleteMessages,
+    @JsonKey(name: 'can_manage_video_chats') required this.canManageVideoChats,
+    @JsonKey(name: 'can_restrict_members') required this.canRestrictMembers,
+    @JsonKey(name: 'can_promote_members') required this.canPromoteMembers,
+    @JsonKey(name: 'can_change_info') required this.canChangeInfo,
+    @JsonKey(name: 'can_invite_users') required this.canInviteUsers,
+    @JsonKey(name: 'can_post_stories') required this.canPostStories,
+    @JsonKey(name: 'can_edit_stories') required this.canEditStories,
+    @JsonKey(name: 'can_delete_stories') required this.canDeleteStories,
+    @JsonKey(name: 'can_post_messages') this.canPostMessages,
+    @JsonKey(name: 'can_edit_messages') this.canEditMessages,
+    @JsonKey(name: 'can_pin_messages') this.canPinMessages,
+    @JsonKey(name: 'can_manage_topics') this.canManageTopics,
+    @JsonKey(name: 'custom_title') this.customTitle,
+    @JsonKey(name: 'can_manage_direct_messages') this.canManageDirectMessages,
+  });
   factory ChatMemberAdministrator.fromJson(Map<String, dynamic> json) =>
       _$ChatMemberAdministratorFromJson(json);
 
@@ -353,13 +482,13 @@ class ChatMemberAdministrator implements ChatMember {
   @pragma('vm:prefer-inline')
   $ChatMemberAdministratorCopyWith<ChatMemberAdministrator> get copyWith =>
       _$ChatMemberAdministratorCopyWithImpl<ChatMemberAdministrator>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatMemberAdministratorToJson(
-      this,
-    );
+    return _$ChatMemberAdministratorToJson(this);
   }
 
   @override
@@ -371,33 +500,34 @@ class ChatMemberAdministrator implements ChatMember {
 /// @nodoc
 abstract mixin class $ChatMemberAdministratorCopyWith<$Res>
     implements $ChatMemberCopyWith<$Res> {
-  factory $ChatMemberAdministratorCopyWith(ChatMemberAdministrator value,
-          $Res Function(ChatMemberAdministrator) _then) =
-      _$ChatMemberAdministratorCopyWithImpl;
+  factory $ChatMemberAdministratorCopyWith(
+    ChatMemberAdministrator value,
+    $Res Function(ChatMemberAdministrator) _then,
+  ) = _$ChatMemberAdministratorCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'status') ChatMemberStatus status,
-      @JsonKey(name: 'user') User user,
-      @JsonKey(name: 'can_be_edited') bool canBeEdited,
-      @JsonKey(name: 'is_anonymous') bool isAnonymous,
-      @JsonKey(name: 'can_manage_chat') bool canManageChat,
-      @JsonKey(name: 'can_delete_messages') bool canDeleteMessages,
-      @JsonKey(name: 'can_manage_video_chats') bool canManageVideoChats,
-      @JsonKey(name: 'can_restrict_members') bool canRestrictMembers,
-      @JsonKey(name: 'can_promote_members') bool canPromoteMembers,
-      @JsonKey(name: 'can_change_info') bool canChangeInfo,
-      @JsonKey(name: 'can_invite_users') bool canInviteUsers,
-      @JsonKey(name: 'can_post_stories') bool canPostStories,
-      @JsonKey(name: 'can_edit_stories') bool canEditStories,
-      @JsonKey(name: 'can_delete_stories') bool canDeleteStories,
-      @JsonKey(name: 'can_post_messages') bool? canPostMessages,
-      @JsonKey(name: 'can_edit_messages') bool? canEditMessages,
-      @JsonKey(name: 'can_pin_messages') bool? canPinMessages,
-      @JsonKey(name: 'can_manage_topics') bool? canManageTopics,
-      @JsonKey(name: 'custom_title') String? customTitle,
-      @JsonKey(name: 'can_manage_direct_messages')
-      bool? canManageDirectMessages});
+  $Res call({
+    @JsonKey(name: 'status') ChatMemberStatus status,
+    @JsonKey(name: 'user') User user,
+    @JsonKey(name: 'can_be_edited') bool canBeEdited,
+    @JsonKey(name: 'is_anonymous') bool isAnonymous,
+    @JsonKey(name: 'can_manage_chat') bool canManageChat,
+    @JsonKey(name: 'can_delete_messages') bool canDeleteMessages,
+    @JsonKey(name: 'can_manage_video_chats') bool canManageVideoChats,
+    @JsonKey(name: 'can_restrict_members') bool canRestrictMembers,
+    @JsonKey(name: 'can_promote_members') bool canPromoteMembers,
+    @JsonKey(name: 'can_change_info') bool canChangeInfo,
+    @JsonKey(name: 'can_invite_users') bool canInviteUsers,
+    @JsonKey(name: 'can_post_stories') bool canPostStories,
+    @JsonKey(name: 'can_edit_stories') bool canEditStories,
+    @JsonKey(name: 'can_delete_stories') bool canDeleteStories,
+    @JsonKey(name: 'can_post_messages') bool? canPostMessages,
+    @JsonKey(name: 'can_edit_messages') bool? canEditMessages,
+    @JsonKey(name: 'can_pin_messages') bool? canPinMessages,
+    @JsonKey(name: 'can_manage_topics') bool? canManageTopics,
+    @JsonKey(name: 'custom_title') String? customTitle,
+    @JsonKey(name: 'can_manage_direct_messages') bool? canManageDirectMessages,
+  });
 
   @override
   $UserCopyWith<$Res> get user;
@@ -437,88 +567,90 @@ class _$ChatMemberAdministratorCopyWithImpl<$Res>
     Object? customTitle = freezed,
     Object? canManageDirectMessages = freezed,
   }) {
-    return _then(ChatMemberAdministrator(
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as ChatMemberStatus,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      canBeEdited: null == canBeEdited
-          ? _self.canBeEdited
-          : canBeEdited // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isAnonymous: null == isAnonymous
-          ? _self.isAnonymous
-          : isAnonymous // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canManageChat: null == canManageChat
-          ? _self.canManageChat
-          : canManageChat // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canDeleteMessages: null == canDeleteMessages
-          ? _self.canDeleteMessages
-          : canDeleteMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canManageVideoChats: null == canManageVideoChats
-          ? _self.canManageVideoChats
-          : canManageVideoChats // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canRestrictMembers: null == canRestrictMembers
-          ? _self.canRestrictMembers
-          : canRestrictMembers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canPromoteMembers: null == canPromoteMembers
-          ? _self.canPromoteMembers
-          : canPromoteMembers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canChangeInfo: null == canChangeInfo
-          ? _self.canChangeInfo
-          : canChangeInfo // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canInviteUsers: null == canInviteUsers
-          ? _self.canInviteUsers
-          : canInviteUsers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canPostStories: null == canPostStories
-          ? _self.canPostStories
-          : canPostStories // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canEditStories: null == canEditStories
-          ? _self.canEditStories
-          : canEditStories // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canDeleteStories: null == canDeleteStories
-          ? _self.canDeleteStories
-          : canDeleteStories // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canPostMessages: freezed == canPostMessages
-          ? _self.canPostMessages
-          : canPostMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditMessages: freezed == canEditMessages
-          ? _self.canEditMessages
-          : canEditMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canPinMessages: freezed == canPinMessages
-          ? _self.canPinMessages
-          : canPinMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canManageTopics: freezed == canManageTopics
-          ? _self.canManageTopics
-          : canManageTopics // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      customTitle: freezed == customTitle
-          ? _self.customTitle
-          : customTitle // ignore: cast_nullable_to_non_nullable
-              as String?,
-      canManageDirectMessages: freezed == canManageDirectMessages
-          ? _self.canManageDirectMessages
-          : canManageDirectMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      ChatMemberAdministrator(
+        status: null == status
+            ? _self.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as ChatMemberStatus,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+        canBeEdited: null == canBeEdited
+            ? _self.canBeEdited
+            : canBeEdited // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isAnonymous: null == isAnonymous
+            ? _self.isAnonymous
+            : isAnonymous // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canManageChat: null == canManageChat
+            ? _self.canManageChat
+            : canManageChat // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canDeleteMessages: null == canDeleteMessages
+            ? _self.canDeleteMessages
+            : canDeleteMessages // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canManageVideoChats: null == canManageVideoChats
+            ? _self.canManageVideoChats
+            : canManageVideoChats // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canRestrictMembers: null == canRestrictMembers
+            ? _self.canRestrictMembers
+            : canRestrictMembers // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canPromoteMembers: null == canPromoteMembers
+            ? _self.canPromoteMembers
+            : canPromoteMembers // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canChangeInfo: null == canChangeInfo
+            ? _self.canChangeInfo
+            : canChangeInfo // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canInviteUsers: null == canInviteUsers
+            ? _self.canInviteUsers
+            : canInviteUsers // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canPostStories: null == canPostStories
+            ? _self.canPostStories
+            : canPostStories // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canEditStories: null == canEditStories
+            ? _self.canEditStories
+            : canEditStories // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canDeleteStories: null == canDeleteStories
+            ? _self.canDeleteStories
+            : canDeleteStories // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canPostMessages: freezed == canPostMessages
+            ? _self.canPostMessages
+            : canPostMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditMessages: freezed == canEditMessages
+            ? _self.canEditMessages
+            : canEditMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canPinMessages: freezed == canPinMessages
+            ? _self.canPinMessages
+            : canPinMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canManageTopics: freezed == canManageTopics
+            ? _self.canManageTopics
+            : canManageTopics // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        customTitle: freezed == customTitle
+            ? _self.customTitle
+            : customTitle // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        canManageDirectMessages: freezed == canManageDirectMessages
+            ? _self.canManageDirectMessages
+            : canManageDirectMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of ChatMember
@@ -535,10 +667,11 @@ class _$ChatMemberAdministratorCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class ChatMemberMember implements ChatMember {
-  const ChatMemberMember(
-      {@JsonKey(name: 'status') this.status = ChatMemberStatus.member,
-      @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'until_date') this.untilDate});
+  const ChatMemberMember({
+    @JsonKey(name: 'status') this.status = ChatMemberStatus.member,
+    @JsonKey(name: 'user') required this.user,
+    @JsonKey(name: 'until_date') this.untilDate,
+  });
   factory ChatMemberMember.fromJson(Map<String, dynamic> json) =>
       _$ChatMemberMemberFromJson(json);
 
@@ -566,9 +699,7 @@ class ChatMemberMember implements ChatMember {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatMemberMemberToJson(
-      this,
-    );
+    return _$ChatMemberMemberToJson(this);
   }
 
   @override
@@ -581,14 +712,16 @@ class ChatMemberMember implements ChatMember {
 abstract mixin class $ChatMemberMemberCopyWith<$Res>
     implements $ChatMemberCopyWith<$Res> {
   factory $ChatMemberMemberCopyWith(
-          ChatMemberMember value, $Res Function(ChatMemberMember) _then) =
-      _$ChatMemberMemberCopyWithImpl;
+    ChatMemberMember value,
+    $Res Function(ChatMemberMember) _then,
+  ) = _$ChatMemberMemberCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'status') ChatMemberStatus status,
-      @JsonKey(name: 'user') User user,
-      @JsonKey(name: 'until_date') int? untilDate});
+  $Res call({
+    @JsonKey(name: 'status') ChatMemberStatus status,
+    @JsonKey(name: 'user') User user,
+    @JsonKey(name: 'until_date') int? untilDate,
+  });
 
   @override
   $UserCopyWith<$Res> get user;
@@ -611,20 +744,22 @@ class _$ChatMemberMemberCopyWithImpl<$Res>
     Object? user = null,
     Object? untilDate = freezed,
   }) {
-    return _then(ChatMemberMember(
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as ChatMemberStatus,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      untilDate: freezed == untilDate
-          ? _self.untilDate
-          : untilDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      ChatMemberMember(
+        status: null == status
+            ? _self.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as ChatMemberStatus,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+        untilDate: freezed == untilDate
+            ? _self.untilDate
+            : untilDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of ChatMember
@@ -641,27 +776,28 @@ class _$ChatMemberMemberCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class ChatMemberRestricted implements ChatMember {
-  const ChatMemberRestricted(
-      {@JsonKey(name: 'status') this.status = ChatMemberStatus.restricted,
-      @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'is_member') required this.isMember,
-      @JsonKey(name: 'can_send_messages') required this.canSendMessages,
-      @JsonKey(name: 'can_send_audios') required this.canSendAudios,
-      @JsonKey(name: 'can_send_documents') required this.canSendDocuments,
-      @JsonKey(name: 'can_send_photos') required this.canSendPhotos,
-      @JsonKey(name: 'can_send_videos') required this.canSendVideos,
-      @JsonKey(name: 'can_send_video_notes') required this.canSendVideoNotes,
-      @JsonKey(name: 'can_send_voice_notes') required this.canSendVoiceNotes,
-      @JsonKey(name: 'can_send_polls') required this.canSendPolls,
-      @JsonKey(name: 'can_send_other_messages')
-      required this.canSendOtherMessages,
-      @JsonKey(name: 'can_add_web_page_previews')
-      required this.canAddWebPagePreviews,
-      @JsonKey(name: 'can_change_info') required this.canChangeInfo,
-      @JsonKey(name: 'can_invite_users') required this.canInviteUsers,
-      @JsonKey(name: 'can_pin_messages') required this.canPinMessages,
-      @JsonKey(name: 'can_manage_topics') required this.canManageTopics,
-      @JsonKey(name: 'until_date') required this.untilDate});
+  const ChatMemberRestricted({
+    @JsonKey(name: 'status') this.status = ChatMemberStatus.restricted,
+    @JsonKey(name: 'user') required this.user,
+    @JsonKey(name: 'is_member') required this.isMember,
+    @JsonKey(name: 'can_send_messages') required this.canSendMessages,
+    @JsonKey(name: 'can_send_audios') required this.canSendAudios,
+    @JsonKey(name: 'can_send_documents') required this.canSendDocuments,
+    @JsonKey(name: 'can_send_photos') required this.canSendPhotos,
+    @JsonKey(name: 'can_send_videos') required this.canSendVideos,
+    @JsonKey(name: 'can_send_video_notes') required this.canSendVideoNotes,
+    @JsonKey(name: 'can_send_voice_notes') required this.canSendVoiceNotes,
+    @JsonKey(name: 'can_send_polls') required this.canSendPolls,
+    @JsonKey(name: 'can_send_other_messages')
+    required this.canSendOtherMessages,
+    @JsonKey(name: 'can_add_web_page_previews')
+    required this.canAddWebPagePreviews,
+    @JsonKey(name: 'can_change_info') required this.canChangeInfo,
+    @JsonKey(name: 'can_invite_users') required this.canInviteUsers,
+    @JsonKey(name: 'can_pin_messages') required this.canPinMessages,
+    @JsonKey(name: 'can_manage_topics') required this.canManageTopics,
+    @JsonKey(name: 'until_date') required this.untilDate,
+  });
   factory ChatMemberRestricted.fromJson(Map<String, dynamic> json) =>
       _$ChatMemberRestrictedFromJson(json);
 
@@ -750,13 +886,13 @@ class ChatMemberRestricted implements ChatMember {
   @pragma('vm:prefer-inline')
   $ChatMemberRestrictedCopyWith<ChatMemberRestricted> get copyWith =>
       _$ChatMemberRestrictedCopyWithImpl<ChatMemberRestricted>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatMemberRestrictedToJson(
-      this,
-    );
+    return _$ChatMemberRestrictedToJson(this);
   }
 
   @override
@@ -768,30 +904,32 @@ class ChatMemberRestricted implements ChatMember {
 /// @nodoc
 abstract mixin class $ChatMemberRestrictedCopyWith<$Res>
     implements $ChatMemberCopyWith<$Res> {
-  factory $ChatMemberRestrictedCopyWith(ChatMemberRestricted value,
-          $Res Function(ChatMemberRestricted) _then) =
-      _$ChatMemberRestrictedCopyWithImpl;
+  factory $ChatMemberRestrictedCopyWith(
+    ChatMemberRestricted value,
+    $Res Function(ChatMemberRestricted) _then,
+  ) = _$ChatMemberRestrictedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'status') ChatMemberStatus status,
-      @JsonKey(name: 'user') User user,
-      @JsonKey(name: 'is_member') bool isMember,
-      @JsonKey(name: 'can_send_messages') bool canSendMessages,
-      @JsonKey(name: 'can_send_audios') bool canSendAudios,
-      @JsonKey(name: 'can_send_documents') bool canSendDocuments,
-      @JsonKey(name: 'can_send_photos') bool canSendPhotos,
-      @JsonKey(name: 'can_send_videos') bool canSendVideos,
-      @JsonKey(name: 'can_send_video_notes') bool canSendVideoNotes,
-      @JsonKey(name: 'can_send_voice_notes') bool canSendVoiceNotes,
-      @JsonKey(name: 'can_send_polls') bool canSendPolls,
-      @JsonKey(name: 'can_send_other_messages') bool canSendOtherMessages,
-      @JsonKey(name: 'can_add_web_page_previews') bool canAddWebPagePreviews,
-      @JsonKey(name: 'can_change_info') bool canChangeInfo,
-      @JsonKey(name: 'can_invite_users') bool canInviteUsers,
-      @JsonKey(name: 'can_pin_messages') bool canPinMessages,
-      @JsonKey(name: 'can_manage_topics') bool canManageTopics,
-      @JsonKey(name: 'until_date') int untilDate});
+  $Res call({
+    @JsonKey(name: 'status') ChatMemberStatus status,
+    @JsonKey(name: 'user') User user,
+    @JsonKey(name: 'is_member') bool isMember,
+    @JsonKey(name: 'can_send_messages') bool canSendMessages,
+    @JsonKey(name: 'can_send_audios') bool canSendAudios,
+    @JsonKey(name: 'can_send_documents') bool canSendDocuments,
+    @JsonKey(name: 'can_send_photos') bool canSendPhotos,
+    @JsonKey(name: 'can_send_videos') bool canSendVideos,
+    @JsonKey(name: 'can_send_video_notes') bool canSendVideoNotes,
+    @JsonKey(name: 'can_send_voice_notes') bool canSendVoiceNotes,
+    @JsonKey(name: 'can_send_polls') bool canSendPolls,
+    @JsonKey(name: 'can_send_other_messages') bool canSendOtherMessages,
+    @JsonKey(name: 'can_add_web_page_previews') bool canAddWebPagePreviews,
+    @JsonKey(name: 'can_change_info') bool canChangeInfo,
+    @JsonKey(name: 'can_invite_users') bool canInviteUsers,
+    @JsonKey(name: 'can_pin_messages') bool canPinMessages,
+    @JsonKey(name: 'can_manage_topics') bool canManageTopics,
+    @JsonKey(name: 'until_date') int untilDate,
+  });
 
   @override
   $UserCopyWith<$Res> get user;
@@ -829,80 +967,82 @@ class _$ChatMemberRestrictedCopyWithImpl<$Res>
     Object? canManageTopics = null,
     Object? untilDate = null,
   }) {
-    return _then(ChatMemberRestricted(
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as ChatMemberStatus,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      isMember: null == isMember
-          ? _self.isMember
-          : isMember // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canSendMessages: null == canSendMessages
-          ? _self.canSendMessages
-          : canSendMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canSendAudios: null == canSendAudios
-          ? _self.canSendAudios
-          : canSendAudios // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canSendDocuments: null == canSendDocuments
-          ? _self.canSendDocuments
-          : canSendDocuments // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canSendPhotos: null == canSendPhotos
-          ? _self.canSendPhotos
-          : canSendPhotos // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canSendVideos: null == canSendVideos
-          ? _self.canSendVideos
-          : canSendVideos // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canSendVideoNotes: null == canSendVideoNotes
-          ? _self.canSendVideoNotes
-          : canSendVideoNotes // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canSendVoiceNotes: null == canSendVoiceNotes
-          ? _self.canSendVoiceNotes
-          : canSendVoiceNotes // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canSendPolls: null == canSendPolls
-          ? _self.canSendPolls
-          : canSendPolls // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canSendOtherMessages: null == canSendOtherMessages
-          ? _self.canSendOtherMessages
-          : canSendOtherMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canAddWebPagePreviews: null == canAddWebPagePreviews
-          ? _self.canAddWebPagePreviews
-          : canAddWebPagePreviews // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canChangeInfo: null == canChangeInfo
-          ? _self.canChangeInfo
-          : canChangeInfo // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canInviteUsers: null == canInviteUsers
-          ? _self.canInviteUsers
-          : canInviteUsers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canPinMessages: null == canPinMessages
-          ? _self.canPinMessages
-          : canPinMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canManageTopics: null == canManageTopics
-          ? _self.canManageTopics
-          : canManageTopics // ignore: cast_nullable_to_non_nullable
-              as bool,
-      untilDate: null == untilDate
-          ? _self.untilDate
-          : untilDate // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      ChatMemberRestricted(
+        status: null == status
+            ? _self.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as ChatMemberStatus,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+        isMember: null == isMember
+            ? _self.isMember
+            : isMember // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canSendMessages: null == canSendMessages
+            ? _self.canSendMessages
+            : canSendMessages // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canSendAudios: null == canSendAudios
+            ? _self.canSendAudios
+            : canSendAudios // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canSendDocuments: null == canSendDocuments
+            ? _self.canSendDocuments
+            : canSendDocuments // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canSendPhotos: null == canSendPhotos
+            ? _self.canSendPhotos
+            : canSendPhotos // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canSendVideos: null == canSendVideos
+            ? _self.canSendVideos
+            : canSendVideos // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canSendVideoNotes: null == canSendVideoNotes
+            ? _self.canSendVideoNotes
+            : canSendVideoNotes // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canSendVoiceNotes: null == canSendVoiceNotes
+            ? _self.canSendVoiceNotes
+            : canSendVoiceNotes // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canSendPolls: null == canSendPolls
+            ? _self.canSendPolls
+            : canSendPolls // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canSendOtherMessages: null == canSendOtherMessages
+            ? _self.canSendOtherMessages
+            : canSendOtherMessages // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canAddWebPagePreviews: null == canAddWebPagePreviews
+            ? _self.canAddWebPagePreviews
+            : canAddWebPagePreviews // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canChangeInfo: null == canChangeInfo
+            ? _self.canChangeInfo
+            : canChangeInfo // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canInviteUsers: null == canInviteUsers
+            ? _self.canInviteUsers
+            : canInviteUsers // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canPinMessages: null == canPinMessages
+            ? _self.canPinMessages
+            : canPinMessages // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canManageTopics: null == canManageTopics
+            ? _self.canManageTopics
+            : canManageTopics // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        untilDate: null == untilDate
+            ? _self.untilDate
+            : untilDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of ChatMember
@@ -919,9 +1059,10 @@ class _$ChatMemberRestrictedCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class ChatMemberLeft implements ChatMember {
-  const ChatMemberLeft(
-      {@JsonKey(name: 'status') this.status = ChatMemberStatus.left,
-      @JsonKey(name: 'user') required this.user});
+  const ChatMemberLeft({
+    @JsonKey(name: 'status') this.status = ChatMemberStatus.left,
+    @JsonKey(name: 'user') required this.user,
+  });
   factory ChatMemberLeft.fromJson(Map<String, dynamic> json) =>
       _$ChatMemberLeftFromJson(json);
 
@@ -945,9 +1086,7 @@ class ChatMemberLeft implements ChatMember {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatMemberLeftToJson(
-      this,
-    );
+    return _$ChatMemberLeftToJson(this);
   }
 
   @override
@@ -960,13 +1099,15 @@ class ChatMemberLeft implements ChatMember {
 abstract mixin class $ChatMemberLeftCopyWith<$Res>
     implements $ChatMemberCopyWith<$Res> {
   factory $ChatMemberLeftCopyWith(
-          ChatMemberLeft value, $Res Function(ChatMemberLeft) _then) =
-      _$ChatMemberLeftCopyWithImpl;
+    ChatMemberLeft value,
+    $Res Function(ChatMemberLeft) _then,
+  ) = _$ChatMemberLeftCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'status') ChatMemberStatus status,
-      @JsonKey(name: 'user') User user});
+  $Res call({
+    @JsonKey(name: 'status') ChatMemberStatus status,
+    @JsonKey(name: 'user') User user,
+  });
 
   @override
   $UserCopyWith<$Res> get user;
@@ -984,20 +1125,19 @@ class _$ChatMemberLeftCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? status = null,
-    Object? user = null,
-  }) {
-    return _then(ChatMemberLeft(
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as ChatMemberStatus,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
+  $Res call({Object? status = null, Object? user = null}) {
+    return _then(
+      ChatMemberLeft(
+        status: null == status
+            ? _self.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as ChatMemberStatus,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+      ),
+    );
   }
 
   /// Create a copy of ChatMember
@@ -1014,10 +1154,11 @@ class _$ChatMemberLeftCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class ChatMemberBanned implements ChatMember {
-  const ChatMemberBanned(
-      {@JsonKey(name: 'status') this.status = ChatMemberStatus.kicked,
-      @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'until_date') required this.untilDate});
+  const ChatMemberBanned({
+    @JsonKey(name: 'status') this.status = ChatMemberStatus.kicked,
+    @JsonKey(name: 'user') required this.user,
+    @JsonKey(name: 'until_date') required this.untilDate,
+  });
   factory ChatMemberBanned.fromJson(Map<String, dynamic> json) =>
       _$ChatMemberBannedFromJson(json);
 
@@ -1046,9 +1187,7 @@ class ChatMemberBanned implements ChatMember {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatMemberBannedToJson(
-      this,
-    );
+    return _$ChatMemberBannedToJson(this);
   }
 
   @override
@@ -1061,14 +1200,16 @@ class ChatMemberBanned implements ChatMember {
 abstract mixin class $ChatMemberBannedCopyWith<$Res>
     implements $ChatMemberCopyWith<$Res> {
   factory $ChatMemberBannedCopyWith(
-          ChatMemberBanned value, $Res Function(ChatMemberBanned) _then) =
-      _$ChatMemberBannedCopyWithImpl;
+    ChatMemberBanned value,
+    $Res Function(ChatMemberBanned) _then,
+  ) = _$ChatMemberBannedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'status') ChatMemberStatus status,
-      @JsonKey(name: 'user') User user,
-      @JsonKey(name: 'until_date') int untilDate});
+  $Res call({
+    @JsonKey(name: 'status') ChatMemberStatus status,
+    @JsonKey(name: 'user') User user,
+    @JsonKey(name: 'until_date') int untilDate,
+  });
 
   @override
   $UserCopyWith<$Res> get user;
@@ -1091,20 +1232,22 @@ class _$ChatMemberBannedCopyWithImpl<$Res>
     Object? user = null,
     Object? untilDate = null,
   }) {
-    return _then(ChatMemberBanned(
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as ChatMemberStatus,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      untilDate: null == untilDate
-          ? _self.untilDate
-          : untilDate // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      ChatMemberBanned(
+        status: null == status
+            ? _self.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as ChatMemberStatus,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+        untilDate: null == untilDate
+            ? _self.untilDate
+            : untilDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of ChatMember

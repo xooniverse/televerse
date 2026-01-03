@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -45,7 +44,9 @@ mixin _$AffiliateInfo {
   @pragma('vm:prefer-inline')
   $AffiliateInfoCopyWith<AffiliateInfo> get copyWith =>
       _$AffiliateInfoCopyWithImpl<AffiliateInfo>(
-          this as AffiliateInfo, _$identity);
+        this as AffiliateInfo,
+        _$identity,
+      );
 
   /// Serializes this AffiliateInfo to a JSON map.
   Map<String, dynamic> toJson();
@@ -59,15 +60,17 @@ mixin _$AffiliateInfo {
 /// @nodoc
 abstract mixin class $AffiliateInfoCopyWith<$Res> {
   factory $AffiliateInfoCopyWith(
-          AffiliateInfo value, $Res Function(AffiliateInfo) _then) =
-      _$AffiliateInfoCopyWithImpl;
+    AffiliateInfo value,
+    $Res Function(AffiliateInfo) _then,
+  ) = _$AffiliateInfoCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'affiliate_user') User? affiliateUser,
-      @JsonKey(name: 'affiliate_chat') Chat? affiliateChat,
-      @JsonKey(name: 'commission_per_mille') int commissionPerMille,
-      @JsonKey(name: 'amount') int amount,
-      @JsonKey(name: 'nanostar_amount') int? nanostarAmount});
+  $Res call({
+    @JsonKey(name: 'affiliate_user') User? affiliateUser,
+    @JsonKey(name: 'affiliate_chat') Chat? affiliateChat,
+    @JsonKey(name: 'commission_per_mille') int commissionPerMille,
+    @JsonKey(name: 'amount') int amount,
+    @JsonKey(name: 'nanostar_amount') int? nanostarAmount,
+  });
 
   $UserCopyWith<$Res>? get affiliateUser;
   $ChatCopyWith<$Res>? get affiliateChat;
@@ -92,28 +95,30 @@ class _$AffiliateInfoCopyWithImpl<$Res>
     Object? amount = null,
     Object? nanostarAmount = freezed,
   }) {
-    return _then(_self.copyWith(
-      affiliateUser: freezed == affiliateUser
-          ? _self.affiliateUser
-          : affiliateUser // ignore: cast_nullable_to_non_nullable
-              as User?,
-      affiliateChat: freezed == affiliateChat
-          ? _self.affiliateChat
-          : affiliateChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-      commissionPerMille: null == commissionPerMille
-          ? _self.commissionPerMille
-          : commissionPerMille // ignore: cast_nullable_to_non_nullable
-              as int,
-      amount: null == amount
-          ? _self.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-      nanostarAmount: freezed == nanostarAmount
-          ? _self.nanostarAmount
-          : nanostarAmount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        affiliateUser: freezed == affiliateUser
+            ? _self.affiliateUser
+            : affiliateUser // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        affiliateChat: freezed == affiliateChat
+            ? _self.affiliateChat
+            : affiliateChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+        commissionPerMille: null == commissionPerMille
+            ? _self.commissionPerMille
+            : commissionPerMille // ignore: cast_nullable_to_non_nullable
+                  as int,
+        amount: null == amount
+            ? _self.amount
+            : amount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        nanostarAmount: freezed == nanostarAmount
+            ? _self.nanostarAmount
+            : nanostarAmount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of AffiliateInfo
@@ -145,15 +150,96 @@ class _$AffiliateInfoCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [AffiliateInfo].
+extension AffiliateInfoPatterns on AffiliateInfo {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_AffiliateInfo value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AffiliateInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_AffiliateInfo value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AffiliateInfo():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_AffiliateInfo value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AffiliateInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _AffiliateInfo implements AffiliateInfo {
-  const _AffiliateInfo(
-      {@JsonKey(name: 'affiliate_user') this.affiliateUser,
-      @JsonKey(name: 'affiliate_chat') this.affiliateChat,
-      @JsonKey(name: 'commission_per_mille') required this.commissionPerMille,
-      @JsonKey(name: 'amount') required this.amount,
-      @JsonKey(name: 'nanostar_amount') this.nanostarAmount});
+  const _AffiliateInfo({
+    @JsonKey(name: 'affiliate_user') this.affiliateUser,
+    @JsonKey(name: 'affiliate_chat') this.affiliateChat,
+    @JsonKey(name: 'commission_per_mille') required this.commissionPerMille,
+    @JsonKey(name: 'amount') required this.amount,
+    @JsonKey(name: 'nanostar_amount') this.nanostarAmount,
+  });
   factory _AffiliateInfo.fromJson(Map<String, dynamic> json) =>
       _$AffiliateInfoFromJson(json);
 
@@ -197,9 +283,7 @@ class _AffiliateInfo implements AffiliateInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$AffiliateInfoToJson(
-      this,
-    );
+    return _$AffiliateInfoToJson(this);
   }
 
   @override
@@ -212,16 +296,18 @@ class _AffiliateInfo implements AffiliateInfo {
 abstract mixin class _$AffiliateInfoCopyWith<$Res>
     implements $AffiliateInfoCopyWith<$Res> {
   factory _$AffiliateInfoCopyWith(
-          _AffiliateInfo value, $Res Function(_AffiliateInfo) _then) =
-      __$AffiliateInfoCopyWithImpl;
+    _AffiliateInfo value,
+    $Res Function(_AffiliateInfo) _then,
+  ) = __$AffiliateInfoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'affiliate_user') User? affiliateUser,
-      @JsonKey(name: 'affiliate_chat') Chat? affiliateChat,
-      @JsonKey(name: 'commission_per_mille') int commissionPerMille,
-      @JsonKey(name: 'amount') int amount,
-      @JsonKey(name: 'nanostar_amount') int? nanostarAmount});
+  $Res call({
+    @JsonKey(name: 'affiliate_user') User? affiliateUser,
+    @JsonKey(name: 'affiliate_chat') Chat? affiliateChat,
+    @JsonKey(name: 'commission_per_mille') int commissionPerMille,
+    @JsonKey(name: 'amount') int amount,
+    @JsonKey(name: 'nanostar_amount') int? nanostarAmount,
+  });
 
   @override
   $UserCopyWith<$Res>? get affiliateUser;
@@ -248,28 +334,30 @@ class __$AffiliateInfoCopyWithImpl<$Res>
     Object? amount = null,
     Object? nanostarAmount = freezed,
   }) {
-    return _then(_AffiliateInfo(
-      affiliateUser: freezed == affiliateUser
-          ? _self.affiliateUser
-          : affiliateUser // ignore: cast_nullable_to_non_nullable
-              as User?,
-      affiliateChat: freezed == affiliateChat
-          ? _self.affiliateChat
-          : affiliateChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-      commissionPerMille: null == commissionPerMille
-          ? _self.commissionPerMille
-          : commissionPerMille // ignore: cast_nullable_to_non_nullable
-              as int,
-      amount: null == amount
-          ? _self.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-      nanostarAmount: freezed == nanostarAmount
-          ? _self.nanostarAmount
-          : nanostarAmount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _AffiliateInfo(
+        affiliateUser: freezed == affiliateUser
+            ? _self.affiliateUser
+            : affiliateUser // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        affiliateChat: freezed == affiliateChat
+            ? _self.affiliateChat
+            : affiliateChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+        commissionPerMille: null == commissionPerMille
+            ? _self.commissionPerMille
+            : commissionPerMille // ignore: cast_nullable_to_non_nullable
+                  as int,
+        amount: null == amount
+            ? _self.amount
+            : amount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        nanostarAmount: freezed == nanostarAmount
+            ? _self.nanostarAmount
+            : nanostarAmount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of AffiliateInfo

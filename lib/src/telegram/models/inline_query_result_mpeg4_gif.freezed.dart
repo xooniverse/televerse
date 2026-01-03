@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -81,7 +80,9 @@ mixin _$InlineQueryResultMpeg4Gif {
   @pragma('vm:prefer-inline')
   $InlineQueryResultMpeg4GifCopyWith<InlineQueryResultMpeg4Gif> get copyWith =>
       _$InlineQueryResultMpeg4GifCopyWithImpl<InlineQueryResultMpeg4Gif>(
-          this as InlineQueryResultMpeg4Gif, _$identity);
+        this as InlineQueryResultMpeg4Gif,
+        _$identity,
+      );
 
   /// Serializes this InlineQueryResultMpeg4Gif to a JSON map.
   Map<String, dynamic> toJson();
@@ -94,28 +95,30 @@ mixin _$InlineQueryResultMpeg4Gif {
 
 /// @nodoc
 abstract mixin class $InlineQueryResultMpeg4GifCopyWith<$Res> {
-  factory $InlineQueryResultMpeg4GifCopyWith(InlineQueryResultMpeg4Gif value,
-          $Res Function(InlineQueryResultMpeg4Gif) _then) =
-      _$InlineQueryResultMpeg4GifCopyWithImpl;
+  factory $InlineQueryResultMpeg4GifCopyWith(
+    InlineQueryResultMpeg4Gif value,
+    $Res Function(InlineQueryResultMpeg4Gif) _then,
+  ) = _$InlineQueryResultMpeg4GifCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'id') String id,
-      @JsonKey(name: 'mpeg4_url') String mpeg4Url,
-      @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
-      @JsonKey(name: 'mpeg4_width') int? mpeg4Width,
-      @JsonKey(name: 'mpeg4_height') int? mpeg4Height,
-      @JsonKey(name: 'mpeg4_duration') int? mpeg4Duration,
-      @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia});
+  $Res call({
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'mpeg4_url') String mpeg4Url,
+    @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
+    @JsonKey(name: 'mpeg4_width') int? mpeg4Width,
+    @JsonKey(name: 'mpeg4_height') int? mpeg4Height,
+    @JsonKey(name: 'mpeg4_duration') int? mpeg4Duration,
+    @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
+  });
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -149,68 +152,70 @@ class _$InlineQueryResultMpeg4GifCopyWithImpl<$Res>
     Object? inputMessageContent = freezed,
     Object? showCaptionAboveMedia = freezed,
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      mpeg4Url: null == mpeg4Url
-          ? _self.mpeg4Url
-          : mpeg4Url // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnailUrl: null == thumbnailUrl
-          ? _self.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      mpeg4Width: freezed == mpeg4Width
-          ? _self.mpeg4Width
-          : mpeg4Width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      mpeg4Height: freezed == mpeg4Height
-          ? _self.mpeg4Height
-          : mpeg4Height // ignore: cast_nullable_to_non_nullable
-              as int?,
-      mpeg4Duration: freezed == mpeg4Duration
-          ? _self.mpeg4Duration
-          : mpeg4Duration // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnailMimeType: freezed == thumbnailMimeType
-          ? _self.thumbnailMimeType
-          : thumbnailMimeType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self.captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _self.showCaptionAboveMedia
-          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        mpeg4Url: null == mpeg4Url
+            ? _self.mpeg4Url
+            : mpeg4Url // ignore: cast_nullable_to_non_nullable
+                  as String,
+        thumbnailUrl: null == thumbnailUrl
+            ? _self.thumbnailUrl
+            : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        mpeg4Width: freezed == mpeg4Width
+            ? _self.mpeg4Width
+            : mpeg4Width // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        mpeg4Height: freezed == mpeg4Height
+            ? _self.mpeg4Height
+            : mpeg4Height // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        mpeg4Duration: freezed == mpeg4Duration
+            ? _self.mpeg4Duration
+            : mpeg4Duration // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        thumbnailMimeType: freezed == thumbnailMimeType
+            ? _self.thumbnailMimeType
+            : thumbnailMimeType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self.captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        showCaptionAboveMedia: freezed == showCaptionAboveMedia
+            ? _self.showCaptionAboveMedia
+            : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultMpeg4Gif
@@ -222,36 +227,117 @@ class _$InlineQueryResultMpeg4GifCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [InlineQueryResultMpeg4Gif].
+extension InlineQueryResultMpeg4GifPatterns on InlineQueryResultMpeg4Gif {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineQueryResultMpeg4Gif value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultMpeg4Gif() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineQueryResultMpeg4Gif value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultMpeg4Gif():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineQueryResultMpeg4Gif value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultMpeg4Gif() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _InlineQueryResultMpeg4Gif implements InlineQueryResultMpeg4Gif {
-  const _InlineQueryResultMpeg4Gif(
-      {@JsonKey(name: 'type') this.type = InlineQueryResultType.mpeg4Gif,
-      @JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'mpeg4_url') required this.mpeg4Url,
-      @JsonKey(name: 'thumbnail_url') required this.thumbnailUrl,
-      @JsonKey(name: 'mpeg4_width') this.mpeg4Width,
-      @JsonKey(name: 'mpeg4_height') this.mpeg4Height,
-      @JsonKey(name: 'mpeg4_duration') this.mpeg4Duration,
-      @JsonKey(name: 'thumbnail_mime_type') this.thumbnailMimeType,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'caption') this.caption,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') this.replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      this.inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia})
-      : _captionEntities = captionEntities;
+  const _InlineQueryResultMpeg4Gif({
+    @JsonKey(name: 'type') this.type = InlineQueryResultType.mpeg4Gif,
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'mpeg4_url') required this.mpeg4Url,
+    @JsonKey(name: 'thumbnail_url') required this.thumbnailUrl,
+    @JsonKey(name: 'mpeg4_width') this.mpeg4Width,
+    @JsonKey(name: 'mpeg4_height') this.mpeg4Height,
+    @JsonKey(name: 'mpeg4_duration') this.mpeg4Duration,
+    @JsonKey(name: 'thumbnail_mime_type') this.thumbnailMimeType,
+    @JsonKey(name: 'title') this.title,
+    @JsonKey(name: 'caption') this.caption,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'caption_entities')
+    final List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') this.replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    this.inputMessageContent,
+    @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
+  }) : _captionEntities = captionEntities;
   factory _InlineQueryResultMpeg4Gif.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultMpeg4GifFromJson(json);
 
@@ -346,15 +432,15 @@ class _InlineQueryResultMpeg4Gif implements InlineQueryResultMpeg4Gif {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   _$InlineQueryResultMpeg4GifCopyWith<_InlineQueryResultMpeg4Gif>
-      get copyWith =>
-          __$InlineQueryResultMpeg4GifCopyWithImpl<_InlineQueryResultMpeg4Gif>(
-              this, _$identity);
+  get copyWith =>
+      __$InlineQueryResultMpeg4GifCopyWithImpl<_InlineQueryResultMpeg4Gif>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineQueryResultMpeg4GifToJson(
-      this,
-    );
+    return _$InlineQueryResultMpeg4GifToJson(this);
   }
 
   @override
@@ -366,29 +452,31 @@ class _InlineQueryResultMpeg4Gif implements InlineQueryResultMpeg4Gif {
 /// @nodoc
 abstract mixin class _$InlineQueryResultMpeg4GifCopyWith<$Res>
     implements $InlineQueryResultMpeg4GifCopyWith<$Res> {
-  factory _$InlineQueryResultMpeg4GifCopyWith(_InlineQueryResultMpeg4Gif value,
-          $Res Function(_InlineQueryResultMpeg4Gif) _then) =
-      __$InlineQueryResultMpeg4GifCopyWithImpl;
+  factory _$InlineQueryResultMpeg4GifCopyWith(
+    _InlineQueryResultMpeg4Gif value,
+    $Res Function(_InlineQueryResultMpeg4Gif) _then,
+  ) = __$InlineQueryResultMpeg4GifCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'id') String id,
-      @JsonKey(name: 'mpeg4_url') String mpeg4Url,
-      @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
-      @JsonKey(name: 'mpeg4_width') int? mpeg4Width,
-      @JsonKey(name: 'mpeg4_height') int? mpeg4Height,
-      @JsonKey(name: 'mpeg4_duration') int? mpeg4Duration,
-      @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia});
+  $Res call({
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'mpeg4_url') String mpeg4Url,
+    @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
+    @JsonKey(name: 'mpeg4_width') int? mpeg4Width,
+    @JsonKey(name: 'mpeg4_height') int? mpeg4Height,
+    @JsonKey(name: 'mpeg4_duration') int? mpeg4Duration,
+    @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
+  });
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -423,68 +511,70 @@ class __$InlineQueryResultMpeg4GifCopyWithImpl<$Res>
     Object? inputMessageContent = freezed,
     Object? showCaptionAboveMedia = freezed,
   }) {
-    return _then(_InlineQueryResultMpeg4Gif(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      mpeg4Url: null == mpeg4Url
-          ? _self.mpeg4Url
-          : mpeg4Url // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnailUrl: null == thumbnailUrl
-          ? _self.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      mpeg4Width: freezed == mpeg4Width
-          ? _self.mpeg4Width
-          : mpeg4Width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      mpeg4Height: freezed == mpeg4Height
-          ? _self.mpeg4Height
-          : mpeg4Height // ignore: cast_nullable_to_non_nullable
-              as int?,
-      mpeg4Duration: freezed == mpeg4Duration
-          ? _self.mpeg4Duration
-          : mpeg4Duration // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnailMimeType: freezed == thumbnailMimeType
-          ? _self.thumbnailMimeType
-          : thumbnailMimeType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _self.showCaptionAboveMedia
-          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _InlineQueryResultMpeg4Gif(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        mpeg4Url: null == mpeg4Url
+            ? _self.mpeg4Url
+            : mpeg4Url // ignore: cast_nullable_to_non_nullable
+                  as String,
+        thumbnailUrl: null == thumbnailUrl
+            ? _self.thumbnailUrl
+            : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        mpeg4Width: freezed == mpeg4Width
+            ? _self.mpeg4Width
+            : mpeg4Width // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        mpeg4Height: freezed == mpeg4Height
+            ? _self.mpeg4Height
+            : mpeg4Height // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        mpeg4Duration: freezed == mpeg4Duration
+            ? _self.mpeg4Duration
+            : mpeg4Duration // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        thumbnailMimeType: freezed == thumbnailMimeType
+            ? _self.thumbnailMimeType
+            : thumbnailMimeType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self._captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        showCaptionAboveMedia: freezed == showCaptionAboveMedia
+            ? _self.showCaptionAboveMedia
+            : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultMpeg4Gif
@@ -496,8 +586,9 @@ class __$InlineQueryResultMpeg4GifCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
   }

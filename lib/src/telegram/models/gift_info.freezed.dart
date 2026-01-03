@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -71,15 +70,16 @@ abstract mixin class $GiftInfoCopyWith<$Res> {
   factory $GiftInfoCopyWith(GiftInfo value, $Res Function(GiftInfo) _then) =
       _$GiftInfoCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'gift') Gift gift,
-      @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
-      @JsonKey(name: 'convert_star_count') int? convertStarCount,
-      @JsonKey(name: 'prepaid_upgrade_star_count') int? prepaidUpgradeStarCount,
-      @JsonKey(name: 'can_be_upgraded') bool? canBeUpgraded,
-      @JsonKey(name: 'text') String? text,
-      @JsonKey(name: 'entities') List<MessageEntity>? entities,
-      @JsonKey(name: 'is_private') bool? isPrivate});
+  $Res call({
+    @JsonKey(name: 'gift') Gift gift,
+    @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
+    @JsonKey(name: 'convert_star_count') int? convertStarCount,
+    @JsonKey(name: 'prepaid_upgrade_star_count') int? prepaidUpgradeStarCount,
+    @JsonKey(name: 'can_be_upgraded') bool? canBeUpgraded,
+    @JsonKey(name: 'text') String? text,
+    @JsonKey(name: 'entities') List<MessageEntity>? entities,
+    @JsonKey(name: 'is_private') bool? isPrivate,
+  });
 
   $GiftCopyWith<$Res> get gift;
 }
@@ -105,40 +105,42 @@ class _$GiftInfoCopyWithImpl<$Res> implements $GiftInfoCopyWith<$Res> {
     Object? entities = freezed,
     Object? isPrivate = freezed,
   }) {
-    return _then(_self.copyWith(
-      gift: null == gift
-          ? _self.gift
-          : gift // ignore: cast_nullable_to_non_nullable
-              as Gift,
-      ownedGiftId: freezed == ownedGiftId
-          ? _self.ownedGiftId
-          : ownedGiftId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      convertStarCount: freezed == convertStarCount
-          ? _self.convertStarCount
-          : convertStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      prepaidUpgradeStarCount: freezed == prepaidUpgradeStarCount
-          ? _self.prepaidUpgradeStarCount
-          : prepaidUpgradeStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      canBeUpgraded: freezed == canBeUpgraded
-          ? _self.canBeUpgraded
-          : canBeUpgraded // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      text: freezed == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String?,
-      entities: freezed == entities
-          ? _self.entities
-          : entities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      isPrivate: freezed == isPrivate
-          ? _self.isPrivate
-          : isPrivate // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        gift: null == gift
+            ? _self.gift
+            : gift // ignore: cast_nullable_to_non_nullable
+                  as Gift,
+        ownedGiftId: freezed == ownedGiftId
+            ? _self.ownedGiftId
+            : ownedGiftId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        convertStarCount: freezed == convertStarCount
+            ? _self.convertStarCount
+            : convertStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        prepaidUpgradeStarCount: freezed == prepaidUpgradeStarCount
+            ? _self.prepaidUpgradeStarCount
+            : prepaidUpgradeStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        canBeUpgraded: freezed == canBeUpgraded
+            ? _self.canBeUpgraded
+            : canBeUpgraded // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        text: freezed == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        entities: freezed == entities
+            ? _self.entities
+            : entities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        isPrivate: freezed == isPrivate
+            ? _self.isPrivate
+            : isPrivate // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of GiftInfo
@@ -152,19 +154,99 @@ class _$GiftInfoCopyWithImpl<$Res> implements $GiftInfoCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [GiftInfo].
+extension GiftInfoPatterns on GiftInfo {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_GiftInfo value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _GiftInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_GiftInfo value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GiftInfo():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_GiftInfo value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GiftInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _GiftInfo implements GiftInfo {
-  const _GiftInfo(
-      {@JsonKey(name: 'gift') required this.gift,
-      @JsonKey(name: 'owned_gift_id') this.ownedGiftId,
-      @JsonKey(name: 'convert_star_count') this.convertStarCount,
-      @JsonKey(name: 'prepaid_upgrade_star_count') this.prepaidUpgradeStarCount,
-      @JsonKey(name: 'can_be_upgraded') this.canBeUpgraded,
-      @JsonKey(name: 'text') this.text,
-      @JsonKey(name: 'entities') final List<MessageEntity>? entities,
-      @JsonKey(name: 'is_private') this.isPrivate})
-      : _entities = entities;
+  const _GiftInfo({
+    @JsonKey(name: 'gift') required this.gift,
+    @JsonKey(name: 'owned_gift_id') this.ownedGiftId,
+    @JsonKey(name: 'convert_star_count') this.convertStarCount,
+    @JsonKey(name: 'prepaid_upgrade_star_count') this.prepaidUpgradeStarCount,
+    @JsonKey(name: 'can_be_upgraded') this.canBeUpgraded,
+    @JsonKey(name: 'text') this.text,
+    @JsonKey(name: 'entities') final List<MessageEntity>? entities,
+    @JsonKey(name: 'is_private') this.isPrivate,
+  }) : _entities = entities;
   factory _GiftInfo.fromJson(Map<String, dynamic> json) =>
       _$GiftInfoFromJson(json);
 
@@ -231,9 +313,7 @@ class _GiftInfo implements GiftInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$GiftInfoToJson(
-      this,
-    );
+    return _$GiftInfoToJson(this);
   }
 
   @override
@@ -249,15 +329,16 @@ abstract mixin class _$GiftInfoCopyWith<$Res>
       __$GiftInfoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'gift') Gift gift,
-      @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
-      @JsonKey(name: 'convert_star_count') int? convertStarCount,
-      @JsonKey(name: 'prepaid_upgrade_star_count') int? prepaidUpgradeStarCount,
-      @JsonKey(name: 'can_be_upgraded') bool? canBeUpgraded,
-      @JsonKey(name: 'text') String? text,
-      @JsonKey(name: 'entities') List<MessageEntity>? entities,
-      @JsonKey(name: 'is_private') bool? isPrivate});
+  $Res call({
+    @JsonKey(name: 'gift') Gift gift,
+    @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
+    @JsonKey(name: 'convert_star_count') int? convertStarCount,
+    @JsonKey(name: 'prepaid_upgrade_star_count') int? prepaidUpgradeStarCount,
+    @JsonKey(name: 'can_be_upgraded') bool? canBeUpgraded,
+    @JsonKey(name: 'text') String? text,
+    @JsonKey(name: 'entities') List<MessageEntity>? entities,
+    @JsonKey(name: 'is_private') bool? isPrivate,
+  });
 
   @override
   $GiftCopyWith<$Res> get gift;
@@ -284,40 +365,42 @@ class __$GiftInfoCopyWithImpl<$Res> implements _$GiftInfoCopyWith<$Res> {
     Object? entities = freezed,
     Object? isPrivate = freezed,
   }) {
-    return _then(_GiftInfo(
-      gift: null == gift
-          ? _self.gift
-          : gift // ignore: cast_nullable_to_non_nullable
-              as Gift,
-      ownedGiftId: freezed == ownedGiftId
-          ? _self.ownedGiftId
-          : ownedGiftId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      convertStarCount: freezed == convertStarCount
-          ? _self.convertStarCount
-          : convertStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      prepaidUpgradeStarCount: freezed == prepaidUpgradeStarCount
-          ? _self.prepaidUpgradeStarCount
-          : prepaidUpgradeStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      canBeUpgraded: freezed == canBeUpgraded
-          ? _self.canBeUpgraded
-          : canBeUpgraded // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      text: freezed == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String?,
-      entities: freezed == entities
-          ? _self._entities
-          : entities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      isPrivate: freezed == isPrivate
-          ? _self.isPrivate
-          : isPrivate // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _GiftInfo(
+        gift: null == gift
+            ? _self.gift
+            : gift // ignore: cast_nullable_to_non_nullable
+                  as Gift,
+        ownedGiftId: freezed == ownedGiftId
+            ? _self.ownedGiftId
+            : ownedGiftId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        convertStarCount: freezed == convertStarCount
+            ? _self.convertStarCount
+            : convertStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        prepaidUpgradeStarCount: freezed == prepaidUpgradeStarCount
+            ? _self.prepaidUpgradeStarCount
+            : prepaidUpgradeStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        canBeUpgraded: freezed == canBeUpgraded
+            ? _self.canBeUpgraded
+            : canBeUpgraded // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        text: freezed == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        entities: freezed == entities
+            ? _self._entities
+            : entities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        isPrivate: freezed == isPrivate
+            ? _self.isPrivate
+            : isPrivate // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of GiftInfo

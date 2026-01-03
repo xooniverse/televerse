@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -47,7 +46,9 @@ mixin _$InlineQueryResultsButton {
   @pragma('vm:prefer-inline')
   $InlineQueryResultsButtonCopyWith<InlineQueryResultsButton> get copyWith =>
       _$InlineQueryResultsButtonCopyWithImpl<InlineQueryResultsButton>(
-          this as InlineQueryResultsButton, _$identity);
+        this as InlineQueryResultsButton,
+        _$identity,
+      );
 
   /// Serializes this InlineQueryResultsButton to a JSON map.
   Map<String, dynamic> toJson();
@@ -60,14 +61,16 @@ mixin _$InlineQueryResultsButton {
 
 /// @nodoc
 abstract mixin class $InlineQueryResultsButtonCopyWith<$Res> {
-  factory $InlineQueryResultsButtonCopyWith(InlineQueryResultsButton value,
-          $Res Function(InlineQueryResultsButton) _then) =
-      _$InlineQueryResultsButtonCopyWithImpl;
+  factory $InlineQueryResultsButtonCopyWith(
+    InlineQueryResultsButton value,
+    $Res Function(InlineQueryResultsButton) _then,
+  ) = _$InlineQueryResultsButtonCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'web_app') WebAppInfo? webApp,
-      @JsonKey(name: 'start_parameter') String? startParameter});
+  $Res call({
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'web_app') WebAppInfo? webApp,
+    @JsonKey(name: 'start_parameter') String? startParameter,
+  });
 
   $WebAppInfoCopyWith<$Res>? get webApp;
 }
@@ -89,20 +92,22 @@ class _$InlineQueryResultsButtonCopyWithImpl<$Res>
     Object? webApp = freezed,
     Object? startParameter = freezed,
   }) {
-    return _then(_self.copyWith(
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      webApp: freezed == webApp
-          ? _self.webApp
-          : webApp // ignore: cast_nullable_to_non_nullable
-              as WebAppInfo?,
-      startParameter: freezed == startParameter
-          ? _self.startParameter
-          : startParameter // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _self.copyWith(
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        webApp: freezed == webApp
+            ? _self.webApp
+            : webApp // ignore: cast_nullable_to_non_nullable
+                  as WebAppInfo?,
+        startParameter: freezed == startParameter
+            ? _self.startParameter
+            : startParameter // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultsButton
@@ -120,13 +125,94 @@ class _$InlineQueryResultsButtonCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [InlineQueryResultsButton].
+extension InlineQueryResultsButtonPatterns on InlineQueryResultsButton {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineQueryResultsButton value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultsButton() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineQueryResultsButton value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultsButton():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineQueryResultsButton value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultsButton() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _InlineQueryResultsButton implements InlineQueryResultsButton {
-  const _InlineQueryResultsButton(
-      {@JsonKey(name: 'text') required this.text,
-      @JsonKey(name: 'web_app') this.webApp,
-      @JsonKey(name: 'start_parameter') this.startParameter});
+  const _InlineQueryResultsButton({
+    @JsonKey(name: 'text') required this.text,
+    @JsonKey(name: 'web_app') this.webApp,
+    @JsonKey(name: 'start_parameter') this.startParameter,
+  });
   factory _InlineQueryResultsButton.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultsButtonFromJson(json);
 
@@ -167,13 +253,13 @@ class _InlineQueryResultsButton implements InlineQueryResultsButton {
   @pragma('vm:prefer-inline')
   _$InlineQueryResultsButtonCopyWith<_InlineQueryResultsButton> get copyWith =>
       __$InlineQueryResultsButtonCopyWithImpl<_InlineQueryResultsButton>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineQueryResultsButtonToJson(
-      this,
-    );
+    return _$InlineQueryResultsButtonToJson(this);
   }
 
   @override
@@ -185,15 +271,17 @@ class _InlineQueryResultsButton implements InlineQueryResultsButton {
 /// @nodoc
 abstract mixin class _$InlineQueryResultsButtonCopyWith<$Res>
     implements $InlineQueryResultsButtonCopyWith<$Res> {
-  factory _$InlineQueryResultsButtonCopyWith(_InlineQueryResultsButton value,
-          $Res Function(_InlineQueryResultsButton) _then) =
-      __$InlineQueryResultsButtonCopyWithImpl;
+  factory _$InlineQueryResultsButtonCopyWith(
+    _InlineQueryResultsButton value,
+    $Res Function(_InlineQueryResultsButton) _then,
+  ) = __$InlineQueryResultsButtonCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'web_app') WebAppInfo? webApp,
-      @JsonKey(name: 'start_parameter') String? startParameter});
+  $Res call({
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'web_app') WebAppInfo? webApp,
+    @JsonKey(name: 'start_parameter') String? startParameter,
+  });
 
   @override
   $WebAppInfoCopyWith<$Res>? get webApp;
@@ -216,20 +304,22 @@ class __$InlineQueryResultsButtonCopyWithImpl<$Res>
     Object? webApp = freezed,
     Object? startParameter = freezed,
   }) {
-    return _then(_InlineQueryResultsButton(
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      webApp: freezed == webApp
-          ? _self.webApp
-          : webApp // ignore: cast_nullable_to_non_nullable
-              as WebAppInfo?,
-      startParameter: freezed == startParameter
-          ? _self.startParameter
-          : startParameter // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _InlineQueryResultsButton(
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        webApp: freezed == webApp
+            ? _self.webApp
+            : webApp // ignore: cast_nullable_to_non_nullable
+                  as WebAppInfo?,
+        startParameter: freezed == startParameter
+            ? _self.startParameter
+            : startParameter // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultsButton

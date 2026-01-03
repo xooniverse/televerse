@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -32,7 +31,9 @@ mixin _$SuggestedPostRefunded {
   @pragma('vm:prefer-inline')
   $SuggestedPostRefundedCopyWith<SuggestedPostRefunded> get copyWith =>
       _$SuggestedPostRefundedCopyWithImpl<SuggestedPostRefunded>(
-          this as SuggestedPostRefunded, _$identity);
+        this as SuggestedPostRefunded,
+        _$identity,
+      );
 
   /// Serializes this SuggestedPostRefunded to a JSON map.
   Map<String, dynamic> toJson();
@@ -45,13 +46,15 @@ mixin _$SuggestedPostRefunded {
 
 /// @nodoc
 abstract mixin class $SuggestedPostRefundedCopyWith<$Res> {
-  factory $SuggestedPostRefundedCopyWith(SuggestedPostRefunded value,
-          $Res Function(SuggestedPostRefunded) _then) =
-      _$SuggestedPostRefundedCopyWithImpl;
+  factory $SuggestedPostRefundedCopyWith(
+    SuggestedPostRefunded value,
+    $Res Function(SuggestedPostRefunded) _then,
+  ) = _$SuggestedPostRefundedCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'suggested_post_message') Message? suggestedPostMessage,
-      @JsonKey(name: 'reason') String reason});
+  $Res call({
+    @JsonKey(name: 'suggested_post_message') Message? suggestedPostMessage,
+    @JsonKey(name: 'reason') String reason,
+  });
 }
 
 /// @nodoc
@@ -66,29 +69,109 @@ class _$SuggestedPostRefundedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? suggestedPostMessage = freezed,
-    Object? reason = null,
+  $Res call({Object? suggestedPostMessage = freezed, Object? reason = null}) {
+    return _then(
+      _self.copyWith(
+        suggestedPostMessage: freezed == suggestedPostMessage
+            ? _self.suggestedPostMessage
+            : suggestedPostMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        reason: null == reason
+            ? _self.reason
+            : reason // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [SuggestedPostRefunded].
+extension SuggestedPostRefundedPatterns on SuggestedPostRefunded {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SuggestedPostRefunded value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      suggestedPostMessage: freezed == suggestedPostMessage
-          ? _self.suggestedPostMessage
-          : suggestedPostMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      reason: null == reason
-          ? _self.reason
-          : reason // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _SuggestedPostRefunded() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SuggestedPostRefunded value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SuggestedPostRefunded():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SuggestedPostRefunded value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SuggestedPostRefunded() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _SuggestedPostRefunded implements SuggestedPostRefunded {
-  const _SuggestedPostRefunded(
-      {@JsonKey(name: 'suggested_post_message') this.suggestedPostMessage,
-      @JsonKey(name: 'reason') required this.reason});
+  const _SuggestedPostRefunded({
+    @JsonKey(name: 'suggested_post_message') this.suggestedPostMessage,
+    @JsonKey(name: 'reason') required this.reason,
+  });
   factory _SuggestedPostRefunded.fromJson(Map<String, dynamic> json) =>
       _$SuggestedPostRefundedFromJson(json);
 
@@ -113,13 +196,13 @@ class _SuggestedPostRefunded implements SuggestedPostRefunded {
   @pragma('vm:prefer-inline')
   _$SuggestedPostRefundedCopyWith<_SuggestedPostRefunded> get copyWith =>
       __$SuggestedPostRefundedCopyWithImpl<_SuggestedPostRefunded>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$SuggestedPostRefundedToJson(
-      this,
-    );
+    return _$SuggestedPostRefundedToJson(this);
   }
 
   @override
@@ -131,14 +214,16 @@ class _SuggestedPostRefunded implements SuggestedPostRefunded {
 /// @nodoc
 abstract mixin class _$SuggestedPostRefundedCopyWith<$Res>
     implements $SuggestedPostRefundedCopyWith<$Res> {
-  factory _$SuggestedPostRefundedCopyWith(_SuggestedPostRefunded value,
-          $Res Function(_SuggestedPostRefunded) _then) =
-      __$SuggestedPostRefundedCopyWithImpl;
+  factory _$SuggestedPostRefundedCopyWith(
+    _SuggestedPostRefunded value,
+    $Res Function(_SuggestedPostRefunded) _then,
+  ) = __$SuggestedPostRefundedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'suggested_post_message') Message? suggestedPostMessage,
-      @JsonKey(name: 'reason') String reason});
+  $Res call({
+    @JsonKey(name: 'suggested_post_message') Message? suggestedPostMessage,
+    @JsonKey(name: 'reason') String reason,
+  });
 }
 
 /// @nodoc
@@ -153,19 +238,18 @@ class __$SuggestedPostRefundedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? suggestedPostMessage = freezed,
-    Object? reason = null,
-  }) {
-    return _then(_SuggestedPostRefunded(
-      suggestedPostMessage: freezed == suggestedPostMessage
-          ? _self.suggestedPostMessage
-          : suggestedPostMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      reason: null == reason
-          ? _self.reason
-          : reason // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? suggestedPostMessage = freezed, Object? reason = null}) {
+    return _then(
+      _SuggestedPostRefunded(
+        suggestedPostMessage: freezed == suggestedPostMessage
+            ? _self.suggestedPostMessage
+            : suggestedPostMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        reason: null == reason
+            ? _self.reason
+            : reason // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }

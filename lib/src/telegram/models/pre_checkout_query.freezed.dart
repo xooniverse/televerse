@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -52,7 +51,9 @@ mixin _$PreCheckoutQuery {
   @pragma('vm:prefer-inline')
   $PreCheckoutQueryCopyWith<PreCheckoutQuery> get copyWith =>
       _$PreCheckoutQueryCopyWithImpl<PreCheckoutQuery>(
-          this as PreCheckoutQuery, _$identity);
+        this as PreCheckoutQuery,
+        _$identity,
+      );
 
   /// Serializes this PreCheckoutQuery to a JSON map.
   Map<String, dynamic> toJson();
@@ -66,17 +67,19 @@ mixin _$PreCheckoutQuery {
 /// @nodoc
 abstract mixin class $PreCheckoutQueryCopyWith<$Res> {
   factory $PreCheckoutQueryCopyWith(
-          PreCheckoutQuery value, $Res Function(PreCheckoutQuery) _then) =
-      _$PreCheckoutQueryCopyWithImpl;
+    PreCheckoutQuery value,
+    $Res Function(PreCheckoutQuery) _then,
+  ) = _$PreCheckoutQueryCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'total_amount') int totalAmount,
-      @JsonKey(name: 'invoice_payload') String invoicePayload,
-      @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
-      @JsonKey(name: 'order_info') OrderInfo? orderInfo});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'currency') String currency,
+    @JsonKey(name: 'total_amount') int totalAmount,
+    @JsonKey(name: 'invoice_payload') String invoicePayload,
+    @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
+    @JsonKey(name: 'order_info') OrderInfo? orderInfo,
+  });
 
   $UserCopyWith<$Res> get from;
   $OrderInfoCopyWith<$Res>? get orderInfo;
@@ -103,36 +106,38 @@ class _$PreCheckoutQueryCopyWithImpl<$Res>
     Object? shippingOptionId = freezed,
     Object? orderInfo = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      currency: null == currency
-          ? _self.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalAmount: null == totalAmount
-          ? _self.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
-      invoicePayload: null == invoicePayload
-          ? _self.invoicePayload
-          : invoicePayload // ignore: cast_nullable_to_non_nullable
-              as String,
-      shippingOptionId: freezed == shippingOptionId
-          ? _self.shippingOptionId
-          : shippingOptionId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      orderInfo: freezed == orderInfo
-          ? _self.orderInfo
-          : orderInfo // ignore: cast_nullable_to_non_nullable
-              as OrderInfo?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        currency: null == currency
+            ? _self.currency
+            : currency // ignore: cast_nullable_to_non_nullable
+                  as String,
+        totalAmount: null == totalAmount
+            ? _self.totalAmount
+            : totalAmount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        invoicePayload: null == invoicePayload
+            ? _self.invoicePayload
+            : invoicePayload // ignore: cast_nullable_to_non_nullable
+                  as String,
+        shippingOptionId: freezed == shippingOptionId
+            ? _self.shippingOptionId
+            : shippingOptionId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        orderInfo: freezed == orderInfo
+            ? _self.orderInfo
+            : orderInfo // ignore: cast_nullable_to_non_nullable
+                  as OrderInfo?,
+      ),
+    );
   }
 
   /// Create a copy of PreCheckoutQuery
@@ -160,17 +165,98 @@ class _$PreCheckoutQueryCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [PreCheckoutQuery].
+extension PreCheckoutQueryPatterns on PreCheckoutQuery {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PreCheckoutQuery value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PreCheckoutQuery() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PreCheckoutQuery value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PreCheckoutQuery():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PreCheckoutQuery value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PreCheckoutQuery() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _PreCheckoutQuery implements PreCheckoutQuery {
-  const _PreCheckoutQuery(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'from') required this.from,
-      @JsonKey(name: 'currency') required this.currency,
-      @JsonKey(name: 'total_amount') required this.totalAmount,
-      @JsonKey(name: 'invoice_payload') required this.invoicePayload,
-      @JsonKey(name: 'shipping_option_id') this.shippingOptionId,
-      @JsonKey(name: 'order_info') this.orderInfo});
+  const _PreCheckoutQuery({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'from') required this.from,
+    @JsonKey(name: 'currency') required this.currency,
+    @JsonKey(name: 'total_amount') required this.totalAmount,
+    @JsonKey(name: 'invoice_payload') required this.invoicePayload,
+    @JsonKey(name: 'shipping_option_id') this.shippingOptionId,
+    @JsonKey(name: 'order_info') this.orderInfo,
+  });
   factory _PreCheckoutQuery.fromJson(Map<String, dynamic> json) =>
       _$PreCheckoutQueryFromJson(json);
 
@@ -223,9 +309,7 @@ class _PreCheckoutQuery implements PreCheckoutQuery {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PreCheckoutQueryToJson(
-      this,
-    );
+    return _$PreCheckoutQueryToJson(this);
   }
 
   @override
@@ -238,18 +322,20 @@ class _PreCheckoutQuery implements PreCheckoutQuery {
 abstract mixin class _$PreCheckoutQueryCopyWith<$Res>
     implements $PreCheckoutQueryCopyWith<$Res> {
   factory _$PreCheckoutQueryCopyWith(
-          _PreCheckoutQuery value, $Res Function(_PreCheckoutQuery) _then) =
-      __$PreCheckoutQueryCopyWithImpl;
+    _PreCheckoutQuery value,
+    $Res Function(_PreCheckoutQuery) _then,
+  ) = __$PreCheckoutQueryCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'total_amount') int totalAmount,
-      @JsonKey(name: 'invoice_payload') String invoicePayload,
-      @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
-      @JsonKey(name: 'order_info') OrderInfo? orderInfo});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'currency') String currency,
+    @JsonKey(name: 'total_amount') int totalAmount,
+    @JsonKey(name: 'invoice_payload') String invoicePayload,
+    @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
+    @JsonKey(name: 'order_info') OrderInfo? orderInfo,
+  });
 
   @override
   $UserCopyWith<$Res> get from;
@@ -278,36 +364,38 @@ class __$PreCheckoutQueryCopyWithImpl<$Res>
     Object? shippingOptionId = freezed,
     Object? orderInfo = freezed,
   }) {
-    return _then(_PreCheckoutQuery(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      currency: null == currency
-          ? _self.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalAmount: null == totalAmount
-          ? _self.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
-      invoicePayload: null == invoicePayload
-          ? _self.invoicePayload
-          : invoicePayload // ignore: cast_nullable_to_non_nullable
-              as String,
-      shippingOptionId: freezed == shippingOptionId
-          ? _self.shippingOptionId
-          : shippingOptionId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      orderInfo: freezed == orderInfo
-          ? _self.orderInfo
-          : orderInfo // ignore: cast_nullable_to_non_nullable
-              as OrderInfo?,
-    ));
+    return _then(
+      _PreCheckoutQuery(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        currency: null == currency
+            ? _self.currency
+            : currency // ignore: cast_nullable_to_non_nullable
+                  as String,
+        totalAmount: null == totalAmount
+            ? _self.totalAmount
+            : totalAmount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        invoicePayload: null == invoicePayload
+            ? _self.invoicePayload
+            : invoicePayload // ignore: cast_nullable_to_non_nullable
+                  as String,
+        shippingOptionId: freezed == shippingOptionId
+            ? _self.shippingOptionId
+            : shippingOptionId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        orderInfo: freezed == orderInfo
+            ? _self.orderInfo
+            : orderInfo // ignore: cast_nullable_to_non_nullable
+                  as OrderInfo?,
+      ),
+    );
   }
 
   /// Create a copy of PreCheckoutQuery

@@ -21,9 +21,9 @@ _AffiliateInfo _$AffiliateInfoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AffiliateInfoToJson(_AffiliateInfo instance) =>
     <String, dynamic>{
-      if (instance.affiliateUser case final value?) 'affiliate_user': value,
-      if (instance.affiliateChat case final value?) 'affiliate_chat': value,
+      'affiliate_user': ?instance.affiliateUser,
+      'affiliate_chat': ?instance.affiliateChat,
       'commission_per_mille': instance.commissionPerMille,
       'amount': instance.amount,
-      if (instance.nanostarAmount case final value?) 'nanostar_amount': value,
+      'nanostar_amount': ?instance.nanostarAmount,
     };

@@ -7,48 +7,50 @@ part of 'inline_query_result_cached_mpeg4_gif.dart';
 // **************************************************************************
 
 _InlineQueryResultCachedMpeg4Gif _$InlineQueryResultCachedMpeg4GifFromJson(
-        Map<String, dynamic> json) =>
-    _InlineQueryResultCachedMpeg4Gif(
-      id: json['id'] as String,
-      mpeg4FileId: json['mpeg4_file_id'] as String,
-      type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
-          InlineQueryResultType.mpeg4Gif,
-      title: json['title'] as String?,
-      caption: json['caption'] as String?,
-      parseMode: $enumDecodeNullable(_$ParseModeEnumMap, json['parse_mode']),
-      captionEntities: (json['caption_entities'] as List<dynamic>?)
-          ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      replyMarkup: json['reply_markup'] == null
-          ? null
-          : InlineKeyboardMarkup.fromJson(
-              json['reply_markup'] as Map<String, dynamic>),
-      inputMessageContent:
-          _$JsonConverterFromJson<Map<String, Object>, InputMessageContent>(
-              json['input_message_content'],
-              const InputMessageContentConverter().fromJson),
-      showCaptionAboveMedia: json['show_caption_above_media'] as bool?,
-    );
+  Map<String, dynamic> json,
+) => _InlineQueryResultCachedMpeg4Gif(
+  id: json['id'] as String,
+  mpeg4FileId: json['mpeg4_file_id'] as String,
+  type:
+      $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
+      InlineQueryResultType.mpeg4Gif,
+  title: json['title'] as String?,
+  caption: json['caption'] as String?,
+  parseMode: $enumDecodeNullable(_$ParseModeEnumMap, json['parse_mode']),
+  captionEntities: (json['caption_entities'] as List<dynamic>?)
+      ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  replyMarkup: json['reply_markup'] == null
+      ? null
+      : InlineKeyboardMarkup.fromJson(
+          json['reply_markup'] as Map<String, dynamic>,
+        ),
+  inputMessageContent:
+      _$JsonConverterFromJson<Map<String, Object>, InputMessageContent>(
+        json['input_message_content'],
+        const InputMessageContentConverter().fromJson,
+      ),
+  showCaptionAboveMedia: json['show_caption_above_media'] as bool?,
+);
 
 Map<String, dynamic> _$InlineQueryResultCachedMpeg4GifToJson(
-        _InlineQueryResultCachedMpeg4Gif instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'mpeg4_file_id': instance.mpeg4FileId,
-      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
-      if (instance.title case final value?) 'title': value,
-      if (instance.caption case final value?) 'caption': value,
-      if (instance.parseMode case final value?) 'parse_mode': value,
-      if (instance.captionEntities case final value?) 'caption_entities': value,
-      if (instance.replyMarkup case final value?) 'reply_markup': value,
-      if (_$JsonConverterToJson<Map<String, Object>, InputMessageContent>(
-              instance.inputMessageContent,
-              const InputMessageContentConverter().toJson)
-          case final value?)
-        'input_message_content': value,
-      if (instance.showCaptionAboveMedia case final value?)
-        'show_caption_above_media': value,
-    };
+  _InlineQueryResultCachedMpeg4Gif instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'mpeg4_file_id': instance.mpeg4FileId,
+  'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
+  'title': ?instance.title,
+  'caption': ?instance.caption,
+  'parse_mode': ?instance.parseMode,
+  'caption_entities': ?instance.captionEntities,
+  'reply_markup': ?instance.replyMarkup,
+  'input_message_content':
+      ?_$JsonConverterToJson<Map<String, Object>, InputMessageContent>(
+        instance.inputMessageContent,
+        const InputMessageContentConverter().toJson,
+      ),
+  'show_caption_above_media': ?instance.showCaptionAboveMedia,
+};
 
 const _$InlineQueryResultTypeEnumMap = {
   InlineQueryResultType.article: 'article',
@@ -75,11 +77,9 @@ const _$ParseModeEnumMap = {
 Value? _$JsonConverterFromJson<Json, Value>(
   Object? json,
   Value? Function(Json json) fromJson,
-) =>
-    json == null ? null : fromJson(json as Json);
+) => json == null ? null : fromJson(json as Json);
 
 Json? _$JsonConverterToJson<Json, Value>(
   Value? value,
   Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);
+) => value == null ? null : toJson(value);

@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -63,9 +62,10 @@ mixin _$InlineQueryResultCachedDocument {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $InlineQueryResultCachedDocumentCopyWith<InlineQueryResultCachedDocument>
-      get copyWith => _$InlineQueryResultCachedDocumentCopyWithImpl<
-              InlineQueryResultCachedDocument>(
-          this as InlineQueryResultCachedDocument, _$identity);
+  get copyWith =>
+      _$InlineQueryResultCachedDocumentCopyWithImpl<
+        InlineQueryResultCachedDocument
+      >(this as InlineQueryResultCachedDocument, _$identity);
 
   /// Serializes this InlineQueryResultCachedDocument to a JSON map.
   Map<String, dynamic> toJson();
@@ -79,23 +79,24 @@ mixin _$InlineQueryResultCachedDocument {
 /// @nodoc
 abstract mixin class $InlineQueryResultCachedDocumentCopyWith<$Res> {
   factory $InlineQueryResultCachedDocumentCopyWith(
-          InlineQueryResultCachedDocument value,
-          $Res Function(InlineQueryResultCachedDocument) _then) =
-      _$InlineQueryResultCachedDocumentCopyWithImpl;
+    InlineQueryResultCachedDocument value,
+    $Res Function(InlineQueryResultCachedDocument) _then,
+  ) = _$InlineQueryResultCachedDocumentCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'document_file_id') String documentFileId,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'document_file_id') String documentFileId,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+  });
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -124,48 +125,50 @@ class _$InlineQueryResultCachedDocumentCopyWithImpl<$Res>
     Object? replyMarkup = freezed,
     Object? inputMessageContent = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      documentFileId: null == documentFileId
-          ? _self.documentFileId
-          : documentFileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: freezed == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self.captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        documentFileId: null == documentFileId
+            ? _self.documentFileId
+            : documentFileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: freezed == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self.captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultCachedDocument
@@ -177,10 +180,92 @@ class _$InlineQueryResultCachedDocumentCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [InlineQueryResultCachedDocument].
+extension InlineQueryResultCachedDocumentPatterns
+    on InlineQueryResultCachedDocument {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineQueryResultCachedDocument value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultCachedDocument() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineQueryResultCachedDocument value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultCachedDocument():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineQueryResultCachedDocument value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultCachedDocument() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
@@ -188,24 +273,24 @@ class _$InlineQueryResultCachedDocumentCopyWithImpl<$Res>
 @JsonSerializable()
 class _InlineQueryResultCachedDocument
     implements InlineQueryResultCachedDocument {
-  const _InlineQueryResultCachedDocument(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'type') this.type = InlineQueryResultType.document,
-      @JsonKey(name: 'document_file_id') required this.documentFileId,
-      @JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'caption') this.caption,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') this.replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      this.inputMessageContent})
-      : _captionEntities = captionEntities;
+  const _InlineQueryResultCachedDocument({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'type') this.type = InlineQueryResultType.document,
+    @JsonKey(name: 'document_file_id') required this.documentFileId,
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'description') this.description,
+    @JsonKey(name: 'caption') this.caption,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'caption_entities')
+    final List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') this.replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    this.inputMessageContent,
+  }) : _captionEntities = captionEntities;
   factory _InlineQueryResultCachedDocument.fromJson(
-          Map<String, dynamic> json) =>
-      _$InlineQueryResultCachedDocumentFromJson(json);
+    Map<String, dynamic> json,
+  ) => _$InlineQueryResultCachedDocumentFromJson(json);
 
   /// Unique identifier for this result, 1-64 Bytes
   @override
@@ -277,14 +362,14 @@ class _InlineQueryResultCachedDocument
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   _$InlineQueryResultCachedDocumentCopyWith<_InlineQueryResultCachedDocument>
-      get copyWith => __$InlineQueryResultCachedDocumentCopyWithImpl<
-          _InlineQueryResultCachedDocument>(this, _$identity);
+  get copyWith =>
+      __$InlineQueryResultCachedDocumentCopyWithImpl<
+        _InlineQueryResultCachedDocument
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineQueryResultCachedDocumentToJson(
-      this,
-    );
+    return _$InlineQueryResultCachedDocumentToJson(this);
   }
 
   @override
@@ -297,24 +382,25 @@ class _InlineQueryResultCachedDocument
 abstract mixin class _$InlineQueryResultCachedDocumentCopyWith<$Res>
     implements $InlineQueryResultCachedDocumentCopyWith<$Res> {
   factory _$InlineQueryResultCachedDocumentCopyWith(
-          _InlineQueryResultCachedDocument value,
-          $Res Function(_InlineQueryResultCachedDocument) _then) =
-      __$InlineQueryResultCachedDocumentCopyWithImpl;
+    _InlineQueryResultCachedDocument value,
+    $Res Function(_InlineQueryResultCachedDocument) _then,
+  ) = __$InlineQueryResultCachedDocumentCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'document_file_id') String documentFileId,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'document_file_id') String documentFileId,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+  });
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -344,48 +430,50 @@ class __$InlineQueryResultCachedDocumentCopyWithImpl<$Res>
     Object? replyMarkup = freezed,
     Object? inputMessageContent = freezed,
   }) {
-    return _then(_InlineQueryResultCachedDocument(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      documentFileId: null == documentFileId
-          ? _self.documentFileId
-          : documentFileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: freezed == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-    ));
+    return _then(
+      _InlineQueryResultCachedDocument(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        documentFileId: null == documentFileId
+            ? _self.documentFileId
+            : documentFileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: freezed == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self._captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultCachedDocument
@@ -397,8 +485,9 @@ class __$InlineQueryResultCachedDocumentCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
   }

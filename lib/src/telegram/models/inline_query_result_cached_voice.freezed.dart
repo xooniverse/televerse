@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -58,9 +57,11 @@ mixin _$InlineQueryResultCachedVoice {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $InlineQueryResultCachedVoiceCopyWith<InlineQueryResultCachedVoice>
-      get copyWith => _$InlineQueryResultCachedVoiceCopyWithImpl<
-              InlineQueryResultCachedVoice>(
-          this as InlineQueryResultCachedVoice, _$identity);
+  get copyWith =>
+      _$InlineQueryResultCachedVoiceCopyWithImpl<InlineQueryResultCachedVoice>(
+        this as InlineQueryResultCachedVoice,
+        _$identity,
+      );
 
   /// Serializes this InlineQueryResultCachedVoice to a JSON map.
   Map<String, dynamic> toJson();
@@ -74,22 +75,23 @@ mixin _$InlineQueryResultCachedVoice {
 /// @nodoc
 abstract mixin class $InlineQueryResultCachedVoiceCopyWith<$Res> {
   factory $InlineQueryResultCachedVoiceCopyWith(
-          InlineQueryResultCachedVoice value,
-          $Res Function(InlineQueryResultCachedVoice) _then) =
-      _$InlineQueryResultCachedVoiceCopyWithImpl;
+    InlineQueryResultCachedVoice value,
+    $Res Function(InlineQueryResultCachedVoice) _then,
+  ) = _$InlineQueryResultCachedVoiceCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'voice_file_id') String voiceFileId,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'voice_file_id') String voiceFileId,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+  });
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -117,44 +119,46 @@ class _$InlineQueryResultCachedVoiceCopyWithImpl<$Res>
     Object? replyMarkup = freezed,
     Object? inputMessageContent = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      voiceFileId: null == voiceFileId
-          ? _self.voiceFileId
-          : voiceFileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self.captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        voiceFileId: null == voiceFileId
+            ? _self.voiceFileId
+            : voiceFileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self.captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultCachedVoice
@@ -166,30 +170,111 @@ class _$InlineQueryResultCachedVoiceCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [InlineQueryResultCachedVoice].
+extension InlineQueryResultCachedVoicePatterns on InlineQueryResultCachedVoice {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineQueryResultCachedVoice value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultCachedVoice() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineQueryResultCachedVoice value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultCachedVoice():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineQueryResultCachedVoice value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultCachedVoice() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _InlineQueryResultCachedVoice implements InlineQueryResultCachedVoice {
-  const _InlineQueryResultCachedVoice(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'type') this.type = InlineQueryResultType.voice,
-      @JsonKey(name: 'voice_file_id') required this.voiceFileId,
-      @JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'caption') this.caption,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') this.replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      this.inputMessageContent})
-      : _captionEntities = captionEntities;
+  const _InlineQueryResultCachedVoice({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'type') this.type = InlineQueryResultType.voice,
+    @JsonKey(name: 'voice_file_id') required this.voiceFileId,
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'caption') this.caption,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'caption_entities')
+    final List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') this.replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    this.inputMessageContent,
+  }) : _captionEntities = captionEntities;
   factory _InlineQueryResultCachedVoice.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultCachedVoiceFromJson(json);
 
@@ -257,14 +342,14 @@ class _InlineQueryResultCachedVoice implements InlineQueryResultCachedVoice {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   _$InlineQueryResultCachedVoiceCopyWith<_InlineQueryResultCachedVoice>
-      get copyWith => __$InlineQueryResultCachedVoiceCopyWithImpl<
-          _InlineQueryResultCachedVoice>(this, _$identity);
+  get copyWith =>
+      __$InlineQueryResultCachedVoiceCopyWithImpl<
+        _InlineQueryResultCachedVoice
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineQueryResultCachedVoiceToJson(
-      this,
-    );
+    return _$InlineQueryResultCachedVoiceToJson(this);
   }
 
   @override
@@ -277,23 +362,24 @@ class _InlineQueryResultCachedVoice implements InlineQueryResultCachedVoice {
 abstract mixin class _$InlineQueryResultCachedVoiceCopyWith<$Res>
     implements $InlineQueryResultCachedVoiceCopyWith<$Res> {
   factory _$InlineQueryResultCachedVoiceCopyWith(
-          _InlineQueryResultCachedVoice value,
-          $Res Function(_InlineQueryResultCachedVoice) _then) =
-      __$InlineQueryResultCachedVoiceCopyWithImpl;
+    _InlineQueryResultCachedVoice value,
+    $Res Function(_InlineQueryResultCachedVoice) _then,
+  ) = __$InlineQueryResultCachedVoiceCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'voice_file_id') String voiceFileId,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'voice_file_id') String voiceFileId,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+  });
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -322,44 +408,46 @@ class __$InlineQueryResultCachedVoiceCopyWithImpl<$Res>
     Object? replyMarkup = freezed,
     Object? inputMessageContent = freezed,
   }) {
-    return _then(_InlineQueryResultCachedVoice(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      voiceFileId: null == voiceFileId
-          ? _self.voiceFileId
-          : voiceFileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-    ));
+    return _then(
+      _InlineQueryResultCachedVoice(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        voiceFileId: null == voiceFileId
+            ? _self.voiceFileId
+            : voiceFileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self._captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultCachedVoice
@@ -371,8 +459,9 @@ class __$InlineQueryResultCachedVoiceCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
   }

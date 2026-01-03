@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -57,15 +56,17 @@ mixin _$InputMedia {
 /// @nodoc
 abstract mixin class $InputMediaCopyWith<$Res> {
   factory $InputMediaCopyWith(
-          InputMedia value, $Res Function(InputMedia) _then) =
-      _$InputMediaCopyWithImpl;
+    InputMedia value,
+    $Res Function(InputMedia) _then,
+  ) = _$InputMediaCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InputMediaType type,
-      @JsonKey(name: 'media') @InputFileConverter() InputFile media,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities});
+  $Res call({
+    @JsonKey(name: 'type') InputMediaType type,
+    @JsonKey(name: 'media') @InputFileConverter() InputFile media,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+  });
 }
 
 /// @nodoc
@@ -86,46 +87,162 @@ class _$InputMediaCopyWithImpl<$Res> implements $InputMediaCopyWith<$Res> {
     Object? parseMode = freezed,
     Object? captionEntities = freezed,
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InputMediaType,
-      media: null == media
-          ? _self.media
-          : media // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self.captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-    ));
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InputMediaType,
+        media: null == media
+            ? _self.media
+            : media // ignore: cast_nullable_to_non_nullable
+                  as InputFile,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self.captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [InputMedia].
+extension InputMediaPatterns on InputMedia {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InputMediaPhoto value)? photo,
+    TResult Function(InputMediaDocument value)? document,
+    TResult Function(InputMediaAnimation value)? animation,
+    TResult Function(InputMediaAudio value)? audio,
+    TResult Function(InputMediaVideo value)? video,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case InputMediaPhoto() when photo != null:
+        return photo(_that);
+      case InputMediaDocument() when document != null:
+        return document(_that);
+      case InputMediaAnimation() when animation != null:
+        return animation(_that);
+      case InputMediaAudio() when audio != null:
+        return audio(_that);
+      case InputMediaVideo() when video != null:
+        return video(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InputMediaPhoto value) photo,
+    required TResult Function(InputMediaDocument value) document,
+    required TResult Function(InputMediaAnimation value) animation,
+    required TResult Function(InputMediaAudio value) audio,
+    required TResult Function(InputMediaVideo value) video,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case InputMediaPhoto():
+        return photo(_that);
+      case InputMediaDocument():
+        return document(_that);
+      case InputMediaAnimation():
+        return animation(_that);
+      case InputMediaAudio():
+        return audio(_that);
+      case InputMediaVideo():
+        return video(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InputMediaPhoto value)? photo,
+    TResult? Function(InputMediaDocument value)? document,
+    TResult? Function(InputMediaAnimation value)? animation,
+    TResult? Function(InputMediaAudio value)? audio,
+    TResult? Function(InputMediaVideo value)? video,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case InputMediaPhoto() when photo != null:
+        return photo(_that);
+      case InputMediaDocument() when document != null:
+        return document(_that);
+      case InputMediaAnimation() when animation != null:
+        return animation(_that);
+      case InputMediaAudio() when audio != null:
+        return audio(_that);
+      case InputMediaVideo() when video != null:
+        return video(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
 class InputMediaPhoto implements InputMedia {
-  const InputMediaPhoto(
-      {@JsonKey(name: 'type') this.type = InputMediaType.photo,
-      @JsonKey(name: 'media') @InputFileConverter() required this.media,
-      @JsonKey(name: 'caption') this.caption,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'has_spoiler') this.hasSpoiler,
-      @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
-      final String? $type})
-      : _captionEntities = captionEntities,
-        $type = $type ?? 'photo';
+  const InputMediaPhoto({
+    @JsonKey(name: 'type') this.type = InputMediaType.photo,
+    @JsonKey(name: 'media') @InputFileConverter() required this.media,
+    @JsonKey(name: 'caption') this.caption,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'caption_entities')
+    final List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'has_spoiler') this.hasSpoiler,
+    @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
+    final String? $type,
+  }) : _captionEntities = captionEntities,
+       $type = $type ?? 'photo';
 
   /// Type of input media.
   @override
@@ -188,9 +305,7 @@ class InputMediaPhoto implements InputMedia {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputMediaPhotoToJson(
-      this,
-    );
+    return _$InputMediaPhotoToJson(this);
   }
 
   @override
@@ -203,18 +318,20 @@ class InputMediaPhoto implements InputMedia {
 abstract mixin class $InputMediaPhotoCopyWith<$Res>
     implements $InputMediaCopyWith<$Res> {
   factory $InputMediaPhotoCopyWith(
-          InputMediaPhoto value, $Res Function(InputMediaPhoto) _then) =
-      _$InputMediaPhotoCopyWithImpl;
+    InputMediaPhoto value,
+    $Res Function(InputMediaPhoto) _then,
+  ) = _$InputMediaPhotoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InputMediaType type,
-      @JsonKey(name: 'media') @InputFileConverter() InputFile media,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'has_spoiler') bool? hasSpoiler,
-      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia});
+  $Res call({
+    @JsonKey(name: 'type') InputMediaType type,
+    @JsonKey(name: 'media') @InputFileConverter() InputFile media,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'has_spoiler') bool? hasSpoiler,
+    @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
+  });
 }
 
 /// @nodoc
@@ -238,55 +355,57 @@ class _$InputMediaPhotoCopyWithImpl<$Res>
     Object? hasSpoiler = freezed,
     Object? showCaptionAboveMedia = freezed,
   }) {
-    return _then(InputMediaPhoto(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InputMediaType,
-      media: null == media
-          ? _self.media
-          : media // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      hasSpoiler: freezed == hasSpoiler
-          ? _self.hasSpoiler
-          : hasSpoiler // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _self.showCaptionAboveMedia
-          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      InputMediaPhoto(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InputMediaType,
+        media: null == media
+            ? _self.media
+            : media // ignore: cast_nullable_to_non_nullable
+                  as InputFile,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self._captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        hasSpoiler: freezed == hasSpoiler
+            ? _self.hasSpoiler
+            : hasSpoiler // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        showCaptionAboveMedia: freezed == showCaptionAboveMedia
+            ? _self.showCaptionAboveMedia
+            : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
 class InputMediaDocument implements InputMedia {
-  const InputMediaDocument(
-      {@JsonKey(name: 'type') this.type = InputMediaType.document,
-      @JsonKey(name: 'media') @InputFileConverter() required this.media,
-      @JsonKey(name: 'thumbnail') @InputFileConverter() this.thumbnail,
-      @JsonKey(name: 'caption') this.caption,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'disable_content_type_detection')
-      this.disableContentTypeDetection,
-      final String? $type})
-      : _captionEntities = captionEntities,
-        $type = $type ?? 'document';
+  const InputMediaDocument({
+    @JsonKey(name: 'type') this.type = InputMediaType.document,
+    @JsonKey(name: 'media') @InputFileConverter() required this.media,
+    @JsonKey(name: 'thumbnail') @InputFileConverter() this.thumbnail,
+    @JsonKey(name: 'caption') this.caption,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'caption_entities')
+    final List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'disable_content_type_detection')
+    this.disableContentTypeDetection,
+    final String? $type,
+  }) : _captionEntities = captionEntities,
+       $type = $type ?? 'document';
 
   /// Type of input media.
   @override
@@ -352,9 +471,7 @@ class InputMediaDocument implements InputMedia {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputMediaDocumentToJson(
-      this,
-    );
+    return _$InputMediaDocumentToJson(this);
   }
 
   @override
@@ -367,19 +484,21 @@ class InputMediaDocument implements InputMedia {
 abstract mixin class $InputMediaDocumentCopyWith<$Res>
     implements $InputMediaCopyWith<$Res> {
   factory $InputMediaDocumentCopyWith(
-          InputMediaDocument value, $Res Function(InputMediaDocument) _then) =
-      _$InputMediaDocumentCopyWithImpl;
+    InputMediaDocument value,
+    $Res Function(InputMediaDocument) _then,
+  ) = _$InputMediaDocumentCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InputMediaType type,
-      @JsonKey(name: 'media') @InputFileConverter() InputFile media,
-      @JsonKey(name: 'thumbnail') @InputFileConverter() InputFile? thumbnail,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'disable_content_type_detection')
-      bool? disableContentTypeDetection});
+  $Res call({
+    @JsonKey(name: 'type') InputMediaType type,
+    @JsonKey(name: 'media') @InputFileConverter() InputFile media,
+    @JsonKey(name: 'thumbnail') @InputFileConverter() InputFile? thumbnail,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'disable_content_type_detection')
+    bool? disableContentTypeDetection,
+  });
 }
 
 /// @nodoc
@@ -403,58 +522,60 @@ class _$InputMediaDocumentCopyWithImpl<$Res>
     Object? captionEntities = freezed,
     Object? disableContentTypeDetection = freezed,
   }) {
-    return _then(InputMediaDocument(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InputMediaType,
-      media: null == media
-          ? _self.media
-          : media // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-      thumbnail: freezed == thumbnail
-          ? _self.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as InputFile?,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      disableContentTypeDetection: freezed == disableContentTypeDetection
-          ? _self.disableContentTypeDetection
-          : disableContentTypeDetection // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      InputMediaDocument(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InputMediaType,
+        media: null == media
+            ? _self.media
+            : media // ignore: cast_nullable_to_non_nullable
+                  as InputFile,
+        thumbnail: freezed == thumbnail
+            ? _self.thumbnail
+            : thumbnail // ignore: cast_nullable_to_non_nullable
+                  as InputFile?,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self._captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        disableContentTypeDetection: freezed == disableContentTypeDetection
+            ? _self.disableContentTypeDetection
+            : disableContentTypeDetection // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
 class InputMediaAnimation implements InputMedia {
-  const InputMediaAnimation(
-      {@JsonKey(name: 'type') this.type = InputMediaType.animation,
-      @JsonKey(name: 'media') @InputFileConverter() required this.media,
-      @JsonKey(name: 'thumbnail') @InputFileConverter() this.thumbnail,
-      @JsonKey(name: 'caption') this.caption,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'width') this.width,
-      @JsonKey(name: 'height') this.height,
-      @JsonKey(name: 'duration') this.duration,
-      @JsonKey(name: 'has_spoiler') this.hasSpoiler,
-      @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
-      final String? $type})
-      : _captionEntities = captionEntities,
-        $type = $type ?? 'animation';
+  const InputMediaAnimation({
+    @JsonKey(name: 'type') this.type = InputMediaType.animation,
+    @JsonKey(name: 'media') @InputFileConverter() required this.media,
+    @JsonKey(name: 'thumbnail') @InputFileConverter() this.thumbnail,
+    @JsonKey(name: 'caption') this.caption,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'caption_entities')
+    final List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'width') this.width,
+    @JsonKey(name: 'height') this.height,
+    @JsonKey(name: 'duration') this.duration,
+    @JsonKey(name: 'has_spoiler') this.hasSpoiler,
+    @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
+    final String? $type,
+  }) : _captionEntities = captionEntities,
+       $type = $type ?? 'animation';
 
   /// Type of input media.
   @override
@@ -534,9 +655,7 @@ class InputMediaAnimation implements InputMedia {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputMediaAnimationToJson(
-      this,
-    );
+    return _$InputMediaAnimationToJson(this);
   }
 
   @override
@@ -549,22 +668,24 @@ class InputMediaAnimation implements InputMedia {
 abstract mixin class $InputMediaAnimationCopyWith<$Res>
     implements $InputMediaCopyWith<$Res> {
   factory $InputMediaAnimationCopyWith(
-          InputMediaAnimation value, $Res Function(InputMediaAnimation) _then) =
-      _$InputMediaAnimationCopyWithImpl;
+    InputMediaAnimation value,
+    $Res Function(InputMediaAnimation) _then,
+  ) = _$InputMediaAnimationCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InputMediaType type,
-      @JsonKey(name: 'media') @InputFileConverter() InputFile media,
-      @JsonKey(name: 'thumbnail') @InputFileConverter() InputFile? thumbnail,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'width') int? width,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'duration') int? duration,
-      @JsonKey(name: 'has_spoiler') bool? hasSpoiler,
-      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia});
+  $Res call({
+    @JsonKey(name: 'type') InputMediaType type,
+    @JsonKey(name: 'media') @InputFileConverter() InputFile media,
+    @JsonKey(name: 'thumbnail') @InputFileConverter() InputFile? thumbnail,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'width') int? width,
+    @JsonKey(name: 'height') int? height,
+    @JsonKey(name: 'duration') int? duration,
+    @JsonKey(name: 'has_spoiler') bool? hasSpoiler,
+    @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
+  });
 }
 
 /// @nodoc
@@ -592,72 +713,74 @@ class _$InputMediaAnimationCopyWithImpl<$Res>
     Object? hasSpoiler = freezed,
     Object? showCaptionAboveMedia = freezed,
   }) {
-    return _then(InputMediaAnimation(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InputMediaType,
-      media: null == media
-          ? _self.media
-          : media // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-      thumbnail: freezed == thumbnail
-          ? _self.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as InputFile?,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      width: freezed == width
-          ? _self.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      height: freezed == height
-          ? _self.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int?,
-      duration: freezed == duration
-          ? _self.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int?,
-      hasSpoiler: freezed == hasSpoiler
-          ? _self.hasSpoiler
-          : hasSpoiler // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _self.showCaptionAboveMedia
-          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      InputMediaAnimation(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InputMediaType,
+        media: null == media
+            ? _self.media
+            : media // ignore: cast_nullable_to_non_nullable
+                  as InputFile,
+        thumbnail: freezed == thumbnail
+            ? _self.thumbnail
+            : thumbnail // ignore: cast_nullable_to_non_nullable
+                  as InputFile?,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self._captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        width: freezed == width
+            ? _self.width
+            : width // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        height: freezed == height
+            ? _self.height
+            : height // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        duration: freezed == duration
+            ? _self.duration
+            : duration // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        hasSpoiler: freezed == hasSpoiler
+            ? _self.hasSpoiler
+            : hasSpoiler // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        showCaptionAboveMedia: freezed == showCaptionAboveMedia
+            ? _self.showCaptionAboveMedia
+            : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
 class InputMediaAudio implements InputMedia {
-  const InputMediaAudio(
-      {@JsonKey(name: 'type') this.type = InputMediaType.audio,
-      @JsonKey(name: 'media') @InputFileConverter() required this.media,
-      @JsonKey(name: 'thumbnail') @InputFileConverter() this.thumbnail,
-      @JsonKey(name: 'caption') this.caption,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'duration') this.duration,
-      @JsonKey(name: 'performer') this.performer,
-      @JsonKey(name: 'title') this.title,
-      final String? $type})
-      : _captionEntities = captionEntities,
-        $type = $type ?? 'audio';
+  const InputMediaAudio({
+    @JsonKey(name: 'type') this.type = InputMediaType.audio,
+    @JsonKey(name: 'media') @InputFileConverter() required this.media,
+    @JsonKey(name: 'thumbnail') @InputFileConverter() this.thumbnail,
+    @JsonKey(name: 'caption') this.caption,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'caption_entities')
+    final List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'duration') this.duration,
+    @JsonKey(name: 'performer') this.performer,
+    @JsonKey(name: 'title') this.title,
+    final String? $type,
+  }) : _captionEntities = captionEntities,
+       $type = $type ?? 'audio';
 
   /// Type of input media.
   @override
@@ -728,9 +851,7 @@ class InputMediaAudio implements InputMedia {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputMediaAudioToJson(
-      this,
-    );
+    return _$InputMediaAudioToJson(this);
   }
 
   @override
@@ -743,20 +864,22 @@ class InputMediaAudio implements InputMedia {
 abstract mixin class $InputMediaAudioCopyWith<$Res>
     implements $InputMediaCopyWith<$Res> {
   factory $InputMediaAudioCopyWith(
-          InputMediaAudio value, $Res Function(InputMediaAudio) _then) =
-      _$InputMediaAudioCopyWithImpl;
+    InputMediaAudio value,
+    $Res Function(InputMediaAudio) _then,
+  ) = _$InputMediaAudioCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InputMediaType type,
-      @JsonKey(name: 'media') @InputFileConverter() InputFile media,
-      @JsonKey(name: 'thumbnail') @InputFileConverter() InputFile? thumbnail,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'duration') int? duration,
-      @JsonKey(name: 'performer') String? performer,
-      @JsonKey(name: 'title') String? title});
+  $Res call({
+    @JsonKey(name: 'type') InputMediaType type,
+    @JsonKey(name: 'media') @InputFileConverter() InputFile media,
+    @JsonKey(name: 'thumbnail') @InputFileConverter() InputFile? thumbnail,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'duration') int? duration,
+    @JsonKey(name: 'performer') String? performer,
+    @JsonKey(name: 'title') String? title,
+  });
 }
 
 /// @nodoc
@@ -782,69 +905,71 @@ class _$InputMediaAudioCopyWithImpl<$Res>
     Object? performer = freezed,
     Object? title = freezed,
   }) {
-    return _then(InputMediaAudio(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InputMediaType,
-      media: null == media
-          ? _self.media
-          : media // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-      thumbnail: freezed == thumbnail
-          ? _self.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as InputFile?,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      duration: freezed == duration
-          ? _self.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int?,
-      performer: freezed == performer
-          ? _self.performer
-          : performer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      InputMediaAudio(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InputMediaType,
+        media: null == media
+            ? _self.media
+            : media // ignore: cast_nullable_to_non_nullable
+                  as InputFile,
+        thumbnail: freezed == thumbnail
+            ? _self.thumbnail
+            : thumbnail // ignore: cast_nullable_to_non_nullable
+                  as InputFile?,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self._captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        duration: freezed == duration
+            ? _self.duration
+            : duration // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        performer: freezed == performer
+            ? _self.performer
+            : performer // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
 class InputMediaVideo implements InputMedia {
-  const InputMediaVideo(
-      {@JsonKey(name: 'type') this.type = InputMediaType.video,
-      @JsonKey(name: 'media') @InputFileConverter() required this.media,
-      @JsonKey(name: 'thumbnail') @InputFileConverter() this.thumbnail,
-      @JsonKey(name: 'caption') this.caption,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'width') this.width,
-      @JsonKey(name: 'height') this.height,
-      @JsonKey(name: 'duration') this.duration,
-      @JsonKey(name: 'supports_streaming') this.supportsStreaming,
-      @JsonKey(name: 'has_spoiler') this.hasSpoiler,
-      @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
-      @JsonKey(name: 'start_timestamp') this.startTimestamp,
-      @JsonKey(name: 'cover') @InputFileConverter() this.cover,
-      final String? $type})
-      : _captionEntities = captionEntities,
-        $type = $type ?? 'video';
+  const InputMediaVideo({
+    @JsonKey(name: 'type') this.type = InputMediaType.video,
+    @JsonKey(name: 'media') @InputFileConverter() required this.media,
+    @JsonKey(name: 'thumbnail') @InputFileConverter() this.thumbnail,
+    @JsonKey(name: 'caption') this.caption,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'caption_entities')
+    final List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'width') this.width,
+    @JsonKey(name: 'height') this.height,
+    @JsonKey(name: 'duration') this.duration,
+    @JsonKey(name: 'supports_streaming') this.supportsStreaming,
+    @JsonKey(name: 'has_spoiler') this.hasSpoiler,
+    @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
+    @JsonKey(name: 'start_timestamp') this.startTimestamp,
+    @JsonKey(name: 'cover') @InputFileConverter() this.cover,
+    final String? $type,
+  }) : _captionEntities = captionEntities,
+       $type = $type ?? 'video';
 
   /// Type of input media.
   @override
@@ -938,9 +1063,7 @@ class InputMediaVideo implements InputMedia {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputMediaVideoToJson(
-      this,
-    );
+    return _$InputMediaVideoToJson(this);
   }
 
   @override
@@ -953,25 +1076,27 @@ class InputMediaVideo implements InputMedia {
 abstract mixin class $InputMediaVideoCopyWith<$Res>
     implements $InputMediaCopyWith<$Res> {
   factory $InputMediaVideoCopyWith(
-          InputMediaVideo value, $Res Function(InputMediaVideo) _then) =
-      _$InputMediaVideoCopyWithImpl;
+    InputMediaVideo value,
+    $Res Function(InputMediaVideo) _then,
+  ) = _$InputMediaVideoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InputMediaType type,
-      @JsonKey(name: 'media') @InputFileConverter() InputFile media,
-      @JsonKey(name: 'thumbnail') @InputFileConverter() InputFile? thumbnail,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'width') int? width,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'duration') int? duration,
-      @JsonKey(name: 'supports_streaming') bool? supportsStreaming,
-      @JsonKey(name: 'has_spoiler') bool? hasSpoiler,
-      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
-      @JsonKey(name: 'start_timestamp') int? startTimestamp,
-      @JsonKey(name: 'cover') @InputFileConverter() InputFile? cover});
+  $Res call({
+    @JsonKey(name: 'type') InputMediaType type,
+    @JsonKey(name: 'media') @InputFileConverter() InputFile media,
+    @JsonKey(name: 'thumbnail') @InputFileConverter() InputFile? thumbnail,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'width') int? width,
+    @JsonKey(name: 'height') int? height,
+    @JsonKey(name: 'duration') int? duration,
+    @JsonKey(name: 'supports_streaming') bool? supportsStreaming,
+    @JsonKey(name: 'has_spoiler') bool? hasSpoiler,
+    @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
+    @JsonKey(name: 'start_timestamp') int? startTimestamp,
+    @JsonKey(name: 'cover') @InputFileConverter() InputFile? cover,
+  });
 }
 
 /// @nodoc
@@ -1002,63 +1127,65 @@ class _$InputMediaVideoCopyWithImpl<$Res>
     Object? startTimestamp = freezed,
     Object? cover = freezed,
   }) {
-    return _then(InputMediaVideo(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InputMediaType,
-      media: null == media
-          ? _self.media
-          : media // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-      thumbnail: freezed == thumbnail
-          ? _self.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as InputFile?,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      width: freezed == width
-          ? _self.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      height: freezed == height
-          ? _self.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int?,
-      duration: freezed == duration
-          ? _self.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int?,
-      supportsStreaming: freezed == supportsStreaming
-          ? _self.supportsStreaming
-          : supportsStreaming // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      hasSpoiler: freezed == hasSpoiler
-          ? _self.hasSpoiler
-          : hasSpoiler // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _self.showCaptionAboveMedia
-          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      startTimestamp: freezed == startTimestamp
-          ? _self.startTimestamp
-          : startTimestamp // ignore: cast_nullable_to_non_nullable
-              as int?,
-      cover: freezed == cover
-          ? _self.cover
-          : cover // ignore: cast_nullable_to_non_nullable
-              as InputFile?,
-    ));
+    return _then(
+      InputMediaVideo(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InputMediaType,
+        media: null == media
+            ? _self.media
+            : media // ignore: cast_nullable_to_non_nullable
+                  as InputFile,
+        thumbnail: freezed == thumbnail
+            ? _self.thumbnail
+            : thumbnail // ignore: cast_nullable_to_non_nullable
+                  as InputFile?,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self._captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        width: freezed == width
+            ? _self.width
+            : width // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        height: freezed == height
+            ? _self.height
+            : height // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        duration: freezed == duration
+            ? _self.duration
+            : duration // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        supportsStreaming: freezed == supportsStreaming
+            ? _self.supportsStreaming
+            : supportsStreaming // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        hasSpoiler: freezed == hasSpoiler
+            ? _self.hasSpoiler
+            : hasSpoiler // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        showCaptionAboveMedia: freezed == showCaptionAboveMedia
+            ? _self.showCaptionAboveMedia
+            : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        startTimestamp: freezed == startTimestamp
+            ? _self.startTimestamp
+            : startTimestamp // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        cover: freezed == cover
+            ? _self.cover
+            : cover // ignore: cast_nullable_to_non_nullable
+                  as InputFile?,
+      ),
+    );
   }
 }

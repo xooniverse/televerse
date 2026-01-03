@@ -21,8 +21,7 @@ Map<String, dynamic> _$ChosenInlineResultToJson(_ChosenInlineResult instance) =>
     <String, dynamic>{
       'result_id': instance.resultId,
       'from': instance.from,
-      if (instance.location case final value?) 'location': value,
-      if (instance.inlineMessageId case final value?)
-        'inline_message_id': value,
+      'location': ?instance.location,
+      'inline_message_id': ?instance.inlineMessageId,
       'query': instance.query,
     };

@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -44,7 +43,9 @@ mixin _$StoryAreaPosition {
   @pragma('vm:prefer-inline')
   $StoryAreaPositionCopyWith<StoryAreaPosition> get copyWith =>
       _$StoryAreaPositionCopyWithImpl<StoryAreaPosition>(
-          this as StoryAreaPosition, _$identity);
+        this as StoryAreaPosition,
+        _$identity,
+      );
 
   /// Serializes this StoryAreaPosition to a JSON map.
   Map<String, dynamic> toJson();
@@ -58,17 +59,18 @@ mixin _$StoryAreaPosition {
 /// @nodoc
 abstract mixin class $StoryAreaPositionCopyWith<$Res> {
   factory $StoryAreaPositionCopyWith(
-          StoryAreaPosition value, $Res Function(StoryAreaPosition) _then) =
-      _$StoryAreaPositionCopyWithImpl;
+    StoryAreaPosition value,
+    $Res Function(StoryAreaPosition) _then,
+  ) = _$StoryAreaPositionCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'x_percentage') double xPercentage,
-      @JsonKey(name: 'y_percentage') double yPercentage,
-      @JsonKey(name: 'width_percentage') double widthPercentage,
-      @JsonKey(name: 'height_percentage') double heightPercentage,
-      @JsonKey(name: 'rotation_angle') double rotationAngle,
-      @JsonKey(name: 'corner_radius_percentage')
-      double cornerRadiusPercentage});
+  $Res call({
+    @JsonKey(name: 'x_percentage') double xPercentage,
+    @JsonKey(name: 'y_percentage') double yPercentage,
+    @JsonKey(name: 'width_percentage') double widthPercentage,
+    @JsonKey(name: 'height_percentage') double heightPercentage,
+    @JsonKey(name: 'rotation_angle') double rotationAngle,
+    @JsonKey(name: 'corner_radius_percentage') double cornerRadiusPercentage,
+  });
 }
 
 /// @nodoc
@@ -91,46 +93,129 @@ class _$StoryAreaPositionCopyWithImpl<$Res>
     Object? rotationAngle = null,
     Object? cornerRadiusPercentage = null,
   }) {
-    return _then(_self.copyWith(
-      xPercentage: null == xPercentage
-          ? _self.xPercentage
-          : xPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-      yPercentage: null == yPercentage
-          ? _self.yPercentage
-          : yPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-      widthPercentage: null == widthPercentage
-          ? _self.widthPercentage
-          : widthPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-      heightPercentage: null == heightPercentage
-          ? _self.heightPercentage
-          : heightPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-      rotationAngle: null == rotationAngle
-          ? _self.rotationAngle
-          : rotationAngle // ignore: cast_nullable_to_non_nullable
-              as double,
-      cornerRadiusPercentage: null == cornerRadiusPercentage
-          ? _self.cornerRadiusPercentage
-          : cornerRadiusPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+    return _then(
+      _self.copyWith(
+        xPercentage: null == xPercentage
+            ? _self.xPercentage
+            : xPercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+        yPercentage: null == yPercentage
+            ? _self.yPercentage
+            : yPercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+        widthPercentage: null == widthPercentage
+            ? _self.widthPercentage
+            : widthPercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+        heightPercentage: null == heightPercentage
+            ? _self.heightPercentage
+            : heightPercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+        rotationAngle: null == rotationAngle
+            ? _self.rotationAngle
+            : rotationAngle // ignore: cast_nullable_to_non_nullable
+                  as double,
+        cornerRadiusPercentage: null == cornerRadiusPercentage
+            ? _self.cornerRadiusPercentage
+            : cornerRadiusPercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [StoryAreaPosition].
+extension StoryAreaPositionPatterns on StoryAreaPosition {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_StoryAreaPosition value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _StoryAreaPosition() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_StoryAreaPosition value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StoryAreaPosition():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_StoryAreaPosition value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StoryAreaPosition() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _StoryAreaPosition implements StoryAreaPosition {
-  const _StoryAreaPosition(
-      {@JsonKey(name: 'x_percentage') required this.xPercentage,
-      @JsonKey(name: 'y_percentage') required this.yPercentage,
-      @JsonKey(name: 'width_percentage') required this.widthPercentage,
-      @JsonKey(name: 'height_percentage') required this.heightPercentage,
-      @JsonKey(name: 'rotation_angle') required this.rotationAngle,
-      @JsonKey(name: 'corner_radius_percentage')
-      required this.cornerRadiusPercentage});
+  const _StoryAreaPosition({
+    @JsonKey(name: 'x_percentage') required this.xPercentage,
+    @JsonKey(name: 'y_percentage') required this.yPercentage,
+    @JsonKey(name: 'width_percentage') required this.widthPercentage,
+    @JsonKey(name: 'height_percentage') required this.heightPercentage,
+    @JsonKey(name: 'rotation_angle') required this.rotationAngle,
+    @JsonKey(name: 'corner_radius_percentage')
+    required this.cornerRadiusPercentage,
+  });
   factory _StoryAreaPosition.fromJson(Map<String, dynamic> json) =>
       _$StoryAreaPositionFromJson(json);
 
@@ -174,9 +259,7 @@ class _StoryAreaPosition implements StoryAreaPosition {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$StoryAreaPositionToJson(
-      this,
-    );
+    return _$StoryAreaPositionToJson(this);
   }
 
   @override
@@ -189,18 +272,19 @@ class _StoryAreaPosition implements StoryAreaPosition {
 abstract mixin class _$StoryAreaPositionCopyWith<$Res>
     implements $StoryAreaPositionCopyWith<$Res> {
   factory _$StoryAreaPositionCopyWith(
-          _StoryAreaPosition value, $Res Function(_StoryAreaPosition) _then) =
-      __$StoryAreaPositionCopyWithImpl;
+    _StoryAreaPosition value,
+    $Res Function(_StoryAreaPosition) _then,
+  ) = __$StoryAreaPositionCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'x_percentage') double xPercentage,
-      @JsonKey(name: 'y_percentage') double yPercentage,
-      @JsonKey(name: 'width_percentage') double widthPercentage,
-      @JsonKey(name: 'height_percentage') double heightPercentage,
-      @JsonKey(name: 'rotation_angle') double rotationAngle,
-      @JsonKey(name: 'corner_radius_percentage')
-      double cornerRadiusPercentage});
+  $Res call({
+    @JsonKey(name: 'x_percentage') double xPercentage,
+    @JsonKey(name: 'y_percentage') double yPercentage,
+    @JsonKey(name: 'width_percentage') double widthPercentage,
+    @JsonKey(name: 'height_percentage') double heightPercentage,
+    @JsonKey(name: 'rotation_angle') double rotationAngle,
+    @JsonKey(name: 'corner_radius_percentage') double cornerRadiusPercentage,
+  });
 }
 
 /// @nodoc
@@ -223,31 +307,33 @@ class __$StoryAreaPositionCopyWithImpl<$Res>
     Object? rotationAngle = null,
     Object? cornerRadiusPercentage = null,
   }) {
-    return _then(_StoryAreaPosition(
-      xPercentage: null == xPercentage
-          ? _self.xPercentage
-          : xPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-      yPercentage: null == yPercentage
-          ? _self.yPercentage
-          : yPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-      widthPercentage: null == widthPercentage
-          ? _self.widthPercentage
-          : widthPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-      heightPercentage: null == heightPercentage
-          ? _self.heightPercentage
-          : heightPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-      rotationAngle: null == rotationAngle
-          ? _self.rotationAngle
-          : rotationAngle // ignore: cast_nullable_to_non_nullable
-              as double,
-      cornerRadiusPercentage: null == cornerRadiusPercentage
-          ? _self.cornerRadiusPercentage
-          : cornerRadiusPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+    return _then(
+      _StoryAreaPosition(
+        xPercentage: null == xPercentage
+            ? _self.xPercentage
+            : xPercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+        yPercentage: null == yPercentage
+            ? _self.yPercentage
+            : yPercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+        widthPercentage: null == widthPercentage
+            ? _self.widthPercentage
+            : widthPercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+        heightPercentage: null == heightPercentage
+            ? _self.heightPercentage
+            : heightPercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+        rotationAngle: null == rotationAngle
+            ? _self.rotationAngle
+            : rotationAngle // ignore: cast_nullable_to_non_nullable
+                  as double,
+        cornerRadiusPercentage: null == cornerRadiusPercentage
+            ? _self.cornerRadiusPercentage
+            : cornerRadiusPercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+      ),
+    );
   }
 }

@@ -7,43 +7,46 @@ part of 'inline_query_result_cached_audio.dart';
 // **************************************************************************
 
 _InlineQueryResultCachedAudio _$InlineQueryResultCachedAudioFromJson(
-        Map<String, dynamic> json) =>
-    _InlineQueryResultCachedAudio(
-      id: json['id'] as String,
-      audioFileId: json['audio_file_id'] as String,
-      caption: json['caption'] as String?,
-      parseMode: $enumDecodeNullable(_$ParseModeEnumMap, json['parse_mode']),
-      captionEntities: (json['caption_entities'] as List<dynamic>?)
-          ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      replyMarkup: json['reply_markup'] == null
-          ? null
-          : InlineKeyboardMarkup.fromJson(
-              json['reply_markup'] as Map<String, dynamic>),
-      inputMessageContent:
-          _$JsonConverterFromJson<Map<String, Object>, InputMessageContent>(
-              json['input_message_content'],
-              const InputMessageContentConverter().fromJson),
-      type: $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
-          InlineQueryResultType.audio,
-    );
+  Map<String, dynamic> json,
+) => _InlineQueryResultCachedAudio(
+  id: json['id'] as String,
+  audioFileId: json['audio_file_id'] as String,
+  caption: json['caption'] as String?,
+  parseMode: $enumDecodeNullable(_$ParseModeEnumMap, json['parse_mode']),
+  captionEntities: (json['caption_entities'] as List<dynamic>?)
+      ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  replyMarkup: json['reply_markup'] == null
+      ? null
+      : InlineKeyboardMarkup.fromJson(
+          json['reply_markup'] as Map<String, dynamic>,
+        ),
+  inputMessageContent:
+      _$JsonConverterFromJson<Map<String, Object>, InputMessageContent>(
+        json['input_message_content'],
+        const InputMessageContentConverter().fromJson,
+      ),
+  type:
+      $enumDecodeNullable(_$InlineQueryResultTypeEnumMap, json['type']) ??
+      InlineQueryResultType.audio,
+);
 
 Map<String, dynamic> _$InlineQueryResultCachedAudioToJson(
-        _InlineQueryResultCachedAudio instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'audio_file_id': instance.audioFileId,
-      if (instance.caption case final value?) 'caption': value,
-      if (instance.parseMode case final value?) 'parse_mode': value,
-      if (instance.captionEntities case final value?) 'caption_entities': value,
-      if (instance.replyMarkup case final value?) 'reply_markup': value,
-      if (_$JsonConverterToJson<Map<String, Object>, InputMessageContent>(
-              instance.inputMessageContent,
-              const InputMessageContentConverter().toJson)
-          case final value?)
-        'input_message_content': value,
-      'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
-    };
+  _InlineQueryResultCachedAudio instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'audio_file_id': instance.audioFileId,
+  'caption': ?instance.caption,
+  'parse_mode': ?instance.parseMode,
+  'caption_entities': ?instance.captionEntities,
+  'reply_markup': ?instance.replyMarkup,
+  'input_message_content':
+      ?_$JsonConverterToJson<Map<String, Object>, InputMessageContent>(
+        instance.inputMessageContent,
+        const InputMessageContentConverter().toJson,
+      ),
+  'type': _$InlineQueryResultTypeEnumMap[instance.type]!,
+};
 
 const _$ParseModeEnumMap = {
   ParseMode.markdown: 'Markdown',
@@ -54,8 +57,7 @@ const _$ParseModeEnumMap = {
 Value? _$JsonConverterFromJson<Json, Value>(
   Object? json,
   Value? Function(Json json) fromJson,
-) =>
-    json == null ? null : fromJson(json as Json);
+) => json == null ? null : fromJson(json as Json);
 
 const _$InlineQueryResultTypeEnumMap = {
   InlineQueryResultType.article: 'article',
@@ -76,5 +78,4 @@ const _$InlineQueryResultTypeEnumMap = {
 Json? _$JsonConverterToJson<Json, Value>(
   Value? value,
   Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);
+) => value == null ? null : toJson(value);

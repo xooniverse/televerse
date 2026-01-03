@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -45,13 +44,15 @@ mixin _$OwnedGifts {
 /// @nodoc
 abstract mixin class $OwnedGiftsCopyWith<$Res> {
   factory $OwnedGiftsCopyWith(
-          OwnedGifts value, $Res Function(OwnedGifts) _then) =
-      _$OwnedGiftsCopyWithImpl;
+    OwnedGifts value,
+    $Res Function(OwnedGifts) _then,
+  ) = _$OwnedGiftsCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'total_count') int totalCount,
-      @JsonKey(name: 'gifts') List<OwnedGift> gifts,
-      @JsonKey(name: 'next_offset') String? nextOffset});
+  $Res call({
+    @JsonKey(name: 'total_count') int totalCount,
+    @JsonKey(name: 'gifts') List<OwnedGift> gifts,
+    @JsonKey(name: 'next_offset') String? nextOffset,
+  });
 }
 
 /// @nodoc
@@ -70,31 +71,113 @@ class _$OwnedGiftsCopyWithImpl<$Res> implements $OwnedGiftsCopyWith<$Res> {
     Object? gifts = null,
     Object? nextOffset = freezed,
   }) {
-    return _then(_self.copyWith(
-      totalCount: null == totalCount
-          ? _self.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      gifts: null == gifts
-          ? _self.gifts
-          : gifts // ignore: cast_nullable_to_non_nullable
-              as List<OwnedGift>,
-      nextOffset: freezed == nextOffset
-          ? _self.nextOffset
-          : nextOffset // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _self.copyWith(
+        totalCount: null == totalCount
+            ? _self.totalCount
+            : totalCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        gifts: null == gifts
+            ? _self.gifts
+            : gifts // ignore: cast_nullable_to_non_nullable
+                  as List<OwnedGift>,
+        nextOffset: freezed == nextOffset
+            ? _self.nextOffset
+            : nextOffset // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [OwnedGifts].
+extension OwnedGiftsPatterns on OwnedGifts {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OwnedGifts value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _OwnedGifts() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OwnedGifts value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _OwnedGifts():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OwnedGifts value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _OwnedGifts() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _OwnedGifts implements OwnedGifts {
-  const _OwnedGifts(
-      {@JsonKey(name: 'total_count') required this.totalCount,
-      @JsonKey(name: 'gifts') required final List<OwnedGift> gifts,
-      @JsonKey(name: 'next_offset') this.nextOffset})
-      : _gifts = gifts;
+  const _OwnedGifts({
+    @JsonKey(name: 'total_count') required this.totalCount,
+    @JsonKey(name: 'gifts') required final List<OwnedGift> gifts,
+    @JsonKey(name: 'next_offset') this.nextOffset,
+  }) : _gifts = gifts;
   factory _OwnedGifts.fromJson(Map<String, dynamic> json) =>
       _$OwnedGiftsFromJson(json);
 
@@ -130,9 +213,7 @@ class _OwnedGifts implements OwnedGifts {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$OwnedGiftsToJson(
-      this,
-    );
+    return _$OwnedGiftsToJson(this);
   }
 
   @override
@@ -145,14 +226,16 @@ class _OwnedGifts implements OwnedGifts {
 abstract mixin class _$OwnedGiftsCopyWith<$Res>
     implements $OwnedGiftsCopyWith<$Res> {
   factory _$OwnedGiftsCopyWith(
-          _OwnedGifts value, $Res Function(_OwnedGifts) _then) =
-      __$OwnedGiftsCopyWithImpl;
+    _OwnedGifts value,
+    $Res Function(_OwnedGifts) _then,
+  ) = __$OwnedGiftsCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'total_count') int totalCount,
-      @JsonKey(name: 'gifts') List<OwnedGift> gifts,
-      @JsonKey(name: 'next_offset') String? nextOffset});
+  $Res call({
+    @JsonKey(name: 'total_count') int totalCount,
+    @JsonKey(name: 'gifts') List<OwnedGift> gifts,
+    @JsonKey(name: 'next_offset') String? nextOffset,
+  });
 }
 
 /// @nodoc
@@ -171,19 +254,21 @@ class __$OwnedGiftsCopyWithImpl<$Res> implements _$OwnedGiftsCopyWith<$Res> {
     Object? gifts = null,
     Object? nextOffset = freezed,
   }) {
-    return _then(_OwnedGifts(
-      totalCount: null == totalCount
-          ? _self.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      gifts: null == gifts
-          ? _self._gifts
-          : gifts // ignore: cast_nullable_to_non_nullable
-              as List<OwnedGift>,
-      nextOffset: freezed == nextOffset
-          ? _self.nextOffset
-          : nextOffset // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _OwnedGifts(
+        totalCount: null == totalCount
+            ? _self.totalCount
+            : totalCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        gifts: null == gifts
+            ? _self._gifts
+            : gifts // ignore: cast_nullable_to_non_nullable
+                  as List<OwnedGift>,
+        nextOffset: freezed == nextOffset
+            ? _self.nextOffset
+            : nextOffset // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }

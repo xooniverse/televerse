@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -81,7 +80,9 @@ mixin _$InlineQueryResultDocument {
   @pragma('vm:prefer-inline')
   $InlineQueryResultDocumentCopyWith<InlineQueryResultDocument> get copyWith =>
       _$InlineQueryResultDocumentCopyWithImpl<InlineQueryResultDocument>(
-          this as InlineQueryResultDocument, _$identity);
+        this as InlineQueryResultDocument,
+        _$identity,
+      );
 
   /// Serializes this InlineQueryResultDocument to a JSON map.
   Map<String, dynamic> toJson();
@@ -94,27 +95,29 @@ mixin _$InlineQueryResultDocument {
 
 /// @nodoc
 abstract mixin class $InlineQueryResultDocumentCopyWith<$Res> {
-  factory $InlineQueryResultDocumentCopyWith(InlineQueryResultDocument value,
-          $Res Function(InlineQueryResultDocument) _then) =
-      _$InlineQueryResultDocumentCopyWithImpl;
+  factory $InlineQueryResultDocumentCopyWith(
+    InlineQueryResultDocument value,
+    $Res Function(InlineQueryResultDocument) _then,
+  ) = _$InlineQueryResultDocumentCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'document_url') String documentUrl,
-      @JsonKey(name: 'mime_type') String mimeType,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height') int? thumbnailHeight});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'document_url') String documentUrl,
+    @JsonKey(name: 'mime_type') String mimeType,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
+    @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
+    @JsonKey(name: 'thumbnail_height') int? thumbnailHeight,
+  });
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -147,64 +150,66 @@ class _$InlineQueryResultDocumentCopyWithImpl<$Res>
     Object? thumbnailWidth = freezed,
     Object? thumbnailHeight = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      documentUrl: null == documentUrl
-          ? _self.documentUrl
-          : documentUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      mimeType: null == mimeType
-          ? _self.mimeType
-          : mimeType // ignore: cast_nullable_to_non_nullable
-              as String,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self.captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      description: freezed == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      thumbnailUrl: freezed == thumbnailUrl
-          ? _self.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailWidth: freezed == thumbnailWidth
-          ? _self.thumbnailWidth
-          : thumbnailWidth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnailHeight: freezed == thumbnailHeight
-          ? _self.thumbnailHeight
-          : thumbnailHeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        documentUrl: null == documentUrl
+            ? _self.documentUrl
+            : documentUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        mimeType: null == mimeType
+            ? _self.mimeType
+            : mimeType // ignore: cast_nullable_to_non_nullable
+                  as String,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self.captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        description: freezed == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        thumbnailUrl: freezed == thumbnailUrl
+            ? _self.thumbnailUrl
+            : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        thumbnailWidth: freezed == thumbnailWidth
+            ? _self.thumbnailWidth
+            : thumbnailWidth // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        thumbnailHeight: freezed == thumbnailHeight
+            ? _self.thumbnailHeight
+            : thumbnailHeight // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultDocument
@@ -216,35 +221,116 @@ class _$InlineQueryResultDocumentCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [InlineQueryResultDocument].
+extension InlineQueryResultDocumentPatterns on InlineQueryResultDocument {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineQueryResultDocument value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultDocument() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineQueryResultDocument value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultDocument():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineQueryResultDocument value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultDocument() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _InlineQueryResultDocument implements InlineQueryResultDocument {
-  const _InlineQueryResultDocument(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'type') this.type = InlineQueryResultType.document,
-      @JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'document_url') required this.documentUrl,
-      @JsonKey(name: 'mime_type') required this.mimeType,
-      @JsonKey(name: 'caption') this.caption,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'reply_markup') this.replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      this.inputMessageContent,
-      @JsonKey(name: 'thumbnail_url') this.thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') this.thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height') this.thumbnailHeight})
-      : _captionEntities = captionEntities;
+  const _InlineQueryResultDocument({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'type') this.type = InlineQueryResultType.document,
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'document_url') required this.documentUrl,
+    @JsonKey(name: 'mime_type') required this.mimeType,
+    @JsonKey(name: 'caption') this.caption,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'caption_entities')
+    final List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'description') this.description,
+    @JsonKey(name: 'reply_markup') this.replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    this.inputMessageContent,
+    @JsonKey(name: 'thumbnail_url') this.thumbnailUrl,
+    @JsonKey(name: 'thumbnail_width') this.thumbnailWidth,
+    @JsonKey(name: 'thumbnail_height') this.thumbnailHeight,
+  }) : _captionEntities = captionEntities;
   factory _InlineQueryResultDocument.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultDocumentFromJson(json);
 
@@ -339,15 +425,15 @@ class _InlineQueryResultDocument implements InlineQueryResultDocument {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   _$InlineQueryResultDocumentCopyWith<_InlineQueryResultDocument>
-      get copyWith =>
-          __$InlineQueryResultDocumentCopyWithImpl<_InlineQueryResultDocument>(
-              this, _$identity);
+  get copyWith =>
+      __$InlineQueryResultDocumentCopyWithImpl<_InlineQueryResultDocument>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineQueryResultDocumentToJson(
-      this,
-    );
+    return _$InlineQueryResultDocumentToJson(this);
   }
 
   @override
@@ -359,28 +445,30 @@ class _InlineQueryResultDocument implements InlineQueryResultDocument {
 /// @nodoc
 abstract mixin class _$InlineQueryResultDocumentCopyWith<$Res>
     implements $InlineQueryResultDocumentCopyWith<$Res> {
-  factory _$InlineQueryResultDocumentCopyWith(_InlineQueryResultDocument value,
-          $Res Function(_InlineQueryResultDocument) _then) =
-      __$InlineQueryResultDocumentCopyWithImpl;
+  factory _$InlineQueryResultDocumentCopyWith(
+    _InlineQueryResultDocument value,
+    $Res Function(_InlineQueryResultDocument) _then,
+  ) = __$InlineQueryResultDocumentCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'document_url') String documentUrl,
-      @JsonKey(name: 'mime_type') String mimeType,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height') int? thumbnailHeight});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'document_url') String documentUrl,
+    @JsonKey(name: 'mime_type') String mimeType,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
+    @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
+    @JsonKey(name: 'thumbnail_height') int? thumbnailHeight,
+  });
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -414,64 +502,66 @@ class __$InlineQueryResultDocumentCopyWithImpl<$Res>
     Object? thumbnailWidth = freezed,
     Object? thumbnailHeight = freezed,
   }) {
-    return _then(_InlineQueryResultDocument(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      documentUrl: null == documentUrl
-          ? _self.documentUrl
-          : documentUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      mimeType: null == mimeType
-          ? _self.mimeType
-          : mimeType // ignore: cast_nullable_to_non_nullable
-              as String,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      description: freezed == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      thumbnailUrl: freezed == thumbnailUrl
-          ? _self.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailWidth: freezed == thumbnailWidth
-          ? _self.thumbnailWidth
-          : thumbnailWidth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnailHeight: freezed == thumbnailHeight
-          ? _self.thumbnailHeight
-          : thumbnailHeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _InlineQueryResultDocument(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        documentUrl: null == documentUrl
+            ? _self.documentUrl
+            : documentUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        mimeType: null == mimeType
+            ? _self.mimeType
+            : mimeType // ignore: cast_nullable_to_non_nullable
+                  as String,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self._captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        description: freezed == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        thumbnailUrl: freezed == thumbnailUrl
+            ? _self.thumbnailUrl
+            : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        thumbnailWidth: freezed == thumbnailWidth
+            ? _self.thumbnailWidth
+            : thumbnailWidth // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        thumbnailHeight: freezed == thumbnailHeight
+            ? _self.thumbnailHeight
+            : thumbnailHeight // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultDocument
@@ -483,8 +573,9 @@ class __$InlineQueryResultDocumentCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
   }

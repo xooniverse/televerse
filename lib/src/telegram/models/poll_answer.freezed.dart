@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -51,14 +50,16 @@ mixin _$PollAnswer {
 /// @nodoc
 abstract mixin class $PollAnswerCopyWith<$Res> {
   factory $PollAnswerCopyWith(
-          PollAnswer value, $Res Function(PollAnswer) _then) =
-      _$PollAnswerCopyWithImpl;
+    PollAnswer value,
+    $Res Function(PollAnswer) _then,
+  ) = _$PollAnswerCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'poll_id') String pollId,
-      @JsonKey(name: 'user') User? user,
-      @JsonKey(name: 'option_ids') List<int> optionIds,
-      @JsonKey(name: 'voter_chat') Chat? voterChat});
+  $Res call({
+    @JsonKey(name: 'poll_id') String pollId,
+    @JsonKey(name: 'user') User? user,
+    @JsonKey(name: 'option_ids') List<int> optionIds,
+    @JsonKey(name: 'voter_chat') Chat? voterChat,
+  });
 
   $UserCopyWith<$Res>? get user;
   $ChatCopyWith<$Res>? get voterChat;
@@ -81,24 +82,26 @@ class _$PollAnswerCopyWithImpl<$Res> implements $PollAnswerCopyWith<$Res> {
     Object? optionIds = null,
     Object? voterChat = freezed,
   }) {
-    return _then(_self.copyWith(
-      pollId: null == pollId
-          ? _self.pollId
-          : pollId // ignore: cast_nullable_to_non_nullable
-              as String,
-      user: freezed == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      optionIds: null == optionIds
-          ? _self.optionIds
-          : optionIds // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      voterChat: freezed == voterChat
-          ? _self.voterChat
-          : voterChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-    ));
+    return _then(
+      _self.copyWith(
+        pollId: null == pollId
+            ? _self.pollId
+            : pollId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        user: freezed == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        optionIds: null == optionIds
+            ? _self.optionIds
+            : optionIds // ignore: cast_nullable_to_non_nullable
+                  as List<int>,
+        voterChat: freezed == voterChat
+            ? _self.voterChat
+            : voterChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+      ),
+    );
   }
 
   /// Create a copy of PollAnswer
@@ -130,15 +133,95 @@ class _$PollAnswerCopyWithImpl<$Res> implements $PollAnswerCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [PollAnswer].
+extension PollAnswerPatterns on PollAnswer {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PollAnswer value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PollAnswer() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PollAnswer value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PollAnswer():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PollAnswer value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PollAnswer() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _PollAnswer implements PollAnswer {
-  const _PollAnswer(
-      {@JsonKey(name: 'poll_id') required this.pollId,
-      @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'option_ids') required final List<int> optionIds,
-      @JsonKey(name: 'voter_chat') this.voterChat})
-      : _optionIds = optionIds;
+  const _PollAnswer({
+    @JsonKey(name: 'poll_id') required this.pollId,
+    @JsonKey(name: 'user') this.user,
+    @JsonKey(name: 'option_ids') required final List<int> optionIds,
+    @JsonKey(name: 'voter_chat') this.voterChat,
+  }) : _optionIds = optionIds;
   factory _PollAnswer.fromJson(Map<String, dynamic> json) =>
       _$PollAnswerFromJson(json);
 
@@ -182,9 +265,7 @@ class _PollAnswer implements PollAnswer {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PollAnswerToJson(
-      this,
-    );
+    return _$PollAnswerToJson(this);
   }
 
   @override
@@ -197,15 +278,17 @@ class _PollAnswer implements PollAnswer {
 abstract mixin class _$PollAnswerCopyWith<$Res>
     implements $PollAnswerCopyWith<$Res> {
   factory _$PollAnswerCopyWith(
-          _PollAnswer value, $Res Function(_PollAnswer) _then) =
-      __$PollAnswerCopyWithImpl;
+    _PollAnswer value,
+    $Res Function(_PollAnswer) _then,
+  ) = __$PollAnswerCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'poll_id') String pollId,
-      @JsonKey(name: 'user') User? user,
-      @JsonKey(name: 'option_ids') List<int> optionIds,
-      @JsonKey(name: 'voter_chat') Chat? voterChat});
+  $Res call({
+    @JsonKey(name: 'poll_id') String pollId,
+    @JsonKey(name: 'user') User? user,
+    @JsonKey(name: 'option_ids') List<int> optionIds,
+    @JsonKey(name: 'voter_chat') Chat? voterChat,
+  });
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -230,24 +313,26 @@ class __$PollAnswerCopyWithImpl<$Res> implements _$PollAnswerCopyWith<$Res> {
     Object? optionIds = null,
     Object? voterChat = freezed,
   }) {
-    return _then(_PollAnswer(
-      pollId: null == pollId
-          ? _self.pollId
-          : pollId // ignore: cast_nullable_to_non_nullable
-              as String,
-      user: freezed == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      optionIds: null == optionIds
-          ? _self._optionIds
-          : optionIds // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      voterChat: freezed == voterChat
-          ? _self.voterChat
-          : voterChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-    ));
+    return _then(
+      _PollAnswer(
+        pollId: null == pollId
+            ? _self.pollId
+            : pollId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        user: freezed == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        optionIds: null == optionIds
+            ? _self._optionIds
+            : optionIds // ignore: cast_nullable_to_non_nullable
+                  as List<int>,
+        voterChat: freezed == voterChat
+            ? _self.voterChat
+            : voterChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+      ),
+    );
   }
 
   /// Create a copy of PollAnswer

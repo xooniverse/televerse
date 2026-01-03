@@ -7,11 +7,7 @@ part of 'video_chat_scheduled.dart';
 // **************************************************************************
 
 _VideoChatScheduled _$VideoChatScheduledFromJson(Map<String, dynamic> json) =>
-    _VideoChatScheduled(
-      startDate: (json['start_date'] as num).toInt(),
-    );
+    _VideoChatScheduled(startDate: (json['start_date'] as num).toInt());
 
 Map<String, dynamic> _$VideoChatScheduledToJson(_VideoChatScheduled instance) =>
-    <String, dynamic>{
-      'start_date': instance.startDate,
-    };
+    <String, dynamic>{'start_date': instance.startDate};

@@ -13,7 +13,4 @@ _LabeledPrice _$LabeledPriceFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$LabeledPriceToJson(_LabeledPrice instance) =>
-    <String, dynamic>{
-      'label': instance.label,
-      'amount': instance.amount,
-    };
+    <String, dynamic>{'label': instance.label, 'amount': instance.amount};

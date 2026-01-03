@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -27,7 +26,9 @@ mixin _$VideoChatScheduled {
   @pragma('vm:prefer-inline')
   $VideoChatScheduledCopyWith<VideoChatScheduled> get copyWith =>
       _$VideoChatScheduledCopyWithImpl<VideoChatScheduled>(
-          this as VideoChatScheduled, _$identity);
+        this as VideoChatScheduled,
+        _$identity,
+      );
 
   /// Serializes this VideoChatScheduled to a JSON map.
   Map<String, dynamic> toJson();
@@ -41,8 +42,9 @@ mixin _$VideoChatScheduled {
 /// @nodoc
 abstract mixin class $VideoChatScheduledCopyWith<$Res> {
   factory $VideoChatScheduledCopyWith(
-          VideoChatScheduled value, $Res Function(VideoChatScheduled) _then) =
-      _$VideoChatScheduledCopyWithImpl;
+    VideoChatScheduled value,
+    $Res Function(VideoChatScheduled) _then,
+  ) = _$VideoChatScheduledCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'start_date') int startDate});
 }
@@ -59,23 +61,104 @@ class _$VideoChatScheduledCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? startDate = null,
+  $Res call({Object? startDate = null}) {
+    return _then(
+      _self.copyWith(
+        startDate: null == startDate
+            ? _self.startDate
+            : startDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [VideoChatScheduled].
+extension VideoChatScheduledPatterns on VideoChatScheduled {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_VideoChatScheduled value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      startDate: null == startDate
-          ? _self.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _VideoChatScheduled() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_VideoChatScheduled value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _VideoChatScheduled():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_VideoChatScheduled value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _VideoChatScheduled() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _VideoChatScheduled implements VideoChatScheduled {
-  const _VideoChatScheduled(
-      {@JsonKey(name: 'start_date') required this.startDate});
+  const _VideoChatScheduled({
+    @JsonKey(name: 'start_date') required this.startDate,
+  });
   factory _VideoChatScheduled.fromJson(Map<String, dynamic> json) =>
       _$VideoChatScheduledFromJson(json);
 
@@ -97,9 +180,7 @@ class _VideoChatScheduled implements VideoChatScheduled {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$VideoChatScheduledToJson(
-      this,
-    );
+    return _$VideoChatScheduledToJson(this);
   }
 
   @override
@@ -112,8 +193,9 @@ class _VideoChatScheduled implements VideoChatScheduled {
 abstract mixin class _$VideoChatScheduledCopyWith<$Res>
     implements $VideoChatScheduledCopyWith<$Res> {
   factory _$VideoChatScheduledCopyWith(
-          _VideoChatScheduled value, $Res Function(_VideoChatScheduled) _then) =
-      __$VideoChatScheduledCopyWithImpl;
+    _VideoChatScheduled value,
+    $Res Function(_VideoChatScheduled) _then,
+  ) = __$VideoChatScheduledCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'start_date') int startDate});
@@ -131,14 +213,14 @@ class __$VideoChatScheduledCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? startDate = null,
-  }) {
-    return _then(_VideoChatScheduled(
-      startDate: null == startDate
-          ? _self.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+  $Res call({Object? startDate = null}) {
+    return _then(
+      _VideoChatScheduled(
+        startDate: null == startDate
+            ? _self.startDate
+            : startDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }

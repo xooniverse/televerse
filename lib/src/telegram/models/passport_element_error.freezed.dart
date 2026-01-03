@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -33,8 +32,12 @@ PassportElementError _$PassportElementErrorFromJson(Map<String, dynamic> json) {
       return PassportElementErrorUnspecified.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'source', 'PassportElementError',
-          'Invalid union type "${json['source']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'source',
+        'PassportElementError',
+        'Invalid union type "${json['source']}"!',
+      );
   }
 }
 
@@ -58,7 +61,9 @@ mixin _$PassportElementError {
   @pragma('vm:prefer-inline')
   $PassportElementErrorCopyWith<PassportElementError> get copyWith =>
       _$PassportElementErrorCopyWithImpl<PassportElementError>(
-          this as PassportElementError, _$identity);
+        this as PassportElementError,
+        _$identity,
+      );
 
   /// Serializes this PassportElementError to a JSON map.
   Map<String, dynamic> toJson();
@@ -71,12 +76,16 @@ mixin _$PassportElementError {
 
 /// @nodoc
 abstract mixin class $PassportElementErrorCopyWith<$Res> {
-  factory $PassportElementErrorCopyWith(PassportElementError value,
-          $Res Function(PassportElementError) _then) =
-      _$PassportElementErrorCopyWithImpl;
+  factory $PassportElementErrorCopyWith(
+    PassportElementError value,
+    $Res Function(PassportElementError) _then,
+  ) = _$PassportElementErrorCopyWithImpl;
   @useResult
-  $Res call(
-      {PassportElementErrorSource source, PassportType type, String message});
+  $Res call({
+    PassportElementErrorSource source,
+    PassportType type,
+    String message,
+  });
 }
 
 /// @nodoc
@@ -96,34 +105,196 @@ class _$PassportElementErrorCopyWithImpl<$Res>
     Object? type = null,
     Object? message = null,
   }) {
-    return _then(_self.copyWith(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as PassportElementErrorSource,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PassportType,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _self.copyWith(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as PassportElementErrorSource,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PassportType,
+        message: null == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [PassportElementError].
+extension PassportElementErrorPatterns on PassportElementError {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PassportElementErrorDataField value)? dataField,
+    TResult Function(PassportElementErrorFrontSide value)? frontSide,
+    TResult Function(PassportElementErrorReverseSide value)? reverseSide,
+    TResult Function(PassportElementErrorSelfie value)? selfie,
+    TResult Function(PassportElementErrorFile value)? file,
+    TResult Function(PassportElementErrorFiles value)? files,
+    TResult Function(PassportElementErrorTranslationFile value)?
+    translationFile,
+    TResult Function(PassportElementErrorTranslationFiles value)?
+    translationFiles,
+    TResult Function(PassportElementErrorUnspecified value)? unspecified,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case PassportElementErrorDataField() when dataField != null:
+        return dataField(_that);
+      case PassportElementErrorFrontSide() when frontSide != null:
+        return frontSide(_that);
+      case PassportElementErrorReverseSide() when reverseSide != null:
+        return reverseSide(_that);
+      case PassportElementErrorSelfie() when selfie != null:
+        return selfie(_that);
+      case PassportElementErrorFile() when file != null:
+        return file(_that);
+      case PassportElementErrorFiles() when files != null:
+        return files(_that);
+      case PassportElementErrorTranslationFile() when translationFile != null:
+        return translationFile(_that);
+      case PassportElementErrorTranslationFiles() when translationFiles != null:
+        return translationFiles(_that);
+      case PassportElementErrorUnspecified() when unspecified != null:
+        return unspecified(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PassportElementErrorDataField value) dataField,
+    required TResult Function(PassportElementErrorFrontSide value) frontSide,
+    required TResult Function(PassportElementErrorReverseSide value)
+    reverseSide,
+    required TResult Function(PassportElementErrorSelfie value) selfie,
+    required TResult Function(PassportElementErrorFile value) file,
+    required TResult Function(PassportElementErrorFiles value) files,
+    required TResult Function(PassportElementErrorTranslationFile value)
+    translationFile,
+    required TResult Function(PassportElementErrorTranslationFiles value)
+    translationFiles,
+    required TResult Function(PassportElementErrorUnspecified value)
+    unspecified,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case PassportElementErrorDataField():
+        return dataField(_that);
+      case PassportElementErrorFrontSide():
+        return frontSide(_that);
+      case PassportElementErrorReverseSide():
+        return reverseSide(_that);
+      case PassportElementErrorSelfie():
+        return selfie(_that);
+      case PassportElementErrorFile():
+        return file(_that);
+      case PassportElementErrorFiles():
+        return files(_that);
+      case PassportElementErrorTranslationFile():
+        return translationFile(_that);
+      case PassportElementErrorTranslationFiles():
+        return translationFiles(_that);
+      case PassportElementErrorUnspecified():
+        return unspecified(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(PassportElementErrorDataField value)? dataField,
+    TResult? Function(PassportElementErrorFrontSide value)? frontSide,
+    TResult? Function(PassportElementErrorReverseSide value)? reverseSide,
+    TResult? Function(PassportElementErrorSelfie value)? selfie,
+    TResult? Function(PassportElementErrorFile value)? file,
+    TResult? Function(PassportElementErrorFiles value)? files,
+    TResult? Function(PassportElementErrorTranslationFile value)?
+    translationFile,
+    TResult? Function(PassportElementErrorTranslationFiles value)?
+    translationFiles,
+    TResult? Function(PassportElementErrorUnspecified value)? unspecified,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case PassportElementErrorDataField() when dataField != null:
+        return dataField(_that);
+      case PassportElementErrorFrontSide() when frontSide != null:
+        return frontSide(_that);
+      case PassportElementErrorReverseSide() when reverseSide != null:
+        return reverseSide(_that);
+      case PassportElementErrorSelfie() when selfie != null:
+        return selfie(_that);
+      case PassportElementErrorFile() when file != null:
+        return file(_that);
+      case PassportElementErrorFiles() when files != null:
+        return files(_that);
+      case PassportElementErrorTranslationFile() when translationFile != null:
+        return translationFile(_that);
+      case PassportElementErrorTranslationFiles() when translationFiles != null:
+        return translationFiles(_that);
+      case PassportElementErrorUnspecified() when unspecified != null:
+        return unspecified(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class PassportElementErrorDataField implements PassportElementError {
-  const PassportElementErrorDataField(
-      {this.source = PassportElementErrorSource.data,
-      required this.type,
-      required this.message,
-      @JsonKey(name: 'field_name') required this.fieldName,
-      @JsonKey(name: 'data_hash') required this.dataHash})
-      : assert(source == PassportElementErrorSource.data,
-            'source must be PassportElementErrorSource.data');
+  const PassportElementErrorDataField({
+    this.source = PassportElementErrorSource.data,
+    required this.type,
+    required this.message,
+    @JsonKey(name: 'field_name') required this.fieldName,
+    @JsonKey(name: 'data_hash') required this.dataHash,
+  }) : assert(
+         source == PassportElementErrorSource.data,
+         'source must be PassportElementErrorSource.data',
+       );
   factory PassportElementErrorDataField.fromJson(Map<String, dynamic> json) =>
       _$PassportElementErrorDataFieldFromJson(json);
 
@@ -154,14 +325,14 @@ class PassportElementErrorDataField implements PassportElementError {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $PassportElementErrorDataFieldCopyWith<PassportElementErrorDataField>
-      get copyWith => _$PassportElementErrorDataFieldCopyWithImpl<
-          PassportElementErrorDataField>(this, _$identity);
+  get copyWith =>
+      _$PassportElementErrorDataFieldCopyWithImpl<
+        PassportElementErrorDataField
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PassportElementErrorDataFieldToJson(
-      this,
-    );
+    return _$PassportElementErrorDataFieldToJson(this);
   }
 
   @override
@@ -174,17 +345,18 @@ class PassportElementErrorDataField implements PassportElementError {
 abstract mixin class $PassportElementErrorDataFieldCopyWith<$Res>
     implements $PassportElementErrorCopyWith<$Res> {
   factory $PassportElementErrorDataFieldCopyWith(
-          PassportElementErrorDataField value,
-          $Res Function(PassportElementErrorDataField) _then) =
-      _$PassportElementErrorDataFieldCopyWithImpl;
+    PassportElementErrorDataField value,
+    $Res Function(PassportElementErrorDataField) _then,
+  ) = _$PassportElementErrorDataFieldCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {PassportElementErrorSource source,
-      PassportType type,
-      String message,
-      @JsonKey(name: 'field_name') String fieldName,
-      @JsonKey(name: 'data_hash') String dataHash});
+  $Res call({
+    PassportElementErrorSource source,
+    PassportType type,
+    String message,
+    @JsonKey(name: 'field_name') String fieldName,
+    @JsonKey(name: 'data_hash') String dataHash,
+  });
 }
 
 /// @nodoc
@@ -206,42 +378,45 @@ class _$PassportElementErrorDataFieldCopyWithImpl<$Res>
     Object? fieldName = null,
     Object? dataHash = null,
   }) {
-    return _then(PassportElementErrorDataField(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as PassportElementErrorSource,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PassportType,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      fieldName: null == fieldName
-          ? _self.fieldName
-          : fieldName // ignore: cast_nullable_to_non_nullable
-              as String,
-      dataHash: null == dataHash
-          ? _self.dataHash
-          : dataHash // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      PassportElementErrorDataField(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as PassportElementErrorSource,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PassportType,
+        message: null == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fieldName: null == fieldName
+            ? _self.fieldName
+            : fieldName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        dataHash: null == dataHash
+            ? _self.dataHash
+            : dataHash // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class PassportElementErrorFrontSide implements PassportElementError {
-  const PassportElementErrorFrontSide(
-      {@JsonKey(name: 'source')
-      this.source = PassportElementErrorSource.frontSide,
-      @JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'message') required this.message,
-      @JsonKey(name: 'file_hash') required this.fileHash})
-      : assert(source == PassportElementErrorSource.frontSide,
-            'source must be PassportElementErrorSource.frontSide');
+  const PassportElementErrorFrontSide({
+    @JsonKey(name: 'source') this.source = PassportElementErrorSource.frontSide,
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'message') required this.message,
+    @JsonKey(name: 'file_hash') required this.fileHash,
+  }) : assert(
+         source == PassportElementErrorSource.frontSide,
+         'source must be PassportElementErrorSource.frontSide',
+       );
   factory PassportElementErrorFrontSide.fromJson(Map<String, dynamic> json) =>
       _$PassportElementErrorFrontSideFromJson(json);
 
@@ -270,14 +445,14 @@ class PassportElementErrorFrontSide implements PassportElementError {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $PassportElementErrorFrontSideCopyWith<PassportElementErrorFrontSide>
-      get copyWith => _$PassportElementErrorFrontSideCopyWithImpl<
-          PassportElementErrorFrontSide>(this, _$identity);
+  get copyWith =>
+      _$PassportElementErrorFrontSideCopyWithImpl<
+        PassportElementErrorFrontSide
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PassportElementErrorFrontSideToJson(
-      this,
-    );
+    return _$PassportElementErrorFrontSideToJson(this);
   }
 
   @override
@@ -290,16 +465,17 @@ class PassportElementErrorFrontSide implements PassportElementError {
 abstract mixin class $PassportElementErrorFrontSideCopyWith<$Res>
     implements $PassportElementErrorCopyWith<$Res> {
   factory $PassportElementErrorFrontSideCopyWith(
-          PassportElementErrorFrontSide value,
-          $Res Function(PassportElementErrorFrontSide) _then) =
-      _$PassportElementErrorFrontSideCopyWithImpl;
+    PassportElementErrorFrontSide value,
+    $Res Function(PassportElementErrorFrontSide) _then,
+  ) = _$PassportElementErrorFrontSideCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'source') PassportElementErrorSource source,
-      @JsonKey(name: 'type') PassportType type,
-      @JsonKey(name: 'message') String message,
-      @JsonKey(name: 'file_hash') String fileHash});
+  $Res call({
+    @JsonKey(name: 'source') PassportElementErrorSource source,
+    @JsonKey(name: 'type') PassportType type,
+    @JsonKey(name: 'message') String message,
+    @JsonKey(name: 'file_hash') String fileHash,
+  });
 }
 
 /// @nodoc
@@ -320,38 +496,42 @@ class _$PassportElementErrorFrontSideCopyWithImpl<$Res>
     Object? message = null,
     Object? fileHash = null,
   }) {
-    return _then(PassportElementErrorFrontSide(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as PassportElementErrorSource,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PassportType,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileHash: null == fileHash
-          ? _self.fileHash
-          : fileHash // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      PassportElementErrorFrontSide(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as PassportElementErrorSource,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PassportType,
+        message: null == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileHash: null == fileHash
+            ? _self.fileHash
+            : fileHash // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class PassportElementErrorReverseSide implements PassportElementError {
-  const PassportElementErrorReverseSide(
-      {@JsonKey(name: 'source')
-      this.source = PassportElementErrorSource.reverseSide,
-      @JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'message') required this.message,
-      @JsonKey(name: 'file_hash') required this.fileHash})
-      : assert(source == PassportElementErrorSource.reverseSide,
-            'source must be PassportElementErrorSource.reverseSide');
+  const PassportElementErrorReverseSide({
+    @JsonKey(name: 'source')
+    this.source = PassportElementErrorSource.reverseSide,
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'message') required this.message,
+    @JsonKey(name: 'file_hash') required this.fileHash,
+  }) : assert(
+         source == PassportElementErrorSource.reverseSide,
+         'source must be PassportElementErrorSource.reverseSide',
+       );
   factory PassportElementErrorReverseSide.fromJson(Map<String, dynamic> json) =>
       _$PassportElementErrorReverseSideFromJson(json);
 
@@ -380,14 +560,14 @@ class PassportElementErrorReverseSide implements PassportElementError {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $PassportElementErrorReverseSideCopyWith<PassportElementErrorReverseSide>
-      get copyWith => _$PassportElementErrorReverseSideCopyWithImpl<
-          PassportElementErrorReverseSide>(this, _$identity);
+  get copyWith =>
+      _$PassportElementErrorReverseSideCopyWithImpl<
+        PassportElementErrorReverseSide
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PassportElementErrorReverseSideToJson(
-      this,
-    );
+    return _$PassportElementErrorReverseSideToJson(this);
   }
 
   @override
@@ -400,16 +580,17 @@ class PassportElementErrorReverseSide implements PassportElementError {
 abstract mixin class $PassportElementErrorReverseSideCopyWith<$Res>
     implements $PassportElementErrorCopyWith<$Res> {
   factory $PassportElementErrorReverseSideCopyWith(
-          PassportElementErrorReverseSide value,
-          $Res Function(PassportElementErrorReverseSide) _then) =
-      _$PassportElementErrorReverseSideCopyWithImpl;
+    PassportElementErrorReverseSide value,
+    $Res Function(PassportElementErrorReverseSide) _then,
+  ) = _$PassportElementErrorReverseSideCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'source') PassportElementErrorSource source,
-      @JsonKey(name: 'type') PassportType type,
-      @JsonKey(name: 'message') String message,
-      @JsonKey(name: 'file_hash') String fileHash});
+  $Res call({
+    @JsonKey(name: 'source') PassportElementErrorSource source,
+    @JsonKey(name: 'type') PassportType type,
+    @JsonKey(name: 'message') String message,
+    @JsonKey(name: 'file_hash') String fileHash,
+  });
 }
 
 /// @nodoc
@@ -430,37 +611,41 @@ class _$PassportElementErrorReverseSideCopyWithImpl<$Res>
     Object? message = null,
     Object? fileHash = null,
   }) {
-    return _then(PassportElementErrorReverseSide(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as PassportElementErrorSource,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PassportType,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileHash: null == fileHash
-          ? _self.fileHash
-          : fileHash // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      PassportElementErrorReverseSide(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as PassportElementErrorSource,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PassportType,
+        message: null == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileHash: null == fileHash
+            ? _self.fileHash
+            : fileHash // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class PassportElementErrorSelfie implements PassportElementError {
-  const PassportElementErrorSelfie(
-      {@JsonKey(name: 'source') this.source = PassportElementErrorSource.selfie,
-      @JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'message') required this.message,
-      @JsonKey(name: 'file_hash') required this.fileHash})
-      : assert(source == PassportElementErrorSource.selfie,
-            'source must be PassportElementErrorSource.selfie');
+  const PassportElementErrorSelfie({
+    @JsonKey(name: 'source') this.source = PassportElementErrorSource.selfie,
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'message') required this.message,
+    @JsonKey(name: 'file_hash') required this.fileHash,
+  }) : assert(
+         source == PassportElementErrorSource.selfie,
+         'source must be PassportElementErrorSource.selfie',
+       );
   factory PassportElementErrorSelfie.fromJson(Map<String, dynamic> json) =>
       _$PassportElementErrorSelfieFromJson(json);
 
@@ -489,15 +674,15 @@ class PassportElementErrorSelfie implements PassportElementError {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $PassportElementErrorSelfieCopyWith<PassportElementErrorSelfie>
-      get copyWith =>
-          _$PassportElementErrorSelfieCopyWithImpl<PassportElementErrorSelfie>(
-              this, _$identity);
+  get copyWith =>
+      _$PassportElementErrorSelfieCopyWithImpl<PassportElementErrorSelfie>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PassportElementErrorSelfieToJson(
-      this,
-    );
+    return _$PassportElementErrorSelfieToJson(this);
   }
 
   @override
@@ -509,16 +694,18 @@ class PassportElementErrorSelfie implements PassportElementError {
 /// @nodoc
 abstract mixin class $PassportElementErrorSelfieCopyWith<$Res>
     implements $PassportElementErrorCopyWith<$Res> {
-  factory $PassportElementErrorSelfieCopyWith(PassportElementErrorSelfie value,
-          $Res Function(PassportElementErrorSelfie) _then) =
-      _$PassportElementErrorSelfieCopyWithImpl;
+  factory $PassportElementErrorSelfieCopyWith(
+    PassportElementErrorSelfie value,
+    $Res Function(PassportElementErrorSelfie) _then,
+  ) = _$PassportElementErrorSelfieCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'source') PassportElementErrorSource source,
-      @JsonKey(name: 'type') PassportType type,
-      @JsonKey(name: 'message') String message,
-      @JsonKey(name: 'file_hash') String fileHash});
+  $Res call({
+    @JsonKey(name: 'source') PassportElementErrorSource source,
+    @JsonKey(name: 'type') PassportType type,
+    @JsonKey(name: 'message') String message,
+    @JsonKey(name: 'file_hash') String fileHash,
+  });
 }
 
 /// @nodoc
@@ -539,37 +726,41 @@ class _$PassportElementErrorSelfieCopyWithImpl<$Res>
     Object? message = null,
     Object? fileHash = null,
   }) {
-    return _then(PassportElementErrorSelfie(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as PassportElementErrorSource,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PassportType,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileHash: null == fileHash
-          ? _self.fileHash
-          : fileHash // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      PassportElementErrorSelfie(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as PassportElementErrorSource,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PassportType,
+        message: null == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileHash: null == fileHash
+            ? _self.fileHash
+            : fileHash // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class PassportElementErrorFile implements PassportElementError {
-  const PassportElementErrorFile(
-      {@JsonKey(name: 'source') this.source = PassportElementErrorSource.file,
-      @JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'message') required this.message,
-      @JsonKey(name: 'file_hash') required this.fileHash})
-      : assert(source == PassportElementErrorSource.file,
-            'source must be PassportElementErrorSource.file');
+  const PassportElementErrorFile({
+    @JsonKey(name: 'source') this.source = PassportElementErrorSource.file,
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'message') required this.message,
+    @JsonKey(name: 'file_hash') required this.fileHash,
+  }) : assert(
+         source == PassportElementErrorSource.file,
+         'source must be PassportElementErrorSource.file',
+       );
   factory PassportElementErrorFile.fromJson(Map<String, dynamic> json) =>
       _$PassportElementErrorFileFromJson(json);
 
@@ -599,13 +790,13 @@ class PassportElementErrorFile implements PassportElementError {
   @pragma('vm:prefer-inline')
   $PassportElementErrorFileCopyWith<PassportElementErrorFile> get copyWith =>
       _$PassportElementErrorFileCopyWithImpl<PassportElementErrorFile>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PassportElementErrorFileToJson(
-      this,
-    );
+    return _$PassportElementErrorFileToJson(this);
   }
 
   @override
@@ -617,16 +808,18 @@ class PassportElementErrorFile implements PassportElementError {
 /// @nodoc
 abstract mixin class $PassportElementErrorFileCopyWith<$Res>
     implements $PassportElementErrorCopyWith<$Res> {
-  factory $PassportElementErrorFileCopyWith(PassportElementErrorFile value,
-          $Res Function(PassportElementErrorFile) _then) =
-      _$PassportElementErrorFileCopyWithImpl;
+  factory $PassportElementErrorFileCopyWith(
+    PassportElementErrorFile value,
+    $Res Function(PassportElementErrorFile) _then,
+  ) = _$PassportElementErrorFileCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'source') PassportElementErrorSource source,
-      @JsonKey(name: 'type') PassportType type,
-      @JsonKey(name: 'message') String message,
-      @JsonKey(name: 'file_hash') String fileHash});
+  $Res call({
+    @JsonKey(name: 'source') PassportElementErrorSource source,
+    @JsonKey(name: 'type') PassportType type,
+    @JsonKey(name: 'message') String message,
+    @JsonKey(name: 'file_hash') String fileHash,
+  });
 }
 
 /// @nodoc
@@ -647,38 +840,42 @@ class _$PassportElementErrorFileCopyWithImpl<$Res>
     Object? message = null,
     Object? fileHash = null,
   }) {
-    return _then(PassportElementErrorFile(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as PassportElementErrorSource,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PassportType,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileHash: null == fileHash
-          ? _self.fileHash
-          : fileHash // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      PassportElementErrorFile(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as PassportElementErrorSource,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PassportType,
+        message: null == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileHash: null == fileHash
+            ? _self.fileHash
+            : fileHash // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class PassportElementErrorFiles implements PassportElementError {
-  const PassportElementErrorFiles(
-      {@JsonKey(name: 'source') this.source = PassportElementErrorSource.files,
-      @JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'message') required this.message,
-      @JsonKey(name: 'file_hashes') required final List<String> fileHashes})
-      : assert(source == PassportElementErrorSource.files,
-            'source must be PassportElementErrorSource.files'),
-        _fileHashes = fileHashes;
+  const PassportElementErrorFiles({
+    @JsonKey(name: 'source') this.source = PassportElementErrorSource.files,
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'message') required this.message,
+    @JsonKey(name: 'file_hashes') required final List<String> fileHashes,
+  }) : assert(
+         source == PassportElementErrorSource.files,
+         'source must be PassportElementErrorSource.files',
+       ),
+       _fileHashes = fileHashes;
   factory PassportElementErrorFiles.fromJson(Map<String, dynamic> json) =>
       _$PassportElementErrorFilesFromJson(json);
 
@@ -715,13 +912,13 @@ class PassportElementErrorFiles implements PassportElementError {
   @pragma('vm:prefer-inline')
   $PassportElementErrorFilesCopyWith<PassportElementErrorFiles> get copyWith =>
       _$PassportElementErrorFilesCopyWithImpl<PassportElementErrorFiles>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PassportElementErrorFilesToJson(
-      this,
-    );
+    return _$PassportElementErrorFilesToJson(this);
   }
 
   @override
@@ -733,16 +930,18 @@ class PassportElementErrorFiles implements PassportElementError {
 /// @nodoc
 abstract mixin class $PassportElementErrorFilesCopyWith<$Res>
     implements $PassportElementErrorCopyWith<$Res> {
-  factory $PassportElementErrorFilesCopyWith(PassportElementErrorFiles value,
-          $Res Function(PassportElementErrorFiles) _then) =
-      _$PassportElementErrorFilesCopyWithImpl;
+  factory $PassportElementErrorFilesCopyWith(
+    PassportElementErrorFiles value,
+    $Res Function(PassportElementErrorFiles) _then,
+  ) = _$PassportElementErrorFilesCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'source') PassportElementErrorSource source,
-      @JsonKey(name: 'type') PassportType type,
-      @JsonKey(name: 'message') String message,
-      @JsonKey(name: 'file_hashes') List<String> fileHashes});
+  $Res call({
+    @JsonKey(name: 'source') PassportElementErrorSource source,
+    @JsonKey(name: 'type') PassportType type,
+    @JsonKey(name: 'message') String message,
+    @JsonKey(name: 'file_hashes') List<String> fileHashes,
+  });
 }
 
 /// @nodoc
@@ -763,41 +962,45 @@ class _$PassportElementErrorFilesCopyWithImpl<$Res>
     Object? message = null,
     Object? fileHashes = null,
   }) {
-    return _then(PassportElementErrorFiles(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as PassportElementErrorSource,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PassportType,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileHashes: null == fileHashes
-          ? _self._fileHashes
-          : fileHashes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ));
+    return _then(
+      PassportElementErrorFiles(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as PassportElementErrorSource,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PassportType,
+        message: null == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileHashes: null == fileHashes
+            ? _self._fileHashes
+            : fileHashes // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class PassportElementErrorTranslationFile implements PassportElementError {
-  const PassportElementErrorTranslationFile(
-      {@JsonKey(name: 'source')
-      this.source = PassportElementErrorSource.translationFile,
-      @JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'message') required this.message,
-      @JsonKey(name: 'file_hash') required this.fileHash})
-      : assert(source == PassportElementErrorSource.translationFile,
-            'source must be PassportElementErrorSource.translationFile');
+  const PassportElementErrorTranslationFile({
+    @JsonKey(name: 'source')
+    this.source = PassportElementErrorSource.translationFile,
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'message') required this.message,
+    @JsonKey(name: 'file_hash') required this.fileHash,
+  }) : assert(
+         source == PassportElementErrorSource.translationFile,
+         'source must be PassportElementErrorSource.translationFile',
+       );
   factory PassportElementErrorTranslationFile.fromJson(
-          Map<String, dynamic> json) =>
-      _$PassportElementErrorTranslationFileFromJson(json);
+    Map<String, dynamic> json,
+  ) => _$PassportElementErrorTranslationFileFromJson(json);
 
   /// Error source, must be "translation_file"
   @override
@@ -824,15 +1027,16 @@ class PassportElementErrorTranslationFile implements PassportElementError {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $PassportElementErrorTranslationFileCopyWith<
-          PassportElementErrorTranslationFile>
-      get copyWith => _$PassportElementErrorTranslationFileCopyWithImpl<
-          PassportElementErrorTranslationFile>(this, _$identity);
+    PassportElementErrorTranslationFile
+  >
+  get copyWith =>
+      _$PassportElementErrorTranslationFileCopyWithImpl<
+        PassportElementErrorTranslationFile
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PassportElementErrorTranslationFileToJson(
-      this,
-    );
+    return _$PassportElementErrorTranslationFileToJson(this);
   }
 
   @override
@@ -845,16 +1049,17 @@ class PassportElementErrorTranslationFile implements PassportElementError {
 abstract mixin class $PassportElementErrorTranslationFileCopyWith<$Res>
     implements $PassportElementErrorCopyWith<$Res> {
   factory $PassportElementErrorTranslationFileCopyWith(
-          PassportElementErrorTranslationFile value,
-          $Res Function(PassportElementErrorTranslationFile) _then) =
-      _$PassportElementErrorTranslationFileCopyWithImpl;
+    PassportElementErrorTranslationFile value,
+    $Res Function(PassportElementErrorTranslationFile) _then,
+  ) = _$PassportElementErrorTranslationFileCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'source') PassportElementErrorSource source,
-      @JsonKey(name: 'type') PassportType type,
-      @JsonKey(name: 'message') String message,
-      @JsonKey(name: 'file_hash') String fileHash});
+  $Res call({
+    @JsonKey(name: 'source') PassportElementErrorSource source,
+    @JsonKey(name: 'type') PassportType type,
+    @JsonKey(name: 'message') String message,
+    @JsonKey(name: 'file_hash') String fileHash,
+  });
 }
 
 /// @nodoc
@@ -875,42 +1080,46 @@ class _$PassportElementErrorTranslationFileCopyWithImpl<$Res>
     Object? message = null,
     Object? fileHash = null,
   }) {
-    return _then(PassportElementErrorTranslationFile(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as PassportElementErrorSource,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PassportType,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileHash: null == fileHash
-          ? _self.fileHash
-          : fileHash // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      PassportElementErrorTranslationFile(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as PassportElementErrorSource,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PassportType,
+        message: null == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileHash: null == fileHash
+            ? _self.fileHash
+            : fileHash // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class PassportElementErrorTranslationFiles implements PassportElementError {
-  const PassportElementErrorTranslationFiles(
-      {@JsonKey(name: 'source')
-      this.source = PassportElementErrorSource.translationFiles,
-      @JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'message') required this.message,
-      @JsonKey(name: 'file_hashes') required final List<String> fileHashes})
-      : assert(source == PassportElementErrorSource.translationFiles,
-            'source must be PassportElementErrorSource.translationFiles'),
-        _fileHashes = fileHashes;
+  const PassportElementErrorTranslationFiles({
+    @JsonKey(name: 'source')
+    this.source = PassportElementErrorSource.translationFiles,
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'message') required this.message,
+    @JsonKey(name: 'file_hashes') required final List<String> fileHashes,
+  }) : assert(
+         source == PassportElementErrorSource.translationFiles,
+         'source must be PassportElementErrorSource.translationFiles',
+       ),
+       _fileHashes = fileHashes;
   factory PassportElementErrorTranslationFiles.fromJson(
-          Map<String, dynamic> json) =>
-      _$PassportElementErrorTranslationFilesFromJson(json);
+    Map<String, dynamic> json,
+  ) => _$PassportElementErrorTranslationFilesFromJson(json);
 
   /// Error source, must be "translation_files"
   @override
@@ -944,15 +1153,16 @@ class PassportElementErrorTranslationFiles implements PassportElementError {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $PassportElementErrorTranslationFilesCopyWith<
-          PassportElementErrorTranslationFiles>
-      get copyWith => _$PassportElementErrorTranslationFilesCopyWithImpl<
-          PassportElementErrorTranslationFiles>(this, _$identity);
+    PassportElementErrorTranslationFiles
+  >
+  get copyWith =>
+      _$PassportElementErrorTranslationFilesCopyWithImpl<
+        PassportElementErrorTranslationFiles
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PassportElementErrorTranslationFilesToJson(
-      this,
-    );
+    return _$PassportElementErrorTranslationFilesToJson(this);
   }
 
   @override
@@ -965,16 +1175,17 @@ class PassportElementErrorTranslationFiles implements PassportElementError {
 abstract mixin class $PassportElementErrorTranslationFilesCopyWith<$Res>
     implements $PassportElementErrorCopyWith<$Res> {
   factory $PassportElementErrorTranslationFilesCopyWith(
-          PassportElementErrorTranslationFiles value,
-          $Res Function(PassportElementErrorTranslationFiles) _then) =
-      _$PassportElementErrorTranslationFilesCopyWithImpl;
+    PassportElementErrorTranslationFiles value,
+    $Res Function(PassportElementErrorTranslationFiles) _then,
+  ) = _$PassportElementErrorTranslationFilesCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'source') PassportElementErrorSource source,
-      @JsonKey(name: 'type') PassportType type,
-      @JsonKey(name: 'message') String message,
-      @JsonKey(name: 'file_hashes') List<String> fileHashes});
+  $Res call({
+    @JsonKey(name: 'source') PassportElementErrorSource source,
+    @JsonKey(name: 'type') PassportType type,
+    @JsonKey(name: 'message') String message,
+    @JsonKey(name: 'file_hashes') List<String> fileHashes,
+  });
 }
 
 /// @nodoc
@@ -995,38 +1206,42 @@ class _$PassportElementErrorTranslationFilesCopyWithImpl<$Res>
     Object? message = null,
     Object? fileHashes = null,
   }) {
-    return _then(PassportElementErrorTranslationFiles(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as PassportElementErrorSource,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PassportType,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileHashes: null == fileHashes
-          ? _self._fileHashes
-          : fileHashes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ));
+    return _then(
+      PassportElementErrorTranslationFiles(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as PassportElementErrorSource,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PassportType,
+        message: null == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileHashes: null == fileHashes
+            ? _self._fileHashes
+            : fileHashes // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class PassportElementErrorUnspecified implements PassportElementError {
-  const PassportElementErrorUnspecified(
-      {@JsonKey(name: 'source')
-      this.source = PassportElementErrorSource.unspecified,
-      @JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'message') required this.message,
-      @JsonKey(name: 'element_hash') required this.elementHash})
-      : assert(source == PassportElementErrorSource.unspecified,
-            'source must be PassportElementErrorSource.unspecified');
+  const PassportElementErrorUnspecified({
+    @JsonKey(name: 'source')
+    this.source = PassportElementErrorSource.unspecified,
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'message') required this.message,
+    @JsonKey(name: 'element_hash') required this.elementHash,
+  }) : assert(
+         source == PassportElementErrorSource.unspecified,
+         'source must be PassportElementErrorSource.unspecified',
+       );
   factory PassportElementErrorUnspecified.fromJson(Map<String, dynamic> json) =>
       _$PassportElementErrorUnspecifiedFromJson(json);
 
@@ -1055,14 +1270,14 @@ class PassportElementErrorUnspecified implements PassportElementError {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $PassportElementErrorUnspecifiedCopyWith<PassportElementErrorUnspecified>
-      get copyWith => _$PassportElementErrorUnspecifiedCopyWithImpl<
-          PassportElementErrorUnspecified>(this, _$identity);
+  get copyWith =>
+      _$PassportElementErrorUnspecifiedCopyWithImpl<
+        PassportElementErrorUnspecified
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PassportElementErrorUnspecifiedToJson(
-      this,
-    );
+    return _$PassportElementErrorUnspecifiedToJson(this);
   }
 
   @override
@@ -1075,16 +1290,17 @@ class PassportElementErrorUnspecified implements PassportElementError {
 abstract mixin class $PassportElementErrorUnspecifiedCopyWith<$Res>
     implements $PassportElementErrorCopyWith<$Res> {
   factory $PassportElementErrorUnspecifiedCopyWith(
-          PassportElementErrorUnspecified value,
-          $Res Function(PassportElementErrorUnspecified) _then) =
-      _$PassportElementErrorUnspecifiedCopyWithImpl;
+    PassportElementErrorUnspecified value,
+    $Res Function(PassportElementErrorUnspecified) _then,
+  ) = _$PassportElementErrorUnspecifiedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'source') PassportElementErrorSource source,
-      @JsonKey(name: 'type') PassportType type,
-      @JsonKey(name: 'message') String message,
-      @JsonKey(name: 'element_hash') String elementHash});
+  $Res call({
+    @JsonKey(name: 'source') PassportElementErrorSource source,
+    @JsonKey(name: 'type') PassportType type,
+    @JsonKey(name: 'message') String message,
+    @JsonKey(name: 'element_hash') String elementHash,
+  });
 }
 
 /// @nodoc
@@ -1105,23 +1321,25 @@ class _$PassportElementErrorUnspecifiedCopyWithImpl<$Res>
     Object? message = null,
     Object? elementHash = null,
   }) {
-    return _then(PassportElementErrorUnspecified(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as PassportElementErrorSource,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PassportType,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      elementHash: null == elementHash
-          ? _self.elementHash
-          : elementHash // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      PassportElementErrorUnspecified(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as PassportElementErrorSource,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PassportType,
+        message: null == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String,
+        elementHash: null == elementHash
+            ? _self.elementHash
+            : elementHash // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }

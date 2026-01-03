@@ -8,7 +8,8 @@ part of 'owned_gift.dart';
 
 OwnedGiftRegular _$OwnedGiftRegularFromJson(Map<String, dynamic> json) =>
     OwnedGiftRegular(
-      type: $enumDecodeNullable(_$OwnedGiftTypeEnumMap, json['type']) ??
+      type:
+          $enumDecodeNullable(_$OwnedGiftTypeEnumMap, json['type']) ??
           OwnedGiftType.regular,
       gift: Gift.fromJson(json['gift'] as Map<String, dynamic>),
       ownedGiftId: json['owned_gift_id'] as String?,
@@ -25,27 +26,25 @@ OwnedGiftRegular _$OwnedGiftRegularFromJson(Map<String, dynamic> json) =>
       canBeUpgraded: json['can_be_upgraded'] as bool?,
       wasRefunded: json['was_refunded'] as bool?,
       convertStarCount: (json['convert_star_count'] as num?)?.toInt(),
-      prepaidUpgradeStarCount:
-          (json['prepaid_upgrade_star_count'] as num?)?.toInt(),
+      prepaidUpgradeStarCount: (json['prepaid_upgrade_star_count'] as num?)
+          ?.toInt(),
     );
 
 Map<String, dynamic> _$OwnedGiftRegularToJson(OwnedGiftRegular instance) =>
     <String, dynamic>{
       'type': _$OwnedGiftTypeEnumMap[instance.type]!,
       'gift': instance.gift,
-      if (instance.ownedGiftId case final value?) 'owned_gift_id': value,
-      if (instance.senderUser case final value?) 'sender_user': value,
+      'owned_gift_id': ?instance.ownedGiftId,
+      'sender_user': ?instance.senderUser,
       'send_date': instance.sendDate,
-      if (instance.text case final value?) 'text': value,
-      if (instance.entities case final value?) 'entities': value,
-      if (instance.isPrivate case final value?) 'is_private': value,
-      if (instance.isSaved case final value?) 'is_saved': value,
-      if (instance.canBeUpgraded case final value?) 'can_be_upgraded': value,
-      if (instance.wasRefunded case final value?) 'was_refunded': value,
-      if (instance.convertStarCount case final value?)
-        'convert_star_count': value,
-      if (instance.prepaidUpgradeStarCount case final value?)
-        'prepaid_upgrade_star_count': value,
+      'text': ?instance.text,
+      'entities': ?instance.entities,
+      'is_private': ?instance.isPrivate,
+      'is_saved': ?instance.isSaved,
+      'can_be_upgraded': ?instance.canBeUpgraded,
+      'was_refunded': ?instance.wasRefunded,
+      'convert_star_count': ?instance.convertStarCount,
+      'prepaid_upgrade_star_count': ?instance.prepaidUpgradeStarCount,
     };
 
 const _$OwnedGiftTypeEnumMap = {
@@ -55,7 +54,8 @@ const _$OwnedGiftTypeEnumMap = {
 
 OwnedGiftUnique _$OwnedGiftUniqueFromJson(Map<String, dynamic> json) =>
     OwnedGiftUnique(
-      type: $enumDecodeNullable(_$OwnedGiftTypeEnumMap, json['type']) ??
+      type:
+          $enumDecodeNullable(_$OwnedGiftTypeEnumMap, json['type']) ??
           OwnedGiftType.unique,
       gift: UniqueGift.fromJson(json['gift'] as Map<String, dynamic>),
       ownedGiftId: json['owned_gift_id'] as String?,
@@ -73,14 +73,11 @@ Map<String, dynamic> _$OwnedGiftUniqueToJson(OwnedGiftUnique instance) =>
     <String, dynamic>{
       'type': _$OwnedGiftTypeEnumMap[instance.type]!,
       'gift': instance.gift,
-      if (instance.ownedGiftId case final value?) 'owned_gift_id': value,
-      if (instance.senderUser case final value?) 'sender_user': value,
+      'owned_gift_id': ?instance.ownedGiftId,
+      'sender_user': ?instance.senderUser,
       'send_date': instance.sendDate,
-      if (instance.isSaved case final value?) 'is_saved': value,
-      if (instance.canBeTransferred case final value?)
-        'can_be_transferred': value,
-      if (instance.transferStarCount case final value?)
-        'transfer_star_count': value,
-      if (instance.nextTransferDate case final value?)
-        'next_transfer_date': value,
+      'is_saved': ?instance.isSaved,
+      'can_be_transferred': ?instance.canBeTransferred,
+      'transfer_star_count': ?instance.transferStarCount,
+      'next_transfer_date': ?instance.nextTransferDate,
     };

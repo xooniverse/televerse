@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -35,7 +34,9 @@ mixin _$WriteAccessAllowed {
   @pragma('vm:prefer-inline')
   $WriteAccessAllowedCopyWith<WriteAccessAllowed> get copyWith =>
       _$WriteAccessAllowedCopyWithImpl<WriteAccessAllowed>(
-          this as WriteAccessAllowed, _$identity);
+        this as WriteAccessAllowed,
+        _$identity,
+      );
 
   /// Serializes this WriteAccessAllowed to a JSON map.
   Map<String, dynamic> toJson();
@@ -49,13 +50,15 @@ mixin _$WriteAccessAllowed {
 /// @nodoc
 abstract mixin class $WriteAccessAllowedCopyWith<$Res> {
   factory $WriteAccessAllowedCopyWith(
-          WriteAccessAllowed value, $Res Function(WriteAccessAllowed) _then) =
-      _$WriteAccessAllowedCopyWithImpl;
+    WriteAccessAllowed value,
+    $Res Function(WriteAccessAllowed) _then,
+  ) = _$WriteAccessAllowedCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'web_app_name') String? webAppName,
-      @JsonKey(name: 'from_request') bool? fromRequest,
-      @JsonKey(name: 'from_attachment_menu') bool? fromAttachmentMenu});
+  $Res call({
+    @JsonKey(name: 'web_app_name') String? webAppName,
+    @JsonKey(name: 'from_request') bool? fromRequest,
+    @JsonKey(name: 'from_attachment_menu') bool? fromAttachmentMenu,
+  });
 }
 
 /// @nodoc
@@ -75,30 +78,113 @@ class _$WriteAccessAllowedCopyWithImpl<$Res>
     Object? fromRequest = freezed,
     Object? fromAttachmentMenu = freezed,
   }) {
-    return _then(_self.copyWith(
-      webAppName: freezed == webAppName
-          ? _self.webAppName
-          : webAppName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fromRequest: freezed == fromRequest
-          ? _self.fromRequest
-          : fromRequest // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      fromAttachmentMenu: freezed == fromAttachmentMenu
-          ? _self.fromAttachmentMenu
-          : fromAttachmentMenu // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        webAppName: freezed == webAppName
+            ? _self.webAppName
+            : webAppName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        fromRequest: freezed == fromRequest
+            ? _self.fromRequest
+            : fromRequest // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        fromAttachmentMenu: freezed == fromAttachmentMenu
+            ? _self.fromAttachmentMenu
+            : fromAttachmentMenu // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [WriteAccessAllowed].
+extension WriteAccessAllowedPatterns on WriteAccessAllowed {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_WriteAccessAllowed value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _WriteAccessAllowed() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_WriteAccessAllowed value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WriteAccessAllowed():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_WriteAccessAllowed value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WriteAccessAllowed() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _WriteAccessAllowed implements WriteAccessAllowed {
-  const _WriteAccessAllowed(
-      {@JsonKey(name: 'web_app_name') this.webAppName,
-      @JsonKey(name: 'from_request') this.fromRequest,
-      @JsonKey(name: 'from_attachment_menu') this.fromAttachmentMenu});
+  const _WriteAccessAllowed({
+    @JsonKey(name: 'web_app_name') this.webAppName,
+    @JsonKey(name: 'from_request') this.fromRequest,
+    @JsonKey(name: 'from_attachment_menu') this.fromAttachmentMenu,
+  });
   factory _WriteAccessAllowed.fromJson(Map<String, dynamic> json) =>
       _$WriteAccessAllowedFromJson(json);
 
@@ -130,9 +216,7 @@ class _WriteAccessAllowed implements WriteAccessAllowed {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$WriteAccessAllowedToJson(
-      this,
-    );
+    return _$WriteAccessAllowedToJson(this);
   }
 
   @override
@@ -145,14 +229,16 @@ class _WriteAccessAllowed implements WriteAccessAllowed {
 abstract mixin class _$WriteAccessAllowedCopyWith<$Res>
     implements $WriteAccessAllowedCopyWith<$Res> {
   factory _$WriteAccessAllowedCopyWith(
-          _WriteAccessAllowed value, $Res Function(_WriteAccessAllowed) _then) =
-      __$WriteAccessAllowedCopyWithImpl;
+    _WriteAccessAllowed value,
+    $Res Function(_WriteAccessAllowed) _then,
+  ) = __$WriteAccessAllowedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'web_app_name') String? webAppName,
-      @JsonKey(name: 'from_request') bool? fromRequest,
-      @JsonKey(name: 'from_attachment_menu') bool? fromAttachmentMenu});
+  $Res call({
+    @JsonKey(name: 'web_app_name') String? webAppName,
+    @JsonKey(name: 'from_request') bool? fromRequest,
+    @JsonKey(name: 'from_attachment_menu') bool? fromAttachmentMenu,
+  });
 }
 
 /// @nodoc
@@ -172,19 +258,21 @@ class __$WriteAccessAllowedCopyWithImpl<$Res>
     Object? fromRequest = freezed,
     Object? fromAttachmentMenu = freezed,
   }) {
-    return _then(_WriteAccessAllowed(
-      webAppName: freezed == webAppName
-          ? _self.webAppName
-          : webAppName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fromRequest: freezed == fromRequest
-          ? _self.fromRequest
-          : fromRequest // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      fromAttachmentMenu: freezed == fromAttachmentMenu
-          ? _self.fromAttachmentMenu
-          : fromAttachmentMenu // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _WriteAccessAllowed(
+        webAppName: freezed == webAppName
+            ? _self.webAppName
+            : webAppName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        fromRequest: freezed == fromRequest
+            ? _self.fromRequest
+            : fromRequest // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        fromAttachmentMenu: freezed == fromAttachmentMenu
+            ? _self.fromAttachmentMenu
+            : fromAttachmentMenu // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

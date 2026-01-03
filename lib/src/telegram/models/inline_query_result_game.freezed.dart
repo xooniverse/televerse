@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -36,7 +35,9 @@ mixin _$InlineQueryResultGame {
   @pragma('vm:prefer-inline')
   $InlineQueryResultGameCopyWith<InlineQueryResultGame> get copyWith =>
       _$InlineQueryResultGameCopyWithImpl<InlineQueryResultGame>(
-          this as InlineQueryResultGame, _$identity);
+        this as InlineQueryResultGame,
+        _$identity,
+      );
 
   /// Serializes this InlineQueryResultGame to a JSON map.
   Map<String, dynamic> toJson();
@@ -49,15 +50,17 @@ mixin _$InlineQueryResultGame {
 
 /// @nodoc
 abstract mixin class $InlineQueryResultGameCopyWith<$Res> {
-  factory $InlineQueryResultGameCopyWith(InlineQueryResultGame value,
-          $Res Function(InlineQueryResultGame) _then) =
-      _$InlineQueryResultGameCopyWithImpl;
+  factory $InlineQueryResultGameCopyWith(
+    InlineQueryResultGame value,
+    $Res Function(InlineQueryResultGame) _then,
+  ) = _$InlineQueryResultGameCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'id') String id,
-      @JsonKey(name: 'game_short_name') String gameShortName,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup});
+  $Res call({
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'game_short_name') String gameShortName,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+  });
 }
 
 /// @nodoc
@@ -78,35 +81,118 @@ class _$InlineQueryResultGameCopyWithImpl<$Res>
     Object? gameShortName = null,
     Object? replyMarkup = freezed,
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      gameShortName: null == gameShortName
-          ? _self.gameShortName
-          : gameShortName // ignore: cast_nullable_to_non_nullable
-              as String,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-    ));
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        gameShortName: null == gameShortName
+            ? _self.gameShortName
+            : gameShortName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [InlineQueryResultGame].
+extension InlineQueryResultGamePatterns on InlineQueryResultGame {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineQueryResultGame value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultGame() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineQueryResultGame value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultGame():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineQueryResultGame value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultGame() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _InlineQueryResultGame implements InlineQueryResultGame {
-  const _InlineQueryResultGame(
-      {@JsonKey(name: 'type') this.type = InlineQueryResultType.game,
-      @JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'game_short_name') required this.gameShortName,
-      @JsonKey(name: 'reply_markup') this.replyMarkup});
+  const _InlineQueryResultGame({
+    @JsonKey(name: 'type') this.type = InlineQueryResultType.game,
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'game_short_name') required this.gameShortName,
+    @JsonKey(name: 'reply_markup') this.replyMarkup,
+  });
   factory _InlineQueryResultGame.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultGameFromJson(json);
 
@@ -137,13 +223,13 @@ class _InlineQueryResultGame implements InlineQueryResultGame {
   @pragma('vm:prefer-inline')
   _$InlineQueryResultGameCopyWith<_InlineQueryResultGame> get copyWith =>
       __$InlineQueryResultGameCopyWithImpl<_InlineQueryResultGame>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineQueryResultGameToJson(
-      this,
-    );
+    return _$InlineQueryResultGameToJson(this);
   }
 
   @override
@@ -155,16 +241,18 @@ class _InlineQueryResultGame implements InlineQueryResultGame {
 /// @nodoc
 abstract mixin class _$InlineQueryResultGameCopyWith<$Res>
     implements $InlineQueryResultGameCopyWith<$Res> {
-  factory _$InlineQueryResultGameCopyWith(_InlineQueryResultGame value,
-          $Res Function(_InlineQueryResultGame) _then) =
-      __$InlineQueryResultGameCopyWithImpl;
+  factory _$InlineQueryResultGameCopyWith(
+    _InlineQueryResultGame value,
+    $Res Function(_InlineQueryResultGame) _then,
+  ) = __$InlineQueryResultGameCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'id') String id,
-      @JsonKey(name: 'game_short_name') String gameShortName,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup});
+  $Res call({
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'game_short_name') String gameShortName,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+  });
 }
 
 /// @nodoc
@@ -185,23 +273,25 @@ class __$InlineQueryResultGameCopyWithImpl<$Res>
     Object? gameShortName = null,
     Object? replyMarkup = freezed,
   }) {
-    return _then(_InlineQueryResultGame(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      gameShortName: null == gameShortName
-          ? _self.gameShortName
-          : gameShortName // ignore: cast_nullable_to_non_nullable
-              as String,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-    ));
+    return _then(
+      _InlineQueryResultGame(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        gameShortName: null == gameShortName
+            ? _self.gameShortName
+            : gameShortName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+      ),
+    );
   }
 }

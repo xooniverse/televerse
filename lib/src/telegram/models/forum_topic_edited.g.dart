@@ -14,7 +14,6 @@ _ForumTopicEdited _$ForumTopicEditedFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ForumTopicEditedToJson(_ForumTopicEdited instance) =>
     <String, dynamic>{
-      if (instance.name case final value?) 'name': value,
-      if (instance.iconCustomEmojiId case final value?)
-        'icon_custom_emoji_id': value,
+      'name': ?instance.name,
+      'icon_custom_emoji_id': ?instance.iconCustomEmojiId,
     };

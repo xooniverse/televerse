@@ -22,10 +22,7 @@ _ChecklistTasksDone _$ChecklistTasksDoneFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ChecklistTasksDoneToJson(_ChecklistTasksDone instance) =>
     <String, dynamic>{
-      if (instance.checklistMessage case final value?)
-        'checklist_message': value,
-      if (instance.markedAsDoneTaskIds case final value?)
-        'marked_as_done_task_ids': value,
-      if (instance.markedAsNotDoneTaskIds case final value?)
-        'marked_as_not_done_task_ids': value,
+      'checklist_message': ?instance.checklistMessage,
+      'marked_as_done_task_ids': ?instance.markedAsDoneTaskIds,
+      'marked_as_not_done_task_ids': ?instance.markedAsNotDoneTaskIds,
     };

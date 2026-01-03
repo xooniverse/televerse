@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -120,7 +119,9 @@ mixin _$ExternalReplyInfo {
   @pragma('vm:prefer-inline')
   $ExternalReplyInfoCopyWith<ExternalReplyInfo> get copyWith =>
       _$ExternalReplyInfoCopyWithImpl<ExternalReplyInfo>(
-          this as ExternalReplyInfo, _$identity);
+        this as ExternalReplyInfo,
+        _$identity,
+      );
 
   /// Serializes this ExternalReplyInfo to a JSON map.
   Map<String, dynamic> toJson();
@@ -134,36 +135,38 @@ mixin _$ExternalReplyInfo {
 /// @nodoc
 abstract mixin class $ExternalReplyInfoCopyWith<$Res> {
   factory $ExternalReplyInfoCopyWith(
-          ExternalReplyInfo value, $Res Function(ExternalReplyInfo) _then) =
-      _$ExternalReplyInfoCopyWithImpl;
+    ExternalReplyInfo value,
+    $Res Function(ExternalReplyInfo) _then,
+  ) = _$ExternalReplyInfoCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'origin') MessageOrigin origin,
-      @JsonKey(name: 'chat') Chat? chat,
-      @JsonKey(name: 'message_id') int? messageId,
-      @JsonKey(name: 'link_preview_options')
-      LinkPreviewOptions? linkPreviewOptions,
-      @JsonKey(name: 'animation') Animation? animation,
-      @JsonKey(name: 'audio') Audio? audio,
-      @JsonKey(name: 'document') Document? document,
-      @JsonKey(name: 'photo') List<PhotoSize>? photo,
-      @JsonKey(name: 'sticker') Sticker? sticker,
-      @JsonKey(name: 'story') Story? story,
-      @JsonKey(name: 'video') Video? video,
-      @JsonKey(name: 'video_note') VideoNote? videoNote,
-      @JsonKey(name: 'voice') Voice? voice,
-      @JsonKey(name: 'has_media_spoiler') bool? hasMediaSpoiler,
-      @JsonKey(name: 'contact') Contact? contact,
-      @JsonKey(name: 'dice') Dice? dice,
-      @JsonKey(name: 'game') Game? game,
-      @JsonKey(name: 'giveaway') Giveaway? giveaway,
-      @JsonKey(name: 'giveaway_winners') GiveawayWinners? giveawayWinners,
-      @JsonKey(name: 'invoice') Invoice? invoice,
-      @JsonKey(name: 'location') Location? location,
-      @JsonKey(name: 'poll') Poll? poll,
-      @JsonKey(name: 'venue') Venue? venue,
-      @JsonKey(name: 'paid_media') PaidMediaInfo? paidMedia,
-      @JsonKey(name: 'checklist') Checklist? checklist});
+  $Res call({
+    @JsonKey(name: 'origin') MessageOrigin origin,
+    @JsonKey(name: 'chat') Chat? chat,
+    @JsonKey(name: 'message_id') int? messageId,
+    @JsonKey(name: 'link_preview_options')
+    LinkPreviewOptions? linkPreviewOptions,
+    @JsonKey(name: 'animation') Animation? animation,
+    @JsonKey(name: 'audio') Audio? audio,
+    @JsonKey(name: 'document') Document? document,
+    @JsonKey(name: 'photo') List<PhotoSize>? photo,
+    @JsonKey(name: 'sticker') Sticker? sticker,
+    @JsonKey(name: 'story') Story? story,
+    @JsonKey(name: 'video') Video? video,
+    @JsonKey(name: 'video_note') VideoNote? videoNote,
+    @JsonKey(name: 'voice') Voice? voice,
+    @JsonKey(name: 'has_media_spoiler') bool? hasMediaSpoiler,
+    @JsonKey(name: 'contact') Contact? contact,
+    @JsonKey(name: 'dice') Dice? dice,
+    @JsonKey(name: 'game') Game? game,
+    @JsonKey(name: 'giveaway') Giveaway? giveaway,
+    @JsonKey(name: 'giveaway_winners') GiveawayWinners? giveawayWinners,
+    @JsonKey(name: 'invoice') Invoice? invoice,
+    @JsonKey(name: 'location') Location? location,
+    @JsonKey(name: 'poll') Poll? poll,
+    @JsonKey(name: 'venue') Venue? venue,
+    @JsonKey(name: 'paid_media') PaidMediaInfo? paidMedia,
+    @JsonKey(name: 'checklist') Checklist? checklist,
+  });
 
   $MessageOriginCopyWith<$Res> get origin;
   $ChatCopyWith<$Res>? get chat;
@@ -228,108 +231,110 @@ class _$ExternalReplyInfoCopyWithImpl<$Res>
     Object? paidMedia = freezed,
     Object? checklist = freezed,
   }) {
-    return _then(_self.copyWith(
-      origin: null == origin
-          ? _self.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as MessageOrigin,
-      chat: freezed == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-      messageId: freezed == messageId
-          ? _self.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      linkPreviewOptions: freezed == linkPreviewOptions
-          ? _self.linkPreviewOptions
-          : linkPreviewOptions // ignore: cast_nullable_to_non_nullable
-              as LinkPreviewOptions?,
-      animation: freezed == animation
-          ? _self.animation
-          : animation // ignore: cast_nullable_to_non_nullable
-              as Animation?,
-      audio: freezed == audio
-          ? _self.audio
-          : audio // ignore: cast_nullable_to_non_nullable
-              as Audio?,
-      document: freezed == document
-          ? _self.document
-          : document // ignore: cast_nullable_to_non_nullable
-              as Document?,
-      photo: freezed == photo
-          ? _self.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as List<PhotoSize>?,
-      sticker: freezed == sticker
-          ? _self.sticker
-          : sticker // ignore: cast_nullable_to_non_nullable
-              as Sticker?,
-      story: freezed == story
-          ? _self.story
-          : story // ignore: cast_nullable_to_non_nullable
-              as Story?,
-      video: freezed == video
-          ? _self.video
-          : video // ignore: cast_nullable_to_non_nullable
-              as Video?,
-      videoNote: freezed == videoNote
-          ? _self.videoNote
-          : videoNote // ignore: cast_nullable_to_non_nullable
-              as VideoNote?,
-      voice: freezed == voice
-          ? _self.voice
-          : voice // ignore: cast_nullable_to_non_nullable
-              as Voice?,
-      hasMediaSpoiler: freezed == hasMediaSpoiler
-          ? _self.hasMediaSpoiler
-          : hasMediaSpoiler // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      contact: freezed == contact
-          ? _self.contact
-          : contact // ignore: cast_nullable_to_non_nullable
-              as Contact?,
-      dice: freezed == dice
-          ? _self.dice
-          : dice // ignore: cast_nullable_to_non_nullable
-              as Dice?,
-      game: freezed == game
-          ? _self.game
-          : game // ignore: cast_nullable_to_non_nullable
-              as Game?,
-      giveaway: freezed == giveaway
-          ? _self.giveaway
-          : giveaway // ignore: cast_nullable_to_non_nullable
-              as Giveaway?,
-      giveawayWinners: freezed == giveawayWinners
-          ? _self.giveawayWinners
-          : giveawayWinners // ignore: cast_nullable_to_non_nullable
-              as GiveawayWinners?,
-      invoice: freezed == invoice
-          ? _self.invoice
-          : invoice // ignore: cast_nullable_to_non_nullable
-              as Invoice?,
-      location: freezed == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location?,
-      poll: freezed == poll
-          ? _self.poll
-          : poll // ignore: cast_nullable_to_non_nullable
-              as Poll?,
-      venue: freezed == venue
-          ? _self.venue
-          : venue // ignore: cast_nullable_to_non_nullable
-              as Venue?,
-      paidMedia: freezed == paidMedia
-          ? _self.paidMedia
-          : paidMedia // ignore: cast_nullable_to_non_nullable
-              as PaidMediaInfo?,
-      checklist: freezed == checklist
-          ? _self.checklist
-          : checklist // ignore: cast_nullable_to_non_nullable
-              as Checklist?,
-    ));
+    return _then(
+      _self.copyWith(
+        origin: null == origin
+            ? _self.origin
+            : origin // ignore: cast_nullable_to_non_nullable
+                  as MessageOrigin,
+        chat: freezed == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+        messageId: freezed == messageId
+            ? _self.messageId
+            : messageId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        linkPreviewOptions: freezed == linkPreviewOptions
+            ? _self.linkPreviewOptions
+            : linkPreviewOptions // ignore: cast_nullable_to_non_nullable
+                  as LinkPreviewOptions?,
+        animation: freezed == animation
+            ? _self.animation
+            : animation // ignore: cast_nullable_to_non_nullable
+                  as Animation?,
+        audio: freezed == audio
+            ? _self.audio
+            : audio // ignore: cast_nullable_to_non_nullable
+                  as Audio?,
+        document: freezed == document
+            ? _self.document
+            : document // ignore: cast_nullable_to_non_nullable
+                  as Document?,
+        photo: freezed == photo
+            ? _self.photo
+            : photo // ignore: cast_nullable_to_non_nullable
+                  as List<PhotoSize>?,
+        sticker: freezed == sticker
+            ? _self.sticker
+            : sticker // ignore: cast_nullable_to_non_nullable
+                  as Sticker?,
+        story: freezed == story
+            ? _self.story
+            : story // ignore: cast_nullable_to_non_nullable
+                  as Story?,
+        video: freezed == video
+            ? _self.video
+            : video // ignore: cast_nullable_to_non_nullable
+                  as Video?,
+        videoNote: freezed == videoNote
+            ? _self.videoNote
+            : videoNote // ignore: cast_nullable_to_non_nullable
+                  as VideoNote?,
+        voice: freezed == voice
+            ? _self.voice
+            : voice // ignore: cast_nullable_to_non_nullable
+                  as Voice?,
+        hasMediaSpoiler: freezed == hasMediaSpoiler
+            ? _self.hasMediaSpoiler
+            : hasMediaSpoiler // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        contact: freezed == contact
+            ? _self.contact
+            : contact // ignore: cast_nullable_to_non_nullable
+                  as Contact?,
+        dice: freezed == dice
+            ? _self.dice
+            : dice // ignore: cast_nullable_to_non_nullable
+                  as Dice?,
+        game: freezed == game
+            ? _self.game
+            : game // ignore: cast_nullable_to_non_nullable
+                  as Game?,
+        giveaway: freezed == giveaway
+            ? _self.giveaway
+            : giveaway // ignore: cast_nullable_to_non_nullable
+                  as Giveaway?,
+        giveawayWinners: freezed == giveawayWinners
+            ? _self.giveawayWinners
+            : giveawayWinners // ignore: cast_nullable_to_non_nullable
+                  as GiveawayWinners?,
+        invoice: freezed == invoice
+            ? _self.invoice
+            : invoice // ignore: cast_nullable_to_non_nullable
+                  as Invoice?,
+        location: freezed == location
+            ? _self.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as Location?,
+        poll: freezed == poll
+            ? _self.poll
+            : poll // ignore: cast_nullable_to_non_nullable
+                  as Poll?,
+        venue: freezed == venue
+            ? _self.venue
+            : venue // ignore: cast_nullable_to_non_nullable
+                  as Venue?,
+        paidMedia: freezed == paidMedia
+            ? _self.paidMedia
+            : paidMedia // ignore: cast_nullable_to_non_nullable
+                  as PaidMediaInfo?,
+        checklist: freezed == checklist
+            ? _self.checklist
+            : checklist // ignore: cast_nullable_to_non_nullable
+                  as Checklist?,
+      ),
+    );
   }
 
   /// Create a copy of ExternalReplyInfo
@@ -365,8 +370,9 @@ class _$ExternalReplyInfoCopyWithImpl<$Res>
       return null;
     }
 
-    return $LinkPreviewOptionsCopyWith<$Res>(_self.linkPreviewOptions!,
-        (value) {
+    return $LinkPreviewOptionsCopyWith<$Res>(_self.linkPreviewOptions!, (
+      value,
+    ) {
       return _then(_self.copyWith(linkPreviewOptions: value));
     });
   }
@@ -638,36 +644,116 @@ class _$ExternalReplyInfoCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [ExternalReplyInfo].
+extension ExternalReplyInfoPatterns on ExternalReplyInfo {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ExternalReplyInfo value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ExternalReplyInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ExternalReplyInfo value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ExternalReplyInfo():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ExternalReplyInfo value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ExternalReplyInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _ExternalReplyInfo implements ExternalReplyInfo {
-  const _ExternalReplyInfo(
-      {@JsonKey(name: 'origin') required this.origin,
-      @JsonKey(name: 'chat') this.chat,
-      @JsonKey(name: 'message_id') this.messageId,
-      @JsonKey(name: 'link_preview_options') this.linkPreviewOptions,
-      @JsonKey(name: 'animation') this.animation,
-      @JsonKey(name: 'audio') this.audio,
-      @JsonKey(name: 'document') this.document,
-      @JsonKey(name: 'photo') final List<PhotoSize>? photo,
-      @JsonKey(name: 'sticker') this.sticker,
-      @JsonKey(name: 'story') this.story,
-      @JsonKey(name: 'video') this.video,
-      @JsonKey(name: 'video_note') this.videoNote,
-      @JsonKey(name: 'voice') this.voice,
-      @JsonKey(name: 'has_media_spoiler') this.hasMediaSpoiler,
-      @JsonKey(name: 'contact') this.contact,
-      @JsonKey(name: 'dice') this.dice,
-      @JsonKey(name: 'game') this.game,
-      @JsonKey(name: 'giveaway') this.giveaway,
-      @JsonKey(name: 'giveaway_winners') this.giveawayWinners,
-      @JsonKey(name: 'invoice') this.invoice,
-      @JsonKey(name: 'location') this.location,
-      @JsonKey(name: 'poll') this.poll,
-      @JsonKey(name: 'venue') this.venue,
-      @JsonKey(name: 'paid_media') this.paidMedia,
-      @JsonKey(name: 'checklist') this.checklist})
-      : _photo = photo;
+  const _ExternalReplyInfo({
+    @JsonKey(name: 'origin') required this.origin,
+    @JsonKey(name: 'chat') this.chat,
+    @JsonKey(name: 'message_id') this.messageId,
+    @JsonKey(name: 'link_preview_options') this.linkPreviewOptions,
+    @JsonKey(name: 'animation') this.animation,
+    @JsonKey(name: 'audio') this.audio,
+    @JsonKey(name: 'document') this.document,
+    @JsonKey(name: 'photo') final List<PhotoSize>? photo,
+    @JsonKey(name: 'sticker') this.sticker,
+    @JsonKey(name: 'story') this.story,
+    @JsonKey(name: 'video') this.video,
+    @JsonKey(name: 'video_note') this.videoNote,
+    @JsonKey(name: 'voice') this.voice,
+    @JsonKey(name: 'has_media_spoiler') this.hasMediaSpoiler,
+    @JsonKey(name: 'contact') this.contact,
+    @JsonKey(name: 'dice') this.dice,
+    @JsonKey(name: 'game') this.game,
+    @JsonKey(name: 'giveaway') this.giveaway,
+    @JsonKey(name: 'giveaway_winners') this.giveawayWinners,
+    @JsonKey(name: 'invoice') this.invoice,
+    @JsonKey(name: 'location') this.location,
+    @JsonKey(name: 'poll') this.poll,
+    @JsonKey(name: 'venue') this.venue,
+    @JsonKey(name: 'paid_media') this.paidMedia,
+    @JsonKey(name: 'checklist') this.checklist,
+  }) : _photo = photo;
   factory _ExternalReplyInfo.fromJson(Map<String, dynamic> json) =>
       _$ExternalReplyInfoFromJson(json);
 
@@ -815,9 +901,7 @@ class _ExternalReplyInfo implements ExternalReplyInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ExternalReplyInfoToJson(
-      this,
-    );
+    return _$ExternalReplyInfoToJson(this);
   }
 
   @override
@@ -830,37 +914,39 @@ class _ExternalReplyInfo implements ExternalReplyInfo {
 abstract mixin class _$ExternalReplyInfoCopyWith<$Res>
     implements $ExternalReplyInfoCopyWith<$Res> {
   factory _$ExternalReplyInfoCopyWith(
-          _ExternalReplyInfo value, $Res Function(_ExternalReplyInfo) _then) =
-      __$ExternalReplyInfoCopyWithImpl;
+    _ExternalReplyInfo value,
+    $Res Function(_ExternalReplyInfo) _then,
+  ) = __$ExternalReplyInfoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'origin') MessageOrigin origin,
-      @JsonKey(name: 'chat') Chat? chat,
-      @JsonKey(name: 'message_id') int? messageId,
-      @JsonKey(name: 'link_preview_options')
-      LinkPreviewOptions? linkPreviewOptions,
-      @JsonKey(name: 'animation') Animation? animation,
-      @JsonKey(name: 'audio') Audio? audio,
-      @JsonKey(name: 'document') Document? document,
-      @JsonKey(name: 'photo') List<PhotoSize>? photo,
-      @JsonKey(name: 'sticker') Sticker? sticker,
-      @JsonKey(name: 'story') Story? story,
-      @JsonKey(name: 'video') Video? video,
-      @JsonKey(name: 'video_note') VideoNote? videoNote,
-      @JsonKey(name: 'voice') Voice? voice,
-      @JsonKey(name: 'has_media_spoiler') bool? hasMediaSpoiler,
-      @JsonKey(name: 'contact') Contact? contact,
-      @JsonKey(name: 'dice') Dice? dice,
-      @JsonKey(name: 'game') Game? game,
-      @JsonKey(name: 'giveaway') Giveaway? giveaway,
-      @JsonKey(name: 'giveaway_winners') GiveawayWinners? giveawayWinners,
-      @JsonKey(name: 'invoice') Invoice? invoice,
-      @JsonKey(name: 'location') Location? location,
-      @JsonKey(name: 'poll') Poll? poll,
-      @JsonKey(name: 'venue') Venue? venue,
-      @JsonKey(name: 'paid_media') PaidMediaInfo? paidMedia,
-      @JsonKey(name: 'checklist') Checklist? checklist});
+  $Res call({
+    @JsonKey(name: 'origin') MessageOrigin origin,
+    @JsonKey(name: 'chat') Chat? chat,
+    @JsonKey(name: 'message_id') int? messageId,
+    @JsonKey(name: 'link_preview_options')
+    LinkPreviewOptions? linkPreviewOptions,
+    @JsonKey(name: 'animation') Animation? animation,
+    @JsonKey(name: 'audio') Audio? audio,
+    @JsonKey(name: 'document') Document? document,
+    @JsonKey(name: 'photo') List<PhotoSize>? photo,
+    @JsonKey(name: 'sticker') Sticker? sticker,
+    @JsonKey(name: 'story') Story? story,
+    @JsonKey(name: 'video') Video? video,
+    @JsonKey(name: 'video_note') VideoNote? videoNote,
+    @JsonKey(name: 'voice') Voice? voice,
+    @JsonKey(name: 'has_media_spoiler') bool? hasMediaSpoiler,
+    @JsonKey(name: 'contact') Contact? contact,
+    @JsonKey(name: 'dice') Dice? dice,
+    @JsonKey(name: 'game') Game? game,
+    @JsonKey(name: 'giveaway') Giveaway? giveaway,
+    @JsonKey(name: 'giveaway_winners') GiveawayWinners? giveawayWinners,
+    @JsonKey(name: 'invoice') Invoice? invoice,
+    @JsonKey(name: 'location') Location? location,
+    @JsonKey(name: 'poll') Poll? poll,
+    @JsonKey(name: 'venue') Venue? venue,
+    @JsonKey(name: 'paid_media') PaidMediaInfo? paidMedia,
+    @JsonKey(name: 'checklist') Checklist? checklist,
+  });
 
   @override
   $MessageOriginCopyWith<$Res> get origin;
@@ -947,108 +1033,110 @@ class __$ExternalReplyInfoCopyWithImpl<$Res>
     Object? paidMedia = freezed,
     Object? checklist = freezed,
   }) {
-    return _then(_ExternalReplyInfo(
-      origin: null == origin
-          ? _self.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as MessageOrigin,
-      chat: freezed == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-      messageId: freezed == messageId
-          ? _self.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      linkPreviewOptions: freezed == linkPreviewOptions
-          ? _self.linkPreviewOptions
-          : linkPreviewOptions // ignore: cast_nullable_to_non_nullable
-              as LinkPreviewOptions?,
-      animation: freezed == animation
-          ? _self.animation
-          : animation // ignore: cast_nullable_to_non_nullable
-              as Animation?,
-      audio: freezed == audio
-          ? _self.audio
-          : audio // ignore: cast_nullable_to_non_nullable
-              as Audio?,
-      document: freezed == document
-          ? _self.document
-          : document // ignore: cast_nullable_to_non_nullable
-              as Document?,
-      photo: freezed == photo
-          ? _self._photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as List<PhotoSize>?,
-      sticker: freezed == sticker
-          ? _self.sticker
-          : sticker // ignore: cast_nullable_to_non_nullable
-              as Sticker?,
-      story: freezed == story
-          ? _self.story
-          : story // ignore: cast_nullable_to_non_nullable
-              as Story?,
-      video: freezed == video
-          ? _self.video
-          : video // ignore: cast_nullable_to_non_nullable
-              as Video?,
-      videoNote: freezed == videoNote
-          ? _self.videoNote
-          : videoNote // ignore: cast_nullable_to_non_nullable
-              as VideoNote?,
-      voice: freezed == voice
-          ? _self.voice
-          : voice // ignore: cast_nullable_to_non_nullable
-              as Voice?,
-      hasMediaSpoiler: freezed == hasMediaSpoiler
-          ? _self.hasMediaSpoiler
-          : hasMediaSpoiler // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      contact: freezed == contact
-          ? _self.contact
-          : contact // ignore: cast_nullable_to_non_nullable
-              as Contact?,
-      dice: freezed == dice
-          ? _self.dice
-          : dice // ignore: cast_nullable_to_non_nullable
-              as Dice?,
-      game: freezed == game
-          ? _self.game
-          : game // ignore: cast_nullable_to_non_nullable
-              as Game?,
-      giveaway: freezed == giveaway
-          ? _self.giveaway
-          : giveaway // ignore: cast_nullable_to_non_nullable
-              as Giveaway?,
-      giveawayWinners: freezed == giveawayWinners
-          ? _self.giveawayWinners
-          : giveawayWinners // ignore: cast_nullable_to_non_nullable
-              as GiveawayWinners?,
-      invoice: freezed == invoice
-          ? _self.invoice
-          : invoice // ignore: cast_nullable_to_non_nullable
-              as Invoice?,
-      location: freezed == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location?,
-      poll: freezed == poll
-          ? _self.poll
-          : poll // ignore: cast_nullable_to_non_nullable
-              as Poll?,
-      venue: freezed == venue
-          ? _self.venue
-          : venue // ignore: cast_nullable_to_non_nullable
-              as Venue?,
-      paidMedia: freezed == paidMedia
-          ? _self.paidMedia
-          : paidMedia // ignore: cast_nullable_to_non_nullable
-              as PaidMediaInfo?,
-      checklist: freezed == checklist
-          ? _self.checklist
-          : checklist // ignore: cast_nullable_to_non_nullable
-              as Checklist?,
-    ));
+    return _then(
+      _ExternalReplyInfo(
+        origin: null == origin
+            ? _self.origin
+            : origin // ignore: cast_nullable_to_non_nullable
+                  as MessageOrigin,
+        chat: freezed == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+        messageId: freezed == messageId
+            ? _self.messageId
+            : messageId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        linkPreviewOptions: freezed == linkPreviewOptions
+            ? _self.linkPreviewOptions
+            : linkPreviewOptions // ignore: cast_nullable_to_non_nullable
+                  as LinkPreviewOptions?,
+        animation: freezed == animation
+            ? _self.animation
+            : animation // ignore: cast_nullable_to_non_nullable
+                  as Animation?,
+        audio: freezed == audio
+            ? _self.audio
+            : audio // ignore: cast_nullable_to_non_nullable
+                  as Audio?,
+        document: freezed == document
+            ? _self.document
+            : document // ignore: cast_nullable_to_non_nullable
+                  as Document?,
+        photo: freezed == photo
+            ? _self._photo
+            : photo // ignore: cast_nullable_to_non_nullable
+                  as List<PhotoSize>?,
+        sticker: freezed == sticker
+            ? _self.sticker
+            : sticker // ignore: cast_nullable_to_non_nullable
+                  as Sticker?,
+        story: freezed == story
+            ? _self.story
+            : story // ignore: cast_nullable_to_non_nullable
+                  as Story?,
+        video: freezed == video
+            ? _self.video
+            : video // ignore: cast_nullable_to_non_nullable
+                  as Video?,
+        videoNote: freezed == videoNote
+            ? _self.videoNote
+            : videoNote // ignore: cast_nullable_to_non_nullable
+                  as VideoNote?,
+        voice: freezed == voice
+            ? _self.voice
+            : voice // ignore: cast_nullable_to_non_nullable
+                  as Voice?,
+        hasMediaSpoiler: freezed == hasMediaSpoiler
+            ? _self.hasMediaSpoiler
+            : hasMediaSpoiler // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        contact: freezed == contact
+            ? _self.contact
+            : contact // ignore: cast_nullable_to_non_nullable
+                  as Contact?,
+        dice: freezed == dice
+            ? _self.dice
+            : dice // ignore: cast_nullable_to_non_nullable
+                  as Dice?,
+        game: freezed == game
+            ? _self.game
+            : game // ignore: cast_nullable_to_non_nullable
+                  as Game?,
+        giveaway: freezed == giveaway
+            ? _self.giveaway
+            : giveaway // ignore: cast_nullable_to_non_nullable
+                  as Giveaway?,
+        giveawayWinners: freezed == giveawayWinners
+            ? _self.giveawayWinners
+            : giveawayWinners // ignore: cast_nullable_to_non_nullable
+                  as GiveawayWinners?,
+        invoice: freezed == invoice
+            ? _self.invoice
+            : invoice // ignore: cast_nullable_to_non_nullable
+                  as Invoice?,
+        location: freezed == location
+            ? _self.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as Location?,
+        poll: freezed == poll
+            ? _self.poll
+            : poll // ignore: cast_nullable_to_non_nullable
+                  as Poll?,
+        venue: freezed == venue
+            ? _self.venue
+            : venue // ignore: cast_nullable_to_non_nullable
+                  as Venue?,
+        paidMedia: freezed == paidMedia
+            ? _self.paidMedia
+            : paidMedia // ignore: cast_nullable_to_non_nullable
+                  as PaidMediaInfo?,
+        checklist: freezed == checklist
+            ? _self.checklist
+            : checklist // ignore: cast_nullable_to_non_nullable
+                  as Checklist?,
+      ),
+    );
   }
 
   /// Create a copy of ExternalReplyInfo
@@ -1084,8 +1172,9 @@ class __$ExternalReplyInfoCopyWithImpl<$Res>
       return null;
     }
 
-    return $LinkPreviewOptionsCopyWith<$Res>(_self.linkPreviewOptions!,
-        (value) {
+    return $LinkPreviewOptionsCopyWith<$Res>(_self.linkPreviewOptions!, (
+      value,
+    ) {
       return _then(_self.copyWith(linkPreviewOptions: value));
     });
   }

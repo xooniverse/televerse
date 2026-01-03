@@ -7,15 +7,15 @@ part of 'video_note.dart';
 // **************************************************************************
 
 _VideoNote _$VideoNoteFromJson(Map<String, dynamic> json) => _VideoNote(
-      fileId: json['file_id'] as String,
-      fileUniqueId: json['file_unique_id'] as String,
-      length: (json['length'] as num).toInt(),
-      duration: (json['duration'] as num).toInt(),
-      thumbnail: json['thumb'] == null
-          ? null
-          : PhotoSize.fromJson(json['thumb'] as Map<String, dynamic>),
-      fileSize: (json['file_size'] as num?)?.toInt(),
-    );
+  fileId: json['file_id'] as String,
+  fileUniqueId: json['file_unique_id'] as String,
+  length: (json['length'] as num).toInt(),
+  duration: (json['duration'] as num).toInt(),
+  thumbnail: json['thumb'] == null
+      ? null
+      : PhotoSize.fromJson(json['thumb'] as Map<String, dynamic>),
+  fileSize: (json['file_size'] as num?)?.toInt(),
+);
 
 Map<String, dynamic> _$VideoNoteToJson(_VideoNote instance) =>
     <String, dynamic>{
@@ -23,6 +23,6 @@ Map<String, dynamic> _$VideoNoteToJson(_VideoNote instance) =>
       'file_unique_id': instance.fileUniqueId,
       'length': instance.length,
       'duration': instance.duration,
-      if (instance.thumbnail case final value?) 'thumb': value,
-      if (instance.fileSize case final value?) 'file_size': value,
+      'thumb': ?instance.thumbnail,
+      'file_size': ?instance.fileSize,
     };

@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -51,9 +50,11 @@ mixin _$KeyboardButtonRequestUsers {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $KeyboardButtonRequestUsersCopyWith<KeyboardButtonRequestUsers>
-      get copyWith =>
-          _$KeyboardButtonRequestUsersCopyWithImpl<KeyboardButtonRequestUsers>(
-              this as KeyboardButtonRequestUsers, _$identity);
+  get copyWith =>
+      _$KeyboardButtonRequestUsersCopyWithImpl<KeyboardButtonRequestUsers>(
+        this as KeyboardButtonRequestUsers,
+        _$identity,
+      );
 
   /// Serializes this KeyboardButtonRequestUsers to a JSON map.
   Map<String, dynamic> toJson();
@@ -66,18 +67,20 @@ mixin _$KeyboardButtonRequestUsers {
 
 /// @nodoc
 abstract mixin class $KeyboardButtonRequestUsersCopyWith<$Res> {
-  factory $KeyboardButtonRequestUsersCopyWith(KeyboardButtonRequestUsers value,
-          $Res Function(KeyboardButtonRequestUsers) _then) =
-      _$KeyboardButtonRequestUsersCopyWithImpl;
+  factory $KeyboardButtonRequestUsersCopyWith(
+    KeyboardButtonRequestUsers value,
+    $Res Function(KeyboardButtonRequestUsers) _then,
+  ) = _$KeyboardButtonRequestUsersCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'request_id') int requestId,
-      @JsonKey(name: 'user_is_bot') bool? userIsBot,
-      @JsonKey(name: 'user_is_premium') bool? userIsPremium,
-      @JsonKey(name: 'max_quantity') int? maxQuantity,
-      @JsonKey(name: 'request_name') bool? requestName,
-      @JsonKey(name: 'request_username') bool? requestUsername,
-      @JsonKey(name: 'request_photo') bool? requestPhoto});
+  $Res call({
+    @JsonKey(name: 'request_id') int requestId,
+    @JsonKey(name: 'user_is_bot') bool? userIsBot,
+    @JsonKey(name: 'user_is_premium') bool? userIsPremium,
+    @JsonKey(name: 'max_quantity') int? maxQuantity,
+    @JsonKey(name: 'request_name') bool? requestName,
+    @JsonKey(name: 'request_username') bool? requestUsername,
+    @JsonKey(name: 'request_photo') bool? requestPhoto,
+  });
 }
 
 /// @nodoc
@@ -101,50 +104,133 @@ class _$KeyboardButtonRequestUsersCopyWithImpl<$Res>
     Object? requestUsername = freezed,
     Object? requestPhoto = freezed,
   }) {
-    return _then(_self.copyWith(
-      requestId: null == requestId
-          ? _self.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as int,
-      userIsBot: freezed == userIsBot
-          ? _self.userIsBot
-          : userIsBot // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      userIsPremium: freezed == userIsPremium
-          ? _self.userIsPremium
-          : userIsPremium // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      maxQuantity: freezed == maxQuantity
-          ? _self.maxQuantity
-          : maxQuantity // ignore: cast_nullable_to_non_nullable
-              as int?,
-      requestName: freezed == requestName
-          ? _self.requestName
-          : requestName // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestUsername: freezed == requestUsername
-          ? _self.requestUsername
-          : requestUsername // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestPhoto: freezed == requestPhoto
-          ? _self.requestPhoto
-          : requestPhoto // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        requestId: null == requestId
+            ? _self.requestId
+            : requestId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        userIsBot: freezed == userIsBot
+            ? _self.userIsBot
+            : userIsBot // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        userIsPremium: freezed == userIsPremium
+            ? _self.userIsPremium
+            : userIsPremium // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        maxQuantity: freezed == maxQuantity
+            ? _self.maxQuantity
+            : maxQuantity // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        requestName: freezed == requestName
+            ? _self.requestName
+            : requestName // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestUsername: freezed == requestUsername
+            ? _self.requestUsername
+            : requestUsername // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestPhoto: freezed == requestPhoto
+            ? _self.requestPhoto
+            : requestPhoto // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [KeyboardButtonRequestUsers].
+extension KeyboardButtonRequestUsersPatterns on KeyboardButtonRequestUsers {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_KeyboardButtonRequestUsers value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _KeyboardButtonRequestUsers() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_KeyboardButtonRequestUsers value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _KeyboardButtonRequestUsers():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_KeyboardButtonRequestUsers value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _KeyboardButtonRequestUsers() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _KeyboardButtonRequestUsers implements KeyboardButtonRequestUsers {
-  const _KeyboardButtonRequestUsers(
-      {@JsonKey(name: 'request_id') required this.requestId,
-      @JsonKey(name: 'user_is_bot') this.userIsBot,
-      @JsonKey(name: 'user_is_premium') this.userIsPremium,
-      @JsonKey(name: 'max_quantity') this.maxQuantity,
-      @JsonKey(name: 'request_name') this.requestName,
-      @JsonKey(name: 'request_username') this.requestUsername,
-      @JsonKey(name: 'request_photo') this.requestPhoto});
+  const _KeyboardButtonRequestUsers({
+    @JsonKey(name: 'request_id') required this.requestId,
+    @JsonKey(name: 'user_is_bot') this.userIsBot,
+    @JsonKey(name: 'user_is_premium') this.userIsPremium,
+    @JsonKey(name: 'max_quantity') this.maxQuantity,
+    @JsonKey(name: 'request_name') this.requestName,
+    @JsonKey(name: 'request_username') this.requestUsername,
+    @JsonKey(name: 'request_photo') this.requestPhoto,
+  });
   factory _KeyboardButtonRequestUsers.fromJson(Map<String, dynamic> json) =>
       _$KeyboardButtonRequestUsersFromJson(json);
 
@@ -193,14 +279,15 @@ class _KeyboardButtonRequestUsers implements KeyboardButtonRequestUsers {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   _$KeyboardButtonRequestUsersCopyWith<_KeyboardButtonRequestUsers>
-      get copyWith => __$KeyboardButtonRequestUsersCopyWithImpl<
-          _KeyboardButtonRequestUsers>(this, _$identity);
+  get copyWith =>
+      __$KeyboardButtonRequestUsersCopyWithImpl<_KeyboardButtonRequestUsers>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$KeyboardButtonRequestUsersToJson(
-      this,
-    );
+    return _$KeyboardButtonRequestUsersToJson(this);
   }
 
   @override
@@ -213,19 +300,20 @@ class _KeyboardButtonRequestUsers implements KeyboardButtonRequestUsers {
 abstract mixin class _$KeyboardButtonRequestUsersCopyWith<$Res>
     implements $KeyboardButtonRequestUsersCopyWith<$Res> {
   factory _$KeyboardButtonRequestUsersCopyWith(
-          _KeyboardButtonRequestUsers value,
-          $Res Function(_KeyboardButtonRequestUsers) _then) =
-      __$KeyboardButtonRequestUsersCopyWithImpl;
+    _KeyboardButtonRequestUsers value,
+    $Res Function(_KeyboardButtonRequestUsers) _then,
+  ) = __$KeyboardButtonRequestUsersCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'request_id') int requestId,
-      @JsonKey(name: 'user_is_bot') bool? userIsBot,
-      @JsonKey(name: 'user_is_premium') bool? userIsPremium,
-      @JsonKey(name: 'max_quantity') int? maxQuantity,
-      @JsonKey(name: 'request_name') bool? requestName,
-      @JsonKey(name: 'request_username') bool? requestUsername,
-      @JsonKey(name: 'request_photo') bool? requestPhoto});
+  $Res call({
+    @JsonKey(name: 'request_id') int requestId,
+    @JsonKey(name: 'user_is_bot') bool? userIsBot,
+    @JsonKey(name: 'user_is_premium') bool? userIsPremium,
+    @JsonKey(name: 'max_quantity') int? maxQuantity,
+    @JsonKey(name: 'request_name') bool? requestName,
+    @JsonKey(name: 'request_username') bool? requestUsername,
+    @JsonKey(name: 'request_photo') bool? requestPhoto,
+  });
 }
 
 /// @nodoc
@@ -249,35 +337,37 @@ class __$KeyboardButtonRequestUsersCopyWithImpl<$Res>
     Object? requestUsername = freezed,
     Object? requestPhoto = freezed,
   }) {
-    return _then(_KeyboardButtonRequestUsers(
-      requestId: null == requestId
-          ? _self.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as int,
-      userIsBot: freezed == userIsBot
-          ? _self.userIsBot
-          : userIsBot // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      userIsPremium: freezed == userIsPremium
-          ? _self.userIsPremium
-          : userIsPremium // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      maxQuantity: freezed == maxQuantity
-          ? _self.maxQuantity
-          : maxQuantity // ignore: cast_nullable_to_non_nullable
-              as int?,
-      requestName: freezed == requestName
-          ? _self.requestName
-          : requestName // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestUsername: freezed == requestUsername
-          ? _self.requestUsername
-          : requestUsername // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestPhoto: freezed == requestPhoto
-          ? _self.requestPhoto
-          : requestPhoto // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _KeyboardButtonRequestUsers(
+        requestId: null == requestId
+            ? _self.requestId
+            : requestId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        userIsBot: freezed == userIsBot
+            ? _self.userIsBot
+            : userIsBot // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        userIsPremium: freezed == userIsPremium
+            ? _self.userIsPremium
+            : userIsPremium // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        maxQuantity: freezed == maxQuantity
+            ? _self.maxQuantity
+            : maxQuantity // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        requestName: freezed == requestName
+            ? _self.requestName
+            : requestName // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestUsername: freezed == requestUsername
+            ? _self.requestUsername
+            : requestUsername // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestPhoto: freezed == requestPhoto
+            ? _self.requestPhoto
+            : requestPhoto // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

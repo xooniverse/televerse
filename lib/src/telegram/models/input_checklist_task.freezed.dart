@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -40,7 +39,9 @@ mixin _$InputChecklistTask {
   @pragma('vm:prefer-inline')
   $InputChecklistTaskCopyWith<InputChecklistTask> get copyWith =>
       _$InputChecklistTaskCopyWithImpl<InputChecklistTask>(
-          this as InputChecklistTask, _$identity);
+        this as InputChecklistTask,
+        _$identity,
+      );
 
   /// Serializes this InputChecklistTask to a JSON map.
   Map<String, dynamic> toJson();
@@ -54,14 +55,16 @@ mixin _$InputChecklistTask {
 /// @nodoc
 abstract mixin class $InputChecklistTaskCopyWith<$Res> {
   factory $InputChecklistTaskCopyWith(
-          InputChecklistTask value, $Res Function(InputChecklistTask) _then) =
-      _$InputChecklistTaskCopyWithImpl;
+    InputChecklistTask value,
+    $Res Function(InputChecklistTask) _then,
+  ) = _$InputChecklistTaskCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'text') String text,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities});
+  $Res call({
+    @JsonKey(name: 'id') int id,
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
+  });
 }
 
 /// @nodoc
@@ -82,36 +85,118 @@ class _$InputChecklistTaskCopyWithImpl<$Res>
     Object? parseMode = freezed,
     Object? textEntities = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      textEntities: freezed == textEntities
-          ? _self.textEntities
-          : textEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        textEntities: freezed == textEntities
+            ? _self.textEntities
+            : textEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [InputChecklistTask].
+extension InputChecklistTaskPatterns on InputChecklistTask {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InputChecklistTask value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InputChecklistTask() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InputChecklistTask value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InputChecklistTask():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InputChecklistTask value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InputChecklistTask() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _InputChecklistTask implements InputChecklistTask {
-  const _InputChecklistTask(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'text') required this.text,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities})
-      : _textEntities = textEntities;
+  const _InputChecklistTask({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'text') required this.text,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities,
+  }) : _textEntities = textEntities;
   factory _InputChecklistTask.fromJson(Map<String, dynamic> json) =>
       _$InputChecklistTaskFromJson(json);
 
@@ -160,9 +245,7 @@ class _InputChecklistTask implements InputChecklistTask {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputChecklistTaskToJson(
-      this,
-    );
+    return _$InputChecklistTaskToJson(this);
   }
 
   @override
@@ -175,15 +258,17 @@ class _InputChecklistTask implements InputChecklistTask {
 abstract mixin class _$InputChecklistTaskCopyWith<$Res>
     implements $InputChecklistTaskCopyWith<$Res> {
   factory _$InputChecklistTaskCopyWith(
-          _InputChecklistTask value, $Res Function(_InputChecklistTask) _then) =
-      __$InputChecklistTaskCopyWithImpl;
+    _InputChecklistTask value,
+    $Res Function(_InputChecklistTask) _then,
+  ) = __$InputChecklistTaskCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'text') String text,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities});
+  $Res call({
+    @JsonKey(name: 'id') int id,
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
+  });
 }
 
 /// @nodoc
@@ -204,23 +289,25 @@ class __$InputChecklistTaskCopyWithImpl<$Res>
     Object? parseMode = freezed,
     Object? textEntities = freezed,
   }) {
-    return _then(_InputChecklistTask(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      textEntities: freezed == textEntities
-          ? _self._textEntities
-          : textEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-    ));
+    return _then(
+      _InputChecklistTask(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        textEntities: freezed == textEntities
+            ? _self._textEntities
+            : textEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+      ),
+    );
   }
 }

@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -105,22 +104,23 @@ abstract mixin class $StickerCopyWith<$Res> {
   factory $StickerCopyWith(Sticker value, $Res Function(Sticker) _then) =
       _$StickerCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'type') StickerType type,
-      @JsonKey(name: 'width') int width,
-      @JsonKey(name: 'height') int height,
-      @JsonKey(name: 'is_animated') bool isAnimated,
-      @JsonKey(name: 'is_video') bool isVideo,
-      @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
-      @JsonKey(name: 'emoji') String? emoji,
-      @JsonKey(name: 'set_name') String? setName,
-      @JsonKey(name: 'premium_animation') File? premiumAnimation,
-      @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
-      @JsonKey(name: 'custom_emoji_id') String? customEmojiId,
-      @JsonKey(name: 'file_size') int? fileSize,
-      @JsonKey(name: 'needs_repainting') bool? needsRepainting});
+  $Res call({
+    @JsonKey(name: 'file_id') String fileId,
+    @JsonKey(name: 'file_unique_id') String fileUniqueId,
+    @JsonKey(name: 'type') StickerType type,
+    @JsonKey(name: 'width') int width,
+    @JsonKey(name: 'height') int height,
+    @JsonKey(name: 'is_animated') bool isAnimated,
+    @JsonKey(name: 'is_video') bool isVideo,
+    @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
+    @JsonKey(name: 'emoji') String? emoji,
+    @JsonKey(name: 'set_name') String? setName,
+    @JsonKey(name: 'premium_animation') File? premiumAnimation,
+    @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
+    @JsonKey(name: 'custom_emoji_id') String? customEmojiId,
+    @JsonKey(name: 'file_size') int? fileSize,
+    @JsonKey(name: 'needs_repainting') bool? needsRepainting,
+  });
 
   $PhotoSizeCopyWith<$Res>? get thumbnail;
   $FileCopyWith<$Res>? get premiumAnimation;
@@ -155,68 +155,70 @@ class _$StickerCopyWithImpl<$Res> implements $StickerCopyWith<$Res> {
     Object? fileSize = freezed,
     Object? needsRepainting = freezed,
   }) {
-    return _then(_self.copyWith(
-      fileId: null == fileId
-          ? _self.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _self.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as StickerType,
-      width: null == width
-          ? _self.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int,
-      height: null == height
-          ? _self.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int,
-      isAnimated: null == isAnimated
-          ? _self.isAnimated
-          : isAnimated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isVideo: null == isVideo
-          ? _self.isVideo
-          : isVideo // ignore: cast_nullable_to_non_nullable
-              as bool,
-      thumbnail: freezed == thumbnail
-          ? _self.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as PhotoSize?,
-      emoji: freezed == emoji
-          ? _self.emoji
-          : emoji // ignore: cast_nullable_to_non_nullable
-              as String?,
-      setName: freezed == setName
-          ? _self.setName
-          : setName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      premiumAnimation: freezed == premiumAnimation
-          ? _self.premiumAnimation
-          : premiumAnimation // ignore: cast_nullable_to_non_nullable
-              as File?,
-      maskPosition: freezed == maskPosition
-          ? _self.maskPosition
-          : maskPosition // ignore: cast_nullable_to_non_nullable
-              as MaskPosition?,
-      customEmojiId: freezed == customEmojiId
-          ? _self.customEmojiId
-          : customEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fileSize: freezed == fileSize
-          ? _self.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-      needsRepainting: freezed == needsRepainting
-          ? _self.needsRepainting
-          : needsRepainting // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        fileId: null == fileId
+            ? _self.fileId
+            : fileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileUniqueId: null == fileUniqueId
+            ? _self.fileUniqueId
+            : fileUniqueId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as StickerType,
+        width: null == width
+            ? _self.width
+            : width // ignore: cast_nullable_to_non_nullable
+                  as int,
+        height: null == height
+            ? _self.height
+            : height // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isAnimated: null == isAnimated
+            ? _self.isAnimated
+            : isAnimated // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isVideo: null == isVideo
+            ? _self.isVideo
+            : isVideo // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        thumbnail: freezed == thumbnail
+            ? _self.thumbnail
+            : thumbnail // ignore: cast_nullable_to_non_nullable
+                  as PhotoSize?,
+        emoji: freezed == emoji
+            ? _self.emoji
+            : emoji // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        setName: freezed == setName
+            ? _self.setName
+            : setName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        premiumAnimation: freezed == premiumAnimation
+            ? _self.premiumAnimation
+            : premiumAnimation // ignore: cast_nullable_to_non_nullable
+                  as File?,
+        maskPosition: freezed == maskPosition
+            ? _self.maskPosition
+            : maskPosition // ignore: cast_nullable_to_non_nullable
+                  as MaskPosition?,
+        customEmojiId: freezed == customEmojiId
+            ? _self.customEmojiId
+            : customEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        fileSize: freezed == fileSize
+            ? _self.fileSize
+            : fileSize // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        needsRepainting: freezed == needsRepainting
+            ? _self.needsRepainting
+            : needsRepainting // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of Sticker
@@ -262,25 +264,106 @@ class _$StickerCopyWithImpl<$Res> implements $StickerCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [Sticker].
+extension StickerPatterns on Sticker {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Sticker value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Sticker() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Sticker value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Sticker():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Sticker value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Sticker() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _Sticker implements Sticker {
-  const _Sticker(
-      {@JsonKey(name: 'file_id') required this.fileId,
-      @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
-      @JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'width') required this.width,
-      @JsonKey(name: 'height') required this.height,
-      @JsonKey(name: 'is_animated') required this.isAnimated,
-      @JsonKey(name: 'is_video') required this.isVideo,
-      @JsonKey(name: 'thumbnail') this.thumbnail,
-      @JsonKey(name: 'emoji') this.emoji,
-      @JsonKey(name: 'set_name') this.setName,
-      @JsonKey(name: 'premium_animation') this.premiumAnimation,
-      @JsonKey(name: 'mask_position') this.maskPosition,
-      @JsonKey(name: 'custom_emoji_id') this.customEmojiId,
-      @JsonKey(name: 'file_size') this.fileSize,
-      @JsonKey(name: 'needs_repainting') this.needsRepainting});
+  const _Sticker({
+    @JsonKey(name: 'file_id') required this.fileId,
+    @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'width') required this.width,
+    @JsonKey(name: 'height') required this.height,
+    @JsonKey(name: 'is_animated') required this.isAnimated,
+    @JsonKey(name: 'is_video') required this.isVideo,
+    @JsonKey(name: 'thumbnail') this.thumbnail,
+    @JsonKey(name: 'emoji') this.emoji,
+    @JsonKey(name: 'set_name') this.setName,
+    @JsonKey(name: 'premium_animation') this.premiumAnimation,
+    @JsonKey(name: 'mask_position') this.maskPosition,
+    @JsonKey(name: 'custom_emoji_id') this.customEmojiId,
+    @JsonKey(name: 'file_size') this.fileSize,
+    @JsonKey(name: 'needs_repainting') this.needsRepainting,
+  });
   factory _Sticker.fromJson(Map<String, dynamic> json) =>
       _$StickerFromJson(json);
 
@@ -379,9 +462,7 @@ class _Sticker implements Sticker {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$StickerToJson(
-      this,
-    );
+    return _$StickerToJson(this);
   }
 
   @override
@@ -396,22 +477,23 @@ abstract mixin class _$StickerCopyWith<$Res> implements $StickerCopyWith<$Res> {
       __$StickerCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'type') StickerType type,
-      @JsonKey(name: 'width') int width,
-      @JsonKey(name: 'height') int height,
-      @JsonKey(name: 'is_animated') bool isAnimated,
-      @JsonKey(name: 'is_video') bool isVideo,
-      @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
-      @JsonKey(name: 'emoji') String? emoji,
-      @JsonKey(name: 'set_name') String? setName,
-      @JsonKey(name: 'premium_animation') File? premiumAnimation,
-      @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
-      @JsonKey(name: 'custom_emoji_id') String? customEmojiId,
-      @JsonKey(name: 'file_size') int? fileSize,
-      @JsonKey(name: 'needs_repainting') bool? needsRepainting});
+  $Res call({
+    @JsonKey(name: 'file_id') String fileId,
+    @JsonKey(name: 'file_unique_id') String fileUniqueId,
+    @JsonKey(name: 'type') StickerType type,
+    @JsonKey(name: 'width') int width,
+    @JsonKey(name: 'height') int height,
+    @JsonKey(name: 'is_animated') bool isAnimated,
+    @JsonKey(name: 'is_video') bool isVideo,
+    @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
+    @JsonKey(name: 'emoji') String? emoji,
+    @JsonKey(name: 'set_name') String? setName,
+    @JsonKey(name: 'premium_animation') File? premiumAnimation,
+    @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
+    @JsonKey(name: 'custom_emoji_id') String? customEmojiId,
+    @JsonKey(name: 'file_size') int? fileSize,
+    @JsonKey(name: 'needs_repainting') bool? needsRepainting,
+  });
 
   @override
   $PhotoSizeCopyWith<$Res>? get thumbnail;
@@ -449,68 +531,70 @@ class __$StickerCopyWithImpl<$Res> implements _$StickerCopyWith<$Res> {
     Object? fileSize = freezed,
     Object? needsRepainting = freezed,
   }) {
-    return _then(_Sticker(
-      fileId: null == fileId
-          ? _self.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _self.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as StickerType,
-      width: null == width
-          ? _self.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int,
-      height: null == height
-          ? _self.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int,
-      isAnimated: null == isAnimated
-          ? _self.isAnimated
-          : isAnimated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isVideo: null == isVideo
-          ? _self.isVideo
-          : isVideo // ignore: cast_nullable_to_non_nullable
-              as bool,
-      thumbnail: freezed == thumbnail
-          ? _self.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as PhotoSize?,
-      emoji: freezed == emoji
-          ? _self.emoji
-          : emoji // ignore: cast_nullable_to_non_nullable
-              as String?,
-      setName: freezed == setName
-          ? _self.setName
-          : setName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      premiumAnimation: freezed == premiumAnimation
-          ? _self.premiumAnimation
-          : premiumAnimation // ignore: cast_nullable_to_non_nullable
-              as File?,
-      maskPosition: freezed == maskPosition
-          ? _self.maskPosition
-          : maskPosition // ignore: cast_nullable_to_non_nullable
-              as MaskPosition?,
-      customEmojiId: freezed == customEmojiId
-          ? _self.customEmojiId
-          : customEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fileSize: freezed == fileSize
-          ? _self.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-      needsRepainting: freezed == needsRepainting
-          ? _self.needsRepainting
-          : needsRepainting // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _Sticker(
+        fileId: null == fileId
+            ? _self.fileId
+            : fileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileUniqueId: null == fileUniqueId
+            ? _self.fileUniqueId
+            : fileUniqueId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as StickerType,
+        width: null == width
+            ? _self.width
+            : width // ignore: cast_nullable_to_non_nullable
+                  as int,
+        height: null == height
+            ? _self.height
+            : height // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isAnimated: null == isAnimated
+            ? _self.isAnimated
+            : isAnimated // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isVideo: null == isVideo
+            ? _self.isVideo
+            : isVideo // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        thumbnail: freezed == thumbnail
+            ? _self.thumbnail
+            : thumbnail // ignore: cast_nullable_to_non_nullable
+                  as PhotoSize?,
+        emoji: freezed == emoji
+            ? _self.emoji
+            : emoji // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        setName: freezed == setName
+            ? _self.setName
+            : setName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        premiumAnimation: freezed == premiumAnimation
+            ? _self.premiumAnimation
+            : premiumAnimation // ignore: cast_nullable_to_non_nullable
+                  as File?,
+        maskPosition: freezed == maskPosition
+            ? _self.maskPosition
+            : maskPosition // ignore: cast_nullable_to_non_nullable
+                  as MaskPosition?,
+        customEmojiId: freezed == customEmojiId
+            ? _self.customEmojiId
+            : customEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        fileSize: freezed == fileSize
+            ? _self.fileSize
+            : fileSize // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        needsRepainting: freezed == needsRepainting
+            ? _self.needsRepainting
+            : needsRepainting // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of Sticker

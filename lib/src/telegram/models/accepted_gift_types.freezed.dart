@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -36,7 +35,9 @@ mixin _$AcceptedGiftTypes {
   @pragma('vm:prefer-inline')
   $AcceptedGiftTypesCopyWith<AcceptedGiftTypes> get copyWith =>
       _$AcceptedGiftTypesCopyWithImpl<AcceptedGiftTypes>(
-          this as AcceptedGiftTypes, _$identity);
+        this as AcceptedGiftTypes,
+        _$identity,
+      );
 
   /// Serializes this AcceptedGiftTypes to a JSON map.
   Map<String, dynamic> toJson();
@@ -50,14 +51,16 @@ mixin _$AcceptedGiftTypes {
 /// @nodoc
 abstract mixin class $AcceptedGiftTypesCopyWith<$Res> {
   factory $AcceptedGiftTypesCopyWith(
-          AcceptedGiftTypes value, $Res Function(AcceptedGiftTypes) _then) =
-      _$AcceptedGiftTypesCopyWithImpl;
+    AcceptedGiftTypes value,
+    $Res Function(AcceptedGiftTypes) _then,
+  ) = _$AcceptedGiftTypesCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'unlimited_gifts') bool unlimitedGifts,
-      @JsonKey(name: 'limited_gifts') bool limitedGifts,
-      @JsonKey(name: 'unique_gifts') bool uniqueGifts,
-      @JsonKey(name: 'premium_subscription') bool premiumSubscription});
+  $Res call({
+    @JsonKey(name: 'unlimited_gifts') bool unlimitedGifts,
+    @JsonKey(name: 'limited_gifts') bool limitedGifts,
+    @JsonKey(name: 'unique_gifts') bool uniqueGifts,
+    @JsonKey(name: 'premium_subscription') bool premiumSubscription,
+  });
 }
 
 /// @nodoc
@@ -78,36 +81,118 @@ class _$AcceptedGiftTypesCopyWithImpl<$Res>
     Object? uniqueGifts = null,
     Object? premiumSubscription = null,
   }) {
-    return _then(_self.copyWith(
-      unlimitedGifts: null == unlimitedGifts
-          ? _self.unlimitedGifts
-          : unlimitedGifts // ignore: cast_nullable_to_non_nullable
-              as bool,
-      limitedGifts: null == limitedGifts
-          ? _self.limitedGifts
-          : limitedGifts // ignore: cast_nullable_to_non_nullable
-              as bool,
-      uniqueGifts: null == uniqueGifts
-          ? _self.uniqueGifts
-          : uniqueGifts // ignore: cast_nullable_to_non_nullable
-              as bool,
-      premiumSubscription: null == premiumSubscription
-          ? _self.premiumSubscription
-          : premiumSubscription // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _self.copyWith(
+        unlimitedGifts: null == unlimitedGifts
+            ? _self.unlimitedGifts
+            : unlimitedGifts // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        limitedGifts: null == limitedGifts
+            ? _self.limitedGifts
+            : limitedGifts // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        uniqueGifts: null == uniqueGifts
+            ? _self.uniqueGifts
+            : uniqueGifts // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        premiumSubscription: null == premiumSubscription
+            ? _self.premiumSubscription
+            : premiumSubscription // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [AcceptedGiftTypes].
+extension AcceptedGiftTypesPatterns on AcceptedGiftTypes {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_AcceptedGiftTypes value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AcceptedGiftTypes() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_AcceptedGiftTypes value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AcceptedGiftTypes():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_AcceptedGiftTypes value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AcceptedGiftTypes() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _AcceptedGiftTypes implements AcceptedGiftTypes {
-  const _AcceptedGiftTypes(
-      {@JsonKey(name: 'unlimited_gifts') required this.unlimitedGifts,
-      @JsonKey(name: 'limited_gifts') required this.limitedGifts,
-      @JsonKey(name: 'unique_gifts') required this.uniqueGifts,
-      @JsonKey(name: 'premium_subscription')
-      required this.premiumSubscription});
+  const _AcceptedGiftTypes({
+    @JsonKey(name: 'unlimited_gifts') required this.unlimitedGifts,
+    @JsonKey(name: 'limited_gifts') required this.limitedGifts,
+    @JsonKey(name: 'unique_gifts') required this.uniqueGifts,
+    @JsonKey(name: 'premium_subscription') required this.premiumSubscription,
+  });
   factory _AcceptedGiftTypes.fromJson(Map<String, dynamic> json) =>
       _$AcceptedGiftTypesFromJson(json);
 
@@ -141,9 +226,7 @@ class _AcceptedGiftTypes implements AcceptedGiftTypes {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$AcceptedGiftTypesToJson(
-      this,
-    );
+    return _$AcceptedGiftTypesToJson(this);
   }
 
   @override
@@ -156,15 +239,17 @@ class _AcceptedGiftTypes implements AcceptedGiftTypes {
 abstract mixin class _$AcceptedGiftTypesCopyWith<$Res>
     implements $AcceptedGiftTypesCopyWith<$Res> {
   factory _$AcceptedGiftTypesCopyWith(
-          _AcceptedGiftTypes value, $Res Function(_AcceptedGiftTypes) _then) =
-      __$AcceptedGiftTypesCopyWithImpl;
+    _AcceptedGiftTypes value,
+    $Res Function(_AcceptedGiftTypes) _then,
+  ) = __$AcceptedGiftTypesCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'unlimited_gifts') bool unlimitedGifts,
-      @JsonKey(name: 'limited_gifts') bool limitedGifts,
-      @JsonKey(name: 'unique_gifts') bool uniqueGifts,
-      @JsonKey(name: 'premium_subscription') bool premiumSubscription});
+  $Res call({
+    @JsonKey(name: 'unlimited_gifts') bool unlimitedGifts,
+    @JsonKey(name: 'limited_gifts') bool limitedGifts,
+    @JsonKey(name: 'unique_gifts') bool uniqueGifts,
+    @JsonKey(name: 'premium_subscription') bool premiumSubscription,
+  });
 }
 
 /// @nodoc
@@ -185,23 +270,25 @@ class __$AcceptedGiftTypesCopyWithImpl<$Res>
     Object? uniqueGifts = null,
     Object? premiumSubscription = null,
   }) {
-    return _then(_AcceptedGiftTypes(
-      unlimitedGifts: null == unlimitedGifts
-          ? _self.unlimitedGifts
-          : unlimitedGifts // ignore: cast_nullable_to_non_nullable
-              as bool,
-      limitedGifts: null == limitedGifts
-          ? _self.limitedGifts
-          : limitedGifts // ignore: cast_nullable_to_non_nullable
-              as bool,
-      uniqueGifts: null == uniqueGifts
-          ? _self.uniqueGifts
-          : uniqueGifts // ignore: cast_nullable_to_non_nullable
-              as bool,
-      premiumSubscription: null == premiumSubscription
-          ? _self.premiumSubscription
-          : premiumSubscription // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _AcceptedGiftTypes(
+        unlimitedGifts: null == unlimitedGifts
+            ? _self.unlimitedGifts
+            : unlimitedGifts // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        limitedGifts: null == limitedGifts
+            ? _self.limitedGifts
+            : limitedGifts // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        uniqueGifts: null == uniqueGifts
+            ? _self.uniqueGifts
+            : uniqueGifts // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        premiumSubscription: null == premiumSubscription
+            ? _self.premiumSubscription
+            : premiumSubscription // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }

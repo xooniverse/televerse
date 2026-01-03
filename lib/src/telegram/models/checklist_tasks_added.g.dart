@@ -17,9 +17,8 @@ _ChecklistTasksAdded _$ChecklistTasksAddedFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ChecklistTasksAddedToJson(
-        _ChecklistTasksAdded instance) =>
-    <String, dynamic>{
-      if (instance.checklistMessage case final value?)
-        'checklist_message': value,
-      'tasks': instance.tasks,
-    };
+  _ChecklistTasksAdded instance,
+) => <String, dynamic>{
+  'checklist_message': ?instance.checklistMessage,
+  'tasks': instance.tasks,
+};

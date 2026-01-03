@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -73,7 +72,9 @@ mixin _$KeyboardButton {
   @pragma('vm:prefer-inline')
   $KeyboardButtonCopyWith<KeyboardButton> get copyWith =>
       _$KeyboardButtonCopyWithImpl<KeyboardButton>(
-          this as KeyboardButton, _$identity);
+        this as KeyboardButton,
+        _$identity,
+      );
 
   /// Serializes this KeyboardButton to a JSON map.
   Map<String, dynamic> toJson();
@@ -87,17 +88,19 @@ mixin _$KeyboardButton {
 /// @nodoc
 abstract mixin class $KeyboardButtonCopyWith<$Res> {
   factory $KeyboardButtonCopyWith(
-          KeyboardButton value, $Res Function(KeyboardButton) _then) =
-      _$KeyboardButtonCopyWithImpl;
+    KeyboardButton value,
+    $Res Function(KeyboardButton) _then,
+  ) = _$KeyboardButtonCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'request_contact') bool? requestContact,
-      @JsonKey(name: 'request_location') bool? requestLocation,
-      @JsonKey(name: 'request_poll') KeyboardButtonPollType? requestPoll,
-      @JsonKey(name: 'web_app') WebAppInfo? webApp,
-      @JsonKey(name: 'request_user') KeyboardButtonRequestUsers? requestUsers,
-      @JsonKey(name: 'request_chat') KeyboardButtonRequestChat? requestChat});
+  $Res call({
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'request_contact') bool? requestContact,
+    @JsonKey(name: 'request_location') bool? requestLocation,
+    @JsonKey(name: 'request_poll') KeyboardButtonPollType? requestPoll,
+    @JsonKey(name: 'web_app') WebAppInfo? webApp,
+    @JsonKey(name: 'request_user') KeyboardButtonRequestUsers? requestUsers,
+    @JsonKey(name: 'request_chat') KeyboardButtonRequestChat? requestChat,
+  });
 
   $KeyboardButtonPollTypeCopyWith<$Res>? get requestPoll;
   $WebAppInfoCopyWith<$Res>? get webApp;
@@ -126,36 +129,38 @@ class _$KeyboardButtonCopyWithImpl<$Res>
     Object? requestUsers = freezed,
     Object? requestChat = freezed,
   }) {
-    return _then(_self.copyWith(
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      requestContact: freezed == requestContact
-          ? _self.requestContact
-          : requestContact // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestLocation: freezed == requestLocation
-          ? _self.requestLocation
-          : requestLocation // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestPoll: freezed == requestPoll
-          ? _self.requestPoll
-          : requestPoll // ignore: cast_nullable_to_non_nullable
-              as KeyboardButtonPollType?,
-      webApp: freezed == webApp
-          ? _self.webApp
-          : webApp // ignore: cast_nullable_to_non_nullable
-              as WebAppInfo?,
-      requestUsers: freezed == requestUsers
-          ? _self.requestUsers
-          : requestUsers // ignore: cast_nullable_to_non_nullable
-              as KeyboardButtonRequestUsers?,
-      requestChat: freezed == requestChat
-          ? _self.requestChat
-          : requestChat // ignore: cast_nullable_to_non_nullable
-              as KeyboardButtonRequestChat?,
-    ));
+    return _then(
+      _self.copyWith(
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        requestContact: freezed == requestContact
+            ? _self.requestContact
+            : requestContact // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestLocation: freezed == requestLocation
+            ? _self.requestLocation
+            : requestLocation // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestPoll: freezed == requestPoll
+            ? _self.requestPoll
+            : requestPoll // ignore: cast_nullable_to_non_nullable
+                  as KeyboardButtonPollType?,
+        webApp: freezed == webApp
+            ? _self.webApp
+            : webApp // ignore: cast_nullable_to_non_nullable
+                  as WebAppInfo?,
+        requestUsers: freezed == requestUsers
+            ? _self.requestUsers
+            : requestUsers // ignore: cast_nullable_to_non_nullable
+                  as KeyboardButtonRequestUsers?,
+        requestChat: freezed == requestChat
+            ? _self.requestChat
+            : requestChat // ignore: cast_nullable_to_non_nullable
+                  as KeyboardButtonRequestChat?,
+      ),
+    );
   }
 
   /// Create a copy of KeyboardButton
@@ -195,8 +200,9 @@ class _$KeyboardButtonCopyWithImpl<$Res>
       return null;
     }
 
-    return $KeyboardButtonRequestUsersCopyWith<$Res>(_self.requestUsers!,
-        (value) {
+    return $KeyboardButtonRequestUsersCopyWith<$Res>(_self.requestUsers!, (
+      value,
+    ) {
       return _then(_self.copyWith(requestUsers: value));
     });
   }
@@ -210,24 +216,106 @@ class _$KeyboardButtonCopyWithImpl<$Res>
       return null;
     }
 
-    return $KeyboardButtonRequestChatCopyWith<$Res>(_self.requestChat!,
-        (value) {
+    return $KeyboardButtonRequestChatCopyWith<$Res>(_self.requestChat!, (
+      value,
+    ) {
       return _then(_self.copyWith(requestChat: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [KeyboardButton].
+extension KeyboardButtonPatterns on KeyboardButton {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_KeyboardButton value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _KeyboardButton() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_KeyboardButton value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _KeyboardButton():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_KeyboardButton value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _KeyboardButton() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _KeyboardButton implements KeyboardButton {
-  const _KeyboardButton(
-      {@JsonKey(name: 'text') required this.text,
-      @JsonKey(name: 'request_contact') this.requestContact,
-      @JsonKey(name: 'request_location') this.requestLocation,
-      @JsonKey(name: 'request_poll') this.requestPoll,
-      @JsonKey(name: 'web_app') this.webApp,
-      @JsonKey(name: 'request_user') this.requestUsers,
-      @JsonKey(name: 'request_chat') this.requestChat});
+  const _KeyboardButton({
+    @JsonKey(name: 'text') required this.text,
+    @JsonKey(name: 'request_contact') this.requestContact,
+    @JsonKey(name: 'request_location') this.requestLocation,
+    @JsonKey(name: 'request_poll') this.requestPoll,
+    @JsonKey(name: 'web_app') this.webApp,
+    @JsonKey(name: 'request_user') this.requestUsers,
+    @JsonKey(name: 'request_chat') this.requestChat,
+  });
   factory _KeyboardButton.fromJson(Map<String, dynamic> json) =>
       _$KeyboardButtonFromJson(json);
 
@@ -301,9 +389,7 @@ class _KeyboardButton implements KeyboardButton {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$KeyboardButtonToJson(
-      this,
-    );
+    return _$KeyboardButtonToJson(this);
   }
 
   @override
@@ -316,18 +402,20 @@ class _KeyboardButton implements KeyboardButton {
 abstract mixin class _$KeyboardButtonCopyWith<$Res>
     implements $KeyboardButtonCopyWith<$Res> {
   factory _$KeyboardButtonCopyWith(
-          _KeyboardButton value, $Res Function(_KeyboardButton) _then) =
-      __$KeyboardButtonCopyWithImpl;
+    _KeyboardButton value,
+    $Res Function(_KeyboardButton) _then,
+  ) = __$KeyboardButtonCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'request_contact') bool? requestContact,
-      @JsonKey(name: 'request_location') bool? requestLocation,
-      @JsonKey(name: 'request_poll') KeyboardButtonPollType? requestPoll,
-      @JsonKey(name: 'web_app') WebAppInfo? webApp,
-      @JsonKey(name: 'request_user') KeyboardButtonRequestUsers? requestUsers,
-      @JsonKey(name: 'request_chat') KeyboardButtonRequestChat? requestChat});
+  $Res call({
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'request_contact') bool? requestContact,
+    @JsonKey(name: 'request_location') bool? requestLocation,
+    @JsonKey(name: 'request_poll') KeyboardButtonPollType? requestPoll,
+    @JsonKey(name: 'web_app') WebAppInfo? webApp,
+    @JsonKey(name: 'request_user') KeyboardButtonRequestUsers? requestUsers,
+    @JsonKey(name: 'request_chat') KeyboardButtonRequestChat? requestChat,
+  });
 
   @override
   $KeyboardButtonPollTypeCopyWith<$Res>? get requestPoll;
@@ -360,36 +448,38 @@ class __$KeyboardButtonCopyWithImpl<$Res>
     Object? requestUsers = freezed,
     Object? requestChat = freezed,
   }) {
-    return _then(_KeyboardButton(
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      requestContact: freezed == requestContact
-          ? _self.requestContact
-          : requestContact // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestLocation: freezed == requestLocation
-          ? _self.requestLocation
-          : requestLocation // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestPoll: freezed == requestPoll
-          ? _self.requestPoll
-          : requestPoll // ignore: cast_nullable_to_non_nullable
-              as KeyboardButtonPollType?,
-      webApp: freezed == webApp
-          ? _self.webApp
-          : webApp // ignore: cast_nullable_to_non_nullable
-              as WebAppInfo?,
-      requestUsers: freezed == requestUsers
-          ? _self.requestUsers
-          : requestUsers // ignore: cast_nullable_to_non_nullable
-              as KeyboardButtonRequestUsers?,
-      requestChat: freezed == requestChat
-          ? _self.requestChat
-          : requestChat // ignore: cast_nullable_to_non_nullable
-              as KeyboardButtonRequestChat?,
-    ));
+    return _then(
+      _KeyboardButton(
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        requestContact: freezed == requestContact
+            ? _self.requestContact
+            : requestContact // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestLocation: freezed == requestLocation
+            ? _self.requestLocation
+            : requestLocation // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestPoll: freezed == requestPoll
+            ? _self.requestPoll
+            : requestPoll // ignore: cast_nullable_to_non_nullable
+                  as KeyboardButtonPollType?,
+        webApp: freezed == webApp
+            ? _self.webApp
+            : webApp // ignore: cast_nullable_to_non_nullable
+                  as WebAppInfo?,
+        requestUsers: freezed == requestUsers
+            ? _self.requestUsers
+            : requestUsers // ignore: cast_nullable_to_non_nullable
+                  as KeyboardButtonRequestUsers?,
+        requestChat: freezed == requestChat
+            ? _self.requestChat
+            : requestChat // ignore: cast_nullable_to_non_nullable
+                  as KeyboardButtonRequestChat?,
+      ),
+    );
   }
 
   /// Create a copy of KeyboardButton
@@ -429,8 +519,9 @@ class __$KeyboardButtonCopyWithImpl<$Res>
       return null;
     }
 
-    return $KeyboardButtonRequestUsersCopyWith<$Res>(_self.requestUsers!,
-        (value) {
+    return $KeyboardButtonRequestUsersCopyWith<$Res>(_self.requestUsers!, (
+      value,
+    ) {
       return _then(_self.copyWith(requestUsers: value));
     });
   }
@@ -444,8 +535,9 @@ class __$KeyboardButtonCopyWithImpl<$Res>
       return null;
     }
 
-    return $KeyboardButtonRequestChatCopyWith<$Res>(_self.requestChat!,
-        (value) {
+    return $KeyboardButtonRequestChatCopyWith<$Res>(_self.requestChat!, (
+      value,
+    ) {
       return _then(_self.copyWith(requestChat: value));
     });
   }

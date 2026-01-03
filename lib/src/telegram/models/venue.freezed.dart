@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -65,14 +64,15 @@ abstract mixin class $VenueCopyWith<$Res> {
   factory $VenueCopyWith(Venue value, $Res Function(Venue) _then) =
       _$VenueCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'location') Location location,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'address') String address,
-      @JsonKey(name: 'foursquare_id') String? foursquareId,
-      @JsonKey(name: 'foursquare_type') String? foursquareType,
-      @JsonKey(name: 'google_place_id') String? googlePlaceId,
-      @JsonKey(name: 'google_place_type') String? googlePlaceType});
+  $Res call({
+    @JsonKey(name: 'location') Location location,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'address') String address,
+    @JsonKey(name: 'foursquare_id') String? foursquareId,
+    @JsonKey(name: 'foursquare_type') String? foursquareType,
+    @JsonKey(name: 'google_place_id') String? googlePlaceId,
+    @JsonKey(name: 'google_place_type') String? googlePlaceType,
+  });
 
   $LocationCopyWith<$Res> get location;
 }
@@ -97,36 +97,38 @@ class _$VenueCopyWithImpl<$Res> implements $VenueCopyWith<$Res> {
     Object? googlePlaceId = freezed,
     Object? googlePlaceType = freezed,
   }) {
-    return _then(_self.copyWith(
-      location: null == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _self.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      foursquareId: freezed == foursquareId
-          ? _self.foursquareId
-          : foursquareId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      foursquareType: freezed == foursquareType
-          ? _self.foursquareType
-          : foursquareType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      googlePlaceId: freezed == googlePlaceId
-          ? _self.googlePlaceId
-          : googlePlaceId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      googlePlaceType: freezed == googlePlaceType
-          ? _self.googlePlaceType
-          : googlePlaceType // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _self.copyWith(
+        location: null == location
+            ? _self.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as Location,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        address: null == address
+            ? _self.address
+            : address // ignore: cast_nullable_to_non_nullable
+                  as String,
+        foursquareId: freezed == foursquareId
+            ? _self.foursquareId
+            : foursquareId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        foursquareType: freezed == foursquareType
+            ? _self.foursquareType
+            : foursquareType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        googlePlaceId: freezed == googlePlaceId
+            ? _self.googlePlaceId
+            : googlePlaceId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        googlePlaceType: freezed == googlePlaceType
+            ? _self.googlePlaceType
+            : googlePlaceType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 
   /// Create a copy of Venue
@@ -140,17 +142,98 @@ class _$VenueCopyWithImpl<$Res> implements $VenueCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [Venue].
+extension VenuePatterns on Venue {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Venue value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Venue() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Venue value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Venue():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Venue value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Venue() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _Venue implements Venue {
-  const _Venue(
-      {@JsonKey(name: 'location') required this.location,
-      @JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'address') required this.address,
-      @JsonKey(name: 'foursquare_id') this.foursquareId,
-      @JsonKey(name: 'foursquare_type') this.foursquareType,
-      @JsonKey(name: 'google_place_id') this.googlePlaceId,
-      @JsonKey(name: 'google_place_type') this.googlePlaceType});
+  const _Venue({
+    @JsonKey(name: 'location') required this.location,
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'address') required this.address,
+    @JsonKey(name: 'foursquare_id') this.foursquareId,
+    @JsonKey(name: 'foursquare_type') this.foursquareType,
+    @JsonKey(name: 'google_place_id') this.googlePlaceId,
+    @JsonKey(name: 'google_place_type') this.googlePlaceType,
+  });
   factory _Venue.fromJson(Map<String, dynamic> json) => _$VenueFromJson(json);
 
   /// Venue location
@@ -200,9 +283,7 @@ class _Venue implements Venue {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$VenueToJson(
-      this,
-    );
+    return _$VenueToJson(this);
   }
 
   @override
@@ -217,14 +298,15 @@ abstract mixin class _$VenueCopyWith<$Res> implements $VenueCopyWith<$Res> {
       __$VenueCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'location') Location location,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'address') String address,
-      @JsonKey(name: 'foursquare_id') String? foursquareId,
-      @JsonKey(name: 'foursquare_type') String? foursquareType,
-      @JsonKey(name: 'google_place_id') String? googlePlaceId,
-      @JsonKey(name: 'google_place_type') String? googlePlaceType});
+  $Res call({
+    @JsonKey(name: 'location') Location location,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'address') String address,
+    @JsonKey(name: 'foursquare_id') String? foursquareId,
+    @JsonKey(name: 'foursquare_type') String? foursquareType,
+    @JsonKey(name: 'google_place_id') String? googlePlaceId,
+    @JsonKey(name: 'google_place_type') String? googlePlaceType,
+  });
 
   @override
   $LocationCopyWith<$Res> get location;
@@ -250,36 +332,38 @@ class __$VenueCopyWithImpl<$Res> implements _$VenueCopyWith<$Res> {
     Object? googlePlaceId = freezed,
     Object? googlePlaceType = freezed,
   }) {
-    return _then(_Venue(
-      location: null == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _self.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      foursquareId: freezed == foursquareId
-          ? _self.foursquareId
-          : foursquareId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      foursquareType: freezed == foursquareType
-          ? _self.foursquareType
-          : foursquareType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      googlePlaceId: freezed == googlePlaceId
-          ? _self.googlePlaceId
-          : googlePlaceId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      googlePlaceType: freezed == googlePlaceType
-          ? _self.googlePlaceType
-          : googlePlaceType // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _Venue(
+        location: null == location
+            ? _self.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as Location,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        address: null == address
+            ? _self.address
+            : address // ignore: cast_nullable_to_non_nullable
+                  as String,
+        foursquareId: freezed == foursquareId
+            ? _self.foursquareId
+            : foursquareId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        foursquareType: freezed == foursquareType
+            ? _self.foursquareType
+            : foursquareType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        googlePlaceId: freezed == googlePlaceId
+            ? _self.googlePlaceId
+            : googlePlaceId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        googlePlaceType: freezed == googlePlaceType
+            ? _self.googlePlaceType
+            : googlePlaceType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 
   /// Create a copy of Venue

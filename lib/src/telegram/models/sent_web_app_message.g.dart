@@ -7,12 +7,7 @@ part of 'sent_web_app_message.dart';
 // **************************************************************************
 
 _SentWebAppMessage _$SentWebAppMessageFromJson(Map<String, dynamic> json) =>
-    _SentWebAppMessage(
-      inlineMessageId: json['inline_message_id'] as String?,
-    );
+    _SentWebAppMessage(inlineMessageId: json['inline_message_id'] as String?);
 
 Map<String, dynamic> _$SentWebAppMessageToJson(_SentWebAppMessage instance) =>
-    <String, dynamic>{
-      if (instance.inlineMessageId case final value?)
-        'inline_message_id': value,
-    };
+    <String, dynamic>{'inline_message_id': ?instance.inlineMessageId};

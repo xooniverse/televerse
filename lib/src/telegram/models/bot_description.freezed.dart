@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -24,7 +23,9 @@ mixin _$BotDescription {
   @pragma('vm:prefer-inline')
   $BotDescriptionCopyWith<BotDescription> get copyWith =>
       _$BotDescriptionCopyWithImpl<BotDescription>(
-          this as BotDescription, _$identity);
+        this as BotDescription,
+        _$identity,
+      );
 
   /// Serializes this BotDescription to a JSON map.
   Map<String, dynamic> toJson();
@@ -38,8 +39,9 @@ mixin _$BotDescription {
 /// @nodoc
 abstract mixin class $BotDescriptionCopyWith<$Res> {
   factory $BotDescriptionCopyWith(
-          BotDescription value, $Res Function(BotDescription) _then) =
-      _$BotDescriptionCopyWithImpl;
+    BotDescription value,
+    $Res Function(BotDescription) _then,
+  ) = _$BotDescriptionCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'description') String description});
 }
@@ -56,23 +58,104 @@ class _$BotDescriptionCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? description = null,
+  $Res call({Object? description = null}) {
+    return _then(
+      _self.copyWith(
+        description: null == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [BotDescription].
+extension BotDescriptionPatterns on BotDescription {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_BotDescription value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      description: null == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _BotDescription() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_BotDescription value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BotDescription():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_BotDescription value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BotDescription() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _BotDescription implements BotDescription {
-  const _BotDescription(
-      {@JsonKey(name: 'description') required this.description});
+  const _BotDescription({
+    @JsonKey(name: 'description') required this.description,
+  });
   factory _BotDescription.fromJson(Map<String, dynamic> json) =>
       _$BotDescriptionFromJson(json);
 
@@ -91,9 +174,7 @@ class _BotDescription implements BotDescription {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BotDescriptionToJson(
-      this,
-    );
+    return _$BotDescriptionToJson(this);
   }
 
   @override
@@ -106,8 +187,9 @@ class _BotDescription implements BotDescription {
 abstract mixin class _$BotDescriptionCopyWith<$Res>
     implements $BotDescriptionCopyWith<$Res> {
   factory _$BotDescriptionCopyWith(
-          _BotDescription value, $Res Function(_BotDescription) _then) =
-      __$BotDescriptionCopyWithImpl;
+    _BotDescription value,
+    $Res Function(_BotDescription) _then,
+  ) = __$BotDescriptionCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'description') String description});
@@ -125,14 +207,14 @@ class __$BotDescriptionCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? description = null,
-  }) {
-    return _then(_BotDescription(
-      description: null == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? description = null}) {
+    return _then(
+      _BotDescription(
+        description: null == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }

@@ -7,12 +7,8 @@ part of 'bot_short_description.dart';
 // **************************************************************************
 
 _BotShortDescription _$BotShortDescriptionFromJson(Map<String, dynamic> json) =>
-    _BotShortDescription(
-      shortDescription: json['short_description'] as String,
-    );
+    _BotShortDescription(shortDescription: json['short_description'] as String);
 
 Map<String, dynamic> _$BotShortDescriptionToJson(
-        _BotShortDescription instance) =>
-    <String, dynamic>{
-      'short_description': instance.shortDescription,
-    };
+  _BotShortDescription instance,
+) => <String, dynamic>{'short_description': instance.shortDescription};

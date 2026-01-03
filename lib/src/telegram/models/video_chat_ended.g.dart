@@ -7,11 +7,7 @@ part of 'video_chat_ended.dart';
 // **************************************************************************
 
 _VideoChatEnded _$VideoChatEndedFromJson(Map<String, dynamic> json) =>
-    _VideoChatEnded(
-      duration: (json['duration'] as num).toInt(),
-    );
+    _VideoChatEnded(duration: (json['duration'] as num).toInt());
 
 Map<String, dynamic> _$VideoChatEndedToJson(_VideoChatEnded instance) =>
-    <String, dynamic>{
-      'duration': instance.duration,
-    };
+    <String, dynamic>{'duration': instance.duration};

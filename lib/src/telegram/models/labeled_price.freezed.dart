@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -35,7 +34,9 @@ mixin _$LabeledPrice {
   @pragma('vm:prefer-inline')
   $LabeledPriceCopyWith<LabeledPrice> get copyWith =>
       _$LabeledPriceCopyWithImpl<LabeledPrice>(
-          this as LabeledPrice, _$identity);
+        this as LabeledPrice,
+        _$identity,
+      );
 
   /// Serializes this LabeledPrice to a JSON map.
   Map<String, dynamic> toJson();
@@ -49,12 +50,14 @@ mixin _$LabeledPrice {
 /// @nodoc
 abstract mixin class $LabeledPriceCopyWith<$Res> {
   factory $LabeledPriceCopyWith(
-          LabeledPrice value, $Res Function(LabeledPrice) _then) =
-      _$LabeledPriceCopyWithImpl;
+    LabeledPrice value,
+    $Res Function(LabeledPrice) _then,
+  ) = _$LabeledPriceCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'label') String label,
-      @JsonKey(name: 'amount') int amount});
+  $Res call({
+    @JsonKey(name: 'label') String label,
+    @JsonKey(name: 'amount') int amount,
+  });
 }
 
 /// @nodoc
@@ -68,29 +71,109 @@ class _$LabeledPriceCopyWithImpl<$Res> implements $LabeledPriceCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? label = null,
-    Object? amount = null,
+  $Res call({Object? label = null, Object? amount = null}) {
+    return _then(
+      _self.copyWith(
+        label: null == label
+            ? _self.label
+            : label // ignore: cast_nullable_to_non_nullable
+                  as String,
+        amount: null == amount
+            ? _self.amount
+            : amount // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [LabeledPrice].
+extension LabeledPricePatterns on LabeledPrice {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_LabeledPrice value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      label: null == label
-          ? _self.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _self.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _LabeledPrice() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_LabeledPrice value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LabeledPrice():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_LabeledPrice value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LabeledPrice() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _LabeledPrice implements LabeledPrice {
-  const _LabeledPrice(
-      {@JsonKey(name: 'label') required this.label,
-      @JsonKey(name: 'amount') required this.amount});
+  const _LabeledPrice({
+    @JsonKey(name: 'label') required this.label,
+    @JsonKey(name: 'amount') required this.amount,
+  });
   factory _LabeledPrice.fromJson(Map<String, dynamic> json) =>
       _$LabeledPriceFromJson(json);
 
@@ -121,9 +204,7 @@ class _LabeledPrice implements LabeledPrice {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$LabeledPriceToJson(
-      this,
-    );
+    return _$LabeledPriceToJson(this);
   }
 
   @override
@@ -136,13 +217,15 @@ class _LabeledPrice implements LabeledPrice {
 abstract mixin class _$LabeledPriceCopyWith<$Res>
     implements $LabeledPriceCopyWith<$Res> {
   factory _$LabeledPriceCopyWith(
-          _LabeledPrice value, $Res Function(_LabeledPrice) _then) =
-      __$LabeledPriceCopyWithImpl;
+    _LabeledPrice value,
+    $Res Function(_LabeledPrice) _then,
+  ) = __$LabeledPriceCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'label') String label,
-      @JsonKey(name: 'amount') int amount});
+  $Res call({
+    @JsonKey(name: 'label') String label,
+    @JsonKey(name: 'amount') int amount,
+  });
 }
 
 /// @nodoc
@@ -157,19 +240,18 @@ class __$LabeledPriceCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? label = null,
-    Object? amount = null,
-  }) {
-    return _then(_LabeledPrice(
-      label: null == label
-          ? _self.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _self.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+  $Res call({Object? label = null, Object? amount = null}) {
+    return _then(
+      _LabeledPrice(
+        label: null == label
+            ? _self.label
+            : label // ignore: cast_nullable_to_non_nullable
+                  as String,
+        amount: null == amount
+            ? _self.amount
+            : amount // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }

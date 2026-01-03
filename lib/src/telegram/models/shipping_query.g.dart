@@ -12,7 +12,8 @@ _ShippingQuery _$ShippingQueryFromJson(Map<String, dynamic> json) =>
       from: User.fromJson(json['from'] as Map<String, dynamic>),
       invoicePayload: json['invoice_payload'] as String,
       shippingAddress: ShippingAddress.fromJson(
-          json['shipping_address'] as Map<String, dynamic>),
+        json['shipping_address'] as Map<String, dynamic>,
+      ),
     );
 
 Map<String, dynamic> _$ShippingQueryToJson(_ShippingQuery instance) =>

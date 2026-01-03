@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -81,7 +80,9 @@ mixin _$InlineQueryResultGif {
   @pragma('vm:prefer-inline')
   $InlineQueryResultGifCopyWith<InlineQueryResultGif> get copyWith =>
       _$InlineQueryResultGifCopyWithImpl<InlineQueryResultGif>(
-          this as InlineQueryResultGif, _$identity);
+        this as InlineQueryResultGif,
+        _$identity,
+      );
 
   /// Serializes this InlineQueryResultGif to a JSON map.
   Map<String, dynamic> toJson();
@@ -94,28 +95,30 @@ mixin _$InlineQueryResultGif {
 
 /// @nodoc
 abstract mixin class $InlineQueryResultGifCopyWith<$Res> {
-  factory $InlineQueryResultGifCopyWith(InlineQueryResultGif value,
-          $Res Function(InlineQueryResultGif) _then) =
-      _$InlineQueryResultGifCopyWithImpl;
+  factory $InlineQueryResultGifCopyWith(
+    InlineQueryResultGif value,
+    $Res Function(InlineQueryResultGif) _then,
+  ) = _$InlineQueryResultGifCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'id') String id,
-      @JsonKey(name: 'gif_url') String gifUrl,
-      @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
-      @JsonKey(name: 'gif_width') int? gifWidth,
-      @JsonKey(name: 'gif_height') int? gifHeight,
-      @JsonKey(name: 'gif_duration') int? gifDuration,
-      @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia});
+  $Res call({
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'gif_url') String gifUrl,
+    @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
+    @JsonKey(name: 'gif_width') int? gifWidth,
+    @JsonKey(name: 'gif_height') int? gifHeight,
+    @JsonKey(name: 'gif_duration') int? gifDuration,
+    @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
+  });
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -149,68 +152,70 @@ class _$InlineQueryResultGifCopyWithImpl<$Res>
     Object? inputMessageContent = freezed,
     Object? showCaptionAboveMedia = freezed,
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      gifUrl: null == gifUrl
-          ? _self.gifUrl
-          : gifUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnailUrl: null == thumbnailUrl
-          ? _self.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      gifWidth: freezed == gifWidth
-          ? _self.gifWidth
-          : gifWidth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      gifHeight: freezed == gifHeight
-          ? _self.gifHeight
-          : gifHeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-      gifDuration: freezed == gifDuration
-          ? _self.gifDuration
-          : gifDuration // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnailMimeType: freezed == thumbnailMimeType
-          ? _self.thumbnailMimeType
-          : thumbnailMimeType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self.captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _self.showCaptionAboveMedia
-          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        gifUrl: null == gifUrl
+            ? _self.gifUrl
+            : gifUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        thumbnailUrl: null == thumbnailUrl
+            ? _self.thumbnailUrl
+            : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        gifWidth: freezed == gifWidth
+            ? _self.gifWidth
+            : gifWidth // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        gifHeight: freezed == gifHeight
+            ? _self.gifHeight
+            : gifHeight // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        gifDuration: freezed == gifDuration
+            ? _self.gifDuration
+            : gifDuration // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        thumbnailMimeType: freezed == thumbnailMimeType
+            ? _self.thumbnailMimeType
+            : thumbnailMimeType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self.captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        showCaptionAboveMedia: freezed == showCaptionAboveMedia
+            ? _self.showCaptionAboveMedia
+            : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultGif
@@ -222,36 +227,117 @@ class _$InlineQueryResultGifCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [InlineQueryResultGif].
+extension InlineQueryResultGifPatterns on InlineQueryResultGif {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineQueryResultGif value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultGif() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineQueryResultGif value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultGif():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineQueryResultGif value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultGif() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _InlineQueryResultGif implements InlineQueryResultGif {
-  const _InlineQueryResultGif(
-      {@JsonKey(name: 'type') this.type = InlineQueryResultType.gif,
-      @JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'gif_url') required this.gifUrl,
-      @JsonKey(name: 'thumbnail_url') required this.thumbnailUrl,
-      @JsonKey(name: 'gif_width') this.gifWidth,
-      @JsonKey(name: 'gif_height') this.gifHeight,
-      @JsonKey(name: 'gif_duration') this.gifDuration,
-      @JsonKey(name: 'thumbnail_mime_type') this.thumbnailMimeType,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'caption') this.caption,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') this.replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      this.inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia})
-      : _captionEntities = captionEntities;
+  const _InlineQueryResultGif({
+    @JsonKey(name: 'type') this.type = InlineQueryResultType.gif,
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'gif_url') required this.gifUrl,
+    @JsonKey(name: 'thumbnail_url') required this.thumbnailUrl,
+    @JsonKey(name: 'gif_width') this.gifWidth,
+    @JsonKey(name: 'gif_height') this.gifHeight,
+    @JsonKey(name: 'gif_duration') this.gifDuration,
+    @JsonKey(name: 'thumbnail_mime_type') this.thumbnailMimeType,
+    @JsonKey(name: 'title') this.title,
+    @JsonKey(name: 'caption') this.caption,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'caption_entities')
+    final List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') this.replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    this.inputMessageContent,
+    @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
+  }) : _captionEntities = captionEntities;
   factory _InlineQueryResultGif.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultGifFromJson(json);
 
@@ -347,13 +433,13 @@ class _InlineQueryResultGif implements InlineQueryResultGif {
   @pragma('vm:prefer-inline')
   _$InlineQueryResultGifCopyWith<_InlineQueryResultGif> get copyWith =>
       __$InlineQueryResultGifCopyWithImpl<_InlineQueryResultGif>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineQueryResultGifToJson(
-      this,
-    );
+    return _$InlineQueryResultGifToJson(this);
   }
 
   @override
@@ -365,29 +451,31 @@ class _InlineQueryResultGif implements InlineQueryResultGif {
 /// @nodoc
 abstract mixin class _$InlineQueryResultGifCopyWith<$Res>
     implements $InlineQueryResultGifCopyWith<$Res> {
-  factory _$InlineQueryResultGifCopyWith(_InlineQueryResultGif value,
-          $Res Function(_InlineQueryResultGif) _then) =
-      __$InlineQueryResultGifCopyWithImpl;
+  factory _$InlineQueryResultGifCopyWith(
+    _InlineQueryResultGif value,
+    $Res Function(_InlineQueryResultGif) _then,
+  ) = __$InlineQueryResultGifCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'id') String id,
-      @JsonKey(name: 'gif_url') String gifUrl,
-      @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
-      @JsonKey(name: 'gif_width') int? gifWidth,
-      @JsonKey(name: 'gif_height') int? gifHeight,
-      @JsonKey(name: 'gif_duration') int? gifDuration,
-      @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia});
+  $Res call({
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'gif_url') String gifUrl,
+    @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
+    @JsonKey(name: 'gif_width') int? gifWidth,
+    @JsonKey(name: 'gif_height') int? gifHeight,
+    @JsonKey(name: 'gif_duration') int? gifDuration,
+    @JsonKey(name: 'thumbnail_mime_type') String? thumbnailMimeType,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
+  });
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -422,68 +510,70 @@ class __$InlineQueryResultGifCopyWithImpl<$Res>
     Object? inputMessageContent = freezed,
     Object? showCaptionAboveMedia = freezed,
   }) {
-    return _then(_InlineQueryResultGif(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      gifUrl: null == gifUrl
-          ? _self.gifUrl
-          : gifUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnailUrl: null == thumbnailUrl
-          ? _self.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      gifWidth: freezed == gifWidth
-          ? _self.gifWidth
-          : gifWidth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      gifHeight: freezed == gifHeight
-          ? _self.gifHeight
-          : gifHeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-      gifDuration: freezed == gifDuration
-          ? _self.gifDuration
-          : gifDuration // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnailMimeType: freezed == thumbnailMimeType
-          ? _self.thumbnailMimeType
-          : thumbnailMimeType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _self.showCaptionAboveMedia
-          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _InlineQueryResultGif(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        gifUrl: null == gifUrl
+            ? _self.gifUrl
+            : gifUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        thumbnailUrl: null == thumbnailUrl
+            ? _self.thumbnailUrl
+            : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        gifWidth: freezed == gifWidth
+            ? _self.gifWidth
+            : gifWidth // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        gifHeight: freezed == gifHeight
+            ? _self.gifHeight
+            : gifHeight // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        gifDuration: freezed == gifDuration
+            ? _self.gifDuration
+            : gifDuration // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        thumbnailMimeType: freezed == thumbnailMimeType
+            ? _self.thumbnailMimeType
+            : thumbnailMimeType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self._captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        showCaptionAboveMedia: freezed == showCaptionAboveMedia
+            ? _self.showCaptionAboveMedia
+            : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultGif
@@ -495,8 +585,9 @@ class __$InlineQueryResultGifCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
   }

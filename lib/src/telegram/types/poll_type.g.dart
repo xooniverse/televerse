@@ -6,7 +6,4 @@ part of 'poll_type.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-const _$PollTypeEnumMap = {
-  PollType.regular: 'regular',
-  PollType.quiz: 'quiz',
-};
+const _$PollTypeEnumMap = {PollType.regular: 'regular', PollType.quiz: 'quiz'};

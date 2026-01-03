@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -46,13 +45,15 @@ mixin _$PollOption {
 /// @nodoc
 abstract mixin class $PollOptionCopyWith<$Res> {
   factory $PollOptionCopyWith(
-          PollOption value, $Res Function(PollOption) _then) =
-      _$PollOptionCopyWithImpl;
+    PollOption value,
+    $Res Function(PollOption) _then,
+  ) = _$PollOptionCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'voter_count') int voterCount,
-      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities});
+  $Res call({
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'voter_count') int voterCount,
+    @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
+  });
 }
 
 /// @nodoc
@@ -71,31 +72,113 @@ class _$PollOptionCopyWithImpl<$Res> implements $PollOptionCopyWith<$Res> {
     Object? voterCount = null,
     Object? textEntities = freezed,
   }) {
-    return _then(_self.copyWith(
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      voterCount: null == voterCount
-          ? _self.voterCount
-          : voterCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      textEntities: freezed == textEntities
-          ? _self.textEntities
-          : textEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-    ));
+    return _then(
+      _self.copyWith(
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        voterCount: null == voterCount
+            ? _self.voterCount
+            : voterCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        textEntities: freezed == textEntities
+            ? _self.textEntities
+            : textEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [PollOption].
+extension PollOptionPatterns on PollOption {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PollOption value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PollOption() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PollOption value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PollOption():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PollOption value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PollOption() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _PollOption implements PollOption {
-  const _PollOption(
-      {@JsonKey(name: 'text') required this.text,
-      @JsonKey(name: 'voter_count') required this.voterCount,
-      @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities})
-      : _textEntities = textEntities;
+  const _PollOption({
+    @JsonKey(name: 'text') required this.text,
+    @JsonKey(name: 'voter_count') required this.voterCount,
+    @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities,
+  }) : _textEntities = textEntities;
   factory _PollOption.fromJson(Map<String, dynamic> json) =>
       _$PollOptionFromJson(json);
 
@@ -135,9 +218,7 @@ class _PollOption implements PollOption {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PollOptionToJson(
-      this,
-    );
+    return _$PollOptionToJson(this);
   }
 
   @override
@@ -150,14 +231,16 @@ class _PollOption implements PollOption {
 abstract mixin class _$PollOptionCopyWith<$Res>
     implements $PollOptionCopyWith<$Res> {
   factory _$PollOptionCopyWith(
-          _PollOption value, $Res Function(_PollOption) _then) =
-      __$PollOptionCopyWithImpl;
+    _PollOption value,
+    $Res Function(_PollOption) _then,
+  ) = __$PollOptionCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'voter_count') int voterCount,
-      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities});
+  $Res call({
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'voter_count') int voterCount,
+    @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
+  });
 }
 
 /// @nodoc
@@ -176,19 +259,21 @@ class __$PollOptionCopyWithImpl<$Res> implements _$PollOptionCopyWith<$Res> {
     Object? voterCount = null,
     Object? textEntities = freezed,
   }) {
-    return _then(_PollOption(
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      voterCount: null == voterCount
-          ? _self.voterCount
-          : voterCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      textEntities: freezed == textEntities
-          ? _self._textEntities
-          : textEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-    ));
+    return _then(
+      _PollOption(
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        voterCount: null == voterCount
+            ? _self.voterCount
+            : voterCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        textEntities: freezed == textEntities
+            ? _self._textEntities
+            : textEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+      ),
+    );
   }
 }

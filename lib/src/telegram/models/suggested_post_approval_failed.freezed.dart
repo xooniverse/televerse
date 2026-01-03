@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -27,9 +26,11 @@ mixin _$SuggestedPostApprovalFailed {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $SuggestedPostApprovalFailedCopyWith<SuggestedPostApprovalFailed>
-      get copyWith => _$SuggestedPostApprovalFailedCopyWithImpl<
-              SuggestedPostApprovalFailed>(
-          this as SuggestedPostApprovalFailed, _$identity);
+  get copyWith =>
+      _$SuggestedPostApprovalFailedCopyWithImpl<SuggestedPostApprovalFailed>(
+        this as SuggestedPostApprovalFailed,
+        _$identity,
+      );
 
   /// Serializes this SuggestedPostApprovalFailed to a JSON map.
   Map<String, dynamic> toJson();
@@ -43,13 +44,14 @@ mixin _$SuggestedPostApprovalFailed {
 /// @nodoc
 abstract mixin class $SuggestedPostApprovalFailedCopyWith<$Res> {
   factory $SuggestedPostApprovalFailedCopyWith(
-          SuggestedPostApprovalFailed value,
-          $Res Function(SuggestedPostApprovalFailed) _then) =
-      _$SuggestedPostApprovalFailedCopyWithImpl;
+    SuggestedPostApprovalFailed value,
+    $Res Function(SuggestedPostApprovalFailed) _then,
+  ) = _$SuggestedPostApprovalFailedCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'suggested_post_message') Message? suggestedPostMessage,
-      @JsonKey(name: 'price') SuggestedPostPrice price});
+  $Res call({
+    @JsonKey(name: 'suggested_post_message') Message? suggestedPostMessage,
+    @JsonKey(name: 'price') SuggestedPostPrice price,
+  });
 
   $SuggestedPostPriceCopyWith<$Res> get price;
 }
@@ -66,20 +68,19 @@ class _$SuggestedPostApprovalFailedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? suggestedPostMessage = freezed,
-    Object? price = null,
-  }) {
-    return _then(_self.copyWith(
-      suggestedPostMessage: freezed == suggestedPostMessage
-          ? _self.suggestedPostMessage
-          : suggestedPostMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      price: null == price
-          ? _self.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as SuggestedPostPrice,
-    ));
+  $Res call({Object? suggestedPostMessage = freezed, Object? price = null}) {
+    return _then(
+      _self.copyWith(
+        suggestedPostMessage: freezed == suggestedPostMessage
+            ? _self.suggestedPostMessage
+            : suggestedPostMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        price: null == price
+            ? _self.price
+            : price // ignore: cast_nullable_to_non_nullable
+                  as SuggestedPostPrice,
+      ),
+    );
   }
 
   /// Create a copy of SuggestedPostApprovalFailed
@@ -93,12 +94,93 @@ class _$SuggestedPostApprovalFailedCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [SuggestedPostApprovalFailed].
+extension SuggestedPostApprovalFailedPatterns on SuggestedPostApprovalFailed {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SuggestedPostApprovalFailed value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SuggestedPostApprovalFailed() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SuggestedPostApprovalFailed value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SuggestedPostApprovalFailed():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SuggestedPostApprovalFailed value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SuggestedPostApprovalFailed() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _SuggestedPostApprovalFailed implements SuggestedPostApprovalFailed {
-  const _SuggestedPostApprovalFailed(
-      {@JsonKey(name: 'suggested_post_message') this.suggestedPostMessage,
-      @JsonKey(name: 'price') required this.price});
+  const _SuggestedPostApprovalFailed({
+    @JsonKey(name: 'suggested_post_message') this.suggestedPostMessage,
+    @JsonKey(name: 'price') required this.price,
+  });
   factory _SuggestedPostApprovalFailed.fromJson(Map<String, dynamic> json) =>
       _$SuggestedPostApprovalFailedFromJson(json);
 
@@ -118,14 +200,15 @@ class _SuggestedPostApprovalFailed implements SuggestedPostApprovalFailed {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   _$SuggestedPostApprovalFailedCopyWith<_SuggestedPostApprovalFailed>
-      get copyWith => __$SuggestedPostApprovalFailedCopyWithImpl<
-          _SuggestedPostApprovalFailed>(this, _$identity);
+  get copyWith =>
+      __$SuggestedPostApprovalFailedCopyWithImpl<_SuggestedPostApprovalFailed>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$SuggestedPostApprovalFailedToJson(
-      this,
-    );
+    return _$SuggestedPostApprovalFailedToJson(this);
   }
 
   @override
@@ -138,14 +221,15 @@ class _SuggestedPostApprovalFailed implements SuggestedPostApprovalFailed {
 abstract mixin class _$SuggestedPostApprovalFailedCopyWith<$Res>
     implements $SuggestedPostApprovalFailedCopyWith<$Res> {
   factory _$SuggestedPostApprovalFailedCopyWith(
-          _SuggestedPostApprovalFailed value,
-          $Res Function(_SuggestedPostApprovalFailed) _then) =
-      __$SuggestedPostApprovalFailedCopyWithImpl;
+    _SuggestedPostApprovalFailed value,
+    $Res Function(_SuggestedPostApprovalFailed) _then,
+  ) = __$SuggestedPostApprovalFailedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'suggested_post_message') Message? suggestedPostMessage,
-      @JsonKey(name: 'price') SuggestedPostPrice price});
+  $Res call({
+    @JsonKey(name: 'suggested_post_message') Message? suggestedPostMessage,
+    @JsonKey(name: 'price') SuggestedPostPrice price,
+  });
 
   @override
   $SuggestedPostPriceCopyWith<$Res> get price;
@@ -163,20 +247,19 @@ class __$SuggestedPostApprovalFailedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? suggestedPostMessage = freezed,
-    Object? price = null,
-  }) {
-    return _then(_SuggestedPostApprovalFailed(
-      suggestedPostMessage: freezed == suggestedPostMessage
-          ? _self.suggestedPostMessage
-          : suggestedPostMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      price: null == price
-          ? _self.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as SuggestedPostPrice,
-    ));
+  $Res call({Object? suggestedPostMessage = freezed, Object? price = null}) {
+    return _then(
+      _SuggestedPostApprovalFailed(
+        suggestedPostMessage: freezed == suggestedPostMessage
+            ? _self.suggestedPostMessage
+            : suggestedPostMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        price: null == price
+            ? _self.price
+            : price // ignore: cast_nullable_to_non_nullable
+                  as SuggestedPostPrice,
+      ),
+    );
   }
 
   /// Create a copy of SuggestedPostApprovalFailed

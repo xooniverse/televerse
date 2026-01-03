@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -59,13 +58,14 @@ abstract mixin class $GameCopyWith<$Res> {
   factory $GameCopyWith(Game value, $Res Function(Game) _then) =
       _$GameCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'description') String description,
-      @JsonKey(name: 'photo') List<PhotoSize> photo,
-      @JsonKey(name: 'text') String? text,
-      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
-      @JsonKey(name: 'animation') Animation? animation});
+  $Res call({
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'description') String description,
+    @JsonKey(name: 'photo') List<PhotoSize> photo,
+    @JsonKey(name: 'text') String? text,
+    @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
+    @JsonKey(name: 'animation') Animation? animation,
+  });
 
   $AnimationCopyWith<$Res>? get animation;
 }
@@ -89,32 +89,34 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
     Object? textEntities = freezed,
     Object? animation = freezed,
   }) {
-    return _then(_self.copyWith(
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      photo: null == photo
-          ? _self.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as List<PhotoSize>,
-      text: freezed == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String?,
-      textEntities: freezed == textEntities
-          ? _self.textEntities
-          : textEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      animation: freezed == animation
-          ? _self.animation
-          : animation // ignore: cast_nullable_to_non_nullable
-              as Animation?,
-    ));
+    return _then(
+      _self.copyWith(
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: null == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+        photo: null == photo
+            ? _self.photo
+            : photo // ignore: cast_nullable_to_non_nullable
+                  as List<PhotoSize>,
+        text: freezed == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        textEntities: freezed == textEntities
+            ? _self.textEntities
+            : textEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        animation: freezed == animation
+            ? _self.animation
+            : animation // ignore: cast_nullable_to_non_nullable
+                  as Animation?,
+      ),
+    );
   }
 
   /// Create a copy of Game
@@ -132,18 +134,96 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [Game].
+extension GamePatterns on Game {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Game value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Game() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(TResult Function(_Game value) $default) {
+    final _that = this;
+    switch (_that) {
+      case _Game():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Game value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Game() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _Game implements Game {
-  const _Game(
-      {@JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'description') required this.description,
-      @JsonKey(name: 'photo') required final List<PhotoSize> photo,
-      @JsonKey(name: 'text') this.text,
-      @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities,
-      @JsonKey(name: 'animation') this.animation})
-      : _photo = photo,
-        _textEntities = textEntities;
+  const _Game({
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'description') required this.description,
+    @JsonKey(name: 'photo') required final List<PhotoSize> photo,
+    @JsonKey(name: 'text') this.text,
+    @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities,
+    @JsonKey(name: 'animation') this.animation,
+  }) : _photo = photo,
+       _textEntities = textEntities;
   factory _Game.fromJson(Map<String, dynamic> json) => _$GameFromJson(json);
 
   /// Title of the game
@@ -202,9 +282,7 @@ class _Game implements Game {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$GameToJson(
-      this,
-    );
+    return _$GameToJson(this);
   }
 
   @override
@@ -219,13 +297,14 @@ abstract mixin class _$GameCopyWith<$Res> implements $GameCopyWith<$Res> {
       __$GameCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'description') String description,
-      @JsonKey(name: 'photo') List<PhotoSize> photo,
-      @JsonKey(name: 'text') String? text,
-      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
-      @JsonKey(name: 'animation') Animation? animation});
+  $Res call({
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'description') String description,
+    @JsonKey(name: 'photo') List<PhotoSize> photo,
+    @JsonKey(name: 'text') String? text,
+    @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
+    @JsonKey(name: 'animation') Animation? animation,
+  });
 
   @override
   $AnimationCopyWith<$Res>? get animation;
@@ -250,32 +329,34 @@ class __$GameCopyWithImpl<$Res> implements _$GameCopyWith<$Res> {
     Object? textEntities = freezed,
     Object? animation = freezed,
   }) {
-    return _then(_Game(
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      photo: null == photo
-          ? _self._photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as List<PhotoSize>,
-      text: freezed == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String?,
-      textEntities: freezed == textEntities
-          ? _self._textEntities
-          : textEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      animation: freezed == animation
-          ? _self.animation
-          : animation // ignore: cast_nullable_to_non_nullable
-              as Animation?,
-    ));
+    return _then(
+      _Game(
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: null == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+        photo: null == photo
+            ? _self._photo
+            : photo // ignore: cast_nullable_to_non_nullable
+                  as List<PhotoSize>,
+        text: freezed == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        textEntities: freezed == textEntities
+            ? _self._textEntities
+            : textEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        animation: freezed == animation
+            ? _self.animation
+            : animation // ignore: cast_nullable_to_non_nullable
+                  as Animation?,
+      ),
+    );
   }
 
   /// Create a copy of Game

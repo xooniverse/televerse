@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -56,11 +55,12 @@ abstract mixin class $TextQuoteCopyWith<$Res> {
   factory $TextQuoteCopyWith(TextQuote value, $Res Function(TextQuote) _then) =
       _$TextQuoteCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'entities') List<MessageEntity>? entities,
-      @JsonKey(name: 'position') int position,
-      @JsonKey(name: 'is_manual') bool? isManual});
+  $Res call({
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'entities') List<MessageEntity>? entities,
+    @JsonKey(name: 'position') int position,
+    @JsonKey(name: 'is_manual') bool? isManual,
+  });
 }
 
 /// @nodoc
@@ -80,36 +80,118 @@ class _$TextQuoteCopyWithImpl<$Res> implements $TextQuoteCopyWith<$Res> {
     Object? position = null,
     Object? isManual = freezed,
   }) {
-    return _then(_self.copyWith(
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      entities: freezed == entities
-          ? _self.entities
-          : entities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      position: null == position
-          ? _self.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as int,
-      isManual: freezed == isManual
-          ? _self.isManual
-          : isManual // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        entities: freezed == entities
+            ? _self.entities
+            : entities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        position: null == position
+            ? _self.position
+            : position // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isManual: freezed == isManual
+            ? _self.isManual
+            : isManual // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [TextQuote].
+extension TextQuotePatterns on TextQuote {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TextQuote value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _TextQuote() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_TextQuote value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TextQuote():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_TextQuote value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TextQuote() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _TextQuote implements TextQuote {
-  const _TextQuote(
-      {@JsonKey(name: 'text') required this.text,
-      @JsonKey(name: 'entities') final List<MessageEntity>? entities,
-      @JsonKey(name: 'position') required this.position,
-      @JsonKey(name: 'is_manual') this.isManual})
-      : _entities = entities;
+  const _TextQuote({
+    @JsonKey(name: 'text') required this.text,
+    @JsonKey(name: 'entities') final List<MessageEntity>? entities,
+    @JsonKey(name: 'position') required this.position,
+    @JsonKey(name: 'is_manual') this.isManual,
+  }) : _entities = entities;
   factory _TextQuote.fromJson(Map<String, dynamic> json) =>
       _$TextQuoteFromJson(json);
 
@@ -159,9 +241,7 @@ class _TextQuote implements TextQuote {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$TextQuoteToJson(
-      this,
-    );
+    return _$TextQuoteToJson(this);
   }
 
   @override
@@ -174,15 +254,17 @@ class _TextQuote implements TextQuote {
 abstract mixin class _$TextQuoteCopyWith<$Res>
     implements $TextQuoteCopyWith<$Res> {
   factory _$TextQuoteCopyWith(
-          _TextQuote value, $Res Function(_TextQuote) _then) =
-      __$TextQuoteCopyWithImpl;
+    _TextQuote value,
+    $Res Function(_TextQuote) _then,
+  ) = __$TextQuoteCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'text') String text,
-      @JsonKey(name: 'entities') List<MessageEntity>? entities,
-      @JsonKey(name: 'position') int position,
-      @JsonKey(name: 'is_manual') bool? isManual});
+  $Res call({
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'entities') List<MessageEntity>? entities,
+    @JsonKey(name: 'position') int position,
+    @JsonKey(name: 'is_manual') bool? isManual,
+  });
 }
 
 /// @nodoc
@@ -202,23 +284,25 @@ class __$TextQuoteCopyWithImpl<$Res> implements _$TextQuoteCopyWith<$Res> {
     Object? position = null,
     Object? isManual = freezed,
   }) {
-    return _then(_TextQuote(
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      entities: freezed == entities
-          ? _self._entities
-          : entities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      position: null == position
-          ? _self.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as int,
-      isManual: freezed == isManual
-          ? _self.isManual
-          : isManual // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _TextQuote(
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        entities: freezed == entities
+            ? _self._entities
+            : entities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        position: null == position
+            ? _self.position
+            : position // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isManual: freezed == isManual
+            ? _self.isManual
+            : isManual // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -48,7 +47,9 @@ mixin _$ChatJoinRequest {
   @pragma('vm:prefer-inline')
   $ChatJoinRequestCopyWith<ChatJoinRequest> get copyWith =>
       _$ChatJoinRequestCopyWithImpl<ChatJoinRequest>(
-          this as ChatJoinRequest, _$identity);
+        this as ChatJoinRequest,
+        _$identity,
+      );
 
   /// Serializes this ChatJoinRequest to a JSON map.
   Map<String, dynamic> toJson();
@@ -62,16 +63,18 @@ mixin _$ChatJoinRequest {
 /// @nodoc
 abstract mixin class $ChatJoinRequestCopyWith<$Res> {
   factory $ChatJoinRequestCopyWith(
-          ChatJoinRequest value, $Res Function(ChatJoinRequest) _then) =
-      _$ChatJoinRequestCopyWithImpl;
+    ChatJoinRequest value,
+    $Res Function(ChatJoinRequest) _then,
+  ) = _$ChatJoinRequestCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'bio') String? bio,
-      @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,
-      @JsonKey(name: 'user_chat_id') int userChatId});
+  $Res call({
+    @JsonKey(name: 'chat') Chat chat,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'date') int date,
+    @JsonKey(name: 'bio') String? bio,
+    @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,
+    @JsonKey(name: 'user_chat_id') int userChatId,
+  });
 
   $ChatCopyWith<$Res> get chat;
   $UserCopyWith<$Res> get from;
@@ -98,32 +101,34 @@ class _$ChatJoinRequestCopyWithImpl<$Res>
     Object? inviteLink = freezed,
     Object? userChatId = null,
   }) {
-    return _then(_self.copyWith(
-      chat: null == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      bio: freezed == bio
-          ? _self.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String?,
-      inviteLink: freezed == inviteLink
-          ? _self.inviteLink
-          : inviteLink // ignore: cast_nullable_to_non_nullable
-              as ChatInviteLink?,
-      userChatId: null == userChatId
-          ? _self.userChatId
-          : userChatId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _self.copyWith(
+        chat: null == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+        bio: freezed == bio
+            ? _self.bio
+            : bio // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        inviteLink: freezed == inviteLink
+            ? _self.inviteLink
+            : inviteLink // ignore: cast_nullable_to_non_nullable
+                  as ChatInviteLink?,
+        userChatId: null == userChatId
+            ? _self.userChatId
+            : userChatId // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of ChatJoinRequest
@@ -161,16 +166,97 @@ class _$ChatJoinRequestCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [ChatJoinRequest].
+extension ChatJoinRequestPatterns on ChatJoinRequest {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChatJoinRequest value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChatJoinRequest() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChatJoinRequest value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatJoinRequest():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChatJoinRequest value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatJoinRequest() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _ChatJoinRequest implements ChatJoinRequest {
-  const _ChatJoinRequest(
-      {@JsonKey(name: 'chat') required this.chat,
-      @JsonKey(name: 'from') required this.from,
-      @JsonKey(name: 'date') required this.date,
-      @JsonKey(name: 'bio') this.bio,
-      @JsonKey(name: 'invite_link') this.inviteLink,
-      @JsonKey(name: 'user_chat_id') required this.userChatId});
+  const _ChatJoinRequest({
+    @JsonKey(name: 'chat') required this.chat,
+    @JsonKey(name: 'from') required this.from,
+    @JsonKey(name: 'date') required this.date,
+    @JsonKey(name: 'bio') this.bio,
+    @JsonKey(name: 'invite_link') this.inviteLink,
+    @JsonKey(name: 'user_chat_id') required this.userChatId,
+  });
   factory _ChatJoinRequest.fromJson(Map<String, dynamic> json) =>
       _$ChatJoinRequestFromJson(json);
 
@@ -218,9 +304,7 @@ class _ChatJoinRequest implements ChatJoinRequest {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatJoinRequestToJson(
-      this,
-    );
+    return _$ChatJoinRequestToJson(this);
   }
 
   @override
@@ -233,17 +317,19 @@ class _ChatJoinRequest implements ChatJoinRequest {
 abstract mixin class _$ChatJoinRequestCopyWith<$Res>
     implements $ChatJoinRequestCopyWith<$Res> {
   factory _$ChatJoinRequestCopyWith(
-          _ChatJoinRequest value, $Res Function(_ChatJoinRequest) _then) =
-      __$ChatJoinRequestCopyWithImpl;
+    _ChatJoinRequest value,
+    $Res Function(_ChatJoinRequest) _then,
+  ) = __$ChatJoinRequestCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'bio') String? bio,
-      @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,
-      @JsonKey(name: 'user_chat_id') int userChatId});
+  $Res call({
+    @JsonKey(name: 'chat') Chat chat,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'date') int date,
+    @JsonKey(name: 'bio') String? bio,
+    @JsonKey(name: 'invite_link') ChatInviteLink? inviteLink,
+    @JsonKey(name: 'user_chat_id') int userChatId,
+  });
 
   @override
   $ChatCopyWith<$Res> get chat;
@@ -273,32 +359,34 @@ class __$ChatJoinRequestCopyWithImpl<$Res>
     Object? inviteLink = freezed,
     Object? userChatId = null,
   }) {
-    return _then(_ChatJoinRequest(
-      chat: null == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      bio: freezed == bio
-          ? _self.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String?,
-      inviteLink: freezed == inviteLink
-          ? _self.inviteLink
-          : inviteLink // ignore: cast_nullable_to_non_nullable
-              as ChatInviteLink?,
-      userChatId: null == userChatId
-          ? _self.userChatId
-          : userChatId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _ChatJoinRequest(
+        chat: null == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+        bio: freezed == bio
+            ? _self.bio
+            : bio // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        inviteLink: freezed == inviteLink
+            ? _self.inviteLink
+            : inviteLink // ignore: cast_nullable_to_non_nullable
+                  as ChatInviteLink?,
+        userChatId: null == userChatId
+            ? _self.userChatId
+            : userChatId // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of ChatJoinRequest

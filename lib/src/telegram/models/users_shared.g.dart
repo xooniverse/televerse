@@ -7,11 +7,11 @@ part of 'users_shared.dart';
 // **************************************************************************
 
 _UsersShared _$UsersSharedFromJson(Map<String, dynamic> json) => _UsersShared(
-      requestId: (json['request_id'] as num).toInt(),
-      users: (json['users'] as List<dynamic>)
-          .map((e) => SharedUser.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+  requestId: (json['request_id'] as num).toInt(),
+  users: (json['users'] as List<dynamic>)
+      .map((e) => SharedUser.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);
 
 Map<String, dynamic> _$UsersSharedToJson(_UsersShared instance) =>
     <String, dynamic>{

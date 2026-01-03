@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -29,8 +28,12 @@ TransactionPartner _$TransactionPartnerFromJson(Map<String, dynamic> json) {
       return TransactionPartnerChat.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'type', 'TransactionPartner',
-          'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'type',
+        'TransactionPartner',
+        'Invalid union type "${json['type']}"!',
+      );
   }
 }
 
@@ -46,7 +49,9 @@ mixin _$TransactionPartner {
   @pragma('vm:prefer-inline')
   $TransactionPartnerCopyWith<TransactionPartner> get copyWith =>
       _$TransactionPartnerCopyWithImpl<TransactionPartner>(
-          this as TransactionPartner, _$identity);
+        this as TransactionPartner,
+        _$identity,
+      );
 
   /// Serializes this TransactionPartner to a JSON map.
   Map<String, dynamic> toJson();
@@ -60,8 +65,9 @@ mixin _$TransactionPartner {
 /// @nodoc
 abstract mixin class $TransactionPartnerCopyWith<$Res> {
   factory $TransactionPartnerCopyWith(
-          TransactionPartner value, $Res Function(TransactionPartner) _then) =
-      _$TransactionPartnerCopyWithImpl;
+    TransactionPartner value,
+    $Res Function(TransactionPartner) _then,
+  ) = _$TransactionPartnerCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'type') TransactionPartnerType type});
 }
@@ -78,26 +84,163 @@ class _$TransactionPartnerCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
+  $Res call({Object? type = null}) {
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as TransactionPartnerType,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [TransactionPartner].
+extension TransactionPartnerPatterns on TransactionPartner {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TransactionPartnerFragment value)? fragment,
+    TResult Function(TransactionPartnerUser value)? user,
+    TResult Function(TransactionPartnerTelegramAds value)? telegramAds,
+    TResult Function(TransactionPartnerTelegramApi value)? telegramApi,
+    TResult Function(TransactionPartnerOther value)? other,
+    TResult Function(TransactionPartnerAffiliateProgram value)?
+    affiliateProgram,
+    TResult Function(TransactionPartnerChat value)? chat,
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as TransactionPartnerType,
-    ));
+    final _that = this;
+    switch (_that) {
+      case TransactionPartnerFragment() when fragment != null:
+        return fragment(_that);
+      case TransactionPartnerUser() when user != null:
+        return user(_that);
+      case TransactionPartnerTelegramAds() when telegramAds != null:
+        return telegramAds(_that);
+      case TransactionPartnerTelegramApi() when telegramApi != null:
+        return telegramApi(_that);
+      case TransactionPartnerOther() when other != null:
+        return other(_that);
+      case TransactionPartnerAffiliateProgram() when affiliateProgram != null:
+        return affiliateProgram(_that);
+      case TransactionPartnerChat() when chat != null:
+        return chat(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TransactionPartnerFragment value) fragment,
+    required TResult Function(TransactionPartnerUser value) user,
+    required TResult Function(TransactionPartnerTelegramAds value) telegramAds,
+    required TResult Function(TransactionPartnerTelegramApi value) telegramApi,
+    required TResult Function(TransactionPartnerOther value) other,
+    required TResult Function(TransactionPartnerAffiliateProgram value)
+    affiliateProgram,
+    required TResult Function(TransactionPartnerChat value) chat,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case TransactionPartnerFragment():
+        return fragment(_that);
+      case TransactionPartnerUser():
+        return user(_that);
+      case TransactionPartnerTelegramAds():
+        return telegramAds(_that);
+      case TransactionPartnerTelegramApi():
+        return telegramApi(_that);
+      case TransactionPartnerOther():
+        return other(_that);
+      case TransactionPartnerAffiliateProgram():
+        return affiliateProgram(_that);
+      case TransactionPartnerChat():
+        return chat(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TransactionPartnerFragment value)? fragment,
+    TResult? Function(TransactionPartnerUser value)? user,
+    TResult? Function(TransactionPartnerTelegramAds value)? telegramAds,
+    TResult? Function(TransactionPartnerTelegramApi value)? telegramApi,
+    TResult? Function(TransactionPartnerOther value)? other,
+    TResult? Function(TransactionPartnerAffiliateProgram value)?
+    affiliateProgram,
+    TResult? Function(TransactionPartnerChat value)? chat,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case TransactionPartnerFragment() when fragment != null:
+        return fragment(_that);
+      case TransactionPartnerUser() when user != null:
+        return user(_that);
+      case TransactionPartnerTelegramAds() when telegramAds != null:
+        return telegramAds(_that);
+      case TransactionPartnerTelegramApi() when telegramApi != null:
+        return telegramApi(_that);
+      case TransactionPartnerOther() when other != null:
+        return other(_that);
+      case TransactionPartnerAffiliateProgram() when affiliateProgram != null:
+        return affiliateProgram(_that);
+      case TransactionPartnerChat() when chat != null:
+        return chat(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class TransactionPartnerFragment implements TransactionPartner {
-  const TransactionPartnerFragment(
-      {@JsonKey(name: 'type') this.type = TransactionPartnerType.fragment,
-      @JsonKey(name: 'withdrawal_state') this.withdrawalState})
-      : assert(type == TransactionPartnerType.fragment,
-            'type must be TransactionPartnerType.fragment');
+  const TransactionPartnerFragment({
+    @JsonKey(name: 'type') this.type = TransactionPartnerType.fragment,
+    @JsonKey(name: 'withdrawal_state') this.withdrawalState,
+  }) : assert(
+         type == TransactionPartnerType.fragment,
+         'type must be TransactionPartnerType.fragment',
+       );
   factory TransactionPartnerFragment.fromJson(Map<String, dynamic> json) =>
       _$TransactionPartnerFragmentFromJson(json);
 
@@ -116,15 +259,15 @@ class TransactionPartnerFragment implements TransactionPartner {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $TransactionPartnerFragmentCopyWith<TransactionPartnerFragment>
-      get copyWith =>
-          _$TransactionPartnerFragmentCopyWithImpl<TransactionPartnerFragment>(
-              this, _$identity);
+  get copyWith =>
+      _$TransactionPartnerFragmentCopyWithImpl<TransactionPartnerFragment>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$TransactionPartnerFragmentToJson(
-      this,
-    );
+    return _$TransactionPartnerFragmentToJson(this);
   }
 
   @override
@@ -136,15 +279,16 @@ class TransactionPartnerFragment implements TransactionPartner {
 /// @nodoc
 abstract mixin class $TransactionPartnerFragmentCopyWith<$Res>
     implements $TransactionPartnerCopyWith<$Res> {
-  factory $TransactionPartnerFragmentCopyWith(TransactionPartnerFragment value,
-          $Res Function(TransactionPartnerFragment) _then) =
-      _$TransactionPartnerFragmentCopyWithImpl;
+  factory $TransactionPartnerFragmentCopyWith(
+    TransactionPartnerFragment value,
+    $Res Function(TransactionPartnerFragment) _then,
+  ) = _$TransactionPartnerFragmentCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') TransactionPartnerType type,
-      @JsonKey(name: 'withdrawal_state')
-      RevenueWithdrawalState? withdrawalState});
+  $Res call({
+    @JsonKey(name: 'type') TransactionPartnerType type,
+    @JsonKey(name: 'withdrawal_state') RevenueWithdrawalState? withdrawalState,
+  });
 
   $RevenueWithdrawalStateCopyWith<$Res>? get withdrawalState;
 }
@@ -161,20 +305,19 @@ class _$TransactionPartnerFragmentCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? withdrawalState = freezed,
-  }) {
-    return _then(TransactionPartnerFragment(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as TransactionPartnerType,
-      withdrawalState: freezed == withdrawalState
-          ? _self.withdrawalState
-          : withdrawalState // ignore: cast_nullable_to_non_nullable
-              as RevenueWithdrawalState?,
-    ));
+  $Res call({Object? type = null, Object? withdrawalState = freezed}) {
+    return _then(
+      TransactionPartnerFragment(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as TransactionPartnerType,
+        withdrawalState: freezed == withdrawalState
+            ? _self.withdrawalState
+            : withdrawalState // ignore: cast_nullable_to_non_nullable
+                  as RevenueWithdrawalState?,
+      ),
+    );
   }
 
   /// Create a copy of TransactionPartner
@@ -186,8 +329,9 @@ class _$TransactionPartnerFragmentCopyWithImpl<$Res>
       return null;
     }
 
-    return $RevenueWithdrawalStateCopyWith<$Res>(_self.withdrawalState!,
-        (value) {
+    return $RevenueWithdrawalStateCopyWith<$Res>(_self.withdrawalState!, (
+      value,
+    ) {
       return _then(_self.copyWith(withdrawalState: value));
     });
   }
@@ -196,21 +340,23 @@ class _$TransactionPartnerFragmentCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class TransactionPartnerUser implements TransactionPartner {
-  const TransactionPartnerUser(
-      {@JsonKey(name: 'type') this.type = TransactionPartnerType.user,
-      @JsonKey(name: 'transaction_type') required this.transactionType,
-      @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'affiliate') this.affiliate,
-      @JsonKey(name: 'invoice_payload') this.invoicePayload,
-      @JsonKey(name: 'subscription_period') this.subscriptionPeriod,
-      @JsonKey(name: 'paid_media') final List<PaidMedia>? paidMedia,
-      @JsonKey(name: 'paid_media_payload') this.paidMediaPayload,
-      @JsonKey(name: 'gift') this.gift,
-      @JsonKey(name: 'premium_subscription_duration')
-      this.premiumSubscriptionDuration})
-      : assert(type == TransactionPartnerType.user,
-            'type must be TransactionPartnerType.user'),
-        _paidMedia = paidMedia;
+  const TransactionPartnerUser({
+    @JsonKey(name: 'type') this.type = TransactionPartnerType.user,
+    @JsonKey(name: 'transaction_type') required this.transactionType,
+    @JsonKey(name: 'user') required this.user,
+    @JsonKey(name: 'affiliate') this.affiliate,
+    @JsonKey(name: 'invoice_payload') this.invoicePayload,
+    @JsonKey(name: 'subscription_period') this.subscriptionPeriod,
+    @JsonKey(name: 'paid_media') final List<PaidMedia>? paidMedia,
+    @JsonKey(name: 'paid_media_payload') this.paidMediaPayload,
+    @JsonKey(name: 'gift') this.gift,
+    @JsonKey(name: 'premium_subscription_duration')
+    this.premiumSubscriptionDuration,
+  }) : assert(
+         type == TransactionPartnerType.user,
+         'type must be TransactionPartnerType.user',
+       ),
+       _paidMedia = paidMedia;
   factory TransactionPartnerUser.fromJson(Map<String, dynamic> json) =>
       _$TransactionPartnerUserFromJson(json);
 
@@ -282,13 +428,13 @@ class TransactionPartnerUser implements TransactionPartner {
   @pragma('vm:prefer-inline')
   $TransactionPartnerUserCopyWith<TransactionPartnerUser> get copyWith =>
       _$TransactionPartnerUserCopyWithImpl<TransactionPartnerUser>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$TransactionPartnerUserToJson(
-      this,
-    );
+    return _$TransactionPartnerUserToJson(this);
   }
 
   @override
@@ -300,23 +446,25 @@ class TransactionPartnerUser implements TransactionPartner {
 /// @nodoc
 abstract mixin class $TransactionPartnerUserCopyWith<$Res>
     implements $TransactionPartnerCopyWith<$Res> {
-  factory $TransactionPartnerUserCopyWith(TransactionPartnerUser value,
-          $Res Function(TransactionPartnerUser) _then) =
-      _$TransactionPartnerUserCopyWithImpl;
+  factory $TransactionPartnerUserCopyWith(
+    TransactionPartnerUser value,
+    $Res Function(TransactionPartnerUser) _then,
+  ) = _$TransactionPartnerUserCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') TransactionPartnerType type,
-      @JsonKey(name: 'transaction_type') TransactionType transactionType,
-      @JsonKey(name: 'user') User user,
-      @JsonKey(name: 'affiliate') AffiliateInfo? affiliate,
-      @JsonKey(name: 'invoice_payload') String? invoicePayload,
-      @JsonKey(name: 'subscription_period') int? subscriptionPeriod,
-      @JsonKey(name: 'paid_media') List<PaidMedia>? paidMedia,
-      @JsonKey(name: 'paid_media_payload') String? paidMediaPayload,
-      @JsonKey(name: 'gift') Gift? gift,
-      @JsonKey(name: 'premium_subscription_duration')
-      int? premiumSubscriptionDuration});
+  $Res call({
+    @JsonKey(name: 'type') TransactionPartnerType type,
+    @JsonKey(name: 'transaction_type') TransactionType transactionType,
+    @JsonKey(name: 'user') User user,
+    @JsonKey(name: 'affiliate') AffiliateInfo? affiliate,
+    @JsonKey(name: 'invoice_payload') String? invoicePayload,
+    @JsonKey(name: 'subscription_period') int? subscriptionPeriod,
+    @JsonKey(name: 'paid_media') List<PaidMedia>? paidMedia,
+    @JsonKey(name: 'paid_media_payload') String? paidMediaPayload,
+    @JsonKey(name: 'gift') Gift? gift,
+    @JsonKey(name: 'premium_subscription_duration')
+    int? premiumSubscriptionDuration,
+  });
 
   $UserCopyWith<$Res> get user;
   $AffiliateInfoCopyWith<$Res>? get affiliate;
@@ -347,48 +495,50 @@ class _$TransactionPartnerUserCopyWithImpl<$Res>
     Object? gift = freezed,
     Object? premiumSubscriptionDuration = freezed,
   }) {
-    return _then(TransactionPartnerUser(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as TransactionPartnerType,
-      transactionType: null == transactionType
-          ? _self.transactionType
-          : transactionType // ignore: cast_nullable_to_non_nullable
-              as TransactionType,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      affiliate: freezed == affiliate
-          ? _self.affiliate
-          : affiliate // ignore: cast_nullable_to_non_nullable
-              as AffiliateInfo?,
-      invoicePayload: freezed == invoicePayload
-          ? _self.invoicePayload
-          : invoicePayload // ignore: cast_nullable_to_non_nullable
-              as String?,
-      subscriptionPeriod: freezed == subscriptionPeriod
-          ? _self.subscriptionPeriod
-          : subscriptionPeriod // ignore: cast_nullable_to_non_nullable
-              as int?,
-      paidMedia: freezed == paidMedia
-          ? _self._paidMedia
-          : paidMedia // ignore: cast_nullable_to_non_nullable
-              as List<PaidMedia>?,
-      paidMediaPayload: freezed == paidMediaPayload
-          ? _self.paidMediaPayload
-          : paidMediaPayload // ignore: cast_nullable_to_non_nullable
-              as String?,
-      gift: freezed == gift
-          ? _self.gift
-          : gift // ignore: cast_nullable_to_non_nullable
-              as Gift?,
-      premiumSubscriptionDuration: freezed == premiumSubscriptionDuration
-          ? _self.premiumSubscriptionDuration
-          : premiumSubscriptionDuration // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      TransactionPartnerUser(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as TransactionPartnerType,
+        transactionType: null == transactionType
+            ? _self.transactionType
+            : transactionType // ignore: cast_nullable_to_non_nullable
+                  as TransactionType,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+        affiliate: freezed == affiliate
+            ? _self.affiliate
+            : affiliate // ignore: cast_nullable_to_non_nullable
+                  as AffiliateInfo?,
+        invoicePayload: freezed == invoicePayload
+            ? _self.invoicePayload
+            : invoicePayload // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        subscriptionPeriod: freezed == subscriptionPeriod
+            ? _self.subscriptionPeriod
+            : subscriptionPeriod // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        paidMedia: freezed == paidMedia
+            ? _self._paidMedia
+            : paidMedia // ignore: cast_nullable_to_non_nullable
+                  as List<PaidMedia>?,
+        paidMediaPayload: freezed == paidMediaPayload
+            ? _self.paidMediaPayload
+            : paidMediaPayload // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        gift: freezed == gift
+            ? _self.gift
+            : gift // ignore: cast_nullable_to_non_nullable
+                  as Gift?,
+        premiumSubscriptionDuration: freezed == premiumSubscriptionDuration
+            ? _self.premiumSubscriptionDuration
+            : premiumSubscriptionDuration // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of TransactionPartner
@@ -433,10 +583,12 @@ class _$TransactionPartnerUserCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class TransactionPartnerTelegramAds implements TransactionPartner {
-  const TransactionPartnerTelegramAds(
-      {@JsonKey(name: 'type') this.type = TransactionPartnerType.telegramAds})
-      : assert(type == TransactionPartnerType.telegramAds,
-            'type must be TransactionPartnerType.telegramAds');
+  const TransactionPartnerTelegramAds({
+    @JsonKey(name: 'type') this.type = TransactionPartnerType.telegramAds,
+  }) : assert(
+         type == TransactionPartnerType.telegramAds,
+         'type must be TransactionPartnerType.telegramAds',
+       );
   factory TransactionPartnerTelegramAds.fromJson(Map<String, dynamic> json) =>
       _$TransactionPartnerTelegramAdsFromJson(json);
 
@@ -451,14 +603,14 @@ class TransactionPartnerTelegramAds implements TransactionPartner {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $TransactionPartnerTelegramAdsCopyWith<TransactionPartnerTelegramAds>
-      get copyWith => _$TransactionPartnerTelegramAdsCopyWithImpl<
-          TransactionPartnerTelegramAds>(this, _$identity);
+  get copyWith =>
+      _$TransactionPartnerTelegramAdsCopyWithImpl<
+        TransactionPartnerTelegramAds
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$TransactionPartnerTelegramAdsToJson(
-      this,
-    );
+    return _$TransactionPartnerTelegramAdsToJson(this);
   }
 
   @override
@@ -471,9 +623,9 @@ class TransactionPartnerTelegramAds implements TransactionPartner {
 abstract mixin class $TransactionPartnerTelegramAdsCopyWith<$Res>
     implements $TransactionPartnerCopyWith<$Res> {
   factory $TransactionPartnerTelegramAdsCopyWith(
-          TransactionPartnerTelegramAds value,
-          $Res Function(TransactionPartnerTelegramAds) _then) =
-      _$TransactionPartnerTelegramAdsCopyWithImpl;
+    TransactionPartnerTelegramAds value,
+    $Res Function(TransactionPartnerTelegramAds) _then,
+  ) = _$TransactionPartnerTelegramAdsCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') TransactionPartnerType type});
@@ -491,26 +643,28 @@ class _$TransactionPartnerTelegramAdsCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(TransactionPartnerTelegramAds(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as TransactionPartnerType,
-    ));
+  $Res call({Object? type = null}) {
+    return _then(
+      TransactionPartnerTelegramAds(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as TransactionPartnerType,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class TransactionPartnerTelegramApi implements TransactionPartner {
-  const TransactionPartnerTelegramApi(
-      {@JsonKey(name: 'type') this.type = TransactionPartnerType.telegramApi,
-      @JsonKey(name: 'request_count') this.requestCount})
-      : assert(type == TransactionPartnerType.telegramApi,
-            'type must be TransactionPartnerType.telegramApi');
+  const TransactionPartnerTelegramApi({
+    @JsonKey(name: 'type') this.type = TransactionPartnerType.telegramApi,
+    @JsonKey(name: 'request_count') this.requestCount,
+  }) : assert(
+         type == TransactionPartnerType.telegramApi,
+         'type must be TransactionPartnerType.telegramApi',
+       );
   factory TransactionPartnerTelegramApi.fromJson(Map<String, dynamic> json) =>
       _$TransactionPartnerTelegramApiFromJson(json);
 
@@ -530,14 +684,14 @@ class TransactionPartnerTelegramApi implements TransactionPartner {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $TransactionPartnerTelegramApiCopyWith<TransactionPartnerTelegramApi>
-      get copyWith => _$TransactionPartnerTelegramApiCopyWithImpl<
-          TransactionPartnerTelegramApi>(this, _$identity);
+  get copyWith =>
+      _$TransactionPartnerTelegramApiCopyWithImpl<
+        TransactionPartnerTelegramApi
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$TransactionPartnerTelegramApiToJson(
-      this,
-    );
+    return _$TransactionPartnerTelegramApiToJson(this);
   }
 
   @override
@@ -550,14 +704,15 @@ class TransactionPartnerTelegramApi implements TransactionPartner {
 abstract mixin class $TransactionPartnerTelegramApiCopyWith<$Res>
     implements $TransactionPartnerCopyWith<$Res> {
   factory $TransactionPartnerTelegramApiCopyWith(
-          TransactionPartnerTelegramApi value,
-          $Res Function(TransactionPartnerTelegramApi) _then) =
-      _$TransactionPartnerTelegramApiCopyWithImpl;
+    TransactionPartnerTelegramApi value,
+    $Res Function(TransactionPartnerTelegramApi) _then,
+  ) = _$TransactionPartnerTelegramApiCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') TransactionPartnerType type,
-      @JsonKey(name: 'request_count') int? requestCount});
+  $Res call({
+    @JsonKey(name: 'type') TransactionPartnerType type,
+    @JsonKey(name: 'request_count') int? requestCount,
+  });
 }
 
 /// @nodoc
@@ -572,30 +727,31 @@ class _$TransactionPartnerTelegramApiCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? requestCount = freezed,
-  }) {
-    return _then(TransactionPartnerTelegramApi(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as TransactionPartnerType,
-      requestCount: freezed == requestCount
-          ? _self.requestCount
-          : requestCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+  $Res call({Object? type = null, Object? requestCount = freezed}) {
+    return _then(
+      TransactionPartnerTelegramApi(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as TransactionPartnerType,
+        requestCount: freezed == requestCount
+            ? _self.requestCount
+            : requestCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class TransactionPartnerOther implements TransactionPartner {
-  const TransactionPartnerOther(
-      {@JsonKey(name: 'type') this.type = TransactionPartnerType.other})
-      : assert(type == TransactionPartnerType.other,
-            'type must be TransactionPartnerType.other');
+  const TransactionPartnerOther({
+    @JsonKey(name: 'type') this.type = TransactionPartnerType.other,
+  }) : assert(
+         type == TransactionPartnerType.other,
+         'type must be TransactionPartnerType.other',
+       );
   factory TransactionPartnerOther.fromJson(Map<String, dynamic> json) =>
       _$TransactionPartnerOtherFromJson(json);
 
@@ -611,13 +767,13 @@ class TransactionPartnerOther implements TransactionPartner {
   @pragma('vm:prefer-inline')
   $TransactionPartnerOtherCopyWith<TransactionPartnerOther> get copyWith =>
       _$TransactionPartnerOtherCopyWithImpl<TransactionPartnerOther>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$TransactionPartnerOtherToJson(
-      this,
-    );
+    return _$TransactionPartnerOtherToJson(this);
   }
 
   @override
@@ -629,9 +785,10 @@ class TransactionPartnerOther implements TransactionPartner {
 /// @nodoc
 abstract mixin class $TransactionPartnerOtherCopyWith<$Res>
     implements $TransactionPartnerCopyWith<$Res> {
-  factory $TransactionPartnerOtherCopyWith(TransactionPartnerOther value,
-          $Res Function(TransactionPartnerOther) _then) =
-      _$TransactionPartnerOtherCopyWithImpl;
+  factory $TransactionPartnerOtherCopyWith(
+    TransactionPartnerOther value,
+    $Res Function(TransactionPartnerOther) _then,
+  ) = _$TransactionPartnerOtherCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') TransactionPartnerType type});
@@ -649,31 +806,32 @@ class _$TransactionPartnerOtherCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(TransactionPartnerOther(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as TransactionPartnerType,
-    ));
+  $Res call({Object? type = null}) {
+    return _then(
+      TransactionPartnerOther(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as TransactionPartnerType,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class TransactionPartnerAffiliateProgram implements TransactionPartner {
-  const TransactionPartnerAffiliateProgram(
-      {@JsonKey(name: 'type')
-      this.type = TransactionPartnerType.affiliateProgram,
-      @JsonKey(name: 'sponsor_user') this.sponsorUser,
-      @JsonKey(name: 'commission_per_mille') required this.commissionPerMille})
-      : assert(type == TransactionPartnerType.affiliateProgram,
-            'type must be TransactionPartnerType.affiliateProgram');
+  const TransactionPartnerAffiliateProgram({
+    @JsonKey(name: 'type') this.type = TransactionPartnerType.affiliateProgram,
+    @JsonKey(name: 'sponsor_user') this.sponsorUser,
+    @JsonKey(name: 'commission_per_mille') required this.commissionPerMille,
+  }) : assert(
+         type == TransactionPartnerType.affiliateProgram,
+         'type must be TransactionPartnerType.affiliateProgram',
+       );
   factory TransactionPartnerAffiliateProgram.fromJson(
-          Map<String, dynamic> json) =>
-      _$TransactionPartnerAffiliateProgramFromJson(json);
+    Map<String, dynamic> json,
+  ) => _$TransactionPartnerAffiliateProgramFromJson(json);
 
   /// Type of the transaction partner, must be "affiliate_program"
   @override
@@ -695,15 +853,16 @@ class TransactionPartnerAffiliateProgram implements TransactionPartner {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $TransactionPartnerAffiliateProgramCopyWith<
-          TransactionPartnerAffiliateProgram>
-      get copyWith => _$TransactionPartnerAffiliateProgramCopyWithImpl<
-          TransactionPartnerAffiliateProgram>(this, _$identity);
+    TransactionPartnerAffiliateProgram
+  >
+  get copyWith =>
+      _$TransactionPartnerAffiliateProgramCopyWithImpl<
+        TransactionPartnerAffiliateProgram
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$TransactionPartnerAffiliateProgramToJson(
-      this,
-    );
+    return _$TransactionPartnerAffiliateProgramToJson(this);
   }
 
   @override
@@ -716,15 +875,16 @@ class TransactionPartnerAffiliateProgram implements TransactionPartner {
 abstract mixin class $TransactionPartnerAffiliateProgramCopyWith<$Res>
     implements $TransactionPartnerCopyWith<$Res> {
   factory $TransactionPartnerAffiliateProgramCopyWith(
-          TransactionPartnerAffiliateProgram value,
-          $Res Function(TransactionPartnerAffiliateProgram) _then) =
-      _$TransactionPartnerAffiliateProgramCopyWithImpl;
+    TransactionPartnerAffiliateProgram value,
+    $Res Function(TransactionPartnerAffiliateProgram) _then,
+  ) = _$TransactionPartnerAffiliateProgramCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') TransactionPartnerType type,
-      @JsonKey(name: 'sponsor_user') User? sponsorUser,
-      @JsonKey(name: 'commission_per_mille') int commissionPerMille});
+  $Res call({
+    @JsonKey(name: 'type') TransactionPartnerType type,
+    @JsonKey(name: 'sponsor_user') User? sponsorUser,
+    @JsonKey(name: 'commission_per_mille') int commissionPerMille,
+  });
 
   $UserCopyWith<$Res>? get sponsorUser;
 }
@@ -746,20 +906,22 @@ class _$TransactionPartnerAffiliateProgramCopyWithImpl<$Res>
     Object? sponsorUser = freezed,
     Object? commissionPerMille = null,
   }) {
-    return _then(TransactionPartnerAffiliateProgram(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as TransactionPartnerType,
-      sponsorUser: freezed == sponsorUser
-          ? _self.sponsorUser
-          : sponsorUser // ignore: cast_nullable_to_non_nullable
-              as User?,
-      commissionPerMille: null == commissionPerMille
-          ? _self.commissionPerMille
-          : commissionPerMille // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      TransactionPartnerAffiliateProgram(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as TransactionPartnerType,
+        sponsorUser: freezed == sponsorUser
+            ? _self.sponsorUser
+            : sponsorUser // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        commissionPerMille: null == commissionPerMille
+            ? _self.commissionPerMille
+            : commissionPerMille // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of TransactionPartner
@@ -780,12 +942,14 @@ class _$TransactionPartnerAffiliateProgramCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class TransactionPartnerChat implements TransactionPartner {
-  const TransactionPartnerChat(
-      {@JsonKey(name: 'type') this.type = TransactionPartnerType.chat,
-      @JsonKey(name: 'chat') required this.chat,
-      @JsonKey(name: 'gift') this.gift})
-      : assert(type == TransactionPartnerType.chat,
-            'type must be TransactionPartnerType.chat');
+  const TransactionPartnerChat({
+    @JsonKey(name: 'type') this.type = TransactionPartnerType.chat,
+    @JsonKey(name: 'chat') required this.chat,
+    @JsonKey(name: 'gift') this.gift,
+  }) : assert(
+         type == TransactionPartnerType.chat,
+         'type must be TransactionPartnerType.chat',
+       );
   factory TransactionPartnerChat.fromJson(Map<String, dynamic> json) =>
       _$TransactionPartnerChatFromJson(json);
 
@@ -809,13 +973,13 @@ class TransactionPartnerChat implements TransactionPartner {
   @pragma('vm:prefer-inline')
   $TransactionPartnerChatCopyWith<TransactionPartnerChat> get copyWith =>
       _$TransactionPartnerChatCopyWithImpl<TransactionPartnerChat>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$TransactionPartnerChatToJson(
-      this,
-    );
+    return _$TransactionPartnerChatToJson(this);
   }
 
   @override
@@ -827,15 +991,17 @@ class TransactionPartnerChat implements TransactionPartner {
 /// @nodoc
 abstract mixin class $TransactionPartnerChatCopyWith<$Res>
     implements $TransactionPartnerCopyWith<$Res> {
-  factory $TransactionPartnerChatCopyWith(TransactionPartnerChat value,
-          $Res Function(TransactionPartnerChat) _then) =
-      _$TransactionPartnerChatCopyWithImpl;
+  factory $TransactionPartnerChatCopyWith(
+    TransactionPartnerChat value,
+    $Res Function(TransactionPartnerChat) _then,
+  ) = _$TransactionPartnerChatCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') TransactionPartnerType type,
-      @JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'gift') Gift? gift});
+  $Res call({
+    @JsonKey(name: 'type') TransactionPartnerType type,
+    @JsonKey(name: 'chat') Chat chat,
+    @JsonKey(name: 'gift') Gift? gift,
+  });
 
   $ChatCopyWith<$Res> get chat;
   $GiftCopyWith<$Res>? get gift;
@@ -858,20 +1024,22 @@ class _$TransactionPartnerChatCopyWithImpl<$Res>
     Object? chat = null,
     Object? gift = freezed,
   }) {
-    return _then(TransactionPartnerChat(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as TransactionPartnerType,
-      chat: null == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      gift: freezed == gift
-          ? _self.gift
-          : gift // ignore: cast_nullable_to_non_nullable
-              as Gift?,
-    ));
+    return _then(
+      TransactionPartnerChat(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as TransactionPartnerType,
+        chat: null == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        gift: freezed == gift
+            ? _self.gift
+            : gift // ignore: cast_nullable_to_non_nullable
+                  as Gift?,
+      ),
+    );
   }
 
   /// Create a copy of TransactionPartner

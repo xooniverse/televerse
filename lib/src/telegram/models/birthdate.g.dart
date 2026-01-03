@@ -7,14 +7,14 @@ part of 'birthdate.dart';
 // **************************************************************************
 
 _Birthdate _$BirthdateFromJson(Map<String, dynamic> json) => _Birthdate(
-      day: (json['day'] as num).toInt(),
-      month: (json['month'] as num).toInt(),
-      year: (json['year'] as num?)?.toInt(),
-    );
+  day: (json['day'] as num).toInt(),
+  month: (json['month'] as num).toInt(),
+  year: (json['year'] as num?)?.toInt(),
+);
 
 Map<String, dynamic> _$BirthdateToJson(_Birthdate instance) =>
     <String, dynamic>{
       'day': instance.day,
       'month': instance.month,
-      if (instance.year case final value?) 'year': value,
+      'year': ?instance.year,
     };

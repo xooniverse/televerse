@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -36,7 +35,9 @@ mixin _$ShippingQuery {
   @pragma('vm:prefer-inline')
   $ShippingQueryCopyWith<ShippingQuery> get copyWith =>
       _$ShippingQueryCopyWithImpl<ShippingQuery>(
-          this as ShippingQuery, _$identity);
+        this as ShippingQuery,
+        _$identity,
+      );
 
   /// Serializes this ShippingQuery to a JSON map.
   Map<String, dynamic> toJson();
@@ -50,14 +51,16 @@ mixin _$ShippingQuery {
 /// @nodoc
 abstract mixin class $ShippingQueryCopyWith<$Res> {
   factory $ShippingQueryCopyWith(
-          ShippingQuery value, $Res Function(ShippingQuery) _then) =
-      _$ShippingQueryCopyWithImpl;
+    ShippingQuery value,
+    $Res Function(ShippingQuery) _then,
+  ) = _$ShippingQueryCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'invoice_payload') String invoicePayload,
-      @JsonKey(name: 'shipping_address') ShippingAddress shippingAddress});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'invoice_payload') String invoicePayload,
+    @JsonKey(name: 'shipping_address') ShippingAddress shippingAddress,
+  });
 
   $UserCopyWith<$Res> get from;
   $ShippingAddressCopyWith<$Res> get shippingAddress;
@@ -81,24 +84,26 @@ class _$ShippingQueryCopyWithImpl<$Res>
     Object? invoicePayload = null,
     Object? shippingAddress = null,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      invoicePayload: null == invoicePayload
-          ? _self.invoicePayload
-          : invoicePayload // ignore: cast_nullable_to_non_nullable
-              as String,
-      shippingAddress: null == shippingAddress
-          ? _self.shippingAddress
-          : shippingAddress // ignore: cast_nullable_to_non_nullable
-              as ShippingAddress,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        invoicePayload: null == invoicePayload
+            ? _self.invoicePayload
+            : invoicePayload // ignore: cast_nullable_to_non_nullable
+                  as String,
+        shippingAddress: null == shippingAddress
+            ? _self.shippingAddress
+            : shippingAddress // ignore: cast_nullable_to_non_nullable
+                  as ShippingAddress,
+      ),
+    );
   }
 
   /// Create a copy of ShippingQuery
@@ -122,14 +127,95 @@ class _$ShippingQueryCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [ShippingQuery].
+extension ShippingQueryPatterns on ShippingQuery {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ShippingQuery value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ShippingQuery() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ShippingQuery value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ShippingQuery():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ShippingQuery value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ShippingQuery() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _ShippingQuery implements ShippingQuery {
-  const _ShippingQuery(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'from') required this.from,
-      @JsonKey(name: 'invoice_payload') required this.invoicePayload,
-      @JsonKey(name: 'shipping_address') required this.shippingAddress});
+  const _ShippingQuery({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'from') required this.from,
+    @JsonKey(name: 'invoice_payload') required this.invoicePayload,
+    @JsonKey(name: 'shipping_address') required this.shippingAddress,
+  });
   factory _ShippingQuery.fromJson(Map<String, dynamic> json) =>
       _$ShippingQueryFromJson(json);
 
@@ -163,9 +249,7 @@ class _ShippingQuery implements ShippingQuery {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ShippingQueryToJson(
-      this,
-    );
+    return _$ShippingQueryToJson(this);
   }
 
   @override
@@ -178,15 +262,17 @@ class _ShippingQuery implements ShippingQuery {
 abstract mixin class _$ShippingQueryCopyWith<$Res>
     implements $ShippingQueryCopyWith<$Res> {
   factory _$ShippingQueryCopyWith(
-          _ShippingQuery value, $Res Function(_ShippingQuery) _then) =
-      __$ShippingQueryCopyWithImpl;
+    _ShippingQuery value,
+    $Res Function(_ShippingQuery) _then,
+  ) = __$ShippingQueryCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'invoice_payload') String invoicePayload,
-      @JsonKey(name: 'shipping_address') ShippingAddress shippingAddress});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'invoice_payload') String invoicePayload,
+    @JsonKey(name: 'shipping_address') ShippingAddress shippingAddress,
+  });
 
   @override
   $UserCopyWith<$Res> get from;
@@ -212,24 +298,26 @@ class __$ShippingQueryCopyWithImpl<$Res>
     Object? invoicePayload = null,
     Object? shippingAddress = null,
   }) {
-    return _then(_ShippingQuery(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      invoicePayload: null == invoicePayload
-          ? _self.invoicePayload
-          : invoicePayload // ignore: cast_nullable_to_non_nullable
-              as String,
-      shippingAddress: null == shippingAddress
-          ? _self.shippingAddress
-          : shippingAddress // ignore: cast_nullable_to_non_nullable
-              as ShippingAddress,
-    ));
+    return _then(
+      _ShippingQuery(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        invoicePayload: null == invoicePayload
+            ? _self.invoicePayload
+            : invoicePayload // ignore: cast_nullable_to_non_nullable
+                  as String,
+        shippingAddress: null == shippingAddress
+            ? _self.shippingAddress
+            : shippingAddress // ignore: cast_nullable_to_non_nullable
+                  as ShippingAddress,
+      ),
+    );
   }
 
   /// Create a copy of ShippingQuery

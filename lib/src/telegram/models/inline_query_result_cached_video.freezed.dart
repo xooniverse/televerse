@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -67,9 +66,11 @@ mixin _$InlineQueryResultCachedVideo {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $InlineQueryResultCachedVideoCopyWith<InlineQueryResultCachedVideo>
-      get copyWith => _$InlineQueryResultCachedVideoCopyWithImpl<
-              InlineQueryResultCachedVideo>(
-          this as InlineQueryResultCachedVideo, _$identity);
+  get copyWith =>
+      _$InlineQueryResultCachedVideoCopyWithImpl<InlineQueryResultCachedVideo>(
+        this as InlineQueryResultCachedVideo,
+        _$identity,
+      );
 
   /// Serializes this InlineQueryResultCachedVideo to a JSON map.
   Map<String, dynamic> toJson();
@@ -83,24 +84,25 @@ mixin _$InlineQueryResultCachedVideo {
 /// @nodoc
 abstract mixin class $InlineQueryResultCachedVideoCopyWith<$Res> {
   factory $InlineQueryResultCachedVideoCopyWith(
-          InlineQueryResultCachedVideo value,
-          $Res Function(InlineQueryResultCachedVideo) _then) =
-      _$InlineQueryResultCachedVideoCopyWithImpl;
+    InlineQueryResultCachedVideo value,
+    $Res Function(InlineQueryResultCachedVideo) _then,
+  ) = _$InlineQueryResultCachedVideoCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'video_file_id') String videoFileId,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
-      @JsonKey(name: 'type') InlineQueryResultType type});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'video_file_id') String videoFileId,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
+    @JsonKey(name: 'type') InlineQueryResultType type,
+  });
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -130,52 +132,54 @@ class _$InlineQueryResultCachedVideoCopyWithImpl<$Res>
     Object? showCaptionAboveMedia = freezed,
     Object? type = null,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      videoFileId: null == videoFileId
-          ? _self.videoFileId
-          : videoFileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: freezed == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self.captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _self.showCaptionAboveMedia
-          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        videoFileId: null == videoFileId
+            ? _self.videoFileId
+            : videoFileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: freezed == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self.captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        showCaptionAboveMedia: freezed == showCaptionAboveMedia
+            ? _self.showCaptionAboveMedia
+            : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultCachedVideo
@@ -187,32 +191,113 @@ class _$InlineQueryResultCachedVideoCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [InlineQueryResultCachedVideo].
+extension InlineQueryResultCachedVideoPatterns on InlineQueryResultCachedVideo {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineQueryResultCachedVideo value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultCachedVideo() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineQueryResultCachedVideo value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultCachedVideo():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineQueryResultCachedVideo value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultCachedVideo() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _InlineQueryResultCachedVideo implements InlineQueryResultCachedVideo {
-  const _InlineQueryResultCachedVideo(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'video_file_id') required this.videoFileId,
-      @JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'caption') this.caption,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'caption_entities')
-      final List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') this.replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      this.inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
-      @JsonKey(name: 'type') this.type = InlineQueryResultType.video})
-      : _captionEntities = captionEntities;
+  const _InlineQueryResultCachedVideo({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'video_file_id') required this.videoFileId,
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'description') this.description,
+    @JsonKey(name: 'caption') this.caption,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'caption_entities')
+    final List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') this.replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    this.inputMessageContent,
+    @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
+    @JsonKey(name: 'type') this.type = InlineQueryResultType.video,
+  }) : _captionEntities = captionEntities;
   factory _InlineQueryResultCachedVideo.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultCachedVideoFromJson(json);
 
@@ -291,14 +376,14 @@ class _InlineQueryResultCachedVideo implements InlineQueryResultCachedVideo {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   _$InlineQueryResultCachedVideoCopyWith<_InlineQueryResultCachedVideo>
-      get copyWith => __$InlineQueryResultCachedVideoCopyWithImpl<
-          _InlineQueryResultCachedVideo>(this, _$identity);
+  get copyWith =>
+      __$InlineQueryResultCachedVideoCopyWithImpl<
+        _InlineQueryResultCachedVideo
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineQueryResultCachedVideoToJson(
-      this,
-    );
+    return _$InlineQueryResultCachedVideoToJson(this);
   }
 
   @override
@@ -311,25 +396,26 @@ class _InlineQueryResultCachedVideo implements InlineQueryResultCachedVideo {
 abstract mixin class _$InlineQueryResultCachedVideoCopyWith<$Res>
     implements $InlineQueryResultCachedVideoCopyWith<$Res> {
   factory _$InlineQueryResultCachedVideoCopyWith(
-          _InlineQueryResultCachedVideo value,
-          $Res Function(_InlineQueryResultCachedVideo) _then) =
-      __$InlineQueryResultCachedVideoCopyWithImpl;
+    _InlineQueryResultCachedVideo value,
+    $Res Function(_InlineQueryResultCachedVideo) _then,
+  ) = __$InlineQueryResultCachedVideoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'video_file_id') String videoFileId,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'caption') String? caption,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
-      @JsonKey(name: 'type') InlineQueryResultType type});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'video_file_id') String videoFileId,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'caption') String? caption,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'caption_entities') List<MessageEntity>? captionEntities,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'show_caption_above_media') bool? showCaptionAboveMedia,
+    @JsonKey(name: 'type') InlineQueryResultType type,
+  });
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -360,52 +446,54 @@ class __$InlineQueryResultCachedVideoCopyWithImpl<$Res>
     Object? showCaptionAboveMedia = freezed,
     Object? type = null,
   }) {
-    return _then(_InlineQueryResultCachedVideo(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      videoFileId: null == videoFileId
-          ? _self.videoFileId
-          : videoFileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: freezed == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      caption: freezed == caption
-          ? _self.caption
-          : caption // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      captionEntities: freezed == captionEntities
-          ? _self._captionEntities
-          : captionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      showCaptionAboveMedia: freezed == showCaptionAboveMedia
-          ? _self.showCaptionAboveMedia
-          : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-    ));
+    return _then(
+      _InlineQueryResultCachedVideo(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        videoFileId: null == videoFileId
+            ? _self.videoFileId
+            : videoFileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: freezed == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        caption: freezed == caption
+            ? _self.caption
+            : caption // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        captionEntities: freezed == captionEntities
+            ? _self._captionEntities
+            : captionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        showCaptionAboveMedia: freezed == showCaptionAboveMedia
+            ? _self.showCaptionAboveMedia
+            : showCaptionAboveMedia // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultCachedVideo
@@ -417,8 +505,9 @@ class __$InlineQueryResultCachedVideoCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
   }

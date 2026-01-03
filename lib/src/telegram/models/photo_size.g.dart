@@ -7,12 +7,12 @@ part of 'photo_size.dart';
 // **************************************************************************
 
 _PhotoSize _$PhotoSizeFromJson(Map<String, dynamic> json) => _PhotoSize(
-      fileId: json['file_id'] as String,
-      fileUniqueId: json['file_unique_id'] as String,
-      width: (json['width'] as num).toInt(),
-      height: (json['height'] as num).toInt(),
-      fileSize: (json['file_size'] as num?)?.toInt(),
-    );
+  fileId: json['file_id'] as String,
+  fileUniqueId: json['file_unique_id'] as String,
+  width: (json['width'] as num).toInt(),
+  height: (json['height'] as num).toInt(),
+  fileSize: (json['file_size'] as num?)?.toInt(),
+);
 
 Map<String, dynamic> _$PhotoSizeToJson(_PhotoSize instance) =>
     <String, dynamic>{
@@ -20,5 +20,5 @@ Map<String, dynamic> _$PhotoSizeToJson(_PhotoSize instance) =>
       'file_unique_id': instance.fileUniqueId,
       'width': instance.width,
       'height': instance.height,
-      if (instance.fileSize case final value?) 'file_size': value,
+      'file_size': ?instance.fileSize,
     };

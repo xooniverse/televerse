@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -98,7 +97,9 @@ mixin _$ChatAdministratorRights {
   @pragma('vm:prefer-inline')
   $ChatAdministratorRightsCopyWith<ChatAdministratorRights> get copyWith =>
       _$ChatAdministratorRightsCopyWithImpl<ChatAdministratorRights>(
-          this as ChatAdministratorRights, _$identity);
+        this as ChatAdministratorRights,
+        _$identity,
+      );
 
   /// Serializes this ChatAdministratorRights to a JSON map.
   Map<String, dynamic> toJson();
@@ -111,28 +112,29 @@ mixin _$ChatAdministratorRights {
 
 /// @nodoc
 abstract mixin class $ChatAdministratorRightsCopyWith<$Res> {
-  factory $ChatAdministratorRightsCopyWith(ChatAdministratorRights value,
-          $Res Function(ChatAdministratorRights) _then) =
-      _$ChatAdministratorRightsCopyWithImpl;
+  factory $ChatAdministratorRightsCopyWith(
+    ChatAdministratorRights value,
+    $Res Function(ChatAdministratorRights) _then,
+  ) = _$ChatAdministratorRightsCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'is_anonymous') bool isAnonymous,
-      @JsonKey(name: 'can_manage_chat') bool canManageChat,
-      @JsonKey(name: 'can_delete_messages') bool canDeleteMessages,
-      @JsonKey(name: 'can_manage_video_chats') bool canManageVideoChats,
-      @JsonKey(name: 'can_restrict_members') bool canRestrictMembers,
-      @JsonKey(name: 'can_promote_members') bool canPromoteMembers,
-      @JsonKey(name: 'can_change_info') bool canChangeInfo,
-      @JsonKey(name: 'can_invite_users') bool canInviteUsers,
-      @JsonKey(name: 'can_post_messages') bool? canPostMessages,
-      @JsonKey(name: 'can_edit_messages') bool? canEditMessages,
-      @JsonKey(name: 'can_pin_messages') bool? canPinMessages,
-      @JsonKey(name: 'can_manage_forum') bool? canManageForum,
-      @JsonKey(name: 'can_post_stories') bool? canPostStories,
-      @JsonKey(name: 'can_edit_stories') bool? canEditStories,
-      @JsonKey(name: 'can_delete_stories') bool? canDeleteStories,
-      @JsonKey(name: 'can_manage_direct_messages')
-      bool? canManageDirectMessages});
+  $Res call({
+    @JsonKey(name: 'is_anonymous') bool isAnonymous,
+    @JsonKey(name: 'can_manage_chat') bool canManageChat,
+    @JsonKey(name: 'can_delete_messages') bool canDeleteMessages,
+    @JsonKey(name: 'can_manage_video_chats') bool canManageVideoChats,
+    @JsonKey(name: 'can_restrict_members') bool canRestrictMembers,
+    @JsonKey(name: 'can_promote_members') bool canPromoteMembers,
+    @JsonKey(name: 'can_change_info') bool canChangeInfo,
+    @JsonKey(name: 'can_invite_users') bool canInviteUsers,
+    @JsonKey(name: 'can_post_messages') bool? canPostMessages,
+    @JsonKey(name: 'can_edit_messages') bool? canEditMessages,
+    @JsonKey(name: 'can_pin_messages') bool? canPinMessages,
+    @JsonKey(name: 'can_manage_forum') bool? canManageForum,
+    @JsonKey(name: 'can_post_stories') bool? canPostStories,
+    @JsonKey(name: 'can_edit_stories') bool? canEditStories,
+    @JsonKey(name: 'can_delete_stories') bool? canDeleteStories,
+    @JsonKey(name: 'can_manage_direct_messages') bool? canManageDirectMessages,
+  });
 }
 
 /// @nodoc
@@ -165,97 +167,178 @@ class _$ChatAdministratorRightsCopyWithImpl<$Res>
     Object? canDeleteStories = freezed,
     Object? canManageDirectMessages = freezed,
   }) {
-    return _then(_self.copyWith(
-      isAnonymous: null == isAnonymous
-          ? _self.isAnonymous
-          : isAnonymous // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canManageChat: null == canManageChat
-          ? _self.canManageChat
-          : canManageChat // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canDeleteMessages: null == canDeleteMessages
-          ? _self.canDeleteMessages
-          : canDeleteMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canManageVideoChats: null == canManageVideoChats
-          ? _self.canManageVideoChats
-          : canManageVideoChats // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canRestrictMembers: null == canRestrictMembers
-          ? _self.canRestrictMembers
-          : canRestrictMembers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canPromoteMembers: null == canPromoteMembers
-          ? _self.canPromoteMembers
-          : canPromoteMembers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canChangeInfo: null == canChangeInfo
-          ? _self.canChangeInfo
-          : canChangeInfo // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canInviteUsers: null == canInviteUsers
-          ? _self.canInviteUsers
-          : canInviteUsers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canPostMessages: freezed == canPostMessages
-          ? _self.canPostMessages
-          : canPostMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditMessages: freezed == canEditMessages
-          ? _self.canEditMessages
-          : canEditMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canPinMessages: freezed == canPinMessages
-          ? _self.canPinMessages
-          : canPinMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canManageForum: freezed == canManageForum
-          ? _self.canManageForum
-          : canManageForum // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canPostStories: freezed == canPostStories
-          ? _self.canPostStories
-          : canPostStories // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditStories: freezed == canEditStories
-          ? _self.canEditStories
-          : canEditStories // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canDeleteStories: freezed == canDeleteStories
-          ? _self.canDeleteStories
-          : canDeleteStories // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canManageDirectMessages: freezed == canManageDirectMessages
-          ? _self.canManageDirectMessages
-          : canManageDirectMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        isAnonymous: null == isAnonymous
+            ? _self.isAnonymous
+            : isAnonymous // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canManageChat: null == canManageChat
+            ? _self.canManageChat
+            : canManageChat // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canDeleteMessages: null == canDeleteMessages
+            ? _self.canDeleteMessages
+            : canDeleteMessages // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canManageVideoChats: null == canManageVideoChats
+            ? _self.canManageVideoChats
+            : canManageVideoChats // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canRestrictMembers: null == canRestrictMembers
+            ? _self.canRestrictMembers
+            : canRestrictMembers // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canPromoteMembers: null == canPromoteMembers
+            ? _self.canPromoteMembers
+            : canPromoteMembers // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canChangeInfo: null == canChangeInfo
+            ? _self.canChangeInfo
+            : canChangeInfo // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canInviteUsers: null == canInviteUsers
+            ? _self.canInviteUsers
+            : canInviteUsers // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canPostMessages: freezed == canPostMessages
+            ? _self.canPostMessages
+            : canPostMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditMessages: freezed == canEditMessages
+            ? _self.canEditMessages
+            : canEditMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canPinMessages: freezed == canPinMessages
+            ? _self.canPinMessages
+            : canPinMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canManageForum: freezed == canManageForum
+            ? _self.canManageForum
+            : canManageForum // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canPostStories: freezed == canPostStories
+            ? _self.canPostStories
+            : canPostStories // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditStories: freezed == canEditStories
+            ? _self.canEditStories
+            : canEditStories // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canDeleteStories: freezed == canDeleteStories
+            ? _self.canDeleteStories
+            : canDeleteStories // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canManageDirectMessages: freezed == canManageDirectMessages
+            ? _self.canManageDirectMessages
+            : canManageDirectMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [ChatAdministratorRights].
+extension ChatAdministratorRightsPatterns on ChatAdministratorRights {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChatAdministratorRights value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChatAdministratorRights() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChatAdministratorRights value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatAdministratorRights():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChatAdministratorRights value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatAdministratorRights() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _ChatAdministratorRights implements ChatAdministratorRights {
-  const _ChatAdministratorRights(
-      {@JsonKey(name: 'is_anonymous') required this.isAnonymous,
-      @JsonKey(name: 'can_manage_chat') required this.canManageChat,
-      @JsonKey(name: 'can_delete_messages') required this.canDeleteMessages,
-      @JsonKey(name: 'can_manage_video_chats')
-      required this.canManageVideoChats,
-      @JsonKey(name: 'can_restrict_members') required this.canRestrictMembers,
-      @JsonKey(name: 'can_promote_members') required this.canPromoteMembers,
-      @JsonKey(name: 'can_change_info') required this.canChangeInfo,
-      @JsonKey(name: 'can_invite_users') required this.canInviteUsers,
-      @JsonKey(name: 'can_post_messages') this.canPostMessages,
-      @JsonKey(name: 'can_edit_messages') this.canEditMessages,
-      @JsonKey(name: 'can_pin_messages') this.canPinMessages,
-      @JsonKey(name: 'can_manage_forum') this.canManageForum,
-      @JsonKey(name: 'can_post_stories') this.canPostStories,
-      @JsonKey(name: 'can_edit_stories') this.canEditStories,
-      @JsonKey(name: 'can_delete_stories') this.canDeleteStories,
-      @JsonKey(name: 'can_manage_direct_messages')
-      this.canManageDirectMessages});
+  const _ChatAdministratorRights({
+    @JsonKey(name: 'is_anonymous') required this.isAnonymous,
+    @JsonKey(name: 'can_manage_chat') required this.canManageChat,
+    @JsonKey(name: 'can_delete_messages') required this.canDeleteMessages,
+    @JsonKey(name: 'can_manage_video_chats') required this.canManageVideoChats,
+    @JsonKey(name: 'can_restrict_members') required this.canRestrictMembers,
+    @JsonKey(name: 'can_promote_members') required this.canPromoteMembers,
+    @JsonKey(name: 'can_change_info') required this.canChangeInfo,
+    @JsonKey(name: 'can_invite_users') required this.canInviteUsers,
+    @JsonKey(name: 'can_post_messages') this.canPostMessages,
+    @JsonKey(name: 'can_edit_messages') this.canEditMessages,
+    @JsonKey(name: 'can_pin_messages') this.canPinMessages,
+    @JsonKey(name: 'can_manage_forum') this.canManageForum,
+    @JsonKey(name: 'can_post_stories') this.canPostStories,
+    @JsonKey(name: 'can_edit_stories') this.canEditStories,
+    @JsonKey(name: 'can_delete_stories') this.canDeleteStories,
+    @JsonKey(name: 'can_manage_direct_messages') this.canManageDirectMessages,
+  });
   factory _ChatAdministratorRights.fromJson(Map<String, dynamic> json) =>
       _$ChatAdministratorRightsFromJson(json);
 
@@ -360,13 +443,13 @@ class _ChatAdministratorRights implements ChatAdministratorRights {
   @pragma('vm:prefer-inline')
   _$ChatAdministratorRightsCopyWith<_ChatAdministratorRights> get copyWith =>
       __$ChatAdministratorRightsCopyWithImpl<_ChatAdministratorRights>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatAdministratorRightsToJson(
-      this,
-    );
+    return _$ChatAdministratorRightsToJson(this);
   }
 
   @override
@@ -378,29 +461,30 @@ class _ChatAdministratorRights implements ChatAdministratorRights {
 /// @nodoc
 abstract mixin class _$ChatAdministratorRightsCopyWith<$Res>
     implements $ChatAdministratorRightsCopyWith<$Res> {
-  factory _$ChatAdministratorRightsCopyWith(_ChatAdministratorRights value,
-          $Res Function(_ChatAdministratorRights) _then) =
-      __$ChatAdministratorRightsCopyWithImpl;
+  factory _$ChatAdministratorRightsCopyWith(
+    _ChatAdministratorRights value,
+    $Res Function(_ChatAdministratorRights) _then,
+  ) = __$ChatAdministratorRightsCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'is_anonymous') bool isAnonymous,
-      @JsonKey(name: 'can_manage_chat') bool canManageChat,
-      @JsonKey(name: 'can_delete_messages') bool canDeleteMessages,
-      @JsonKey(name: 'can_manage_video_chats') bool canManageVideoChats,
-      @JsonKey(name: 'can_restrict_members') bool canRestrictMembers,
-      @JsonKey(name: 'can_promote_members') bool canPromoteMembers,
-      @JsonKey(name: 'can_change_info') bool canChangeInfo,
-      @JsonKey(name: 'can_invite_users') bool canInviteUsers,
-      @JsonKey(name: 'can_post_messages') bool? canPostMessages,
-      @JsonKey(name: 'can_edit_messages') bool? canEditMessages,
-      @JsonKey(name: 'can_pin_messages') bool? canPinMessages,
-      @JsonKey(name: 'can_manage_forum') bool? canManageForum,
-      @JsonKey(name: 'can_post_stories') bool? canPostStories,
-      @JsonKey(name: 'can_edit_stories') bool? canEditStories,
-      @JsonKey(name: 'can_delete_stories') bool? canDeleteStories,
-      @JsonKey(name: 'can_manage_direct_messages')
-      bool? canManageDirectMessages});
+  $Res call({
+    @JsonKey(name: 'is_anonymous') bool isAnonymous,
+    @JsonKey(name: 'can_manage_chat') bool canManageChat,
+    @JsonKey(name: 'can_delete_messages') bool canDeleteMessages,
+    @JsonKey(name: 'can_manage_video_chats') bool canManageVideoChats,
+    @JsonKey(name: 'can_restrict_members') bool canRestrictMembers,
+    @JsonKey(name: 'can_promote_members') bool canPromoteMembers,
+    @JsonKey(name: 'can_change_info') bool canChangeInfo,
+    @JsonKey(name: 'can_invite_users') bool canInviteUsers,
+    @JsonKey(name: 'can_post_messages') bool? canPostMessages,
+    @JsonKey(name: 'can_edit_messages') bool? canEditMessages,
+    @JsonKey(name: 'can_pin_messages') bool? canPinMessages,
+    @JsonKey(name: 'can_manage_forum') bool? canManageForum,
+    @JsonKey(name: 'can_post_stories') bool? canPostStories,
+    @JsonKey(name: 'can_edit_stories') bool? canEditStories,
+    @JsonKey(name: 'can_delete_stories') bool? canDeleteStories,
+    @JsonKey(name: 'can_manage_direct_messages') bool? canManageDirectMessages,
+  });
 }
 
 /// @nodoc
@@ -433,71 +517,73 @@ class __$ChatAdministratorRightsCopyWithImpl<$Res>
     Object? canDeleteStories = freezed,
     Object? canManageDirectMessages = freezed,
   }) {
-    return _then(_ChatAdministratorRights(
-      isAnonymous: null == isAnonymous
-          ? _self.isAnonymous
-          : isAnonymous // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canManageChat: null == canManageChat
-          ? _self.canManageChat
-          : canManageChat // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canDeleteMessages: null == canDeleteMessages
-          ? _self.canDeleteMessages
-          : canDeleteMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canManageVideoChats: null == canManageVideoChats
-          ? _self.canManageVideoChats
-          : canManageVideoChats // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canRestrictMembers: null == canRestrictMembers
-          ? _self.canRestrictMembers
-          : canRestrictMembers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canPromoteMembers: null == canPromoteMembers
-          ? _self.canPromoteMembers
-          : canPromoteMembers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canChangeInfo: null == canChangeInfo
-          ? _self.canChangeInfo
-          : canChangeInfo // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canInviteUsers: null == canInviteUsers
-          ? _self.canInviteUsers
-          : canInviteUsers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canPostMessages: freezed == canPostMessages
-          ? _self.canPostMessages
-          : canPostMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditMessages: freezed == canEditMessages
-          ? _self.canEditMessages
-          : canEditMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canPinMessages: freezed == canPinMessages
-          ? _self.canPinMessages
-          : canPinMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canManageForum: freezed == canManageForum
-          ? _self.canManageForum
-          : canManageForum // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canPostStories: freezed == canPostStories
-          ? _self.canPostStories
-          : canPostStories // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canEditStories: freezed == canEditStories
-          ? _self.canEditStories
-          : canEditStories // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canDeleteStories: freezed == canDeleteStories
-          ? _self.canDeleteStories
-          : canDeleteStories // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canManageDirectMessages: freezed == canManageDirectMessages
-          ? _self.canManageDirectMessages
-          : canManageDirectMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _ChatAdministratorRights(
+        isAnonymous: null == isAnonymous
+            ? _self.isAnonymous
+            : isAnonymous // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canManageChat: null == canManageChat
+            ? _self.canManageChat
+            : canManageChat // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canDeleteMessages: null == canDeleteMessages
+            ? _self.canDeleteMessages
+            : canDeleteMessages // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canManageVideoChats: null == canManageVideoChats
+            ? _self.canManageVideoChats
+            : canManageVideoChats // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canRestrictMembers: null == canRestrictMembers
+            ? _self.canRestrictMembers
+            : canRestrictMembers // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canPromoteMembers: null == canPromoteMembers
+            ? _self.canPromoteMembers
+            : canPromoteMembers // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canChangeInfo: null == canChangeInfo
+            ? _self.canChangeInfo
+            : canChangeInfo // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canInviteUsers: null == canInviteUsers
+            ? _self.canInviteUsers
+            : canInviteUsers // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canPostMessages: freezed == canPostMessages
+            ? _self.canPostMessages
+            : canPostMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditMessages: freezed == canEditMessages
+            ? _self.canEditMessages
+            : canEditMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canPinMessages: freezed == canPinMessages
+            ? _self.canPinMessages
+            : canPinMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canManageForum: freezed == canManageForum
+            ? _self.canManageForum
+            : canManageForum // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canPostStories: freezed == canPostStories
+            ? _self.canPostStories
+            : canPostStories // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canEditStories: freezed == canEditStories
+            ? _self.canEditStories
+            : canEditStories // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canDeleteStories: freezed == canDeleteStories
+            ? _self.canDeleteStories
+            : canDeleteStories // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canManageDirectMessages: freezed == canManageDirectMessages
+            ? _self.canManageDirectMessages
+            : canManageDirectMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -60,16 +59,18 @@ mixin _$InlineQuery {
 /// @nodoc
 abstract mixin class $InlineQueryCopyWith<$Res> {
   factory $InlineQueryCopyWith(
-          InlineQuery value, $Res Function(InlineQuery) _then) =
-      _$InlineQueryCopyWithImpl;
+    InlineQuery value,
+    $Res Function(InlineQuery) _then,
+  ) = _$InlineQueryCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'query') String query,
-      @JsonKey(name: 'offset') String offset,
-      @JsonKey(name: 'chat_type') ChatType? chatType,
-      Location? location});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'query') String query,
+    @JsonKey(name: 'offset') String offset,
+    @JsonKey(name: 'chat_type') ChatType? chatType,
+    Location? location,
+  });
 
   $UserCopyWith<$Res> get from;
   $LocationCopyWith<$Res>? get location;
@@ -94,32 +95,34 @@ class _$InlineQueryCopyWithImpl<$Res> implements $InlineQueryCopyWith<$Res> {
     Object? chatType = freezed,
     Object? location = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      query: null == query
-          ? _self.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      offset: null == offset
-          ? _self.offset
-          : offset // ignore: cast_nullable_to_non_nullable
-              as String,
-      chatType: freezed == chatType
-          ? _self.chatType
-          : chatType // ignore: cast_nullable_to_non_nullable
-              as ChatType?,
-      location: freezed == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        query: null == query
+            ? _self.query
+            : query // ignore: cast_nullable_to_non_nullable
+                  as String,
+        offset: null == offset
+            ? _self.offset
+            : offset // ignore: cast_nullable_to_non_nullable
+                  as String,
+        chatType: freezed == chatType
+            ? _self.chatType
+            : chatType // ignore: cast_nullable_to_non_nullable
+                  as ChatType?,
+        location: freezed == location
+            ? _self.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as Location?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQuery
@@ -147,16 +150,97 @@ class _$InlineQueryCopyWithImpl<$Res> implements $InlineQueryCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [InlineQuery].
+extension InlineQueryPatterns on InlineQuery {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineQuery value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQuery() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineQuery value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQuery():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineQuery value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQuery() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _InlineQuery implements InlineQuery {
-  const _InlineQuery(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'from') required this.from,
-      @JsonKey(name: 'query') required this.query,
-      @JsonKey(name: 'offset') required this.offset,
-      @JsonKey(name: 'chat_type') this.chatType,
-      this.location});
+  const _InlineQuery({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'from') required this.from,
+    @JsonKey(name: 'query') required this.query,
+    @JsonKey(name: 'offset') required this.offset,
+    @JsonKey(name: 'chat_type') this.chatType,
+    this.location,
+  });
   factory _InlineQuery.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryFromJson(json);
 
@@ -203,9 +287,7 @@ class _InlineQuery implements InlineQuery {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineQueryToJson(
-      this,
-    );
+    return _$InlineQueryToJson(this);
   }
 
   @override
@@ -218,17 +300,19 @@ class _InlineQuery implements InlineQuery {
 abstract mixin class _$InlineQueryCopyWith<$Res>
     implements $InlineQueryCopyWith<$Res> {
   factory _$InlineQueryCopyWith(
-          _InlineQuery value, $Res Function(_InlineQuery) _then) =
-      __$InlineQueryCopyWithImpl;
+    _InlineQuery value,
+    $Res Function(_InlineQuery) _then,
+  ) = __$InlineQueryCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'query') String query,
-      @JsonKey(name: 'offset') String offset,
-      @JsonKey(name: 'chat_type') ChatType? chatType,
-      Location? location});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'query') String query,
+    @JsonKey(name: 'offset') String offset,
+    @JsonKey(name: 'chat_type') ChatType? chatType,
+    Location? location,
+  });
 
   @override
   $UserCopyWith<$Res> get from;
@@ -255,32 +339,34 @@ class __$InlineQueryCopyWithImpl<$Res> implements _$InlineQueryCopyWith<$Res> {
     Object? chatType = freezed,
     Object? location = freezed,
   }) {
-    return _then(_InlineQuery(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      query: null == query
-          ? _self.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      offset: null == offset
-          ? _self.offset
-          : offset // ignore: cast_nullable_to_non_nullable
-              as String,
-      chatType: freezed == chatType
-          ? _self.chatType
-          : chatType // ignore: cast_nullable_to_non_nullable
-              as ChatType?,
-      location: freezed == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location?,
-    ));
+    return _then(
+      _InlineQuery(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        query: null == query
+            ? _self.query
+            : query // ignore: cast_nullable_to_non_nullable
+                  as String,
+        offset: null == offset
+            ? _self.offset
+            : offset // ignore: cast_nullable_to_non_nullable
+                  as String,
+        chatType: freezed == chatType
+            ? _self.chatType
+            : chatType // ignore: cast_nullable_to_non_nullable
+                  as ChatType?,
+        location: freezed == location
+            ? _self.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as Location?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQuery

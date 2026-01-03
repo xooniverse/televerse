@@ -7,9 +7,9 @@ part of 'general_forum_topic_hidden.dart';
 // **************************************************************************
 
 _GeneralForumTopicHidden _$GeneralForumTopicHiddenFromJson(
-        Map<String, dynamic> json) =>
-    _GeneralForumTopicHidden();
+  Map<String, dynamic> json,
+) => _GeneralForumTopicHidden();
 
 Map<String, dynamic> _$GeneralForumTopicHiddenToJson(
-        _GeneralForumTopicHidden instance) =>
-    <String, dynamic>{};
+  _GeneralForumTopicHidden instance,
+) => <String, dynamic>{};

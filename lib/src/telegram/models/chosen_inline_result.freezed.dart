@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -42,7 +41,9 @@ mixin _$ChosenInlineResult {
   @pragma('vm:prefer-inline')
   $ChosenInlineResultCopyWith<ChosenInlineResult> get copyWith =>
       _$ChosenInlineResultCopyWithImpl<ChosenInlineResult>(
-          this as ChosenInlineResult, _$identity);
+        this as ChosenInlineResult,
+        _$identity,
+      );
 
   /// Serializes this ChosenInlineResult to a JSON map.
   Map<String, dynamic> toJson();
@@ -56,15 +57,17 @@ mixin _$ChosenInlineResult {
 /// @nodoc
 abstract mixin class $ChosenInlineResultCopyWith<$Res> {
   factory $ChosenInlineResultCopyWith(
-          ChosenInlineResult value, $Res Function(ChosenInlineResult) _then) =
-      _$ChosenInlineResultCopyWithImpl;
+    ChosenInlineResult value,
+    $Res Function(ChosenInlineResult) _then,
+  ) = _$ChosenInlineResultCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'result_id') String resultId,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'location') Location? location,
-      @JsonKey(name: 'inline_message_id') String? inlineMessageId,
-      @JsonKey(name: 'query') String query});
+  $Res call({
+    @JsonKey(name: 'result_id') String resultId,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'location') Location? location,
+    @JsonKey(name: 'inline_message_id') String? inlineMessageId,
+    @JsonKey(name: 'query') String query,
+  });
 
   $UserCopyWith<$Res> get from;
   $LocationCopyWith<$Res>? get location;
@@ -89,28 +92,30 @@ class _$ChosenInlineResultCopyWithImpl<$Res>
     Object? inlineMessageId = freezed,
     Object? query = null,
   }) {
-    return _then(_self.copyWith(
-      resultId: null == resultId
-          ? _self.resultId
-          : resultId // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      location: freezed == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location?,
-      inlineMessageId: freezed == inlineMessageId
-          ? _self.inlineMessageId
-          : inlineMessageId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      query: null == query
-          ? _self.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _self.copyWith(
+        resultId: null == resultId
+            ? _self.resultId
+            : resultId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        location: freezed == location
+            ? _self.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as Location?,
+        inlineMessageId: freezed == inlineMessageId
+            ? _self.inlineMessageId
+            : inlineMessageId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        query: null == query
+            ? _self.query
+            : query // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 
   /// Create a copy of ChosenInlineResult
@@ -138,15 +143,96 @@ class _$ChosenInlineResultCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [ChosenInlineResult].
+extension ChosenInlineResultPatterns on ChosenInlineResult {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChosenInlineResult value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChosenInlineResult() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChosenInlineResult value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChosenInlineResult():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChosenInlineResult value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChosenInlineResult() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _ChosenInlineResult implements ChosenInlineResult {
-  const _ChosenInlineResult(
-      {@JsonKey(name: 'result_id') required this.resultId,
-      @JsonKey(name: 'from') required this.from,
-      @JsonKey(name: 'location') this.location,
-      @JsonKey(name: 'inline_message_id') this.inlineMessageId,
-      @JsonKey(name: 'query') required this.query});
+  const _ChosenInlineResult({
+    @JsonKey(name: 'result_id') required this.resultId,
+    @JsonKey(name: 'from') required this.from,
+    @JsonKey(name: 'location') this.location,
+    @JsonKey(name: 'inline_message_id') this.inlineMessageId,
+    @JsonKey(name: 'query') required this.query,
+  });
   factory _ChosenInlineResult.fromJson(Map<String, dynamic> json) =>
       _$ChosenInlineResultFromJson(json);
 
@@ -187,9 +273,7 @@ class _ChosenInlineResult implements ChosenInlineResult {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChosenInlineResultToJson(
-      this,
-    );
+    return _$ChosenInlineResultToJson(this);
   }
 
   @override
@@ -202,16 +286,18 @@ class _ChosenInlineResult implements ChosenInlineResult {
 abstract mixin class _$ChosenInlineResultCopyWith<$Res>
     implements $ChosenInlineResultCopyWith<$Res> {
   factory _$ChosenInlineResultCopyWith(
-          _ChosenInlineResult value, $Res Function(_ChosenInlineResult) _then) =
-      __$ChosenInlineResultCopyWithImpl;
+    _ChosenInlineResult value,
+    $Res Function(_ChosenInlineResult) _then,
+  ) = __$ChosenInlineResultCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'result_id') String resultId,
-      @JsonKey(name: 'from') User from,
-      @JsonKey(name: 'location') Location? location,
-      @JsonKey(name: 'inline_message_id') String? inlineMessageId,
-      @JsonKey(name: 'query') String query});
+  $Res call({
+    @JsonKey(name: 'result_id') String resultId,
+    @JsonKey(name: 'from') User from,
+    @JsonKey(name: 'location') Location? location,
+    @JsonKey(name: 'inline_message_id') String? inlineMessageId,
+    @JsonKey(name: 'query') String query,
+  });
 
   @override
   $UserCopyWith<$Res> get from;
@@ -238,28 +324,30 @@ class __$ChosenInlineResultCopyWithImpl<$Res>
     Object? inlineMessageId = freezed,
     Object? query = null,
   }) {
-    return _then(_ChosenInlineResult(
-      resultId: null == resultId
-          ? _self.resultId
-          : resultId // ignore: cast_nullable_to_non_nullable
-              as String,
-      from: null == from
-          ? _self.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as User,
-      location: freezed == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as Location?,
-      inlineMessageId: freezed == inlineMessageId
-          ? _self.inlineMessageId
-          : inlineMessageId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      query: null == query
-          ? _self.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _ChosenInlineResult(
+        resultId: null == resultId
+            ? _self.resultId
+            : resultId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        from: null == from
+            ? _self.from
+            : from // ignore: cast_nullable_to_non_nullable
+                  as User,
+        location: freezed == location
+            ? _self.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as Location?,
+        inlineMessageId: freezed == inlineMessageId
+            ? _self.inlineMessageId
+            : inlineMessageId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        query: null == query
+            ? _self.query
+            : query // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 
   /// Create a copy of ChosenInlineResult

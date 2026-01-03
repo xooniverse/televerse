@@ -62,11 +62,9 @@ class WebhookFetcher implements UpdateFetcher {
   /// Parameters:
   /// - [api]: Optional RawAPI instance for webhook management
   /// - [config]: Configuration for the fetcher
-  WebhookFetcher({
-    RawAPI? api,
-    WebhookConfig config = const WebhookConfig(),
-  })  : _api = api,
-        _config = config {
+  WebhookFetcher({RawAPI? api, WebhookConfig config = const WebhookConfig()})
+    : _api = api,
+      _config = config {
     _updateController = StreamController<Update>.broadcast();
   }
 
@@ -398,7 +396,7 @@ class WebhookFetcher implements UpdateFetcher {
 
     try {
       print('🔗 Setting webhook URL: ${_config.webhookUrl}');
-      await _api!.setWebhook(
+      await _api.setWebhook(
         _config.webhookUrl!,
         certificate: _config.certificate,
         ipAddress: _config.ipAddress,
@@ -424,9 +422,7 @@ class WebhookFetcher implements UpdateFetcher {
 
     try {
       print('🗑️ Deleting webhook...');
-      await _api!.deleteWebhook(
-        dropPendingUpdates: _config.dropPendingUpdates,
-      );
+      await _api.deleteWebhook(dropPendingUpdates: _config.dropPendingUpdates);
       print('✅ Webhook deleted successfully!');
     } catch (error) {
       print('⚠️ Failed to delete webhook: $error');
@@ -513,10 +509,10 @@ class WebhookConfig extends FetcherConfig {
     super.dropPendingUpdates = false,
     super.maxConcurrentUpdates = 10,
   }) : assert(
-          maxConnections == null ||
-              (maxConnections >= 1 && maxConnections <= 100),
-          'maxConnections must be between 1 and 100',
-        );
+         maxConnections == null ||
+             (maxConnections >= 1 && maxConnections <= 100),
+         'maxConnections must be between 1 and 100',
+       );
 
   /// Creates a configuration for the built-in server.
   ///
@@ -539,11 +535,11 @@ class WebhookConfig extends FetcherConfig {
     super.allowedUpdates,
     super.dropPendingUpdates = false,
     super.maxConcurrentUpdates = 20,
-  })  : useBuiltInServer = true,
-        certificate = null,
-        ipAddress = null,
-        maxConnections = 40,
-        deleteWebhookOnStop = true;
+  }) : useBuiltInServer = true,
+       certificate = null,
+       ipAddress = null,
+       maxConnections = 40,
+       deleteWebhookOnStop = true;
 
   /// Creates a configuration for development with ngrok.
   WebhookConfig.ngrok(
@@ -553,17 +549,17 @@ class WebhookConfig extends FetcherConfig {
     super.allowedUpdates,
     super.dropPendingUpdates = true,
     super.maxConcurrentUpdates = 5,
-  })  : webhookUrl = '$ngrokUrl$path',
-        useBuiltInServer = true,
-        bindAddress = '0.0.0.0',
-        webhookPath = path,
-        healthCheckPath = '/health',
-        corsEnabled = true,
-        certificate = null,
-        ipAddress = null,
-        maxConnections = 10,
-        secretToken = null,
-        deleteWebhookOnStop = true;
+  }) : webhookUrl = '$ngrokUrl$path',
+       useBuiltInServer = true,
+       bindAddress = '0.0.0.0',
+       webhookPath = path,
+       healthCheckPath = '/health',
+       corsEnabled = true,
+       certificate = null,
+       ipAddress = null,
+       maxConnections = 10,
+       secretToken = null,
+       deleteWebhookOnStop = true;
 
   /// Creates a configuration for production deployment with built-in server.
   WebhookConfig.production({
@@ -578,10 +574,10 @@ class WebhookConfig extends FetcherConfig {
     super.allowedUpdates,
     super.dropPendingUpdates = false,
     super.maxConcurrentUpdates = 50,
-  })  : useBuiltInServer = true,
-        certificate = null,
-        ipAddress = null,
-        deleteWebhookOnStop = false;
+  }) : useBuiltInServer = true,
+       certificate = null,
+       ipAddress = null,
+       deleteWebhookOnStop = false;
 
   /// Creates a configuration for custom web server integration.
   ///
@@ -592,16 +588,16 @@ class WebhookConfig extends FetcherConfig {
     super.allowedUpdates,
     super.dropPendingUpdates = false,
     super.maxConcurrentUpdates = 20,
-  })  : useBuiltInServer = false,
-        port = null,
-        bindAddress = null,
-        webhookPath = '/webhook',
-        healthCheckPath = null,
-        corsEnabled = false,
-        certificate = null,
-        ipAddress = null,
-        maxConnections = null,
-        deleteWebhookOnStop = false;
+  }) : useBuiltInServer = false,
+       port = null,
+       bindAddress = null,
+       webhookPath = '/webhook',
+       healthCheckPath = null,
+       corsEnabled = false,
+       certificate = null,
+       ipAddress = null,
+       maxConnections = null,
+       deleteWebhookOnStop = false;
 
   @override
   String toString() {
@@ -642,11 +638,11 @@ class WebhookStats {
 
   /// Creates empty statistics.
   const WebhookStats.empty()
-      : totalRequests = 0,
-        validRequests = 0,
-        invalidRequests = 0,
-        lastRequestTime = null,
-        lastErrorReason = null;
+    : totalRequests = 0,
+      validRequests = 0,
+      invalidRequests = 0,
+      lastRequestTime = null,
+      lastErrorReason = null;
 
   /// Success rate as a percentage.
   double get successRate {

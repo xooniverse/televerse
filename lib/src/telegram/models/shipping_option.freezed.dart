@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -32,7 +31,9 @@ mixin _$ShippingOption {
   @pragma('vm:prefer-inline')
   $ShippingOptionCopyWith<ShippingOption> get copyWith =>
       _$ShippingOptionCopyWithImpl<ShippingOption>(
-          this as ShippingOption, _$identity);
+        this as ShippingOption,
+        _$identity,
+      );
 
   /// Serializes this ShippingOption to a JSON map.
   Map<String, dynamic> toJson();
@@ -46,13 +47,15 @@ mixin _$ShippingOption {
 /// @nodoc
 abstract mixin class $ShippingOptionCopyWith<$Res> {
   factory $ShippingOptionCopyWith(
-          ShippingOption value, $Res Function(ShippingOption) _then) =
-      _$ShippingOptionCopyWithImpl;
+    ShippingOption value,
+    $Res Function(ShippingOption) _then,
+  ) = _$ShippingOptionCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'prices') List<LabeledPrice> prices});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'prices') List<LabeledPrice> prices,
+  });
 }
 
 /// @nodoc
@@ -67,36 +70,114 @@ class _$ShippingOptionCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? prices = null,
+  $Res call({Object? id = null, Object? title = null, Object? prices = null}) {
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        prices: null == prices
+            ? _self.prices
+            : prices // ignore: cast_nullable_to_non_nullable
+                  as List<LabeledPrice>,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [ShippingOption].
+extension ShippingOptionPatterns on ShippingOption {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ShippingOption value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      prices: null == prices
-          ? _self.prices
-          : prices // ignore: cast_nullable_to_non_nullable
-              as List<LabeledPrice>,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _ShippingOption() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ShippingOption value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ShippingOption():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ShippingOption value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ShippingOption() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _ShippingOption implements ShippingOption {
-  const _ShippingOption(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'prices') required final List<LabeledPrice> prices})
-      : _prices = prices;
+  const _ShippingOption({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'prices') required final List<LabeledPrice> prices,
+  }) : _prices = prices;
   factory _ShippingOption.fromJson(Map<String, dynamic> json) =>
       _$ShippingOptionFromJson(json);
 
@@ -132,9 +213,7 @@ class _ShippingOption implements ShippingOption {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ShippingOptionToJson(
-      this,
-    );
+    return _$ShippingOptionToJson(this);
   }
 
   @override
@@ -147,14 +226,16 @@ class _ShippingOption implements ShippingOption {
 abstract mixin class _$ShippingOptionCopyWith<$Res>
     implements $ShippingOptionCopyWith<$Res> {
   factory _$ShippingOptionCopyWith(
-          _ShippingOption value, $Res Function(_ShippingOption) _then) =
-      __$ShippingOptionCopyWithImpl;
+    _ShippingOption value,
+    $Res Function(_ShippingOption) _then,
+  ) = __$ShippingOptionCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'prices') List<LabeledPrice> prices});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'prices') List<LabeledPrice> prices,
+  });
 }
 
 /// @nodoc
@@ -169,24 +250,22 @@ class __$ShippingOptionCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? prices = null,
-  }) {
-    return _then(_ShippingOption(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      prices: null == prices
-          ? _self._prices
-          : prices // ignore: cast_nullable_to_non_nullable
-              as List<LabeledPrice>,
-    ));
+  $Res call({Object? id = null, Object? title = null, Object? prices = null}) {
+    return _then(
+      _ShippingOption(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        prices: null == prices
+            ? _self._prices
+            : prices // ignore: cast_nullable_to_non_nullable
+                  as List<LabeledPrice>,
+      ),
+    );
   }
 }

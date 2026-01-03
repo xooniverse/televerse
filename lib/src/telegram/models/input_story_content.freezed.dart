@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -19,8 +18,12 @@ InputStoryContent _$InputStoryContentFromJson(Map<String, dynamic> json) {
       return InputStoryContentVideo.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'type', 'InputStoryContent',
-          'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'type',
+        'InputStoryContent',
+        'Invalid union type "${json['type']}"!',
+      );
   }
 }
 
@@ -36,7 +39,9 @@ mixin _$InputStoryContent {
   @pragma('vm:prefer-inline')
   $InputStoryContentCopyWith<InputStoryContent> get copyWith =>
       _$InputStoryContentCopyWithImpl<InputStoryContent>(
-          this as InputStoryContent, _$identity);
+        this as InputStoryContent,
+        _$identity,
+      );
 
   /// Serializes this InputStoryContent to a JSON map.
   Map<String, dynamic> toJson();
@@ -50,8 +55,9 @@ mixin _$InputStoryContent {
 /// @nodoc
 abstract mixin class $InputStoryContentCopyWith<$Res> {
   factory $InputStoryContentCopyWith(
-          InputStoryContent value, $Res Function(InputStoryContent) _then) =
-      _$InputStoryContentCopyWithImpl;
+    InputStoryContent value,
+    $Res Function(InputStoryContent) _then,
+  ) = _$InputStoryContentCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'type') StoryContentType type});
 }
@@ -68,25 +74,112 @@ class _$InputStoryContentCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
+  $Res call({Object? type = null}) {
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as StoryContentType,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [InputStoryContent].
+extension InputStoryContentPatterns on InputStoryContent {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InputStoryContentPhoto value)? photo,
+    TResult Function(InputStoryContentVideo value)? video,
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as StoryContentType,
-    ));
+    final _that = this;
+    switch (_that) {
+      case InputStoryContentPhoto() when photo != null:
+        return photo(_that);
+      case InputStoryContentVideo() when video != null:
+        return video(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InputStoryContentPhoto value) photo,
+    required TResult Function(InputStoryContentVideo value) video,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case InputStoryContentPhoto():
+        return photo(_that);
+      case InputStoryContentVideo():
+        return video(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InputStoryContentPhoto value)? photo,
+    TResult? Function(InputStoryContentVideo value)? video,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case InputStoryContentPhoto() when photo != null:
+        return photo(_that);
+      case InputStoryContentVideo() when video != null:
+        return video(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class InputStoryContentPhoto extends InputStoryContent {
-  const InputStoryContentPhoto(
-      {@JsonKey(name: 'type') this.type = StoryContentType.photo,
-      @JsonKey(name: 'photo') @InputFileConverter() required this.photo})
-      : super._();
+  const InputStoryContentPhoto({
+    @JsonKey(name: 'type') this.type = StoryContentType.photo,
+    @JsonKey(name: 'photo') @InputFileConverter() required this.photo,
+  }) : super._();
   factory InputStoryContentPhoto.fromJson(Map<String, dynamic> json) =>
       _$InputStoryContentPhotoFromJson(json);
 
@@ -108,13 +201,13 @@ class InputStoryContentPhoto extends InputStoryContent {
   @pragma('vm:prefer-inline')
   $InputStoryContentPhotoCopyWith<InputStoryContentPhoto> get copyWith =>
       _$InputStoryContentPhotoCopyWithImpl<InputStoryContentPhoto>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputStoryContentPhotoToJson(
-      this,
-    );
+    return _$InputStoryContentPhotoToJson(this);
   }
 
   @override
@@ -126,14 +219,16 @@ class InputStoryContentPhoto extends InputStoryContent {
 /// @nodoc
 abstract mixin class $InputStoryContentPhotoCopyWith<$Res>
     implements $InputStoryContentCopyWith<$Res> {
-  factory $InputStoryContentPhotoCopyWith(InputStoryContentPhoto value,
-          $Res Function(InputStoryContentPhoto) _then) =
-      _$InputStoryContentPhotoCopyWithImpl;
+  factory $InputStoryContentPhotoCopyWith(
+    InputStoryContentPhoto value,
+    $Res Function(InputStoryContentPhoto) _then,
+  ) = _$InputStoryContentPhotoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') StoryContentType type,
-      @JsonKey(name: 'photo') @InputFileConverter() InputFile photo});
+  $Res call({
+    @JsonKey(name: 'type') StoryContentType type,
+    @JsonKey(name: 'photo') @InputFileConverter() InputFile photo,
+  });
 }
 
 /// @nodoc
@@ -148,33 +243,32 @@ class _$InputStoryContentPhotoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? photo = null,
-  }) {
-    return _then(InputStoryContentPhoto(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as StoryContentType,
-      photo: null == photo
-          ? _self.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-    ));
+  $Res call({Object? type = null, Object? photo = null}) {
+    return _then(
+      InputStoryContentPhoto(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as StoryContentType,
+        photo: null == photo
+            ? _self.photo
+            : photo // ignore: cast_nullable_to_non_nullable
+                  as InputFile,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class InputStoryContentVideo extends InputStoryContent {
-  const InputStoryContentVideo(
-      {@JsonKey(name: 'type') this.type = StoryContentType.video,
-      @JsonKey(name: 'video') @InputFileConverter() required this.video,
-      @JsonKey(name: 'duration') this.duration,
-      @JsonKey(name: 'cover_frame_timestamp') this.coverFrameTimestamp,
-      @JsonKey(name: 'is_animation') this.isAnimation})
-      : super._();
+  const InputStoryContentVideo({
+    @JsonKey(name: 'type') this.type = StoryContentType.video,
+    @JsonKey(name: 'video') @InputFileConverter() required this.video,
+    @JsonKey(name: 'duration') this.duration,
+    @JsonKey(name: 'cover_frame_timestamp') this.coverFrameTimestamp,
+    @JsonKey(name: 'is_animation') this.isAnimation,
+  }) : super._();
   factory InputStoryContentVideo.fromJson(Map<String, dynamic> json) =>
       _$InputStoryContentVideoFromJson(json);
 
@@ -210,13 +304,13 @@ class InputStoryContentVideo extends InputStoryContent {
   @pragma('vm:prefer-inline')
   $InputStoryContentVideoCopyWith<InputStoryContentVideo> get copyWith =>
       _$InputStoryContentVideoCopyWithImpl<InputStoryContentVideo>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputStoryContentVideoToJson(
-      this,
-    );
+    return _$InputStoryContentVideoToJson(this);
   }
 
   @override
@@ -228,17 +322,19 @@ class InputStoryContentVideo extends InputStoryContent {
 /// @nodoc
 abstract mixin class $InputStoryContentVideoCopyWith<$Res>
     implements $InputStoryContentCopyWith<$Res> {
-  factory $InputStoryContentVideoCopyWith(InputStoryContentVideo value,
-          $Res Function(InputStoryContentVideo) _then) =
-      _$InputStoryContentVideoCopyWithImpl;
+  factory $InputStoryContentVideoCopyWith(
+    InputStoryContentVideo value,
+    $Res Function(InputStoryContentVideo) _then,
+  ) = _$InputStoryContentVideoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') StoryContentType type,
-      @JsonKey(name: 'video') @InputFileConverter() InputFile video,
-      @JsonKey(name: 'duration') double? duration,
-      @JsonKey(name: 'cover_frame_timestamp') double? coverFrameTimestamp,
-      @JsonKey(name: 'is_animation') bool? isAnimation});
+  $Res call({
+    @JsonKey(name: 'type') StoryContentType type,
+    @JsonKey(name: 'video') @InputFileConverter() InputFile video,
+    @JsonKey(name: 'duration') double? duration,
+    @JsonKey(name: 'cover_frame_timestamp') double? coverFrameTimestamp,
+    @JsonKey(name: 'is_animation') bool? isAnimation,
+  });
 }
 
 /// @nodoc
@@ -260,27 +356,29 @@ class _$InputStoryContentVideoCopyWithImpl<$Res>
     Object? coverFrameTimestamp = freezed,
     Object? isAnimation = freezed,
   }) {
-    return _then(InputStoryContentVideo(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as StoryContentType,
-      video: null == video
-          ? _self.video
-          : video // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-      duration: freezed == duration
-          ? _self.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as double?,
-      coverFrameTimestamp: freezed == coverFrameTimestamp
-          ? _self.coverFrameTimestamp
-          : coverFrameTimestamp // ignore: cast_nullable_to_non_nullable
-              as double?,
-      isAnimation: freezed == isAnimation
-          ? _self.isAnimation
-          : isAnimation // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      InputStoryContentVideo(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as StoryContentType,
+        video: null == video
+            ? _self.video
+            : video // ignore: cast_nullable_to_non_nullable
+                  as InputFile,
+        duration: freezed == duration
+            ? _self.duration
+            : duration // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        coverFrameTimestamp: freezed == coverFrameTimestamp
+            ? _self.coverFrameTimestamp
+            : coverFrameTimestamp // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        isAnimation: freezed == isAnimation
+            ? _self.isAnimation
+            : isAnimation // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

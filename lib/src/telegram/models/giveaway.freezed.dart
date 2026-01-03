@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -78,17 +77,18 @@ abstract mixin class $GiveawayCopyWith<$Res> {
   factory $GiveawayCopyWith(Giveaway value, $Res Function(Giveaway) _then) =
       _$GiveawayCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'chats') List<Chat> chats,
-      @JsonKey(name: 'winners_selection_date') int winnersSelectionDate,
-      @JsonKey(name: 'winner_count') int winnerCount,
-      @JsonKey(name: 'only_new_members') bool? onlyNewMembers,
-      @JsonKey(name: 'has_public_winners') bool? hasPublicWinners,
-      @JsonKey(name: 'prize_description') String? prizeDescription,
-      @JsonKey(name: 'country_codes') List<String>? countryCodes,
-      @JsonKey(name: 'premium_subscription_month_count')
-      int? premiumSubscriptionMonthCount,
-      @JsonKey(name: 'prize_star_count') int? prizeStarCount});
+  $Res call({
+    @JsonKey(name: 'chats') List<Chat> chats,
+    @JsonKey(name: 'winners_selection_date') int winnersSelectionDate,
+    @JsonKey(name: 'winner_count') int winnerCount,
+    @JsonKey(name: 'only_new_members') bool? onlyNewMembers,
+    @JsonKey(name: 'has_public_winners') bool? hasPublicWinners,
+    @JsonKey(name: 'prize_description') String? prizeDescription,
+    @JsonKey(name: 'country_codes') List<String>? countryCodes,
+    @JsonKey(name: 'premium_subscription_month_count')
+    int? premiumSubscriptionMonthCount,
+    @JsonKey(name: 'prize_star_count') int? prizeStarCount,
+  });
 }
 
 /// @nodoc
@@ -113,64 +113,145 @@ class _$GiveawayCopyWithImpl<$Res> implements $GiveawayCopyWith<$Res> {
     Object? premiumSubscriptionMonthCount = freezed,
     Object? prizeStarCount = freezed,
   }) {
-    return _then(_self.copyWith(
-      chats: null == chats
-          ? _self.chats
-          : chats // ignore: cast_nullable_to_non_nullable
-              as List<Chat>,
-      winnersSelectionDate: null == winnersSelectionDate
-          ? _self.winnersSelectionDate
-          : winnersSelectionDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      winnerCount: null == winnerCount
-          ? _self.winnerCount
-          : winnerCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      onlyNewMembers: freezed == onlyNewMembers
-          ? _self.onlyNewMembers
-          : onlyNewMembers // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      hasPublicWinners: freezed == hasPublicWinners
-          ? _self.hasPublicWinners
-          : hasPublicWinners // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      prizeDescription: freezed == prizeDescription
-          ? _self.prizeDescription
-          : prizeDescription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      countryCodes: freezed == countryCodes
-          ? _self.countryCodes
-          : countryCodes // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      premiumSubscriptionMonthCount: freezed == premiumSubscriptionMonthCount
-          ? _self.premiumSubscriptionMonthCount
-          : premiumSubscriptionMonthCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      prizeStarCount: freezed == prizeStarCount
-          ? _self.prizeStarCount
-          : prizeStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        chats: null == chats
+            ? _self.chats
+            : chats // ignore: cast_nullable_to_non_nullable
+                  as List<Chat>,
+        winnersSelectionDate: null == winnersSelectionDate
+            ? _self.winnersSelectionDate
+            : winnersSelectionDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        winnerCount: null == winnerCount
+            ? _self.winnerCount
+            : winnerCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        onlyNewMembers: freezed == onlyNewMembers
+            ? _self.onlyNewMembers
+            : onlyNewMembers // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        hasPublicWinners: freezed == hasPublicWinners
+            ? _self.hasPublicWinners
+            : hasPublicWinners // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        prizeDescription: freezed == prizeDescription
+            ? _self.prizeDescription
+            : prizeDescription // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        countryCodes: freezed == countryCodes
+            ? _self.countryCodes
+            : countryCodes // ignore: cast_nullable_to_non_nullable
+                  as List<String>?,
+        premiumSubscriptionMonthCount: freezed == premiumSubscriptionMonthCount
+            ? _self.premiumSubscriptionMonthCount
+            : premiumSubscriptionMonthCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        prizeStarCount: freezed == prizeStarCount
+            ? _self.prizeStarCount
+            : prizeStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [Giveaway].
+extension GiveawayPatterns on Giveaway {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Giveaway value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Giveaway() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Giveaway value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Giveaway():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Giveaway value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Giveaway() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _Giveaway implements Giveaway {
-  const _Giveaway(
-      {@JsonKey(name: 'chats') required final List<Chat> chats,
-      @JsonKey(name: 'winners_selection_date')
-      required this.winnersSelectionDate,
-      @JsonKey(name: 'winner_count') required this.winnerCount,
-      @JsonKey(name: 'only_new_members') this.onlyNewMembers,
-      @JsonKey(name: 'has_public_winners') this.hasPublicWinners,
-      @JsonKey(name: 'prize_description') this.prizeDescription,
-      @JsonKey(name: 'country_codes') final List<String>? countryCodes,
-      @JsonKey(name: 'premium_subscription_month_count')
-      this.premiumSubscriptionMonthCount,
-      @JsonKey(name: 'prize_star_count') this.prizeStarCount})
-      : _chats = chats,
-        _countryCodes = countryCodes;
+  const _Giveaway({
+    @JsonKey(name: 'chats') required final List<Chat> chats,
+    @JsonKey(name: 'winners_selection_date') required this.winnersSelectionDate,
+    @JsonKey(name: 'winner_count') required this.winnerCount,
+    @JsonKey(name: 'only_new_members') this.onlyNewMembers,
+    @JsonKey(name: 'has_public_winners') this.hasPublicWinners,
+    @JsonKey(name: 'prize_description') this.prizeDescription,
+    @JsonKey(name: 'country_codes') final List<String>? countryCodes,
+    @JsonKey(name: 'premium_subscription_month_count')
+    this.premiumSubscriptionMonthCount,
+    @JsonKey(name: 'prize_star_count') this.prizeStarCount,
+  }) : _chats = chats,
+       _countryCodes = countryCodes;
   factory _Giveaway.fromJson(Map<String, dynamic> json) =>
       _$GiveawayFromJson(json);
 
@@ -254,9 +335,7 @@ class _Giveaway implements Giveaway {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$GiveawayToJson(
-      this,
-    );
+    return _$GiveawayToJson(this);
   }
 
   @override
@@ -272,17 +351,18 @@ abstract mixin class _$GiveawayCopyWith<$Res>
       __$GiveawayCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'chats') List<Chat> chats,
-      @JsonKey(name: 'winners_selection_date') int winnersSelectionDate,
-      @JsonKey(name: 'winner_count') int winnerCount,
-      @JsonKey(name: 'only_new_members') bool? onlyNewMembers,
-      @JsonKey(name: 'has_public_winners') bool? hasPublicWinners,
-      @JsonKey(name: 'prize_description') String? prizeDescription,
-      @JsonKey(name: 'country_codes') List<String>? countryCodes,
-      @JsonKey(name: 'premium_subscription_month_count')
-      int? premiumSubscriptionMonthCount,
-      @JsonKey(name: 'prize_star_count') int? prizeStarCount});
+  $Res call({
+    @JsonKey(name: 'chats') List<Chat> chats,
+    @JsonKey(name: 'winners_selection_date') int winnersSelectionDate,
+    @JsonKey(name: 'winner_count') int winnerCount,
+    @JsonKey(name: 'only_new_members') bool? onlyNewMembers,
+    @JsonKey(name: 'has_public_winners') bool? hasPublicWinners,
+    @JsonKey(name: 'prize_description') String? prizeDescription,
+    @JsonKey(name: 'country_codes') List<String>? countryCodes,
+    @JsonKey(name: 'premium_subscription_month_count')
+    int? premiumSubscriptionMonthCount,
+    @JsonKey(name: 'prize_star_count') int? prizeStarCount,
+  });
 }
 
 /// @nodoc
@@ -307,43 +387,45 @@ class __$GiveawayCopyWithImpl<$Res> implements _$GiveawayCopyWith<$Res> {
     Object? premiumSubscriptionMonthCount = freezed,
     Object? prizeStarCount = freezed,
   }) {
-    return _then(_Giveaway(
-      chats: null == chats
-          ? _self._chats
-          : chats // ignore: cast_nullable_to_non_nullable
-              as List<Chat>,
-      winnersSelectionDate: null == winnersSelectionDate
-          ? _self.winnersSelectionDate
-          : winnersSelectionDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      winnerCount: null == winnerCount
-          ? _self.winnerCount
-          : winnerCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      onlyNewMembers: freezed == onlyNewMembers
-          ? _self.onlyNewMembers
-          : onlyNewMembers // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      hasPublicWinners: freezed == hasPublicWinners
-          ? _self.hasPublicWinners
-          : hasPublicWinners // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      prizeDescription: freezed == prizeDescription
-          ? _self.prizeDescription
-          : prizeDescription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      countryCodes: freezed == countryCodes
-          ? _self._countryCodes
-          : countryCodes // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      premiumSubscriptionMonthCount: freezed == premiumSubscriptionMonthCount
-          ? _self.premiumSubscriptionMonthCount
-          : premiumSubscriptionMonthCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      prizeStarCount: freezed == prizeStarCount
-          ? _self.prizeStarCount
-          : prizeStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _Giveaway(
+        chats: null == chats
+            ? _self._chats
+            : chats // ignore: cast_nullable_to_non_nullable
+                  as List<Chat>,
+        winnersSelectionDate: null == winnersSelectionDate
+            ? _self.winnersSelectionDate
+            : winnersSelectionDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        winnerCount: null == winnerCount
+            ? _self.winnerCount
+            : winnerCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        onlyNewMembers: freezed == onlyNewMembers
+            ? _self.onlyNewMembers
+            : onlyNewMembers // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        hasPublicWinners: freezed == hasPublicWinners
+            ? _self.hasPublicWinners
+            : hasPublicWinners // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        prizeDescription: freezed == prizeDescription
+            ? _self.prizeDescription
+            : prizeDescription // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        countryCodes: freezed == countryCodes
+            ? _self._countryCodes
+            : countryCodes // ignore: cast_nullable_to_non_nullable
+                  as List<String>?,
+        premiumSubscriptionMonthCount: freezed == premiumSubscriptionMonthCount
+            ? _self.premiumSubscriptionMonthCount
+            : premiumSubscriptionMonthCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        prizeStarCount: freezed == prizeStarCount
+            ? _self.prizeStarCount
+            : prizeStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 }

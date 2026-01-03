@@ -20,13 +20,10 @@ Map<String, dynamic> _$UniqueGiftInfoToJson(_UniqueGiftInfo instance) =>
     <String, dynamic>{
       'gift': instance.gift,
       'origin': _$UniqueGiftOriginTypeEnumMap[instance.origin]!,
-      if (instance.lastResaleStarCount case final value?)
-        'last_resale_star_count': value,
-      if (instance.ownedGiftId case final value?) 'owned_gift_id': value,
-      if (instance.transferStarCount case final value?)
-        'transfer_star_count': value,
-      if (instance.nextTransferDate case final value?)
-        'next_transfer_date': value,
+      'last_resale_star_count': ?instance.lastResaleStarCount,
+      'owned_gift_id': ?instance.ownedGiftId,
+      'transfer_star_count': ?instance.transferStarCount,
+      'next_transfer_date': ?instance.nextTransferDate,
     };
 
 const _$UniqueGiftOriginTypeEnumMap = {

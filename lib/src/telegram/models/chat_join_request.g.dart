@@ -15,7 +15,8 @@ _ChatJoinRequest _$ChatJoinRequestFromJson(Map<String, dynamic> json) =>
       inviteLink: json['invite_link'] == null
           ? null
           : ChatInviteLink.fromJson(
-              json['invite_link'] as Map<String, dynamic>),
+              json['invite_link'] as Map<String, dynamic>,
+            ),
       userChatId: (json['user_chat_id'] as num).toInt(),
     );
 
@@ -24,7 +25,7 @@ Map<String, dynamic> _$ChatJoinRequestToJson(_ChatJoinRequest instance) =>
       'chat': instance.chat,
       'from': instance.from,
       'date': instance.date,
-      if (instance.bio case final value?) 'bio': value,
-      if (instance.inviteLink case final value?) 'invite_link': value,
+      'bio': ?instance.bio,
+      'invite_link': ?instance.inviteLink,
       'user_chat_id': instance.userChatId,
     };

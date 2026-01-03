@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -32,7 +31,9 @@ mixin _$BusinessIntro {
   @pragma('vm:prefer-inline')
   $BusinessIntroCopyWith<BusinessIntro> get copyWith =>
       _$BusinessIntroCopyWithImpl<BusinessIntro>(
-          this as BusinessIntro, _$identity);
+        this as BusinessIntro,
+        _$identity,
+      );
 
   /// Serializes this BusinessIntro to a JSON map.
   Map<String, dynamic> toJson();
@@ -46,13 +47,15 @@ mixin _$BusinessIntro {
 /// @nodoc
 abstract mixin class $BusinessIntroCopyWith<$Res> {
   factory $BusinessIntroCopyWith(
-          BusinessIntro value, $Res Function(BusinessIntro) _then) =
-      _$BusinessIntroCopyWithImpl;
+    BusinessIntro value,
+    $Res Function(BusinessIntro) _then,
+  ) = _$BusinessIntroCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'message') String? message,
-      @JsonKey(name: 'sticker') Sticker? sticker});
+  $Res call({
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'message') String? message,
+    @JsonKey(name: 'sticker') Sticker? sticker,
+  });
 
   $StickerCopyWith<$Res>? get sticker;
 }
@@ -74,20 +77,22 @@ class _$BusinessIntroCopyWithImpl<$Res>
     Object? message = freezed,
     Object? sticker = freezed,
   }) {
-    return _then(_self.copyWith(
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      message: freezed == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      sticker: freezed == sticker
-          ? _self.sticker
-          : sticker // ignore: cast_nullable_to_non_nullable
-              as Sticker?,
-    ));
+    return _then(
+      _self.copyWith(
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        message: freezed == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        sticker: freezed == sticker
+            ? _self.sticker
+            : sticker // ignore: cast_nullable_to_non_nullable
+                  as Sticker?,
+      ),
+    );
   }
 
   /// Create a copy of BusinessIntro
@@ -105,13 +110,94 @@ class _$BusinessIntroCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [BusinessIntro].
+extension BusinessIntroPatterns on BusinessIntro {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_BusinessIntro value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessIntro() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_BusinessIntro value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessIntro():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_BusinessIntro value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BusinessIntro() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _BusinessIntro implements BusinessIntro {
-  const _BusinessIntro(
-      {@JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'message') this.message,
-      @JsonKey(name: 'sticker') this.sticker});
+  const _BusinessIntro({
+    @JsonKey(name: 'title') this.title,
+    @JsonKey(name: 'message') this.message,
+    @JsonKey(name: 'sticker') this.sticker,
+  });
   factory _BusinessIntro.fromJson(Map<String, dynamic> json) =>
       _$BusinessIntroFromJson(json);
 
@@ -140,9 +226,7 @@ class _BusinessIntro implements BusinessIntro {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BusinessIntroToJson(
-      this,
-    );
+    return _$BusinessIntroToJson(this);
   }
 
   @override
@@ -155,14 +239,16 @@ class _BusinessIntro implements BusinessIntro {
 abstract mixin class _$BusinessIntroCopyWith<$Res>
     implements $BusinessIntroCopyWith<$Res> {
   factory _$BusinessIntroCopyWith(
-          _BusinessIntro value, $Res Function(_BusinessIntro) _then) =
-      __$BusinessIntroCopyWithImpl;
+    _BusinessIntro value,
+    $Res Function(_BusinessIntro) _then,
+  ) = __$BusinessIntroCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'message') String? message,
-      @JsonKey(name: 'sticker') Sticker? sticker});
+  $Res call({
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'message') String? message,
+    @JsonKey(name: 'sticker') Sticker? sticker,
+  });
 
   @override
   $StickerCopyWith<$Res>? get sticker;
@@ -185,20 +271,22 @@ class __$BusinessIntroCopyWithImpl<$Res>
     Object? message = freezed,
     Object? sticker = freezed,
   }) {
-    return _then(_BusinessIntro(
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      message: freezed == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      sticker: freezed == sticker
-          ? _self.sticker
-          : sticker // ignore: cast_nullable_to_non_nullable
-              as Sticker?,
-    ));
+    return _then(
+      _BusinessIntro(
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        message: freezed == message
+            ? _self.message
+            : message // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        sticker: freezed == sticker
+            ? _self.sticker
+            : sticker // ignore: cast_nullable_to_non_nullable
+                  as Sticker?,
+      ),
+    );
   }
 
   /// Create a copy of BusinessIntro

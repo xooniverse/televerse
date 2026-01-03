@@ -7,9 +7,9 @@ part of 'web_app_data.dart';
 // **************************************************************************
 
 _WebAppData _$WebAppDataFromJson(Map<String, dynamic> json) => _WebAppData(
-      data: json['data'] as String,
-      buttonText: json['button_text'] as String,
-    );
+  data: json['data'] as String,
+  buttonText: json['button_text'] as String,
+);
 
 Map<String, dynamic> _$WebAppDataToJson(_WebAppData instance) =>
     <String, dynamic>{

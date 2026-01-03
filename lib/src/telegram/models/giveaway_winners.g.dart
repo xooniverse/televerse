@@ -25,22 +25,19 @@ _GiveawayWinners _$GiveawayWinnersFromJson(Map<String, dynamic> json) =>
       prizeStarCount: (json['prize_star_count'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$GiveawayWinnersToJson(_GiveawayWinners instance) =>
-    <String, dynamic>{
-      'chat': instance.chat,
-      'giveaway_message_id': instance.giveawayMessageId,
-      'winners_selection_date': instance.winnersSelectionDate,
-      'winner_count': instance.winnerCount,
-      'winners': instance.winners,
-      if (instance.additionalChatCount case final value?)
-        'additional_chat_count': value,
-      if (instance.premiumSubscriptionMonthCount case final value?)
-        'premium_subscription_month_count': value,
-      if (instance.unclaimedPrizeCount case final value?)
-        'unclaimed_prize_count': value,
-      if (instance.onlyNewMembers case final value?) 'only_new_members': value,
-      if (instance.wasRefunded case final value?) 'was_refunded': value,
-      if (instance.prizeDescription case final value?)
-        'prize_description': value,
-      if (instance.prizeStarCount case final value?) 'prize_star_count': value,
-    };
+Map<String, dynamic> _$GiveawayWinnersToJson(
+  _GiveawayWinners instance,
+) => <String, dynamic>{
+  'chat': instance.chat,
+  'giveaway_message_id': instance.giveawayMessageId,
+  'winners_selection_date': instance.winnersSelectionDate,
+  'winner_count': instance.winnerCount,
+  'winners': instance.winners,
+  'additional_chat_count': ?instance.additionalChatCount,
+  'premium_subscription_month_count': ?instance.premiumSubscriptionMonthCount,
+  'unclaimed_prize_count': ?instance.unclaimedPrizeCount,
+  'only_new_members': ?instance.onlyNewMembers,
+  'was_refunded': ?instance.wasRefunded,
+  'prize_description': ?instance.prizeDescription,
+  'prize_star_count': ?instance.prizeStarCount,
+};

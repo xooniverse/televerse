@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -75,19 +74,21 @@ mixin _$WebhookInfo {
 /// @nodoc
 abstract mixin class $WebhookInfoCopyWith<$Res> {
   factory $WebhookInfoCopyWith(
-          WebhookInfo value, $Res Function(WebhookInfo) _then) =
-      _$WebhookInfoCopyWithImpl;
+    WebhookInfo value,
+    $Res Function(WebhookInfo) _then,
+  ) = _$WebhookInfoCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'url') String url,
-      @JsonKey(name: 'has_custom_certificate') bool hasCustomCertificate,
-      @JsonKey(name: 'pending_update_count') int pendingUpdateCount,
-      @JsonKey(name: 'ip_address') String? ipAddress,
-      @JsonKey(name: 'last_error_date') int? lastErrorDate,
-      @JsonKey(name: 'last_error_message') String? lastErrorMessage,
-      @JsonKey(name: 'last_error_network_date') int? lastErrorNetworkDate,
-      @JsonKey(name: 'max_connections') int? maxConnections,
-      @JsonKey(name: 'allowed_updates') List<String>? allowedUpdates});
+  $Res call({
+    @JsonKey(name: 'url') String url,
+    @JsonKey(name: 'has_custom_certificate') bool hasCustomCertificate,
+    @JsonKey(name: 'pending_update_count') int pendingUpdateCount,
+    @JsonKey(name: 'ip_address') String? ipAddress,
+    @JsonKey(name: 'last_error_date') int? lastErrorDate,
+    @JsonKey(name: 'last_error_message') String? lastErrorMessage,
+    @JsonKey(name: 'last_error_network_date') int? lastErrorNetworkDate,
+    @JsonKey(name: 'max_connections') int? maxConnections,
+    @JsonKey(name: 'allowed_updates') List<String>? allowedUpdates,
+  });
 }
 
 /// @nodoc
@@ -112,62 +113,143 @@ class _$WebhookInfoCopyWithImpl<$Res> implements $WebhookInfoCopyWith<$Res> {
     Object? maxConnections = freezed,
     Object? allowedUpdates = freezed,
   }) {
-    return _then(_self.copyWith(
-      url: null == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      hasCustomCertificate: null == hasCustomCertificate
-          ? _self.hasCustomCertificate
-          : hasCustomCertificate // ignore: cast_nullable_to_non_nullable
-              as bool,
-      pendingUpdateCount: null == pendingUpdateCount
-          ? _self.pendingUpdateCount
-          : pendingUpdateCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      ipAddress: freezed == ipAddress
-          ? _self.ipAddress
-          : ipAddress // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastErrorDate: freezed == lastErrorDate
-          ? _self.lastErrorDate
-          : lastErrorDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      lastErrorMessage: freezed == lastErrorMessage
-          ? _self.lastErrorMessage
-          : lastErrorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastErrorNetworkDate: freezed == lastErrorNetworkDate
-          ? _self.lastErrorNetworkDate
-          : lastErrorNetworkDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      maxConnections: freezed == maxConnections
-          ? _self.maxConnections
-          : maxConnections // ignore: cast_nullable_to_non_nullable
-              as int?,
-      allowedUpdates: freezed == allowedUpdates
-          ? _self.allowedUpdates
-          : allowedUpdates // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ));
+    return _then(
+      _self.copyWith(
+        url: null == url
+            ? _self.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String,
+        hasCustomCertificate: null == hasCustomCertificate
+            ? _self.hasCustomCertificate
+            : hasCustomCertificate // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        pendingUpdateCount: null == pendingUpdateCount
+            ? _self.pendingUpdateCount
+            : pendingUpdateCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        ipAddress: freezed == ipAddress
+            ? _self.ipAddress
+            : ipAddress // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        lastErrorDate: freezed == lastErrorDate
+            ? _self.lastErrorDate
+            : lastErrorDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        lastErrorMessage: freezed == lastErrorMessage
+            ? _self.lastErrorMessage
+            : lastErrorMessage // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        lastErrorNetworkDate: freezed == lastErrorNetworkDate
+            ? _self.lastErrorNetworkDate
+            : lastErrorNetworkDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        maxConnections: freezed == maxConnections
+            ? _self.maxConnections
+            : maxConnections // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        allowedUpdates: freezed == allowedUpdates
+            ? _self.allowedUpdates
+            : allowedUpdates // ignore: cast_nullable_to_non_nullable
+                  as List<String>?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [WebhookInfo].
+extension WebhookInfoPatterns on WebhookInfo {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_WebhookInfo value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _WebhookInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_WebhookInfo value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WebhookInfo():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_WebhookInfo value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _WebhookInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _WebhookInfo implements WebhookInfo {
-  const _WebhookInfo(
-      {@JsonKey(name: 'url') required this.url,
-      @JsonKey(name: 'has_custom_certificate')
-      required this.hasCustomCertificate,
-      @JsonKey(name: 'pending_update_count') required this.pendingUpdateCount,
-      @JsonKey(name: 'ip_address') this.ipAddress,
-      @JsonKey(name: 'last_error_date') this.lastErrorDate,
-      @JsonKey(name: 'last_error_message') this.lastErrorMessage,
-      @JsonKey(name: 'last_error_network_date') this.lastErrorNetworkDate,
-      @JsonKey(name: 'max_connections') this.maxConnections,
-      @JsonKey(name: 'allowed_updates') final List<String>? allowedUpdates})
-      : _allowedUpdates = allowedUpdates;
+  const _WebhookInfo({
+    @JsonKey(name: 'url') required this.url,
+    @JsonKey(name: 'has_custom_certificate') required this.hasCustomCertificate,
+    @JsonKey(name: 'pending_update_count') required this.pendingUpdateCount,
+    @JsonKey(name: 'ip_address') this.ipAddress,
+    @JsonKey(name: 'last_error_date') this.lastErrorDate,
+    @JsonKey(name: 'last_error_message') this.lastErrorMessage,
+    @JsonKey(name: 'last_error_network_date') this.lastErrorNetworkDate,
+    @JsonKey(name: 'max_connections') this.maxConnections,
+    @JsonKey(name: 'allowed_updates') final List<String>? allowedUpdates,
+  }) : _allowedUpdates = allowedUpdates;
   factory _WebhookInfo.fromJson(Map<String, dynamic> json) =>
       _$WebhookInfoFromJson(json);
 
@@ -242,9 +324,7 @@ class _WebhookInfo implements WebhookInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$WebhookInfoToJson(
-      this,
-    );
+    return _$WebhookInfoToJson(this);
   }
 
   @override
@@ -257,20 +337,22 @@ class _WebhookInfo implements WebhookInfo {
 abstract mixin class _$WebhookInfoCopyWith<$Res>
     implements $WebhookInfoCopyWith<$Res> {
   factory _$WebhookInfoCopyWith(
-          _WebhookInfo value, $Res Function(_WebhookInfo) _then) =
-      __$WebhookInfoCopyWithImpl;
+    _WebhookInfo value,
+    $Res Function(_WebhookInfo) _then,
+  ) = __$WebhookInfoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'url') String url,
-      @JsonKey(name: 'has_custom_certificate') bool hasCustomCertificate,
-      @JsonKey(name: 'pending_update_count') int pendingUpdateCount,
-      @JsonKey(name: 'ip_address') String? ipAddress,
-      @JsonKey(name: 'last_error_date') int? lastErrorDate,
-      @JsonKey(name: 'last_error_message') String? lastErrorMessage,
-      @JsonKey(name: 'last_error_network_date') int? lastErrorNetworkDate,
-      @JsonKey(name: 'max_connections') int? maxConnections,
-      @JsonKey(name: 'allowed_updates') List<String>? allowedUpdates});
+  $Res call({
+    @JsonKey(name: 'url') String url,
+    @JsonKey(name: 'has_custom_certificate') bool hasCustomCertificate,
+    @JsonKey(name: 'pending_update_count') int pendingUpdateCount,
+    @JsonKey(name: 'ip_address') String? ipAddress,
+    @JsonKey(name: 'last_error_date') int? lastErrorDate,
+    @JsonKey(name: 'last_error_message') String? lastErrorMessage,
+    @JsonKey(name: 'last_error_network_date') int? lastErrorNetworkDate,
+    @JsonKey(name: 'max_connections') int? maxConnections,
+    @JsonKey(name: 'allowed_updates') List<String>? allowedUpdates,
+  });
 }
 
 /// @nodoc
@@ -295,43 +377,45 @@ class __$WebhookInfoCopyWithImpl<$Res> implements _$WebhookInfoCopyWith<$Res> {
     Object? maxConnections = freezed,
     Object? allowedUpdates = freezed,
   }) {
-    return _then(_WebhookInfo(
-      url: null == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      hasCustomCertificate: null == hasCustomCertificate
-          ? _self.hasCustomCertificate
-          : hasCustomCertificate // ignore: cast_nullable_to_non_nullable
-              as bool,
-      pendingUpdateCount: null == pendingUpdateCount
-          ? _self.pendingUpdateCount
-          : pendingUpdateCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      ipAddress: freezed == ipAddress
-          ? _self.ipAddress
-          : ipAddress // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastErrorDate: freezed == lastErrorDate
-          ? _self.lastErrorDate
-          : lastErrorDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      lastErrorMessage: freezed == lastErrorMessage
-          ? _self.lastErrorMessage
-          : lastErrorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastErrorNetworkDate: freezed == lastErrorNetworkDate
-          ? _self.lastErrorNetworkDate
-          : lastErrorNetworkDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      maxConnections: freezed == maxConnections
-          ? _self.maxConnections
-          : maxConnections // ignore: cast_nullable_to_non_nullable
-              as int?,
-      allowedUpdates: freezed == allowedUpdates
-          ? _self._allowedUpdates
-          : allowedUpdates // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ));
+    return _then(
+      _WebhookInfo(
+        url: null == url
+            ? _self.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String,
+        hasCustomCertificate: null == hasCustomCertificate
+            ? _self.hasCustomCertificate
+            : hasCustomCertificate // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        pendingUpdateCount: null == pendingUpdateCount
+            ? _self.pendingUpdateCount
+            : pendingUpdateCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        ipAddress: freezed == ipAddress
+            ? _self.ipAddress
+            : ipAddress // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        lastErrorDate: freezed == lastErrorDate
+            ? _self.lastErrorDate
+            : lastErrorDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        lastErrorMessage: freezed == lastErrorMessage
+            ? _self.lastErrorMessage
+            : lastErrorMessage // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        lastErrorNetworkDate: freezed == lastErrorNetworkDate
+            ? _self.lastErrorNetworkDate
+            : lastErrorNetworkDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        maxConnections: freezed == maxConnections
+            ? _self.maxConnections
+            : maxConnections // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        allowedUpdates: freezed == allowedUpdates
+            ? _self._allowedUpdates
+            : allowedUpdates // ignore: cast_nullable_to_non_nullable
+                  as List<String>?,
+      ),
+    );
   }
 }

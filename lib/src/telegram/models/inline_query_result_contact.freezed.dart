@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -65,7 +64,9 @@ mixin _$InlineQueryResultContact {
   @pragma('vm:prefer-inline')
   $InlineQueryResultContactCopyWith<InlineQueryResultContact> get copyWith =>
       _$InlineQueryResultContactCopyWithImpl<InlineQueryResultContact>(
-          this as InlineQueryResultContact, _$identity);
+        this as InlineQueryResultContact,
+        _$identity,
+      );
 
   /// Serializes this InlineQueryResultContact to a JSON map.
   Map<String, dynamic> toJson();
@@ -78,24 +79,26 @@ mixin _$InlineQueryResultContact {
 
 /// @nodoc
 abstract mixin class $InlineQueryResultContactCopyWith<$Res> {
-  factory $InlineQueryResultContactCopyWith(InlineQueryResultContact value,
-          $Res Function(InlineQueryResultContact) _then) =
-      _$InlineQueryResultContactCopyWithImpl;
+  factory $InlineQueryResultContactCopyWith(
+    InlineQueryResultContact value,
+    $Res Function(InlineQueryResultContact) _then,
+  ) = _$InlineQueryResultContactCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'phone_number') String phoneNumber,
-      @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'vcard') String? vcard,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height') int? thumbnailHeight});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'phone_number') String phoneNumber,
+    @JsonKey(name: 'first_name') String firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'vcard') String? vcard,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
+    @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
+    @JsonKey(name: 'thumbnail_height') int? thumbnailHeight,
+  });
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -125,52 +128,54 @@ class _$InlineQueryResultContactCopyWithImpl<$Res>
     Object? thumbnailWidth = freezed,
     Object? thumbnailHeight = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      phoneNumber: null == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      vcard: freezed == vcard
-          ? _self.vcard
-          : vcard // ignore: cast_nullable_to_non_nullable
-              as String?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      thumbnailUrl: freezed == thumbnailUrl
-          ? _self.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailWidth: freezed == thumbnailWidth
-          ? _self.thumbnailWidth
-          : thumbnailWidth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnailHeight: freezed == thumbnailHeight
-          ? _self.thumbnailHeight
-          : thumbnailHeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        phoneNumber: null == phoneNumber
+            ? _self.phoneNumber
+            : phoneNumber // ignore: cast_nullable_to_non_nullable
+                  as String,
+        firstName: null == firstName
+            ? _self.firstName
+            : firstName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        lastName: freezed == lastName
+            ? _self.lastName
+            : lastName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        vcard: freezed == vcard
+            ? _self.vcard
+            : vcard // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        thumbnailUrl: freezed == thumbnailUrl
+            ? _self.thumbnailUrl
+            : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        thumbnailWidth: freezed == thumbnailWidth
+            ? _self.thumbnailWidth
+            : thumbnailWidth // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        thumbnailHeight: freezed == thumbnailHeight
+            ? _self.thumbnailHeight
+            : thumbnailHeight // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultContact
@@ -182,30 +187,112 @@ class _$InlineQueryResultContactCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [InlineQueryResultContact].
+extension InlineQueryResultContactPatterns on InlineQueryResultContact {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineQueryResultContact value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultContact() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineQueryResultContact value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultContact():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineQueryResultContact value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultContact() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _InlineQueryResultContact implements InlineQueryResultContact {
-  const _InlineQueryResultContact(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'type') this.type = InlineQueryResultType.contact,
-      @JsonKey(name: 'phone_number') required this.phoneNumber,
-      @JsonKey(name: 'first_name') required this.firstName,
-      @JsonKey(name: 'last_name') this.lastName,
-      @JsonKey(name: 'vcard') this.vcard,
-      @JsonKey(name: 'reply_markup') this.replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      this.inputMessageContent,
-      @JsonKey(name: 'thumbnail_url') this.thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') this.thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height') this.thumbnailHeight});
+  const _InlineQueryResultContact({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'type') this.type = InlineQueryResultType.contact,
+    @JsonKey(name: 'phone_number') required this.phoneNumber,
+    @JsonKey(name: 'first_name') required this.firstName,
+    @JsonKey(name: 'last_name') this.lastName,
+    @JsonKey(name: 'vcard') this.vcard,
+    @JsonKey(name: 'reply_markup') this.replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    this.inputMessageContent,
+    @JsonKey(name: 'thumbnail_url') this.thumbnailUrl,
+    @JsonKey(name: 'thumbnail_width') this.thumbnailWidth,
+    @JsonKey(name: 'thumbnail_height') this.thumbnailHeight,
+  });
   factory _InlineQueryResultContact.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultContactFromJson(json);
 
@@ -272,13 +359,13 @@ class _InlineQueryResultContact implements InlineQueryResultContact {
   @pragma('vm:prefer-inline')
   _$InlineQueryResultContactCopyWith<_InlineQueryResultContact> get copyWith =>
       __$InlineQueryResultContactCopyWithImpl<_InlineQueryResultContact>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineQueryResultContactToJson(
-      this,
-    );
+    return _$InlineQueryResultContactToJson(this);
   }
 
   @override
@@ -290,25 +377,27 @@ class _InlineQueryResultContact implements InlineQueryResultContact {
 /// @nodoc
 abstract mixin class _$InlineQueryResultContactCopyWith<$Res>
     implements $InlineQueryResultContactCopyWith<$Res> {
-  factory _$InlineQueryResultContactCopyWith(_InlineQueryResultContact value,
-          $Res Function(_InlineQueryResultContact) _then) =
-      __$InlineQueryResultContactCopyWithImpl;
+  factory _$InlineQueryResultContactCopyWith(
+    _InlineQueryResultContact value,
+    $Res Function(_InlineQueryResultContact) _then,
+  ) = __$InlineQueryResultContactCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'phone_number') String phoneNumber,
-      @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'vcard') String? vcard,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height') int? thumbnailHeight});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'phone_number') String phoneNumber,
+    @JsonKey(name: 'first_name') String firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'vcard') String? vcard,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
+    @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
+    @JsonKey(name: 'thumbnail_height') int? thumbnailHeight,
+  });
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -339,52 +428,54 @@ class __$InlineQueryResultContactCopyWithImpl<$Res>
     Object? thumbnailWidth = freezed,
     Object? thumbnailHeight = freezed,
   }) {
-    return _then(_InlineQueryResultContact(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      phoneNumber: null == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      vcard: freezed == vcard
-          ? _self.vcard
-          : vcard // ignore: cast_nullable_to_non_nullable
-              as String?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      thumbnailUrl: freezed == thumbnailUrl
-          ? _self.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailWidth: freezed == thumbnailWidth
-          ? _self.thumbnailWidth
-          : thumbnailWidth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnailHeight: freezed == thumbnailHeight
-          ? _self.thumbnailHeight
-          : thumbnailHeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _InlineQueryResultContact(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        phoneNumber: null == phoneNumber
+            ? _self.phoneNumber
+            : phoneNumber // ignore: cast_nullable_to_non_nullable
+                  as String,
+        firstName: null == firstName
+            ? _self.firstName
+            : firstName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        lastName: freezed == lastName
+            ? _self.lastName
+            : lastName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        vcard: freezed == vcard
+            ? _self.vcard
+            : vcard // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        thumbnailUrl: freezed == thumbnailUrl
+            ? _self.thumbnailUrl
+            : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        thumbnailWidth: freezed == thumbnailWidth
+            ? _self.thumbnailWidth
+            : thumbnailWidth // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        thumbnailHeight: freezed == thumbnailHeight
+            ? _self.thumbnailHeight
+            : thumbnailHeight // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultContact
@@ -396,8 +487,9 @@ class __$InlineQueryResultContactCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
   }

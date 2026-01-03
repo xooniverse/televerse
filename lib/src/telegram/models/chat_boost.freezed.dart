@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -51,11 +50,12 @@ abstract mixin class $ChatBoostCopyWith<$Res> {
   factory $ChatBoostCopyWith(ChatBoost value, $Res Function(ChatBoost) _then) =
       _$ChatBoostCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'boost_id') String boostId,
-      @JsonKey(name: 'add_date') int addDate,
-      @JsonKey(name: 'expiration_date') int expirationDate,
-      @JsonKey(name: 'source') ChatBoostSource source});
+  $Res call({
+    @JsonKey(name: 'boost_id') String boostId,
+    @JsonKey(name: 'add_date') int addDate,
+    @JsonKey(name: 'expiration_date') int expirationDate,
+    @JsonKey(name: 'source') ChatBoostSource source,
+  });
 
   $ChatBoostSourceCopyWith<$Res> get source;
 }
@@ -77,24 +77,26 @@ class _$ChatBoostCopyWithImpl<$Res> implements $ChatBoostCopyWith<$Res> {
     Object? expirationDate = null,
     Object? source = null,
   }) {
-    return _then(_self.copyWith(
-      boostId: null == boostId
-          ? _self.boostId
-          : boostId // ignore: cast_nullable_to_non_nullable
-              as String,
-      addDate: null == addDate
-          ? _self.addDate
-          : addDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      expirationDate: null == expirationDate
-          ? _self.expirationDate
-          : expirationDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as ChatBoostSource,
-    ));
+    return _then(
+      _self.copyWith(
+        boostId: null == boostId
+            ? _self.boostId
+            : boostId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        addDate: null == addDate
+            ? _self.addDate
+            : addDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        expirationDate: null == expirationDate
+            ? _self.expirationDate
+            : expirationDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as ChatBoostSource,
+      ),
+    );
   }
 
   /// Create a copy of ChatBoost
@@ -108,14 +110,95 @@ class _$ChatBoostCopyWithImpl<$Res> implements $ChatBoostCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [ChatBoost].
+extension ChatBoostPatterns on ChatBoost {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChatBoost value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChatBoost() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChatBoost value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatBoost():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChatBoost value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatBoost() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _ChatBoost implements ChatBoost {
-  const _ChatBoost(
-      {@JsonKey(name: 'boost_id') required this.boostId,
-      @JsonKey(name: 'add_date') required this.addDate,
-      @JsonKey(name: 'expiration_date') required this.expirationDate,
-      @JsonKey(name: 'source') required this.source});
+  const _ChatBoost({
+    @JsonKey(name: 'boost_id') required this.boostId,
+    @JsonKey(name: 'add_date') required this.addDate,
+    @JsonKey(name: 'expiration_date') required this.expirationDate,
+    @JsonKey(name: 'source') required this.source,
+  });
   factory _ChatBoost.fromJson(Map<String, dynamic> json) =>
       _$ChatBoostFromJson(json);
 
@@ -149,9 +232,7 @@ class _ChatBoost implements ChatBoost {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatBoostToJson(
-      this,
-    );
+    return _$ChatBoostToJson(this);
   }
 
   @override
@@ -164,15 +245,17 @@ class _ChatBoost implements ChatBoost {
 abstract mixin class _$ChatBoostCopyWith<$Res>
     implements $ChatBoostCopyWith<$Res> {
   factory _$ChatBoostCopyWith(
-          _ChatBoost value, $Res Function(_ChatBoost) _then) =
-      __$ChatBoostCopyWithImpl;
+    _ChatBoost value,
+    $Res Function(_ChatBoost) _then,
+  ) = __$ChatBoostCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'boost_id') String boostId,
-      @JsonKey(name: 'add_date') int addDate,
-      @JsonKey(name: 'expiration_date') int expirationDate,
-      @JsonKey(name: 'source') ChatBoostSource source});
+  $Res call({
+    @JsonKey(name: 'boost_id') String boostId,
+    @JsonKey(name: 'add_date') int addDate,
+    @JsonKey(name: 'expiration_date') int expirationDate,
+    @JsonKey(name: 'source') ChatBoostSource source,
+  });
 
   @override
   $ChatBoostSourceCopyWith<$Res> get source;
@@ -195,24 +278,26 @@ class __$ChatBoostCopyWithImpl<$Res> implements _$ChatBoostCopyWith<$Res> {
     Object? expirationDate = null,
     Object? source = null,
   }) {
-    return _then(_ChatBoost(
-      boostId: null == boostId
-          ? _self.boostId
-          : boostId // ignore: cast_nullable_to_non_nullable
-              as String,
-      addDate: null == addDate
-          ? _self.addDate
-          : addDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      expirationDate: null == expirationDate
-          ? _self.expirationDate
-          : expirationDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as ChatBoostSource,
-    ));
+    return _then(
+      _ChatBoost(
+        boostId: null == boostId
+            ? _self.boostId
+            : boostId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        addDate: null == addDate
+            ? _self.addDate
+            : addDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        expirationDate: null == expirationDate
+            ? _self.expirationDate
+            : expirationDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as ChatBoostSource,
+      ),
+    );
   }
 
   /// Create a copy of ChatBoost

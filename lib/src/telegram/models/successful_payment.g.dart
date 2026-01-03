@@ -26,12 +26,10 @@ Map<String, dynamic> _$SuccessfulPaymentToJson(_SuccessfulPayment instance) =>
       'currency': instance.currency,
       'total_amount': instance.totalAmount,
       'invoice_payload': instance.invoicePayload,
-      if (instance.shippingOptionId case final value?)
-        'shipping_option_id': value,
-      if (instance.orderInfo case final value?) 'order_info': value,
+      'shipping_option_id': ?instance.shippingOptionId,
+      'order_info': ?instance.orderInfo,
       'telegram_payment_charge_id': instance.telegramPaymentChargeId,
       'provider_payment_charge_id': instance.providerPaymentChargeId,
-      if (instance.isRecurring case final value?) 'is_recurring': value,
-      if (instance.isFirstRecurring case final value?)
-        'is_first_recurring': value,
+      'is_recurring': ?instance.isRecurring,
+      'is_first_recurring': ?instance.isFirstRecurring,
     };

@@ -24,10 +24,10 @@ Map<String, dynamic> _$MessageEntityToJson(_MessageEntity instance) =>
       'type': _$MessageEntityTypeEnumMap[instance.type]!,
       'offset': instance.offset,
       'length': instance.length,
-      if (instance.url case final value?) 'url': value,
-      if (instance.user case final value?) 'user': value,
-      if (instance.language case final value?) 'language': value,
-      if (instance.customEmojiId case final value?) 'custom_emoji_id': value,
+      'url': ?instance.url,
+      'user': ?instance.user,
+      'language': ?instance.language,
+      'custom_emoji_id': ?instance.customEmojiId,
     };
 
 const _$MessageEntityTypeEnumMap = {

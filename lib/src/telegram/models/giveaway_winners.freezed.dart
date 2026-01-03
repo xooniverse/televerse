@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -74,7 +73,9 @@ mixin _$GiveawayWinners {
   @pragma('vm:prefer-inline')
   $GiveawayWinnersCopyWith<GiveawayWinners> get copyWith =>
       _$GiveawayWinnersCopyWithImpl<GiveawayWinners>(
-          this as GiveawayWinners, _$identity);
+        this as GiveawayWinners,
+        _$identity,
+      );
 
   /// Serializes this GiveawayWinners to a JSON map.
   Map<String, dynamic> toJson();
@@ -88,23 +89,25 @@ mixin _$GiveawayWinners {
 /// @nodoc
 abstract mixin class $GiveawayWinnersCopyWith<$Res> {
   factory $GiveawayWinnersCopyWith(
-          GiveawayWinners value, $Res Function(GiveawayWinners) _then) =
-      _$GiveawayWinnersCopyWithImpl;
+    GiveawayWinners value,
+    $Res Function(GiveawayWinners) _then,
+  ) = _$GiveawayWinnersCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'giveaway_message_id') int giveawayMessageId,
-      @JsonKey(name: 'winners_selection_date') int winnersSelectionDate,
-      @JsonKey(name: 'winner_count') int winnerCount,
-      @JsonKey(name: 'winners') List<User> winners,
-      @JsonKey(name: 'additional_chat_count') int? additionalChatCount,
-      @JsonKey(name: 'premium_subscription_month_count')
-      int? premiumSubscriptionMonthCount,
-      @JsonKey(name: 'unclaimed_prize_count') int? unclaimedPrizeCount,
-      @JsonKey(name: 'only_new_members') bool? onlyNewMembers,
-      @JsonKey(name: 'was_refunded') bool? wasRefunded,
-      @JsonKey(name: 'prize_description') String? prizeDescription,
-      @JsonKey(name: 'prize_star_count') int? prizeStarCount});
+  $Res call({
+    @JsonKey(name: 'chat') Chat chat,
+    @JsonKey(name: 'giveaway_message_id') int giveawayMessageId,
+    @JsonKey(name: 'winners_selection_date') int winnersSelectionDate,
+    @JsonKey(name: 'winner_count') int winnerCount,
+    @JsonKey(name: 'winners') List<User> winners,
+    @JsonKey(name: 'additional_chat_count') int? additionalChatCount,
+    @JsonKey(name: 'premium_subscription_month_count')
+    int? premiumSubscriptionMonthCount,
+    @JsonKey(name: 'unclaimed_prize_count') int? unclaimedPrizeCount,
+    @JsonKey(name: 'only_new_members') bool? onlyNewMembers,
+    @JsonKey(name: 'was_refunded') bool? wasRefunded,
+    @JsonKey(name: 'prize_description') String? prizeDescription,
+    @JsonKey(name: 'prize_star_count') int? prizeStarCount,
+  });
 
   $ChatCopyWith<$Res> get chat;
 }
@@ -135,56 +138,58 @@ class _$GiveawayWinnersCopyWithImpl<$Res>
     Object? prizeDescription = freezed,
     Object? prizeStarCount = freezed,
   }) {
-    return _then(_self.copyWith(
-      chat: null == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      giveawayMessageId: null == giveawayMessageId
-          ? _self.giveawayMessageId
-          : giveawayMessageId // ignore: cast_nullable_to_non_nullable
-              as int,
-      winnersSelectionDate: null == winnersSelectionDate
-          ? _self.winnersSelectionDate
-          : winnersSelectionDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      winnerCount: null == winnerCount
-          ? _self.winnerCount
-          : winnerCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      winners: null == winners
-          ? _self.winners
-          : winners // ignore: cast_nullable_to_non_nullable
-              as List<User>,
-      additionalChatCount: freezed == additionalChatCount
-          ? _self.additionalChatCount
-          : additionalChatCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      premiumSubscriptionMonthCount: freezed == premiumSubscriptionMonthCount
-          ? _self.premiumSubscriptionMonthCount
-          : premiumSubscriptionMonthCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      unclaimedPrizeCount: freezed == unclaimedPrizeCount
-          ? _self.unclaimedPrizeCount
-          : unclaimedPrizeCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      onlyNewMembers: freezed == onlyNewMembers
-          ? _self.onlyNewMembers
-          : onlyNewMembers // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      wasRefunded: freezed == wasRefunded
-          ? _self.wasRefunded
-          : wasRefunded // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      prizeDescription: freezed == prizeDescription
-          ? _self.prizeDescription
-          : prizeDescription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      prizeStarCount: freezed == prizeStarCount
-          ? _self.prizeStarCount
-          : prizeStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        chat: null == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        giveawayMessageId: null == giveawayMessageId
+            ? _self.giveawayMessageId
+            : giveawayMessageId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        winnersSelectionDate: null == winnersSelectionDate
+            ? _self.winnersSelectionDate
+            : winnersSelectionDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        winnerCount: null == winnerCount
+            ? _self.winnerCount
+            : winnerCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        winners: null == winners
+            ? _self.winners
+            : winners // ignore: cast_nullable_to_non_nullable
+                  as List<User>,
+        additionalChatCount: freezed == additionalChatCount
+            ? _self.additionalChatCount
+            : additionalChatCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        premiumSubscriptionMonthCount: freezed == premiumSubscriptionMonthCount
+            ? _self.premiumSubscriptionMonthCount
+            : premiumSubscriptionMonthCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        unclaimedPrizeCount: freezed == unclaimedPrizeCount
+            ? _self.unclaimedPrizeCount
+            : unclaimedPrizeCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        onlyNewMembers: freezed == onlyNewMembers
+            ? _self.onlyNewMembers
+            : onlyNewMembers // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        wasRefunded: freezed == wasRefunded
+            ? _self.wasRefunded
+            : wasRefunded // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        prizeDescription: freezed == prizeDescription
+            ? _self.prizeDescription
+            : prizeDescription // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        prizeStarCount: freezed == prizeStarCount
+            ? _self.prizeStarCount
+            : prizeStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of GiveawayWinners
@@ -198,25 +203,104 @@ class _$GiveawayWinnersCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [GiveawayWinners].
+extension GiveawayWinnersPatterns on GiveawayWinners {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_GiveawayWinners value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _GiveawayWinners() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_GiveawayWinners value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GiveawayWinners():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_GiveawayWinners value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GiveawayWinners() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _GiveawayWinners implements GiveawayWinners {
-  const _GiveawayWinners(
-      {@JsonKey(name: 'chat') required this.chat,
-      @JsonKey(name: 'giveaway_message_id') required this.giveawayMessageId,
-      @JsonKey(name: 'winners_selection_date')
-      required this.winnersSelectionDate,
-      @JsonKey(name: 'winner_count') required this.winnerCount,
-      @JsonKey(name: 'winners') required final List<User> winners,
-      @JsonKey(name: 'additional_chat_count') this.additionalChatCount,
-      @JsonKey(name: 'premium_subscription_month_count')
-      this.premiumSubscriptionMonthCount,
-      @JsonKey(name: 'unclaimed_prize_count') this.unclaimedPrizeCount,
-      @JsonKey(name: 'only_new_members') this.onlyNewMembers,
-      @JsonKey(name: 'was_refunded') this.wasRefunded,
-      @JsonKey(name: 'prize_description') this.prizeDescription,
-      @JsonKey(name: 'prize_star_count') this.prizeStarCount})
-      : _winners = winners;
+  const _GiveawayWinners({
+    @JsonKey(name: 'chat') required this.chat,
+    @JsonKey(name: 'giveaway_message_id') required this.giveawayMessageId,
+    @JsonKey(name: 'winners_selection_date') required this.winnersSelectionDate,
+    @JsonKey(name: 'winner_count') required this.winnerCount,
+    @JsonKey(name: 'winners') required final List<User> winners,
+    @JsonKey(name: 'additional_chat_count') this.additionalChatCount,
+    @JsonKey(name: 'premium_subscription_month_count')
+    this.premiumSubscriptionMonthCount,
+    @JsonKey(name: 'unclaimed_prize_count') this.unclaimedPrizeCount,
+    @JsonKey(name: 'only_new_members') this.onlyNewMembers,
+    @JsonKey(name: 'was_refunded') this.wasRefunded,
+    @JsonKey(name: 'prize_description') this.prizeDescription,
+    @JsonKey(name: 'prize_star_count') this.prizeStarCount,
+  }) : _winners = winners;
   factory _GiveawayWinners.fromJson(Map<String, dynamic> json) =>
       _$GiveawayWinnersFromJson(json);
 
@@ -303,9 +387,7 @@ class _GiveawayWinners implements GiveawayWinners {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$GiveawayWinnersToJson(
-      this,
-    );
+    return _$GiveawayWinnersToJson(this);
   }
 
   @override
@@ -318,24 +400,26 @@ class _GiveawayWinners implements GiveawayWinners {
 abstract mixin class _$GiveawayWinnersCopyWith<$Res>
     implements $GiveawayWinnersCopyWith<$Res> {
   factory _$GiveawayWinnersCopyWith(
-          _GiveawayWinners value, $Res Function(_GiveawayWinners) _then) =
-      __$GiveawayWinnersCopyWithImpl;
+    _GiveawayWinners value,
+    $Res Function(_GiveawayWinners) _then,
+  ) = __$GiveawayWinnersCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'giveaway_message_id') int giveawayMessageId,
-      @JsonKey(name: 'winners_selection_date') int winnersSelectionDate,
-      @JsonKey(name: 'winner_count') int winnerCount,
-      @JsonKey(name: 'winners') List<User> winners,
-      @JsonKey(name: 'additional_chat_count') int? additionalChatCount,
-      @JsonKey(name: 'premium_subscription_month_count')
-      int? premiumSubscriptionMonthCount,
-      @JsonKey(name: 'unclaimed_prize_count') int? unclaimedPrizeCount,
-      @JsonKey(name: 'only_new_members') bool? onlyNewMembers,
-      @JsonKey(name: 'was_refunded') bool? wasRefunded,
-      @JsonKey(name: 'prize_description') String? prizeDescription,
-      @JsonKey(name: 'prize_star_count') int? prizeStarCount});
+  $Res call({
+    @JsonKey(name: 'chat') Chat chat,
+    @JsonKey(name: 'giveaway_message_id') int giveawayMessageId,
+    @JsonKey(name: 'winners_selection_date') int winnersSelectionDate,
+    @JsonKey(name: 'winner_count') int winnerCount,
+    @JsonKey(name: 'winners') List<User> winners,
+    @JsonKey(name: 'additional_chat_count') int? additionalChatCount,
+    @JsonKey(name: 'premium_subscription_month_count')
+    int? premiumSubscriptionMonthCount,
+    @JsonKey(name: 'unclaimed_prize_count') int? unclaimedPrizeCount,
+    @JsonKey(name: 'only_new_members') bool? onlyNewMembers,
+    @JsonKey(name: 'was_refunded') bool? wasRefunded,
+    @JsonKey(name: 'prize_description') String? prizeDescription,
+    @JsonKey(name: 'prize_star_count') int? prizeStarCount,
+  });
 
   @override
   $ChatCopyWith<$Res> get chat;
@@ -367,56 +451,58 @@ class __$GiveawayWinnersCopyWithImpl<$Res>
     Object? prizeDescription = freezed,
     Object? prizeStarCount = freezed,
   }) {
-    return _then(_GiveawayWinners(
-      chat: null == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      giveawayMessageId: null == giveawayMessageId
-          ? _self.giveawayMessageId
-          : giveawayMessageId // ignore: cast_nullable_to_non_nullable
-              as int,
-      winnersSelectionDate: null == winnersSelectionDate
-          ? _self.winnersSelectionDate
-          : winnersSelectionDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      winnerCount: null == winnerCount
-          ? _self.winnerCount
-          : winnerCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      winners: null == winners
-          ? _self._winners
-          : winners // ignore: cast_nullable_to_non_nullable
-              as List<User>,
-      additionalChatCount: freezed == additionalChatCount
-          ? _self.additionalChatCount
-          : additionalChatCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      premiumSubscriptionMonthCount: freezed == premiumSubscriptionMonthCount
-          ? _self.premiumSubscriptionMonthCount
-          : premiumSubscriptionMonthCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      unclaimedPrizeCount: freezed == unclaimedPrizeCount
-          ? _self.unclaimedPrizeCount
-          : unclaimedPrizeCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      onlyNewMembers: freezed == onlyNewMembers
-          ? _self.onlyNewMembers
-          : onlyNewMembers // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      wasRefunded: freezed == wasRefunded
-          ? _self.wasRefunded
-          : wasRefunded // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      prizeDescription: freezed == prizeDescription
-          ? _self.prizeDescription
-          : prizeDescription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      prizeStarCount: freezed == prizeStarCount
-          ? _self.prizeStarCount
-          : prizeStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _GiveawayWinners(
+        chat: null == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        giveawayMessageId: null == giveawayMessageId
+            ? _self.giveawayMessageId
+            : giveawayMessageId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        winnersSelectionDate: null == winnersSelectionDate
+            ? _self.winnersSelectionDate
+            : winnersSelectionDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        winnerCount: null == winnerCount
+            ? _self.winnerCount
+            : winnerCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        winners: null == winners
+            ? _self._winners
+            : winners // ignore: cast_nullable_to_non_nullable
+                  as List<User>,
+        additionalChatCount: freezed == additionalChatCount
+            ? _self.additionalChatCount
+            : additionalChatCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        premiumSubscriptionMonthCount: freezed == premiumSubscriptionMonthCount
+            ? _self.premiumSubscriptionMonthCount
+            : premiumSubscriptionMonthCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        unclaimedPrizeCount: freezed == unclaimedPrizeCount
+            ? _self.unclaimedPrizeCount
+            : unclaimedPrizeCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        onlyNewMembers: freezed == onlyNewMembers
+            ? _self.onlyNewMembers
+            : onlyNewMembers // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        wasRefunded: freezed == wasRefunded
+            ? _self.wasRefunded
+            : wasRefunded // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        prizeDescription: freezed == prizeDescription
+            ? _self.prizeDescription
+            : prizeDescription // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        prizeStarCount: freezed == prizeStarCount
+            ? _self.prizeStarCount
+            : prizeStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of GiveawayWinners

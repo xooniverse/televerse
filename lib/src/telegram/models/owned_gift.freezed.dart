@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -20,7 +19,11 @@ OwnedGift _$OwnedGiftFromJson(Map<String, dynamic> json) {
 
     default:
       throw CheckedFromJsonException(
-          json, 'type', 'OwnedGift', 'Invalid union type "${json['type']}"!');
+        json,
+        'type',
+        'OwnedGift',
+        'Invalid union type "${json['type']}"!',
+      );
   }
 }
 
@@ -73,12 +76,13 @@ abstract mixin class $OwnedGiftCopyWith<$Res> {
   factory $OwnedGiftCopyWith(OwnedGift value, $Res Function(OwnedGift) _then) =
       _$OwnedGiftCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') OwnedGiftType type,
-      @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
-      @JsonKey(name: 'sender_user') User? senderUser,
-      @JsonKey(name: 'send_date') int sendDate,
-      @JsonKey(name: 'is_saved') bool? isSaved});
+  $Res call({
+    @JsonKey(name: 'type') OwnedGiftType type,
+    @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
+    @JsonKey(name: 'sender_user') User? senderUser,
+    @JsonKey(name: 'send_date') int sendDate,
+    @JsonKey(name: 'is_saved') bool? isSaved,
+  });
 
   $UserCopyWith<$Res>? get senderUser;
 }
@@ -101,28 +105,30 @@ class _$OwnedGiftCopyWithImpl<$Res> implements $OwnedGiftCopyWith<$Res> {
     Object? sendDate = null,
     Object? isSaved = freezed,
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as OwnedGiftType,
-      ownedGiftId: freezed == ownedGiftId
-          ? _self.ownedGiftId
-          : ownedGiftId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      senderUser: freezed == senderUser
-          ? _self.senderUser
-          : senderUser // ignore: cast_nullable_to_non_nullable
-              as User?,
-      sendDate: null == sendDate
-          ? _self.sendDate
-          : sendDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      isSaved: freezed == isSaved
-          ? _self.isSaved
-          : isSaved // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as OwnedGiftType,
+        ownedGiftId: freezed == ownedGiftId
+            ? _self.ownedGiftId
+            : ownedGiftId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        senderUser: freezed == senderUser
+            ? _self.senderUser
+            : senderUser // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        sendDate: null == sendDate
+            ? _self.sendDate
+            : sendDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isSaved: freezed == isSaved
+            ? _self.isSaved
+            : isSaved // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of OwnedGift
@@ -140,25 +146,111 @@ class _$OwnedGiftCopyWithImpl<$Res> implements $OwnedGiftCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [OwnedGift].
+extension OwnedGiftPatterns on OwnedGift {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OwnedGiftRegular value)? regular,
+    TResult Function(OwnedGiftUnique value)? unique,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case OwnedGiftRegular() when regular != null:
+        return regular(_that);
+      case OwnedGiftUnique() when unique != null:
+        return unique(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OwnedGiftRegular value) regular,
+    required TResult Function(OwnedGiftUnique value) unique,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case OwnedGiftRegular():
+        return regular(_that);
+      case OwnedGiftUnique():
+        return unique(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(OwnedGiftRegular value)? regular,
+    TResult? Function(OwnedGiftUnique value)? unique,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case OwnedGiftRegular() when regular != null:
+        return regular(_that);
+      case OwnedGiftUnique() when unique != null:
+        return unique(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class OwnedGiftRegular implements OwnedGift {
-  const OwnedGiftRegular(
-      {@JsonKey(name: 'type') this.type = OwnedGiftType.regular,
-      @JsonKey(name: 'gift') required this.gift,
-      @JsonKey(name: 'owned_gift_id') this.ownedGiftId,
-      @JsonKey(name: 'sender_user') this.senderUser,
-      @JsonKey(name: 'send_date') required this.sendDate,
-      @JsonKey(name: 'text') this.text,
-      @JsonKey(name: 'entities') final List<MessageEntity>? entities,
-      @JsonKey(name: 'is_private') this.isPrivate,
-      @JsonKey(name: 'is_saved') this.isSaved,
-      @JsonKey(name: 'can_be_upgraded') this.canBeUpgraded,
-      @JsonKey(name: 'was_refunded') this.wasRefunded,
-      @JsonKey(name: 'convert_star_count') this.convertStarCount,
-      @JsonKey(name: 'prepaid_upgrade_star_count')
-      this.prepaidUpgradeStarCount})
-      : _entities = entities;
+  const OwnedGiftRegular({
+    @JsonKey(name: 'type') this.type = OwnedGiftType.regular,
+    @JsonKey(name: 'gift') required this.gift,
+    @JsonKey(name: 'owned_gift_id') this.ownedGiftId,
+    @JsonKey(name: 'sender_user') this.senderUser,
+    @JsonKey(name: 'send_date') required this.sendDate,
+    @JsonKey(name: 'text') this.text,
+    @JsonKey(name: 'entities') final List<MessageEntity>? entities,
+    @JsonKey(name: 'is_private') this.isPrivate,
+    @JsonKey(name: 'is_saved') this.isSaved,
+    @JsonKey(name: 'can_be_upgraded') this.canBeUpgraded,
+    @JsonKey(name: 'was_refunded') this.wasRefunded,
+    @JsonKey(name: 'convert_star_count') this.convertStarCount,
+    @JsonKey(name: 'prepaid_upgrade_star_count') this.prepaidUpgradeStarCount,
+  }) : _entities = entities;
   factory OwnedGiftRegular.fromJson(Map<String, dynamic> json) =>
       _$OwnedGiftRegularFromJson(json);
 
@@ -245,9 +337,7 @@ class OwnedGiftRegular implements OwnedGift {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$OwnedGiftRegularToJson(
-      this,
-    );
+    return _$OwnedGiftRegularToJson(this);
   }
 
   @override
@@ -260,25 +350,26 @@ class OwnedGiftRegular implements OwnedGift {
 abstract mixin class $OwnedGiftRegularCopyWith<$Res>
     implements $OwnedGiftCopyWith<$Res> {
   factory $OwnedGiftRegularCopyWith(
-          OwnedGiftRegular value, $Res Function(OwnedGiftRegular) _then) =
-      _$OwnedGiftRegularCopyWithImpl;
+    OwnedGiftRegular value,
+    $Res Function(OwnedGiftRegular) _then,
+  ) = _$OwnedGiftRegularCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') OwnedGiftType type,
-      @JsonKey(name: 'gift') Gift gift,
-      @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
-      @JsonKey(name: 'sender_user') User? senderUser,
-      @JsonKey(name: 'send_date') int sendDate,
-      @JsonKey(name: 'text') String? text,
-      @JsonKey(name: 'entities') List<MessageEntity>? entities,
-      @JsonKey(name: 'is_private') bool? isPrivate,
-      @JsonKey(name: 'is_saved') bool? isSaved,
-      @JsonKey(name: 'can_be_upgraded') bool? canBeUpgraded,
-      @JsonKey(name: 'was_refunded') bool? wasRefunded,
-      @JsonKey(name: 'convert_star_count') int? convertStarCount,
-      @JsonKey(name: 'prepaid_upgrade_star_count')
-      int? prepaidUpgradeStarCount});
+  $Res call({
+    @JsonKey(name: 'type') OwnedGiftType type,
+    @JsonKey(name: 'gift') Gift gift,
+    @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
+    @JsonKey(name: 'sender_user') User? senderUser,
+    @JsonKey(name: 'send_date') int sendDate,
+    @JsonKey(name: 'text') String? text,
+    @JsonKey(name: 'entities') List<MessageEntity>? entities,
+    @JsonKey(name: 'is_private') bool? isPrivate,
+    @JsonKey(name: 'is_saved') bool? isSaved,
+    @JsonKey(name: 'can_be_upgraded') bool? canBeUpgraded,
+    @JsonKey(name: 'was_refunded') bool? wasRefunded,
+    @JsonKey(name: 'convert_star_count') int? convertStarCount,
+    @JsonKey(name: 'prepaid_upgrade_star_count') int? prepaidUpgradeStarCount,
+  });
 
   $GiftCopyWith<$Res> get gift;
   @override
@@ -312,60 +403,62 @@ class _$OwnedGiftRegularCopyWithImpl<$Res>
     Object? convertStarCount = freezed,
     Object? prepaidUpgradeStarCount = freezed,
   }) {
-    return _then(OwnedGiftRegular(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as OwnedGiftType,
-      gift: null == gift
-          ? _self.gift
-          : gift // ignore: cast_nullable_to_non_nullable
-              as Gift,
-      ownedGiftId: freezed == ownedGiftId
-          ? _self.ownedGiftId
-          : ownedGiftId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      senderUser: freezed == senderUser
-          ? _self.senderUser
-          : senderUser // ignore: cast_nullable_to_non_nullable
-              as User?,
-      sendDate: null == sendDate
-          ? _self.sendDate
-          : sendDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      text: freezed == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String?,
-      entities: freezed == entities
-          ? _self._entities
-          : entities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      isPrivate: freezed == isPrivate
-          ? _self.isPrivate
-          : isPrivate // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isSaved: freezed == isSaved
-          ? _self.isSaved
-          : isSaved // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canBeUpgraded: freezed == canBeUpgraded
-          ? _self.canBeUpgraded
-          : canBeUpgraded // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      wasRefunded: freezed == wasRefunded
-          ? _self.wasRefunded
-          : wasRefunded // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      convertStarCount: freezed == convertStarCount
-          ? _self.convertStarCount
-          : convertStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      prepaidUpgradeStarCount: freezed == prepaidUpgradeStarCount
-          ? _self.prepaidUpgradeStarCount
-          : prepaidUpgradeStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      OwnedGiftRegular(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as OwnedGiftType,
+        gift: null == gift
+            ? _self.gift
+            : gift // ignore: cast_nullable_to_non_nullable
+                  as Gift,
+        ownedGiftId: freezed == ownedGiftId
+            ? _self.ownedGiftId
+            : ownedGiftId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        senderUser: freezed == senderUser
+            ? _self.senderUser
+            : senderUser // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        sendDate: null == sendDate
+            ? _self.sendDate
+            : sendDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        text: freezed == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        entities: freezed == entities
+            ? _self._entities
+            : entities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        isPrivate: freezed == isPrivate
+            ? _self.isPrivate
+            : isPrivate // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isSaved: freezed == isSaved
+            ? _self.isSaved
+            : isSaved // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canBeUpgraded: freezed == canBeUpgraded
+            ? _self.canBeUpgraded
+            : canBeUpgraded // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        wasRefunded: freezed == wasRefunded
+            ? _self.wasRefunded
+            : wasRefunded // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        convertStarCount: freezed == convertStarCount
+            ? _self.convertStarCount
+            : convertStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        prepaidUpgradeStarCount: freezed == prepaidUpgradeStarCount
+            ? _self.prepaidUpgradeStarCount
+            : prepaidUpgradeStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of OwnedGift
@@ -396,16 +489,17 @@ class _$OwnedGiftRegularCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class OwnedGiftUnique implements OwnedGift {
-  const OwnedGiftUnique(
-      {@JsonKey(name: 'type') this.type = OwnedGiftType.unique,
-      @JsonKey(name: 'gift') required this.gift,
-      @JsonKey(name: 'owned_gift_id') this.ownedGiftId,
-      @JsonKey(name: 'sender_user') this.senderUser,
-      @JsonKey(name: 'send_date') required this.sendDate,
-      @JsonKey(name: 'is_saved') this.isSaved,
-      @JsonKey(name: 'can_be_transferred') this.canBeTransferred,
-      @JsonKey(name: 'transfer_star_count') this.transferStarCount,
-      @JsonKey(name: 'next_transfer_date') this.nextTransferDate});
+  const OwnedGiftUnique({
+    @JsonKey(name: 'type') this.type = OwnedGiftType.unique,
+    @JsonKey(name: 'gift') required this.gift,
+    @JsonKey(name: 'owned_gift_id') this.ownedGiftId,
+    @JsonKey(name: 'sender_user') this.senderUser,
+    @JsonKey(name: 'send_date') required this.sendDate,
+    @JsonKey(name: 'is_saved') this.isSaved,
+    @JsonKey(name: 'can_be_transferred') this.canBeTransferred,
+    @JsonKey(name: 'transfer_star_count') this.transferStarCount,
+    @JsonKey(name: 'next_transfer_date') this.nextTransferDate,
+  });
   factory OwnedGiftUnique.fromJson(Map<String, dynamic> json) =>
       _$OwnedGiftUniqueFromJson(json);
 
@@ -466,9 +560,7 @@ class OwnedGiftUnique implements OwnedGift {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$OwnedGiftUniqueToJson(
-      this,
-    );
+    return _$OwnedGiftUniqueToJson(this);
   }
 
   @override
@@ -481,20 +573,22 @@ class OwnedGiftUnique implements OwnedGift {
 abstract mixin class $OwnedGiftUniqueCopyWith<$Res>
     implements $OwnedGiftCopyWith<$Res> {
   factory $OwnedGiftUniqueCopyWith(
-          OwnedGiftUnique value, $Res Function(OwnedGiftUnique) _then) =
-      _$OwnedGiftUniqueCopyWithImpl;
+    OwnedGiftUnique value,
+    $Res Function(OwnedGiftUnique) _then,
+  ) = _$OwnedGiftUniqueCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') OwnedGiftType type,
-      @JsonKey(name: 'gift') UniqueGift gift,
-      @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
-      @JsonKey(name: 'sender_user') User? senderUser,
-      @JsonKey(name: 'send_date') int sendDate,
-      @JsonKey(name: 'is_saved') bool? isSaved,
-      @JsonKey(name: 'can_be_transferred') bool? canBeTransferred,
-      @JsonKey(name: 'transfer_star_count') int? transferStarCount,
-      @JsonKey(name: 'next_transfer_date') int? nextTransferDate});
+  $Res call({
+    @JsonKey(name: 'type') OwnedGiftType type,
+    @JsonKey(name: 'gift') UniqueGift gift,
+    @JsonKey(name: 'owned_gift_id') String? ownedGiftId,
+    @JsonKey(name: 'sender_user') User? senderUser,
+    @JsonKey(name: 'send_date') int sendDate,
+    @JsonKey(name: 'is_saved') bool? isSaved,
+    @JsonKey(name: 'can_be_transferred') bool? canBeTransferred,
+    @JsonKey(name: 'transfer_star_count') int? transferStarCount,
+    @JsonKey(name: 'next_transfer_date') int? nextTransferDate,
+  });
 
   $UniqueGiftCopyWith<$Res> get gift;
   @override
@@ -524,44 +618,46 @@ class _$OwnedGiftUniqueCopyWithImpl<$Res>
     Object? transferStarCount = freezed,
     Object? nextTransferDate = freezed,
   }) {
-    return _then(OwnedGiftUnique(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as OwnedGiftType,
-      gift: null == gift
-          ? _self.gift
-          : gift // ignore: cast_nullable_to_non_nullable
-              as UniqueGift,
-      ownedGiftId: freezed == ownedGiftId
-          ? _self.ownedGiftId
-          : ownedGiftId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      senderUser: freezed == senderUser
-          ? _self.senderUser
-          : senderUser // ignore: cast_nullable_to_non_nullable
-              as User?,
-      sendDate: null == sendDate
-          ? _self.sendDate
-          : sendDate // ignore: cast_nullable_to_non_nullable
-              as int,
-      isSaved: freezed == isSaved
-          ? _self.isSaved
-          : isSaved // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      canBeTransferred: freezed == canBeTransferred
-          ? _self.canBeTransferred
-          : canBeTransferred // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      transferStarCount: freezed == transferStarCount
-          ? _self.transferStarCount
-          : transferStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      nextTransferDate: freezed == nextTransferDate
-          ? _self.nextTransferDate
-          : nextTransferDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      OwnedGiftUnique(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as OwnedGiftType,
+        gift: null == gift
+            ? _self.gift
+            : gift // ignore: cast_nullable_to_non_nullable
+                  as UniqueGift,
+        ownedGiftId: freezed == ownedGiftId
+            ? _self.ownedGiftId
+            : ownedGiftId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        senderUser: freezed == senderUser
+            ? _self.senderUser
+            : senderUser // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        sendDate: null == sendDate
+            ? _self.sendDate
+            : sendDate // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isSaved: freezed == isSaved
+            ? _self.isSaved
+            : isSaved // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        canBeTransferred: freezed == canBeTransferred
+            ? _self.canBeTransferred
+            : canBeTransferred // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        transferStarCount: freezed == transferStarCount
+            ? _self.transferStarCount
+            : transferStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        nextTransferDate: freezed == nextTransferDate
+            ? _self.nextTransferDate
+            : nextTransferDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of OwnedGift

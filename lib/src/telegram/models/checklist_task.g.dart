@@ -23,8 +23,7 @@ Map<String, dynamic> _$ChecklistTaskToJson(_ChecklistTask instance) =>
     <String, dynamic>{
       'id': instance.id,
       'text': instance.text,
-      if (instance.textEntities case final value?) 'text_entities': value,
-      if (instance.completedByUser case final value?)
-        'completed_by_user': value,
-      if (instance.completionDate case final value?) 'completion_date': value,
+      'text_entities': ?instance.textEntities,
+      'completed_by_user': ?instance.completedByUser,
+      'completion_date': ?instance.completionDate,
     };

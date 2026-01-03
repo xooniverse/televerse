@@ -23,13 +23,11 @@ _InputChecklist _$InputChecklistFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$InputChecklistToJson(_InputChecklist instance) =>
     <String, dynamic>{
       'title': instance.title,
-      if (instance.parseMode case final value?) 'parse_mode': value,
-      if (instance.titleEntities case final value?) 'title_entities': value,
+      'parse_mode': ?instance.parseMode,
+      'title_entities': ?instance.titleEntities,
       'tasks': instance.tasks,
-      if (instance.othersCanAddTasks case final value?)
-        'others_can_add_tasks': value,
-      if (instance.othersCanMarkTasksAsDone case final value?)
-        'others_can_mark_tasks_as_done': value,
+      'others_can_add_tasks': ?instance.othersCanAddTasks,
+      'others_can_mark_tasks_as_done': ?instance.othersCanMarkTasksAsDone,
     };
 
 const _$ParseModeEnumMap = {

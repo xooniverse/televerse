@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -48,7 +47,9 @@ mixin _$InputSticker {
   @pragma('vm:prefer-inline')
   $InputStickerCopyWith<InputSticker> get copyWith =>
       _$InputStickerCopyWithImpl<InputSticker>(
-          this as InputSticker, _$identity);
+        this as InputSticker,
+        _$identity,
+      );
 
   /// Serializes this InputSticker to a JSON map.
   Map<String, dynamic> toJson();
@@ -62,15 +63,17 @@ mixin _$InputSticker {
 /// @nodoc
 abstract mixin class $InputStickerCopyWith<$Res> {
   factory $InputStickerCopyWith(
-          InputSticker value, $Res Function(InputSticker) _then) =
-      _$InputStickerCopyWithImpl;
+    InputSticker value,
+    $Res Function(InputSticker) _then,
+  ) = _$InputStickerCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'sticker') @InputFileConverter() InputFile sticker,
-      @JsonKey(name: 'format') InputStickerFormat format,
-      @JsonKey(name: 'emoji_list') List<String> emojiList,
-      @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
-      @JsonKey(name: 'keywords') List<String>? keywords});
+  $Res call({
+    @JsonKey(name: 'sticker') @InputFileConverter() InputFile sticker,
+    @JsonKey(name: 'format') InputStickerFormat format,
+    @JsonKey(name: 'emoji_list') List<String> emojiList,
+    @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
+    @JsonKey(name: 'keywords') List<String>? keywords,
+  });
 
   $MaskPositionCopyWith<$Res>? get maskPosition;
 }
@@ -93,28 +96,30 @@ class _$InputStickerCopyWithImpl<$Res> implements $InputStickerCopyWith<$Res> {
     Object? maskPosition = freezed,
     Object? keywords = freezed,
   }) {
-    return _then(_self.copyWith(
-      sticker: null == sticker
-          ? _self.sticker
-          : sticker // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-      format: null == format
-          ? _self.format
-          : format // ignore: cast_nullable_to_non_nullable
-              as InputStickerFormat,
-      emojiList: null == emojiList
-          ? _self.emojiList
-          : emojiList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      maskPosition: freezed == maskPosition
-          ? _self.maskPosition
-          : maskPosition // ignore: cast_nullable_to_non_nullable
-              as MaskPosition?,
-      keywords: freezed == keywords
-          ? _self.keywords
-          : keywords // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ));
+    return _then(
+      _self.copyWith(
+        sticker: null == sticker
+            ? _self.sticker
+            : sticker // ignore: cast_nullable_to_non_nullable
+                  as InputFile,
+        format: null == format
+            ? _self.format
+            : format // ignore: cast_nullable_to_non_nullable
+                  as InputStickerFormat,
+        emojiList: null == emojiList
+            ? _self.emojiList
+            : emojiList // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        maskPosition: freezed == maskPosition
+            ? _self.maskPosition
+            : maskPosition // ignore: cast_nullable_to_non_nullable
+                  as MaskPosition?,
+        keywords: freezed == keywords
+            ? _self.keywords
+            : keywords // ignore: cast_nullable_to_non_nullable
+                  as List<String>?,
+      ),
+    );
   }
 
   /// Create a copy of InputSticker
@@ -132,17 +137,97 @@ class _$InputStickerCopyWithImpl<$Res> implements $InputStickerCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [InputSticker].
+extension InputStickerPatterns on InputSticker {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InputSticker value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InputSticker() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InputSticker value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InputSticker():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InputSticker value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InputSticker() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable(createFactory: false)
 class _InputSticker implements InputSticker {
-  const _InputSticker(
-      {@JsonKey(name: 'sticker') @InputFileConverter() required this.sticker,
-      @JsonKey(name: 'format') required this.format,
-      @JsonKey(name: 'emoji_list') required final List<String> emojiList,
-      @JsonKey(name: 'mask_position') this.maskPosition,
-      @JsonKey(name: 'keywords') final List<String>? keywords})
-      : _emojiList = emojiList,
-        _keywords = keywords;
+  const _InputSticker({
+    @JsonKey(name: 'sticker') @InputFileConverter() required this.sticker,
+    @JsonKey(name: 'format') required this.format,
+    @JsonKey(name: 'emoji_list') required final List<String> emojiList,
+    @JsonKey(name: 'mask_position') this.maskPosition,
+    @JsonKey(name: 'keywords') final List<String>? keywords,
+  }) : _emojiList = emojiList,
+       _keywords = keywords;
 
   /// The added sticker. Pass a file_id as a String to send a file that
   /// already exists on the Telegram servers, pass an HTTP URL as a String for
@@ -204,9 +289,7 @@ class _InputSticker implements InputSticker {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputStickerToJson(
-      this,
-    );
+    return _$InputStickerToJson(this);
   }
 
   @override
@@ -219,16 +302,18 @@ class _InputSticker implements InputSticker {
 abstract mixin class _$InputStickerCopyWith<$Res>
     implements $InputStickerCopyWith<$Res> {
   factory _$InputStickerCopyWith(
-          _InputSticker value, $Res Function(_InputSticker) _then) =
-      __$InputStickerCopyWithImpl;
+    _InputSticker value,
+    $Res Function(_InputSticker) _then,
+  ) = __$InputStickerCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'sticker') @InputFileConverter() InputFile sticker,
-      @JsonKey(name: 'format') InputStickerFormat format,
-      @JsonKey(name: 'emoji_list') List<String> emojiList,
-      @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
-      @JsonKey(name: 'keywords') List<String>? keywords});
+  $Res call({
+    @JsonKey(name: 'sticker') @InputFileConverter() InputFile sticker,
+    @JsonKey(name: 'format') InputStickerFormat format,
+    @JsonKey(name: 'emoji_list') List<String> emojiList,
+    @JsonKey(name: 'mask_position') MaskPosition? maskPosition,
+    @JsonKey(name: 'keywords') List<String>? keywords,
+  });
 
   @override
   $MaskPositionCopyWith<$Res>? get maskPosition;
@@ -253,28 +338,30 @@ class __$InputStickerCopyWithImpl<$Res>
     Object? maskPosition = freezed,
     Object? keywords = freezed,
   }) {
-    return _then(_InputSticker(
-      sticker: null == sticker
-          ? _self.sticker
-          : sticker // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-      format: null == format
-          ? _self.format
-          : format // ignore: cast_nullable_to_non_nullable
-              as InputStickerFormat,
-      emojiList: null == emojiList
-          ? _self._emojiList
-          : emojiList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      maskPosition: freezed == maskPosition
-          ? _self.maskPosition
-          : maskPosition // ignore: cast_nullable_to_non_nullable
-              as MaskPosition?,
-      keywords: freezed == keywords
-          ? _self._keywords
-          : keywords // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-    ));
+    return _then(
+      _InputSticker(
+        sticker: null == sticker
+            ? _self.sticker
+            : sticker // ignore: cast_nullable_to_non_nullable
+                  as InputFile,
+        format: null == format
+            ? _self.format
+            : format // ignore: cast_nullable_to_non_nullable
+                  as InputStickerFormat,
+        emojiList: null == emojiList
+            ? _self._emojiList
+            : emojiList // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        maskPosition: freezed == maskPosition
+            ? _self.maskPosition
+            : maskPosition // ignore: cast_nullable_to_non_nullable
+                  as MaskPosition?,
+        keywords: freezed == keywords
+            ? _self._keywords
+            : keywords // ignore: cast_nullable_to_non_nullable
+                  as List<String>?,
+      ),
+    );
   }
 
   /// Create a copy of InputSticker

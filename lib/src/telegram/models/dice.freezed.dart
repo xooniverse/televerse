@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -46,9 +45,10 @@ abstract mixin class $DiceCopyWith<$Res> {
   factory $DiceCopyWith(Dice value, $Res Function(Dice) _then) =
       _$DiceCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'emoji') DiceEmoji emoji,
-      @JsonKey(name: 'value') int value});
+  $Res call({
+    @JsonKey(name: 'emoji') DiceEmoji emoji,
+    @JsonKey(name: 'value') int value,
+  });
 }
 
 /// @nodoc
@@ -62,29 +62,107 @@ class _$DiceCopyWithImpl<$Res> implements $DiceCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? emoji = null,
-    Object? value = null,
+  $Res call({Object? emoji = null, Object? value = null}) {
+    return _then(
+      _self.copyWith(
+        emoji: null == emoji
+            ? _self.emoji
+            : emoji // ignore: cast_nullable_to_non_nullable
+                  as DiceEmoji,
+        value: null == value
+            ? _self.value
+            : value // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [Dice].
+extension DicePatterns on Dice {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Dice value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      emoji: null == emoji
-          ? _self.emoji
-          : emoji // ignore: cast_nullable_to_non_nullable
-              as DiceEmoji,
-      value: null == value
-          ? _self.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _Dice() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(TResult Function(_Dice value) $default) {
+    final _that = this;
+    switch (_that) {
+      case _Dice():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Dice value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Dice() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _Dice implements Dice {
-  const _Dice(
-      {@JsonKey(name: 'emoji') required this.emoji,
-      @JsonKey(name: 'value') required this.value});
+  const _Dice({
+    @JsonKey(name: 'emoji') required this.emoji,
+    @JsonKey(name: 'value') required this.value,
+  });
   factory _Dice.fromJson(Map<String, dynamic> json) => _$DiceFromJson(json);
 
   /// Emoji on which the dice throw animation is based
@@ -110,9 +188,7 @@ class _Dice implements Dice {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$DiceToJson(
-      this,
-    );
+    return _$DiceToJson(this);
   }
 
   @override
@@ -127,9 +203,10 @@ abstract mixin class _$DiceCopyWith<$Res> implements $DiceCopyWith<$Res> {
       __$DiceCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'emoji') DiceEmoji emoji,
-      @JsonKey(name: 'value') int value});
+  $Res call({
+    @JsonKey(name: 'emoji') DiceEmoji emoji,
+    @JsonKey(name: 'value') int value,
+  });
 }
 
 /// @nodoc
@@ -143,19 +220,18 @@ class __$DiceCopyWithImpl<$Res> implements _$DiceCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? emoji = null,
-    Object? value = null,
-  }) {
-    return _then(_Dice(
-      emoji: null == emoji
-          ? _self.emoji
-          : emoji // ignore: cast_nullable_to_non_nullable
-              as DiceEmoji,
-      value: null == value
-          ? _self.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+  $Res call({Object? emoji = null, Object? value = null}) {
+    return _then(
+      _Dice(
+        emoji: null == emoji
+            ? _self.emoji
+            : emoji // ignore: cast_nullable_to_non_nullable
+                  as DiceEmoji,
+        value: null == value
+            ? _self.value
+            : value // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }

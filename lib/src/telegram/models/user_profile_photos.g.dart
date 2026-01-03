@@ -10,9 +10,11 @@ _UserProfilePhotos _$UserProfilePhotosFromJson(Map<String, dynamic> json) =>
     _UserProfilePhotos(
       totalCount: (json['total_count'] as num).toInt(),
       photos: (json['photos'] as List<dynamic>)
-          .map((e) => (e as List<dynamic>)
-              .map((e) => PhotoSize.fromJson(e as Map<String, dynamic>))
-              .toList())
+          .map(
+            (e) => (e as List<dynamic>)
+                .map((e) => PhotoSize.fromJson(e as Map<String, dynamic>))
+                .toList(),
+          )
           .toList(),
     );
 

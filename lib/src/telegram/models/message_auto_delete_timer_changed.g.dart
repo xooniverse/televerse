@@ -7,13 +7,13 @@ part of 'message_auto_delete_timer_changed.dart';
 // **************************************************************************
 
 _MessageAutoDeleteTimerChanged _$MessageAutoDeleteTimerChangedFromJson(
-        Map<String, dynamic> json) =>
-    _MessageAutoDeleteTimerChanged(
-      messageAutoDeleteTime: (json['message_auto_delete_time'] as num).toInt(),
-    );
+  Map<String, dynamic> json,
+) => _MessageAutoDeleteTimerChanged(
+  messageAutoDeleteTime: (json['message_auto_delete_time'] as num).toInt(),
+);
 
 Map<String, dynamic> _$MessageAutoDeleteTimerChangedToJson(
-        _MessageAutoDeleteTimerChanged instance) =>
-    <String, dynamic>{
-      'message_auto_delete_time': instance.messageAutoDeleteTime,
-    };
+  _MessageAutoDeleteTimerChanged instance,
+) => <String, dynamic>{
+  'message_auto_delete_time': instance.messageAutoDeleteTime,
+};

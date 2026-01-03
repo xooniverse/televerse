@@ -8,17 +8,18 @@ part of 'background_fill.dart';
 
 BackgroundFillSolid _$BackgroundFillSolidFromJson(Map<String, dynamic> json) =>
     BackgroundFillSolid(
-      type: $enumDecodeNullable(_$BackgroundFillTypeEnumMap, json['type']) ??
+      type:
+          $enumDecodeNullable(_$BackgroundFillTypeEnumMap, json['type']) ??
           BackgroundFillType.solid,
       color: (json['color'] as num).toInt(),
     );
 
 Map<String, dynamic> _$BackgroundFillSolidToJson(
-        BackgroundFillSolid instance) =>
-    <String, dynamic>{
-      'type': _$BackgroundFillTypeEnumMap[instance.type]!,
-      'color': instance.color,
-    };
+  BackgroundFillSolid instance,
+) => <String, dynamic>{
+  'type': _$BackgroundFillTypeEnumMap[instance.type]!,
+  'color': instance.color,
+};
 
 const _$BackgroundFillTypeEnumMap = {
   BackgroundFillType.solid: 'solid',
@@ -27,37 +28,39 @@ const _$BackgroundFillTypeEnumMap = {
 };
 
 BackgroundFillGradient _$BackgroundFillGradientFromJson(
-        Map<String, dynamic> json) =>
-    BackgroundFillGradient(
-      type: $enumDecodeNullable(_$BackgroundFillTypeEnumMap, json['type']) ??
-          BackgroundFillType.gradient,
-      topColor: (json['top_color'] as num).toInt(),
-      bottomColor: (json['bottom_color'] as num).toInt(),
-      rotationAngle: (json['rotation_angle'] as num).toInt(),
-    );
+  Map<String, dynamic> json,
+) => BackgroundFillGradient(
+  type:
+      $enumDecodeNullable(_$BackgroundFillTypeEnumMap, json['type']) ??
+      BackgroundFillType.gradient,
+  topColor: (json['top_color'] as num).toInt(),
+  bottomColor: (json['bottom_color'] as num).toInt(),
+  rotationAngle: (json['rotation_angle'] as num).toInt(),
+);
 
 Map<String, dynamic> _$BackgroundFillGradientToJson(
-        BackgroundFillGradient instance) =>
-    <String, dynamic>{
-      'type': _$BackgroundFillTypeEnumMap[instance.type]!,
-      'top_color': instance.topColor,
-      'bottom_color': instance.bottomColor,
-      'rotation_angle': instance.rotationAngle,
-    };
+  BackgroundFillGradient instance,
+) => <String, dynamic>{
+  'type': _$BackgroundFillTypeEnumMap[instance.type]!,
+  'top_color': instance.topColor,
+  'bottom_color': instance.bottomColor,
+  'rotation_angle': instance.rotationAngle,
+};
 
 BackgroundFillFreeformGradient _$BackgroundFillFreeformGradientFromJson(
-        Map<String, dynamic> json) =>
-    BackgroundFillFreeformGradient(
-      type: $enumDecodeNullable(_$BackgroundFillTypeEnumMap, json['type']) ??
-          BackgroundFillType.freeformGradient,
-      colors: (json['colors'] as List<dynamic>)
-          .map((e) => (e as num).toInt())
-          .toList(),
-    );
+  Map<String, dynamic> json,
+) => BackgroundFillFreeformGradient(
+  type:
+      $enumDecodeNullable(_$BackgroundFillTypeEnumMap, json['type']) ??
+      BackgroundFillType.freeformGradient,
+  colors: (json['colors'] as List<dynamic>)
+      .map((e) => (e as num).toInt())
+      .toList(),
+);
 
 Map<String, dynamic> _$BackgroundFillFreeformGradientToJson(
-        BackgroundFillFreeformGradient instance) =>
-    <String, dynamic>{
-      'type': _$BackgroundFillTypeEnumMap[instance.type]!,
-      'colors': instance.colors,
-    };
+  BackgroundFillFreeformGradient instance,
+) => <String, dynamic>{
+  'type': _$BackgroundFillTypeEnumMap[instance.type]!,
+  'colors': instance.colors,
+};

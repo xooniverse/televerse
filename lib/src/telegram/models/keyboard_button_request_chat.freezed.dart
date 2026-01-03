@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -76,7 +75,9 @@ mixin _$KeyboardButtonRequestChat {
   @pragma('vm:prefer-inline')
   $KeyboardButtonRequestChatCopyWith<KeyboardButtonRequestChat> get copyWith =>
       _$KeyboardButtonRequestChatCopyWithImpl<KeyboardButtonRequestChat>(
-          this as KeyboardButtonRequestChat, _$identity);
+        this as KeyboardButtonRequestChat,
+        _$identity,
+      );
 
   /// Serializes this KeyboardButtonRequestChat to a JSON map.
   Map<String, dynamic> toJson();
@@ -89,24 +90,26 @@ mixin _$KeyboardButtonRequestChat {
 
 /// @nodoc
 abstract mixin class $KeyboardButtonRequestChatCopyWith<$Res> {
-  factory $KeyboardButtonRequestChatCopyWith(KeyboardButtonRequestChat value,
-          $Res Function(KeyboardButtonRequestChat) _then) =
-      _$KeyboardButtonRequestChatCopyWithImpl;
+  factory $KeyboardButtonRequestChatCopyWith(
+    KeyboardButtonRequestChat value,
+    $Res Function(KeyboardButtonRequestChat) _then,
+  ) = _$KeyboardButtonRequestChatCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'request_id') int requestId,
-      @JsonKey(name: 'chat_is_channel') bool chatIsChannel,
-      @JsonKey(name: 'chat_is_forum') bool? chatIsForum,
-      @JsonKey(name: 'chat_has_username') bool? chatHasUsername,
-      @JsonKey(name: 'chat_is_created') bool? chatIsCreated,
-      @JsonKey(name: 'user_administrator_rights')
-      ChatAdministratorRights? userAdministratorRights,
-      @JsonKey(name: 'bot_administrator_rights')
-      ChatAdministratorRights? botAdministratorRights,
-      @JsonKey(name: 'bot_is_member') bool? botIsMember,
-      @JsonKey(name: 'request_title') bool? requestTitle,
-      @JsonKey(name: 'request_username') bool? requestUsername,
-      @JsonKey(name: 'request_photo') bool? requestPhoto});
+  $Res call({
+    @JsonKey(name: 'request_id') int requestId,
+    @JsonKey(name: 'chat_is_channel') bool chatIsChannel,
+    @JsonKey(name: 'chat_is_forum') bool? chatIsForum,
+    @JsonKey(name: 'chat_has_username') bool? chatHasUsername,
+    @JsonKey(name: 'chat_is_created') bool? chatIsCreated,
+    @JsonKey(name: 'user_administrator_rights')
+    ChatAdministratorRights? userAdministratorRights,
+    @JsonKey(name: 'bot_administrator_rights')
+    ChatAdministratorRights? botAdministratorRights,
+    @JsonKey(name: 'bot_is_member') bool? botIsMember,
+    @JsonKey(name: 'request_title') bool? requestTitle,
+    @JsonKey(name: 'request_username') bool? requestUsername,
+    @JsonKey(name: 'request_photo') bool? requestPhoto,
+  });
 
   $ChatAdministratorRightsCopyWith<$Res>? get userAdministratorRights;
   $ChatAdministratorRightsCopyWith<$Res>? get botAdministratorRights;
@@ -137,52 +140,54 @@ class _$KeyboardButtonRequestChatCopyWithImpl<$Res>
     Object? requestUsername = freezed,
     Object? requestPhoto = freezed,
   }) {
-    return _then(_self.copyWith(
-      requestId: null == requestId
-          ? _self.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as int,
-      chatIsChannel: null == chatIsChannel
-          ? _self.chatIsChannel
-          : chatIsChannel // ignore: cast_nullable_to_non_nullable
-              as bool,
-      chatIsForum: freezed == chatIsForum
-          ? _self.chatIsForum
-          : chatIsForum // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      chatHasUsername: freezed == chatHasUsername
-          ? _self.chatHasUsername
-          : chatHasUsername // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      chatIsCreated: freezed == chatIsCreated
-          ? _self.chatIsCreated
-          : chatIsCreated // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      userAdministratorRights: freezed == userAdministratorRights
-          ? _self.userAdministratorRights
-          : userAdministratorRights // ignore: cast_nullable_to_non_nullable
-              as ChatAdministratorRights?,
-      botAdministratorRights: freezed == botAdministratorRights
-          ? _self.botAdministratorRights
-          : botAdministratorRights // ignore: cast_nullable_to_non_nullable
-              as ChatAdministratorRights?,
-      botIsMember: freezed == botIsMember
-          ? _self.botIsMember
-          : botIsMember // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestTitle: freezed == requestTitle
-          ? _self.requestTitle
-          : requestTitle // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestUsername: freezed == requestUsername
-          ? _self.requestUsername
-          : requestUsername // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestPhoto: freezed == requestPhoto
-          ? _self.requestPhoto
-          : requestPhoto // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        requestId: null == requestId
+            ? _self.requestId
+            : requestId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        chatIsChannel: null == chatIsChannel
+            ? _self.chatIsChannel
+            : chatIsChannel // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        chatIsForum: freezed == chatIsForum
+            ? _self.chatIsForum
+            : chatIsForum // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        chatHasUsername: freezed == chatHasUsername
+            ? _self.chatHasUsername
+            : chatHasUsername // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        chatIsCreated: freezed == chatIsCreated
+            ? _self.chatIsCreated
+            : chatIsCreated // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        userAdministratorRights: freezed == userAdministratorRights
+            ? _self.userAdministratorRights
+            : userAdministratorRights // ignore: cast_nullable_to_non_nullable
+                  as ChatAdministratorRights?,
+        botAdministratorRights: freezed == botAdministratorRights
+            ? _self.botAdministratorRights
+            : botAdministratorRights // ignore: cast_nullable_to_non_nullable
+                  as ChatAdministratorRights?,
+        botIsMember: freezed == botIsMember
+            ? _self.botIsMember
+            : botIsMember // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestTitle: freezed == requestTitle
+            ? _self.requestTitle
+            : requestTitle // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestUsername: freezed == requestUsername
+            ? _self.requestUsername
+            : requestUsername // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestPhoto: freezed == requestPhoto
+            ? _self.requestPhoto
+            : requestPhoto // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of KeyboardButtonRequestChat
@@ -195,9 +200,11 @@ class _$KeyboardButtonRequestChatCopyWithImpl<$Res>
     }
 
     return $ChatAdministratorRightsCopyWith<$Res>(
-        _self.userAdministratorRights!, (value) {
-      return _then(_self.copyWith(userAdministratorRights: value));
-    });
+      _self.userAdministratorRights!,
+      (value) {
+        return _then(_self.copyWith(userAdministratorRights: value));
+      },
+    );
   }
 
   /// Create a copy of KeyboardButtonRequestChat
@@ -209,28 +216,111 @@ class _$KeyboardButtonRequestChatCopyWithImpl<$Res>
       return null;
     }
 
-    return $ChatAdministratorRightsCopyWith<$Res>(_self.botAdministratorRights!,
-        (value) {
-      return _then(_self.copyWith(botAdministratorRights: value));
-    });
+    return $ChatAdministratorRightsCopyWith<$Res>(
+      _self.botAdministratorRights!,
+      (value) {
+        return _then(_self.copyWith(botAdministratorRights: value));
+      },
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [KeyboardButtonRequestChat].
+extension KeyboardButtonRequestChatPatterns on KeyboardButtonRequestChat {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_KeyboardButtonRequestChat value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _KeyboardButtonRequestChat() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_KeyboardButtonRequestChat value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _KeyboardButtonRequestChat():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_KeyboardButtonRequestChat value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _KeyboardButtonRequestChat() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _KeyboardButtonRequestChat implements KeyboardButtonRequestChat {
-  const _KeyboardButtonRequestChat(
-      {@JsonKey(name: 'request_id') required this.requestId,
-      @JsonKey(name: 'chat_is_channel') required this.chatIsChannel,
-      @JsonKey(name: 'chat_is_forum') this.chatIsForum,
-      @JsonKey(name: 'chat_has_username') this.chatHasUsername,
-      @JsonKey(name: 'chat_is_created') this.chatIsCreated,
-      @JsonKey(name: 'user_administrator_rights') this.userAdministratorRights,
-      @JsonKey(name: 'bot_administrator_rights') this.botAdministratorRights,
-      @JsonKey(name: 'bot_is_member') this.botIsMember,
-      @JsonKey(name: 'request_title') this.requestTitle,
-      @JsonKey(name: 'request_username') this.requestUsername,
-      @JsonKey(name: 'request_photo') this.requestPhoto});
+  const _KeyboardButtonRequestChat({
+    @JsonKey(name: 'request_id') required this.requestId,
+    @JsonKey(name: 'chat_is_channel') required this.chatIsChannel,
+    @JsonKey(name: 'chat_is_forum') this.chatIsForum,
+    @JsonKey(name: 'chat_has_username') this.chatHasUsername,
+    @JsonKey(name: 'chat_is_created') this.chatIsCreated,
+    @JsonKey(name: 'user_administrator_rights') this.userAdministratorRights,
+    @JsonKey(name: 'bot_administrator_rights') this.botAdministratorRights,
+    @JsonKey(name: 'bot_is_member') this.botIsMember,
+    @JsonKey(name: 'request_title') this.requestTitle,
+    @JsonKey(name: 'request_username') this.requestUsername,
+    @JsonKey(name: 'request_photo') this.requestPhoto,
+  });
   factory _KeyboardButtonRequestChat.fromJson(Map<String, dynamic> json) =>
       _$KeyboardButtonRequestChatFromJson(json);
 
@@ -307,15 +397,15 @@ class _KeyboardButtonRequestChat implements KeyboardButtonRequestChat {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   _$KeyboardButtonRequestChatCopyWith<_KeyboardButtonRequestChat>
-      get copyWith =>
-          __$KeyboardButtonRequestChatCopyWithImpl<_KeyboardButtonRequestChat>(
-              this, _$identity);
+  get copyWith =>
+      __$KeyboardButtonRequestChatCopyWithImpl<_KeyboardButtonRequestChat>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$KeyboardButtonRequestChatToJson(
-      this,
-    );
+    return _$KeyboardButtonRequestChatToJson(this);
   }
 
   @override
@@ -327,25 +417,27 @@ class _KeyboardButtonRequestChat implements KeyboardButtonRequestChat {
 /// @nodoc
 abstract mixin class _$KeyboardButtonRequestChatCopyWith<$Res>
     implements $KeyboardButtonRequestChatCopyWith<$Res> {
-  factory _$KeyboardButtonRequestChatCopyWith(_KeyboardButtonRequestChat value,
-          $Res Function(_KeyboardButtonRequestChat) _then) =
-      __$KeyboardButtonRequestChatCopyWithImpl;
+  factory _$KeyboardButtonRequestChatCopyWith(
+    _KeyboardButtonRequestChat value,
+    $Res Function(_KeyboardButtonRequestChat) _then,
+  ) = __$KeyboardButtonRequestChatCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'request_id') int requestId,
-      @JsonKey(name: 'chat_is_channel') bool chatIsChannel,
-      @JsonKey(name: 'chat_is_forum') bool? chatIsForum,
-      @JsonKey(name: 'chat_has_username') bool? chatHasUsername,
-      @JsonKey(name: 'chat_is_created') bool? chatIsCreated,
-      @JsonKey(name: 'user_administrator_rights')
-      ChatAdministratorRights? userAdministratorRights,
-      @JsonKey(name: 'bot_administrator_rights')
-      ChatAdministratorRights? botAdministratorRights,
-      @JsonKey(name: 'bot_is_member') bool? botIsMember,
-      @JsonKey(name: 'request_title') bool? requestTitle,
-      @JsonKey(name: 'request_username') bool? requestUsername,
-      @JsonKey(name: 'request_photo') bool? requestPhoto});
+  $Res call({
+    @JsonKey(name: 'request_id') int requestId,
+    @JsonKey(name: 'chat_is_channel') bool chatIsChannel,
+    @JsonKey(name: 'chat_is_forum') bool? chatIsForum,
+    @JsonKey(name: 'chat_has_username') bool? chatHasUsername,
+    @JsonKey(name: 'chat_is_created') bool? chatIsCreated,
+    @JsonKey(name: 'user_administrator_rights')
+    ChatAdministratorRights? userAdministratorRights,
+    @JsonKey(name: 'bot_administrator_rights')
+    ChatAdministratorRights? botAdministratorRights,
+    @JsonKey(name: 'bot_is_member') bool? botIsMember,
+    @JsonKey(name: 'request_title') bool? requestTitle,
+    @JsonKey(name: 'request_username') bool? requestUsername,
+    @JsonKey(name: 'request_photo') bool? requestPhoto,
+  });
 
   @override
   $ChatAdministratorRightsCopyWith<$Res>? get userAdministratorRights;
@@ -378,52 +470,54 @@ class __$KeyboardButtonRequestChatCopyWithImpl<$Res>
     Object? requestUsername = freezed,
     Object? requestPhoto = freezed,
   }) {
-    return _then(_KeyboardButtonRequestChat(
-      requestId: null == requestId
-          ? _self.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as int,
-      chatIsChannel: null == chatIsChannel
-          ? _self.chatIsChannel
-          : chatIsChannel // ignore: cast_nullable_to_non_nullable
-              as bool,
-      chatIsForum: freezed == chatIsForum
-          ? _self.chatIsForum
-          : chatIsForum // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      chatHasUsername: freezed == chatHasUsername
-          ? _self.chatHasUsername
-          : chatHasUsername // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      chatIsCreated: freezed == chatIsCreated
-          ? _self.chatIsCreated
-          : chatIsCreated // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      userAdministratorRights: freezed == userAdministratorRights
-          ? _self.userAdministratorRights
-          : userAdministratorRights // ignore: cast_nullable_to_non_nullable
-              as ChatAdministratorRights?,
-      botAdministratorRights: freezed == botAdministratorRights
-          ? _self.botAdministratorRights
-          : botAdministratorRights // ignore: cast_nullable_to_non_nullable
-              as ChatAdministratorRights?,
-      botIsMember: freezed == botIsMember
-          ? _self.botIsMember
-          : botIsMember // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestTitle: freezed == requestTitle
-          ? _self.requestTitle
-          : requestTitle // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestUsername: freezed == requestUsername
-          ? _self.requestUsername
-          : requestUsername // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      requestPhoto: freezed == requestPhoto
-          ? _self.requestPhoto
-          : requestPhoto // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _KeyboardButtonRequestChat(
+        requestId: null == requestId
+            ? _self.requestId
+            : requestId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        chatIsChannel: null == chatIsChannel
+            ? _self.chatIsChannel
+            : chatIsChannel // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        chatIsForum: freezed == chatIsForum
+            ? _self.chatIsForum
+            : chatIsForum // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        chatHasUsername: freezed == chatHasUsername
+            ? _self.chatHasUsername
+            : chatHasUsername // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        chatIsCreated: freezed == chatIsCreated
+            ? _self.chatIsCreated
+            : chatIsCreated // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        userAdministratorRights: freezed == userAdministratorRights
+            ? _self.userAdministratorRights
+            : userAdministratorRights // ignore: cast_nullable_to_non_nullable
+                  as ChatAdministratorRights?,
+        botAdministratorRights: freezed == botAdministratorRights
+            ? _self.botAdministratorRights
+            : botAdministratorRights // ignore: cast_nullable_to_non_nullable
+                  as ChatAdministratorRights?,
+        botIsMember: freezed == botIsMember
+            ? _self.botIsMember
+            : botIsMember // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestTitle: freezed == requestTitle
+            ? _self.requestTitle
+            : requestTitle // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestUsername: freezed == requestUsername
+            ? _self.requestUsername
+            : requestUsername // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        requestPhoto: freezed == requestPhoto
+            ? _self.requestPhoto
+            : requestPhoto // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of KeyboardButtonRequestChat
@@ -436,9 +530,11 @@ class __$KeyboardButtonRequestChatCopyWithImpl<$Res>
     }
 
     return $ChatAdministratorRightsCopyWith<$Res>(
-        _self.userAdministratorRights!, (value) {
-      return _then(_self.copyWith(userAdministratorRights: value));
-    });
+      _self.userAdministratorRights!,
+      (value) {
+        return _then(_self.copyWith(userAdministratorRights: value));
+      },
+    );
   }
 
   /// Create a copy of KeyboardButtonRequestChat
@@ -450,9 +546,11 @@ class __$KeyboardButtonRequestChatCopyWithImpl<$Res>
       return null;
     }
 
-    return $ChatAdministratorRightsCopyWith<$Res>(_self.botAdministratorRights!,
-        (value) {
-      return _then(_self.copyWith(botAdministratorRights: value));
-    });
+    return $ChatAdministratorRightsCopyWith<$Res>(
+      _self.botAdministratorRights!,
+      (value) {
+        return _then(_self.copyWith(botAdministratorRights: value));
+      },
+    );
   }
 }

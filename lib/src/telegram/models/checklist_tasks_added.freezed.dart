@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -30,7 +29,9 @@ mixin _$ChecklistTasksAdded {
   @pragma('vm:prefer-inline')
   $ChecklistTasksAddedCopyWith<ChecklistTasksAdded> get copyWith =>
       _$ChecklistTasksAddedCopyWithImpl<ChecklistTasksAdded>(
-          this as ChecklistTasksAdded, _$identity);
+        this as ChecklistTasksAdded,
+        _$identity,
+      );
 
   /// Serializes this ChecklistTasksAdded to a JSON map.
   Map<String, dynamic> toJson();
@@ -44,12 +45,14 @@ mixin _$ChecklistTasksAdded {
 /// @nodoc
 abstract mixin class $ChecklistTasksAddedCopyWith<$Res> {
   factory $ChecklistTasksAddedCopyWith(
-          ChecklistTasksAdded value, $Res Function(ChecklistTasksAdded) _then) =
-      _$ChecklistTasksAddedCopyWithImpl;
+    ChecklistTasksAdded value,
+    $Res Function(ChecklistTasksAdded) _then,
+  ) = _$ChecklistTasksAddedCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'checklist_message') Message? checklistMessage,
-      @JsonKey(name: 'tasks') List<ChecklistTask> tasks});
+  $Res call({
+    @JsonKey(name: 'checklist_message') Message? checklistMessage,
+    @JsonKey(name: 'tasks') List<ChecklistTask> tasks,
+  });
 }
 
 /// @nodoc
@@ -64,30 +67,109 @@ class _$ChecklistTasksAddedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? checklistMessage = freezed,
-    Object? tasks = null,
+  $Res call({Object? checklistMessage = freezed, Object? tasks = null}) {
+    return _then(
+      _self.copyWith(
+        checklistMessage: freezed == checklistMessage
+            ? _self.checklistMessage
+            : checklistMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        tasks: null == tasks
+            ? _self.tasks
+            : tasks // ignore: cast_nullable_to_non_nullable
+                  as List<ChecklistTask>,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [ChecklistTasksAdded].
+extension ChecklistTasksAddedPatterns on ChecklistTasksAdded {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChecklistTasksAdded value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      checklistMessage: freezed == checklistMessage
-          ? _self.checklistMessage
-          : checklistMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      tasks: null == tasks
-          ? _self.tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
-              as List<ChecklistTask>,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _ChecklistTasksAdded() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChecklistTasksAdded value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChecklistTasksAdded():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChecklistTasksAdded value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChecklistTasksAdded() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _ChecklistTasksAdded implements ChecklistTasksAdded {
-  const _ChecklistTasksAdded(
-      {@JsonKey(name: 'checklist_message') this.checklistMessage,
-      @JsonKey(name: 'tasks') required final List<ChecklistTask> tasks})
-      : _tasks = tasks;
+  const _ChecklistTasksAdded({
+    @JsonKey(name: 'checklist_message') this.checklistMessage,
+    @JsonKey(name: 'tasks') required final List<ChecklistTask> tasks,
+  }) : _tasks = tasks;
   factory _ChecklistTasksAdded.fromJson(Map<String, dynamic> json) =>
       _$ChecklistTasksAddedFromJson(json);
 
@@ -117,13 +199,13 @@ class _ChecklistTasksAdded implements ChecklistTasksAdded {
   @pragma('vm:prefer-inline')
   _$ChecklistTasksAddedCopyWith<_ChecklistTasksAdded> get copyWith =>
       __$ChecklistTasksAddedCopyWithImpl<_ChecklistTasksAdded>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChecklistTasksAddedToJson(
-      this,
-    );
+    return _$ChecklistTasksAddedToJson(this);
   }
 
   @override
@@ -135,14 +217,16 @@ class _ChecklistTasksAdded implements ChecklistTasksAdded {
 /// @nodoc
 abstract mixin class _$ChecklistTasksAddedCopyWith<$Res>
     implements $ChecklistTasksAddedCopyWith<$Res> {
-  factory _$ChecklistTasksAddedCopyWith(_ChecklistTasksAdded value,
-          $Res Function(_ChecklistTasksAdded) _then) =
-      __$ChecklistTasksAddedCopyWithImpl;
+  factory _$ChecklistTasksAddedCopyWith(
+    _ChecklistTasksAdded value,
+    $Res Function(_ChecklistTasksAdded) _then,
+  ) = __$ChecklistTasksAddedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'checklist_message') Message? checklistMessage,
-      @JsonKey(name: 'tasks') List<ChecklistTask> tasks});
+  $Res call({
+    @JsonKey(name: 'checklist_message') Message? checklistMessage,
+    @JsonKey(name: 'tasks') List<ChecklistTask> tasks,
+  });
 }
 
 /// @nodoc
@@ -157,19 +241,18 @@ class __$ChecklistTasksAddedCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? checklistMessage = freezed,
-    Object? tasks = null,
-  }) {
-    return _then(_ChecklistTasksAdded(
-      checklistMessage: freezed == checklistMessage
-          ? _self.checklistMessage
-          : checklistMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      tasks: null == tasks
-          ? _self._tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
-              as List<ChecklistTask>,
-    ));
+  $Res call({Object? checklistMessage = freezed, Object? tasks = null}) {
+    return _then(
+      _ChecklistTasksAdded(
+        checklistMessage: freezed == checklistMessage
+            ? _self.checklistMessage
+            : checklistMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        tasks: null == tasks
+            ? _self._tasks
+            : tasks // ignore: cast_nullable_to_non_nullable
+                  as List<ChecklistTask>,
+      ),
+    );
   }
 }

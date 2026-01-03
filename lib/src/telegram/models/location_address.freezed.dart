@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -36,7 +35,9 @@ mixin _$LocationAddress {
   @pragma('vm:prefer-inline')
   $LocationAddressCopyWith<LocationAddress> get copyWith =>
       _$LocationAddressCopyWithImpl<LocationAddress>(
-          this as LocationAddress, _$identity);
+        this as LocationAddress,
+        _$identity,
+      );
 
   /// Serializes this LocationAddress to a JSON map.
   Map<String, dynamic> toJson();
@@ -50,14 +51,16 @@ mixin _$LocationAddress {
 /// @nodoc
 abstract mixin class $LocationAddressCopyWith<$Res> {
   factory $LocationAddressCopyWith(
-          LocationAddress value, $Res Function(LocationAddress) _then) =
-      _$LocationAddressCopyWithImpl;
+    LocationAddress value,
+    $Res Function(LocationAddress) _then,
+  ) = _$LocationAddressCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'country_code') String countryCode,
-      @JsonKey(name: 'state') String? state,
-      @JsonKey(name: 'city') String? city,
-      @JsonKey(name: 'street') String? street});
+  $Res call({
+    @JsonKey(name: 'country_code') String countryCode,
+    @JsonKey(name: 'state') String? state,
+    @JsonKey(name: 'city') String? city,
+    @JsonKey(name: 'street') String? street,
+  });
 }
 
 /// @nodoc
@@ -78,35 +81,118 @@ class _$LocationAddressCopyWithImpl<$Res>
     Object? city = freezed,
     Object? street = freezed,
   }) {
-    return _then(_self.copyWith(
-      countryCode: null == countryCode
-          ? _self.countryCode
-          : countryCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      state: freezed == state
-          ? _self.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as String?,
-      city: freezed == city
-          ? _self.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String?,
-      street: freezed == street
-          ? _self.street
-          : street // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _self.copyWith(
+        countryCode: null == countryCode
+            ? _self.countryCode
+            : countryCode // ignore: cast_nullable_to_non_nullable
+                  as String,
+        state: freezed == state
+            ? _self.state
+            : state // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        city: freezed == city
+            ? _self.city
+            : city // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        street: freezed == street
+            ? _self.street
+            : street // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [LocationAddress].
+extension LocationAddressPatterns on LocationAddress {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_LocationAddress value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LocationAddress() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_LocationAddress value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LocationAddress():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_LocationAddress value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LocationAddress() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _LocationAddress implements LocationAddress {
-  const _LocationAddress(
-      {@JsonKey(name: 'country_code') required this.countryCode,
-      @JsonKey(name: 'state') this.state,
-      @JsonKey(name: 'city') this.city,
-      @JsonKey(name: 'street') this.street});
+  const _LocationAddress({
+    @JsonKey(name: 'country_code') required this.countryCode,
+    @JsonKey(name: 'state') this.state,
+    @JsonKey(name: 'city') this.city,
+    @JsonKey(name: 'street') this.street,
+  });
   factory _LocationAddress.fromJson(Map<String, dynamic> json) =>
       _$LocationAddressFromJson(json);
 
@@ -140,9 +226,7 @@ class _LocationAddress implements LocationAddress {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$LocationAddressToJson(
-      this,
-    );
+    return _$LocationAddressToJson(this);
   }
 
   @override
@@ -155,15 +239,17 @@ class _LocationAddress implements LocationAddress {
 abstract mixin class _$LocationAddressCopyWith<$Res>
     implements $LocationAddressCopyWith<$Res> {
   factory _$LocationAddressCopyWith(
-          _LocationAddress value, $Res Function(_LocationAddress) _then) =
-      __$LocationAddressCopyWithImpl;
+    _LocationAddress value,
+    $Res Function(_LocationAddress) _then,
+  ) = __$LocationAddressCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'country_code') String countryCode,
-      @JsonKey(name: 'state') String? state,
-      @JsonKey(name: 'city') String? city,
-      @JsonKey(name: 'street') String? street});
+  $Res call({
+    @JsonKey(name: 'country_code') String countryCode,
+    @JsonKey(name: 'state') String? state,
+    @JsonKey(name: 'city') String? city,
+    @JsonKey(name: 'street') String? street,
+  });
 }
 
 /// @nodoc
@@ -184,23 +270,25 @@ class __$LocationAddressCopyWithImpl<$Res>
     Object? city = freezed,
     Object? street = freezed,
   }) {
-    return _then(_LocationAddress(
-      countryCode: null == countryCode
-          ? _self.countryCode
-          : countryCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      state: freezed == state
-          ? _self.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as String?,
-      city: freezed == city
-          ? _self.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String?,
-      street: freezed == street
-          ? _self.street
-          : street // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _LocationAddress(
+        countryCode: null == countryCode
+            ? _self.countryCode
+            : countryCode // ignore: cast_nullable_to_non_nullable
+                  as String,
+        state: freezed == state
+            ? _self.state
+            : state // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        city: freezed == city
+            ? _self.city
+            : city // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        street: freezed == street
+            ? _self.street
+            : street // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }

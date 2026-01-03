@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -61,17 +60,19 @@ mixin _$UniqueGift {
 /// @nodoc
 abstract mixin class $UniqueGiftCopyWith<$Res> {
   factory $UniqueGiftCopyWith(
-          UniqueGift value, $Res Function(UniqueGift) _then) =
-      _$UniqueGiftCopyWithImpl;
+    UniqueGift value,
+    $Res Function(UniqueGift) _then,
+  ) = _$UniqueGiftCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'base_name') String baseName,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'number') int number,
-      @JsonKey(name: 'model') UniqueGiftModel model,
-      @JsonKey(name: 'symbol') UniqueGiftSymbol symbol,
-      @JsonKey(name: 'backdrop') UniqueGiftBackdrop backdrop,
-      @JsonKey(name: 'publisher_chat') Chat? publisherChat});
+  $Res call({
+    @JsonKey(name: 'base_name') String baseName,
+    @JsonKey(name: 'name') String name,
+    @JsonKey(name: 'number') int number,
+    @JsonKey(name: 'model') UniqueGiftModel model,
+    @JsonKey(name: 'symbol') UniqueGiftSymbol symbol,
+    @JsonKey(name: 'backdrop') UniqueGiftBackdrop backdrop,
+    @JsonKey(name: 'publisher_chat') Chat? publisherChat,
+  });
 
   $UniqueGiftModelCopyWith<$Res> get model;
   $UniqueGiftSymbolCopyWith<$Res> get symbol;
@@ -99,36 +100,38 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
     Object? backdrop = null,
     Object? publisherChat = freezed,
   }) {
-    return _then(_self.copyWith(
-      baseName: null == baseName
-          ? _self.baseName
-          : baseName // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      number: null == number
-          ? _self.number
-          : number // ignore: cast_nullable_to_non_nullable
-              as int,
-      model: null == model
-          ? _self.model
-          : model // ignore: cast_nullable_to_non_nullable
-              as UniqueGiftModel,
-      symbol: null == symbol
-          ? _self.symbol
-          : symbol // ignore: cast_nullable_to_non_nullable
-              as UniqueGiftSymbol,
-      backdrop: null == backdrop
-          ? _self.backdrop
-          : backdrop // ignore: cast_nullable_to_non_nullable
-              as UniqueGiftBackdrop,
-      publisherChat: freezed == publisherChat
-          ? _self.publisherChat
-          : publisherChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-    ));
+    return _then(
+      _self.copyWith(
+        baseName: null == baseName
+            ? _self.baseName
+            : baseName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        name: null == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        number: null == number
+            ? _self.number
+            : number // ignore: cast_nullable_to_non_nullable
+                  as int,
+        model: null == model
+            ? _self.model
+            : model // ignore: cast_nullable_to_non_nullable
+                  as UniqueGiftModel,
+        symbol: null == symbol
+            ? _self.symbol
+            : symbol // ignore: cast_nullable_to_non_nullable
+                  as UniqueGiftSymbol,
+        backdrop: null == backdrop
+            ? _self.backdrop
+            : backdrop // ignore: cast_nullable_to_non_nullable
+                  as UniqueGiftBackdrop,
+        publisherChat: freezed == publisherChat
+            ? _self.publisherChat
+            : publisherChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+      ),
+    );
   }
 
   /// Create a copy of UniqueGift
@@ -176,17 +179,98 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [UniqueGift].
+extension UniqueGiftPatterns on UniqueGift {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UniqueGift value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGift() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UniqueGift value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGift():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_UniqueGift value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGift() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _UniqueGift implements UniqueGift {
-  const _UniqueGift(
-      {@JsonKey(name: 'base_name') required this.baseName,
-      @JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'number') required this.number,
-      @JsonKey(name: 'model') required this.model,
-      @JsonKey(name: 'symbol') required this.symbol,
-      @JsonKey(name: 'backdrop') required this.backdrop,
-      @JsonKey(name: 'publisher_chat') this.publisherChat});
+  const _UniqueGift({
+    @JsonKey(name: 'base_name') required this.baseName,
+    @JsonKey(name: 'name') required this.name,
+    @JsonKey(name: 'number') required this.number,
+    @JsonKey(name: 'model') required this.model,
+    @JsonKey(name: 'symbol') required this.symbol,
+    @JsonKey(name: 'backdrop') required this.backdrop,
+    @JsonKey(name: 'publisher_chat') this.publisherChat,
+  });
   factory _UniqueGift.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftFromJson(json);
 
@@ -235,9 +319,7 @@ class _UniqueGift implements UniqueGift {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$UniqueGiftToJson(
-      this,
-    );
+    return _$UniqueGiftToJson(this);
   }
 
   @override
@@ -250,18 +332,20 @@ class _UniqueGift implements UniqueGift {
 abstract mixin class _$UniqueGiftCopyWith<$Res>
     implements $UniqueGiftCopyWith<$Res> {
   factory _$UniqueGiftCopyWith(
-          _UniqueGift value, $Res Function(_UniqueGift) _then) =
-      __$UniqueGiftCopyWithImpl;
+    _UniqueGift value,
+    $Res Function(_UniqueGift) _then,
+  ) = __$UniqueGiftCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'base_name') String baseName,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'number') int number,
-      @JsonKey(name: 'model') UniqueGiftModel model,
-      @JsonKey(name: 'symbol') UniqueGiftSymbol symbol,
-      @JsonKey(name: 'backdrop') UniqueGiftBackdrop backdrop,
-      @JsonKey(name: 'publisher_chat') Chat? publisherChat});
+  $Res call({
+    @JsonKey(name: 'base_name') String baseName,
+    @JsonKey(name: 'name') String name,
+    @JsonKey(name: 'number') int number,
+    @JsonKey(name: 'model') UniqueGiftModel model,
+    @JsonKey(name: 'symbol') UniqueGiftSymbol symbol,
+    @JsonKey(name: 'backdrop') UniqueGiftBackdrop backdrop,
+    @JsonKey(name: 'publisher_chat') Chat? publisherChat,
+  });
 
   @override
   $UniqueGiftModelCopyWith<$Res> get model;
@@ -293,36 +377,38 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
     Object? backdrop = null,
     Object? publisherChat = freezed,
   }) {
-    return _then(_UniqueGift(
-      baseName: null == baseName
-          ? _self.baseName
-          : baseName // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      number: null == number
-          ? _self.number
-          : number // ignore: cast_nullable_to_non_nullable
-              as int,
-      model: null == model
-          ? _self.model
-          : model // ignore: cast_nullable_to_non_nullable
-              as UniqueGiftModel,
-      symbol: null == symbol
-          ? _self.symbol
-          : symbol // ignore: cast_nullable_to_non_nullable
-              as UniqueGiftSymbol,
-      backdrop: null == backdrop
-          ? _self.backdrop
-          : backdrop // ignore: cast_nullable_to_non_nullable
-              as UniqueGiftBackdrop,
-      publisherChat: freezed == publisherChat
-          ? _self.publisherChat
-          : publisherChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-    ));
+    return _then(
+      _UniqueGift(
+        baseName: null == baseName
+            ? _self.baseName
+            : baseName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        name: null == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        number: null == number
+            ? _self.number
+            : number // ignore: cast_nullable_to_non_nullable
+                  as int,
+        model: null == model
+            ? _self.model
+            : model // ignore: cast_nullable_to_non_nullable
+                  as UniqueGiftModel,
+        symbol: null == symbol
+            ? _self.symbol
+            : symbol // ignore: cast_nullable_to_non_nullable
+                  as UniqueGiftSymbol,
+        backdrop: null == backdrop
+            ? _self.backdrop
+            : backdrop // ignore: cast_nullable_to_non_nullable
+                  as UniqueGiftBackdrop,
+        publisherChat: freezed == publisherChat
+            ? _self.publisherChat
+            : publisherChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+      ),
+    );
   }
 
   /// Create a copy of UniqueGift

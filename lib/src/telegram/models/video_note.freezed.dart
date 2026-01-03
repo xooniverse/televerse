@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -68,13 +67,14 @@ abstract mixin class $VideoNoteCopyWith<$Res> {
   factory $VideoNoteCopyWith(VideoNote value, $Res Function(VideoNote) _then) =
       _$VideoNoteCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'length') int length,
-      @JsonKey(name: 'duration') int duration,
-      @JsonKey(name: 'thumb') PhotoSize? thumbnail,
-      @JsonKey(name: 'file_size') int? fileSize});
+  $Res call({
+    @JsonKey(name: 'file_id') String fileId,
+    @JsonKey(name: 'file_unique_id') String fileUniqueId,
+    @JsonKey(name: 'length') int length,
+    @JsonKey(name: 'duration') int duration,
+    @JsonKey(name: 'thumb') PhotoSize? thumbnail,
+    @JsonKey(name: 'file_size') int? fileSize,
+  });
 
   $PhotoSizeCopyWith<$Res>? get thumbnail;
 }
@@ -98,32 +98,34 @@ class _$VideoNoteCopyWithImpl<$Res> implements $VideoNoteCopyWith<$Res> {
     Object? thumbnail = freezed,
     Object? fileSize = freezed,
   }) {
-    return _then(_self.copyWith(
-      fileId: null == fileId
-          ? _self.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _self.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      length: null == length
-          ? _self.length
-          : length // ignore: cast_nullable_to_non_nullable
-              as int,
-      duration: null == duration
-          ? _self.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int,
-      thumbnail: freezed == thumbnail
-          ? _self.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as PhotoSize?,
-      fileSize: freezed == fileSize
-          ? _self.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        fileId: null == fileId
+            ? _self.fileId
+            : fileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileUniqueId: null == fileUniqueId
+            ? _self.fileUniqueId
+            : fileUniqueId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        length: null == length
+            ? _self.length
+            : length // ignore: cast_nullable_to_non_nullable
+                  as int,
+        duration: null == duration
+            ? _self.duration
+            : duration // ignore: cast_nullable_to_non_nullable
+                  as int,
+        thumbnail: freezed == thumbnail
+            ? _self.thumbnail
+            : thumbnail // ignore: cast_nullable_to_non_nullable
+                  as PhotoSize?,
+        fileSize: freezed == fileSize
+            ? _self.fileSize
+            : fileSize // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of VideoNote
@@ -141,16 +143,97 @@ class _$VideoNoteCopyWithImpl<$Res> implements $VideoNoteCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [VideoNote].
+extension VideoNotePatterns on VideoNote {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_VideoNote value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _VideoNote() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_VideoNote value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _VideoNote():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_VideoNote value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _VideoNote() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _VideoNote implements VideoNote {
-  const _VideoNote(
-      {@JsonKey(name: 'file_id') required this.fileId,
-      @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
-      @JsonKey(name: 'length') required this.length,
-      @JsonKey(name: 'duration') required this.duration,
-      @JsonKey(name: 'thumb') this.thumbnail,
-      @JsonKey(name: 'file_size') this.fileSize});
+  const _VideoNote({
+    @JsonKey(name: 'file_id') required this.fileId,
+    @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
+    @JsonKey(name: 'length') required this.length,
+    @JsonKey(name: 'duration') required this.duration,
+    @JsonKey(name: 'thumb') this.thumbnail,
+    @JsonKey(name: 'file_size') this.fileSize,
+  });
   factory _VideoNote.fromJson(Map<String, dynamic> json) =>
       _$VideoNoteFromJson(json);
 
@@ -203,9 +286,7 @@ class _VideoNote implements VideoNote {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$VideoNoteToJson(
-      this,
-    );
+    return _$VideoNoteToJson(this);
   }
 
   @override
@@ -218,17 +299,19 @@ class _VideoNote implements VideoNote {
 abstract mixin class _$VideoNoteCopyWith<$Res>
     implements $VideoNoteCopyWith<$Res> {
   factory _$VideoNoteCopyWith(
-          _VideoNote value, $Res Function(_VideoNote) _then) =
-      __$VideoNoteCopyWithImpl;
+    _VideoNote value,
+    $Res Function(_VideoNote) _then,
+  ) = __$VideoNoteCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'length') int length,
-      @JsonKey(name: 'duration') int duration,
-      @JsonKey(name: 'thumb') PhotoSize? thumbnail,
-      @JsonKey(name: 'file_size') int? fileSize});
+  $Res call({
+    @JsonKey(name: 'file_id') String fileId,
+    @JsonKey(name: 'file_unique_id') String fileUniqueId,
+    @JsonKey(name: 'length') int length,
+    @JsonKey(name: 'duration') int duration,
+    @JsonKey(name: 'thumb') PhotoSize? thumbnail,
+    @JsonKey(name: 'file_size') int? fileSize,
+  });
 
   @override
   $PhotoSizeCopyWith<$Res>? get thumbnail;
@@ -253,32 +336,34 @@ class __$VideoNoteCopyWithImpl<$Res> implements _$VideoNoteCopyWith<$Res> {
     Object? thumbnail = freezed,
     Object? fileSize = freezed,
   }) {
-    return _then(_VideoNote(
-      fileId: null == fileId
-          ? _self.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _self.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      length: null == length
-          ? _self.length
-          : length // ignore: cast_nullable_to_non_nullable
-              as int,
-      duration: null == duration
-          ? _self.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int,
-      thumbnail: freezed == thumbnail
-          ? _self.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as PhotoSize?,
-      fileSize: freezed == fileSize
-          ? _self.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _VideoNote(
+        fileId: null == fileId
+            ? _self.fileId
+            : fileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileUniqueId: null == fileUniqueId
+            ? _self.fileUniqueId
+            : fileUniqueId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        length: null == length
+            ? _self.length
+            : length // ignore: cast_nullable_to_non_nullable
+                  as int,
+        duration: null == duration
+            ? _self.duration
+            : duration // ignore: cast_nullable_to_non_nullable
+                  as int,
+        thumbnail: freezed == thumbnail
+            ? _self.thumbnail
+            : thumbnail // ignore: cast_nullable_to_non_nullable
+                  as PhotoSize?,
+        fileSize: freezed == fileSize
+            ? _self.fileSize
+            : fileSize // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of VideoNote

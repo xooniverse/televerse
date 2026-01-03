@@ -19,8 +19,7 @@ _GiveawayCompleted _$GiveawayCompletedFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$GiveawayCompletedToJson(_GiveawayCompleted instance) =>
     <String, dynamic>{
       'winner_count': instance.winnerCount,
-      if (instance.unclaimedPrizeCount case final value?)
-        'unclaimed_prize_count': value,
-      if (instance.giveawayMessage case final value?) 'giveaway_message': value,
-      if (instance.isStarGiveaway case final value?) 'is_star_giveaway': value,
+      'unclaimed_prize_count': ?instance.unclaimedPrizeCount,
+      'giveaway_message': ?instance.giveawayMessage,
+      'is_star_giveaway': ?instance.isStarGiveaway,
     };

@@ -27,29 +27,18 @@ _BusinessBotRights _$BusinessBotRightsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$BusinessBotRightsToJson(_BusinessBotRights instance) =>
     <String, dynamic>{
-      if (instance.canReply case final value?) 'can_reply': value,
-      if (instance.canReadMessages case final value?)
-        'can_read_messages': value,
-      if (instance.canDeleteOutgoingMessages case final value?)
-        'can_delete_outgoing_messages': value,
-      if (instance.canDeleteAllMessages case final value?)
-        'can_delete_all_messages': value,
-      if (instance.canEditName case final value?) 'can_edit_name': value,
-      if (instance.canEditBio case final value?) 'can_edit_bio': value,
-      if (instance.canEditProfilePhoto case final value?)
-        'can_edit_profile_photo': value,
-      if (instance.canEditUsername case final value?)
-        'can_edit_username': value,
-      if (instance.canChangeGiftSettings case final value?)
-        'can_change_gift_settings': value,
-      if (instance.canViewGiftsAndStars case final value?)
-        'can_view_gifts_and_stars': value,
-      if (instance.canConvertGiftsToStars case final value?)
-        'can_convert_gifts_to_stars': value,
-      if (instance.canTransferAndUpgradeGifts case final value?)
-        'can_transfer_and_upgrade_gifts': value,
-      if (instance.canTransferStars case final value?)
-        'can_transfer_stars': value,
-      if (instance.canManageStories case final value?)
-        'can_manage_stories': value,
+      'can_reply': ?instance.canReply,
+      'can_read_messages': ?instance.canReadMessages,
+      'can_delete_outgoing_messages': ?instance.canDeleteOutgoingMessages,
+      'can_delete_all_messages': ?instance.canDeleteAllMessages,
+      'can_edit_name': ?instance.canEditName,
+      'can_edit_bio': ?instance.canEditBio,
+      'can_edit_profile_photo': ?instance.canEditProfilePhoto,
+      'can_edit_username': ?instance.canEditUsername,
+      'can_change_gift_settings': ?instance.canChangeGiftSettings,
+      'can_view_gifts_and_stars': ?instance.canViewGiftsAndStars,
+      'can_convert_gifts_to_stars': ?instance.canConvertGiftsToStars,
+      'can_transfer_and_upgrade_gifts': ?instance.canTransferAndUpgradeGifts,
+      'can_transfer_stars': ?instance.canTransferStars,
+      'can_manage_stories': ?instance.canManageStories,
     };

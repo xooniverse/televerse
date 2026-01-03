@@ -8,7 +8,8 @@ part of 'paid_media.dart';
 
 PaidMediaPreview _$PaidMediaPreviewFromJson(Map<String, dynamic> json) =>
     PaidMediaPreview(
-      type: $enumDecodeNullable(_$PaidMediaTypeEnumMap, json['type']) ??
+      type:
+          $enumDecodeNullable(_$PaidMediaTypeEnumMap, json['type']) ??
           PaidMediaType.preview,
       width: (json['width'] as num?)?.toInt(),
       height: (json['height'] as num?)?.toInt(),
@@ -18,9 +19,9 @@ PaidMediaPreview _$PaidMediaPreviewFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$PaidMediaPreviewToJson(PaidMediaPreview instance) =>
     <String, dynamic>{
       'type': _$PaidMediaTypeEnumMap[instance.type]!,
-      if (instance.width case final value?) 'width': value,
-      if (instance.height case final value?) 'height': value,
-      if (instance.duration case final value?) 'duration': value,
+      'width': ?instance.width,
+      'height': ?instance.height,
+      'duration': ?instance.duration,
     };
 
 const _$PaidMediaTypeEnumMap = {
@@ -31,7 +32,8 @@ const _$PaidMediaTypeEnumMap = {
 
 PaidMediaPhoto _$PaidMediaPhotoFromJson(Map<String, dynamic> json) =>
     PaidMediaPhoto(
-      type: $enumDecodeNullable(_$PaidMediaTypeEnumMap, json['type']) ??
+      type:
+          $enumDecodeNullable(_$PaidMediaTypeEnumMap, json['type']) ??
           PaidMediaType.photo,
       photo: (json['photo'] as List<dynamic>)
           .map((e) => PhotoSize.fromJson(e as Map<String, dynamic>))
@@ -46,7 +48,8 @@ Map<String, dynamic> _$PaidMediaPhotoToJson(PaidMediaPhoto instance) =>
 
 PaidMediaVideo _$PaidMediaVideoFromJson(Map<String, dynamic> json) =>
     PaidMediaVideo(
-      type: $enumDecodeNullable(_$PaidMediaTypeEnumMap, json['type']) ??
+      type:
+          $enumDecodeNullable(_$PaidMediaTypeEnumMap, json['type']) ??
           PaidMediaType.video,
       video: Video.fromJson(json['video'] as Map<String, dynamic>),
     );

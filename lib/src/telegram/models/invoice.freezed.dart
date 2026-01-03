@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -60,12 +59,13 @@ abstract mixin class $InvoiceCopyWith<$Res> {
   factory $InvoiceCopyWith(Invoice value, $Res Function(Invoice) _then) =
       _$InvoiceCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'description') String description,
-      @JsonKey(name: 'start_parameter') String startParameter,
-      @JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'total_amount') int totalAmount});
+  $Res call({
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'description') String description,
+    @JsonKey(name: 'start_parameter') String startParameter,
+    @JsonKey(name: 'currency') String currency,
+    @JsonKey(name: 'total_amount') int totalAmount,
+  });
 }
 
 /// @nodoc
@@ -86,40 +86,123 @@ class _$InvoiceCopyWithImpl<$Res> implements $InvoiceCopyWith<$Res> {
     Object? currency = null,
     Object? totalAmount = null,
   }) {
-    return _then(_self.copyWith(
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      startParameter: null == startParameter
-          ? _self.startParameter
-          : startParameter // ignore: cast_nullable_to_non_nullable
-              as String,
-      currency: null == currency
-          ? _self.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalAmount: null == totalAmount
-          ? _self.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _self.copyWith(
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: null == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+        startParameter: null == startParameter
+            ? _self.startParameter
+            : startParameter // ignore: cast_nullable_to_non_nullable
+                  as String,
+        currency: null == currency
+            ? _self.currency
+            : currency // ignore: cast_nullable_to_non_nullable
+                  as String,
+        totalAmount: null == totalAmount
+            ? _self.totalAmount
+            : totalAmount // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [Invoice].
+extension InvoicePatterns on Invoice {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Invoice value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Invoice() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Invoice value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Invoice():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Invoice value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Invoice() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _Invoice implements Invoice {
-  const _Invoice(
-      {@JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'description') required this.description,
-      @JsonKey(name: 'start_parameter') required this.startParameter,
-      @JsonKey(name: 'currency') required this.currency,
-      @JsonKey(name: 'total_amount') required this.totalAmount});
+  const _Invoice({
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'description') required this.description,
+    @JsonKey(name: 'start_parameter') required this.startParameter,
+    @JsonKey(name: 'currency') required this.currency,
+    @JsonKey(name: 'total_amount') required this.totalAmount,
+  });
   factory _Invoice.fromJson(Map<String, dynamic> json) =>
       _$InvoiceFromJson(json);
 
@@ -163,9 +246,7 @@ class _Invoice implements Invoice {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InvoiceToJson(
-      this,
-    );
+    return _$InvoiceToJson(this);
   }
 
   @override
@@ -180,12 +261,13 @@ abstract mixin class _$InvoiceCopyWith<$Res> implements $InvoiceCopyWith<$Res> {
       __$InvoiceCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'description') String description,
-      @JsonKey(name: 'start_parameter') String startParameter,
-      @JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'total_amount') int totalAmount});
+  $Res call({
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'description') String description,
+    @JsonKey(name: 'start_parameter') String startParameter,
+    @JsonKey(name: 'currency') String currency,
+    @JsonKey(name: 'total_amount') int totalAmount,
+  });
 }
 
 /// @nodoc
@@ -206,27 +288,29 @@ class __$InvoiceCopyWithImpl<$Res> implements _$InvoiceCopyWith<$Res> {
     Object? currency = null,
     Object? totalAmount = null,
   }) {
-    return _then(_Invoice(
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      startParameter: null == startParameter
-          ? _self.startParameter
-          : startParameter // ignore: cast_nullable_to_non_nullable
-              as String,
-      currency: null == currency
-          ? _self.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalAmount: null == totalAmount
-          ? _self.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _Invoice(
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: null == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+        startParameter: null == startParameter
+            ? _self.startParameter
+            : startParameter // ignore: cast_nullable_to_non_nullable
+                  as String,
+        currency: null == currency
+            ? _self.currency
+            : currency // ignore: cast_nullable_to_non_nullable
+                  as String,
+        totalAmount: null == totalAmount
+            ? _self.totalAmount
+            : totalAmount // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }

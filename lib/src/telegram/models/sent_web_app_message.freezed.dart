@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -25,7 +24,9 @@ mixin _$SentWebAppMessage {
   @pragma('vm:prefer-inline')
   $SentWebAppMessageCopyWith<SentWebAppMessage> get copyWith =>
       _$SentWebAppMessageCopyWithImpl<SentWebAppMessage>(
-          this as SentWebAppMessage, _$identity);
+        this as SentWebAppMessage,
+        _$identity,
+      );
 
   /// Serializes this SentWebAppMessage to a JSON map.
   Map<String, dynamic> toJson();
@@ -39,8 +40,9 @@ mixin _$SentWebAppMessage {
 /// @nodoc
 abstract mixin class $SentWebAppMessageCopyWith<$Res> {
   factory $SentWebAppMessageCopyWith(
-          SentWebAppMessage value, $Res Function(SentWebAppMessage) _then) =
-      _$SentWebAppMessageCopyWithImpl;
+    SentWebAppMessage value,
+    $Res Function(SentWebAppMessage) _then,
+  ) = _$SentWebAppMessageCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'inline_message_id') String? inlineMessageId});
 }
@@ -57,23 +59,104 @@ class _$SentWebAppMessageCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? inlineMessageId = freezed,
+  $Res call({Object? inlineMessageId = freezed}) {
+    return _then(
+      _self.copyWith(
+        inlineMessageId: freezed == inlineMessageId
+            ? _self.inlineMessageId
+            : inlineMessageId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [SentWebAppMessage].
+extension SentWebAppMessagePatterns on SentWebAppMessage {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SentWebAppMessage value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      inlineMessageId: freezed == inlineMessageId
-          ? _self.inlineMessageId
-          : inlineMessageId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _SentWebAppMessage() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SentWebAppMessage value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SentWebAppMessage():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SentWebAppMessage value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SentWebAppMessage() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _SentWebAppMessage implements SentWebAppMessage {
-  const _SentWebAppMessage(
-      {@JsonKey(name: 'inline_message_id') this.inlineMessageId});
+  const _SentWebAppMessage({
+    @JsonKey(name: 'inline_message_id') this.inlineMessageId,
+  });
   factory _SentWebAppMessage.fromJson(Map<String, dynamic> json) =>
       _$SentWebAppMessageFromJson(json);
 
@@ -93,9 +176,7 @@ class _SentWebAppMessage implements SentWebAppMessage {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$SentWebAppMessageToJson(
-      this,
-    );
+    return _$SentWebAppMessageToJson(this);
   }
 
   @override
@@ -108,8 +189,9 @@ class _SentWebAppMessage implements SentWebAppMessage {
 abstract mixin class _$SentWebAppMessageCopyWith<$Res>
     implements $SentWebAppMessageCopyWith<$Res> {
   factory _$SentWebAppMessageCopyWith(
-          _SentWebAppMessage value, $Res Function(_SentWebAppMessage) _then) =
-      __$SentWebAppMessageCopyWithImpl;
+    _SentWebAppMessage value,
+    $Res Function(_SentWebAppMessage) _then,
+  ) = __$SentWebAppMessageCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'inline_message_id') String? inlineMessageId});
@@ -127,14 +209,14 @@ class __$SentWebAppMessageCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? inlineMessageId = freezed,
-  }) {
-    return _then(_SentWebAppMessage(
-      inlineMessageId: freezed == inlineMessageId
-          ? _self.inlineMessageId
-          : inlineMessageId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+  $Res call({Object? inlineMessageId = freezed}) {
+    return _then(
+      _SentWebAppMessage(
+        inlineMessageId: freezed == inlineMessageId
+            ? _self.inlineMessageId
+            : inlineMessageId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }

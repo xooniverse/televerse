@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -61,7 +60,9 @@ mixin _$SuccessfulPayment {
   @pragma('vm:prefer-inline')
   $SuccessfulPaymentCopyWith<SuccessfulPayment> get copyWith =>
       _$SuccessfulPaymentCopyWithImpl<SuccessfulPayment>(
-          this as SuccessfulPayment, _$identity);
+        this as SuccessfulPayment,
+        _$identity,
+      );
 
   /// Serializes this SuccessfulPayment to a JSON map.
   Map<String, dynamic> toJson();
@@ -75,21 +76,21 @@ mixin _$SuccessfulPayment {
 /// @nodoc
 abstract mixin class $SuccessfulPaymentCopyWith<$Res> {
   factory $SuccessfulPaymentCopyWith(
-          SuccessfulPayment value, $Res Function(SuccessfulPayment) _then) =
-      _$SuccessfulPaymentCopyWithImpl;
+    SuccessfulPayment value,
+    $Res Function(SuccessfulPayment) _then,
+  ) = _$SuccessfulPaymentCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'total_amount') int totalAmount,
-      @JsonKey(name: 'invoice_payload') String invoicePayload,
-      @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
-      @JsonKey(name: 'order_info') OrderInfo? orderInfo,
-      @JsonKey(name: 'telegram_payment_charge_id')
-      String telegramPaymentChargeId,
-      @JsonKey(name: 'provider_payment_charge_id')
-      String providerPaymentChargeId,
-      @JsonKey(name: 'is_recurring') bool? isRecurring,
-      @JsonKey(name: 'is_first_recurring') bool? isFirstRecurring});
+  $Res call({
+    @JsonKey(name: 'currency') String currency,
+    @JsonKey(name: 'total_amount') int totalAmount,
+    @JsonKey(name: 'invoice_payload') String invoicePayload,
+    @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
+    @JsonKey(name: 'order_info') OrderInfo? orderInfo,
+    @JsonKey(name: 'telegram_payment_charge_id') String telegramPaymentChargeId,
+    @JsonKey(name: 'provider_payment_charge_id') String providerPaymentChargeId,
+    @JsonKey(name: 'is_recurring') bool? isRecurring,
+    @JsonKey(name: 'is_first_recurring') bool? isFirstRecurring,
+  });
 
   $OrderInfoCopyWith<$Res>? get orderInfo;
 }
@@ -117,44 +118,46 @@ class _$SuccessfulPaymentCopyWithImpl<$Res>
     Object? isRecurring = freezed,
     Object? isFirstRecurring = freezed,
   }) {
-    return _then(_self.copyWith(
-      currency: null == currency
-          ? _self.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalAmount: null == totalAmount
-          ? _self.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
-      invoicePayload: null == invoicePayload
-          ? _self.invoicePayload
-          : invoicePayload // ignore: cast_nullable_to_non_nullable
-              as String,
-      shippingOptionId: freezed == shippingOptionId
-          ? _self.shippingOptionId
-          : shippingOptionId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      orderInfo: freezed == orderInfo
-          ? _self.orderInfo
-          : orderInfo // ignore: cast_nullable_to_non_nullable
-              as OrderInfo?,
-      telegramPaymentChargeId: null == telegramPaymentChargeId
-          ? _self.telegramPaymentChargeId
-          : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      providerPaymentChargeId: null == providerPaymentChargeId
-          ? _self.providerPaymentChargeId
-          : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      isRecurring: freezed == isRecurring
-          ? _self.isRecurring
-          : isRecurring // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isFirstRecurring: freezed == isFirstRecurring
-          ? _self.isFirstRecurring
-          : isFirstRecurring // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        currency: null == currency
+            ? _self.currency
+            : currency // ignore: cast_nullable_to_non_nullable
+                  as String,
+        totalAmount: null == totalAmount
+            ? _self.totalAmount
+            : totalAmount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        invoicePayload: null == invoicePayload
+            ? _self.invoicePayload
+            : invoicePayload // ignore: cast_nullable_to_non_nullable
+                  as String,
+        shippingOptionId: freezed == shippingOptionId
+            ? _self.shippingOptionId
+            : shippingOptionId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        orderInfo: freezed == orderInfo
+            ? _self.orderInfo
+            : orderInfo // ignore: cast_nullable_to_non_nullable
+                  as OrderInfo?,
+        telegramPaymentChargeId: null == telegramPaymentChargeId
+            ? _self.telegramPaymentChargeId
+            : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        providerPaymentChargeId: null == providerPaymentChargeId
+            ? _self.providerPaymentChargeId
+            : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        isRecurring: freezed == isRecurring
+            ? _self.isRecurring
+            : isRecurring // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isFirstRecurring: freezed == isFirstRecurring
+            ? _self.isFirstRecurring
+            : isFirstRecurring // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of SuccessfulPayment
@@ -172,21 +175,102 @@ class _$SuccessfulPaymentCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [SuccessfulPayment].
+extension SuccessfulPaymentPatterns on SuccessfulPayment {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SuccessfulPayment value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SuccessfulPayment() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SuccessfulPayment value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SuccessfulPayment():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SuccessfulPayment value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SuccessfulPayment() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _SuccessfulPayment implements SuccessfulPayment {
-  const _SuccessfulPayment(
-      {@JsonKey(name: 'currency') required this.currency,
-      @JsonKey(name: 'total_amount') required this.totalAmount,
-      @JsonKey(name: 'invoice_payload') required this.invoicePayload,
-      @JsonKey(name: 'shipping_option_id') this.shippingOptionId,
-      @JsonKey(name: 'order_info') this.orderInfo,
-      @JsonKey(name: 'telegram_payment_charge_id')
-      required this.telegramPaymentChargeId,
-      @JsonKey(name: 'provider_payment_charge_id')
-      required this.providerPaymentChargeId,
-      @JsonKey(name: 'is_recurring') this.isRecurring,
-      @JsonKey(name: 'is_first_recurring') this.isFirstRecurring});
+  const _SuccessfulPayment({
+    @JsonKey(name: 'currency') required this.currency,
+    @JsonKey(name: 'total_amount') required this.totalAmount,
+    @JsonKey(name: 'invoice_payload') required this.invoicePayload,
+    @JsonKey(name: 'shipping_option_id') this.shippingOptionId,
+    @JsonKey(name: 'order_info') this.orderInfo,
+    @JsonKey(name: 'telegram_payment_charge_id')
+    required this.telegramPaymentChargeId,
+    @JsonKey(name: 'provider_payment_charge_id')
+    required this.providerPaymentChargeId,
+    @JsonKey(name: 'is_recurring') this.isRecurring,
+    @JsonKey(name: 'is_first_recurring') this.isFirstRecurring,
+  });
   factory _SuccessfulPayment.fromJson(Map<String, dynamic> json) =>
       _$SuccessfulPaymentFromJson(json);
 
@@ -250,9 +334,7 @@ class _SuccessfulPayment implements SuccessfulPayment {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$SuccessfulPaymentToJson(
-      this,
-    );
+    return _$SuccessfulPaymentToJson(this);
   }
 
   @override
@@ -265,22 +347,22 @@ class _SuccessfulPayment implements SuccessfulPayment {
 abstract mixin class _$SuccessfulPaymentCopyWith<$Res>
     implements $SuccessfulPaymentCopyWith<$Res> {
   factory _$SuccessfulPaymentCopyWith(
-          _SuccessfulPayment value, $Res Function(_SuccessfulPayment) _then) =
-      __$SuccessfulPaymentCopyWithImpl;
+    _SuccessfulPayment value,
+    $Res Function(_SuccessfulPayment) _then,
+  ) = __$SuccessfulPaymentCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'total_amount') int totalAmount,
-      @JsonKey(name: 'invoice_payload') String invoicePayload,
-      @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
-      @JsonKey(name: 'order_info') OrderInfo? orderInfo,
-      @JsonKey(name: 'telegram_payment_charge_id')
-      String telegramPaymentChargeId,
-      @JsonKey(name: 'provider_payment_charge_id')
-      String providerPaymentChargeId,
-      @JsonKey(name: 'is_recurring') bool? isRecurring,
-      @JsonKey(name: 'is_first_recurring') bool? isFirstRecurring});
+  $Res call({
+    @JsonKey(name: 'currency') String currency,
+    @JsonKey(name: 'total_amount') int totalAmount,
+    @JsonKey(name: 'invoice_payload') String invoicePayload,
+    @JsonKey(name: 'shipping_option_id') String? shippingOptionId,
+    @JsonKey(name: 'order_info') OrderInfo? orderInfo,
+    @JsonKey(name: 'telegram_payment_charge_id') String telegramPaymentChargeId,
+    @JsonKey(name: 'provider_payment_charge_id') String providerPaymentChargeId,
+    @JsonKey(name: 'is_recurring') bool? isRecurring,
+    @JsonKey(name: 'is_first_recurring') bool? isFirstRecurring,
+  });
 
   @override
   $OrderInfoCopyWith<$Res>? get orderInfo;
@@ -309,44 +391,46 @@ class __$SuccessfulPaymentCopyWithImpl<$Res>
     Object? isRecurring = freezed,
     Object? isFirstRecurring = freezed,
   }) {
-    return _then(_SuccessfulPayment(
-      currency: null == currency
-          ? _self.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalAmount: null == totalAmount
-          ? _self.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as int,
-      invoicePayload: null == invoicePayload
-          ? _self.invoicePayload
-          : invoicePayload // ignore: cast_nullable_to_non_nullable
-              as String,
-      shippingOptionId: freezed == shippingOptionId
-          ? _self.shippingOptionId
-          : shippingOptionId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      orderInfo: freezed == orderInfo
-          ? _self.orderInfo
-          : orderInfo // ignore: cast_nullable_to_non_nullable
-              as OrderInfo?,
-      telegramPaymentChargeId: null == telegramPaymentChargeId
-          ? _self.telegramPaymentChargeId
-          : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      providerPaymentChargeId: null == providerPaymentChargeId
-          ? _self.providerPaymentChargeId
-          : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      isRecurring: freezed == isRecurring
-          ? _self.isRecurring
-          : isRecurring // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isFirstRecurring: freezed == isFirstRecurring
-          ? _self.isFirstRecurring
-          : isFirstRecurring // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _SuccessfulPayment(
+        currency: null == currency
+            ? _self.currency
+            : currency // ignore: cast_nullable_to_non_nullable
+                  as String,
+        totalAmount: null == totalAmount
+            ? _self.totalAmount
+            : totalAmount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        invoicePayload: null == invoicePayload
+            ? _self.invoicePayload
+            : invoicePayload // ignore: cast_nullable_to_non_nullable
+                  as String,
+        shippingOptionId: freezed == shippingOptionId
+            ? _self.shippingOptionId
+            : shippingOptionId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        orderInfo: freezed == orderInfo
+            ? _self.orderInfo
+            : orderInfo // ignore: cast_nullable_to_non_nullable
+                  as OrderInfo?,
+        telegramPaymentChargeId: null == telegramPaymentChargeId
+            ? _self.telegramPaymentChargeId
+            : telegramPaymentChargeId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        providerPaymentChargeId: null == providerPaymentChargeId
+            ? _self.providerPaymentChargeId
+            : providerPaymentChargeId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        isRecurring: freezed == isRecurring
+            ? _self.isRecurring
+            : isRecurring // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isFirstRecurring: freezed == isFirstRecurring
+            ? _self.isFirstRecurring
+            : isFirstRecurring // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of SuccessfulPayment

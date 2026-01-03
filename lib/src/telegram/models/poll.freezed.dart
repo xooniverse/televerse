@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -102,23 +101,23 @@ abstract mixin class $PollCopyWith<$Res> {
   factory $PollCopyWith(Poll value, $Res Function(Poll) _then) =
       _$PollCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'question') String question,
-      @JsonKey(name: 'options') List<PollOption> options,
-      @JsonKey(name: 'total_voter_count') int totalVoterCount,
-      @JsonKey(name: 'is_closed') bool isClosed,
-      @JsonKey(name: 'is_anonymous') bool isAnonymous,
-      @JsonKey(name: 'type') PollType type,
-      @JsonKey(name: 'allows_multiple_answers') bool allowsMultipleAnswers,
-      @JsonKey(name: 'correct_option_id') int? correctOptionId,
-      @JsonKey(name: 'explanation') String? explanation,
-      @JsonKey(name: 'explanation_entities')
-      List<MessageEntity>? explanationEntities,
-      @JsonKey(name: 'open_period') int? openPeriod,
-      @JsonKey(name: 'close_date') int? closeDate,
-      @JsonKey(name: 'question_entities')
-      List<MessageEntity>? questionEntities});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'question') String question,
+    @JsonKey(name: 'options') List<PollOption> options,
+    @JsonKey(name: 'total_voter_count') int totalVoterCount,
+    @JsonKey(name: 'is_closed') bool isClosed,
+    @JsonKey(name: 'is_anonymous') bool isAnonymous,
+    @JsonKey(name: 'type') PollType type,
+    @JsonKey(name: 'allows_multiple_answers') bool allowsMultipleAnswers,
+    @JsonKey(name: 'correct_option_id') int? correctOptionId,
+    @JsonKey(name: 'explanation') String? explanation,
+    @JsonKey(name: 'explanation_entities')
+    List<MessageEntity>? explanationEntities,
+    @JsonKey(name: 'open_period') int? openPeriod,
+    @JsonKey(name: 'close_date') int? closeDate,
+    @JsonKey(name: 'question_entities') List<MessageEntity>? questionEntities,
+  });
 }
 
 /// @nodoc
@@ -148,91 +147,171 @@ class _$PollCopyWithImpl<$Res> implements $PollCopyWith<$Res> {
     Object? closeDate = freezed,
     Object? questionEntities = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      question: null == question
-          ? _self.question
-          : question // ignore: cast_nullable_to_non_nullable
-              as String,
-      options: null == options
-          ? _self.options
-          : options // ignore: cast_nullable_to_non_nullable
-              as List<PollOption>,
-      totalVoterCount: null == totalVoterCount
-          ? _self.totalVoterCount
-          : totalVoterCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      isClosed: null == isClosed
-          ? _self.isClosed
-          : isClosed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isAnonymous: null == isAnonymous
-          ? _self.isAnonymous
-          : isAnonymous // ignore: cast_nullable_to_non_nullable
-              as bool,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PollType,
-      allowsMultipleAnswers: null == allowsMultipleAnswers
-          ? _self.allowsMultipleAnswers
-          : allowsMultipleAnswers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      correctOptionId: freezed == correctOptionId
-          ? _self.correctOptionId
-          : correctOptionId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      explanation: freezed == explanation
-          ? _self.explanation
-          : explanation // ignore: cast_nullable_to_non_nullable
-              as String?,
-      explanationEntities: freezed == explanationEntities
-          ? _self.explanationEntities
-          : explanationEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      openPeriod: freezed == openPeriod
-          ? _self.openPeriod
-          : openPeriod // ignore: cast_nullable_to_non_nullable
-              as int?,
-      closeDate: freezed == closeDate
-          ? _self.closeDate
-          : closeDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      questionEntities: freezed == questionEntities
-          ? _self.questionEntities
-          : questionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        question: null == question
+            ? _self.question
+            : question // ignore: cast_nullable_to_non_nullable
+                  as String,
+        options: null == options
+            ? _self.options
+            : options // ignore: cast_nullable_to_non_nullable
+                  as List<PollOption>,
+        totalVoterCount: null == totalVoterCount
+            ? _self.totalVoterCount
+            : totalVoterCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isClosed: null == isClosed
+            ? _self.isClosed
+            : isClosed // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isAnonymous: null == isAnonymous
+            ? _self.isAnonymous
+            : isAnonymous // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PollType,
+        allowsMultipleAnswers: null == allowsMultipleAnswers
+            ? _self.allowsMultipleAnswers
+            : allowsMultipleAnswers // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        correctOptionId: freezed == correctOptionId
+            ? _self.correctOptionId
+            : correctOptionId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        explanation: freezed == explanation
+            ? _self.explanation
+            : explanation // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        explanationEntities: freezed == explanationEntities
+            ? _self.explanationEntities
+            : explanationEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        openPeriod: freezed == openPeriod
+            ? _self.openPeriod
+            : openPeriod // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        closeDate: freezed == closeDate
+            ? _self.closeDate
+            : closeDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        questionEntities: freezed == questionEntities
+            ? _self.questionEntities
+            : questionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [Poll].
+extension PollPatterns on Poll {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Poll value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Poll() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(TResult Function(_Poll value) $default) {
+    final _that = this;
+    switch (_that) {
+      case _Poll():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Poll value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Poll() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _Poll implements Poll {
-  const _Poll(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'question') required this.question,
-      @JsonKey(name: 'options') required final List<PollOption> options,
-      @JsonKey(name: 'total_voter_count') required this.totalVoterCount,
-      @JsonKey(name: 'is_closed') required this.isClosed,
-      @JsonKey(name: 'is_anonymous') required this.isAnonymous,
-      @JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'allows_multiple_answers')
-      required this.allowsMultipleAnswers,
-      @JsonKey(name: 'correct_option_id') this.correctOptionId,
-      @JsonKey(name: 'explanation') this.explanation,
-      @JsonKey(name: 'explanation_entities')
-      final List<MessageEntity>? explanationEntities,
-      @JsonKey(name: 'open_period') this.openPeriod,
-      @JsonKey(name: 'close_date') this.closeDate,
-      @JsonKey(name: 'question_entities')
-      final List<MessageEntity>? questionEntities})
-      : _options = options,
-        _explanationEntities = explanationEntities,
-        _questionEntities = questionEntities;
+  const _Poll({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'question') required this.question,
+    @JsonKey(name: 'options') required final List<PollOption> options,
+    @JsonKey(name: 'total_voter_count') required this.totalVoterCount,
+    @JsonKey(name: 'is_closed') required this.isClosed,
+    @JsonKey(name: 'is_anonymous') required this.isAnonymous,
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'allows_multiple_answers')
+    required this.allowsMultipleAnswers,
+    @JsonKey(name: 'correct_option_id') this.correctOptionId,
+    @JsonKey(name: 'explanation') this.explanation,
+    @JsonKey(name: 'explanation_entities')
+    final List<MessageEntity>? explanationEntities,
+    @JsonKey(name: 'open_period') this.openPeriod,
+    @JsonKey(name: 'close_date') this.closeDate,
+    @JsonKey(name: 'question_entities')
+    final List<MessageEntity>? questionEntities,
+  }) : _options = options,
+       _explanationEntities = explanationEntities,
+       _questionEntities = questionEntities;
   factory _Poll.fromJson(Map<String, dynamic> json) => _$PollFromJson(json);
 
   /// Unique poll identifier
@@ -355,9 +434,7 @@ class _Poll implements Poll {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PollToJson(
-      this,
-    );
+    return _$PollToJson(this);
   }
 
   @override
@@ -372,23 +449,23 @@ abstract mixin class _$PollCopyWith<$Res> implements $PollCopyWith<$Res> {
       __$PollCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'question') String question,
-      @JsonKey(name: 'options') List<PollOption> options,
-      @JsonKey(name: 'total_voter_count') int totalVoterCount,
-      @JsonKey(name: 'is_closed') bool isClosed,
-      @JsonKey(name: 'is_anonymous') bool isAnonymous,
-      @JsonKey(name: 'type') PollType type,
-      @JsonKey(name: 'allows_multiple_answers') bool allowsMultipleAnswers,
-      @JsonKey(name: 'correct_option_id') int? correctOptionId,
-      @JsonKey(name: 'explanation') String? explanation,
-      @JsonKey(name: 'explanation_entities')
-      List<MessageEntity>? explanationEntities,
-      @JsonKey(name: 'open_period') int? openPeriod,
-      @JsonKey(name: 'close_date') int? closeDate,
-      @JsonKey(name: 'question_entities')
-      List<MessageEntity>? questionEntities});
+  $Res call({
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'question') String question,
+    @JsonKey(name: 'options') List<PollOption> options,
+    @JsonKey(name: 'total_voter_count') int totalVoterCount,
+    @JsonKey(name: 'is_closed') bool isClosed,
+    @JsonKey(name: 'is_anonymous') bool isAnonymous,
+    @JsonKey(name: 'type') PollType type,
+    @JsonKey(name: 'allows_multiple_answers') bool allowsMultipleAnswers,
+    @JsonKey(name: 'correct_option_id') int? correctOptionId,
+    @JsonKey(name: 'explanation') String? explanation,
+    @JsonKey(name: 'explanation_entities')
+    List<MessageEntity>? explanationEntities,
+    @JsonKey(name: 'open_period') int? openPeriod,
+    @JsonKey(name: 'close_date') int? closeDate,
+    @JsonKey(name: 'question_entities') List<MessageEntity>? questionEntities,
+  });
 }
 
 /// @nodoc
@@ -418,63 +495,65 @@ class __$PollCopyWithImpl<$Res> implements _$PollCopyWith<$Res> {
     Object? closeDate = freezed,
     Object? questionEntities = freezed,
   }) {
-    return _then(_Poll(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      question: null == question
-          ? _self.question
-          : question // ignore: cast_nullable_to_non_nullable
-              as String,
-      options: null == options
-          ? _self._options
-          : options // ignore: cast_nullable_to_non_nullable
-              as List<PollOption>,
-      totalVoterCount: null == totalVoterCount
-          ? _self.totalVoterCount
-          : totalVoterCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      isClosed: null == isClosed
-          ? _self.isClosed
-          : isClosed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isAnonymous: null == isAnonymous
-          ? _self.isAnonymous
-          : isAnonymous // ignore: cast_nullable_to_non_nullable
-              as bool,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PollType,
-      allowsMultipleAnswers: null == allowsMultipleAnswers
-          ? _self.allowsMultipleAnswers
-          : allowsMultipleAnswers // ignore: cast_nullable_to_non_nullable
-              as bool,
-      correctOptionId: freezed == correctOptionId
-          ? _self.correctOptionId
-          : correctOptionId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      explanation: freezed == explanation
-          ? _self.explanation
-          : explanation // ignore: cast_nullable_to_non_nullable
-              as String?,
-      explanationEntities: freezed == explanationEntities
-          ? _self._explanationEntities
-          : explanationEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      openPeriod: freezed == openPeriod
-          ? _self.openPeriod
-          : openPeriod // ignore: cast_nullable_to_non_nullable
-              as int?,
-      closeDate: freezed == closeDate
-          ? _self.closeDate
-          : closeDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      questionEntities: freezed == questionEntities
-          ? _self._questionEntities
-          : questionEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-    ));
+    return _then(
+      _Poll(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        question: null == question
+            ? _self.question
+            : question // ignore: cast_nullable_to_non_nullable
+                  as String,
+        options: null == options
+            ? _self._options
+            : options // ignore: cast_nullable_to_non_nullable
+                  as List<PollOption>,
+        totalVoterCount: null == totalVoterCount
+            ? _self.totalVoterCount
+            : totalVoterCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isClosed: null == isClosed
+            ? _self.isClosed
+            : isClosed // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isAnonymous: null == isAnonymous
+            ? _self.isAnonymous
+            : isAnonymous // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PollType,
+        allowsMultipleAnswers: null == allowsMultipleAnswers
+            ? _self.allowsMultipleAnswers
+            : allowsMultipleAnswers // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        correctOptionId: freezed == correctOptionId
+            ? _self.correctOptionId
+            : correctOptionId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        explanation: freezed == explanation
+            ? _self.explanation
+            : explanation // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        explanationEntities: freezed == explanationEntities
+            ? _self._explanationEntities
+            : explanationEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        openPeriod: freezed == openPeriod
+            ? _self.openPeriod
+            : openPeriod // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        closeDate: freezed == closeDate
+            ? _self.closeDate
+            : closeDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        questionEntities: freezed == questionEntities
+            ? _self._questionEntities
+            : questionEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+      ),
+    );
   }
 }

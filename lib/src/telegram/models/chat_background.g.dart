@@ -12,6 +12,4 @@ _ChatBackground _$ChatBackgroundFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ChatBackgroundToJson(_ChatBackground instance) =>
-    <String, dynamic>{
-      'type': instance.type,
-    };
+    <String, dynamic>{'type': instance.type};

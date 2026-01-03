@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -25,8 +24,12 @@ InputMessageContent _$InputMessageContentFromJson(Map<String, dynamic> json) {
       return InputInvoiceMessageContent.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'InputMessageContent',
-          'Invalid union type "${json['runtimeType']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'runtimeType',
+        'InputMessageContent',
+        'Invalid union type "${json['runtimeType']}"!',
+      );
   }
 }
 
@@ -44,20 +47,136 @@ mixin _$InputMessageContent {
 /// @nodoc
 class $InputMessageContentCopyWith<$Res> {
   $InputMessageContentCopyWith(
-      InputMessageContent _, $Res Function(InputMessageContent) __);
+    InputMessageContent _,
+    $Res Function(InputMessageContent) __,
+  );
+}
+
+/// Adds pattern-matching-related methods to [InputMessageContent].
+extension InputMessageContentPatterns on InputMessageContent {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InputTextMessageContent value)? text,
+    TResult Function(InputLocationMessageContent value)? location,
+    TResult Function(InputVenueMessageContent value)? venue,
+    TResult Function(InputContactMessageContent value)? contact,
+    TResult Function(InputInvoiceMessageContent value)? invoice,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case InputTextMessageContent() when text != null:
+        return text(_that);
+      case InputLocationMessageContent() when location != null:
+        return location(_that);
+      case InputVenueMessageContent() when venue != null:
+        return venue(_that);
+      case InputContactMessageContent() when contact != null:
+        return contact(_that);
+      case InputInvoiceMessageContent() when invoice != null:
+        return invoice(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InputTextMessageContent value) text,
+    required TResult Function(InputLocationMessageContent value) location,
+    required TResult Function(InputVenueMessageContent value) venue,
+    required TResult Function(InputContactMessageContent value) contact,
+    required TResult Function(InputInvoiceMessageContent value) invoice,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case InputTextMessageContent():
+        return text(_that);
+      case InputLocationMessageContent():
+        return location(_that);
+      case InputVenueMessageContent():
+        return venue(_that);
+      case InputContactMessageContent():
+        return contact(_that);
+      case InputInvoiceMessageContent():
+        return invoice(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InputTextMessageContent value)? text,
+    TResult? Function(InputLocationMessageContent value)? location,
+    TResult? Function(InputVenueMessageContent value)? venue,
+    TResult? Function(InputContactMessageContent value)? contact,
+    TResult? Function(InputInvoiceMessageContent value)? invoice,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case InputTextMessageContent() when text != null:
+        return text(_that);
+      case InputLocationMessageContent() when location != null:
+        return location(_that);
+      case InputVenueMessageContent() when venue != null:
+        return venue(_that);
+      case InputContactMessageContent() when contact != null:
+        return contact(_that);
+      case InputInvoiceMessageContent() when invoice != null:
+        return invoice(_that);
+      case _:
+        return null;
+    }
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class InputTextMessageContent implements InputMessageContent {
-  const InputTextMessageContent(
-      {@JsonKey(name: 'message_text') required this.messageText,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'entities') final List<MessageEntity>? entities,
-      @JsonKey(name: 'link_preview_options') this.linkPreviewOptions,
-      final String? $type})
-      : _entities = entities,
-        $type = $type ?? 'text';
+  const InputTextMessageContent({
+    @JsonKey(name: 'message_text') required this.messageText,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'entities') final List<MessageEntity>? entities,
+    @JsonKey(name: 'link_preview_options') this.linkPreviewOptions,
+    final String? $type,
+  }) : _entities = entities,
+       $type = $type ?? 'text';
   factory InputTextMessageContent.fromJson(Map<String, dynamic> json) =>
       _$InputTextMessageContentFromJson(json);
 
@@ -98,13 +217,13 @@ class InputTextMessageContent implements InputMessageContent {
   @pragma('vm:prefer-inline')
   $InputTextMessageContentCopyWith<InputTextMessageContent> get copyWith =>
       _$InputTextMessageContentCopyWithImpl<InputTextMessageContent>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputTextMessageContentToJson(
-      this,
-    );
+    return _$InputTextMessageContentToJson(this);
   }
 
   @override
@@ -116,16 +235,18 @@ class InputTextMessageContent implements InputMessageContent {
 /// @nodoc
 abstract mixin class $InputTextMessageContentCopyWith<$Res>
     implements $InputMessageContentCopyWith<$Res> {
-  factory $InputTextMessageContentCopyWith(InputTextMessageContent value,
-          $Res Function(InputTextMessageContent) _then) =
-      _$InputTextMessageContentCopyWithImpl;
+  factory $InputTextMessageContentCopyWith(
+    InputTextMessageContent value,
+    $Res Function(InputTextMessageContent) _then,
+  ) = _$InputTextMessageContentCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'message_text') String messageText,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'entities') List<MessageEntity>? entities,
-      @JsonKey(name: 'link_preview_options')
-      LinkPreviewOptions? linkPreviewOptions});
+  $Res call({
+    @JsonKey(name: 'message_text') String messageText,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'entities') List<MessageEntity>? entities,
+    @JsonKey(name: 'link_preview_options')
+    LinkPreviewOptions? linkPreviewOptions,
+  });
 
   $LinkPreviewOptionsCopyWith<$Res>? get linkPreviewOptions;
 }
@@ -147,24 +268,26 @@ class _$InputTextMessageContentCopyWithImpl<$Res>
     Object? entities = freezed,
     Object? linkPreviewOptions = freezed,
   }) {
-    return _then(InputTextMessageContent(
-      messageText: null == messageText
-          ? _self.messageText
-          : messageText // ignore: cast_nullable_to_non_nullable
-              as String,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      entities: freezed == entities
-          ? _self._entities
-          : entities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      linkPreviewOptions: freezed == linkPreviewOptions
-          ? _self.linkPreviewOptions
-          : linkPreviewOptions // ignore: cast_nullable_to_non_nullable
-              as LinkPreviewOptions?,
-    ));
+    return _then(
+      InputTextMessageContent(
+        messageText: null == messageText
+            ? _self.messageText
+            : messageText // ignore: cast_nullable_to_non_nullable
+                  as String,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        entities: freezed == entities
+            ? _self._entities
+            : entities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        linkPreviewOptions: freezed == linkPreviewOptions
+            ? _self.linkPreviewOptions
+            : linkPreviewOptions // ignore: cast_nullable_to_non_nullable
+                  as LinkPreviewOptions?,
+      ),
+    );
   }
 
   /// Create a copy of InputMessageContent
@@ -176,8 +299,9 @@ class _$InputTextMessageContentCopyWithImpl<$Res>
       return null;
     }
 
-    return $LinkPreviewOptionsCopyWith<$Res>(_self.linkPreviewOptions!,
-        (value) {
+    return $LinkPreviewOptionsCopyWith<$Res>(_self.linkPreviewOptions!, (
+      value,
+    ) {
       return _then(_self.copyWith(linkPreviewOptions: value));
     });
   }
@@ -186,15 +310,15 @@ class _$InputTextMessageContentCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class InputLocationMessageContent implements InputMessageContent {
-  const InputLocationMessageContent(
-      {@JsonKey(name: 'latitude') required this.latitude,
-      @JsonKey(name: 'longitude') required this.longitude,
-      @JsonKey(name: 'live_period') this.livePeriod,
-      @JsonKey(name: 'horizontal_accuracy') this.horizontalAccuracy,
-      @JsonKey(name: 'heading') this.heading,
-      @JsonKey(name: 'proximity_alert_radius') this.proximityAlertRadius,
-      final String? $type})
-      : $type = $type ?? 'location';
+  const InputLocationMessageContent({
+    @JsonKey(name: 'latitude') required this.latitude,
+    @JsonKey(name: 'longitude') required this.longitude,
+    @JsonKey(name: 'live_period') this.livePeriod,
+    @JsonKey(name: 'horizontal_accuracy') this.horizontalAccuracy,
+    @JsonKey(name: 'heading') this.heading,
+    @JsonKey(name: 'proximity_alert_radius') this.proximityAlertRadius,
+    final String? $type,
+  }) : $type = $type ?? 'location';
   factory InputLocationMessageContent.fromJson(Map<String, dynamic> json) =>
       _$InputLocationMessageContentFromJson(json);
 
@@ -235,14 +359,15 @@ class InputLocationMessageContent implements InputMessageContent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $InputLocationMessageContentCopyWith<InputLocationMessageContent>
-      get copyWith => _$InputLocationMessageContentCopyWithImpl<
-          InputLocationMessageContent>(this, _$identity);
+  get copyWith =>
+      _$InputLocationMessageContentCopyWithImpl<InputLocationMessageContent>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputLocationMessageContentToJson(
-      this,
-    );
+    return _$InputLocationMessageContentToJson(this);
   }
 
   @override
@@ -255,17 +380,18 @@ class InputLocationMessageContent implements InputMessageContent {
 abstract mixin class $InputLocationMessageContentCopyWith<$Res>
     implements $InputMessageContentCopyWith<$Res> {
   factory $InputLocationMessageContentCopyWith(
-          InputLocationMessageContent value,
-          $Res Function(InputLocationMessageContent) _then) =
-      _$InputLocationMessageContentCopyWithImpl;
+    InputLocationMessageContent value,
+    $Res Function(InputLocationMessageContent) _then,
+  ) = _$InputLocationMessageContentCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'latitude') double latitude,
-      @JsonKey(name: 'longitude') double longitude,
-      @JsonKey(name: 'live_period') int? livePeriod,
-      @JsonKey(name: 'horizontal_accuracy') int? horizontalAccuracy,
-      @JsonKey(name: 'heading') int? heading,
-      @JsonKey(name: 'proximity_alert_radius') int? proximityAlertRadius});
+  $Res call({
+    @JsonKey(name: 'latitude') double latitude,
+    @JsonKey(name: 'longitude') double longitude,
+    @JsonKey(name: 'live_period') int? livePeriod,
+    @JsonKey(name: 'horizontal_accuracy') int? horizontalAccuracy,
+    @JsonKey(name: 'heading') int? heading,
+    @JsonKey(name: 'proximity_alert_radius') int? proximityAlertRadius,
+  });
 }
 
 /// @nodoc
@@ -287,49 +413,51 @@ class _$InputLocationMessageContentCopyWithImpl<$Res>
     Object? heading = freezed,
     Object? proximityAlertRadius = freezed,
   }) {
-    return _then(InputLocationMessageContent(
-      latitude: null == latitude
-          ? _self.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _self.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      livePeriod: freezed == livePeriod
-          ? _self.livePeriod
-          : livePeriod // ignore: cast_nullable_to_non_nullable
-              as int?,
-      horizontalAccuracy: freezed == horizontalAccuracy
-          ? _self.horizontalAccuracy
-          : horizontalAccuracy // ignore: cast_nullable_to_non_nullable
-              as int?,
-      heading: freezed == heading
-          ? _self.heading
-          : heading // ignore: cast_nullable_to_non_nullable
-              as int?,
-      proximityAlertRadius: freezed == proximityAlertRadius
-          ? _self.proximityAlertRadius
-          : proximityAlertRadius // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      InputLocationMessageContent(
+        latitude: null == latitude
+            ? _self.latitude
+            : latitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        longitude: null == longitude
+            ? _self.longitude
+            : longitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        livePeriod: freezed == livePeriod
+            ? _self.livePeriod
+            : livePeriod // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        horizontalAccuracy: freezed == horizontalAccuracy
+            ? _self.horizontalAccuracy
+            : horizontalAccuracy // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        heading: freezed == heading
+            ? _self.heading
+            : heading // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        proximityAlertRadius: freezed == proximityAlertRadius
+            ? _self.proximityAlertRadius
+            : proximityAlertRadius // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class InputVenueMessageContent implements InputMessageContent {
-  const InputVenueMessageContent(
-      {@JsonKey(name: 'latitude') required this.latitude,
-      @JsonKey(name: 'longitude') required this.longitude,
-      @JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'address') required this.address,
-      @JsonKey(name: 'foursquare_id') this.foursquareId,
-      @JsonKey(name: 'foursquare_type') this.foursquareType,
-      @JsonKey(name: 'google_place_id') this.googlePlaceId,
-      @JsonKey(name: 'google_place_type') this.googlePlaceType,
-      final String? $type})
-      : $type = $type ?? 'venue';
+  const InputVenueMessageContent({
+    @JsonKey(name: 'latitude') required this.latitude,
+    @JsonKey(name: 'longitude') required this.longitude,
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'address') required this.address,
+    @JsonKey(name: 'foursquare_id') this.foursquareId,
+    @JsonKey(name: 'foursquare_type') this.foursquareType,
+    @JsonKey(name: 'google_place_id') this.googlePlaceId,
+    @JsonKey(name: 'google_place_type') this.googlePlaceType,
+    final String? $type,
+  }) : $type = $type ?? 'venue';
   factory InputVenueMessageContent.fromJson(Map<String, dynamic> json) =>
       _$InputVenueMessageContentFromJson(json);
 
@@ -377,13 +505,13 @@ class InputVenueMessageContent implements InputMessageContent {
   @pragma('vm:prefer-inline')
   $InputVenueMessageContentCopyWith<InputVenueMessageContent> get copyWith =>
       _$InputVenueMessageContentCopyWithImpl<InputVenueMessageContent>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputVenueMessageContentToJson(
-      this,
-    );
+    return _$InputVenueMessageContentToJson(this);
   }
 
   @override
@@ -395,19 +523,21 @@ class InputVenueMessageContent implements InputMessageContent {
 /// @nodoc
 abstract mixin class $InputVenueMessageContentCopyWith<$Res>
     implements $InputMessageContentCopyWith<$Res> {
-  factory $InputVenueMessageContentCopyWith(InputVenueMessageContent value,
-          $Res Function(InputVenueMessageContent) _then) =
-      _$InputVenueMessageContentCopyWithImpl;
+  factory $InputVenueMessageContentCopyWith(
+    InputVenueMessageContent value,
+    $Res Function(InputVenueMessageContent) _then,
+  ) = _$InputVenueMessageContentCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'latitude') double latitude,
-      @JsonKey(name: 'longitude') double longitude,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'address') String address,
-      @JsonKey(name: 'foursquare_id') String? foursquareId,
-      @JsonKey(name: 'foursquare_type') String? foursquareType,
-      @JsonKey(name: 'google_place_id') String? googlePlaceId,
-      @JsonKey(name: 'google_place_type') String? googlePlaceType});
+  $Res call({
+    @JsonKey(name: 'latitude') double latitude,
+    @JsonKey(name: 'longitude') double longitude,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'address') String address,
+    @JsonKey(name: 'foursquare_id') String? foursquareId,
+    @JsonKey(name: 'foursquare_type') String? foursquareType,
+    @JsonKey(name: 'google_place_id') String? googlePlaceId,
+    @JsonKey(name: 'google_place_type') String? googlePlaceType,
+  });
 }
 
 /// @nodoc
@@ -431,53 +561,55 @@ class _$InputVenueMessageContentCopyWithImpl<$Res>
     Object? googlePlaceId = freezed,
     Object? googlePlaceType = freezed,
   }) {
-    return _then(InputVenueMessageContent(
-      latitude: null == latitude
-          ? _self.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _self.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _self.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      foursquareId: freezed == foursquareId
-          ? _self.foursquareId
-          : foursquareId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      foursquareType: freezed == foursquareType
-          ? _self.foursquareType
-          : foursquareType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      googlePlaceId: freezed == googlePlaceId
-          ? _self.googlePlaceId
-          : googlePlaceId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      googlePlaceType: freezed == googlePlaceType
-          ? _self.googlePlaceType
-          : googlePlaceType // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      InputVenueMessageContent(
+        latitude: null == latitude
+            ? _self.latitude
+            : latitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        longitude: null == longitude
+            ? _self.longitude
+            : longitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        address: null == address
+            ? _self.address
+            : address // ignore: cast_nullable_to_non_nullable
+                  as String,
+        foursquareId: freezed == foursquareId
+            ? _self.foursquareId
+            : foursquareId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        foursquareType: freezed == foursquareType
+            ? _self.foursquareType
+            : foursquareType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        googlePlaceId: freezed == googlePlaceId
+            ? _self.googlePlaceId
+            : googlePlaceId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        googlePlaceType: freezed == googlePlaceType
+            ? _self.googlePlaceType
+            : googlePlaceType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class InputContactMessageContent implements InputMessageContent {
-  const InputContactMessageContent(
-      {@JsonKey(name: 'phone_number') required this.phoneNumber,
-      @JsonKey(name: 'first_name') required this.firstName,
-      @JsonKey(name: 'last_name') this.lastName,
-      @JsonKey(name: 'vcard') this.vcard,
-      final String? $type})
-      : $type = $type ?? 'contact';
+  const InputContactMessageContent({
+    @JsonKey(name: 'phone_number') required this.phoneNumber,
+    @JsonKey(name: 'first_name') required this.firstName,
+    @JsonKey(name: 'last_name') this.lastName,
+    @JsonKey(name: 'vcard') this.vcard,
+    final String? $type,
+  }) : $type = $type ?? 'contact';
   factory InputContactMessageContent.fromJson(Map<String, dynamic> json) =>
       _$InputContactMessageContentFromJson(json);
 
@@ -506,15 +638,15 @@ class InputContactMessageContent implements InputMessageContent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $InputContactMessageContentCopyWith<InputContactMessageContent>
-      get copyWith =>
-          _$InputContactMessageContentCopyWithImpl<InputContactMessageContent>(
-              this, _$identity);
+  get copyWith =>
+      _$InputContactMessageContentCopyWithImpl<InputContactMessageContent>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputContactMessageContentToJson(
-      this,
-    );
+    return _$InputContactMessageContentToJson(this);
   }
 
   @override
@@ -526,15 +658,17 @@ class InputContactMessageContent implements InputMessageContent {
 /// @nodoc
 abstract mixin class $InputContactMessageContentCopyWith<$Res>
     implements $InputMessageContentCopyWith<$Res> {
-  factory $InputContactMessageContentCopyWith(InputContactMessageContent value,
-          $Res Function(InputContactMessageContent) _then) =
-      _$InputContactMessageContentCopyWithImpl;
+  factory $InputContactMessageContentCopyWith(
+    InputContactMessageContent value,
+    $Res Function(InputContactMessageContent) _then,
+  ) = _$InputContactMessageContentCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'phone_number') String phoneNumber,
-      @JsonKey(name: 'first_name') String firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'vcard') String? vcard});
+  $Res call({
+    @JsonKey(name: 'phone_number') String phoneNumber,
+    @JsonKey(name: 'first_name') String firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'vcard') String? vcard,
+  });
 }
 
 /// @nodoc
@@ -554,57 +688,59 @@ class _$InputContactMessageContentCopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? vcard = freezed,
   }) {
-    return _then(InputContactMessageContent(
-      phoneNumber: null == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      vcard: freezed == vcard
-          ? _self.vcard
-          : vcard // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      InputContactMessageContent(
+        phoneNumber: null == phoneNumber
+            ? _self.phoneNumber
+            : phoneNumber // ignore: cast_nullable_to_non_nullable
+                  as String,
+        firstName: null == firstName
+            ? _self.firstName
+            : firstName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        lastName: freezed == lastName
+            ? _self.lastName
+            : lastName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        vcard: freezed == vcard
+            ? _self.vcard
+            : vcard // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class InputInvoiceMessageContent implements InputMessageContent {
-  const InputInvoiceMessageContent(
-      {@JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'description') required this.description,
-      @JsonKey(name: 'payload') required this.payload,
-      @JsonKey(name: 'provider_token') this.providerToken,
-      @JsonKey(name: 'currency') required this.currency,
-      @JsonKey(name: 'prices') required final List<LabeledPrice> prices,
-      @JsonKey(name: 'max_tip_amount') this.maxTipAmount,
-      @JsonKey(name: 'suggested_tip_amounts')
-      final List<int>? suggestedTipAmounts,
-      @JsonKey(name: 'provider_data') this.providerData,
-      @JsonKey(name: 'photo_url') this.photoUrl,
-      @JsonKey(name: 'photo_size') this.photoSize,
-      @JsonKey(name: 'photo_width') this.photoWidth,
-      @JsonKey(name: 'photo_height') this.photoHeight,
-      @JsonKey(name: 'need_name') this.needName,
-      @JsonKey(name: 'need_phone_number') this.needPhoneNumber,
-      @JsonKey(name: 'need_email') this.needEmail,
-      @JsonKey(name: 'need_shipping_address') this.needShippingAddress,
-      @JsonKey(name: 'send_phone_number_to_provider')
-      this.sendPhoneNumberToProvider,
-      @JsonKey(name: 'send_email_to_provider') this.sendEmailToProvider,
-      @JsonKey(name: 'is_flexible') this.isFlexible,
-      final String? $type})
-      : _prices = prices,
-        _suggestedTipAmounts = suggestedTipAmounts,
-        $type = $type ?? 'invoice';
+  const InputInvoiceMessageContent({
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'description') required this.description,
+    @JsonKey(name: 'payload') required this.payload,
+    @JsonKey(name: 'provider_token') this.providerToken,
+    @JsonKey(name: 'currency') required this.currency,
+    @JsonKey(name: 'prices') required final List<LabeledPrice> prices,
+    @JsonKey(name: 'max_tip_amount') this.maxTipAmount,
+    @JsonKey(name: 'suggested_tip_amounts')
+    final List<int>? suggestedTipAmounts,
+    @JsonKey(name: 'provider_data') this.providerData,
+    @JsonKey(name: 'photo_url') this.photoUrl,
+    @JsonKey(name: 'photo_size') this.photoSize,
+    @JsonKey(name: 'photo_width') this.photoWidth,
+    @JsonKey(name: 'photo_height') this.photoHeight,
+    @JsonKey(name: 'need_name') this.needName,
+    @JsonKey(name: 'need_phone_number') this.needPhoneNumber,
+    @JsonKey(name: 'need_email') this.needEmail,
+    @JsonKey(name: 'need_shipping_address') this.needShippingAddress,
+    @JsonKey(name: 'send_phone_number_to_provider')
+    this.sendPhoneNumberToProvider,
+    @JsonKey(name: 'send_email_to_provider') this.sendEmailToProvider,
+    @JsonKey(name: 'is_flexible') this.isFlexible,
+    final String? $type,
+  }) : _prices = prices,
+       _suggestedTipAmounts = suggestedTipAmounts,
+       $type = $type ?? 'invoice';
   factory InputInvoiceMessageContent.fromJson(Map<String, dynamic> json) =>
       _$InputInvoiceMessageContentFromJson(json);
 
@@ -739,15 +875,15 @@ class InputInvoiceMessageContent implements InputMessageContent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
   $InputInvoiceMessageContentCopyWith<InputInvoiceMessageContent>
-      get copyWith =>
-          _$InputInvoiceMessageContentCopyWithImpl<InputInvoiceMessageContent>(
-              this, _$identity);
+  get copyWith =>
+      _$InputInvoiceMessageContentCopyWithImpl<InputInvoiceMessageContent>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputInvoiceMessageContentToJson(
-      this,
-    );
+    return _$InputInvoiceMessageContentToJson(this);
   }
 
   @override
@@ -759,32 +895,34 @@ class InputInvoiceMessageContent implements InputMessageContent {
 /// @nodoc
 abstract mixin class $InputInvoiceMessageContentCopyWith<$Res>
     implements $InputMessageContentCopyWith<$Res> {
-  factory $InputInvoiceMessageContentCopyWith(InputInvoiceMessageContent value,
-          $Res Function(InputInvoiceMessageContent) _then) =
-      _$InputInvoiceMessageContentCopyWithImpl;
+  factory $InputInvoiceMessageContentCopyWith(
+    InputInvoiceMessageContent value,
+    $Res Function(InputInvoiceMessageContent) _then,
+  ) = _$InputInvoiceMessageContentCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'description') String description,
-      @JsonKey(name: 'payload') String payload,
-      @JsonKey(name: 'provider_token') String? providerToken,
-      @JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'prices') List<LabeledPrice> prices,
-      @JsonKey(name: 'max_tip_amount') int? maxTipAmount,
-      @JsonKey(name: 'suggested_tip_amounts') List<int>? suggestedTipAmounts,
-      @JsonKey(name: 'provider_data') String? providerData,
-      @JsonKey(name: 'photo_url') String? photoUrl,
-      @JsonKey(name: 'photo_size') int? photoSize,
-      @JsonKey(name: 'photo_width') int? photoWidth,
-      @JsonKey(name: 'photo_height') int? photoHeight,
-      @JsonKey(name: 'need_name') bool? needName,
-      @JsonKey(name: 'need_phone_number') bool? needPhoneNumber,
-      @JsonKey(name: 'need_email') bool? needEmail,
-      @JsonKey(name: 'need_shipping_address') bool? needShippingAddress,
-      @JsonKey(name: 'send_phone_number_to_provider')
-      bool? sendPhoneNumberToProvider,
-      @JsonKey(name: 'send_email_to_provider') bool? sendEmailToProvider,
-      @JsonKey(name: 'is_flexible') bool? isFlexible});
+  $Res call({
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'description') String description,
+    @JsonKey(name: 'payload') String payload,
+    @JsonKey(name: 'provider_token') String? providerToken,
+    @JsonKey(name: 'currency') String currency,
+    @JsonKey(name: 'prices') List<LabeledPrice> prices,
+    @JsonKey(name: 'max_tip_amount') int? maxTipAmount,
+    @JsonKey(name: 'suggested_tip_amounts') List<int>? suggestedTipAmounts,
+    @JsonKey(name: 'provider_data') String? providerData,
+    @JsonKey(name: 'photo_url') String? photoUrl,
+    @JsonKey(name: 'photo_size') int? photoSize,
+    @JsonKey(name: 'photo_width') int? photoWidth,
+    @JsonKey(name: 'photo_height') int? photoHeight,
+    @JsonKey(name: 'need_name') bool? needName,
+    @JsonKey(name: 'need_phone_number') bool? needPhoneNumber,
+    @JsonKey(name: 'need_email') bool? needEmail,
+    @JsonKey(name: 'need_shipping_address') bool? needShippingAddress,
+    @JsonKey(name: 'send_phone_number_to_provider')
+    bool? sendPhoneNumberToProvider,
+    @JsonKey(name: 'send_email_to_provider') bool? sendEmailToProvider,
+    @JsonKey(name: 'is_flexible') bool? isFlexible,
+  });
 }
 
 /// @nodoc
@@ -820,87 +958,89 @@ class _$InputInvoiceMessageContentCopyWithImpl<$Res>
     Object? sendEmailToProvider = freezed,
     Object? isFlexible = freezed,
   }) {
-    return _then(InputInvoiceMessageContent(
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      payload: null == payload
-          ? _self.payload
-          : payload // ignore: cast_nullable_to_non_nullable
-              as String,
-      providerToken: freezed == providerToken
-          ? _self.providerToken
-          : providerToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      currency: null == currency
-          ? _self.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      prices: null == prices
-          ? _self._prices
-          : prices // ignore: cast_nullable_to_non_nullable
-              as List<LabeledPrice>,
-      maxTipAmount: freezed == maxTipAmount
-          ? _self.maxTipAmount
-          : maxTipAmount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      suggestedTipAmounts: freezed == suggestedTipAmounts
-          ? _self._suggestedTipAmounts
-          : suggestedTipAmounts // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
-      providerData: freezed == providerData
-          ? _self.providerData
-          : providerData // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photoUrl: freezed == photoUrl
-          ? _self.photoUrl
-          : photoUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      photoSize: freezed == photoSize
-          ? _self.photoSize
-          : photoSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-      photoWidth: freezed == photoWidth
-          ? _self.photoWidth
-          : photoWidth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      photoHeight: freezed == photoHeight
-          ? _self.photoHeight
-          : photoHeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-      needName: freezed == needName
-          ? _self.needName
-          : needName // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      needPhoneNumber: freezed == needPhoneNumber
-          ? _self.needPhoneNumber
-          : needPhoneNumber // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      needEmail: freezed == needEmail
-          ? _self.needEmail
-          : needEmail // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      needShippingAddress: freezed == needShippingAddress
-          ? _self.needShippingAddress
-          : needShippingAddress // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      sendPhoneNumberToProvider: freezed == sendPhoneNumberToProvider
-          ? _self.sendPhoneNumberToProvider
-          : sendPhoneNumberToProvider // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      sendEmailToProvider: freezed == sendEmailToProvider
-          ? _self.sendEmailToProvider
-          : sendEmailToProvider // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isFlexible: freezed == isFlexible
-          ? _self.isFlexible
-          : isFlexible // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      InputInvoiceMessageContent(
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: null == description
+            ? _self.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+        payload: null == payload
+            ? _self.payload
+            : payload // ignore: cast_nullable_to_non_nullable
+                  as String,
+        providerToken: freezed == providerToken
+            ? _self.providerToken
+            : providerToken // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        currency: null == currency
+            ? _self.currency
+            : currency // ignore: cast_nullable_to_non_nullable
+                  as String,
+        prices: null == prices
+            ? _self._prices
+            : prices // ignore: cast_nullable_to_non_nullable
+                  as List<LabeledPrice>,
+        maxTipAmount: freezed == maxTipAmount
+            ? _self.maxTipAmount
+            : maxTipAmount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        suggestedTipAmounts: freezed == suggestedTipAmounts
+            ? _self._suggestedTipAmounts
+            : suggestedTipAmounts // ignore: cast_nullable_to_non_nullable
+                  as List<int>?,
+        providerData: freezed == providerData
+            ? _self.providerData
+            : providerData // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        photoUrl: freezed == photoUrl
+            ? _self.photoUrl
+            : photoUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        photoSize: freezed == photoSize
+            ? _self.photoSize
+            : photoSize // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        photoWidth: freezed == photoWidth
+            ? _self.photoWidth
+            : photoWidth // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        photoHeight: freezed == photoHeight
+            ? _self.photoHeight
+            : photoHeight // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        needName: freezed == needName
+            ? _self.needName
+            : needName // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        needPhoneNumber: freezed == needPhoneNumber
+            ? _self.needPhoneNumber
+            : needPhoneNumber // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        needEmail: freezed == needEmail
+            ? _self.needEmail
+            : needEmail // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        needShippingAddress: freezed == needShippingAddress
+            ? _self.needShippingAddress
+            : needShippingAddress // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        sendPhoneNumberToProvider: freezed == sendPhoneNumberToProvider
+            ? _self.sendPhoneNumberToProvider
+            : sendPhoneNumberToProvider // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        sendEmailToProvider: freezed == sendEmailToProvider
+            ? _self.sendEmailToProvider
+            : sendEmailToProvider // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isFlexible: freezed == isFlexible
+            ? _self.isFlexible
+            : isFlexible // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

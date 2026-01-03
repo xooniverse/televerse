@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -29,7 +28,9 @@ mixin _$PaidMediaInfo {
   @pragma('vm:prefer-inline')
   $PaidMediaInfoCopyWith<PaidMediaInfo> get copyWith =>
       _$PaidMediaInfoCopyWithImpl<PaidMediaInfo>(
-          this as PaidMediaInfo, _$identity);
+        this as PaidMediaInfo,
+        _$identity,
+      );
 
   /// Serializes this PaidMediaInfo to a JSON map.
   Map<String, dynamic> toJson();
@@ -43,12 +44,14 @@ mixin _$PaidMediaInfo {
 /// @nodoc
 abstract mixin class $PaidMediaInfoCopyWith<$Res> {
   factory $PaidMediaInfoCopyWith(
-          PaidMediaInfo value, $Res Function(PaidMediaInfo) _then) =
-      _$PaidMediaInfoCopyWithImpl;
+    PaidMediaInfo value,
+    $Res Function(PaidMediaInfo) _then,
+  ) = _$PaidMediaInfoCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'star_count') int starCount,
-      @JsonKey(name: 'paid_media') List<PaidMedia> paidMedia});
+  $Res call({
+    @JsonKey(name: 'star_count') int starCount,
+    @JsonKey(name: 'paid_media') List<PaidMedia> paidMedia,
+  });
 }
 
 /// @nodoc
@@ -63,30 +66,109 @@ class _$PaidMediaInfoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? starCount = null,
-    Object? paidMedia = null,
+  $Res call({Object? starCount = null, Object? paidMedia = null}) {
+    return _then(
+      _self.copyWith(
+        starCount: null == starCount
+            ? _self.starCount
+            : starCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        paidMedia: null == paidMedia
+            ? _self.paidMedia
+            : paidMedia // ignore: cast_nullable_to_non_nullable
+                  as List<PaidMedia>,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [PaidMediaInfo].
+extension PaidMediaInfoPatterns on PaidMediaInfo {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PaidMediaInfo value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      starCount: null == starCount
-          ? _self.starCount
-          : starCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      paidMedia: null == paidMedia
-          ? _self.paidMedia
-          : paidMedia // ignore: cast_nullable_to_non_nullable
-              as List<PaidMedia>,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _PaidMediaInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PaidMediaInfo value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PaidMediaInfo():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PaidMediaInfo value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PaidMediaInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _PaidMediaInfo implements PaidMediaInfo {
-  const _PaidMediaInfo(
-      {@JsonKey(name: 'star_count') required this.starCount,
-      @JsonKey(name: 'paid_media') required final List<PaidMedia> paidMedia})
-      : _paidMedia = paidMedia;
+  const _PaidMediaInfo({
+    @JsonKey(name: 'star_count') required this.starCount,
+    @JsonKey(name: 'paid_media') required final List<PaidMedia> paidMedia,
+  }) : _paidMedia = paidMedia;
   factory _PaidMediaInfo.fromJson(Map<String, dynamic> json) =>
       _$PaidMediaInfoFromJson(json);
 
@@ -118,9 +200,7 @@ class _PaidMediaInfo implements PaidMediaInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PaidMediaInfoToJson(
-      this,
-    );
+    return _$PaidMediaInfoToJson(this);
   }
 
   @override
@@ -133,13 +213,15 @@ class _PaidMediaInfo implements PaidMediaInfo {
 abstract mixin class _$PaidMediaInfoCopyWith<$Res>
     implements $PaidMediaInfoCopyWith<$Res> {
   factory _$PaidMediaInfoCopyWith(
-          _PaidMediaInfo value, $Res Function(_PaidMediaInfo) _then) =
-      __$PaidMediaInfoCopyWithImpl;
+    _PaidMediaInfo value,
+    $Res Function(_PaidMediaInfo) _then,
+  ) = __$PaidMediaInfoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'star_count') int starCount,
-      @JsonKey(name: 'paid_media') List<PaidMedia> paidMedia});
+  $Res call({
+    @JsonKey(name: 'star_count') int starCount,
+    @JsonKey(name: 'paid_media') List<PaidMedia> paidMedia,
+  });
 }
 
 /// @nodoc
@@ -154,19 +236,18 @@ class __$PaidMediaInfoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? starCount = null,
-    Object? paidMedia = null,
-  }) {
-    return _then(_PaidMediaInfo(
-      starCount: null == starCount
-          ? _self.starCount
-          : starCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      paidMedia: null == paidMedia
-          ? _self._paidMedia
-          : paidMedia // ignore: cast_nullable_to_non_nullable
-              as List<PaidMedia>,
-    ));
+  $Res call({Object? starCount = null, Object? paidMedia = null}) {
+    return _then(
+      _PaidMediaInfo(
+        starCount: null == starCount
+            ? _self.starCount
+            : starCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        paidMedia: null == paidMedia
+            ? _self._paidMedia
+            : paidMedia // ignore: cast_nullable_to_non_nullable
+                  as List<PaidMedia>,
+      ),
+    );
   }
 }

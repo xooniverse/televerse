@@ -20,8 +20,8 @@ Map<String, dynamic> _$InputChecklistTaskToJson(_InputChecklistTask instance) =>
     <String, dynamic>{
       'id': instance.id,
       'text': instance.text,
-      if (instance.parseMode case final value?) 'parse_mode': value,
-      if (instance.textEntities case final value?) 'text_entities': value,
+      'parse_mode': ?instance.parseMode,
+      'text_entities': ?instance.textEntities,
     };
 
 const _$ParseModeEnumMap = {

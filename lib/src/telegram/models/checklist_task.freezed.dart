@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -40,7 +39,9 @@ mixin _$ChecklistTask {
   @pragma('vm:prefer-inline')
   $ChecklistTaskCopyWith<ChecklistTask> get copyWith =>
       _$ChecklistTaskCopyWithImpl<ChecklistTask>(
-          this as ChecklistTask, _$identity);
+        this as ChecklistTask,
+        _$identity,
+      );
 
   /// Serializes this ChecklistTask to a JSON map.
   Map<String, dynamic> toJson();
@@ -54,15 +55,17 @@ mixin _$ChecklistTask {
 /// @nodoc
 abstract mixin class $ChecklistTaskCopyWith<$Res> {
   factory $ChecklistTaskCopyWith(
-          ChecklistTask value, $Res Function(ChecklistTask) _then) =
-      _$ChecklistTaskCopyWithImpl;
+    ChecklistTask value,
+    $Res Function(ChecklistTask) _then,
+  ) = _$ChecklistTaskCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'text') String text,
-      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
-      @JsonKey(name: 'completed_by_user') User? completedByUser,
-      @JsonKey(name: 'completion_date') int? completionDate});
+  $Res call({
+    @JsonKey(name: 'id') int id,
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
+    @JsonKey(name: 'completed_by_user') User? completedByUser,
+    @JsonKey(name: 'completion_date') int? completionDate,
+  });
 
   $UserCopyWith<$Res>? get completedByUser;
 }
@@ -86,28 +89,30 @@ class _$ChecklistTaskCopyWithImpl<$Res>
     Object? completedByUser = freezed,
     Object? completionDate = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      textEntities: freezed == textEntities
-          ? _self.textEntities
-          : textEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      completedByUser: freezed == completedByUser
-          ? _self.completedByUser
-          : completedByUser // ignore: cast_nullable_to_non_nullable
-              as User?,
-      completionDate: freezed == completionDate
-          ? _self.completionDate
-          : completionDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        textEntities: freezed == textEntities
+            ? _self.textEntities
+            : textEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        completedByUser: freezed == completedByUser
+            ? _self.completedByUser
+            : completedByUser // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        completionDate: freezed == completionDate
+            ? _self.completionDate
+            : completionDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of ChecklistTask
@@ -125,16 +130,96 @@ class _$ChecklistTaskCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [ChecklistTask].
+extension ChecklistTaskPatterns on ChecklistTask {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChecklistTask value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChecklistTask() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChecklistTask value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChecklistTask():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChecklistTask value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChecklistTask() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _ChecklistTask implements ChecklistTask {
-  const _ChecklistTask(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'text') required this.text,
-      @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities,
-      @JsonKey(name: 'completed_by_user') this.completedByUser,
-      @JsonKey(name: 'completion_date') this.completionDate})
-      : _textEntities = textEntities;
+  const _ChecklistTask({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'text') required this.text,
+    @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities,
+    @JsonKey(name: 'completed_by_user') this.completedByUser,
+    @JsonKey(name: 'completion_date') this.completionDate,
+  }) : _textEntities = textEntities;
   factory _ChecklistTask.fromJson(Map<String, dynamic> json) =>
       _$ChecklistTaskFromJson(json);
 
@@ -182,9 +267,7 @@ class _ChecklistTask implements ChecklistTask {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChecklistTaskToJson(
-      this,
-    );
+    return _$ChecklistTaskToJson(this);
   }
 
   @override
@@ -197,16 +280,18 @@ class _ChecklistTask implements ChecklistTask {
 abstract mixin class _$ChecklistTaskCopyWith<$Res>
     implements $ChecklistTaskCopyWith<$Res> {
   factory _$ChecklistTaskCopyWith(
-          _ChecklistTask value, $Res Function(_ChecklistTask) _then) =
-      __$ChecklistTaskCopyWithImpl;
+    _ChecklistTask value,
+    $Res Function(_ChecklistTask) _then,
+  ) = __$ChecklistTaskCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'text') String text,
-      @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
-      @JsonKey(name: 'completed_by_user') User? completedByUser,
-      @JsonKey(name: 'completion_date') int? completionDate});
+  $Res call({
+    @JsonKey(name: 'id') int id,
+    @JsonKey(name: 'text') String text,
+    @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
+    @JsonKey(name: 'completed_by_user') User? completedByUser,
+    @JsonKey(name: 'completion_date') int? completionDate,
+  });
 
   @override
   $UserCopyWith<$Res>? get completedByUser;
@@ -231,28 +316,30 @@ class __$ChecklistTaskCopyWithImpl<$Res>
     Object? completedByUser = freezed,
     Object? completionDate = freezed,
   }) {
-    return _then(_ChecklistTask(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      text: null == text
-          ? _self.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      textEntities: freezed == textEntities
-          ? _self._textEntities
-          : textEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      completedByUser: freezed == completedByUser
-          ? _self.completedByUser
-          : completedByUser // ignore: cast_nullable_to_non_nullable
-              as User?,
-      completionDate: freezed == completionDate
-          ? _self.completionDate
-          : completionDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _ChecklistTask(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+        text: null == text
+            ? _self.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as String,
+        textEntities: freezed == textEntities
+            ? _self._textEntities
+            : textEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        completedByUser: freezed == completedByUser
+            ? _self.completedByUser
+            : completedByUser // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        completionDate: freezed == completionDate
+            ? _self.completionDate
+            : completionDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of ChecklistTask

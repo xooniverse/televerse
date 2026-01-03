@@ -8,7 +8,8 @@ part of 'reaction_type.dart';
 
 ReactionTypeEmoji _$ReactionTypeEmojiFromJson(Map<String, dynamic> json) =>
     ReactionTypeEmoji(
-      type: $enumDecodeNullable(_$ReactionTypeTypeEnumMap, json['type']) ??
+      type:
+          $enumDecodeNullable(_$ReactionTypeTypeEnumMap, json['type']) ??
           ReactionTypeType.emoji,
       emoji: json['emoji'] as String,
     );
@@ -26,27 +27,27 @@ const _$ReactionTypeTypeEnumMap = {
 };
 
 ReactionTypeCustomEmoji _$ReactionTypeCustomEmojiFromJson(
-        Map<String, dynamic> json) =>
-    ReactionTypeCustomEmoji(
-      type: $enumDecodeNullable(_$ReactionTypeTypeEnumMap, json['type']) ??
-          ReactionTypeType.customEmoji,
-      customEmojiId: json['custom_emoji_id'] as String,
-    );
+  Map<String, dynamic> json,
+) => ReactionTypeCustomEmoji(
+  type:
+      $enumDecodeNullable(_$ReactionTypeTypeEnumMap, json['type']) ??
+      ReactionTypeType.customEmoji,
+  customEmojiId: json['custom_emoji_id'] as String,
+);
 
 Map<String, dynamic> _$ReactionTypeCustomEmojiToJson(
-        ReactionTypeCustomEmoji instance) =>
-    <String, dynamic>{
-      'type': _$ReactionTypeTypeEnumMap[instance.type]!,
-      'custom_emoji_id': instance.customEmojiId,
-    };
+  ReactionTypeCustomEmoji instance,
+) => <String, dynamic>{
+  'type': _$ReactionTypeTypeEnumMap[instance.type]!,
+  'custom_emoji_id': instance.customEmojiId,
+};
 
 ReactionTypePaid _$ReactionTypePaidFromJson(Map<String, dynamic> json) =>
     ReactionTypePaid(
-      type: $enumDecodeNullable(_$ReactionTypeTypeEnumMap, json['type']) ??
+      type:
+          $enumDecodeNullable(_$ReactionTypeTypeEnumMap, json['type']) ??
           ReactionTypeType.paid,
     );
 
 Map<String, dynamic> _$ReactionTypePaidToJson(ReactionTypePaid instance) =>
-    <String, dynamic>{
-      'type': _$ReactionTypeTypeEnumMap[instance.type]!,
-    };
+    <String, dynamic>{'type': _$ReactionTypeTypeEnumMap[instance.type]!};

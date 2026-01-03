@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -54,15 +53,17 @@ mixin _$StickerSet {
 /// @nodoc
 abstract mixin class $StickerSetCopyWith<$Res> {
   factory $StickerSetCopyWith(
-          StickerSet value, $Res Function(StickerSet) _then) =
-      _$StickerSetCopyWithImpl;
+    StickerSet value,
+    $Res Function(StickerSet) _then,
+  ) = _$StickerSetCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'sticker_type') StickerType stickerType,
-      @JsonKey(name: 'stickers') List<Sticker> stickers,
-      @JsonKey(name: 'thumbnail') PhotoSize? thumbnail});
+  $Res call({
+    @JsonKey(name: 'name') String name,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'sticker_type') StickerType stickerType,
+    @JsonKey(name: 'stickers') List<Sticker> stickers,
+    @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
+  });
 
   $PhotoSizeCopyWith<$Res>? get thumbnail;
 }
@@ -85,28 +86,30 @@ class _$StickerSetCopyWithImpl<$Res> implements $StickerSetCopyWith<$Res> {
     Object? stickers = null,
     Object? thumbnail = freezed,
   }) {
-    return _then(_self.copyWith(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      stickerType: null == stickerType
-          ? _self.stickerType
-          : stickerType // ignore: cast_nullable_to_non_nullable
-              as StickerType,
-      stickers: null == stickers
-          ? _self.stickers
-          : stickers // ignore: cast_nullable_to_non_nullable
-              as List<Sticker>,
-      thumbnail: freezed == thumbnail
-          ? _self.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as PhotoSize?,
-    ));
+    return _then(
+      _self.copyWith(
+        name: null == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        stickerType: null == stickerType
+            ? _self.stickerType
+            : stickerType // ignore: cast_nullable_to_non_nullable
+                  as StickerType,
+        stickers: null == stickers
+            ? _self.stickers
+            : stickers // ignore: cast_nullable_to_non_nullable
+                  as List<Sticker>,
+        thumbnail: freezed == thumbnail
+            ? _self.thumbnail
+            : thumbnail // ignore: cast_nullable_to_non_nullable
+                  as PhotoSize?,
+      ),
+    );
   }
 
   /// Create a copy of StickerSet
@@ -124,16 +127,96 @@ class _$StickerSetCopyWithImpl<$Res> implements $StickerSetCopyWith<$Res> {
   }
 }
 
+/// Adds pattern-matching-related methods to [StickerSet].
+extension StickerSetPatterns on StickerSet {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_StickerSet value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _StickerSet() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_StickerSet value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StickerSet():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_StickerSet value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StickerSet() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _StickerSet implements StickerSet {
-  const _StickerSet(
-      {@JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'sticker_type') required this.stickerType,
-      @JsonKey(name: 'stickers') required final List<Sticker> stickers,
-      @JsonKey(name: 'thumbnail') this.thumbnail})
-      : _stickers = stickers;
+  const _StickerSet({
+    @JsonKey(name: 'name') required this.name,
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'sticker_type') required this.stickerType,
+    @JsonKey(name: 'stickers') required final List<Sticker> stickers,
+    @JsonKey(name: 'thumbnail') this.thumbnail,
+  }) : _stickers = stickers;
   factory _StickerSet.fromJson(Map<String, dynamic> json) =>
       _$StickerSetFromJson(json);
 
@@ -180,9 +263,7 @@ class _StickerSet implements StickerSet {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$StickerSetToJson(
-      this,
-    );
+    return _$StickerSetToJson(this);
   }
 
   @override
@@ -195,16 +276,18 @@ class _StickerSet implements StickerSet {
 abstract mixin class _$StickerSetCopyWith<$Res>
     implements $StickerSetCopyWith<$Res> {
   factory _$StickerSetCopyWith(
-          _StickerSet value, $Res Function(_StickerSet) _then) =
-      __$StickerSetCopyWithImpl;
+    _StickerSet value,
+    $Res Function(_StickerSet) _then,
+  ) = __$StickerSetCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'sticker_type') StickerType stickerType,
-      @JsonKey(name: 'stickers') List<Sticker> stickers,
-      @JsonKey(name: 'thumbnail') PhotoSize? thumbnail});
+  $Res call({
+    @JsonKey(name: 'name') String name,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'sticker_type') StickerType stickerType,
+    @JsonKey(name: 'stickers') List<Sticker> stickers,
+    @JsonKey(name: 'thumbnail') PhotoSize? thumbnail,
+  });
 
   @override
   $PhotoSizeCopyWith<$Res>? get thumbnail;
@@ -228,28 +311,30 @@ class __$StickerSetCopyWithImpl<$Res> implements _$StickerSetCopyWith<$Res> {
     Object? stickers = null,
     Object? thumbnail = freezed,
   }) {
-    return _then(_StickerSet(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      stickerType: null == stickerType
-          ? _self.stickerType
-          : stickerType // ignore: cast_nullable_to_non_nullable
-              as StickerType,
-      stickers: null == stickers
-          ? _self._stickers
-          : stickers // ignore: cast_nullable_to_non_nullable
-              as List<Sticker>,
-      thumbnail: freezed == thumbnail
-          ? _self.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as PhotoSize?,
-    ));
+    return _then(
+      _StickerSet(
+        name: null == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        stickerType: null == stickerType
+            ? _self.stickerType
+            : stickerType // ignore: cast_nullable_to_non_nullable
+                  as StickerType,
+        stickers: null == stickers
+            ? _self._stickers
+            : stickers // ignore: cast_nullable_to_non_nullable
+                  as List<Sticker>,
+        thumbnail: freezed == thumbnail
+            ? _self.thumbnail
+            : thumbnail // ignore: cast_nullable_to_non_nullable
+                  as PhotoSize?,
+      ),
+    );
   }
 
   /// Create a copy of StickerSet

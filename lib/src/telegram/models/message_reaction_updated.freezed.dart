@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -48,7 +47,9 @@ mixin _$MessageReactionUpdated {
   @pragma('vm:prefer-inline')
   $MessageReactionUpdatedCopyWith<MessageReactionUpdated> get copyWith =>
       _$MessageReactionUpdatedCopyWithImpl<MessageReactionUpdated>(
-          this as MessageReactionUpdated, _$identity);
+        this as MessageReactionUpdated,
+        _$identity,
+      );
 
   /// Serializes this MessageReactionUpdated to a JSON map.
   Map<String, dynamic> toJson();
@@ -61,18 +62,20 @@ mixin _$MessageReactionUpdated {
 
 /// @nodoc
 abstract mixin class $MessageReactionUpdatedCopyWith<$Res> {
-  factory $MessageReactionUpdatedCopyWith(MessageReactionUpdated value,
-          $Res Function(MessageReactionUpdated) _then) =
-      _$MessageReactionUpdatedCopyWithImpl;
+  factory $MessageReactionUpdatedCopyWith(
+    MessageReactionUpdated value,
+    $Res Function(MessageReactionUpdated) _then,
+  ) = _$MessageReactionUpdatedCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'message_id') int messageId,
-      @JsonKey(name: 'user') User? user,
-      @JsonKey(name: 'actor_chat') Chat? actorChat,
-      @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'old_reaction') List<ReactionType> oldReaction,
-      @JsonKey(name: 'new_reaction') List<ReactionType> newReaction});
+  $Res call({
+    @JsonKey(name: 'chat') Chat chat,
+    @JsonKey(name: 'message_id') int messageId,
+    @JsonKey(name: 'user') User? user,
+    @JsonKey(name: 'actor_chat') Chat? actorChat,
+    @JsonKey(name: 'date') int date,
+    @JsonKey(name: 'old_reaction') List<ReactionType> oldReaction,
+    @JsonKey(name: 'new_reaction') List<ReactionType> newReaction,
+  });
 
   $ChatCopyWith<$Res> get chat;
   $UserCopyWith<$Res>? get user;
@@ -100,36 +103,38 @@ class _$MessageReactionUpdatedCopyWithImpl<$Res>
     Object? oldReaction = null,
     Object? newReaction = null,
   }) {
-    return _then(_self.copyWith(
-      chat: null == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      messageId: null == messageId
-          ? _self.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as int,
-      user: freezed == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      actorChat: freezed == actorChat
-          ? _self.actorChat
-          : actorChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      oldReaction: null == oldReaction
-          ? _self.oldReaction
-          : oldReaction // ignore: cast_nullable_to_non_nullable
-              as List<ReactionType>,
-      newReaction: null == newReaction
-          ? _self.newReaction
-          : newReaction // ignore: cast_nullable_to_non_nullable
-              as List<ReactionType>,
-    ));
+    return _then(
+      _self.copyWith(
+        chat: null == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        messageId: null == messageId
+            ? _self.messageId
+            : messageId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        user: freezed == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        actorChat: freezed == actorChat
+            ? _self.actorChat
+            : actorChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+        oldReaction: null == oldReaction
+            ? _self.oldReaction
+            : oldReaction // ignore: cast_nullable_to_non_nullable
+                  as List<ReactionType>,
+        newReaction: null == newReaction
+            ? _self.newReaction
+            : newReaction // ignore: cast_nullable_to_non_nullable
+                  as List<ReactionType>,
+      ),
+    );
   }
 
   /// Create a copy of MessageReactionUpdated
@@ -171,21 +176,101 @@ class _$MessageReactionUpdatedCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [MessageReactionUpdated].
+extension MessageReactionUpdatedPatterns on MessageReactionUpdated {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_MessageReactionUpdated value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MessageReactionUpdated() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_MessageReactionUpdated value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MessageReactionUpdated():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_MessageReactionUpdated value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MessageReactionUpdated() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _MessageReactionUpdated implements MessageReactionUpdated {
-  const _MessageReactionUpdated(
-      {@JsonKey(name: 'chat') required this.chat,
-      @JsonKey(name: 'message_id') required this.messageId,
-      @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'actor_chat') this.actorChat,
-      @JsonKey(name: 'date') required this.date,
-      @JsonKey(name: 'old_reaction')
-      required final List<ReactionType> oldReaction,
-      @JsonKey(name: 'new_reaction')
-      required final List<ReactionType> newReaction})
-      : _oldReaction = oldReaction,
-        _newReaction = newReaction;
+  const _MessageReactionUpdated({
+    @JsonKey(name: 'chat') required this.chat,
+    @JsonKey(name: 'message_id') required this.messageId,
+    @JsonKey(name: 'user') this.user,
+    @JsonKey(name: 'actor_chat') this.actorChat,
+    @JsonKey(name: 'date') required this.date,
+    @JsonKey(name: 'old_reaction')
+    required final List<ReactionType> oldReaction,
+    @JsonKey(name: 'new_reaction')
+    required final List<ReactionType> newReaction,
+  }) : _oldReaction = oldReaction,
+       _newReaction = newReaction;
   factory _MessageReactionUpdated.fromJson(Map<String, dynamic> json) =>
       _$MessageReactionUpdatedFromJson(json);
 
@@ -245,13 +330,13 @@ class _MessageReactionUpdated implements MessageReactionUpdated {
   @pragma('vm:prefer-inline')
   _$MessageReactionUpdatedCopyWith<_MessageReactionUpdated> get copyWith =>
       __$MessageReactionUpdatedCopyWithImpl<_MessageReactionUpdated>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$MessageReactionUpdatedToJson(
-      this,
-    );
+    return _$MessageReactionUpdatedToJson(this);
   }
 
   @override
@@ -263,19 +348,21 @@ class _MessageReactionUpdated implements MessageReactionUpdated {
 /// @nodoc
 abstract mixin class _$MessageReactionUpdatedCopyWith<$Res>
     implements $MessageReactionUpdatedCopyWith<$Res> {
-  factory _$MessageReactionUpdatedCopyWith(_MessageReactionUpdated value,
-          $Res Function(_MessageReactionUpdated) _then) =
-      __$MessageReactionUpdatedCopyWithImpl;
+  factory _$MessageReactionUpdatedCopyWith(
+    _MessageReactionUpdated value,
+    $Res Function(_MessageReactionUpdated) _then,
+  ) = __$MessageReactionUpdatedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'chat') Chat chat,
-      @JsonKey(name: 'message_id') int messageId,
-      @JsonKey(name: 'user') User? user,
-      @JsonKey(name: 'actor_chat') Chat? actorChat,
-      @JsonKey(name: 'date') int date,
-      @JsonKey(name: 'old_reaction') List<ReactionType> oldReaction,
-      @JsonKey(name: 'new_reaction') List<ReactionType> newReaction});
+  $Res call({
+    @JsonKey(name: 'chat') Chat chat,
+    @JsonKey(name: 'message_id') int messageId,
+    @JsonKey(name: 'user') User? user,
+    @JsonKey(name: 'actor_chat') Chat? actorChat,
+    @JsonKey(name: 'date') int date,
+    @JsonKey(name: 'old_reaction') List<ReactionType> oldReaction,
+    @JsonKey(name: 'new_reaction') List<ReactionType> newReaction,
+  });
 
   @override
   $ChatCopyWith<$Res> get chat;
@@ -306,36 +393,38 @@ class __$MessageReactionUpdatedCopyWithImpl<$Res>
     Object? oldReaction = null,
     Object? newReaction = null,
   }) {
-    return _then(_MessageReactionUpdated(
-      chat: null == chat
-          ? _self.chat
-          : chat // ignore: cast_nullable_to_non_nullable
-              as Chat,
-      messageId: null == messageId
-          ? _self.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as int,
-      user: freezed == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      actorChat: freezed == actorChat
-          ? _self.actorChat
-          : actorChat // ignore: cast_nullable_to_non_nullable
-              as Chat?,
-      date: null == date
-          ? _self.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as int,
-      oldReaction: null == oldReaction
-          ? _self._oldReaction
-          : oldReaction // ignore: cast_nullable_to_non_nullable
-              as List<ReactionType>,
-      newReaction: null == newReaction
-          ? _self._newReaction
-          : newReaction // ignore: cast_nullable_to_non_nullable
-              as List<ReactionType>,
-    ));
+    return _then(
+      _MessageReactionUpdated(
+        chat: null == chat
+            ? _self.chat
+            : chat // ignore: cast_nullable_to_non_nullable
+                  as Chat,
+        messageId: null == messageId
+            ? _self.messageId
+            : messageId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        user: freezed == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        actorChat: freezed == actorChat
+            ? _self.actorChat
+            : actorChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
+        date: null == date
+            ? _self.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as int,
+        oldReaction: null == oldReaction
+            ? _self._oldReaction
+            : oldReaction // ignore: cast_nullable_to_non_nullable
+                  as List<ReactionType>,
+        newReaction: null == newReaction
+            ? _self._newReaction
+            : newReaction // ignore: cast_nullable_to_non_nullable
+                  as List<ReactionType>,
+      ),
+    );
   }
 
   /// Create a copy of MessageReactionUpdated

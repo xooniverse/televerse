@@ -8,7 +8,8 @@ part of 'background_type.dart';
 
 BackgroundTypeFill _$BackgroundTypeFillFromJson(Map<String, dynamic> json) =>
     BackgroundTypeFill(
-      type: $enumDecodeNullable(_$BackgroundTypeTypeEnumMap, json['type']) ??
+      type:
+          $enumDecodeNullable(_$BackgroundTypeTypeEnumMap, json['type']) ??
           BackgroundTypeType.fill,
       fill: BackgroundFill.fromJson(json['fill'] as Map<String, dynamic>),
       darkThemeDimming: (json['dark_theme_dimming'] as num?)?.toInt() ?? 0,
@@ -29,60 +30,63 @@ const _$BackgroundTypeTypeEnumMap = {
 };
 
 BackgroundTypeWallpaper _$BackgroundTypeWallpaperFromJson(
-        Map<String, dynamic> json) =>
-    BackgroundTypeWallpaper(
-      type: $enumDecodeNullable(_$BackgroundTypeTypeEnumMap, json['type']) ??
-          BackgroundTypeType.wallpaper,
-      document: Document.fromJson(json['document'] as Map<String, dynamic>),
-      darkThemeDimming: (json['dark_theme_dimming'] as num?)?.toInt() ?? 0,
-      isBlurred: json['is_blurred'] as bool?,
-      isMoving: json['is_moving'] as bool?,
-    );
+  Map<String, dynamic> json,
+) => BackgroundTypeWallpaper(
+  type:
+      $enumDecodeNullable(_$BackgroundTypeTypeEnumMap, json['type']) ??
+      BackgroundTypeType.wallpaper,
+  document: Document.fromJson(json['document'] as Map<String, dynamic>),
+  darkThemeDimming: (json['dark_theme_dimming'] as num?)?.toInt() ?? 0,
+  isBlurred: json['is_blurred'] as bool?,
+  isMoving: json['is_moving'] as bool?,
+);
 
 Map<String, dynamic> _$BackgroundTypeWallpaperToJson(
-        BackgroundTypeWallpaper instance) =>
-    <String, dynamic>{
-      'type': _$BackgroundTypeTypeEnumMap[instance.type]!,
-      'document': instance.document,
-      'dark_theme_dimming': instance.darkThemeDimming,
-      if (instance.isBlurred case final value?) 'is_blurred': value,
-      if (instance.isMoving case final value?) 'is_moving': value,
-    };
+  BackgroundTypeWallpaper instance,
+) => <String, dynamic>{
+  'type': _$BackgroundTypeTypeEnumMap[instance.type]!,
+  'document': instance.document,
+  'dark_theme_dimming': instance.darkThemeDimming,
+  'is_blurred': ?instance.isBlurred,
+  'is_moving': ?instance.isMoving,
+};
 
 BackgroundTypePattern _$BackgroundTypePatternFromJson(
-        Map<String, dynamic> json) =>
-    BackgroundTypePattern(
-      type: $enumDecodeNullable(_$BackgroundTypeTypeEnumMap, json['type']) ??
-          BackgroundTypeType.pattern,
-      document: Document.fromJson(json['document'] as Map<String, dynamic>),
-      fill: BackgroundFill.fromJson(json['fill'] as Map<String, dynamic>),
-      intensity: (json['intensity'] as num?)?.toInt() ?? 0,
-      isInverted: json['is_inverted'] as bool?,
-      isMoving: json['is_moving'] as bool?,
-    );
+  Map<String, dynamic> json,
+) => BackgroundTypePattern(
+  type:
+      $enumDecodeNullable(_$BackgroundTypeTypeEnumMap, json['type']) ??
+      BackgroundTypeType.pattern,
+  document: Document.fromJson(json['document'] as Map<String, dynamic>),
+  fill: BackgroundFill.fromJson(json['fill'] as Map<String, dynamic>),
+  intensity: (json['intensity'] as num?)?.toInt() ?? 0,
+  isInverted: json['is_inverted'] as bool?,
+  isMoving: json['is_moving'] as bool?,
+);
 
 Map<String, dynamic> _$BackgroundTypePatternToJson(
-        BackgroundTypePattern instance) =>
-    <String, dynamic>{
-      'type': _$BackgroundTypeTypeEnumMap[instance.type]!,
-      'document': instance.document,
-      'fill': instance.fill,
-      'intensity': instance.intensity,
-      if (instance.isInverted case final value?) 'is_inverted': value,
-      if (instance.isMoving case final value?) 'is_moving': value,
-    };
+  BackgroundTypePattern instance,
+) => <String, dynamic>{
+  'type': _$BackgroundTypeTypeEnumMap[instance.type]!,
+  'document': instance.document,
+  'fill': instance.fill,
+  'intensity': instance.intensity,
+  'is_inverted': ?instance.isInverted,
+  'is_moving': ?instance.isMoving,
+};
 
 BackgroundTypeChatTheme _$BackgroundTypeChatThemeFromJson(
-        Map<String, dynamic> json) =>
-    BackgroundTypeChatTheme(
-      type: $enumDecodeNullable(_$BackgroundTypeTypeEnumMap, json['type']) ??
-          BackgroundTypeType.chatTheme,
-      themeName: json['theme_name'] as String,
-    );
+  Map<String, dynamic> json,
+) => BackgroundTypeChatTheme(
+  type:
+      $enumDecodeNullable(_$BackgroundTypeTypeEnumMap, json['type']) ??
+      BackgroundTypeType.chatTheme,
+  themeName: json['theme_name'] as String,
+);
 
 Map<String, dynamic> _$BackgroundTypeChatThemeToJson(
-        BackgroundTypeChatTheme instance) =>
-    <String, dynamic>{
-      'type': _$BackgroundTypeTypeEnumMap[instance.type]!,
-      'theme_name': instance.themeName,
-    };
+  BackgroundTypeChatTheme instance,
+) => <String, dynamic>{
+  'type': _$BackgroundTypeTypeEnumMap[instance.type]!,
+  'theme_name': instance.themeName,
+};

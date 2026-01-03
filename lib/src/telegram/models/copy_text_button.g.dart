@@ -7,11 +7,7 @@ part of 'copy_text_button.dart';
 // **************************************************************************
 
 _CopyTextButton _$CopyTextButtonFromJson(Map<String, dynamic> json) =>
-    _CopyTextButton(
-      text: json['text'] as String,
-    );
+    _CopyTextButton(text: json['text'] as String);
 
 Map<String, dynamic> _$CopyTextButtonToJson(_CopyTextButton instance) =>
-    <String, dynamic>{
-      'text': instance.text,
-    };
+    <String, dynamic>{'text': instance.text};

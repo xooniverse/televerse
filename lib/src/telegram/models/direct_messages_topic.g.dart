@@ -15,8 +15,5 @@ _DirectMessagesTopic _$DirectMessagesTopicFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$DirectMessagesTopicToJson(
-        _DirectMessagesTopic instance) =>
-    <String, dynamic>{
-      'topic_id': instance.topicId,
-      if (instance.user case final value?) 'user': value,
-    };
+  _DirectMessagesTopic instance,
+) => <String, dynamic>{'topic_id': instance.topicId, 'user': ?instance.user};

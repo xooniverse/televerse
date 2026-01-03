@@ -14,6 +14,4 @@ _StarTransactions _$StarTransactionsFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$StarTransactionsToJson(_StarTransactions instance) =>
-    <String, dynamic>{
-      'transactions': instance.transactions,
-    };
+    <String, dynamic>{'transactions': instance.transactions};

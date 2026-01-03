@@ -7,12 +7,12 @@ part of 'star_amount.dart';
 // **************************************************************************
 
 _StarAmount _$StarAmountFromJson(Map<String, dynamic> json) => _StarAmount(
-      amount: (json['amount'] as num).toInt(),
-      nanostarAmount: (json['nanostar_amount'] as num?)?.toInt(),
-    );
+  amount: (json['amount'] as num).toInt(),
+  nanostarAmount: (json['nanostar_amount'] as num?)?.toInt(),
+);
 
 Map<String, dynamic> _$StarAmountToJson(_StarAmount instance) =>
     <String, dynamic>{
       'amount': instance.amount,
-      if (instance.nanostarAmount case final value?) 'nanostar_amount': value,
+      'nanostar_amount': ?instance.nanostarAmount,
     };

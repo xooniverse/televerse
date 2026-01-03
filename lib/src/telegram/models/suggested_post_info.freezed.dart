@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -32,7 +31,9 @@ mixin _$SuggestedPostInfo {
   @pragma('vm:prefer-inline')
   $SuggestedPostInfoCopyWith<SuggestedPostInfo> get copyWith =>
       _$SuggestedPostInfoCopyWithImpl<SuggestedPostInfo>(
-          this as SuggestedPostInfo, _$identity);
+        this as SuggestedPostInfo,
+        _$identity,
+      );
 
   /// Serializes this SuggestedPostInfo to a JSON map.
   Map<String, dynamic> toJson();
@@ -46,13 +47,15 @@ mixin _$SuggestedPostInfo {
 /// @nodoc
 abstract mixin class $SuggestedPostInfoCopyWith<$Res> {
   factory $SuggestedPostInfoCopyWith(
-          SuggestedPostInfo value, $Res Function(SuggestedPostInfo) _then) =
-      _$SuggestedPostInfoCopyWithImpl;
+    SuggestedPostInfo value,
+    $Res Function(SuggestedPostInfo) _then,
+  ) = _$SuggestedPostInfoCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'state') String state,
-      @JsonKey(name: 'price') SuggestedPostPrice? price,
-      @JsonKey(name: 'send_date') int? sendDate});
+  $Res call({
+    @JsonKey(name: 'state') String state,
+    @JsonKey(name: 'price') SuggestedPostPrice? price,
+    @JsonKey(name: 'send_date') int? sendDate,
+  });
 
   $SuggestedPostPriceCopyWith<$Res>? get price;
 }
@@ -74,20 +77,22 @@ class _$SuggestedPostInfoCopyWithImpl<$Res>
     Object? price = freezed,
     Object? sendDate = freezed,
   }) {
-    return _then(_self.copyWith(
-      state: null == state
-          ? _self.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as String,
-      price: freezed == price
-          ? _self.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as SuggestedPostPrice?,
-      sendDate: freezed == sendDate
-          ? _self.sendDate
-          : sendDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        state: null == state
+            ? _self.state
+            : state // ignore: cast_nullable_to_non_nullable
+                  as String,
+        price: freezed == price
+            ? _self.price
+            : price // ignore: cast_nullable_to_non_nullable
+                  as SuggestedPostPrice?,
+        sendDate: freezed == sendDate
+            ? _self.sendDate
+            : sendDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of SuggestedPostInfo
@@ -105,13 +110,94 @@ class _$SuggestedPostInfoCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [SuggestedPostInfo].
+extension SuggestedPostInfoPatterns on SuggestedPostInfo {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SuggestedPostInfo value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SuggestedPostInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SuggestedPostInfo value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SuggestedPostInfo():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SuggestedPostInfo value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SuggestedPostInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _SuggestedPostInfo implements SuggestedPostInfo {
-  const _SuggestedPostInfo(
-      {@JsonKey(name: 'state') required this.state,
-      @JsonKey(name: 'price') this.price,
-      @JsonKey(name: 'send_date') this.sendDate});
+  const _SuggestedPostInfo({
+    @JsonKey(name: 'state') required this.state,
+    @JsonKey(name: 'price') this.price,
+    @JsonKey(name: 'send_date') this.sendDate,
+  });
   factory _SuggestedPostInfo.fromJson(Map<String, dynamic> json) =>
       _$SuggestedPostInfoFromJson(json);
 
@@ -140,9 +226,7 @@ class _SuggestedPostInfo implements SuggestedPostInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$SuggestedPostInfoToJson(
-      this,
-    );
+    return _$SuggestedPostInfoToJson(this);
   }
 
   @override
@@ -155,14 +239,16 @@ class _SuggestedPostInfo implements SuggestedPostInfo {
 abstract mixin class _$SuggestedPostInfoCopyWith<$Res>
     implements $SuggestedPostInfoCopyWith<$Res> {
   factory _$SuggestedPostInfoCopyWith(
-          _SuggestedPostInfo value, $Res Function(_SuggestedPostInfo) _then) =
-      __$SuggestedPostInfoCopyWithImpl;
+    _SuggestedPostInfo value,
+    $Res Function(_SuggestedPostInfo) _then,
+  ) = __$SuggestedPostInfoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'state') String state,
-      @JsonKey(name: 'price') SuggestedPostPrice? price,
-      @JsonKey(name: 'send_date') int? sendDate});
+  $Res call({
+    @JsonKey(name: 'state') String state,
+    @JsonKey(name: 'price') SuggestedPostPrice? price,
+    @JsonKey(name: 'send_date') int? sendDate,
+  });
 
   @override
   $SuggestedPostPriceCopyWith<$Res>? get price;
@@ -185,20 +271,22 @@ class __$SuggestedPostInfoCopyWithImpl<$Res>
     Object? price = freezed,
     Object? sendDate = freezed,
   }) {
-    return _then(_SuggestedPostInfo(
-      state: null == state
-          ? _self.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as String,
-      price: freezed == price
-          ? _self.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as SuggestedPostPrice?,
-      sendDate: freezed == sendDate
-          ? _self.sendDate
-          : sendDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _SuggestedPostInfo(
+        state: null == state
+            ? _self.state
+            : state // ignore: cast_nullable_to_non_nullable
+                  as String,
+        price: freezed == price
+            ? _self.price
+            : price // ignore: cast_nullable_to_non_nullable
+                  as SuggestedPostPrice?,
+        sendDate: freezed == sendDate
+            ? _self.sendDate
+            : sendDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of SuggestedPostInfo

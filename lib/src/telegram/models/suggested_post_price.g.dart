@@ -13,7 +13,4 @@ _SuggestedPostPrice _$SuggestedPostPriceFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$SuggestedPostPriceToJson(_SuggestedPostPrice instance) =>
-    <String, dynamic>{
-      'currency': instance.currency,
-      'amount': instance.amount,
-    };
+    <String, dynamic>{'currency': instance.currency, 'amount': instance.amount};

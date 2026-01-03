@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -64,11 +63,12 @@ abstract mixin class $LoginURLCopyWith<$Res> {
   factory $LoginURLCopyWith(LoginURL value, $Res Function(LoginURL) _then) =
       _$LoginURLCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'url') String url,
-      @JsonKey(name: 'forward_text') String? forwardText,
-      @JsonKey(name: 'bot_username') String? botUsername,
-      @JsonKey(name: 'request_write_access') bool? requestWriteAccess});
+  $Res call({
+    @JsonKey(name: 'url') String url,
+    @JsonKey(name: 'forward_text') String? forwardText,
+    @JsonKey(name: 'bot_username') String? botUsername,
+    @JsonKey(name: 'request_write_access') bool? requestWriteAccess,
+  });
 }
 
 /// @nodoc
@@ -88,35 +88,118 @@ class _$LoginURLCopyWithImpl<$Res> implements $LoginURLCopyWith<$Res> {
     Object? botUsername = freezed,
     Object? requestWriteAccess = freezed,
   }) {
-    return _then(_self.copyWith(
-      url: null == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      forwardText: freezed == forwardText
-          ? _self.forwardText
-          : forwardText // ignore: cast_nullable_to_non_nullable
-              as String?,
-      botUsername: freezed == botUsername
-          ? _self.botUsername
-          : botUsername // ignore: cast_nullable_to_non_nullable
-              as String?,
-      requestWriteAccess: freezed == requestWriteAccess
-          ? _self.requestWriteAccess
-          : requestWriteAccess // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        url: null == url
+            ? _self.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String,
+        forwardText: freezed == forwardText
+            ? _self.forwardText
+            : forwardText // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        botUsername: freezed == botUsername
+            ? _self.botUsername
+            : botUsername // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        requestWriteAccess: freezed == requestWriteAccess
+            ? _self.requestWriteAccess
+            : requestWriteAccess // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [LoginURL].
+extension LoginURLPatterns on LoginURL {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_LoginURL value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoginURL() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_LoginURL value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LoginURL():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_LoginURL value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LoginURL() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _LoginURL implements LoginURL {
-  const _LoginURL(
-      {@JsonKey(name: 'url') required this.url,
-      @JsonKey(name: 'forward_text') this.forwardText,
-      @JsonKey(name: 'bot_username') this.botUsername,
-      @JsonKey(name: 'request_write_access') this.requestWriteAccess});
+  const _LoginURL({
+    @JsonKey(name: 'url') required this.url,
+    @JsonKey(name: 'forward_text') this.forwardText,
+    @JsonKey(name: 'bot_username') this.botUsername,
+    @JsonKey(name: 'request_write_access') this.requestWriteAccess,
+  });
   factory _LoginURL.fromJson(Map<String, dynamic> json) =>
       _$LoginURLFromJson(json);
 
@@ -163,9 +246,7 @@ class _LoginURL implements LoginURL {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$LoginURLToJson(
-      this,
-    );
+    return _$LoginURLToJson(this);
   }
 
   @override
@@ -181,11 +262,12 @@ abstract mixin class _$LoginURLCopyWith<$Res>
       __$LoginURLCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'url') String url,
-      @JsonKey(name: 'forward_text') String? forwardText,
-      @JsonKey(name: 'bot_username') String? botUsername,
-      @JsonKey(name: 'request_write_access') bool? requestWriteAccess});
+  $Res call({
+    @JsonKey(name: 'url') String url,
+    @JsonKey(name: 'forward_text') String? forwardText,
+    @JsonKey(name: 'bot_username') String? botUsername,
+    @JsonKey(name: 'request_write_access') bool? requestWriteAccess,
+  });
 }
 
 /// @nodoc
@@ -205,23 +287,25 @@ class __$LoginURLCopyWithImpl<$Res> implements _$LoginURLCopyWith<$Res> {
     Object? botUsername = freezed,
     Object? requestWriteAccess = freezed,
   }) {
-    return _then(_LoginURL(
-      url: null == url
-          ? _self.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      forwardText: freezed == forwardText
-          ? _self.forwardText
-          : forwardText // ignore: cast_nullable_to_non_nullable
-              as String?,
-      botUsername: freezed == botUsername
-          ? _self.botUsername
-          : botUsername // ignore: cast_nullable_to_non_nullable
-              as String?,
-      requestWriteAccess: freezed == requestWriteAccess
-          ? _self.requestWriteAccess
-          : requestWriteAccess // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _LoginURL(
+        url: null == url
+            ? _self.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String,
+        forwardText: freezed == forwardText
+            ? _self.forwardText
+            : forwardText // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        botUsername: freezed == botUsername
+            ? _self.botUsername
+            : botUsername // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        requestWriteAccess: freezed == requestWriteAccess
+            ? _self.requestWriteAccess
+            : requestWriteAccess // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

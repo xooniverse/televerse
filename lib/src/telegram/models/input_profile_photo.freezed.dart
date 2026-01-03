@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -19,8 +18,12 @@ InputProfilePhoto _$InputProfilePhotoFromJson(Map<String, dynamic> json) {
       return InputProfilePhotoAnimated.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'type', 'InputProfilePhoto',
-          'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'type',
+        'InputProfilePhoto',
+        'Invalid union type "${json['type']}"!',
+      );
   }
 }
 
@@ -36,7 +39,9 @@ mixin _$InputProfilePhoto {
   @pragma('vm:prefer-inline')
   $InputProfilePhotoCopyWith<InputProfilePhoto> get copyWith =>
       _$InputProfilePhotoCopyWithImpl<InputProfilePhoto>(
-          this as InputProfilePhoto, _$identity);
+        this as InputProfilePhoto,
+        _$identity,
+      );
 
   /// Serializes this InputProfilePhoto to a JSON map.
   Map<String, dynamic> toJson();
@@ -50,8 +55,9 @@ mixin _$InputProfilePhoto {
 /// @nodoc
 abstract mixin class $InputProfilePhotoCopyWith<$Res> {
   factory $InputProfilePhotoCopyWith(
-          InputProfilePhoto value, $Res Function(InputProfilePhoto) _then) =
-      _$InputProfilePhotoCopyWithImpl;
+    InputProfilePhoto value,
+    $Res Function(InputProfilePhoto) _then,
+  ) = _$InputProfilePhotoCopyWithImpl;
   @useResult
   $Res call({@JsonKey(name: 'type') InputProfilePhotoType type});
 }
@@ -68,25 +74,112 @@ class _$InputProfilePhotoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
+  $Res call({Object? type = null}) {
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InputProfilePhotoType,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [InputProfilePhoto].
+extension InputProfilePhotoPatterns on InputProfilePhoto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InputProfilePhotoStatic value)? static,
+    TResult Function(InputProfilePhotoAnimated value)? animated,
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InputProfilePhotoType,
-    ));
+    final _that = this;
+    switch (_that) {
+      case InputProfilePhotoStatic() when static != null:
+        return static(_that);
+      case InputProfilePhotoAnimated() when animated != null:
+        return animated(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InputProfilePhotoStatic value) static,
+    required TResult Function(InputProfilePhotoAnimated value) animated,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case InputProfilePhotoStatic():
+        return static(_that);
+      case InputProfilePhotoAnimated():
+        return animated(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InputProfilePhotoStatic value)? static,
+    TResult? Function(InputProfilePhotoAnimated value)? animated,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case InputProfilePhotoStatic() when static != null:
+        return static(_that);
+      case InputProfilePhotoAnimated() when animated != null:
+        return animated(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class InputProfilePhotoStatic extends InputProfilePhoto {
-  const InputProfilePhotoStatic(
-      {@JsonKey(name: 'type') this.type = InputProfilePhotoType.static,
-      @JsonKey(name: 'photo') @InputFileConverter() required this.photo})
-      : super._();
+  const InputProfilePhotoStatic({
+    @JsonKey(name: 'type') this.type = InputProfilePhotoType.static,
+    @JsonKey(name: 'photo') @InputFileConverter() required this.photo,
+  }) : super._();
   factory InputProfilePhotoStatic.fromJson(Map<String, dynamic> json) =>
       _$InputProfilePhotoStaticFromJson(json);
 
@@ -108,13 +201,13 @@ class InputProfilePhotoStatic extends InputProfilePhoto {
   @pragma('vm:prefer-inline')
   $InputProfilePhotoStaticCopyWith<InputProfilePhotoStatic> get copyWith =>
       _$InputProfilePhotoStaticCopyWithImpl<InputProfilePhotoStatic>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputProfilePhotoStaticToJson(
-      this,
-    );
+    return _$InputProfilePhotoStaticToJson(this);
   }
 
   @override
@@ -126,14 +219,16 @@ class InputProfilePhotoStatic extends InputProfilePhoto {
 /// @nodoc
 abstract mixin class $InputProfilePhotoStaticCopyWith<$Res>
     implements $InputProfilePhotoCopyWith<$Res> {
-  factory $InputProfilePhotoStaticCopyWith(InputProfilePhotoStatic value,
-          $Res Function(InputProfilePhotoStatic) _then) =
-      _$InputProfilePhotoStaticCopyWithImpl;
+  factory $InputProfilePhotoStaticCopyWith(
+    InputProfilePhotoStatic value,
+    $Res Function(InputProfilePhotoStatic) _then,
+  ) = _$InputProfilePhotoStaticCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InputProfilePhotoType type,
-      @JsonKey(name: 'photo') @InputFileConverter() InputFile photo});
+  $Res call({
+    @JsonKey(name: 'type') InputProfilePhotoType type,
+    @JsonKey(name: 'photo') @InputFileConverter() InputFile photo,
+  });
 }
 
 /// @nodoc
@@ -148,31 +243,30 @@ class _$InputProfilePhotoStaticCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? photo = null,
-  }) {
-    return _then(InputProfilePhotoStatic(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InputProfilePhotoType,
-      photo: null == photo
-          ? _self.photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-    ));
+  $Res call({Object? type = null, Object? photo = null}) {
+    return _then(
+      InputProfilePhotoStatic(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InputProfilePhotoType,
+        photo: null == photo
+            ? _self.photo
+            : photo // ignore: cast_nullable_to_non_nullable
+                  as InputFile,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class InputProfilePhotoAnimated extends InputProfilePhoto {
-  const InputProfilePhotoAnimated(
-      {@JsonKey(name: 'type') this.type = InputProfilePhotoType.animated,
-      @JsonKey(name: 'animation') @InputFileConverter() required this.animation,
-      @JsonKey(name: 'main_frame_timestamp') this.mainFrameTimestamp})
-      : super._();
+  const InputProfilePhotoAnimated({
+    @JsonKey(name: 'type') this.type = InputProfilePhotoType.animated,
+    @JsonKey(name: 'animation') @InputFileConverter() required this.animation,
+    @JsonKey(name: 'main_frame_timestamp') this.mainFrameTimestamp,
+  }) : super._();
   factory InputProfilePhotoAnimated.fromJson(Map<String, dynamic> json) =>
       _$InputProfilePhotoAnimatedFromJson(json);
 
@@ -199,13 +293,13 @@ class InputProfilePhotoAnimated extends InputProfilePhoto {
   @pragma('vm:prefer-inline')
   $InputProfilePhotoAnimatedCopyWith<InputProfilePhotoAnimated> get copyWith =>
       _$InputProfilePhotoAnimatedCopyWithImpl<InputProfilePhotoAnimated>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputProfilePhotoAnimatedToJson(
-      this,
-    );
+    return _$InputProfilePhotoAnimatedToJson(this);
   }
 
   @override
@@ -217,15 +311,17 @@ class InputProfilePhotoAnimated extends InputProfilePhoto {
 /// @nodoc
 abstract mixin class $InputProfilePhotoAnimatedCopyWith<$Res>
     implements $InputProfilePhotoCopyWith<$Res> {
-  factory $InputProfilePhotoAnimatedCopyWith(InputProfilePhotoAnimated value,
-          $Res Function(InputProfilePhotoAnimated) _then) =
-      _$InputProfilePhotoAnimatedCopyWithImpl;
+  factory $InputProfilePhotoAnimatedCopyWith(
+    InputProfilePhotoAnimated value,
+    $Res Function(InputProfilePhotoAnimated) _then,
+  ) = _$InputProfilePhotoAnimatedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InputProfilePhotoType type,
-      @JsonKey(name: 'animation') @InputFileConverter() InputFile animation,
-      @JsonKey(name: 'main_frame_timestamp') double? mainFrameTimestamp});
+  $Res call({
+    @JsonKey(name: 'type') InputProfilePhotoType type,
+    @JsonKey(name: 'animation') @InputFileConverter() InputFile animation,
+    @JsonKey(name: 'main_frame_timestamp') double? mainFrameTimestamp,
+  });
 }
 
 /// @nodoc
@@ -245,19 +341,21 @@ class _$InputProfilePhotoAnimatedCopyWithImpl<$Res>
     Object? animation = null,
     Object? mainFrameTimestamp = freezed,
   }) {
-    return _then(InputProfilePhotoAnimated(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InputProfilePhotoType,
-      animation: null == animation
-          ? _self.animation
-          : animation // ignore: cast_nullable_to_non_nullable
-              as InputFile,
-      mainFrameTimestamp: freezed == mainFrameTimestamp
-          ? _self.mainFrameTimestamp
-          : mainFrameTimestamp // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ));
+    return _then(
+      InputProfilePhotoAnimated(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InputProfilePhotoType,
+        animation: null == animation
+            ? _self.animation
+            : animation // ignore: cast_nullable_to_non_nullable
+                  as InputFile,
+        mainFrameTimestamp: freezed == mainFrameTimestamp
+            ? _self.mainFrameTimestamp
+            : mainFrameTimestamp // ignore: cast_nullable_to_non_nullable
+                  as double?,
+      ),
+    );
   }
 }

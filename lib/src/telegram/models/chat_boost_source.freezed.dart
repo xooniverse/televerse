@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -21,8 +20,12 @@ ChatBoostSource _$ChatBoostSourceFromJson(Map<String, dynamic> json) {
       return ChatBoostSourceGiveaway.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'source', 'ChatBoostSource',
-          'Invalid union type "${json['source']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'source',
+        'ChatBoostSource',
+        'Invalid union type "${json['source']}"!',
+      );
   }
 }
 
@@ -42,7 +45,9 @@ mixin _$ChatBoostSource {
   @pragma('vm:prefer-inline')
   $ChatBoostSourceCopyWith<ChatBoostSource> get copyWith =>
       _$ChatBoostSourceCopyWithImpl<ChatBoostSource>(
-          this as ChatBoostSource, _$identity);
+        this as ChatBoostSource,
+        _$identity,
+      );
 
   /// Serializes this ChatBoostSource to a JSON map.
   Map<String, dynamic> toJson();
@@ -56,12 +61,14 @@ mixin _$ChatBoostSource {
 /// @nodoc
 abstract mixin class $ChatBoostSourceCopyWith<$Res> {
   factory $ChatBoostSourceCopyWith(
-          ChatBoostSource value, $Res Function(ChatBoostSource) _then) =
-      _$ChatBoostSourceCopyWithImpl;
+    ChatBoostSource value,
+    $Res Function(ChatBoostSource) _then,
+  ) = _$ChatBoostSourceCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'source') ChatBoostSourceType source,
-      @JsonKey(name: 'user') User user});
+  $Res call({
+    @JsonKey(name: 'source') ChatBoostSourceType source,
+    @JsonKey(name: 'user') User user,
+  });
 
   $UserCopyWith<$Res>? get user;
 }
@@ -78,20 +85,19 @@ class _$ChatBoostSourceCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? source = null,
-    Object? user = null,
-  }) {
-    return _then(_self.copyWith(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as ChatBoostSourceType,
-      user: null == user
-          ? _self.user!
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
+  $Res call({Object? source = null, Object? user = null}) {
+    return _then(
+      _self.copyWith(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as ChatBoostSourceType,
+        user: null == user
+            ? _self.user!
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+      ),
+    );
   }
 
   /// Create a copy of ChatBoostSource
@@ -109,12 +115,109 @@ class _$ChatBoostSourceCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [ChatBoostSource].
+extension ChatBoostSourcePatterns on ChatBoostSource {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChatBoostSourcePremium value)? premium,
+    TResult Function(ChatBoostSourceGiftCode value)? giftCode,
+    TResult Function(ChatBoostSourceGiveaway value)? giveaway,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ChatBoostSourcePremium() when premium != null:
+        return premium(_that);
+      case ChatBoostSourceGiftCode() when giftCode != null:
+        return giftCode(_that);
+      case ChatBoostSourceGiveaway() when giveaway != null:
+        return giveaway(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChatBoostSourcePremium value) premium,
+    required TResult Function(ChatBoostSourceGiftCode value) giftCode,
+    required TResult Function(ChatBoostSourceGiveaway value) giveaway,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ChatBoostSourcePremium():
+        return premium(_that);
+      case ChatBoostSourceGiftCode():
+        return giftCode(_that);
+      case ChatBoostSourceGiveaway():
+        return giveaway(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ChatBoostSourcePremium value)? premium,
+    TResult? Function(ChatBoostSourceGiftCode value)? giftCode,
+    TResult? Function(ChatBoostSourceGiveaway value)? giveaway,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ChatBoostSourcePremium() when premium != null:
+        return premium(_that);
+      case ChatBoostSourceGiftCode() when giftCode != null:
+        return giftCode(_that);
+      case ChatBoostSourceGiveaway() when giveaway != null:
+        return giveaway(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class ChatBoostSourcePremium implements ChatBoostSource {
-  const ChatBoostSourcePremium(
-      {@JsonKey(name: 'source') this.source = ChatBoostSourceType.premium,
-      @JsonKey(name: 'user') required this.user});
+  const ChatBoostSourcePremium({
+    @JsonKey(name: 'source') this.source = ChatBoostSourceType.premium,
+    @JsonKey(name: 'user') required this.user,
+  });
   factory ChatBoostSourcePremium.fromJson(Map<String, dynamic> json) =>
       _$ChatBoostSourcePremiumFromJson(json);
 
@@ -135,13 +238,13 @@ class ChatBoostSourcePremium implements ChatBoostSource {
   @pragma('vm:prefer-inline')
   $ChatBoostSourcePremiumCopyWith<ChatBoostSourcePremium> get copyWith =>
       _$ChatBoostSourcePremiumCopyWithImpl<ChatBoostSourcePremium>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatBoostSourcePremiumToJson(
-      this,
-    );
+    return _$ChatBoostSourcePremiumToJson(this);
   }
 
   @override
@@ -153,14 +256,16 @@ class ChatBoostSourcePremium implements ChatBoostSource {
 /// @nodoc
 abstract mixin class $ChatBoostSourcePremiumCopyWith<$Res>
     implements $ChatBoostSourceCopyWith<$Res> {
-  factory $ChatBoostSourcePremiumCopyWith(ChatBoostSourcePremium value,
-          $Res Function(ChatBoostSourcePremium) _then) =
-      _$ChatBoostSourcePremiumCopyWithImpl;
+  factory $ChatBoostSourcePremiumCopyWith(
+    ChatBoostSourcePremium value,
+    $Res Function(ChatBoostSourcePremium) _then,
+  ) = _$ChatBoostSourcePremiumCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'source') ChatBoostSourceType source,
-      @JsonKey(name: 'user') User user});
+  $Res call({
+    @JsonKey(name: 'source') ChatBoostSourceType source,
+    @JsonKey(name: 'user') User user,
+  });
 
   @override
   $UserCopyWith<$Res> get user;
@@ -178,20 +283,19 @@ class _$ChatBoostSourcePremiumCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? source = null,
-    Object? user = null,
-  }) {
-    return _then(ChatBoostSourcePremium(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as ChatBoostSourceType,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
+  $Res call({Object? source = null, Object? user = null}) {
+    return _then(
+      ChatBoostSourcePremium(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as ChatBoostSourceType,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+      ),
+    );
   }
 
   /// Create a copy of ChatBoostSource
@@ -208,9 +312,10 @@ class _$ChatBoostSourcePremiumCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class ChatBoostSourceGiftCode implements ChatBoostSource {
-  const ChatBoostSourceGiftCode(
-      {@JsonKey(name: 'source') this.source = ChatBoostSourceType.giftCode,
-      @JsonKey(name: 'user') required this.user});
+  const ChatBoostSourceGiftCode({
+    @JsonKey(name: 'source') this.source = ChatBoostSourceType.giftCode,
+    @JsonKey(name: 'user') required this.user,
+  });
   factory ChatBoostSourceGiftCode.fromJson(Map<String, dynamic> json) =>
       _$ChatBoostSourceGiftCodeFromJson(json);
 
@@ -231,13 +336,13 @@ class ChatBoostSourceGiftCode implements ChatBoostSource {
   @pragma('vm:prefer-inline')
   $ChatBoostSourceGiftCodeCopyWith<ChatBoostSourceGiftCode> get copyWith =>
       _$ChatBoostSourceGiftCodeCopyWithImpl<ChatBoostSourceGiftCode>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatBoostSourceGiftCodeToJson(
-      this,
-    );
+    return _$ChatBoostSourceGiftCodeToJson(this);
   }
 
   @override
@@ -249,14 +354,16 @@ class ChatBoostSourceGiftCode implements ChatBoostSource {
 /// @nodoc
 abstract mixin class $ChatBoostSourceGiftCodeCopyWith<$Res>
     implements $ChatBoostSourceCopyWith<$Res> {
-  factory $ChatBoostSourceGiftCodeCopyWith(ChatBoostSourceGiftCode value,
-          $Res Function(ChatBoostSourceGiftCode) _then) =
-      _$ChatBoostSourceGiftCodeCopyWithImpl;
+  factory $ChatBoostSourceGiftCodeCopyWith(
+    ChatBoostSourceGiftCode value,
+    $Res Function(ChatBoostSourceGiftCode) _then,
+  ) = _$ChatBoostSourceGiftCodeCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'source') ChatBoostSourceType source,
-      @JsonKey(name: 'user') User user});
+  $Res call({
+    @JsonKey(name: 'source') ChatBoostSourceType source,
+    @JsonKey(name: 'user') User user,
+  });
 
   @override
   $UserCopyWith<$Res> get user;
@@ -274,20 +381,19 @@ class _$ChatBoostSourceGiftCodeCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? source = null,
-    Object? user = null,
-  }) {
-    return _then(ChatBoostSourceGiftCode(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as ChatBoostSourceType,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
+  $Res call({Object? source = null, Object? user = null}) {
+    return _then(
+      ChatBoostSourceGiftCode(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as ChatBoostSourceType,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+      ),
+    );
   }
 
   /// Create a copy of ChatBoostSource
@@ -304,12 +410,13 @@ class _$ChatBoostSourceGiftCodeCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class ChatBoostSourceGiveaway implements ChatBoostSource {
-  const ChatBoostSourceGiveaway(
-      {@JsonKey(name: 'source') this.source = ChatBoostSourceType.giveaway,
-      @JsonKey(name: 'giveaway_message_id') required this.giveawayMessageId,
-      @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'prize_star_count') this.prizeStarCount,
-      @JsonKey(name: 'is_unclaimed') this.isUnclaimed});
+  const ChatBoostSourceGiveaway({
+    @JsonKey(name: 'source') this.source = ChatBoostSourceType.giveaway,
+    @JsonKey(name: 'giveaway_message_id') required this.giveawayMessageId,
+    @JsonKey(name: 'user') this.user,
+    @JsonKey(name: 'prize_star_count') this.prizeStarCount,
+    @JsonKey(name: 'is_unclaimed') this.isUnclaimed,
+  });
   factory ChatBoostSourceGiveaway.fromJson(Map<String, dynamic> json) =>
       _$ChatBoostSourceGiveawayFromJson(json);
 
@@ -346,13 +453,13 @@ class ChatBoostSourceGiveaway implements ChatBoostSource {
   @pragma('vm:prefer-inline')
   $ChatBoostSourceGiveawayCopyWith<ChatBoostSourceGiveaway> get copyWith =>
       _$ChatBoostSourceGiveawayCopyWithImpl<ChatBoostSourceGiveaway>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatBoostSourceGiveawayToJson(
-      this,
-    );
+    return _$ChatBoostSourceGiveawayToJson(this);
   }
 
   @override
@@ -364,17 +471,19 @@ class ChatBoostSourceGiveaway implements ChatBoostSource {
 /// @nodoc
 abstract mixin class $ChatBoostSourceGiveawayCopyWith<$Res>
     implements $ChatBoostSourceCopyWith<$Res> {
-  factory $ChatBoostSourceGiveawayCopyWith(ChatBoostSourceGiveaway value,
-          $Res Function(ChatBoostSourceGiveaway) _then) =
-      _$ChatBoostSourceGiveawayCopyWithImpl;
+  factory $ChatBoostSourceGiveawayCopyWith(
+    ChatBoostSourceGiveaway value,
+    $Res Function(ChatBoostSourceGiveaway) _then,
+  ) = _$ChatBoostSourceGiveawayCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'source') ChatBoostSourceType source,
-      @JsonKey(name: 'giveaway_message_id') int giveawayMessageId,
-      @JsonKey(name: 'user') User? user,
-      @JsonKey(name: 'prize_star_count') int? prizeStarCount,
-      @JsonKey(name: 'is_unclaimed') bool? isUnclaimed});
+  $Res call({
+    @JsonKey(name: 'source') ChatBoostSourceType source,
+    @JsonKey(name: 'giveaway_message_id') int giveawayMessageId,
+    @JsonKey(name: 'user') User? user,
+    @JsonKey(name: 'prize_star_count') int? prizeStarCount,
+    @JsonKey(name: 'is_unclaimed') bool? isUnclaimed,
+  });
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -399,28 +508,30 @@ class _$ChatBoostSourceGiveawayCopyWithImpl<$Res>
     Object? prizeStarCount = freezed,
     Object? isUnclaimed = freezed,
   }) {
-    return _then(ChatBoostSourceGiveaway(
-      source: null == source
-          ? _self.source
-          : source // ignore: cast_nullable_to_non_nullable
-              as ChatBoostSourceType,
-      giveawayMessageId: null == giveawayMessageId
-          ? _self.giveawayMessageId
-          : giveawayMessageId // ignore: cast_nullable_to_non_nullable
-              as int,
-      user: freezed == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      prizeStarCount: freezed == prizeStarCount
-          ? _self.prizeStarCount
-          : prizeStarCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isUnclaimed: freezed == isUnclaimed
-          ? _self.isUnclaimed
-          : isUnclaimed // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      ChatBoostSourceGiveaway(
+        source: null == source
+            ? _self.source
+            : source // ignore: cast_nullable_to_non_nullable
+                  as ChatBoostSourceType,
+        giveawayMessageId: null == giveawayMessageId
+            ? _self.giveawayMessageId
+            : giveawayMessageId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        user: freezed == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        prizeStarCount: freezed == prizeStarCount
+            ? _self.prizeStarCount
+            : prizeStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        isUnclaimed: freezed == isUnclaimed
+            ? _self.isUnclaimed
+            : isUnclaimed // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 
   /// Create a copy of ChatBoostSource

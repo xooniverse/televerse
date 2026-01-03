@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -32,7 +31,9 @@ mixin _$UniqueGiftSymbol {
   @pragma('vm:prefer-inline')
   $UniqueGiftSymbolCopyWith<UniqueGiftSymbol> get copyWith =>
       _$UniqueGiftSymbolCopyWithImpl<UniqueGiftSymbol>(
-          this as UniqueGiftSymbol, _$identity);
+        this as UniqueGiftSymbol,
+        _$identity,
+      );
 
   /// Serializes this UniqueGiftSymbol to a JSON map.
   Map<String, dynamic> toJson();
@@ -46,13 +47,15 @@ mixin _$UniqueGiftSymbol {
 /// @nodoc
 abstract mixin class $UniqueGiftSymbolCopyWith<$Res> {
   factory $UniqueGiftSymbolCopyWith(
-          UniqueGiftSymbol value, $Res Function(UniqueGiftSymbol) _then) =
-      _$UniqueGiftSymbolCopyWithImpl;
+    UniqueGiftSymbol value,
+    $Res Function(UniqueGiftSymbol) _then,
+  ) = _$UniqueGiftSymbolCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'sticker') Sticker sticker,
-      @JsonKey(name: 'rarity_per_mille') int rarityPerMille});
+  $Res call({
+    @JsonKey(name: 'name') String name,
+    @JsonKey(name: 'sticker') Sticker sticker,
+    @JsonKey(name: 'rarity_per_mille') int rarityPerMille,
+  });
 
   $StickerCopyWith<$Res> get sticker;
 }
@@ -74,20 +77,22 @@ class _$UniqueGiftSymbolCopyWithImpl<$Res>
     Object? sticker = null,
     Object? rarityPerMille = null,
   }) {
-    return _then(_self.copyWith(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      sticker: null == sticker
-          ? _self.sticker
-          : sticker // ignore: cast_nullable_to_non_nullable
-              as Sticker,
-      rarityPerMille: null == rarityPerMille
-          ? _self.rarityPerMille
-          : rarityPerMille // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _self.copyWith(
+        name: null == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        sticker: null == sticker
+            ? _self.sticker
+            : sticker // ignore: cast_nullable_to_non_nullable
+                  as Sticker,
+        rarityPerMille: null == rarityPerMille
+            ? _self.rarityPerMille
+            : rarityPerMille // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of UniqueGiftSymbol
@@ -101,13 +106,94 @@ class _$UniqueGiftSymbolCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [UniqueGiftSymbol].
+extension UniqueGiftSymbolPatterns on UniqueGiftSymbol {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UniqueGiftSymbol value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGiftSymbol() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UniqueGiftSymbol value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGiftSymbol():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_UniqueGiftSymbol value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UniqueGiftSymbol() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _UniqueGiftSymbol implements UniqueGiftSymbol {
-  const _UniqueGiftSymbol(
-      {@JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'sticker') required this.sticker,
-      @JsonKey(name: 'rarity_per_mille') required this.rarityPerMille});
+  const _UniqueGiftSymbol({
+    @JsonKey(name: 'name') required this.name,
+    @JsonKey(name: 'sticker') required this.sticker,
+    @JsonKey(name: 'rarity_per_mille') required this.rarityPerMille,
+  });
   factory _UniqueGiftSymbol.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftSymbolFromJson(json);
 
@@ -136,9 +222,7 @@ class _UniqueGiftSymbol implements UniqueGiftSymbol {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$UniqueGiftSymbolToJson(
-      this,
-    );
+    return _$UniqueGiftSymbolToJson(this);
   }
 
   @override
@@ -151,14 +235,16 @@ class _UniqueGiftSymbol implements UniqueGiftSymbol {
 abstract mixin class _$UniqueGiftSymbolCopyWith<$Res>
     implements $UniqueGiftSymbolCopyWith<$Res> {
   factory _$UniqueGiftSymbolCopyWith(
-          _UniqueGiftSymbol value, $Res Function(_UniqueGiftSymbol) _then) =
-      __$UniqueGiftSymbolCopyWithImpl;
+    _UniqueGiftSymbol value,
+    $Res Function(_UniqueGiftSymbol) _then,
+  ) = __$UniqueGiftSymbolCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'sticker') Sticker sticker,
-      @JsonKey(name: 'rarity_per_mille') int rarityPerMille});
+  $Res call({
+    @JsonKey(name: 'name') String name,
+    @JsonKey(name: 'sticker') Sticker sticker,
+    @JsonKey(name: 'rarity_per_mille') int rarityPerMille,
+  });
 
   @override
   $StickerCopyWith<$Res> get sticker;
@@ -181,20 +267,22 @@ class __$UniqueGiftSymbolCopyWithImpl<$Res>
     Object? sticker = null,
     Object? rarityPerMille = null,
   }) {
-    return _then(_UniqueGiftSymbol(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      sticker: null == sticker
-          ? _self.sticker
-          : sticker // ignore: cast_nullable_to_non_nullable
-              as Sticker,
-      rarityPerMille: null == rarityPerMille
-          ? _self.rarityPerMille
-          : rarityPerMille // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _UniqueGiftSymbol(
+        name: null == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        sticker: null == sticker
+            ? _self.sticker
+            : sticker // ignore: cast_nullable_to_non_nullable
+                  as Sticker,
+        rarityPerMille: null == rarityPerMille
+            ? _self.rarityPerMille
+            : rarityPerMille // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of UniqueGiftSymbol

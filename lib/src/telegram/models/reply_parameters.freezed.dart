@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -65,7 +64,9 @@ mixin _$ReplyParameters {
   @pragma('vm:prefer-inline')
   $ReplyParametersCopyWith<ReplyParameters> get copyWith =>
       _$ReplyParametersCopyWithImpl<ReplyParameters>(
-          this as ReplyParameters, _$identity);
+        this as ReplyParameters,
+        _$identity,
+      );
 
   /// Serializes this ReplyParameters to a JSON map.
   Map<String, dynamic> toJson();
@@ -79,19 +80,21 @@ mixin _$ReplyParameters {
 /// @nodoc
 abstract mixin class $ReplyParametersCopyWith<$Res> {
   factory $ReplyParametersCopyWith(
-          ReplyParameters value, $Res Function(ReplyParameters) _then) =
-      _$ReplyParametersCopyWithImpl;
+    ReplyParameters value,
+    $Res Function(ReplyParameters) _then,
+  ) = _$ReplyParametersCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'message_id') int messageId,
-      @IDConverter() @JsonKey(name: 'chat_id') ID? chatId,
-      @JsonKey(name: 'allow_sending_without_reply')
-      bool? allowSendingWithoutReply,
-      @JsonKey(name: 'quote') String? quote,
-      @JsonKey(name: 'quote_parse_mode') String? quoteParseMode,
-      @JsonKey(name: 'quote_entities') List<MessageEntity>? quoteEntities,
-      @JsonKey(name: 'quote_position') int? quotePosition,
-      @JsonKey(name: 'checklist_task_id') int? checklistTaskId});
+  $Res call({
+    @JsonKey(name: 'message_id') int messageId,
+    @IDConverter() @JsonKey(name: 'chat_id') ID? chatId,
+    @JsonKey(name: 'allow_sending_without_reply')
+    bool? allowSendingWithoutReply,
+    @JsonKey(name: 'quote') String? quote,
+    @JsonKey(name: 'quote_parse_mode') String? quoteParseMode,
+    @JsonKey(name: 'quote_entities') List<MessageEntity>? quoteEntities,
+    @JsonKey(name: 'quote_position') int? quotePosition,
+    @JsonKey(name: 'checklist_task_id') int? checklistTaskId,
+  });
 }
 
 /// @nodoc
@@ -116,57 +119,138 @@ class _$ReplyParametersCopyWithImpl<$Res>
     Object? quotePosition = freezed,
     Object? checklistTaskId = freezed,
   }) {
-    return _then(_self.copyWith(
-      messageId: null == messageId
-          ? _self.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as int,
-      chatId: freezed == chatId
-          ? _self.chatId
-          : chatId // ignore: cast_nullable_to_non_nullable
-              as ID?,
-      allowSendingWithoutReply: freezed == allowSendingWithoutReply
-          ? _self.allowSendingWithoutReply
-          : allowSendingWithoutReply // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      quote: freezed == quote
-          ? _self.quote
-          : quote // ignore: cast_nullable_to_non_nullable
-              as String?,
-      quoteParseMode: freezed == quoteParseMode
-          ? _self.quoteParseMode
-          : quoteParseMode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      quoteEntities: freezed == quoteEntities
-          ? _self.quoteEntities
-          : quoteEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      quotePosition: freezed == quotePosition
-          ? _self.quotePosition
-          : quotePosition // ignore: cast_nullable_to_non_nullable
-              as int?,
-      checklistTaskId: freezed == checklistTaskId
-          ? _self.checklistTaskId
-          : checklistTaskId // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        messageId: null == messageId
+            ? _self.messageId
+            : messageId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        chatId: freezed == chatId
+            ? _self.chatId
+            : chatId // ignore: cast_nullable_to_non_nullable
+                  as ID?,
+        allowSendingWithoutReply: freezed == allowSendingWithoutReply
+            ? _self.allowSendingWithoutReply
+            : allowSendingWithoutReply // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        quote: freezed == quote
+            ? _self.quote
+            : quote // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        quoteParseMode: freezed == quoteParseMode
+            ? _self.quoteParseMode
+            : quoteParseMode // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        quoteEntities: freezed == quoteEntities
+            ? _self.quoteEntities
+            : quoteEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        quotePosition: freezed == quotePosition
+            ? _self.quotePosition
+            : quotePosition // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        checklistTaskId: freezed == checklistTaskId
+            ? _self.checklistTaskId
+            : checklistTaskId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [ReplyParameters].
+extension ReplyParametersPatterns on ReplyParameters {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ReplyParameters value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ReplyParameters() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ReplyParameters value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ReplyParameters():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ReplyParameters value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ReplyParameters() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _ReplyParameters implements ReplyParameters {
-  const _ReplyParameters(
-      {@JsonKey(name: 'message_id') required this.messageId,
-      @IDConverter() @JsonKey(name: 'chat_id') this.chatId,
-      @JsonKey(name: 'allow_sending_without_reply')
-      this.allowSendingWithoutReply,
-      @JsonKey(name: 'quote') this.quote,
-      @JsonKey(name: 'quote_parse_mode') this.quoteParseMode,
-      @JsonKey(name: 'quote_entities') final List<MessageEntity>? quoteEntities,
-      @JsonKey(name: 'quote_position') this.quotePosition,
-      @JsonKey(name: 'checklist_task_id') this.checklistTaskId})
-      : _quoteEntities = quoteEntities;
+  const _ReplyParameters({
+    @JsonKey(name: 'message_id') required this.messageId,
+    @IDConverter() @JsonKey(name: 'chat_id') this.chatId,
+    @JsonKey(name: 'allow_sending_without_reply') this.allowSendingWithoutReply,
+    @JsonKey(name: 'quote') this.quote,
+    @JsonKey(name: 'quote_parse_mode') this.quoteParseMode,
+    @JsonKey(name: 'quote_entities') final List<MessageEntity>? quoteEntities,
+    @JsonKey(name: 'quote_position') this.quotePosition,
+    @JsonKey(name: 'checklist_task_id') this.checklistTaskId,
+  }) : _quoteEntities = quoteEntities;
   factory _ReplyParameters.fromJson(Map<String, dynamic> json) =>
       _$ReplyParametersFromJson(json);
 
@@ -243,9 +327,7 @@ class _ReplyParameters implements ReplyParameters {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ReplyParametersToJson(
-      this,
-    );
+    return _$ReplyParametersToJson(this);
   }
 
   @override
@@ -258,20 +340,22 @@ class _ReplyParameters implements ReplyParameters {
 abstract mixin class _$ReplyParametersCopyWith<$Res>
     implements $ReplyParametersCopyWith<$Res> {
   factory _$ReplyParametersCopyWith(
-          _ReplyParameters value, $Res Function(_ReplyParameters) _then) =
-      __$ReplyParametersCopyWithImpl;
+    _ReplyParameters value,
+    $Res Function(_ReplyParameters) _then,
+  ) = __$ReplyParametersCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'message_id') int messageId,
-      @IDConverter() @JsonKey(name: 'chat_id') ID? chatId,
-      @JsonKey(name: 'allow_sending_without_reply')
-      bool? allowSendingWithoutReply,
-      @JsonKey(name: 'quote') String? quote,
-      @JsonKey(name: 'quote_parse_mode') String? quoteParseMode,
-      @JsonKey(name: 'quote_entities') List<MessageEntity>? quoteEntities,
-      @JsonKey(name: 'quote_position') int? quotePosition,
-      @JsonKey(name: 'checklist_task_id') int? checklistTaskId});
+  $Res call({
+    @JsonKey(name: 'message_id') int messageId,
+    @IDConverter() @JsonKey(name: 'chat_id') ID? chatId,
+    @JsonKey(name: 'allow_sending_without_reply')
+    bool? allowSendingWithoutReply,
+    @JsonKey(name: 'quote') String? quote,
+    @JsonKey(name: 'quote_parse_mode') String? quoteParseMode,
+    @JsonKey(name: 'quote_entities') List<MessageEntity>? quoteEntities,
+    @JsonKey(name: 'quote_position') int? quotePosition,
+    @JsonKey(name: 'checklist_task_id') int? checklistTaskId,
+  });
 }
 
 /// @nodoc
@@ -296,39 +380,41 @@ class __$ReplyParametersCopyWithImpl<$Res>
     Object? quotePosition = freezed,
     Object? checklistTaskId = freezed,
   }) {
-    return _then(_ReplyParameters(
-      messageId: null == messageId
-          ? _self.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as int,
-      chatId: freezed == chatId
-          ? _self.chatId
-          : chatId // ignore: cast_nullable_to_non_nullable
-              as ID?,
-      allowSendingWithoutReply: freezed == allowSendingWithoutReply
-          ? _self.allowSendingWithoutReply
-          : allowSendingWithoutReply // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      quote: freezed == quote
-          ? _self.quote
-          : quote // ignore: cast_nullable_to_non_nullable
-              as String?,
-      quoteParseMode: freezed == quoteParseMode
-          ? _self.quoteParseMode
-          : quoteParseMode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      quoteEntities: freezed == quoteEntities
-          ? _self._quoteEntities
-          : quoteEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      quotePosition: freezed == quotePosition
-          ? _self.quotePosition
-          : quotePosition // ignore: cast_nullable_to_non_nullable
-              as int?,
-      checklistTaskId: freezed == checklistTaskId
-          ? _self.checklistTaskId
-          : checklistTaskId // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _ReplyParameters(
+        messageId: null == messageId
+            ? _self.messageId
+            : messageId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        chatId: freezed == chatId
+            ? _self.chatId
+            : chatId // ignore: cast_nullable_to_non_nullable
+                  as ID?,
+        allowSendingWithoutReply: freezed == allowSendingWithoutReply
+            ? _self.allowSendingWithoutReply
+            : allowSendingWithoutReply // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        quote: freezed == quote
+            ? _self.quote
+            : quote // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        quoteParseMode: freezed == quoteParseMode
+            ? _self.quoteParseMode
+            : quoteParseMode // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        quoteEntities: freezed == quoteEntities
+            ? _self._quoteEntities
+            : quoteEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        quotePosition: freezed == quotePosition
+            ? _self.quotePosition
+            : quotePosition // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        checklistTaskId: freezed == checklistTaskId
+            ? _self.checklistTaskId
+            : checklistTaskId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 }

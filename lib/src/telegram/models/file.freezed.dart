@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -54,11 +53,12 @@ abstract mixin class $FileCopyWith<$Res> {
   factory $FileCopyWith(File value, $Res Function(File) _then) =
       _$FileCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'file_size') int? fileSize,
-      @JsonKey(name: 'file_path') String? filePath});
+  $Res call({
+    @JsonKey(name: 'file_id') String fileId,
+    @JsonKey(name: 'file_unique_id') String fileUniqueId,
+    @JsonKey(name: 'file_size') int? fileSize,
+    @JsonKey(name: 'file_path') String? filePath,
+  });
 }
 
 /// @nodoc
@@ -78,36 +78,116 @@ class _$FileCopyWithImpl<$Res> implements $FileCopyWith<$Res> {
     Object? fileSize = freezed,
     Object? filePath = freezed,
   }) {
-    return _then(_self.copyWith(
-      fileId: null == fileId
-          ? _self.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _self.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileSize: freezed == fileSize
-          ? _self.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-      filePath: freezed == filePath
-          ? _self.filePath
-          : filePath // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _self.copyWith(
+        fileId: null == fileId
+            ? _self.fileId
+            : fileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileUniqueId: null == fileUniqueId
+            ? _self.fileUniqueId
+            : fileUniqueId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileSize: freezed == fileSize
+            ? _self.fileSize
+            : fileSize // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        filePath: freezed == filePath
+            ? _self.filePath
+            : filePath // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [File].
+extension FilePatterns on File {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_File value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _File() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(TResult Function(_File value) $default) {
+    final _that = this;
+    switch (_that) {
+      case _File():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_File value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _File() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _File extends File {
-  const _File(
-      {@JsonKey(name: 'file_id') required this.fileId,
-      @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
-      @JsonKey(name: 'file_size') this.fileSize,
-      @JsonKey(name: 'file_path') this.filePath})
-      : super._();
+  const _File({
+    @JsonKey(name: 'file_id') required this.fileId,
+    @JsonKey(name: 'file_unique_id') required this.fileUniqueId,
+    @JsonKey(name: 'file_size') this.fileSize,
+    @JsonKey(name: 'file_path') this.filePath,
+  }) : super._();
   factory _File.fromJson(Map<String, dynamic> json) => _$FileFromJson(json);
 
   /// Unique identifier for this file
@@ -143,9 +223,7 @@ class _File extends File {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$FileToJson(
-      this,
-    );
+    return _$FileToJson(this);
   }
 
   @override
@@ -160,11 +238,12 @@ abstract mixin class _$FileCopyWith<$Res> implements $FileCopyWith<$Res> {
       __$FileCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'file_id') String fileId,
-      @JsonKey(name: 'file_unique_id') String fileUniqueId,
-      @JsonKey(name: 'file_size') int? fileSize,
-      @JsonKey(name: 'file_path') String? filePath});
+  $Res call({
+    @JsonKey(name: 'file_id') String fileId,
+    @JsonKey(name: 'file_unique_id') String fileUniqueId,
+    @JsonKey(name: 'file_size') int? fileSize,
+    @JsonKey(name: 'file_path') String? filePath,
+  });
 }
 
 /// @nodoc
@@ -184,23 +263,25 @@ class __$FileCopyWithImpl<$Res> implements _$FileCopyWith<$Res> {
     Object? fileSize = freezed,
     Object? filePath = freezed,
   }) {
-    return _then(_File(
-      fileId: null == fileId
-          ? _self.fileId
-          : fileId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileUniqueId: null == fileUniqueId
-          ? _self.fileUniqueId
-          : fileUniqueId // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileSize: freezed == fileSize
-          ? _self.fileSize
-          : fileSize // ignore: cast_nullable_to_non_nullable
-              as int?,
-      filePath: freezed == filePath
-          ? _self.filePath
-          : filePath // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _File(
+        fileId: null == fileId
+            ? _self.fileId
+            : fileId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileUniqueId: null == fileUniqueId
+            ? _self.fileUniqueId
+            : fileUniqueId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        fileSize: freezed == fileSize
+            ? _self.fileSize
+            : fileSize // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        filePath: freezed == filePath
+            ? _self.filePath
+            : filePath // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }

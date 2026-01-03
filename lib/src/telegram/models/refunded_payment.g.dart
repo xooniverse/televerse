@@ -21,6 +21,5 @@ Map<String, dynamic> _$RefundedPaymentToJson(_RefundedPayment instance) =>
       'total_amount': instance.totalAmount,
       'invoice_payload': instance.invoicePayload,
       'telegram_payment_charge_id': instance.telegramPaymentChargeId,
-      if (instance.providerPaymentChargeId case final value?)
-        'provider_payment_charge_id': value,
+      'provider_payment_charge_id': ?instance.providerPaymentChargeId,
     };

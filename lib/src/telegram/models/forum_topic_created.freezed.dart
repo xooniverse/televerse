@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -32,7 +31,9 @@ mixin _$ForumTopicCreated {
   @pragma('vm:prefer-inline')
   $ForumTopicCreatedCopyWith<ForumTopicCreated> get copyWith =>
       _$ForumTopicCreatedCopyWithImpl<ForumTopicCreated>(
-          this as ForumTopicCreated, _$identity);
+        this as ForumTopicCreated,
+        _$identity,
+      );
 
   /// Serializes this ForumTopicCreated to a JSON map.
   Map<String, dynamic> toJson();
@@ -46,13 +47,15 @@ mixin _$ForumTopicCreated {
 /// @nodoc
 abstract mixin class $ForumTopicCreatedCopyWith<$Res> {
   factory $ForumTopicCreatedCopyWith(
-          ForumTopicCreated value, $Res Function(ForumTopicCreated) _then) =
-      _$ForumTopicCreatedCopyWithImpl;
+    ForumTopicCreated value,
+    $Res Function(ForumTopicCreated) _then,
+  ) = _$ForumTopicCreatedCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'icon_color') int iconColor,
-      @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
+  $Res call({
+    @JsonKey(name: 'name') String name,
+    @JsonKey(name: 'icon_color') int iconColor,
+    @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+  });
 }
 
 /// @nodoc
@@ -72,30 +75,113 @@ class _$ForumTopicCreatedCopyWithImpl<$Res>
     Object? iconColor = null,
     Object? iconCustomEmojiId = freezed,
   }) {
-    return _then(_self.copyWith(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      iconColor: null == iconColor
-          ? _self.iconColor
-          : iconColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      iconCustomEmojiId: freezed == iconCustomEmojiId
-          ? _self.iconCustomEmojiId
-          : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _self.copyWith(
+        name: null == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        iconColor: null == iconColor
+            ? _self.iconColor
+            : iconColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+        iconCustomEmojiId: freezed == iconCustomEmojiId
+            ? _self.iconCustomEmojiId
+            : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [ForumTopicCreated].
+extension ForumTopicCreatedPatterns on ForumTopicCreated {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ForumTopicCreated value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ForumTopicCreated() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ForumTopicCreated value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ForumTopicCreated():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ForumTopicCreated value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ForumTopicCreated() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _ForumTopicCreated implements ForumTopicCreated {
-  const _ForumTopicCreated(
-      {@JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'icon_color') required this.iconColor,
-      @JsonKey(name: 'icon_custom_emoji_id') this.iconCustomEmojiId});
+  const _ForumTopicCreated({
+    @JsonKey(name: 'name') required this.name,
+    @JsonKey(name: 'icon_color') required this.iconColor,
+    @JsonKey(name: 'icon_custom_emoji_id') this.iconCustomEmojiId,
+  });
   factory _ForumTopicCreated.fromJson(Map<String, dynamic> json) =>
       _$ForumTopicCreatedFromJson(json);
 
@@ -124,9 +210,7 @@ class _ForumTopicCreated implements ForumTopicCreated {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ForumTopicCreatedToJson(
-      this,
-    );
+    return _$ForumTopicCreatedToJson(this);
   }
 
   @override
@@ -139,14 +223,16 @@ class _ForumTopicCreated implements ForumTopicCreated {
 abstract mixin class _$ForumTopicCreatedCopyWith<$Res>
     implements $ForumTopicCreatedCopyWith<$Res> {
   factory _$ForumTopicCreatedCopyWith(
-          _ForumTopicCreated value, $Res Function(_ForumTopicCreated) _then) =
-      __$ForumTopicCreatedCopyWithImpl;
+    _ForumTopicCreated value,
+    $Res Function(_ForumTopicCreated) _then,
+  ) = __$ForumTopicCreatedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'icon_color') int iconColor,
-      @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId});
+  $Res call({
+    @JsonKey(name: 'name') String name,
+    @JsonKey(name: 'icon_color') int iconColor,
+    @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+  });
 }
 
 /// @nodoc
@@ -166,19 +252,21 @@ class __$ForumTopicCreatedCopyWithImpl<$Res>
     Object? iconColor = null,
     Object? iconCustomEmojiId = freezed,
   }) {
-    return _then(_ForumTopicCreated(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      iconColor: null == iconColor
-          ? _self.iconColor
-          : iconColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      iconCustomEmojiId: freezed == iconCustomEmojiId
-          ? _self.iconCustomEmojiId
-          : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _ForumTopicCreated(
+        name: null == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        iconColor: null == iconColor
+            ? _self.iconColor
+            : iconColor // ignore: cast_nullable_to_non_nullable
+                  as int,
+        iconCustomEmojiId: freezed == iconCustomEmojiId
+            ? _self.iconCustomEmojiId
+            : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }

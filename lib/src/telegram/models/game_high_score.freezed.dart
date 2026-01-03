@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -32,7 +31,9 @@ mixin _$GameHighScore {
   @pragma('vm:prefer-inline')
   $GameHighScoreCopyWith<GameHighScore> get copyWith =>
       _$GameHighScoreCopyWithImpl<GameHighScore>(
-          this as GameHighScore, _$identity);
+        this as GameHighScore,
+        _$identity,
+      );
 
   /// Serializes this GameHighScore to a JSON map.
   Map<String, dynamic> toJson();
@@ -46,13 +47,15 @@ mixin _$GameHighScore {
 /// @nodoc
 abstract mixin class $GameHighScoreCopyWith<$Res> {
   factory $GameHighScoreCopyWith(
-          GameHighScore value, $Res Function(GameHighScore) _then) =
-      _$GameHighScoreCopyWithImpl;
+    GameHighScore value,
+    $Res Function(GameHighScore) _then,
+  ) = _$GameHighScoreCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'position') int position,
-      @JsonKey(name: 'user') User user,
-      @JsonKey(name: 'score') int score});
+  $Res call({
+    @JsonKey(name: 'position') int position,
+    @JsonKey(name: 'user') User user,
+    @JsonKey(name: 'score') int score,
+  });
 
   $UserCopyWith<$Res> get user;
 }
@@ -74,20 +77,22 @@ class _$GameHighScoreCopyWithImpl<$Res>
     Object? user = null,
     Object? score = null,
   }) {
-    return _then(_self.copyWith(
-      position: null == position
-          ? _self.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as int,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      score: null == score
-          ? _self.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _self.copyWith(
+        position: null == position
+            ? _self.position
+            : position // ignore: cast_nullable_to_non_nullable
+                  as int,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+        score: null == score
+            ? _self.score
+            : score // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of GameHighScore
@@ -101,13 +106,94 @@ class _$GameHighScoreCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [GameHighScore].
+extension GameHighScorePatterns on GameHighScore {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_GameHighScore value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _GameHighScore() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_GameHighScore value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GameHighScore():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_GameHighScore value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GameHighScore() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _GameHighScore implements GameHighScore {
-  const _GameHighScore(
-      {@JsonKey(name: 'position') required this.position,
-      @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'score') required this.score});
+  const _GameHighScore({
+    @JsonKey(name: 'position') required this.position,
+    @JsonKey(name: 'user') required this.user,
+    @JsonKey(name: 'score') required this.score,
+  });
   factory _GameHighScore.fromJson(Map<String, dynamic> json) =>
       _$GameHighScoreFromJson(json);
 
@@ -136,9 +222,7 @@ class _GameHighScore implements GameHighScore {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$GameHighScoreToJson(
-      this,
-    );
+    return _$GameHighScoreToJson(this);
   }
 
   @override
@@ -151,14 +235,16 @@ class _GameHighScore implements GameHighScore {
 abstract mixin class _$GameHighScoreCopyWith<$Res>
     implements $GameHighScoreCopyWith<$Res> {
   factory _$GameHighScoreCopyWith(
-          _GameHighScore value, $Res Function(_GameHighScore) _then) =
-      __$GameHighScoreCopyWithImpl;
+    _GameHighScore value,
+    $Res Function(_GameHighScore) _then,
+  ) = __$GameHighScoreCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'position') int position,
-      @JsonKey(name: 'user') User user,
-      @JsonKey(name: 'score') int score});
+  $Res call({
+    @JsonKey(name: 'position') int position,
+    @JsonKey(name: 'user') User user,
+    @JsonKey(name: 'score') int score,
+  });
 
   @override
   $UserCopyWith<$Res> get user;
@@ -181,20 +267,22 @@ class __$GameHighScoreCopyWithImpl<$Res>
     Object? user = null,
     Object? score = null,
   }) {
-    return _then(_GameHighScore(
-      position: null == position
-          ? _self.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as int,
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      score: null == score
-          ? _self.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _GameHighScore(
+        position: null == position
+            ? _self.position
+            : position // ignore: cast_nullable_to_non_nullable
+                  as int,
+        user: null == user
+            ? _self.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as User,
+        score: null == score
+            ? _self.score
+            : score // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 
   /// Create a copy of GameHighScore

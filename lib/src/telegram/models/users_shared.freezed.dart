@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -47,12 +46,14 @@ mixin _$UsersShared {
 /// @nodoc
 abstract mixin class $UsersSharedCopyWith<$Res> {
   factory $UsersSharedCopyWith(
-          UsersShared value, $Res Function(UsersShared) _then) =
-      _$UsersSharedCopyWithImpl;
+    UsersShared value,
+    $Res Function(UsersShared) _then,
+  ) = _$UsersSharedCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'request_id') int requestId,
-      @JsonKey(name: 'users') List<SharedUser> users});
+  $Res call({
+    @JsonKey(name: 'request_id') int requestId,
+    @JsonKey(name: 'users') List<SharedUser> users,
+  });
 }
 
 /// @nodoc
@@ -66,30 +67,109 @@ class _$UsersSharedCopyWithImpl<$Res> implements $UsersSharedCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? requestId = null,
-    Object? users = null,
+  $Res call({Object? requestId = null, Object? users = null}) {
+    return _then(
+      _self.copyWith(
+        requestId: null == requestId
+            ? _self.requestId
+            : requestId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        users: null == users
+            ? _self.users
+            : users // ignore: cast_nullable_to_non_nullable
+                  as List<SharedUser>,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [UsersShared].
+extension UsersSharedPatterns on UsersShared {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UsersShared value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      requestId: null == requestId
-          ? _self.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as int,
-      users: null == users
-          ? _self.users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<SharedUser>,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _UsersShared() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UsersShared value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UsersShared():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_UsersShared value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UsersShared() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _UsersShared implements UsersShared {
-  const _UsersShared(
-      {@JsonKey(name: 'request_id') required this.requestId,
-      @JsonKey(name: 'users') required final List<SharedUser> users})
-      : _users = users;
+  const _UsersShared({
+    @JsonKey(name: 'request_id') required this.requestId,
+    @JsonKey(name: 'users') required final List<SharedUser> users,
+  }) : _users = users;
   factory _UsersShared.fromJson(Map<String, dynamic> json) =>
       _$UsersSharedFromJson(json);
 
@@ -132,9 +212,7 @@ class _UsersShared implements UsersShared {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$UsersSharedToJson(
-      this,
-    );
+    return _$UsersSharedToJson(this);
   }
 
   @override
@@ -147,13 +225,15 @@ class _UsersShared implements UsersShared {
 abstract mixin class _$UsersSharedCopyWith<$Res>
     implements $UsersSharedCopyWith<$Res> {
   factory _$UsersSharedCopyWith(
-          _UsersShared value, $Res Function(_UsersShared) _then) =
-      __$UsersSharedCopyWithImpl;
+    _UsersShared value,
+    $Res Function(_UsersShared) _then,
+  ) = __$UsersSharedCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'request_id') int requestId,
-      @JsonKey(name: 'users') List<SharedUser> users});
+  $Res call({
+    @JsonKey(name: 'request_id') int requestId,
+    @JsonKey(name: 'users') List<SharedUser> users,
+  });
 }
 
 /// @nodoc
@@ -167,19 +247,18 @@ class __$UsersSharedCopyWithImpl<$Res> implements _$UsersSharedCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? requestId = null,
-    Object? users = null,
-  }) {
-    return _then(_UsersShared(
-      requestId: null == requestId
-          ? _self.requestId
-          : requestId // ignore: cast_nullable_to_non_nullable
-              as int,
-      users: null == users
-          ? _self._users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<SharedUser>,
-    ));
+  $Res call({Object? requestId = null, Object? users = null}) {
+    return _then(
+      _UsersShared(
+        requestId: null == requestId
+            ? _self.requestId
+            : requestId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        users: null == users
+            ? _self._users
+            : users // ignore: cast_nullable_to_non_nullable
+                  as List<SharedUser>,
+      ),
+    );
   }
 }

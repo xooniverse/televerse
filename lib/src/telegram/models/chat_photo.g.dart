@@ -7,11 +7,11 @@ part of 'chat_photo.dart';
 // **************************************************************************
 
 _ChatPhoto _$ChatPhotoFromJson(Map<String, dynamic> json) => _ChatPhoto(
-      smallFileId: json['small_file_id'] as String,
-      smallFileUniqueId: json['small_file_unique_id'] as String,
-      bigFileId: json['big_file_id'] as String,
-      bigFileUniqueId: json['big_file_unique_id'] as String,
-    );
+  smallFileId: json['small_file_id'] as String,
+  smallFileUniqueId: json['small_file_unique_id'] as String,
+  bigFileId: json['big_file_id'] as String,
+  bigFileUniqueId: json['big_file_unique_id'] as String,
+);
 
 Map<String, dynamic> _$ChatPhotoToJson(_ChatPhoto instance) =>
     <String, dynamic>{

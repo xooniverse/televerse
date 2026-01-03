@@ -26,7 +26,6 @@ Map<String, dynamic> _$PreCheckoutQueryToJson(_PreCheckoutQuery instance) =>
       'currency': instance.currency,
       'total_amount': instance.totalAmount,
       'invoice_payload': instance.invoicePayload,
-      if (instance.shippingOptionId case final value?)
-        'shipping_option_id': value,
-      if (instance.orderInfo case final value?) 'order_info': value,
+      'shipping_option_id': ?instance.shippingOptionId,
+      'order_info': ?instance.orderInfo,
     };

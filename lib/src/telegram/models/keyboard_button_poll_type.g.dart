@@ -7,18 +7,13 @@ part of 'keyboard_button_poll_type.dart';
 // **************************************************************************
 
 _KeyboardButtonPollType _$KeyboardButtonPollTypeFromJson(
-        Map<String, dynamic> json) =>
-    _KeyboardButtonPollType(
-      type: $enumDecodeNullable(_$PollTypeEnumMap, json['type']),
-    );
+  Map<String, dynamic> json,
+) => _KeyboardButtonPollType(
+  type: $enumDecodeNullable(_$PollTypeEnumMap, json['type']),
+);
 
 Map<String, dynamic> _$KeyboardButtonPollTypeToJson(
-        _KeyboardButtonPollType instance) =>
-    <String, dynamic>{
-      if (instance.type case final value?) 'type': value,
-    };
+  _KeyboardButtonPollType instance,
+) => <String, dynamic>{'type': ?instance.type};
 
-const _$PollTypeEnumMap = {
-  PollType.regular: 'regular',
-  PollType.quiz: 'quiz',
-};
+const _$PollTypeEnumMap = {PollType.regular: 'regular', PollType.quiz: 'quiz'};

@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -83,7 +82,9 @@ mixin _$InlineQueryResultVenue {
   @pragma('vm:prefer-inline')
   $InlineQueryResultVenueCopyWith<InlineQueryResultVenue> get copyWith =>
       _$InlineQueryResultVenueCopyWithImpl<InlineQueryResultVenue>(
-          this as InlineQueryResultVenue, _$identity);
+        this as InlineQueryResultVenue,
+        _$identity,
+      );
 
   /// Serializes this InlineQueryResultVenue to a JSON map.
   Map<String, dynamic> toJson();
@@ -96,28 +97,30 @@ mixin _$InlineQueryResultVenue {
 
 /// @nodoc
 abstract mixin class $InlineQueryResultVenueCopyWith<$Res> {
-  factory $InlineQueryResultVenueCopyWith(InlineQueryResultVenue value,
-          $Res Function(InlineQueryResultVenue) _then) =
-      _$InlineQueryResultVenueCopyWithImpl;
+  factory $InlineQueryResultVenueCopyWith(
+    InlineQueryResultVenue value,
+    $Res Function(InlineQueryResultVenue) _then,
+  ) = _$InlineQueryResultVenueCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'id') String id,
-      @JsonKey(name: 'latitude') double latitude,
-      @JsonKey(name: 'longitude') double longitude,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'address') String address,
-      @JsonKey(name: 'foursquare_id') String? foursquareId,
-      @JsonKey(name: 'foursquare_type') String? foursquareType,
-      @JsonKey(name: 'google_place_id') String? googlePlaceId,
-      @JsonKey(name: 'google_place_type') String? googlePlaceType,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height') int? thumbnailHeight});
+  $Res call({
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'latitude') double latitude,
+    @JsonKey(name: 'longitude') double longitude,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'address') String address,
+    @JsonKey(name: 'foursquare_id') String? foursquareId,
+    @JsonKey(name: 'foursquare_type') String? foursquareType,
+    @JsonKey(name: 'google_place_id') String? googlePlaceId,
+    @JsonKey(name: 'google_place_type') String? googlePlaceType,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
+    @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
+    @JsonKey(name: 'thumbnail_height') int? thumbnailHeight,
+  });
 
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
 }
@@ -151,68 +154,70 @@ class _$InlineQueryResultVenueCopyWithImpl<$Res>
     Object? thumbnailWidth = freezed,
     Object? thumbnailHeight = freezed,
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      latitude: null == latitude
-          ? _self.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _self.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _self.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      foursquareId: freezed == foursquareId
-          ? _self.foursquareId
-          : foursquareId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      foursquareType: freezed == foursquareType
-          ? _self.foursquareType
-          : foursquareType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      googlePlaceId: freezed == googlePlaceId
-          ? _self.googlePlaceId
-          : googlePlaceId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      googlePlaceType: freezed == googlePlaceType
-          ? _self.googlePlaceType
-          : googlePlaceType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      thumbnailUrl: freezed == thumbnailUrl
-          ? _self.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailWidth: freezed == thumbnailWidth
-          ? _self.thumbnailWidth
-          : thumbnailWidth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnailHeight: freezed == thumbnailHeight
-          ? _self.thumbnailHeight
-          : thumbnailHeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        latitude: null == latitude
+            ? _self.latitude
+            : latitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        longitude: null == longitude
+            ? _self.longitude
+            : longitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        address: null == address
+            ? _self.address
+            : address // ignore: cast_nullable_to_non_nullable
+                  as String,
+        foursquareId: freezed == foursquareId
+            ? _self.foursquareId
+            : foursquareId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        foursquareType: freezed == foursquareType
+            ? _self.foursquareType
+            : foursquareType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        googlePlaceId: freezed == googlePlaceId
+            ? _self.googlePlaceId
+            : googlePlaceId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        googlePlaceType: freezed == googlePlaceType
+            ? _self.googlePlaceType
+            : googlePlaceType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        thumbnailUrl: freezed == thumbnailUrl
+            ? _self.thumbnailUrl
+            : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        thumbnailWidth: freezed == thumbnailWidth
+            ? _self.thumbnailWidth
+            : thumbnailWidth // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        thumbnailHeight: freezed == thumbnailHeight
+            ? _self.thumbnailHeight
+            : thumbnailHeight // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultVenue
@@ -224,35 +229,116 @@ class _$InlineQueryResultVenueCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [InlineQueryResultVenue].
+extension InlineQueryResultVenuePatterns on InlineQueryResultVenue {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InlineQueryResultVenue value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultVenue() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InlineQueryResultVenue value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultVenue():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InlineQueryResultVenue value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InlineQueryResultVenue() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _InlineQueryResultVenue extends InlineQueryResultVenue {
-  const _InlineQueryResultVenue(
-      {@JsonKey(name: 'type') this.type = InlineQueryResultType.venue,
-      @JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'latitude') required this.latitude,
-      @JsonKey(name: 'longitude') required this.longitude,
-      @JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'address') required this.address,
-      @JsonKey(name: 'foursquare_id') this.foursquareId,
-      @JsonKey(name: 'foursquare_type') this.foursquareType,
-      @JsonKey(name: 'google_place_id') this.googlePlaceId,
-      @JsonKey(name: 'google_place_type') this.googlePlaceType,
-      @JsonKey(name: 'reply_markup') this.replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      this.inputMessageContent,
-      @JsonKey(name: 'thumbnail_url') this.thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') this.thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height') this.thumbnailHeight})
-      : super._();
+  const _InlineQueryResultVenue({
+    @JsonKey(name: 'type') this.type = InlineQueryResultType.venue,
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'latitude') required this.latitude,
+    @JsonKey(name: 'longitude') required this.longitude,
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'address') required this.address,
+    @JsonKey(name: 'foursquare_id') this.foursquareId,
+    @JsonKey(name: 'foursquare_type') this.foursquareType,
+    @JsonKey(name: 'google_place_id') this.googlePlaceId,
+    @JsonKey(name: 'google_place_type') this.googlePlaceType,
+    @JsonKey(name: 'reply_markup') this.replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    this.inputMessageContent,
+    @JsonKey(name: 'thumbnail_url') this.thumbnailUrl,
+    @JsonKey(name: 'thumbnail_width') this.thumbnailWidth,
+    @JsonKey(name: 'thumbnail_height') this.thumbnailHeight,
+  }) : super._();
   factory _InlineQueryResultVenue.fromJson(Map<String, dynamic> json) =>
       _$InlineQueryResultVenueFromJson(json);
 
@@ -341,13 +427,13 @@ class _InlineQueryResultVenue extends InlineQueryResultVenue {
   @pragma('vm:prefer-inline')
   _$InlineQueryResultVenueCopyWith<_InlineQueryResultVenue> get copyWith =>
       __$InlineQueryResultVenueCopyWithImpl<_InlineQueryResultVenue>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InlineQueryResultVenueToJson(
-      this,
-    );
+    return _$InlineQueryResultVenueToJson(this);
   }
 
   @override
@@ -359,29 +445,31 @@ class _InlineQueryResultVenue extends InlineQueryResultVenue {
 /// @nodoc
 abstract mixin class _$InlineQueryResultVenueCopyWith<$Res>
     implements $InlineQueryResultVenueCopyWith<$Res> {
-  factory _$InlineQueryResultVenueCopyWith(_InlineQueryResultVenue value,
-          $Res Function(_InlineQueryResultVenue) _then) =
-      __$InlineQueryResultVenueCopyWithImpl;
+  factory _$InlineQueryResultVenueCopyWith(
+    _InlineQueryResultVenue value,
+    $Res Function(_InlineQueryResultVenue) _then,
+  ) = __$InlineQueryResultVenueCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') InlineQueryResultType type,
-      @JsonKey(name: 'id') String id,
-      @JsonKey(name: 'latitude') double latitude,
-      @JsonKey(name: 'longitude') double longitude,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'address') String address,
-      @JsonKey(name: 'foursquare_id') String? foursquareId,
-      @JsonKey(name: 'foursquare_type') String? foursquareType,
-      @JsonKey(name: 'google_place_id') String? googlePlaceId,
-      @JsonKey(name: 'google_place_type') String? googlePlaceType,
-      @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
-      @JsonKey(name: 'input_message_content')
-      @InputMessageContentConverter()
-      InputMessageContent? inputMessageContent,
-      @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
-      @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
-      @JsonKey(name: 'thumbnail_height') int? thumbnailHeight});
+  $Res call({
+    @JsonKey(name: 'type') InlineQueryResultType type,
+    @JsonKey(name: 'id') String id,
+    @JsonKey(name: 'latitude') double latitude,
+    @JsonKey(name: 'longitude') double longitude,
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'address') String address,
+    @JsonKey(name: 'foursquare_id') String? foursquareId,
+    @JsonKey(name: 'foursquare_type') String? foursquareType,
+    @JsonKey(name: 'google_place_id') String? googlePlaceId,
+    @JsonKey(name: 'google_place_type') String? googlePlaceType,
+    @JsonKey(name: 'reply_markup') InlineKeyboardMarkup? replyMarkup,
+    @JsonKey(name: 'input_message_content')
+    @InputMessageContentConverter()
+    InputMessageContent? inputMessageContent,
+    @JsonKey(name: 'thumbnail_url') String? thumbnailUrl,
+    @JsonKey(name: 'thumbnail_width') int? thumbnailWidth,
+    @JsonKey(name: 'thumbnail_height') int? thumbnailHeight,
+  });
 
   @override
   $InputMessageContentCopyWith<$Res>? get inputMessageContent;
@@ -416,68 +504,70 @@ class __$InlineQueryResultVenueCopyWithImpl<$Res>
     Object? thumbnailWidth = freezed,
     Object? thumbnailHeight = freezed,
   }) {
-    return _then(_InlineQueryResultVenue(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as InlineQueryResultType,
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      latitude: null == latitude
-          ? _self.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _self.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _self.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      foursquareId: freezed == foursquareId
-          ? _self.foursquareId
-          : foursquareId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      foursquareType: freezed == foursquareType
-          ? _self.foursquareType
-          : foursquareType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      googlePlaceId: freezed == googlePlaceId
-          ? _self.googlePlaceId
-          : googlePlaceId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      googlePlaceType: freezed == googlePlaceType
-          ? _self.googlePlaceType
-          : googlePlaceType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      replyMarkup: freezed == replyMarkup
-          ? _self.replyMarkup
-          : replyMarkup // ignore: cast_nullable_to_non_nullable
-              as InlineKeyboardMarkup?,
-      inputMessageContent: freezed == inputMessageContent
-          ? _self.inputMessageContent
-          : inputMessageContent // ignore: cast_nullable_to_non_nullable
-              as InputMessageContent?,
-      thumbnailUrl: freezed == thumbnailUrl
-          ? _self.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailWidth: freezed == thumbnailWidth
-          ? _self.thumbnailWidth
-          : thumbnailWidth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      thumbnailHeight: freezed == thumbnailHeight
-          ? _self.thumbnailHeight
-          : thumbnailHeight // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _InlineQueryResultVenue(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as InlineQueryResultType,
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        latitude: null == latitude
+            ? _self.latitude
+            : latitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        longitude: null == longitude
+            ? _self.longitude
+            : longitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        address: null == address
+            ? _self.address
+            : address // ignore: cast_nullable_to_non_nullable
+                  as String,
+        foursquareId: freezed == foursquareId
+            ? _self.foursquareId
+            : foursquareId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        foursquareType: freezed == foursquareType
+            ? _self.foursquareType
+            : foursquareType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        googlePlaceId: freezed == googlePlaceId
+            ? _self.googlePlaceId
+            : googlePlaceId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        googlePlaceType: freezed == googlePlaceType
+            ? _self.googlePlaceType
+            : googlePlaceType // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        replyMarkup: freezed == replyMarkup
+            ? _self.replyMarkup
+            : replyMarkup // ignore: cast_nullable_to_non_nullable
+                  as InlineKeyboardMarkup?,
+        inputMessageContent: freezed == inputMessageContent
+            ? _self.inputMessageContent
+            : inputMessageContent // ignore: cast_nullable_to_non_nullable
+                  as InputMessageContent?,
+        thumbnailUrl: freezed == thumbnailUrl
+            ? _self.thumbnailUrl
+            : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        thumbnailWidth: freezed == thumbnailWidth
+            ? _self.thumbnailWidth
+            : thumbnailWidth // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        thumbnailHeight: freezed == thumbnailHeight
+            ? _self.thumbnailHeight
+            : thumbnailHeight // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of InlineQueryResultVenue
@@ -489,8 +579,9 @@ class __$InlineQueryResultVenueCopyWithImpl<$Res>
       return null;
     }
 
-    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!,
-        (value) {
+    return $InputMessageContentCopyWith<$Res>(_self.inputMessageContent!, (
+      value,
+    ) {
       return _then(_self.copyWith(inputMessageContent: value));
     });
   }

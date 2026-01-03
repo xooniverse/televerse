@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -82,7 +81,9 @@ mixin _$EncryptedPassportElement {
   @pragma('vm:prefer-inline')
   $EncryptedPassportElementCopyWith<EncryptedPassportElement> get copyWith =>
       _$EncryptedPassportElementCopyWithImpl<EncryptedPassportElement>(
-          this as EncryptedPassportElement, _$identity);
+        this as EncryptedPassportElement,
+        _$identity,
+      );
 
   /// Serializes this EncryptedPassportElement to a JSON map.
   Map<String, dynamic> toJson();
@@ -95,21 +96,23 @@ mixin _$EncryptedPassportElement {
 
 /// @nodoc
 abstract mixin class $EncryptedPassportElementCopyWith<$Res> {
-  factory $EncryptedPassportElementCopyWith(EncryptedPassportElement value,
-          $Res Function(EncryptedPassportElement) _then) =
-      _$EncryptedPassportElementCopyWithImpl;
+  factory $EncryptedPassportElementCopyWith(
+    EncryptedPassportElement value,
+    $Res Function(EncryptedPassportElement) _then,
+  ) = _$EncryptedPassportElementCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') PassportType type,
-      @JsonKey(name: 'data') String? data,
-      @JsonKey(name: 'phone_number') String? phoneNumber,
-      @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'files') List<PassportFile>? files,
-      @JsonKey(name: 'front_side') PassportFile? frontSide,
-      @JsonKey(name: 'reverse_side') PassportFile? reverseSide,
-      @JsonKey(name: 'selfie') PassportFile? selfie,
-      @JsonKey(name: 'translation') List<PassportFile>? translation,
-      @JsonKey(name: 'hash') String hash});
+  $Res call({
+    @JsonKey(name: 'type') PassportType type,
+    @JsonKey(name: 'data') String? data,
+    @JsonKey(name: 'phone_number') String? phoneNumber,
+    @JsonKey(name: 'email') String? email,
+    @JsonKey(name: 'files') List<PassportFile>? files,
+    @JsonKey(name: 'front_side') PassportFile? frontSide,
+    @JsonKey(name: 'reverse_side') PassportFile? reverseSide,
+    @JsonKey(name: 'selfie') PassportFile? selfie,
+    @JsonKey(name: 'translation') List<PassportFile>? translation,
+    @JsonKey(name: 'hash') String hash,
+  });
 
   $PassportFileCopyWith<$Res>? get frontSide;
   $PassportFileCopyWith<$Res>? get reverseSide;
@@ -140,48 +143,50 @@ class _$EncryptedPassportElementCopyWithImpl<$Res>
     Object? translation = freezed,
     Object? hash = null,
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PassportType,
-      data: freezed == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: freezed == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      files: freezed == files
-          ? _self.files
-          : files // ignore: cast_nullable_to_non_nullable
-              as List<PassportFile>?,
-      frontSide: freezed == frontSide
-          ? _self.frontSide
-          : frontSide // ignore: cast_nullable_to_non_nullable
-              as PassportFile?,
-      reverseSide: freezed == reverseSide
-          ? _self.reverseSide
-          : reverseSide // ignore: cast_nullable_to_non_nullable
-              as PassportFile?,
-      selfie: freezed == selfie
-          ? _self.selfie
-          : selfie // ignore: cast_nullable_to_non_nullable
-              as PassportFile?,
-      translation: freezed == translation
-          ? _self.translation
-          : translation // ignore: cast_nullable_to_non_nullable
-              as List<PassportFile>?,
-      hash: null == hash
-          ? _self.hash
-          : hash // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PassportType,
+        data: freezed == data
+            ? _self.data
+            : data // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        phoneNumber: freezed == phoneNumber
+            ? _self.phoneNumber
+            : phoneNumber // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        email: freezed == email
+            ? _self.email
+            : email // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        files: freezed == files
+            ? _self.files
+            : files // ignore: cast_nullable_to_non_nullable
+                  as List<PassportFile>?,
+        frontSide: freezed == frontSide
+            ? _self.frontSide
+            : frontSide // ignore: cast_nullable_to_non_nullable
+                  as PassportFile?,
+        reverseSide: freezed == reverseSide
+            ? _self.reverseSide
+            : reverseSide // ignore: cast_nullable_to_non_nullable
+                  as PassportFile?,
+        selfie: freezed == selfie
+            ? _self.selfie
+            : selfie // ignore: cast_nullable_to_non_nullable
+                  as PassportFile?,
+        translation: freezed == translation
+            ? _self.translation
+            : translation // ignore: cast_nullable_to_non_nullable
+                  as List<PassportFile>?,
+        hash: null == hash
+            ? _self.hash
+            : hash // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 
   /// Create a copy of EncryptedPassportElement
@@ -227,22 +232,102 @@ class _$EncryptedPassportElementCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [EncryptedPassportElement].
+extension EncryptedPassportElementPatterns on EncryptedPassportElement {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_EncryptedPassportElement value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _EncryptedPassportElement() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_EncryptedPassportElement value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _EncryptedPassportElement():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_EncryptedPassportElement value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _EncryptedPassportElement() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _EncryptedPassportElement implements EncryptedPassportElement {
-  const _EncryptedPassportElement(
-      {@JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'data') this.data,
-      @JsonKey(name: 'phone_number') this.phoneNumber,
-      @JsonKey(name: 'email') this.email,
-      @JsonKey(name: 'files') final List<PassportFile>? files,
-      @JsonKey(name: 'front_side') this.frontSide,
-      @JsonKey(name: 'reverse_side') this.reverseSide,
-      @JsonKey(name: 'selfie') this.selfie,
-      @JsonKey(name: 'translation') final List<PassportFile>? translation,
-      @JsonKey(name: 'hash') required this.hash})
-      : _files = files,
-        _translation = translation;
+  const _EncryptedPassportElement({
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'data') this.data,
+    @JsonKey(name: 'phone_number') this.phoneNumber,
+    @JsonKey(name: 'email') this.email,
+    @JsonKey(name: 'files') final List<PassportFile>? files,
+    @JsonKey(name: 'front_side') this.frontSide,
+    @JsonKey(name: 'reverse_side') this.reverseSide,
+    @JsonKey(name: 'selfie') this.selfie,
+    @JsonKey(name: 'translation') final List<PassportFile>? translation,
+    @JsonKey(name: 'hash') required this.hash,
+  }) : _files = files,
+       _translation = translation;
   factory _EncryptedPassportElement.fromJson(Map<String, dynamic> json) =>
       _$EncryptedPassportElementFromJson(json);
 
@@ -351,13 +436,13 @@ class _EncryptedPassportElement implements EncryptedPassportElement {
   @pragma('vm:prefer-inline')
   _$EncryptedPassportElementCopyWith<_EncryptedPassportElement> get copyWith =>
       __$EncryptedPassportElementCopyWithImpl<_EncryptedPassportElement>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$EncryptedPassportElementToJson(
-      this,
-    );
+    return _$EncryptedPassportElementToJson(this);
   }
 
   @override
@@ -369,22 +454,24 @@ class _EncryptedPassportElement implements EncryptedPassportElement {
 /// @nodoc
 abstract mixin class _$EncryptedPassportElementCopyWith<$Res>
     implements $EncryptedPassportElementCopyWith<$Res> {
-  factory _$EncryptedPassportElementCopyWith(_EncryptedPassportElement value,
-          $Res Function(_EncryptedPassportElement) _then) =
-      __$EncryptedPassportElementCopyWithImpl;
+  factory _$EncryptedPassportElementCopyWith(
+    _EncryptedPassportElement value,
+    $Res Function(_EncryptedPassportElement) _then,
+  ) = __$EncryptedPassportElementCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') PassportType type,
-      @JsonKey(name: 'data') String? data,
-      @JsonKey(name: 'phone_number') String? phoneNumber,
-      @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'files') List<PassportFile>? files,
-      @JsonKey(name: 'front_side') PassportFile? frontSide,
-      @JsonKey(name: 'reverse_side') PassportFile? reverseSide,
-      @JsonKey(name: 'selfie') PassportFile? selfie,
-      @JsonKey(name: 'translation') List<PassportFile>? translation,
-      @JsonKey(name: 'hash') String hash});
+  $Res call({
+    @JsonKey(name: 'type') PassportType type,
+    @JsonKey(name: 'data') String? data,
+    @JsonKey(name: 'phone_number') String? phoneNumber,
+    @JsonKey(name: 'email') String? email,
+    @JsonKey(name: 'files') List<PassportFile>? files,
+    @JsonKey(name: 'front_side') PassportFile? frontSide,
+    @JsonKey(name: 'reverse_side') PassportFile? reverseSide,
+    @JsonKey(name: 'selfie') PassportFile? selfie,
+    @JsonKey(name: 'translation') List<PassportFile>? translation,
+    @JsonKey(name: 'hash') String hash,
+  });
 
   @override
   $PassportFileCopyWith<$Res>? get frontSide;
@@ -418,48 +505,50 @@ class __$EncryptedPassportElementCopyWithImpl<$Res>
     Object? translation = freezed,
     Object? hash = null,
   }) {
-    return _then(_EncryptedPassportElement(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PassportType,
-      data: freezed == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: freezed == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      files: freezed == files
-          ? _self._files
-          : files // ignore: cast_nullable_to_non_nullable
-              as List<PassportFile>?,
-      frontSide: freezed == frontSide
-          ? _self.frontSide
-          : frontSide // ignore: cast_nullable_to_non_nullable
-              as PassportFile?,
-      reverseSide: freezed == reverseSide
-          ? _self.reverseSide
-          : reverseSide // ignore: cast_nullable_to_non_nullable
-              as PassportFile?,
-      selfie: freezed == selfie
-          ? _self.selfie
-          : selfie // ignore: cast_nullable_to_non_nullable
-              as PassportFile?,
-      translation: freezed == translation
-          ? _self._translation
-          : translation // ignore: cast_nullable_to_non_nullable
-              as List<PassportFile>?,
-      hash: null == hash
-          ? _self.hash
-          : hash // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _EncryptedPassportElement(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PassportType,
+        data: freezed == data
+            ? _self.data
+            : data // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        phoneNumber: freezed == phoneNumber
+            ? _self.phoneNumber
+            : phoneNumber // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        email: freezed == email
+            ? _self.email
+            : email // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        files: freezed == files
+            ? _self._files
+            : files // ignore: cast_nullable_to_non_nullable
+                  as List<PassportFile>?,
+        frontSide: freezed == frontSide
+            ? _self.frontSide
+            : frontSide // ignore: cast_nullable_to_non_nullable
+                  as PassportFile?,
+        reverseSide: freezed == reverseSide
+            ? _self.reverseSide
+            : reverseSide // ignore: cast_nullable_to_non_nullable
+                  as PassportFile?,
+        selfie: freezed == selfie
+            ? _self.selfie
+            : selfie // ignore: cast_nullable_to_non_nullable
+                  as PassportFile?,
+        translation: freezed == translation
+            ? _self._translation
+            : translation // ignore: cast_nullable_to_non_nullable
+                  as List<PassportFile>?,
+        hash: null == hash
+            ? _self.hash
+            : hash // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 
   /// Create a copy of EncryptedPassportElement

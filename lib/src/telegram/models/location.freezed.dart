@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -62,13 +61,14 @@ abstract mixin class $LocationCopyWith<$Res> {
   factory $LocationCopyWith(Location value, $Res Function(Location) _then) =
       _$LocationCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'longitude') double longitude,
-      @JsonKey(name: 'latitude') double latitude,
-      @JsonKey(name: 'horizontal_accuracy') double? horizontalAccuracy,
-      @JsonKey(name: 'live_period') int? livePeriod,
-      @JsonKey(name: 'heading') int? heading,
-      @JsonKey(name: 'proximity_alert_radius') int? proximityAlertRadius});
+  $Res call({
+    @JsonKey(name: 'longitude') double longitude,
+    @JsonKey(name: 'latitude') double latitude,
+    @JsonKey(name: 'horizontal_accuracy') double? horizontalAccuracy,
+    @JsonKey(name: 'live_period') int? livePeriod,
+    @JsonKey(name: 'heading') int? heading,
+    @JsonKey(name: 'proximity_alert_radius') int? proximityAlertRadius,
+  });
 }
 
 /// @nodoc
@@ -90,45 +90,128 @@ class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
     Object? heading = freezed,
     Object? proximityAlertRadius = freezed,
   }) {
-    return _then(_self.copyWith(
-      longitude: null == longitude
-          ? _self.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      latitude: null == latitude
-          ? _self.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      horizontalAccuracy: freezed == horizontalAccuracy
-          ? _self.horizontalAccuracy
-          : horizontalAccuracy // ignore: cast_nullable_to_non_nullable
-              as double?,
-      livePeriod: freezed == livePeriod
-          ? _self.livePeriod
-          : livePeriod // ignore: cast_nullable_to_non_nullable
-              as int?,
-      heading: freezed == heading
-          ? _self.heading
-          : heading // ignore: cast_nullable_to_non_nullable
-              as int?,
-      proximityAlertRadius: freezed == proximityAlertRadius
-          ? _self.proximityAlertRadius
-          : proximityAlertRadius // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        longitude: null == longitude
+            ? _self.longitude
+            : longitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        latitude: null == latitude
+            ? _self.latitude
+            : latitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        horizontalAccuracy: freezed == horizontalAccuracy
+            ? _self.horizontalAccuracy
+            : horizontalAccuracy // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        livePeriod: freezed == livePeriod
+            ? _self.livePeriod
+            : livePeriod // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        heading: freezed == heading
+            ? _self.heading
+            : heading // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        proximityAlertRadius: freezed == proximityAlertRadius
+            ? _self.proximityAlertRadius
+            : proximityAlertRadius // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [Location].
+extension LocationPatterns on Location {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Location value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Location() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Location value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Location():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Location value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Location() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _Location implements Location {
-  const _Location(
-      {@JsonKey(name: 'longitude') required this.longitude,
-      @JsonKey(name: 'latitude') required this.latitude,
-      @JsonKey(name: 'horizontal_accuracy') this.horizontalAccuracy,
-      @JsonKey(name: 'live_period') this.livePeriod,
-      @JsonKey(name: 'heading') this.heading,
-      @JsonKey(name: 'proximity_alert_radius') this.proximityAlertRadius});
+  const _Location({
+    @JsonKey(name: 'longitude') required this.longitude,
+    @JsonKey(name: 'latitude') required this.latitude,
+    @JsonKey(name: 'horizontal_accuracy') this.horizontalAccuracy,
+    @JsonKey(name: 'live_period') this.livePeriod,
+    @JsonKey(name: 'heading') this.heading,
+    @JsonKey(name: 'proximity_alert_radius') this.proximityAlertRadius,
+  });
   factory _Location.fromJson(Map<String, dynamic> json) =>
       _$LocationFromJson(json);
 
@@ -175,9 +258,7 @@ class _Location implements Location {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$LocationToJson(
-      this,
-    );
+    return _$LocationToJson(this);
   }
 
   @override
@@ -193,13 +274,14 @@ abstract mixin class _$LocationCopyWith<$Res>
       __$LocationCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'longitude') double longitude,
-      @JsonKey(name: 'latitude') double latitude,
-      @JsonKey(name: 'horizontal_accuracy') double? horizontalAccuracy,
-      @JsonKey(name: 'live_period') int? livePeriod,
-      @JsonKey(name: 'heading') int? heading,
-      @JsonKey(name: 'proximity_alert_radius') int? proximityAlertRadius});
+  $Res call({
+    @JsonKey(name: 'longitude') double longitude,
+    @JsonKey(name: 'latitude') double latitude,
+    @JsonKey(name: 'horizontal_accuracy') double? horizontalAccuracy,
+    @JsonKey(name: 'live_period') int? livePeriod,
+    @JsonKey(name: 'heading') int? heading,
+    @JsonKey(name: 'proximity_alert_radius') int? proximityAlertRadius,
+  });
 }
 
 /// @nodoc
@@ -221,31 +303,33 @@ class __$LocationCopyWithImpl<$Res> implements _$LocationCopyWith<$Res> {
     Object? heading = freezed,
     Object? proximityAlertRadius = freezed,
   }) {
-    return _then(_Location(
-      longitude: null == longitude
-          ? _self.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      latitude: null == latitude
-          ? _self.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      horizontalAccuracy: freezed == horizontalAccuracy
-          ? _self.horizontalAccuracy
-          : horizontalAccuracy // ignore: cast_nullable_to_non_nullable
-              as double?,
-      livePeriod: freezed == livePeriod
-          ? _self.livePeriod
-          : livePeriod // ignore: cast_nullable_to_non_nullable
-              as int?,
-      heading: freezed == heading
-          ? _self.heading
-          : heading // ignore: cast_nullable_to_non_nullable
-              as int?,
-      proximityAlertRadius: freezed == proximityAlertRadius
-          ? _self.proximityAlertRadius
-          : proximityAlertRadius // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _Location(
+        longitude: null == longitude
+            ? _self.longitude
+            : longitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        latitude: null == latitude
+            ? _self.latitude
+            : latitude // ignore: cast_nullable_to_non_nullable
+                  as double,
+        horizontalAccuracy: freezed == horizontalAccuracy
+            ? _self.horizontalAccuracy
+            : horizontalAccuracy // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        livePeriod: freezed == livePeriod
+            ? _self.livePeriod
+            : livePeriod // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        heading: freezed == heading
+            ? _self.heading
+            : heading // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        proximityAlertRadius: freezed == proximityAlertRadius
+            ? _self.proximityAlertRadius
+            : proximityAlertRadius // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 }

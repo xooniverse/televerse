@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -45,7 +44,9 @@ mixin _$InputChecklist {
   @pragma('vm:prefer-inline')
   $InputChecklistCopyWith<InputChecklist> get copyWith =>
       _$InputChecklistCopyWithImpl<InputChecklist>(
-          this as InputChecklist, _$identity);
+        this as InputChecklist,
+        _$identity,
+      );
 
   /// Serializes this InputChecklist to a JSON map.
   Map<String, dynamic> toJson();
@@ -59,17 +60,19 @@ mixin _$InputChecklist {
 /// @nodoc
 abstract mixin class $InputChecklistCopyWith<$Res> {
   factory $InputChecklistCopyWith(
-          InputChecklist value, $Res Function(InputChecklist) _then) =
-      _$InputChecklistCopyWithImpl;
+    InputChecklist value,
+    $Res Function(InputChecklist) _then,
+  ) = _$InputChecklistCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'title_entities') List<MessageEntity>? titleEntities,
-      @JsonKey(name: 'tasks') List<InputChecklistTask> tasks,
-      @JsonKey(name: 'others_can_add_tasks') bool? othersCanAddTasks,
-      @JsonKey(name: 'others_can_mark_tasks_as_done')
-      bool? othersCanMarkTasksAsDone});
+  $Res call({
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'title_entities') List<MessageEntity>? titleEntities,
+    @JsonKey(name: 'tasks') List<InputChecklistTask> tasks,
+    @JsonKey(name: 'others_can_add_tasks') bool? othersCanAddTasks,
+    @JsonKey(name: 'others_can_mark_tasks_as_done')
+    bool? othersCanMarkTasksAsDone,
+  });
 }
 
 /// @nodoc
@@ -92,48 +95,130 @@ class _$InputChecklistCopyWithImpl<$Res>
     Object? othersCanAddTasks = freezed,
     Object? othersCanMarkTasksAsDone = freezed,
   }) {
-    return _then(_self.copyWith(
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      titleEntities: freezed == titleEntities
-          ? _self.titleEntities
-          : titleEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      tasks: null == tasks
-          ? _self.tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
-              as List<InputChecklistTask>,
-      othersCanAddTasks: freezed == othersCanAddTasks
-          ? _self.othersCanAddTasks
-          : othersCanAddTasks // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      othersCanMarkTasksAsDone: freezed == othersCanMarkTasksAsDone
-          ? _self.othersCanMarkTasksAsDone
-          : othersCanMarkTasksAsDone // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        titleEntities: freezed == titleEntities
+            ? _self.titleEntities
+            : titleEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        tasks: null == tasks
+            ? _self.tasks
+            : tasks // ignore: cast_nullable_to_non_nullable
+                  as List<InputChecklistTask>,
+        othersCanAddTasks: freezed == othersCanAddTasks
+            ? _self.othersCanAddTasks
+            : othersCanAddTasks // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        othersCanMarkTasksAsDone: freezed == othersCanMarkTasksAsDone
+            ? _self.othersCanMarkTasksAsDone
+            : othersCanMarkTasksAsDone // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [InputChecklist].
+extension InputChecklistPatterns on InputChecklist {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InputChecklist value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InputChecklist() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InputChecklist value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InputChecklist():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InputChecklist value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InputChecklist() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _InputChecklist implements InputChecklist {
-  const _InputChecklist(
-      {@JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'parse_mode') this.parseMode,
-      @JsonKey(name: 'title_entities') final List<MessageEntity>? titleEntities,
-      @JsonKey(name: 'tasks') required final List<InputChecklistTask> tasks,
-      @JsonKey(name: 'others_can_add_tasks') this.othersCanAddTasks,
-      @JsonKey(name: 'others_can_mark_tasks_as_done')
-      this.othersCanMarkTasksAsDone})
-      : _titleEntities = titleEntities,
-        _tasks = tasks;
+  const _InputChecklist({
+    @JsonKey(name: 'title') required this.title,
+    @JsonKey(name: 'parse_mode') this.parseMode,
+    @JsonKey(name: 'title_entities') final List<MessageEntity>? titleEntities,
+    @JsonKey(name: 'tasks') required final List<InputChecklistTask> tasks,
+    @JsonKey(name: 'others_can_add_tasks') this.othersCanAddTasks,
+    @JsonKey(name: 'others_can_mark_tasks_as_done')
+    this.othersCanMarkTasksAsDone,
+  }) : _titleEntities = titleEntities,
+       _tasks = tasks;
   factory _InputChecklist.fromJson(Map<String, dynamic> json) =>
       _$InputChecklistFromJson(json);
 
@@ -195,9 +280,7 @@ class _InputChecklist implements InputChecklist {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$InputChecklistToJson(
-      this,
-    );
+    return _$InputChecklistToJson(this);
   }
 
   @override
@@ -210,18 +293,20 @@ class _InputChecklist implements InputChecklist {
 abstract mixin class _$InputChecklistCopyWith<$Res>
     implements $InputChecklistCopyWith<$Res> {
   factory _$InputChecklistCopyWith(
-          _InputChecklist value, $Res Function(_InputChecklist) _then) =
-      __$InputChecklistCopyWithImpl;
+    _InputChecklist value,
+    $Res Function(_InputChecklist) _then,
+  ) = __$InputChecklistCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'parse_mode') ParseMode? parseMode,
-      @JsonKey(name: 'title_entities') List<MessageEntity>? titleEntities,
-      @JsonKey(name: 'tasks') List<InputChecklistTask> tasks,
-      @JsonKey(name: 'others_can_add_tasks') bool? othersCanAddTasks,
-      @JsonKey(name: 'others_can_mark_tasks_as_done')
-      bool? othersCanMarkTasksAsDone});
+  $Res call({
+    @JsonKey(name: 'title') String title,
+    @JsonKey(name: 'parse_mode') ParseMode? parseMode,
+    @JsonKey(name: 'title_entities') List<MessageEntity>? titleEntities,
+    @JsonKey(name: 'tasks') List<InputChecklistTask> tasks,
+    @JsonKey(name: 'others_can_add_tasks') bool? othersCanAddTasks,
+    @JsonKey(name: 'others_can_mark_tasks_as_done')
+    bool? othersCanMarkTasksAsDone,
+  });
 }
 
 /// @nodoc
@@ -244,31 +329,33 @@ class __$InputChecklistCopyWithImpl<$Res>
     Object? othersCanAddTasks = freezed,
     Object? othersCanMarkTasksAsDone = freezed,
   }) {
-    return _then(_InputChecklist(
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      parseMode: freezed == parseMode
-          ? _self.parseMode
-          : parseMode // ignore: cast_nullable_to_non_nullable
-              as ParseMode?,
-      titleEntities: freezed == titleEntities
-          ? _self._titleEntities
-          : titleEntities // ignore: cast_nullable_to_non_nullable
-              as List<MessageEntity>?,
-      tasks: null == tasks
-          ? _self._tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
-              as List<InputChecklistTask>,
-      othersCanAddTasks: freezed == othersCanAddTasks
-          ? _self.othersCanAddTasks
-          : othersCanAddTasks // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      othersCanMarkTasksAsDone: freezed == othersCanMarkTasksAsDone
-          ? _self.othersCanMarkTasksAsDone
-          : othersCanMarkTasksAsDone // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _InputChecklist(
+        title: null == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        parseMode: freezed == parseMode
+            ? _self.parseMode
+            : parseMode // ignore: cast_nullable_to_non_nullable
+                  as ParseMode?,
+        titleEntities: freezed == titleEntities
+            ? _self._titleEntities
+            : titleEntities // ignore: cast_nullable_to_non_nullable
+                  as List<MessageEntity>?,
+        tasks: null == tasks
+            ? _self._tasks
+            : tasks // ignore: cast_nullable_to_non_nullable
+                  as List<InputChecklistTask>,
+        othersCanAddTasks: freezed == othersCanAddTasks
+            ? _self.othersCanAddTasks
+            : othersCanAddTasks // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        othersCanMarkTasksAsDone: freezed == othersCanMarkTasksAsDone
+            ? _self.othersCanMarkTasksAsDone
+            : othersCanMarkTasksAsDone // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

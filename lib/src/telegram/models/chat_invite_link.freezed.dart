@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -58,7 +57,9 @@ mixin _$ChatInviteLink {
   @pragma('vm:prefer-inline')
   $ChatInviteLinkCopyWith<ChatInviteLink> get copyWith =>
       _$ChatInviteLinkCopyWithImpl<ChatInviteLink>(
-          this as ChatInviteLink, _$identity);
+        this as ChatInviteLink,
+        _$identity,
+      );
 
   /// Serializes this ChatInviteLink to a JSON map.
   Map<String, dynamic> toJson();
@@ -72,19 +73,21 @@ mixin _$ChatInviteLink {
 /// @nodoc
 abstract mixin class $ChatInviteLinkCopyWith<$Res> {
   factory $ChatInviteLinkCopyWith(
-          ChatInviteLink value, $Res Function(ChatInviteLink) _then) =
-      _$ChatInviteLinkCopyWithImpl;
+    ChatInviteLink value,
+    $Res Function(ChatInviteLink) _then,
+  ) = _$ChatInviteLinkCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'invite_link') String inviteLink,
-      @JsonKey(name: 'creator') User? creator,
-      @JsonKey(name: 'creates_join_request') bool? createsJoinRequest,
-      @JsonKey(name: 'is_primary') bool? isPrimary,
-      @JsonKey(name: 'is_revoked') bool? isRevoked,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'expire_date') int? expireDate,
-      @JsonKey(name: 'member_limit') int? memberLimit,
-      @JsonKey(name: 'pending_member_count') int? pendingMemberCount});
+  $Res call({
+    @JsonKey(name: 'invite_link') String inviteLink,
+    @JsonKey(name: 'creator') User? creator,
+    @JsonKey(name: 'creates_join_request') bool? createsJoinRequest,
+    @JsonKey(name: 'is_primary') bool? isPrimary,
+    @JsonKey(name: 'is_revoked') bool? isRevoked,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'expire_date') int? expireDate,
+    @JsonKey(name: 'member_limit') int? memberLimit,
+    @JsonKey(name: 'pending_member_count') int? pendingMemberCount,
+  });
 
   $UserCopyWith<$Res>? get creator;
 }
@@ -112,44 +115,46 @@ class _$ChatInviteLinkCopyWithImpl<$Res>
     Object? memberLimit = freezed,
     Object? pendingMemberCount = freezed,
   }) {
-    return _then(_self.copyWith(
-      inviteLink: null == inviteLink
-          ? _self.inviteLink
-          : inviteLink // ignore: cast_nullable_to_non_nullable
-              as String,
-      creator: freezed == creator
-          ? _self.creator
-          : creator // ignore: cast_nullable_to_non_nullable
-              as User?,
-      createsJoinRequest: freezed == createsJoinRequest
-          ? _self.createsJoinRequest
-          : createsJoinRequest // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isPrimary: freezed == isPrimary
-          ? _self.isPrimary
-          : isPrimary // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isRevoked: freezed == isRevoked
-          ? _self.isRevoked
-          : isRevoked // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      expireDate: freezed == expireDate
-          ? _self.expireDate
-          : expireDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      memberLimit: freezed == memberLimit
-          ? _self.memberLimit
-          : memberLimit // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pendingMemberCount: freezed == pendingMemberCount
-          ? _self.pendingMemberCount
-          : pendingMemberCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _self.copyWith(
+        inviteLink: null == inviteLink
+            ? _self.inviteLink
+            : inviteLink // ignore: cast_nullable_to_non_nullable
+                  as String,
+        creator: freezed == creator
+            ? _self.creator
+            : creator // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        createsJoinRequest: freezed == createsJoinRequest
+            ? _self.createsJoinRequest
+            : createsJoinRequest // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isPrimary: freezed == isPrimary
+            ? _self.isPrimary
+            : isPrimary // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isRevoked: freezed == isRevoked
+            ? _self.isRevoked
+            : isRevoked // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        name: freezed == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        expireDate: freezed == expireDate
+            ? _self.expireDate
+            : expireDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        memberLimit: freezed == memberLimit
+            ? _self.memberLimit
+            : memberLimit // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        pendingMemberCount: freezed == pendingMemberCount
+            ? _self.pendingMemberCount
+            : pendingMemberCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of ChatInviteLink
@@ -167,19 +172,100 @@ class _$ChatInviteLinkCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [ChatInviteLink].
+extension ChatInviteLinkPatterns on ChatInviteLink {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChatInviteLink value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChatInviteLink() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChatInviteLink value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatInviteLink():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChatInviteLink value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChatInviteLink() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _ChatInviteLink implements ChatInviteLink {
-  const _ChatInviteLink(
-      {@JsonKey(name: 'invite_link') required this.inviteLink,
-      @JsonKey(name: 'creator') this.creator,
-      @JsonKey(name: 'creates_join_request') this.createsJoinRequest,
-      @JsonKey(name: 'is_primary') this.isPrimary,
-      @JsonKey(name: 'is_revoked') this.isRevoked,
-      @JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'expire_date') this.expireDate,
-      @JsonKey(name: 'member_limit') this.memberLimit,
-      @JsonKey(name: 'pending_member_count') this.pendingMemberCount});
+  const _ChatInviteLink({
+    @JsonKey(name: 'invite_link') required this.inviteLink,
+    @JsonKey(name: 'creator') this.creator,
+    @JsonKey(name: 'creates_join_request') this.createsJoinRequest,
+    @JsonKey(name: 'is_primary') this.isPrimary,
+    @JsonKey(name: 'is_revoked') this.isRevoked,
+    @JsonKey(name: 'name') this.name,
+    @JsonKey(name: 'expire_date') this.expireDate,
+    @JsonKey(name: 'member_limit') this.memberLimit,
+    @JsonKey(name: 'pending_member_count') this.pendingMemberCount,
+  });
   factory _ChatInviteLink.fromJson(Map<String, dynamic> json) =>
       _$ChatInviteLinkFromJson(json);
 
@@ -240,9 +326,7 @@ class _ChatInviteLink implements ChatInviteLink {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatInviteLinkToJson(
-      this,
-    );
+    return _$ChatInviteLinkToJson(this);
   }
 
   @override
@@ -255,20 +339,22 @@ class _ChatInviteLink implements ChatInviteLink {
 abstract mixin class _$ChatInviteLinkCopyWith<$Res>
     implements $ChatInviteLinkCopyWith<$Res> {
   factory _$ChatInviteLinkCopyWith(
-          _ChatInviteLink value, $Res Function(_ChatInviteLink) _then) =
-      __$ChatInviteLinkCopyWithImpl;
+    _ChatInviteLink value,
+    $Res Function(_ChatInviteLink) _then,
+  ) = __$ChatInviteLinkCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'invite_link') String inviteLink,
-      @JsonKey(name: 'creator') User? creator,
-      @JsonKey(name: 'creates_join_request') bool? createsJoinRequest,
-      @JsonKey(name: 'is_primary') bool? isPrimary,
-      @JsonKey(name: 'is_revoked') bool? isRevoked,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'expire_date') int? expireDate,
-      @JsonKey(name: 'member_limit') int? memberLimit,
-      @JsonKey(name: 'pending_member_count') int? pendingMemberCount});
+  $Res call({
+    @JsonKey(name: 'invite_link') String inviteLink,
+    @JsonKey(name: 'creator') User? creator,
+    @JsonKey(name: 'creates_join_request') bool? createsJoinRequest,
+    @JsonKey(name: 'is_primary') bool? isPrimary,
+    @JsonKey(name: 'is_revoked') bool? isRevoked,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'expire_date') int? expireDate,
+    @JsonKey(name: 'member_limit') int? memberLimit,
+    @JsonKey(name: 'pending_member_count') int? pendingMemberCount,
+  });
 
   @override
   $UserCopyWith<$Res>? get creator;
@@ -297,44 +383,46 @@ class __$ChatInviteLinkCopyWithImpl<$Res>
     Object? memberLimit = freezed,
     Object? pendingMemberCount = freezed,
   }) {
-    return _then(_ChatInviteLink(
-      inviteLink: null == inviteLink
-          ? _self.inviteLink
-          : inviteLink // ignore: cast_nullable_to_non_nullable
-              as String,
-      creator: freezed == creator
-          ? _self.creator
-          : creator // ignore: cast_nullable_to_non_nullable
-              as User?,
-      createsJoinRequest: freezed == createsJoinRequest
-          ? _self.createsJoinRequest
-          : createsJoinRequest // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isPrimary: freezed == isPrimary
-          ? _self.isPrimary
-          : isPrimary // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isRevoked: freezed == isRevoked
-          ? _self.isRevoked
-          : isRevoked // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      expireDate: freezed == expireDate
-          ? _self.expireDate
-          : expireDate // ignore: cast_nullable_to_non_nullable
-              as int?,
-      memberLimit: freezed == memberLimit
-          ? _self.memberLimit
-          : memberLimit // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pendingMemberCount: freezed == pendingMemberCount
-          ? _self.pendingMemberCount
-          : pendingMemberCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _ChatInviteLink(
+        inviteLink: null == inviteLink
+            ? _self.inviteLink
+            : inviteLink // ignore: cast_nullable_to_non_nullable
+                  as String,
+        creator: freezed == creator
+            ? _self.creator
+            : creator // ignore: cast_nullable_to_non_nullable
+                  as User?,
+        createsJoinRequest: freezed == createsJoinRequest
+            ? _self.createsJoinRequest
+            : createsJoinRequest // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isPrimary: freezed == isPrimary
+            ? _self.isPrimary
+            : isPrimary // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isRevoked: freezed == isRevoked
+            ? _self.isRevoked
+            : isRevoked // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        name: freezed == name
+            ? _self.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        expireDate: freezed == expireDate
+            ? _self.expireDate
+            : expireDate // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        memberLimit: freezed == memberLimit
+            ? _self.memberLimit
+            : memberLimit // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        pendingMemberCount: freezed == pendingMemberCount
+            ? _self.pendingMemberCount
+            : pendingMemberCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 
   /// Create a copy of ChatInviteLink

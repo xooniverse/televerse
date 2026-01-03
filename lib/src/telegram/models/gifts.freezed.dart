@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -53,15 +52,95 @@ class _$GiftsCopyWithImpl<$Res> implements $GiftsCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? gifts = null,
+  $Res call({Object? gifts = null}) {
+    return _then(
+      _self.copyWith(
+        gifts: null == gifts
+            ? _self.gifts
+            : gifts // ignore: cast_nullable_to_non_nullable
+                  as List<Gift>,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [Gifts].
+extension GiftsPatterns on Gifts {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Gifts value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      gifts: null == gifts
-          ? _self.gifts
-          : gifts // ignore: cast_nullable_to_non_nullable
-              as List<Gift>,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _Gifts() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Gifts value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Gifts():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Gifts value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Gifts() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
@@ -69,7 +148,7 @@ class _$GiftsCopyWithImpl<$Res> implements $GiftsCopyWith<$Res> {
 @JsonSerializable()
 class _Gifts implements Gifts {
   const _Gifts({@JsonKey(name: 'gifts') required final List<Gift> gifts})
-      : _gifts = gifts;
+    : _gifts = gifts;
   factory _Gifts.fromJson(Map<String, dynamic> json) => _$GiftsFromJson(json);
 
   /// The list of gifts.
@@ -94,9 +173,7 @@ class _Gifts implements Gifts {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$GiftsToJson(
-      this,
-    );
+    return _$GiftsToJson(this);
   }
 
   @override
@@ -125,14 +202,14 @@ class __$GiftsCopyWithImpl<$Res> implements _$GiftsCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? gifts = null,
-  }) {
-    return _then(_Gifts(
-      gifts: null == gifts
-          ? _self._gifts
-          : gifts // ignore: cast_nullable_to_non_nullable
-              as List<Gift>,
-    ));
+  $Res call({Object? gifts = null}) {
+    return _then(
+      _Gifts(
+        gifts: null == gifts
+            ? _self._gifts
+            : gifts // ignore: cast_nullable_to_non_nullable
+                  as List<Gift>,
+      ),
+    );
   }
 }

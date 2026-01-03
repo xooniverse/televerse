@@ -13,8 +13,8 @@ _StoryAreaPosition _$StoryAreaPositionFromJson(Map<String, dynamic> json) =>
       widthPercentage: (json['width_percentage'] as num).toDouble(),
       heightPercentage: (json['height_percentage'] as num).toDouble(),
       rotationAngle: (json['rotation_angle'] as num).toDouble(),
-      cornerRadiusPercentage:
-          (json['corner_radius_percentage'] as num).toDouble(),
+      cornerRadiusPercentage: (json['corner_radius_percentage'] as num)
+          .toDouble(),
     );
 
 Map<String, dynamic> _$StoryAreaPositionToJson(_StoryAreaPosition instance) =>

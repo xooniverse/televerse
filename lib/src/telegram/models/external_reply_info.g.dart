@@ -16,7 +16,8 @@ _ExternalReplyInfo _$ExternalReplyInfoFromJson(Map<String, dynamic> json) =>
       linkPreviewOptions: json['link_preview_options'] == null
           ? null
           : LinkPreviewOptions.fromJson(
-              json['link_preview_options'] as Map<String, dynamic>),
+              json['link_preview_options'] as Map<String, dynamic>,
+            ),
       animation: json['animation'] == null
           ? null
           : Animation.fromJson(json['animation'] as Map<String, dynamic>),
@@ -60,7 +61,8 @@ _ExternalReplyInfo _$ExternalReplyInfoFromJson(Map<String, dynamic> json) =>
       giveawayWinners: json['giveaway_winners'] == null
           ? null
           : GiveawayWinners.fromJson(
-              json['giveaway_winners'] as Map<String, dynamic>),
+              json['giveaway_winners'] as Map<String, dynamic>,
+            ),
       invoice: json['invoice'] == null
           ? null
           : Invoice.fromJson(json['invoice'] as Map<String, dynamic>),
@@ -84,30 +86,28 @@ _ExternalReplyInfo _$ExternalReplyInfoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ExternalReplyInfoToJson(_ExternalReplyInfo instance) =>
     <String, dynamic>{
       'origin': instance.origin,
-      if (instance.chat case final value?) 'chat': value,
-      if (instance.messageId case final value?) 'message_id': value,
-      if (instance.linkPreviewOptions case final value?)
-        'link_preview_options': value,
-      if (instance.animation case final value?) 'animation': value,
-      if (instance.audio case final value?) 'audio': value,
-      if (instance.document case final value?) 'document': value,
-      if (instance.photo case final value?) 'photo': value,
-      if (instance.sticker case final value?) 'sticker': value,
-      if (instance.story case final value?) 'story': value,
-      if (instance.video case final value?) 'video': value,
-      if (instance.videoNote case final value?) 'video_note': value,
-      if (instance.voice case final value?) 'voice': value,
-      if (instance.hasMediaSpoiler case final value?)
-        'has_media_spoiler': value,
-      if (instance.contact case final value?) 'contact': value,
-      if (instance.dice case final value?) 'dice': value,
-      if (instance.game case final value?) 'game': value,
-      if (instance.giveaway case final value?) 'giveaway': value,
-      if (instance.giveawayWinners case final value?) 'giveaway_winners': value,
-      if (instance.invoice case final value?) 'invoice': value,
-      if (instance.location case final value?) 'location': value,
-      if (instance.poll case final value?) 'poll': value,
-      if (instance.venue case final value?) 'venue': value,
-      if (instance.paidMedia case final value?) 'paid_media': value,
-      if (instance.checklist case final value?) 'checklist': value,
+      'chat': ?instance.chat,
+      'message_id': ?instance.messageId,
+      'link_preview_options': ?instance.linkPreviewOptions,
+      'animation': ?instance.animation,
+      'audio': ?instance.audio,
+      'document': ?instance.document,
+      'photo': ?instance.photo,
+      'sticker': ?instance.sticker,
+      'story': ?instance.story,
+      'video': ?instance.video,
+      'video_note': ?instance.videoNote,
+      'voice': ?instance.voice,
+      'has_media_spoiler': ?instance.hasMediaSpoiler,
+      'contact': ?instance.contact,
+      'dice': ?instance.dice,
+      'game': ?instance.game,
+      'giveaway': ?instance.giveaway,
+      'giveaway_winners': ?instance.giveawayWinners,
+      'invoice': ?instance.invoice,
+      'location': ?instance.location,
+      'poll': ?instance.poll,
+      'venue': ?instance.venue,
+      'paid_media': ?instance.paidMedia,
+      'checklist': ?instance.checklist,
     };

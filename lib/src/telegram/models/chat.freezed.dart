@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -68,15 +67,16 @@ abstract mixin class $ChatCopyWith<$Res> {
   factory $ChatCopyWith(Chat value, $Res Function(Chat) _then) =
       _$ChatCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'type') ChatType type,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'is_forum') bool? isForum,
-      @JsonKey(name: 'is_direct_messages') bool? isDirectMessages});
+  $Res call({
+    @JsonKey(name: 'id') int id,
+    @JsonKey(name: 'type') ChatType type,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'username') String? username,
+    @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'is_forum') bool? isForum,
+    @JsonKey(name: 'is_direct_messages') bool? isDirectMessages,
+  });
 }
 
 /// @nodoc
@@ -100,55 +100,136 @@ class _$ChatCopyWithImpl<$Res> implements $ChatCopyWith<$Res> {
     Object? isForum = freezed,
     Object? isDirectMessages = freezed,
   }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ChatType,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _self.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      firstName: freezed == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isForum: freezed == isForum
-          ? _self.isForum
-          : isForum // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isDirectMessages: freezed == isDirectMessages
-          ? _self.isDirectMessages
-          : isDirectMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _self.copyWith(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as ChatType,
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        username: freezed == username
+            ? _self.username
+            : username // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        firstName: freezed == firstName
+            ? _self.firstName
+            : firstName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        lastName: freezed == lastName
+            ? _self.lastName
+            : lastName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        isForum: freezed == isForum
+            ? _self.isForum
+            : isForum // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isDirectMessages: freezed == isDirectMessages
+            ? _self.isDirectMessages
+            : isDirectMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [Chat].
+extension ChatPatterns on Chat {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Chat value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Chat() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(TResult Function(_Chat value) $default) {
+    final _that = this;
+    switch (_that) {
+      case _Chat():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Chat value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Chat() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _Chat implements Chat {
-  const _Chat(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'type') required this.type,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'username') this.username,
-      @JsonKey(name: 'first_name') this.firstName,
-      @JsonKey(name: 'last_name') this.lastName,
-      @JsonKey(name: 'is_forum') this.isForum,
-      @JsonKey(name: 'is_direct_messages') this.isDirectMessages});
+  const _Chat({
+    @JsonKey(name: 'id') required this.id,
+    @JsonKey(name: 'type') required this.type,
+    @JsonKey(name: 'title') this.title,
+    @JsonKey(name: 'username') this.username,
+    @JsonKey(name: 'first_name') this.firstName,
+    @JsonKey(name: 'last_name') this.lastName,
+    @JsonKey(name: 'is_forum') this.isForum,
+    @JsonKey(name: 'is_direct_messages') this.isDirectMessages,
+  });
   factory _Chat.fromJson(Map<String, dynamic> json) => _$ChatFromJson(json);
 
   /// Unique identifier for this chat.
@@ -202,9 +283,7 @@ class _Chat implements Chat {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ChatToJson(
-      this,
-    );
+    return _$ChatToJson(this);
   }
 
   @override
@@ -219,15 +298,16 @@ abstract mixin class _$ChatCopyWith<$Res> implements $ChatCopyWith<$Res> {
       __$ChatCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'type') ChatType type,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'is_forum') bool? isForum,
-      @JsonKey(name: 'is_direct_messages') bool? isDirectMessages});
+  $Res call({
+    @JsonKey(name: 'id') int id,
+    @JsonKey(name: 'type') ChatType type,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'username') String? username,
+    @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'is_forum') bool? isForum,
+    @JsonKey(name: 'is_direct_messages') bool? isDirectMessages,
+  });
 }
 
 /// @nodoc
@@ -251,39 +331,41 @@ class __$ChatCopyWithImpl<$Res> implements _$ChatCopyWith<$Res> {
     Object? isForum = freezed,
     Object? isDirectMessages = freezed,
   }) {
-    return _then(_Chat(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ChatType,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _self.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      firstName: freezed == firstName
-          ? _self.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastName: freezed == lastName
-          ? _self.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isForum: freezed == isForum
-          ? _self.isForum
-          : isForum // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isDirectMessages: freezed == isDirectMessages
-          ? _self.isDirectMessages
-          : isDirectMessages // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _Chat(
+        id: null == id
+            ? _self.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as ChatType,
+        title: freezed == title
+            ? _self.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        username: freezed == username
+            ? _self.username
+            : username // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        firstName: freezed == firstName
+            ? _self.firstName
+            : firstName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        lastName: freezed == lastName
+            ? _self.lastName
+            : lastName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        isForum: freezed == isForum
+            ? _self.isForum
+            : isForum // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        isDirectMessages: freezed == isDirectMessages
+            ? _self.isDirectMessages
+            : isDirectMessages // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }

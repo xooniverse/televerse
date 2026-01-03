@@ -25,6 +25,8 @@ abstract class User with _$User implements WithID {
   /// - [canConnectToBusiness] True, if the bot can be connected to a Telegram
   ///   Business account
   /// - [hasMainWebApp] True, if the bot has a main Web App
+  /// - [hasTopicsEnabled] True, if forum topic mode is enabled for the bot in
+  ///   private chats
   const factory User({
     /// Unique identifier for this user or bot. This number may have more than
     /// 32 significant bits and some programming languages may have
@@ -72,6 +74,10 @@ abstract class User with _$User implements WithID {
 
     /// Optional. True, if the bot has a main Web App. Returned only in getMe.
     @JsonKey(name: 'has_main_web_app') bool? hasMainWebApp,
+
+    /// Optional. True, if forum topic mode is enabled for the bot in private
+    /// chats.
+    @JsonKey(name: 'has_topics_enabled') bool? hasTopicsEnabled,
   }) = _User;
 
   /// Creates a [User] from a JSON map

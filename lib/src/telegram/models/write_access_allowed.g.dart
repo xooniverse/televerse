@@ -15,8 +15,7 @@ _WriteAccessAllowed _$WriteAccessAllowedFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$WriteAccessAllowedToJson(_WriteAccessAllowed instance) =>
     <String, dynamic>{
-      if (instance.webAppName case final value?) 'web_app_name': value,
-      if (instance.fromRequest case final value?) 'from_request': value,
-      if (instance.fromAttachmentMenu case final value?)
-        'from_attachment_menu': value,
+      'web_app_name': ?instance.webAppName,
+      'from_request': ?instance.fromRequest,
+      'from_attachment_menu': ?instance.fromAttachmentMenu,
     };

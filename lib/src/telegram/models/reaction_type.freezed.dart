@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -21,8 +20,12 @@ ReactionType _$ReactionTypeFromJson(Map<String, dynamic> json) {
       return ReactionTypePaid.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'type', 'ReactionType',
-          'Invalid union type "${json['type']}"!');
+      throw CheckedFromJsonException(
+        json,
+        'type',
+        'ReactionType',
+        'Invalid union type "${json['type']}"!',
+      );
   }
 }
 
@@ -38,7 +41,9 @@ mixin _$ReactionType {
   @pragma('vm:prefer-inline')
   $ReactionTypeCopyWith<ReactionType> get copyWith =>
       _$ReactionTypeCopyWithImpl<ReactionType>(
-          this as ReactionType, _$identity);
+        this as ReactionType,
+        _$identity,
+      );
 
   /// Serializes this ReactionType to a JSON map.
   Map<String, dynamic> toJson();
@@ -52,8 +57,9 @@ mixin _$ReactionType {
 /// @nodoc
 abstract mixin class $ReactionTypeCopyWith<$Res> {
   factory $ReactionTypeCopyWith(
-          ReactionType value, $Res Function(ReactionType) _then) =
-      _$ReactionTypeCopyWithImpl;
+    ReactionType value,
+    $Res Function(ReactionType) _then,
+  ) = _$ReactionTypeCopyWithImpl;
   @useResult
   $Res call({ReactionTypeType type});
 }
@@ -69,26 +75,124 @@ class _$ReactionTypeCopyWithImpl<$Res> implements $ReactionTypeCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
+  $Res call({Object? type = null}) {
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as ReactionTypeType,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [ReactionType].
+extension ReactionTypePatterns on ReactionType {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ReactionTypeEmoji value)? emoji,
+    TResult Function(ReactionTypeCustomEmoji value)? customEmoji,
+    TResult Function(ReactionTypePaid value)? paid,
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ReactionTypeType,
-    ));
+    final _that = this;
+    switch (_that) {
+      case ReactionTypeEmoji() when emoji != null:
+        return emoji(_that);
+      case ReactionTypeCustomEmoji() when customEmoji != null:
+        return customEmoji(_that);
+      case ReactionTypePaid() when paid != null:
+        return paid(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ReactionTypeEmoji value) emoji,
+    required TResult Function(ReactionTypeCustomEmoji value) customEmoji,
+    required TResult Function(ReactionTypePaid value) paid,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ReactionTypeEmoji():
+        return emoji(_that);
+      case ReactionTypeCustomEmoji():
+        return customEmoji(_that);
+      case ReactionTypePaid():
+        return paid(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ReactionTypeEmoji value)? emoji,
+    TResult? Function(ReactionTypeCustomEmoji value)? customEmoji,
+    TResult? Function(ReactionTypePaid value)? paid,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ReactionTypeEmoji() when emoji != null:
+        return emoji(_that);
+      case ReactionTypeCustomEmoji() when customEmoji != null:
+        return customEmoji(_that);
+      case ReactionTypePaid() when paid != null:
+        return paid(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class ReactionTypeEmoji implements ReactionType {
-  const ReactionTypeEmoji(
-      {this.type = ReactionTypeType.emoji,
-      @JsonKey(name: 'emoji') required this.emoji})
-      : assert(type == ReactionTypeType.emoji,
-            'type must be ReactionTypeType.emoji');
+  const ReactionTypeEmoji({
+    this.type = ReactionTypeType.emoji,
+    @JsonKey(name: 'emoji') required this.emoji,
+  }) : assert(
+         type == ReactionTypeType.emoji,
+         'type must be ReactionTypeType.emoji',
+       );
   factory ReactionTypeEmoji.fromJson(Map<String, dynamic> json) =>
       _$ReactionTypeEmojiFromJson(json);
 
@@ -119,9 +223,7 @@ class ReactionTypeEmoji implements ReactionType {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ReactionTypeEmojiToJson(
-      this,
-    );
+    return _$ReactionTypeEmojiToJson(this);
   }
 
   @override
@@ -134,8 +236,9 @@ class ReactionTypeEmoji implements ReactionType {
 abstract mixin class $ReactionTypeEmojiCopyWith<$Res>
     implements $ReactionTypeCopyWith<$Res> {
   factory $ReactionTypeEmojiCopyWith(
-          ReactionTypeEmoji value, $Res Function(ReactionTypeEmoji) _then) =
-      _$ReactionTypeEmojiCopyWithImpl;
+    ReactionTypeEmoji value,
+    $Res Function(ReactionTypeEmoji) _then,
+  ) = _$ReactionTypeEmojiCopyWithImpl;
   @override
   @useResult
   $Res call({ReactionTypeType type, @JsonKey(name: 'emoji') String emoji});
@@ -153,31 +256,32 @@ class _$ReactionTypeEmojiCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? emoji = null,
-  }) {
-    return _then(ReactionTypeEmoji(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ReactionTypeType,
-      emoji: null == emoji
-          ? _self.emoji
-          : emoji // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? type = null, Object? emoji = null}) {
+    return _then(
+      ReactionTypeEmoji(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as ReactionTypeType,
+        emoji: null == emoji
+            ? _self.emoji
+            : emoji // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class ReactionTypeCustomEmoji implements ReactionType {
-  const ReactionTypeCustomEmoji(
-      {@JsonKey(name: 'type') this.type = ReactionTypeType.customEmoji,
-      @JsonKey(name: 'custom_emoji_id') required this.customEmojiId})
-      : assert(type == ReactionTypeType.customEmoji,
-            'type must be ReactionTypeType.customEmoji');
+  const ReactionTypeCustomEmoji({
+    @JsonKey(name: 'type') this.type = ReactionTypeType.customEmoji,
+    @JsonKey(name: 'custom_emoji_id') required this.customEmojiId,
+  }) : assert(
+         type == ReactionTypeType.customEmoji,
+         'type must be ReactionTypeType.customEmoji',
+       );
   factory ReactionTypeCustomEmoji.fromJson(Map<String, dynamic> json) =>
       _$ReactionTypeCustomEmojiFromJson(json);
 
@@ -197,13 +301,13 @@ class ReactionTypeCustomEmoji implements ReactionType {
   @pragma('vm:prefer-inline')
   $ReactionTypeCustomEmojiCopyWith<ReactionTypeCustomEmoji> get copyWith =>
       _$ReactionTypeCustomEmojiCopyWithImpl<ReactionTypeCustomEmoji>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ReactionTypeCustomEmojiToJson(
-      this,
-    );
+    return _$ReactionTypeCustomEmojiToJson(this);
   }
 
   @override
@@ -215,14 +319,16 @@ class ReactionTypeCustomEmoji implements ReactionType {
 /// @nodoc
 abstract mixin class $ReactionTypeCustomEmojiCopyWith<$Res>
     implements $ReactionTypeCopyWith<$Res> {
-  factory $ReactionTypeCustomEmojiCopyWith(ReactionTypeCustomEmoji value,
-          $Res Function(ReactionTypeCustomEmoji) _then) =
-      _$ReactionTypeCustomEmojiCopyWithImpl;
+  factory $ReactionTypeCustomEmojiCopyWith(
+    ReactionTypeCustomEmoji value,
+    $Res Function(ReactionTypeCustomEmoji) _then,
+  ) = _$ReactionTypeCustomEmojiCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') ReactionTypeType type,
-      @JsonKey(name: 'custom_emoji_id') String customEmojiId});
+  $Res call({
+    @JsonKey(name: 'type') ReactionTypeType type,
+    @JsonKey(name: 'custom_emoji_id') String customEmojiId,
+  });
 }
 
 /// @nodoc
@@ -237,30 +343,31 @@ class _$ReactionTypeCustomEmojiCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? customEmojiId = null,
-  }) {
-    return _then(ReactionTypeCustomEmoji(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ReactionTypeType,
-      customEmojiId: null == customEmojiId
-          ? _self.customEmojiId
-          : customEmojiId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? type = null, Object? customEmojiId = null}) {
+    return _then(
+      ReactionTypeCustomEmoji(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as ReactionTypeType,
+        customEmojiId: null == customEmojiId
+            ? _self.customEmojiId
+            : customEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class ReactionTypePaid implements ReactionType {
-  const ReactionTypePaid(
-      {@JsonKey(name: 'type') this.type = ReactionTypeType.paid})
-      : assert(type == ReactionTypeType.paid,
-            'type must be ReactionTypeType.paid');
+  const ReactionTypePaid({
+    @JsonKey(name: 'type') this.type = ReactionTypeType.paid,
+  }) : assert(
+         type == ReactionTypeType.paid,
+         'type must be ReactionTypeType.paid',
+       );
   factory ReactionTypePaid.fromJson(Map<String, dynamic> json) =>
       _$ReactionTypePaidFromJson(json);
 
@@ -279,9 +386,7 @@ class ReactionTypePaid implements ReactionType {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ReactionTypePaidToJson(
-      this,
-    );
+    return _$ReactionTypePaidToJson(this);
   }
 
   @override
@@ -294,8 +399,9 @@ class ReactionTypePaid implements ReactionType {
 abstract mixin class $ReactionTypePaidCopyWith<$Res>
     implements $ReactionTypeCopyWith<$Res> {
   factory $ReactionTypePaidCopyWith(
-          ReactionTypePaid value, $Res Function(ReactionTypePaid) _then) =
-      _$ReactionTypePaidCopyWithImpl;
+    ReactionTypePaid value,
+    $Res Function(ReactionTypePaid) _then,
+  ) = _$ReactionTypePaidCopyWithImpl;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') ReactionTypeType type});
@@ -313,14 +419,14 @@ class _$ReactionTypePaidCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(ReactionTypePaid(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ReactionTypeType,
-    ));
+  $Res call({Object? type = null}) {
+    return _then(
+      ReactionTypePaid(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as ReactionTypeType,
+      ),
+    );
   }
 }

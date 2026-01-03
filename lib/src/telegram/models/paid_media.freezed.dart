@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -22,7 +21,11 @@ PaidMedia _$PaidMediaFromJson(Map<String, dynamic> json) {
 
     default:
       throw CheckedFromJsonException(
-          json, 'type', 'PaidMedia', 'Invalid union type "${json['type']}"!');
+        json,
+        'type',
+        'PaidMedia',
+        'Invalid union type "${json['type']}"!',
+      );
   }
 }
 
@@ -67,28 +70,126 @@ class _$PaidMediaCopyWithImpl<$Res> implements $PaidMediaCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? type = null,
+  $Res call({Object? type = null}) {
+    return _then(
+      _self.copyWith(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PaidMediaType,
+      ),
+    );
+  }
+}
+
+/// Adds pattern-matching-related methods to [PaidMedia].
+extension PaidMediaPatterns on PaidMedia {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PaidMediaPreview value)? preview,
+    TResult Function(PaidMediaPhoto value)? photo,
+    TResult Function(PaidMediaVideo value)? video,
+    required TResult orElse(),
   }) {
-    return _then(_self.copyWith(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PaidMediaType,
-    ));
+    final _that = this;
+    switch (_that) {
+      case PaidMediaPreview() when preview != null:
+        return preview(_that);
+      case PaidMediaPhoto() when photo != null:
+        return photo(_that);
+      case PaidMediaVideo() when video != null:
+        return video(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PaidMediaPreview value) preview,
+    required TResult Function(PaidMediaPhoto value) photo,
+    required TResult Function(PaidMediaVideo value) video,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case PaidMediaPreview():
+        return preview(_that);
+      case PaidMediaPhoto():
+        return photo(_that);
+      case PaidMediaVideo():
+        return video(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(PaidMediaPreview value)? preview,
+    TResult? Function(PaidMediaPhoto value)? photo,
+    TResult? Function(PaidMediaVideo value)? video,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case PaidMediaPreview() when preview != null:
+        return preview(_that);
+      case PaidMediaPhoto() when photo != null:
+        return photo(_that);
+      case PaidMediaVideo() when video != null:
+        return video(_that);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class PaidMediaPreview implements PaidMedia {
-  const PaidMediaPreview(
-      {@JsonKey(name: 'type') this.type = PaidMediaType.preview,
-      @JsonKey(name: 'width') this.width,
-      @JsonKey(name: 'height') this.height,
-      @JsonKey(name: 'duration') this.duration})
-      : assert(type == PaidMediaType.preview,
-            'type must be PaidMediaType.preview');
+  const PaidMediaPreview({
+    @JsonKey(name: 'type') this.type = PaidMediaType.preview,
+    @JsonKey(name: 'width') this.width,
+    @JsonKey(name: 'height') this.height,
+    @JsonKey(name: 'duration') this.duration,
+  }) : assert(
+         type == PaidMediaType.preview,
+         'type must be PaidMediaType.preview',
+       );
   factory PaidMediaPreview.fromJson(Map<String, dynamic> json) =>
       _$PaidMediaPreviewFromJson(json);
 
@@ -119,9 +220,7 @@ class PaidMediaPreview implements PaidMedia {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PaidMediaPreviewToJson(
-      this,
-    );
+    return _$PaidMediaPreviewToJson(this);
   }
 
   @override
@@ -134,15 +233,17 @@ class PaidMediaPreview implements PaidMedia {
 abstract mixin class $PaidMediaPreviewCopyWith<$Res>
     implements $PaidMediaCopyWith<$Res> {
   factory $PaidMediaPreviewCopyWith(
-          PaidMediaPreview value, $Res Function(PaidMediaPreview) _then) =
-      _$PaidMediaPreviewCopyWithImpl;
+    PaidMediaPreview value,
+    $Res Function(PaidMediaPreview) _then,
+  ) = _$PaidMediaPreviewCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') PaidMediaType type,
-      @JsonKey(name: 'width') int? width,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'duration') int? duration});
+  $Res call({
+    @JsonKey(name: 'type') PaidMediaType type,
+    @JsonKey(name: 'width') int? width,
+    @JsonKey(name: 'height') int? height,
+    @JsonKey(name: 'duration') int? duration,
+  });
 }
 
 /// @nodoc
@@ -163,35 +264,37 @@ class _$PaidMediaPreviewCopyWithImpl<$Res>
     Object? height = freezed,
     Object? duration = freezed,
   }) {
-    return _then(PaidMediaPreview(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PaidMediaType,
-      width: freezed == width
-          ? _self.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      height: freezed == height
-          ? _self.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int?,
-      duration: freezed == duration
-          ? _self.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      PaidMediaPreview(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PaidMediaType,
+        width: freezed == width
+            ? _self.width
+            : width // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        height: freezed == height
+            ? _self.height
+            : height // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        duration: freezed == duration
+            ? _self.duration
+            : duration // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class PaidMediaPhoto implements PaidMedia {
-  const PaidMediaPhoto(
-      {@JsonKey(name: 'type') this.type = PaidMediaType.photo,
-      @JsonKey(name: 'photo') required final List<PhotoSize> photo})
-      : assert(type == PaidMediaType.photo, 'type must be PaidMediaType.photo'),
-        _photo = photo;
+  const PaidMediaPhoto({
+    @JsonKey(name: 'type') this.type = PaidMediaType.photo,
+    @JsonKey(name: 'photo') required final List<PhotoSize> photo,
+  }) : assert(type == PaidMediaType.photo, 'type must be PaidMediaType.photo'),
+       _photo = photo;
   factory PaidMediaPhoto.fromJson(Map<String, dynamic> json) =>
       _$PaidMediaPhotoFromJson(json);
 
@@ -221,9 +324,7 @@ class PaidMediaPhoto implements PaidMedia {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PaidMediaPhotoToJson(
-      this,
-    );
+    return _$PaidMediaPhotoToJson(this);
   }
 
   @override
@@ -236,13 +337,15 @@ class PaidMediaPhoto implements PaidMedia {
 abstract mixin class $PaidMediaPhotoCopyWith<$Res>
     implements $PaidMediaCopyWith<$Res> {
   factory $PaidMediaPhotoCopyWith(
-          PaidMediaPhoto value, $Res Function(PaidMediaPhoto) _then) =
-      _$PaidMediaPhotoCopyWithImpl;
+    PaidMediaPhoto value,
+    $Res Function(PaidMediaPhoto) _then,
+  ) = _$PaidMediaPhotoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') PaidMediaType type,
-      @JsonKey(name: 'photo') List<PhotoSize> photo});
+  $Res call({
+    @JsonKey(name: 'type') PaidMediaType type,
+    @JsonKey(name: 'photo') List<PhotoSize> photo,
+  });
 }
 
 /// @nodoc
@@ -257,30 +360,29 @@ class _$PaidMediaPhotoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? photo = null,
-  }) {
-    return _then(PaidMediaPhoto(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PaidMediaType,
-      photo: null == photo
-          ? _self._photo
-          : photo // ignore: cast_nullable_to_non_nullable
-              as List<PhotoSize>,
-    ));
+  $Res call({Object? type = null, Object? photo = null}) {
+    return _then(
+      PaidMediaPhoto(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PaidMediaType,
+        photo: null == photo
+            ? _self._photo
+            : photo // ignore: cast_nullable_to_non_nullable
+                  as List<PhotoSize>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class PaidMediaVideo implements PaidMedia {
-  const PaidMediaVideo(
-      {@JsonKey(name: 'type') this.type = PaidMediaType.video,
-      @JsonKey(name: 'video') required this.video})
-      : assert(type == PaidMediaType.video, 'type must be PaidMediaType.video');
+  const PaidMediaVideo({
+    @JsonKey(name: 'type') this.type = PaidMediaType.video,
+    @JsonKey(name: 'video') required this.video,
+  }) : assert(type == PaidMediaType.video, 'type must be PaidMediaType.video');
   factory PaidMediaVideo.fromJson(Map<String, dynamic> json) =>
       _$PaidMediaVideoFromJson(json);
 
@@ -303,9 +405,7 @@ class PaidMediaVideo implements PaidMedia {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PaidMediaVideoToJson(
-      this,
-    );
+    return _$PaidMediaVideoToJson(this);
   }
 
   @override
@@ -318,13 +418,15 @@ class PaidMediaVideo implements PaidMedia {
 abstract mixin class $PaidMediaVideoCopyWith<$Res>
     implements $PaidMediaCopyWith<$Res> {
   factory $PaidMediaVideoCopyWith(
-          PaidMediaVideo value, $Res Function(PaidMediaVideo) _then) =
-      _$PaidMediaVideoCopyWithImpl;
+    PaidMediaVideo value,
+    $Res Function(PaidMediaVideo) _then,
+  ) = _$PaidMediaVideoCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'type') PaidMediaType type,
-      @JsonKey(name: 'video') Video video});
+  $Res call({
+    @JsonKey(name: 'type') PaidMediaType type,
+    @JsonKey(name: 'video') Video video,
+  });
 
   $VideoCopyWith<$Res> get video;
 }
@@ -341,20 +443,19 @@ class _$PaidMediaVideoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? type = null,
-    Object? video = null,
-  }) {
-    return _then(PaidMediaVideo(
-      type: null == type
-          ? _self.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as PaidMediaType,
-      video: null == video
-          ? _self.video
-          : video // ignore: cast_nullable_to_non_nullable
-              as Video,
-    ));
+  $Res call({Object? type = null, Object? video = null}) {
+    return _then(
+      PaidMediaVideo(
+        type: null == type
+            ? _self.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as PaidMediaType,
+        video: null == video
+            ? _self.video
+            : video // ignore: cast_nullable_to_non_nullable
+                  as Video,
+      ),
+    );
   }
 
   /// Create a copy of PaidMedia

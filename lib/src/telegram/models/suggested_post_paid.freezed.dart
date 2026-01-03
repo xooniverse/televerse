@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -41,7 +40,9 @@ mixin _$SuggestedPostPaid {
   @pragma('vm:prefer-inline')
   $SuggestedPostPaidCopyWith<SuggestedPostPaid> get copyWith =>
       _$SuggestedPostPaidCopyWithImpl<SuggestedPostPaid>(
-          this as SuggestedPostPaid, _$identity);
+        this as SuggestedPostPaid,
+        _$identity,
+      );
 
   /// Serializes this SuggestedPostPaid to a JSON map.
   Map<String, dynamic> toJson();
@@ -55,14 +56,16 @@ mixin _$SuggestedPostPaid {
 /// @nodoc
 abstract mixin class $SuggestedPostPaidCopyWith<$Res> {
   factory $SuggestedPostPaidCopyWith(
-          SuggestedPostPaid value, $Res Function(SuggestedPostPaid) _then) =
-      _$SuggestedPostPaidCopyWithImpl;
+    SuggestedPostPaid value,
+    $Res Function(SuggestedPostPaid) _then,
+  ) = _$SuggestedPostPaidCopyWithImpl;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'suggested_post_message') Message? suggestedPostMessage,
-      @JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'amount') int? amount,
-      @JsonKey(name: 'star_amount') StarAmount? starAmount});
+  $Res call({
+    @JsonKey(name: 'suggested_post_message') Message? suggestedPostMessage,
+    @JsonKey(name: 'currency') String currency,
+    @JsonKey(name: 'amount') int? amount,
+    @JsonKey(name: 'star_amount') StarAmount? starAmount,
+  });
 
   $StarAmountCopyWith<$Res>? get starAmount;
 }
@@ -85,24 +88,26 @@ class _$SuggestedPostPaidCopyWithImpl<$Res>
     Object? amount = freezed,
     Object? starAmount = freezed,
   }) {
-    return _then(_self.copyWith(
-      suggestedPostMessage: freezed == suggestedPostMessage
-          ? _self.suggestedPostMessage
-          : suggestedPostMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      currency: null == currency
-          ? _self.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: freezed == amount
-          ? _self.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      starAmount: freezed == starAmount
-          ? _self.starAmount
-          : starAmount // ignore: cast_nullable_to_non_nullable
-              as StarAmount?,
-    ));
+    return _then(
+      _self.copyWith(
+        suggestedPostMessage: freezed == suggestedPostMessage
+            ? _self.suggestedPostMessage
+            : suggestedPostMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        currency: null == currency
+            ? _self.currency
+            : currency // ignore: cast_nullable_to_non_nullable
+                  as String,
+        amount: freezed == amount
+            ? _self.amount
+            : amount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        starAmount: freezed == starAmount
+            ? _self.starAmount
+            : starAmount // ignore: cast_nullable_to_non_nullable
+                  as StarAmount?,
+      ),
+    );
   }
 
   /// Create a copy of SuggestedPostPaid
@@ -120,14 +125,95 @@ class _$SuggestedPostPaidCopyWithImpl<$Res>
   }
 }
 
+/// Adds pattern-matching-related methods to [SuggestedPostPaid].
+extension SuggestedPostPaidPatterns on SuggestedPostPaid {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SuggestedPostPaid value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SuggestedPostPaid() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SuggestedPostPaid value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SuggestedPostPaid():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SuggestedPostPaid value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SuggestedPostPaid() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
 class _SuggestedPostPaid implements SuggestedPostPaid {
-  const _SuggestedPostPaid(
-      {@JsonKey(name: 'suggested_post_message') this.suggestedPostMessage,
-      @JsonKey(name: 'currency') required this.currency,
-      @JsonKey(name: 'amount') this.amount,
-      @JsonKey(name: 'star_amount') this.starAmount});
+  const _SuggestedPostPaid({
+    @JsonKey(name: 'suggested_post_message') this.suggestedPostMessage,
+    @JsonKey(name: 'currency') required this.currency,
+    @JsonKey(name: 'amount') this.amount,
+    @JsonKey(name: 'star_amount') this.starAmount,
+  });
   factory _SuggestedPostPaid.fromJson(Map<String, dynamic> json) =>
       _$SuggestedPostPaidFromJson(json);
 
@@ -166,9 +252,7 @@ class _SuggestedPostPaid implements SuggestedPostPaid {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$SuggestedPostPaidToJson(
-      this,
-    );
+    return _$SuggestedPostPaidToJson(this);
   }
 
   @override
@@ -181,15 +265,17 @@ class _SuggestedPostPaid implements SuggestedPostPaid {
 abstract mixin class _$SuggestedPostPaidCopyWith<$Res>
     implements $SuggestedPostPaidCopyWith<$Res> {
   factory _$SuggestedPostPaidCopyWith(
-          _SuggestedPostPaid value, $Res Function(_SuggestedPostPaid) _then) =
-      __$SuggestedPostPaidCopyWithImpl;
+    _SuggestedPostPaid value,
+    $Res Function(_SuggestedPostPaid) _then,
+  ) = __$SuggestedPostPaidCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'suggested_post_message') Message? suggestedPostMessage,
-      @JsonKey(name: 'currency') String currency,
-      @JsonKey(name: 'amount') int? amount,
-      @JsonKey(name: 'star_amount') StarAmount? starAmount});
+  $Res call({
+    @JsonKey(name: 'suggested_post_message') Message? suggestedPostMessage,
+    @JsonKey(name: 'currency') String currency,
+    @JsonKey(name: 'amount') int? amount,
+    @JsonKey(name: 'star_amount') StarAmount? starAmount,
+  });
 
   @override
   $StarAmountCopyWith<$Res>? get starAmount;
@@ -213,24 +299,26 @@ class __$SuggestedPostPaidCopyWithImpl<$Res>
     Object? amount = freezed,
     Object? starAmount = freezed,
   }) {
-    return _then(_SuggestedPostPaid(
-      suggestedPostMessage: freezed == suggestedPostMessage
-          ? _self.suggestedPostMessage
-          : suggestedPostMessage // ignore: cast_nullable_to_non_nullable
-              as Message?,
-      currency: null == currency
-          ? _self.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: freezed == amount
-          ? _self.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      starAmount: freezed == starAmount
-          ? _self.starAmount
-          : starAmount // ignore: cast_nullable_to_non_nullable
-              as StarAmount?,
-    ));
+    return _then(
+      _SuggestedPostPaid(
+        suggestedPostMessage: freezed == suggestedPostMessage
+            ? _self.suggestedPostMessage
+            : suggestedPostMessage // ignore: cast_nullable_to_non_nullable
+                  as Message?,
+        currency: null == currency
+            ? _self.currency
+            : currency // ignore: cast_nullable_to_non_nullable
+                  as String,
+        amount: freezed == amount
+            ? _self.amount
+            : amount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        starAmount: freezed == starAmount
+            ? _self.starAmount
+            : starAmount // ignore: cast_nullable_to_non_nullable
+                  as StarAmount?,
+      ),
+    );
   }
 
   /// Create a copy of SuggestedPostPaid

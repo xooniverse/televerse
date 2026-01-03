@@ -17,7 +17,7 @@ _BusinessIntro _$BusinessIntroFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$BusinessIntroToJson(_BusinessIntro instance) =>
     <String, dynamic>{
-      if (instance.title case final value?) 'title': value,
-      if (instance.message case final value?) 'message': value,
-      if (instance.sticker case final value?) 'sticker': value,
+      'title': ?instance.title,
+      'message': ?instance.message,
+      'sticker': ?instance.sticker,
     };
