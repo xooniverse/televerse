@@ -37,6 +37,9 @@ abstract class UniqueGift with _$UniqueGift {
 
     /// Optional. Information about the chat that published the gift
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
+
+    /// Optional. True, if the gift is assigned from the TON blockchain and can't be resold or transferred in Telegram
+    @JsonKey(name: 'is_from_blockchain') bool? isFromBlockchain,
   }) = _UniqueGift;
 
   /// Creates a new [UniqueGift] object from a JSON [Map].

@@ -45,6 +45,10 @@ mixin _$UniqueGift {
   @JsonKey(name: 'publisher_chat')
   Chat? get publisherChat;
 
+  /// Optional. True, if the gift is assigned from the TON blockchain and can't be resold or transferred in Telegram
+  @JsonKey(name: 'is_from_blockchain')
+  bool? get isFromBlockchain;
+
   /// Create a copy of UniqueGift
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -57,7 +61,7 @@ mixin _$UniqueGift {
 
   @override
   String toString() {
-    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat)';
+    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain)';
   }
 }
 
@@ -77,6 +81,7 @@ abstract mixin class $UniqueGiftCopyWith<$Res> {
     @JsonKey(name: 'symbol') UniqueGiftSymbol symbol,
     @JsonKey(name: 'backdrop') UniqueGiftBackdrop backdrop,
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
+    @JsonKey(name: 'is_from_blockchain') bool? isFromBlockchain,
   });
 
   $UniqueGiftModelCopyWith<$Res> get model;
@@ -105,6 +110,7 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
     Object? symbol = null,
     Object? backdrop = null,
     Object? publisherChat = freezed,
+    Object? isFromBlockchain = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -140,6 +146,10 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
             ? _self.publisherChat
             : publisherChat // ignore: cast_nullable_to_non_nullable
                   as Chat?,
+        isFromBlockchain: freezed == isFromBlockchain
+            ? _self.isFromBlockchain
+            : isFromBlockchain // ignore: cast_nullable_to_non_nullable
+                  as bool?,
       ),
     );
   }
@@ -281,6 +291,7 @@ class _UniqueGift implements UniqueGift {
     @JsonKey(name: 'symbol') required this.symbol,
     @JsonKey(name: 'backdrop') required this.backdrop,
     @JsonKey(name: 'publisher_chat') this.publisherChat,
+    @JsonKey(name: 'is_from_blockchain') this.isFromBlockchain,
   });
   factory _UniqueGift.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftFromJson(json);
@@ -325,6 +336,11 @@ class _UniqueGift implements UniqueGift {
   @JsonKey(name: 'publisher_chat')
   final Chat? publisherChat;
 
+  /// Optional. True, if the gift is assigned from the TON blockchain and can't be resold or transferred in Telegram
+  @override
+  @JsonKey(name: 'is_from_blockchain')
+  final bool? isFromBlockchain;
+
   /// Create a copy of UniqueGift
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -340,7 +356,7 @@ class _UniqueGift implements UniqueGift {
 
   @override
   String toString() {
-    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat)';
+    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain)';
   }
 }
 
@@ -362,6 +378,7 @@ abstract mixin class _$UniqueGiftCopyWith<$Res>
     @JsonKey(name: 'symbol') UniqueGiftSymbol symbol,
     @JsonKey(name: 'backdrop') UniqueGiftBackdrop backdrop,
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
+    @JsonKey(name: 'is_from_blockchain') bool? isFromBlockchain,
   });
 
   @override
@@ -394,6 +411,7 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
     Object? symbol = null,
     Object? backdrop = null,
     Object? publisherChat = freezed,
+    Object? isFromBlockchain = freezed,
   }) {
     return _then(
       _UniqueGift(
@@ -429,6 +447,10 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
             ? _self.publisherChat
             : publisherChat // ignore: cast_nullable_to_non_nullable
                   as Chat?,
+        isFromBlockchain: freezed == isFromBlockchain
+            ? _self.isFromBlockchain
+            : isFromBlockchain // ignore: cast_nullable_to_non_nullable
+                  as bool?,
       ),
     );
   }
