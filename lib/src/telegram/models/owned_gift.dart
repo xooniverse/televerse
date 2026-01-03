@@ -70,6 +70,12 @@ sealed class OwnedGift with _$OwnedGift implements _WithGiftType {
     /// Optional. Number of Telegram Stars that were paid by the sender for
     /// the ability to upgrade the gift
     @JsonKey(name: 'prepaid_upgrade_star_count') int? prepaidUpgradeStarCount,
+
+    /// Optional. True, if the gift's upgrade was purchased after the gift was sent
+    @JsonKey(name: 'is_upgrade_separate') bool? isUpgradeSeparate,
+
+    /// Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift
+    @JsonKey(name: 'unique_gift_number') int? uniqueGiftNumber,
   }) = OwnedGiftRegular;
 
   /// Describes a unique gift received and owned by a user or a chat.

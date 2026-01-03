@@ -29,6 +29,10 @@ mixin _$ForumTopic {
   @JsonKey(name: 'icon_custom_emoji_id')
   String? get iconCustomEmojiId;
 
+  /// Optional. True, if the name of the topic wasn't specified explicitly by its creator and likely needs to be changed by the bot
+  @JsonKey(name: 'is_name_implicit')
+  bool? get isNameImplicit;
+
   /// Create a copy of ForumTopic
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -41,7 +45,7 @@ mixin _$ForumTopic {
 
   @override
   String toString() {
-    return 'ForumTopic(messageThreadId: $messageThreadId, name: $name, iconColor: $iconColor, iconCustomEmojiId: $iconCustomEmojiId)';
+    return 'ForumTopic(messageThreadId: $messageThreadId, name: $name, iconColor: $iconColor, iconCustomEmojiId: $iconCustomEmojiId, isNameImplicit: $isNameImplicit)';
   }
 }
 
@@ -57,6 +61,7 @@ abstract mixin class $ForumTopicCopyWith<$Res> {
     @JsonKey(name: 'name') String name,
     @JsonKey(name: 'icon_color') int iconColor,
     @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+    @JsonKey(name: 'is_name_implicit') bool? isNameImplicit,
   });
 }
 
@@ -76,6 +81,7 @@ class _$ForumTopicCopyWithImpl<$Res> implements $ForumTopicCopyWith<$Res> {
     Object? name = null,
     Object? iconColor = null,
     Object? iconCustomEmojiId = freezed,
+    Object? isNameImplicit = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -95,6 +101,10 @@ class _$ForumTopicCopyWithImpl<$Res> implements $ForumTopicCopyWith<$Res> {
             ? _self.iconCustomEmojiId
             : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
                   as String?,
+        isNameImplicit: freezed == isNameImplicit
+            ? _self.isNameImplicit
+            : isNameImplicit // ignore: cast_nullable_to_non_nullable
+                  as bool?,
       ),
     );
   }
@@ -188,6 +198,7 @@ class _ForumTopic implements ForumTopic {
     @JsonKey(name: 'name') required this.name,
     @JsonKey(name: 'icon_color') required this.iconColor,
     @JsonKey(name: 'icon_custom_emoji_id') this.iconCustomEmojiId,
+    @JsonKey(name: 'is_name_implicit') this.isNameImplicit,
   });
   factory _ForumTopic.fromJson(Map<String, dynamic> json) =>
       _$ForumTopicFromJson(json);
@@ -212,6 +223,11 @@ class _ForumTopic implements ForumTopic {
   @JsonKey(name: 'icon_custom_emoji_id')
   final String? iconCustomEmojiId;
 
+  /// Optional. True, if the name of the topic wasn't specified explicitly by its creator and likely needs to be changed by the bot
+  @override
+  @JsonKey(name: 'is_name_implicit')
+  final bool? isNameImplicit;
+
   /// Create a copy of ForumTopic
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -227,7 +243,7 @@ class _ForumTopic implements ForumTopic {
 
   @override
   String toString() {
-    return 'ForumTopic(messageThreadId: $messageThreadId, name: $name, iconColor: $iconColor, iconCustomEmojiId: $iconCustomEmojiId)';
+    return 'ForumTopic(messageThreadId: $messageThreadId, name: $name, iconColor: $iconColor, iconCustomEmojiId: $iconCustomEmojiId, isNameImplicit: $isNameImplicit)';
   }
 }
 
@@ -245,6 +261,7 @@ abstract mixin class _$ForumTopicCopyWith<$Res>
     @JsonKey(name: 'name') String name,
     @JsonKey(name: 'icon_color') int iconColor,
     @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+    @JsonKey(name: 'is_name_implicit') bool? isNameImplicit,
   });
 }
 
@@ -264,6 +281,7 @@ class __$ForumTopicCopyWithImpl<$Res> implements _$ForumTopicCopyWith<$Res> {
     Object? name = null,
     Object? iconColor = null,
     Object? iconCustomEmojiId = freezed,
+    Object? isNameImplicit = freezed,
   }) {
     return _then(
       _ForumTopic(
@@ -283,6 +301,10 @@ class __$ForumTopicCopyWithImpl<$Res> implements _$ForumTopicCopyWith<$Res> {
             ? _self.iconCustomEmojiId
             : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
                   as String?,
+        isNameImplicit: freezed == isNameImplicit
+            ? _self.isNameImplicit
+            : isNameImplicit // ignore: cast_nullable_to_non_nullable
+                  as bool?,
       ),
     );
   }

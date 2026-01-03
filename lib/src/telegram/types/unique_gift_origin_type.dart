@@ -13,5 +13,13 @@ enum UniqueGiftOriginType {
 
   /// For gifts bought from other users.
   @JsonValue('resale')
-  resale;
+  resale,
+
+  /// Upgrade of a gift that was purchased after it was sent.
+  @JsonValue('gifted_upgrade')
+  giftedUpgrade,
+
+  /// Purchase of a gift through a purchase offer.
+  @JsonValue('offer')
+  offer,
 }

@@ -13,21 +13,25 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$AcceptedGiftTypes {
-  /// True, if unlimited regular gifts are accepted
+  /// Optional. True, if unlimited regular gifts are accepted
   @JsonKey(name: 'unlimited_gifts')
-  bool get unlimitedGifts;
+  bool? get unlimitedGifts;
 
-  /// True, if limited regular gifts are accepted
+  /// Optional. True, if limited regular gifts are accepted
   @JsonKey(name: 'limited_gifts')
-  bool get limitedGifts;
+  bool? get limitedGifts;
 
-  /// True, if unique gifts or gifts that can be upgraded to unique for free are accepted
+  /// Optional. True, if unique gifts or gifts that can be upgraded to unique for free are accepted
   @JsonKey(name: 'unique_gifts')
-  bool get uniqueGifts;
+  bool? get uniqueGifts;
 
-  /// True, if a Telegram Premium subscription is accepted
+  /// Optional. True, if a Telegram Premium subscription is accepted
   @JsonKey(name: 'premium_subscription')
-  bool get premiumSubscription;
+  bool? get premiumSubscription;
+
+  /// Optional. True, if transfers of unique gifts from channels are accepted
+  @JsonKey(name: 'gifts_from_channels')
+  bool? get giftsFromChannels;
 
   /// Create a copy of AcceptedGiftTypes
   /// with the given fields replaced by the non-null parameter values.
@@ -44,7 +48,7 @@ mixin _$AcceptedGiftTypes {
 
   @override
   String toString() {
-    return 'AcceptedGiftTypes(unlimitedGifts: $unlimitedGifts, limitedGifts: $limitedGifts, uniqueGifts: $uniqueGifts, premiumSubscription: $premiumSubscription)';
+    return 'AcceptedGiftTypes(unlimitedGifts: $unlimitedGifts, limitedGifts: $limitedGifts, uniqueGifts: $uniqueGifts, premiumSubscription: $premiumSubscription, giftsFromChannels: $giftsFromChannels)';
   }
 }
 
@@ -56,10 +60,11 @@ abstract mixin class $AcceptedGiftTypesCopyWith<$Res> {
   ) = _$AcceptedGiftTypesCopyWithImpl;
   @useResult
   $Res call({
-    @JsonKey(name: 'unlimited_gifts') bool unlimitedGifts,
-    @JsonKey(name: 'limited_gifts') bool limitedGifts,
-    @JsonKey(name: 'unique_gifts') bool uniqueGifts,
-    @JsonKey(name: 'premium_subscription') bool premiumSubscription,
+    @JsonKey(name: 'unlimited_gifts') bool? unlimitedGifts,
+    @JsonKey(name: 'limited_gifts') bool? limitedGifts,
+    @JsonKey(name: 'unique_gifts') bool? uniqueGifts,
+    @JsonKey(name: 'premium_subscription') bool? premiumSubscription,
+    @JsonKey(name: 'gifts_from_channels') bool? giftsFromChannels,
   });
 }
 
@@ -76,29 +81,34 @@ class _$AcceptedGiftTypesCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? unlimitedGifts = null,
-    Object? limitedGifts = null,
-    Object? uniqueGifts = null,
-    Object? premiumSubscription = null,
+    Object? unlimitedGifts = freezed,
+    Object? limitedGifts = freezed,
+    Object? uniqueGifts = freezed,
+    Object? premiumSubscription = freezed,
+    Object? giftsFromChannels = freezed,
   }) {
     return _then(
       _self.copyWith(
-        unlimitedGifts: null == unlimitedGifts
+        unlimitedGifts: freezed == unlimitedGifts
             ? _self.unlimitedGifts
             : unlimitedGifts // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        limitedGifts: null == limitedGifts
+                  as bool?,
+        limitedGifts: freezed == limitedGifts
             ? _self.limitedGifts
             : limitedGifts // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        uniqueGifts: null == uniqueGifts
+                  as bool?,
+        uniqueGifts: freezed == uniqueGifts
             ? _self.uniqueGifts
             : uniqueGifts // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        premiumSubscription: null == premiumSubscription
+                  as bool?,
+        premiumSubscription: freezed == premiumSubscription
             ? _self.premiumSubscription
             : premiumSubscription // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                  as bool?,
+        giftsFromChannels: freezed == giftsFromChannels
+            ? _self.giftsFromChannels
+            : giftsFromChannels // ignore: cast_nullable_to_non_nullable
+                  as bool?,
       ),
     );
   }
@@ -188,33 +198,39 @@ extension AcceptedGiftTypesPatterns on AcceptedGiftTypes {
 @JsonSerializable()
 class _AcceptedGiftTypes implements AcceptedGiftTypes {
   const _AcceptedGiftTypes({
-    @JsonKey(name: 'unlimited_gifts') required this.unlimitedGifts,
-    @JsonKey(name: 'limited_gifts') required this.limitedGifts,
-    @JsonKey(name: 'unique_gifts') required this.uniqueGifts,
-    @JsonKey(name: 'premium_subscription') required this.premiumSubscription,
+    @JsonKey(name: 'unlimited_gifts') this.unlimitedGifts,
+    @JsonKey(name: 'limited_gifts') this.limitedGifts,
+    @JsonKey(name: 'unique_gifts') this.uniqueGifts,
+    @JsonKey(name: 'premium_subscription') this.premiumSubscription,
+    @JsonKey(name: 'gifts_from_channels') this.giftsFromChannels,
   });
   factory _AcceptedGiftTypes.fromJson(Map<String, dynamic> json) =>
       _$AcceptedGiftTypesFromJson(json);
 
-  /// True, if unlimited regular gifts are accepted
+  /// Optional. True, if unlimited regular gifts are accepted
   @override
   @JsonKey(name: 'unlimited_gifts')
-  final bool unlimitedGifts;
+  final bool? unlimitedGifts;
 
-  /// True, if limited regular gifts are accepted
+  /// Optional. True, if limited regular gifts are accepted
   @override
   @JsonKey(name: 'limited_gifts')
-  final bool limitedGifts;
+  final bool? limitedGifts;
 
-  /// True, if unique gifts or gifts that can be upgraded to unique for free are accepted
+  /// Optional. True, if unique gifts or gifts that can be upgraded to unique for free are accepted
   @override
   @JsonKey(name: 'unique_gifts')
-  final bool uniqueGifts;
+  final bool? uniqueGifts;
 
-  /// True, if a Telegram Premium subscription is accepted
+  /// Optional. True, if a Telegram Premium subscription is accepted
   @override
   @JsonKey(name: 'premium_subscription')
-  final bool premiumSubscription;
+  final bool? premiumSubscription;
+
+  /// Optional. True, if transfers of unique gifts from channels are accepted
+  @override
+  @JsonKey(name: 'gifts_from_channels')
+  final bool? giftsFromChannels;
 
   /// Create a copy of AcceptedGiftTypes
   /// with the given fields replaced by the non-null parameter values.
@@ -231,7 +247,7 @@ class _AcceptedGiftTypes implements AcceptedGiftTypes {
 
   @override
   String toString() {
-    return 'AcceptedGiftTypes(unlimitedGifts: $unlimitedGifts, limitedGifts: $limitedGifts, uniqueGifts: $uniqueGifts, premiumSubscription: $premiumSubscription)';
+    return 'AcceptedGiftTypes(unlimitedGifts: $unlimitedGifts, limitedGifts: $limitedGifts, uniqueGifts: $uniqueGifts, premiumSubscription: $premiumSubscription, giftsFromChannels: $giftsFromChannels)';
   }
 }
 
@@ -245,10 +261,11 @@ abstract mixin class _$AcceptedGiftTypesCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    @JsonKey(name: 'unlimited_gifts') bool unlimitedGifts,
-    @JsonKey(name: 'limited_gifts') bool limitedGifts,
-    @JsonKey(name: 'unique_gifts') bool uniqueGifts,
-    @JsonKey(name: 'premium_subscription') bool premiumSubscription,
+    @JsonKey(name: 'unlimited_gifts') bool? unlimitedGifts,
+    @JsonKey(name: 'limited_gifts') bool? limitedGifts,
+    @JsonKey(name: 'unique_gifts') bool? uniqueGifts,
+    @JsonKey(name: 'premium_subscription') bool? premiumSubscription,
+    @JsonKey(name: 'gifts_from_channels') bool? giftsFromChannels,
   });
 }
 
@@ -265,29 +282,34 @@ class __$AcceptedGiftTypesCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? unlimitedGifts = null,
-    Object? limitedGifts = null,
-    Object? uniqueGifts = null,
-    Object? premiumSubscription = null,
+    Object? unlimitedGifts = freezed,
+    Object? limitedGifts = freezed,
+    Object? uniqueGifts = freezed,
+    Object? premiumSubscription = freezed,
+    Object? giftsFromChannels = freezed,
   }) {
     return _then(
       _AcceptedGiftTypes(
-        unlimitedGifts: null == unlimitedGifts
+        unlimitedGifts: freezed == unlimitedGifts
             ? _self.unlimitedGifts
             : unlimitedGifts // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        limitedGifts: null == limitedGifts
+                  as bool?,
+        limitedGifts: freezed == limitedGifts
             ? _self.limitedGifts
             : limitedGifts // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        uniqueGifts: null == uniqueGifts
+                  as bool?,
+        uniqueGifts: freezed == uniqueGifts
             ? _self.uniqueGifts
             : uniqueGifts // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        premiumSubscription: null == premiumSubscription
+                  as bool?,
+        premiumSubscription: freezed == premiumSubscription
             ? _self.premiumSubscription
             : premiumSubscription // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                  as bool?,
+        giftsFromChannels: freezed == giftsFromChannels
+            ? _self.giftsFromChannels
+            : giftsFromChannels // ignore: cast_nullable_to_non_nullable
+                  as bool?,
       ),
     );
   }

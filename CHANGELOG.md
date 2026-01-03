@@ -1,3 +1,8 @@
+# 3.1.0
+
+- 🤖 Bot API 9.3
+- See changes here: https://core.telegram.org/bots/api-changelog#december-31-2025
+
 # 3.0.1
 
 - Removed one last stray `dynamic` type from the library.

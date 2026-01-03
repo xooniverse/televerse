@@ -250,6 +250,8 @@ class OwnedGiftRegular implements OwnedGift {
     @JsonKey(name: 'was_refunded') this.wasRefunded,
     @JsonKey(name: 'convert_star_count') this.convertStarCount,
     @JsonKey(name: 'prepaid_upgrade_star_count') this.prepaidUpgradeStarCount,
+    @JsonKey(name: 'is_upgrade_separate') this.isUpgradeSeparate,
+    @JsonKey(name: 'unique_gift_number') this.uniqueGiftNumber,
   }) : _entities = entities;
   factory OwnedGiftRegular.fromJson(Map<String, dynamic> json) =>
       _$OwnedGiftRegularFromJson(json);
@@ -327,6 +329,14 @@ class OwnedGiftRegular implements OwnedGift {
   @JsonKey(name: 'prepaid_upgrade_star_count')
   final int? prepaidUpgradeStarCount;
 
+  /// Optional. True, if the gift's upgrade was purchased after the gift was sent
+  @JsonKey(name: 'is_upgrade_separate')
+  final bool? isUpgradeSeparate;
+
+  /// Optional. Unique number reserved for this gift when upgraded. See the number field in UniqueGift
+  @JsonKey(name: 'unique_gift_number')
+  final int? uniqueGiftNumber;
+
   /// Create a copy of OwnedGift
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -342,7 +352,7 @@ class OwnedGiftRegular implements OwnedGift {
 
   @override
   String toString() {
-    return 'OwnedGift.regular(type: $type, gift: $gift, ownedGiftId: $ownedGiftId, senderUser: $senderUser, sendDate: $sendDate, text: $text, entities: $entities, isPrivate: $isPrivate, isSaved: $isSaved, canBeUpgraded: $canBeUpgraded, wasRefunded: $wasRefunded, convertStarCount: $convertStarCount, prepaidUpgradeStarCount: $prepaidUpgradeStarCount)';
+    return 'OwnedGift.regular(type: $type, gift: $gift, ownedGiftId: $ownedGiftId, senderUser: $senderUser, sendDate: $sendDate, text: $text, entities: $entities, isPrivate: $isPrivate, isSaved: $isSaved, canBeUpgraded: $canBeUpgraded, wasRefunded: $wasRefunded, convertStarCount: $convertStarCount, prepaidUpgradeStarCount: $prepaidUpgradeStarCount, isUpgradeSeparate: $isUpgradeSeparate, uniqueGiftNumber: $uniqueGiftNumber)';
   }
 }
 
@@ -369,6 +379,8 @@ abstract mixin class $OwnedGiftRegularCopyWith<$Res>
     @JsonKey(name: 'was_refunded') bool? wasRefunded,
     @JsonKey(name: 'convert_star_count') int? convertStarCount,
     @JsonKey(name: 'prepaid_upgrade_star_count') int? prepaidUpgradeStarCount,
+    @JsonKey(name: 'is_upgrade_separate') bool? isUpgradeSeparate,
+    @JsonKey(name: 'unique_gift_number') int? uniqueGiftNumber,
   });
 
   $GiftCopyWith<$Res> get gift;
@@ -402,6 +414,8 @@ class _$OwnedGiftRegularCopyWithImpl<$Res>
     Object? wasRefunded = freezed,
     Object? convertStarCount = freezed,
     Object? prepaidUpgradeStarCount = freezed,
+    Object? isUpgradeSeparate = freezed,
+    Object? uniqueGiftNumber = freezed,
   }) {
     return _then(
       OwnedGiftRegular(
@@ -456,6 +470,14 @@ class _$OwnedGiftRegularCopyWithImpl<$Res>
         prepaidUpgradeStarCount: freezed == prepaidUpgradeStarCount
             ? _self.prepaidUpgradeStarCount
             : prepaidUpgradeStarCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        isUpgradeSeparate: freezed == isUpgradeSeparate
+            ? _self.isUpgradeSeparate
+            : isUpgradeSeparate // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        uniqueGiftNumber: freezed == uniqueGiftNumber
+            ? _self.uniqueGiftNumber
+            : uniqueGiftNumber // ignore: cast_nullable_to_non_nullable
                   as int?,
       ),
     );

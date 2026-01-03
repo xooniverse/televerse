@@ -18,6 +18,8 @@ _GiftInfo _$GiftInfoFromJson(Map<String, dynamic> json) => _GiftInfo(
       ?.map((e) => MessageEntity.fromJson(e as Map<String, dynamic>))
       .toList(),
   isPrivate: json['is_private'] as bool?,
+  isUpgradeSeparate: json['is_upgrade_separate'] as bool?,
+  uniqueGiftNumber: (json['unique_gift_number'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$GiftInfoToJson(_GiftInfo instance) => <String, dynamic>{
@@ -29,4 +31,6 @@ Map<String, dynamic> _$GiftInfoToJson(_GiftInfo instance) => <String, dynamic>{
   'text': ?instance.text,
   'entities': ?instance.entities,
   'is_private': ?instance.isPrivate,
+  'is_upgrade_separate': ?instance.isUpgradeSeparate,
+  'unique_gift_number': ?instance.uniqueGiftNumber,
 };

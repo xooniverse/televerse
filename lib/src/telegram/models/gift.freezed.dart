@@ -44,6 +44,30 @@ mixin _$Gift {
   @JsonKey(name: 'publisher_chat')
   Chat? get publisherChat;
 
+  /// Optional. The number of remaining gifts of this type that can be sent by the bot; for limited gifts only
+  @JsonKey(name: 'personal_remaining_count')
+  int? get personalRemainingCount;
+
+  /// Optional. The total number of gifts of this type that can be sent by the bot; for limited gifts only
+  @JsonKey(name: 'personal_total_count')
+  int? get personalTotalCount;
+
+  /// Optional. True, if the gift can only be purchased by Telegram Premium subscribers
+  @JsonKey(name: 'is_premium')
+  bool? get isPremium;
+
+  /// Optional. True, if the gift can be used (after being upgraded) to customize a user's appearance
+  @JsonKey(name: 'has_colors')
+  bool? get hasColors;
+
+  /// Optional. Background of the gift
+  @JsonKey(name: 'background')
+  GiftBackground? get background;
+
+  /// Optional. The total number of different unique gifts that can be obtained by upgrading the gift
+  @JsonKey(name: 'unique_gift_variant_count')
+  int? get uniqueGiftVariantCount;
+
   /// Create a copy of Gift
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -56,7 +80,7 @@ mixin _$Gift {
 
   @override
   String toString() {
-    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat)';
+    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat, personalRemainingCount: $personalRemainingCount, personalTotalCount: $personalTotalCount, isPremium: $isPremium, hasColors: $hasColors, background: $background, uniqueGiftVariantCount: $uniqueGiftVariantCount)';
   }
 }
 
@@ -73,10 +97,17 @@ abstract mixin class $GiftCopyWith<$Res> {
     @JsonKey(name: 'remaining_count') int? remainingCount,
     @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount,
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
+    @JsonKey(name: 'personal_remaining_count') int? personalRemainingCount,
+    @JsonKey(name: 'personal_total_count') int? personalTotalCount,
+    @JsonKey(name: 'is_premium') bool? isPremium,
+    @JsonKey(name: 'has_colors') bool? hasColors,
+    @JsonKey(name: 'background') GiftBackground? background,
+    @JsonKey(name: 'unique_gift_variant_count') int? uniqueGiftVariantCount,
   });
 
   $StickerCopyWith<$Res> get sticker;
   $ChatCopyWith<$Res>? get publisherChat;
+  $GiftBackgroundCopyWith<$Res>? get background;
 }
 
 /// @nodoc
@@ -98,6 +129,12 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
     Object? remainingCount = freezed,
     Object? upgradeStarCount = freezed,
     Object? publisherChat = freezed,
+    Object? personalRemainingCount = freezed,
+    Object? personalTotalCount = freezed,
+    Object? isPremium = freezed,
+    Object? hasColors = freezed,
+    Object? background = freezed,
+    Object? uniqueGiftVariantCount = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -129,6 +166,30 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
             ? _self.publisherChat
             : publisherChat // ignore: cast_nullable_to_non_nullable
                   as Chat?,
+        personalRemainingCount: freezed == personalRemainingCount
+            ? _self.personalRemainingCount
+            : personalRemainingCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        personalTotalCount: freezed == personalTotalCount
+            ? _self.personalTotalCount
+            : personalTotalCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        isPremium: freezed == isPremium
+            ? _self.isPremium
+            : isPremium // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        hasColors: freezed == hasColors
+            ? _self.hasColors
+            : hasColors // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        background: freezed == background
+            ? _self.background
+            : background // ignore: cast_nullable_to_non_nullable
+                  as GiftBackground?,
+        uniqueGiftVariantCount: freezed == uniqueGiftVariantCount
+            ? _self.uniqueGiftVariantCount
+            : uniqueGiftVariantCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
       ),
     );
   }
@@ -154,6 +215,20 @@ class _$GiftCopyWithImpl<$Res> implements $GiftCopyWith<$Res> {
 
     return $ChatCopyWith<$Res>(_self.publisherChat!, (value) {
       return _then(_self.copyWith(publisherChat: value));
+    });
+  }
+
+  /// Create a copy of Gift
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GiftBackgroundCopyWith<$Res>? get background {
+    if (_self.background == null) {
+      return null;
+    }
+
+    return $GiftBackgroundCopyWith<$Res>(_self.background!, (value) {
+      return _then(_self.copyWith(background: value));
     });
   }
 }
@@ -247,6 +322,12 @@ class _Gift implements Gift {
     @JsonKey(name: 'remaining_count') this.remainingCount,
     @JsonKey(name: 'upgrade_star_count') this.upgradeStarCount,
     @JsonKey(name: 'publisher_chat') this.publisherChat,
+    @JsonKey(name: 'personal_remaining_count') this.personalRemainingCount,
+    @JsonKey(name: 'personal_total_count') this.personalTotalCount,
+    @JsonKey(name: 'is_premium') this.isPremium,
+    @JsonKey(name: 'has_colors') this.hasColors,
+    @JsonKey(name: 'background') this.background,
+    @JsonKey(name: 'unique_gift_variant_count') this.uniqueGiftVariantCount,
   });
   factory _Gift.fromJson(Map<String, dynamic> json) => _$GiftFromJson(json);
 
@@ -288,6 +369,36 @@ class _Gift implements Gift {
   @JsonKey(name: 'publisher_chat')
   final Chat? publisherChat;
 
+  /// Optional. The number of remaining gifts of this type that can be sent by the bot; for limited gifts only
+  @override
+  @JsonKey(name: 'personal_remaining_count')
+  final int? personalRemainingCount;
+
+  /// Optional. The total number of gifts of this type that can be sent by the bot; for limited gifts only
+  @override
+  @JsonKey(name: 'personal_total_count')
+  final int? personalTotalCount;
+
+  /// Optional. True, if the gift can only be purchased by Telegram Premium subscribers
+  @override
+  @JsonKey(name: 'is_premium')
+  final bool? isPremium;
+
+  /// Optional. True, if the gift can be used (after being upgraded) to customize a user's appearance
+  @override
+  @JsonKey(name: 'has_colors')
+  final bool? hasColors;
+
+  /// Optional. Background of the gift
+  @override
+  @JsonKey(name: 'background')
+  final GiftBackground? background;
+
+  /// Optional. The total number of different unique gifts that can be obtained by upgrading the gift
+  @override
+  @JsonKey(name: 'unique_gift_variant_count')
+  final int? uniqueGiftVariantCount;
+
   /// Create a copy of Gift
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -303,7 +414,7 @@ class _Gift implements Gift {
 
   @override
   String toString() {
-    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat)';
+    return 'Gift(id: $id, sticker: $sticker, starCount: $starCount, totalCount: $totalCount, remainingCount: $remainingCount, upgradeStarCount: $upgradeStarCount, publisherChat: $publisherChat, personalRemainingCount: $personalRemainingCount, personalTotalCount: $personalTotalCount, isPremium: $isPremium, hasColors: $hasColors, background: $background, uniqueGiftVariantCount: $uniqueGiftVariantCount)';
   }
 }
 
@@ -321,12 +432,20 @@ abstract mixin class _$GiftCopyWith<$Res> implements $GiftCopyWith<$Res> {
     @JsonKey(name: 'remaining_count') int? remainingCount,
     @JsonKey(name: 'upgrade_star_count') int? upgradeStarCount,
     @JsonKey(name: 'publisher_chat') Chat? publisherChat,
+    @JsonKey(name: 'personal_remaining_count') int? personalRemainingCount,
+    @JsonKey(name: 'personal_total_count') int? personalTotalCount,
+    @JsonKey(name: 'is_premium') bool? isPremium,
+    @JsonKey(name: 'has_colors') bool? hasColors,
+    @JsonKey(name: 'background') GiftBackground? background,
+    @JsonKey(name: 'unique_gift_variant_count') int? uniqueGiftVariantCount,
   });
 
   @override
   $StickerCopyWith<$Res> get sticker;
   @override
   $ChatCopyWith<$Res>? get publisherChat;
+  @override
+  $GiftBackgroundCopyWith<$Res>? get background;
 }
 
 /// @nodoc
@@ -348,6 +467,12 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
     Object? remainingCount = freezed,
     Object? upgradeStarCount = freezed,
     Object? publisherChat = freezed,
+    Object? personalRemainingCount = freezed,
+    Object? personalTotalCount = freezed,
+    Object? isPremium = freezed,
+    Object? hasColors = freezed,
+    Object? background = freezed,
+    Object? uniqueGiftVariantCount = freezed,
   }) {
     return _then(
       _Gift(
@@ -379,6 +504,30 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
             ? _self.publisherChat
             : publisherChat // ignore: cast_nullable_to_non_nullable
                   as Chat?,
+        personalRemainingCount: freezed == personalRemainingCount
+            ? _self.personalRemainingCount
+            : personalRemainingCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        personalTotalCount: freezed == personalTotalCount
+            ? _self.personalTotalCount
+            : personalTotalCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        isPremium: freezed == isPremium
+            ? _self.isPremium
+            : isPremium // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        hasColors: freezed == hasColors
+            ? _self.hasColors
+            : hasColors // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        background: freezed == background
+            ? _self.background
+            : background // ignore: cast_nullable_to_non_nullable
+                  as GiftBackground?,
+        uniqueGiftVariantCount: freezed == uniqueGiftVariantCount
+            ? _self.uniqueGiftVariantCount
+            : uniqueGiftVariantCount // ignore: cast_nullable_to_non_nullable
+                  as int?,
       ),
     );
   }
@@ -404,6 +553,20 @@ class __$GiftCopyWithImpl<$Res> implements _$GiftCopyWith<$Res> {
 
     return $ChatCopyWith<$Res>(_self.publisherChat!, (value) {
       return _then(_self.copyWith(publisherChat: value));
+    });
+  }
+
+  /// Create a copy of Gift
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GiftBackgroundCopyWith<$Res>? get background {
+    if (_self.background == null) {
+      return null;
+    }
+
+    return $GiftBackgroundCopyWith<$Res>(_self.background!, (value) {
+      return _then(_self.copyWith(background: value));
     });
   }
 }

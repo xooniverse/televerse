@@ -28,6 +28,8 @@ OwnedGiftRegular _$OwnedGiftRegularFromJson(Map<String, dynamic> json) =>
       convertStarCount: (json['convert_star_count'] as num?)?.toInt(),
       prepaidUpgradeStarCount: (json['prepaid_upgrade_star_count'] as num?)
           ?.toInt(),
+      isUpgradeSeparate: json['is_upgrade_separate'] as bool?,
+      uniqueGiftNumber: (json['unique_gift_number'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$OwnedGiftRegularToJson(OwnedGiftRegular instance) =>
@@ -45,6 +47,8 @@ Map<String, dynamic> _$OwnedGiftRegularToJson(OwnedGiftRegular instance) =>
       'was_refunded': ?instance.wasRefunded,
       'convert_star_count': ?instance.convertStarCount,
       'prepaid_upgrade_star_count': ?instance.prepaidUpgradeStarCount,
+      'is_upgrade_separate': ?instance.isUpgradeSeparate,
+      'unique_gift_number': ?instance.uniqueGiftNumber,
     };
 
 const _$OwnedGiftTypeEnumMap = {

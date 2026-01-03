@@ -3,6 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:televerse/src/telegram/models/message_entity.dart';
 import 'package:televerse/src/telegram/models/user.dart';
 
+import 'chat.dart';
+
 part 'checklist_task.freezed.dart';
 part 'checklist_task.g.dart';
 
@@ -25,6 +27,9 @@ abstract class ChecklistTask with _$ChecklistTask {
 
     /// Optional. Point in time (Unix timestamp) when the task was completed; 0 if the task wasn't completed
     @JsonKey(name: 'completion_date') int? completionDate,
+
+    /// Optional. Chat that completed the task; omitted if the task wasn't completed by a chat
+    @JsonKey(name: 'completed_by_chat') Chat? completedByChat,
   }) = _ChecklistTask;
 
   /// Creates a new [ChecklistTask] object from a JSON [Map].
@@ -35,7 +40,7 @@ abstract class ChecklistTask with _$ChecklistTask {
 /// Extension for ChecklistTask to add convenient getters
 extension ChecklistTaskExt on ChecklistTask {
   /// Returns true if the task is completed
-  bool get isCompleted => completedByUser != null;
+  bool get isCompleted => completedByUser != null || completedByChat != null;
 
   /// Returns the completion date as a [DateTime] object if the task is completed
   DateTime? get completionDateTime {

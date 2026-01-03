@@ -337,6 +337,9 @@ _Message _$MessageFromJson(Map<String, dynamic> json) => _Message(
       : SuggestedPostRefunded.fromJson(
           json['suggested_post_refunded'] as Map<String, dynamic>,
         ),
+  giftUpgradeSent: json['gift_upgrade_sent'] == null
+      ? null
+      : GiftInfo.fromJson(json['gift_upgrade_sent'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
@@ -442,4 +445,5 @@ Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
   'suggested_post_declined': ?instance.suggestedPostDeclined,
   'suggested_post_paid': ?instance.suggestedPostPaid,
   'suggested_post_refunded': ?instance.suggestedPostRefunded,
+  'gift_upgrade_sent': ?instance.giftUpgradeSent,
 };

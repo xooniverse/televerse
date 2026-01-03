@@ -90,6 +90,15 @@ _ChatFullInfo _$ChatFullInfoFromJson(
   parentChat: json['parent_chat'] == null
       ? null
       : Chat.fromJson(json['parent_chat'] as Map<String, dynamic>),
+  rating: json['rating'] == null
+      ? null
+      : UserRating.fromJson(json['rating'] as Map<String, dynamic>),
+  paidMessageStarCount: (json['paid_message_star_count'] as num?)?.toInt(),
+  uniqueGiftColors: json['unique_gift_colors'] == null
+      ? null
+      : UniqueGiftColors.fromJson(
+          json['unique_gift_colors'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$ChatFullInfoToJson(
@@ -144,6 +153,9 @@ Map<String, dynamic> _$ChatFullInfoToJson(
   'accepted_gift_types': instance.acceptedGiftTypes,
   'is_direct_messages': ?instance.isDirectMessages,
   'parent_chat': ?instance.parentChat,
+  'rating': ?instance.rating,
+  'paid_message_star_count': ?instance.paidMessageStarCount,
+  'unique_gift_colors': ?instance.uniqueGiftColors,
 };
 
 const _$ChatTypeEnumMap = {
