@@ -13,6 +13,10 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$UniqueGift {
+  ///  Identifier of the regular gift from which the gift was upgraded
+  @JsonKey(name: 'gift_id')
+  String get giftId;
+
   /// Human-readable name of the regular gift from which this unique gift was upgraded
   @JsonKey(name: 'base_name')
   String get baseName;
@@ -53,7 +57,7 @@ mixin _$UniqueGift {
 
   @override
   String toString() {
-    return 'UniqueGift(baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat)';
+    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat)';
   }
 }
 
@@ -65,6 +69,7 @@ abstract mixin class $UniqueGiftCopyWith<$Res> {
   ) = _$UniqueGiftCopyWithImpl;
   @useResult
   $Res call({
+    @JsonKey(name: 'gift_id') String giftId,
     @JsonKey(name: 'base_name') String baseName,
     @JsonKey(name: 'name') String name,
     @JsonKey(name: 'number') int number,
@@ -92,6 +97,7 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? giftId = null,
     Object? baseName = null,
     Object? name = null,
     Object? number = null,
@@ -102,6 +108,10 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
   }) {
     return _then(
       _self.copyWith(
+        giftId: null == giftId
+            ? _self.giftId
+            : giftId // ignore: cast_nullable_to_non_nullable
+                  as String,
         baseName: null == baseName
             ? _self.baseName
             : baseName // ignore: cast_nullable_to_non_nullable
@@ -263,6 +273,7 @@ extension UniqueGiftPatterns on UniqueGift {
 @JsonSerializable()
 class _UniqueGift implements UniqueGift {
   const _UniqueGift({
+    @JsonKey(name: 'gift_id') required this.giftId,
     @JsonKey(name: 'base_name') required this.baseName,
     @JsonKey(name: 'name') required this.name,
     @JsonKey(name: 'number') required this.number,
@@ -273,6 +284,11 @@ class _UniqueGift implements UniqueGift {
   });
   factory _UniqueGift.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftFromJson(json);
+
+  ///  Identifier of the regular gift from which the gift was upgraded
+  @override
+  @JsonKey(name: 'gift_id')
+  final String giftId;
 
   /// Human-readable name of the regular gift from which this unique gift was upgraded
   @override
@@ -324,7 +340,7 @@ class _UniqueGift implements UniqueGift {
 
   @override
   String toString() {
-    return 'UniqueGift(baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat)';
+    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat)';
   }
 }
 
@@ -338,6 +354,7 @@ abstract mixin class _$UniqueGiftCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    @JsonKey(name: 'gift_id') String giftId,
     @JsonKey(name: 'base_name') String baseName,
     @JsonKey(name: 'name') String name,
     @JsonKey(name: 'number') int number,
@@ -369,6 +386,7 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $Res call({
+    Object? giftId = null,
     Object? baseName = null,
     Object? name = null,
     Object? number = null,
@@ -379,6 +397,10 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
   }) {
     return _then(
       _UniqueGift(
+        giftId: null == giftId
+            ? _self.giftId
+            : giftId // ignore: cast_nullable_to_non_nullable
+                  as String,
         baseName: null == baseName
             ? _self.baseName
             : baseName // ignore: cast_nullable_to_non_nullable

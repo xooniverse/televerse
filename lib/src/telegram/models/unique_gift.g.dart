@@ -7,6 +7,7 @@ part of 'unique_gift.dart';
 // **************************************************************************
 
 _UniqueGift _$UniqueGiftFromJson(Map<String, dynamic> json) => _UniqueGift(
+  giftId: json['gift_id'] as String,
   baseName: json['base_name'] as String,
   name: json['name'] as String,
   number: (json['number'] as num).toInt(),
@@ -22,6 +23,7 @@ _UniqueGift _$UniqueGiftFromJson(Map<String, dynamic> json) => _UniqueGift(
 
 Map<String, dynamic> _$UniqueGiftToJson(_UniqueGift instance) =>
     <String, dynamic>{
+      'gift_id': instance.giftId,
       'base_name': instance.baseName,
       'name': instance.name,
       'number': instance.number,

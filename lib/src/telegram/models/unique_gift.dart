@@ -14,6 +14,9 @@ part 'unique_gift.g.dart';
 abstract class UniqueGift with _$UniqueGift {
   /// Creates a new [UniqueGift] object.
   const factory UniqueGift({
+    ///  Identifier of the regular gift from which the gift was upgraded
+    @JsonKey(name: 'gift_id') required String giftId,
+
     /// Human-readable name of the regular gift from which this unique gift was upgraded
     @JsonKey(name: 'base_name') required String baseName,
 
