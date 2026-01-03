@@ -32,4 +32,6 @@ const _$UniqueGiftOriginTypeEnumMap = {
   UniqueGiftOriginType.upgrade: 'upgrade',
   UniqueGiftOriginType.transfer: 'transfer',
   UniqueGiftOriginType.resale: 'resale',
+  UniqueGiftOriginType.giftedUpgrade: 'gifted_upgrade',
+  UniqueGiftOriginType.offer: 'offer',
 };

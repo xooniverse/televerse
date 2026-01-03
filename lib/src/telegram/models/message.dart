@@ -463,6 +463,9 @@ abstract class Message
     /// Optional. Service message: payment for a suggested post was refunded
     @JsonKey(name: 'suggested_post_refunded')
     SuggestedPostRefunded? suggestedPostRefunded,
+
+    /// Optional. Service message: upgrade of a gift was purchased after the gift was sent
+    @JsonKey(name: 'gift_upgrade_sent') GiftInfo? giftUpgradeSent,
   }) = _Message;
 
   /// Creates a [Message] object from JSON object
