@@ -38,6 +38,9 @@ abstract class GiftInfo with _$GiftInfo {
     /// Optional. True, if the sender and gift text are shown only to the gift
     /// receiver; otherwise, everyone will be able to see them
     @JsonKey(name: 'is_private') bool? isPrivate,
+
+    /// Optional. True, if the gift's upgrade was purchased after the gift was sent
+    @JsonKey(name: 'is_upgrade_separate') bool? isUpgradeSeparate,
   }) = _GiftInfo;
 
   /// Creates a new [GiftInfo] object from a JSON [Map].
