@@ -18,6 +18,9 @@ abstract class ForumTopicCreated with _$ForumTopicCreated {
 
     /// Optional. Unique identifier of the custom emoji shown as the topic icon
     @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+
+    /// Optional. True, if the name of the topic wasn't specified explicitly by its creator and likely needs to be changed by the bot
+    @JsonKey(name: 'is_name_implicit') bool? isNameImplicit,
   }) = _ForumTopicCreated;
 
   /// Creates a new [ForumTopicCreated] object from json.

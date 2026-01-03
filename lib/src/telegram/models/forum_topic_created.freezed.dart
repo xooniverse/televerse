@@ -25,6 +25,10 @@ mixin _$ForumTopicCreated {
   @JsonKey(name: 'icon_custom_emoji_id')
   String? get iconCustomEmojiId;
 
+  /// Optional. True, if the name of the topic wasn't specified explicitly by its creator and likely needs to be changed by the bot
+  @JsonKey(name: 'is_name_implicit')
+  bool? get isNameImplicit;
+
   /// Create a copy of ForumTopicCreated
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -40,7 +44,7 @@ mixin _$ForumTopicCreated {
 
   @override
   String toString() {
-    return 'ForumTopicCreated(name: $name, iconColor: $iconColor, iconCustomEmojiId: $iconCustomEmojiId)';
+    return 'ForumTopicCreated(name: $name, iconColor: $iconColor, iconCustomEmojiId: $iconCustomEmojiId, isNameImplicit: $isNameImplicit)';
   }
 }
 
@@ -55,6 +59,7 @@ abstract mixin class $ForumTopicCreatedCopyWith<$Res> {
     @JsonKey(name: 'name') String name,
     @JsonKey(name: 'icon_color') int iconColor,
     @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+    @JsonKey(name: 'is_name_implicit') bool? isNameImplicit,
   });
 }
 
@@ -74,6 +79,7 @@ class _$ForumTopicCreatedCopyWithImpl<$Res>
     Object? name = null,
     Object? iconColor = null,
     Object? iconCustomEmojiId = freezed,
+    Object? isNameImplicit = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -89,6 +95,10 @@ class _$ForumTopicCreatedCopyWithImpl<$Res>
             ? _self.iconCustomEmojiId
             : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
                   as String?,
+        isNameImplicit: freezed == isNameImplicit
+            ? _self.isNameImplicit
+            : isNameImplicit // ignore: cast_nullable_to_non_nullable
+                  as bool?,
       ),
     );
   }
@@ -181,6 +191,7 @@ class _ForumTopicCreated implements ForumTopicCreated {
     @JsonKey(name: 'name') required this.name,
     @JsonKey(name: 'icon_color') required this.iconColor,
     @JsonKey(name: 'icon_custom_emoji_id') this.iconCustomEmojiId,
+    @JsonKey(name: 'is_name_implicit') this.isNameImplicit,
   });
   factory _ForumTopicCreated.fromJson(Map<String, dynamic> json) =>
       _$ForumTopicCreatedFromJson(json);
@@ -200,6 +211,11 @@ class _ForumTopicCreated implements ForumTopicCreated {
   @JsonKey(name: 'icon_custom_emoji_id')
   final String? iconCustomEmojiId;
 
+  /// Optional. True, if the name of the topic wasn't specified explicitly by its creator and likely needs to be changed by the bot
+  @override
+  @JsonKey(name: 'is_name_implicit')
+  final bool? isNameImplicit;
+
   /// Create a copy of ForumTopicCreated
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -215,7 +231,7 @@ class _ForumTopicCreated implements ForumTopicCreated {
 
   @override
   String toString() {
-    return 'ForumTopicCreated(name: $name, iconColor: $iconColor, iconCustomEmojiId: $iconCustomEmojiId)';
+    return 'ForumTopicCreated(name: $name, iconColor: $iconColor, iconCustomEmojiId: $iconCustomEmojiId, isNameImplicit: $isNameImplicit)';
   }
 }
 
@@ -232,6 +248,7 @@ abstract mixin class _$ForumTopicCreatedCopyWith<$Res>
     @JsonKey(name: 'name') String name,
     @JsonKey(name: 'icon_color') int iconColor,
     @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+    @JsonKey(name: 'is_name_implicit') bool? isNameImplicit,
   });
 }
 
@@ -251,6 +268,7 @@ class __$ForumTopicCreatedCopyWithImpl<$Res>
     Object? name = null,
     Object? iconColor = null,
     Object? iconCustomEmojiId = freezed,
+    Object? isNameImplicit = freezed,
   }) {
     return _then(
       _ForumTopicCreated(
@@ -266,6 +284,10 @@ class __$ForumTopicCreatedCopyWithImpl<$Res>
             ? _self.iconCustomEmojiId
             : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
                   as String?,
+        isNameImplicit: freezed == isNameImplicit
+            ? _self.isNameImplicit
+            : isNameImplicit // ignore: cast_nullable_to_non_nullable
+                  as bool?,
       ),
     );
   }

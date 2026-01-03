@@ -11,6 +11,7 @@ _ForumTopicCreated _$ForumTopicCreatedFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       iconColor: (json['icon_color'] as num).toInt(),
       iconCustomEmojiId: json['icon_custom_emoji_id'] as String?,
+      isNameImplicit: json['is_name_implicit'] as bool?,
     );
 
 Map<String, dynamic> _$ForumTopicCreatedToJson(_ForumTopicCreated instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$ForumTopicCreatedToJson(_ForumTopicCreated instance) =>
       'name': instance.name,
       'icon_color': instance.iconColor,
       'icon_custom_emoji_id': ?instance.iconCustomEmojiId,
+      'is_name_implicit': ?instance.isNameImplicit,
     };
