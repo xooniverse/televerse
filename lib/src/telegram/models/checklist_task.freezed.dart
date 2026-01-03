@@ -33,6 +33,10 @@ mixin _$ChecklistTask {
   @JsonKey(name: 'completion_date')
   int? get completionDate;
 
+  /// Optional. Chat that completed the task; omitted if the task wasn't completed by a chat
+  @JsonKey(name: 'completed_by_chat')
+  Chat? get completedByChat;
+
   /// Create a copy of ChecklistTask
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +52,7 @@ mixin _$ChecklistTask {
 
   @override
   String toString() {
-    return 'ChecklistTask(id: $id, text: $text, textEntities: $textEntities, completedByUser: $completedByUser, completionDate: $completionDate)';
+    return 'ChecklistTask(id: $id, text: $text, textEntities: $textEntities, completedByUser: $completedByUser, completionDate: $completionDate, completedByChat: $completedByChat)';
   }
 }
 
@@ -65,9 +69,11 @@ abstract mixin class $ChecklistTaskCopyWith<$Res> {
     @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
     @JsonKey(name: 'completed_by_user') User? completedByUser,
     @JsonKey(name: 'completion_date') int? completionDate,
+    @JsonKey(name: 'completed_by_chat') Chat? completedByChat,
   });
 
   $UserCopyWith<$Res>? get completedByUser;
+  $ChatCopyWith<$Res>? get completedByChat;
 }
 
 /// @nodoc
@@ -88,6 +94,7 @@ class _$ChecklistTaskCopyWithImpl<$Res>
     Object? textEntities = freezed,
     Object? completedByUser = freezed,
     Object? completionDate = freezed,
+    Object? completedByChat = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -111,6 +118,10 @@ class _$ChecklistTaskCopyWithImpl<$Res>
             ? _self.completionDate
             : completionDate // ignore: cast_nullable_to_non_nullable
                   as int?,
+        completedByChat: freezed == completedByChat
+            ? _self.completedByChat
+            : completedByChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
       ),
     );
   }
@@ -126,6 +137,20 @@ class _$ChecklistTaskCopyWithImpl<$Res>
 
     return $UserCopyWith<$Res>(_self.completedByUser!, (value) {
       return _then(_self.copyWith(completedByUser: value));
+    });
+  }
+
+  /// Create a copy of ChecklistTask
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res>? get completedByChat {
+    if (_self.completedByChat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_self.completedByChat!, (value) {
+      return _then(_self.copyWith(completedByChat: value));
     });
   }
 }
@@ -219,6 +244,7 @@ class _ChecklistTask implements ChecklistTask {
     @JsonKey(name: 'text_entities') final List<MessageEntity>? textEntities,
     @JsonKey(name: 'completed_by_user') this.completedByUser,
     @JsonKey(name: 'completion_date') this.completionDate,
+    @JsonKey(name: 'completed_by_chat') this.completedByChat,
   }) : _textEntities = textEntities;
   factory _ChecklistTask.fromJson(Map<String, dynamic> json) =>
       _$ChecklistTaskFromJson(json);
@@ -257,6 +283,11 @@ class _ChecklistTask implements ChecklistTask {
   @JsonKey(name: 'completion_date')
   final int? completionDate;
 
+  /// Optional. Chat that completed the task; omitted if the task wasn't completed by a chat
+  @override
+  @JsonKey(name: 'completed_by_chat')
+  final Chat? completedByChat;
+
   /// Create a copy of ChecklistTask
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -272,7 +303,7 @@ class _ChecklistTask implements ChecklistTask {
 
   @override
   String toString() {
-    return 'ChecklistTask(id: $id, text: $text, textEntities: $textEntities, completedByUser: $completedByUser, completionDate: $completionDate)';
+    return 'ChecklistTask(id: $id, text: $text, textEntities: $textEntities, completedByUser: $completedByUser, completionDate: $completionDate, completedByChat: $completedByChat)';
   }
 }
 
@@ -291,10 +322,13 @@ abstract mixin class _$ChecklistTaskCopyWith<$Res>
     @JsonKey(name: 'text_entities') List<MessageEntity>? textEntities,
     @JsonKey(name: 'completed_by_user') User? completedByUser,
     @JsonKey(name: 'completion_date') int? completionDate,
+    @JsonKey(name: 'completed_by_chat') Chat? completedByChat,
   });
 
   @override
   $UserCopyWith<$Res>? get completedByUser;
+  @override
+  $ChatCopyWith<$Res>? get completedByChat;
 }
 
 /// @nodoc
@@ -315,6 +349,7 @@ class __$ChecklistTaskCopyWithImpl<$Res>
     Object? textEntities = freezed,
     Object? completedByUser = freezed,
     Object? completionDate = freezed,
+    Object? completedByChat = freezed,
   }) {
     return _then(
       _ChecklistTask(
@@ -338,6 +373,10 @@ class __$ChecklistTaskCopyWithImpl<$Res>
             ? _self.completionDate
             : completionDate // ignore: cast_nullable_to_non_nullable
                   as int?,
+        completedByChat: freezed == completedByChat
+            ? _self.completedByChat
+            : completedByChat // ignore: cast_nullable_to_non_nullable
+                  as Chat?,
       ),
     );
   }
@@ -353,6 +392,20 @@ class __$ChecklistTaskCopyWithImpl<$Res>
 
     return $UserCopyWith<$Res>(_self.completedByUser!, (value) {
       return _then(_self.copyWith(completedByUser: value));
+    });
+  }
+
+  /// Create a copy of ChecklistTask
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatCopyWith<$Res>? get completedByChat {
+    if (_self.completedByChat == null) {
+      return null;
+    }
+
+    return $ChatCopyWith<$Res>(_self.completedByChat!, (value) {
+      return _then(_self.copyWith(completedByChat: value));
     });
   }
 }

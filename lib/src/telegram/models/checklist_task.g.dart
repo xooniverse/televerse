@@ -17,6 +17,9 @@ _ChecklistTask _$ChecklistTaskFromJson(Map<String, dynamic> json) =>
           ? null
           : User.fromJson(json['completed_by_user'] as Map<String, dynamic>),
       completionDate: (json['completion_date'] as num?)?.toInt(),
+      completedByChat: json['completed_by_chat'] == null
+          ? null
+          : Chat.fromJson(json['completed_by_chat'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ChecklistTaskToJson(_ChecklistTask instance) =>
@@ -26,4 +29,5 @@ Map<String, dynamic> _$ChecklistTaskToJson(_ChecklistTask instance) =>
       'text_entities': ?instance.textEntities,
       'completed_by_user': ?instance.completedByUser,
       'completion_date': ?instance.completionDate,
+      'completed_by_chat': ?instance.completedByChat,
     };
