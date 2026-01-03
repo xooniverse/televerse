@@ -475,7 +475,9 @@ enum APIMethod {
 
   /// Decline a suggested post in a direct messages chat
   declineSuggestedPost,
-  ;
+
+  /// Streams a partial message to a user.
+  sendMessageDraft;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.
   String get name => toString().split('.').last;
@@ -501,6 +503,7 @@ enum APIMethod {
   static List<APIMethod> get sendMethods {
     return [
       APIMethod.sendMessage,
+      APIMethod.sendMessageDraft,
       APIMethod.forwardMessage,
       APIMethod.copyMessage,
       APIMethod.sendPhoto,

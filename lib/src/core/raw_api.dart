@@ -31,13 +31,10 @@ class RawAPI {
   /// - [token]: The bot token obtained from @BotFather
   /// - [httpClient]: Optional custom HTTP client. If not provided, a default one will be created
   /// - [baseUrl]: Optional custom base URL. Defaults to the official Telegram Bot API URL
-  RawAPI(
-    this.token, {
-    HttpClient? httpClient,
-    String? baseUrl,
-  })  : _httpClient = httpClient ?? DioHttpClient(),
-        _baseUrl = baseUrl ?? 'https://api.telegram.org/bot$token',
-        _ownsHttpClient = httpClient == null;
+  RawAPI(this.token, {HttpClient? httpClient, String? baseUrl})
+    : _httpClient = httpClient ?? DioHttpClient(),
+      _baseUrl = baseUrl ?? 'https://api.telegram.org/bot$token',
+      _ownsHttpClient = httpClient == null;
 
   // ===============================
   // Transformer Management
@@ -133,10 +130,7 @@ class RawAPI {
   ///
   /// Returns the parsed response data.
   /// Throws [TeleverseException] if the request fails.
-  Future<T> _makeRequest<T>(
-    APIMethod method, [
-    Payload? payload,
-  ]) async {
+  Future<T> _makeRequest<T>(APIMethod method, [Payload? payload]) async {
     // Create the transformer chain
     final caller = _transformerManager.createCaller(_actualApiCall);
 
@@ -450,6 +444,40 @@ class RawAPI {
     return Message.fromJson(response);
   }
 
+  /// Streams a partial message to a user while the message is being generated;
+  /// supported only for bots with forum topic mode enabled. Returns True on success.
+  ///
+  /// Parameters:
+  /// - [chatId]: Unique identifier for the target private chat
+  /// - [draftId]: Unique identifier of the message draft; must be non-zero. Changes of drafts with the same identifier are animated
+  /// - [text]: Text of the message to be sent, 1-4096 characters after entities parsing
+  /// - [messageThreadId]: Unique identifier for the target message thread
+  /// - [parseMode]: Mode for parsing entities in the message text
+  /// - [entities]: List of special entities that appear in message text
+  ///
+  /// Returns True on success.
+  Future<bool> sendMessageDraft(
+    ID chatId,
+    int draftId,
+    String text, {
+    int? messageThreadId,
+    ParseMode? parseMode,
+    List<MessageEntity>? entities,
+  }) async {
+    final params = <String, dynamic>{
+      'chat_id': chatId,
+      'draft_id': draftId,
+      'text': text,
+      if (messageThreadId != null) 'message_thread_id': messageThreadId,
+      if (parseMode != null) 'parse_mode': parseMode,
+      if (entities != null)
+        'entities': entities.map((e) => e.toJson()).toList(),
+    };
+
+    final payload = Payload(_convertParameters(params));
+    return await _makeRequest<bool>(APIMethod.sendMessageDraft, payload);
+  }
+
   /// Sends a photo.
   ///
   /// On success, the sent [Message] is returned.
@@ -522,8 +550,10 @@ class RawAPI {
     final files = _extractFiles(params);
 
     final payload = Payload(convertedParams, files);
-    final response =
-        await _makeRequest<Map<String, dynamic>>(APIMethod.sendPhoto, payload);
+    final response = await _makeRequest<Map<String, dynamic>>(
+      APIMethod.sendPhoto,
+      payload,
+    );
 
     return Message.fromJson(response);
   }
@@ -578,8 +608,10 @@ class RawAPI {
     final files = _extractFiles(params);
 
     final payload = Payload(convertedParams, files);
-    final response =
-        await _makeRequest<List<dynamic>>(APIMethod.sendMediaGroup, payload);
+    final response = await _makeRequest<List<dynamic>>(
+      APIMethod.sendMediaGroup,
+      payload,
+    );
 
     return response.map((json) => Message.fromJson(json)).toList();
   }
@@ -1500,8 +1532,9 @@ class RawAPI {
       if (explanationParseMode != null)
         'explanation_parse_mode': explanationParseMode,
       if (explanationEntities != null)
-        'explanation_entities':
-            explanationEntities.map((e) => e.toJson()).toList(),
+        'explanation_entities': explanationEntities
+            .map((e) => e.toJson())
+            .toList(),
       if (openPeriod != null) 'open_period': openPeriod,
       if (closeDate != null)
         'close_date': closeDate.millisecondsSinceEpoch ~/ 1000,
@@ -1627,9 +1660,7 @@ class RawAPI {
   ///
   /// See: https://core.telegram.org/bots/api#getfile
   Future<File> getFile(String fileId) async {
-    final params = <String, dynamic>{
-      'file_id': fileId,
-    };
+    final params = <String, dynamic>{'file_id': fileId};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -1798,10 +1829,7 @@ class RawAPI {
   /// the appropriate administrator rights. Returns True on success.
   ///
   /// See: https://core.telegram.org/bots/api#banchatsenderchat
-  Future<bool> banChatSenderChat(
-    ID chatId,
-    int senderChatId,
-  ) async {
+  Future<bool> banChatSenderChat(ID chatId, int senderChatId) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'sender_chat_id': senderChatId,
@@ -1816,10 +1844,7 @@ class RawAPI {
   /// have the appropriate administrator rights. Returns True on success.
   ///
   /// See: https://core.telegram.org/bots/api#unbanchatsenderchat
-  Future<bool> unbanChatSenderChat(
-    ID chatId,
-    int senderChatId,
-  ) async {
+  Future<bool> unbanChatSenderChat(ID chatId, int senderChatId) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'sender_chat_id': senderChatId,
@@ -1851,12 +1876,8 @@ class RawAPI {
   /// Use this method to generate a new primary invite link for a chat.
   ///
   /// See https://core.telegram.org/bots/api#exportchatinvitelink
-  Future<String> exportChatInviteLink(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<String> exportChatInviteLink(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<String>(APIMethod.exportChatInviteLink, payload);
@@ -1946,14 +1967,8 @@ class RawAPI {
   /// Use this method to approve a chat join request.
   ///
   /// See: https://core.telegram.org/bots/api#approvechatjoinrequest
-  Future<bool> approveChatJoinRequest(
-    ID chatId,
-    int userId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-      'user_id': userId,
-    };
+  Future<bool> approveChatJoinRequest(ID chatId, int userId) async {
+    final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.approveChatJoinRequest, payload);
@@ -1962,14 +1977,8 @@ class RawAPI {
   /// Use this method to decline a chat join request.
   ///
   /// See: https://core.telegram.org/bots/api#declinechatjoinrequest
-  Future<bool> declineChatJoinRequest(
-    ID chatId,
-    int userId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-      'user_id': userId,
-    };
+  Future<bool> declineChatJoinRequest(ID chatId, int userId) async {
+    final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.declineChatJoinRequest, payload);
@@ -1981,14 +1990,8 @@ class RawAPI {
   /// Returns True on success.
   ///
   /// See: https://core.telegram.org/bots/api#setchatphoto
-  Future<bool> setChatPhoto(
-    ID chatId,
-    InputFile photo,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-      'photo': photo,
-    };
+  Future<bool> setChatPhoto(ID chatId, InputFile photo) async {
+    final params = <String, dynamic>{'chat_id': chatId, 'photo': photo};
 
     final convertedParams = _convertParameters(params);
     final files = _extractFiles(params);
@@ -2003,12 +2006,8 @@ class RawAPI {
   /// success.
   ///
   /// See: https://core.telegram.org/bots/api#deletechatphoto
-  Future<bool> deleteChatPhoto(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<bool> deleteChatPhoto(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.deleteChatPhoto, payload);
@@ -2020,14 +2019,8 @@ class RawAPI {
   /// success.
   ///
   /// See: https://core.telegram.org/bots/api#setchattitle
-  Future<bool> setChatTitle(
-    ID chatId,
-    String title,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-      'title': title,
-    };
+  Future<bool> setChatTitle(ID chatId, String title) async {
+    final params = <String, dynamic>{'chat_id': chatId, 'title': title};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.setChatTitle, payload);
@@ -2038,10 +2031,7 @@ class RawAPI {
   /// must have the appropriate administrator rights. Returns True on success.
   ///
   /// See: https://core.telegram.org/bots/api#setchatdescription
-  Future<bool> setChatDescription(
-    ID chatId,
-    String? description,
-  ) async {
+  Future<bool> setChatDescription(ID chatId, String? description) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
       if (description != null) 'description': description,
@@ -2107,12 +2097,8 @@ class RawAPI {
   /// Returns True on success.
   ///
   /// See: https://core.telegram.org/bots/api#unpinallchatmessages
-  Future<bool> unpinAllChatMessages(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<bool> unpinAllChatMessages(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.unpinAllChatMessages, payload);
@@ -2122,12 +2108,8 @@ class RawAPI {
   /// Returns True on success.
   ///
   /// See: https://core.telegram.org/bots/api#leavechat
-  Future<bool> leaveChat(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<bool> leaveChat(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.leaveChat, payload);
@@ -2138,12 +2120,8 @@ class RawAPI {
   /// group or channel, etc.). Returns a Chat object on success.
   ///
   /// See: https://core.telegram.org/bots/api#getchat
-  Future<ChatFullInfo> getChat(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<ChatFullInfo> getChat(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -2158,12 +2136,8 @@ class RawAPI {
   /// bots. Returns an Array of ChatMember objects.
   ///
   /// See: https://core.telegram.org/bots/api#getchatadministrators
-  Future<List<ChatMember>> getChatAdministrators(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<List<ChatMember>> getChatAdministrators(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<List<dynamic>>(
@@ -2178,12 +2152,8 @@ class RawAPI {
   /// success.
   ///
   /// See: https://core.telegram.org/bots/api#getchatmemberscount
-  Future<int> getChatMemberCount(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<int> getChatMemberCount(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<int>(APIMethod.getChatMemberCount, payload);
@@ -2194,14 +2164,8 @@ class RawAPI {
   /// Returns a ChatMember object on success.
   ///
   /// See: https://core.telegram.org/bots/api#getchatmember
-  Future<ChatMember> getChatMember(
-    ID chatId,
-    int userId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-      'user_id': userId,
-    };
+  Future<ChatMember> getChatMember(ID chatId, int userId) async {
+    final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -2219,10 +2183,7 @@ class RawAPI {
   /// method. Returns True on success.
   ///
   /// See: https://core.telegram.org/bots/api#setchatstickerset
-  Future<bool> setChatStickerSet(
-    ID chatId,
-    String stickerSetName,
-  ) async {
+  Future<bool> setChatStickerSet(ID chatId, String stickerSetName) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'sticker_set_name': stickerSetName,
@@ -2235,12 +2196,8 @@ class RawAPI {
   /// Use this method to delete a group sticker set from a supergroup.
   ///
   /// See: https://core.telegram.org/bots/api#deletechatstickerset
-  Future<bool> deleteChatStickerSet(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<bool> deleteChatStickerSet(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.deleteChatStickerSet, payload);
@@ -2307,10 +2264,7 @@ class RawAPI {
   /// Use this method to close an open topic in a forum supergroup chat.
   ///
   /// See: https://core.telegram.org/bots/api#closeforumtopic
-  Future<bool> closeForumTopic(
-    ID chatId,
-    int messageThreadId,
-  ) async {
+  Future<bool> closeForumTopic(ID chatId, int messageThreadId) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_thread_id': messageThreadId,
@@ -2323,10 +2277,7 @@ class RawAPI {
   /// Use this method to reopen a closed topic in a forum supergroup chat.
   ///
   /// See: https://core.telegram.org/bots/api#reopenforumtopic
-  Future<bool> reopenForumTopic(
-    ID chatId,
-    int messageThreadId,
-  ) async {
+  Future<bool> reopenForumTopic(ID chatId, int messageThreadId) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_thread_id': messageThreadId,
@@ -2339,10 +2290,7 @@ class RawAPI {
   /// Use this method to delete a forum topic along with all its messages.
   ///
   /// See: https://core.telegram.org/bots/api#deleteforumtopic
-  Future<bool> deleteForumTopic(
-    ID chatId,
-    int messageThreadId,
-  ) async {
+  Future<bool> deleteForumTopic(ID chatId, int messageThreadId) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_thread_id': messageThreadId,
@@ -2374,14 +2322,8 @@ class RawAPI {
   /// Use this method to edit the name of the 'General' topic in a forum supergroup chat.
   ///
   /// See: https://core.telegram.org/bots/api#editgeneralforumtopic
-  Future<bool> editGeneralForumTopic(
-    ID chatId,
-    String name,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-      'name': name,
-    };
+  Future<bool> editGeneralForumTopic(ID chatId, String name) async {
+    final params = <String, dynamic>{'chat_id': chatId, 'name': name};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.editGeneralForumTopic, payload);
@@ -2390,12 +2332,8 @@ class RawAPI {
   /// Use this method to close an open 'General' topic in a forum supergroup chat.
   ///
   /// See: https://core.telegram.org/bots/api#closegeneralforumtopic
-  Future<bool> closeGeneralForumTopic(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<bool> closeGeneralForumTopic(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.closeGeneralForumTopic, payload);
@@ -2404,12 +2342,8 @@ class RawAPI {
   /// Use this method to reopen a closed 'General' topic in a forum supergroup chat.
   ///
   /// See: https://core.telegram.org/bots/api#reopengeneralforumtopic
-  Future<bool> reopenGeneralForumTopic(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<bool> reopenGeneralForumTopic(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.reopenGeneralForumTopic, payload);
@@ -2418,12 +2352,8 @@ class RawAPI {
   /// Use this method to hide the 'General' topic in a forum supergroup chat.
   ///
   /// See: https://core.telegram.org/bots/api#hidegeneralforumtopic
-  Future<bool> hideGeneralForumTopic(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<bool> hideGeneralForumTopic(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.hideGeneralForumTopic, payload);
@@ -2432,12 +2362,8 @@ class RawAPI {
   /// Use this method to unhide the 'General' topic in a forum supergroup chat.
   ///
   /// See: https://core.telegram.org/bots/api#unhidegeneralforumtopic
-  Future<bool> unhideGeneralForumTopic(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<bool> unhideGeneralForumTopic(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.unhideGeneralForumTopic, payload);
@@ -2530,10 +2456,7 @@ class RawAPI {
   /// Use this method to change the bot's name. Returns True on success.
   ///
   /// See https://core.telegram.org/bots/api#setmyname
-  Future<bool> setMyName({
-    String? name,
-    String? languageCode,
-  }) async {
+  Future<bool> setMyName({String? name, String? languageCode}) async {
     final params = <String, dynamic>{
       if (name != null) 'name': name,
       if (languageCode != null) 'language_code': languageCode,
@@ -2547,9 +2470,7 @@ class RawAPI {
   /// Returns [BotName] on success.
   ///
   /// See https://core.telegram.org/bots/api#getmyname
-  Future<BotName> getMyName({
-    String? languageCode,
-  }) async {
+  Future<BotName> getMyName({String? languageCode}) async {
     final params = <String, dynamic>{
       if (languageCode != null) 'language_code': languageCode,
     };
@@ -2584,9 +2505,7 @@ class RawAPI {
   /// language. Returns [BotDescription] on success.
   ///
   /// See https://core.telegram.org/bots/api#getmydescription
-  Future<BotDescription> getMyDescription({
-    String? languageCode,
-  }) async {
+  Future<BotDescription> getMyDescription({String? languageCode}) async {
     final params = <String, dynamic>{
       if (languageCode != null) 'language_code': languageCode,
     };
@@ -2642,10 +2561,7 @@ class RawAPI {
   /// default menu button. Returns True on success.
   ///
   /// See: https://core.telegram.org/bots/api#setchatmenubutton
-  Future<bool> setChatMenuButton(
-    MenuButton menuButton, {
-    ID? chatId,
-  }) async {
+  Future<bool> setChatMenuButton(MenuButton menuButton, {ID? chatId}) async {
     final params = <String, dynamic>{
       'menu_button': menuButton.toJson(),
       if (chatId != null) 'chat_id': chatId,
@@ -2659,12 +2575,8 @@ class RawAPI {
   /// private chat, or the default menu button. Returns MenuButton on success.
   ///
   /// See: https://core.telegram.org/bots/api#getchatmenubutton
-  Future<MenuButton> getChatMenuButton(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<MenuButton> getChatMenuButton(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -3256,10 +3168,7 @@ class RawAPI {
   /// Returns True on success.
   ///
   /// See: https://core.telegram.org/bots/api#deletemessage
-  Future<bool> deleteMessage(
-    ID chatId,
-    int messageId,
-  ) async {
+  Future<bool> deleteMessage(ID chatId, int messageId) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_id': messageId,
@@ -3328,9 +3237,7 @@ class RawAPI {
   ///
   /// See: https://core.telegram.org/bots/api#getstickerset
   Future<StickerSet> getStickerSet(String name) async {
-    final params = <String, dynamic>{
-      'name': name,
-    };
+    final params = <String, dynamic>{'name': name};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -3349,9 +3256,7 @@ class RawAPI {
   Future<List<Sticker>> getCustomEmojiStickers(
     List<String> customEmojiIds,
   ) async {
-    final params = <String, dynamic>{
-      'custom_emoji_ids': customEmojiIds,
-    };
+    final params = <String, dynamic>{'custom_emoji_ids': customEmojiIds};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<List<dynamic>>(
@@ -3447,14 +3352,8 @@ class RawAPI {
   /// See: https://core.telegram.org/bots/api#setstickerpositioninset
   ///
   /// Returns True on success.
-  Future<bool> setStickerPositionInSet(
-    String sticker,
-    int position,
-  ) async {
-    final params = <String, dynamic>{
-      'sticker': sticker,
-      'position': position,
-    };
+  Future<bool> setStickerPositionInSet(String sticker, int position) async {
+    final params = <String, dynamic>{'sticker': sticker, 'position': position};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.setStickerPositionInSet, payload);
@@ -3466,9 +3365,7 @@ class RawAPI {
   ///
   /// Returns True on success.
   Future<bool> deleteStickerFromSet(String sticker) async {
-    final params = <String, dynamic>{
-      'sticker': sticker,
-    };
+    final params = <String, dynamic>{'sticker': sticker};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.deleteStickerFromSet, payload);
@@ -3533,14 +3430,8 @@ class RawAPI {
   /// See: https://core.telegram.org/bots/api#setstickersettitle
   ///
   /// Returns True on success.
-  Future<bool> setStickerSetTitle(
-    String name,
-    String title,
-  ) async {
-    final params = <String, dynamic>{
-      'name': name,
-      'title': title,
-    };
+  Future<bool> setStickerSetTitle(String name, String title) async {
+    final params = <String, dynamic>{'name': name, 'title': title};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.setStickerSetTitle, payload);
@@ -3598,9 +3489,7 @@ class RawAPI {
   ///
   /// Returns True on success.
   Future<bool> deleteStickerSet(String name) async {
-    final params = <String, dynamic>{
-      'name': name,
-    };
+    final params = <String, dynamic>{'name': name};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.deleteStickerSet, payload);
@@ -3994,10 +3883,7 @@ class RawAPI {
   /// Deletes multiple messages simultaneously.
   ///
   /// See: https://core.telegram.org/bots/api#deletemessages
-  Future<bool> deleteMessages(
-    ID chatId,
-    List<int> messageIds,
-  ) async {
+  Future<bool> deleteMessages(ID chatId, List<int> messageIds) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_ids': messageIds,
@@ -4032,8 +3918,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    final response =
-        await _makeRequest<List<dynamic>>(APIMethod.forwardMessages, payload);
+    final response = await _makeRequest<List<dynamic>>(
+      APIMethod.forwardMessages,
+      payload,
+    );
 
     return response.map((json) => MessageId.fromJson(json)).toList();
   }
@@ -4076,14 +3964,8 @@ class RawAPI {
   /// Gets the list of boosts added to a chat by a user.
   ///
   /// See: https://core.telegram.org/bots/api#getuserchatboosts
-  Future<UserChatBoosts> getUserChatBoosts(
-    ID chatId,
-    int userId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-      'user_id': userId,
-    };
+  Future<UserChatBoosts> getUserChatBoosts(ID chatId, int userId) async {
+    final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -4097,12 +3979,8 @@ class RawAPI {
   /// Clears the list of pinned messages in a General forum topic.
   ///
   /// See: https://core.telegram.org/bots/api#unpinallgeneralforumtopicmessages
-  Future<bool> unpinAllGeneralForumTopicMessages(
-    ID chatId,
-  ) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+  Future<bool> unpinAllGeneralForumTopicMessages(ID chatId) async {
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
@@ -4334,10 +4212,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(
-      APIMethod.setUserEmojiStatus,
-      payload,
-    );
+    return await _makeRequest<bool>(APIMethod.setUserEmojiStatus, payload);
   }
 
   /// Stores a message that can be sent by a user of a Mini App.
@@ -4413,78 +4288,53 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(
-      APIMethod.sendGift,
-      payload,
-    );
+    return await _makeRequest<bool>(APIMethod.sendGift, payload);
   }
 
   /// Verifies a user on behalf of the organization which is represented by the bot.
   ///
   /// See https://core.telegram.org/bots/api#verifyuser
-  Future<bool> verifyUser(
-    int userId, {
-    String? customDescription,
-  }) async {
+  Future<bool> verifyUser(int userId, {String? customDescription}) async {
     final params = <String, dynamic>{
       'user_id': userId,
       if (customDescription != null) 'custom_description': customDescription,
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(
-      APIMethod.verifyUser,
-      payload,
-    );
+    return await _makeRequest<bool>(APIMethod.verifyUser, payload);
   }
 
   /// Verifies a chat on behalf of the organization which is represented by the bot.
   ///
   /// See https://core.telegram.org/bots/api#verifychat
-  Future<bool> verifyChat(
-    ID chatId, {
-    String? customDescription,
-  }) async {
+  Future<bool> verifyChat(ID chatId, {String? customDescription}) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
       if (customDescription != null) 'custom_description': customDescription,
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(
-      APIMethod.verifyChat,
-      payload,
-    );
+    return await _makeRequest<bool>(APIMethod.verifyChat, payload);
   }
 
   /// Removes verification from a user who is currently verified on behalf of the organization represented by the bot.
   ///
   /// See https://core.telegram.org/bots/api#removeuserverification
   Future<bool> removeUserVerification(int userId) async {
-    final params = <String, dynamic>{
-      'user_id': userId,
-    };
+    final params = <String, dynamic>{'user_id': userId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(
-      APIMethod.removeUserVerification,
-      payload,
-    );
+    return await _makeRequest<bool>(APIMethod.removeUserVerification, payload);
   }
 
   /// Removes verification from a chat that is currently verified on behalf of the organization represented by the bot.
   ///
   /// See https://core.telegram.org/bots/api#removechatverification
   Future<bool> removeChatVerification(ID chatId) async {
-    final params = <String, dynamic>{
-      'chat_id': chatId,
-    };
+    final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(
-      APIMethod.removeChatVerification,
-      payload,
-    );
+    return await _makeRequest<bool>(APIMethod.removeChatVerification, payload);
   }
 
   /// Marks incoming message as read on behalf of a business account.
@@ -4845,10 +4695,7 @@ class RawAPI {
   /// Deletes a story previously posted by the bot on behalf of a managed business account.
   ///
   /// See: https://core.telegram.org/bots/api#deletestory
-  Future<bool> deleteStory(
-    String businessConnectionId,
-    int storyId,
-  ) async {
+  Future<bool> deleteStory(String businessConnectionId, int storyId) async {
     final params = <String, dynamic>{
       'business_connection_id': businessConnectionId,
       'story_id': storyId,
