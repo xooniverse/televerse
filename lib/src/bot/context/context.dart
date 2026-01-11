@@ -677,6 +677,9 @@ class Context {
       msg!.suggestedPostApprovalFailed,
       msg!.suggestedPostPaid,
       msg!.suggestedPostRefunded,
+      msg!.gift,
+      msg!.uniqueGift,
+      msg!.giftUpgradeSent,
     ];
 
     return checks.any((c) => c != null && c != false);
