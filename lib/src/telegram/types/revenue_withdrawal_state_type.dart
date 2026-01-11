@@ -13,5 +13,5 @@ enum RevenueWithdrawalStateType {
 
   /// The withdrawal failed and the transaction was refunded.
   @JsonValue('failed')
-  failed;
+  failed,
 }

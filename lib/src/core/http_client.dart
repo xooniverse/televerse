@@ -43,12 +43,9 @@ class DioHttpClient implements HttpClient {
   /// - [dio]: Optional custom Dio instance to use for requests
   /// - [timeout]: Connection timeout duration (default: 30 seconds)
   /// - [receiveTimeout]: Response receive timeout (default: 30 seconds)
-  DioHttpClient({
-    Dio? dio,
-    Duration? timeout,
-    Duration? receiveTimeout,
-  })  : _dio = dio ?? _createDefaultDio(timeout, receiveTimeout),
-        _ownsInstance = dio == null;
+  DioHttpClient({Dio? dio, Duration? timeout, Duration? receiveTimeout})
+    : _dio = dio ?? _createDefaultDio(timeout, receiveTimeout),
+      _ownsInstance = dio == null;
 
   /// Creates a default Dio instance with appropriate configuration.
   static Dio _createDefaultDio(Duration? timeout, Duration? receiveTimeout) {
@@ -119,7 +116,8 @@ class DioHttpClient implements HttpClient {
       case DioExceptionType.connectionError:
         return TeleverseException(
           'Connection error occurred',
-          description: 'Failed to connect to Telegram servers. '
+          description:
+              'Failed to connect to Telegram servers. '
               'Check your internet connection.',
           type: TeleverseExceptionType.requestFailed,
         );
@@ -168,9 +166,7 @@ class DioHttpClient implements HttpClient {
     return await _dio.post(
       url,
       data: payload?.params != null ? jsonEncode(payload!.params) : null,
-      options: Options(
-        contentType: 'application/json',
-      ),
+      options: Options(contentType: 'application/json'),
     );
   }
 
@@ -210,9 +206,7 @@ class DioHttpClient implements HttpClient {
     return await _dio.post(
       url,
       data: formData,
-      options: Options(
-        contentType: 'multipart/form-data',
-      ),
+      options: Options(contentType: 'multipart/form-data'),
     );
   }
 

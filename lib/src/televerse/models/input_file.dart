@@ -94,16 +94,12 @@ class InputFile {
   }
 
   /// Creates a new [InputFile] using the file url.
-  factory InputFile.fromUrl(String url, {String? name}) => InputFile._(
-        url: Uri.parse(url),
-        name: name,
-      );
+  factory InputFile.fromUrl(String url, {String? name}) =>
+      InputFile._(url: Uri.parse(url), name: name);
 
   /// Creates a new [InputFile] using the File ID on the Telegram Servers.
-  factory InputFile.fromFileId(String fileId, {String? name}) => InputFile._(
-        fileId: fileId,
-        name: name,
-      );
+  factory InputFile.fromFileId(String fileId, {String? name}) =>
+      InputFile._(fileId: fileId, name: name);
 
   /// Creates a new [InputFile] using the bytes of the file.
   factory InputFile.fromBytes(
@@ -111,13 +107,12 @@ class InputFile {
     String? name,
     String? mimeType,
     Map<String, List<String>>? headers,
-  }) =>
-      InputFile._(
-        bytes: bytes,
-        name: name,
-        mimeType: mimeType,
-        headers: headers,
-      );
+  }) => InputFile._(
+    bytes: bytes,
+    name: name,
+    mimeType: mimeType,
+    headers: headers,
+  );
 
   /// Returns the type of the [InputFile].
   InputFileType get type {

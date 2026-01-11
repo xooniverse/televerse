@@ -23,10 +23,8 @@ typedef NextFunction = FutureOr<void> Function();
 ///   print('Finished processing update ${ctx.update.updateId}');
 /// };
 /// ```
-typedef Middleware<CTX extends Context> = FutureOr<void> Function(
-  CTX ctx,
-  NextFunction next,
-);
+typedef Middleware<CTX extends Context> =
+    FutureOr<void> Function(CTX ctx, NextFunction next);
 
 /// Predicate function type for conditional middleware.
 ///
@@ -37,9 +35,8 @@ typedef MiddlewarePredicate<CTX extends Context> = bool Function(CTX ctx);
 ///
 /// This function creates middleware dynamically based on the context.
 /// Useful for lazy initialization or context-dependent middleware creation.
-typedef MiddlewareFactory<CTX extends Context> = Middleware<CTX> Function(
-  CTX ctx,
-);
+typedef MiddlewareFactory<CTX extends Context> =
+    Middleware<CTX> Function(CTX ctx);
 
 /// Entry in the middleware chain.
 ///
@@ -78,10 +75,7 @@ class MiddlewareEntry<CTX extends Context> {
   });
 
   /// Creates a named middleware entry.
-  factory MiddlewareEntry.named(
-    String name,
-    Middleware<CTX> middleware,
-  ) {
+  factory MiddlewareEntry.named(String name, Middleware<CTX> middleware) {
     return MiddlewareEntry(middleware, name: name);
   }
 
@@ -91,11 +85,7 @@ class MiddlewareEntry<CTX extends Context> {
     Middleware<CTX> middleware, {
     String? name,
   }) {
-    return MiddlewareEntry(
-      middleware,
-      name: name,
-      predicate: predicate,
-    );
+    return MiddlewareEntry(middleware, name: name, predicate: predicate);
   }
 
   /// Creates an error-catching middleware entry.
@@ -103,23 +93,12 @@ class MiddlewareEntry<CTX extends Context> {
     Middleware<CTX> middleware, {
     String? name,
   }) {
-    return MiddlewareEntry(
-      middleware,
-      name: name,
-      catchErrors: true,
-    );
+    return MiddlewareEntry(middleware, name: name, catchErrors: true);
   }
 
   /// Creates a concurrent (fork) middleware entry.
-  factory MiddlewareEntry.fork(
-    Middleware<CTX> middleware, {
-    String? name,
-  }) {
-    return MiddlewareEntry(
-      middleware,
-      name: name,
-      concurrent: true,
-    );
+  factory MiddlewareEntry.fork(Middleware<CTX> middleware, {String? name}) {
+    return MiddlewareEntry(middleware, name: name, concurrent: true);
   }
 
   /// Checks if this middleware should run for the given context.

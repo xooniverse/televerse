@@ -13,5 +13,5 @@ enum MenuButtonType {
 
   /// Represents Menu Button Command
   @JsonValue('commands')
-  commands;
+  commands,
 }

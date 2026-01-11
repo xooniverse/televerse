@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/file_provider/file_provider.dart';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart' show InputFile, InputFileConverter;
 
@@ -20,7 +21,23 @@ abstract interface class _InputPaidMediaImpl {
 @Freezed(fromJson: false, toJson: true)
 sealed class InputPaidMedia
     with _$InputPaidMedia
-    implements _InputPaidMediaImpl {
+    implements _InputPaidMediaImpl, InputFileProvider {
+  const InputPaidMedia._();
+
+  @override
+  Iterable<InputFile?> getInputFiles() {
+    switch (this) {
+      case InputPaidMediaPhoto(media: final media):
+        return [media];
+      case InputPaidMediaVideo(
+        media: final media,
+        thumbnail: final thumbnail,
+        cover: final cover,
+      ):
+        return [media, thumbnail, cover];
+    }
+  }
+
   /// The paid media to send is a photo.
   @Assert(
     'type == InputPaidMediaType.photo',

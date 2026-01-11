@@ -54,5 +54,4 @@ enum InlineQueryResultType {
   /// Represents a native poll.
   @JsonValue('sticker')
   sticker,
-  ;
 }

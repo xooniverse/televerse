@@ -219,36 +219,33 @@ class RawAPI {
   PayloadFiles? _extractFiles(Map<String, dynamic> params) {
     final files = <Map<String, LocalFile>>[];
 
-    for (final entry in params.entries) {
-      final value = entry.value;
+    void process(dynamic value) {
+      if (value == null) return;
 
-      if (value is InputFile && value.type == InputFileType.bytes) {
-        final localFile = LocalFile(
-          value.getBytes(),
-          fileName: value.name,
-          contentType: value.mimeType,
-          headers: value.headers,
-        );
-
-        files.add({value.getAttachName(): localFile});
-      } else if (value is List) {
-        // Handle lists that might contain InputFile objects
-        for (int i = 0; i < value.length; i++) {
-          final item = value[i];
-          if (item is InputFile && item.type == InputFileType.bytes) {
-            final localFile = LocalFile(
-              item.getBytes(),
-              fileName: item.name,
-              contentType: item.mimeType,
-              headers: item.headers,
-            );
-
-            files.add({item.getAttachName(): localFile});
-          }
+      // Case 1: Direct File
+      if (value is InputFile) {
+        if (value.type == InputFileType.bytes) {
+          files.add({
+            value.getAttachName(): LocalFile(
+              value.getBytes(),
+              fileName: value.name,
+              contentType: value.mimeType,
+              headers: value.headers,
+            ),
+          });
         }
+      }
+      // Case 2: Collections (Lists/Iterables)
+      else if (value is Iterable) {
+        value.forEach(process);
+      }
+      // Case 3: Complex Objects that provide files
+      else if (value is InputFileProvider) {
+        value.getInputFiles().forEach(process);
       }
     }
 
+    params.values.forEach(process);
     return files.isEmpty ? null : files;
   }
 

@@ -67,8 +67,7 @@ enum UpdateType {
   deletedBusinessMessages("deleted_business_messages"),
 
   /// Updates about purchased paid media
-  purchasedPaidMedia("purchased_paid_media"),
-  ;
+  purchasedPaidMedia("purchased_paid_media");
 
   /// The value of this enum.
   final String type;

@@ -9,5 +9,5 @@ enum OwnedGiftType {
 
   /// Unique gift type
   @JsonValue('unique')
-  unique;
+  unique,
 }

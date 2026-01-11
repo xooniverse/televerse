@@ -36,10 +36,10 @@ class TestPlugin<CTX extends Context> extends MiddlewarePlugin<CTX> {
 
   @override
   Middleware<CTX> get middleware => (ctx, next) async {
-        executionCount++;
-        ctx.set('test_plugin_executed', true);
-        await next();
-      };
+    executionCount++;
+    ctx.set('test_plugin_executed', true);
+    await next();
+  };
 
   @override
   void install(Bot<CTX> bot) {
@@ -90,10 +90,7 @@ void main() {
       });
 
       test('Bot.local creates with custom base URL', () {
-        final localBot = Bot.local(
-          'test_token',
-          'http://localhost:8081',
-        );
+        final localBot = Bot.local('test_token', 'http://localhost:8081');
         expect(localBot, isNotNull);
         expect(localBot.token, equals('test_token'));
       });
@@ -360,10 +357,7 @@ void main() {
       });
 
       test('ID.create() throws on invalid input', () {
-        expect(
-          () => ID.create(12.5),
-          throwsA(isA<TeleverseException>()),
-        );
+        expect(() => ID.create(12.5), throwsA(isA<TeleverseException>()));
       });
     });
 
@@ -409,8 +403,10 @@ void main() {
       test('Context.reply() sends message', () async {
         // This would require a real update with chat information
         // For now, we'll use the direct API
-        final message =
-            await bot.api.sendMessage(testChatId, 'Test message from context');
+        final message = await bot.api.sendMessage(
+          testChatId,
+          'Test message from context',
+        );
         expect(message.text, equals('Test message from context'));
       });
 
@@ -425,10 +421,14 @@ void main() {
       });
 
       test('Send and delete message', () async {
-        final message =
-            await bot.api.sendMessage(testChatId, 'Message to delete');
-        final deleted =
-            await bot.api.deleteMessage(testChatId, message.messageId);
+        final message = await bot.api.sendMessage(
+          testChatId,
+          'Message to delete',
+        );
+        final deleted = await bot.api.deleteMessage(
+          testChatId,
+          message.messageId,
+        );
         expect(deleted, isTrue);
       });
 

@@ -18,5 +18,5 @@ enum StickerType {
 
   /// A sticker that is meant to be used as a custom emoji.
   @JsonValue("custom_emoji")
-  customEmoji;
+  customEmoji,
 }

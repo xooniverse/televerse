@@ -21,5 +21,5 @@ enum TransactionType {
 
   /// Direct transfers from managed business accounts
   @JsonValue('business_account_transfer')
-  businessAccountTransfer;
+  businessAccountTransfer,
 }

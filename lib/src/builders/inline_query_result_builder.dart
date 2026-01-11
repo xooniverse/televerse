@@ -71,9 +71,8 @@ class InlineQueryResultBuilder {
   InlineQueryResultBuilder article(
     String id,
     String title,
-    InputMessageContent Function(
-      MessageContentGenerator content,
-    ) contentGenerator, {
+    InputMessageContent Function(MessageContentGenerator content)
+    contentGenerator, {
     InlineKeyboardMarkup? replyMarkup,
     String? url,
     String? description,
@@ -85,9 +84,7 @@ class InlineQueryResultBuilder {
       InlineQueryResultArticle(
         id: id,
         title: title,
-        inputMessageContent: contentGenerator(
-          MessageContentGenerator.i,
-        ),
+        inputMessageContent: contentGenerator(MessageContentGenerator.i),
         replyMarkup: replyMarkup,
         url: url,
         description: description,
@@ -121,9 +118,8 @@ class InlineQueryResultBuilder {
     String? performer,
     int? audioDuration,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
   }) {
     _results.add(
       InlineQueryResultAudio(
@@ -161,9 +157,8 @@ class InlineQueryResultBuilder {
     String? lastName,
     String? vcard,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
     String? thumbnailUrl,
     int? thumbnailWidth,
     int? thumbnailHeight,
@@ -216,9 +211,8 @@ class InlineQueryResultBuilder {
     List<MessageEntity>? captionEntities,
     String? description,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
     String? thumbnailUrl,
     int? thumbnailWidth,
     int? thumbnailHeight,
@@ -271,9 +265,8 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
   }) {
     _results.add(
       InlineQueryResultGif(
@@ -320,9 +313,8 @@ class InlineQueryResultBuilder {
     int? heading,
     int? proximityAlertRadius,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
     String? thumbnailUrl,
     int? thumbnailWidth,
     int? thumbnailHeight,
@@ -375,9 +367,8 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
   }) {
     _results.add(
       InlineQueryResultMpeg4Gif(
@@ -425,9 +416,8 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
   }) {
     _results.add(
       InlineQueryResultPhoto(
@@ -475,9 +465,8 @@ class InlineQueryResultBuilder {
     String? googlePlaceId,
     String? googlePlaceType,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
     String? thumbnailUrl,
     int? thumbnailWidth,
     int? thumbnailHeight,
@@ -535,9 +524,8 @@ class InlineQueryResultBuilder {
     String? description,
     InlineKeyboardMarkup? replyMarkup,
     bool? showCaptionAboveMedia,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
   }) {
     _results.add(
       InlineQueryResultVideo(
@@ -581,9 +569,8 @@ class InlineQueryResultBuilder {
     List<MessageEntity>? captionEntities,
     int? voiceDuration,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
   }) {
     _results.add(
       InlineQueryResultVoice(
@@ -617,9 +604,8 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
   }) {
     _results.add(
       InlineQueryResultCachedAudio(
@@ -655,9 +641,8 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
   }) {
     _results.add(
       InlineQueryResultCachedDocument(
@@ -694,9 +679,8 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
     bool? showCaptionAboveMedia,
   }) {
     _results.add(
@@ -734,9 +718,8 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
     bool? showCaptionAboveMedia,
   }) {
     _results.add(
@@ -776,9 +759,8 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
     bool? showCaptionAboveMedia,
   }) {
     _results.add(
@@ -808,9 +790,8 @@ class InlineQueryResultBuilder {
     String id,
     String stickerFileId, {
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
   }) {
     _results.add(
       InlineQueryResultCachedSticker(
@@ -844,9 +825,8 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
     bool? showCaptionAboveMedia,
   }) {
     _results.add(
@@ -884,9 +864,8 @@ class InlineQueryResultBuilder {
     ParseMode? parseMode,
     List<MessageEntity>? captionEntities,
     InlineKeyboardMarkup? replyMarkup,
-    InputMessageContent? Function(
-      MessageContentGenerator content,
-    )? contentGenerator,
+    InputMessageContent? Function(MessageContentGenerator content)?
+    contentGenerator,
   }) {
     _results.add(
       InlineQueryResultCachedVoice(

@@ -17,5 +17,5 @@ enum MessageOriginType {
 
   /// Channel
   @JsonValue('channel')
-  channel;
+  channel,
 }

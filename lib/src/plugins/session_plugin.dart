@@ -56,8 +56,8 @@ class SessionPlugin<CTX extends Context, TSession> implements BotPlugin<CTX> {
     String Function(CTX ctx)? getSessionKey,
     SessionStorage<TSession>? storage,
     this.keyPrefix,
-  })  : getSessionKey = getSessionKey ?? _defaultSessionKeyGenerator,
-        storage = storage ?? MemorySessionStorage<TSession>();
+  }) : getSessionKey = getSessionKey ?? _defaultSessionKeyGenerator,
+       storage = storage ?? MemorySessionStorage<TSession>();
 
   @override
   String get name => 'session';

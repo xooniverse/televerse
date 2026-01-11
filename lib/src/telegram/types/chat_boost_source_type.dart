@@ -14,5 +14,4 @@ enum ChatBoostSourceType {
   /// The chat was boosted using a giveaway.
   @JsonValue('giveaway')
   giveaway,
-  ;
 }

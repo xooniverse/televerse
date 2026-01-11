@@ -15,12 +15,7 @@ class LocalFile {
   final Map<String, List<String>>? headers;
 
   /// Constructs the Local File with the given bytes, and file name.
-  const LocalFile(
-    this.bytes, {
-    this.fileName,
-    this.contentType,
-    this.headers,
-  });
+  const LocalFile(this.bytes, {this.fileName, this.contentType, this.headers});
 }
 
 /// Represents a list of maps containing key-value pairs for multipart files.
@@ -95,10 +90,7 @@ class Payload {
   ///
   /// A new `Payload` object with the provided parameters and files.
   factory Payload.from([Map<String, dynamic>? params, PayloadFiles? files]) =>
-      Payload(
-        params,
-        files,
-      );
+      Payload(params, files);
 
   /// Get the parameter value for the key
   Object? operator [](String key) {

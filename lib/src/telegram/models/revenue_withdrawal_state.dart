@@ -16,10 +16,7 @@ abstract interface class _RevenueWithdrawalStateImpl {
 /// - [RevenueWithdrawalStatePending]
 /// - [RevenueWithdrawalStateSucceeded]
 /// - [RevenueWithdrawalStateFailed]
-@Freezed(
-  unionKey: 'type',
-  unionValueCase: FreezedUnionCase.snake,
-)
+@Freezed(unionKey: 'type', unionValueCase: FreezedUnionCase.snake)
 sealed class RevenueWithdrawalState
     with _$RevenueWithdrawalState
     implements _RevenueWithdrawalStateImpl {

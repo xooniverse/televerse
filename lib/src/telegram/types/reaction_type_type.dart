@@ -13,5 +13,5 @@ enum ReactionTypeType {
 
   /// Paid reaction
   @JsonValue('paid')
-  paid;
+  paid,
 }

@@ -30,5 +30,5 @@ enum TransactionPartnerType {
 
   /// Describes a transaction with a chat.
   @JsonValue('chat')
-  chat;
+  chat,
 }

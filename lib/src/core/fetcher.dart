@@ -76,13 +76,13 @@ class FetcherConfig {
     this.dropPendingUpdates = false,
     this.maxConcurrentUpdates = 10,
   }) : allowedUpdates = const [
-          UpdateType.message,
-          UpdateType.editedMessage,
-          UpdateType.channelPost,
-          UpdateType.editedChannelPost,
-          UpdateType.businessMessage,
-          UpdateType.editedBusinessMessage,
-        ];
+         UpdateType.message,
+         UpdateType.editedMessage,
+         UpdateType.channelPost,
+         UpdateType.editedChannelPost,
+         UpdateType.businessMessage,
+         UpdateType.editedBusinessMessage,
+       ];
 
   /// Creates a configuration for callback queries only.
   const FetcherConfig.callbackQueriesOnly({
@@ -95,7 +95,7 @@ class FetcherConfig {
     this.dropPendingUpdates = false,
     this.maxConcurrentUpdates = 10,
   }) : allowedUpdates = const [
-          UpdateType.inlineQuery,
-          UpdateType.chosenInlineResult,
-        ];
+         UpdateType.inlineQuery,
+         UpdateType.chosenInlineResult,
+       ];
 }

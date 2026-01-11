@@ -53,5 +53,5 @@ enum PassportType {
 
   /// Personal Details of the user
   @JsonValue('personal_details')
-  personalDetails;
+  personalDetails,
 }

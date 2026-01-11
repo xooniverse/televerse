@@ -21,10 +21,7 @@ class _InlineMenuButton<CTX extends Context> {
 
   /// Converts this button to an InlineKeyboardButton.
   InlineKeyboardButton toKeyboardButton() {
-    return InlineKeyboardButton(
-      text: text,
-      callbackData: data,
-    );
+    return InlineKeyboardButton(text: text, callbackData: data);
   }
 }
 
@@ -118,11 +115,7 @@ class InlineMenu<CTX extends Context> extends TeleverseMenu<CTX>
   ///   await ctx.answerCallbackQuery(text: 'Button was clicked!');
   /// });
   /// ```
-  InlineMenu<CTX> text(
-    String text,
-    String data,
-    MenuHandler<CTX> handler,
-  ) {
+  InlineMenu<CTX> text(String text, String data, MenuHandler<CTX> handler) {
     _ensureCurrentRow();
     final button = _InlineMenuButton<CTX>(
       text: text,
@@ -216,10 +209,7 @@ class InlineMenu<CTX extends Context> extends TeleverseMenu<CTX>
   /// ```
   InlineMenu<CTX> switchInline(String text, String query) {
     _ensureCurrentRow();
-    final button = InlineKeyboardButton(
-      text: text,
-      switchInlineQuery: query,
-    );
+    final button = InlineKeyboardButton(text: text, switchInlineQuery: query);
     _rows.last.add(_InlineMenuItemStatic(_InlineMenuStaticButton(button)));
     return this;
   }
@@ -336,10 +326,7 @@ class InlineMenu<CTX extends Context> extends TeleverseMenu<CTX>
           final button = item.button;
 
           // Register callback query handler for this button
-          bot.on(
-            CallbackQueryFilter<CTX>(data: button.data),
-            button.handler,
-          );
+          bot.on(CallbackQueryFilter<CTX>(data: button.data), button.handler);
         }
       }
     }

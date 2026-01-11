@@ -13,5 +13,5 @@ enum InputStickerFormat {
 
   /// For a WEBM video
   @JsonValue("video")
-  video;
+  video,
 }

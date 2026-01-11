@@ -17,5 +17,5 @@ enum MaskPositionPoint {
 
   /// The mask should be placed relatively to the chin.
   @JsonValue('chin')
-  chin;
+  chin,
 }

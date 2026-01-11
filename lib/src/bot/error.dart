@@ -22,15 +22,12 @@ class BotError<CTX extends Context> extends TeleverseException {
   /// - [error]: The original error that occurred
   /// - [stackTrace]: The original stack trace
   /// - [ctx]: The context in which the error occurred
-  BotError({
-    required this.error,
-    required super.stackTrace,
-    this.ctx,
-  }) : super(
-          'Bot error occurred: $error',
-          description: _buildDescription(error, ctx),
-          type: TeleverseExceptionType.requestFailed,
-        );
+  BotError({required this.error, required super.stackTrace, this.ctx})
+    : super(
+        'Bot error occurred: $error',
+        description: _buildDescription(error, ctx),
+        type: TeleverseExceptionType.requestFailed,
+      );
 
   /// Builds a description for the error.
   static String _buildDescription(Object originalError, Context? ctx) {
@@ -57,35 +54,17 @@ class BotError<CTX extends Context> extends TeleverseException {
     StackTrace stackTrace,
     CTX? ctx,
   ) {
-    return BotError<CTX>(
-      error: error,
-      stackTrace: stackTrace,
-      ctx: ctx,
-    );
+    return BotError<CTX>(error: error, stackTrace: stackTrace, ctx: ctx);
   }
 
   /// Creates a bot error from an exception during update fetching.
-  factory BotError.fromFetcher(
-    Object error,
-    StackTrace stackTrace,
-  ) {
-    return BotError<CTX>(
-      error: error,
-      stackTrace: stackTrace,
-    );
+  factory BotError.fromFetcher(Object error, StackTrace stackTrace) {
+    return BotError<CTX>(error: error, stackTrace: stackTrace);
   }
 
   /// Creates a bot error from an exception during API call.
-  factory BotError.fromAPI(
-    Object error,
-    StackTrace stackTrace,
-    CTX? ctx,
-  ) {
-    return BotError<CTX>(
-      error: error,
-      stackTrace: stackTrace,
-      ctx: ctx,
-    );
+  factory BotError.fromAPI(Object error, StackTrace stackTrace, CTX? ctx) {
+    return BotError<CTX>(error: error, stackTrace: stackTrace, ctx: ctx);
   }
 
   /// Checks if context is available.
@@ -125,9 +104,8 @@ class BotError<CTX extends Context> extends TeleverseException {
 ///
 /// Parameters:
 /// - [error]: The error that was caught
-typedef ErrorHandler<CTX extends Context> = FutureOr<void> Function(
-  BotError<CTX> error,
-);
+typedef ErrorHandler<CTX extends Context> =
+    FutureOr<void> Function(BotError<CTX> error);
 
 /// Error boundary handler function type.
 ///
@@ -137,7 +115,5 @@ typedef ErrorHandler<CTX extends Context> = FutureOr<void> Function(
 /// Parameters:
 /// - [error]: The error that was caught
 /// - [next]: Function to continue execution with middleware after the boundary
-typedef ErrorBoundaryHandler<CTX extends Context> = FutureOr<void> Function(
-  BotError<CTX> error,
-  NextFunction next,
-);
+typedef ErrorBoundaryHandler<CTX extends Context> =
+    FutureOr<void> Function(BotError<CTX> error, NextFunction next);

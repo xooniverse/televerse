@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/file_provider/file_provider.dart';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart' show InputFileConverter, InputFile;
 part 'input_profile_photo.freezed.dart';
@@ -17,9 +18,14 @@ abstract interface class _WithProfilePhotoType {
 @Freezed(unionKey: 'type', unionValueCase: FreezedUnionCase.snake)
 sealed class InputProfilePhoto
     with _$InputProfilePhoto
-    implements _WithProfilePhotoType {
+    implements _WithProfilePhotoType, InputFileProvider {
   /// Private constructor
   const InputProfilePhoto._();
+
+  @override
+  Iterable<InputFile> getInputFiles() {
+    return [file];
+  }
 
   /// The InputFile getter
   InputFile get file {

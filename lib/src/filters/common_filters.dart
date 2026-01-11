@@ -630,7 +630,7 @@ class EntityFilter<CTX extends Context> extends Filter<CTX> {
   /// Parameters:
   /// - [entityType]: The entity type to match
   EntityFilter.single(MessageEntityType entityType)
-      : entityTypes = {entityType};
+    : entityTypes = {entityType};
 
   @override
   bool matches(CTX ctx) {
@@ -704,8 +704,9 @@ class HashtagFilter<CTX extends Context> extends Filter<CTX> {
 
     if (entities == null || text == null) return false;
 
-    final hashtagEntities =
-        entities.where((entity) => entity.type == MessageEntityType.hashtag);
+    final hashtagEntities = entities.where(
+      (entity) => entity.type == MessageEntityType.hashtag,
+    );
 
     if (hashtagEntities.isEmpty) return false;
 
