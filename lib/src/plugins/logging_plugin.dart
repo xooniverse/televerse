@@ -66,9 +66,7 @@ class _LoggingTransformer extends Transformer {
   ///
   /// Parameters:
   /// - [options]: Logging configuration options (default: all enabled)
-  const _LoggingTransformer({
-    this.options = const LoggerOptions(),
-  });
+  const _LoggingTransformer({this.options = const LoggerOptions()});
 
   @override
   String get description => 'API request/response logging utility';
@@ -314,8 +312,7 @@ class _LoggingTransformer extends Transformer {
 
   /// Generates a unique request ID for tracking.
   String _generateRequestId() {
-    return DateTime.now()
-        .millisecondsSinceEpoch
+    return DateTime.now().millisecondsSinceEpoch
         .toRadixString(36)
         .toUpperCase();
   }
@@ -385,46 +382,46 @@ class LoggerOptions {
     this.logPrint = print,
     this.methods = APIMethod.values,
     this.colorOutput = true,
-  })  : request = true,
-        requestBody = false,
-        responseBody = false,
-        error = true,
-        stackTrace = false,
-        prettyPrint = false;
+  }) : request = true,
+       requestBody = false,
+       responseBody = false,
+       error = true,
+       stackTrace = false,
+       prettyPrint = false;
 
   /// Creates detailed logging options (all information enabled).
   const LoggerOptions.detailed({
     this.logPrint = print,
     this.methods = APIMethod.values,
     this.colorOutput = true,
-  })  : request = true,
-        requestBody = true,
-        responseBody = true,
-        error = true,
-        stackTrace = true,
-        prettyPrint = true;
+  }) : request = true,
+       requestBody = true,
+       responseBody = true,
+       error = true,
+       stackTrace = true,
+       prettyPrint = true;
 
   /// Creates error-only logging options.
   const LoggerOptions.errorsOnly({
     this.logPrint = print,
     this.methods = APIMethod.values,
     this.colorOutput = true,
-  })  : request = false,
-        requestBody = false,
-        responseBody = false,
-        error = true,
-        stackTrace = true,
-        prettyPrint = false;
+  }) : request = false,
+       requestBody = false,
+       responseBody = false,
+       error = true,
+       stackTrace = true,
+       prettyPrint = false;
 
   /// Creates production-safe logging options (no sensitive data).
   const LoggerOptions.production({
     this.logPrint = print,
     this.methods = APIMethod.values,
     this.colorOutput = false,
-  })  : request = true,
-        requestBody = false,
-        responseBody = false,
-        error = true,
-        stackTrace = false,
-        prettyPrint = false;
+  }) : request = true,
+       requestBody = false,
+       responseBody = false,
+       error = true,
+       stackTrace = false,
+       prettyPrint = false;
 }

@@ -37,5 +37,5 @@ enum PassportElementErrorSource {
 
   /// Unspecified error source
   @JsonValue('unspecified')
-  unspecified;
+  unspecified,
 }

@@ -19,5 +19,4 @@ enum BackgroundTypeType {
   /// The background is taken directly from a built-in chat theme.
   @JsonValue("chat_theme")
   chatTheme,
-  ;
 }

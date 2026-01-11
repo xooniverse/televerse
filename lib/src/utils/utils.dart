@@ -20,14 +20,14 @@ extension CleanString on String {
 
 /// Internal method to generate a random id.
 /// Include a-z, A-Z, 0-9
-String getRandomID([
-  int len = 20,
-]) {
+String getRandomID([int len = 20]) {
   final random = math.Random();
   final chars =
       "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  return List.generate(len, (index) => chars[random.nextInt(chars.length)])
-      .join();
+  return List.generate(
+    len,
+    (index) => chars[random.nextInt(chars.length)],
+  ).join();
 }
 
 /// Null filter function.
@@ -39,16 +39,17 @@ extension FromAndChatExt on Update {
   ///
   /// This can be any of `msg.chat` or `myChatMember.chat` or `chatMember.chat` or `chatJoinRequest.chat` or `messageReaction.chat` or `messageReactionCount.chat` or `chatBoost.chat` or `removedChatBoost.chat` or `callbackQuery.message.chat`, or `businessMessage.chat` or `editedBusinessMessage.chat` or `deletedBusinessMessage.chat`.
   Chat? get chat {
-    Chat? x = (chatJoinRequest ??
-            removedChatBoost ??
-            chatBoost ??
-            chatMember ??
-            myChatMember ??
-            messageReaction ??
-            messageReactionCount ??
-            deletedBusinessMessages ??
-            msg)
-        ?.chat;
+    Chat? x =
+        (chatJoinRequest ??
+                removedChatBoost ??
+                chatBoost ??
+                chatMember ??
+                myChatMember ??
+                messageReaction ??
+                messageReactionCount ??
+                deletedBusinessMessages ??
+                msg)
+            ?.chat;
 
     if (callbackQuery?.message is Message) {
       x ??= (callbackQuery?.message as Message).chat;
@@ -59,18 +60,19 @@ extension FromAndChatExt on Update {
 
   /// A shorthand getter for the [User] instance from the update.
   User? get from {
-    User? x = (callbackQuery ??
-            inlineQuery ??
-            shippingQuery ??
-            preCheckoutQuery ??
-            chosenInlineResult ??
-            msg ??
-            myChatMember ??
-            chatMember ??
-            chatJoinRequest ??
-            businessConnection ??
-            purchasedPaidMedia)
-        ?.from;
+    User? x =
+        (callbackQuery ??
+                inlineQuery ??
+                shippingQuery ??
+                preCheckoutQuery ??
+                chosenInlineResult ??
+                msg ??
+                myChatMember ??
+                chatMember ??
+                chatJoinRequest ??
+                businessConnection ??
+                purchasedPaidMedia)
+            ?.from;
     if (callbackQuery?.message is Message) {
       x ??= (callbackQuery?.message as Message).from;
     }
@@ -81,7 +83,8 @@ extension FromAndChatExt on Update {
   ///
   /// This can either be `Message` or `Channel Post` or `Edited Message` or `Edited Channel Post` or `Business Message` or `Edited Business Message` or `Callback Query Message`.
   Message? get msg {
-    Message? m = message ??
+    Message? m =
+        message ??
         editedMessage ??
         channelPost ??
         editedChannelPost ??

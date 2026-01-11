@@ -18,10 +18,7 @@ class HttpClientFactory {
     Duration timeout = const Duration(seconds: 30),
     Duration receiveTimeout = const Duration(seconds: 30),
   }) {
-    return DioHttpClient(
-      timeout: timeout,
-      receiveTimeout: receiveTimeout,
-    );
+    return DioHttpClient(timeout: timeout, receiveTimeout: receiveTimeout);
   }
 
   /// Creates a [DioHttpClient] with a custom Dio instance.
@@ -47,10 +44,7 @@ class HttpClientFactory {
     Duration timeout = const Duration(seconds: 60),
     Duration receiveTimeout = const Duration(seconds: 60),
   }) {
-    return DioHttpClient(
-      timeout: timeout,
-      receiveTimeout: receiveTimeout,
-    );
+    return DioHttpClient(timeout: timeout, receiveTimeout: receiveTimeout);
   }
 
   /// Creates a mock HTTP client for testing purposes.
@@ -60,9 +54,7 @@ class HttpClientFactory {
   ///
   /// Parameters:
   /// - [responses]: A map of URL patterns to mock responses
-  static HttpClient createMock({
-    Map<String, Map<String, dynamic>>? responses,
-  }) {
+  static HttpClient createMock({Map<String, Map<String, dynamic>>? responses}) {
     return MockHttpClient(responses ?? {});
   }
 }
@@ -88,11 +80,7 @@ class MockHttpClient implements HttpClient {
   Future<Map<String, dynamic>> post(String url, [Payload? payload]) async {
     // Record the request for testing verification
     _requestHistory.add(
-      MockRequest(
-        url: url,
-        payload: payload,
-        timestamp: DateTime.now(),
-      ),
+      MockRequest(url: url, payload: payload, timestamp: DateTime.now()),
     );
 
     // Find matching response

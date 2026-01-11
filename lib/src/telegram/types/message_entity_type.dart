@@ -94,5 +94,5 @@ enum MessageEntityType {
 
   /// Expandable Block Quote
   @JsonValue('expandable_blockquote')
-  expandableBlockquote;
+  expandableBlockquote,
 }

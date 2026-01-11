@@ -14,19 +14,11 @@ class BotInfo {
   final int? id;
 
   /// Creates a new [BotInfo] instance.
-  const BotInfo({
-    this.me,
-    this.username,
-    this.id,
-  });
+  const BotInfo({this.me, this.username, this.id});
 
   /// Creates BotInfo from User object
   factory BotInfo.fromUser(User user) {
-    return BotInfo(
-      me: user,
-      username: user.username,
-      id: user.id,
-    );
+    return BotInfo(me: user, username: user.username, id: user.id);
   }
 }
 
@@ -256,7 +248,8 @@ class Context {
   }
 
   Message? _computeMsg() {
-    Message? m = message ??
+    Message? m =
+        message ??
         editedMessage ??
         channelPost ??
         editedChannelPost ??
@@ -275,7 +268,8 @@ class Context {
   /// The result is cached after the first access for better performance.
   User? get from {
     if (!_fromCached) {
-      _cachedFrom = callbackQuery?.from ??
+      _cachedFrom =
+          callbackQuery?.from ??
           inlineQuery?.from ??
           chosenInlineResult?.from ??
           shippingQuery?.from ??
@@ -293,7 +287,8 @@ class Context {
   /// The result is cached after the first access for better performance.
   Chat? get chat {
     if (!_chatCached) {
-      _cachedChat = message?.chat ??
+      _cachedChat =
+          message?.chat ??
           editedMessage?.chat ??
           channelPost?.chat ??
           editedChannelPost?.chat ??
@@ -503,7 +498,8 @@ class Context {
         _cachedHasCommand = false;
       } else {
         final firstEntity = messageEntities.first;
-        _cachedHasCommand = firstEntity.type == MessageEntityType.botCommand &&
+        _cachedHasCommand =
+            firstEntity.type == MessageEntityType.botCommand &&
             firstEntity.offset == 0;
       }
       _hasCommandCached = true;
@@ -728,8 +724,5 @@ class Context {
 /// Type alias for context factory function.
 ///
 /// This function is used to create custom context instances from updates.
-typedef ContextFactory<CTX extends Context> = CTX Function(
-  Update update,
-  RawAPI api,
-  BotInfo botInfo,
-);
+typedef ContextFactory<CTX extends Context> =
+    CTX Function(Update update, RawAPI api, BotInfo botInfo);

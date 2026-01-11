@@ -11,10 +11,8 @@ part of '../../televerse.dart';
 /// - [payload]: The payload containing request parameters and files
 ///
 /// Returns the API response as a Map.
-typedef APICaller = Future<Map<String, dynamic>> Function(
-  APIMethod method, [
-  Payload? payload,
-]);
+typedef APICaller =
+    Future<Map<String, dynamic>> Function(APIMethod method, [Payload? payload]);
 
 /// Abstract base class for API request transformers.
 ///

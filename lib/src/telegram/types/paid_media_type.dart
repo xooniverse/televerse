@@ -13,5 +13,5 @@ enum PaidMediaType {
 
   /// Video paid media
   @JsonValue('video')
-  video;
+  video,
 }

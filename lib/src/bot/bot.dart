@@ -96,9 +96,9 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     BotInfo? botInfo,
     HttpClient? httpClient,
     String? baseUrl,
-  })  : _contextFactory = contextFactory ?? _defaultContextFactory,
-        botInfo = botInfo ?? const BotInfo(),
-        api = RawAPI(token, httpClient: httpClient, baseUrl: baseUrl);
+  }) : _contextFactory = contextFactory ?? _defaultContextFactory,
+       botInfo = botInfo ?? const BotInfo(),
+       api = RawAPI(token, httpClient: httpClient, baseUrl: baseUrl);
 
   /// Creates a Bot instance for use with a local Bot API server.
   ///
@@ -180,8 +180,8 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     this.api, {
     required ContextFactory<CTX> contextFactory,
     required this.botInfo,
-  })  : _contextFactory = contextFactory,
-        token = api.token;
+  }) : _contextFactory = contextFactory,
+       token = api.token;
 
   // ===============================
   // Bot Lifecycle
@@ -353,10 +353,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     );
 
     // Create webhook fetcher
-    final fetcher = WebhookFetcher(
-      api: api,
-      config: config,
-    );
+    final fetcher = WebhookFetcher(api: api, config: config);
 
     // Start the bot with webhook fetcher
     await start(fetcher);
@@ -482,11 +479,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
       _updateErrorStats(duration);
 
       // Create bot error
-      final botError = BotError<CTX>.fromMiddleware(
-        error,
-        stackTrace,
-        ctx,
-      );
+      final botError = BotError<CTX>.fromMiddleware(error, stackTrace, ctx);
 
       // Handle the error through the error handling system
       await _handleErrorFromMiddleware(botError);
@@ -637,10 +630,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   ///   await ctx.reply('Good ${match.group(1)} to you too!');
   /// });
   /// ```
-  Bot<CTX> hears(
-    Pattern pattern,
-    UpdateHandler<CTX> handler,
-  ) {
+  Bot<CTX> hears(Pattern pattern, UpdateHandler<CTX> handler) {
     Filter<CTX> filter;
 
     if (pattern is String) {
@@ -1161,10 +1151,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onEmail(UpdateHandler<CTX> handler) {
-    return on(
-      EntityFilter<CTX>.single(MessageEntityType.email),
-      handler,
-    );
+    return on(EntityFilter<CTX>.single(MessageEntityType.email), handler);
   }
 
   /// Adds a handler for messages with phone number entities.
@@ -1172,10 +1159,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Parameters:
   /// - [handler]: The handler function
   Bot<CTX> onPhoneNumber(UpdateHandler<CTX> handler) {
-    return on(
-      EntityFilter<CTX>.single(MessageEntityType.phoneNumber),
-      handler,
-    );
+    return on(EntityFilter<CTX>.single(MessageEntityType.phoneNumber), handler);
   }
 
   /// Adds a handler for messages with hashtag entities.
@@ -1200,29 +1184,26 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// - [handler]: The handler function
   Bot<CTX> whenMentioned(UpdateHandler<CTX> handler) {
     return on(
-      PredicateFilter<CTX>(
-        (ctx) {
-          final entities = ctx.entities;
-          final text = ctx.text;
-          final botUsername = botInfo.username;
+      PredicateFilter<CTX>((ctx) {
+        final entities = ctx.entities;
+        final text = ctx.text;
+        final botUsername = botInfo.username;
 
-          if (entities == null || text == null || botUsername == null) {
-            return false;
+        if (entities == null || text == null || botUsername == null) {
+          return false;
+        }
+
+        return entities.any((entity) {
+          if (entity.type == MessageEntityType.mention) {
+            final mentionText = text.substring(
+              entity.offset + 1, // Skip @
+              entity.offset + entity.length,
+            );
+            return mentionText.toLowerCase() == botUsername.toLowerCase();
           }
-
-          return entities.any((entity) {
-            if (entity.type == MessageEntityType.mention) {
-              final mentionText = text.substring(
-                entity.offset + 1, // Skip @
-                entity.offset + entity.length,
-              );
-              return mentionText.toLowerCase() == botUsername.toLowerCase();
-            }
-            return false;
-          });
-        },
-        name: 'bot-mentioned',
-      ),
+          return false;
+        });
+      }, name: 'bot-mentioned'),
       handler,
     );
   }
@@ -1695,10 +1676,11 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     final newAverage = _stats.averageProcessingTime == Duration.zero
         ? processingTime
         : Duration(
-            milliseconds: ((_stats.averageProcessingTime.inMilliseconds +
-                        processingTime.inMilliseconds) /
-                    2)
-                .round(),
+            milliseconds:
+                ((_stats.averageProcessingTime.inMilliseconds +
+                            processingTime.inMilliseconds) /
+                        2)
+                    .round(),
           );
 
     _stats = BotStats(
@@ -1762,12 +1744,12 @@ class BotStats {
 
   /// Creates empty statistics.
   BotStats.empty()
-      : totalUpdates = 0,
-        processedUpdates = 0,
-        errorUpdates = 0,
-        startTime = DateTime.now(),
-        averageProcessingTime = Duration.zero,
-        lastUpdateTime = null;
+    : totalUpdates = 0,
+      processedUpdates = 0,
+      errorUpdates = 0,
+      startTime = DateTime.now(),
+      averageProcessingTime = Duration.zero,
+      lastUpdateTime = null;
 
   /// Success rate as a percentage.
   double get successRate {

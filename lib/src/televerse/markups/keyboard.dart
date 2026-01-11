@@ -304,10 +304,7 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   ///   type: PollType.quiz,
   /// );
   /// ```
-  static KeyboardButton buttonPoll({
-    required String text,
-    PollType? type,
-  }) {
+  static KeyboardButton buttonPoll({required String text, PollType? type}) {
     return KeyboardButton(
       text: text,
       requestPoll: KeyboardButtonPollType(type: type),
@@ -400,8 +397,9 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   /// final keyboard = Keyboard().addRow(buttons);
   /// ```
   Keyboard addRow(List<KeyboardButton> buttons) {
-    final newKeyboard =
-        keyboard.map((row) => List<KeyboardButton>.from(row)).toList();
+    final newKeyboard = keyboard
+        .map((row) => List<KeyboardButton>.from(row))
+        .toList();
     newKeyboard.add(List<KeyboardButton>.from(buttons));
     return copyWith(keyboard: newKeyboard);
   }
@@ -617,8 +615,9 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   Keyboard transpose() {
     if (isEmpty) return this;
 
-    final maxCols =
-        keyboard.map((row) => row.length).reduce((a, b) => a > b ? a : b);
+    final maxCols = keyboard
+        .map((row) => row.length)
+        .reduce((a, b) => a > b ? a : b);
     final transposed = <List<KeyboardButton>>[];
 
     for (int col = 0; col < maxCols; col++) {

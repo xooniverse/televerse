@@ -9,11 +9,7 @@ part 'reply_markup.g.dart';
 
 /// Represents a [ReplyMarkup] that can be used to send a message with custom
 /// keyboard, instructions to hide keyboard or to force a reply from the user.
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  copyWith: false,
-)
+@Freezed(fromJson: true, toJson: true, copyWith: false)
 sealed class ReplyMarkup with _$ReplyMarkup {
   const ReplyMarkup._();
 

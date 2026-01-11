@@ -23,5 +23,4 @@ enum InputMediaType {
 
   /// For a video file to send.
   video,
-  ;
 }

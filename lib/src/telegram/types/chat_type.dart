@@ -28,5 +28,5 @@ enum ChatType {
   ///
   /// Note: Only For Inline Query
   @JsonValue("sender")
-  sender;
+  sender,
 }

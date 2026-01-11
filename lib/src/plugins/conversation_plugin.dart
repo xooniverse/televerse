@@ -52,11 +52,11 @@ class ConversationPlugin<CTX extends Context> implements BotPlugin<CTX> {
 
   /// Callback called when a conversation expires.
   final void Function(String conversationName, String key)?
-      onConversationExpired;
+  onConversationExpired;
 
   /// Callback called when a conversation times out during wait.
   final Future<void> Function(String conversationName, CTX? ctx)?
-      onConversationTimeout;
+  onConversationTimeout;
 
   /// Registry of conversation functions.
   final Map<String, _ConversationWrapper<CTX>> _conversations = {};
@@ -81,8 +81,8 @@ class ConversationPlugin<CTX extends Context> implements BotPlugin<CTX> {
     this.cleanupInterval = const Duration(minutes: 5),
     this.onConversationExpired,
     this.onConversationTimeout,
-  })  : storage = storage ?? MemoryConversationStorage(),
-        getStorageKey = getStorageKey ?? _defaultStorageKeyGenerator;
+  }) : storage = storage ?? MemoryConversationStorage(),
+       getStorageKey = getStorageKey ?? _defaultStorageKeyGenerator;
 
   @override
   String get name => 'conversation';
@@ -174,10 +174,7 @@ class ConversationPlugin<CTX extends Context> implements BotPlugin<CTX> {
   }
 
   /// Starts a conversation by name.
-  Future<void> enterConversation(
-    String conversationName,
-    CTX ctx,
-  ) async {
+  Future<void> enterConversation(String conversationName, CTX ctx) async {
     final conversationWrapper = _conversations[conversationName];
     if (conversationWrapper == null) {
       throw TeleverseException(
@@ -475,8 +472,9 @@ class Conversation<CTX extends Context> {
       timeoutTimer = Timer(effectiveTimeout, () {
         if (!completer.isCompleted) {
           _plugin._waitingConversations.remove(_storageKey);
-          completer
-              .completeError(ConversationTimeoutException(_conversationName));
+          completer.completeError(
+            ConversationTimeoutException(_conversationName),
+          );
 
           // Notify about timeout if callback is provided
           _plugin.onConversationTimeout?.call(_conversationName, null);
@@ -569,10 +567,7 @@ class Conversation<CTX extends Context> {
   /// );
   /// await photoCtx.reply('Nice photo!');
   /// ```
-  Future<CTX> filter(
-    Filter<CTX> filter, {
-    Duration? timeout,
-  }) async {
+  Future<CTX> filter(Filter<CTX> filter, {Duration? timeout}) async {
     final deadline = timeout != null ? DateTime.now().add(timeout) : null;
 
     CTX ctx;
@@ -896,10 +891,8 @@ class MemoryConversationStorage implements ConversationStorage {
 }
 
 /// Type definition for conversation functions.
-typedef ConversationFunction<CTX extends Context> = Future<void> Function(
-  Conversation<CTX> conversation,
-  CTX ctx,
-);
+typedef ConversationFunction<CTX extends Context> =
+    Future<void> Function(Conversation<CTX> conversation, CTX ctx);
 
 /// Extension to add conversation capabilities to contexts.
 extension ConversationContextExtension on Context {

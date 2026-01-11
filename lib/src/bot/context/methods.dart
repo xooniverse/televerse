@@ -16,7 +16,8 @@ extension ContextAwareMethods on Context {
     if (info.contains(null)) {
       throw TeleverseException(
         "The context does not contain necessary information to call the method `$method`.",
-        description: description ??
+        description:
+            description ??
             "Required information is missing from the current update context.",
         type: TeleverseExceptionType.invalidParameter,
       );
@@ -1014,9 +1015,7 @@ extension ContextAwareMethods on Context {
   /// await ctx.pinMessage();
   /// await ctx.pinMessage(disableNotification: true);
   /// ```
-  Future<bool> pinMessage({
-    bool? disableNotification,
-  }) async {
+  Future<bool> pinMessage({bool? disableNotification}) async {
     final chatId = _getChatId();
     final msgId = messageId;
     _verifyInfo(
@@ -1760,10 +1759,7 @@ extension ContextAwareMethods on Context {
   }
 
   /// Bans the author of the message
-  Future<bool> banAuthor({
-    DateTime? untilDate,
-    bool? revokeMessages,
-  }) async {
+  Future<bool> banAuthor({DateTime? untilDate, bool? revokeMessages}) async {
     _verifyInfo([from?.id], APIMethod.banChatMember);
     return banChatMember(from!.id);
   }
@@ -1788,18 +1784,11 @@ extension ContextAwareMethods on Context {
   /// // Unban user only if they are currently banned
   /// await ctx.unbanChatMember(123456789, onlyIfBanned: true);
   /// ```
-  Future<bool> unbanChatMember(
-    int userId, {
-    bool? onlyIfBanned,
-  }) async {
+  Future<bool> unbanChatMember(int userId, {bool? onlyIfBanned}) async {
     final chatId = _getChatId();
     _verifyInfo([chatId], APIMethod.unbanChatMember);
 
-    return api.unbanChatMember(
-      chatId!,
-      userId,
-      onlyIfBanned: onlyIfBanned,
-    );
+    return api.unbanChatMember(chatId!, userId, onlyIfBanned: onlyIfBanned);
   }
 
   /// Restricts a user in the current chat.
@@ -1876,10 +1865,7 @@ extension ContextAwareMethods on Context {
   /// // Kick user and delete their messages
   /// await ctx.kickChatMember(123456789, revokeMessages: true);
   /// ```
-  Future<bool> kickChatMember(
-    int userId, {
-    bool? revokeMessages,
-  }) async {
+  Future<bool> kickChatMember(int userId, {bool? revokeMessages}) async {
     // Ban the user first
     await banChatMember(userId, revokeMessages: revokeMessages);
 
@@ -1937,11 +1923,7 @@ extension ContextAwareMethods on Context {
       canManageTopics: false,
     );
 
-    return restrictChatMember(
-      userId,
-      permissions,
-      untilDate: untilDate,
-    );
+    return restrictChatMember(userId, permissions, untilDate: untilDate);
   }
 
   /// Unmutes a user in the current chat by restoring their default permissions.
@@ -1962,7 +1944,8 @@ extension ContextAwareMethods on Context {
   Future<bool> unmuteChatMember(int userId) async {
     // Get current chat to access default permissions
     final chatInfo = await getChat();
-    final defaultPermissions = chatInfo.permissions ??
+    final defaultPermissions =
+        chatInfo.permissions ??
         ChatPermissions(
           canSendMessages: true,
           canSendAudios: true,
@@ -2277,10 +2260,7 @@ extension ContextAwareMethods on Context {
   /// await ctx.setReaction([ReactionTypeEmoji(emoji: '👍')]);
   /// await ctx.setReaction([]); // Remove all reactions
   /// ```
-  Future<bool> setReaction(
-    List<ReactionType>? reaction, {
-    bool? isBig,
-  }) async {
+  Future<bool> setReaction(List<ReactionType>? reaction, {bool? isBig}) async {
     final chatId = _getChatId();
     final msgId = messageId;
     _verifyInfo(
@@ -2304,10 +2284,7 @@ extension ContextAwareMethods on Context {
   /// ```dart
   /// await ctx.react('❤️');
   /// ```
-  Future<bool> react(
-    String reaction, {
-    bool? isBig,
-  }) async {
+  Future<bool> react(String reaction, {bool? isBig}) async {
     final chatId = _getChatId();
     final msgId = messageId;
     _verifyInfo(
@@ -2387,11 +2364,7 @@ extension ContextAwareMethods on Context {
       description: "No user information found in the current update.",
     );
 
-    return api.getUserProfilePhotos(
-      userId!,
-      offset: offset,
-      limit: limit,
-    );
+    return api.getUserProfilePhotos(userId!, offset: offset, limit: limit);
   }
 
   // ===============================

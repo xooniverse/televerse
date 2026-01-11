@@ -74,7 +74,8 @@ class TeleverseException implements Exception {
   static TeleverseException getMeRequestFailed(Object err, StackTrace stack) =>
       TeleverseException(
         "RawAPI/getMe Request Failed",
-        description: "The request to /getMe failed.\n\n"
+        description:
+            "The request to /getMe failed.\n\n"
             "Error: $err \n\n"
             "Here are a few things you can try:\n"
             "  1. Make sure the bot token passed is correct.\n"

@@ -9,5 +9,5 @@ enum InputProfilePhotoType {
 
   /// Animated profile photo in MPEG4 format
   @JsonValue('animated')
-  animated;
+  animated,
 }

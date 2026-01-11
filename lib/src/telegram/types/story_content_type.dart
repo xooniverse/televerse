@@ -9,5 +9,5 @@ enum StoryContentType {
 
   /// Video content type
   @JsonValue('video')
-  video;
+  video,
 }

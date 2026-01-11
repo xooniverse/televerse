@@ -260,11 +260,7 @@ class Composer<CTX extends Context> {
         await next();
       } catch (error, stackTrace) {
         // Create bot error
-        final botError = BotError<CTX>.fromMiddleware(
-          error,
-          stackTrace,
-          ctx,
-        );
+        final botError = BotError<CTX>.fromMiddleware(error, stackTrace, ctx);
 
         // Call the error boundary handler with the error and next function
         // The handler decides whether to call next() to continue execution
@@ -361,8 +357,10 @@ class Composer<CTX extends Context> {
     if (entry.concurrent) {
       // Start concurrent execution but don't wait for it
       unawaited(
-        _executeSingleMiddleware(ctx, entry, () async {})
-            .catchError((error, stackTrace) async {
+        _executeSingleMiddleware(ctx, entry, () async {}).catchError((
+          error,
+          stackTrace,
+        ) async {
           // For forked middleware, we handle errors separately
           // to avoid crashing the main middleware chain
           await _handleForkedMiddlewareError(error, stackTrace, ctx);
@@ -401,11 +399,7 @@ class Composer<CTX extends Context> {
     StackTrace stackTrace,
     CTX? ctx,
   ) async {
-    final botError = BotError<CTX>.fromMiddleware(
-      error,
-      stackTrace,
-      ctx,
-    );
+    final botError = BotError<CTX>.fromMiddleware(error, stackTrace, ctx);
 
     // Try global error handler first
     if (_globalErrorHandler != null) {
@@ -491,11 +485,7 @@ class Composer<CTX extends Context> {
     StackTrace stackTrace,
     CTX? ctx,
   ) async {
-    final botError = BotError<CTX>.fromMiddleware(
-      error,
-      stackTrace,
-      ctx,
-    );
+    final botError = BotError<CTX>.fromMiddleware(error, stackTrace, ctx);
 
     // Try global error handler
     if (_globalErrorHandler != null) {

@@ -58,10 +58,7 @@ sealed class ReactionType with _$ReactionType implements _ReactionTypeImpl {
   }) = ReactionTypeCustomEmoji;
 
   /// Paid reaction
-  @Assert(
-    'type == ReactionTypeType.paid',
-    'type must be ReactionTypeType.paid',
-  )
+  @Assert('type == ReactionTypeType.paid', 'type must be ReactionTypeType.paid')
   const factory ReactionType.paid({
     /// Type of the reaction, must be "paid"
     @JsonKey(name: 'type')

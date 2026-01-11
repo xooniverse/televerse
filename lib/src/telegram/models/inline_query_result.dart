@@ -10,9 +10,7 @@ abstract class InlineQueryResult {
   final String id;
 
   /// Creates a new [InlineQueryResult] object.
-  const InlineQueryResult({
-    required this.id,
-  });
+  const InlineQueryResult({required this.id});
 
   /// Converts a [InlineQueryResult] to a [Map] for JSON encoding.
   Map<String, dynamic> toJson();

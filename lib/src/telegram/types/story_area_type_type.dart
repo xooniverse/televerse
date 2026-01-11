@@ -21,5 +21,5 @@ enum StoryAreaTypeType {
 
   /// For a unique gift area
   @JsonValue('unique_gift')
-  uniqueGift;
+  uniqueGift,
 }

@@ -237,7 +237,10 @@ abstract class InlineKeyboard
   /// final button = InlineKeyboard.buttonWebApp("Open App", "https://app.example.com");
   /// ```
   static InlineKeyboardButton buttonWebApp(String text, String url) {
-    return InlineKeyboardButton(text: text, webApp: WebAppInfo(url: url));
+    return InlineKeyboardButton(
+      text: text,
+      webApp: WebAppInfo(url: url),
+    );
   }
 
   /// Creates a login button.
@@ -632,8 +635,9 @@ abstract class InlineKeyboard
   InlineKeyboard transpose() {
     if (isEmpty) return this;
 
-    final maxCols =
-        inlineKeyboard.map((row) => row.length).reduce((a, b) => a > b ? a : b);
+    final maxCols = inlineKeyboard
+        .map((row) => row.length)
+        .reduce((a, b) => a > b ? a : b);
     final transposed = <List<InlineKeyboardButton>>[];
 
     for (int col = 0; col < maxCols; col++) {

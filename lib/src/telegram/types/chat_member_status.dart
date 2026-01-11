@@ -28,5 +28,4 @@ enum ChatMemberStatus {
 
   /// Represents a banned user
   kicked,
-  ;
 }

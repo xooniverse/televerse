@@ -59,8 +59,8 @@ class LongPollingFetcher implements UpdateFetcher {
   LongPollingFetcher(
     RawAPI api, {
     LongPollingConfig config = const LongPollingConfig(),
-  })  : _api = api,
-        _config = config {
+  }) : _api = api,
+       _config = config {
     _updateController = StreamController<Update>.broadcast(
       onListen: _onListen,
       onCancel: _onCancel,
@@ -205,11 +205,7 @@ class LongPollingFetcher implements UpdateFetcher {
   /// Drops pending updates by calling getUpdates with offset -1.
   Future<void> _dropPendingUpdates() async {
     try {
-      await _api.getUpdates(
-        offset: -1,
-        limit: 1,
-        timeout: 1,
-      );
+      await _api.getUpdates(offset: -1, limit: 1, timeout: 1);
     } catch (error) {
       // Ignore errors when dropping pending updates
       // This is a best-effort operation
@@ -250,11 +246,11 @@ class LongPollingConfig extends FetcherConfig {
     super.allowedUpdates,
     super.dropPendingUpdates = false,
     super.maxConcurrentUpdates = 10,
-  })  : assert(
-          timeout >= 1 && timeout <= 50,
-          'Timeout must be between 1 and 50 seconds',
-        ),
-        assert(limit >= 1 && limit <= 100, 'Limit must be between 1 and 100');
+  }) : assert(
+         timeout >= 1 && timeout <= 50,
+         'Timeout must be between 1 and 50 seconds',
+       ),
+       assert(limit >= 1 && limit <= 100, 'Limit must be between 1 and 100');
 
   /// Creates a configuration optimized for low latency.
   ///
@@ -264,8 +260,8 @@ class LongPollingConfig extends FetcherConfig {
     super.dropPendingUpdates = false,
     super.maxConcurrentUpdates = 10,
     this.stopWhenNoListeners = false,
-  })  : timeout = 5,
-        limit = 10;
+  }) : timeout = 5,
+       limit = 10;
 
   /// Creates a configuration optimized for high throughput.
   ///
@@ -275,8 +271,8 @@ class LongPollingConfig extends FetcherConfig {
     super.dropPendingUpdates = false,
     super.maxConcurrentUpdates = 50,
     this.stopWhenNoListeners = false,
-  })  : timeout = 50,
-        limit = 100;
+  }) : timeout = 50,
+       limit = 100;
 
   /// Creates a configuration for development/testing.
   ///
@@ -285,9 +281,9 @@ class LongPollingConfig extends FetcherConfig {
     super.allowedUpdates,
     super.dropPendingUpdates = true,
     super.maxConcurrentUpdates = 5,
-  })  : timeout = 10,
-        limit = 50,
-        stopWhenNoListeners = true;
+  }) : timeout = 10,
+       limit = 50,
+       stopWhenNoListeners = true;
 
   @override
   String toString() {
@@ -323,11 +319,11 @@ class FetcherException extends TeleverseException {
     this.originalError,
     super.stackTrace,
     this.errorCount = 1,
-  })  : originalStackTrace = stackTrace,
-        super(
-          description: originalError?.toString(),
-          type: TeleverseExceptionType.requestFailed,
-        );
+  }) : originalStackTrace = stackTrace,
+       super(
+         description: originalError?.toString(),
+         type: TeleverseExceptionType.requestFailed,
+       );
 
   @override
   String toString() {

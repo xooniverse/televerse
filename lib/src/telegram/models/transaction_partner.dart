@@ -20,10 +20,7 @@ abstract interface class _TransactionPartnerImpl {
 /// - [TransactionPartnerAffiliateProgram]
 /// - [TransactionPartnerTelegramApi]
 /// - [TransactionPartnerChat]
-@Freezed(
-  unionKey: 'type',
-  unionValueCase: FreezedUnionCase.snake,
-)
+@Freezed(unionKey: 'type', unionValueCase: FreezedUnionCase.snake)
 sealed class TransactionPartner
     with _$TransactionPartner
     implements _TransactionPartnerImpl {
