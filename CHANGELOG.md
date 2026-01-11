@@ -1,3 +1,9 @@
+# 3.1.1
+
+- Introduce `InputFileProvider` to streamline file extraction in media models.
+- Include gift related messages in `isServiceMessage` check.
+- Move convenience handler methods from `Bot` to `Composer`.
+
 # 3.1.0
 
 - 🤖 Bot API 9.3
