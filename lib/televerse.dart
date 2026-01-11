@@ -27,6 +27,7 @@ import 'dart:math' as math;
 
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart' as http_parser;
+import 'package:televerse/src/telegram/file_provider/file_provider.dart';
 import 'package:televerse/src/telegram/types/televerse_enum.dart';
 
 import 'package:televerse/telegram.dart';

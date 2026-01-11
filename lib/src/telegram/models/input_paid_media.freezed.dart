@@ -168,7 +168,7 @@ extension InputPaidMediaPatterns on InputPaidMedia {
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
-class InputPaidMediaPhoto implements InputPaidMedia {
+class InputPaidMediaPhoto extends InputPaidMedia {
   const InputPaidMediaPhoto({
     this.type = InputPaidMediaType.photo,
     @InputFileConverter() required this.media,
@@ -177,7 +177,8 @@ class InputPaidMediaPhoto implements InputPaidMedia {
          type == InputPaidMediaType.photo,
          'type must be InputPaidMediaType.photo',
        ),
-       $type = $type ?? 'photo';
+       $type = $type ?? 'photo',
+       super._();
 
   /// Type of the media, must be "photo"
   @override
@@ -253,7 +254,7 @@ class _$InputPaidMediaPhotoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
-class InputPaidMediaVideo implements InputPaidMedia {
+class InputPaidMediaVideo extends InputPaidMedia {
   const InputPaidMediaVideo({
     @JsonKey(name: 'type') this.type = InputPaidMediaType.video,
     @InputFileConverter() @JsonKey(name: 'media') required this.media,
@@ -269,7 +270,8 @@ class InputPaidMediaVideo implements InputPaidMedia {
          type == InputPaidMediaType.video,
          'type must be InputPaidMediaType.video',
        ),
-       $type = $type ?? 'video';
+       $type = $type ?? 'video',
+       super._();
 
   /// Type of the media, must be "video".
   @override

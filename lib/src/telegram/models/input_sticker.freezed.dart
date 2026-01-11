@@ -219,7 +219,7 @@ extension InputStickerPatterns on InputSticker {
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
-class _InputSticker implements InputSticker {
+class _InputSticker extends InputSticker {
   const _InputSticker({
     @JsonKey(name: 'sticker') @InputFileConverter() required this.sticker,
     @JsonKey(name: 'format') required this.format,
@@ -227,7 +227,8 @@ class _InputSticker implements InputSticker {
     @JsonKey(name: 'mask_position') this.maskPosition,
     @JsonKey(name: 'keywords') final List<String>? keywords,
   }) : _emojiList = emojiList,
-       _keywords = keywords;
+       _keywords = keywords,
+       super._();
 
   /// The added sticker. Pass a file_id as a String to send a file that
   /// already exists on the Telegram servers, pass an HTTP URL as a String for

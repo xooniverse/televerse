@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/file_provider/file_provider.dart';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart' show InputFile, InputFileConverter;
 
@@ -18,7 +19,31 @@ abstract interface class _InputMediaImp {
 /// This object represents the content of a media message to be sent. It should
 /// be one of
 @Freezed(fromJson: false, toJson: true)
-sealed class InputMedia with _$InputMedia implements _InputMediaImp {
+sealed class InputMedia
+    with _$InputMedia
+    implements _InputMediaImp, InputFileProvider {
+  const InputMedia._();
+
+  @override
+  Iterable<InputFile?> getInputFiles() {
+    switch (this) {
+      case InputMediaPhoto(media: final media):
+        return [media];
+      case InputMediaDocument(media: final media, thumbnail: final thumbnail):
+        return [media, thumbnail];
+      case InputMediaAnimation(media: final media, thumbnail: final thumbnail):
+        return [media, thumbnail];
+      case InputMediaAudio(media: final media, thumbnail: final thumbnail):
+        return [media, thumbnail];
+      case InputMediaVideo(
+        media: final media,
+        thumbnail: final thumbnail,
+        cover: final cover,
+      ):
+        return [media, thumbnail, cover];
+    }
+  }
+
   /// Represents a photo to be sent.
   const factory InputMedia.photo({
     /// Type of input media.

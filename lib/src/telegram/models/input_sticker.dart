@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/file_provider/file_provider.dart';
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart' show InputFile, InputFileConverter;
 
@@ -8,7 +9,14 @@ part 'input_sticker.g.dart';
 
 /// This object describes a sticker to be added to a sticker set.
 @Freezed(fromJson: false, toJson: true)
-abstract class InputSticker with _$InputSticker {
+abstract class InputSticker with _$InputSticker implements InputFileProvider {
+  const InputSticker._();
+
+  @override
+  Iterable<InputFile> getInputFiles() {
+    return [sticker];
+  }
+
   /// Creates the Input Sticker object.
   const factory InputSticker({
     /// The added sticker. Pass a file_id as a String to send a file that

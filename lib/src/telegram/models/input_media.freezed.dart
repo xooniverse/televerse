@@ -230,7 +230,7 @@ extension InputMediaPatterns on InputMedia {
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
-class InputMediaPhoto implements InputMedia {
+class InputMediaPhoto extends InputMedia {
   const InputMediaPhoto({
     @JsonKey(name: 'type') this.type = InputMediaType.photo,
     @JsonKey(name: 'media') @InputFileConverter() required this.media,
@@ -242,7 +242,8 @@ class InputMediaPhoto implements InputMedia {
     @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
     final String? $type,
   }) : _captionEntities = captionEntities,
-       $type = $type ?? 'photo';
+       $type = $type ?? 'photo',
+       super._();
 
   /// Type of input media.
   @override
@@ -392,7 +393,7 @@ class _$InputMediaPhotoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
-class InputMediaDocument implements InputMedia {
+class InputMediaDocument extends InputMedia {
   const InputMediaDocument({
     @JsonKey(name: 'type') this.type = InputMediaType.document,
     @JsonKey(name: 'media') @InputFileConverter() required this.media,
@@ -405,7 +406,8 @@ class InputMediaDocument implements InputMedia {
     this.disableContentTypeDetection,
     final String? $type,
   }) : _captionEntities = captionEntities,
-       $type = $type ?? 'document';
+       $type = $type ?? 'document',
+       super._();
 
   /// Type of input media.
   @override
@@ -559,7 +561,7 @@ class _$InputMediaDocumentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
-class InputMediaAnimation implements InputMedia {
+class InputMediaAnimation extends InputMedia {
   const InputMediaAnimation({
     @JsonKey(name: 'type') this.type = InputMediaType.animation,
     @JsonKey(name: 'media') @InputFileConverter() required this.media,
@@ -575,7 +577,8 @@ class InputMediaAnimation implements InputMedia {
     @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
     final String? $type,
   }) : _captionEntities = captionEntities,
-       $type = $type ?? 'animation';
+       $type = $type ?? 'animation',
+       super._();
 
   /// Type of input media.
   @override
@@ -766,7 +769,7 @@ class _$InputMediaAnimationCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
-class InputMediaAudio implements InputMedia {
+class InputMediaAudio extends InputMedia {
   const InputMediaAudio({
     @JsonKey(name: 'type') this.type = InputMediaType.audio,
     @JsonKey(name: 'media') @InputFileConverter() required this.media,
@@ -780,7 +783,8 @@ class InputMediaAudio implements InputMedia {
     @JsonKey(name: 'title') this.title,
     final String? $type,
   }) : _captionEntities = captionEntities,
-       $type = $type ?? 'audio';
+       $type = $type ?? 'audio',
+       super._();
 
   /// Type of input media.
   @override
@@ -950,7 +954,7 @@ class _$InputMediaAudioCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
-class InputMediaVideo implements InputMedia {
+class InputMediaVideo extends InputMedia {
   const InputMediaVideo({
     @JsonKey(name: 'type') this.type = InputMediaType.video,
     @JsonKey(name: 'media') @InputFileConverter() required this.media,
@@ -969,7 +973,8 @@ class InputMediaVideo implements InputMedia {
     @JsonKey(name: 'cover') @InputFileConverter() this.cover,
     final String? $type,
   }) : _captionEntities = captionEntities,
-       $type = $type ?? 'video';
+       $type = $type ?? 'video',
+       super._();
 
   /// Type of input media.
   @override
