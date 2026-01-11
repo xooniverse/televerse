@@ -25,6 +25,12 @@ class Composer<CTX extends Context> {
   /// Global error handler.
   ErrorHandler<CTX>? _globalErrorHandler;
 
+  /// Context-aware filters for this composer instance.
+  ///
+  /// Provides type-safe access to all available filters without needing
+  /// to specify generic types manually.
+  final Filters<CTX> filters = Filters<CTX>();
+
   /// Creates a new composer.
   Composer();
 
@@ -33,6 +39,35 @@ class Composer<CTX extends Context> {
     for (final middleware in initialMiddleware) {
       use(middleware);
     }
+  }
+
+  /// Makes the Composer callable as middleware.
+  ///
+  /// This allows you to use a Composer instance directly as middleware:
+  /// ```dart
+  /// final subComposer = Composer<Context>();
+  /// subComposer.use(someMiddleware);
+  ///
+  /// // Use subComposer as middleware
+  /// bot.use(subComposer);
+  /// ```
+  Future<void> call(CTX ctx, NextFunction next) async {
+    await _executeMiddleware(ctx, 0, next);
+  }
+
+  /// Creates a new handler group.
+  ///
+  /// A handler group is a new Composer that is linked to this one.
+  /// It allows you to organize your handlers and middleware into groups.
+  ///
+  /// Parameters:
+  /// - [name]: Optional name for the group (for debugging)
+  ///
+  /// Returns the new handler group (Composer).
+  Composer<CTX> group([String? name]) {
+    final composer = Composer<CTX>();
+    useNamed(name ?? 'group', composer.call);
+    return composer;
   }
 
   // ===============================
@@ -309,6 +344,541 @@ class Composer<CTX extends Context> {
   }
 
   // ===============================
+  // Convenience Methods
+  // ===============================
+
+  /// Adds a handler using a custom filter.
+  ///
+  /// This method allows you to use any filter implementation to determine
+  /// when the handler should be executed.
+  ///
+  /// Parameters:
+  /// - [filter]: The filter to use
+  /// - [handler]: The handler function
+  Composer<CTX> on(Filter<CTX> filter, UpdateHandler<CTX> handler) {
+    return use((ctx, next) async {
+      if (filter.matches(ctx)) {
+        await handler(ctx);
+      } else {
+        await next();
+      }
+    });
+  }
+
+  /// Adds a handler for a specific command.
+  Composer<CTX> command(
+    String command,
+    UpdateHandler<CTX> handler, {
+    bool caseSensitive = false,
+  }) {
+    return on(
+      CommandFilter<CTX>(command, caseSensitive: caseSensitive),
+      handler,
+    );
+  }
+
+  /// Adds a handler for text messages that match a pattern.
+  Composer<CTX> hears(Pattern pattern, UpdateHandler<CTX> handler) {
+    Filter<CTX> filter;
+
+    if (pattern is String) {
+      filter = TextFilter<CTX>(text: pattern);
+    } else if (pattern is RegExp) {
+      filter = RegexFilter<CTX>(pattern);
+    } else {
+      throw ArgumentError('Pattern must be String or RegExp');
+    }
+
+    return on(filter, handler);
+  }
+
+  /// Adds a handler that runs for any text message.
+  Composer<CTX> onText(UpdateHandler<CTX> handler) {
+    return on(TextMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for callback queries.
+  Composer<CTX> onCallbackQuery(UpdateHandler<CTX> handler) {
+    return on(CallbackQueryFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for callback queries with specific data.
+  Composer<CTX> callbackQuery(Pattern data, UpdateHandler<CTX> handler) {
+    return on(CallbackQueryFilter<CTX>(data: data), handler);
+  }
+
+  /// Adds a handler for inline queries.
+  Composer<CTX> onInlineQuery(UpdateHandler<CTX> handler) {
+    return on(InlineQueryFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for inline queries with specific data.
+  Composer<CTX> inlineQuery(Pattern query, UpdateHandler<CTX> handler) {
+    return on(InlineQueryFilter<CTX>(query: query), handler);
+  }
+
+  /// Adds a handler for messages with photos.
+  Composer<CTX> onPhoto(UpdateHandler<CTX> handler) {
+    return on(PhotoFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with documents.
+  Composer<CTX> onDocument(UpdateHandler<CTX> handler) {
+    return on(DocumentFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with stickers.
+  Composer<CTX> onSticker(UpdateHandler<CTX> handler) {
+    return on(StickerFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for private chat messages.
+  Composer<CTX> onPrivateChat(UpdateHandler<CTX> handler) {
+    return on(PrivateChatFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for group chat messages.
+  Composer<CTX> onGroupChat(UpdateHandler<CTX> handler) {
+    return on(GroupChatFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with animations.
+  Composer<CTX> onAnimation(UpdateHandler<CTX> handler) {
+    return on(AnimationFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with audio files.
+  Composer<CTX> onAudio(UpdateHandler<CTX> handler) {
+    return on(AudioFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with video files.
+  Composer<CTX> onVideo(UpdateHandler<CTX> handler) {
+    return on(VideoFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with video notes.
+  Composer<CTX> onVideoNote(UpdateHandler<CTX> handler) {
+    return on(VideoNoteFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with voice notes.
+  Composer<CTX> onVoice(UpdateHandler<CTX> handler) {
+    return on(VoiceFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with contacts.
+  Composer<CTX> onContact(UpdateHandler<CTX> handler) {
+    return on(ContactFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with dice.
+  Composer<CTX> onDice(UpdateHandler<CTX> handler) {
+    return on(DiceFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with games.
+  Composer<CTX> onGame(UpdateHandler<CTX> handler) {
+    return on(GameFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with polls.
+  Composer<CTX> onPollMessage(UpdateHandler<CTX> handler) {
+    return on(PollMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with venue information.
+  Composer<CTX> onVenue(UpdateHandler<CTX> handler) {
+    return on(VenueFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with location data.
+  Composer<CTX> onLocation(UpdateHandler<CTX> handler) {
+    return on(LocationFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with live location updates.
+  Composer<CTX> onLiveLocation(UpdateHandler<CTX> handler) {
+    return on(LiveLocationFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with captions.
+  Composer<CTX> onCaption(UpdateHandler<CTX> handler) {
+    return on(CaptionMessageFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Update Type Handlers
+  // ===============================
+
+  /// Adds a handler for any message update (regular or edited).
+  Composer<CTX> onMessage(UpdateHandler<CTX> handler) {
+    return on(AnyMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for edited message updates.
+  Composer<CTX> onEditedMessage(UpdateHandler<CTX> handler) {
+    return on(EditedMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for channel post updates.
+  Composer<CTX> onChannelPost(UpdateHandler<CTX> handler) {
+    return on(ChannelPostFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for edited channel post updates.
+  Composer<CTX> onEditedChannelPost(UpdateHandler<CTX> handler) {
+    return on(EditedChannelPostFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for chosen inline result updates.
+  Composer<CTX> onChosenInlineResult(UpdateHandler<CTX> handler) {
+    return on(ChosenInlineResultFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for shipping query updates.
+  Composer<CTX> onShippingQuery(UpdateHandler<CTX> handler) {
+    return on(ShippingQueryFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for pre-checkout query updates.
+  Composer<CTX> onPreCheckoutQuery(UpdateHandler<CTX> handler) {
+    return on(PreCheckoutQueryFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for successful payment messages.
+  Composer<CTX> onSuccessfulPayment(UpdateHandler<CTX> handler) {
+    return on(SuccessfulPaymentFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for poll updates.
+  Composer<CTX> onPoll(UpdateHandler<CTX> handler) {
+    return on(PollFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for poll answer updates.
+  Composer<CTX> onPollAnswer(UpdateHandler<CTX> handler) {
+    return on(PollAnswerFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for bot's chat member updates.
+  Composer<CTX> onMyChatMember(UpdateHandler<CTX> handler) {
+    return on(MyChatMemberFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for chat member updates.
+  Composer<CTX> onChatMember(UpdateHandler<CTX> handler) {
+    return on(ChatMemberFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for chat join request updates.
+  Composer<CTX> onChatJoinRequest(UpdateHandler<CTX> handler) {
+    return on(ChatJoinRequestFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Service Message Handlers
+  // ===============================
+
+  /// Adds a handler for new chat title service messages.
+  Composer<CTX> onNewChatTitle(UpdateHandler<CTX> handler) {
+    return on(NewChatTitleFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for new chat photo service messages.
+  Composer<CTX> onNewChatPhoto(UpdateHandler<CTX> handler) {
+    return on(NewChatPhotoFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for delete chat photo service messages.
+  Composer<CTX> onDeleteChatPhoto(UpdateHandler<CTX> handler) {
+    return on(DeleteChatPhotoFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for pinned message service messages.
+  Composer<CTX> onPinnedMessage(UpdateHandler<CTX> handler) {
+    return on(PinnedMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for user shared messages.
+  Composer<CTX> onUsrShared(UpdateHandler<CTX> handler) {
+    return on(UsersSharedFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for chat shared messages.
+  Composer<CTX> onChatShared(UpdateHandler<CTX> handler) {
+    return on(ChatSharedFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Video Chat Service Messages
+  // ===============================
+
+  /// Adds a handler for video chat scheduled service messages.
+  Composer<CTX> whenVideoChatScheduled(UpdateHandler<CTX> handler) {
+    return on(VideoChatScheduledFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for video chat started service messages.
+  Composer<CTX> whenVideoChatStarted(UpdateHandler<CTX> handler) {
+    return on(VideoChatStartedFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for video chat ended service messages.
+  Composer<CTX> whenVideoChatEnded(UpdateHandler<CTX> handler) {
+    return on(VideoChatEndedFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for video chat participants invited service messages.
+  Composer<CTX> whenVideoChatParticipantsInvited(UpdateHandler<CTX> handler) {
+    return on(VideoChatParticipantsInvitedFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Forum Topic Service Messages
+  // ===============================
+
+  /// Adds a handler for forum topic created service messages.
+  Composer<CTX> onForumTopicCreated(UpdateHandler<CTX> handler) {
+    return on(ForumTopicCreatedFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for forum topic edited service messages.
+  Composer<CTX> onForumTopicEdited(UpdateHandler<CTX> handler) {
+    return on(ForumTopicEditedFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for forum topic closed service messages.
+  Composer<CTX> onForumTopicClosed(UpdateHandler<CTX> handler) {
+    return on(ForumTopicClosedFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for forum topic reopened service messages.
+  Composer<CTX> onForumTopicReopened(UpdateHandler<CTX> handler) {
+    return on(ForumTopicReopenedFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Web App and Advanced Features
+  // ===============================
+
+  /// Adds a handler for web app data messages.
+  Composer<CTX> onWebAppData(UpdateHandler<CTX> handler) {
+    return on(WebAppDataFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Entity-Based Handlers
+  // ===============================
+
+  /// Adds a handler for messages with URL entities.
+  Composer<CTX> onURL(UpdateHandler<CTX> handler) {
+    return on(UrlFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with email entities.
+  Composer<CTX> onEmail(UpdateHandler<CTX> handler) {
+    return on(EntityFilter<CTX>.single(MessageEntityType.email), handler);
+  }
+
+  /// Adds a handler for messages with phone number entities.
+  Composer<CTX> onPhoneNumber(UpdateHandler<CTX> handler) {
+    return on(EntityFilter<CTX>.single(MessageEntityType.phoneNumber), handler);
+  }
+
+  /// Adds a handler for messages with hashtag entities.
+  Composer<CTX> onHashtag(UpdateHandler<CTX> handler) {
+    return on(HashtagFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for messages with mention entities.
+  Composer<CTX> onMention(UpdateHandler<CTX> handler) {
+    return on(MentionFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for any command (equivalent to onCommand).
+  Composer<CTX> onCommand(UpdateHandler<CTX> handler) {
+    return on(AnyCommandFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Chat Type Specific Handlers
+  // ===============================
+
+  /// Adds a handler for specific chat type.
+  Composer<CTX> chatType(ChatType chatType, UpdateHandler<CTX> handler) {
+    return on(ChatTypeFilter<CTX>.single(chatType), handler);
+  }
+
+  /// Adds a handler for multiple chat types.
+  Composer<CTX> chatTypes(Set<ChatType> chatTypes, UpdateHandler<CTX> handler) {
+    return on(ChatTypeFilter<CTX>(chatTypes), handler);
+  }
+
+  // ===============================
+  // Reaction Handlers
+  // ===============================
+
+  /// Adds a handler for message reaction updates.
+  Composer<CTX> onMessageReaction(UpdateHandler<CTX> handler) {
+    return on(MessageReactionFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for message reaction count updates.
+  Composer<CTX> onMessageReactionCount(UpdateHandler<CTX> handler) {
+    return on(MessageReactionCountFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for specific emoji reactions.
+  Composer<CTX> whenReacted(String emoji, UpdateHandler<CTX> handler) {
+    return on(EmojiReactionFilter<CTX>(emoji), handler);
+  }
+
+  // ===============================
+  // Chat Boost Handlers
+  // ===============================
+
+  /// Adds a handler for chat boost updates.
+  Composer<CTX> onChatBoosted(UpdateHandler<CTX> handler) {
+    return on(ChatBoostFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for chat boost removal updates.
+  Composer<CTX> onChatBoostRemoved(UpdateHandler<CTX> handler) {
+    return on(RemovedChatBoostFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Business Features
+  // ===============================
+
+  /// Adds a handler for business connection updates.
+  Composer<CTX> onBusinessConnection(UpdateHandler<CTX> handler) {
+    return on(BusinessConnectionFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for business message updates.
+  Composer<CTX> onBusinessMessage(UpdateHandler<CTX> handler) {
+    return on(BusinessMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for edited business message updates.
+  Composer<CTX> onBusinessMessageEdited(UpdateHandler<CTX> handler) {
+    return on(EditedBusinessMessageFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for deleted business message updates.
+  Composer<CTX> onBusinessMessageDeleted(UpdateHandler<CTX> handler) {
+    return on(DeletedBusinessMessagesFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Paid Media Handlers
+  // ===============================
+
+  /// Adds a handler for paid media messages.
+  Composer<CTX> onPaidMedia(UpdateHandler<CTX> handler) {
+    return on(PaidMediaFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for paid media with videos.
+  Composer<CTX> onPaidMediaVideo(UpdateHandler<CTX> handler) {
+    return on(PaidMediaVideoFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for paid media with photos.
+  Composer<CTX> onPaidMediaPhoto(UpdateHandler<CTX> handler) {
+    return on(PaidMediaPhotoFilter<CTX>(), handler);
+  }
+
+  /// Adds a handler for paid media purchase updates.
+  Composer<CTX> onPaidMediaPurchase(UpdateHandler<CTX> handler) {
+    return on(PurchasedPaidMediaFilter<CTX>(), handler);
+  }
+
+  // ===============================
+  // Enhanced Convenience Methods
+  // ===============================
+
+  /// Adds a handler for specific entity types.
+  Composer<CTX> entity(
+    MessageEntityType entityType,
+    UpdateHandler<CTX> handler,
+  ) {
+    return on(EntityFilter<CTX>.single(entityType), handler);
+  }
+
+  /// Adds a handler for multiple entity types.
+  Composer<CTX> entities(
+    Set<MessageEntityType> entityTypes,
+    UpdateHandler<CTX> handler,
+  ) {
+    return on(EntityFilter<CTX>(entityTypes), handler);
+  }
+
+  /// Adds a handler with exact text matching (alias for textEquals).
+  Composer<CTX> text(
+    String text,
+    UpdateHandler<CTX> handler, {
+    bool caseSensitive = true,
+  }) {
+    return on(
+      TextFilter<CTX>(text: text, caseSensitive: caseSensitive),
+      handler,
+    );
+  }
+
+  /// Adds a handler for matching a custom filter.
+  ///
+  /// If [handler] is provided, it acts as a conditional handler that only runs
+  /// if [predicate] returns true.
+  ///
+  /// If [handler] is not provided, it creates and returns a new [Composer]
+  /// that receives updates only if [predicate] returns true.
+  ///
+  /// Parameters:
+  /// - [predicate]: The function to check updates against
+  /// - [handler]: Optional handler to execute if predicate matches
+  Composer<CTX> filter(
+    MiddlewarePredicate<CTX> predicate, [
+    UpdateHandler<CTX>? handler,
+  ]) {
+    if (handler != null) {
+      return use((ctx, next) async {
+        if (predicate(ctx)) {
+          await handler(ctx);
+        } else {
+          await next();
+        }
+      });
+    }
+
+    final composer = Composer<CTX>();
+    use((ctx, next) async {
+      if (predicate(ctx)) {
+        await composer.call(ctx, next);
+      } else {
+        await next();
+      }
+    });
+    return composer;
+  }
+
+  // ===============================
+  // Shortcut Methods (Common Commands)
+  // ===============================
+
+  /// Adds a handler for /settings command.
+  Composer<CTX> settings(UpdateHandler<CTX> handler) {
+    return command('settings', handler);
+  }
+
+  /// Adds a handler for /help command.
+  Composer<CTX> help(UpdateHandler<CTX> handler) {
+    return command('help', handler);
+  }
+
+  // ===============================
   // Execution
   // ===============================
 
@@ -342,15 +912,21 @@ class Composer<CTX extends Context> {
   ///
   /// This is the core method that handles the middleware chain execution,
   /// including error handling and concurrent execution.
-  Future<void> _executeMiddleware(CTX ctx, int index) async {
-    if (index >= _middleware.length) return;
+  Future<void> _executeMiddleware(
+    CTX ctx,
+    int index, [
+    NextFunction? next,
+  ]) async {
+    if (index >= _middleware.length) {
+      return await next?.call();
+    }
 
     final entry = _middleware[index];
 
     // Check if middleware should run
     if (!entry.shouldRun(ctx)) {
       // Skip this middleware and continue to next
-      return _executeMiddleware(ctx, index + 1);
+      return _executeMiddleware(ctx, index + 1, next);
     }
 
     // Handle concurrent (fork) middleware
@@ -368,13 +944,13 @@ class Composer<CTX extends Context> {
       );
 
       // Continue to next middleware immediately
-      return _executeMiddleware(ctx, index + 1);
+      return _executeMiddleware(ctx, index + 1, next);
     }
 
     // Execute middleware and wait for completion
     await _executeSingleMiddleware(ctx, entry, () async {
       // Next function - continue to next middleware
-      await _executeMiddleware(ctx, index + 1);
+      await _executeMiddleware(ctx, index + 1, next);
     });
   }
 
