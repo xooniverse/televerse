@@ -1043,9 +1043,11 @@ class Composer<CTX extends Context> {
     print('For additional help and community support:');
     print('');
     print('  • Telegram: https://t.me/televersedart');
-    print('  • GitHub Issues: https://github.com/xooniverse/televerse/issues');
     print(
-      '  • GitHub Discussions: https://github.com/xooniverse/televerse/discussions',
+      '  • GitHub Issues: https://github.com/theweaverlabs/televerse/issues',
+    );
+    print(
+      '  • GitHub Discussions: https://github.com/theweaverlabs/televerse/discussions',
     );
     print('');
     print('🛑 Bot will continue processing other updates.');
