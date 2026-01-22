@@ -104,4 +104,4 @@ void main() async {
 
 Well we know that this is probably just the tip of the iceberg. So if you want to learn more about the Televerse library, you can check out the [API documentation](https://pub.dev/documentation/televerse/latest/televerse/televerse-library.html).
 
-Also feel free to check the [examples repository here](https://github.com/xooniverse/TeleverseExamples).
+Also feel free to check the [examples repository here](https://github.com/theweaverlabs/TeleverseExamples).

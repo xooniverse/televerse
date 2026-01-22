@@ -2,7 +2,7 @@
   <h1> Televerse </h1>
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
-![GitHub](https://img.shields.io/github/license/xooniverse/televerse?color=green)
+![GitHub](https://img.shields.io/github/license/theweaverlabs/televerse?color=green)
 ![](https://shields.io/badge/Latest-Bot%20API%209.3-blue)
 
   <a href="https://telegram.me/TeleverseDart">
@@ -639,14 +639,14 @@ class BotContext extends SessionContext<Map<String, dynamic>> {
 
 ## 🌟 Shoot a Star
 
-If you find Televerse helpful, please consider shooting a star on our [Github repository](https://github.com/xooniverse/televerse). This helps us to know that our work is appreciated and motivates us to continue improving Televerse.
+If you find Televerse helpful, please consider shooting a star on our [Github repository](https://github.com/theweaverlabs/televerse). This helps us to know that our work is appreciated and motivates us to continue improving Televerse.
 
 ## 🤝 Join the Discussion
 
 We have an active Telegram group where you can discuss Televerse and get help from other users and developers.
 
 <a href="https://telegram.me/TeleverseDart">
-  <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/></a> <a href="https://github.com/xooniverse/televerse/">
+  <img src="https://img.shields.io/badge/Telegram%2F@TeleverseDart-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/></a> <a href="https://github.com/theweaverlabs/televerse/">
   <img src="https://img.shields.io/badge/GitHub%20Discussions-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </a>
 
