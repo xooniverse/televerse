@@ -19,6 +19,9 @@ class RawAPI {
   /// The base URL for API requests.
   final String _baseUrl;
 
+  /// Whether we are running in test environment.
+  final bool isTest;
+
   /// Whether this instance owns the HTTP client and should dispose it.
   final bool _ownsHttpClient;
 
@@ -31,10 +34,32 @@ class RawAPI {
   /// - [token]: The bot token obtained from @BotFather
   /// - [httpClient]: Optional custom HTTP client. If not provided, a default one will be created
   /// - [baseUrl]: Optional custom base URL. Defaults to the official Telegram Bot API URL
-  RawAPI(this.token, {HttpClient? httpClient, String? baseUrl})
-    : _httpClient = httpClient ?? DioHttpClient(),
-      _baseUrl = baseUrl ?? 'https://api.telegram.org/bot$token',
-      _ownsHttpClient = httpClient == null;
+  /// - [isTest]: Whether to use the test environment. Defaults to false.
+  RawAPI(
+    this.token, {
+    HttpClient? httpClient,
+    String? baseUrl,
+    this.isTest = false,
+  }) : _httpClient = httpClient ?? DioHttpClient(),
+       _baseUrl = _buildBaseUrl(token, baseUrl, isTest),
+       _ownsHttpClient = httpClient == null;
+
+  /// Builds the base URL for the API.
+  static String _buildBaseUrl(String token, String? baseUrl, bool isTest) {
+    if (baseUrl != null) {
+      if (baseUrl.endsWith('/')) {
+        baseUrl = baseUrl.substring(0, baseUrl.length - 1);
+      }
+    } else {
+      baseUrl = 'https://api.telegram.org';
+    }
+
+    if (isTest) {
+      return '$baseUrl/bot$token/test';
+    } else {
+      return '$baseUrl/bot$token';
+    }
+  }
 
   // ===============================
   // Transformer Management

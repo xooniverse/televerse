@@ -1,3 +1,9 @@
+
+# 3.1.4
+
+- Added `isTest` parameter to `Bot` constructor to support test environment.
+- Improved `RawAPI` to support test environment and custom base URL.
+
 # 3.1.3
 
 - Added `sourceIsMiddleware` property to `BotError` to identify the source of the error.
