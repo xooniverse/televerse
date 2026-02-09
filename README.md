@@ -1,5 +1,5 @@
 <div align="center">
-  <h1> Televerse </h1>
+  <h1> televerse </h1>
 
 [![Pub Version](https://img.shields.io/pub/v/televerse?color=blue&logo=blue)](https://pub.dev/packages/televerse)
 ![GitHub](https://img.shields.io/github/license/theweaverlabs/televerse?color=green)
