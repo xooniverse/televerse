@@ -521,6 +521,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
       botError.error,
       botError.stackTrace,
       botError.ctx,
+      true,
     );
   }
 

@@ -52,7 +52,7 @@ class Composer<CTX extends Context> {
   /// bot.use(subComposer);
   /// ```
   Future<void> call(CTX ctx, NextFunction next) async {
-    await _executeMiddleware(ctx, 0, next);
+    await _executeMiddleware(ctx, 0, next: next, isHandler: true);
   }
 
   /// Creates a new handler group.
@@ -900,11 +900,11 @@ class Composer<CTX extends Context> {
     if (_middleware.isEmpty) return true;
 
     try {
-      await _executeMiddleware(ctx, 0);
+      await _executeMiddleware(ctx, 0, isHandler: false);
       return true;
     } catch (error, stackTrace) {
       // Handle any unhandled errors with the global error handler
-      return await _handleUnhandledError(error, stackTrace, ctx);
+      return await _handleUnhandledError(error, stackTrace, ctx, false);
     }
   }
 
@@ -914,9 +914,10 @@ class Composer<CTX extends Context> {
   /// including error handling and concurrent execution.
   Future<void> _executeMiddleware(
     CTX ctx,
-    int index, [
+    int index, {
     NextFunction? next,
-  ]) async {
+    required bool isHandler,
+  }) async {
     if (index >= _middleware.length) {
       return await next?.call();
     }
@@ -926,40 +927,82 @@ class Composer<CTX extends Context> {
     // Check if middleware should run
     if (!entry.shouldRun(ctx)) {
       // Skip this middleware and continue to next
-      return _executeMiddleware(ctx, index + 1, next);
+      return _executeMiddleware(
+        ctx,
+        index + 1,
+        next: next,
+        isHandler: isHandler,
+      );
     }
+
+    // Determine if next middleware is the handler (last one in chain)
+    final nextIsHandler = index == _middleware.length - 1;
 
     // Handle concurrent (fork) middleware
     if (entry.concurrent) {
       // Start concurrent execution but don't wait for it
       unawaited(
-        _executeSingleMiddleware(ctx, entry, () async {}).catchError((
-          error,
-          stackTrace,
-        ) async {
+        _executeSingleMiddleware(
+          ctx,
+          entry,
+          () async {},
+          isHandler: false,
+        ).catchError((error, stackTrace) async {
           // For forked middleware, we handle errors separately
           // to avoid crashing the main middleware chain
-          await _handleForkedMiddlewareError(error, stackTrace, ctx);
+          await _handleForkedMiddlewareError(error, stackTrace, ctx, false);
         }),
       );
 
       // Continue to next middleware immediately
-      return _executeMiddleware(ctx, index + 1, next);
+      return _executeMiddleware(
+        ctx,
+        index + 1,
+        next: next,
+        isHandler: nextIsHandler,
+      );
     }
 
     // Execute middleware and wait for completion
-    await _executeSingleMiddleware(ctx, entry, () async {
-      // Next function - continue to next middleware
-      await _executeMiddleware(ctx, index + 1, next);
-    });
+    try {
+      await _executeSingleMiddleware(ctx, entry, () async {
+        // Next function - continue to next middleware
+        await _executeMiddleware(
+          ctx,
+          index + 1,
+          next: next,
+          isHandler: nextIsHandler,
+        );
+      }, isHandler: nextIsHandler);
+    } catch (error, stackTrace) {
+      // Create error with appropriate source flag
+      final botError = nextIsHandler
+          ? BotError<CTX>.fromHandler(error, stackTrace, ctx)
+          : BotError<CTX>.fromMiddleware(error, stackTrace, ctx);
+
+      // Try global error handler
+      if (_globalErrorHandler != null) {
+        try {
+          await _globalErrorHandler!(botError);
+          return; // Error was handled
+        } catch (handlerError, handlerStackTrace) {
+          print('⚠️  Error in global error handler: $handlerError');
+          print('Handler stack trace: $handlerStackTrace');
+        }
+      }
+
+      // Rethrow if not handled
+      rethrow;
+    }
   }
 
   /// Executes a single middleware entry.
   Future<void> _executeSingleMiddleware(
     CTX ctx,
     MiddlewareEntry<CTX> entry,
-    NextFunction next,
-  ) async {
+    NextFunction next, {
+    required bool isHandler,
+  }) async {
     await entry.middleware(ctx, next);
   }
 
@@ -974,8 +1017,11 @@ class Composer<CTX extends Context> {
     Object error,
     StackTrace stackTrace,
     CTX? ctx,
+    bool isMiddleware,
   ) async {
-    final botError = BotError<CTX>.fromMiddleware(error, stackTrace, ctx);
+    final botError = isMiddleware
+        ? BotError<CTX>.fromMiddleware(error, stackTrace, ctx)
+        : BotError<CTX>.fromHandler(error, stackTrace, ctx);
 
     // Try global error handler first
     if (_globalErrorHandler != null) {
@@ -1002,6 +1048,7 @@ class Composer<CTX extends Context> {
   void _logUnhandledError(BotError<CTX> botError) {
     print('🚨 Unhandled Error in Televerse Bot');
     print('━' * 50);
+    print('Source: ${botError.sourceIsMiddleware ? "Middleware" : "Handler"}');
     print('Error: ${botError.error}');
     print('');
 
@@ -1027,6 +1074,11 @@ class Composer<CTX extends Context> {
     print('');
     print('bot.onError((error) async {');
     print('  print("Error occurred: \${error.error}");');
+    print('  if (error.sourceIsMiddleware) {');
+    print('    print("Error in middleware");');
+    print('  } else {');
+    print('    print("Error in handler");');
+    print('  }');
     print('  if (error.hasContext) {');
     print('    await error.ctx!.reply("Sorry, something went wrong!");');
     print('  }');
@@ -1062,8 +1114,11 @@ class Composer<CTX extends Context> {
     Object error,
     StackTrace stackTrace,
     CTX? ctx,
+    bool isMiddleware,
   ) async {
-    final botError = BotError<CTX>.fromMiddleware(error, stackTrace, ctx);
+    final botError = isMiddleware
+        ? BotError<CTX>.fromMiddleware(error, stackTrace, ctx)
+        : BotError<CTX>.fromHandler(error, stackTrace, ctx);
 
     // Try global error handler
     if (_globalErrorHandler != null) {
