@@ -70,6 +70,10 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   /// Statistics about bot operation.
   BotStats _stats = BotStats.empty();
 
+  /// On stop handler
+  ///
+  FutureOr<void> Function()? _onStopHandler;
+
   /// Creates a new Bot instance.
   ///
   /// Parameters:
@@ -366,7 +370,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   Future<void> stop() async {
     if (!_isRunning) return;
 
-    print('🛑 Stopping bot...');
+    print('[televerse] 🛑 Stopping bot...');
 
     try {
       _isRunning = false;
@@ -378,6 +382,10 @@ class Bot<CTX extends Context> extends Composer<CTX> {
       // Stop the fetcher
       await _currentFetcher?.stop();
       _currentFetcher = null;
+
+      if (_onStopHandler != null) {
+        await _onStopHandler!();
+      }
 
       print('✅ Bot stopped successfully!');
       _startCompleter?.complete();
@@ -513,6 +521,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
       botError.error,
       botError.stackTrace,
       botError.ctx,
+      true,
     );
   }
 
@@ -1414,6 +1423,19 @@ class Bot<CTX extends Context> extends Composer<CTX> {
   @override
   Bot<CTX> onError(ErrorHandler<CTX> handler) {
     super.onError(handler);
+    return this;
+  }
+
+  /// Sets the on stop handler for this bot.
+  ///
+  /// The on stop handler is executed when the bot is stopped.
+  ///
+  /// Parameters:
+  /// - [onStop]: The on stop handler function
+  ///
+  /// Returns this bot for method chaining.
+  Bot<CTX> onStop(FutureOr<void> Function()? onStop) {
+    _onStopHandler = onStop;
     return this;
   }
 

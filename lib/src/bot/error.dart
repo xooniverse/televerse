@@ -16,23 +16,42 @@ class BotError<CTX extends Context> extends TeleverseException {
   /// The context in which the error occurred, if available.
   final CTX? ctx;
 
+  /// Whether the error originated from middleware (true) or from a handler (false).
+  ///
+  /// Middleware errors are errors thrown in middleware functions registered
+  /// via `use()`, `filter()`, etc., before reaching the actual handler.
+  ///
+  /// Handler errors are errors thrown in the final handler function
+  /// (e.g., in a command handler, text handler, etc.).
+  final bool sourceIsMiddleware;
+
   /// Creates a new bot error.
   ///
   /// Parameters:
   /// - [error]: The original error that occurred
   /// - [stackTrace]: The original stack trace
   /// - [ctx]: The context in which the error occurred
-  BotError({required this.error, required super.stackTrace, this.ctx})
-    : super(
-        'Bot error occurred: $error',
-        description: _buildDescription(error, ctx),
-        type: TeleverseExceptionType.requestFailed,
-      );
+  /// - [sourceIsMiddleware]: Whether error came from middleware or handler
+  BotError({
+    required this.error,
+    required super.stackTrace,
+    this.ctx,
+    this.sourceIsMiddleware = false,
+  }) : super(
+         'Bot error occurred: $error',
+         description: _buildDescription(error, ctx, sourceIsMiddleware),
+         type: TeleverseExceptionType.requestFailed,
+       );
 
   /// Builds a description for the error.
-  static String _buildDescription(Object originalError, Context? ctx) {
+  static String _buildDescription(
+    Object originalError,
+    Context? ctx,
+    bool isMiddleware,
+  ) {
     final buffer = StringBuffer();
     buffer.writeln('Error occurred during bot operation:');
+    buffer.writeln('  Source: ${isMiddleware ? 'Middleware' : 'Handler'}');
 
     if (ctx != null) {
       buffer.writeln('  Update ID: ${ctx.update.updateId}');
@@ -54,17 +73,41 @@ class BotError<CTX extends Context> extends TeleverseException {
     StackTrace stackTrace,
     CTX? ctx,
   ) {
-    return BotError<CTX>(error: error, stackTrace: stackTrace, ctx: ctx);
+    return BotError<CTX>(
+      error: error,
+      stackTrace: stackTrace,
+      ctx: ctx,
+      sourceIsMiddleware: true,
+    );
+  }
+
+  /// Creates a bot error from an exception in a handler.
+  factory BotError.fromHandler(Object error, StackTrace stackTrace, CTX? ctx) {
+    return BotError<CTX>(
+      error: error,
+      stackTrace: stackTrace,
+      ctx: ctx,
+      sourceIsMiddleware: false,
+    );
   }
 
   /// Creates a bot error from an exception during update fetching.
   factory BotError.fromFetcher(Object error, StackTrace stackTrace) {
-    return BotError<CTX>(error: error, stackTrace: stackTrace);
+    return BotError<CTX>(
+      error: error,
+      stackTrace: stackTrace,
+      sourceIsMiddleware: false,
+    );
   }
 
   /// Creates a bot error from an exception during API call.
   factory BotError.fromAPI(Object error, StackTrace stackTrace, CTX? ctx) {
-    return BotError<CTX>(error: error, stackTrace: stackTrace, ctx: ctx);
+    return BotError<CTX>(
+      error: error,
+      stackTrace: stackTrace,
+      ctx: ctx,
+      sourceIsMiddleware: false,
+    );
   }
 
   /// Checks if context is available.
