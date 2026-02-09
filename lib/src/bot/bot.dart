@@ -100,9 +100,15 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     BotInfo? botInfo,
     HttpClient? httpClient,
     String? baseUrl,
+    bool isTest = false,
   }) : _contextFactory = contextFactory ?? _defaultContextFactory,
        botInfo = botInfo ?? const BotInfo(),
-       api = RawAPI(token, httpClient: httpClient, baseUrl: baseUrl);
+       api = RawAPI(
+         token,
+         httpClient: httpClient,
+         baseUrl: baseUrl,
+         isTest: isTest,
+       );
 
   /// Creates a Bot instance for use with a local Bot API server.
   ///
@@ -130,6 +136,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
     ContextFactory<CTX>? contextFactory,
     BotInfo? botInfo,
     HttpClient? httpClient,
+    bool isTest = false,
   }) {
     return Bot(
       token,
@@ -137,6 +144,7 @@ class Bot<CTX extends Context> extends Composer<CTX> {
       botInfo: botInfo,
       httpClient: httpClient,
       baseUrl: url,
+      isTest: isTest,
     );
   }
 
