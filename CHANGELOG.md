@@ -1,3 +1,8 @@
+# 3.1.3
+
+- Added `sourceIsMiddleware` property to `BotError` to identify the source of the error.
+- Added `Bot.onStop` method to handle stop events.
+
 # 3.1.2
 
 - Project moved to [Weaver Labs](https://weaverlabs.ca)
