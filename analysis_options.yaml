@@ -41,6 +41,7 @@ linter:
     - valid_regexps
     - void_checks
     - require_trailing_commas
+    - use_null_aware_elements
 
 analyzer:
   exclude:

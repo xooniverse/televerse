@@ -1,5 +1,12 @@
 part of '../../televerse.dart';
 
+extension _OnDateTime on DateTime? {
+  int? get secondsSinceEpoch {
+    if (this == null) return null;
+    return this!.millisecondsSinceEpoch ~/ 1000;
+  }
+}
+
 /// Filename extension for [io.File] is used to get the filename of a file.
 extension Filename on io.File {
   /// The filename of this file.

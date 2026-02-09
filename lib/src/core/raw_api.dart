@@ -278,11 +278,10 @@ class RawAPI {
     List<UpdateType>? allowedUpdates,
   }) async {
     final params = <String, dynamic>{
-      if (offset != null) 'offset': offset,
-      if (limit != null) 'limit': limit,
-      if (timeout != null) 'timeout': timeout,
-      if (allowedUpdates != null)
-        'allowed_updates': allowedUpdates.map((e) => e.type).toList(),
+      'offset': ?offset,
+      'limit': ?limit,
+      'timeout': ?timeout,
+      'allowed_updates': ?allowedUpdates?.map((e) => e.type).toList(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -320,14 +319,12 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'url': url,
-      if (certificate != null) 'certificate': certificate,
-      if (ipAddress != null) 'ip_address': ipAddress,
-      if (maxConnections != null) 'max_connections': maxConnections,
-      if (allowedUpdates != null)
-        'allowed_updates': allowedUpdates.map((e) => e.type).toList(),
-      if (dropPendingUpdates != null)
-        'drop_pending_updates': dropPendingUpdates,
-      if (secretToken != null) 'secret_token': secretToken,
+      'certificate': ?certificate,
+      'ip_address': ?ipAddress,
+      'max_connections': ?maxConnections,
+      'allowed_updates': ?allowedUpdates?.map((e) => e.type).toList(),
+      'drop_pending_updates': ?dropPendingUpdates,
+      'secret_token': ?secretToken,
     };
 
     final convertedParams = _convertParameters(params);
@@ -362,8 +359,7 @@ class RawAPI {
   /// Returns true if the webhook was successfully deleted.
   Future<bool> deleteWebhook({bool? dropPendingUpdates}) async {
     final params = <String, dynamic>{
-      if (dropPendingUpdates != null)
-        'drop_pending_updates': dropPendingUpdates,
+      'drop_pending_updates': ?dropPendingUpdates,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -410,26 +406,19 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'text': text,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (entities != null)
-        'entities': entities.map((e) => e.toJson()).toList(),
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (linkPreviewOptions != null)
-        'link_preview_options': linkPreviewOptions.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'parse_mode': ?parseMode,
+      'entities': ?entities?.map((e) => e.toJson()).toList(),
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'link_preview_options': ?linkPreviewOptions?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -465,10 +454,9 @@ class RawAPI {
       'chat_id': chatId,
       'draft_id': draftId,
       'text': text,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (entities != null)
-        'entities': entities.map((e) => e.toJson()).toList(),
+      'message_thread_id': ?messageThreadId,
+      'parse_mode': ?parseMode,
+      'entities': ?entities?.map((e) => e.toJson()).toList(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -519,28 +507,21 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'photo': photo,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (caption != null) 'caption': caption,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (captionEntities != null)
-        'entities': captionEntities.map((e) => e.toJson()).toList(),
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (hasSpoiler != null) 'has_spoiler': hasSpoiler,
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (showCaptionAboveMedia != null)
-        'show_caption_above_media': showCaptionAboveMedia,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'caption': ?caption,
+      'parse_mode': ?parseMode,
+      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'has_spoiler': ?hasSpoiler,
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'show_caption_above_media': ?showCaptionAboveMedia,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final convertedParams = _convertParameters(params);
@@ -587,18 +568,14 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'media': media,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
+      'message_thread_id': ?messageThreadId,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'direct_messages_topic_id': ?directMessagesTopicId,
     };
 
     final convertedParams = _convertParameters(params);
@@ -698,17 +675,13 @@ class RawAPI {
       'chat_id': chatId,
       'from_chat_id': fromChatId,
       'message_id': messageId,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (videoStartTimestamp != null)
-        'video_start_timestamp': videoStartTimestamp,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
+      'disable_notification': ?disableNotification,
+      'message_thread_id': ?messageThreadId,
+      'protect_content': ?protectContent,
+      'video_start_timestamp': ?videoStartTimestamp,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
+      'message_effect_id': ?messageEffectId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -792,27 +765,20 @@ class RawAPI {
       'chat_id': chatId,
       'from_chat_id': fromChatId,
       'message_id': messageId,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (caption != null) 'caption': caption,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (captionEntities != null)
-        'caption_entities': captionEntities.map((e) => e.toJson()).toList(),
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (showCaptionAboveMedia != null)
-        'show_caption_above_media': showCaptionAboveMedia,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (videoStartTimestamp != null)
-        'video_start_timestamp': videoStartTimestamp,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
+      'message_thread_id': ?messageThreadId,
+      'caption': ?caption,
+      'parse_mode': ?parseMode,
+      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'show_caption_above_media': ?showCaptionAboveMedia,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'video_start_timestamp': ?videoStartTimestamp,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
+      'message_effect_id': ?messageEffectId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -876,29 +842,23 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'audio': audio,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (caption != null) 'caption': caption,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (captionEntities != null)
-        'caption_entities': captionEntities.map((e) => e.toJson()).toList(),
-      if (duration != null) 'duration': duration,
-      if (performer != null) 'performer': performer,
-      if (title != null) 'title': title,
-      if (thumbnail != null) 'thumbnail': thumbnail,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'caption': ?caption,
+      'parse_mode': ?parseMode,
+      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'duration': ?duration,
+      'performer': ?performer,
+      'title': ?title,
+      'thumbnail': ?thumbnail,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final convertedParams = _convertParameters(params);
@@ -957,28 +917,21 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'document': document,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (thumbnail != null) 'thumbnail': thumbnail,
-      if (caption != null) 'caption': caption,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (captionEntities != null)
-        'caption_entities': captionEntities.map((e) => e.toJson()).toList(),
-      if (disableContentTypeDetection != null)
-        'disable_content_type_detection': disableContentTypeDetection,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'thumbnail': ?thumbnail,
+      'caption': ?caption,
+      'parse_mode': ?parseMode,
+      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'disable_content_type_detection': ?disableContentTypeDetection,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final convertedParams = _convertParameters(params);
@@ -1052,35 +1005,28 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'video': video,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (duration != null) 'duration': duration,
-      if (width != null) 'width': width,
-      if (height != null) 'height': height,
-      if (thumbnail != null) 'thumbnail': thumbnail,
-      if (caption != null) 'caption': caption,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (captionEntities != null)
-        'caption_entities': captionEntities.map((e) => e.toJson()).toList(),
-      if (hasSpoiler != null) 'has_spoiler': hasSpoiler,
-      if (supportsStreaming != null) 'supports_streaming': supportsStreaming,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (showCaptionAboveMedia != null)
-        'show_caption_above_media': showCaptionAboveMedia,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (cover != null) 'cover': cover,
-      if (startTimestamp != null) 'start_timestamp': startTimestamp,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'duration': ?duration,
+      'width': ?width,
+      'height': ?height,
+      'thumbnail': ?thumbnail,
+      'caption': ?caption,
+      'parse_mode': ?parseMode,
+      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'has_spoiler': ?hasSpoiler,
+      'supports_streaming': ?supportsStreaming,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'show_caption_above_media': ?showCaptionAboveMedia,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'cover': ?cover,
+      'start_timestamp': ?startTimestamp,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final convertedParams = _convertParameters(params);
@@ -1150,32 +1096,25 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'animation': animation,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (duration != null) 'duration': duration,
-      if (width != null) 'width': width,
-      if (height != null) 'height': height,
-      if (thumbnail != null) 'thumbnail': thumbnail,
-      if (caption != null) 'caption': caption,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (captionEntities != null)
-        'caption_entities': captionEntities.map((e) => e.toJson()).toList(),
-      if (hasSpoiler != null) 'has_spoiler': hasSpoiler,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (showCaptionAboveMedia != null)
-        'show_caption_above_media': showCaptionAboveMedia,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'duration': ?duration,
+      'width': ?width,
+      'height': ?height,
+      'thumbnail': ?thumbnail,
+      'caption': ?caption,
+      'parse_mode': ?parseMode,
+      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'has_spoiler': ?hasSpoiler,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'show_caption_above_media': ?showCaptionAboveMedia,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final convertedParams = _convertParameters(params);
@@ -1223,26 +1162,20 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'voice': voice,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (caption != null) 'caption': caption,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (captionEntities != null)
-        'caption_entities': captionEntities.map((e) => e.toJson()).toList(),
-      if (duration != null) 'duration': duration,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'caption': ?caption,
+      'parse_mode': ?parseMode,
+      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'duration': ?duration,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final convertedParams = _convertParameters(params);
@@ -1286,24 +1219,19 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'video_note': videoNote,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (duration != null) 'duration': duration,
-      if (length != null) 'length': length,
-      if (thumbnail != null) 'thumbnail': thumbnail,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'duration': ?duration,
+      'length': ?length,
+      'thumbnail': ?thumbnail,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final convertedParams = _convertParameters(params);
@@ -1346,26 +1274,20 @@ class RawAPI {
       'chat_id': chatId,
       'latitude': latitude,
       'longitude': longitude,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (horizontalAccuracy != null) 'horizontal_accuracy': horizontalAccuracy,
-      if (livePeriod != null) 'live_period': livePeriod,
-      if (heading != null) 'heading': heading,
-      if (proximityAlertRadius != null)
-        'proximity_alert_radius': proximityAlertRadius,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'horizontal_accuracy': ?horizontalAccuracy,
+      'live_period': ?livePeriod,
+      'heading': ?heading,
+      'proximity_alert_radius': ?proximityAlertRadius,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1409,25 +1331,20 @@ class RawAPI {
       'longitude': longitude,
       'title': title,
       'address': address,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (foursquareId != null) 'foursquare_id': foursquareId,
-      if (foursquareType != null) 'foursquare_type': foursquareType,
-      if (googlePlaceId != null) 'google_place_id': googlePlaceId,
-      if (googlePlaceType != null) 'google_place_type': googlePlaceType,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'foursquare_id': ?foursquareId,
+      'foursquare_type': ?foursquareType,
+      'google_place_id': ?googlePlaceId,
+      'google_place_type': ?googlePlaceType,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1463,23 +1380,18 @@ class RawAPI {
       'chat_id': chatId,
       'phone_number': phoneNumber,
       'first_name': firstName,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (lastName != null) 'last_name': lastName,
-      if (vcard != null) 'vcard': vcard,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'last_name': ?lastName,
+      'vcard': ?vcard,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1523,36 +1435,28 @@ class RawAPI {
       'chat_id': chatId,
       'question': question,
       'options': options.map((e) => e.toJson()).toList(),
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (isAnonymous != null) 'is_anonymous': isAnonymous,
+      'message_thread_id': ?messageThreadId,
+      'is_anonymous': ?isAnonymous,
       'type': type,
-      if (allowsMultipleAnswers != null)
-        'allows_multiple_answers': allowsMultipleAnswers,
-      if (correctOptionId != null) 'correct_option_id': correctOptionId,
-      if (explanation != null) 'explanation': explanation,
-      if (explanationParseMode != null)
-        'explanation_parse_mode': explanationParseMode,
-      if (explanationEntities != null)
-        'explanation_entities': explanationEntities
-            .map((e) => e.toJson())
-            .toList(),
-      if (openPeriod != null) 'open_period': openPeriod,
-      if (closeDate != null)
-        'close_date': closeDate.millisecondsSinceEpoch ~/ 1000,
-      if (isClosed != null) 'is_closed': isClosed,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (questionParseMode != null) 'question_parse_mode': questionParseMode,
-      if (questionEntities != null)
-        'question_entities': questionEntities.map((e) => e.toJson()).toList(),
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
+      'allows_multiple_answers': ?allowsMultipleAnswers,
+      'correct_option_id': ?correctOptionId,
+      'explanation': ?explanation,
+      'explanation_parse_mode': ?explanationParseMode,
+      'explanation_entities': ?explanationEntities
+          ?.map((e) => e.toJson())
+          .toList(),
+      'open_period': ?openPeriod,
+      'close_date': ?closeDate?.secondsSinceEpoch,
+      'is_closed': ?isClosed,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'question_parse_mode': ?questionParseMode,
+      'question_entities': ?questionEntities?.map((e) => e.toJson()).toList(),
+      'message_effect_id': ?messageEffectId,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1584,21 +1488,16 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'emoji': emoji,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters?.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_effect_id': ?messageEffectId,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1625,9 +1524,8 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'action': action,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
+      'message_thread_id': ?messageThreadId,
+      'business_connection_id': ?businessConnectionId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1644,8 +1542,8 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'user_id': userId,
-      if (offset != null) 'offset': offset,
-      if (limit != null) 'limit': limit,
+      'offset': ?offset,
+      'limit': ?limit,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1686,9 +1584,8 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'user_id': userId,
-      if (untilDate != null)
-        'until_date': untilDate.millisecondsSinceEpoch ~/ 1000,
-      if (revokeMessages != null) 'revoke_messages': revokeMessages,
+      'until_date': ?untilDate.secondsSinceEpoch,
+      'revoke_messages': ?revokeMessages,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1713,7 +1610,7 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'user_id': userId,
-      if (onlyIfBanned != null) 'only_if_banned': onlyIfBanned,
+      'only_if_banned': ?onlyIfBanned,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1737,10 +1634,8 @@ class RawAPI {
       'chat_id': chatId,
       'user_id': userId,
       'permissions': permissions.toJson(),
-      if (untilDate != null)
-        'until_date': untilDate.millisecondsSinceEpoch ~/ 1000,
-      if (useIndependentChatPermissions != null)
-        'use_independent_chat_permissions': useIndependentChatPermissions,
+      'until_date': ?untilDate.secondsSinceEpoch,
+      'use_independent_chat_permissions': ?useIndependentChatPermissions,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1776,25 +1671,22 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'user_id': userId,
-      if (isAnonymous != null) 'is_anonymous': isAnonymous,
-      if (canManageChat != null) 'can_manage_chat': canManageChat,
-      if (canPostMessages != null) 'can_post_messages': canPostMessages,
-      if (canEditMessages != null) 'can_edit_messages': canEditMessages,
-      if (canDeleteMessages != null) 'can_delete_messages': canDeleteMessages,
-      if (canManageVideoChats != null)
-        'can_manage_video_chats': canManageVideoChats,
-      if (canRestrictMembers != null)
-        'can_restrict_members': canRestrictMembers,
-      if (canPromoteMembers != null) 'can_promote_members': canPromoteMembers,
-      if (canChangeInfo != null) 'can_change_info': canChangeInfo,
-      if (canInviteUsers != null) 'can_invite_users': canInviteUsers,
-      if (canPinMessages != null) 'can_pin_messages': canPinMessages,
-      if (canManageTopics != null) 'can_manage_topics': canManageTopics,
-      if (canPostStories != null) 'can_post_stories': canPostStories,
-      if (canEditStories != null) 'can_edit_stories': canEditStories,
-      if (canDeleteStories != null) 'can_delete_stories': canDeleteStories,
-      if (canManageDirectMessages != null)
-        'can_manage_direct_messages': canManageDirectMessages,
+      'is_anonymous': ?isAnonymous,
+      'can_manage_chat': ?canManageChat,
+      'can_post_messages': ?canPostMessages,
+      'can_edit_messages': ?canEditMessages,
+      'can_delete_messages': ?canDeleteMessages,
+      'can_manage_video_chats': ?canManageVideoChats,
+      'can_restrict_members': ?canRestrictMembers,
+      'can_promote_members': ?canPromoteMembers,
+      'can_change_info': ?canChangeInfo,
+      'can_invite_users': ?canInviteUsers,
+      'can_pin_messages': ?canPinMessages,
+      'can_manage_topics': ?canManageTopics,
+      'can_post_stories': ?canPostStories,
+      'can_edit_stories': ?canEditStories,
+      'can_delete_stories': ?canDeleteStories,
+      'can_manage_direct_messages': ?canManageDirectMessages,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1866,8 +1758,7 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'permissions': permissions.toJson(),
-      if (useIndependentChatPermissions != null)
-        'use_independent_chat_permissions': useIndependentChatPermissions,
+      'use_independent_chat_permissions': ?useIndependentChatPermissions,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1896,12 +1787,10 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      if (name != null) 'name': name,
-      if (expireDate != null)
-        'expire_date': expireDate.millisecondsSinceEpoch ~/ 1000,
-      if (memberLimit != null) 'member_limit': memberLimit,
-      if (createsJoinRequest != null)
-        'creates_join_request': createsJoinRequest,
+      'name': ?name,
+      'expire_date': ?expireDate.secondsSinceEpoch,
+      'member_limit': ?memberLimit,
+      'creates_join_request': ?createsJoinRequest,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -1927,12 +1816,10 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'invite_link': inviteLink,
-      if (name != null) 'name': name,
-      if (expireDate != null)
-        'expire_date': expireDate.millisecondsSinceEpoch ~/ 1000,
-      if (memberLimit != null) 'member_limit': memberLimit,
-      if (createsJoinRequest != null)
-        'creates_join_request': createsJoinRequest,
+      'name': ?name,
+      'expire_date': ?expireDate.secondsSinceEpoch,
+      'member_limit': ?memberLimit,
+      'creates_join_request': ?createsJoinRequest,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2035,7 +1922,7 @@ class RawAPI {
   Future<bool> setChatDescription(ID chatId, String? description) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      if (description != null) 'description': description,
+      'description': ?description,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2058,10 +1945,8 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_id': messageId,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
+      'disable_notification': ?disableNotification,
+      'business_connection_id': ?businessConnectionId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2083,8 +1968,7 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_id': messageId,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
+      'business_connection_id': ?businessConnectionId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2229,8 +2113,8 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'name': name,
-      if (iconColor != null) 'icon_color': iconColor,
-      if (iconCustomEmojiId != null) 'icon_custom_emoji_id': iconCustomEmojiId,
+      'icon_color': ?iconColor,
+      'icon_custom_emoji_id': ?iconCustomEmojiId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2254,8 +2138,8 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_thread_id': messageThreadId,
-      if (name != null) 'name': name,
-      if (iconCustomEmojiId != null) 'icon_custom_emoji_id': iconCustomEmojiId,
+      'name': ?name,
+      'icon_custom_emoji_id': ?iconCustomEmojiId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2384,9 +2268,9 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'callback_query_id': callbackQueryId,
-      if (text != null) 'text': text,
+      'text': ?text,
       'show_alert': showAlert,
-      if (url != null) 'url': url,
+      'url': ?url,
       'cache_time': cacheTime,
     };
 
@@ -2405,8 +2289,8 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'commands': commands.map((c) => c.toJson()).toList(),
-      if (scope != null) 'scope': scope.toJson(),
-      if (languageCode != null) 'language_code': languageCode,
+      'scope': ?scope?.toJson(),
+      'language_code': ?languageCode,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2423,8 +2307,8 @@ class RawAPI {
     String? languageCode,
   }) async {
     final params = <String, dynamic>{
-      if (scope != null) 'scope': scope.toJson(),
-      if (languageCode != null) 'language_code': languageCode,
+      'scope': ?scope?.toJson(),
+      'language_code': ?languageCode,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2441,8 +2325,8 @@ class RawAPI {
     String? languageCode,
   }) async {
     final params = <String, dynamic>{
-      if (scope != null) 'scope': scope.toJson(),
-      if (languageCode != null) 'language_code': languageCode,
+      'scope': ?scope?.toJson(),
+      'language_code': ?languageCode,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2459,8 +2343,8 @@ class RawAPI {
   /// See https://core.telegram.org/bots/api#setmyname
   Future<bool> setMyName({String? name, String? languageCode}) async {
     final params = <String, dynamic>{
-      if (name != null) 'name': name,
-      if (languageCode != null) 'language_code': languageCode,
+      'name': ?name,
+      'language_code': ?languageCode,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2472,9 +2356,7 @@ class RawAPI {
   ///
   /// See https://core.telegram.org/bots/api#getmyname
   Future<BotName> getMyName({String? languageCode}) async {
-    final params = <String, dynamic>{
-      if (languageCode != null) 'language_code': languageCode,
-    };
+    final params = <String, dynamic>{'language_code': ?languageCode};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -2494,8 +2376,8 @@ class RawAPI {
     String? languageCode,
   }) async {
     final params = <String, dynamic>{
-      if (description != null) 'description': description,
-      if (languageCode != null) 'language_code': languageCode,
+      'description': ?description,
+      'language_code': ?languageCode,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2507,9 +2389,7 @@ class RawAPI {
   ///
   /// See https://core.telegram.org/bots/api#getmydescription
   Future<BotDescription> getMyDescription({String? languageCode}) async {
-    final params = <String, dynamic>{
-      if (languageCode != null) 'language_code': languageCode,
-    };
+    final params = <String, dynamic>{'language_code': ?languageCode};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -2530,8 +2410,8 @@ class RawAPI {
     String? languageCode,
   }) async {
     final params = <String, dynamic>{
-      if (shortDescription != null) 'short_description': shortDescription,
-      if (languageCode != null) 'language_code': languageCode,
+      'short_description': ?shortDescription,
+      'language_code': ?languageCode,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2545,9 +2425,7 @@ class RawAPI {
   Future<BotShortDescription> getMyShortDescription({
     String? languageCode,
   }) async {
-    final params = <String, dynamic>{
-      if (languageCode != null) 'language_code': languageCode,
-    };
+    final params = <String, dynamic>{'language_code': ?languageCode};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -2565,7 +2443,7 @@ class RawAPI {
   Future<bool> setChatMenuButton(MenuButton menuButton, {ID? chatId}) async {
     final params = <String, dynamic>{
       'menu_button': menuButton.toJson(),
-      if (chatId != null) 'chat_id': chatId,
+      'chat_id': ?chatId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2599,8 +2477,8 @@ class RawAPI {
     bool? forChannels,
   }) async {
     final params = <String, dynamic>{
-      if (rights != null) 'rights': rights.toJson(),
-      if (forChannels != null) 'for_channels': forChannels,
+      'rights': ?rights?.toJson(),
+      'for_channels': ?forChannels,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2617,9 +2495,7 @@ class RawAPI {
   Future<ChatAdministratorRights> getMyDefaultAdministratorRights({
     bool? forChannels,
   }) async {
-    final params = <String, dynamic>{
-      if (forChannels != null) 'for_channels': forChannels,
-    };
+    final params = <String, dynamic>{'for_channels': ?forChannels};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -2643,18 +2519,15 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     final params = <String, dynamic>{
-      if (chatId != null) 'chat_id': chatId,
-      if (messageId != null) 'message_id': messageId,
-      if (inlineMessageId != null) 'inline_message_id': inlineMessageId,
+      'chat_id': ?chatId,
+      'message_id': ?messageId,
+      'inline_message_id': ?inlineMessageId,
       'text': text,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (entities != null)
-        'entities': entities.map((e) => e.toJson()).toList(),
-      if (linkPreviewOptions != null)
-        'link_preview_options': linkPreviewOptions.toJson(),
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'parse_mode': ?parseMode,
+      'entities': ?entities?.map((e) => e.toJson()).toList(),
+      'link_preview_options': ?linkPreviewOptions?.toJson(),
+      'reply_markup': ?replyMarkup?.toJson(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2737,18 +2610,15 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     final params = <String, dynamic>{
-      if (chatId != null) 'chat_id': chatId,
-      if (messageId != null) 'message_id': messageId,
-      if (inlineMessageId != null) 'inline_message_id': inlineMessageId,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (caption != null) 'caption': caption,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (captionEntities != null)
-        'caption_entities': captionEntities.map((e) => e.toJson()).toList(),
-      if (showCaptionAboveMedia != null)
-        'show_caption_above_media': showCaptionAboveMedia,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      'chat_id': ?chatId,
+      'message_id': ?messageId,
+      'inline_message_id': ?inlineMessageId,
+      'business_connection_id': ?businessConnectionId,
+      'caption': ?caption,
+      'parse_mode': ?parseMode,
+      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'show_caption_above_media': ?showCaptionAboveMedia,
+      'reply_markup': ?replyMarkup?.toJson(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -2828,13 +2698,12 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     final params = <String, dynamic>{
-      if (chatId != null) 'chat_id': chatId,
-      if (messageId != null) 'message_id': messageId,
-      if (inlineMessageId != null) 'inline_message_id': inlineMessageId,
+      'chat_id': ?chatId,
+      'message_id': ?messageId,
+      'inline_message_id': ?inlineMessageId,
       'media': media,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'reply_markup': ?replyMarkup?.toJson(),
     };
 
     final convertedParams = _convertParameters(params);
@@ -2910,19 +2779,17 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     final params = <String, dynamic>{
-      if (chatId != null) 'chat_id': chatId,
-      if (messageId != null) 'message_id': messageId,
-      if (inlineMessageId != null) 'inline_message_id': inlineMessageId,
+      'chat_id': ?chatId,
+      'message_id': ?messageId,
+      'inline_message_id': ?inlineMessageId,
       'latitude': latitude,
       'longitude': longitude,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (livePeriod != null) 'live_period': livePeriod,
-      if (horizontalAccuracy != null) 'horizontal_accuracy': horizontalAccuracy,
-      if (heading != null) 'heading': heading,
-      if (proximityAlertRadius != null)
-        'proximity_alert_radius': proximityAlertRadius,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'live_period': ?livePeriod,
+      'horizontal_accuracy': ?horizontalAccuracy,
+      'heading': ?heading,
+      'proximity_alert_radius': ?proximityAlertRadius,
+      'reply_markup': ?replyMarkup?.toJson(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3009,12 +2876,11 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     final params = <String, dynamic>{
-      if (chatId != null) 'chat_id': chatId,
-      if (messageId != null) 'message_id': messageId,
-      if (inlineMessageId != null) 'inline_message_id': inlineMessageId,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      'chat_id': ?chatId,
+      'message_id': ?messageId,
+      'inline_message_id': ?inlineMessageId,
+      'business_connection_id': ?businessConnectionId,
+      'reply_markup': ?replyMarkup?.toJson(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3077,12 +2943,11 @@ class RawAPI {
     InlineKeyboardMarkup? replyMarkup,
   }) async {
     final params = <String, dynamic>{
-      if (chatId != null) 'chat_id': chatId,
-      if (messageId != null) 'message_id': messageId,
-      if (inlineMessageId != null) 'inline_message_id': inlineMessageId,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      'chat_id': ?chatId,
+      'message_id': ?messageId,
+      'inline_message_id': ?inlineMessageId,
+      'business_connection_id': ?businessConnectionId,
+      'reply_markup': ?replyMarkup?.toJson(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3150,9 +3015,8 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_id': messageId,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'reply_markup': ?replyMarkup?.toJson(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3202,22 +3066,17 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'sticker': sticker,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (emoji != null) 'emoji': emoji,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'business_connection_id': ?businessConnectionId,
+      'message_thread_id': ?messageThreadId,
+      'emoji': ?emoji,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'message_effect_id': ?messageEffectId,
+      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup?.toJson(),
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final convertedParams = _convertParameters(params);
@@ -3314,8 +3173,8 @@ class RawAPI {
       'name': name,
       'title': title,
       'stickers': stickers,
-      if (stickerType != null) 'sticker_type': stickerType,
-      if (needsRepainting != null) 'needs_repainting': needsRepainting,
+      'sticker_type': ?stickerType,
+      'needs_repainting': ?needsRepainting,
     };
 
     final convertedParams = _convertParameters(params);
@@ -3399,10 +3258,7 @@ class RawAPI {
     String sticker, {
     List<String>? keywords,
   }) async {
-    final params = <String, dynamic>{
-      'sticker': sticker,
-      if (keywords != null) 'keywords': keywords,
-    };
+    final params = <String, dynamic>{'sticker': sticker, 'keywords': ?keywords};
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(APIMethod.setStickerKeywords, payload);
@@ -3419,7 +3275,7 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'sticker': sticker,
-      if (maskPosition != null) 'mask_position': maskPosition.toJson(),
+      'mask_position': ?maskPosition?.toJson(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3453,7 +3309,7 @@ class RawAPI {
       'name': name,
       'user_id': userId,
       'format': format,
-      if (thumbnail != null) 'thumbnail': thumbnail,
+      'thumbnail': ?thumbnail,
     };
 
     final convertedParams = _convertParameters(params);
@@ -3474,7 +3330,7 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'name': name,
-      if (customEmojiId != null) 'custom_emoji_id': customEmojiId,
+      'custom_emoji_id': ?customEmojiId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3510,10 +3366,10 @@ class RawAPI {
     final params = <String, dynamic>{
       'inline_query_id': inlineQueryId,
       'results': results.map((e) => e.toJson()).toList(),
-      if (cacheTime != null) 'cache_time': cacheTime,
-      if (isPersonal != null) 'is_personal': isPersonal,
-      if (nextOffset != null) 'next_offset': nextOffset,
-      if (button != null) 'button': button.toJson(),
+      'cache_time': ?cacheTime,
+      'is_personal': ?isPersonal,
+      'next_offset': ?nextOffset,
+      'button': ?button?.toJson(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3586,39 +3442,31 @@ class RawAPI {
       'payload': payload,
       'currency': currency,
       'prices': prices.map((e) => e.toJson()).toList(),
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (providerToken != null) 'provider_token': providerToken,
-      if (maxTipAmount != null) 'max_tip_amount': maxTipAmount,
-      if (suggestedTipAmounts != null)
-        'suggested_tip_amounts': suggestedTipAmounts,
-      if (startParameter != null) 'start_parameter': startParameter,
-      if (providerData != null) 'provider_data': providerData,
-      if (photoUrl != null) 'photo_url': photoUrl,
-      if (photoSize != null) 'photo_size': photoSize,
-      if (photoWidth != null) 'photo_width': photoWidth,
-      if (photoHeight != null) 'photo_height': photoHeight,
-      if (needName != null) 'need_name': needName,
-      if (needPhoneNumber != null) 'need_phone_number': needPhoneNumber,
-      if (needEmail != null) 'need_email': needEmail,
-      if (needShippingAddress != null)
-        'need_shipping_address': needShippingAddress,
-      if (sendPhoneNumberToProvider != null)
-        'send_phone_number_to_provider': sendPhoneNumberToProvider,
-      if (sendEmailToProvider != null)
-        'send_email_to_provider': sendEmailToProvider,
-      if (isFlexible != null) 'is_flexible': isFlexible,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'message_thread_id': ?messageThreadId,
+      'provider_token': ?providerToken,
+      'max_tip_amount': ?maxTipAmount,
+      'suggested_tip_amounts': ?suggestedTipAmounts,
+      'start_parameter': ?startParameter,
+      'provider_data': ?providerData,
+      'photo_url': ?photoUrl,
+      'photo_size': ?photoSize,
+      'photo_width': ?photoWidth,
+      'photo_height': ?photoHeight,
+      'need_name': ?needName,
+      'need_phone_number': ?needPhoneNumber,
+      'need_email': ?needEmail,
+      'need_shipping_address': ?needShippingAddress,
+      'send_phone_number_to_provider': ?sendPhoneNumberToProvider,
+      'send_email_to_provider': ?sendEmailToProvider,
+      'is_flexible': ?isFlexible,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'message_effect_id': ?messageEffectId,
+      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup?.toJson(),
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -3664,28 +3512,23 @@ class RawAPI {
       'payload': payload,
       'currency': currency,
       'prices': prices.map((e) => e.toJson()).toList(),
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (providerToken != null) 'provider_token': providerToken,
-      if (subscriptionPeriod != null) 'subscription_period': subscriptionPeriod,
-      if (maxTipAmount != null) 'max_tip_amount': maxTipAmount,
-      if (suggestedTipAmounts != null)
-        'suggested_tip_amounts': suggestedTipAmounts,
-      if (providerData != null) 'provider_data': providerData,
-      if (photoUrl != null) 'photo_url': photoUrl,
-      if (photoSize != null) 'photo_size': photoSize,
-      if (photoWidth != null) 'photo_width': photoWidth,
-      if (photoHeight != null) 'photo_height': photoHeight,
-      if (needName != null) 'need_name': needName,
-      if (needPhoneNumber != null) 'need_phone_number': needPhoneNumber,
-      if (needEmail != null) 'need_email': needEmail,
-      if (needShippingAddress != null)
-        'need_shipping_address': needShippingAddress,
-      if (sendPhoneNumberToProvider != null)
-        'send_phone_number_to_provider': sendPhoneNumberToProvider,
-      if (sendEmailToProvider != null)
-        'send_email_to_provider': sendEmailToProvider,
-      if (isFlexible != null) 'is_flexible': isFlexible,
+      'business_connection_id': ?businessConnectionId,
+      'provider_token': ?providerToken,
+      'subscription_period': ?subscriptionPeriod,
+      'max_tip_amount': ?maxTipAmount,
+      'suggested_tip_amounts': ?suggestedTipAmounts,
+      'provider_data': ?providerData,
+      'photo_url': ?photoUrl,
+      'photo_size': ?photoSize,
+      'photo_width': ?photoWidth,
+      'photo_height': ?photoHeight,
+      'need_name': ?needName,
+      'need_phone_number': ?needPhoneNumber,
+      'need_email': ?needEmail,
+      'need_shipping_address': ?needShippingAddress,
+      'send_phone_number_to_provider': ?sendPhoneNumberToProvider,
+      'send_email_to_provider': ?sendEmailToProvider,
+      'is_flexible': ?isFlexible,
     };
 
     return await _makeRequest<String>(
@@ -3706,9 +3549,8 @@ class RawAPI {
     final params = <String, dynamic>{
       'shipping_query_id': shippingQueryId,
       'ok': ok,
-      if (shippingOptions != null)
-        'shipping_options': shippingOptions.map((e) => e.toJson()).toList(),
-      if (errorMessage != null) 'error_message': errorMessage,
+      'shipping_options': ?shippingOptions?.map((e) => e.toJson()).toList(),
+      'error_message': ?errorMessage,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3726,7 +3568,7 @@ class RawAPI {
     final params = <String, dynamic>{
       'pre_checkout_query_id': preCheckoutQueryId,
       'ok': ok,
-      if (errorMessage != null) 'error_message': errorMessage,
+      'error_message': ?errorMessage,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3769,17 +3611,14 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'game_short_name': gameShortName,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      'business_connection_id': ?businessConnectionId,
+      'message_thread_id': ?messageThreadId,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'message_effect_id': ?messageEffectId,
+      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup?.toJson(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3810,12 +3649,11 @@ class RawAPI {
     final params = <String, dynamic>{
       'user_id': userId,
       'score': score,
-      if (force != null) 'force': force,
-      if (disableEditMessage != null)
-        'disable_edit_message': disableEditMessage,
-      if (chatId != null) 'chat_id': chatId,
-      if (messageId != null) 'message_id': messageId,
-      if (inlineMessageId != null) 'inline_message_id': inlineMessageId,
+      'force': ?force,
+      'disable_edit_message': ?disableEditMessage,
+      'chat_id': ?chatId,
+      'message_id': ?messageId,
+      'inline_message_id': ?inlineMessageId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3846,9 +3684,9 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'user_id': userId,
-      if (chatId != null) 'chat_id': chatId,
-      if (messageId != null) 'message_id': messageId,
-      if (inlineMessageId != null) 'inline_message_id': inlineMessageId,
+      'chat_id': ?chatId,
+      'message_id': ?messageId,
+      'inline_message_id': ?inlineMessageId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3872,9 +3710,8 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_id': messageId,
-      if (reaction != null)
-        'reaction': reaction.map((e) => e.toJson()).toList(),
-      if (isBig != null) 'is_big': isBig,
+      'reaction': ?reaction?.map((e) => e.toJson()).toList(),
+      'is_big': ?isBig,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3910,12 +3747,10 @@ class RawAPI {
       'chat_id': chatId,
       'from_chat_id': fromChatId,
       'message_ids': messageIds,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
+      'message_thread_id': ?messageThreadId,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'direct_messages_topic_id': ?directMessagesTopicId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -3944,13 +3779,11 @@ class RawAPI {
       'chat_id': chatId,
       'from_chat_id': fromChatId,
       'message_ids': messageIds,
-      if (messageThreadId != null) 'message_thread_id': messageThreadId,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (removeCaption != null) 'remove_caption': removeCaption,
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
+      'message_thread_id': ?messageThreadId,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'remove_caption': ?removeCaption,
+      'direct_messages_topic_id': ?directMessagesTopicId,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4055,10 +3888,7 @@ class RawAPI {
     int? offset,
     int? limit,
   }) async {
-    final params = <String, dynamic>{
-      if (offset != null) 'offset': offset,
-      if (limit != null) 'limit': limit,
-    };
+    final params = <String, dynamic>{'offset': ?offset, 'limit': ?limit};
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -4094,26 +3924,19 @@ class RawAPI {
       'chat_id': chatId,
       'star_count': starCount,
       'media': media,
-      if (businessConnectionId != null)
-        'business_connection_id': businessConnectionId,
-      if (payload != null) 'payload': payload,
-      if (caption != null) 'caption': caption,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (captionEntities != null)
-        'caption_entities': captionEntities.map((e) => e.toJson()).toList(),
-      if (showCaptionAboveMedia != null)
-        'show_caption_above_media': showCaptionAboveMedia,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (allowPaidBroadcast != null)
-        'allow_paid_broadcast': allowPaidBroadcast,
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
-      if (directMessagesTopicId != null)
-        'direct_messages_topic_id': directMessagesTopicId,
-      if (suggestedPostParameters != null)
-        'suggested_post_parameters': suggestedPostParameters,
+      'business_connection_id': ?businessConnectionId,
+      'payload': ?payload,
+      'caption': ?caption,
+      'parse_mode': ?parseMode,
+      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'show_caption_above_media': ?showCaptionAboveMedia,
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'allow_paid_broadcast': ?allowPaidBroadcast,
+      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup?.toJson(),
+      'direct_messages_topic_id': ?directMessagesTopicId,
+      'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final convertedParams = _convertParameters(params);
@@ -4140,7 +3963,7 @@ class RawAPI {
       'chat_id': chatId,
       'subscription_period': subscriptionPeriod,
       'subscription_price': subscriptionPrice,
-      if (name != null) 'name': name,
+      'name': ?name,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4163,7 +3986,7 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'invite_link': inviteLink,
-      if (name != null) 'name': name,
+      'name': ?name,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4206,10 +4029,8 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'user_id': userId,
-      if (emojiStatusCustomEmojiId != null)
-        'emoji_status_custom_emoji_id': emojiStatusCustomEmojiId,
-      if (emojiStatusExpirationDate != null)
-        'emoji_status_expiration_date': emojiStatusExpirationDate,
+      'emoji_status_custom_emoji_id': ?emojiStatusCustomEmojiId,
+      'emoji_status_expiration_date': ?emojiStatusExpirationDate,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4230,10 +4051,10 @@ class RawAPI {
     final params = <String, dynamic>{
       'user_id': userId,
       'result': result.toJson(),
-      if (allowUserChats != null) 'allow_user_chats': allowUserChats,
-      if (allowBotChats != null) 'allow_bot_chats': allowBotChats,
-      if (allowGroupChats != null) 'allow_group_chats': allowGroupChats,
-      if (allowChannelChats != null) 'allow_channel_chats': allowChannelChats,
+      'allow_user_chats': ?allowUserChats,
+      'allow_bot_chats': ?allowBotChats,
+      'allow_group_chats': ?allowGroupChats,
+      'allow_channel_chats': ?allowChannelChats,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4279,13 +4100,12 @@ class RawAPI {
 
     final params = <String, dynamic>{
       'gift_id': giftId,
-      if (userId != null) 'user_id': userId,
-      if (chatId != null) 'chat_id': chatId,
-      if (payForUpgrade != null) 'pay_for_upgrade': payForUpgrade,
-      if (text != null) 'text': text,
-      if (textParseMode != null) 'text_parse_mode': textParseMode,
-      if (textEntities != null)
-        'text_entities': textEntities.map((e) => e.toJson()).toList(),
+      'user_id': ?userId,
+      'chat_id': ?chatId,
+      'pay_for_upgrade': ?payForUpgrade,
+      'text': ?text,
+      'text_parse_mode': ?textParseMode,
+      'text_entities': ?textEntities?.map((e) => e.toJson()).toList(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4298,7 +4118,7 @@ class RawAPI {
   Future<bool> verifyUser(int userId, {String? customDescription}) async {
     final params = <String, dynamic>{
       'user_id': userId,
-      if (customDescription != null) 'custom_description': customDescription,
+      'custom_description': ?customDescription,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4311,7 +4131,7 @@ class RawAPI {
   Future<bool> verifyChat(ID chatId, {String? customDescription}) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      if (customDescription != null) 'custom_description': customDescription,
+      'custom_description': ?customDescription,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4383,7 +4203,7 @@ class RawAPI {
     final params = <String, dynamic>{
       'business_connection_id': businessConnectionId,
       'first_name': firstName,
-      if (lastName != null) 'last_name': lastName,
+      'last_name': ?lastName,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4399,7 +4219,7 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'business_connection_id': businessConnectionId,
-      if (username != null) 'username': username,
+      'username': ?username,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4418,7 +4238,7 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'business_connection_id': businessConnectionId,
-      if (bio != null) 'bio': bio,
+      'bio': ?bio,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4436,7 +4256,7 @@ class RawAPI {
     final params = <String, dynamic>{
       'business_connection_id': businessConnectionId,
       'photo': photo,
-      if (isPublic != null) 'is_public': isPublic,
+      'is_public': ?isPublic,
     };
 
     final convertedParams = _convertParameters(params);
@@ -4458,7 +4278,7 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'business_connection_id': businessConnectionId,
-      if (isPublic != null) 'is_public': isPublic,
+      'is_public': ?isPublic,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4545,19 +4365,16 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'business_connection_id': businessConnectionId,
-      if (excludeUnsaved != null) 'exclude_unsaved': excludeUnsaved,
-      if (excludeSaved != null) 'exclude_saved': excludeSaved,
-      if (excludeUnlimited != null) 'exclude_unlimited': excludeUnlimited,
-      if (excludeLimitedUpgradable != null)
-        'exclude_limited_upgradable': excludeLimitedUpgradable,
-      if (excludeLimitedNonUpgradable != null)
-        'exclude_limited_non_upgradable': excludeLimitedNonUpgradable,
-      if (excludeUnique != null) 'exclude_unique': excludeUnique,
-      if (excludeFromBlockchain != null)
-        'exclude_from_blockchain': excludeFromBlockchain,
-      if (sortByPrice != null) 'sort_by_price': sortByPrice,
-      if (offset != null) 'offset': offset,
-      if (limit != null) 'limit': limit,
+      'exclude_unsaved': ?excludeUnsaved,
+      'exclude_saved': ?excludeSaved,
+      'exclude_unlimited': ?excludeUnlimited,
+      'exclude_limited_upgradable': ?excludeLimitedUpgradable,
+      'exclude_limited_non_upgradable': ?excludeLimitedNonUpgradable,
+      'exclude_unique': ?excludeUnique,
+      'exclude_from_blockchain': ?excludeFromBlockchain,
+      'sort_by_price': ?sortByPrice,
+      'offset': ?offset,
+      'limit': ?limit,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4597,9 +4414,8 @@ class RawAPI {
     final params = <String, dynamic>{
       'business_connection_id': businessConnectionId,
       'owned_gift_id': ownedGiftId,
-      if (keepOriginalDetails != null)
-        'keep_original_details': keepOriginalDetails,
-      if (starCount != null) 'star_count': starCount,
+      'keep_original_details': ?keepOriginalDetails,
+      'star_count': ?starCount,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4619,7 +4435,7 @@ class RawAPI {
       'business_connection_id': businessConnectionId,
       'owned_gift_id': ownedGiftId,
       'new_owner_chat_id': newOwnerChatId,
-      if (starCount != null) 'star_count': starCount,
+      'star_count': ?starCount,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4644,13 +4460,12 @@ class RawAPI {
       'business_connection_id': businessConnectionId,
       'content': content,
       'active_period': activePeriod,
-      if (caption != null) 'caption': caption,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (captionEntities != null)
-        'caption_entities': captionEntities.map((e) => e.toJson()).toList(),
-      if (areas != null) 'areas': areas.map((e) => e.toJson()).toList(),
-      if (postToChatPage != null) 'post_to_chat_page': postToChatPage,
-      if (protectContent != null) 'protect_content': protectContent,
+      'caption': ?caption,
+      'parse_mode': ?parseMode,
+      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'areas': ?areas?.map((e) => e.toJson()).toList(),
+      'post_to_chat_page': ?postToChatPage,
+      'protect_content': ?protectContent,
     };
 
     final convertedParams = _convertParameters(params);
@@ -4681,11 +4496,10 @@ class RawAPI {
       'business_connection_id': businessConnectionId,
       'story_id': storyId,
       'content': content,
-      if (caption != null) 'caption': caption,
-      if (parseMode != null) 'parse_mode': parseMode,
-      if (captionEntities != null)
-        'caption_entities': captionEntities.map((e) => e.toJson()).toList(),
-      if (areas != null) 'areas': areas.map((e) => e.toJson()).toList(),
+      'caption': ?caption,
+      'parse_mode': ?parseMode,
+      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'areas': ?areas?.map((e) => e.toJson()).toList(),
     };
 
     final convertedParams = _convertParameters(params);
@@ -4730,10 +4544,9 @@ class RawAPI {
       'user_id': userId,
       'month_count': monthCount,
       'star_count': starCount,
-      if (text != null) 'text': text,
-      if (textParseMode != null) 'text_parse_mode': textParseMode,
-      if (textEntities != null)
-        'text_entities': textEntities.map((e) => e.toJson()).toList(),
+      'text': ?text,
+      'text_parse_mode': ?textParseMode,
+      'text_entities': ?textEntities?.map((e) => e.toJson()).toList(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4759,12 +4572,11 @@ class RawAPI {
       'business_connection_id': businessConnectionId,
       'chat_id': chatId,
       'checklist': checklist,
-      if (disableNotification != null)
-        'disable_notification': disableNotification,
-      if (protectContent != null) 'protect_content': protectContent,
-      if (messageEffectId != null) 'message_effect_id': messageEffectId,
-      if (replyParameters != null) 'reply_parameters': replyParameters.toJson(),
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      'disable_notification': ?disableNotification,
+      'protect_content': ?protectContent,
+      'message_effect_id': ?messageEffectId,
+      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup?.toJson(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4793,7 +4605,7 @@ class RawAPI {
       'chat_id': chatId,
       'message_id': messageId,
       'checklist': checklist,
-      if (replyMarkup != null) 'reply_markup': replyMarkup.toJson(),
+      'reply_markup': ?replyMarkup?.toJson(),
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4832,7 +4644,7 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_id': messageId,
-      if (sendDate != null) 'send_date': sendDate,
+      'send_date': ?sendDate,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4853,7 +4665,7 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_id': messageId,
-      if (comment != null) 'comment': comment,
+      'comment': ?comment,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4876,17 +4688,14 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'user_id': userId,
-      if (excludeUnlimited != null) 'exclude_unlimited': excludeUnlimited,
-      if (excludeLimitedUpgradable != null)
-        'exclude_limited_upgradable': excludeLimitedUpgradable,
-      if (excludeLimitedNonUpgradable != null)
-        'exclude_limited_non_upgradable': excludeLimitedNonUpgradable,
-      if (excludeFromBlockchain != null)
-        'exclude_from_blockchain': excludeFromBlockchain,
-      if (excludeUnique != null) 'exclude_unique': excludeUnique,
-      if (sortByPrice != null) 'sort_by_price': sortByPrice,
-      if (offset != null) 'offset': offset,
-      if (limit != null) 'limit': limit,
+      'exclude_unlimited': ?excludeUnlimited,
+      'exclude_limited_upgradable': ?excludeLimitedUpgradable,
+      'exclude_limited_non_upgradable': ?excludeLimitedNonUpgradable,
+      'exclude_from_blockchain': ?excludeFromBlockchain,
+      'exclude_unique': ?excludeUnique,
+      'sort_by_price': ?sortByPrice,
+      'offset': ?offset,
+      'limit': ?limit,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4915,19 +4724,16 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      if (excludeUnsaved != null) 'exclude_unsaved': excludeUnsaved,
-      if (excludeSaved != null) 'exclude_saved': excludeSaved,
-      if (excludeUnlimited != null) 'exclude_unlimited': excludeUnlimited,
-      if (excludeLimitedUpgradable != null)
-        'exclude_limited_upgradable': excludeLimitedUpgradable,
-      if (excludeLimitedNonUpgradable != null)
-        'exclude_limited_non_upgradable': excludeLimitedNonUpgradable,
-      if (excludeFromBlockchain != null)
-        'exclude_from_blockchain': excludeFromBlockchain,
-      if (excludeUnique != null) 'exclude_unique': excludeUnique,
-      if (sortByPrice != null) 'sort_by_price': sortByPrice,
-      if (offset != null) 'offset': offset,
-      if (limit != null) 'limit': limit,
+      'exclude_unsaved': ?excludeUnsaved,
+      'exclude_saved': ?excludeSaved,
+      'exclude_unlimited': ?excludeUnlimited,
+      'exclude_limited_upgradable': ?excludeLimitedUpgradable,
+      'exclude_limited_non_upgradable': ?excludeLimitedNonUpgradable,
+      'exclude_from_blockchain': ?excludeFromBlockchain,
+      'exclude_unique': ?excludeUnique,
+      'sort_by_price': ?sortByPrice,
+      'offset': ?offset,
+      'limit': ?limit,
     };
 
     final payload = Payload(_convertParameters(params));
@@ -4954,8 +4760,8 @@ class RawAPI {
       'from_chat_id': fromChatId,
       'from_story_id': fromStoryId,
       'active_period': activePeriod,
-      if (postToChatPage != null) 'post_to_chat_page': postToChatPage,
-      if (protectContent != null) 'protect_content': protectContent,
+      'post_to_chat_page': ?postToChatPage,
+      'protect_content': ?protectContent,
     };
 
     final payload = Payload(_convertParameters(params));
