@@ -74,11 +74,11 @@ class _LoggingTransformer extends Transformer {
   @override
   Future<Map<String, dynamic>> transform(
     APICaller call,
-    APIMethod method, [
+    String method, [
     Payload? payload,
   ]) async {
     // Skip logging for methods not in the allowed list
-    if (!options.methods.contains(method)) {
+    if (!options.methods.any((m) => m.name == method)) {
       return await call(method, payload);
     }
 
@@ -111,12 +111,12 @@ class _LoggingTransformer extends Transformer {
   }
 
   /// Logs an outgoing request.
-  void _logRequest(APIMethod method, String requestId, Payload? payload) {
+  void _logRequest(String method, String requestId, Payload? payload) {
     final timestamp = _formatTime(DateTime.now());
     final color = options.colorOutput ? '\x1B[36m' : '';
     final reset = options.colorOutput ? '\x1B[0m' : '';
 
-    options.logPrint('$color📤 [$timestamp] ${method.name} [$requestId]$reset');
+    options.logPrint('$color📤 [$timestamp] $method [$requestId]$reset');
 
     // Log request body if enabled
     if (options.requestBody && payload != null) {
@@ -154,7 +154,7 @@ class _LoggingTransformer extends Transformer {
 
   /// Logs a successful response.
   void _logResponse(
-    APIMethod method,
+    String method,
     String requestId,
     Map<String, dynamic> result,
     Duration duration,
@@ -164,7 +164,7 @@ class _LoggingTransformer extends Transformer {
     final reset = options.colorOutput ? '\x1B[0m' : '';
 
     options.logPrint(
-      '$color✅ ${method.name} [$requestId] completed in ${durationMs}ms$reset',
+      '$color✅ $method [$requestId] completed in ${durationMs}ms$reset',
     );
 
     // Log response body if enabled
@@ -190,7 +190,7 @@ class _LoggingTransformer extends Transformer {
 
   /// Logs an error.
   void _logError(
-    APIMethod method,
+    String method,
     String requestId,
     Object error,
     StackTrace? stackTrace,
@@ -201,7 +201,7 @@ class _LoggingTransformer extends Transformer {
     final reset = options.colorOutput ? '\x1B[0m' : '';
 
     options.logPrint(
-      '$color❌ ${method.name} [$requestId] failed in ${durationMs}ms$reset',
+      '$color❌ $method [$requestId] failed in ${durationMs}ms$reset',
     );
 
     // Log error details

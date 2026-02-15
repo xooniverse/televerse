@@ -127,7 +127,7 @@ class RawAPI {
   /// });
   ///
   /// final response = await api<Map<String, dynamic>>(
-  ///   APIMethod.sendMessage,
+  ///   APIMethod.sendMessage.name,
   ///   payload,
   /// );
   /// final message = Message.fromJson(response);
@@ -139,7 +139,7 @@ class RawAPI {
   ///
   /// Returns the parsed response data of type [T].
   /// Throws [TeleverseException] if the request fails.
-  Future<T> call<T>(APIMethod method, Payload payload) async {
+  Future<T> call<T>(String method, Payload payload) async {
     return await _makeRequest<T>(method, payload);
   }
 
@@ -155,7 +155,7 @@ class RawAPI {
   ///
   /// Returns the parsed response data.
   /// Throws [TeleverseException] if the request fails.
-  Future<T> _makeRequest<T>(APIMethod method, [Payload? payload]) async {
+  Future<T> _makeRequest<T>(String method, [Payload? payload]) async {
     // Create the transformer chain
     final caller = _transformerManager.createCaller(_actualApiCall);
 
@@ -170,10 +170,10 @@ class RawAPI {
   /// This method performs the actual HTTP request to the Telegram Bot API.
   /// It's called at the end of the transformer chain.
   Future<Map<String, dynamic>> _actualApiCall(
-    APIMethod method, [
+    String method, [
     Payload? payload,
   ]) async {
-    final url = '$_baseUrl/${method.name}';
+    final url = '$_baseUrl/$method';
 
     try {
       final response = await _httpClient.post(url, payload);
@@ -184,7 +184,7 @@ class RawAPI {
       }
 
       throw TeleverseException(
-        'API request failed for method ${method.name}',
+        'API request failed for method $method',
         description: e.toString(),
         type: TeleverseExceptionType.requestFailed,
       );
@@ -311,7 +311,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.getUpdates,
+      APIMethod.getUpdates.name,
       payload,
     );
 
@@ -356,7 +356,7 @@ class RawAPI {
     final files = _extractFiles(params);
 
     final payload = Payload(convertedParams, files);
-    return await _makeRequest<bool>(APIMethod.setWebhook, payload);
+    return await _makeRequest<bool>(APIMethod.setWebhook.name, payload);
   }
 
   /// Gets current webhook status.
@@ -368,7 +368,7 @@ class RawAPI {
   /// Returns current webhook status.
   Future<WebhookInfo> getWebhookInfo() async {
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getWebhookInfo,
+      APIMethod.getWebhookInfo.name,
     );
 
     return WebhookInfo.fromJson(response);
@@ -388,7 +388,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteWebhook, payload);
+    return await _makeRequest<bool>(APIMethod.deleteWebhook.name, payload);
   }
 
   /// Sends a text message.
@@ -448,7 +448,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendMessage,
+      APIMethod.sendMessage.name,
       payload,
     );
 
@@ -485,7 +485,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.sendMessageDraft, payload);
+    return await _makeRequest<bool>(APIMethod.sendMessageDraft.name, payload);
   }
 
   /// Sends a photo.
@@ -554,7 +554,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendPhoto,
+      APIMethod.sendPhoto.name,
       payload,
     );
 
@@ -608,7 +608,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.sendMediaGroup,
+      APIMethod.sendMediaGroup.name,
       payload,
     );
 
@@ -623,7 +623,9 @@ class RawAPI {
   ///
   /// Returns basic information about the bot.
   Future<User> getMe() async {
-    final response = await _makeRequest<Map<String, dynamic>>(APIMethod.getMe);
+    final response = await _makeRequest<Map<String, dynamic>>(
+      APIMethod.getMe.name,
+    );
     return User.fromJson(response);
   }
 
@@ -637,7 +639,7 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#logout
   Future<bool> logOut() async {
-    return await _makeRequest<bool>(APIMethod.logOut);
+    return await _makeRequest<bool>(APIMethod.logOut.name);
   }
 
   /// Use this method to close the bot instance before moving it from one local
@@ -648,7 +650,7 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#close
   Future<bool> close() async {
-    return await _makeRequest<bool>(APIMethod.close);
+    return await _makeRequest<bool>(APIMethod.close.name);
   }
 
   /// Use this method to forward messages of any kind. Service messages can't be
@@ -711,7 +713,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.forwardMessage,
+      APIMethod.forwardMessage.name,
       payload,
     );
 
@@ -808,7 +810,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.copyMessage,
+      APIMethod.copyMessage.name,
       payload,
     );
 
@@ -891,7 +893,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendAudio,
+      APIMethod.sendAudio.name,
       payload,
     );
 
@@ -964,7 +966,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendDocument,
+      APIMethod.sendDocument.name,
       payload,
     );
 
@@ -1059,7 +1061,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendVideo,
+      APIMethod.sendVideo.name,
       payload,
     );
 
@@ -1147,7 +1149,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendAnimation,
+      APIMethod.sendAnimation.name,
       payload,
     );
 
@@ -1208,7 +1210,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendVoice,
+      APIMethod.sendVoice.name,
       payload,
     );
 
@@ -1264,7 +1266,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendVideoNote,
+      APIMethod.sendVideoNote.name,
       payload,
     );
 
@@ -1317,7 +1319,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendLocation,
+      APIMethod.sendLocation.name,
       payload,
     );
 
@@ -1374,7 +1376,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendVenue,
+      APIMethod.sendVenue.name,
       payload,
     );
 
@@ -1421,7 +1423,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendContact,
+      APIMethod.sendContact.name,
       payload,
     );
 
@@ -1486,7 +1488,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendPoll,
+      APIMethod.sendPoll.name,
       payload,
     );
 
@@ -1527,7 +1529,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendDice,
+      APIMethod.sendDice.name,
       payload,
     );
 
@@ -1554,7 +1556,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.sendChatAction, payload);
+    return await _makeRequest<bool>(APIMethod.sendChatAction.name, payload);
   }
 
   /// Use this method to get a list of profile pictures for a user.
@@ -1573,7 +1575,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getUserProfilePhotos,
+      APIMethod.getUserProfilePhotos.name,
       payload,
     );
 
@@ -1588,7 +1590,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getFile,
+      APIMethod.getFile.name,
       payload,
     );
 
@@ -1614,7 +1616,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.banChatMember, payload);
+    return await _makeRequest<bool>(APIMethod.banChatMember.name, payload);
   }
 
   /// Use this method to unban a previously banned user in a supergroup or
@@ -1639,7 +1641,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.unbanChatMember, payload);
+    return await _makeRequest<bool>(APIMethod.unbanChatMember.name, payload);
   }
 
   /// Use this method to restrict a user in a supergroup. The bot must be an
@@ -1664,7 +1666,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.restrictChatMember, payload);
+    return await _makeRequest<bool>(APIMethod.restrictChatMember.name, payload);
   }
 
   /// Use this method to promote or demote a user in a supergroup or a channel.
@@ -1715,7 +1717,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.promoteChatMember, payload);
+    return await _makeRequest<bool>(APIMethod.promoteChatMember.name, payload);
   }
 
   /// Use this method to set a custom title for an administrator in a supergroup
@@ -1735,7 +1737,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-      APIMethod.setChatAdministratorCustomTitle,
+      APIMethod.setChatAdministratorCustomTitle.name,
       payload,
     );
   }
@@ -1754,7 +1756,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.banChatSenderChat, payload);
+    return await _makeRequest<bool>(APIMethod.banChatSenderChat.name, payload);
   }
 
   /// Use this method to unban a previously banned channel chat in a supergroup
@@ -1769,7 +1771,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.unbanChatSenderChat, payload);
+    return await _makeRequest<bool>(
+      APIMethod.unbanChatSenderChat.name,
+      payload,
+    );
   }
 
   /// Use this method to set default chat permissions for all members.
@@ -1787,7 +1792,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setChatPermissions, payload);
+    return await _makeRequest<bool>(APIMethod.setChatPermissions.name, payload);
   }
 
   /// Use this method to generate a new primary invite link for a chat.
@@ -1797,7 +1802,10 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<String>(APIMethod.exportChatInviteLink, payload);
+    return await _makeRequest<String>(
+      APIMethod.exportChatInviteLink.name,
+      payload,
+    );
   }
 
   /// Use this method to create an additional invite link for a chat.
@@ -1820,7 +1828,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.createChatInviteLink,
+      APIMethod.createChatInviteLink.name,
       payload,
     );
 
@@ -1849,7 +1857,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.editChatInviteLink,
+      APIMethod.editChatInviteLink.name,
       payload,
     );
 
@@ -1870,7 +1878,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.revokeChatInviteLink,
+      APIMethod.revokeChatInviteLink.name,
       payload,
     );
 
@@ -1884,7 +1892,10 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.approveChatJoinRequest, payload);
+    return await _makeRequest<bool>(
+      APIMethod.approveChatJoinRequest.name,
+      payload,
+    );
   }
 
   /// Use this method to decline a chat join request.
@@ -1894,7 +1905,10 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.declineChatJoinRequest, payload);
+    return await _makeRequest<bool>(
+      APIMethod.declineChatJoinRequest.name,
+      payload,
+    );
   }
 
   /// Use this method to set a new profile photo for the chat. Photos can't be
@@ -1910,7 +1924,7 @@ class RawAPI {
     final files = _extractFiles(params);
 
     final payload = Payload(convertedParams, files);
-    return await _makeRequest<bool>(APIMethod.setChatPhoto, payload);
+    return await _makeRequest<bool>(APIMethod.setChatPhoto.name, payload);
   }
 
   /// Use this method to delete a chat photo. Photos can't be changed for
@@ -1923,7 +1937,7 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteChatPhoto, payload);
+    return await _makeRequest<bool>(APIMethod.deleteChatPhoto.name, payload);
   }
 
   /// Use this method to change the title of a chat. Titles can't be changed for
@@ -1936,7 +1950,7 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId, 'title': title};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setChatTitle, payload);
+    return await _makeRequest<bool>(APIMethod.setChatTitle.name, payload);
   }
 
   /// Use this method to change the description of a group, a supergroup or a
@@ -1951,7 +1965,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setChatDescription, payload);
+    return await _makeRequest<bool>(APIMethod.setChatDescription.name, payload);
   }
 
   /// Use this method to add a message to the list of pinned messages in a chat.
@@ -1975,7 +1989,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.pinChatMessage, payload);
+    return await _makeRequest<bool>(APIMethod.pinChatMessage.name, payload);
   }
 
   /// Use this method to remove a message from the list of pinned messages in a
@@ -1997,7 +2011,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.unpinChatMessage, payload);
+    return await _makeRequest<bool>(APIMethod.unpinChatMessage.name, payload);
   }
 
   /// Use this method to clear the list of pinned messages in a chat. If the
@@ -2011,7 +2025,10 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.unpinAllChatMessages, payload);
+    return await _makeRequest<bool>(
+      APIMethod.unpinAllChatMessages.name,
+      payload,
+    );
   }
 
   /// Use this method for your bot to leave a group, supergroup or channel.
@@ -2022,7 +2039,7 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.leaveChat, payload);
+    return await _makeRequest<bool>(APIMethod.leaveChat.name, payload);
   }
 
   /// Use this method to get up to date information about the chat (current name
@@ -2035,7 +2052,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getChat,
+      APIMethod.getChat.name,
       payload,
     );
 
@@ -2051,7 +2068,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.getChatAdministrators,
+      APIMethod.getChatAdministrators.name,
       payload,
     );
 
@@ -2066,7 +2083,7 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<int>(APIMethod.getChatMemberCount, payload);
+    return await _makeRequest<int>(APIMethod.getChatMemberCount.name, payload);
   }
 
   /// Use this method to get information about a member of a chat. The method is
@@ -2079,7 +2096,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getChatMember,
+      APIMethod.getChatMember.name,
       payload,
     );
 
@@ -2100,7 +2117,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setChatStickerSet, payload);
+    return await _makeRequest<bool>(APIMethod.setChatStickerSet.name, payload);
   }
 
   /// Use this method to delete a group sticker set from a supergroup.
@@ -2110,7 +2127,10 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteChatStickerSet, payload);
+    return await _makeRequest<bool>(
+      APIMethod.deleteChatStickerSet.name,
+      payload,
+    );
   }
 
   /// Use this method to get custom emoji stickers, which can be used as a forum topic icon.
@@ -2119,7 +2139,7 @@ class RawAPI {
   Future<List<Sticker>> getForumTopicIconStickers() async {
     final payload = Payload({});
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.getForumTopicIconStickers,
+      APIMethod.getForumTopicIconStickers.name,
       payload,
     );
 
@@ -2144,7 +2164,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.createForumTopic,
+      APIMethod.createForumTopic.name,
       payload,
     );
 
@@ -2168,7 +2188,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.editForumTopic, payload);
+    return await _makeRequest<bool>(APIMethod.editForumTopic.name, payload);
   }
 
   /// Use this method to close an open topic in a forum supergroup chat.
@@ -2181,7 +2201,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.closeForumTopic, payload);
+    return await _makeRequest<bool>(APIMethod.closeForumTopic.name, payload);
   }
 
   /// Use this method to reopen a closed topic in a forum supergroup chat.
@@ -2194,7 +2214,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.reopenForumTopic, payload);
+    return await _makeRequest<bool>(APIMethod.reopenForumTopic.name, payload);
   }
 
   /// Use this method to delete a forum topic along with all its messages.
@@ -2207,7 +2227,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteForumTopic, payload);
+    return await _makeRequest<bool>(APIMethod.deleteForumTopic.name, payload);
   }
 
   /// Use this method to clear the list of pinned messages in a forum topic.
@@ -2224,7 +2244,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-      APIMethod.unpinAllForumTopicMessages,
+      APIMethod.unpinAllForumTopicMessages.name,
       payload,
     );
   }
@@ -2236,7 +2256,10 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId, 'name': name};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.editGeneralForumTopic, payload);
+    return await _makeRequest<bool>(
+      APIMethod.editGeneralForumTopic.name,
+      payload,
+    );
   }
 
   /// Use this method to close an open 'General' topic in a forum supergroup chat.
@@ -2246,7 +2269,10 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.closeGeneralForumTopic, payload);
+    return await _makeRequest<bool>(
+      APIMethod.closeGeneralForumTopic.name,
+      payload,
+    );
   }
 
   /// Use this method to reopen a closed 'General' topic in a forum supergroup chat.
@@ -2256,7 +2282,10 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.reopenGeneralForumTopic, payload);
+    return await _makeRequest<bool>(
+      APIMethod.reopenGeneralForumTopic.name,
+      payload,
+    );
   }
 
   /// Use this method to hide the 'General' topic in a forum supergroup chat.
@@ -2266,7 +2295,10 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.hideGeneralForumTopic, payload);
+    return await _makeRequest<bool>(
+      APIMethod.hideGeneralForumTopic.name,
+      payload,
+    );
   }
 
   /// Use this method to unhide the 'General' topic in a forum supergroup chat.
@@ -2276,7 +2308,10 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.unhideGeneralForumTopic, payload);
+    return await _makeRequest<bool>(
+      APIMethod.unhideGeneralForumTopic.name,
+      payload,
+    );
   }
 
   /// Use this method to send answers to callback queries sent from inline
@@ -2300,7 +2335,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.answerCallbackQuery, payload);
+    return await _makeRequest<bool>(
+      APIMethod.answerCallbackQuery.name,
+      payload,
+    );
   }
 
   /// Use this method to change the list of the bot's commands. See this manual
@@ -2319,7 +2357,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setMyCommands, payload);
+    return await _makeRequest<bool>(APIMethod.setMyCommands.name, payload);
   }
 
   /// Use this method to delete the list of the bot's commands for the given
@@ -2337,7 +2375,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteMyCommands, payload);
+    return await _makeRequest<bool>(APIMethod.deleteMyCommands.name, payload);
   }
 
   /// Use this method to get the current list of the bot's commands for the
@@ -2356,7 +2394,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.getMyCommands,
+      APIMethod.getMyCommands.name,
       payload,
     );
 
@@ -2373,7 +2411,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setMyName, payload);
+    return await _makeRequest<bool>(APIMethod.setMyName.name, payload);
   }
 
   /// Use this method to get the current bot name for the given user language.
@@ -2385,7 +2423,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getMyName,
+      APIMethod.getMyName.name,
       payload,
     );
 
@@ -2406,7 +2444,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setMyDescription, payload);
+    return await _makeRequest<bool>(APIMethod.setMyDescription.name, payload);
   }
 
   /// Use this method to get the current bot description for the given user
@@ -2418,7 +2456,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getMyDescription,
+      APIMethod.getMyDescription.name,
       payload,
     );
 
@@ -2440,7 +2478,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setMyShortDescription, payload);
+    return await _makeRequest<bool>(
+      APIMethod.setMyShortDescription.name,
+      payload,
+    );
   }
 
   /// Use this method to get the current bot short description for the given
@@ -2454,7 +2495,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getMyShortDescription,
+      APIMethod.getMyShortDescription.name,
       payload,
     );
 
@@ -2472,7 +2513,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setChatMenuButton, payload);
+    return await _makeRequest<bool>(APIMethod.setChatMenuButton.name, payload);
   }
 
   /// Use this method to get the current value of the bot's menu button in a
@@ -2484,7 +2525,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getChatMenuButton,
+      APIMethod.getChatMenuButton.name,
       payload,
     );
 
@@ -2508,7 +2549,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-      APIMethod.setMyDefaultAdministratorRights,
+      APIMethod.setMyDefaultAdministratorRights.name,
       payload,
     );
   }
@@ -2524,7 +2565,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getMyDefaultAdministratorRights,
+      APIMethod.getMyDefaultAdministratorRights.name,
       payload,
     );
 
@@ -2557,7 +2598,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<dynamic>(
-      APIMethod.editMessageText,
+      APIMethod.editMessageText.name,
       payload,
     );
 
@@ -2648,7 +2689,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<dynamic>(
-      APIMethod.editMessageCaption,
+      APIMethod.editMessageCaption.name,
       payload,
     );
 
@@ -2736,7 +2777,7 @@ class RawAPI {
     final payload = Payload(convertedParams, files);
 
     final response = await _makeRequest<dynamic>(
-      APIMethod.editMessageMedia,
+      APIMethod.editMessageMedia.name,
       payload,
     );
 
@@ -2819,7 +2860,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<dynamic>(
-      APIMethod.editMessageLiveLocation,
+      APIMethod.editMessageLiveLocation.name,
       payload,
     );
 
@@ -2910,7 +2951,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<dynamic>(
-      APIMethod.stopMessageLiveLocation,
+      APIMethod.stopMessageLiveLocation.name,
       payload,
     );
 
@@ -2977,7 +3018,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<dynamic>(
-      APIMethod.editMessageReplyMarkup,
+      APIMethod.editMessageReplyMarkup.name,
       payload,
     );
 
@@ -3046,7 +3087,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.stopPoll,
+      APIMethod.stopPoll.name,
       payload,
     );
 
@@ -3065,7 +3106,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteMessage, payload);
+    return await _makeRequest<bool>(APIMethod.deleteMessage.name, payload);
   }
 
   /// Sends static .WEBP, animated .TGS, or video .WEBM stickers.
@@ -3109,7 +3150,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendSticker,
+      APIMethod.sendSticker.name,
       payload,
     );
 
@@ -3126,7 +3167,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getStickerSet,
+      APIMethod.getStickerSet.name,
       payload,
     );
 
@@ -3145,7 +3186,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.getCustomEmojiStickers,
+      APIMethod.getCustomEmojiStickers.name,
       payload,
     );
 
@@ -3173,7 +3214,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.uploadStickerFile,
+      APIMethod.uploadStickerFile.name,
       payload,
     );
 
@@ -3206,7 +3247,10 @@ class RawAPI {
     final files = _extractFiles(params);
 
     final payload = Payload(convertedParams, files);
-    return await _makeRequest<bool>(APIMethod.createNewStickerSet, payload);
+    return await _makeRequest<bool>(
+      APIMethod.createNewStickerSet.name,
+      payload,
+    );
   }
 
   /// Adds a new sticker to a set created by the bot.
@@ -3229,7 +3273,7 @@ class RawAPI {
     final files = _extractFiles(params);
 
     final payload = Payload(convertedParams, files);
-    return await _makeRequest<bool>(APIMethod.addStickerToSet, payload);
+    return await _makeRequest<bool>(APIMethod.addStickerToSet.name, payload);
   }
 
   /// Moves a sticker in a set created by the bot to a specific position.
@@ -3241,7 +3285,10 @@ class RawAPI {
     final params = <String, dynamic>{'sticker': sticker, 'position': position};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setStickerPositionInSet, payload);
+    return await _makeRequest<bool>(
+      APIMethod.setStickerPositionInSet.name,
+      payload,
+    );
   }
 
   /// Deletes a sticker from a set created by the bot.
@@ -3253,7 +3300,10 @@ class RawAPI {
     final params = <String, dynamic>{'sticker': sticker};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteStickerFromSet, payload);
+    return await _makeRequest<bool>(
+      APIMethod.deleteStickerFromSet.name,
+      payload,
+    );
   }
 
   /// Changes the list of emoji assigned to a regular or custom emoji sticker.
@@ -3271,7 +3321,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setStickerEmojiList, payload);
+    return await _makeRequest<bool>(
+      APIMethod.setStickerEmojiList.name,
+      payload,
+    );
   }
 
   /// Changes search keywords assigned to a regular or custom emoji sticker.
@@ -3286,7 +3339,7 @@ class RawAPI {
     final params = <String, dynamic>{'sticker': sticker, 'keywords': ?keywords};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setStickerKeywords, payload);
+    return await _makeRequest<bool>(APIMethod.setStickerKeywords.name, payload);
   }
 
   /// Changes the mask position of a mask sticker.
@@ -3304,7 +3357,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setStickerMaskPosition, payload);
+    return await _makeRequest<bool>(
+      APIMethod.setStickerMaskPosition.name,
+      payload,
+    );
   }
 
   /// Sets the title of a created sticker set.
@@ -3316,7 +3372,7 @@ class RawAPI {
     final params = <String, dynamic>{'name': name, 'title': title};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setStickerSetTitle, payload);
+    return await _makeRequest<bool>(APIMethod.setStickerSetTitle.name, payload);
   }
 
   /// Sets the thumbnail of a regular or mask sticker set.
@@ -3341,7 +3397,10 @@ class RawAPI {
     final files = _extractFiles(params);
 
     final payload = Payload(convertedParams, files);
-    return await _makeRequest<bool>(APIMethod.setStickerSetThumbnail, payload);
+    return await _makeRequest<bool>(
+      APIMethod.setStickerSetThumbnail.name,
+      payload,
+    );
   }
 
   /// Sets the thumbnail of a custom emoji sticker set.
@@ -3360,7 +3419,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-      APIMethod.setCustomEmojiStickerSetThumbnail,
+      APIMethod.setCustomEmojiStickerSetThumbnail.name,
       payload,
     );
   }
@@ -3374,7 +3433,7 @@ class RawAPI {
     final params = <String, dynamic>{'name': name};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteStickerSet, payload);
+    return await _makeRequest<bool>(APIMethod.deleteStickerSet.name, payload);
   }
 
   /// Sends answers to an inline query.
@@ -3398,7 +3457,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.answerInlineQuery, payload);
+    return await _makeRequest<bool>(APIMethod.answerInlineQuery.name, payload);
   }
 
   /// Sets the result of an interaction with a Web App and sends a corresponding message.
@@ -3415,7 +3474,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.answerWebAppQuery,
+      APIMethod.answerWebAppQuery.name,
       payload,
     );
 
@@ -3495,7 +3554,7 @@ class RawAPI {
     };
 
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendInvoice,
+      APIMethod.sendInvoice.name,
       Payload(_convertParameters(params)),
     );
 
@@ -3557,7 +3616,7 @@ class RawAPI {
     };
 
     return await _makeRequest<String>(
-      APIMethod.createInvoiceLink,
+      APIMethod.createInvoiceLink.name,
       Payload(_convertParameters(params)),
     );
   }
@@ -3579,7 +3638,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.answerShippingQuery, payload);
+    return await _makeRequest<bool>(
+      APIMethod.answerShippingQuery.name,
+      payload,
+    );
   }
 
   /// Responds to pre-checkout queries.
@@ -3597,7 +3659,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.answerPreCheckoutQuery, payload);
+    return await _makeRequest<bool>(
+      APIMethod.answerPreCheckoutQuery.name,
+      payload,
+    );
   }
 
   /// Informs a user that some Telegram Passport elements contain errors.
@@ -3613,7 +3678,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setPassportDataErrors, payload);
+    return await _makeRequest<bool>(
+      APIMethod.setPassportDataErrors.name,
+      payload,
+    );
   }
 
   /// Sends a game.
@@ -3648,7 +3716,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendGame,
+      APIMethod.sendGame.name,
       payload,
     );
 
@@ -3683,7 +3751,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<dynamic>(
-      APIMethod.setGameScore,
+      APIMethod.setGameScore.name,
       payload,
     );
 
@@ -3716,7 +3784,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.getGameHighScores,
+      APIMethod.getGameHighScores.name,
       payload,
     );
 
@@ -3740,7 +3808,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setMessageReaction, payload);
+    return await _makeRequest<bool>(APIMethod.setMessageReaction.name, payload);
   }
 
   /// Deletes multiple messages simultaneously.
@@ -3753,7 +3821,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteMessages, payload);
+    return await _makeRequest<bool>(APIMethod.deleteMessages.name, payload);
   }
 
   /// Forwards multiple messages of any kind.
@@ -3780,7 +3848,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.forwardMessages,
+      APIMethod.forwardMessages.name,
       payload,
     );
 
@@ -3813,7 +3881,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.copyMessages,
+      APIMethod.copyMessages.name,
       payload,
     );
 
@@ -3828,7 +3896,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getUserChatBoosts,
+      APIMethod.getUserChatBoosts.name,
       payload,
     );
 
@@ -3843,7 +3911,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-      APIMethod.unpinAllGeneralForumTopicMessages,
+      APIMethod.unpinAllGeneralForumTopicMessages.name,
       payload,
     );
   }
@@ -3860,7 +3928,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getBusinessConnection,
+      APIMethod.getBusinessConnection.name,
       payload,
     );
 
@@ -3887,7 +3955,10 @@ class RawAPI {
     final files = _extractFiles(params);
 
     final payload = Payload(convertedParams, files);
-    return await _makeRequest<bool>(APIMethod.replaceStickerInSet, payload);
+    return await _makeRequest<bool>(
+      APIMethod.replaceStickerInSet.name,
+      payload,
+    );
   }
 
   /// Refunds a successful payment in Telegram Stars.
@@ -3903,7 +3974,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.refundStarPayment, payload);
+    return await _makeRequest<bool>(APIMethod.refundStarPayment.name, payload);
   }
 
   /// Returns the bot's Telegram Star transactions in chronological order.
@@ -3917,7 +3988,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getStarTransactions,
+      APIMethod.getStarTransactions.name,
       payload,
     );
 
@@ -3968,7 +4039,7 @@ class RawAPI {
     final files = _extractFiles(params);
 
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendPaidMedia,
+      APIMethod.sendPaidMedia.name,
       Payload(convertedParams, files),
     );
 
@@ -3993,7 +4064,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.createChatSubscriptionInviteLink,
+      APIMethod.createChatSubscriptionInviteLink.name,
       payload,
     );
 
@@ -4016,7 +4087,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.editChatSubscriptionInviteLink,
+      APIMethod.editChatSubscriptionInviteLink.name,
       payload,
     );
 
@@ -4039,7 +4110,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-      APIMethod.editUserStarSubscription,
+      APIMethod.editUserStarSubscription.name,
       payload,
     );
   }
@@ -4059,7 +4130,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setUserEmojiStatus, payload);
+    return await _makeRequest<bool>(APIMethod.setUserEmojiStatus.name, payload);
   }
 
   /// Stores a message that can be sent by a user of a Mini App.
@@ -4084,7 +4155,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.savePreparedInlineMessage,
+      APIMethod.savePreparedInlineMessage.name,
       payload,
     );
 
@@ -4097,7 +4168,7 @@ class RawAPI {
   Future<Gifts> getAvailableGifts() async {
     final payload = Payload(<String, dynamic>{});
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getAvailableGifts,
+      APIMethod.getAvailableGifts.name,
       payload,
     );
 
@@ -4134,7 +4205,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.sendGift, payload);
+    return await _makeRequest<bool>(APIMethod.sendGift.name, payload);
   }
 
   /// Verifies a user on behalf of the organization which is represented by the bot.
@@ -4147,7 +4218,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.verifyUser, payload);
+    return await _makeRequest<bool>(APIMethod.verifyUser.name, payload);
   }
 
   /// Verifies a chat on behalf of the organization which is represented by the bot.
@@ -4160,7 +4231,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.verifyChat, payload);
+    return await _makeRequest<bool>(APIMethod.verifyChat.name, payload);
   }
 
   /// Removes verification from a user who is currently verified on behalf of the organization represented by the bot.
@@ -4170,7 +4241,10 @@ class RawAPI {
     final params = <String, dynamic>{'user_id': userId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.removeUserVerification, payload);
+    return await _makeRequest<bool>(
+      APIMethod.removeUserVerification.name,
+      payload,
+    );
   }
 
   /// Removes verification from a chat that is currently verified on behalf of the organization represented by the bot.
@@ -4180,7 +4254,10 @@ class RawAPI {
     final params = <String, dynamic>{'chat_id': chatId};
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.removeChatVerification, payload);
+    return await _makeRequest<bool>(
+      APIMethod.removeChatVerification.name,
+      payload,
+    );
   }
 
   /// Marks incoming message as read on behalf of a business account.
@@ -4198,7 +4275,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.readBusinessMessage, payload);
+    return await _makeRequest<bool>(
+      APIMethod.readBusinessMessage.name,
+      payload,
+    );
   }
 
   /// Delete messages on behalf of a business account.
@@ -4214,7 +4294,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteBusinessMessages, payload);
+    return await _makeRequest<bool>(
+      APIMethod.deleteBusinessMessages.name,
+      payload,
+    );
   }
 
   /// Changes the first and last name of a managed business account.
@@ -4232,7 +4315,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setBusinessAccountName, payload);
+    return await _makeRequest<bool>(
+      APIMethod.setBusinessAccountName.name,
+      payload,
+    );
   }
 
   /// Changes the username of a managed business account.
@@ -4249,7 +4335,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-      APIMethod.setBusinessAccountUsername,
+      APIMethod.setBusinessAccountUsername.name,
       payload,
     );
   }
@@ -4267,7 +4353,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setBusinessAccountBio, payload);
+    return await _makeRequest<bool>(
+      APIMethod.setBusinessAccountBio.name,
+      payload,
+    );
   }
 
   /// Changes the profile photo of a managed business account.
@@ -4289,7 +4378,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     return await _makeRequest<bool>(
-      APIMethod.setBusinessAccountProfilePhoto,
+      APIMethod.setBusinessAccountProfilePhoto.name,
       payload,
     );
   }
@@ -4308,7 +4397,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-      APIMethod.removeBusinessAccountProfilePhoto,
+      APIMethod.removeBusinessAccountProfilePhoto.name,
       payload,
     );
   }
@@ -4329,7 +4418,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-      APIMethod.setBusinessAccountGiftSettings,
+      APIMethod.setBusinessAccountGiftSettings.name,
       payload,
     );
   }
@@ -4346,7 +4435,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getBusinessAccountStarBalance,
+      APIMethod.getBusinessAccountStarBalance.name,
       payload,
     );
 
@@ -4367,7 +4456,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     return await _makeRequest<bool>(
-      APIMethod.transferBusinessAccountStars,
+      APIMethod.transferBusinessAccountStars.name,
       payload,
     );
   }
@@ -4404,7 +4493,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getBusinessAccountGifts,
+      APIMethod.getBusinessAccountGifts.name,
       payload,
     );
 
@@ -4424,7 +4513,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.convertGiftToStars, payload);
+    return await _makeRequest<bool>(APIMethod.convertGiftToStars.name, payload);
   }
 
   /// Upgrades a given regular gift to a unique gift.
@@ -4444,7 +4533,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.upgradeGift, payload);
+    return await _makeRequest<bool>(APIMethod.upgradeGift.name, payload);
   }
 
   /// Transfers an owned unique gift to another user.
@@ -4464,7 +4553,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.transferGift, payload);
+    return await _makeRequest<bool>(APIMethod.transferGift.name, payload);
   }
 
   /// Posts a story on behalf of a managed business account.
@@ -4498,7 +4587,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.postStory,
+      APIMethod.postStory.name,
       payload,
     );
 
@@ -4532,7 +4621,7 @@ class RawAPI {
 
     final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.editStory,
+      APIMethod.editStory.name,
       payload,
     );
 
@@ -4549,7 +4638,7 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteStory, payload);
+    return await _makeRequest<bool>(APIMethod.deleteStory.name, payload);
   }
 
   /// Gifts a Telegram Premium subscription to the given user.
@@ -4575,7 +4664,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.giftPremiumSubscription, payload);
+    return await _makeRequest<bool>(
+      APIMethod.giftPremiumSubscription.name,
+      payload,
+    );
   }
 
   /// Sends a checklist on behalf of a connected business account.
@@ -4606,7 +4698,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendChecklist,
+      APIMethod.sendChecklist.name,
       payload,
     );
 
@@ -4635,7 +4727,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.editMessageChecklist,
+      APIMethod.editMessageChecklist.name,
       payload,
     );
 
@@ -4649,7 +4741,7 @@ class RawAPI {
   /// Returns a StarAmount object.
   Future<StarAmount> getMyStarBalance() async {
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getMyStarBalance,
+      APIMethod.getMyStarBalance.name,
     );
 
     return StarAmount.fromJson(response);
@@ -4673,7 +4765,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.approveSuggestedPost, payload);
+    return await _makeRequest<bool>(
+      APIMethod.approveSuggestedPost.name,
+      payload,
+    );
   }
 
   /// Declines a suggested post in a direct messages chat.
@@ -4694,7 +4789,10 @@ class RawAPI {
     };
 
     final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.declineSuggestedPost, payload);
+    return await _makeRequest<bool>(
+      APIMethod.declineSuggestedPost.name,
+      payload,
+    );
   }
 
   /// Returns the gifts owned and hosted by a user. Returns OwnedGifts on success.
@@ -4725,7 +4823,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getUserGifts,
+      APIMethod.getUserGifts.name,
       payload,
     );
     return OwnedGifts.fromJson(response);
@@ -4763,7 +4861,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getChatGifts,
+      APIMethod.getChatGifts.name,
       payload,
     );
     return OwnedGifts.fromJson(response);
@@ -4791,7 +4889,7 @@ class RawAPI {
 
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.repostStory,
+      APIMethod.repostStory.name,
       payload,
     );
     return Story.fromJson(response);
@@ -4803,12 +4901,12 @@ class RawAPI {
     final files = _extractFiles({'photo': photo});
     final payload = Payload(_convertParameters(params), files);
 
-    return await _makeRequest<bool>(APIMethod.setMyProfilePhoto, payload);
+    return await _makeRequest<bool>(APIMethod.setMyProfilePhoto.name, payload);
   }
 
   /// Removes the profile photo of the bot. Requires no parameters. Returns True on success.
   Future<bool> deleteMyProfilePhoto() async {
-    return await _makeRequest<bool>(APIMethod.deleteMyProfilePhoto);
+    return await _makeRequest<bool>(APIMethod.deleteMyProfilePhoto.name);
   }
 
   /// Use this method to get a list of profile audios for a user. Returns a UserProfileAudios object.
@@ -4816,7 +4914,7 @@ class RawAPI {
     final params = {'user_id': userId};
     final payload = Payload(_convertParameters(params));
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getUserProfileAudios,
+      APIMethod.getUserProfileAudios.name,
       payload,
     );
     return UserProfileAudios.fromJson(response);
