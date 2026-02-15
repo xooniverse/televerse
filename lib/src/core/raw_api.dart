@@ -452,7 +452,7 @@ class RawAPI {
       'direct_messages_topic_id': ?directMessagesTopicId,
     };
 
-    final files = _prepareFiles(media.map((e) => e.media));
+    final files = _prepareFiles(media.expand((e) => e.getInputFiles()));
 
     final payload = Payload(params, files);
     final response = await _makeRequest<List<dynamic>>(
@@ -2429,7 +2429,7 @@ class RawAPI {
       'business_connection_id': ?businessConnectionId,
       'reply_markup': ?replyMarkup,
     };
-    final files = _prepareFiles([media.media]);
+    final files = _prepareFiles(media.getInputFiles());
     final payload = Payload(params, files);
 
     final response = await _makeRequest<dynamic>(
@@ -3677,7 +3677,7 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final files = _prepareFiles(media.map((e) => e.media));
+    final files = _prepareFiles(media.expand((e) => e.getInputFiles()));
 
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendPaidMedia.name,
