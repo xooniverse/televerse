@@ -78,16 +78,6 @@ abstract class InlineKeyboard
   }) = _InlineKeyboard;
 
   /// Creates an inline keyboard from a 2D array of (text, callbackData) records.
-  ///
-  /// Each inner array represents a row, and each record represents `(text, callbackData)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard.from([
-  ///   [("Yes", "yes"), ("No", "no")],
-  ///   [("Maybe", "maybe"), ("Cancel", "cancel")]
-  /// ]);
-  /// ```
   factory InlineKeyboard.from(List<List<(String, String)>> source) {
     final buttons = source.map((row) {
       return row.map((pair) {
@@ -98,33 +88,11 @@ abstract class InlineKeyboard
   }
 
   /// Creates an inline keyboard from a 2D array of [InlineKeyboardButton] objects.
-  ///
-  /// This gives you full control over button types and properties.
-  ///
-  /// Example:
-  /// ```dart
-  /// final buttons = [
-  ///   [InlineKeyboard.buttonText("Hello", "hello"), InlineKeyboard.buttonUrl("World", "https://world.com")],
-  ///   [InlineKeyboard.buttonWebApp("App", "https://app.com")]
-  /// ];
-  /// final keyboard = InlineKeyboard.fromButtons(buttons);
-  /// ```
   factory InlineKeyboard.fromButtons(List<List<InlineKeyboardButton>> buttons) {
     return InlineKeyboard(inlineKeyboard: buttons);
   }
 
   /// Creates a single-column inline keyboard from label-data pairs.
-  ///
-  /// Each pair becomes a button on its own row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard.column([
-  ///   ["Option 1", "opt1"],
-  ///   ["Option 2", "opt2"],
-  ///   ["Option 3", "opt3"]
-  /// ]);
-  /// ```
   factory InlineKeyboard.column(List<List<String>> pairs) {
     final buttons = pairs.map((pair) {
       if (pair.length != 2) {
@@ -138,17 +106,6 @@ abstract class InlineKeyboard
   }
 
   /// Creates a single-row inline keyboard from label-data pairs.
-  ///
-  /// All pairs become buttons in the same row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard.singleRow([
-  ///   ["Yes", "yes"],
-  ///   ["No", "no"],
-  ///   ["Maybe", "maybe"]
-  /// ]);
-  /// ```
   factory InlineKeyboard.singleRow(List<List<String>> pairs) {
     final buttons = pairs.map((pair) {
       if (pair.length != 2) {
@@ -162,16 +119,6 @@ abstract class InlineKeyboard
   }
 
   /// Creates an inline keyboard with a grid layout.
-  ///
-  /// Distributes the provided label-data pairs into rows with the specified number of columns.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard.grid([
-  ///   ["1", "1"], ["2", "2"], ["3", "3"],
-  ///   ["4", "4"], ["5", "5"], ["6", "6"]
-  /// ], columns: 3); // Creates 2 rows with 3 buttons each
-  /// ```
   factory InlineKeyboard.grid(
     List<List<String>> pairs, {
     required int columns,
@@ -201,41 +148,19 @@ abstract class InlineKeyboard
   factory InlineKeyboard.fromJson(Map<String, dynamic> json) =>
       _$InlineKeyboardFromJson(json);
 
-  // Static factory methods for creating individual buttons (renamed with 'button' prefix)
+  // Static factory methods for creating individual buttons
 
   /// Creates a callback query button.
-  ///
-  /// The button contains text and custom payload that will be sent back
-  /// to your bot when the button is pressed.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = InlineKeyboard.buttonText("Click me", "button_clicked");
-  /// ```
   static InlineKeyboardButton buttonText(String text, [String? data]) {
     return InlineKeyboardButton(text: text, callbackData: data ?? text);
   }
 
   /// Creates a URL button.
-  ///
-  /// Telegram clients will open the provided URL when the button is pressed.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = InlineKeyboard.buttonUrl("Visit Website", "https://example.com");
-  /// ```
   static InlineKeyboardButton buttonUrl(String text, String url) {
     return InlineKeyboardButton(text: text, url: url);
   }
 
   /// Creates a web app button.
-  ///
-  /// Opens a Web App when the button is pressed.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = InlineKeyboard.buttonWebApp("Open App", "https://app.example.com");
-  /// ```
   static InlineKeyboardButton buttonWebApp(String text, String url) {
     return InlineKeyboardButton(
       text: text,
@@ -244,17 +169,6 @@ abstract class InlineKeyboard
   }
 
   /// Creates a login button.
-  ///
-  /// Can be used as a replacement for the Telegram Login Widget.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = InlineKeyboard.buttonLogin(
-  ///   "Login",
-  ///   "https://auth.example.com",
-  ///   forwardText: "Login to Example",
-  /// );
-  /// ```
   static InlineKeyboardButton buttonLogin(
     String text,
     String url, {
@@ -274,14 +188,6 @@ abstract class InlineKeyboard
   }
 
   /// Creates an inline query button.
-  ///
-  /// Prompts the user to select a chat, opens that chat and inserts
-  /// the bot's username and the specified inline query in the input field.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = InlineKeyboard.buttonSwitchInline("Share", "check this out");
-  /// ```
   static InlineKeyboardButton buttonSwitchInline(
     String text, [
     String query = "",
@@ -290,14 +196,6 @@ abstract class InlineKeyboard
   }
 
   /// Creates an inline query button for the current chat.
-  ///
-  /// Inserts the bot's username and the specified inline query
-  /// in the current chat's input field.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = InlineKeyboard.buttonSwitchInlineCurrent("Search here", "cats");
-  /// ```
   static InlineKeyboardButton buttonSwitchInlineCurrent(
     String text, [
     String query = "",
@@ -309,18 +207,6 @@ abstract class InlineKeyboard
   }
 
   /// Creates an inline query button for chosen chat type.
-  ///
-  /// Prompts the user to select one of their chats of the specified type,
-  /// opens that chat and inserts the bot's username and query in the input field.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = InlineKeyboard.buttonSwitchInlineChosen(
-  ///   "Share to Group",
-  ///   query: "check this out",
-  ///   allowGroupChats: true,
-  /// );
-  /// ```
   static InlineKeyboardButton buttonSwitchInlineChosen(
     String text, {
     String query = "",
@@ -342,13 +228,6 @@ abstract class InlineKeyboard
   }
 
   /// Creates a callback game button.
-  ///
-  /// Used for games. When pressed, opens the game.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = InlineKeyboard.buttonGame("Play Game");
-  /// ```
   static InlineKeyboardButton buttonGame(String text, {CallbackGame? game}) {
     return InlineKeyboardButton(
       text: text,
@@ -357,26 +236,11 @@ abstract class InlineKeyboard
   }
 
   /// Creates a pay button.
-  ///
-  /// Used for payments. This button must be the first button in the first row
-  /// and can only be used in invoice messages.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = InlineKeyboard.buttonPay("Pay Now");
-  /// ```
   static InlineKeyboardButton buttonPay(String text, {bool pay = true}) {
     return InlineKeyboardButton(text: text, pay: pay);
   }
 
   /// Creates a copy text button.
-  ///
-  /// When clicked, the specified text will be copied to the clipboard.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = InlineKeyboard.buttonCopyText("Copy Code", copyText: "ABC123");
-  /// ```
   static InlineKeyboardButton buttonCopyText(
     String text, {
     required String copyText,
@@ -390,18 +254,6 @@ abstract class InlineKeyboard
   // Instance methods for building keyboards
 
   /// Adds a new row to the keyboard.
-  ///
-  /// If the current row is empty, this method does nothing.
-  /// Otherwise, it starts a new row for subsequent buttons.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard()
-  ///   .text("Button 1", "data1")
-  ///   .text("Button 2", "data2")
-  ///   .row() // Start new row
-  ///   .text("Button 3", "data3");
-  /// ```
   InlineKeyboard row() {
     if (inlineKeyboard.isEmpty || inlineKeyboard.last.isEmpty) {
       return this;
@@ -412,14 +264,6 @@ abstract class InlineKeyboard
   }
 
   /// Adds an [InlineKeyboardButton] to the current row.
-  ///
-  /// If no rows exist, creates the first row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = InlineKeyboardButton(text: "Custom", callbackData: "custom");
-  /// final keyboard = InlineKeyboard().add(button);
-  /// ```
   InlineKeyboard add(InlineKeyboardButton button) {
     if (inlineKeyboard.isEmpty) {
       return copyWith(
@@ -435,15 +279,6 @@ abstract class InlineKeyboard
   }
 
   /// Adds multiple buttons to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final buttons = [
-  ///   InlineKeyboardButton(text: "A", callbackData: "a"),
-  ///   InlineKeyboardButton(text: "B", callbackData: "b"),
-  /// ];
-  /// final keyboard = InlineKeyboard().addAll(buttons);
-  /// ```
   InlineKeyboard addAll(List<InlineKeyboardButton> buttons) {
     if (buttons.isEmpty) return this;
 
@@ -457,105 +292,121 @@ abstract class InlineKeyboard
   }
 
   /// Adds a row of buttons to the keyboard.
-  ///
-  /// This creates a new row regardless of the current state.
-  ///
-  /// Example:
-  /// ```dart
-  /// final buttons = [
-  ///   InlineKeyboardButton(text: "A", callbackData: "a"),
-  ///   InlineKeyboardButton(text: "B", callbackData: "b"),
-  /// ];
-  /// final keyboard = InlineKeyboard().addRow(buttons);
-  /// ```
   InlineKeyboard addRow(List<InlineKeyboardButton> buttons) {
     return copyWith(inlineKeyboard: [...inlineKeyboard, buttons]);
   }
 
   /// Adds a callback query button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard().text("Click me", "clicked");
-  /// ```
-  InlineKeyboard text(String text, [String? data]) {
-    return add(InlineKeyboard.buttonText(text, data));
+  InlineKeyboard text(
+    String text, [
+    String? data,
+    String? iconCustomEmojiId,
+    StyleType? style,
+  ]) {
+    return add(
+      InlineKeyboardButton(
+        text: text,
+        callbackData: data ?? text,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   /// Adds a URL button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard().url("Visit", "https://example.com");
-  /// ```
-  InlineKeyboard url(String text, String url) {
-    return add(InlineKeyboard.buttonUrl(text, url));
+  InlineKeyboard url(
+    String text,
+    String url, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
+    return add(
+      InlineKeyboardButton(
+        text: text,
+        url: url,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   /// Adds a web app button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard().webApp("Open App", "https://app.example.com");
-  /// ```
-  InlineKeyboard webApp(String text, String url) {
-    return add(InlineKeyboard.buttonWebApp(text, url));
+  InlineKeyboard webApp(
+    String text,
+    String url, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
+    return add(
+      InlineKeyboardButton(
+        text: text,
+        webApp: WebAppInfo(url: url),
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   /// Adds a login button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard().login("Login", "https://auth.example.com");
-  /// ```
   InlineKeyboard login(
     String text,
     String url, {
     String? forwardText,
     String? botUsername,
     bool? requestWriteAccess,
+    String? iconCustomEmojiId,
+    StyleType? style,
   }) {
     return add(
-      InlineKeyboard.buttonLogin(
-        text,
-        url,
-        forwardText: forwardText,
-        botUsername: botUsername,
-        requestWriteAccess: requestWriteAccess,
+      InlineKeyboardButton(
+        text: text,
+        loginUrl: LoginURL(
+          url: url,
+          forwardText: forwardText,
+          botUsername: botUsername,
+          requestWriteAccess: requestWriteAccess,
+        ),
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
       ),
     );
   }
 
   /// Adds an inline query button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard().switchInline("Share", "check this out");
-  /// ```
-  InlineKeyboard switchInline(String text, [String query = ""]) {
-    return add(InlineKeyboard.buttonSwitchInline(text, query));
+  InlineKeyboard switchInline(
+    String text, [
+    String query = "",
+    String? iconCustomEmojiId,
+    StyleType? style,
+  ]) {
+    return add(
+      InlineKeyboardButton(
+        text: text,
+        switchInlineQuery: query,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   /// Adds an inline query button for current chat to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard().switchInlineCurrentChat("Search", "cats");
-  /// ```
-  InlineKeyboard switchInlineCurrentChat(String text, [String query = ""]) {
-    return add(InlineKeyboard.buttonSwitchInlineCurrent(text, query));
+  InlineKeyboard switchInlineCurrentChat(
+    String text, [
+    String query = "",
+    String? iconCustomEmojiId,
+    StyleType? style,
+  ]) {
+    return add(
+      InlineKeyboardButton(
+        text: text,
+        switchInlineQueryCurrentChat: query,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   /// Adds an inline query button for chosen chat type to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard().switchInlineChosen(
-  ///   "Share to Group",
-  ///   query: "check this out",
-  ///   allowGroupChats: true,
-  /// );
-  /// ```
   InlineKeyboard switchInlineChosen(
     String text, {
     String query = "",
@@ -563,47 +414,74 @@ abstract class InlineKeyboard
     bool? allowBotChats,
     bool? allowGroupChats,
     bool? allowChannelChats,
+    String? iconCustomEmojiId,
+    StyleType? style,
   }) {
     return add(
-      InlineKeyboard.buttonSwitchInlineChosen(
-        text,
-        query: query,
-        allowUserChats: allowUserChats,
-        allowBotChats: allowBotChats,
-        allowGroupChats: allowGroupChats,
-        allowChannelChats: allowChannelChats,
+      InlineKeyboardButton(
+        text: text,
+        switchInlineQueryChosenChat: SwitchInlineQueryChosenChat(
+          query: query,
+          allowUserChats: allowUserChats,
+          allowBotChats: allowBotChats,
+          allowGroupChats: allowGroupChats,
+          allowChannelChats: allowChannelChats,
+        ),
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
       ),
     );
   }
 
   /// Adds a callback game button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard().game("Play Game");
-  /// ```
-  InlineKeyboard game(String text, {CallbackGame? game}) {
-    return add(InlineKeyboard.buttonGame(text, game: game));
+  InlineKeyboard game(
+    String text, {
+    CallbackGame? game,
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
+    return add(
+      InlineKeyboardButton(
+        text: text,
+        callbackGame: game ?? const CallbackGame(),
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   /// Adds a pay button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard().pay("Pay Now");
-  /// ```
-  InlineKeyboard pay(String text, {bool pay = true}) {
-    return add(InlineKeyboard.buttonPay(text, pay: pay));
+  InlineKeyboard pay(
+    String text, {
+    bool pay = true,
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
+    return add(
+      InlineKeyboardButton(
+        text: text,
+        pay: pay,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   /// Adds a copy text button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard().copyText("Copy", copyText: "ABC123");
-  /// ```
-  InlineKeyboard copyText(String text, {required String copyText}) {
-    return add(InlineKeyboard.buttonCopyText(text, copyText: copyText));
+  InlineKeyboard copyText(
+    String text, {
+    required String copyText,
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
+    return add(
+      InlineKeyboardButton(
+        text: text,
+        copyText: CopyTextButton(text: copyText),
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   // Utility methods
@@ -622,16 +500,6 @@ abstract class InlineKeyboard
   int get rowCount => inlineKeyboard.length;
 
   /// Creates a new keyboard with the rows and columns transposed.
-  ///
-  /// This flips the keyboard layout, turning rows into columns and vice versa.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = InlineKeyboard.from([
-  ///   [["A", "a"], ["B", "b"]],
-  ///   [["C", "c"], ["D", "d"]]
-  /// ]).transpose(); // Results in [["A", "C"], ["B", "D"]]
-  /// ```
   InlineKeyboard transpose() {
     if (isEmpty) return this;
 

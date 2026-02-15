@@ -25,6 +25,10 @@ mixin _$UniqueGiftModel {
   @JsonKey(name: 'rarity_per_mille')
   int get rarityPerMille;
 
+  /// Optional. Rarity of the model if it is a crafted model. Currently, can be “uncommon”, “rare”, “epic”, or “legendary”.
+  @JsonKey(name: 'rarity')
+  RarityType? get rarity;
+
   /// Create a copy of UniqueGiftModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -40,7 +44,7 @@ mixin _$UniqueGiftModel {
 
   @override
   String toString() {
-    return 'UniqueGiftModel(name: $name, sticker: $sticker, rarityPerMille: $rarityPerMille)';
+    return 'UniqueGiftModel(name: $name, sticker: $sticker, rarityPerMille: $rarityPerMille, rarity: $rarity)';
   }
 }
 
@@ -55,6 +59,7 @@ abstract mixin class $UniqueGiftModelCopyWith<$Res> {
     @JsonKey(name: 'name') String name,
     @JsonKey(name: 'sticker') Sticker sticker,
     @JsonKey(name: 'rarity_per_mille') int rarityPerMille,
+    @JsonKey(name: 'rarity') RarityType? rarity,
   });
 
   $StickerCopyWith<$Res> get sticker;
@@ -76,6 +81,7 @@ class _$UniqueGiftModelCopyWithImpl<$Res>
     Object? name = null,
     Object? sticker = null,
     Object? rarityPerMille = null,
+    Object? rarity = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -91,6 +97,10 @@ class _$UniqueGiftModelCopyWithImpl<$Res>
             ? _self.rarityPerMille
             : rarityPerMille // ignore: cast_nullable_to_non_nullable
                   as int,
+        rarity: freezed == rarity
+            ? _self.rarity
+            : rarity // ignore: cast_nullable_to_non_nullable
+                  as RarityType?,
       ),
     );
   }
@@ -193,6 +203,7 @@ class _UniqueGiftModel implements UniqueGiftModel {
     @JsonKey(name: 'name') required this.name,
     @JsonKey(name: 'sticker') required this.sticker,
     @JsonKey(name: 'rarity_per_mille') required this.rarityPerMille,
+    @JsonKey(name: 'rarity') this.rarity,
   });
   factory _UniqueGiftModel.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftModelFromJson(json);
@@ -212,6 +223,11 @@ class _UniqueGiftModel implements UniqueGiftModel {
   @JsonKey(name: 'rarity_per_mille')
   final int rarityPerMille;
 
+  /// Optional. Rarity of the model if it is a crafted model. Currently, can be “uncommon”, “rare”, “epic”, or “legendary”.
+  @override
+  @JsonKey(name: 'rarity')
+  final RarityType? rarity;
+
   /// Create a copy of UniqueGiftModel
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -227,7 +243,7 @@ class _UniqueGiftModel implements UniqueGiftModel {
 
   @override
   String toString() {
-    return 'UniqueGiftModel(name: $name, sticker: $sticker, rarityPerMille: $rarityPerMille)';
+    return 'UniqueGiftModel(name: $name, sticker: $sticker, rarityPerMille: $rarityPerMille, rarity: $rarity)';
   }
 }
 
@@ -244,6 +260,7 @@ abstract mixin class _$UniqueGiftModelCopyWith<$Res>
     @JsonKey(name: 'name') String name,
     @JsonKey(name: 'sticker') Sticker sticker,
     @JsonKey(name: 'rarity_per_mille') int rarityPerMille,
+    @JsonKey(name: 'rarity') RarityType? rarity,
   });
 
   @override
@@ -266,6 +283,7 @@ class __$UniqueGiftModelCopyWithImpl<$Res>
     Object? name = null,
     Object? sticker = null,
     Object? rarityPerMille = null,
+    Object? rarity = freezed,
   }) {
     return _then(
       _UniqueGiftModel(
@@ -281,6 +299,10 @@ class __$UniqueGiftModelCopyWithImpl<$Res>
             ? _self.rarityPerMille
             : rarityPerMille // ignore: cast_nullable_to_non_nullable
                   as int,
+        rarity: freezed == rarity
+            ? _self.rarity
+            : rarity // ignore: cast_nullable_to_non_nullable
+                  as RarityType?,
       ),
     );
   }

@@ -12,7 +12,7 @@ part of '../../televerse.dart';
 ///
 /// Returns the API response as a Map.
 typedef APICaller =
-    Future<Map<String, dynamic>> Function(APIMethod method, [Payload? payload]);
+    Future<Map<String, dynamic>> Function(String method, [Payload? payload]);
 
 /// Abstract base class for API request transformers.
 ///
@@ -74,7 +74,7 @@ abstract class Transformer {
   /// Returns the API response, which you can also modify if needed.
   Future<Map<String, dynamic>> transform(
     APICaller call,
-    APIMethod method, [
+    String method, [
     Payload? payload,
   ]);
 

@@ -213,6 +213,10 @@ mixin _$ChatFullInfo {
   @JsonKey(name: 'unique_gift_colors')
   UniqueGiftColors? get uniqueGiftColors;
 
+  /// Optional. For private chats, the first audio added to the profile of the user
+  @JsonKey(name: 'first_profile_audio')
+  Audio? get firstProfileAudio;
+
   /// Create a copy of ChatFullInfo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -228,7 +232,7 @@ mixin _$ChatFullInfo {
 
   @override
   String toString() {
-    return 'ChatFullInfo(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum, photo: $photo, activeUsernames: $activeUsernames, bio: $bio, hasPrivateForwards: $hasPrivateForwards, hasRestrictedVoiceAndVideoMessages: $hasRestrictedVoiceAndVideoMessages, joinToSendMessages: $joinToSendMessages, joinByRequest: $joinByRequest, description: $description, inviteLink: $inviteLink, pinnedMessage: $pinnedMessage, permissions: $permissions, slowModeDelay: $slowModeDelay, messageAutoDeleteTime: $messageAutoDeleteTime, hasProtectedContent: $hasProtectedContent, stickerSetName: $stickerSetName, canSetStickerSet: $canSetStickerSet, linkedChatId: $linkedChatId, location: $location, hasHiddenMembers: $hasHiddenMembers, hasAggressiveAntiSpamEnabled: $hasAggressiveAntiSpamEnabled, emojiStatusExpirationDate: $emojiStatusExpirationDate, availableReactions: $availableReactions, emojiStatusCustomEmojiId: $emojiStatusCustomEmojiId, accentColorId: $accentColorId, backgroundCustomEmojiId: $backgroundCustomEmojiId, profileAccentColorId: $profileAccentColorId, profileBackgroundCustomEmojiId: $profileBackgroundCustomEmojiId, hasVisibleHistory: $hasVisibleHistory, unrestrictBoostCount: $unrestrictBoostCount, customEmojiStickerSetName: $customEmojiStickerSetName, businessIntro: $businessIntro, businessLocation: $businessLocation, businessOpeningHours: $businessOpeningHours, personalChat: $personalChat, birthdate: $birthdate, maxReactionCount: $maxReactionCount, canSendPaidMedia: $canSendPaidMedia, acceptedGiftTypes: $acceptedGiftTypes, isDirectMessages: $isDirectMessages, parentChat: $parentChat, rating: $rating, paidMessageStarCount: $paidMessageStarCount, uniqueGiftColors: $uniqueGiftColors)';
+    return 'ChatFullInfo(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum, photo: $photo, activeUsernames: $activeUsernames, bio: $bio, hasPrivateForwards: $hasPrivateForwards, hasRestrictedVoiceAndVideoMessages: $hasRestrictedVoiceAndVideoMessages, joinToSendMessages: $joinToSendMessages, joinByRequest: $joinByRequest, description: $description, inviteLink: $inviteLink, pinnedMessage: $pinnedMessage, permissions: $permissions, slowModeDelay: $slowModeDelay, messageAutoDeleteTime: $messageAutoDeleteTime, hasProtectedContent: $hasProtectedContent, stickerSetName: $stickerSetName, canSetStickerSet: $canSetStickerSet, linkedChatId: $linkedChatId, location: $location, hasHiddenMembers: $hasHiddenMembers, hasAggressiveAntiSpamEnabled: $hasAggressiveAntiSpamEnabled, emojiStatusExpirationDate: $emojiStatusExpirationDate, availableReactions: $availableReactions, emojiStatusCustomEmojiId: $emojiStatusCustomEmojiId, accentColorId: $accentColorId, backgroundCustomEmojiId: $backgroundCustomEmojiId, profileAccentColorId: $profileAccentColorId, profileBackgroundCustomEmojiId: $profileBackgroundCustomEmojiId, hasVisibleHistory: $hasVisibleHistory, unrestrictBoostCount: $unrestrictBoostCount, customEmojiStickerSetName: $customEmojiStickerSetName, businessIntro: $businessIntro, businessLocation: $businessLocation, businessOpeningHours: $businessOpeningHours, personalChat: $personalChat, birthdate: $birthdate, maxReactionCount: $maxReactionCount, canSendPaidMedia: $canSendPaidMedia, acceptedGiftTypes: $acceptedGiftTypes, isDirectMessages: $isDirectMessages, parentChat: $parentChat, rating: $rating, paidMessageStarCount: $paidMessageStarCount, uniqueGiftColors: $uniqueGiftColors, firstProfileAudio: $firstProfileAudio)';
   }
 }
 
@@ -299,6 +303,7 @@ abstract mixin class $ChatFullInfoCopyWith<$Res> {
     @JsonKey(name: 'rating') UserRating? rating,
     @JsonKey(name: 'paid_message_star_count') int? paidMessageStarCount,
     @JsonKey(name: 'unique_gift_colors') UniqueGiftColors? uniqueGiftColors,
+    @JsonKey(name: 'first_profile_audio') Audio? firstProfileAudio,
   });
 
   $ChatPhotoCopyWith<$Res>? get photo;
@@ -313,6 +318,7 @@ abstract mixin class $ChatFullInfoCopyWith<$Res> {
   $ChatCopyWith<$Res>? get parentChat;
   $UserRatingCopyWith<$Res>? get rating;
   $UniqueGiftColorsCopyWith<$Res>? get uniqueGiftColors;
+  $AudioCopyWith<$Res>? get firstProfileAudio;
 }
 
 /// @nodoc
@@ -377,6 +383,7 @@ class _$ChatFullInfoCopyWithImpl<$Res> implements $ChatFullInfoCopyWith<$Res> {
     Object? rating = freezed,
     Object? paidMessageStarCount = freezed,
     Object? uniqueGiftColors = freezed,
+    Object? firstProfileAudio = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -582,6 +589,10 @@ class _$ChatFullInfoCopyWithImpl<$Res> implements $ChatFullInfoCopyWith<$Res> {
             ? _self.uniqueGiftColors
             : uniqueGiftColors // ignore: cast_nullable_to_non_nullable
                   as UniqueGiftColors?,
+        firstProfileAudio: freezed == firstProfileAudio
+            ? _self.firstProfileAudio
+            : firstProfileAudio // ignore: cast_nullable_to_non_nullable
+                  as Audio?,
       ),
     );
   }
@@ -751,6 +762,20 @@ class _$ChatFullInfoCopyWithImpl<$Res> implements $ChatFullInfoCopyWith<$Res> {
       return _then(_self.copyWith(uniqueGiftColors: value));
     });
   }
+
+  /// Create a copy of ChatFullInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AudioCopyWith<$Res>? get firstProfileAudio {
+    if (_self.firstProfileAudio == null) {
+      return null;
+    }
+
+    return $AudioCopyWith<$Res>(_self.firstProfileAudio!, (value) {
+      return _then(_self.copyWith(firstProfileAudio: value));
+    });
+  }
 }
 
 /// Adds pattern-matching-related methods to [ChatFullInfo].
@@ -894,6 +919,7 @@ class _ChatFullInfo implements ChatFullInfo {
     @JsonKey(name: 'rating') this.rating,
     @JsonKey(name: 'paid_message_star_count') this.paidMessageStarCount,
     @JsonKey(name: 'unique_gift_colors') this.uniqueGiftColors,
+    @JsonKey(name: 'first_profile_audio') this.firstProfileAudio,
   }) : _activeUsernames = activeUsernames,
        _availableReactions = availableReactions;
   factory _ChatFullInfo.fromJson(Map<String, dynamic> json) =>
@@ -1168,6 +1194,11 @@ class _ChatFullInfo implements ChatFullInfo {
   @JsonKey(name: 'unique_gift_colors')
   final UniqueGiftColors? uniqueGiftColors;
 
+  /// Optional. For private chats, the first audio added to the profile of the user
+  @override
+  @JsonKey(name: 'first_profile_audio')
+  final Audio? firstProfileAudio;
+
   /// Create a copy of ChatFullInfo
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -1183,7 +1214,7 @@ class _ChatFullInfo implements ChatFullInfo {
 
   @override
   String toString() {
-    return 'ChatFullInfo(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum, photo: $photo, activeUsernames: $activeUsernames, bio: $bio, hasPrivateForwards: $hasPrivateForwards, hasRestrictedVoiceAndVideoMessages: $hasRestrictedVoiceAndVideoMessages, joinToSendMessages: $joinToSendMessages, joinByRequest: $joinByRequest, description: $description, inviteLink: $inviteLink, pinnedMessage: $pinnedMessage, permissions: $permissions, slowModeDelay: $slowModeDelay, messageAutoDeleteTime: $messageAutoDeleteTime, hasProtectedContent: $hasProtectedContent, stickerSetName: $stickerSetName, canSetStickerSet: $canSetStickerSet, linkedChatId: $linkedChatId, location: $location, hasHiddenMembers: $hasHiddenMembers, hasAggressiveAntiSpamEnabled: $hasAggressiveAntiSpamEnabled, emojiStatusExpirationDate: $emojiStatusExpirationDate, availableReactions: $availableReactions, emojiStatusCustomEmojiId: $emojiStatusCustomEmojiId, accentColorId: $accentColorId, backgroundCustomEmojiId: $backgroundCustomEmojiId, profileAccentColorId: $profileAccentColorId, profileBackgroundCustomEmojiId: $profileBackgroundCustomEmojiId, hasVisibleHistory: $hasVisibleHistory, unrestrictBoostCount: $unrestrictBoostCount, customEmojiStickerSetName: $customEmojiStickerSetName, businessIntro: $businessIntro, businessLocation: $businessLocation, businessOpeningHours: $businessOpeningHours, personalChat: $personalChat, birthdate: $birthdate, maxReactionCount: $maxReactionCount, canSendPaidMedia: $canSendPaidMedia, acceptedGiftTypes: $acceptedGiftTypes, isDirectMessages: $isDirectMessages, parentChat: $parentChat, rating: $rating, paidMessageStarCount: $paidMessageStarCount, uniqueGiftColors: $uniqueGiftColors)';
+    return 'ChatFullInfo(id: $id, type: $type, title: $title, username: $username, firstName: $firstName, lastName: $lastName, isForum: $isForum, photo: $photo, activeUsernames: $activeUsernames, bio: $bio, hasPrivateForwards: $hasPrivateForwards, hasRestrictedVoiceAndVideoMessages: $hasRestrictedVoiceAndVideoMessages, joinToSendMessages: $joinToSendMessages, joinByRequest: $joinByRequest, description: $description, inviteLink: $inviteLink, pinnedMessage: $pinnedMessage, permissions: $permissions, slowModeDelay: $slowModeDelay, messageAutoDeleteTime: $messageAutoDeleteTime, hasProtectedContent: $hasProtectedContent, stickerSetName: $stickerSetName, canSetStickerSet: $canSetStickerSet, linkedChatId: $linkedChatId, location: $location, hasHiddenMembers: $hasHiddenMembers, hasAggressiveAntiSpamEnabled: $hasAggressiveAntiSpamEnabled, emojiStatusExpirationDate: $emojiStatusExpirationDate, availableReactions: $availableReactions, emojiStatusCustomEmojiId: $emojiStatusCustomEmojiId, accentColorId: $accentColorId, backgroundCustomEmojiId: $backgroundCustomEmojiId, profileAccentColorId: $profileAccentColorId, profileBackgroundCustomEmojiId: $profileBackgroundCustomEmojiId, hasVisibleHistory: $hasVisibleHistory, unrestrictBoostCount: $unrestrictBoostCount, customEmojiStickerSetName: $customEmojiStickerSetName, businessIntro: $businessIntro, businessLocation: $businessLocation, businessOpeningHours: $businessOpeningHours, personalChat: $personalChat, birthdate: $birthdate, maxReactionCount: $maxReactionCount, canSendPaidMedia: $canSendPaidMedia, acceptedGiftTypes: $acceptedGiftTypes, isDirectMessages: $isDirectMessages, parentChat: $parentChat, rating: $rating, paidMessageStarCount: $paidMessageStarCount, uniqueGiftColors: $uniqueGiftColors, firstProfileAudio: $firstProfileAudio)';
   }
 }
 
@@ -1256,6 +1287,7 @@ abstract mixin class _$ChatFullInfoCopyWith<$Res>
     @JsonKey(name: 'rating') UserRating? rating,
     @JsonKey(name: 'paid_message_star_count') int? paidMessageStarCount,
     @JsonKey(name: 'unique_gift_colors') UniqueGiftColors? uniqueGiftColors,
+    @JsonKey(name: 'first_profile_audio') Audio? firstProfileAudio,
   });
 
   @override
@@ -1282,6 +1314,8 @@ abstract mixin class _$ChatFullInfoCopyWith<$Res>
   $UserRatingCopyWith<$Res>? get rating;
   @override
   $UniqueGiftColorsCopyWith<$Res>? get uniqueGiftColors;
+  @override
+  $AudioCopyWith<$Res>? get firstProfileAudio;
 }
 
 /// @nodoc
@@ -1347,6 +1381,7 @@ class __$ChatFullInfoCopyWithImpl<$Res>
     Object? rating = freezed,
     Object? paidMessageStarCount = freezed,
     Object? uniqueGiftColors = freezed,
+    Object? firstProfileAudio = freezed,
   }) {
     return _then(
       _ChatFullInfo(
@@ -1552,6 +1587,10 @@ class __$ChatFullInfoCopyWithImpl<$Res>
             ? _self.uniqueGiftColors
             : uniqueGiftColors // ignore: cast_nullable_to_non_nullable
                   as UniqueGiftColors?,
+        firstProfileAudio: freezed == firstProfileAudio
+            ? _self.firstProfileAudio
+            : firstProfileAudio // ignore: cast_nullable_to_non_nullable
+                  as Audio?,
       ),
     );
   }
@@ -1719,6 +1758,20 @@ class __$ChatFullInfoCopyWithImpl<$Res>
 
     return $UniqueGiftColorsCopyWith<$Res>(_self.uniqueGiftColors!, (value) {
       return _then(_self.copyWith(uniqueGiftColors: value));
+    });
+  }
+
+  /// Create a copy of ChatFullInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AudioCopyWith<$Res>? get firstProfileAudio {
+    if (_self.firstProfileAudio == null) {
+      return null;
+    }
+
+    return $AudioCopyWith<$Res>(_self.firstProfileAudio!, (value) {
+      return _then(_self.copyWith(firstProfileAudio: value));
     });
   }
 }

@@ -74,11 +74,11 @@ class _LoggingTransformer extends Transformer {
   @override
   Future<Map<String, dynamic>> transform(
     APICaller call,
-    APIMethod method, [
+    String method, [
     Payload? payload,
   ]) async {
     // Skip logging for methods not in the allowed list
-    if (!options.methods.contains(method)) {
+    if (!options.methods.any((m) => m.name == method)) {
       return await call(method, payload);
     }
 
@@ -111,12 +111,12 @@ class _LoggingTransformer extends Transformer {
   }
 
   /// Logs an outgoing request.
-  void _logRequest(APIMethod method, String requestId, Payload? payload) {
+  void _logRequest(String method, String requestId, Payload? payload) {
     final timestamp = _formatTime(DateTime.now());
     final color = options.colorOutput ? '\x1B[36m' : '';
     final reset = options.colorOutput ? '\x1B[0m' : '';
 
-    options.logPrint('$color📤 [$timestamp] ${method.name} [$requestId]$reset');
+    options.logPrint('$color📤 [$timestamp] $method [$requestId]$reset');
 
     // Log request body if enabled
     if (options.requestBody && payload != null) {
@@ -128,33 +128,29 @@ class _LoggingTransformer extends Transformer {
   void _logRequestBody(Payload payload) {
     options.logPrint('   ┌─ Request Body:');
 
-    if (payload.params.isNotEmpty) {
-      options.logPrint('   │  Parameters:');
+    final body = <String, dynamic>{
+      if (payload.params.isNotEmpty) ...payload.params,
+      if (payload.files != null && payload.files!.isNotEmpty)
+        '_files': {
+          for (final entry in payload.files!.entries)
+            entry.key:
+                '${entry.value.fileName ?? 'unnamed'} (${_formatFileSize(entry.value.bytes.length)})',
+        },
+    };
 
-      for (final entry in payload.params.entries) {
-        final value = _formatValue(entry.value, truncate: !options.prettyPrint);
-        options.logPrint('   │    ${entry.key}: $value');
+    if (options.prettyPrint) {
+      final prettyJson = _prettyPrintJson(body);
+      for (final line in prettyJson.split('\n')) {
+        options.logPrint('   │  $line');
       }
-    }
-
-    if (payload.files != null && payload.files!.isNotEmpty) {
-      options.logPrint('   │  Files:');
-      for (final fileMap in payload.files!) {
-        for (final entry in fileMap.entries) {
-          final file = entry.value;
-          final size = file.bytes.length;
-          final sizeStr = _formatFileSize(size);
-          options.logPrint(
-            '   │    ${entry.key}: ${file.fileName ?? 'unnamed'} ($sizeStr)',
-          );
-        }
-      }
+    } else {
+      options.logPrint('   │  ${body.toString()}');
     }
   }
 
   /// Logs a successful response.
   void _logResponse(
-    APIMethod method,
+    String method,
     String requestId,
     Map<String, dynamic> result,
     Duration duration,
@@ -164,7 +160,7 @@ class _LoggingTransformer extends Transformer {
     final reset = options.colorOutput ? '\x1B[0m' : '';
 
     options.logPrint(
-      '$color✅ ${method.name} [$requestId] completed in ${durationMs}ms$reset',
+      '$color✅ $method [$requestId] completed in ${durationMs}ms$reset',
     );
 
     // Log response body if enabled
@@ -190,7 +186,7 @@ class _LoggingTransformer extends Transformer {
 
   /// Logs an error.
   void _logError(
-    APIMethod method,
+    String method,
     String requestId,
     Object error,
     StackTrace? stackTrace,
@@ -201,7 +197,7 @@ class _LoggingTransformer extends Transformer {
     final reset = options.colorOutput ? '\x1B[0m' : '';
 
     options.logPrint(
-      '$color❌ ${method.name} [$requestId] failed in ${durationMs}ms$reset',
+      '$color❌ $method [$requestId] failed in ${durationMs}ms$reset',
     );
 
     // Log error details
@@ -235,34 +231,6 @@ class _LoggingTransformer extends Transformer {
           options.logPrint('   │    $line');
         }
       }
-    }
-  }
-
-  /// Formats a value for display.
-  String _formatValue(dynamic value, {bool truncate = true}) {
-    if (value == null) return 'null';
-
-    if (value is String) {
-      if (truncate && value.length > 100) {
-        return '"${value.substring(0, 97)}..."';
-      }
-      return '"$value"';
-    } else if (value is List) {
-      if (truncate) {
-        return '[${value.length} items]';
-      }
-      return value.toString();
-    } else if (value is Map) {
-      if (truncate) {
-        return '{${value.length} fields}';
-      }
-      return value.toString();
-    } else if (value is InputFile) {
-      return 'InputFile(${value.type})';
-    } else if (value is ID) {
-      return 'ID(${value.id})';
-    } else {
-      return value.toString();
     }
   }
 

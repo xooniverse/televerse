@@ -24,6 +24,7 @@ _UniqueGift _$UniqueGiftFromJson(Map<String, dynamic> json) => _UniqueGift(
   colors: json['colors'] == null
       ? null
       : UniqueGiftColors.fromJson(json['colors'] as Map<String, dynamic>),
+  isBurned: json['is_burned'] as bool?,
 );
 
 Map<String, dynamic> _$UniqueGiftToJson(_UniqueGift instance) =>
@@ -39,4 +40,5 @@ Map<String, dynamic> _$UniqueGiftToJson(_UniqueGift instance) =>
       'is_from_blockchain': ?instance.isFromBlockchain,
       'is_premium': ?instance.isPremium,
       'colors': ?instance.colors,
+      'is_burned': ?instance.isBurned,
     };

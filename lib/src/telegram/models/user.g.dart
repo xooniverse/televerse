@@ -21,6 +21,7 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
   canConnectToBusiness: json['can_connect_to_business'] as bool?,
   hasMainWebApp: json['has_main_web_app'] as bool?,
   hasTopicsEnabled: json['has_topics_enabled'] as bool?,
+  allowsUsersToCreateTopics: json['allows_users_to_create_topics'] as bool?,
 );
 
 Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
@@ -38,4 +39,5 @@ Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
   'can_connect_to_business': ?instance.canConnectToBusiness,
   'has_main_web_app': ?instance.hasMainWebApp,
   'has_topics_enabled': ?instance.hasTopicsEnabled,
+  'allows_users_to_create_topics': ?instance.allowsUsersToCreateTopics,
 };

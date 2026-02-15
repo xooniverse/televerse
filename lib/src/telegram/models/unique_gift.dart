@@ -47,6 +47,9 @@ abstract class UniqueGift with _$UniqueGift {
 
     /// Optional. The color scheme that can be used by the gift's owner for the chat's name, replies to messages and link previews; for business account gifts and gifts that are currently on sale only
     @JsonKey(name: 'colors') UniqueGiftColors? colors,
+
+    /// Optional. True, if the gift was used to craft another gift and isn't available anymore
+    @JsonKey(name: 'is_burned') bool? isBurned,
   }) = _UniqueGift;
 
   /// Creates a new [UniqueGift] object from a JSON [Map].

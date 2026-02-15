@@ -181,6 +181,19 @@ class InputFile {
         mimeType.hashCode ^
         headers.hashCode;
   }
+
+  /// Converts the InputFile to a JSON object.
+  String toJson() => getValue();
+
+  /// Converts the InputFile to a LocalFile object.
+  LocalFile toLocalFile() {
+    return LocalFile(
+      getBytes(),
+      fileName: name,
+      contentType: mimeType,
+      headers: headers,
+    );
+  }
 }
 
 /// Converter for InputFile

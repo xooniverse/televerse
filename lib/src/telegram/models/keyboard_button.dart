@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/types/types.dart';
 import 'keyboard_button_poll_type.dart';
 import 'web_app_info.dart';
 import 'keyboard_button_request_users.dart';
@@ -80,6 +81,22 @@ abstract class KeyboardButton with _$KeyboardButton {
     ///
     /// Since: Bot API 6.5
     @JsonKey(name: 'request_chat') KeyboardButtonRequestChat? requestChat,
+
+    /// Optional. Unique identifier of the custom emoji shown before the text
+    /// of the button. Can only be used by bots that purchased additional
+    /// usernames on Fragment or in the messages directly sent by the bot to
+    /// private, group and supergroup chats if the owner of the bot has a
+    /// Telegram Premium subscription.
+    ///
+    /// Since: Bot API 9.4
+    @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+
+    /// Optional. Style of the button. Must be one of “danger” (red), “success”
+    /// (green) or “primary” (blue). If omitted, then an app-specific style is
+    /// used.
+    ///
+    /// Since: Bot API 9.4
+    @JsonKey(name: 'style') StyleType? style,
   }) = _KeyboardButton;
 
   /// Creates a [KeyboardButton] from a JSON map

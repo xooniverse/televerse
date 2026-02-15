@@ -190,45 +190,47 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   // Static factory methods for creating individual buttons (renamed with 'button' prefix)
 
   /// Creates a simple text button.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = Keyboard.buttonText("Click me");
-  /// ```
-  static KeyboardButton buttonText(String text) {
-    return KeyboardButton(text: text);
+  static KeyboardButton buttonText(
+    String text, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
+    return KeyboardButton(
+      text: text,
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
+    );
   }
 
   /// Creates a button that requests the user's contact information.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = Keyboard.buttonContact("Share Contact");
-  /// ```
-  static KeyboardButton buttonContact(String text) {
-    return KeyboardButton(text: text, requestContact: true);
+  static KeyboardButton buttonContact(
+    String text, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
+    return KeyboardButton(
+      text: text,
+      requestContact: true,
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
+    );
   }
 
   /// Creates a button that requests the user's location.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = Keyboard.buttonLocation("Share Location");
-  /// ```
-  static KeyboardButton buttonLocation(String text) {
-    return KeyboardButton(text: text, requestLocation: true);
+  static KeyboardButton buttonLocation(
+    String text, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
+    return KeyboardButton(
+      text: text,
+      requestLocation: true,
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
+    );
   }
 
   /// Creates a button that requests the user to select users.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = Keyboard.buttonUsers(
-  ///   text: "Select Users",
-  ///   requestId: 1,
-  ///   userIsBot: false,
-  /// );
-  /// ```
   static KeyboardButton buttonUsers({
     required String text,
     required int requestId,
@@ -238,6 +240,8 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
     bool? requestName,
     bool? requestUsername,
     bool? requestPhoto,
+    String? iconCustomEmojiId,
+    StyleType? style,
   }) {
     return KeyboardButton(
       text: text,
@@ -250,19 +254,12 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
         requestUsername: requestUsername,
         requestPhoto: requestPhoto,
       ),
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
     );
   }
 
   /// Creates a button that requests the user to select a chat.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = Keyboard.buttonChat(
-  ///   text: "Select Chat",
-  ///   requestId: 1,
-  ///   chatIsChannel: false,
-  /// );
-  /// ```
   static KeyboardButton buttonChat({
     required String text,
     required int requestId,
@@ -276,6 +273,8 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
     bool? requestTitle,
     bool? requestUsername,
     bool? requestPhoto,
+    String? iconCustomEmojiId,
+    StyleType? style,
   }) {
     return KeyboardButton(
       text: text,
@@ -292,35 +291,38 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
         requestUsername: requestUsername,
         requestPhoto: requestPhoto,
       ),
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
     );
   }
 
   /// Creates a button that requests a poll from the user.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = Keyboard.buttonPoll(
-  ///   text: "Create Poll",
-  ///   type: PollType.quiz,
-  /// );
-  /// ```
-  static KeyboardButton buttonPoll({required String text, PollType? type}) {
+  static KeyboardButton buttonPoll({
+    required String text,
+    PollType? type,
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     return KeyboardButton(
       text: text,
       requestPoll: KeyboardButtonPollType(type: type),
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
     );
   }
 
   /// Creates a web app button.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = Keyboard.buttonWebApp("Open App", "https://example.com");
-  /// ```
-  static KeyboardButton buttonWebApp(String text, String url) {
+  static KeyboardButton buttonWebApp(
+    String text,
+    String url, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     return KeyboardButton(
       text: text,
       webApp: WebAppInfo(url: url),
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
     );
   }
 
@@ -330,15 +332,6 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   ///
   /// If the current row is empty, this method does nothing.
   /// Otherwise, it starts a new row for subsequent buttons.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard()
-  ///   .text("Button 1")
-  ///   .text("Button 2")
-  ///   .row() // Start new row
-  ///   .text("Button 3");
-  /// ```
   Keyboard row() {
     if (keyboard.isEmpty || keyboard.last.isEmpty) {
       return this;
@@ -349,12 +342,6 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   /// Adds a [KeyboardButton] to the current row.
   ///
   /// If no rows exist, creates the first row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final button = KeyboardButton(text: "Custom Button");
-  /// final keyboard = Keyboard().add(button);
-  /// ```
   Keyboard add(KeyboardButton button) {
     final newKeyboard = [...keyboard];
     newKeyboard.last = [...newKeyboard.last, button];
@@ -362,15 +349,6 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   }
 
   /// Adds multiple buttons to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final buttons = [
-  ///   KeyboardButton(text: "A"),
-  ///   KeyboardButton(text: "B"),
-  /// ];
-  /// final keyboard = Keyboard().addAll(buttons);
-  /// ```
   Keyboard addAll(List<KeyboardButton> buttons) {
     if (buttons.isEmpty) return this;
 
@@ -387,15 +365,6 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   /// Adds a row of buttons to the keyboard.
   ///
   /// This creates a new row regardless of the current state.
-  ///
-  /// Example:
-  /// ```dart
-  /// final buttons = [
-  ///   KeyboardButton(text: "A"),
-  ///   KeyboardButton(text: "B"),
-  /// ];
-  /// final keyboard = Keyboard().addRow(buttons);
-  /// ```
   Keyboard addRow(List<KeyboardButton> buttons) {
     final newKeyboard = keyboard
         .map((row) => List<KeyboardButton>.from(row))
@@ -405,56 +374,53 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   }
 
   /// Adds a text button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard().text("Hello");
-  /// ```
-  Keyboard text(String text) {
-    return add(Keyboard.buttonText(text));
+  Keyboard text(String text, {String? iconCustomEmojiId, StyleType? style}) {
+    return add(
+      Keyboard.buttonText(
+        text,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   /// Adds multiple text buttons to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard().texts(["Yes", "No", "Maybe"]);
-  /// ```
   Keyboard texts(List<String> texts) {
     final buttons = texts.map((text) => Keyboard.buttonText(text)).toList();
     return addAll(buttons);
   }
 
   /// Adds a contact request button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard().requestContact("Share Contact");
-  /// ```
-  Keyboard requestContact(String text) {
-    return add(Keyboard.buttonContact(text));
+  Keyboard requestContact(
+    String text, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
+    return add(
+      Keyboard.buttonContact(
+        text,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   /// Adds a location request button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard().requestLocation("Share Location");
-  /// ```
-  Keyboard requestLocation(String text) {
-    return add(Keyboard.buttonLocation(text));
+  Keyboard requestLocation(
+    String text, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
+    return add(
+      Keyboard.buttonLocation(
+        text,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   /// Adds a user selection button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard().users(
-  ///   text: "Select User",
-  ///   requestId: 1,
-  ///   userIsBot: false,
-  /// );
-  /// ```
   Keyboard users({
     required String text,
     required int requestId,
@@ -464,6 +430,8 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
     bool? requestName,
     bool? requestUsername,
     bool? requestPhoto,
+    String? iconCustomEmojiId,
+    StyleType? style,
   }) {
     return add(
       Keyboard.buttonUsers(
@@ -475,20 +443,13 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
         requestName: requestName,
         requestUsername: requestUsername,
         requestPhoto: requestPhoto,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
       ),
     );
   }
 
   /// Adds a chat selection button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard().chat(
-  ///   text: "Select Chat",
-  ///   requestId: 1,
-  ///   chatIsChannel: false,
-  /// );
-  /// ```
   Keyboard chat({
     required String text,
     required int requestId,
@@ -502,6 +463,8 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
     bool? requestTitle,
     bool? requestUsername,
     bool? requestPhoto,
+    String? iconCustomEmojiId,
+    StyleType? style,
   }) {
     return add(
       Keyboard.buttonChat(
@@ -517,74 +480,63 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
         requestTitle: requestTitle,
         requestUsername: requestUsername,
         requestPhoto: requestPhoto,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
       ),
     );
   }
 
   /// Adds a poll creation button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard().poll("Create Poll", type: PollType.quiz);
-  /// ```
-  Keyboard poll(String text, {PollType? type}) {
-    return add(Keyboard.buttonPoll(text: text, type: type));
+  Keyboard poll(
+    String text, {
+    PollType? type,
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
+    return add(
+      Keyboard.buttonPoll(
+        text: text,
+        type: type,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   /// Adds a web app button to the current row.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard().webApp("Open App", "https://example.com");
-  /// ```
-  Keyboard webApp(String text, String url) {
-    return add(Keyboard.buttonWebApp(text, url));
+  Keyboard webApp(
+    String text,
+    String url, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
+    return add(
+      Keyboard.buttonWebApp(
+        text,
+        url,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
+    );
   }
 
   // Configuration methods
 
   /// Makes the keyboard resize to fit the screen optimally.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard().text("Hello").resized();
-  /// ```
   Keyboard resized([bool resize = true]) => copyWith(resizeKeyboard: resize);
 
   /// Makes the keyboard appear only once and hide after use.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard().text("Hello").oneTime();
-  /// ```
   Keyboard oneTime([bool oneTime = true]) => copyWith(oneTimeKeyboard: oneTime);
 
   /// Makes the keyboard persistent (always visible).
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard().text("Hello").persistent();
-  /// ```
   Keyboard persistent([bool persistent = true]) =>
       copyWith(isPersistent: persistent);
 
   /// Makes the keyboard selective to specific users.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard().text("Hello").selective();
-  /// ```
   Keyboard makeSelective([bool selective = true]) =>
       copyWith(selective: selective);
 
   /// Adds a placeholder text to the input field.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard()
-  ///   .text("Hello")
-  ///   .placeholder("Type your message...");
-  /// ```
   Keyboard placeholder(String text) => copyWith(inputFieldPlaceholder: text);
 
   // Utility methods
@@ -604,14 +556,6 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   /// Creates a new keyboard with the rows and columns transposed.
   ///
   /// This flips the keyboard layout, turning rows into columns and vice versa.
-  ///
-  /// Example:
-  /// ```dart
-  /// final keyboard = Keyboard.from([
-  ///   ["A", "B"],
-  ///   ["C", "D"]
-  /// ]).transpose(); // Results in [["A", "C"], ["B", "D"]]
-  /// ```
   Keyboard transpose() {
     if (isEmpty) return this;
 
@@ -636,14 +580,6 @@ abstract class Keyboard with _$Keyboard implements ReplyKeyboardMarkup {
   }
 
   /// Creates a keyboard that removes the current custom keyboard.
-  ///
-  /// This creates a [ReplyKeyboardRemove] object that tells Telegram
-  /// to hide the custom keyboard and show the default system keyboard.
-  ///
-  /// Example:
-  /// ```dart
-  /// await ctx.reply("Keyboard removed", replyMarkup: Keyboard.remove());
-  /// ```
   static ReplyKeyboardRemove remove({bool? selective}) {
     return ReplyKeyboardRemove(selective: selective);
   }

@@ -73,11 +73,11 @@ class _KeyboardMenuItemStatic<CTX extends Context>
 ///   })
 ///   .text('Goodbye', (ctx) async {
 ///     await ctx.reply('You said goodbye!');
-///   })
+///   }, style: StyleType.danger)
 ///   .row()
 ///   .requestContact('Share Contact', (ctx) async {
 ///     await ctx.reply('Thanks for sharing your contact!');
-///   })
+///   }, iconCustomEmojiId: '5368324170671202286')
 ///   .resized()
 ///   .oneTime();
 ///
@@ -118,90 +118,71 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
   // ===============================
 
   /// Adds a text button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [handler]: The function to execute when the button is pressed
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.text('Hello', (ctx) async {
-  ///   await ctx.reply('You said hello!');
-  /// });
-  /// ```
-  KeyboardMenu<CTX> text(String text, MenuHandler<CTX> handler) {
+  KeyboardMenu<CTX> text(
+    String text,
+    MenuHandler<CTX> handler, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     _ensureCurrentRow();
     final button = _KeyboardMenuButton<CTX>(
       text: text,
       handler: handler,
-      button: KeyboardButton(text: text),
+      button: KeyboardButton(
+        text: text,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
     );
     _rows.last.add(_KeyboardMenuItemWithHandler(button));
     return this;
   }
 
   /// Adds a contact request button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [handler]: The function to execute when contact is shared
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.requestContact('Share Contact', (ctx) async {
-  ///   await ctx.reply('Thanks for sharing your contact!');
-  /// });
-  /// ```
-  KeyboardMenu<CTX> requestContact(String text, MenuHandler<CTX> handler) {
+  KeyboardMenu<CTX> requestContact(
+    String text,
+    MenuHandler<CTX> handler, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     _ensureCurrentRow();
     final button = _KeyboardMenuButton<CTX>(
       text: text,
       handler: handler,
-      button: KeyboardButton(text: text, requestContact: true),
+      button: KeyboardButton(
+        text: text,
+        requestContact: true,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
     );
     _rows.last.add(_KeyboardMenuItemWithHandler(button));
     return this;
   }
 
   /// Adds a location request button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [handler]: The function to execute when location is shared
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.requestLocation('Share Location', (ctx) async {
-  ///   await ctx.reply('Thanks for sharing your location!');
-  /// });
-  /// ```
-  KeyboardMenu<CTX> requestLocation(String text, MenuHandler<CTX> handler) {
+  KeyboardMenu<CTX> requestLocation(
+    String text,
+    MenuHandler<CTX> handler, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     _ensureCurrentRow();
     final button = _KeyboardMenuButton<CTX>(
       text: text,
       handler: handler,
-      button: KeyboardButton(text: text, requestLocation: true),
+      button: KeyboardButton(
+        text: text,
+        requestLocation: true,
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
+      ),
     );
     _rows.last.add(_KeyboardMenuItemWithHandler(button));
     return this;
   }
 
   /// Adds a user request button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [requestId]: The request ID for this button
-  /// - [handler]: The function to execute when users are shared
-  /// - [userIsBot]: Whether to filter for bot users
-  /// - [userIsPremium]: Whether to filter for premium users
-  /// - [maxQuantity]: Maximum number of users to select
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.users('Select User', 1, (ctx) async {
-  ///   await ctx.reply('User selected!');
-  /// });
-  /// ```
   KeyboardMenu<CTX> users(
     String text,
     int requestId,
@@ -209,6 +190,8 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
     bool? userIsBot,
     bool? userIsPremium,
     int? maxQuantity,
+    String? iconCustomEmojiId,
+    StyleType? style,
   }) {
     _ensureCurrentRow();
     final button = _KeyboardMenuButton<CTX>(
@@ -222,6 +205,8 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
           userIsPremium: userIsPremium,
           maxQuantity: maxQuantity,
         ),
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
       ),
     );
     _rows.last.add(_KeyboardMenuItemWithHandler(button));
@@ -229,25 +214,6 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
   }
 
   /// Adds a chat request button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [requestId]: The request ID for this button
-  /// - [handler]: The function to execute when chat is shared
-  /// - [chatIsChannel]: Whether to filter for channels
-  /// - [chatIsForum]: Whether to filter for forum chats
-  /// - [chatHasUsername]: Whether to filter for chats with usernames
-  /// - [chatIsCreated]: Whether to filter for created chats
-  /// - [userAdministratorRights]: Required user admin rights
-  /// - [botAdministratorRights]: Required bot admin rights
-  /// - [botIsMember]: Whether bot must be a member
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.chat('Select Chat', 1, (ctx) async {
-  ///   await ctx.reply('Chat selected!');
-  /// });
-  /// ```
   KeyboardMenu<CTX> chat(
     String text,
     int requestId,
@@ -259,6 +225,8 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
     ChatAdministratorRights? userAdministratorRights,
     ChatAdministratorRights? botAdministratorRights,
     bool? botIsMember,
+    String? iconCustomEmojiId,
+    StyleType? style,
   }) {
     _ensureCurrentRow();
     final button = _KeyboardMenuButton<CTX>(
@@ -276,6 +244,8 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
           botAdministratorRights: botAdministratorRights,
           botIsMember: botIsMember,
         ),
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
       ),
     );
     _rows.last.add(_KeyboardMenuItemWithHandler(button));
@@ -288,17 +258,14 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
   /// - [text]: The text to display on the button
   /// - [handler]: The function to execute when poll is created
   /// - [type]: The type of poll to request
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.poll('Create Poll', (ctx) async {
-  ///   await ctx.reply('Poll created!');
-  /// }, type: PollType.quiz);
-  /// ```
+  /// - [iconCustomEmojiId]: Optional custom emoji ID shown before the button text
+  /// - [style]: Optional button style (danger, success, or primary)
   KeyboardMenu<CTX> poll(
     String text,
     MenuHandler<CTX> handler, {
     PollType? type,
+    String? iconCustomEmojiId,
+    StyleType? style,
   }) {
     _ensureCurrentRow();
     final button = _KeyboardMenuButton<CTX>(
@@ -307,6 +274,8 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
       button: KeyboardButton(
         text: text,
         requestPoll: KeyboardButtonPollType(type: type),
+        iconCustomEmojiId: iconCustomEmojiId,
+        style: style,
       ),
     );
     _rows.last.add(_KeyboardMenuItemWithHandler(button));
@@ -314,20 +283,18 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
   }
 
   /// Adds a web app button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [url]: The web app URL
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.webApp('Open App', 'https://myapp.example.com');
-  /// ```
-  KeyboardMenu<CTX> webApp(String text, String url) {
+  KeyboardMenu<CTX> webApp(
+    String text,
+    String url, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     _ensureCurrentRow();
     final button = KeyboardButton(
       text: text,
       webApp: WebAppInfo(url: url),
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
     );
     _rows.last.add(_KeyboardMenuItemStatic(_KeyboardMenuStaticButton(button)));
     return this;
@@ -340,14 +307,6 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
   /// Starts a new row.
   ///
   /// If the current row is empty, this method does nothing.
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.text('Button 1', handler1)
-  ///     .text('Button 2', handler2)
-  ///     .row()  // Start new row
-  ///     .text('Button 3', handler3);
-  /// ```
   KeyboardMenu<CTX> row() {
     if (_rows.last.isNotEmpty) {
       _rows.add([]);
@@ -360,58 +319,30 @@ class KeyboardMenu<CTX extends Context> extends TeleverseMenu<CTX>
   // ===============================
 
   /// Makes the keyboard resize to fit optimally.
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.text('Hello', handler).resized();
-  /// ```
   KeyboardMenu<CTX> resized([bool resize = true]) {
     _resizeKeyboard = resize;
     return this;
   }
 
   /// Makes the keyboard appear only once.
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.text('Hello', handler).oneTime();
-  /// ```
   KeyboardMenu<CTX> oneTime([bool oneTime = true]) {
     _oneTimeKeyboard = oneTime;
     return this;
   }
 
   /// Makes the keyboard persistent.
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.text('Hello', handler).persistent();
-  /// ```
   KeyboardMenu<CTX> persistent([bool persistent = true]) {
     _isPersistent = persistent;
     return this;
   }
 
   /// Makes the keyboard selective.
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.text('Hello', handler).selective();
-  /// ```
   KeyboardMenu<CTX> makeSelective([bool selective = true]) {
     _selective = selective;
     return this;
   }
 
   /// Sets the input field placeholder.
-  ///
-  /// Parameters:
-  /// - [placeholder]: The placeholder text
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.text('Hello', handler).placeholder('Type your message...');
-  /// ```
   KeyboardMenu<CTX> placeholder(String placeholder) {
     _inputFieldPlaceholder = placeholder;
     return this;

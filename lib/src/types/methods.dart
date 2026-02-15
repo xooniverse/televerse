@@ -486,7 +486,16 @@ enum APIMethod {
   getChatGifts,
 
   /// Reposts a story on behalf of a business account.
-  repostStory;
+  repostStory,
+
+  /// Sets the bot's profile photo.
+  setMyProfilePhoto,
+
+  /// Removes the profile photo of the bot.
+  deleteMyProfilePhoto,
+
+  /// Returns the audios displayed on a user's profile.
+  getUserProfileAudios;
 
   /// Returns the name of the API method as a string, matching the Telegram Bot API endpoint.
   String get name => toString().split('.').last;

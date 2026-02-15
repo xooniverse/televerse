@@ -680,6 +680,8 @@ class Context {
       msg!.gift,
       msg!.uniqueGift,
       msg!.giftUpgradeSent,
+      msg!.chatOwnerLeft,
+      msg!.chatOwnerChanged,
     ];
 
     return checks.any((c) => c != null && c != false);
