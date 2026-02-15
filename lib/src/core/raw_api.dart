@@ -4796,4 +4796,29 @@ class RawAPI {
     );
     return Story.fromJson(response);
   }
+
+  /// Changes the profile photo of the bot. Returns True on success.
+  Future<bool> setMyProfilePhoto(InputProfilePhoto photo) async {
+    final params = {'photo': photo.toJson()};
+    final files = _extractFiles({'photo': photo});
+    final payload = Payload(_convertParameters(params), files);
+
+    return await _makeRequest<bool>(APIMethod.setMyProfilePhoto, payload);
+  }
+
+  /// Removes the profile photo of the bot. Requires no parameters. Returns True on success.
+  Future<bool> deleteMyProfilePhoto() async {
+    return await _makeRequest<bool>(APIMethod.deleteMyProfilePhoto);
+  }
+
+  /// Use this method to get a list of profile audios for a user. Returns a UserProfileAudios object.
+  Future<UserProfileAudios> getUserProfileAudios(int userId) async {
+    final params = {'user_id': userId};
+    final payload = Payload(_convertParameters(params));
+    final response = await _makeRequest<Map<String, dynamic>>(
+      APIMethod.getUserProfileAudios,
+      payload,
+    );
+    return UserProfileAudios.fromJson(response);
+  }
 }

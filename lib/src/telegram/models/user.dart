@@ -78,6 +78,11 @@ abstract class User with _$User implements WithID {
     /// Optional. True, if forum topic mode is enabled for the bot in private
     /// chats.
     @JsonKey(name: 'has_topics_enabled') bool? hasTopicsEnabled,
+
+    /// Optional. True, if the bot allows users to create and delete topics in
+    /// private chats. Returned only in getMe.
+    @JsonKey(name: 'allows_users_to_create_topics')
+    bool? allowsUsersToCreateTopics,
   }) = _User;
 
   /// Creates a [User] from a JSON map

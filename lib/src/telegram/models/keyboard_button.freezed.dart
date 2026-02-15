@@ -66,6 +66,24 @@ mixin _$KeyboardButton {
   @JsonKey(name: 'request_chat')
   KeyboardButtonRequestChat? get requestChat;
 
+  /// Optional. Unique identifier of the custom emoji shown before the text
+  /// of the button. Can only be used by bots that purchased additional
+  /// usernames on Fragment or in the messages directly sent by the bot to
+  /// private, group and supergroup chats if the owner of the bot has a
+  /// Telegram Premium subscription.
+  ///
+  /// Since: Bot API 9.4
+  @JsonKey(name: 'icon_custom_emoji_id')
+  String? get iconCustomEmojiId;
+
+  /// Optional. Style of the button. Must be one of “danger” (red), “success”
+  /// (green) or “primary” (blue). If omitted, then an app-specific style is
+  /// used.
+  ///
+  /// Since: Bot API 9.4
+  @JsonKey(name: 'style')
+  StyleType? get style;
+
   /// Create a copy of KeyboardButton
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -81,7 +99,7 @@ mixin _$KeyboardButton {
 
   @override
   String toString() {
-    return 'KeyboardButton(text: $text, requestContact: $requestContact, requestLocation: $requestLocation, requestPoll: $requestPoll, webApp: $webApp, requestUsers: $requestUsers, requestChat: $requestChat)';
+    return 'KeyboardButton(text: $text, requestContact: $requestContact, requestLocation: $requestLocation, requestPoll: $requestPoll, webApp: $webApp, requestUsers: $requestUsers, requestChat: $requestChat, iconCustomEmojiId: $iconCustomEmojiId, style: $style)';
   }
 }
 
@@ -100,6 +118,8 @@ abstract mixin class $KeyboardButtonCopyWith<$Res> {
     @JsonKey(name: 'web_app') WebAppInfo? webApp,
     @JsonKey(name: 'request_user') KeyboardButtonRequestUsers? requestUsers,
     @JsonKey(name: 'request_chat') KeyboardButtonRequestChat? requestChat,
+    @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+    @JsonKey(name: 'style') StyleType? style,
   });
 
   $KeyboardButtonPollTypeCopyWith<$Res>? get requestPoll;
@@ -128,6 +148,8 @@ class _$KeyboardButtonCopyWithImpl<$Res>
     Object? webApp = freezed,
     Object? requestUsers = freezed,
     Object? requestChat = freezed,
+    Object? iconCustomEmojiId = freezed,
+    Object? style = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -159,6 +181,14 @@ class _$KeyboardButtonCopyWithImpl<$Res>
             ? _self.requestChat
             : requestChat // ignore: cast_nullable_to_non_nullable
                   as KeyboardButtonRequestChat?,
+        iconCustomEmojiId: freezed == iconCustomEmojiId
+            ? _self.iconCustomEmojiId
+            : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        style: freezed == style
+            ? _self.style
+            : style // ignore: cast_nullable_to_non_nullable
+                  as StyleType?,
       ),
     );
   }
@@ -315,6 +345,8 @@ class _KeyboardButton implements KeyboardButton {
     @JsonKey(name: 'web_app') this.webApp,
     @JsonKey(name: 'request_user') this.requestUsers,
     @JsonKey(name: 'request_chat') this.requestChat,
+    @JsonKey(name: 'icon_custom_emoji_id') this.iconCustomEmojiId,
+    @JsonKey(name: 'style') this.style,
   });
   factory _KeyboardButton.fromJson(Map<String, dynamic> json) =>
       _$KeyboardButtonFromJson(json);
@@ -379,6 +411,26 @@ class _KeyboardButton implements KeyboardButton {
   @JsonKey(name: 'request_chat')
   final KeyboardButtonRequestChat? requestChat;
 
+  /// Optional. Unique identifier of the custom emoji shown before the text
+  /// of the button. Can only be used by bots that purchased additional
+  /// usernames on Fragment or in the messages directly sent by the bot to
+  /// private, group and supergroup chats if the owner of the bot has a
+  /// Telegram Premium subscription.
+  ///
+  /// Since: Bot API 9.4
+  @override
+  @JsonKey(name: 'icon_custom_emoji_id')
+  final String? iconCustomEmojiId;
+
+  /// Optional. Style of the button. Must be one of “danger” (red), “success”
+  /// (green) or “primary” (blue). If omitted, then an app-specific style is
+  /// used.
+  ///
+  /// Since: Bot API 9.4
+  @override
+  @JsonKey(name: 'style')
+  final StyleType? style;
+
   /// Create a copy of KeyboardButton
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -394,7 +446,7 @@ class _KeyboardButton implements KeyboardButton {
 
   @override
   String toString() {
-    return 'KeyboardButton(text: $text, requestContact: $requestContact, requestLocation: $requestLocation, requestPoll: $requestPoll, webApp: $webApp, requestUsers: $requestUsers, requestChat: $requestChat)';
+    return 'KeyboardButton(text: $text, requestContact: $requestContact, requestLocation: $requestLocation, requestPoll: $requestPoll, webApp: $webApp, requestUsers: $requestUsers, requestChat: $requestChat, iconCustomEmojiId: $iconCustomEmojiId, style: $style)';
   }
 }
 
@@ -415,6 +467,8 @@ abstract mixin class _$KeyboardButtonCopyWith<$Res>
     @JsonKey(name: 'web_app') WebAppInfo? webApp,
     @JsonKey(name: 'request_user') KeyboardButtonRequestUsers? requestUsers,
     @JsonKey(name: 'request_chat') KeyboardButtonRequestChat? requestChat,
+    @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+    @JsonKey(name: 'style') StyleType? style,
   });
 
   @override
@@ -447,6 +501,8 @@ class __$KeyboardButtonCopyWithImpl<$Res>
     Object? webApp = freezed,
     Object? requestUsers = freezed,
     Object? requestChat = freezed,
+    Object? iconCustomEmojiId = freezed,
+    Object? style = freezed,
   }) {
     return _then(
       _KeyboardButton(
@@ -478,6 +534,14 @@ class __$KeyboardButtonCopyWithImpl<$Res>
             ? _self.requestChat
             : requestChat // ignore: cast_nullable_to_non_nullable
                   as KeyboardButtonRequestChat?,
+        iconCustomEmojiId: freezed == iconCustomEmojiId
+            ? _self.iconCustomEmojiId
+            : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        style: freezed == style
+            ? _self.style
+            : style // ignore: cast_nullable_to_non_nullable
+                  as StyleType?,
       ),
     );
   }

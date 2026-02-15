@@ -466,6 +466,12 @@ abstract class Message
 
     /// Optional. Service message: upgrade of a gift was purchased after the gift was sent
     @JsonKey(name: 'gift_upgrade_sent') GiftInfo? giftUpgradeSent,
+
+    /// Optional. Service message: chat owner has left
+    @JsonKey(name: 'chat_owner_left') ChatOwnerLeft? chatOwnerLeft,
+
+    /// Optional. Service message: chat owner has changed
+    @JsonKey(name: 'chat_owner_changed') ChatOwnerChanged? chatOwnerChanged,
   }) = _Message;
 
   /// Creates a [Message] object from JSON object

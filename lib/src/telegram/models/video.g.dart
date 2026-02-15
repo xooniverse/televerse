@@ -22,6 +22,9 @@ _Video _$VideoFromJson(Map<String, dynamic> json) => _Video(
   cover: (json['cover'] as List<dynamic>?)
       ?.map((e) => PhotoSize.fromJson(e as Map<String, dynamic>))
       .toList(),
+  qualities: (json['qualities'] as List<dynamic>?)
+      ?.map((e) => VideoQuality.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$VideoToJson(_Video instance) => <String, dynamic>{
@@ -36,4 +39,5 @@ Map<String, dynamic> _$VideoToJson(_Video instance) => <String, dynamic>{
   'file_size': ?instance.fileSize,
   'start_timestamp': ?instance.startTimestamp,
   'cover': ?instance.cover,
+  'qualities': ?instance.qualities,
 };

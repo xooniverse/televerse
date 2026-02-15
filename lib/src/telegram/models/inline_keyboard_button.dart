@@ -5,6 +5,7 @@ import 'package:televerse/src/telegram/models/copy_text_button.dart';
 import 'package:televerse/src/telegram/models/login_url.dart';
 import 'package:televerse/src/telegram/models/switch_inline_query_chosen_chat.dart';
 import 'package:televerse/src/telegram/models/web_app_info.dart';
+import 'package:televerse/src/telegram/types/types.dart';
 
 part 'inline_keyboard_button.freezed.dart';
 part 'inline_keyboard_button.g.dart';
@@ -86,6 +87,22 @@ abstract class InlineKeyboardButton with _$InlineKeyboardButton {
     ///
     /// Since Bot API 7.11
     @JsonKey(name: 'copy_text') CopyTextButton? copyText,
+
+    /// Optional. Unique identifier of the custom emoji shown before the text
+    /// of the button. Can only be used by bots that purchased additional
+    /// usernames on Fragment or in the messages directly sent by the bot to
+    /// private, group and supergroup chats if the owner of the bot has a
+    /// Telegram Premium subscription.
+    ///
+    /// Since: Bot API 9.4
+    @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+
+    /// Optional. Style of the button. Must be one of “danger” (red), “success”
+    /// (green) or “primary” (blue). If omitted, then an app-specific style is
+    /// used.
+    ///
+    /// Since: Bot API 9.4
+    @JsonKey(name: 'style') StyleType? style,
   }) = _InlineKeyboardButton;
 
   /// Creates an [InlineKeyboardButton] from JSON object

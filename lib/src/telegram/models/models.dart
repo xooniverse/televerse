@@ -200,3 +200,9 @@ export 'suggested_post_refunded.dart';
 export 'unique_gift_colors.dart';
 export 'gift_background.dart';
 export 'user_rating.dart';
+
+// Bot API 9.4
+export 'chat_owner_left.dart';
+export 'chat_owner_changed.dart';
+export 'video_quality.dart';
+export 'user_profile_audios.dart';

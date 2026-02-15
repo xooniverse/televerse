@@ -66,6 +66,10 @@ mixin _$Video {
   @JsonKey(name: 'cover')
   List<PhotoSize>? get cover;
 
+  /// Optional. List of available qualities of the video
+  @JsonKey(name: 'qualities')
+  List<VideoQuality>? get qualities;
+
   /// Create a copy of Video
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -78,7 +82,7 @@ mixin _$Video {
 
   @override
   String toString() {
-    return 'Video(fileId: $fileId, fileUniqueId: $fileUniqueId, width: $width, height: $height, duration: $duration, thumbnail: $thumbnail, fileName: $fileName, mimeType: $mimeType, fileSize: $fileSize, startTimestamp: $startTimestamp, cover: $cover)';
+    return 'Video(fileId: $fileId, fileUniqueId: $fileUniqueId, width: $width, height: $height, duration: $duration, thumbnail: $thumbnail, fileName: $fileName, mimeType: $mimeType, fileSize: $fileSize, startTimestamp: $startTimestamp, cover: $cover, qualities: $qualities)';
   }
 }
 
@@ -99,6 +103,7 @@ abstract mixin class $VideoCopyWith<$Res> {
     @JsonKey(name: 'file_size') int? fileSize,
     @JsonKey(name: 'start_timestamp') int? startTimestamp,
     @JsonKey(name: 'cover') List<PhotoSize>? cover,
+    @JsonKey(name: 'qualities') List<VideoQuality>? qualities,
   });
 
   $PhotoSizeCopyWith<$Res>? get thumbnail;
@@ -127,6 +132,7 @@ class _$VideoCopyWithImpl<$Res> implements $VideoCopyWith<$Res> {
     Object? fileSize = freezed,
     Object? startTimestamp = freezed,
     Object? cover = freezed,
+    Object? qualities = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -174,6 +180,10 @@ class _$VideoCopyWithImpl<$Res> implements $VideoCopyWith<$Res> {
             ? _self.cover
             : cover // ignore: cast_nullable_to_non_nullable
                   as List<PhotoSize>?,
+        qualities: freezed == qualities
+            ? _self.qualities
+            : qualities // ignore: cast_nullable_to_non_nullable
+                  as List<VideoQuality>?,
       ),
     );
   }
@@ -288,7 +298,9 @@ class _Video implements Video {
     @JsonKey(name: 'file_size') this.fileSize,
     @JsonKey(name: 'start_timestamp') this.startTimestamp,
     @JsonKey(name: 'cover') final List<PhotoSize>? cover,
-  }) : _cover = cover;
+    @JsonKey(name: 'qualities') final List<VideoQuality>? qualities,
+  }) : _cover = cover,
+       _qualities = qualities;
   factory _Video.fromJson(Map<String, dynamic> json) => _$VideoFromJson(json);
 
   /// Identifier for this file, which can be used to download or reuse the
@@ -364,6 +376,20 @@ class _Video implements Video {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Optional. List of available qualities of the video
+  final List<VideoQuality>? _qualities;
+
+  /// Optional. List of available qualities of the video
+  @override
+  @JsonKey(name: 'qualities')
+  List<VideoQuality>? get qualities {
+    final value = _qualities;
+    if (value == null) return null;
+    if (_qualities is EqualUnmodifiableListView) return _qualities;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   /// Create a copy of Video
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -379,7 +405,7 @@ class _Video implements Video {
 
   @override
   String toString() {
-    return 'Video(fileId: $fileId, fileUniqueId: $fileUniqueId, width: $width, height: $height, duration: $duration, thumbnail: $thumbnail, fileName: $fileName, mimeType: $mimeType, fileSize: $fileSize, startTimestamp: $startTimestamp, cover: $cover)';
+    return 'Video(fileId: $fileId, fileUniqueId: $fileUniqueId, width: $width, height: $height, duration: $duration, thumbnail: $thumbnail, fileName: $fileName, mimeType: $mimeType, fileSize: $fileSize, startTimestamp: $startTimestamp, cover: $cover, qualities: $qualities)';
   }
 }
 
@@ -401,6 +427,7 @@ abstract mixin class _$VideoCopyWith<$Res> implements $VideoCopyWith<$Res> {
     @JsonKey(name: 'file_size') int? fileSize,
     @JsonKey(name: 'start_timestamp') int? startTimestamp,
     @JsonKey(name: 'cover') List<PhotoSize>? cover,
+    @JsonKey(name: 'qualities') List<VideoQuality>? qualities,
   });
 
   @override
@@ -430,6 +457,7 @@ class __$VideoCopyWithImpl<$Res> implements _$VideoCopyWith<$Res> {
     Object? fileSize = freezed,
     Object? startTimestamp = freezed,
     Object? cover = freezed,
+    Object? qualities = freezed,
   }) {
     return _then(
       _Video(
@@ -477,6 +505,10 @@ class __$VideoCopyWithImpl<$Res> implements _$VideoCopyWith<$Res> {
             ? _self._cover
             : cover // ignore: cast_nullable_to_non_nullable
                   as List<PhotoSize>?,
+        qualities: freezed == qualities
+            ? _self._qualities
+            : qualities // ignore: cast_nullable_to_non_nullable
+                  as List<VideoQuality>?,
       ),
     );
   }
