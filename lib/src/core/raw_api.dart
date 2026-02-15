@@ -121,8 +121,8 @@ class RawAPI {
   /// ```dart
   /// // Send a message using the generic call method
   /// final payload = Payload({
-  ///   'chat_id': chatId.toJson(),
-  ///   'text': 'Hello World!',
+  ///   'chat_id': chatId,
+  ///   'text': '<b>Hello World!</b>',
   ///   'parse_mode': 'HTML',
   /// });
   ///
@@ -2166,7 +2166,7 @@ class RawAPI {
   /// See: https://core.telegram.org/bots/api#setchatmenubutton
   Future<bool> setChatMenuButton(MenuButton menuButton, {ID? chatId}) async {
     final params = <String, dynamic>{
-      'menu_button': menuButton.toJson(),
+      'menu_button': menuButton,
       'chat_id': ?chatId,
     };
 
@@ -2917,10 +2917,10 @@ class RawAPI {
     final params = <String, dynamic>{
       'user_id': userId,
       'name': name,
-      'sticker': sticker.toJson(),
+      'sticker': sticker,
     };
 
-    final files = _prepareFiles([sticker.sticker]);
+    final files = _prepareFiles(sticker.getInputFiles());
     final payload = Payload(params, files);
     return await _makeRequest<bool>(APIMethod.addStickerToSet.name, payload);
   }
