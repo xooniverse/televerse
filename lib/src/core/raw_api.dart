@@ -127,7 +127,7 @@ class RawAPI {
   /// });
   ///
   /// final response = await api<Map<String, dynamic>>(
-  ///   APIMethod.sendMessage.name,
+  ///   "sendMessage",
   ///   payload,
   /// );
   /// final message = Message.fromJson(response);
@@ -288,14 +288,6 @@ class RawAPI {
   ///
   /// Use this method to receive incoming updates using long polling.
   /// An Array of [Update] objects is returned.
-  ///
-  /// Parameters:
-  /// - [offset]: Identifier of the first update to be returned
-  /// - [limit]: Limits the number of updates to be retrieved (1-100, default 100)
-  /// - [timeout]: Timeout in seconds for long polling (0-50, default 0)
-  /// - [allowedUpdates]: List of update types you want your bot to receive
-  ///
-  /// Returns a list of [Update] objects.
   Future<List<Update>> getUpdates({
     int? offset,
     int? limit,
@@ -322,16 +314,6 @@ class RawAPI {
   ///
   /// Whenever there is an update for the bot, Telegram will send an HTTPS POST
   /// request to the specified URL, containing a JSON-serialized Update.
-  ///
-  /// Parameters:
-  /// - [url]: HTTPS URL to send updates to. Use an empty string to remove webhook integration
-  /// - [certificate]: Upload your public key certificate so that the root certificate in use can be checked
-  /// - [ipAddress]: The fixed IP address which will be used to send webhook requests instead of the IP address resolved through DNS
-  /// - [maxConnections]: The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery (1-100, default 40)
-  /// - [allowedUpdates]: A list of the update types you want your bot to receive
-  /// - [dropPendingUpdates]: Pass True to drop all pending updates
-  /// - [secretToken]: A secret token to be sent in a header "X-Telegram-Bot-Api-Secret-Token" in every webhook request (1-256 characters)
-  ///
   /// Returns True on success.
   Future<bool> setWebhook(
     String url, {
@@ -359,13 +341,7 @@ class RawAPI {
     return await _makeRequest<bool>(APIMethod.setWebhook.name, payload);
   }
 
-  /// Gets current webhook status.
-  ///
-  /// Use this method to get current webhook status. Requires no parameters.
-  /// On success, returns a WebhookInfo object. If the bot is using getUpdates,
-  /// will return an object with the url field empty.
-  ///
-  /// Returns current webhook status.
+  /// Gets current webhook status. Returns current webhook status.
   Future<WebhookInfo> getWebhookInfo() async {
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getWebhookInfo.name,
@@ -375,13 +351,7 @@ class RawAPI {
   }
 
   /// Removes webhook integration if you decide to switch back to getUpdates.
-  ///
   /// Returns True on success.
-  ///
-  /// Parameters:
-  /// - [dropPendingUpdates]: Pass True to drop all pending updates
-  ///
-  /// Returns true if the webhook was successfully deleted.
   Future<bool> deleteWebhook({bool? dropPendingUpdates}) async {
     final params = <String, dynamic>{
       'drop_pending_updates': ?dropPendingUpdates,
@@ -394,23 +364,6 @@ class RawAPI {
   /// Sends a text message.
   ///
   /// On success, the sent [Message] is returned.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [text]: Text of the message to be sent, 1-4096 characters
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [parseMode]: Mode for parsing entities in the message text
-  /// - [entities]: List of special entities that appear in message text
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup]: Additional interface options
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [linkPreviewOptions]: Link preview generation options for the message
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  ///
-  /// Returns the sent [Message].
   Future<Message> sendMessage(
     ID chatId,
     String text, {
@@ -457,16 +410,6 @@ class RawAPI {
 
   /// Streams a partial message to a user while the message is being generated;
   /// supported only for bots with forum topic mode enabled. Returns True on success.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target private chat
-  /// - [draftId]: Unique identifier of the message draft; must be non-zero. Changes of drafts with the same identifier are animated
-  /// - [text]: Text of the message to be sent, 1-4096 characters after entities parsing
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [parseMode]: Mode for parsing entities in the message text
-  /// - [entities]: List of special entities that appear in message text
-  ///
-  /// Returns True on success.
   Future<bool> sendMessageDraft(
     ID chatId,
     int draftId,
@@ -491,25 +434,6 @@ class RawAPI {
   /// Sends a photo.
   ///
   /// On success, the sent [Message] is returned.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [photo]: Photo to send
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [caption]: Photo caption (may also be used when resending photos by file_id), 0-1024 characters
-  /// - [parseMode]: Mode for parsing entities in the photo caption
-  /// - [captionEntities]: List of special entities that appear in the caption
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup]: Additional interface options
-  /// - [hasSpoiler]: Pass True if the photo needs to be covered with a spoiler animation
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [showCaptionAboveMedia]: Pass True, if the caption must be shown above the message media
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  ///
-  /// Returns the sent [Message].
   Future<Message> sendPhoto(
     ID chatId,
     InputFile photo, {
@@ -565,19 +489,6 @@ class RawAPI {
   ///
   /// Messages sent as a group cannot be edited or deleted individually.
   /// On success, an array of [Message]s that were sent is returned.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [media]: Array of 2-10 InputMedia objects describing messages to be sent
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [disableNotification]: Sends messages silently
-  /// - [protectContent]: Protects the contents of the sent messages from forwarding and saving
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  ///
-  /// Returns an array of sent [Message]s.
   Future<List<Message>> sendMediaGroup(
     ID chatId,
     List<InputMedia> media, {
@@ -619,9 +530,7 @@ class RawAPI {
   ///
   /// A simple method for testing your bot's authentication token.
   /// Requires no parameters. Returns basic information about the bot
-  /// in form of a User object.
-  ///
-  /// Returns basic information about the bot.
+  /// in form of a `User` object.
   Future<User> getMe() async {
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getMe.name,
@@ -655,35 +564,6 @@ class RawAPI {
 
   /// Use this method to forward messages of any kind. Service messages can't be
   /// forwarded. On success, the sent [Message] is returned.
-  ///
-  /// Required parameters:
-  /// - [chatId] - Chat ID can either be [ChatID] or [ChannelID] or
-  ///   [SupergroupID]
-  /// - [fromChatId] - Chat ID can either be [ChatID] or [ChannelID] or
-  ///   [SupergroupID]
-  /// - [messageId] - Message identifier in the chat specified in [fromChatId]
-  ///
-  /// You can optionally pass the more parameters as described in the official
-  /// documentation.
-  ///
-  /// - [disableNotification] - Sends the message silently. Users will receive a
-  ///   notification with no sound.
-  /// - [messageThreadId] - Unique identifier for the target message thread
-  ///   (topic) of the forum; for forum supergroups only
-  /// - [protectContent] - Protects the contents of the forwarded message from
-  ///   forwarding and saving
-  /// - [videoStartTimestamp] - Timestamp in seconds from which the video should
-  ///   start playing. Used only for video messages.
-  ///
-  /// **Example:**
-  /// ```dart
-  /// /// If you're using [ChatID] specify the chat id as an integer
-  /// bot.forwardMessage(ChatID(123456789), ChatID(987654321), 123456789);
-  ///
-  /// /// If you're using [ChannelID] or [SupergroupID] specify the chat id as a string
-  /// /// Both [ChannelID] and [SupergroupID] are treated the same way
-  /// bot.forwardMessage(ChannelID("@myChannel"), ChannelID("@myChannel"), 123456789);
-  /// ```
   ///
   /// See more at https://core.telegram.org/bots/api#forwardmessage
   Future<Message> forwardMessage(
@@ -726,47 +606,6 @@ class RawAPI {
   /// to the method forwardMessage, but the copied message doesn't have a link
   /// to the original message. Returns the MessageId of the sent message on
   /// success.
-  ///
-  /// Required parameters:
-  /// - [chatId] - Unique identifier for the target chat or username of the target channel
-  /// - [fromChatId] - Unique identifier for the chat where the original message was sent
-  /// - [messageId] - Message identifier in the chat specified in [fromChatId]
-  ///
-  /// Optional parameters:
-  /// - [messageThreadId] - Unique identifier for the target message thread (topic) of the forum
-  /// - [caption] - New caption for media, 0-1024 characters after entities parsing
-  /// - [parseMode] - Mode for parsing entities in the new caption
-  /// - [captionEntities] - List of special entities that appear in the new caption
-  /// - [disableNotification] - Sends the message silently
-  /// - [protectContent] - Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup] - Additional interface options
-  /// - [replyParameters] - Description of the message to reply to
-  /// - [showCaptionAboveMedia] - Pass True, if the caption must be shown above the message media
-  /// - [allowPaidBroadcast] - Pass True to allow up to 1000 messages per second
-  /// - [videoStartTimestamp] - Timestamp in seconds from which the video should start playing
-  ///
-  /// **Example:**
-  /// ```dart
-  /// /// Copy a message to another chat
-  /// final messageId = await bot.copyMessage(
-  ///   ChatID(123456789),
-  ///   ChatID(987654321),
-  ///   456789,
-  ///   caption: "This is a copied message",
-  /// );
-  ///
-  /// /// Copy with custom reply markup
-  /// final messageId = await bot.copyMessage(
-  ///   ChannelID("@myChannel"),
-  ///   ChatID(987654321),
-  ///   456789,
-  ///   replyMarkup: InlineKeyboardMarkup(
-  ///     inlineKeyboard: [
-  ///       [InlineKeyboardButton(text: "Button", callbackData: "data")]
-  ///     ],
-  ///   ),
-  /// );
-  /// ```
   ///
   /// See more at https://core.telegram.org/bots/api#copymessage
   Future<MessageId> copyMessage(
@@ -822,29 +661,6 @@ class RawAPI {
   /// format. On success, the sent Message is returned. Bots can currently send
   /// audio files of up to 50 MB in size, this limit may be changed in the
   /// future.
-  ///
-  /// For sending voice messages, use the [sendVoice] method instead.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [audio]: Audio file to send
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [caption]: Audio caption, 0-1024 characters after entities parsing
-  /// - [parseMode]: Mode for parsing entities in the audio caption
-  /// - [captionEntities]: List of special entities that appear in the caption
-  /// - [duration]: Duration of the audio in seconds
-  /// - [performer]: Performer of the audio
-  /// - [title]: Track name
-  /// - [thumbnail]: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup]: Additional interface options
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  ///
-  /// Returns the sent [Message].
   Future<Message> sendAudio(
     ID chatId,
     InputFile audio, {
@@ -901,27 +717,7 @@ class RawAPI {
   }
 
   /// Use this method to send general files. On success, the sent Message is
-  /// returned. Bots can currently send files of any type of up to 50 MB in
-  /// size, this limit may be changed in the future.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [document]: File to send
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [thumbnail]: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side
-  /// - [caption]: Document caption (may also be used when resending documents by file_id), 0-1024 characters after entities parsing
-  /// - [parseMode]: Mode for parsing entities in the document caption
-  /// - [captionEntities]: List of special entities that appear in the caption
-  /// - [disableContentTypeDetection]: Disables automatic server-side content type detection for files uploaded using multipart/form-data
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup]: Additional interface options
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  ///
-  /// Returns the sent [Message].
+  /// returned.
   Future<Message> sendDocument(
     ID chatId,
     InputFile document, {
@@ -975,34 +771,7 @@ class RawAPI {
 
   /// Use this method to send video files, Telegram clients support MPEG4 videos
   /// (other formats may be sent as Document). On success, the sent Message is
-  /// returned. Bots can currently send video files of up to 50 MB in size, this
-  /// limit may be changed in the future.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [video]: Video to send
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [duration]: Duration of sent video in seconds
-  /// - [width]: Video width
-  /// - [height]: Video height
-  /// - [thumbnail]: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side
-  /// - [caption]: Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing
-  /// - [parseMode]: Mode for parsing entities in the video caption
-  /// - [captionEntities]: List of special entities that appear in the caption
-  /// - [hasSpoiler]: Pass True if the video needs to be covered with a spoiler animation
-  /// - [supportsStreaming]: Pass True if the uploaded video is suitable for streaming
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup]: Additional interface options
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [showCaptionAboveMedia]: Pass True, if the caption must be shown above the message media
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  /// - [cover]: Pass a file to use as a cover for the video
-  /// - [startTimestamp]: The timestamp in seconds from the start of the video that will be shown as a still image
-  ///
-  /// Returns the sent [Message].
+  /// returned.
   Future<Message> sendVideo(
     ID chatId,
     InputFile video, {
@@ -1071,32 +840,6 @@ class RawAPI {
   /// Sends animation files (GIF or H.264/MPEG-4 AVC video without sound).
   ///
   /// Use this method to send animation files. On success, the sent [Message] is returned.
-  /// Bots can currently send animation files of up to 50 MB in size.
-  ///
-  /// See: https://core.telegram.org/bots/api#sendanimation
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [animation]: Animation to send
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [duration]: Duration of sent animation in seconds
-  /// - [width]: Animation width
-  /// - [height]: Animation height
-  /// - [thumbnail]: Thumbnail of the file sent
-  /// - [caption]: Animation caption, 0-1024 characters after entities parsing
-  /// - [parseMode]: Mode for parsing entities in the animation caption
-  /// - [captionEntities]: List of special entities that appear in the caption
-  /// - [hasSpoiler]: Pass True if the animation needs to be covered with a spoiler animation
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup]: Additional interface options
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [showCaptionAboveMedia]: Pass True, if the caption must be shown above the message media
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  ///
-  /// Returns the sent [Message].
   Future<Message> sendAnimation(
     ID chatId,
     InputFile animation, {
@@ -1156,18 +899,9 @@ class RawAPI {
     return Message.fromJson(response);
   }
 
-  /// Sends audio files as playable voice messages.
-  ///
-  /// Use this method to send audio files, if you want Telegram clients to
-  /// display the file as a playable voice message. For this to work, your audio
-  /// must be in an .OGG file encoded with OPUS (other formats may be sent as
-  /// Audio or Document). On success, the sent [Message] is returned. Bots can
-  /// currently send voice messages of up to 50 MB in size, this limit may be
-  /// changed in the future.
+  /// Sends audio files as playable voice messages. On success, the sent [Message] is returned.
   ///
   /// See: https://core.telegram.org/bots/api#sendvoice
-  ///
-  /// Returns the sent [Message].
   Future<Message> sendVoice(
     ID chatId,
     InputFile voice, {
