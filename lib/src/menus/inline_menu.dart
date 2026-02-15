@@ -12,16 +12,29 @@ class _InlineMenuButton<CTX extends Context> {
   /// The handler function to execute when the button is pressed.
   final MenuHandler<CTX> handler;
 
+  /// Optional custom emoji ID shown before the button text.
+  final String? iconCustomEmojiId;
+
+  /// Optional button style.
+  final StyleType? style;
+
   /// Creates a new inline menu button.
   const _InlineMenuButton({
     required this.text,
     required this.data,
     required this.handler,
+    this.iconCustomEmojiId,
+    this.style,
   });
 
   /// Converts this button to an InlineKeyboardButton.
   InlineKeyboardButton toKeyboardButton() {
-    return InlineKeyboardButton(text: text, callbackData: data);
+    return InlineKeyboardButton(
+      text: text,
+      callbackData: data,
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
+    );
   }
 }
 
@@ -74,10 +87,10 @@ class _InlineMenuItemStatic<CTX extends Context> extends _InlineMenuItem<CTX> {
 /// final menu = InlineMenu<Context>()
 ///   .text('Option 1', 'opt1', (ctx) async {
 ///     await ctx.answerCallbackQuery(text: 'You chose option 1!');
-///   })
+///   }, style: StyleType.primary)
 ///   .text('Option 2', 'opt2', (ctx) async {
 ///     await ctx.answerCallbackQuery(text: 'You chose option 2!');
-///   })
+///   }, style: StyleType.danger)
 ///   .row()
 ///   .url('Visit Website', 'https://example.com');
 ///
@@ -104,84 +117,70 @@ class InlineMenu<CTX extends Context> extends TeleverseMenu<CTX>
 
   /// Adds a callback button to the current row.
   ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [data]: The callback data to send (defaults to text if not provided)
-  /// - [handler]: The function to execute when the button is pressed
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.text('Click me', 'clicked', (ctx) async {
-  ///   await ctx.answerCallbackQuery(text: 'Button was clicked!');
-  /// });
-  /// ```
-  InlineMenu<CTX> text(String text, String data, MenuHandler<CTX> handler) {
+  InlineMenu<CTX> text(
+    String text,
+    String data,
+    MenuHandler<CTX> handler, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     _ensureCurrentRow();
     final button = _InlineMenuButton<CTX>(
       text: text,
       data: data,
       handler: handler,
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
     );
     _rows.last.add(_InlineMenuItemWithHandler(button));
     return this;
   }
 
   /// Adds a URL button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [url]: The URL to open when the button is pressed
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.url('Visit Website', 'https://example.com');
-  /// ```
-  InlineMenu<CTX> url(String text, String url) {
+  InlineMenu<CTX> url(
+    String text,
+    String url, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     _ensureCurrentRow();
-    final button = InlineKeyboardButton(text: text, url: url);
+    final button = InlineKeyboardButton(
+      text: text,
+      url: url,
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
+    );
     _rows.last.add(_InlineMenuItemStatic(_InlineMenuStaticButton(button)));
     return this;
   }
 
   /// Adds a web app button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [url]: The web app URL to open
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.webApp('Open App', 'https://myapp.example.com');
-  /// ```
-  InlineMenu<CTX> webApp(String text, String url) {
+  InlineMenu<CTX> webApp(
+    String text,
+    String url, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     _ensureCurrentRow();
     final button = InlineKeyboardButton(
       text: text,
       webApp: WebAppInfo(url: url),
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
     );
     _rows.last.add(_InlineMenuItemStatic(_InlineMenuStaticButton(button)));
     return this;
   }
 
   /// Adds a login button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [url]: The login URL
-  /// - [forwardText]: Optional text to forward
-  /// - [botUsername]: Optional bot username
-  /// - [requestWriteAccess]: Whether to request write access
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.login('Login', 'https://auth.example.com');
-  /// ```
   InlineMenu<CTX> login(
     String text,
     String url, {
     String? forwardText,
     String? botUsername,
     bool? requestWriteAccess,
+    String? iconCustomEmojiId,
+    StyleType? style,
   }) {
     _ensureCurrentRow();
     final button = InlineKeyboardButton(
@@ -192,80 +191,80 @@ class InlineMenu<CTX extends Context> extends TeleverseMenu<CTX>
         botUsername: botUsername,
         requestWriteAccess: requestWriteAccess,
       ),
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
     );
     _rows.last.add(_InlineMenuItemStatic(_InlineMenuStaticButton(button)));
     return this;
   }
 
   /// Adds a switch inline query button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [query]: The inline query to insert
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.switchInline('Share', 'check this out');
-  /// ```
-  InlineMenu<CTX> switchInline(String text, String query) {
+  InlineMenu<CTX> switchInline(
+    String text,
+    String query, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     _ensureCurrentRow();
-    final button = InlineKeyboardButton(text: text, switchInlineQuery: query);
+    final button = InlineKeyboardButton(
+      text: text,
+      switchInlineQuery: query,
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
+    );
     _rows.last.add(_InlineMenuItemStatic(_InlineMenuStaticButton(button)));
     return this;
   }
 
   /// Adds a switch inline query current chat button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [query]: The inline query to insert
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.switchInlineCurrentChat('Search here', 'cats');
-  /// ```
-  InlineMenu<CTX> switchInlineCurrentChat(String text, String query) {
+  InlineMenu<CTX> switchInlineCurrentChat(
+    String text,
+    String query, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     _ensureCurrentRow();
     final button = InlineKeyboardButton(
       text: text,
       switchInlineQueryCurrentChat: query,
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
     );
     _rows.last.add(_InlineMenuItemStatic(_InlineMenuStaticButton(button)));
     return this;
   }
 
   /// Adds a game button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  /// - [game]: Optional game data
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.game('Play Game');
-  /// ```
-  InlineMenu<CTX> game(String text, {CallbackGame? game}) {
+  InlineMenu<CTX> game(
+    String text, {
+    CallbackGame? game,
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     _ensureCurrentRow();
     final button = InlineKeyboardButton(
       text: text,
       callbackGame: game ?? const CallbackGame(),
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
     );
     _rows.last.add(_InlineMenuItemStatic(_InlineMenuStaticButton(button)));
     return this;
   }
 
   /// Adds a pay button to the current row.
-  ///
-  /// Parameters:
-  /// - [text]: The text to display on the button
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.pay('Pay Now');
-  /// ```
-  InlineMenu<CTX> pay(String text) {
+  InlineMenu<CTX> pay(
+    String text, {
+    String? iconCustomEmojiId,
+    StyleType? style,
+  }) {
     _ensureCurrentRow();
-    final button = InlineKeyboardButton(text: text, pay: true);
+    final button = InlineKeyboardButton(
+      text: text,
+      pay: true,
+      iconCustomEmojiId: iconCustomEmojiId,
+      style: style,
+    );
     _rows.last.add(_InlineMenuItemStatic(_InlineMenuStaticButton(button)));
     return this;
   }
@@ -277,14 +276,6 @@ class InlineMenu<CTX extends Context> extends TeleverseMenu<CTX>
   /// Starts a new row.
   ///
   /// If the current row is empty, this method does nothing.
-  ///
-  /// Example:
-  /// ```dart
-  /// menu.text('Button 1', 'btn1', handler1)
-  ///     .text('Button 2', 'btn2', handler2)
-  ///     .row()  // Start new row
-  ///     .text('Button 3', 'btn3', handler3);
-  /// ```
   InlineMenu<CTX> row() {
     if (_rows.last.isNotEmpty) {
       _rows.add([]);
