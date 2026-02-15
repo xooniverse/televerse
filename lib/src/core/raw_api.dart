@@ -206,72 +206,15 @@ class RawAPI {
     return response['result'] as T;
   }
 
-  /// Converts parameters to a format suitable for API requests.
-  ///
-  /// This method handles the conversion of Dart objects to their JSON
-  /// representations, including special handling for InputFile objects.
-  Map<String, dynamic> _convertParameters(Map<String, dynamic> params) {
-    final converted = <String, dynamic>{};
-
-    for (final entry in params.entries) {
-      final key = entry.key;
-      final value = entry.value;
-
-      if (value == null) continue;
-
-      if (value is InputFile) {
-        converted[key] = value.getValue();
-      } else if (value is ID) {
-        converted[key] = value.toJson();
-      } else if (value is TeleverseEnum) {
-        converted[key] = value.toJson();
-      } else if (value is List) {
-        converted[key] = jsonEncode(value);
-      } else if (value is Map) {
-        converted[key] = jsonEncode(value);
-      } else {
-        converted[key] = value;
+  /// Prepares files to send for the payload
+  Map<String, LocalFile> _prepareFiles(Iterable<InputFile?> files) {
+    final result = <String, LocalFile>{};
+    for (var file in files) {
+      if (file != null && file.type == InputFileType.bytes) {
+        result[file.getAttachName()] = file.toLocalFile();
       }
     }
-
-    return converted;
-  }
-
-  /// Extracts files from parameters for multipart requests.
-  ///
-  /// Scans through the parameters looking for InputFile objects and
-  /// extracts them into a format suitable for multipart uploads.
-  PayloadFiles? _extractFiles(Map<String, dynamic> params) {
-    final files = <Map<String, LocalFile>>[];
-
-    void process(dynamic value) {
-      if (value == null) return;
-
-      // Case 1: Direct File
-      if (value is InputFile) {
-        if (value.type == InputFileType.bytes) {
-          files.add({
-            value.getAttachName(): LocalFile(
-              value.getBytes(),
-              fileName: value.name,
-              contentType: value.mimeType,
-              headers: value.headers,
-            ),
-          });
-        }
-      }
-      // Case 2: Collections (Lists/Iterables)
-      else if (value is Iterable) {
-        value.forEach(process);
-      }
-      // Case 3: Complex Objects that provide files
-      else if (value is InputFileProvider) {
-        value.getInputFiles().forEach(process);
-      }
-    }
-
-    params.values.forEach(process);
-    return files.isEmpty ? null : files;
+    return result;
   }
 
   /// Closes the RawAPI instance and releases resources.
@@ -298,10 +241,10 @@ class RawAPI {
       'offset': ?offset,
       'limit': ?limit,
       'timeout': ?timeout,
-      'allowed_updates': ?allowedUpdates?.map((e) => e.type).toList(),
+      'allowed_updates': ?allowedUpdates,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
       APIMethod.getUpdates.name,
       payload,
@@ -329,15 +272,12 @@ class RawAPI {
       'certificate': ?certificate,
       'ip_address': ?ipAddress,
       'max_connections': ?maxConnections,
-      'allowed_updates': ?allowedUpdates?.map((e) => e.type).toList(),
+      'allowed_updates': ?allowedUpdates,
       'drop_pending_updates': ?dropPendingUpdates,
       'secret_token': ?secretToken,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, _prepareFiles([certificate]));
     return await _makeRequest<bool>(APIMethod.setWebhook.name, payload);
   }
 
@@ -357,7 +297,7 @@ class RawAPI {
       'drop_pending_updates': ?dropPendingUpdates,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.deleteWebhook.name, payload);
   }
 
@@ -386,12 +326,12 @@ class RawAPI {
       'text': text,
       'message_thread_id': ?messageThreadId,
       'parse_mode': ?parseMode,
-      'entities': ?entities?.map((e) => e.toJson()).toList(),
+      'entities': ?entities,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
-      'link_preview_options': ?linkPreviewOptions?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
+      'link_preview_options': ?linkPreviewOptions,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -399,7 +339,7 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendMessage.name,
       payload,
@@ -424,10 +364,10 @@ class RawAPI {
       'text': text,
       'message_thread_id': ?messageThreadId,
       'parse_mode': ?parseMode,
-      'entities': ?entities?.map((e) => e.toJson()).toList(),
+      'entities': ?entities,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.sendMessageDraft.name, payload);
   }
 
@@ -459,12 +399,12 @@ class RawAPI {
       'message_thread_id': ?messageThreadId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
       'has_spoiler': ?hasSpoiler,
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'show_caption_above_media': ?showCaptionAboveMedia,
@@ -473,10 +413,8 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final payload = Payload(params, _prepareFiles([photo]));
 
-    final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendPhoto.name,
       payload,
@@ -507,17 +445,16 @@ class RawAPI {
       'message_thread_id': ?messageThreadId,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
       'direct_messages_topic_id': ?directMessagesTopicId,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles(media.map((e) => e.media));
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<List<dynamic>>(
       APIMethod.sendMediaGroup.name,
       payload,
@@ -591,7 +528,7 @@ class RawAPI {
       'message_effect_id': ?messageEffectId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.forwardMessage.name,
       payload,
@@ -634,11 +571,11 @@ class RawAPI {
       'message_thread_id': ?messageThreadId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'show_caption_above_media': ?showCaptionAboveMedia,
       'allow_paid_broadcast': ?allowPaidBroadcast,
       'video_start_timestamp': ?videoStartTimestamp,
@@ -647,7 +584,7 @@ class RawAPI {
       'message_effect_id': ?messageEffectId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.copyMessage.name,
       payload,
@@ -688,15 +625,15 @@ class RawAPI {
       'message_thread_id': ?messageThreadId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'duration': ?duration,
       'performer': ?performer,
       'title': ?title,
       'thumbnail': ?thumbnail,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -704,10 +641,9 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([audio, ?thumbnail]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendAudio.name,
       payload,
@@ -744,23 +680,20 @@ class RawAPI {
       'thumbnail': ?thumbnail,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'disable_content_type_detection': ?disableContentTypeDetection,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
       'direct_messages_topic_id': ?directMessagesTopicId,
       'suggested_post_parameters': ?suggestedPostParameters,
     };
-
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([document, ?thumbnail]);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendDocument.name,
       payload,
@@ -808,13 +741,13 @@ class RawAPI {
       'thumbnail': ?thumbnail,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'has_spoiler': ?hasSpoiler,
       'supports_streaming': ?supportsStreaming,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'show_caption_above_media': ?showCaptionAboveMedia,
@@ -825,10 +758,9 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([video, ?thumbnail, ?cover]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendVideo.name,
       payload,
@@ -873,12 +805,12 @@ class RawAPI {
       'thumbnail': ?thumbnail,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'has_spoiler': ?hasSpoiler,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'show_caption_above_media': ?showCaptionAboveMedia,
@@ -887,10 +819,9 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([animation, ?thumbnail]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendAnimation.name,
       payload,
@@ -926,12 +857,12 @@ class RawAPI {
       'message_thread_id': ?messageThreadId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'duration': ?duration,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -939,10 +870,9 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([voice]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendVoice.name,
       payload,
@@ -986,8 +916,8 @@ class RawAPI {
       'thumbnail': ?thumbnail,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -995,10 +925,9 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([videoNote, ?thumbnail]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendVideoNote.name,
       payload,
@@ -1042,8 +971,8 @@ class RawAPI {
       'proximity_alert_radius': ?proximityAlertRadius,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -1051,7 +980,7 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendLocation.name,
       payload,
@@ -1099,8 +1028,8 @@ class RawAPI {
       'google_place_type': ?googlePlaceType,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -1108,7 +1037,7 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendVenue.name,
       payload,
@@ -1146,8 +1075,8 @@ class RawAPI {
       'vcard': ?vcard,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -1155,7 +1084,7 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendContact.name,
       payload,
@@ -1195,7 +1124,7 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'question': question,
-      'options': options.map((e) => e.toJson()).toList(),
+      'options': options,
       'message_thread_id': ?messageThreadId,
       'is_anonymous': ?isAnonymous,
       'type': type,
@@ -1203,24 +1132,22 @@ class RawAPI {
       'correct_option_id': ?correctOptionId,
       'explanation': ?explanation,
       'explanation_parse_mode': ?explanationParseMode,
-      'explanation_entities': ?explanationEntities
-          ?.map((e) => e.toJson())
-          .toList(),
+      'explanation_entities': ?explanationEntities,
       'open_period': ?openPeriod,
       'close_date': ?closeDate?.secondsSinceEpoch,
       'is_closed': ?isClosed,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'question_parse_mode': ?questionParseMode,
-      'question_entities': ?questionEntities?.map((e) => e.toJson()).toList(),
+      'question_entities': ?questionEntities,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendPoll.name,
       payload,
@@ -1252,8 +1179,8 @@ class RawAPI {
       'message_thread_id': ?messageThreadId,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -1261,7 +1188,7 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendDice.name,
       payload,
@@ -1289,7 +1216,7 @@ class RawAPI {
       'business_connection_id': ?businessConnectionId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.sendChatAction.name, payload);
   }
 
@@ -1307,7 +1234,7 @@ class RawAPI {
       'limit': ?limit,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getUserProfilePhotos.name,
       payload,
@@ -1322,7 +1249,7 @@ class RawAPI {
   Future<File> getFile(String fileId) async {
     final params = <String, dynamic>{'file_id': fileId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getFile.name,
       payload,
@@ -1349,7 +1276,7 @@ class RawAPI {
       'revoke_messages': ?revokeMessages,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.banChatMember.name, payload);
   }
 
@@ -1374,7 +1301,7 @@ class RawAPI {
       'only_if_banned': ?onlyIfBanned,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.unbanChatMember.name, payload);
   }
 
@@ -1394,12 +1321,12 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'user_id': userId,
-      'permissions': permissions.toJson(),
+      'permissions': permissions,
       'until_date': ?untilDate.secondsSinceEpoch,
       'use_independent_chat_permissions': ?useIndependentChatPermissions,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.restrictChatMember.name, payload);
   }
 
@@ -1450,7 +1377,7 @@ class RawAPI {
       'can_manage_direct_messages': ?canManageDirectMessages,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.promoteChatMember.name, payload);
   }
 
@@ -1469,7 +1396,7 @@ class RawAPI {
       'custom_title': customTitle,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.setChatAdministratorCustomTitle.name,
       payload,
@@ -1489,7 +1416,7 @@ class RawAPI {
       'sender_chat_id': senderChatId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.banChatSenderChat.name, payload);
   }
 
@@ -1504,7 +1431,7 @@ class RawAPI {
       'sender_chat_id': senderChatId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.unbanChatSenderChat.name,
       payload,
@@ -1521,11 +1448,11 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'permissions': permissions.toJson(),
+      'permissions': permissions,
       'use_independent_chat_permissions': ?useIndependentChatPermissions,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.setChatPermissions.name, payload);
   }
 
@@ -1535,7 +1462,7 @@ class RawAPI {
   Future<String> exportChatInviteLink(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<String>(
       APIMethod.exportChatInviteLink.name,
       payload,
@@ -1560,7 +1487,7 @@ class RawAPI {
       'creates_join_request': ?createsJoinRequest,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.createChatInviteLink.name,
       payload,
@@ -1589,7 +1516,7 @@ class RawAPI {
       'creates_join_request': ?createsJoinRequest,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.editChatInviteLink.name,
       payload,
@@ -1610,7 +1537,7 @@ class RawAPI {
       'invite_link': inviteLink,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.revokeChatInviteLink.name,
       payload,
@@ -1625,7 +1552,7 @@ class RawAPI {
   Future<bool> approveChatJoinRequest(ID chatId, int userId) async {
     final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.approveChatJoinRequest.name,
       payload,
@@ -1638,7 +1565,7 @@ class RawAPI {
   Future<bool> declineChatJoinRequest(ID chatId, int userId) async {
     final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.declineChatJoinRequest.name,
       payload,
@@ -1653,11 +1580,8 @@ class RawAPI {
   /// See: https://core.telegram.org/bots/api#setchatphoto
   Future<bool> setChatPhoto(ID chatId, InputFile photo) async {
     final params = <String, dynamic>{'chat_id': chatId, 'photo': photo};
-
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([photo]);
+    final payload = Payload(params, files);
     return await _makeRequest<bool>(APIMethod.setChatPhoto.name, payload);
   }
 
@@ -1670,7 +1594,7 @@ class RawAPI {
   Future<bool> deleteChatPhoto(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.deleteChatPhoto.name, payload);
   }
 
@@ -1683,7 +1607,7 @@ class RawAPI {
   Future<bool> setChatTitle(ID chatId, String title) async {
     final params = <String, dynamic>{'chat_id': chatId, 'title': title};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.setChatTitle.name, payload);
   }
 
@@ -1698,7 +1622,7 @@ class RawAPI {
       'description': ?description,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.setChatDescription.name, payload);
   }
 
@@ -1722,7 +1646,7 @@ class RawAPI {
       'business_connection_id': ?businessConnectionId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.pinChatMessage.name, payload);
   }
 
@@ -1744,7 +1668,7 @@ class RawAPI {
       'business_connection_id': ?businessConnectionId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.unpinChatMessage.name, payload);
   }
 
@@ -1758,7 +1682,7 @@ class RawAPI {
   Future<bool> unpinAllChatMessages(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.unpinAllChatMessages.name,
       payload,
@@ -1772,7 +1696,7 @@ class RawAPI {
   Future<bool> leaveChat(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.leaveChat.name, payload);
   }
 
@@ -1784,7 +1708,7 @@ class RawAPI {
   Future<ChatFullInfo> getChat(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getChat.name,
       payload,
@@ -1800,7 +1724,7 @@ class RawAPI {
   Future<List<ChatMember>> getChatAdministrators(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
       APIMethod.getChatAdministrators.name,
       payload,
@@ -1816,7 +1740,7 @@ class RawAPI {
   Future<int> getChatMemberCount(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<int>(APIMethod.getChatMemberCount.name, payload);
   }
 
@@ -1828,7 +1752,7 @@ class RawAPI {
   Future<ChatMember> getChatMember(ID chatId, int userId) async {
     final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getChatMember.name,
       payload,
@@ -1850,7 +1774,7 @@ class RawAPI {
       'sticker_set_name': stickerSetName,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.setChatStickerSet.name, payload);
   }
 
@@ -1860,7 +1784,7 @@ class RawAPI {
   Future<bool> deleteChatStickerSet(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.deleteChatStickerSet.name,
       payload,
@@ -1896,7 +1820,7 @@ class RawAPI {
       'icon_custom_emoji_id': ?iconCustomEmojiId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.createForumTopic.name,
       payload,
@@ -1921,7 +1845,7 @@ class RawAPI {
       'icon_custom_emoji_id': ?iconCustomEmojiId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.editForumTopic.name, payload);
   }
 
@@ -1934,7 +1858,7 @@ class RawAPI {
       'message_thread_id': messageThreadId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.closeForumTopic.name, payload);
   }
 
@@ -1947,7 +1871,7 @@ class RawAPI {
       'message_thread_id': messageThreadId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.reopenForumTopic.name, payload);
   }
 
@@ -1960,7 +1884,7 @@ class RawAPI {
       'message_thread_id': messageThreadId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.deleteForumTopic.name, payload);
   }
 
@@ -1976,7 +1900,7 @@ class RawAPI {
       'message_thread_id': messageThreadId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.unpinAllForumTopicMessages.name,
       payload,
@@ -1989,7 +1913,7 @@ class RawAPI {
   Future<bool> editGeneralForumTopic(ID chatId, String name) async {
     final params = <String, dynamic>{'chat_id': chatId, 'name': name};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.editGeneralForumTopic.name,
       payload,
@@ -2002,7 +1926,7 @@ class RawAPI {
   Future<bool> closeGeneralForumTopic(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.closeGeneralForumTopic.name,
       payload,
@@ -2015,7 +1939,7 @@ class RawAPI {
   Future<bool> reopenGeneralForumTopic(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.reopenGeneralForumTopic.name,
       payload,
@@ -2028,7 +1952,7 @@ class RawAPI {
   Future<bool> hideGeneralForumTopic(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.hideGeneralForumTopic.name,
       payload,
@@ -2041,7 +1965,7 @@ class RawAPI {
   Future<bool> unhideGeneralForumTopic(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.unhideGeneralForumTopic.name,
       payload,
@@ -2068,7 +1992,7 @@ class RawAPI {
       'cache_time': cacheTime,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.answerCallbackQuery.name,
       payload,
@@ -2085,12 +2009,12 @@ class RawAPI {
     String? languageCode,
   }) async {
     final params = <String, dynamic>{
-      'commands': commands.map((c) => c.toJson()).toList(),
-      'scope': ?scope?.toJson(),
+      'commands': commands,
+      'scope': ?scope,
       'language_code': ?languageCode,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.setMyCommands.name, payload);
   }
 
@@ -2104,11 +2028,11 @@ class RawAPI {
     String? languageCode,
   }) async {
     final params = <String, dynamic>{
-      'scope': ?scope?.toJson(),
+      'scope': ?scope,
       'language_code': ?languageCode,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.deleteMyCommands.name, payload);
   }
 
@@ -2122,11 +2046,11 @@ class RawAPI {
     String? languageCode,
   }) async {
     final params = <String, dynamic>{
-      'scope': ?scope?.toJson(),
+      'scope': ?scope,
       'language_code': ?languageCode,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
       APIMethod.getMyCommands.name,
       payload,
@@ -2144,7 +2068,7 @@ class RawAPI {
       'language_code': ?languageCode,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.setMyName.name, payload);
   }
 
@@ -2155,7 +2079,7 @@ class RawAPI {
   Future<BotName> getMyName({String? languageCode}) async {
     final params = <String, dynamic>{'language_code': ?languageCode};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getMyName.name,
       payload,
@@ -2177,7 +2101,7 @@ class RawAPI {
       'language_code': ?languageCode,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.setMyDescription.name, payload);
   }
 
@@ -2188,7 +2112,7 @@ class RawAPI {
   Future<BotDescription> getMyDescription({String? languageCode}) async {
     final params = <String, dynamic>{'language_code': ?languageCode};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getMyDescription.name,
       payload,
@@ -2211,7 +2135,7 @@ class RawAPI {
       'language_code': ?languageCode,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.setMyShortDescription.name,
       payload,
@@ -2227,7 +2151,7 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{'language_code': ?languageCode};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getMyShortDescription.name,
       payload,
@@ -2246,7 +2170,7 @@ class RawAPI {
       'chat_id': ?chatId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.setChatMenuButton.name, payload);
   }
 
@@ -2257,7 +2181,7 @@ class RawAPI {
   Future<MenuButton> getChatMenuButton(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getChatMenuButton.name,
       payload,
@@ -2277,11 +2201,11 @@ class RawAPI {
     bool? forChannels,
   }) async {
     final params = <String, dynamic>{
-      'rights': ?rights?.toJson(),
+      'rights': ?rights,
       'for_channels': ?forChannels,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.setMyDefaultAdministratorRights.name,
       payload,
@@ -2297,7 +2221,7 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{'for_channels': ?forChannels};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getMyDefaultAdministratorRights.name,
       payload,
@@ -2325,12 +2249,12 @@ class RawAPI {
       'text': text,
       'business_connection_id': ?businessConnectionId,
       'parse_mode': ?parseMode,
-      'entities': ?entities?.map((e) => e.toJson()).toList(),
-      'link_preview_options': ?linkPreviewOptions?.toJson(),
-      'reply_markup': ?replyMarkup?.toJson(),
+      'entities': ?entities,
+      'link_preview_options': ?linkPreviewOptions,
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<dynamic>(
       APIMethod.editMessageText.name,
       payload,
@@ -2416,12 +2340,12 @@ class RawAPI {
       'business_connection_id': ?businessConnectionId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'show_caption_above_media': ?showCaptionAboveMedia,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<dynamic>(
       APIMethod.editMessageCaption.name,
       payload,
@@ -2503,12 +2427,10 @@ class RawAPI {
       'inline_message_id': ?inlineMessageId,
       'media': media,
       'business_connection_id': ?businessConnectionId,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
-
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([media.media]);
+    final payload = Payload(params, files);
 
     final response = await _makeRequest<dynamic>(
       APIMethod.editMessageMedia.name,
@@ -2589,10 +2511,10 @@ class RawAPI {
       'horizontal_accuracy': ?horizontalAccuracy,
       'heading': ?heading,
       'proximity_alert_radius': ?proximityAlertRadius,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<dynamic>(
       APIMethod.editMessageLiveLocation.name,
       payload,
@@ -2680,10 +2602,10 @@ class RawAPI {
       'message_id': ?messageId,
       'inline_message_id': ?inlineMessageId,
       'business_connection_id': ?businessConnectionId,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<dynamic>(
       APIMethod.stopMessageLiveLocation.name,
       payload,
@@ -2747,10 +2669,10 @@ class RawAPI {
       'message_id': ?messageId,
       'inline_message_id': ?inlineMessageId,
       'business_connection_id': ?businessConnectionId,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<dynamic>(
       APIMethod.editMessageReplyMarkup.name,
       payload,
@@ -2816,10 +2738,10 @@ class RawAPI {
       'chat_id': chatId,
       'message_id': messageId,
       'business_connection_id': ?businessConnectionId,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.stopPoll.name,
       payload,
@@ -2839,7 +2761,7 @@ class RawAPI {
       'message_id': messageId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.deleteMessage.name, payload);
   }
 
@@ -2873,16 +2795,14 @@ class RawAPI {
       'protect_content': ?protectContent,
       'allow_paid_broadcast': ?allowPaidBroadcast,
       'message_effect_id': ?messageEffectId,
-      'reply_parameters': ?replyParameters?.toJson(),
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters,
+      'reply_markup': ?replyMarkup,
       'direct_messages_topic_id': ?directMessagesTopicId,
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([sticker]);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendSticker.name,
       payload,
@@ -2899,7 +2819,7 @@ class RawAPI {
   Future<StickerSet> getStickerSet(String name) async {
     final params = <String, dynamic>{'name': name};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getStickerSet.name,
       payload,
@@ -2918,7 +2838,7 @@ class RawAPI {
   ) async {
     final params = <String, dynamic>{'custom_emoji_ids': customEmojiIds};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
       APIMethod.getCustomEmojiStickers.name,
       payload,
@@ -2943,10 +2863,8 @@ class RawAPI {
       'sticker_format': stickerFormat,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([sticker]);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.uploadStickerFile.name,
       payload,
@@ -2977,10 +2895,9 @@ class RawAPI {
       'needs_repainting': ?needsRepainting,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles(stickers.map((e) => e.sticker));
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     return await _makeRequest<bool>(
       APIMethod.createNewStickerSet.name,
       payload,
@@ -3003,10 +2920,8 @@ class RawAPI {
       'sticker': sticker.toJson(),
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([sticker.sticker]);
+    final payload = Payload(params, files);
     return await _makeRequest<bool>(APIMethod.addStickerToSet.name, payload);
   }
 
@@ -3018,7 +2933,7 @@ class RawAPI {
   Future<bool> setStickerPositionInSet(String sticker, int position) async {
     final params = <String, dynamic>{'sticker': sticker, 'position': position};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.setStickerPositionInSet.name,
       payload,
@@ -3033,7 +2948,7 @@ class RawAPI {
   Future<bool> deleteStickerFromSet(String sticker) async {
     final params = <String, dynamic>{'sticker': sticker};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.deleteStickerFromSet.name,
       payload,
@@ -3054,7 +2969,7 @@ class RawAPI {
       'emoji_list': emojiList,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.setStickerEmojiList.name,
       payload,
@@ -3072,7 +2987,7 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{'sticker': sticker, 'keywords': ?keywords};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.setStickerKeywords.name, payload);
   }
 
@@ -3087,10 +3002,10 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'sticker': sticker,
-      'mask_position': ?maskPosition?.toJson(),
+      'mask_position': ?maskPosition,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.setStickerMaskPosition.name,
       payload,
@@ -3105,7 +3020,7 @@ class RawAPI {
   Future<bool> setStickerSetTitle(String name, String title) async {
     final params = <String, dynamic>{'name': name, 'title': title};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.setStickerSetTitle.name, payload);
   }
 
@@ -3127,10 +3042,8 @@ class RawAPI {
       'thumbnail': ?thumbnail,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([thumbnail]);
+    final payload = Payload(params, files);
     return await _makeRequest<bool>(
       APIMethod.setStickerSetThumbnail.name,
       payload,
@@ -3151,7 +3064,7 @@ class RawAPI {
       'custom_emoji_id': ?customEmojiId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.setCustomEmojiStickerSetThumbnail.name,
       payload,
@@ -3166,7 +3079,7 @@ class RawAPI {
   Future<bool> deleteStickerSet(String name) async {
     final params = <String, dynamic>{'name': name};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.deleteStickerSet.name, payload);
   }
 
@@ -3183,14 +3096,14 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'inline_query_id': inlineQueryId,
-      'results': results.map((e) => e.toJson()).toList(),
+      'results': results,
       'cache_time': ?cacheTime,
       'is_personal': ?isPersonal,
       'next_offset': ?nextOffset,
-      'button': ?button?.toJson(),
+      'button': ?button,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.answerInlineQuery.name, payload);
   }
 
@@ -3203,10 +3116,10 @@ class RawAPI {
   ) async {
     final params = <String, dynamic>{
       'web_app_query_id': webAppQueryId,
-      'result': result.toJson(),
+      'result': result,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.answerWebAppQuery.name,
       payload,
@@ -3259,7 +3172,7 @@ class RawAPI {
       'description': description,
       'payload': payload,
       'currency': currency,
-      'prices': prices.map((e) => e.toJson()).toList(),
+      'prices': prices,
       'message_thread_id': ?messageThreadId,
       'provider_token': ?providerToken,
       'max_tip_amount': ?maxTipAmount,
@@ -3281,15 +3194,15 @@ class RawAPI {
       'protect_content': ?protectContent,
       'allow_paid_broadcast': ?allowPaidBroadcast,
       'message_effect_id': ?messageEffectId,
-      'reply_parameters': ?replyParameters?.toJson(),
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters,
+      'reply_markup': ?replyMarkup,
       'direct_messages_topic_id': ?directMessagesTopicId,
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendInvoice.name,
-      Payload(_convertParameters(params)),
+      Payload(params),
     );
 
     return Message.fromJson(response);
@@ -3329,7 +3242,7 @@ class RawAPI {
       'description': description,
       'payload': payload,
       'currency': currency,
-      'prices': prices.map((e) => e.toJson()).toList(),
+      'prices': prices,
       'business_connection_id': ?businessConnectionId,
       'provider_token': ?providerToken,
       'subscription_period': ?subscriptionPeriod,
@@ -3351,7 +3264,7 @@ class RawAPI {
 
     return await _makeRequest<String>(
       APIMethod.createInvoiceLink.name,
-      Payload(_convertParameters(params)),
+      Payload(params),
     );
   }
 
@@ -3367,11 +3280,11 @@ class RawAPI {
     final params = <String, dynamic>{
       'shipping_query_id': shippingQueryId,
       'ok': ok,
-      'shipping_options': ?shippingOptions?.map((e) => e.toJson()).toList(),
+      'shipping_options': ?shippingOptions,
       'error_message': ?errorMessage,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.answerShippingQuery.name,
       payload,
@@ -3392,7 +3305,7 @@ class RawAPI {
       'error_message': ?errorMessage,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.answerPreCheckoutQuery.name,
       payload,
@@ -3406,12 +3319,9 @@ class RawAPI {
     int userId,
     List<PassportElementError> errors,
   ) async {
-    final params = <String, dynamic>{
-      'user_id': userId,
-      'errors': errors.map((e) => e.toJson()).toList(),
-    };
+    final params = <String, dynamic>{'user_id': userId, 'errors': errors};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.setPassportDataErrors.name,
       payload,
@@ -3444,11 +3354,11 @@ class RawAPI {
       'protect_content': ?protectContent,
       'allow_paid_broadcast': ?allowPaidBroadcast,
       'message_effect_id': ?messageEffectId,
-      'reply_parameters': ?replyParameters?.toJson(),
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters,
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendGame.name,
       payload,
@@ -3483,7 +3393,7 @@ class RawAPI {
       'inline_message_id': ?inlineMessageId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<dynamic>(
       APIMethod.setGameScore.name,
       payload,
@@ -3516,7 +3426,7 @@ class RawAPI {
       'inline_message_id': ?inlineMessageId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
       APIMethod.getGameHighScores.name,
       payload,
@@ -3537,11 +3447,11 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_id': messageId,
-      'reaction': ?reaction?.map((e) => e.toJson()).toList(),
+      'reaction': ?reaction,
       'is_big': ?isBig,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.setMessageReaction.name, payload);
   }
 
@@ -3554,7 +3464,7 @@ class RawAPI {
       'message_ids': messageIds,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.deleteMessages.name, payload);
   }
 
@@ -3580,7 +3490,7 @@ class RawAPI {
       'direct_messages_topic_id': ?directMessagesTopicId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
       APIMethod.forwardMessages.name,
       payload,
@@ -3613,7 +3523,7 @@ class RawAPI {
       'direct_messages_topic_id': ?directMessagesTopicId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
       APIMethod.copyMessages.name,
       payload,
@@ -3628,7 +3538,7 @@ class RawAPI {
   Future<UserChatBoosts> getUserChatBoosts(ID chatId, int userId) async {
     final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getUserChatBoosts.name,
       payload,
@@ -3643,7 +3553,7 @@ class RawAPI {
   Future<bool> unpinAllGeneralForumTopicMessages(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.unpinAllGeneralForumTopicMessages.name,
       payload,
@@ -3660,7 +3570,7 @@ class RawAPI {
       'business_connection_id': businessConnectionId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getBusinessConnection.name,
       payload,
@@ -3685,10 +3595,8 @@ class RawAPI {
       'sticker': sticker,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([sticker.sticker]);
+    final payload = Payload(params, files);
     return await _makeRequest<bool>(
       APIMethod.replaceStickerInSet.name,
       payload,
@@ -3707,7 +3615,7 @@ class RawAPI {
       'telegram_payment_charge_id': telegramPaymentChargeId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.refundStarPayment.name, payload);
   }
 
@@ -3720,7 +3628,7 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{'offset': ?offset, 'limit': ?limit};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getStarTransactions.name,
       payload,
@@ -3758,23 +3666,22 @@ class RawAPI {
       'payload': ?payload,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'show_caption_above_media': ?showCaptionAboveMedia,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
       'allow_paid_broadcast': ?allowPaidBroadcast,
-      'reply_parameters': ?replyParameters?.toJson(),
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters,
+      'reply_markup': ?replyMarkup,
       'direct_messages_topic_id': ?directMessagesTopicId,
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles(media.map((e) => e.media));
 
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendPaidMedia.name,
-      Payload(convertedParams, files),
+      Payload(params, files),
     );
 
     return Message.fromJson(response);
@@ -3796,7 +3703,7 @@ class RawAPI {
       'name': ?name,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.createChatSubscriptionInviteLink.name,
       payload,
@@ -3819,7 +3726,7 @@ class RawAPI {
       'name': ?name,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.editChatSubscriptionInviteLink.name,
       payload,
@@ -3842,7 +3749,7 @@ class RawAPI {
       'is_canceled': isCanceled,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.editUserStarSubscription.name,
       payload,
@@ -3863,7 +3770,7 @@ class RawAPI {
       'emoji_status_expiration_date': ?emojiStatusExpirationDate,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.setUserEmojiStatus.name, payload);
   }
 
@@ -3880,14 +3787,14 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'user_id': userId,
-      'result': result.toJson(),
+      'result': result,
       'allow_user_chats': ?allowUserChats,
       'allow_bot_chats': ?allowBotChats,
       'allow_group_chats': ?allowGroupChats,
       'allow_channel_chats': ?allowChannelChats,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.savePreparedInlineMessage.name,
       payload,
@@ -3900,10 +3807,8 @@ class RawAPI {
   ///
   /// See https://core.telegram.org/bots/api#getavailablegifts
   Future<Gifts> getAvailableGifts() async {
-    final payload = Payload(<String, dynamic>{});
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getAvailableGifts.name,
-      payload,
     );
 
     return Gifts.fromJson(response);
@@ -3935,10 +3840,10 @@ class RawAPI {
       'pay_for_upgrade': ?payForUpgrade,
       'text': ?text,
       'text_parse_mode': ?textParseMode,
-      'text_entities': ?textEntities?.map((e) => e.toJson()).toList(),
+      'text_entities': ?textEntities,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.sendGift.name, payload);
   }
 
@@ -3951,7 +3856,7 @@ class RawAPI {
       'custom_description': ?customDescription,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.verifyUser.name, payload);
   }
 
@@ -3964,7 +3869,7 @@ class RawAPI {
       'custom_description': ?customDescription,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.verifyChat.name, payload);
   }
 
@@ -3974,7 +3879,7 @@ class RawAPI {
   Future<bool> removeUserVerification(int userId) async {
     final params = <String, dynamic>{'user_id': userId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.removeUserVerification.name,
       payload,
@@ -3987,7 +3892,7 @@ class RawAPI {
   Future<bool> removeChatVerification(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.removeChatVerification.name,
       payload,
@@ -4008,7 +3913,7 @@ class RawAPI {
       'message_id': messageId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.readBusinessMessage.name,
       payload,
@@ -4027,7 +3932,7 @@ class RawAPI {
       'message_ids': messageIds,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.deleteBusinessMessages.name,
       payload,
@@ -4048,7 +3953,7 @@ class RawAPI {
       'last_name': ?lastName,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.setBusinessAccountName.name,
       payload,
@@ -4067,7 +3972,7 @@ class RawAPI {
       'username': ?username,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.setBusinessAccountUsername.name,
       payload,
@@ -4086,7 +3991,7 @@ class RawAPI {
       'bio': ?bio,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.setBusinessAccountBio.name,
       payload,
@@ -4107,10 +4012,8 @@ class RawAPI {
       'is_public': ?isPublic,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([photo.file]);
+    final payload = Payload(params, files);
     return await _makeRequest<bool>(
       APIMethod.setBusinessAccountProfilePhoto.name,
       payload,
@@ -4129,7 +4032,7 @@ class RawAPI {
       'is_public': ?isPublic,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.removeBusinessAccountProfilePhoto.name,
       payload,
@@ -4150,7 +4053,7 @@ class RawAPI {
       'accepted_gift_types': acceptedGiftTypes,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.setBusinessAccountGiftSettings.name,
       payload,
@@ -4167,7 +4070,7 @@ class RawAPI {
       'business_connection_id': businessConnectionId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getBusinessAccountStarBalance.name,
       payload,
@@ -4188,7 +4091,7 @@ class RawAPI {
       'star_count': starCount,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.transferBusinessAccountStars.name,
       payload,
@@ -4225,7 +4128,7 @@ class RawAPI {
       'limit': ?limit,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getBusinessAccountGifts.name,
       payload,
@@ -4246,7 +4149,7 @@ class RawAPI {
       'owned_gift_id': ownedGiftId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.convertGiftToStars.name, payload);
   }
 
@@ -4266,7 +4169,7 @@ class RawAPI {
       'star_count': ?starCount,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.upgradeGift.name, payload);
   }
 
@@ -4286,7 +4189,7 @@ class RawAPI {
       'star_count': ?starCount,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.transferGift.name, payload);
   }
 
@@ -4310,16 +4213,15 @@ class RawAPI {
       'active_period': activePeriod,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
-      'areas': ?areas?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
+      'areas': ?areas,
       'post_to_chat_page': ?postToChatPage,
       'protect_content': ?protectContent,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([content.file]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.postStory.name,
       payload,
@@ -4346,14 +4248,13 @@ class RawAPI {
       'content': content,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
-      'areas': ?areas?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
+      'areas': ?areas,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([content.file]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.editStory.name,
       payload,
@@ -4371,7 +4272,7 @@ class RawAPI {
       'story_id': storyId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(APIMethod.deleteStory.name, payload);
   }
 
@@ -4394,10 +4295,10 @@ class RawAPI {
       'star_count': starCount,
       'text': ?text,
       'text_parse_mode': ?textParseMode,
-      'text_entities': ?textEntities?.map((e) => e.toJson()).toList(),
+      'text_entities': ?textEntities,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.giftPremiumSubscription.name,
       payload,
@@ -4426,11 +4327,11 @@ class RawAPI {
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
       'message_effect_id': ?messageEffectId,
-      'reply_parameters': ?replyParameters?.toJson(),
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters,
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendChecklist.name,
       payload,
@@ -4456,10 +4357,10 @@ class RawAPI {
       'chat_id': chatId,
       'message_id': messageId,
       'checklist': checklist,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.editMessageChecklist.name,
       payload,
@@ -4498,7 +4399,7 @@ class RawAPI {
       'send_date': ?sendDate,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.approveSuggestedPost.name,
       payload,
@@ -4522,7 +4423,7 @@ class RawAPI {
       'comment': ?comment,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
       APIMethod.declineSuggestedPost.name,
       payload,
@@ -4555,7 +4456,7 @@ class RawAPI {
       'limit': ?limit,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getUserGifts.name,
       payload,
@@ -4593,7 +4494,7 @@ class RawAPI {
       'limit': ?limit,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getChatGifts.name,
       payload,
@@ -4621,7 +4522,7 @@ class RawAPI {
       'protect_content': ?protectContent,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.repostStory.name,
       payload,
@@ -4631,9 +4532,9 @@ class RawAPI {
 
   /// Changes the profile photo of the bot. Returns True on success.
   Future<bool> setMyProfilePhoto(InputProfilePhoto photo) async {
-    final params = {'photo': photo.toJson()};
-    final files = _extractFiles({'photo': photo});
-    final payload = Payload(_convertParameters(params), files);
+    final params = {'photo': photo};
+    final files = _prepareFiles([photo.file]);
+    final payload = Payload(params, files);
 
     return await _makeRequest<bool>(APIMethod.setMyProfilePhoto.name, payload);
   }
@@ -4646,7 +4547,7 @@ class RawAPI {
   /// Use this method to get a list of profile audios for a user. Returns a UserProfileAudios object.
   Future<UserProfileAudios> getUserProfileAudios(int userId) async {
     final params = {'user_id': userId};
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.getUserProfileAudios.name,
       payload,

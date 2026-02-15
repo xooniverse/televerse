@@ -128,27 +128,23 @@ class _LoggingTransformer extends Transformer {
   void _logRequestBody(Payload payload) {
     options.logPrint('   ┌─ Request Body:');
 
-    if (payload.params.isNotEmpty) {
-      options.logPrint('   │  Parameters:');
+    final body = <String, dynamic>{
+      if (payload.params.isNotEmpty) ...payload.params,
+      if (payload.files != null && payload.files!.isNotEmpty)
+        '_files': {
+          for (final entry in payload.files!.entries)
+            entry.key:
+                '${entry.value.fileName ?? 'unnamed'} (${_formatFileSize(entry.value.bytes.length)})',
+        },
+    };
 
-      for (final entry in payload.params.entries) {
-        final value = _formatValue(entry.value, truncate: !options.prettyPrint);
-        options.logPrint('   │    ${entry.key}: $value');
+    if (options.prettyPrint) {
+      final prettyJson = _prettyPrintJson(body);
+      for (final line in prettyJson.split('\n')) {
+        options.logPrint('   │  $line');
       }
-    }
-
-    if (payload.files != null && payload.files!.isNotEmpty) {
-      options.logPrint('   │  Files:');
-      for (final fileMap in payload.files!) {
-        for (final entry in fileMap.entries) {
-          final file = entry.value;
-          final size = file.bytes.length;
-          final sizeStr = _formatFileSize(size);
-          options.logPrint(
-            '   │    ${entry.key}: ${file.fileName ?? 'unnamed'} ($sizeStr)',
-          );
-        }
-      }
+    } else {
+      options.logPrint('   │  ${body.toString()}');
     }
   }
 
@@ -235,34 +231,6 @@ class _LoggingTransformer extends Transformer {
           options.logPrint('   │    $line');
         }
       }
-    }
-  }
-
-  /// Formats a value for display.
-  String _formatValue(dynamic value, {bool truncate = true}) {
-    if (value == null) return 'null';
-
-    if (value is String) {
-      if (truncate && value.length > 100) {
-        return '"${value.substring(0, 97)}..."';
-      }
-      return '"$value"';
-    } else if (value is List) {
-      if (truncate) {
-        return '[${value.length} items]';
-      }
-      return value.toString();
-    } else if (value is Map) {
-      if (truncate) {
-        return '{${value.length} fields}';
-      }
-      return value.toString();
-    } else if (value is InputFile) {
-      return 'InputFile(${value.type})';
-    } else if (value is ID) {
-      return 'ID(${value.id})';
-    } else {
-      return value.toString();
     }
   }
 

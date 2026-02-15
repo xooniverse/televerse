@@ -23,7 +23,7 @@ class LocalFile {
 /// Each map associates a field key (a `String`) with its corresponding
 /// `LocalFile` object. This type is used to represent a collection
 /// of files to be uploaded in a multipart request.
-typedef PayloadFiles = List<Map<String, LocalFile>>;
+typedef PayloadFiles = Map<String, LocalFile>;
 
 /// Represents a payload object used for making API calls.
 ///
@@ -36,7 +36,7 @@ typedef PayloadFiles = List<Map<String, LocalFile>>;
 ///   This map holds key-value pairs where keys are of type `String` and values
 ///   can be of any type. It allows for sending additional data along with the
 ///   request to the API.
-/// * [files]: A list of maps containing key-value pairs for multipart files.
+/// * [files]: A map containing key-value pairs for multipart files.
 ///   Each map associates a field key (a `String`) with its corresponding
 ///   `LocalFile` object. This type is typically used to represent a collection
 ///   of files to be uploaded in a multipart request.
@@ -49,9 +49,9 @@ class Payload {
   /// request to the API.
   Map<String, dynamic> params;
 
-  /// Represents a list of maps containing key-value pairs for multipart files.
+  /// Represents a map containing key-value pairs for multipart files.
   ///
-  /// Each map associates a field key (a `String`) with its corresponding
+  /// Each key (a `String`) is associated with its corresponding
   /// `LocalFile` object. This type is used to represent a collection
   /// of files to be uploaded in a multipart request.
   PayloadFiles? files;
@@ -67,8 +67,8 @@ class Payload {
   ///   This map holds key-value pairs where keys are of type `String` and values
   ///   can be of any type. It allows for sending additional data along with the
   ///   request to the API. (See [Payload.params] for details)
-  /// * [files]: A list of maps containing key-value pairs for multipart files.
-  ///   Each map associates a field key (a `String`) with its corresponding
+  /// * [files]: A map containing key-value pairs for multipart files.
+  ///   Each key (a `String`) is associated with its corresponding
   ///   `LocalFile` object. This type is typically used to represent a collection
   ///   of files to be uploaded in a multipart request. (See [Payload.files] for details)
   Payload([Map<String, dynamic>? params, this.files]) : params = params ?? {};
@@ -83,7 +83,7 @@ class Payload {
   ///
   /// * [params]: An optional map containing additional parameters for the API call.
   ///   See [Payload.params] for details.
-  /// * [files]: A list of maps containing key-value pairs for multipart files.
+  /// * [files]: A map containing key-value pairs for multipart files.
   ///   See [Payload.files] for details.
   ///
   /// Returns:
