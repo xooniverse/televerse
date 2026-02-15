@@ -3,6 +3,9 @@
 - Bot API 9.4
 - Breaking: Changed `APICaller` signature to use `String` instead of `APIMethod`. This gives unrestricted access to Telegram API Methods using `RawAPI.call`.
 - Updated `Transformer` to also use the new updated signature.
+- Reworked `RawAPI` to be more efficient in making API calls.
+- Updated `LoggingPlugin` to use JSON logging for requests as well.
+- `InputFile` and other media models are now JSON serializable, and does not require special handling.
 
 # 3.1.4
 
