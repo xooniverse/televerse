@@ -6,6 +6,8 @@
 - Reworked `RawAPI` to be more efficient in making API calls.
 - Updated `LoggingPlugin` to use JSON logging for requests as well.
 - `InputFile` and other media models are now JSON serializable, and does not require special handling.
+- Breaking: Changed signatures for `InlineKeyboard.text`, `InlineKeyboard.switchInline`, `InlineKeyboard.switchInlineCurrentChat`
+- Updated test file
 
 # 3.1.4
 
