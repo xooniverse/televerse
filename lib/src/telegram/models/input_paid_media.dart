@@ -18,7 +18,12 @@ abstract interface class _InputPaidMediaImpl {
 
 /// This object describes the paid media to be sent. Currently, it can be one of
 /// [InputPaidMediaPhoto] or [InputPaidMediaVideo].
-@Freezed(fromJson: false, toJson: true)
+@Freezed(
+  fromJson: false,
+  toJson: true,
+  unionKey: "type",
+  unionValueCase: FreezedUnionCase.snake,
+)
 sealed class InputPaidMedia
     with _$InputPaidMedia
     implements _InputPaidMediaImpl, InputFileProvider {

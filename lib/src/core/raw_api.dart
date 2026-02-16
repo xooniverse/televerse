@@ -121,13 +121,13 @@ class RawAPI {
   /// ```dart
   /// // Send a message using the generic call method
   /// final payload = Payload({
-  ///   'chat_id': chatId.toJson(),
-  ///   'text': 'Hello World!',
+  ///   'chat_id': chatId,
+  ///   'text': '<b>Hello World!</b>',
   ///   'parse_mode': 'HTML',
   /// });
   ///
   /// final response = await api<Map<String, dynamic>>(
-  ///   APIMethod.sendMessage,
+  ///   "sendMessage",
   ///   payload,
   /// );
   /// final message = Message.fromJson(response);
@@ -139,7 +139,7 @@ class RawAPI {
   ///
   /// Returns the parsed response data of type [T].
   /// Throws [TeleverseException] if the request fails.
-  Future<T> call<T>(APIMethod method, Payload payload) async {
+  Future<T> call<T>(String method, Payload payload) async {
     return await _makeRequest<T>(method, payload);
   }
 
@@ -155,7 +155,7 @@ class RawAPI {
   ///
   /// Returns the parsed response data.
   /// Throws [TeleverseException] if the request fails.
-  Future<T> _makeRequest<T>(APIMethod method, [Payload? payload]) async {
+  Future<T> _makeRequest<T>(String method, [Payload? payload]) async {
     // Create the transformer chain
     final caller = _transformerManager.createCaller(_actualApiCall);
 
@@ -170,10 +170,10 @@ class RawAPI {
   /// This method performs the actual HTTP request to the Telegram Bot API.
   /// It's called at the end of the transformer chain.
   Future<Map<String, dynamic>> _actualApiCall(
-    APIMethod method, [
+    String method, [
     Payload? payload,
   ]) async {
-    final url = '$_baseUrl/${method.name}';
+    final url = '$_baseUrl/$method';
 
     try {
       final response = await _httpClient.post(url, payload);
@@ -184,7 +184,7 @@ class RawAPI {
       }
 
       throw TeleverseException(
-        'API request failed for method ${method.name}',
+        'API request failed for method $method',
         description: e.toString(),
         type: TeleverseExceptionType.requestFailed,
       );
@@ -206,72 +206,15 @@ class RawAPI {
     return response['result'] as T;
   }
 
-  /// Converts parameters to a format suitable for API requests.
-  ///
-  /// This method handles the conversion of Dart objects to their JSON
-  /// representations, including special handling for InputFile objects.
-  Map<String, dynamic> _convertParameters(Map<String, dynamic> params) {
-    final converted = <String, dynamic>{};
-
-    for (final entry in params.entries) {
-      final key = entry.key;
-      final value = entry.value;
-
-      if (value == null) continue;
-
-      if (value is InputFile) {
-        converted[key] = value.getValue();
-      } else if (value is ID) {
-        converted[key] = value.toJson();
-      } else if (value is TeleverseEnum) {
-        converted[key] = value.toJson();
-      } else if (value is List) {
-        converted[key] = jsonEncode(value);
-      } else if (value is Map) {
-        converted[key] = jsonEncode(value);
-      } else {
-        converted[key] = value;
+  /// Prepares files to send for the payload
+  Map<String, LocalFile> _prepareFiles(Iterable<(String?, InputFile?)> files) {
+    final result = <String, LocalFile>{};
+    for (var file in files) {
+      if (file.$2 != null && file.$2!.type == InputFileType.bytes) {
+        result[file.$1 ?? file.$2!.getAttachName()] = file.$2!.toLocalFile();
       }
     }
-
-    return converted;
-  }
-
-  /// Extracts files from parameters for multipart requests.
-  ///
-  /// Scans through the parameters looking for InputFile objects and
-  /// extracts them into a format suitable for multipart uploads.
-  PayloadFiles? _extractFiles(Map<String, dynamic> params) {
-    final files = <Map<String, LocalFile>>[];
-
-    void process(dynamic value) {
-      if (value == null) return;
-
-      // Case 1: Direct File
-      if (value is InputFile) {
-        if (value.type == InputFileType.bytes) {
-          files.add({
-            value.getAttachName(): LocalFile(
-              value.getBytes(),
-              fileName: value.name,
-              contentType: value.mimeType,
-              headers: value.headers,
-            ),
-          });
-        }
-      }
-      // Case 2: Collections (Lists/Iterables)
-      else if (value is Iterable) {
-        value.forEach(process);
-      }
-      // Case 3: Complex Objects that provide files
-      else if (value is InputFileProvider) {
-        value.getInputFiles().forEach(process);
-      }
-    }
-
-    params.values.forEach(process);
-    return files.isEmpty ? null : files;
+    return result;
   }
 
   /// Closes the RawAPI instance and releases resources.
@@ -288,14 +231,6 @@ class RawAPI {
   ///
   /// Use this method to receive incoming updates using long polling.
   /// An Array of [Update] objects is returned.
-  ///
-  /// Parameters:
-  /// - [offset]: Identifier of the first update to be returned
-  /// - [limit]: Limits the number of updates to be retrieved (1-100, default 100)
-  /// - [timeout]: Timeout in seconds for long polling (0-50, default 0)
-  /// - [allowedUpdates]: List of update types you want your bot to receive
-  ///
-  /// Returns a list of [Update] objects.
   Future<List<Update>> getUpdates({
     int? offset,
     int? limit,
@@ -306,12 +241,12 @@ class RawAPI {
       'offset': ?offset,
       'limit': ?limit,
       'timeout': ?timeout,
-      'allowed_updates': ?allowedUpdates?.map((e) => e.type).toList(),
+      'allowed_updates': ?allowedUpdates,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.getUpdates,
+      APIMethod.getUpdates.name,
       payload,
     );
 
@@ -322,16 +257,6 @@ class RawAPI {
   ///
   /// Whenever there is an update for the bot, Telegram will send an HTTPS POST
   /// request to the specified URL, containing a JSON-serialized Update.
-  ///
-  /// Parameters:
-  /// - [url]: HTTPS URL to send updates to. Use an empty string to remove webhook integration
-  /// - [certificate]: Upload your public key certificate so that the root certificate in use can be checked
-  /// - [ipAddress]: The fixed IP address which will be used to send webhook requests instead of the IP address resolved through DNS
-  /// - [maxConnections]: The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery (1-100, default 40)
-  /// - [allowedUpdates]: A list of the update types you want your bot to receive
-  /// - [dropPendingUpdates]: Pass True to drop all pending updates
-  /// - [secretToken]: A secret token to be sent in a header "X-Telegram-Bot-Api-Secret-Token" in every webhook request (1-256 characters)
-  ///
   /// Returns True on success.
   Future<bool> setWebhook(
     String url, {
@@ -344,73 +269,43 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'url': url,
-      'certificate': ?certificate,
       'ip_address': ?ipAddress,
       'max_connections': ?maxConnections,
-      'allowed_updates': ?allowedUpdates?.map((e) => e.type).toList(),
+      'allowed_updates': ?allowedUpdates,
       'drop_pending_updates': ?dropPendingUpdates,
       'secret_token': ?secretToken,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
-    return await _makeRequest<bool>(APIMethod.setWebhook, payload);
+    final payload = Payload(
+      params,
+      _prepareFiles([('certificate', certificate)]),
+    );
+    return await _makeRequest<bool>(APIMethod.setWebhook.name, payload);
   }
 
-  /// Gets current webhook status.
-  ///
-  /// Use this method to get current webhook status. Requires no parameters.
-  /// On success, returns a WebhookInfo object. If the bot is using getUpdates,
-  /// will return an object with the url field empty.
-  ///
-  /// Returns current webhook status.
+  /// Gets current webhook status. Returns current webhook status.
   Future<WebhookInfo> getWebhookInfo() async {
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getWebhookInfo,
+      APIMethod.getWebhookInfo.name,
     );
 
     return WebhookInfo.fromJson(response);
   }
 
   /// Removes webhook integration if you decide to switch back to getUpdates.
-  ///
   /// Returns True on success.
-  ///
-  /// Parameters:
-  /// - [dropPendingUpdates]: Pass True to drop all pending updates
-  ///
-  /// Returns true if the webhook was successfully deleted.
   Future<bool> deleteWebhook({bool? dropPendingUpdates}) async {
     final params = <String, dynamic>{
       'drop_pending_updates': ?dropPendingUpdates,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteWebhook, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.deleteWebhook.name, payload);
   }
 
   /// Sends a text message.
   ///
   /// On success, the sent [Message] is returned.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [text]: Text of the message to be sent, 1-4096 characters
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [parseMode]: Mode for parsing entities in the message text
-  /// - [entities]: List of special entities that appear in message text
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup]: Additional interface options
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [linkPreviewOptions]: Link preview generation options for the message
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  ///
-  /// Returns the sent [Message].
   Future<Message> sendMessage(
     ID chatId,
     String text, {
@@ -433,12 +328,12 @@ class RawAPI {
       'text': text,
       'message_thread_id': ?messageThreadId,
       'parse_mode': ?parseMode,
-      'entities': ?entities?.map((e) => e.toJson()).toList(),
+      'entities': ?entities,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
-      'link_preview_options': ?linkPreviewOptions?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
+      'link_preview_options': ?linkPreviewOptions,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -446,9 +341,9 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendMessage,
+      APIMethod.sendMessage.name,
       payload,
     );
 
@@ -457,16 +352,6 @@ class RawAPI {
 
   /// Streams a partial message to a user while the message is being generated;
   /// supported only for bots with forum topic mode enabled. Returns True on success.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target private chat
-  /// - [draftId]: Unique identifier of the message draft; must be non-zero. Changes of drafts with the same identifier are animated
-  /// - [text]: Text of the message to be sent, 1-4096 characters after entities parsing
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [parseMode]: Mode for parsing entities in the message text
-  /// - [entities]: List of special entities that appear in message text
-  ///
-  /// Returns True on success.
   Future<bool> sendMessageDraft(
     ID chatId,
     int draftId,
@@ -481,35 +366,16 @@ class RawAPI {
       'text': text,
       'message_thread_id': ?messageThreadId,
       'parse_mode': ?parseMode,
-      'entities': ?entities?.map((e) => e.toJson()).toList(),
+      'entities': ?entities,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.sendMessageDraft, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.sendMessageDraft.name, payload);
   }
 
   /// Sends a photo.
   ///
   /// On success, the sent [Message] is returned.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [photo]: Photo to send
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [caption]: Photo caption (may also be used when resending photos by file_id), 0-1024 characters
-  /// - [parseMode]: Mode for parsing entities in the photo caption
-  /// - [captionEntities]: List of special entities that appear in the caption
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup]: Additional interface options
-  /// - [hasSpoiler]: Pass True if the photo needs to be covered with a spoiler animation
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [showCaptionAboveMedia]: Pass True, if the caption must be shown above the message media
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  ///
-  /// Returns the sent [Message].
   Future<Message> sendPhoto(
     ID chatId,
     InputFile photo, {
@@ -531,16 +397,15 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'photo': photo,
       'message_thread_id': ?messageThreadId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
       'has_spoiler': ?hasSpoiler,
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'show_caption_above_media': ?showCaptionAboveMedia,
@@ -549,12 +414,10 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final payload = Payload(params, _prepareFiles([('photo', photo)]));
 
-    final payload = Payload(convertedParams, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendPhoto,
+      APIMethod.sendPhoto.name,
       payload,
     );
 
@@ -565,19 +428,6 @@ class RawAPI {
   ///
   /// Messages sent as a group cannot be edited or deleted individually.
   /// On success, an array of [Message]s that were sent is returned.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [media]: Array of 2-10 InputMedia objects describing messages to be sent
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [disableNotification]: Sends messages silently
-  /// - [protectContent]: Protects the contents of the sent messages from forwarding and saving
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  ///
-  /// Returns an array of sent [Message]s.
   Future<List<Message>> sendMediaGroup(
     ID chatId,
     List<InputMedia> media, {
@@ -596,19 +446,20 @@ class RawAPI {
       'message_thread_id': ?messageThreadId,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
       'direct_messages_topic_id': ?directMessagesTopicId,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles(
+      media.expand((e) => e.getInputFiles().map((e) => (null, e))),
+    );
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.sendMediaGroup,
+      APIMethod.sendMediaGroup.name,
       payload,
     );
 
@@ -619,11 +470,11 @@ class RawAPI {
   ///
   /// A simple method for testing your bot's authentication token.
   /// Requires no parameters. Returns basic information about the bot
-  /// in form of a User object.
-  ///
-  /// Returns basic information about the bot.
+  /// in form of a `User` object.
   Future<User> getMe() async {
-    final response = await _makeRequest<Map<String, dynamic>>(APIMethod.getMe);
+    final response = await _makeRequest<Map<String, dynamic>>(
+      APIMethod.getMe.name,
+    );
     return User.fromJson(response);
   }
 
@@ -637,7 +488,7 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#logout
   Future<bool> logOut() async {
-    return await _makeRequest<bool>(APIMethod.logOut);
+    return await _makeRequest<bool>(APIMethod.logOut.name);
   }
 
   /// Use this method to close the bot instance before moving it from one local
@@ -648,40 +499,11 @@ class RawAPI {
   ///
   /// See more at https://core.telegram.org/bots/api#close
   Future<bool> close() async {
-    return await _makeRequest<bool>(APIMethod.close);
+    return await _makeRequest<bool>(APIMethod.close.name);
   }
 
   /// Use this method to forward messages of any kind. Service messages can't be
   /// forwarded. On success, the sent [Message] is returned.
-  ///
-  /// Required parameters:
-  /// - [chatId] - Chat ID can either be [ChatID] or [ChannelID] or
-  ///   [SupergroupID]
-  /// - [fromChatId] - Chat ID can either be [ChatID] or [ChannelID] or
-  ///   [SupergroupID]
-  /// - [messageId] - Message identifier in the chat specified in [fromChatId]
-  ///
-  /// You can optionally pass the more parameters as described in the official
-  /// documentation.
-  ///
-  /// - [disableNotification] - Sends the message silently. Users will receive a
-  ///   notification with no sound.
-  /// - [messageThreadId] - Unique identifier for the target message thread
-  ///   (topic) of the forum; for forum supergroups only
-  /// - [protectContent] - Protects the contents of the forwarded message from
-  ///   forwarding and saving
-  /// - [videoStartTimestamp] - Timestamp in seconds from which the video should
-  ///   start playing. Used only for video messages.
-  ///
-  /// **Example:**
-  /// ```dart
-  /// /// If you're using [ChatID] specify the chat id as an integer
-  /// bot.forwardMessage(ChatID(123456789), ChatID(987654321), 123456789);
-  ///
-  /// /// If you're using [ChannelID] or [SupergroupID] specify the chat id as a string
-  /// /// Both [ChannelID] and [SupergroupID] are treated the same way
-  /// bot.forwardMessage(ChannelID("@myChannel"), ChannelID("@myChannel"), 123456789);
-  /// ```
   ///
   /// See more at https://core.telegram.org/bots/api#forwardmessage
   Future<Message> forwardMessage(
@@ -709,9 +531,9 @@ class RawAPI {
       'message_effect_id': ?messageEffectId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.forwardMessage,
+      APIMethod.forwardMessage.name,
       payload,
     );
 
@@ -724,47 +546,6 @@ class RawAPI {
   /// to the method forwardMessage, but the copied message doesn't have a link
   /// to the original message. Returns the MessageId of the sent message on
   /// success.
-  ///
-  /// Required parameters:
-  /// - [chatId] - Unique identifier for the target chat or username of the target channel
-  /// - [fromChatId] - Unique identifier for the chat where the original message was sent
-  /// - [messageId] - Message identifier in the chat specified in [fromChatId]
-  ///
-  /// Optional parameters:
-  /// - [messageThreadId] - Unique identifier for the target message thread (topic) of the forum
-  /// - [caption] - New caption for media, 0-1024 characters after entities parsing
-  /// - [parseMode] - Mode for parsing entities in the new caption
-  /// - [captionEntities] - List of special entities that appear in the new caption
-  /// - [disableNotification] - Sends the message silently
-  /// - [protectContent] - Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup] - Additional interface options
-  /// - [replyParameters] - Description of the message to reply to
-  /// - [showCaptionAboveMedia] - Pass True, if the caption must be shown above the message media
-  /// - [allowPaidBroadcast] - Pass True to allow up to 1000 messages per second
-  /// - [videoStartTimestamp] - Timestamp in seconds from which the video should start playing
-  ///
-  /// **Example:**
-  /// ```dart
-  /// /// Copy a message to another chat
-  /// final messageId = await bot.copyMessage(
-  ///   ChatID(123456789),
-  ///   ChatID(987654321),
-  ///   456789,
-  ///   caption: "This is a copied message",
-  /// );
-  ///
-  /// /// Copy with custom reply markup
-  /// final messageId = await bot.copyMessage(
-  ///   ChannelID("@myChannel"),
-  ///   ChatID(987654321),
-  ///   456789,
-  ///   replyMarkup: InlineKeyboardMarkup(
-  ///     inlineKeyboard: [
-  ///       [InlineKeyboardButton(text: "Button", callbackData: "data")]
-  ///     ],
-  ///   ),
-  /// );
-  /// ```
   ///
   /// See more at https://core.telegram.org/bots/api#copymessage
   Future<MessageId> copyMessage(
@@ -793,11 +574,11 @@ class RawAPI {
       'message_thread_id': ?messageThreadId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'show_caption_above_media': ?showCaptionAboveMedia,
       'allow_paid_broadcast': ?allowPaidBroadcast,
       'video_start_timestamp': ?videoStartTimestamp,
@@ -806,9 +587,9 @@ class RawAPI {
       'message_effect_id': ?messageEffectId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.copyMessage,
+      APIMethod.copyMessage.name,
       payload,
     );
 
@@ -820,29 +601,6 @@ class RawAPI {
   /// format. On success, the sent Message is returned. Bots can currently send
   /// audio files of up to 50 MB in size, this limit may be changed in the
   /// future.
-  ///
-  /// For sending voice messages, use the [sendVoice] method instead.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [audio]: Audio file to send
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [caption]: Audio caption, 0-1024 characters after entities parsing
-  /// - [parseMode]: Mode for parsing entities in the audio caption
-  /// - [captionEntities]: List of special entities that appear in the caption
-  /// - [duration]: Duration of the audio in seconds
-  /// - [performer]: Performer of the audio
-  /// - [title]: Track name
-  /// - [thumbnail]: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup]: Additional interface options
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  ///
-  /// Returns the sent [Message].
   Future<Message> sendAudio(
     ID chatId,
     InputFile audio, {
@@ -866,19 +624,18 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'audio': audio,
       'message_thread_id': ?messageThreadId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'duration': ?duration,
       'performer': ?performer,
       'title': ?title,
       'thumbnail': ?thumbnail,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -886,12 +643,11 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([('audio', audio), (null, thumbnail)]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendAudio,
+      APIMethod.sendAudio.name,
       payload,
     );
 
@@ -899,27 +655,7 @@ class RawAPI {
   }
 
   /// Use this method to send general files. On success, the sent Message is
-  /// returned. Bots can currently send files of any type of up to 50 MB in
-  /// size, this limit may be changed in the future.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [document]: File to send
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [thumbnail]: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side
-  /// - [caption]: Document caption (may also be used when resending documents by file_id), 0-1024 characters after entities parsing
-  /// - [parseMode]: Mode for parsing entities in the document caption
-  /// - [captionEntities]: List of special entities that appear in the caption
-  /// - [disableContentTypeDetection]: Disables automatic server-side content type detection for files uploaded using multipart/form-data
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup]: Additional interface options
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  ///
-  /// Returns the sent [Message].
+  /// returned.
   Future<Message> sendDocument(
     ID chatId,
     InputFile document, {
@@ -941,30 +677,26 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'document': document,
       'message_thread_id': ?messageThreadId,
       'thumbnail': ?thumbnail,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'disable_content_type_detection': ?disableContentTypeDetection,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
       'direct_messages_topic_id': ?directMessagesTopicId,
       'suggested_post_parameters': ?suggestedPostParameters,
     };
-
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([('document', document), (null, thumbnail)]);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendDocument,
+      APIMethod.sendDocument.name,
       payload,
     );
 
@@ -973,34 +705,7 @@ class RawAPI {
 
   /// Use this method to send video files, Telegram clients support MPEG4 videos
   /// (other formats may be sent as Document). On success, the sent Message is
-  /// returned. Bots can currently send video files of up to 50 MB in size, this
-  /// limit may be changed in the future.
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [video]: Video to send
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [duration]: Duration of sent video in seconds
-  /// - [width]: Video width
-  /// - [height]: Video height
-  /// - [thumbnail]: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side
-  /// - [caption]: Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing
-  /// - [parseMode]: Mode for parsing entities in the video caption
-  /// - [captionEntities]: List of special entities that appear in the caption
-  /// - [hasSpoiler]: Pass True if the video needs to be covered with a spoiler animation
-  /// - [supportsStreaming]: Pass True if the uploaded video is suitable for streaming
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup]: Additional interface options
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [showCaptionAboveMedia]: Pass True, if the caption must be shown above the message media
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  /// - [cover]: Pass a file to use as a cover for the video
-  /// - [startTimestamp]: The timestamp in seconds from the start of the video that will be shown as a still image
-  ///
-  /// Returns the sent [Message].
+  /// returned.
   Future<Message> sendVideo(
     ID chatId,
     InputFile video, {
@@ -1029,7 +734,6 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'video': video,
       'message_thread_id': ?messageThreadId,
       'duration': ?duration,
       'width': ?width,
@@ -1037,13 +741,13 @@ class RawAPI {
       'thumbnail': ?thumbnail,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'has_spoiler': ?hasSpoiler,
       'supports_streaming': ?supportsStreaming,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'show_caption_above_media': ?showCaptionAboveMedia,
@@ -1054,12 +758,15 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([
+      ('video', video),
+      (null, thumbnail),
+      (null, cover),
+    ]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendVideo,
+      APIMethod.sendVideo.name,
       payload,
     );
 
@@ -1069,32 +776,6 @@ class RawAPI {
   /// Sends animation files (GIF or H.264/MPEG-4 AVC video without sound).
   ///
   /// Use this method to send animation files. On success, the sent [Message] is returned.
-  /// Bots can currently send animation files of up to 50 MB in size.
-  ///
-  /// See: https://core.telegram.org/bots/api#sendanimation
-  ///
-  /// Parameters:
-  /// - [chatId]: Unique identifier for the target chat
-  /// - [animation]: Animation to send
-  /// - [messageThreadId]: Unique identifier for the target message thread
-  /// - [duration]: Duration of sent animation in seconds
-  /// - [width]: Animation width
-  /// - [height]: Animation height
-  /// - [thumbnail]: Thumbnail of the file sent
-  /// - [caption]: Animation caption, 0-1024 characters after entities parsing
-  /// - [parseMode]: Mode for parsing entities in the animation caption
-  /// - [captionEntities]: List of special entities that appear in the caption
-  /// - [hasSpoiler]: Pass True if the animation needs to be covered with a spoiler animation
-  /// - [disableNotification]: Sends the message silently
-  /// - [protectContent]: Protects the contents of the sent message from forwarding and saving
-  /// - [replyMarkup]: Additional interface options
-  /// - [replyParameters]: Description of the message to reply to
-  /// - [businessConnectionId]: Unique identifier of the business connection
-  /// - [messageEffectId]: Unique identifier of the message effect to be added
-  /// - [showCaptionAboveMedia]: Pass True, if the caption must be shown above the message media
-  /// - [allowPaidBroadcast]: Pass True to allow up to 1000 messages per second
-  ///
-  /// Returns the sent [Message].
   Future<Message> sendAnimation(
     ID chatId,
     InputFile animation, {
@@ -1120,7 +801,6 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'animation': animation,
       'message_thread_id': ?messageThreadId,
       'duration': ?duration,
       'width': ?width,
@@ -1128,12 +808,12 @@ class RawAPI {
       'thumbnail': ?thumbnail,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'has_spoiler': ?hasSpoiler,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'show_caption_above_media': ?showCaptionAboveMedia,
@@ -1142,30 +822,20 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([('animation', animation), (null, thumbnail)]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendAnimation,
+      APIMethod.sendAnimation.name,
       payload,
     );
 
     return Message.fromJson(response);
   }
 
-  /// Sends audio files as playable voice messages.
-  ///
-  /// Use this method to send audio files, if you want Telegram clients to
-  /// display the file as a playable voice message. For this to work, your audio
-  /// must be in an .OGG file encoded with OPUS (other formats may be sent as
-  /// Audio or Document). On success, the sent [Message] is returned. Bots can
-  /// currently send voice messages of up to 50 MB in size, this limit may be
-  /// changed in the future.
+  /// Sends audio files as playable voice messages. On success, the sent [Message] is returned.
   ///
   /// See: https://core.telegram.org/bots/api#sendvoice
-  ///
-  /// Returns the sent [Message].
   Future<Message> sendVoice(
     ID chatId,
     InputFile voice, {
@@ -1186,16 +856,15 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'voice': voice,
       'message_thread_id': ?messageThreadId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'duration': ?duration,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -1203,12 +872,11 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([('voice', voice)]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendVoice,
+      APIMethod.sendVoice.name,
       payload,
     );
 
@@ -1243,15 +911,14 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'video_note': videoNote,
       'message_thread_id': ?messageThreadId,
       'duration': ?duration,
       'length': ?length,
       'thumbnail': ?thumbnail,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -1259,12 +926,11 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([('video_note', videoNote), (null, thumbnail)]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendVideoNote,
+      APIMethod.sendVideoNote.name,
       payload,
     );
 
@@ -1306,8 +972,8 @@ class RawAPI {
       'proximity_alert_radius': ?proximityAlertRadius,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -1315,9 +981,9 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendLocation,
+      APIMethod.sendLocation.name,
       payload,
     );
 
@@ -1363,8 +1029,8 @@ class RawAPI {
       'google_place_type': ?googlePlaceType,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -1372,9 +1038,9 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendVenue,
+      APIMethod.sendVenue.name,
       payload,
     );
 
@@ -1410,8 +1076,8 @@ class RawAPI {
       'vcard': ?vcard,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -1419,9 +1085,9 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendContact,
+      APIMethod.sendContact.name,
       payload,
     );
 
@@ -1459,7 +1125,7 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'question': question,
-      'options': options.map((e) => e.toJson()).toList(),
+      'options': options,
       'message_thread_id': ?messageThreadId,
       'is_anonymous': ?isAnonymous,
       'type': type,
@@ -1467,26 +1133,24 @@ class RawAPI {
       'correct_option_id': ?correctOptionId,
       'explanation': ?explanation,
       'explanation_parse_mode': ?explanationParseMode,
-      'explanation_entities': ?explanationEntities
-          ?.map((e) => e.toJson())
-          .toList(),
+      'explanation_entities': ?explanationEntities,
       'open_period': ?openPeriod,
       'close_date': ?closeDate?.secondsSinceEpoch,
       'is_closed': ?isClosed,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'question_parse_mode': ?questionParseMode,
-      'question_entities': ?questionEntities?.map((e) => e.toJson()).toList(),
+      'question_entities': ?questionEntities,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendPoll,
+      APIMethod.sendPoll.name,
       payload,
     );
 
@@ -1516,8 +1180,8 @@ class RawAPI {
       'message_thread_id': ?messageThreadId,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
-      'reply_markup': ?replyMarkup?.toJson(),
-      'reply_parameters': ?replyParameters?.toJson(),
+      'reply_markup': ?replyMarkup,
+      'reply_parameters': ?replyParameters,
       'business_connection_id': ?businessConnectionId,
       'message_effect_id': ?messageEffectId,
       'allow_paid_broadcast': ?allowPaidBroadcast,
@@ -1525,9 +1189,9 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendDice,
+      APIMethod.sendDice.name,
       payload,
     );
 
@@ -1553,8 +1217,8 @@ class RawAPI {
       'business_connection_id': ?businessConnectionId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.sendChatAction, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.sendChatAction.name, payload);
   }
 
   /// Use this method to get a list of profile pictures for a user.
@@ -1571,9 +1235,9 @@ class RawAPI {
       'limit': ?limit,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getUserProfilePhotos,
+      APIMethod.getUserProfilePhotos.name,
       payload,
     );
 
@@ -1586,9 +1250,9 @@ class RawAPI {
   Future<File> getFile(String fileId) async {
     final params = <String, dynamic>{'file_id': fileId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getFile,
+      APIMethod.getFile.name,
       payload,
     );
 
@@ -1613,8 +1277,8 @@ class RawAPI {
       'revoke_messages': ?revokeMessages,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.banChatMember, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.banChatMember.name, payload);
   }
 
   /// Use this method to unban a previously banned user in a supergroup or
@@ -1638,8 +1302,8 @@ class RawAPI {
       'only_if_banned': ?onlyIfBanned,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.unbanChatMember, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.unbanChatMember.name, payload);
   }
 
   /// Use this method to restrict a user in a supergroup. The bot must be an
@@ -1658,13 +1322,13 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'user_id': userId,
-      'permissions': permissions.toJson(),
+      'permissions': permissions,
       'until_date': ?untilDate.secondsSinceEpoch,
       'use_independent_chat_permissions': ?useIndependentChatPermissions,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.restrictChatMember, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.restrictChatMember.name, payload);
   }
 
   /// Use this method to promote or demote a user in a supergroup or a channel.
@@ -1714,8 +1378,8 @@ class RawAPI {
       'can_manage_direct_messages': ?canManageDirectMessages,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.promoteChatMember, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.promoteChatMember.name, payload);
   }
 
   /// Use this method to set a custom title for an administrator in a supergroup
@@ -1733,9 +1397,9 @@ class RawAPI {
       'custom_title': customTitle,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
-      APIMethod.setChatAdministratorCustomTitle,
+      APIMethod.setChatAdministratorCustomTitle.name,
       payload,
     );
   }
@@ -1753,8 +1417,8 @@ class RawAPI {
       'sender_chat_id': senderChatId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.banChatSenderChat, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.banChatSenderChat.name, payload);
   }
 
   /// Use this method to unban a previously banned channel chat in a supergroup
@@ -1768,8 +1432,11 @@ class RawAPI {
       'sender_chat_id': senderChatId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.unbanChatSenderChat, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.unbanChatSenderChat.name,
+      payload,
+    );
   }
 
   /// Use this method to set default chat permissions for all members.
@@ -1782,12 +1449,12 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'permissions': permissions.toJson(),
+      'permissions': permissions,
       'use_independent_chat_permissions': ?useIndependentChatPermissions,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setChatPermissions, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.setChatPermissions.name, payload);
   }
 
   /// Use this method to generate a new primary invite link for a chat.
@@ -1796,8 +1463,11 @@ class RawAPI {
   Future<String> exportChatInviteLink(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<String>(APIMethod.exportChatInviteLink, payload);
+    final payload = Payload(params);
+    return await _makeRequest<String>(
+      APIMethod.exportChatInviteLink.name,
+      payload,
+    );
   }
 
   /// Use this method to create an additional invite link for a chat.
@@ -1818,9 +1488,9 @@ class RawAPI {
       'creates_join_request': ?createsJoinRequest,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.createChatInviteLink,
+      APIMethod.createChatInviteLink.name,
       payload,
     );
 
@@ -1847,9 +1517,9 @@ class RawAPI {
       'creates_join_request': ?createsJoinRequest,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.editChatInviteLink,
+      APIMethod.editChatInviteLink.name,
       payload,
     );
 
@@ -1868,9 +1538,9 @@ class RawAPI {
       'invite_link': inviteLink,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.revokeChatInviteLink,
+      APIMethod.revokeChatInviteLink.name,
       payload,
     );
 
@@ -1883,8 +1553,11 @@ class RawAPI {
   Future<bool> approveChatJoinRequest(ID chatId, int userId) async {
     final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.approveChatJoinRequest, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.approveChatJoinRequest.name,
+      payload,
+    );
   }
 
   /// Use this method to decline a chat join request.
@@ -1893,8 +1566,11 @@ class RawAPI {
   Future<bool> declineChatJoinRequest(ID chatId, int userId) async {
     final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.declineChatJoinRequest, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.declineChatJoinRequest.name,
+      payload,
+    );
   }
 
   /// Use this method to set a new profile photo for the chat. Photos can't be
@@ -1904,13 +1580,10 @@ class RawAPI {
   ///
   /// See: https://core.telegram.org/bots/api#setchatphoto
   Future<bool> setChatPhoto(ID chatId, InputFile photo) async {
-    final params = <String, dynamic>{'chat_id': chatId, 'photo': photo};
-
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
-    return await _makeRequest<bool>(APIMethod.setChatPhoto, payload);
+    final params = <String, dynamic>{'chat_id': chatId};
+    final files = _prepareFiles([('photo', photo)]);
+    final payload = Payload(params, files);
+    return await _makeRequest<bool>(APIMethod.setChatPhoto.name, payload);
   }
 
   /// Use this method to delete a chat photo. Photos can't be changed for
@@ -1922,8 +1595,8 @@ class RawAPI {
   Future<bool> deleteChatPhoto(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteChatPhoto, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.deleteChatPhoto.name, payload);
   }
 
   /// Use this method to change the title of a chat. Titles can't be changed for
@@ -1935,8 +1608,8 @@ class RawAPI {
   Future<bool> setChatTitle(ID chatId, String title) async {
     final params = <String, dynamic>{'chat_id': chatId, 'title': title};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setChatTitle, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.setChatTitle.name, payload);
   }
 
   /// Use this method to change the description of a group, a supergroup or a
@@ -1950,8 +1623,8 @@ class RawAPI {
       'description': ?description,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setChatDescription, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.setChatDescription.name, payload);
   }
 
   /// Use this method to add a message to the list of pinned messages in a chat.
@@ -1974,8 +1647,8 @@ class RawAPI {
       'business_connection_id': ?businessConnectionId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.pinChatMessage, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.pinChatMessage.name, payload);
   }
 
   /// Use this method to remove a message from the list of pinned messages in a
@@ -1996,8 +1669,8 @@ class RawAPI {
       'business_connection_id': ?businessConnectionId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.unpinChatMessage, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.unpinChatMessage.name, payload);
   }
 
   /// Use this method to clear the list of pinned messages in a chat. If the
@@ -2010,8 +1683,11 @@ class RawAPI {
   Future<bool> unpinAllChatMessages(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.unpinAllChatMessages, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.unpinAllChatMessages.name,
+      payload,
+    );
   }
 
   /// Use this method for your bot to leave a group, supergroup or channel.
@@ -2021,8 +1697,8 @@ class RawAPI {
   Future<bool> leaveChat(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.leaveChat, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.leaveChat.name, payload);
   }
 
   /// Use this method to get up to date information about the chat (current name
@@ -2033,9 +1709,9 @@ class RawAPI {
   Future<ChatFullInfo> getChat(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getChat,
+      APIMethod.getChat.name,
       payload,
     );
 
@@ -2049,9 +1725,9 @@ class RawAPI {
   Future<List<ChatMember>> getChatAdministrators(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.getChatAdministrators,
+      APIMethod.getChatAdministrators.name,
       payload,
     );
 
@@ -2065,8 +1741,8 @@ class RawAPI {
   Future<int> getChatMemberCount(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<int>(APIMethod.getChatMemberCount, payload);
+    final payload = Payload(params);
+    return await _makeRequest<int>(APIMethod.getChatMemberCount.name, payload);
   }
 
   /// Use this method to get information about a member of a chat. The method is
@@ -2077,9 +1753,9 @@ class RawAPI {
   Future<ChatMember> getChatMember(ID chatId, int userId) async {
     final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getChatMember,
+      APIMethod.getChatMember.name,
       payload,
     );
 
@@ -2099,8 +1775,8 @@ class RawAPI {
       'sticker_set_name': stickerSetName,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setChatStickerSet, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.setChatStickerSet.name, payload);
   }
 
   /// Use this method to delete a group sticker set from a supergroup.
@@ -2109,8 +1785,11 @@ class RawAPI {
   Future<bool> deleteChatStickerSet(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteChatStickerSet, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.deleteChatStickerSet.name,
+      payload,
+    );
   }
 
   /// Use this method to get custom emoji stickers, which can be used as a forum topic icon.
@@ -2119,7 +1798,7 @@ class RawAPI {
   Future<List<Sticker>> getForumTopicIconStickers() async {
     final payload = Payload({});
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.getForumTopicIconStickers,
+      APIMethod.getForumTopicIconStickers.name,
       payload,
     );
 
@@ -2142,9 +1821,9 @@ class RawAPI {
       'icon_custom_emoji_id': ?iconCustomEmojiId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.createForumTopic,
+      APIMethod.createForumTopic.name,
       payload,
     );
 
@@ -2167,8 +1846,8 @@ class RawAPI {
       'icon_custom_emoji_id': ?iconCustomEmojiId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.editForumTopic, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.editForumTopic.name, payload);
   }
 
   /// Use this method to close an open topic in a forum supergroup chat.
@@ -2180,8 +1859,8 @@ class RawAPI {
       'message_thread_id': messageThreadId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.closeForumTopic, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.closeForumTopic.name, payload);
   }
 
   /// Use this method to reopen a closed topic in a forum supergroup chat.
@@ -2193,8 +1872,8 @@ class RawAPI {
       'message_thread_id': messageThreadId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.reopenForumTopic, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.reopenForumTopic.name, payload);
   }
 
   /// Use this method to delete a forum topic along with all its messages.
@@ -2206,8 +1885,8 @@ class RawAPI {
       'message_thread_id': messageThreadId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteForumTopic, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.deleteForumTopic.name, payload);
   }
 
   /// Use this method to clear the list of pinned messages in a forum topic.
@@ -2222,9 +1901,9 @@ class RawAPI {
       'message_thread_id': messageThreadId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
-      APIMethod.unpinAllForumTopicMessages,
+      APIMethod.unpinAllForumTopicMessages.name,
       payload,
     );
   }
@@ -2235,8 +1914,11 @@ class RawAPI {
   Future<bool> editGeneralForumTopic(ID chatId, String name) async {
     final params = <String, dynamic>{'chat_id': chatId, 'name': name};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.editGeneralForumTopic, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.editGeneralForumTopic.name,
+      payload,
+    );
   }
 
   /// Use this method to close an open 'General' topic in a forum supergroup chat.
@@ -2245,8 +1927,11 @@ class RawAPI {
   Future<bool> closeGeneralForumTopic(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.closeGeneralForumTopic, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.closeGeneralForumTopic.name,
+      payload,
+    );
   }
 
   /// Use this method to reopen a closed 'General' topic in a forum supergroup chat.
@@ -2255,8 +1940,11 @@ class RawAPI {
   Future<bool> reopenGeneralForumTopic(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.reopenGeneralForumTopic, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.reopenGeneralForumTopic.name,
+      payload,
+    );
   }
 
   /// Use this method to hide the 'General' topic in a forum supergroup chat.
@@ -2265,8 +1953,11 @@ class RawAPI {
   Future<bool> hideGeneralForumTopic(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.hideGeneralForumTopic, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.hideGeneralForumTopic.name,
+      payload,
+    );
   }
 
   /// Use this method to unhide the 'General' topic in a forum supergroup chat.
@@ -2275,8 +1966,11 @@ class RawAPI {
   Future<bool> unhideGeneralForumTopic(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.unhideGeneralForumTopic, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.unhideGeneralForumTopic.name,
+      payload,
+    );
   }
 
   /// Use this method to send answers to callback queries sent from inline
@@ -2299,8 +1993,11 @@ class RawAPI {
       'cache_time': cacheTime,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.answerCallbackQuery, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.answerCallbackQuery.name,
+      payload,
+    );
   }
 
   /// Use this method to change the list of the bot's commands. See this manual
@@ -2313,13 +2010,13 @@ class RawAPI {
     String? languageCode,
   }) async {
     final params = <String, dynamic>{
-      'commands': commands.map((c) => c.toJson()).toList(),
-      'scope': ?scope?.toJson(),
+      'commands': commands,
+      'scope': ?scope,
       'language_code': ?languageCode,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setMyCommands, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.setMyCommands.name, payload);
   }
 
   /// Use this method to delete the list of the bot's commands for the given
@@ -2332,12 +2029,12 @@ class RawAPI {
     String? languageCode,
   }) async {
     final params = <String, dynamic>{
-      'scope': ?scope?.toJson(),
+      'scope': ?scope,
       'language_code': ?languageCode,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteMyCommands, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.deleteMyCommands.name, payload);
   }
 
   /// Use this method to get the current list of the bot's commands for the
@@ -2350,13 +2047,13 @@ class RawAPI {
     String? languageCode,
   }) async {
     final params = <String, dynamic>{
-      'scope': ?scope?.toJson(),
+      'scope': ?scope,
       'language_code': ?languageCode,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.getMyCommands,
+      APIMethod.getMyCommands.name,
       payload,
     );
 
@@ -2372,8 +2069,8 @@ class RawAPI {
       'language_code': ?languageCode,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setMyName, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.setMyName.name, payload);
   }
 
   /// Use this method to get the current bot name for the given user language.
@@ -2383,9 +2080,9 @@ class RawAPI {
   Future<BotName> getMyName({String? languageCode}) async {
     final params = <String, dynamic>{'language_code': ?languageCode};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getMyName,
+      APIMethod.getMyName.name,
       payload,
     );
 
@@ -2405,8 +2102,8 @@ class RawAPI {
       'language_code': ?languageCode,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setMyDescription, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.setMyDescription.name, payload);
   }
 
   /// Use this method to get the current bot description for the given user
@@ -2416,9 +2113,9 @@ class RawAPI {
   Future<BotDescription> getMyDescription({String? languageCode}) async {
     final params = <String, dynamic>{'language_code': ?languageCode};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getMyDescription,
+      APIMethod.getMyDescription.name,
       payload,
     );
 
@@ -2439,8 +2136,11 @@ class RawAPI {
       'language_code': ?languageCode,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setMyShortDescription, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.setMyShortDescription.name,
+      payload,
+    );
   }
 
   /// Use this method to get the current bot short description for the given
@@ -2452,9 +2152,9 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{'language_code': ?languageCode};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getMyShortDescription,
+      APIMethod.getMyShortDescription.name,
       payload,
     );
 
@@ -2467,12 +2167,12 @@ class RawAPI {
   /// See: https://core.telegram.org/bots/api#setchatmenubutton
   Future<bool> setChatMenuButton(MenuButton menuButton, {ID? chatId}) async {
     final params = <String, dynamic>{
-      'menu_button': menuButton.toJson(),
+      'menu_button': menuButton,
       'chat_id': ?chatId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setChatMenuButton, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.setChatMenuButton.name, payload);
   }
 
   /// Use this method to get the current value of the bot's menu button in a
@@ -2482,9 +2182,9 @@ class RawAPI {
   Future<MenuButton> getChatMenuButton(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getChatMenuButton,
+      APIMethod.getChatMenuButton.name,
       payload,
     );
 
@@ -2502,13 +2202,13 @@ class RawAPI {
     bool? forChannels,
   }) async {
     final params = <String, dynamic>{
-      'rights': ?rights?.toJson(),
+      'rights': ?rights,
       'for_channels': ?forChannels,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
-      APIMethod.setMyDefaultAdministratorRights,
+      APIMethod.setMyDefaultAdministratorRights.name,
       payload,
     );
   }
@@ -2522,9 +2222,9 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{'for_channels': ?forChannels};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getMyDefaultAdministratorRights,
+      APIMethod.getMyDefaultAdministratorRights.name,
       payload,
     );
 
@@ -2550,14 +2250,14 @@ class RawAPI {
       'text': text,
       'business_connection_id': ?businessConnectionId,
       'parse_mode': ?parseMode,
-      'entities': ?entities?.map((e) => e.toJson()).toList(),
-      'link_preview_options': ?linkPreviewOptions?.toJson(),
-      'reply_markup': ?replyMarkup?.toJson(),
+      'entities': ?entities,
+      'link_preview_options': ?linkPreviewOptions,
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<dynamic>(
-      APIMethod.editMessageText,
+      APIMethod.editMessageText.name,
       payload,
     );
 
@@ -2641,14 +2341,14 @@ class RawAPI {
       'business_connection_id': ?businessConnectionId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'show_caption_above_media': ?showCaptionAboveMedia,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<dynamic>(
-      APIMethod.editMessageCaption,
+      APIMethod.editMessageCaption.name,
       payload,
     );
 
@@ -2728,15 +2428,15 @@ class RawAPI {
       'inline_message_id': ?inlineMessageId,
       'media': media,
       'business_connection_id': ?businessConnectionId,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
-
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles(
+      media.getInputFiles().map((e) => (null, e)).toList(),
+    );
+    final payload = Payload(params, files);
 
     final response = await _makeRequest<dynamic>(
-      APIMethod.editMessageMedia,
+      APIMethod.editMessageMedia.name,
       payload,
     );
 
@@ -2814,12 +2514,12 @@ class RawAPI {
       'horizontal_accuracy': ?horizontalAccuracy,
       'heading': ?heading,
       'proximity_alert_radius': ?proximityAlertRadius,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<dynamic>(
-      APIMethod.editMessageLiveLocation,
+      APIMethod.editMessageLiveLocation.name,
       payload,
     );
 
@@ -2905,12 +2605,12 @@ class RawAPI {
       'message_id': ?messageId,
       'inline_message_id': ?inlineMessageId,
       'business_connection_id': ?businessConnectionId,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<dynamic>(
-      APIMethod.stopMessageLiveLocation,
+      APIMethod.stopMessageLiveLocation.name,
       payload,
     );
 
@@ -2972,12 +2672,12 @@ class RawAPI {
       'message_id': ?messageId,
       'inline_message_id': ?inlineMessageId,
       'business_connection_id': ?businessConnectionId,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<dynamic>(
-      APIMethod.editMessageReplyMarkup,
+      APIMethod.editMessageReplyMarkup.name,
       payload,
     );
 
@@ -3041,12 +2741,12 @@ class RawAPI {
       'chat_id': chatId,
       'message_id': messageId,
       'business_connection_id': ?businessConnectionId,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.stopPoll,
+      APIMethod.stopPoll.name,
       payload,
     );
 
@@ -3064,8 +2764,8 @@ class RawAPI {
       'message_id': messageId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteMessage, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.deleteMessage.name, payload);
   }
 
   /// Sends static .WEBP, animated .TGS, or video .WEBM stickers.
@@ -3098,18 +2798,16 @@ class RawAPI {
       'protect_content': ?protectContent,
       'allow_paid_broadcast': ?allowPaidBroadcast,
       'message_effect_id': ?messageEffectId,
-      'reply_parameters': ?replyParameters?.toJson(),
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters,
+      'reply_markup': ?replyMarkup,
       'direct_messages_topic_id': ?directMessagesTopicId,
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([('sticker', sticker)]);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendSticker,
+      APIMethod.sendSticker.name,
       payload,
     );
 
@@ -3124,9 +2822,9 @@ class RawAPI {
   Future<StickerSet> getStickerSet(String name) async {
     final params = <String, dynamic>{'name': name};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getStickerSet,
+      APIMethod.getStickerSet.name,
       payload,
     );
 
@@ -3143,9 +2841,9 @@ class RawAPI {
   ) async {
     final params = <String, dynamic>{'custom_emoji_ids': customEmojiIds};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.getCustomEmojiStickers,
+      APIMethod.getCustomEmojiStickers.name,
       payload,
     );
 
@@ -3164,16 +2862,13 @@ class RawAPI {
   ) async {
     final params = <String, dynamic>{
       'user_id': userId,
-      'sticker': sticker,
       'sticker_format': stickerFormat,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([('sticker', sticker)]);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.uploadStickerFile,
+      APIMethod.uploadStickerFile.name,
       payload,
     );
 
@@ -3190,7 +2885,7 @@ class RawAPI {
     String name,
     String title,
     List<InputSticker> stickers, {
-    String? stickerType,
+    StickerType? stickerType,
     bool? needsRepainting,
   }) async {
     final params = <String, dynamic>{
@@ -3202,11 +2897,13 @@ class RawAPI {
       'needs_repainting': ?needsRepainting,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles(stickers.map((e) => (null, e.sticker)));
 
-    final payload = Payload(convertedParams, files);
-    return await _makeRequest<bool>(APIMethod.createNewStickerSet, payload);
+    final payload = Payload(params, files);
+    return await _makeRequest<bool>(
+      APIMethod.createNewStickerSet.name,
+      payload,
+    );
   }
 
   /// Adds a new sticker to a set created by the bot.
@@ -3222,14 +2919,12 @@ class RawAPI {
     final params = <String, dynamic>{
       'user_id': userId,
       'name': name,
-      'sticker': sticker.toJson(),
+      'sticker': sticker,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
-    return await _makeRequest<bool>(APIMethod.addStickerToSet, payload);
+    final files = _prepareFiles(sticker.getInputFiles().map((e) => (null, e)));
+    final payload = Payload(params, files);
+    return await _makeRequest<bool>(APIMethod.addStickerToSet.name, payload);
   }
 
   /// Moves a sticker in a set created by the bot to a specific position.
@@ -3240,8 +2935,11 @@ class RawAPI {
   Future<bool> setStickerPositionInSet(String sticker, int position) async {
     final params = <String, dynamic>{'sticker': sticker, 'position': position};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setStickerPositionInSet, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.setStickerPositionInSet.name,
+      payload,
+    );
   }
 
   /// Deletes a sticker from a set created by the bot.
@@ -3252,8 +2950,11 @@ class RawAPI {
   Future<bool> deleteStickerFromSet(String sticker) async {
     final params = <String, dynamic>{'sticker': sticker};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteStickerFromSet, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.deleteStickerFromSet.name,
+      payload,
+    );
   }
 
   /// Changes the list of emoji assigned to a regular or custom emoji sticker.
@@ -3270,8 +2971,11 @@ class RawAPI {
       'emoji_list': emojiList,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setStickerEmojiList, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.setStickerEmojiList.name,
+      payload,
+    );
   }
 
   /// Changes search keywords assigned to a regular or custom emoji sticker.
@@ -3285,8 +2989,8 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{'sticker': sticker, 'keywords': ?keywords};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setStickerKeywords, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.setStickerKeywords.name, payload);
   }
 
   /// Changes the mask position of a mask sticker.
@@ -3300,11 +3004,14 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'sticker': sticker,
-      'mask_position': ?maskPosition?.toJson(),
+      'mask_position': ?maskPosition,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setStickerMaskPosition, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.setStickerMaskPosition.name,
+      payload,
+    );
   }
 
   /// Sets the title of a created sticker set.
@@ -3315,8 +3022,8 @@ class RawAPI {
   Future<bool> setStickerSetTitle(String name, String title) async {
     final params = <String, dynamic>{'name': name, 'title': title};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setStickerSetTitle, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.setStickerSetTitle.name, payload);
   }
 
   /// Sets the thumbnail of a regular or mask sticker set.
@@ -3334,14 +3041,14 @@ class RawAPI {
       'name': name,
       'user_id': userId,
       'format': format,
-      'thumbnail': ?thumbnail,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
-    return await _makeRequest<bool>(APIMethod.setStickerSetThumbnail, payload);
+    final files = _prepareFiles([('thumbnail', thumbnail)]);
+    final payload = Payload(params, files);
+    return await _makeRequest<bool>(
+      APIMethod.setStickerSetThumbnail.name,
+      payload,
+    );
   }
 
   /// Sets the thumbnail of a custom emoji sticker set.
@@ -3358,9 +3065,9 @@ class RawAPI {
       'custom_emoji_id': ?customEmojiId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
-      APIMethod.setCustomEmojiStickerSetThumbnail,
+      APIMethod.setCustomEmojiStickerSetThumbnail.name,
       payload,
     );
   }
@@ -3373,8 +3080,8 @@ class RawAPI {
   Future<bool> deleteStickerSet(String name) async {
     final params = <String, dynamic>{'name': name};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteStickerSet, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.deleteStickerSet.name, payload);
   }
 
   /// Sends answers to an inline query.
@@ -3390,15 +3097,15 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'inline_query_id': inlineQueryId,
-      'results': results.map((e) => e.toJson()).toList(),
+      'results': results,
       'cache_time': ?cacheTime,
       'is_personal': ?isPersonal,
       'next_offset': ?nextOffset,
-      'button': ?button?.toJson(),
+      'button': ?button,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.answerInlineQuery, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.answerInlineQuery.name, payload);
   }
 
   /// Sets the result of an interaction with a Web App and sends a corresponding message.
@@ -3410,12 +3117,12 @@ class RawAPI {
   ) async {
     final params = <String, dynamic>{
       'web_app_query_id': webAppQueryId,
-      'result': result.toJson(),
+      'result': result,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.answerWebAppQuery,
+      APIMethod.answerWebAppQuery.name,
       payload,
     );
 
@@ -3466,7 +3173,7 @@ class RawAPI {
       'description': description,
       'payload': payload,
       'currency': currency,
-      'prices': prices.map((e) => e.toJson()).toList(),
+      'prices': prices,
       'message_thread_id': ?messageThreadId,
       'provider_token': ?providerToken,
       'max_tip_amount': ?maxTipAmount,
@@ -3488,15 +3195,15 @@ class RawAPI {
       'protect_content': ?protectContent,
       'allow_paid_broadcast': ?allowPaidBroadcast,
       'message_effect_id': ?messageEffectId,
-      'reply_parameters': ?replyParameters?.toJson(),
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters,
+      'reply_markup': ?replyMarkup,
       'direct_messages_topic_id': ?directMessagesTopicId,
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendInvoice,
-      Payload(_convertParameters(params)),
+      APIMethod.sendInvoice.name,
+      Payload(params),
     );
 
     return Message.fromJson(response);
@@ -3536,7 +3243,7 @@ class RawAPI {
       'description': description,
       'payload': payload,
       'currency': currency,
-      'prices': prices.map((e) => e.toJson()).toList(),
+      'prices': prices,
       'business_connection_id': ?businessConnectionId,
       'provider_token': ?providerToken,
       'subscription_period': ?subscriptionPeriod,
@@ -3557,8 +3264,8 @@ class RawAPI {
     };
 
     return await _makeRequest<String>(
-      APIMethod.createInvoiceLink,
-      Payload(_convertParameters(params)),
+      APIMethod.createInvoiceLink.name,
+      Payload(params),
     );
   }
 
@@ -3574,12 +3281,15 @@ class RawAPI {
     final params = <String, dynamic>{
       'shipping_query_id': shippingQueryId,
       'ok': ok,
-      'shipping_options': ?shippingOptions?.map((e) => e.toJson()).toList(),
+      'shipping_options': ?shippingOptions,
       'error_message': ?errorMessage,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.answerShippingQuery, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.answerShippingQuery.name,
+      payload,
+    );
   }
 
   /// Responds to pre-checkout queries.
@@ -3596,8 +3306,11 @@ class RawAPI {
       'error_message': ?errorMessage,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.answerPreCheckoutQuery, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.answerPreCheckoutQuery.name,
+      payload,
+    );
   }
 
   /// Informs a user that some Telegram Passport elements contain errors.
@@ -3607,13 +3320,13 @@ class RawAPI {
     int userId,
     List<PassportElementError> errors,
   ) async {
-    final params = <String, dynamic>{
-      'user_id': userId,
-      'errors': errors.map((e) => e.toJson()).toList(),
-    };
+    final params = <String, dynamic>{'user_id': userId, 'errors': errors};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setPassportDataErrors, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.setPassportDataErrors.name,
+      payload,
+    );
   }
 
   /// Sends a game.
@@ -3642,13 +3355,13 @@ class RawAPI {
       'protect_content': ?protectContent,
       'allow_paid_broadcast': ?allowPaidBroadcast,
       'message_effect_id': ?messageEffectId,
-      'reply_parameters': ?replyParameters?.toJson(),
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters,
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendGame,
+      APIMethod.sendGame.name,
       payload,
     );
 
@@ -3681,9 +3394,9 @@ class RawAPI {
       'inline_message_id': ?inlineMessageId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<dynamic>(
-      APIMethod.setGameScore,
+      APIMethod.setGameScore.name,
       payload,
     );
 
@@ -3714,9 +3427,9 @@ class RawAPI {
       'inline_message_id': ?inlineMessageId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.getGameHighScores,
+      APIMethod.getGameHighScores.name,
       payload,
     );
 
@@ -3735,12 +3448,12 @@ class RawAPI {
     final params = <String, dynamic>{
       'chat_id': chatId,
       'message_id': messageId,
-      'reaction': ?reaction?.map((e) => e.toJson()).toList(),
+      'reaction': ?reaction,
       'is_big': ?isBig,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setMessageReaction, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.setMessageReaction.name, payload);
   }
 
   /// Deletes multiple messages simultaneously.
@@ -3752,8 +3465,8 @@ class RawAPI {
       'message_ids': messageIds,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteMessages, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.deleteMessages.name, payload);
   }
 
   /// Forwards multiple messages of any kind.
@@ -3778,9 +3491,9 @@ class RawAPI {
       'direct_messages_topic_id': ?directMessagesTopicId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.forwardMessages,
+      APIMethod.forwardMessages.name,
       payload,
     );
 
@@ -3811,9 +3524,9 @@ class RawAPI {
       'direct_messages_topic_id': ?directMessagesTopicId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<List<dynamic>>(
-      APIMethod.copyMessages,
+      APIMethod.copyMessages.name,
       payload,
     );
 
@@ -3826,9 +3539,9 @@ class RawAPI {
   Future<UserChatBoosts> getUserChatBoosts(ID chatId, int userId) async {
     final params = <String, dynamic>{'chat_id': chatId, 'user_id': userId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getUserChatBoosts,
+      APIMethod.getUserChatBoosts.name,
       payload,
     );
 
@@ -3841,9 +3554,9 @@ class RawAPI {
   Future<bool> unpinAllGeneralForumTopicMessages(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
-      APIMethod.unpinAllGeneralForumTopicMessages,
+      APIMethod.unpinAllGeneralForumTopicMessages.name,
       payload,
     );
   }
@@ -3858,9 +3571,9 @@ class RawAPI {
       'business_connection_id': businessConnectionId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getBusinessConnection,
+      APIMethod.getBusinessConnection.name,
       payload,
     );
 
@@ -3883,11 +3596,12 @@ class RawAPI {
       'sticker': sticker,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
-    return await _makeRequest<bool>(APIMethod.replaceStickerInSet, payload);
+    final files = _prepareFiles([(null, sticker.sticker)]);
+    final payload = Payload(params, files);
+    return await _makeRequest<bool>(
+      APIMethod.replaceStickerInSet.name,
+      payload,
+    );
   }
 
   /// Refunds a successful payment in Telegram Stars.
@@ -3902,8 +3616,8 @@ class RawAPI {
       'telegram_payment_charge_id': telegramPaymentChargeId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.refundStarPayment, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.refundStarPayment.name, payload);
   }
 
   /// Returns the bot's Telegram Star transactions in chronological order.
@@ -3915,9 +3629,9 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{'offset': ?offset, 'limit': ?limit};
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getStarTransactions,
+      APIMethod.getStarTransactions.name,
       payload,
     );
 
@@ -3953,23 +3667,24 @@ class RawAPI {
       'payload': ?payload,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
       'show_caption_above_media': ?showCaptionAboveMedia,
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
       'allow_paid_broadcast': ?allowPaidBroadcast,
-      'reply_parameters': ?replyParameters?.toJson(),
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters,
+      'reply_markup': ?replyMarkup,
       'direct_messages_topic_id': ?directMessagesTopicId,
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles(
+      media.expand((e) => e.getInputFiles()).map((e) => (null, e)),
+    );
 
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendPaidMedia,
-      Payload(convertedParams, files),
+      APIMethod.sendPaidMedia.name,
+      Payload(params, files),
     );
 
     return Message.fromJson(response);
@@ -3991,9 +3706,9 @@ class RawAPI {
       'name': ?name,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.createChatSubscriptionInviteLink,
+      APIMethod.createChatSubscriptionInviteLink.name,
       payload,
     );
 
@@ -4014,9 +3729,9 @@ class RawAPI {
       'name': ?name,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.editChatSubscriptionInviteLink,
+      APIMethod.editChatSubscriptionInviteLink.name,
       payload,
     );
 
@@ -4037,9 +3752,9 @@ class RawAPI {
       'is_canceled': isCanceled,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
-      APIMethod.editUserStarSubscription,
+      APIMethod.editUserStarSubscription.name,
       payload,
     );
   }
@@ -4058,8 +3773,8 @@ class RawAPI {
       'emoji_status_expiration_date': ?emojiStatusExpirationDate,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setUserEmojiStatus, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.setUserEmojiStatus.name, payload);
   }
 
   /// Stores a message that can be sent by a user of a Mini App.
@@ -4075,16 +3790,16 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'user_id': userId,
-      'result': result.toJson(),
+      'result': result,
       'allow_user_chats': ?allowUserChats,
       'allow_bot_chats': ?allowBotChats,
       'allow_group_chats': ?allowGroupChats,
       'allow_channel_chats': ?allowChannelChats,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.savePreparedInlineMessage,
+      APIMethod.savePreparedInlineMessage.name,
       payload,
     );
 
@@ -4095,10 +3810,8 @@ class RawAPI {
   ///
   /// See https://core.telegram.org/bots/api#getavailablegifts
   Future<Gifts> getAvailableGifts() async {
-    final payload = Payload(<String, dynamic>{});
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getAvailableGifts,
-      payload,
+      APIMethod.getAvailableGifts.name,
     );
 
     return Gifts.fromJson(response);
@@ -4130,11 +3843,11 @@ class RawAPI {
       'pay_for_upgrade': ?payForUpgrade,
       'text': ?text,
       'text_parse_mode': ?textParseMode,
-      'text_entities': ?textEntities?.map((e) => e.toJson()).toList(),
+      'text_entities': ?textEntities,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.sendGift, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.sendGift.name, payload);
   }
 
   /// Verifies a user on behalf of the organization which is represented by the bot.
@@ -4146,8 +3859,8 @@ class RawAPI {
       'custom_description': ?customDescription,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.verifyUser, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.verifyUser.name, payload);
   }
 
   /// Verifies a chat on behalf of the organization which is represented by the bot.
@@ -4159,8 +3872,8 @@ class RawAPI {
       'custom_description': ?customDescription,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.verifyChat, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.verifyChat.name, payload);
   }
 
   /// Removes verification from a user who is currently verified on behalf of the organization represented by the bot.
@@ -4169,8 +3882,11 @@ class RawAPI {
   Future<bool> removeUserVerification(int userId) async {
     final params = <String, dynamic>{'user_id': userId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.removeUserVerification, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.removeUserVerification.name,
+      payload,
+    );
   }
 
   /// Removes verification from a chat that is currently verified on behalf of the organization represented by the bot.
@@ -4179,8 +3895,11 @@ class RawAPI {
   Future<bool> removeChatVerification(ID chatId) async {
     final params = <String, dynamic>{'chat_id': chatId};
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.removeChatVerification, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.removeChatVerification.name,
+      payload,
+    );
   }
 
   /// Marks incoming message as read on behalf of a business account.
@@ -4197,8 +3916,11 @@ class RawAPI {
       'message_id': messageId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.readBusinessMessage, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.readBusinessMessage.name,
+      payload,
+    );
   }
 
   /// Delete messages on behalf of a business account.
@@ -4213,8 +3935,11 @@ class RawAPI {
       'message_ids': messageIds,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteBusinessMessages, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.deleteBusinessMessages.name,
+      payload,
+    );
   }
 
   /// Changes the first and last name of a managed business account.
@@ -4231,8 +3956,11 @@ class RawAPI {
       'last_name': ?lastName,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setBusinessAccountName, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.setBusinessAccountName.name,
+      payload,
+    );
   }
 
   /// Changes the username of a managed business account.
@@ -4247,9 +3975,9 @@ class RawAPI {
       'username': ?username,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
-      APIMethod.setBusinessAccountUsername,
+      APIMethod.setBusinessAccountUsername.name,
       payload,
     );
   }
@@ -4266,8 +3994,11 @@ class RawAPI {
       'bio': ?bio,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.setBusinessAccountBio, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.setBusinessAccountBio.name,
+      payload,
+    );
   }
 
   /// Changes the profile photo of a managed business account.
@@ -4284,12 +4015,10 @@ class RawAPI {
       'is_public': ?isPublic,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
-
-    final payload = Payload(convertedParams, files);
+    final files = _prepareFiles([(null, photo.file)]);
+    final payload = Payload(params, files);
     return await _makeRequest<bool>(
-      APIMethod.setBusinessAccountProfilePhoto,
+      APIMethod.setBusinessAccountProfilePhoto.name,
       payload,
     );
   }
@@ -4306,9 +4035,9 @@ class RawAPI {
       'is_public': ?isPublic,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
-      APIMethod.removeBusinessAccountProfilePhoto,
+      APIMethod.removeBusinessAccountProfilePhoto.name,
       payload,
     );
   }
@@ -4327,9 +4056,9 @@ class RawAPI {
       'accepted_gift_types': acceptedGiftTypes,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
-      APIMethod.setBusinessAccountGiftSettings,
+      APIMethod.setBusinessAccountGiftSettings.name,
       payload,
     );
   }
@@ -4344,9 +4073,9 @@ class RawAPI {
       'business_connection_id': businessConnectionId,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getBusinessAccountStarBalance,
+      APIMethod.getBusinessAccountStarBalance.name,
       payload,
     );
 
@@ -4365,9 +4094,9 @@ class RawAPI {
       'star_count': starCount,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     return await _makeRequest<bool>(
-      APIMethod.transferBusinessAccountStars,
+      APIMethod.transferBusinessAccountStars.name,
       payload,
     );
   }
@@ -4402,9 +4131,9 @@ class RawAPI {
       'limit': ?limit,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getBusinessAccountGifts,
+      APIMethod.getBusinessAccountGifts.name,
       payload,
     );
 
@@ -4423,8 +4152,8 @@ class RawAPI {
       'owned_gift_id': ownedGiftId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.convertGiftToStars, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.convertGiftToStars.name, payload);
   }
 
   /// Upgrades a given regular gift to a unique gift.
@@ -4443,8 +4172,8 @@ class RawAPI {
       'star_count': ?starCount,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.upgradeGift, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.upgradeGift.name, payload);
   }
 
   /// Transfers an owned unique gift to another user.
@@ -4463,8 +4192,8 @@ class RawAPI {
       'star_count': ?starCount,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.transferGift, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.transferGift.name, payload);
   }
 
   /// Posts a story on behalf of a managed business account.
@@ -4487,18 +4216,17 @@ class RawAPI {
       'active_period': activePeriod,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
-      'areas': ?areas?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
+      'areas': ?areas,
       'post_to_chat_page': ?postToChatPage,
       'protect_content': ?protectContent,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([(null, content.file)]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.postStory,
+      APIMethod.postStory.name,
       payload,
     );
 
@@ -4523,16 +4251,15 @@ class RawAPI {
       'content': content,
       'caption': ?caption,
       'parse_mode': ?parseMode,
-      'caption_entities': ?captionEntities?.map((e) => e.toJson()).toList(),
-      'areas': ?areas?.map((e) => e.toJson()).toList(),
+      'caption_entities': ?captionEntities,
+      'areas': ?areas,
     };
 
-    final convertedParams = _convertParameters(params);
-    final files = _extractFiles(params);
+    final files = _prepareFiles([(null, content.file)]);
 
-    final payload = Payload(convertedParams, files);
+    final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.editStory,
+      APIMethod.editStory.name,
       payload,
     );
 
@@ -4548,8 +4275,8 @@ class RawAPI {
       'story_id': storyId,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.deleteStory, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(APIMethod.deleteStory.name, payload);
   }
 
   /// Gifts a Telegram Premium subscription to the given user.
@@ -4571,11 +4298,14 @@ class RawAPI {
       'star_count': starCount,
       'text': ?text,
       'text_parse_mode': ?textParseMode,
-      'text_entities': ?textEntities?.map((e) => e.toJson()).toList(),
+      'text_entities': ?textEntities,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.giftPremiumSubscription, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.giftPremiumSubscription.name,
+      payload,
+    );
   }
 
   /// Sends a checklist on behalf of a connected business account.
@@ -4600,13 +4330,13 @@ class RawAPI {
       'disable_notification': ?disableNotification,
       'protect_content': ?protectContent,
       'message_effect_id': ?messageEffectId,
-      'reply_parameters': ?replyParameters?.toJson(),
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_parameters': ?replyParameters,
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.sendChecklist,
+      APIMethod.sendChecklist.name,
       payload,
     );
 
@@ -4630,12 +4360,12 @@ class RawAPI {
       'chat_id': chatId,
       'message_id': messageId,
       'checklist': checklist,
-      'reply_markup': ?replyMarkup?.toJson(),
+      'reply_markup': ?replyMarkup,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.editMessageChecklist,
+      APIMethod.editMessageChecklist.name,
       payload,
     );
 
@@ -4649,7 +4379,7 @@ class RawAPI {
   /// Returns a StarAmount object.
   Future<StarAmount> getMyStarBalance() async {
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getMyStarBalance,
+      APIMethod.getMyStarBalance.name,
     );
 
     return StarAmount.fromJson(response);
@@ -4672,8 +4402,11 @@ class RawAPI {
       'send_date': ?sendDate,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.approveSuggestedPost, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.approveSuggestedPost.name,
+      payload,
+    );
   }
 
   /// Declines a suggested post in a direct messages chat.
@@ -4693,8 +4426,11 @@ class RawAPI {
       'comment': ?comment,
     };
 
-    final payload = Payload(_convertParameters(params));
-    return await _makeRequest<bool>(APIMethod.declineSuggestedPost, payload);
+    final payload = Payload(params);
+    return await _makeRequest<bool>(
+      APIMethod.declineSuggestedPost.name,
+      payload,
+    );
   }
 
   /// Returns the gifts owned and hosted by a user. Returns OwnedGifts on success.
@@ -4723,9 +4459,9 @@ class RawAPI {
       'limit': ?limit,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getUserGifts,
+      APIMethod.getUserGifts.name,
       payload,
     );
     return OwnedGifts.fromJson(response);
@@ -4761,9 +4497,9 @@ class RawAPI {
       'limit': ?limit,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.getChatGifts,
+      APIMethod.getChatGifts.name,
       payload,
     );
     return OwnedGifts.fromJson(response);
@@ -4789,11 +4525,36 @@ class RawAPI {
       'protect_content': ?protectContent,
     };
 
-    final payload = Payload(_convertParameters(params));
+    final payload = Payload(params);
     final response = await _makeRequest<Map<String, dynamic>>(
-      APIMethod.repostStory,
+      APIMethod.repostStory.name,
       payload,
     );
     return Story.fromJson(response);
+  }
+
+  /// Changes the profile photo of the bot. Returns True on success.
+  Future<bool> setMyProfilePhoto(InputProfilePhoto photo) async {
+    final params = {'photo': photo};
+    final files = _prepareFiles([(null, photo.file)]);
+    final payload = Payload(params, files);
+
+    return await _makeRequest<bool>(APIMethod.setMyProfilePhoto.name, payload);
+  }
+
+  /// Removes the profile photo of the bot. Requires no parameters. Returns True on success.
+  Future<bool> deleteMyProfilePhoto() async {
+    return await _makeRequest<bool>(APIMethod.deleteMyProfilePhoto.name);
+  }
+
+  /// Use this method to get a list of profile audios for a user. Returns a UserProfileAudios object.
+  Future<UserProfileAudios> getUserProfileAudios(int userId) async {
+    final params = {'user_id': userId};
+    final payload = Payload(params);
+    final response = await _makeRequest<Map<String, dynamic>>(
+      APIMethod.getUserProfileAudios.name,
+      payload,
+    );
+    return UserProfileAudios.fromJson(response);
   }
 }

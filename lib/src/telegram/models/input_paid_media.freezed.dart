@@ -172,12 +172,10 @@ class InputPaidMediaPhoto extends InputPaidMedia {
   const InputPaidMediaPhoto({
     this.type = InputPaidMediaType.photo,
     @InputFileConverter() required this.media,
-    final String? $type,
   }) : assert(
          type == InputPaidMediaType.photo,
          'type must be InputPaidMediaType.photo',
        ),
-       $type = $type ?? 'photo',
        super._();
 
   /// Type of the media, must be "photo"
@@ -189,9 +187,6 @@ class InputPaidMediaPhoto extends InputPaidMedia {
   @override
   @InputFileConverter()
   final InputFile media;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   /// Create a copy of InputPaidMedia
   /// with the given fields replaced by the non-null parameter values.
@@ -265,12 +260,10 @@ class InputPaidMediaVideo extends InputPaidMedia {
     @JsonKey(name: 'supports_streaming') this.supportsStreaming,
     @JsonKey(name: 'start_timestamp') this.startTimestamp,
     @InputFileConverter() @JsonKey(name: 'cover') this.cover,
-    final String? $type,
   }) : assert(
          type == InputPaidMediaType.video,
          'type must be InputPaidMediaType.video',
        ),
-       $type = $type ?? 'video',
        super._();
 
   /// Type of the media, must be "video".
@@ -315,9 +308,6 @@ class InputPaidMediaVideo extends InputPaidMedia {
   @InputFileConverter()
   @JsonKey(name: 'cover')
   final InputFile? cover;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   /// Create a copy of InputPaidMedia
   /// with the given fields replaced by the non-null parameter values.

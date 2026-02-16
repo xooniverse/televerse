@@ -8,7 +8,7 @@ part of 'input_sticker.dart';
 
 Map<String, dynamic> _$InputStickerToJson(_InputSticker instance) =>
     <String, dynamic>{
-      'sticker': const InputFileConverter().toJson(instance.sticker),
+      'sticker': ?const InputFileConverter().toJson(instance.sticker),
       'format': _$InputStickerFormatEnumMap[instance.format]!,
       'emoji_list': instance.emojiList,
       'mask_position': ?instance.maskPosition,

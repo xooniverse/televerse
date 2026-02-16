@@ -10,8 +10,7 @@ Map<String, dynamic> _$InputPaidMediaPhotoToJson(
   InputPaidMediaPhoto instance,
 ) => <String, dynamic>{
   'type': _$InputPaidMediaTypeEnumMap[instance.type]!,
-  'media': const InputFileConverter().toJson(instance.media),
-  'runtimeType': instance.$type,
+  'media': ?const InputFileConverter().toJson(instance.media),
 };
 
 const _$InputPaidMediaTypeEnumMap = {
@@ -23,8 +22,8 @@ Map<String, dynamic> _$InputPaidMediaVideoToJson(
   InputPaidMediaVideo instance,
 ) => <String, dynamic>{
   'type': _$InputPaidMediaTypeEnumMap[instance.type]!,
-  'media': const InputFileConverter().toJson(instance.media),
-  'thumbnail': ?_$JsonConverterToJson<String, InputFile>(
+  'media': ?const InputFileConverter().toJson(instance.media),
+  'thumbnail': ?_$JsonConverterToJson<String?, InputFile>(
     instance.thumbnail,
     const InputFileConverter().toJson,
   ),
@@ -33,11 +32,10 @@ Map<String, dynamic> _$InputPaidMediaVideoToJson(
   'duration': ?instance.duration,
   'supports_streaming': ?instance.supportsStreaming,
   'start_timestamp': ?instance.startTimestamp,
-  'cover': ?_$JsonConverterToJson<String, InputFile>(
+  'cover': ?_$JsonConverterToJson<String?, InputFile>(
     instance.cover,
     const InputFileConverter().toJson,
   ),
-  'runtimeType': instance.$type,
 };
 
 Json? _$JsonConverterToJson<Json, Value>(

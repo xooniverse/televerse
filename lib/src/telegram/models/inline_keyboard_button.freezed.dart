@@ -90,6 +90,24 @@ mixin _$InlineKeyboardButton {
   @JsonKey(name: 'copy_text')
   CopyTextButton? get copyText;
 
+  /// Optional. Unique identifier of the custom emoji shown before the text
+  /// of the button. Can only be used by bots that purchased additional
+  /// usernames on Fragment or in the messages directly sent by the bot to
+  /// private, group and supergroup chats if the owner of the bot has a
+  /// Telegram Premium subscription.
+  ///
+  /// Since: Bot API 9.4
+  @JsonKey(name: 'icon_custom_emoji_id')
+  String? get iconCustomEmojiId;
+
+  /// Optional. Style of the button. Must be one of “danger” (red), “success”
+  /// (green) or “primary” (blue). If omitted, then an app-specific style is
+  /// used.
+  ///
+  /// Since: Bot API 9.4
+  @JsonKey(name: 'style')
+  StyleType? get style;
+
   /// Create a copy of InlineKeyboardButton
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -105,7 +123,7 @@ mixin _$InlineKeyboardButton {
 
   @override
   String toString() {
-    return 'InlineKeyboardButton(text: $text, url: $url, loginUrl: $loginUrl, callbackData: $callbackData, switchInlineQuery: $switchInlineQuery, switchInlineQueryCurrentChat: $switchInlineQueryCurrentChat, callbackGame: $callbackGame, pay: $pay, webApp: $webApp, switchInlineQueryChosenChat: $switchInlineQueryChosenChat, copyText: $copyText)';
+    return 'InlineKeyboardButton(text: $text, url: $url, loginUrl: $loginUrl, callbackData: $callbackData, switchInlineQuery: $switchInlineQuery, switchInlineQueryCurrentChat: $switchInlineQueryCurrentChat, callbackGame: $callbackGame, pay: $pay, webApp: $webApp, switchInlineQueryChosenChat: $switchInlineQueryChosenChat, copyText: $copyText, iconCustomEmojiId: $iconCustomEmojiId, style: $style)';
   }
 }
 
@@ -130,6 +148,8 @@ abstract mixin class $InlineKeyboardButtonCopyWith<$Res> {
     @JsonKey(name: 'switch_inline_query_chosen_chat')
     SwitchInlineQueryChosenChat? switchInlineQueryChosenChat,
     @JsonKey(name: 'copy_text') CopyTextButton? copyText,
+    @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+    @JsonKey(name: 'style') StyleType? style,
   });
 
   $LoginURLCopyWith<$Res>? get loginUrl;
@@ -163,6 +183,8 @@ class _$InlineKeyboardButtonCopyWithImpl<$Res>
     Object? webApp = freezed,
     Object? switchInlineQueryChosenChat = freezed,
     Object? copyText = freezed,
+    Object? iconCustomEmojiId = freezed,
+    Object? style = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -210,6 +232,14 @@ class _$InlineKeyboardButtonCopyWithImpl<$Res>
             ? _self.copyText
             : copyText // ignore: cast_nullable_to_non_nullable
                   as CopyTextButton?,
+        iconCustomEmojiId: freezed == iconCustomEmojiId
+            ? _self.iconCustomEmojiId
+            : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        style: freezed == style
+            ? _self.style
+            : style // ignore: cast_nullable_to_non_nullable
+                  as StyleType?,
       ),
     );
   }
@@ -385,6 +415,8 @@ class _InlineKeyboardButton implements InlineKeyboardButton {
     @JsonKey(name: 'switch_inline_query_chosen_chat')
     this.switchInlineQueryChosenChat,
     @JsonKey(name: 'copy_text') this.copyText,
+    @JsonKey(name: 'icon_custom_emoji_id') this.iconCustomEmojiId,
+    @JsonKey(name: 'style') this.style,
   });
   factory _InlineKeyboardButton.fromJson(Map<String, dynamic> json) =>
       _$InlineKeyboardButtonFromJson(json);
@@ -477,6 +509,26 @@ class _InlineKeyboardButton implements InlineKeyboardButton {
   @JsonKey(name: 'copy_text')
   final CopyTextButton? copyText;
 
+  /// Optional. Unique identifier of the custom emoji shown before the text
+  /// of the button. Can only be used by bots that purchased additional
+  /// usernames on Fragment or in the messages directly sent by the bot to
+  /// private, group and supergroup chats if the owner of the bot has a
+  /// Telegram Premium subscription.
+  ///
+  /// Since: Bot API 9.4
+  @override
+  @JsonKey(name: 'icon_custom_emoji_id')
+  final String? iconCustomEmojiId;
+
+  /// Optional. Style of the button. Must be one of “danger” (red), “success”
+  /// (green) or “primary” (blue). If omitted, then an app-specific style is
+  /// used.
+  ///
+  /// Since: Bot API 9.4
+  @override
+  @JsonKey(name: 'style')
+  final StyleType? style;
+
   /// Create a copy of InlineKeyboardButton
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -495,7 +547,7 @@ class _InlineKeyboardButton implements InlineKeyboardButton {
 
   @override
   String toString() {
-    return 'InlineKeyboardButton(text: $text, url: $url, loginUrl: $loginUrl, callbackData: $callbackData, switchInlineQuery: $switchInlineQuery, switchInlineQueryCurrentChat: $switchInlineQueryCurrentChat, callbackGame: $callbackGame, pay: $pay, webApp: $webApp, switchInlineQueryChosenChat: $switchInlineQueryChosenChat, copyText: $copyText)';
+    return 'InlineKeyboardButton(text: $text, url: $url, loginUrl: $loginUrl, callbackData: $callbackData, switchInlineQuery: $switchInlineQuery, switchInlineQueryCurrentChat: $switchInlineQueryCurrentChat, callbackGame: $callbackGame, pay: $pay, webApp: $webApp, switchInlineQueryChosenChat: $switchInlineQueryChosenChat, copyText: $copyText, iconCustomEmojiId: $iconCustomEmojiId, style: $style)';
   }
 }
 
@@ -522,6 +574,8 @@ abstract mixin class _$InlineKeyboardButtonCopyWith<$Res>
     @JsonKey(name: 'switch_inline_query_chosen_chat')
     SwitchInlineQueryChosenChat? switchInlineQueryChosenChat,
     @JsonKey(name: 'copy_text') CopyTextButton? copyText,
+    @JsonKey(name: 'icon_custom_emoji_id') String? iconCustomEmojiId,
+    @JsonKey(name: 'style') StyleType? style,
   });
 
   @override
@@ -560,6 +614,8 @@ class __$InlineKeyboardButtonCopyWithImpl<$Res>
     Object? webApp = freezed,
     Object? switchInlineQueryChosenChat = freezed,
     Object? copyText = freezed,
+    Object? iconCustomEmojiId = freezed,
+    Object? style = freezed,
   }) {
     return _then(
       _InlineKeyboardButton(
@@ -607,6 +663,14 @@ class __$InlineKeyboardButtonCopyWithImpl<$Res>
             ? _self.copyText
             : copyText // ignore: cast_nullable_to_non_nullable
                   as CopyTextButton?,
+        iconCustomEmojiId: freezed == iconCustomEmojiId
+            ? _self.iconCustomEmojiId
+            : iconCustomEmojiId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        style: freezed == style
+            ? _self.style
+            : style // ignore: cast_nullable_to_non_nullable
+                  as StyleType?,
       ),
     );
   }

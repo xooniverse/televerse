@@ -57,6 +57,10 @@ mixin _$UniqueGift {
   @JsonKey(name: 'colors')
   UniqueGiftColors? get colors;
 
+  /// Optional. True, if the gift was used to craft another gift and isn't available anymore
+  @JsonKey(name: 'is_burned')
+  bool? get isBurned;
+
   /// Create a copy of UniqueGift
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -69,7 +73,7 @@ mixin _$UniqueGift {
 
   @override
   String toString() {
-    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain, isPremium: $isPremium, colors: $colors)';
+    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain, isPremium: $isPremium, colors: $colors, isBurned: $isBurned)';
   }
 }
 
@@ -92,6 +96,7 @@ abstract mixin class $UniqueGiftCopyWith<$Res> {
     @JsonKey(name: 'is_from_blockchain') bool? isFromBlockchain,
     @JsonKey(name: 'is_premium') bool? isPremium,
     @JsonKey(name: 'colors') UniqueGiftColors? colors,
+    @JsonKey(name: 'is_burned') bool? isBurned,
   });
 
   $UniqueGiftModelCopyWith<$Res> get model;
@@ -124,6 +129,7 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
     Object? isFromBlockchain = freezed,
     Object? isPremium = freezed,
     Object? colors = freezed,
+    Object? isBurned = freezed,
   }) {
     return _then(
       _self.copyWith(
@@ -171,6 +177,10 @@ class _$UniqueGiftCopyWithImpl<$Res> implements $UniqueGiftCopyWith<$Res> {
             ? _self.colors
             : colors // ignore: cast_nullable_to_non_nullable
                   as UniqueGiftColors?,
+        isBurned: freezed == isBurned
+            ? _self.isBurned
+            : isBurned // ignore: cast_nullable_to_non_nullable
+                  as bool?,
       ),
     );
   }
@@ -329,6 +339,7 @@ class _UniqueGift implements UniqueGift {
     @JsonKey(name: 'is_from_blockchain') this.isFromBlockchain,
     @JsonKey(name: 'is_premium') this.isPremium,
     @JsonKey(name: 'colors') this.colors,
+    @JsonKey(name: 'is_burned') this.isBurned,
   });
   factory _UniqueGift.fromJson(Map<String, dynamic> json) =>
       _$UniqueGiftFromJson(json);
@@ -388,6 +399,11 @@ class _UniqueGift implements UniqueGift {
   @JsonKey(name: 'colors')
   final UniqueGiftColors? colors;
 
+  /// Optional. True, if the gift was used to craft another gift and isn't available anymore
+  @override
+  @JsonKey(name: 'is_burned')
+  final bool? isBurned;
+
   /// Create a copy of UniqueGift
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -403,7 +419,7 @@ class _UniqueGift implements UniqueGift {
 
   @override
   String toString() {
-    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain, isPremium: $isPremium, colors: $colors)';
+    return 'UniqueGift(giftId: $giftId, baseName: $baseName, name: $name, number: $number, model: $model, symbol: $symbol, backdrop: $backdrop, publisherChat: $publisherChat, isFromBlockchain: $isFromBlockchain, isPremium: $isPremium, colors: $colors, isBurned: $isBurned)';
   }
 }
 
@@ -428,6 +444,7 @@ abstract mixin class _$UniqueGiftCopyWith<$Res>
     @JsonKey(name: 'is_from_blockchain') bool? isFromBlockchain,
     @JsonKey(name: 'is_premium') bool? isPremium,
     @JsonKey(name: 'colors') UniqueGiftColors? colors,
+    @JsonKey(name: 'is_burned') bool? isBurned,
   });
 
   @override
@@ -465,6 +482,7 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
     Object? isFromBlockchain = freezed,
     Object? isPremium = freezed,
     Object? colors = freezed,
+    Object? isBurned = freezed,
   }) {
     return _then(
       _UniqueGift(
@@ -512,6 +530,10 @@ class __$UniqueGiftCopyWithImpl<$Res> implements _$UniqueGiftCopyWith<$Res> {
             ? _self.colors
             : colors // ignore: cast_nullable_to_non_nullable
                   as UniqueGiftColors?,
+        isBurned: freezed == isBurned
+            ? _self.isBurned
+            : isBurned // ignore: cast_nullable_to_non_nullable
+                  as bool?,
       ),
     );
   }

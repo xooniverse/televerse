@@ -1,79 +1,102 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/types/televerse_enum.dart';
+
+part 'update_type.g.dart';
+
 /// This object represents type of an incoming update.
-enum UpdateType {
+@JsonEnum(alwaysCreate: true)
+enum UpdateType implements TeleverseEnum {
   /// Message update
-  message("message"),
+  @JsonValue("message")
+  message,
 
   /// Edited message update
-  editedMessage("edited_message"),
+  @JsonValue("edited_message")
+  editedMessage,
 
   /// Channel post update
-  channelPost("channel_post"),
+  @JsonValue("channel_post")
+  channelPost,
 
   /// Edited channel post update
-  editedChannelPost("edited_channel_post"),
+  @JsonValue("edited_channel_post")
+  editedChannelPost,
 
   /// Inline query update
-  inlineQuery("inline_query"),
+  @JsonValue("inline_query")
+  inlineQuery,
 
   /// Chosen inline result update
-  chosenInlineResult("chosen_inline_result"),
+  @JsonValue("chosen_inline_result")
+  chosenInlineResult,
 
   /// Callback query update
-  callbackQuery("callback_query"),
+  @JsonValue("callback_query")
+  callbackQuery,
 
   /// Shipping query update
-  shippingQuery("shipping_query"),
+  @JsonValue("shipping_query")
+  shippingQuery,
 
   /// Pre checkout query update
-  preCheckoutQuery("pre_checkout_query"),
+  @JsonValue("pre_checkout_query")
+  preCheckoutQuery,
 
   /// Poll update
-  poll("poll"),
+  @JsonValue("poll")
+  poll,
 
   /// Poll answer update
-  pollAnswer("poll_answer"),
+  @JsonValue("poll_answer")
+  pollAnswer,
 
   /// My chat member update
-  myChatMember("my_chat_member"),
+  @JsonValue("my_chat_member")
+  myChatMember,
 
   /// Chat member update
-  chatMember("chat_member"),
+  @JsonValue("chat_member")
+  chatMember,
 
   /// Chat join request update
-  chatJoinRequest("chat_join_request"),
+  @JsonValue("chat_join_request")
+  chatJoinRequest,
 
   /// A reaction to a message was changed by a user.
-  messageReaction("message_reaction"),
+  @JsonValue("message_reaction")
+  messageReaction,
 
   /// Update when reactions to a message with anonymous reactions were changed.
-  messageReactionCount("message_reaction_count"),
+  @JsonValue("message_reaction_count")
+  messageReactionCount,
 
   /// Update when a chat is boosted.
-  chatBoost("chat_boost"),
+  @JsonValue("chat_boost")
+  chatBoost,
 
   /// Update when a chat boost is removed.
-  removedChatBoost("removed_chat_boost"),
+  @JsonValue("removed_chat_boost")
+  removedChatBoost,
 
   /// Update when a business connection is established.
-  businessConnection("business_connection"),
+  @JsonValue("business_connection")
+  businessConnection,
 
   /// When a message from a connected business account is recieved
-  businessMessage("business_message"),
+  @JsonValue("business_message")
+  businessMessage,
 
   /// New version of a message from a connected business account
-  editedBusinessMessage("edited_business_message"),
+  @JsonValue("edited_business_message")
+  editedBusinessMessage,
 
   /// Messages were deleted from a connected business account
-  deletedBusinessMessages("deleted_business_messages"),
+  @JsonValue("deleted_business_messages")
+  deletedBusinessMessages,
 
   /// Updates about purchased paid media
-  purchasedPaidMedia("purchased_paid_media");
-
-  /// The value of this enum.
-  final String type;
-
-  /// Constructs a new [UpdateType].
-  const UpdateType(this.type);
+  @JsonValue("purchased_paid_media")
+  purchasedPaidMedia;
 
   /// Check if the update is a message update
   bool get isMessage => this == UpdateType.message;
@@ -123,11 +146,6 @@ enum UpdateType {
   /// Check if the update is a message reaction count update
   bool get isMessageReactionCount => this == UpdateType.messageReactionCount;
 
-  /// Constructs a new [UpdateType] from a [String].
-  factory UpdateType.fromJson(String type) {
-    return UpdateType.values.firstWhere((e) => e.type == type);
-  }
-
   /// List of update types that related to a Message event.
   static List<UpdateType> messages() {
     return [
@@ -139,4 +157,8 @@ enum UpdateType {
       editedBusinessMessage,
     ];
   }
+
+  /// Converts the [UpdateType] to its corresponding JSON value.
+  @override
+  String toJson() => _$UpdateTypeEnumMap[this]!;
 }

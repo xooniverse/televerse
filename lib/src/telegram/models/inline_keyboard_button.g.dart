@@ -33,6 +33,8 @@ _InlineKeyboardButton _$InlineKeyboardButtonFromJson(
   copyText: json['copy_text'] == null
       ? null
       : CopyTextButton.fromJson(json['copy_text'] as Map<String, dynamic>),
+  iconCustomEmojiId: json['icon_custom_emoji_id'] as String?,
+  style: $enumDecodeNullable(_$StyleTypeEnumMap, json['style']),
 );
 
 Map<String, dynamic> _$InlineKeyboardButtonToJson(
@@ -49,4 +51,12 @@ Map<String, dynamic> _$InlineKeyboardButtonToJson(
   'web_app': ?instance.webApp,
   'switch_inline_query_chosen_chat': ?instance.switchInlineQueryChosenChat,
   'copy_text': ?instance.copyText,
+  'icon_custom_emoji_id': ?instance.iconCustomEmojiId,
+  'style': ?_$StyleTypeEnumMap[instance.style],
+};
+
+const _$StyleTypeEnumMap = {
+  StyleType.danger: 'danger',
+  StyleType.success: 'success',
+  StyleType.primary: 'primary',
 };

@@ -177,30 +177,33 @@ class DioHttpClient implements HttpClient {
   ) async {
     final formData = FormData();
 
-    // Add regular parameters
-    payload.params.forEach((key, value) {
-      if (value != null) {
+    final encoded = jsonEncode(payload.params);
+    final decoded = (jsonDecode(encoded) as Map<String, dynamic>);
+    (decoded).forEach((key, value) {
+      if (value == null) return;
+
+      if (value is Map || value is List) {
+        formData.fields.add(MapEntry(key, jsonEncode(value)));
+      } else {
         formData.fields.add(MapEntry(key, value.toString()));
       }
     });
 
     // Add files
-    for (final fileMap in payload.files!) {
-      for (final entry in fileMap.entries) {
-        final fieldName = entry.key;
-        final localFile = entry.value;
+    for (final entry in payload.files!.entries) {
+      final fieldName = entry.key;
+      final localFile = entry.value;
 
-        final multipartFile = MultipartFile.fromBytes(
-          localFile.bytes,
-          filename: localFile.fileName,
-          contentType: localFile.contentType != null
-              ? http_parser.MediaType.parse(localFile.contentType!)
-              : null,
-          headers: localFile.headers,
-        );
+      final multipartFile = MultipartFile.fromBytes(
+        localFile.bytes,
+        filename: localFile.fileName,
+        contentType: localFile.contentType != null
+            ? http_parser.MediaType.parse(localFile.contentType!)
+            : null,
+        headers: localFile.headers,
+      );
 
-        formData.files.add(MapEntry(fieldName, multipartFile));
-      }
+      formData.files.add(MapEntry(fieldName, multipartFile));
     }
 
     return await _dio.post(

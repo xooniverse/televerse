@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:televerse/src/telegram/models/video_quality.dart';
 import 'photo_size.dart';
 
 part 'video.freezed.dart';
@@ -64,6 +65,9 @@ abstract class Video with _$Video {
 
     /// Optional. Available sizes of the cover of the video in the message
     @JsonKey(name: 'cover') List<PhotoSize>? cover,
+
+    /// Optional. List of available qualities of the video
+    @JsonKey(name: 'qualities') List<VideoQuality>? qualities,
   }) = _Video;
 
   /// Creates a [Video] from a JSON map
