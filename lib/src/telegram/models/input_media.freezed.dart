@@ -240,9 +240,7 @@ class InputMediaPhoto extends InputMedia {
     final List<MessageEntity>? captionEntities,
     @JsonKey(name: 'has_spoiler') this.hasSpoiler,
     @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
-    final String? $type,
   }) : _captionEntities = captionEntities,
-       $type = $type ?? 'photo',
        super._();
 
   /// Type of input media.
@@ -292,9 +290,6 @@ class InputMediaPhoto extends InputMedia {
   /// Optional. True, if the caption must be shown above the message media
   @JsonKey(name: 'show_caption_above_media')
   final bool? showCaptionAboveMedia;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   /// Create a copy of InputMedia
   /// with the given fields replaced by the non-null parameter values.
@@ -404,9 +399,7 @@ class InputMediaDocument extends InputMedia {
     final List<MessageEntity>? captionEntities,
     @JsonKey(name: 'disable_content_type_detection')
     this.disableContentTypeDetection,
-    final String? $type,
   }) : _captionEntities = captionEntities,
-       $type = $type ?? 'document',
        super._();
 
   /// Type of input media.
@@ -459,9 +452,6 @@ class InputMediaDocument extends InputMedia {
   /// is sent as part of an album.
   @JsonKey(name: 'disable_content_type_detection')
   final bool? disableContentTypeDetection;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   /// Create a copy of InputMedia
   /// with the given fields replaced by the non-null parameter values.
@@ -575,9 +565,7 @@ class InputMediaAnimation extends InputMedia {
     @JsonKey(name: 'duration') this.duration,
     @JsonKey(name: 'has_spoiler') this.hasSpoiler,
     @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
-    final String? $type,
   }) : _captionEntities = captionEntities,
-       $type = $type ?? 'animation',
        super._();
 
   /// Type of input media.
@@ -644,9 +632,6 @@ class InputMediaAnimation extends InputMedia {
   /// Optional. True, if the caption must be shown above the message media
   @JsonKey(name: 'show_caption_above_media')
   final bool? showCaptionAboveMedia;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   /// Create a copy of InputMedia
   /// with the given fields replaced by the non-null parameter values.
@@ -781,9 +766,7 @@ class InputMediaAudio extends InputMedia {
     @JsonKey(name: 'duration') this.duration,
     @JsonKey(name: 'performer') this.performer,
     @JsonKey(name: 'title') this.title,
-    final String? $type,
   }) : _captionEntities = captionEntities,
-       $type = $type ?? 'audio',
        super._();
 
   /// Type of input media.
@@ -841,9 +824,6 @@ class InputMediaAudio extends InputMedia {
   /// Optional. Title of the audio
   @JsonKey(name: 'title')
   final String? title;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   /// Create a copy of InputMedia
   /// with the given fields replaced by the non-null parameter values.
@@ -971,9 +951,7 @@ class InputMediaVideo extends InputMedia {
     @JsonKey(name: 'show_caption_above_media') this.showCaptionAboveMedia,
     @JsonKey(name: 'start_timestamp') this.startTimestamp,
     @JsonKey(name: 'cover') @InputFileConverter() this.cover,
-    final String? $type,
   }) : _captionEntities = captionEntities,
-       $type = $type ?? 'video',
        super._();
 
   /// Type of input media.
@@ -1054,9 +1032,6 @@ class InputMediaVideo extends InputMedia {
   @JsonKey(name: 'cover')
   @InputFileConverter()
   final InputFile? cover;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   /// Create a copy of InputMedia
   /// with the given fields replaced by the non-null parameter values.

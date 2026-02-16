@@ -207,11 +207,11 @@ class RawAPI {
   }
 
   /// Prepares files to send for the payload
-  Map<String, LocalFile> _prepareFiles(Iterable<InputFile?> files) {
+  Map<String, LocalFile> _prepareFiles(Iterable<(String?, InputFile?)> files) {
     final result = <String, LocalFile>{};
     for (var file in files) {
-      if (file != null && file.type == InputFileType.bytes) {
-        result[file.getAttachName()] = file.toLocalFile();
+      if (file.$2 != null && file.$2!.type == InputFileType.bytes) {
+        result[file.$1 ?? file.$2!.getAttachName()] = file.$2!.toLocalFile();
       }
     }
     return result;
@@ -269,7 +269,6 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'url': url,
-      'certificate': ?certificate,
       'ip_address': ?ipAddress,
       'max_connections': ?maxConnections,
       'allowed_updates': ?allowedUpdates,
@@ -277,7 +276,10 @@ class RawAPI {
       'secret_token': ?secretToken,
     };
 
-    final payload = Payload(params, _prepareFiles([certificate]));
+    final payload = Payload(
+      params,
+      _prepareFiles([('certificate', certificate)]),
+    );
     return await _makeRequest<bool>(APIMethod.setWebhook.name, payload);
   }
 
@@ -395,7 +397,6 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'photo': photo,
       'message_thread_id': ?messageThreadId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
@@ -413,7 +414,7 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final payload = Payload(params, _prepareFiles([photo]));
+    final payload = Payload(params, _prepareFiles([('photo', photo)]));
 
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendPhoto.name,
@@ -452,7 +453,9 @@ class RawAPI {
       'direct_messages_topic_id': ?directMessagesTopicId,
     };
 
-    final files = _prepareFiles(media.expand((e) => e.getInputFiles()));
+    final files = _prepareFiles(
+      media.expand((e) => e.getInputFiles().map((e) => (null, e))),
+    );
 
     final payload = Payload(params, files);
     final response = await _makeRequest<List<dynamic>>(
@@ -621,7 +624,6 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'audio': audio,
       'message_thread_id': ?messageThreadId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
@@ -641,7 +643,7 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final files = _prepareFiles([audio, ?thumbnail]);
+    final files = _prepareFiles([('audio', audio), (null, thumbnail)]);
 
     final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -675,7 +677,6 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'document': document,
       'message_thread_id': ?messageThreadId,
       'thumbnail': ?thumbnail,
       'caption': ?caption,
@@ -692,7 +693,7 @@ class RawAPI {
       'direct_messages_topic_id': ?directMessagesTopicId,
       'suggested_post_parameters': ?suggestedPostParameters,
     };
-    final files = _prepareFiles([document, ?thumbnail]);
+    final files = _prepareFiles([('document', document), (null, thumbnail)]);
     final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendDocument.name,
@@ -733,7 +734,6 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'video': video,
       'message_thread_id': ?messageThreadId,
       'duration': ?duration,
       'width': ?width,
@@ -758,7 +758,11 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final files = _prepareFiles([video, ?thumbnail, ?cover]);
+    final files = _prepareFiles([
+      ('video', video),
+      (null, thumbnail),
+      (null, cover),
+    ]);
 
     final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -797,7 +801,6 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'animation': animation,
       'message_thread_id': ?messageThreadId,
       'duration': ?duration,
       'width': ?width,
@@ -819,7 +822,7 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final files = _prepareFiles([animation, ?thumbnail]);
+    final files = _prepareFiles([('animation', animation), (null, thumbnail)]);
 
     final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -853,7 +856,6 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'voice': voice,
       'message_thread_id': ?messageThreadId,
       'caption': ?caption,
       'parse_mode': ?parseMode,
@@ -870,7 +872,7 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final files = _prepareFiles([voice]);
+    final files = _prepareFiles([('voice', voice)]);
 
     final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -909,7 +911,6 @@ class RawAPI {
   }) async {
     final params = <String, dynamic>{
       'chat_id': chatId,
-      'video_note': videoNote,
       'message_thread_id': ?messageThreadId,
       'duration': ?duration,
       'length': ?length,
@@ -925,7 +926,7 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final files = _prepareFiles([videoNote, ?thumbnail]);
+    final files = _prepareFiles([('video_note', videoNote), (null, thumbnail)]);
 
     final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -1579,8 +1580,8 @@ class RawAPI {
   ///
   /// See: https://core.telegram.org/bots/api#setchatphoto
   Future<bool> setChatPhoto(ID chatId, InputFile photo) async {
-    final params = <String, dynamic>{'chat_id': chatId, 'photo': photo};
-    final files = _prepareFiles([photo]);
+    final params = <String, dynamic>{'chat_id': chatId};
+    final files = _prepareFiles([('photo', photo)]);
     final payload = Payload(params, files);
     return await _makeRequest<bool>(APIMethod.setChatPhoto.name, payload);
   }
@@ -2429,7 +2430,9 @@ class RawAPI {
       'business_connection_id': ?businessConnectionId,
       'reply_markup': ?replyMarkup,
     };
-    final files = _prepareFiles(media.getInputFiles());
+    final files = _prepareFiles(
+      media.getInputFiles().map((e) => (null, e)).toList(),
+    );
     final payload = Payload(params, files);
 
     final response = await _makeRequest<dynamic>(
@@ -2801,7 +2804,7 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final files = _prepareFiles([sticker]);
+    final files = _prepareFiles([('sticker', sticker)]);
     final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendSticker.name,
@@ -2859,11 +2862,10 @@ class RawAPI {
   ) async {
     final params = <String, dynamic>{
       'user_id': userId,
-      'sticker': sticker,
       'sticker_format': stickerFormat,
     };
 
-    final files = _prepareFiles([sticker]);
+    final files = _prepareFiles([('sticker', sticker)]);
     final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.uploadStickerFile.name,
@@ -2883,7 +2885,7 @@ class RawAPI {
     String name,
     String title,
     List<InputSticker> stickers, {
-    String? stickerType,
+    StickerType? stickerType,
     bool? needsRepainting,
   }) async {
     final params = <String, dynamic>{
@@ -2895,7 +2897,7 @@ class RawAPI {
       'needs_repainting': ?needsRepainting,
     };
 
-    final files = _prepareFiles(stickers.map((e) => e.sticker));
+    final files = _prepareFiles(stickers.map((e) => (null, e.sticker)));
 
     final payload = Payload(params, files);
     return await _makeRequest<bool>(
@@ -2920,7 +2922,7 @@ class RawAPI {
       'sticker': sticker,
     };
 
-    final files = _prepareFiles(sticker.getInputFiles());
+    final files = _prepareFiles(sticker.getInputFiles().map((e) => (null, e)));
     final payload = Payload(params, files);
     return await _makeRequest<bool>(APIMethod.addStickerToSet.name, payload);
   }
@@ -3039,10 +3041,9 @@ class RawAPI {
       'name': name,
       'user_id': userId,
       'format': format,
-      'thumbnail': ?thumbnail,
     };
 
-    final files = _prepareFiles([thumbnail]);
+    final files = _prepareFiles([('thumbnail', thumbnail)]);
     final payload = Payload(params, files);
     return await _makeRequest<bool>(
       APIMethod.setStickerSetThumbnail.name,
@@ -3595,7 +3596,7 @@ class RawAPI {
       'sticker': sticker,
     };
 
-    final files = _prepareFiles([sticker.sticker]);
+    final files = _prepareFiles([(null, sticker.sticker)]);
     final payload = Payload(params, files);
     return await _makeRequest<bool>(
       APIMethod.replaceStickerInSet.name,
@@ -3677,7 +3678,9 @@ class RawAPI {
       'suggested_post_parameters': ?suggestedPostParameters,
     };
 
-    final files = _prepareFiles(media.expand((e) => e.getInputFiles()));
+    final files = _prepareFiles(
+      media.expand((e) => e.getInputFiles()).map((e) => (null, e)),
+    );
 
     final response = await _makeRequest<Map<String, dynamic>>(
       APIMethod.sendPaidMedia.name,
@@ -4012,7 +4015,7 @@ class RawAPI {
       'is_public': ?isPublic,
     };
 
-    final files = _prepareFiles([photo.file]);
+    final files = _prepareFiles([(null, photo.file)]);
     final payload = Payload(params, files);
     return await _makeRequest<bool>(
       APIMethod.setBusinessAccountProfilePhoto.name,
@@ -4219,7 +4222,7 @@ class RawAPI {
       'protect_content': ?protectContent,
     };
 
-    final files = _prepareFiles([content.file]);
+    final files = _prepareFiles([(null, content.file)]);
 
     final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -4252,7 +4255,7 @@ class RawAPI {
       'areas': ?areas,
     };
 
-    final files = _prepareFiles([content.file]);
+    final files = _prepareFiles([(null, content.file)]);
 
     final payload = Payload(params, files);
     final response = await _makeRequest<Map<String, dynamic>>(
@@ -4533,7 +4536,7 @@ class RawAPI {
   /// Changes the profile photo of the bot. Returns True on success.
   Future<bool> setMyProfilePhoto(InputProfilePhoto photo) async {
     final params = {'photo': photo};
-    final files = _prepareFiles([photo.file]);
+    final files = _prepareFiles([(null, photo.file)]);
     final payload = Payload(params, files);
 
     return await _makeRequest<bool>(APIMethod.setMyProfilePhoto.name, payload);

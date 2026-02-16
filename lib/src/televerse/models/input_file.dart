@@ -131,20 +131,20 @@ class InputFile {
   }
 
   /// Returns the file name of the [InputFile].
-  String getValue() {
+  String getValue({String? name}) {
     switch (type) {
       case InputFileType.fileId:
         return fileId!;
       case InputFileType.url:
         return url!.toString();
       case InputFileType.bytes:
-        return "attach://file$hashCode";
+        return name ?? "attach://file$hashCode";
     }
   }
 
   /// Returns the file attach name
-  String getAttachName() {
-    return "file$hashCode";
+  String getAttachName({String? name}) {
+    return name ?? "file$hashCode";
   }
 
   /// Get bytes of either the file or the bytes itself.
@@ -183,7 +183,7 @@ class InputFile {
   }
 
   /// Converts the InputFile to a JSON object.
-  String toJson() => getValue();
+  String toJson({String? name}) => getValue(name: name);
 
   /// Converts the InputFile to a LocalFile object.
   LocalFile toLocalFile() {
@@ -197,19 +197,19 @@ class InputFile {
 }
 
 /// Converter for InputFile
-class InputFileConverter implements JsonConverter<InputFile, String> {
+class InputFileConverter implements JsonConverter<InputFile, String?> {
   /// Constructs the InputFile converter
   const InputFileConverter();
 
   /// Placeholder - do not use.
   @override
-  InputFile fromJson(String json) {
+  InputFile fromJson(String? json) {
     throw Exception("Can't do fromJson on InputFile");
   }
 
   /// Gets the value of the InputFile
   @override
-  String toJson(InputFile data) {
+  String? toJson(InputFile data) {
     return data.getValue();
   }
 }

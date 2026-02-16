@@ -12,14 +12,14 @@ InputProfilePhotoStatic _$InputProfilePhotoStaticFromJson(
   type:
       $enumDecodeNullable(_$InputProfilePhotoTypeEnumMap, json['type']) ??
       InputProfilePhotoType.static,
-  photo: const InputFileConverter().fromJson(json['photo'] as String),
+  photo: const InputFileConverter().fromJson(json['photo'] as String?),
 );
 
 Map<String, dynamic> _$InputProfilePhotoStaticToJson(
   InputProfilePhotoStatic instance,
 ) => <String, dynamic>{
   'type': _$InputProfilePhotoTypeEnumMap[instance.type]!,
-  'photo': const InputFileConverter().toJson(instance.photo),
+  'photo': ?const InputFileConverter().toJson(instance.photo),
 };
 
 const _$InputProfilePhotoTypeEnumMap = {
@@ -33,7 +33,7 @@ InputProfilePhotoAnimated _$InputProfilePhotoAnimatedFromJson(
   type:
       $enumDecodeNullable(_$InputProfilePhotoTypeEnumMap, json['type']) ??
       InputProfilePhotoType.animated,
-  animation: const InputFileConverter().fromJson(json['animation'] as String),
+  animation: const InputFileConverter().fromJson(json['animation'] as String?),
   mainFrameTimestamp: (json['main_frame_timestamp'] as num?)?.toDouble(),
 );
 
@@ -41,6 +41,6 @@ Map<String, dynamic> _$InputProfilePhotoAnimatedToJson(
   InputProfilePhotoAnimated instance,
 ) => <String, dynamic>{
   'type': _$InputProfilePhotoTypeEnumMap[instance.type]!,
-  'animation': const InputFileConverter().toJson(instance.animation),
+  'animation': ?const InputFileConverter().toJson(instance.animation),
   'main_frame_timestamp': ?instance.mainFrameTimestamp,
 };

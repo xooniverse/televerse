@@ -177,10 +177,15 @@ class DioHttpClient implements HttpClient {
   ) async {
     final formData = FormData();
 
-    // Add regular parameters
-    payload.params.forEach((key, value) {
-      if (value != null) {
+    final encoded = jsonEncode(payload.params);
+    final decoded = (jsonDecode(encoded) as Map<String, dynamic>);
+    (decoded).forEach((key, value) {
+      if (value == null) return;
+
+      if (value is Map || value is List) {
         formData.fields.add(MapEntry(key, jsonEncode(value)));
+      } else {
+        formData.fields.add(MapEntry(key, value.toString()));
       }
     });
 

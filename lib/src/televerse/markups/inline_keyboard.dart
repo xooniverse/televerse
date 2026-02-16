@@ -298,15 +298,15 @@ abstract class InlineKeyboard
 
   /// Adds a callback query button to the current row.
   InlineKeyboard text(
-    String text, [
-    String? data,
+    String text,
+    String data, {
     String? iconCustomEmojiId,
     StyleType? style,
-  ]) {
+  }) {
     return add(
       InlineKeyboardButton(
         text: text,
-        callbackData: data ?? text,
+        callbackData: data,
         iconCustomEmojiId: iconCustomEmojiId,
         style: style,
       ),
@@ -374,11 +374,11 @@ abstract class InlineKeyboard
 
   /// Adds an inline query button to the current row.
   InlineKeyboard switchInline(
-    String text, [
+    String text, {
     String query = "",
     String? iconCustomEmojiId,
     StyleType? style,
-  ]) {
+  }) {
     return add(
       InlineKeyboardButton(
         text: text,
@@ -391,11 +391,11 @@ abstract class InlineKeyboard
 
   /// Adds an inline query button for current chat to the current row.
   InlineKeyboard switchInlineCurrentChat(
-    String text, [
+    String text, {
     String query = "",
     String? iconCustomEmojiId,
     StyleType? style,
-  ]) {
+  }) {
     return add(
       InlineKeyboardButton(
         text: text,

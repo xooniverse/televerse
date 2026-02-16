@@ -18,7 +18,7 @@ abstract interface class _InputMediaImp {
 
 /// This object represents the content of a media message to be sent. It should
 /// be one of
-@Freezed(fromJson: false, toJson: true)
+@Freezed(fromJson: false, toJson: true, unionKey: "type")
 sealed class InputMedia
     with _$InputMedia
     implements _InputMediaImp, InputFileProvider {
